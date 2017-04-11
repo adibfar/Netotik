@@ -1,0 +1,109 @@
+﻿@{
+    ViewBag.Title = "اینترفیس های روتر";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="row">
+    <div class="col-lg-12">
+        <div class="ibox float-e-margins">
+            <div class="ibox-title">
+                <h5>Ether List</h5>
+
+                <div class="ibox-tools">
+                    <a class="collapse-link">
+                        <i class="fa fa-chevron-up"></i>
+                    </a>
+                    <a class="close-link">
+                        <i class="fa fa-times"></i>
+                    </a>
+                </div>
+            </div>
+            <div class="ibox-content">
+                <input type="text" class="form-control input-sm m-b-xs" id="filter"
+                       placeholder="جستجوی نام،مک آدرس،حجم و...">
+                <table class="footable table table-stripped toggle-arrow-tiny" data-page-size="8" data-filter=#filter>
+                    <thead>
+                        <tr>
+                            <th data-toggle="true">نام</th>
+                            <th>MAC</th>
+                            <th>ارسالی(MB)</th>
+                            <th>دریافتی(MB)</th>
+                            <th>وضعیت</th>
+                            <th>فعالیت</th>
+                            <th data-hide="all">نام پیشفرض</th>
+                            <th data-hide="all">MTU</th>
+                            <th data-hide="all">actual mtu</th>
+                            <th data-hide="all">آخرین زمان متصل بودن</th>
+                            <th data-hide="all">تعداد قطع اتصال ها</th>
+                            <th data-hide="all">بسته های ارسالی</th>
+                            <th data-hide="all">بسته های دریافتی</th>
+                            <th data-hide="all">ارسالی های دراپ شده</th>
+                            <th data-hide="all">دریافتی های دراپ شده</th>
+                            <th data-hide="all">ارسالی های خطا دار</th>
+                            <th data-hide="all">دریافتی های خطا دار</th>
+                            <th data-hide="all">متصل</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in ViewBag.model)
+                        {
+                            if (item.type == "ether")
+                            {
+                                <tr>
+                                    <td>@item.name</td>
+                                    <td>@item.mac_address</td>
+                                    <td>@(Int64.Parse(item.tx_byte)/1048576)</td>
+                                    <td>@(Int64.Parse(item.rx_byte)/1048576)</td>
+                                    <td>
+                                        @if (@item.disabled == "false")
+                                        {<i class="fa fa-check text-navy"></i>}
+                                        else
+                                        {<i class="fa fa-times text-danger"></i>}
+                                    </td>
+                                    <td>غیره فعال و...</td>
+                                    <td>@item.default_name</td>
+                                    <td>@item.mtu</td>
+                                    <td>@item.actual_mtu</td>
+                                    <td>@item.last_link_up_time</td>
+                                    <td>@item.link_downs</td>
+                                    <td>@item.tx_packet</td>
+                                    <td>@item.rx_packet</td>
+                                    <td>@item.tx_drop</td>
+                                    <td>@item.rx_drop</td>
+                                    <td>@item.tx_error</td>
+                                    <td>@item.rx_error</td>
+                                    <td>
+                                        @if (@item.running != "false")
+                                        {<i class="fa fa-check text-navy"></i>}
+                                        else
+                                        {<i class="fa fa-times text-danger"></i>}
+                                    </td>
+                                </tr>
+                            }
+                        }
+                    </tbody>
+                    <tfoot>
+                        <tr>
+                            <td colspan="5">
+                                <ul class="pagination pull-right"></ul>
+                            </td>
+                        </tr>
+                    </tfoot>
+                </table>
+
+            </div>
+        </div>
+    </div>
+</div>
+@section ScriptUp {
+    <link href="~/Content/css/plugins/footable/footable.core.css" rel="stylesheet">
+}
+@section DownScript {
+    <script src="~/Content/js/plugins/footable/footable.all.min.js"></script>
+    <script>
+        $(document).ready(function () {
+
+            $('.footable').footable();
+            $('.footable2').footable()
+        });
+    </script>
+}

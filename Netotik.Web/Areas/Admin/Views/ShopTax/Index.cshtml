@@ -1,0 +1,25 @@
+﻿@model List<Netotik.Domain.Entity.Tax>
+@using Netotik.ViewModels.Identity.Security
+@{
+    ViewBag.Title = "مدیریت مالیات ها";
+    var roles = Html.CurrentUserPermissions();
+    var canAdd = roles.Any(x => x == AssignableToRolePermissions.CanCreateTax);
+}
+
+<div class="col-lg-12" id="ContentPage">
+    <section class="panel">
+        <header class="panel-heading">
+            @ViewBag.Title
+            @if (canAdd)
+            {
+                @Html.ActionLink("مالیات جدید", MVC.Admin.ShopTax.ActionNames.Create, MVC.Admin.ShopTax.Name, null, new { @class = "btn btn-primary pull-left" })
+            }
+
+        </header>
+
+        @Html.Partial("_Table", Model)
+
+    </section>
+
+</div>
+

@@ -1,0 +1,43 @@
+﻿@model MvcPaging.IPagedList<Netotik.ViewModels.Shop.WareHouse.TableWareHouseModel>
+@{
+    ViewBag.Title = "مدیریت انبار ها";
+    var roles = Html.CurrentUserPermissions();
+    var canAdd = roles.Any(x => x == Netotik.ViewModels.Identity.Security.AssignableToRolePermissions.CanCreateWareHouse);
+}
+
+<div class="col-lg-12" id="ContentPage">
+    <section class="panel">
+        <header class="panel-heading">
+            @ViewBag.Title
+            @if (canAdd)
+            {
+                @Html.ActionLink("انبار جدید", MVC.Admin.ShopWareHouse.ActionNames.Create, MVC.Admin.ShopWareHouse.Name, null, new { @class = "btn btn-primary pull-left" })
+            }
+        </header>
+
+
+        @Html.Partial("_Table", Model)
+
+    </section>
+    <script type="text/javascript">
+
+        function beginPaging(args) {
+            // Animate
+            $('#gridlist').fadeOut('normal');
+        }
+
+        function successPaging() {
+            // Animate
+            $('#gridlist').fadeIn('normal');
+        }
+
+        function failurePaging() {
+            alert("Could not retrieve list.");
+        }
+
+
+    </script>
+
+
+
+</div>

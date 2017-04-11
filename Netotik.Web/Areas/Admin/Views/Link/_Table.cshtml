@@ -1,0 +1,45 @@
+﻿@model List<Netotik.Domain.Entity.Link>
+
+@{
+    Layout = null;
+}
+
+<div id="gridlist">
+    @if (!Model.Any())
+    {
+        <div class="gradeX odd">
+            هیچ پیوندی در سیستم ثبت نشده..
+        </div>
+    }
+    else
+    {
+         <table class="table table-striped border-top dataTable">
+            <thead class="alert-info">
+                <tr role="row">
+                    <th role="columnheader" rowspan="1" colspan="1">متن</th>
+                    <th role="columnheader" rowspan="1" colspan="1">ادرس</th>
+                    <th role="columnheader" rowspan="1" colspan="1"></th>
+                </tr>
+            </thead>
+
+            <tbody role="alert">
+                @foreach (var item in Model)
+                {
+                    <tr class="gradeX odd">
+                        <td class="">@item.Text</td>
+                        <td class="">@item.Url</td>
+                        <td>
+                            <a href="@Url.Action(MVC.Admin.Link.ActionNames.Remove, new { id = item.Id })" class="btn btn-danger btn-xs "><i class="icon-trash"></i></a>
+                            <a href="@Url.Action(MVC.Admin.Link.ActionNames.Edit, new { id = item.Id })" class="btn btn-primary btn-xs "><i class="icon-pencil"></i></a>
+                        </td>
+
+                    </tr>
+                }
+
+
+            </tbody>
+           
+        </table>
+
+    }
+</div>

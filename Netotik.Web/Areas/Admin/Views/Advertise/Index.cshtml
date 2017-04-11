@@ -1,0 +1,21 @@
+﻿@model List<Netotik.Domain.Entity.Advertise>
+@{
+    ViewBag.Title = "مدیریت بنرها";
+}
+
+<div class="col-lg-12" id="ContentPage">
+    <section class="panel">
+        <header class="panel-heading">
+            @ViewBag.Title
+
+            @Html.ActionLink("بنر جدید", MVC.Admin.Advertise.ActionNames.Create, MVC.Admin.Advertise.Name,null,new { @class = "btn btn-primary pull-left" })
+
+        </header>
+
+        @Html.Partial("_Table", Model)
+
+    </section>
+
+</div>
+
+

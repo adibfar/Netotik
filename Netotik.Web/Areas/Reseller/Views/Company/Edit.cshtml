@@ -1,0 +1,124 @@
+﻿@model Netotik.ViewModels.Identity.UserCompany.UserEditModel
+@{
+    ViewBag.Title = " ویرایش اطلاعات ";
+}
+<div class="row">
+    @using (Html.BeginForm(MVC.Reseller.Company.ActionNames.Edit, MVC.Reseller.Company.Name, FormMethod.Post,
+                                htmlAttributes: new { @class = "form cmxform form-horizontal tasi-form", enctype = "multipart/form-data", id = "form" }))
+    {
+        <div class="ibox-content m-b-sm border-bottom">
+            <div class="row">
+                <div class="col-md-12">
+                    <button name="actionType" value="@Netotik.Common.Controller.ActionType.Save" class="btn btn-outline btn-primary" onclick="AjaxForm.Post(this, 'form')" data-loading-text="در حال ارسال اطلاعات">
+                        <span class="fa fa-check"></span>
+                        @Netotik.Resources.Captions.Save
+                    </button>
+                    <a class="btn btn-default btn-outline pull-left" href="@Url.Action(MVC.Reseller.Company.Index())">
+                        <span class="fa fa-reply"></span>
+                        @Netotik.Resources.Captions.Back
+                    </a>
+                </div>
+
+                <div class="col-md-12">
+                    @Html.ValidationSummary(false, "", htmlAttributes: new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+        @Html.AntiForgeryToken()
+        @Html.HiddenFor(model => model.Id);
+        <div class="tabs-container">
+            <ul class="nav nav-tabs">
+                <li class="active">
+                    <a href="#requiredInfo" data-toggle="tab">مشخصات </a>
+                </li>
+                <li class="">
+                    <a data-toggle="tab" href="#router"><i class="icon-2x icon-flag"></i> اطلاعات روتر </a>
+                </li>
+                <li class="">
+                    <a data-toggle="tab" href="#package"><i class="icon-2x icon-flag"></i> اطلاعات پکیج </a>
+                </li>
+                <li class="">
+                    <a data-toggle="tab" href="#money"><i class="icon-2x icon-flag"></i> اطلاعات مالی </a>
+                </li>
+            </ul>
+            <div class="tab-content">
+                <div class="tab-pane active" id="requiredInfo">
+                    <div class="panel-body">
+                        <fieldset>
+                            <div class="form-group">
+                                <div class="col-md-5">
+                                    @Html.EditorFor(model => model.Username)
+                                </div>
+                                <div class="col-md-5">
+                                    @Html.EditorFor(model => model.Name)
+                                </div>
+                            </div>
+                            <div class="hr-line-dashed"></div>
+                            <div class="form-group">
+                                <div class="col-md-5">
+                                    @Html.EditorFor(model => model.CompanyName)
+                                </div>
+                                <div class="col-md-5">
+                                    @Html.EditorFor(model => model.PersonCode)
+                                </div>
+                            </div>
+                            <div class="hr-line-dashed"></div>
+                            <div class="form-group">
+                                <div class="col-md-5">
+                                    @Html.EditorFor(model => model.Email)
+                                </div>
+                                <div class="col-md-5">
+                                    @Html.EditorFor(model => model.MobileNumber)
+                                </div>
+                            </div>
+                            <div class="hr-line-dashed"></div>
+                            <div class="form-group">
+                                <div class="col-md-5">
+                                    @Html.EditorFor(model => model.PostalCode)
+                                </div>
+                                <div class="col-md-5">
+                                    @Html.EditorFor(model => model.Address)
+                                </div>
+                            </div>
+                        </fieldset>
+                    </div>
+                </div>
+                <div class="tab-pane" id="router">
+                    <div class="panel-body">
+                        <fieldset>
+                            <div class="form-group">
+                                <div class="col-md-7">
+                                    @Html.EditorFor(model => model.R_Host)
+                                </div>
+                                <div class="col-md-3">
+                                    @Html.EditorFor(model => model.R_Port)
+                                </div>
+                            </div>
+                            <div class="hr-line-dashed"></div>
+                            <div class="form-group">
+                                <div class="col-md-5">
+                                    @Html.EditorFor(model => model.R_User)
+                                </div>
+                                <div class="col-md-5">
+                                    <label class="control-label" for="@Html.DisplayNameFor(model=>model.R_Password)">@Html.DisplayNameFor(model => model.R_Password)</label>
+                                    @Html.TextBoxFor(model => model.R_Password , htmlAttributes: new { @class = "form-control", type = "password" })
+                                </div>
+                            </div>
+                        </fieldset>
+                    </div>
+                </div>
+                <div class="tab-pane " id="package">
+                    <div class="panel-body">
+
+                    </div>
+                </div>
+                <div class="tab-pane " id="money">
+                    <div class="panel-body">
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+    }
+    </div>

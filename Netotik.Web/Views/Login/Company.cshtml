@@ -1,0 +1,62 @@
+﻿@using CaptchaMvc.HtmlHelpers
+@using Netotik.Common.Helpers
+@using Netotik.ViewModels.Identity.UserCompany
+@model LoginModel
+
+<section class="flexbox-container">
+    <div class="col-md-4 offset-md-4 col-xs-10 offset-xs-1 box-shadow-3 p-0">
+        <div class="card border-grey border-lighten-3 m-0">
+            <div class="card-body collapse in">
+                @if (ViewBag.Message != null)
+                {
+                    <div class="alert alert-icon-left alert-danger alert-dismissible fade in mb-2" role="alert">
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">×</span>
+                        </button>
+                        <strong>ناموفق!</strong> @ViewBag.Message
+                    </div>
+                    if (ViewBag.Link != null)
+                    {
+                        <div class="card-block">
+                            <a class="btn btn-outline-primary btn-block" href="@Url.Action(MVC.Account.ReceiveActivatorEmail())"><i class="icon-checkmark2"></i> فعال سازی حساب کاربری</a>
+                        </div>
+                        <div class="ui-separator">
+
+                        </div>
+                    }
+
+                }
+                <div class="card-block">
+                    @using (Html.BeginForm(MVC.Login.ActionNames.Company, MVC.Login.Name, new { ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form", id = "loginForm", autocomplete = "off" }))
+                    {
+                        @Html.AntiForgeryToken()
+                        <div class="form-group has-feedback has-icon-left">
+                            @Html.TextBoxFor(m => m.UserName, new { @class = "form-control", placeholder = "نام کاربری" })
+                            <div class="form-control-position">
+                                <i class="icon-head"></i>
+                            </div>
+                        </div>
+                        <div class="form-group has-feedback has-icon-left">
+                            @Html.PasswordFor(m => m.Password, new { @class = "form-control", placeholder = "گذرواژه" })
+                            <div class="form-control-position">
+                                <i class="icon-key3"></i>
+                            </div>
+                        </div>
+                        <fieldset class="form-group row">
+                            <div class="col-md-6 col-xs-12 text-xs-center">
+                                <fieldset>
+                                    @Html.CheckBoxFor(m => m.RememberMe, new { @class = "chk-remember" })
+                                    @Html.Label("", "مرا بخاطر بسپار", new { @class = "control-label" })
+                                </fieldset>
+                            </div>
+                            <div class="col-md-6 col-xs-12 float-sm-left text-xs-center"><a href="@Url.Action(MVC.Account.ForgotPassword())" class="card-link">فراموش کرده اید؟</a></div>
+                        </fieldset>
+                        <button type="submit" class="btn btn-outline-primary btn-block"><i class="icon-unlock2"></i> ورود</button>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+

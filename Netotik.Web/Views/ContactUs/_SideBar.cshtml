@@ -1,0 +1,54 @@
+﻿@{
+    var setting = ViewBag.siteConfig as Netotik.ViewModels.Setting.GeneralSettingModel;
+}
+
+
+<div class="col-xs-12 col-sm-4 col-md-4">
+    <div class="contactDetails contactHead">
+        <h3>اطلاعات تماس</h3>
+        <p>
+            <span class="iconContact"><i class="fa fa-map-marker"></i></span>
+            @setting.CompanyName
+            <br />
+            @setting.CompanyAddress
+        </p>
+        <p>
+            <span class="iconContact"><i class="fa fa-phone"></i></span>
+            تلفن : @setting.CompanyTel1
+            @if (!string.IsNullOrEmpty(setting.CompanyTel2))
+            { <text><br />تلفن : </text> @setting.CompanyTel2 }
+        </p>
+        <p style="direction: rtl;">
+            <span class="iconContact"><i class="fa fa-envelope-o"></i></span>
+            ایمیل: @setting.CompanyEmail1
+
+            @if (!string.IsNullOrEmpty(setting.CompanyEmail2))
+            { <text> <br /> ایمیل: </text> @setting.CompanyEmail2 }
+
+
+        </p>
+    </div>
+    <div class="social-area contactHead">
+        <h3>ما را در شبکه های اجتماعی دنبال کنید</h3>
+        <ul class="socila-icon">
+            @if (!string.IsNullOrEmpty(setting.Facebook))
+            {
+                <li><a href="@setting.Facebook" target="_blank"><i class="fa fa-facebook"></i></a></li>
+            }
+            @if (!string.IsNullOrEmpty(setting.Twitter))
+            {
+                <li><a href="@setting.Twitter" target="_blank"><i class="fa fa-twitter"></i></a></li>
+            }
+            @if (!string.IsNullOrEmpty(setting.GooglePlus))
+            {
+                <li><a href="@setting.GooglePlus" target="_blank"><i class="fa fa-google-plus"></i></a></li>
+            }
+            @if (!string.IsNullOrEmpty(setting.Instagram))
+            {
+                <li><a href="@setting.GooglePlus" target="_blank"><i class="fa fa-instagram"></i></a></li>
+            }
+
+
+        </ul>
+    </div>
+</div>

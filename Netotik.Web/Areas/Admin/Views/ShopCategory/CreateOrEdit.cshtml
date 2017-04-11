@@ -1,0 +1,85 @@
+﻿@model Netotik.ViewModels.Shop.Category.CategoryModel
+@{
+    Layout = null;
+}
+@Html.HiddenFor(model => model.Id)
+
+<div class="tabs-container">
+
+    <ul class="nav nav-tabs">
+        <li class="active">
+            <a href="#content" data-toggle="tab">
+                <i class="fa fa-archive"></i>مشخصات دسته
+            </a>
+        </li>
+        <li>
+            <a href="#seo" data-toggle="tab">
+                <i class="fa fa-google"></i>
+                تنظیمات سئو
+            </a>
+        </li>
+        <li>
+            <a href="#image" data-toggle="tab">
+                <i class="fa fa-file-image-o"></i>
+                تصویر
+            </a>
+        </li>
+    </ul>
+    <div class="tab-content">
+        <div class="tab-pane active" id="content">
+            <div class="panel-body">
+                <fieldset>
+                    <div class="form-group">
+                        <div class="col-sm-5">
+                            @Html.LabelFor(model => model.ParentId, new { @class = "control-label" })
+                            @Html.DropDownListFor(model => model.ParentId, ViewBag.Categories as SelectList, new { @class = "form-control chosen-select chosen-rtl" })
+                        </div>
+                        <div class="col-md-5">
+                            @Html.Label("تخفیف ها", new { @class = "control-label" })
+                            @Html.DropDownListFor(model => model.DiscountIds, ViewBag.Discountes as List<SelectListItem>, new { @class = "chosen-select chosen-rtl form-control", multiple = "" })
+                        </div>
+                    </div>
+                    <div class="hr-line-dashed"></div>
+                    <div class="form-group">
+                        <div class="col-md-5">@Html.EditorFor(model => model.Name)</div>
+                        <div class="col-md-5">@Html.EditorFor(model => model.DisplayOrder)</div>
+                    </div>
+                    <div class="hr-line-dashed"></div>
+                    <div class="form-group">
+                        <div class="col-md-3">@Html.EditorFor(model => model.IsPublished)</div>
+                        <div class="col-md-3">@Html.EditorFor(model => model.ShowOnHomePage)</div>
+                    </div>
+                    <div class="hr-line-dashed"></div>
+                    <div class="form-group">
+                        <div class="col-md-12">
+                            @Html.EditorFor(model => model.Description)
+                        </div>
+                    </div>
+                </fieldset>
+            </div>
+        </div>
+
+
+        <div class="tab-pane" id="seo">
+            <div class="panel-body">
+                <fieldset>
+                    @Html.EditorFor(model => model.MetaTitle)
+                    @Html.EditorFor(model => model.MetaKeywords)
+                    @Html.EditorFor(model => model.MetaDescription)
+                </fieldset>
+            </div>
+        </div>
+
+        <div class="tab-pane" id="image">
+            <div class="panel-body">
+                <fieldset>
+                    @Html.EditorFor(model => model.Image)
+                    @Html.Partial("_SingleImageForm")
+                </fieldset>
+            </div>
+        </div>
+
+    </div>
+
+
+</div>

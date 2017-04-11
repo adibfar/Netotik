@@ -1,0 +1,71 @@
+﻿@model List<Netotik.ViewModels.ShopPublic.ShippingListModel>
+@{
+    Layout = null;
+}
+
+
+<div class="panel-box radios">
+
+    <div class="titles">
+        <h4 class="cart-title"> شیوه ارسال</h4>
+    </div>
+
+    <div class="panel-body">
+        @if (Model.Any())
+        {
+            <table class="cart-table">
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td width="20%">
+                            <h6>
+                                هزینه ارسال
+                            </h6>
+                            @if (item.PriceAfterRecive)
+                            {
+                                <h6>
+                                    پس کرایه
+                                </h6>
+                            }
+                            else
+                            {
+                                if (item.Price < 1)
+                                {
+                                    <h6>رایگان</h6>
+                                }
+                                else
+                                {
+                                    <h6 class="text text-success">
+                                        @String.Format("{0:0,0}", item.Price) 
+                                    </h6>
+                                <small>تومان </small>
+                                }
+                            }
+
+                        </td>
+                        <td width="80%">
+                            <div class="row">
+                                
+                                <div class="col-md-10">
+                                    <h4 style="direction: rtl" class="text-resalt">
+                                        @item.Name
+                                    </h4>
+                                    <p style="direction:rtl">
+                                        @item.Description
+                                    </p>
+                                </div>
+                                <div class="col-md-2">
+                                    <img src="@Url.Content(string.IsNullOrEmpty(item.imgName) ? " />Content/img/1.jpg" : Path.Combine(_imagesShopShippingMethodPath, item.imgName))?w=120&h=110" alt="@item.Name">
+                                </div>
+                            </div>
+                        </td>
+
+                        <td width="5%" style="vertical-align:middle">
+                            @Html.RadioButton("ShipingMethodId", item.Id, false, new { onchange = "changeShipment(" + (item.PriceAfterRecive ? 0 : item.Price) + ")" })
+                        </td>
+                    </tr>
+                }
+            </table>
+        }
+    </div>
+</div>

@@ -1,0 +1,236 @@
+﻿@model Netotik.Domain.Entity.Product
+@{
+    ViewBag.Title = (string.IsNullOrWhiteSpace(Model.MetaTitle) ? Model.Name : Model.MetaTitle);
+    ViewBag.Keywords = (string.IsNullOrWhiteSpace(Model.MetaKeywords) ? Model.ShortDescription : Model.MetaKeywords);
+    ViewBag.Description = (string.IsNullOrWhiteSpace(Model.MetaDescription) ? Model.ShortDescription : Model.MetaDescription);
+    var off = (decimal)ViewBag.OffPrice;
+    if (Model.PictureId.HasValue)
+    {
+        Model.Pictures.Add(Model.Picture);
+    }
+
+    string active = "active";
+
+}
+
+@section Down{
+    @Scripts.Render("~/bundles/jqueryvalpublic")
+    @Html.Partial(@MVC.Shared.Views._AddValidationCss)
+    @Scripts.Render("~/bundles/publicjsindex")
+}
+
+
+
+<!-- Start page content -->
+<div class="page-content">
+
+    <!-- Start single product area -->
+    <div class="container">
+        <div class="row">
+            <div class="single-products" style="margin-top: 30px;">
+                <!-- Start single product image -->
+                <div class="col-sm-5 pull-right">
+
+                    <div class="single-product-image">
+                        <div id="content-eleyas">
+                            @if (Model.Pictures.Any())
+                            {
+                                <div id="my-tab-content" class="tab-content">
+                                    @foreach (var item in Model.Pictures.Reverse())
+                                    {
+
+                                        <div class="tab-pane @active" id="view_@item.Id">
+                                            @if (Model.ShowOnHomePage)
+                                            {
+                                                <span class="new-box">
+                                                    <span class="new-label">پیشنهاد ویژه</span>
+                                                </span>
+                                            }
+
+                                            <a class="fancybox" href="@Url.Content(Path.Combine(_imagesShopProductPath, item.FileName))" data-fancybox-group="gallery" style="height:458px!Important" title="">
+                                                <img src="@Url.Content(Path.Combine(_imagesShopProductPath, item.FileName))?w=300&h=300&mode=crop" width="458" height="458" alt="">
+                                            </a>
+                                        </div>
+                                            active = "";
+                                    }
+                                </div>
+
+                            }
+
+
+
+                            <div id="viewproduct" class="nav nav-tabs product-view" data-tabs="tabs">
+                                @if (Model.Pictures.Any())
+                                {
+                                    active = "active";
+
+                                    foreach (var item in Model.Pictures.Reverse())
+                                    {
+                                        <div class="pro-view @active">
+                                            <a href="#view_@item.Id" data-toggle="tab">
+                                                <img src="@Url.Content(Path.Combine(_imagesShopProductPath, item.FileName))?w=100&h=100&mode=stretch" alt="">
+                                            </a>
+                                        </div>
+                                        active = "";
+                                    }
+                                }
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <!-- End single product image -->
+                <!-- Start single product details -->
+                <div class="col-sm-7">
+                    <div class="single-product-details">
+                        <h1>@Model.Name</h1>
+                        <h2>
+                            @if (Model.CallForPrice)
+                            {
+                                <label class="btn btn-xs btn-primary disabled">برای اطلاع از قیمت تماس بگیرید</label>
+                            }
+                            else
+                            {
+                                if (off > 0)
+                                {
+                                    if (Model.Price.HasValue)
+                                    {
+                                        <strong style="text-decoration:line-through">
+                                            @string.Format("{0:0,0}", Model.Price)
+                                        </strong>
+                                        <text>  تومان    </text>
+                                    }
+
+
+                                    <strong class="btn btn-info btn-sm">
+                                        تخفیف @string.Format("{0:0,0}", off) تومانی
+                                    </strong>
+                                }
+                                else
+                                {
+                                    if (Model.Price.HasValue)
+                                    {
+                                        <strong>
+                                            @string.Format("{0:0,0}", Model.Price)
+                                        </strong>
+                                        <text>  تومان    </text>
+                                    }
+                                }
+
+                            }
+
+                        </h2>
+
+                        @if ((Model.Quantity > 0 || Model.CanBuyIfNotInStock) && Model.Price.HasValue && Model.Price.Value > 0 && !Model.CallForPrice && !Model.DisableBuyButton)
+                        {
+                            <p class="sin-item"><span class="sin-item-btn">موجود در انبار</span></p>
+
+                            <form method="post" action="@Url.Action(MVC.Product.ActionNames.AddToCart)">
+                                @Html.Hidden("id", Model.Id)
+
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        @if (Model.ProductColors.Any())
+                                        {
+                                            <p class="selector1">
+                                                @foreach (var item in Model.ProductColors)
+                                                {
+                                                    <label style="float: right; padding: 10px; color: @item.ColorCode">
+                                                        <input style="margin:0px 10px;" checked="checked" name="colorId" value="@item.Id" type="radio" />@item.Name
+                                                    </label>
+                                                }
+                                            </p>
+                                        }
+                                    </div>
+                                    <div class="col-md-4 pull-right">
+                                        @if (Model.ProductSizes.Any())
+                                        {
+                                            <div class="form-group">
+                                                @Html.DropDownList("sizeId", new SelectList(Model.ProductSizes, "Id", "Name"), htmlAttributes: new { @class = "form-control", style = "direction:rtl;" })
+                                            </div>
+                                        }
+                                    </div>
+
+                                </div>
+                                <br />
+                                <div class="row">
+                                    <p class="buttons_bottom_block no-print" id="add_to_cart">
+                                        <button class="exclusive" name="Submit" type="submit">
+                                            <span>افزودن به سبد خرید</span>
+                                        </button>
+                                    </p>
+                                </div>
+                            </form>
+
+                        }
+                        else
+                        {
+
+                            if (Model.Quantity < 1 && !Model.CanBuyIfNotInStock)
+                            {
+                                <p class="sin-item"><span class="btn btn-warning">نا موجود</span></p>
+                            }
+                        }
+
+
+                        <div class="row" style="margin-top:40px;">
+                            <div class="col-md-12">
+                                <p style="float:right">
+                                    @Model.ShortDescription
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- End single product details -->
+            </div>
+        </div>
+    </div>
+    <!-- End single product area -->
+    <!-- Start single product info -->
+    <div class="container">
+        <div class="row">
+            <div class="single-product-info">
+                <div id="content-product-review">
+                    <div class="col-xs-12 col-sm-3 pull-right">
+                        <ul id="tabs" class="review-tab" data-tabs="tabs">
+                            <li class="active"><a href="#info1" data-toggle="tab">نقد و بررسی</a></li>
+                            <li><a href="#info2" data-toggle="tab">مشخصات فنی</a></li>
+                        </ul>
+                    </div>
+                    <div class="col-xs-12 col-sm-9">
+                        <div id="my-tab-content" class="tab-content">
+                            <div class="tab-pane active" id="info1" style="float:right">
+                                @Html.Raw(Model.FullDescription)
+                            </div>
+                            <div class="tab-pane" id="info2">
+
+                                <table class="table-data-sheet" dir="rtl">
+                                    <tbody>
+                                        <tr>
+                                            <td style="background-color:#ebf1f7"> برند </td>
+                                            <td>@Model.Manufacturer.Name </td>
+                                        </tr>
+                                        <tr>
+                                            <td style="background-color:#ebf1f7"> وزن </td>
+                                            <td>@Model.Weight</td>
+                                        </tr>
+                                        @foreach (var item in Model.ProductAttributeValues)
+                                        {
+                                            <tr>
+                                                <td style="background-color:#ebf1f7"> @item.ProductAttribute.Name </td>
+                                                <td>@item.Value</td>
+                                            </tr>
+                                        }
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    @Html.Partial(MVC.Product.Views._RelativeProduct, ViewBag.RelativeProducts as List<Netotik.ViewModels.Shop.ProductPanel.BoxProductModel>)
+</div>

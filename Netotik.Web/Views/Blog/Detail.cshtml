@@ -1,0 +1,39 @@
+﻿@model Netotik.Domain.Entity.Content
+@{
+    ViewBag.Title = (string.IsNullOrWhiteSpace(Model.MetaTitle) ? Model.Title : Model.MetaTitle);
+    ViewBag.Keywords = (string.IsNullOrWhiteSpace(Model.MetaKeywords) ? Model.BodyOverview : Model.MetaKeywords);
+    ViewBag.Description = (string.IsNullOrWhiteSpace(Model.MetaDescription) ? Model.BodyOverview : Model.MetaDescription);
+}
+@section Down{
+    @Scripts.Render("~/bundles/jqueryvalpublic")
+    @Html.Partial(@MVC.Shared.Views._AddValidationCss)
+}
+
+<!-- Start page content -->
+<div class="page-content">
+    <div class="blog-area" style="padding-top: 30px;">
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-12 col-sm-4 col-md-4 pull-right">
+                    @Html.Partial(MVC.Blog.Views._SideBar)
+                </div>
+
+                <div class="col-xs-12 col-sm-8 col-md-8">
+                    @Html.Partial(MVC.Blog.Views._Post)
+
+                    <div class="blog-coment-box">
+                        @if (Model.AllowViewComments)
+                        {
+                            @Html.Partial(MVC.Blog.Views._Comments, Model.ContentComments)
+                        }
+                        @if (Model.AllowComments)
+                        {
+                            @Html.Partial(MVC.Blog.Views._AddComment, new Netotik.ViewModels.Comment.AddCommentModel() { ContentId = Model.Id })
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    @Html.Action(MVC.Home.ActionNames.LastBlog, MVC.Home.Name)
+</div>

@@ -1,0 +1,36 @@
+﻿//default format 
+string dts=ConvertDate.ToFa(DateTime.Now);//1393/08/01
+//date only (short and D for Long)
+dts=ConvertDate.ToFa(DateTime.Now, "d");//93/08/01 
+dts=ConvertDate.ToFa(DateTime.Now, "D");//پنج شنبه, 01 آبان 1393
+//time only 
+dts=ConvertDate.ToFa(DateTime.Now, "t");//21:53 
+dts=ConvertDate.ToFa(DateTime.Now, "T");//21:53:26
+//general short date + time
+dts=ConvertDate.ToFa(DateTime.Now, "g");//93/08/01 21:53 
+dts=ConvertDate.ToFa(DateTime.Now, "G");//93/08/01 21:53:26
+//general full date + time
+dts=ConvertDate.ToFa(DateTime.Now, "f");//پنج شنبه, 01 آبان 1393 21:53 
+dts=ConvertDate.ToFa(DateTime.Now, "F");//پنج شنبه, 01 آبان 1393 21:53:26
+//only month and year
+dts=ConvertDate.ToFa(DateTime.Now, "m");//آبان 1 
+dts=ConvertDate.ToFa(DateTime.Now, "y");//1393 آبان
+
+//new standard formats 
+
+string string2=ConvertDate.ToFa(DateTime.Now, "yy MMM");//93 آبان 
+string2=ConvertDate.ToFa(DateTime.Now, "yyyy/MM/dd ");//1393/8/9 
+string2=ConvertDate.ToFa(DateTime.Now, "yy-M-d ");//93-8-09
+string2= ConvertDate.ToFa(DateTime.Now, "ddd dd MMM yyyy");//جمعه 9 آبان 1393
+
+//testing convert back to DateTime from persian string
+ConvertDate.ToEn("1393/08/01");//2014/10/23 00:00:00 
+ConvertDate.ToEn("01/8/1393");//2014/10/23 00:00:00 
+ConvertDate.ToEn("1/8/1393");//2014/10/23 00:00:00 
+ConvertDate.ToEn("1-8-93");//2014/10/23 00:00:00 
+ConvertDate.ToEn("93-8-01");//2014/10/23 00:00:00 
+ConvertDate.ToEn("93 8 01");//2014/10/23 00:00:00 
+//extra spaces and different seperators are handeled 
+ConvertDate.ToEn("1_8_1393 ");//2014/10/23 00:00:00 
+ConvertDate.ToEn(" 1_8_1393 ");//2014/10/23 00:00:00 
+ConvertDate.ToEn(" 1.8.1393 ");//2014/10/23 00:00:00

@@ -1,0 +1,154 @@
+﻿@{
+    ViewBag.Title = "لیست کاربران";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+
+<div class="col-lg-12" id="ContentPage">
+    <section class="panel">
+        <header class="panel-heading">
+            @Html.ActionLink("کاربر جدید", MVC.Company.UserManager.ActionNames.UserCreate, MVC.Company.UserManager.Name, null, new { @class = "btn btn-primary pull-left" })
+        </header>
+        <div class="panel-body">
+            <div class="input-group m-bot15">
+                <span class="input-group-btn">
+                    <button class="btn btn-primary" type="submit">جستجو</button>
+                </span>
+                <input style="width:50%;" type="text" class="form-control" name="Search" id="filter" placeholder="جستجوی نام،مک آدرس،حجم و...">
+            </div>
+        </div>
+    </section>
+
+</div>
+<div class="row">
+    <div class="col-lg-12">
+        <div class="ibox float-e-margins">
+            <div class="ibox-title">
+                <h5>User List</h5>
+
+                <div class="ibox-tools">
+                    <a class="collapse-link">
+                        <i class="fa fa-chevron-up"></i>
+                    </a>
+                    <a class="close-link">
+                        <i class="fa fa-times"></i>
+                    </a>
+                </div>
+            </div>
+            <div class="ibox-content">
+                <table class="footable table table-stripped toggle-arrow-tiny" data-page-size="30" data-filter=#filter>
+                    <thead>
+                        <tr>
+                            <th data-toggle="true">نام کاربری</th>
+                            <th>تعرفه فعال</th>
+                            <th>زمان اتصال</th>
+                            <th>دانلود</th>
+                            <th>آپلود</th>
+                            <th data-hide="all">آخرین اتصال</th>
+                            <th data-hide="all">نام</th>
+                            <th data-hide="all">نام خانوادگی</th>
+                            <th data-hide="all">شماره تماس</th>
+                            <th data-hide="all">آدرس</th>
+                            <th data-hide="all">آدرس ایمیل</th>
+                            <th data-hide="all">توضیحات</th>
+                            <th data-hide="all">IP</th>
+                            <th>وضعیت</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in ViewBag.userlist)
+            {
+                            <tr>
+                                <td>@item.username</td>
+                                <td>@item.actual_profile</td>
+                                <td>@item.uptime_used</td>
+                                <td>@try
+                                { @(Int32.Parse(item.download_used) / 1048576) }
+                                catch { }</td>
+                                <td>@try
+                                { @(Int32.Parse(item.upload_used) / 1048576) }
+                                catch { }</td>
+                                <td>@item.last_seen</td>
+                                <td>@item.first_name</td>
+                                <td>@item.last_name</td>
+                                <td>@item.phone</td>
+                                <td>@item.location</td>
+                                <td>@item.email</td>
+                                <td>@item.comment</td>
+                                <td>@item.ip_address</td>
+                                <td>
+                                    @if (item.disabled == "false")
+                                    {
+                                        <span class="label label-success">فعال</span>
+                                    }
+                                    else
+                                    {
+                                        <span class="label label-danger">غیره فعال</span>
+                                    }
+                                </td>
+
+                                <td>
+                                    <form action="@Url.Action(MVC.Company.UserManager.ActionNames.UserEdit)" style="float:right" method="post">
+                                        @Html.AntiForgeryToken()
+                                        <input type="hidden" name="id" value="@item.id" />
+                                        <button class="btn btn-success btn-xl "><i class="fa fa-pencil"></i></button>
+                                    </form>
+                                    <form action="@Url.Action(MVC.Company.UserManager.ActionNames.UserDetails)" style="float:right" method="post">
+                                        @Html.AntiForgeryToken()
+                                        <input type="hidden" name="id" value="@item.id" />
+                                        <button class="btn btn-white btn-xl "><i class="fa fa-book"></i></button>
+                                    </form>
+                                    <form action="@Url.Action(MVC.Company.UserManager.ActionNames.Userremove)" style="float:right" method="post">
+                                        @Html.AntiForgeryToken()
+                                        <input type="hidden" name="id" value="@item.id" />
+                                        <button class="btn btn-danger btn-xl"><i class="fa fa-remove"></i></button>
+                                    </form>
+                                    @if (item.disabled == "false")
+                                    {
+                                        <form action="@Url.Action(MVC.Company.UserManager.ActionNames.Userdisable)" style="float:right" method="post">
+                                            @Html.AntiForgeryToken()
+                                            <input type="hidden" name="id" value="@item.id" />
+                                            <button class="btn btn-warning btn-xl"><i class="fa fa-lock"></i></button>
+                                        </form>
+                                    }
+                                    else
+                                    {
+                                        <form action="@Url.Action(MVC.Company.UserManager.ActionNames.Userenable)" style="float:right" method="post">
+                                            @Html.AntiForgeryToken()
+                                            <input type="hidden" name="id" value="@item.id" />
+                                            <button class="btn btn-success btn-xl"><i class="fa fa-unlock"></i></button>
+                                        </form>
+                                    }
+                                </td>
+
+                            </tr>
+                        }
+                    </tbody>
+                    <tfoot>
+                        <tr>
+                            <td colspan="5">
+                                <ul class="pagination pull-right"></ul>
+                            </td>
+                        </tr>
+                    </tfoot>
+                </table>
+
+            </div>
+        </div>
+    </div>
+</div>
+@section ScriptUp {
+    <link href="~/Content/css/plugins/footable/footable.core.css" rel="stylesheet">
+}
+@section DownScript {
+    <script src="~/Content/js/plugins/footable/footable.all.min.js"></script>
+    <script>
+        $(document).ready(function () {
+
+            $('.footable').footable();
+            $('.footable2').footable()
+        });
+    </script>
+}

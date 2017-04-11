@@ -1,0 +1,87 @@
+﻿@model Netotik.ViewModels.ShopPublic.FactorPriceModel
+@{
+    Layout = null;
+    decimal factorOff = ViewBag.sumPrice;
+}
+
+
+<div class="panel-box radios">
+
+    <div class="titles">
+        <h4 class="cart-title"> پیش فاکتور</h4>
+    </div>
+
+    <div class="panel-body">
+        <table class="table" style="direction:rtl">
+            <tr class="alert">
+                <td><h4>جمع خرید شما:</h4></td>
+                <td style="font-size:17px!Important;">
+                    <strong id="totalPrice"> @string.Format("{0:0,0}", Model.TotalPrice) </strong>
+                </td>
+                <td>تومان</td>
+            </tr>
+            <tr class="alert">
+                <td> <h4> تخفیفات محصولات:</h4></td>
+                <td style="font-size:17px!Important;">
+                    <strong id="totalOffPrice">@string.Format("{0:0,0}", Model.TotalOffPrice)</strong>
+                </td>
+                <td>تومان</td>
+            </tr>
+            <tr class="alert">
+                <td>
+                    <h4>تخفیف فاکتور:</h4>
+                </td>
+                <td style="font-size:17px!Important;">
+                    <strong id="factorOff">@string.Format("{0:0,0}", factorOff)</strong>
+                </td>
+                <td>تومان</td>
+            </tr>
+            <tr class="alert">
+                <td>
+                    <h4>مالیات:</h4>
+                </td>
+                <td style="font-size:17px!Important;">
+                    <strong id="totalTaxPrice">@string.Format("{0:0,0}", Model.TotalTaxPrice)</strong>
+                </td>
+                <td>تومان</td>
+            </tr>
+            <tr class="alert">
+                <td><h4>هزینه ارسال:</h4></td>
+                <td style="font-size:17px!Important;">
+                    <strong id="totalShippingPrice">@string.Format("{0:0,0}", Model.TotalShipmentPrice)</strong>
+                </td>
+                <td>تومان</td>
+            </tr>
+            <tr class="alert" style="display:none">
+                <td colspan="3">
+                    <div class="input-group">
+                        <span class="input-group-btn">
+                            <button class="btn btn-success" type="button" onclick="CheckCoupon()">بررسی کد تخفیف :</button>
+                        </span>
+                        <input class="form-control" name="coupon" id="coupon" type="text">
+
+                    </div>
+                </td>
+            </tr>
+            <tr class="alert" style="display:none">
+                <td>
+                    <h4>تخفیف کوپن :</h4>
+                </td>
+                <td>
+                    <h4 id="couponPrice"> 00 </h4>
+                </td>
+                <td>تومان</td>
+            </tr>
+            <tr class="alert alert-info">
+                <td>
+                    <h4>مبلغ پرداختی :</h4>
+                </td>
+                <td>
+                    <h4 id="totalPaymentPrice">@string.Format("{0:0,0}", Model.TotalPaymentPrice - factorOff)</h4>
+                </td>
+                <td>تومان</td>
+            </tr>
+        </table>
+
+    </div>
+</div>

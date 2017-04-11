@@ -1,0 +1,46 @@
+﻿@model Netotik.ViewModels.Identity.UserCompany.ProfileModel
+@{
+    ViewBag.Title = "داشتبورد";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@{
+    ViewBag.Title = " پروفایل ";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="row">
+    <div class="col-md-5">
+        <div class="ibox float-e-margins">
+            <div class="ibox-title">
+                <h5> جزئیات پروفایل</h5>
+            </div>
+            <div>
+                <div class="ibox-content no-padding border-left-right">
+                    <img alt="image" class="img-responsive" src="~/Content/img/profile_small.jpg">
+                </div>
+                <div class="ibox-content profile-content">
+                    <h4><i class="fa fa-user"></i> <strong> @Html.DisplayTextFor(model => model.Name)</strong></h4>
+                    <p><i class="fa "></i> آدرس ایمیل: @Html.DisplayTextFor(model => model.Email)</p>
+                    <p><i class="fa "></i> نام کمپانی: @Html.DisplayTextFor(model => model.CompanyName)</p>
+                    <p><i class="fa fa-mobile-phone"></i> شماره تماس: @Html.DisplayTextFor(model => model.MobileNumber)</p>
+                    <p><i class="fa "></i> کد ملی: @Html.DisplayTextFor(model => model.PersonCode)</p>
+                    <p><i class="fa "></i> کد پستی: @Html.DisplayTextFor(model => model.PostalCode)</p>
+                    <p><i class="fa fa-map-marker"></i> آدرس: @Html.DisplayTextFor(model => model.Address)</p>
+                    <div class="user-button">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <a href="@Url.Action(MVC.Company.Router.ActionNames.Info, MVC.Company.Router.Name, new { area = MVC.Company.Name })">
+                                    <button type="submit" class="btn btn-primary btn-sm btn-block"><i class="fa fa-server"></i>   نمایش اطلاعات روتر</button>
+                                </a>
+                            </div>
+                            <div class="col-md-6 ">
+                                <a href="@Url.Action(MVC.Company.Home.ActionNames.Profile, MVC.Company.Home.Name, new { area = MVC.Company.Name })">
+                                    <button class="btn btn-group btn-sm btn-block"><i class="fa fa-user"></i>   ویرایش اطلاعات</button>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

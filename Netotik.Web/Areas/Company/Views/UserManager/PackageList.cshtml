@@ -1,0 +1,92 @@
+﻿@{
+    ViewBag.Title = "لیست پکیج های یوزمنیجر";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="col-lg-12" id="ContentPage">
+    <section class="panel">
+        <header class="panel-heading">
+            @Html.ActionLink("پکیج جدید", MVC.Company.UserManager.ActionNames.PackageCreate, MVC.Company.UserManager.Name, null, new { @class = "btn btn-primary pull-left" })
+        </header>
+        <div class="panel-body">
+            <div class="input-group m-bot15">
+                <span class="input-group-btn">
+                    <button class="btn btn-primary" type="submit">جستجو</button>
+                </span>
+                <input style="width:50%;" type="text" class="form-control" name="Search" id="filter" placeholder="جستجوی نام،مک آدرس،حجم و...">
+            </div>
+        </div>
+    </section>
+</div>
+<div class="row">
+    <div class="col-lg-12">
+        <div class="ibox float-e-margins">
+            <div class="ibox-title">
+                <h5>Package List</h5>
+                <div class="ibox-tools">
+                    <a class="collapse-link">
+                        <i class="fa fa-chevron-up"></i>
+                    </a>
+                    <a class="close-link">
+                        <i class="fa fa-times"></i>
+                    </a>
+                </div>
+            </div>
+            <div class="ibox-content">
+                <table class="footable table table-stripped toggle-arrow-tiny" data-page-size="8" data-filter=#filter>
+                    <thead>
+                        <tr>
+                            <th data-toggle="true">نام پکیج</th>
+                            <th class="hidden-phone" role="columnheader" rowspan="1" colspan="1">قیمت</th>
+                            <th class="hidden-phone" role="columnheader" rowspan="1" colspan="1">اعتبار زمانی</th>
+                            <th data-hide="all">نام گروه</th>
+                            <th class="hidden-phone" role="columnheader" rowspan="1" colspan="1"></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in ViewBag.userlist)
+            {
+                            <tr>
+                                <td>@item.name</td>
+                                <td>@item.price</td>
+                                <td>@item.validity</td>
+                                <td>@item.name_for_users</td>
+                                <td>
+                                    <form action="@Url.Action(MVC.Company.UserManager.ActionNames.PackageDetails)" style="float:right" method="post">
+                                        @Html.AntiForgeryToken()
+                                        <input type="hidden" name="id" value="@item.id" />
+                                        <button class="btn btn-white btn-xl "><i class="fa fa-book"></i></button>
+                                    </form>
+                                    <form action="@Url.Action(MVC.Company.UserManager.ActionNames.ProfileRemove)" style="float:right" method="post">
+                                        @Html.AntiForgeryToken()
+                                        <input type="hidden" name="id" value="@item.id" />
+                                        <button class="btn btn-danger btn-xl"><i class="fa fa-remove"></i></button>
+                                    </form>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                    <tfoot>
+                        <tr>
+                            <td colspan="5">
+                                <ul class="pagination pull-right"></ul>
+                            </td>
+                        </tr>
+                    </tfoot>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+@section ScriptUp {
+    <link href="~/Content/css/plugins/footable/footable.core.css" rel="stylesheet">
+}
+@section DownScript {
+    <script src="~/Content/js/plugins/footable/footable.all.min.js"></script>
+    <script>
+            $(document).ready(function () {
+
+                $('.footable').footable();
+                $('.footable2').footable()
+            });
+    </script>
+}

@@ -1,0 +1,35 @@
+﻿@using Netotik.Web.RazorHelpers
+@using Netotik.Common.Extensions
+@model Netotik.Domain.Entity.Content
+@{
+    Layout = null;
+}
+
+<div class="blog-post2">
+    <div class="blog-box2">
+        <div class="entry-date">
+            <div class="day">@PersianDate.ConvertDate.ToFa(Model.StartDate, "dd") </div>
+            <div class="month">@PersianDate.ConvertDate.ToFa(Model.StartDate,"MMM") </div>
+        </div>
+        <div class="entry-main-content">
+            <div class="entry-thumbnail">
+                <img alt="" src="@Url.Content((Model.PictureId.HasValue ? Path.Combine(_imagesContentPath, Model.Picture.FileName) : "/Content/img/1.jpg"))">
+                <div class="block_hover">
+                    <div class="blog-link">
+                        <a class="fancybox" href="@Url.Content((Model.PictureId.HasValue ? Path.Combine(_imagesContentPath, Model.Picture.FileName) : "/Content/img/1.jpg"))">
+                            <i class="fa fa-search" data-fancybox-group="gallery"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="entry-content-other">
+                <h3>@Model.Title</h3>
+                <div class="summary">
+                    @Html.Raw(Model.Body)
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+

@@ -1,0 +1,31 @@
+﻿@using Netotik.Common
+@{
+    OperationStatus op = TempData["OS"] as OperationStatus;
+}
+@if (op != null)
+{
+
+    <script>
+        $(document).ready(function () {
+            setTimeout(function () {
+                toastr.options = {
+                    closeButton: false,
+                    progressBar: false,
+                    showMethod: 'slideDown',
+                    positionClass: 'toast-bottom-left',
+                    timeOut: 4000
+                };
+
+                @if (op.Status)
+                {
+                    <text>toastr.success("@op.Message","@op.Title");</text>
+                }
+                else
+                {
+                    <text>toastr.error("@op.Message","@op.Title");</text>
+                }
+            }, 1300);
+
+        });
+    </script>
+}

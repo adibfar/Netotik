@@ -1,0 +1,41 @@
+﻿@model Netotik.Domain.Entity.Category
+@{
+    ViewBag.Title = "دسته : "+Model.Name;
+}
+
+<div class="col-lg-12" id="ContentPage">
+
+    <section class="panel">
+        <header class="panel-heading tab-bg-dark-navy-blue ">
+            <ul class="nav nav-tabs">
+                <li class="active">
+                    <a data-toggle="tab" href="#profile">اطلاعات دسته</a>
+                </li>
+            </ul>
+        </header>
+        <div class="panel-body">
+            <div class="tab-content">
+                <div id="profile" class="tab-pane active form-horizontal">
+                    @Html.DisplayFor(model => model.Name)
+                    @Html.DisplayFor(model => model.Description)
+                    @Html.DisplayFor(model => model.DisplayOrder)
+
+                    @Html.DisplayFor(model => model.ShowOnHomePage, "Bool")
+                    @Html.DisplayFor(model => model.IsPublished, "Bool")
+
+                    @Html.DisplayFor(model => model.MetaKeywords)
+                    @Html.DisplayFor(model => model.MetaTitle)
+                    @Html.DisplayFor(model => model.MetaDescription)
+
+                    @Html.DisplayFor(model => model.CreateDate)
+                    @Html.DisplayFor(model => model.EditDate)
+
+                    <div class="col-md-2">تصویر</div>
+                    @Html.Partial(MVC.Admin.Shared.Views._SingleImageForm)
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+
+    

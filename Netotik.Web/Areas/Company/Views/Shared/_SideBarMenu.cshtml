@@ -1,0 +1,42 @@
+﻿@model List<Netotik.Domain.Entity.Menu>
+@foreach (var item in Model.Where(x => !x.ParentId.HasValue))
+{
+    <li>
+        @if (item.SubMenues.Any())
+        {
+            <a href="#">
+                <i class="@item.Icon"></i>
+                <span class="nav-label">@item.Text</span>
+                <span class="fa arrow"></span>
+            </a>
+
+            <ul class="nav nav-second-level collapse">
+                @foreach (var item2 in item.SubMenues)
+                {
+                    <li>
+                        @if (item2.SubMenues.Any())
+                        {
+                            <a href="#">منوی سه سطحه <span class="fa arrow"></span></a>
+                            <ul class="nav nav-third-level">
+                                <li>
+                                    <a href="#">آیتم سطح سوم</a>
+                                </li>
+
+                            </ul>
+
+                        }
+                        else
+                        {
+                            <a href="@item2.Url">@item2.Text</a>
+                        }
+                    </li>
+                }
+            </ul>
+
+        }
+        else
+        {
+            <a href="@item.Url"><i class="@item.Icon"></i> <span class="nav-label">@item.Text</span></a>
+        }
+    </li>
+}

@@ -1,0 +1,426 @@
+﻿using ArmanShahr.Model.RolePermisson;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading;
+
+namespace ArmanShahr.Model.Security
+{
+
+    public static class AssignableToRolePermissions
+    {
+
+        #region RolePerssiones
+
+
+        #region User
+        public const string CanCreateUser = "0";
+        public const string CanEditUser = "1";
+        public const string CanDeleteUser = "2";
+        public const string CanViewAllUser = "3";
+        public static readonly RolePermissionModel CanEditUserPermisson = new RolePermissionModel { Name = CanCreateUser, Description = "تعریف کاربر جدید", Section = SectionPermisson.User };
+        public static readonly RolePermissionModel CanCreateUserPermisson = new RolePermissionModel { Name = CanEditUser, Description = "ویرایش کاربران", Section = SectionPermisson.User };
+        public static readonly RolePermissionModel CanDeleteUserPermisson = new RolePermissionModel { Name = CanDeleteUser, Description = "حذف کاربران", Section = SectionPermisson.User };
+        #endregion
+
+        #region UserRole
+        public const string CanCreateUserRole = "4";
+        public const string CanEditUserRole = "5";
+        public const string CanDeleteUserRole = "6";
+        public const string CanViewAllUserRole = "7";
+        public static readonly RolePermissionModel CanEditUserRolePermission = new RolePermissionModel { Name = CanCreateUserRole, Description = "ایجاد گروه کاربری", Section = SectionPermisson.UserRole };
+        public static readonly RolePermissionModel CanCreateUserRolePermission = new RolePermissionModel { Name = CanEditUserRole, Description = "ویرایش گروه کاربری", Section = SectionPermisson.UserRole };
+        public static readonly RolePermissionModel CanDeleteUserRolePermission = new RolePermissionModel { Name = CanDeleteUserRole, Description = "حذف گروه کاربری", Section = SectionPermisson.UserRole };
+        #endregion
+
+        #region RolePermisson
+        public const string CanViewAllPermissions = "8";
+        public static readonly RolePermissionModel CanViewAllPermissionsPermission = new RolePermissionModel { Name = CanViewAllPermissions, Description = "دسترسی به  جدول مجوز ها", Section = SectionPermisson.RolePermisson };
+        #endregion
+
+        #region AdminPanel
+        public const string CanViewAdminPanel = "9";
+        public static readonly RolePermissionModel CanViewAdminPanelPermission = new RolePermissionModel { Name = CanViewAdminPanel, Description = "دسترسی به پنل مدیریت", Section = SectionPermisson.AdminPanel };
+        #endregion
+
+        #region CMS SessionSubject
+        public const string CanCreateSessionSubject = "10";
+        public const string CanEditSessionSubject = "11";
+        public const string CanDeleteSessionSubject = "12";
+        public const string CanViewAllSessionSubject = "13";
+        public static readonly RolePermissionModel CanCreateSessionSubjectPermission = new RolePermissionModel { Name = CanCreateSessionSubject, Description = "ایجاد مباحث", Section = SectionPermisson.CmsSessionSubject };
+        public static readonly RolePermissionModel CanEditSessionSubjectPermission = new RolePermissionModel { Name = CanCreateSessionSubject, Description = "ویرایش مباحث", Section = SectionPermisson.CmsSessionSubject };
+        public static readonly RolePermissionModel CanDeleteSessionSubjectPermission = new RolePermissionModel { Name = CanDeleteSessionSubject, Description = "حذف مباحث", Section = SectionPermisson.CmsSessionSubject };
+        public static readonly RolePermissionModel CanViewAllSessionSubjectPermisson = new RolePermissionModel { Name = CanViewAllSessionSubject, Description = "نمایش مباحث", Section = SectionPermisson.CmsSessionSubject };
+        #endregion
+
+        #region CMS Session
+
+        public const string CanCreateSession = "14";
+        public const string CanEditSession = "15";
+        public const string CanDeleteSession = "16";
+        public const string CanAcceptSession = "17";
+        public const string CanDontAcceptSession = "18";
+        public const string CanViewAllSession = "19";
+        public static readonly RolePermissionModel CanCreateSessionPermission = new RolePermissionModel { Name = CanCreateSession, Description = "ایجاد جلسات مباحث", Section = SectionPermisson.CmsSession };
+        public static readonly RolePermissionModel CanEditSessionPermission = new RolePermissionModel { Name = CanEditSession, Description = "ویرایش جلسات مباحث", Section = SectionPermisson.CmsSession };
+        public static readonly RolePermissionModel CanDeleteSessionPermission = new RolePermissionModel { Name = CanDeleteSession, Description = "حذف جلسات مباحث", Section = SectionPermisson.CmsSession };
+        public static readonly RolePermissionModel CanAcceptSessionPermission = new RolePermissionModel { Name = CanAcceptSession, Description = "تایید جلسات مباحث", Section = SectionPermisson.CmsSession };
+        public static readonly RolePermissionModel CanDontAcceptSessionPermission = new RolePermissionModel { Name = CanDontAcceptSession, Description = "عدم تایید جلسات مباحث", Section = SectionPermisson.CmsSession };
+        public static readonly RolePermissionModel CanViewAllSessionPermission = new RolePermissionModel { Name = CanViewAllSession, Description = "نمایش تمامی جلسات", Section = SectionPermisson.CmsSession };
+
+        #endregion
+
+        #region CMS KalamBozorgan
+
+        public const string CanCreateKBozorgan = "20";
+        public const string CanEditKBozorgan = "21";
+        public const string CanDeleteKBozorgan = "22";
+        public const string CanAcceptKBozorgan = "23";
+        public const string CanDontAcceptKBozorgan = "24";
+        public const string CanViewAllKBozorgan = "25";
+        public static readonly RolePermissionModel CanCreateKBozorganPermission = new RolePermissionModel { Name = CanCreateKBozorgan, Description = "ایجاد کلام بزرگان", Section = SectionPermisson.CmsKalamBozorgan };
+        public static readonly RolePermissionModel CanEditKBozorganPermission = new RolePermissionModel { Name = CanEditKBozorgan, Description = "ویرایش کلام بزرگان", Section = SectionPermisson.CmsKalamBozorgan };
+        public static readonly RolePermissionModel CanDeleteKBozorganPermission = new RolePermissionModel { Name = CanDeleteKBozorgan, Description = "حذف کلام بزرگان", Section = SectionPermisson.CmsKalamBozorgan };
+        public static readonly RolePermissionModel CanAcceptKBozorganPermission = new RolePermissionModel { Name = CanAcceptKBozorgan, Description = "تایید کلام بزرگان", Section = SectionPermisson.CmsKalamBozorgan };
+        public static readonly RolePermissionModel CanDontAcceptKBozorganPermission = new RolePermissionModel { Name = CanDontAcceptKBozorgan, Description = "عدم تایید کلام بزرگان", Section = SectionPermisson.CmsKalamBozorgan };
+        public static readonly RolePermissionModel CanViewAllKBozorganPermission = new RolePermissionModel { Name = CanViewAllKBozorgan, Description = "نمایش تمامی کلام بزرگان", Section = SectionPermisson.CmsKalamBozorgan };
+
+        #endregion
+
+        #region CMS Page
+        public const string CanCreatePage = "26";
+        public const string CanEditPage = "27";
+        public const string CanDeletePage = "28";
+        public const string CanAcceptPage = "29";
+        public const string CanDontAcceptPage = "30";
+        public const string CanViewAllPage = "31";
+        public static readonly RolePermissionModel CanCreatePagePermission = new RolePermissionModel { Name = CanCreatePage, Description = "ایجاد صفحات", Section = SectionPermisson.CmsPage };
+        public static readonly RolePermissionModel CanEditPagePermission = new RolePermissionModel { Name = CanEditPage, Description = "ویرایش صفحات", Section = SectionPermisson.CmsPage };
+        public static readonly RolePermissionModel CanDeletePagePermission = new RolePermissionModel { Name = CanDeletePage, Description = "حذف صفحات", Section = SectionPermisson.CmsPage };
+        public static readonly RolePermissionModel CanAcceptPagePermission = new RolePermissionModel { Name = CanAcceptPage, Description = "تایید صفحات", Section = SectionPermisson.CmsPage };
+        public static readonly RolePermissionModel CanDontAcceptPagePermission = new RolePermissionModel { Name = CanDontAcceptPage, Description = "عدم تایید صفحات", Section = SectionPermisson.CmsPage };
+        public static readonly RolePermissionModel CanViewAllPagePermission = new RolePermissionModel { Name = CanViewAllPage, Description = "نمایش تمامی صفحات", Section = SectionPermisson.CmsPage };
+        #endregion
+
+        #region CMS News
+        public const string CanCreateNews = "32";
+        public const string CanEditNews = "33";
+        public const string CanDeleteNews = "34";
+        public const string CanAcceptNews = "35";
+        public const string CanDontAcceptNews = "36";
+        public const string CanViewAllNews = "37";
+        public static readonly RolePermissionModel CanCreateNewsPermission = new RolePermissionModel { Name = CanCreateNews, Description = "ایجاد خبر", Section = SectionPermisson.User };
+        public static readonly RolePermissionModel CanEditNewsPermission = new RolePermissionModel { Name = CanEditNews, Description = "ویرایش خبر", Section = SectionPermisson.User };
+        public static readonly RolePermissionModel CanDeleteNewsPermission = new RolePermissionModel { Name = CanDeleteNews, Description = "حذف خبر", Section = SectionPermisson.User };
+        public static readonly RolePermissionModel CanAcceptNewsPermission = new RolePermissionModel { Name = CanAcceptNews, Description = "تایید خبر", Section = SectionPermisson.User };
+        public static readonly RolePermissionModel CanDontAcceptNewsPermission = new RolePermissionModel { Name = CanDontAcceptNews, Description = "عدم تایید خبر", Section = SectionPermisson.User };
+        public static readonly RolePermissionModel CanViewAllNewsPermission = new RolePermissionModel { Name = CanViewAllNews, Description = "نمایش تمامی خبرها", Section = SectionPermisson.User };
+        #endregion
+
+        #region CMS ImageGallery
+        public const string CanCreateImageGallery = "38";
+        public const string CanEditImageGallery = "39";
+        public const string CanDeleteImageGallery = "40";
+        public const string CanAcceptImageGallery = "41";
+        public const string CanDontAcceptImageGallery = "42";
+        public const string CanViewAllImageGallery = "43";
+        public const string CanManagePictureImageGallery = "44";
+        public static readonly RolePermissionModel CanCreateImageGalleryPermission = new RolePermissionModel { Name = CanCreateImageGallery, Description = "ایجاد گالری تصاویر", Section = SectionPermisson.CmsImageGallery };
+        public static readonly RolePermissionModel CanEditImageGalleryPermission = new RolePermissionModel { Name = CanEditImageGallery, Description = "ویرایش گالری تصاویر", Section = SectionPermisson.CmsImageGallery };
+        public static readonly RolePermissionModel CanDeleteImageGalleryPermission = new RolePermissionModel { Name = CanDeleteImageGallery, Description = "حذف گالری تصاویر", Section = SectionPermisson.CmsImageGallery };
+        public static readonly RolePermissionModel CanAcceptImageGalleryPermission = new RolePermissionModel { Name = CanAcceptImageGallery, Description = "تایید گالری تصاویر", Section = SectionPermisson.CmsImageGallery };
+        public static readonly RolePermissionModel CanDontAcceptImageGalleryPermission = new RolePermissionModel { Name = CanDontAcceptImageGallery, Description = "عدم تایید گالری تصاویر", Section = SectionPermisson.CmsImageGallery };
+        public static readonly RolePermissionModel CanViewAllImageGalleryPermission = new RolePermissionModel { Name = CanViewAllImageGallery, Description = "نمایش تمامی گالریهای تصاویر", Section = SectionPermisson.CmsImageGallery };
+        public static readonly RolePermissionModel CanManagePictureImageGalleryPermission = new RolePermissionModel { Name = CanManagePictureImageGallery, Description = "مدیریت و تغییر تصاویر گالری", Section = SectionPermisson.CmsImageGallery };
+        #endregion
+
+        #region CMS Video
+        public const string CanCreateVideo = "45";
+        public const string CanEditVideo = "46";
+        public const string CanDeleteVideo = "47";
+        public const string CanAcceptVideo = "48";
+        public const string CanDontAcceptVideo = "49";
+        public const string CanViewAllVideo = "50";
+        public static readonly RolePermissionModel CanCreateVideoPermission = new RolePermissionModel { Name = CanCreateVideo, Description = "ایجاد ویدیو", Section = SectionPermisson.CmsVideo };
+        public static readonly RolePermissionModel CanEditVideoPermission = new RolePermissionModel { Name = CanEditVideo, Description = "ویرایش ویدیو", Section = SectionPermisson.CmsVideo };
+        public static readonly RolePermissionModel CanDeleteVideoPermission = new RolePermissionModel { Name = CanDeleteVideo, Description = "حذف ویدیو", Section = SectionPermisson.CmsVideo };
+        public static readonly RolePermissionModel CanAcceptVideoPermission = new RolePermissionModel { Name = CanAcceptVideo, Description = "تایید ویدیو", Section = SectionPermisson.CmsVideo };
+        public static readonly RolePermissionModel CanDontAcceptVideoPermission = new RolePermissionModel { Name = CanDontAcceptVideo, Description = "عدم تایید ویدیو", Section = SectionPermisson.CmsVideo };
+        public static readonly RolePermissionModel CanViewAllVideoPermission = new RolePermissionModel { Name = CanViewAllVideo, Description = "نمایش تمامی ویدیوها", Section = SectionPermisson.CmsVideo };
+        #endregion
+
+        #region CMS Sound
+        public const string CanCreateSound = "50";
+        public const string CanEditSound = "51";
+        public const string CanDeleteSound = "52";
+        public const string CanAcceptSound = "53";
+        public const string CanDontAcceptSound = "54";
+        public const string CanViewAllSound = "55";
+        public static readonly RolePermissionModel CanCreateSoundPermission = new RolePermissionModel { Name = CanCreateSound, Description = "ایجاد فایل صوتی", Section = SectionPermisson.CmsSound };
+        public static readonly RolePermissionModel CanEditSoundPermission = new RolePermissionModel { Name = CanEditSound, Description = "ویرایش فایل صوتی", Section = SectionPermisson.CmsSound };
+        public static readonly RolePermissionModel CanDeleteSoundPermission = new RolePermissionModel { Name = CanDeleteSound, Description = "حذف فایل صوتی", Section = SectionPermisson.CmsSound };
+        public static readonly RolePermissionModel CanAcceptSoundPermission = new RolePermissionModel { Name = CanAcceptSound, Description = "تایید فایل صوتی", Section = SectionPermisson.CmsSound };
+        public static readonly RolePermissionModel CanDontAcceptSoundPermission = new RolePermissionModel { Name = CanDontAcceptSound, Description = "عدم تایید فایل صوتی", Section = SectionPermisson.CmsSound };
+        public static readonly RolePermissionModel CanViewAllSoundPermission = new RolePermissionModel { Name = CanViewAllSound, Description = "نمایش تمامی فایلهای صوتی", Section = SectionPermisson.CmsSound };
+        #endregion
+
+        #region CMS Tag
+        public const string CanCreateTag = "56";
+        public const string CanEditTag = "57";
+        public const string CanDeleteTag = "58";
+        public const string CanViewAllTag = "7";
+        public static readonly RolePermissionModel CanViewAllTagPermission = new RolePermissionModel { Name = CanViewAllTag, Description = "نمایش برچسب ها", Section = SectionPermisson.CmsTag };
+        public static readonly RolePermissionModel CanCreateTagPermission = new RolePermissionModel { Name = CanCreateTag, Description = "ایجاد برچسب", Section = SectionPermisson.CmsTag };
+        public static readonly RolePermissionModel CanEditTagPermission = new RolePermissionModel { Name = CanEditTag, Description = "ویرایش برچسب", Section = SectionPermisson.CmsTag };
+        public static readonly RolePermissionModel CanDeleteTagPermission = new RolePermissionModel { Name = CanDeleteTag, Description = "حذف برچسب", Section = SectionPermisson.CmsTag };
+        #endregion
+
+        #region Menu
+        public const string CanCreateMenu = "60";
+        public const string CanEditMenu = "61";
+        public const string CanDeleteMenu = "62";
+        public const string CanViewAllTag = "63";
+        public static readonly RolePermissionModel CanViewAllMenu = new RolePermissionModel { Name = CanViewAllTag, Description = "نمایش برچسب ها", Section = SectionPermisson.CmsTag };
+        public static readonly RolePermissionModel CanEditMenuPermission = new RolePermissionModel { Name = CanCreateMenu, Description = "ایجاد منو", Section = SectionPermisson.ConfigurationMenu };
+        public static readonly RolePermissionModel CanCreateMenuPermission = new RolePermissionModel { Name = CanEditMenu, Description = "ویرایش منو", Section = SectionPermisson.ConfigurationMenu };
+        public static readonly RolePermissionModel CanDeleteMenuPermission = new RolePermissionModel { Name = CanDeleteMenu, Description = "حذف منو", Section = SectionPermisson.ConfigurationMenu };
+        #endregion
+
+        #region Comments
+        public const string CanDeleteComment = "64";
+        public const string CanAcceptComment = "65";
+        public const string CanDontAcceptComment = "66";
+        public static readonly RolePermissionModel CanDeleteCommentPermission = new RolePermissionModel { Name = CanDeleteComment, Description = "حذف نظرات ارسالی", Section = SectionPermisson.CmsComments };
+        public static readonly RolePermissionModel CanAcceptCommentPermission = new RolePermissionModel { Name = CanAcceptComment, Description = "تایید نظرات ارسالی", Section = SectionPermisson.CmsComments };
+        public static readonly RolePermissionModel CanDontAcceptCommentPermission = new RolePermissionModel { Name = CanDontAcceptComment, Description = "عدم تایید نظرات ارسالی", Section = SectionPermisson.CmsComments };
+        #endregion
+
+        #region ContactUs
+        public const string CanAccessContactUs = "68";
+        public static readonly RolePermissionModel CanAccessContactUsPermission = new RolePermissionModel { Name = CanAccessContactUs, Description = "پیام های دریافتی تماس با ما", Section = SectionPermisson.ConfigurationContactUs };
+        #endregion
+
+        #region Slider
+        public const string CanAccessSlider = "69";
+        public static readonly RolePermissionModel CanAccessSliderPermission = new RolePermissionModel { Name = CanAccessSlider, Description = "مدیریت اسلایدر", Section = SectionPermisson.ConfigurationSlider };
+        #endregion
+
+        #region Slider
+        public const string CanAccessPublicSetting = "69";
+        public static readonly RolePermissionModel CanAccessPublicSettingPermission = new RolePermissionModel { Name = CanAccessSlider, Description = "مدیریت اسلایدر", Section = SectionPermisson.ConfigurationSlider };
+        #endregion
+
+        #region Links
+        public const string CanAccessLinks = "70";
+        public static readonly RolePermissionModel CanAccessLinksPermission = new RolePermissionModel { Name = CanAccessLinks, Description = "مدیریت پیوند ها", Section = SectionPermisson.ConfigurationLinks };
+        #endregion
+
+        #endregion
+
+        #region GetAllPermisions
+
+
+        public static IEnumerable<RolePermissionModel> GetPermision()
+        {
+            return new List<RolePermissionModel>
+            {
+                CanViewAdminPanelPermission,
+
+                CanCreateUserPermisson,
+                CanEditUserPermisson,
+                CanDeleteUserPermisson,
+
+                CanCreateUserRolePermission,
+                CanEditUserRolePermission,
+                CanDeleteUserRolePermission,
+
+                CanCreateSessionSubjectPermission,
+                CanEditSessionSubjectPermission,
+                CanDeleteSessionSubjectPermission,
+                CanViewAllSessionSubjectPermisson,
+
+                CanCreateSessionPermission,
+                CanEditSessionPermission,
+                CanDeleteSessionPermission,
+                CanAcceptSessionPermission,
+                CanDontAcceptSessionPermission,
+                CanViewAllSessionPermission,
+
+                CanCreateKBozorganPermission,
+                CanEditKBozorganPermission,
+                CanDeleteKBozorganPermission,
+                CanAcceptKBozorganPermission,
+                CanDontAcceptKBozorganPermission,
+                CanViewAllKBozorganPermission,
+                
+                CanCreatePagePermission,
+                CanEditPagePermission,
+                CanDeletePagePermission,
+                CanAcceptPagePermission,
+                CanDontAcceptPagePermission,
+                CanViewAllPagePermission,
+
+                CanCreateNewsPermission,
+                CanEditNewsPermission,
+                CanDeleteNewsPermission,
+                CanAcceptNewsPermission,
+                CanDontAcceptNewsPermission,
+                CanViewAllNewsPermission,
+
+                CanCreateImageGalleryPermission,
+                CanEditImageGalleryPermission,
+                CanDeleteImageGalleryPermission,
+                CanAcceptImageGalleryPermission,
+                CanDontAcceptImageGalleryPermission,
+                CanViewAllImageGalleryPermission,
+                CanManagePictureImageGalleryPermission,
+
+                CanCreateVideoPermission,
+                CanEditVideoPermission,
+                CanDeleteVideoPermission,
+                CanAcceptVideoPermission,
+                CanDontAcceptVideoPermission,
+                CanViewAllVideoPermission,
+
+                CanCreateSoundPermission,
+                CanEditSoundPermission,
+                CanDeleteSoundPermission,
+                CanAcceptSoundPermission,
+                CanDontAcceptSoundPermission,
+                CanViewAllSoundPermission,
+
+                CanCreateTagPermission,
+                CanEditTagPermission,
+                CanDeleteTagPermission,
+
+                CanCreateMenuPermission,
+                CanEditMenuPermission,
+                CanDeleteMenuPermission,
+                CanViewAllMenuPermisson,
+
+                CanDeleteCommentPermission,
+                CanAcceptCommentPermission,
+                CanDontAcceptCommentPermission,
+
+                CanAccessContactUsPermission,
+
+                CanAccessSliderPermission,
+
+                CanAccessLinksPermission,
+            };
+        }
+
+
+        public static IEnumerable<RolePermissionModel> GetAllConfigurationPermision()
+        {
+            return new List<RolePermissionModel>
+            {
+                CanCreateMenuPermission,
+                CanEditMenuPermission,
+                CanDeleteMenuPermission,
+
+                CanAccessSliderPermission,
+
+                CanAccessLinksPermission,
+
+                CanAccessPublicSettingPermission,
+            };
+        }
+
+
+
+
+        public static IEnumerable<RolePermissionModel> GetAllUserPermision()
+        {
+            return new List<RolePermissionModel>
+            {
+
+                CanCreateUserPermisson,
+                CanEditUserPermisson,
+                CanDeleteUserPermisson,
+
+                CanCreateUserRolePermission,
+                CanEditUserRolePermission,
+                CanDeleteUserRolePermission,
+
+                CanViewAllPermissionsPermission
+            };
+        }
+
+
+
+
+        public static IEnumerable<RolePermissionModel> GetAllCmsSectionPermision()
+        {
+            return new List<RolePermissionModel>
+            {
+                CanCreateSessionSubjectPermission,
+                CanEditSessionSubjectPermission,
+                CanDeleteSessionSubjectPermission,
+                CanViewAllSessionSubjectPermisson,
+
+                CanCreateSessionPermission,
+                CanEditSessionPermission,
+                CanDeleteSessionPermission,
+                CanAcceptSessionPermission,
+                CanDontAcceptSessionPermission,
+                CanViewAllSessionPermission,
+
+                CanCreateKBozorganPermission,
+                CanEditKBozorganPermission,
+                CanDeleteKBozorganPermission,
+                CanAcceptKBozorganPermission,
+                CanDontAcceptKBozorganPermission,
+                CanViewAllKBozorganPermission,
+                
+                CanCreatePagePermission,
+                CanEditPagePermission,
+                CanDeletePagePermission,
+                CanAcceptPagePermission,
+                CanDontAcceptPagePermission,
+                CanViewAllPagePermission,
+
+                CanCreateNewsPermission,
+                CanEditNewsPermission,
+                CanDeleteNewsPermission,
+                CanAcceptNewsPermission,
+                CanDontAcceptNewsPermission,
+                CanViewAllNewsPermission,
+
+                CanCreateImageGalleryPermission,
+                CanEditImageGalleryPermission,
+                CanDeleteImageGalleryPermission,
+                CanAcceptImageGalleryPermission,
+                CanDontAcceptImageGalleryPermission,
+                CanViewAllImageGalleryPermission,
+                CanManagePictureImageGalleryPermission,
+
+                CanCreateVideoPermission,
+                CanEditVideoPermission,
+                CanDeleteVideoPermission,
+                CanAcceptVideoPermission,
+                CanDontAcceptVideoPermission,
+                CanViewAllVideoPermission,
+
+                CanCreateSoundPermission,
+                CanEditSoundPermission,
+                CanDeleteSoundPermission,
+                CanAcceptSoundPermission,
+                CanDontAcceptSoundPermission,
+                CanViewAllSoundPermission,
+
+                CanCreateTagPermission,
+                CanEditTagPermission,
+                CanDeleteTagPermission,
+
+                CanDeleteCommentPermission,
+                CanAcceptCommentPermission,
+                CanDontAcceptCommentPermission,
+            };
+        }
+
+        #endregion
+
+    }
+}

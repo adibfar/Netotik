@@ -1,0 +1,316 @@
+﻿@model Netotik.ViewModels.ShopPublic.FactorModel
+@using Netotik.Web.Extension
+@{
+    List<Netotik.ViewModels.ShopPublic.ShoppingCartFactorModel>
+    cart = ViewBag.Trolly;
+    int index = 1;
+    var factorPrice = new Netotik.ViewModels.ShopPublic.FactorPriceModel
+    {
+        TotalPrice = cart.Sum(x => x.Count * x.UnitPrice),
+        TotalTaxPrice = cart.Sum(x => x.Count * x.UnitTaxPrice),
+        TotalOffPrice = cart.Sum(x => x.Count * x.UnitOffPrice),
+        TotalPaymentPrice = 0
+    };
+    factorPrice.TotalPaymentPrice = factorPrice.TotalPrice - factorPrice.TotalOffPrice + factorPrice.TotalTaxPrice;
+}
+
+@section Down{
+    @Scripts.Render("~/bundles/jqueryvalpublic")
+    <script src="~/Scripts/Factor.js"></script>
+    @Html.Partial(@MVC.Shared.Views._AddValidationCss)
+
+}
+
+
+
+<!-- Start page content -->
+<div class="page-content">
+
+    <div class="cart-page-content">
+        <div class="container">
+            <div class="row">
+                @if (cart.Any())
+                {
+                    <form method="post">
+                        <div class="col-xs-12 col-sm-12 col-md-12">
+
+                            <h4 class="cart-title">سبد خرید</h4>
+                            <div class="table-responsive">
+                                @Html.Partial(MVC.Shared.Views._MessageResult)
+                                <table class="cart-table" dir="rtl" width="100%">
+                                    <thead>
+                                        <tr>
+                                            <th>کالا</th>
+                                            <th>تعداد</th>
+                                            <th>قیمت</th>
+                                            <th></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach (var item in cart)
+                                        {
+
+                                            <tr>
+                                                <td style="max-width:150px">
+                                                    <a href="@Url.Action(MVC.Product.ActionNames.Show, MVC.Product.Name, new { id = item.Id, name = item.Name.GenerateSlug() })"><img alt="" class="img-responsive" src="@Url.Content(string.IsNullOrEmpty(item.imgName) ? " />Content/img/1.jpg" : Path.Combine(_imagesShopProductPath, item.imgName))?w=170&h=170" width="170" height="170"></a>
+                                                    <h6><a href="@Url.Action(MVC.Product.ActionNames.Show, MVC.Product.Name, new { id = item.Id, name = item.Name.GenerateSlug() })">@item.Name</a></h6>
+                                                    <h6><a href="#">@item.Manfacturer</a></h6>
+                                                    <h6>
+                                                        @if (item.ColorId.HasValue)
+                                                        {
+                                                            @item.ColorName
+                                                        }
+                                                        @if (item.SizeId.HasValue)
+                                                        {
+                                                            <text> | </text> @item.SizeName
+                                                        }
+                                                    </h6>
+                                                </td>
+                                                <td>
+                                                    <form></form>
+                                                    <form action="@Url.Action(MVC.Factor.ActionNames.UpdateCart)" method="post" id="form@(index)">
+                                                        @Html.Hidden("id", item.Id)
+                                                        @Html.Hidden("colorId", item.ColorId)
+                                                        @Html.Hidden("sizeId", item.SizeId)
+                                                        @Html.DropDownList("count", new SelectList(ViewBag.ItemCount as IList<SelectListItem>
+                                                    , "Text", "Value", item.Count), new { @class = "form-control", width = "20px;", onChange = "UpdateTrolly(" + (index++) + ")" })
+                                                    </form>
+                                                </td>
+                                                <td>
+                                                    <p>
+                                                        قیمت واحد:
+                                                        @string.Format("{0:0,0}", item.UnitPrice)
+                                                        تومان
+                                                    </p>
+                                                    @if (item.UnitOffPrice > 0)
+                                                    {
+                                                        <p>
+                                                            تخفیف:
+                                                            @string.Format("{0:0,0}", item.Count * item.UnitOffPrice)
+                                                            تومان
+                                                        </p>
+                                                    }
+                                                    @if (item.UnitTaxPrice > 0)
+                                                    {
+                                                        <p>
+                                                            مالیات:
+                                                            @string.Format("{0:0,0}", item.Count * item.UnitTaxPrice)
+                                                            تومان
+                                                        </p>
+                                                    }
+                                                    <div class="cart-subtotal">
+                                                        قیمت کل :
+                                                        @string.Format("{0:0,0}", item.Count * (item.UnitPrice - item.UnitOffPrice + item.UnitTaxPrice))
+                                                        تومان
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <form action="@Url.Action(MVC.Factor.ActionNames.Delete)" method="post">
+                                                        <input type="hidden" name="id" value="@item.Id" /> <button type="submit" class="btn">
+                                                            <i class="fa fa-trash"></i>
+                                                        </button>
+                                                    </form>
+
+                                                </td>
+                                            </tr>
+                                        }
+                                        <tr>
+                                            <td colspan="2" class="actions"></td>
+                                            <td colspan="1" class="actions">
+                                                <div class="cart-subtotal">
+                                                    قیمت پرداختی:
+                                                    @string.Format("{0:0,0}", factorPrice.TotalPaymentPrice)
+                                                </div>
+                                            </td>
+                                            <td></td>
+                                        </tr>
+
+                                        @*<tr>
+                                                <td colspan="7" class="actions">
+                                                    <div class="cartPage-btn">
+                                                        <ul>
+                                                            <li><a href="#" class="cbtn">ادامه خرید</a></li>
+                                                            @if (User != null && User.Identity.IsAuthenticated)
+                                                            {
+                                                                <li><a href="#" class="cbtn2">پرداخت</a></li>
+                                                            }
+                                                        </ul>
+                                                    </div>
+                                                </td>
+                                            </tr>*@
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </form>
+                    if (User == null || !User.Identity.IsAuthenticated)
+                    {
+                        <div class="col-md-12">
+                            <h4></h4>
+                            <div class="table-responsive">
+                                <div dir="rtl" class="alert alert-success">
+                                    برای رفتن به مرحله تکمیل خرید لطفا وارد حساب کاربری خود شوید.
+                                </div>
+                            </div>
+                        </div>
+
+                        @Html.Partial(MVC.Factor.Views._LoginRegister)
+
+
+                    }
+                    else
+                    {
+                        using (Html.BeginForm(MVC.Factor.ActionNames.Index, MVC.Factor.Name, FormMethod.Post, new { id = "FactorForm" }))
+                        {
+                            <div class="page-content">
+                                <!-- Start checkout content -->
+                                <div class="checkout-content-area">
+                                    <div class="container">
+                                        <div class="row">
+                                            <div class="col-xs-12 col-sm-12 col-md-12">
+                                                <h4 class="cart-title">تکمیل خرید</h4>
+                                            </div>
+                                            <div class="checkout-content">
+                                                <div class="col-xs-12 col-sm-12 col-md-12">
+                                                    <div aria-multiselectable="true" role="tablist" id="accordion" class="panel-group">
+                                                        <div class="panel sauget-accordion">
+                                                            <div id="headingOne" role="tab" class="panel-heading">
+                                                                <h4 class="panel-title">
+                                                                    <a aria-controls="checkoutMethod" aria-expanded="true" href="#checkoutMethod" data-parent="#accordion" data-toggle="collapse" class="">
+                                                                        <span>1</span> شیوه ارسال
+                                                                    </a>
+                                                                </h4>
+                                                            </div>
+                                                            <div aria-labelledby="headingOne" role="tabpanel" class="panel-collapse collapse in" id="checkoutMethod" aria-expanded="true" style="">
+                                                                <div class="content-info">
+                                                                    <div class="col-md-12">
+                                                                        @Html.Partial(MVC.Factor.Views._ShippingList, ViewBag.ShippingMethodes as List<Netotik.ViewModels.ShopPublic.ShippingListModel>)
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="panel sauget-accordion">
+                                                            <div id="headingTwo" role="tab" class="panel-heading">
+                                                                <h4 class="panel-title">
+                                                                    <a aria-controls="billingInformation" aria-expanded="false" href="#billingInformation" data-parent="#accordion" data-toggle="collapse" class="collapsed">
+                                                                        <span>2</span> اطلاعات ارسال سفارش
+                                                                    </a>
+                                                                </h4>
+                                                            </div>
+                                                            <div aria-labelledby="headingTwo" role="tabpanel" class="panel-collapse collapse" id="billingInformation" aria-expanded="false" style="height: 0px;">
+                                                                <div class="content-info">
+                                                                    <div class="col-md-7">
+                                                                        <div class="panel-box radios" style="direction:rtl">
+
+                                                                            <div class="titles">
+                                                                                <h4 class="cart-title"> آدرس و اطلاعات تماس</h4>
+                                                                            </div>
+
+                                                                            <div class="panel-body">
+                                                                                <div class="form-group">
+                                                                                    <div class="col-md-6">
+                                                                                        @Html.LabelFor(model => model.LastName) *
+                                                                                        @Html.TextBoxFor(model => model.LastName, new { @class = "form-control", tabIndex = "1" })
+                                                                                    </div>
+                                                                                    <div class="col-md-6">
+                                                                                        @Html.LabelFor(model => model.FirstName) *
+                                                                                        @Html.TextBoxFor(model => model.FirstName, new { @class = "form-control", tabIndex = "2" })
+                                                                                    </div>
+                                                                                </div>
+                                                                                <div class="form-group">
+                                                                                    <div class="col-md-6">
+                                                                                        @Html.LabelFor(model => model.PostalCode) *
+                                                                                        @Html.TextBoxFor(model => model.PostalCode, new { @class = "form-control", tabIndex = "3" })
+                                                                                    </div>
+                                                                                    <div class="col-md-6">
+                                                                                        @Html.LabelFor(model => model.MobileNumber) *
+                                                                                        @Html.TextBoxFor(model => model.MobileNumber, new { @class = "form-control", tabIndex = "4" })
+                                                                                    </div>
+                                                                                </div>
+
+                                                                                <div class="form-group">
+
+                                                                                    <div class="col-md-6">
+                                                                                        @Html.LabelFor(model => model.CityId) *
+                                                                                        @Html.DropDownListFor(model => model.CityId, new List<SelectListItem>(), "انتخاب شهر", new { @class = "form-control", tabIndex = "5" })
+                                                                                    </div>
+                                                                                    <div class="col-md-6">
+                                                                                        @Html.LabelFor(model => model.StateId) *
+                                                                                        @Html.DropDownListFor(model => model.StateId, ViewBag.States as SelectList, "انتخاب استان", new { @class = "form-control", @onchange = "FillCity()", tabIndex = "6" })
+                                                                                    </div>
+                                                                                </div>
+                                                                                <div class="col-md-12"></div>
+
+                                                                                <div class="form-group">
+                                                                                    <div class="col-md-12">
+                                                                                        @Html.LabelFor(model => model.Address) *
+                                                                                        @Html.TextAreaFor(model => model.Address, new { @class = "form-control", tabIndex = "7" })
+                                                                                    </div>
+
+                                                                                </div>
+
+                                                                                <div class="form-group">
+                                                                                    <div class="col-md-12">
+                                                                                        @Html.LabelFor(model => model.Description)
+                                                                                        @Html.TextAreaFor(model => model.Description, new { @class = "form-control", tabIndex = "8" })
+                                                                                    </div>
+
+                                                                                </div>
+                                                                            </div>
+
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="col-md-5">
+                                                                        @Html.Partial(MVC.Factor.Views._FactorPrice, factorPrice)
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="panel sauget-accordion">
+                                                            <div id="headingthree" role="tab" class="panel-heading">
+                                                                <h4 class="panel-title">
+                                                                    <a aria-controls="checkoutMethod" aria-expanded="false" href="#Dargah" data-parent="#accordion" data-toggle="collapse" class="">
+                                                                        <span>3</span> درگاه پرداخت
+                                                                    </a>
+                                                                </h4>
+                                                            </div>
+                                                            <div aria-labelledby="headingthree" role="tabpanel" class="panel-collapse collapse" id="Dargah" aria-expanded="false" style="">
+                                                                <div class="content-info">
+                                                                    <div class="col-md-12">
+                                                                        @Html.Partial(MVC.Factor.Views._PaymentTypeList, ViewBag.PaymentTypes as List<Netotik.ViewModels.ShopPublic.PaymentTypeListModel>)
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- End checkout content -->
+                            </div>
+
+                        }
+
+                    }
+
+                }
+                else
+                {
+                    <div class="col-md-12" style="min-height:700px;">
+                        <h4></h4>
+                        <div class="table-responsive">
+                            <div dir="rtl" class="alert alert-info">
+                                سبد خرید شما خالی می باشد.
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+
+

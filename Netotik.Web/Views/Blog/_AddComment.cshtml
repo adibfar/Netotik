@@ -1,0 +1,31 @@
+﻿@using CaptchaMvc.HtmlHelpers
+@model Netotik.ViewModels.Comment.AddCommentModel
+@{
+    Layout = null;
+}
+
+
+<div class="leave-reply">
+    <h2>نظر خود را بنویسید</h2>
+    @using (Html.BeginForm(MVC.Blog.ActionNames.AddComment, MVC.Blog.Name, FormMethod.Post, new { @class = "form-theme" }))
+    {
+        @Html.AntiForgeryToken()
+        @Html.HiddenFor(model => model.ContentId)
+        <ul>
+            <li>
+                @Html.TextBoxFor(model => model.Name, new { @class = "input-block-level", placeholder = "نام" })<i class="fa fa-user"></i>
+            </li>
+            <li>
+            @Html.TextBoxFor(model => model.Email, new { @class = "input-block-level", placeholder = "ایمیل" })<i class="fa fa-envelope-o"></i>
+            </li>
+            <li>@Html.TextAreaFor(model => model.Text, new { @class = "input-block-level" })</li>
+            <li>
+
+            </li>
+            <li><button class="btn-style" type="submit">ارسال</button></li>
+        </ul>
+    }
+</div>
+
+
+@*@Html.Partial(MVC.Shared.Views._AddValidationCss)*@

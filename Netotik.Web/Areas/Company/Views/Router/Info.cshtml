@@ -1,0 +1,140 @@
+﻿@{
+    ViewBag.Title = "مشخصات روتر";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="row">
+    <div class="col-lg-5">
+        <div class="widget style1 yellow-bg">
+            <div class="row">
+                <div class="col-xs-4">
+                    <i class="fa fa-server fa-5x"></i>
+                </div>
+                <div class="col-xs-8 text-right">
+                    <span>مدل روتر</span>
+                    <h2 class="font-bold">
+                        @if (ViewBag.router_model == "")
+                        { <span>روتر نمی باشد</span> }
+                        else
+                        { @ViewBag.router_model }
+                    </h2>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-5">
+        <div class="widget style1 yellow-bg">
+            <div class="row">
+                <div class="col-xs-8 text-right">
+                    <span>نام دستگاه</span>
+                    <h2 class="font-bold">@ViewBag.RouterName</h2>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-10">
+        <div class="ibox-content">
+            <div>
+                <div>
+                    <span>  :RAM</span>
+                    <small class="pull-right"> MB @(Int32.Parse(ViewBag.total_memory) / 1048576 - Int32.Parse(ViewBag.free_memory) / 1048576)/@(Int32.Parse(ViewBag.total_memory) / 1048576)</small>
+                </div>
+                <div class="progress progress-small">
+                    <div style="width: @(((Int32.Parse(ViewBag.total_memory) / 1048576 - Int32.Parse(ViewBag.free_memory) / 1048576) * 100) / (Int32.Parse(ViewBag.total_memory) / 1048576))%;" class="progress-bar"></div>
+                </div>
+
+                <div>
+                    <span>  :CPU</span>
+                    <small class="pull-right">تعداد:@ViewBag.cpu_count  | فرکانس:@ViewBag.cpu_frequency Mhz | ساختار:@ViewBag.cpu</small>
+                </div>
+                <div class="progress progress-small">
+                    <div style="width: @(ViewBag.cpu_load)%;" class="progress-bar"></div>
+                </div>
+
+                <div>
+                    <span>  :Disk</span>
+                    <small class="pull-right"> MB @(Int32.Parse(ViewBag.total_hdd_space) / 1048576)/@(Int32.Parse(ViewBag.free_hdd_space) / 1048576)</small>
+                </div>
+                <div class="progress progress-small">
+                    <div style="width: @(((Int32.Parse(ViewBag.free_hdd_space) / 1048576) * 100) / (Int32.Parse(ViewBag.total_hdd_space) / 1048576))%;" class="progress-bar"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-5">
+        <div class="widget style1 lazur-bg">
+            <div class="row">
+                <div class="col-xs-4">
+                    <i class="fa fa-clock-o fa-5x"></i>
+                </div>
+                <div class="col-xs-8 text-right">
+                    <span>ساعت روتر</span>
+                    <h2 class="font-bold">@ViewBag.router_time</h2>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-5">
+        <div class="widget style1 lazur-bg">
+            <div class="row">
+                <div class="col-xs-4">
+                    <i class="fa fa-calendar fa-5x"></i>
+                </div>
+                <div class="col-xs-8 text-right">
+                    <span>تاریخ روتر</span>
+                    <h2 class="font-bold">@ViewBag.router_date</h2>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-5">
+        <div class="widget style1 lazur-bg">
+            <div class="row">
+                <div class="col-xs-4">
+                    <i class="fa fa-clock-o fa-5x"></i>
+                </div>
+                <div class="col-xs-8 text-right">
+                    <span>زمان روشن ماندن روتر </span>
+                    <h2 class="font-bold">@ViewBag.uptime</h2>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-5">
+        <div class="widget style1 lazur-bg">
+            <div class="row">
+                <div class="col-xs-8 text-right">
+                    <span>
+                        ورژن سیستم عامل
+                        @if (ViewBag.update_status == "System is already up to date")
+                        {
+                            <a href="@Url.Action(MVC.Company.Router.ActionNames.Info_Update)">  بروزرسانی به @ViewBag.latest_version  </a>
+                        }
+                        else
+                        { <span class="fa fa-check"> آخرین بروزرسانی ها نصب می باشد  </span>}
+                    </span>
+                    <h2 class="font-bold">@ViewBag.version</h2>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-5">
+        <div class="widget style1 lazur-bg">
+            <div class="row">
+                <div class="col-xs-8 text-right">
+                    <span>ورژن لایسنس</span>
+                    <h2 class="font-bold">@ViewBag.nlevel</h2>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-5">
+        <div class="widget style1 lazur-bg">
+            <div class="row">
+                <div class="col-xs-8 text-right">
+                    <span>سریال نرم افزاری</span>
+                    <h2 class="font-bold">@ViewBag.software_id</h2>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,13 @@
+﻿@model Netotik.Domain.Entity.Picture
+@{
+    var imageUrl = Url.Content(Netotik.Web.Extension.FileManager._imagesShopProductPath+"/" + Model.FileName);
+}
+<div class="col-md-2 teaser lazyload">
+    <img src="@Url.Content(Netotik.Web.Extension.FileManager._imagesShopProductPath + "/" + Model.FileName)?w=90&h=70&mode=crop" class="img-thumbnail lazyload" width="90" height="70">
+</div>
+<div class="col-md-6">
+    <input type="text" class="form-control input-sm select" value="@imageUrl">
+</div>
+<div class="col-md-2">
+    <span id="row-@Model.Id" class="btn btn-danger btn-sm">حذف</span>
+</div>

@@ -1,0 +1,36 @@
+﻿@model Netotik.ViewModels.CMS.ContentTag.ContentTagModel
+@{
+    Layout = null;
+}
+
+
+<div class="tabs-container">
+
+    <ul class="nav nav-tabs">
+        <li class="active">
+            <a href="#requiredInfo" data-toggle="tab">
+                <i class="fa fa-archive"></i>
+            مشخصات </a>
+        </li>
+    </ul>
+
+    <div class="tab-content">
+
+        <div class="tab-pane active" id="requiredInfo">
+            <div class="panel-body">
+                <fieldset>
+
+                    @Html.HiddenFor(model => model.Id)
+
+                    <div class="form-group">
+                        <div class="col-md-6 ">
+                            @Html.LabelFor(model => model.Name, new { @class = "control-label" })
+                            @Html.TextBoxFor(model => model.Name,htmlAttributes: new { @class = "form-control" })
+                        </div>
+
+                </fieldset>
+            </div>
+        </div>
+    </div>
+
+</div>

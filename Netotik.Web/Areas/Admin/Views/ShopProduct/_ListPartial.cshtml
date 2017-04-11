@@ -1,0 +1,21 @@
+﻿@using Netotik.Domain.Entity
+@model IEnumerable<Picture>
+
+
+@Html.AntiForgeryToken()
+
+@foreach (var item in Model)
+{
+    <div class="row" style="margin:10px 0;">
+            @Html.Partial(MVC.Admin.ShopProduct.Views._PicturePartial, item)
+    </div>
+}
+
+<script>
+    
+    $(function () {
+        window.lazySizesConfig = {
+            addClasses: true
+        };
+    });
+</script>

@@ -1,0 +1,44 @@
+﻿@model Netotik.ViewModels.Shop.ProductPanel.FilterProductModel
+@{
+    Layout = null;
+}
+
+<div class="shop-categori-area">
+    <div class="sidebar-menu-title">
+        <h2><i class="fa fa-th-list"></i>فیلتر</h2>
+    </div>
+    <div class="shop-categori">
+        <div class="shop-categori-inner">
+            <!-- Start Categori -->
+            <div class="categoris categori-border">
+                <span class="cat-title">دسته بندی ها</span>
+                <ul>
+                    @foreach (var item in Model.Categories.Where(x => x.IsPublish).ToList())
+                    {
+                        <li>
+                            <label>
+                                <a href="@Url.Action(MVC.Product.ActionNames.Index, MVC.Product.Name, new { categoryId = item.Id ,BrandId=0,page=1})">@item.Name</a>
+                            </label>
+                        </li>
+                    }
+                </ul>
+            </div>
+            <!-- End Categori -->
+            <!-- Start Categori -->
+            <div class="categoris categori-border">
+                <span class="cat-title">سازنده</span>
+                <ul>
+                    @foreach (var item in Model.Brands.Where(x => x.IsPublish).ToList())
+                    {
+                        <li>
+                            <label>
+                                <a href="@Url.Action(MVC.Product.ActionNames.Index, MVC.Product.Name, new { brandId = item.Id ,categoryId=0,page=1 })">@item.Name</a>
+                            </label>
+                        </li>
+                    }
+                </ul>
+            </div>
+            <!-- End Categori -->
+        </div>
+    </div>
+</div>

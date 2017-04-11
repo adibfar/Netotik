@@ -1,0 +1,64 @@
+using Microsoft.AspNet.Identity.EntityFramework;
+using System;
+using System.Collections.Generic;
+
+namespace Netotik.Domain.Entity
+{
+    public class User : IdentityUser<long, UserLogin, UserRole, UserClaim>
+    {
+        public User()
+        {
+            this.IssuesCreated = new List<Issue>();
+            this.IssuesResponsed = new List<Issue>();
+            this.IssueUsers = new List<Issue>();
+            this.ContentsCreated = new List<Content>();
+            this.ContentsEdited = new List<Content>();
+            this.ContentComments = new List<ContentComment>();
+            this.Orders = new List<Order>();
+            this.OrderPayments = new List<OrderPayment>();
+            this.ReturnRequests = new List<ReturnRequest>();
+            this.ProductComments = new List<ProductComment>();
+            this.Addresses = new List<Address>();
+            this.Roles = new List<UserRole>();
+        }
+
+        public bool IsBanned { get; set; }
+        public bool IsDeleted { get; set; }
+        public string FirstName { get; set; }
+        public string LastName { get; set; }
+        public System.DateTime CreateDate { get; set; }
+        public System.DateTime EditDate { get; set; }
+        public Nullable<System.DateTime> LastLoginDate { get; set; }
+        public string LastLoginIpAddress { get; set; }
+        public Nullable<int> PictureId { get; set; }
+        public UserType UserType { get; set; }
+        public virtual ICollection<Content> ContentsEdited { get; set; }
+        public virtual ICollection<Content> ContentsCreated { get; set; }
+        public virtual ICollection<Issue> IssuesResponsed { get; set; }
+        public virtual ICollection<IssueTrack> IssuesTracksResponsed { get; set; }
+        public virtual ICollection<Issue> IssuesCreated { get; set; }
+        public virtual ICollection<Issue> IssueUsers { get; set; }
+        public virtual ICollection<ContentComment> ContentComments { get; set; }
+        public virtual ICollection<ProductComment> ProductComments { get; set; }
+        public virtual ICollection<Order> Orders { get; set; }
+        public virtual ICollection<OrderPayment> OrderPayments { get; set; }
+        public virtual Picture Picture { get; set; }
+        public virtual ICollection<ReturnRequest> ReturnRequests { get; set; }
+        public virtual UserAdmin UserAdmin { get; set; }
+        public virtual UserReseller UserReseller { get; set; }
+        public virtual UserCompany UserCompany { get; set; }
+        public List<Address> Addresses { get; set; }
+
+        public virtual ICollection<UserRole> Roles { get; set; }
+        public virtual ICollection<UserClaim> Claims { get; set; }
+        public virtual ICollection<UserLogin> Logins { get; set; }
+    }
+
+    public enum UserType : short
+    {
+        UserAdmin = 0,
+        UserReseller = 1,
+        UserCompany = 2,
+        UserNet = 3
+    }
+}

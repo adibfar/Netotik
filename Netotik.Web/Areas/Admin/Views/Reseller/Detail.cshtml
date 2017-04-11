@@ -1,0 +1,115 @@
+﻿@model Netotik.Domain.Entity.Reseller
+
+@{
+    //var list = ViewBag.logins as List<LoginHistory>;
+}
+<div class="ibox-content m-b-sm border-bottom">
+    <div class="row">
+        <div class="col-md-12">
+            <a class="btn btn-default btn-outline pull-left" href="@Url.Action(MVC.Admin.Reseller.ActionNames.Index, MVC.Admin.Reseller.Name)">
+                <span class="fa fa-reply"></span>
+                @Netotik.Resources.Captions.Back
+            </a>
+        </div>
+    </div>
+</div>
+<div class="col-lg-12" id="ContentPage">
+
+    <section class="panel">
+        <header class="panel-heading tab-bg-dark-navy-blue ">
+            <ul class="nav nav-tabs">
+                <li class="active">
+                    <a data-toggle="tab" href="#profile"><i class="icon-2x icon-user"></i> اطلاعات پروفایل</a>
+                </li>
+                <li class="">
+                    <a data-toggle="tab" href="#login"><i class="icon-2x icon-flag"></i> تاریخچه ورود </a>
+                </li>
+            </ul>
+        </header>
+        <div class="panel-body">
+            <div class="tab-content">
+                <div id="profile" class="tab-pane active form-horizontal">
+                    <fieldset>
+                        <div class="form-group">
+                            <div class="col-md-5">
+                                @Html.DisplayFor(model=>model.Name)
+                            </div>
+                            <div class="col-md-5">
+                                @Html.DisplayFor(model => model.CompanyName)
+                            </div>
+                        </div>
+                        <div class="hr-line-dashed"></div>
+                        <div class="form-group">
+                            <div class="col-md-5">
+                                <label class="col-sm-2 control-label" for="PersonCode">PersonCode</label>
+                                <div class="col-sm-10">
+                                    <input class="form-control" disabled="disabled" id="PersonCode" name="PersonCode" type="text" value="@Model.PersonCode" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="hr-line-dashed"></div>
+                        <div class="form-group">
+                            <div class="col-md-5">
+                                @Html.DisplayFor(model => model.Email)
+                            </div>
+                            <div class="col-md-5">
+                                @Html.DisplayFor(model => model.MobileNumber)
+                            </div>
+                        </div>
+                        <div class="hr-line-dashed"></div>
+                        <div class="form-group">
+                            <div class="col-md-5">
+                                <label class="col-sm-2 control-label" for="PostalCode">PostalCode</label>
+                                <div class="col-sm-10">
+                                    <input class="form-control" disabled="disabled" id="PostalCode" name="PostalCode" type="text" value="@Model.PostalCode" />
+                                </div>
+                            </div>
+                            <div class="col-md-5">
+                                @Html.DisplayFor(model => model.Address)
+                            </div>
+                        </div>
+                        <div class="hr-line-dashed"></div>
+                        <div class="form-group">
+                            <div class="col-md-5">
+                                @Html.DisplayFor(model => model.CreateDate)
+                            </div>
+                            <div class="col-md-5">
+                                <label class="col-sm-2 control-label" for="PostalCode">Active?</label>
+                                @Html.DisplayFor(model => model.IsActive)
+                            </div>
+                        </div>
+                    </fieldset>
+                </div>
+                <div id="login" class="tab-pane">
+                    @*@if (list.Any())
+                        {
+                            <table class="table table-striped border-top dataTable">
+                                <thead class="alert-info">
+                                    <tr>
+                                        <td style="width:30%">زمـــان</td>
+                                        <td>IP Addres </td>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var item in list)
+                                    {
+                                        <tr>
+                                            <td style="width:30%">@item.RegisterDate</td>
+                                            <td>@item.IP</td>
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                        }
+                        else
+                        {
+                            <div class="alert-warning">این کاربر تا به حال به سیستم وارد نشده</div>
+                        }*@
+
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+
+    

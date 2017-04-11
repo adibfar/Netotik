@@ -1,0 +1,105 @@
+﻿@using Netotik.ViewModels.Identity.Security
+@using MvcPaging
+@model IPagedList<Netotik.ViewModels.CMS.Content.TableContentModel>
+
+@{
+    var roles = Html.CurrentUserPermissions();
+
+    var canDelete = roles.Any(x => x == AssignableToRolePermissions.CanDeleteContent);
+    var canEdit = roles.Any(x => x == AssignableToRolePermissions.CanEditContent);
+    var canAccept = roles.Any(x => x == AssignableToRolePermissions.CanAcceptContent);
+    var canDontAccept = roles.Any(x => x == AssignableToRolePermissions.CanDontAcceptContent);
+
+
+    Layout = null;
+    string querySearch = "";
+
+
+    if (Request["Search"] != null)
+    {
+        querySearch = Request["Search"].ToString();
+    }
+}
+
+<div id="gridlist">
+    @if (!Model.Any())
+    {
+        <div class="gradeX odd">
+            هیچ مطلبی در سیستم وجود ندارد ..
+        </div>
+    }
+    else
+    {
+
+
+        <table class="table table-striped border-top dataTable">
+            <thead class="alert-info">
+                <tr role="row">
+                    <th role="columnheader" rowspan="1" colspan="1">@Netotik.Resources.Captions.Title</th>
+                    <th role="columnheader" rowspan="1" colspan="1">وضعیت</th>
+                    <th role="columnheader" rowspan="1" colspan="1">@Netotik.Resources.Captions.LastUserEdit</th>
+                    <th role="columnheader" rowspan="1" colspan="1">@Netotik.Resources.Captions.LastEdit</th>
+                    <th role="columnheader" rowspan="1" colspan="1"></th>
+                </tr>
+            </thead>
+
+            <tbody role="alert">
+                @foreach (var item in Model)
+                {
+                    <tr class="gradeX odd">
+                        <td class="">@item.Title</td>
+                        <td class="">@(item.status == Netotik.Domain.Entity.ContentStatus.Accepted ? "تایید شده" : item.status == Netotik.Domain.Entity.ContentStatus.WaitForAccept ? "در انتظار تایید" : "تایید نشده") | <i class="icon-eye-open"></i>@item.ViewCount | <i class="icon-comments-alt"></i>@item.CommentCount</td>
+                        <td class="">@item.LastUserEdit</td>
+                        <td class="">@ConvertDate.ToFa(item.LastEdited, "g")</td>
+                        <td>
+                            @if (canDelete)
+                            {
+                                <form action="@Url.Action(MVC.Admin.Content.ActionNames.Remove)" style="float:right" method="post">
+                                    @Html.AntiForgeryToken()
+                                    <input type="hidden" name="id" value="@item.Id" />
+                                    <button class="btn btn-danger btn-xs"><i class="icon-trash"></i></button>
+                                </form>
+                            }
+                            <a href="@Url.Action(MVC.Admin.Content.ActionNames.Detail, new { id = item.Id })" class="btn btn-white btn-xs"><i class="icon-search"></i></a>
+
+                            @if (canEdit)
+                            {
+                                <a href="@Url.Action(MVC.Admin.Content.ActionNames.Edit, new { id = item.Id })" class="btn btn-primary btn-xs "><i class="icon-pencil"></i></a>
+                            }
+                           
+
+                            @if ((item.status == Netotik.Domain.Entity.ContentStatus.WaitForAccept || item.status == Netotik.Domain.Entity.ContentStatus.NotAccepted) && canAccept)
+                            {
+                                <form action="@Url.Action(MVC.Admin.Content.ActionNames.Accept)" style="float:right" method="post">
+                                    @Html.AntiForgeryToken()
+                                    <input type="hidden" name="id" value="@item.Id" />
+                                    <button class="btn btn-success btn-xs"><i class="icon-check"></i></button>
+                                </form>
+                            }
+                            else if(canDontAccept)
+                            {
+                                <form action="@Url.Action(MVC.Admin.Content.ActionNames.NotAccept)" style="float:right" method="post">
+                                    @Html.AntiForgeryToken()
+                                    <input type="hidden" name="id" value="@item.Id" />
+                                    <button class="btn btn-danger btn-xs"><i class="icon-ban-circle"></i></button>
+                                </form>
+                            }
+                            
+
+                        </td>
+
+                    </tr>
+                }
+
+
+            </tbody>
+            <tfoot>
+                <tr>
+                    <td colspan="6" style="padding:0;" class="pager">
+                        @Html.Raw(Ajax.Pager(new Options { PageSize = Model.PageSize, TotalItemCount = Model.TotalItemCount, CurrentPage = Model.PageNumber, ItemTexts = new ItemTexts() { Next = "", Previous = "", Page = "" }, ItemIcon = new ItemIcon() { First = "icon-backward", Previous = "icon-chevron-right", Next = "icon-chevron-left", Last = "icon-forward" }, TooltipTitles = new TooltipTitles() { Next = "Next page", Previous = "Previous page", Page = "Page {0}." }, Size = Size.normal, Alignment = Alignment.centered, IsShowControls = false, IsShowFirstLast = false, CssClass = "pagination pagination-sm" }, new AjaxOptions { UpdateTargetId = "gridlist", OnBegin = "beginPaging", OnSuccess = "successPaging", OnFailure = "failurePaging" }, new { controller = MVC.Admin.Content.Name, action = MVC.Admin.Content.ActionNames.Index, search = querySearch }))
+                    </td>
+                </tr>
+            </tfoot>
+        </table>
+    }
+</div>

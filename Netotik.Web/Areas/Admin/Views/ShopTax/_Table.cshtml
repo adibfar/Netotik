@@ -1,0 +1,56 @@
+﻿@model List<Netotik.Domain.Entity.Tax>
+@using Netotik.ViewModels.Identity.Security
+@{
+    Layout = null;
+
+    var roles = Html.CurrentUserPermissions();
+    var canDelete = roles.Any(x => x == AssignableToRolePermissions.CanDeleteTax);
+    var canEdit = roles.Any(x => x == AssignableToRolePermissions.CanEditTax);
+
+}
+
+<div id="gridlist">
+    @if (!Model.Any())
+    {
+        <div class="gradeX odd">
+            هیچ نوع مالیاتی در سیستم ثبت نشده..
+        </div>
+    }
+    else
+    {
+        <table class="table table-striped border-top dataTable">
+            <thead class="alert-info">
+                <tr role="row">
+                    <th role="columnheader" rowspan="1" colspan="1">نام</th>
+                    <th role="columnheader" rowspan="1" colspan="1">درصد مالیات</th>
+                    <th role="columnheader" rowspan="1" colspan="1"></th>
+                </tr>
+            </thead>
+
+            <tbody role="alert">
+                @foreach (var item in Model)
+                {
+                    <tr class="gradeX odd">
+                        <td class="">@item.Name</td>
+                        <td class="">@item.Percentage</td>
+                        <td>
+                            @if (canDelete)
+                            {
+                                <a href="@Url.Action(MVC.Admin.ShopTax.ActionNames.Remove, new { id = item.Id })" class="btn btn-danger btn-xs "><i class="icon-trash"></i></a>
+                            }
+                            @if (canEdit)
+                            {
+                                <a href="@Url.Action(MVC.Admin.ShopTax.ActionNames.Edit, new { id = item.Id })" class="btn btn-primary btn-xs "><i class="icon-pencil"></i></a>
+                            }
+                        </td>
+
+                    </tr>
+                }
+
+
+            </tbody>
+
+        </table>
+
+    }
+</div>
