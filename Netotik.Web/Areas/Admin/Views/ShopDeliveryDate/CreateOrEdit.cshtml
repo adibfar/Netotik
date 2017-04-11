@@ -1,0 +1,33 @@
+﻿@model Netotik.ViewModels.Shop.DeliveryDate.DeliveryDateModel
+@{
+    Layout = null;
+}
+
+@Html.HiddenFor(model => model.Id)
+
+<div class="tabs-container">
+
+    <ul class="nav nav-tabs">
+        <li class="active">
+            <a href="#content" data-toggle="tab">
+                <i class="fa fa-archive"></i>مشخصات
+            </a>
+        </li>
+    </ul>
+    <div class="tab-content">
+        <div class="tab-pane active" id="content">
+            <div class="panel-body">
+                <fieldset>
+                    <div class="form-group">
+                        <div class="col-md-4">
+                            @Html.EditorFor(model => model.Name)
+                        </div>
+                        <div class="col-md-4">
+                            @Html.EditorFor(model => model.DisplayOrder)
+                        </div>
+                    </div>
+                </fieldset>
+            </div>
+        </div>
+    </div>
+</div>

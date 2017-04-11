@@ -1,0 +1,57 @@
+﻿@model MvcPaging.IPagedList<Netotik.ViewModels.Common.Content.TableContentModel>
+@{
+    ViewBag.Title = "مدیریت مطالب";
+    var canAdd = User.Roles.Any(x => x == Netotik.ViewModels.Common.Security.AssignableToRolePermissions.CanCreateContent);
+}
+
+<div class="col-lg-12" id="ContentPage">
+    <section class="panel">
+        <header class="panel-heading">
+            @ViewBag.Title
+            @if (canAdd)
+            {
+                @Html.ActionLink("مطلب جدید", MVC.Admin.Content.ActionNames.Create, MVC.Admin.Content.Name, null, new { @class = "btn btn-sm btn-primary pull-left" })
+            }
+
+        </header>
+        <div class="panel-body">
+            <form class="form-inline" role="form" action="@Url.Action(MVC.Admin.Content.ActionNames.Index,MVC.Admin.Content.Name)">
+                <div class="input-group m-bot15">
+                    <span class="input-group-btn">
+                        <button class="btn btn-primary" type="submit">جستجو</button>
+                    </span>
+                    <input type="text" class="form-control" name="Search" placeholder="نام ، شماره تماس، ایمیل و ..">
+                </div>
+            </form>
+
+        </div>
+
+        @Html.Partial("_Table", Model)
+
+    </section>
+    @section DownScript{
+        @Scripts.Render("~/bundles/jqueryval")
+
+    }
+
+    <script type="text/javascript">
+
+        function beginPaging(args) {
+            // Animate
+            $('#gridlist').fadeOut('normal');
+        }
+
+        function successPaging() {
+            // Animate
+            $('#gridlist').fadeIn('normal');
+        }
+
+        function failurePaging() {
+            alert("Could not retrieve list.");
+        }
+
+    </script>
+
+
+
+</div>

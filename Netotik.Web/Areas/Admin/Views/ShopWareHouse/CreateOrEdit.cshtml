@@ -1,0 +1,74 @@
+﻿@model Netotik.ViewModels.Shop.WareHouse.WareHouseModel
+@{
+    Layout = null;
+}
+
+
+
+
+<div class="tabs-container">
+
+    <ul class="nav nav-tabs">
+        <li class="active">
+            <a href="#requiredInfo" data-toggle="tab">
+                <i class="fa fa-archive"></i>
+            مشخصات </a>
+        </li>
+    </ul>
+
+    <div class="tab-content">
+
+        <div class="tab-pane active" id="requiredInfo">
+            <div class="panel-body">
+                <fieldset>
+                    @Html.HiddenFor(model => model.Id)
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.StateId, new { @class = "label-control col-md-2" })
+                        <div class="col-md-4">
+                            @Html.DropDownListFor(model => model.StateId, ViewBag.States as SelectList, new { @class = "form-control input-sm", @onchange = "FillCity()" })
+                        </div>
+                        @Html.LabelFor(model => model.CityId, new { @class = "label-control col-md-1" })
+                        <div class="col-md-4">
+                            @if (ViewBag.Cities == null)
+                            {
+                                @Html.DropDownListFor(model => model.CityId, Enumerable.Empty<SelectListItem>(), "شهر را انتخاب کنید", new { @class = "form-control input-sm" })
+                            }
+                            else
+                            {
+                                @Html.DropDownListFor(model => model.CityId, ViewBag.Cities as SelectList, new { @class = "form-control" })
+                            }
+                        </div>
+                    </div>
+                    @Html.EditorFor(model => model.Name)
+                    @Html.EditorFor(model => model.IsActive)
+                    @Html.EditorFor(model => model.Address, MVC.Shared.Views.EditorTemplates.Multiline)
+                    @Html.EditorFor(model => model.Description)
+                </fieldset>
+            </div>
+        </div>
+
+    </div>
+
+</div>
+
+
+
+<script>
+
+    function FillCity() {
+        var stateId = $('#StateId').val();
+        $.ajax({
+            url: '/ShopWareHouse/FillCity',
+            type: "GET",
+            dataType: "JSON",
+            data: { State: stateId },
+            success: function (cities) {
+                $("#CityId").html(""); // clear before appending new list
+                $.each(cities, function (i, city) {
+                    $("#CityId").append(
+                        $('<option></option>').val(city.Id).html(city.Name));
+                });
+            }
+        });
+    }
+</script>

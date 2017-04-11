@@ -1,0 +1,177 @@
+﻿@model Netotik.Domain.Entity.OrderPayment
+@using Netotik.Web.Extension
+@section Down{
+    @Scripts.Render("~/bundles/jqueryvalpublic")
+
+}
+
+<section class="section-title img-news">
+    <div class="overlay-bg"></div>
+    <div class="container">
+
+    </div>
+</section>
+
+
+
+<section class="content-info">
+
+
+    <div class="semiboxshadow text-center">
+        <img src="~/Content/PublicUI/img/img-theme/shp.png" class="img-responsive" alt="">
+    </div>
+
+
+
+
+    <div class="container padding-top">
+
+        <div class="row">
+            <div class="col-md-12">
+                <div class="alert alert-info">
+                    مشتری گرامی لطفا اطلاعات زیر را نزد خود نگه دارید. باتشکر
+                </div>
+            </div>
+        </div>
+
+
+        <div class="panel-box radios">
+            <div class="panel-title">
+                <div class="titles">
+                    <h4> فاکتور </h4>
+                </div>
+            </div>
+            <div class="panel-body">
+                <div class="row">
+                    <table class="table table-condensed table-bordered table-advance">
+                        <caption class="bg-primary">اطلاعات خریدار</caption>
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <i class="fa fa-user"></i>
+                                    نام :
+                                    @Model.Order.Address.FirstName @Model.Order.Address.LastName
+                                </td>
+                                <td>
+                                    <i class="fa fa-envelope-square"></i>
+                                    ایمیل :
+                                    @Model.Order.Address.Email
+                                </td>
+                                <td>
+                                    <i class="fa fa-mobile"></i>
+                                    شماره همراه :
+                                    @Model.Order.Address.MobileNumber
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <i class="fa fa-truck"></i>
+                                    شیوه ارسال:
+                                    @Model.Order.ShippingMethod.Name
+                                </td>
+                                <td colspan="2">
+                                    <i class="fa fa-bank"></i>
+                                    درگاه پرداخت:
+                                    @Model.PaymentType.Name
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="3">
+                                    <i class="fa fa-map-marker"></i>
+                                    آدرس:
+                                    @Model.Order.Address.AddressCity.AddressState.Name , @Model.Order.Address.AddressCity.Name , @Model.Order.Address.AddressDescription ( کد پستی : @Model.Order.Address.PostalCode )
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="3">
+                                    <i class="fa fa-list"></i>
+                                    توضیحات:
+                                    @Model.Order.Description
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="row">
+                    <table class="table table-bordered table-advance table-condensed ">
+                        <caption class="bg-primary">فاکتور فروش</caption>
+                        <thead>
+                            <tr class="bg-info">
+                                <td width="20px">#</td>
+                                <td>تصویر</td>
+                                <td>نام محصول</td>
+                                <td>تعداد </td>
+                                <td>قیمت واحد </td>
+                                <td>قیمت کل </td>
+                                <td>تخفیف</td>
+                                <td>مالیات</td>
+                                <td>مبلغ پرداختی</td>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @{
+                                int counter = 1;
+                            }
+                            @foreach (var item in Model.Order.OrderItems)
+                            {
+                                <tr>
+                                    <td style="vertical-align:middle">@(counter++) </td>
+                                    <td style="vertical-align:middle"><img src="@Url.Content(!item.Product.PictureId.HasValue ? " />Content/img/1.jpg" : Path.Combine(_imagesShopProductPath, item.Product.Picture.FileName))?w=70&h=60" alt="@item.Product.Name"></td>
+                                    <td style="vertical-align:middle">@item.Product.Name</td>
+                                    <td style="vertical-align:middle">  @String.Format("{0:0,0}", item.Quantity) </td>
+                                    <td style="vertical-align:middle"> @String.Format("{0:0,0}", item.UnitPrice) </td>
+                                    <td style="vertical-align:middle"> @String.Format("{0:0,0}", item.Quantity * item.UnitPrice)</td>
+                                    <td style="vertical-align:middle">@String.Format("{0:0,0}", item.Quantity * item.UnitDiscountPrice)</td>
+                                    <td style="vertical-align:middle">@String.Format("{0:0,0}", item.Quantity * item.UnitTaxPrice)</td>
+                                    <td style="vertical-align:middle">@String.Format("{0:0,0}", item.PeymentPrice)</td>
+                                </tr>
+                            }
+                        </tbody>
+                        <tfoot>
+                            <tr>
+                                <td colspan="2">مجموع خرید : </td>
+                                <td colspan="7">@string.Format("{0:0,0}", Model.Order.TotalPrice) </td>
+                            </tr>
+                            <tr>
+                                <td colspan="2">هزینه ارسال:</td>
+                                <td colspan="7">@string.Format("{0:0,0}", Model.Order.TotalShippingPrice) </td>
+                            </tr>
+                            <tr>
+                                <td colspan="2">مالیات :</td>
+                                <td colspan="7">@string.Format("{0:0,0}", Model.Order.TotalTaxPrice)</td>
+                            </tr>
+                            <tr>
+                                <td colspan="2">مجموع تخفیف محصولات :</td>
+                                <td colspan="7">@string.Format("{0:0,0}", Model.Order.TotalProductDiscountPrice) </td>
+                            </tr>
+                            <tr>
+                                <td colspan="2">تخفیف فاکتور</td>
+                                <td colspan="7">@string.Format("{0:0,0}", Model.Order.TotalFactorDiscountPrice)</td>
+                            </tr>
+                            <tr>
+                                <td colspan="2">تخفیف کوپن</td>
+                                <td colspan="7">@string.Format("{0:0,0}", Model.Order.TotalFactorCouponDiscountPrice)</td>
+                            </tr>
+                            <tr class="bg-success">
+                                <td colspan="2">مبلغ پرداختی</td>
+                                <td colspan="7">@string.Format("{0:0,0}", Model.Order.PaymentPrice)</td>
+                            </tr>
+                        </tfoot>
+                    </table>
+                </div>
+
+            </div>
+            <div class="panel-footer">
+                <div class="row">
+                    <div class="col-md-3"><i class="fa fa-cubes"></i> وزن بسته :  @Model.Order.OrderItems.Sum(x => x.UnitWeight * x.Quantity)</div>
+                    <div class="col-md-3"><i class="fa fa-file"></i> شماره فاکتور :  @Model.OrderId</div>
+                    <div class="col-md-3"><i class="fa fa-credit-card"></i> شماره تراکنش:  @Model.TransactionId</div>
+                    <div class="col-md-3"> <i class="fa fa-calendar"></i> @PersianDate.ConvertDate.ToFa(Model.CreateDate, "D") - @PersianDate.ConvertDate.ToFa(Model.CreateDate, "t") </div>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+</section>

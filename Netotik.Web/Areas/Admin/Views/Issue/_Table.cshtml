@@ -1,0 +1,67 @@
+﻿@using MvcPaging
+@model IPagedList<Netotik.ViewModels.Support.Issue.TableIssueModel>
+
+@{
+    
+
+    Layout = null;
+    string querySearch = "";
+
+
+    if (Request["Search"] != null)
+    {
+        querySearch = Request["Search"].ToString();
+    }
+}
+
+<div id="gridlist">
+    @if (!Model.Any())
+    {
+        <div class="gradeX odd">
+            هیچ کاری در سیستم وجود ندارد ..
+        </div>
+    }
+    else
+    {
+
+
+        <table class="table table-striped border-top dataTable">
+            <thead class="alert-info">
+                <tr role="row">
+                    <th role="columnheader" style="min-width:250px;" rowspan="1" colspan="1">@Netotik.Resources.Captions.Title</th>
+                    <th role="columnheader" rowspan="1" colspan="1">اخرین پاسخ</th>
+                    <th role="columnheader" rowspan="1" colspan="1">وضعیت</th>
+                    <th role="columnheader" rowspan="1" colspan="1">آخرین بروزرسانی</th>
+                    <th></th>
+                </tr>
+            </thead>
+
+            <tbody role="alert">
+                @foreach (var item in Model)
+                {
+                    <tr class="gradeX odd">
+                        <td>@item.Title</td>
+                        <td>@PersianDate.ConvertDate.ToFa(item.LastResponse, "f") -  @item.LastUserResponse</td>
+                        <td>@item.Status</td>
+                        <td>@PersianDate.ConvertDate.ToFa(item.CreateDate, "f")</td>
+
+                        <td>
+                            <a href="@Url.Action(MVC.Admin.Issue.ActionNames.Show, new { id = item.Id })" class="btn btn-white btn-xs "><i class="fa fa-search"></i></a>
+                        </td>
+
+
+                    </tr>
+                }
+
+
+            </tbody>
+            <tfoot>
+                <tr>
+                    <td colspan="6" style="padding:0;" class="pager">
+                        @Html.Raw(Ajax.Pager(new Options { PageSize = Model.PageSize, TotalItemCount = Model.TotalItemCount, CurrentPage = Model.PageNumber, ItemTexts = new ItemTexts() { Next = "", Previous = "", Page = "" }, ItemIcon = new ItemIcon() { First = "icon-backward", Previous = "icon-chevron-right", Next = "icon-chevron-left", Last = "icon-forward" }, TooltipTitles = new TooltipTitles() { Next = "Next page", Previous = "Previous page", Page = "Page {0}." }, Size = Size.normal, Alignment = Alignment.centered, IsShowControls = false, IsShowFirstLast = false, CssClass = "pagination pagination-sm" }, new AjaxOptions { UpdateTargetId = "gridlist", OnBegin = "beginPaging", OnSuccess = "successPaging", OnFailure = "failurePaging" }, new { controller = MVC.Admin.Issue.Name, action = MVC.Admin.Issue.ActionNames.Index, search = querySearch }))
+                    </td>
+                </tr>
+            </tfoot>
+        </table>
+    }
+</div>

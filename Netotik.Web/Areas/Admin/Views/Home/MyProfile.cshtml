@@ -1,0 +1,17 @@
+﻿@model Netotik.ViewModels.Identity.UserAdmin.ProfileModel
+@{
+    var user = Html.CurrentUser();
+    ViewBag.Title = " پروفایل";
+}
+
+<section class="flexbox-container">
+    <div class="row">
+        <div class="col-md-4">
+            @Html.Partial(MVC.Admin.Home.Views._ImageProfile)
+        </div>
+        <div class="col-md-8">
+            @Html.Action(MVC.Admin.Home.ProfileData())
+        </div>
+    </div>
+</section>
+

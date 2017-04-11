@@ -1,0 +1,63 @@
+﻿@model List<Netotik.Domain.Entity.Slider>
+
+@{
+    Layout = null;
+}
+
+<div id="gridlist">
+    @if (!Model.Any())
+    {
+        <div class="gradeX odd">
+            هیچ اسلایدی در سیستم ثبت نشده..
+        </div>
+    }
+    else
+    {
+        <table class="table table-hover table-advance" style="margin:10px auto;">
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td >
+                        <img style="width:100px;height:80px;" class="thumbnail" src="@Url.Content(Path.Combine(Netotik.Web.Extension.FileManager._imagesSliderPath, item.Picture.FileName))?w=100&80" />
+                        
+                    </td>
+                    <td>
+
+                        @if (!string.IsNullOrWhiteSpace(item.BigText))
+                        {
+                            <label class="alert alert-info">
+                                متن بزرگ : @item.BigText
+                            </label>
+                        }
+                        </td>
+                    <td>
+                        @if (!string.IsNullOrWhiteSpace(item.SmallText))
+                        {
+                            <label class="alert alert-warning">
+                                متن کوچک: @item.SmallText
+                            </label>
+                        }
+                    </td>
+                    <td>
+                        @if (!string.IsNullOrWhiteSpace(item.Url))
+                        {
+                            <label class="alert alert-success">
+                                url : @item.Url
+                            </label>
+                        }
+                    </td>
+                    <td>
+                        <label class="alert alert-primary">
+                            @(item.IsActive ? "فعال" : "غیر فعال")
+                        </label>
+                    </td>
+                    <td>
+                        <a href="@Url.Action(MVC.Admin.Slider.ActionNames.Edit, new { id = item.Id })" class="btn btn-primary btn-xs "><i class="icon-pencil"></i></a>
+                        <a href="@Url.Action(MVC.Admin.Slider.ActionNames.Remove, new { id = item.Id })" class="btn btn-danger btn-xs "><i class="icon-trash"></i></a>
+                    </td>
+                </tr>
+                
+            }
+        </table>
+    }
+</div>

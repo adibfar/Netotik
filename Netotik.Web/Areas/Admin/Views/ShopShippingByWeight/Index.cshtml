@@ -1,0 +1,47 @@
+﻿@model List<Netotik.ViewModels.Shop.ShippingByWeight.TableShippingByWeightModel>
+@{
+    ViewBag.Title = "مدیریت شرایط ارسال";
+    var roles = Html.CurrentUserPermissions();
+    var canAdd = roles.Any(x => x == Netotik.ViewModels.Identity.Security.AssignableToRolePermissions.CanCreateShopShippingByWeight);
+
+}
+
+<div class="col-lg-12" id="ContentPage">
+    <section class="panel">
+        <header class="panel-heading">
+            @ViewBag.Title
+
+            @if (canAdd)
+            {
+                @Html.ActionLink("ایجاد شرط جدید", MVC.Admin.ShopShippingByWeight.ActionNames.Create, MVC.Admin.ShopShippingByWeight.Name, new { id = ViewBag.Id }, new { @class = "btn btn-primary pull-left" ,style="margin-right:3px;" })
+                
+                 @Html.ActionLink("بازگشست به لیست نحوه های ارسال", MVC.Admin.ShopShippingMethod.ActionNames.Index, MVC.Admin.ShopShippingMethod.Name,null,new { @class = "btn btn-info pull-left" })
+            }
+        </header>
+        
+
+        @Html.Partial("_Table", Model)
+
+    </section>
+    <script type="text/javascript">
+
+        function beginPaging(args) {
+            // Animate
+            $('#gridlist').fadeOut('normal');
+        }
+
+        function successPaging() {
+            // Animate
+            $('#gridlist').fadeIn('normal');
+        }
+
+        function failurePaging() {
+            alert("Could not retrieve list.");
+        }
+
+
+    </script>
+
+
+
+</div>

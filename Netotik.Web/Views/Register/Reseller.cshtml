@@ -1,0 +1,155 @@
+﻿@using CaptchaMvc.HtmlHelpers
+@using Netotik.Common.Helpers
+@using Netotik.ViewModels.Identity.UserReseller
+
+@model RegisterViewModel
+
+
+<section class="flexbox-container">
+    @if (ViewBag.Success != null)
+    {
+        <div class="col-md-8 offset-md-2 col-xs-12">
+            <div class="alert alert-icon-left alert-success alert-dismissible fade in mb-2" role="alert">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+                <strong>ثبت نام انجام شد!</strong> @ViewBag.Success
+            </div>
+        </div>
+    }
+    else
+    {
+
+        <div class="col-md-6 offset-md-3 col-xs-10 box-shadow-2 p-0">
+            <div class="card border-grey border-lighten-3 m-0">
+                <div class="card-body collapse in">
+                    @if (ViewBag.Message != null)
+                {
+                        <div class="alert alert-icon-left alert-danger alert-dismissible fade in mb-2" role="alert">
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true">×</span>
+                            </button>
+                            <strong>ناموفق!</strong> @ViewBag.Message
+                        </div>
+                        if (ViewBag.Link != null)
+                        {
+                            <a class="btn btn-outline-primary btn-block" href="@Url.Action(MVC.Account.ReceiveActivatorEmail())"><i class="icon-checkmark2"></i> فعال سازی حساب کاربری</a>
+                        }
+
+                    }
+                    <div class="card-block">
+                        @using (Html.BeginForm(MVC.Register.ActionNames.Reseller, MVC.Register.Name, new { ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form", id = "loginForm", autocomplete = "off" }))
+                        {
+                            @Html.AntiForgeryToken()
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <div class="form-group has-feedback has-icon-left">
+                                        @Html.TextBoxFor(m => m.FirstName, new { @class = "form-control", placeholder = "نام" })
+                                        <div class="form-control-position">
+                                            <i class="icon-head"></i>
+                                        </div>
+                                        @Html.ValidationMessageFor(model => model.FirstName, "", htmlAttributes: new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group has-feedback has-icon-left">
+                                        @Html.TextBoxFor(m => m.LastName, new { @class = "form-control", placeholder = "نام خانوادگی" })
+                                        <div class="form-control-position">
+                                            <i class="icon-user"></i>
+                                        </div>
+                                        @Html.ValidationMessageFor(model => model.LastName, "", htmlAttributes: new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group has-feedback has-icon-left">
+                                        @Html.TextBoxFor(m => m.PhoneNumber, new { @class = "form-control", placeholder = "شماره موبایل" })
+                                        <div class="form-control-position">
+                                            <i class="icon-phone"></i>
+                                        </div>
+                                        @Html.ValidationMessageFor(model => model.PhoneNumber, "", htmlAttributes: new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group has-feedback has-icon-left">
+                                        @Html.TextBoxFor(m => m.NationalCode, new { @class = "form-control", placeholder = "کد ملی" })
+                                        <div class="form-control-position">
+                                            <i class="icon-diamonds"></i>
+                                        </div>
+                                        @Html.ValidationMessageFor(model => model.NationalCode, "", htmlAttributes: new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group has-feedback has-icon-left">
+                                        @Html.TextBoxFor(m => m.CompanyName, new { @class = "form-control", placeholder = "کد شرکت : انگلیسی و بدون فاصله" })
+                                        <div class="form-control-position">
+                                            <i class="icon-office"></i>
+                                        </div>
+                                        @Html.ValidationMessageFor(model => model.CompanyName, "", htmlAttributes: new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group has-feedback has-icon-left">
+                                        @Html.TextBoxFor(m => m.UserName, new { @class = "form-control", placeholder = "نام کاربری" })
+                                        <div class="form-control-position">
+                                            <i class="icon-head"></i>
+                                        </div>
+                                        @Html.ValidationMessageFor(model => model.UserName, "", htmlAttributes: new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group has-feedback has-icon-left">
+                                        @Html.TextBoxFor(m => m.Email, new { @class = "form-control", placeholder = "ایمیل" })
+                                        <div class="form-control-position">
+                                            <i class="icon-mail"></i>
+                                        </div>
+                                        @Html.ValidationMessageFor(model => model.Email, "", htmlAttributes: new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                            </div>
+
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group has-feedback has-icon-left">
+                                            @Html.PasswordFor(m => m.Password, new { @class = "form-control", placeholder = "گذرواژه" })
+                                            <div class="form-control-position">
+                                                <i class="icon-key2"></i>
+                                            </div>
+                                            @Html.ValidationMessageFor(model => model.Password, "", htmlAttributes: new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group has-feedback has-icon-left">
+                                            @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "form-control", placeholder = "تکرار گذرواژه" })
+                                            <div class="form-control-position">
+                                                <i class="icon-key2"></i>
+                                            </div>
+                                            @Html.ValidationMessageFor(model => model.ConfirmPassword, "", htmlAttributes: new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="controls">
+                                    <label class="custom-control custom-checkbox">
+                                        <input required="" value="single" name="styled_single_checkbox" class="custom-control-input" aria-invalid="false" type="checkbox">
+                                        <span class="custom-control-indicator"></span>
+                                        <span class="custom-control-description">
+                                            حریم خصوصی و شرایط و قوانین استفاده از سرویس های سایت نتوتیک را مطالعه نموده و با کلیه موارد آن موافقم.
+                                        </span>
+                                    </label>
+                                </div>
+                                <button type="submit" class="btn btn-success btn-block">
+                                    <i class="icon-user"></i> ثبت نام
+                                </button>
+                        }
+                    </div>
+                    <div class="card-block">
+                        <a href="@Url.Action(MVC.Account.Login())" class="btn btn-outline-primary btn-block"><i class="icon-lock4"></i> ورود به حساب کاربری</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+</section>

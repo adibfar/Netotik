@@ -1,0 +1,58 @@
+﻿@model Netotik.Domain.Entity.Role
+@{
+    ViewBag.Title = "گروه "+Model.Name;
+}
+
+<div class="col-lg-12" id="ContentPage">
+
+    <section class="panel">
+        <header class="panel-heading tab-bg-dark-navy-blue ">
+            <ul class="nav nav-tabs">
+                <li class="active">
+                    <a data-toggle="tab" href="#profile"><i class="icon-2x icon-user"></i> اطلاعات گروه</a>
+                </li>
+                @*<li class="">
+                    <a data-toggle="tab" href="#login"><i class="icon-2x icon-flag"></i> تاریخچه ورود </a>
+                </li>*@
+            </ul>
+        </header>
+        <div class="panel-body">
+            <div class="tab-content">
+                <div id="profile" class="tab-pane active form-horizontal">
+
+                    @Html.DisplayFor(model => model.Name)
+                    @Html.DisplayFor(model => model.IsSystemRole)
+
+                </div>
+                <div id="login" class="tab-pane">
+                    @if (Model.Permissions.Any())
+                        {
+                            <table class="table table-striped border-top dataTable">
+                                <thead class="alert-info">
+                                    <tr>
+                                        <td style="width:40%">@Netotik.Resources.Captions.Name</td>
+                                        <td style="width:40%">@Netotik.Resources.Captions.Description</td>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var item in Model.Permissions)
+                                    {
+                                        <tr>
+                                            <td>@item</td>
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                        }
+                        else
+                        {
+                            <div class="alert-warning">هیچ مجوزی برای این گروه ثبت نشده</div>
+                        }
+
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+
+    

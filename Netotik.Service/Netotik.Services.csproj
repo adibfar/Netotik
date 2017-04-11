@@ -1,0 +1,300 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{0668C3E4-E694-4E9C-A9AF-C076E8313880}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Netotik.Service</RootNamespace>
+    <AssemblyName>Netotik.Service</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
+    <RestorePackages>true</RestorePackages>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <UseVSHostingProcess>true</UseVSHostingProcess>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="AutoMapper, Version=4.0.4.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
+      <HintPath>..\packages\AutoMapper.4.0.4\lib\net45\AutoMapper.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EFSecondLevelCache, Version=1.1.5.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\EFSecondLevelCache.1.1.5.0\lib\net45\EFSecondLevelCache.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EntityFramework.Extended, Version=6.0.0.0, Culture=neutral, PublicKeyToken=05b7e29bdd433584, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.Extended.6.1.0.168\lib\net45\EntityFramework.Extended.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.Core, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Identity.Core.2.2.1\lib\net45\Microsoft.AspNet.Identity.Core.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.EntityFramework, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Identity.EntityFramework.2.2.1\lib\net45\Microsoft.AspNet.Identity.EntityFramework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.Owin, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Identity.Owin.2.2.1\lib\net45\Microsoft.AspNet.Identity.Owin.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Owin, Version=3.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Owin.3.0.1\lib\net45\Microsoft.Owin.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security, Version=3.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Owin.Security.3.0.1\lib\net45\Microsoft.Owin.Security.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.Cookies, Version=3.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Owin.Security.Cookies.3.0.1\lib\net45\Microsoft.Owin.Security.Cookies.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.OAuth, Version=3.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Owin.Security.OAuth.3.0.1\lib\net45\Microsoft.Owin.Security.OAuth.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Mvc.Mailer, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\MvcMailer.4.5\lib\45\Mvc.Mailer.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.6.0.4\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Owin, Version=1.0.0.0, Culture=neutral, PublicKeyToken=f0ebd12fd5e55cc5, processorArchitecture=MSIL">
+      <HintPath>..\packages\Owin.1.0\lib\net40\Owin.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="PersianDate, Version=1.3.5419.21406, Culture=neutral, PublicKeyToken=0690767615cbef5c, processorArchitecture=MSIL">
+      <HintPath>..\packages\PersianDate.1.3.5\lib\PersianDate.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="RefactorThis.GraphDiff, Version=2.0.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\RefactorThis.GraphDiff.2.0.1\lib\RefactorThis.GraphDiff.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Helpers, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.Helpers.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.Mvc, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Mvc.5.2.3\lib\net45\System.Web.Mvc.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Razor.3.2.3\lib\net45\System.Web.Razor.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.WebPages, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Deployment, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.Deployment.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+    <Reference Include="T4MVCExtensions, Version=3.0.0.0, Culture=neutral, PublicKeyToken=7b26dc2a43f6a0d4, processorArchitecture=MSIL">
+      <HintPath>..\packages\T4MVCExtensions.3.17.5\lib\net40\T4MVCExtensions.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Abstract\ICityService.cs" />
+    <Compile Include="Abstract\ICustomRoleStore.cs" />
+    <Compile Include="Abstract\ICustomUserStore.cs" />
+    <Compile Include="Abstract\IResourceService.cs" />
+    <Compile Include="Abstract\IIssueLabelService.cs" />
+    <Compile Include="Abstract\IIssueService.cs" />
+    <Compile Include="Abstract\IOrderPaymentService.cs" />
+    <Compile Include="Abstract\IOrderService.cs" />
+    <Compile Include="Abstract\IProductCommentService.cs" />
+    <Compile Include="Abstract\IDiscountService.cs" />
+    <Compile Include="Abstract\IProductAttributeValueService.cs" />
+    <Compile Include="Abstract\IProductGalleryService.cs" />
+    <Compile Include="Abstract\IProductService.cs" />
+    <Compile Include="Abstract\IProductAttributeService.cs" />
+    <Compile Include="Abstract\IAdvertiseService.cs" />
+    <Compile Include="Abstract\IUserMailer.cs" />
+    <Compile Include="Abstract\IWareHouseService.cs" />
+    <Compile Include="Abstract\IBaseService.cs" />
+    <Compile Include="Abstract\ITaxService.cs" />
+    <Compile Include="Abstract\IPaymentTypeService.cs" />
+    <Compile Include="Abstract\IShippingByWeightService.cs" />
+    <Compile Include="Abstract\IShippingMathodService.cs" />
+    <Compile Include="Abstract\IManufacturerService.cs" />
+    <Compile Include="Abstract\IContentTagService.cs" />
+    <Compile Include="Abstract\IMenuService.cs" />
+    <Compile Include="Abstract\IContentCommentService.cs" />
+    <Compile Include="Abstract\ILinkService.cs" />
+    <Compile Include="Abstract\IFileService.cs" />
+    <Compile Include="Abstract\ICategoryService.cs" />
+    <Compile Include="Abstract\IDeliveryDateService.cs" />
+    <Compile Include="Abstract\IStateService.cs" />
+    <Compile Include="Abstract\ISliderService.cs" />
+    <Compile Include="Abstract\IPictureService.cs" />
+    <Compile Include="Abstract\IImageGalleryItemService.cs" />
+    <Compile Include="Abstract\IInboxMessageService.cs" />
+    <Compile Include="Abstract\IContentCategoryService.cs" />
+    <Compile Include="Abstract\ISettingService.cs" />
+    <Compile Include="Abstract\IContentService.cs" />
+    <Compile Include="Abstract\IMikrotikServices.cs" />
+    <Compile Include="Contracts\IRunAfterEachRequest.cs" />
+    <Compile Include="Contracts\IRunAtInit.cs" />
+    <Compile Include="Contracts\IRunAtStartUp.cs" />
+    <Compile Include="Contracts\IRunOnEachRequest.cs" />
+    <Compile Include="Contracts\IRunOnError.cs" />
+    <Compile Include="Identity\ApplicationRoleManager.cs" />
+    <Compile Include="Identity\ApplicationSignInManager.cs" />
+    <Compile Include="Identity\ApplicationUserManager.cs" />
+    <Compile Include="Identity\CustomClaimFactory.cs" />
+    <Compile Include="Identity\CustomPasswordValidator.cs" />
+    <Compile Include="Identity\CustomRoleStore.cs" />
+    <Compile Include="Identity\CustomSecurityStampValidator.cs" />
+    <Compile Include="Identity\CustomUserStore.cs" />
+    <Compile Include="Identity\CustomUserValidator.cs" />
+    <Compile Include="Identity\IApplicationRoleManager.cs" />
+    <Compile Include="Identity\IApplicationSignInManager.cs" />
+    <Compile Include="Identity\IApplicationUserManager.cs" />
+    <Compile Include="Identity\ICustomRoleStore.cs" />
+    <Compile Include="Identity\ICustomUserStore.cs" />
+    <Compile Include="Identity\IPermissionService.cs" />
+    <Compile Include="Identity\PermissionRecord.cs" />
+    <Compile Include="Identity\PermissionService.cs" />
+    <Compile Include="Identity\StandardRoles.cs" />
+    <Compile Include="Implement\AdertiseService.cs" />
+    <Compile Include="Implement\MikrotikServices.cs" />
+    <Compile Include="Implement\ResourceService.cs" />
+    <Compile Include="Implement\IssueLabelService.cs" />
+    <Compile Include="Implement\IssueService.cs" />
+    <Compile Include="Implement\ProductGalleryService.cs" />
+    <Compile Include="Implement\UserMailer.cs" />
+    <Compile Include="Enums\VerifyUserStatus.cs" />
+    <Compile Include="Implement\CityService.cs" />
+    <Compile Include="Implement\OrderPaymentService.cs" />
+    <Compile Include="Implement\OrderService.cs" />
+    <Compile Include="Implement\ProductCommentService.cs" />
+    <Compile Include="Implement\DiscountService.cs" />
+    <Compile Include="Implement\ProductAttributeValueService.cs" />
+    <Compile Include="Implement\ProductService.cs" />
+    <Compile Include="Implement\ProductAttributeService.cs" />
+    <Compile Include="Implement\WareHouseService.cs" />
+    <Compile Include="Implement\BaseService.cs" />
+    <Compile Include="Implement\TaxService.cs" />
+    <Compile Include="Implement\PaymentService.cs" />
+    <Compile Include="Implement\ShippingByWeightService.cs" />
+    <Compile Include="Implement\ShippingMethodService.cs" />
+    <Compile Include="Implement\ManufacturerService.cs" />
+    <Compile Include="Implement\ContentTagService.cs" />
+    <Compile Include="Implement\MenuService.cs" />
+    <Compile Include="Implement\ContentCommentService.cs" />
+    <Compile Include="Implement\ImageGalleryItemService.cs" />
+    <Compile Include="Implement\LinkService.cs" />
+    <Compile Include="Implement\FileService.cs" />
+    <Compile Include="Implement\CategoryService.cs" />
+    <Compile Include="Implement\DeliveryDateService.cs" />
+    <Compile Include="Implement\AddressStateService.cs" />
+    <Compile Include="Implement\SliderService.cs" />
+    <Compile Include="Implement\InboxMessageService.cs" />
+    <Compile Include="Implement\SettingService.cs" />
+    <Compile Include="Implement\PictureService.cs" />
+    <Compile Include="Implement\ContentCategoryService.cs" />
+    <Compile Include="Implement\ContentService.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Netotik.Common\Netotik.Common.csproj">
+      <Project>{373e0437-69c8-4552-ae2f-8f5564f1cacd}</Project>
+      <Name>Netotik.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Netotik.DataAccess\Netotik.Data.csproj">
+      <Project>{a49c450c-bb0a-4f84-9225-be08678ae606}</Project>
+      <Name>Netotik.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Netotik.Domain\Netotik.Domain.csproj">
+      <Project>{f21c6efa-3f79-4b51-9e2a-4fbfb6a56827}</Project>
+      <Name>Netotik.Domain</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Netotik.Model\Netotik.ViewModels.csproj">
+      <Project>{6089898b-fe8d-42e2-ab54-0336f372e1d4}</Project>
+      <Name>Netotik.ViewModels</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Netotik.Resource\Netotik.Resources.csproj">
+      <Project>{3e0a930a-e136-49a3-907b-ae10e921ad3b}</Project>
+      <Name>Netotik.Resources</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="readme.txt" />
+    <None Include="T4MVC.tt.settings.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Enable NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('$(SolutionDir)\.nuget\NuGet.targets')" Text="$([System.String]::Format('$(ErrorText)', '$(SolutionDir)\.nuget\NuGet.targets'))" />
+  </Target>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

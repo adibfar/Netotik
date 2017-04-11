@@ -1,0 +1,183 @@
+﻿@model Netotik.ViewModels.ShopPublic.OrderDetail
+@using Netotik.Web.Extension
+@section Down{
+    @Scripts.Render("~/bundles/jqueryvalpublic")
+    <script src="~/Scripts/Factor.js?id=1"></script>
+}
+
+
+
+<!-- Start page content -->
+<div class="page-content">
+
+    <div class="cart-page-content">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12" style="margin-top:20px;">
+                    @Html.Partial(MVC.Shared.Views._MessageResult)
+                    <div class="titles">
+                        <h4 class="cart-title"> فاکتور</h4>
+                    </div>
+                </div>
+
+
+
+                <div class="panel-body" style="direction:rtl">
+
+                    <div class="row">
+                        <div class="col-md-7">
+
+                            <table class="table">
+                                <tr class="alert">
+                                    <td><h5>نام : </h5></td>
+                                    <td style="font-size:17px!Important;">
+                                        @Model.FirstName @Model.LastName
+                                    </td>
+                                </tr>
+
+                                <tr class="alert">
+                                    <td><h5>ایمیل : </h5></td>
+                                    <td style="font-size:17px!Important;">
+                                        @Model.Email
+                                    </td>
+                                </tr>
+
+                                <tr class="alert">
+                                    <td><h5>شماره همراه : </h5></td>
+                                    <td style="font-size:17px!Important;">
+                                        @Model.MobileNumber
+                                    </td>
+                                </tr>
+
+                                <tr class="alert">
+                                    <td><h5>آدرس: </h5></td>
+                                    <td style="font-size:17px!Important;">
+                                        @Model.StateName , @Model.CityName , @Model.Address ( کد پستی : @Model.PostalCode )
+                                    </td>
+                                </tr>
+
+                                <tr class="alert">
+                                    <td><h5>توضیحات: </h5></td>
+                                    <td style="font-size:17px!Important;">
+                                        @Model.Description
+                                    </td>
+                                </tr>
+                                <tr class="alert">
+                                    <td><h5>شیوه ارسال: </h5></td>
+                                    <td style="font-size:17px!Important;">
+                                        @Model.ShippingMethodName
+                                    </td>
+                                </tr>
+
+                                <tr class="alert">
+                                    <td><h5>درگاه اینترنتی: </h5></td>
+                                    <td style="font-size:17px!Important;">
+                                        @Model.PaymentTypeName
+                                    </td>
+                                </tr>
+                            </table>
+
+
+                        </div>
+
+
+
+                        <div class="col-md-5" style="direction:rtl">
+                            <table class="table">
+                                <tr class="alert">
+                                    <td><h4>جمع خرید شما:</h4></td>
+                                    <td style="font-size:17px!Important;"><strong> @string.Format("{0:0,0}", Model.TotalPrice) </strong></td>
+                                    <td>تومان</td>
+                                </tr>
+                                @if (Model.ProductDiscountPrice > 0)
+                                {
+                                    <tr class="alert">
+                                        <td> <h4> تخفیفات محصولات:</h4></td>
+                                        <td style="font-size:17px!Important;">@string.Format("{0:0,0}", Model.ProductDiscountPrice)</td>
+                                        <td>تومان</td>
+                                    </tr>
+                                }
+                                @if (Model.FactorDiscountPrice > 0)
+                                {
+                                    <tr class="alert">
+                                        <td> <h4>تخفیف فاکتور:</h4></td>
+                                        <td style="font-size:17px!Important;">@string.Format("{0:0,0}", Model.FactorDiscountPrice)</td>
+                                        <td>تومان</td>
+                                    </tr>
+                                }
+                                <tr class="alert">
+                                    <td><h4>مالیات:</h4></td>
+                                    <td style="font-size:17px!Important;">@string.Format("{0:0,0}", Model.TaxPrice) </td>
+                                    <td>تومان</td>
+                                </tr>
+                                <tr class="alert">
+                                    <td><h4>هزینه ارسال:</h4></td>
+                                    <td style="font-size:17px!Important;">@string.Format("{0:0,0}", Model.ShippingPrice) </td>
+                                    <td>تومان</td>
+                                </tr>
+                                @if (Model.CouponDiscountPrice > 0)
+                                {
+                                    <tr class="alert">
+                                        <td><h4>کوپن تخفیف:</h4></td>
+                                        <td style="font-size:17px!Important;">@string.Format("{0:0,0}", Model.CouponDiscountPrice) - @Model.Coupon</td>
+                                        <td>تومان</td>
+                                    </tr>
+                                }
+                                <tr class="alert alert-info">
+                                    <td>
+                                        <h4>مبلغ پرداختی :</h4>
+                                    </td>
+                                    <td>
+                                        <h4>@string.Format("{0:0,0}", Model.PaymentPrice)</h4>
+                                    </td>
+                                    <td>تومان</td>
+                                </tr>
+                            </table>
+
+
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <a href="@Url.Action(MVC.Factor.ActionNames.Index)" class="btn btn-block btn-success">بازگشت به ویرایش فاکتور</a>
+                            </div>
+                            <div class="col-md-6">
+
+                                @{
+                                    var GateWay = ViewBag.GateWay;
+                                    var RefId = ViewBag.RefId;
+                                }
+                                <form method="post" action="@GateWay" id="Form">
+
+                                    @Html.Hidden("RefId", (object)RefId)
+
+                                    @if (RefId != null)
+                                    {   
+                                        <button type="submit" onclick="AjaxForm.CustomSubmit(this, 'Form')" data-loading-text="در حال ارسال اطلاعات" class="btn btn-block btn-primary"> پرداخت و ثبت قاکتور</button>
+                                    }
+                                </form>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+
+@*@Html.HiddenFor(model => model.FirstName)
+    @Html.HiddenFor(model => model.LastName)
+    @Html.HiddenFor(model => model.MobileNumber)
+    @Html.HiddenFor(model => model.PostalCode)
+    @Html.HiddenFor(model => model.Email)
+    @Html.HiddenFor(model => model.CityId)
+    @Html.HiddenFor(model => model.StateId)
+    @Html.HiddenFor(model => model.Address)
+    @Html.HiddenFor(model => model.Description)
+    @Html.HiddenFor(model => model.Coupon)
+
+    @Html.HiddenFor(model => model.PaymentTypeId)
+    @Html.HiddenFor(model => model.ShipingMethodId)*@

@@ -1,0 +1,18 @@
+﻿@model IList<Netotik.Domain.Entity.ContentCategory>
+@{
+    Layout = null;
+}
+
+@if (Model.Any())
+{
+    <div class="blog-categoris">
+        <h3>دسته بندی</h3>
+        <ul class="bside-menu">
+            <li><a href="@Url.Action(MVC.Blog.ActionNames.Index, MVC.Blog.Name, new { categoryId = 0, tagId = "",page=1 })">جدیدترین مطالب</a></li>
+            @foreach (var item in Model)
+            {
+                <li><a href="@Url.Action(MVC.Blog.ActionNames.Index, MVC.Blog.Name, new { categoryId = item.Id, tagId = "",page=1 })">@item.Name</a></li>
+            }
+        </ul>
+    </div>
+}

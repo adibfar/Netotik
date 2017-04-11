@@ -1,0 +1,90 @@
+﻿<section id="configuration">
+    <div class="col-xs-12">
+        <div class="card">
+            <div class="card-header">
+                <button type="button" class="btn btn-social width-150 btn-instagram" data-toggle="modal" data-target="#Create"><span class="icon-plus font-medium-4"></span> استان جدید</button>
+                @*<div class="form-group"><a href="" class="btn btn-icon btn-secondary mr-1" data-toggle="tooltip" data-placement="right" title="" data-original-title="Tooltip on right"><i class="icon-vertical_align_bottom"></i></a></div>*@
+                @Html.Action(MVC.Admin.State.Create())
+            </div>
+
+            <div class="card-body collapse in">
+                <div class="card-block card-dashboard">
+                    @Html.Partial(MVC.Admin.State.Views._Table)
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<div id="edit-container"></div>
+
+@section DownScript{
+
+    <script type="text/javascript">
+        $(function () {
+            var table = $('#grid').dataTable({
+                "order": [[1, 'asc']],
+                "iDisplayLength": 10,
+                "bProcessing": true,
+                "bStateSave": true,
+                "bServerSide": true,
+                "bFilter": true,
+                "aLengthMenu": [[10, 25, 50, 100], [10, 25, 50, 100]],
+                "bAutoWidth": false,
+                "sAjaxSource": "@Url.Action(MVC.Admin.State.GetList())",
+                "fnServerData": function (sSource, aoData, fnCallback) {
+                    $.ajax({
+                        "dataType": 'json',
+                        "type": "POST",
+                        "url": sSource,
+                        "data": aoData,
+                        "success": fnCallback
+                    });
+                },
+
+                "aoColumnDefs": [
+                    { "bSortable": false, "aTargets": [0] },
+                    { "bSortable": false, "aTargets": [-1] },
+                     {
+                         "targets": -1,
+                         "render": function (data, type, full, meta) {
+                             return '<span class="dropdown">'
+                                 + '<button id="btnSearchDrop2" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" class="btn btn-success dropdown-toggle dropdown-menu-right">'
+                                 + '<i class="icon-cog3"></i></button>'
+                                 + '<span aria-labelledby="btnSearchDrop2" class="dropdown-menu mt-1 dropdown-menu-right">'
+                                 + '<a onclick="edit(' + full.Id + ');" class="edit dropdown-item">'
+                                 + '<i class="icon-pen3 primary"></i> ویرایش </a>'
+                                 + '<a href="/Admin/User/Delete/' + full.Id + '" class="dropdown-item">'
+                                 + '<i class="icon-trash4 danger"></i> حذف </a>'
+                                 + '<a href="/Admin/User/DeActive/' + full.Id + '" class="dropdown-item">'
+                                 + '<i class="icon-stop-circle-o warning"></i> غیرفعال </a></span></span>';
+                         }
+                     }
+                ]
+                ,
+                "aoColumns": [
+                    { "mDataProp": "RowNumber" },
+                    { "mDataProp": "Name" },
+                    { "no": "no" }
+                ],
+
+                "oLanguage": {
+                    "sUrl": "/Content/js/plugins/tables/datatable/dataTables.persian.txt"
+                }
+            });
+
+        });
+
+        function edit(id) {
+            alert('hh');
+            var url = "/State/Edit"; // the url to the controller
+            $.get(url + '/' + id, function (data) {
+                alert(data);
+                $('#edit-container').html(data);
+                $('#create').modal('show');
+            });
+        };
+    </script>
+
+}

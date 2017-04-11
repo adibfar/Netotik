@@ -1,0 +1,68 @@
+﻿@using Netotik.ViewModels.Common.Security
+@model List<Netotik.Domain.Entity.ContentTag>
+
+@{
+    var canDelete = User.Roles.Any(x => x == AssignableToRolePermissions.CanDeleteTag);
+    var canEdit = User.Roles.Any(x => x == AssignableToRolePermissions.CanEditTag);
+    
+    Layout = null;
+    string querySearch = "";
+
+
+    if (Request["Search"] != null)
+    {
+        querySearch = Request["Search"].ToString();
+    }
+}
+
+<div id="gridlist">
+    @if (!Model.Any())
+    {
+        <div class="gradeX odd">
+            هیچ برچسبی در سیستم وجود ندارد ..
+        </div>
+    }
+    else
+    {
+
+        <table class="table table-striped border-top dataTable">
+            <thead class="alert-info">
+                <tr role="row">
+                    <th role="columnheader" rowspan="1" colspan="1">@Netotik.Resources.Captions.Name</th>
+                    <th role="columnheader" rowspan="1" colspan="1"> تعداد مطالب </th>
+                    <th role="columnheader" rowspan="1" colspan="1"></th>
+                </tr>
+            </thead>
+
+            <tbody role="alert">
+                @foreach (var item in Model)
+                {
+                    <tr class="gradeX odd">
+                        <td class="">@item.Text</td>
+                        <td class="">@item.Contents.Count</td>
+                        <td>
+                            @*<a href="@Url.Action(MVC.Admin.ContentTag.ActionNames.Detail, new { id = item.Id })" class="btn btn-white btn-xs "><i class="icon-search"></i></a>*@
+                            @if (canEdit)
+                            {
+                                <a href="@Url.Action(MVC.Admin.ContentTag.ActionNames.Edit, new { id = item.Id })" class="btn btn-primary btn-xs "><i class="icon-pencil"></i></a>
+                            }
+                            @if (canDelete)
+                            {
+                                <form action="@Url.Action(MVC.Admin.ContentTag.ActionNames.Remove)" style="float:right" method="post">
+                                    @Html.AntiForgeryToken()
+                                    <input type="hidden" name="id" value="@item.Id" />
+                                    <button class="btn btn-danger btn-xs"><i class="icon-trash"></i></button>
+                                </form>
+                            }
+
+                        </td>
+
+                    </tr>
+                }
+
+
+            </tbody>
+            
+        </table>
+    }
+</div>

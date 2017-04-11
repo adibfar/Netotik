@@ -1,0 +1,42 @@
+﻿@model MvcPaging.IPagedList<Netotik.ViewModels.Common.ContentCategory.TableContentCategoryModel>
+@{
+    ViewBag.Title = "مدیریت دسته ها";
+    var canAdd = User.Roles.Any(x => x == Netotik.ViewModels.Common.Security.AssignableToRolePermissions.CanCreateContentCategory);
+}
+
+<div class="col-lg-12" id="ContentPage">
+    <section class="panel">
+        <header class="panel-heading">
+            @ViewBag.Title
+            @if (canAdd)
+            {
+                @Html.ActionLink("دسته جدید", MVC.Admin.ContentCategory.ActionNames.Create, MVC.Admin.ContentCategory.Name, null, new { @class = "btn btn-sm btn-primary pull-left" })
+            }
+        </header>
+
+
+        @Html.Partial("_Table", Model)
+
+    </section>
+    <script type="text/javascript">
+
+        function beginPaging(args) {
+            // Animate
+            $('#gridlist').fadeOut('normal');
+        }
+
+        function successPaging() {
+            // Animate
+            $('#gridlist').fadeIn('normal');
+        }
+
+        function failurePaging() {
+            alert("Could not retrieve list.");
+        }
+
+
+    </script>
+
+
+
+</div>

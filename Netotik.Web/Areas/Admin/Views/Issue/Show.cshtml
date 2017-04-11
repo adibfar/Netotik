@@ -1,0 +1,176 @@
+﻿@model Netotik.Domain.Entity.Issue
+@using Netotik.ViewModels.Identity.Security
+@{
+    ViewBag.Title = " مشاهده کار";
+    var roles = Html.CurrentUserPermissions();
+
+    var canTrack = roles.Any(x => x == AssignableToRolePermissions.CanTrackIssue);
+    var canChangeStatus = roles.Any(x => x == AssignableToRolePermissions.CanChangeStatusIssue);
+}
+
+
+
+<div class="row">
+    <div class="col-lg-12">
+        <div class="ibox float-e-margins">
+            <div class="ibox-content mailbox-content">
+                <div class="file-manager">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <ul style="padding: 0" class="folder-list m-b-md">
+                                <li><a href="#"> <i class="fa fa-user"></i> ایجاد شده توسط : <span class="text-success">@string.Format("{0} {1}", Model.UserCreated.FirstName, Model.UserCreated.LastName) </span> </a></li>
+                                <li><a href="#"> <i class="fa fa-calendar"></i> تاریخ ایجاد : <span class="text-success"> @PersianDate.ConvertDate.ToFa(Model.CreateDate, "f") </span></a></li>
+                                <li><a href="#"> <i class="fa fa-comment"></i> آخرین پاسخ توسط : <span class="text-success"> @string.Format("{0} {1}", Model.LastResponseUser.FirstName, Model.LastResponseUser.LastName) </span></a></li>
+                                <li><a href="#"> <i class="fa fa-clock-o"></i> تاریخ آخرین پاسخ  : <span class="text-success"> @PersianDate.ConvertDate.ToFa(Model.LastResponseDate, "f") </span></a></li>
+
+                                <li>
+                                    <a href="#">
+                                        <i class="fa fa-flag"></i>
+                                        اولویت : <span class="label label-@(Model.Periority == Netotik.Domain.Entity.IssuePeriority.Normal ? " primary" : Model.Periority == Netotik.Domain.Entity.IssuePeriority.Important ? "warning" : "danger")"> @Model.PeriorityName </span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="col-md-8">
+                            <ul style="padding: 0" class="folder-list m-b-md">
+                                <li>
+                                    <a href="#">
+                                        <i class="fa fa-university"></i> حوزهای مسئول :
+                                        @foreach (var item in Model.IssueRoles)
+                                        {
+                                            <i class="label label-default">
+                                                @string.Format("{0}", item.Name)
+                                            </i>
+                                        }
+
+                                    </a>
+                                </li>
+
+
+                                <li>
+                                    <a href="#">
+                                        <i class="fa fa-users"></i> کاربران مسئول :
+                                        @foreach (var item in Model.IssueUsers)
+                                        {
+                                            <i class="label label-default">
+                                                @string.Format("{0} {1}", item.FirstName, item.LastName)
+                                            </i>
+                                        }
+
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <i class="fa fa-flag"></i>
+                                        وضعیت کار: <span class="label label-primary"> @Model.statusName </span>
+                                    </a>
+                                </li>
+                                <li><a href="#"> <i class="fa fa-comments"></i> تعداد پیام ها : <span class="text-success"> @Model.MessageCount </span></a></li>
+
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-12">
+        <div class="mail-box-header">
+            @if (canChangeStatus)
+            {
+                if (Model.status == Netotik.Domain.Entity.IssueStatus.close)
+                {
+                    <form method="post" action="@Url.Action(MVC.Admin.Issue.ActionNames.OpenIssue )" class="pull-left tooltip-demo">
+                        @Html.AntiForgeryToken()
+                        @Html.Hidden("Id", Model.Id)
+                        <button title=""
+                                data-placement="right"
+                                data-toggle="tooltip"
+                                class="btn btn-outline btn-success"
+                                data-original-title="باز کردن دوباره کار">
+                            <i class="fa fa-mail-reply-all"></i>
+                            باز کردن
+                        </button>
+                    </form>
+                }
+                else
+                {
+                    <form method="post" action="@Url.Action(MVC.Admin.Issue.ActionNames.CloseIssue)" class="pull-left tooltip-demo">
+                        @Html.AntiForgeryToken()
+                        @Html.Hidden("Id", Model.Id)
+                        <button title=""
+                                data-placement="right"
+                                data-toggle="tooltip"
+                                class="btn btn-outline btn-warning"
+                                data-original-title="در صورت بستن ، امکان ارسال پیام دیگر وجود ندارد">
+                            <i class="fa fa-close"></i>
+                            بستن
+                        </button>
+                    </form>
+                }
+            }
+
+            <div class="mail-tools tooltip-demo m-t-md">
+                <h3>
+                    <span class="font-noraml">موضوع: </span>
+                    @Model.Title
+                </h3>
+                <h5>
+                    <span class="pull-right font-noraml fa fa-calendar">&nbsp; @PersianDate.ConvertDate.ToFa(Model.CreateDate, "f")</span>
+                    <span class="fa fa-user"> </span>&nbsp; @string.Format("{0} {1}", Model.UserCreated.FirstName, Model.UserCreated.LastName)
+                </h5>
+            </div>
+        </div>
+        <div class="mail-box">
+
+            <div class="mail-body" style="min-height:300px;">
+                @Html.Raw(Model.Description)
+            </div>
+            @if (Model.FilesAttach.Any())
+            {
+                <div class="mail-attachment">
+                    <p>
+                        <span><i class="fa fa-paperclip"></i> @Model.FilesAttach.Count ضمیمه - </span>
+                    </p>
+
+                    @Html.Partial(MVC.Shared.Views._Attachments, Model.FilesAttach)
+                </div>
+            }
+            else
+            {
+                <div class="mail-attachment">
+                    <p>
+                        <span><i class="fa fa-paperclip"></i> هیچ فایلی ضمیمه نشده</span>
+                    </p>
+                </div>
+            }
+            <div class="clearfix"></div>
+        </div>
+    </div>
+</div>
+
+
+<div class="row">
+    @foreach (var item in Model.IssueTracks)
+    {
+        <div class="col-lg-12">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5>
+                    </h5>
+                </div>
+                <div class="ibox-content">
+                    @Html.Raw(item.Description)
+                </div>
+            </div>
+        </div>
+    }
+
+</div>
+
+
+
+@if (Model.status != Netotik.Domain.Entity.IssueStatus.close && (canTrack || Model.IssueUsers.Any(x => x.Id == Html.CurrentUser().Id)))
+{
+    @Html.Partial(MVC.Admin.Issue.Views._IssueResponse, new Netotik.ViewModels.Support.Issue.IssueTrackModel { IssueId = Model.Id })
+}

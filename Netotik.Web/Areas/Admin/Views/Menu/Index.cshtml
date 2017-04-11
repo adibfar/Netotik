@@ -1,0 +1,23 @@
+﻿@model List<Netotik.ViewModels.CMS.Menu.TableAdminMenu>
+@{
+    ViewBag.Title = "مدیریت منو ها";
+    var roles = Html.CurrentUserPermissions();
+
+    var canAdd = roles.Any(x => x == Netotik.ViewModels.Identity.Security.AssignableToRolePermissions.CanCreateMenu);
+}
+
+<div class="col-lg-12" id="ContentPage">
+    <section class="panel">
+        <header class="panel-heading">
+            @ViewBag.Title
+            @if (canAdd)
+            {
+                @Html.ActionLink("منو جدید", MVC.Admin.Menu.ActionNames.Create, MVC.Admin.Menu.Name, null, new { @class = "btn btn-sm btn-primary pull-left" })
+            }
+        </header>
+
+
+        @Html.Partial("_Table", Model)
+
+    </section>
+</div>

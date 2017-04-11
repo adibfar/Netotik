@@ -1,0 +1,32 @@
+﻿@model Netotik.Domain.Entity.ShippingMethod
+@{
+    ViewBag.Title = "نحوه ارسال : "+Model.Name;
+}
+
+<div class="col-lg-12" id="ContentPage">
+
+    <section class="panel">
+        <header class="panel-heading tab-bg-dark-navy-blue ">
+            <ul class="nav nav-tabs">
+                <li class="active">
+                    <a data-toggle="tab" href="#profile"><i class="icon-2x icon-user"></i> نحوه ارسال</a>
+                </li>
+            </ul>
+        </header>
+        <div class="panel-body">
+            <div class="tab-content">
+                <div id="profile" class="tab-pane active form-horizontal">
+
+
+                    @Html.DisplayFor(model => model.Name)
+                </div>
+                @*<div id="login" class="tab-pane">
+                  
+
+                </div>*@
+            </div>
+        </div>
+    </section>
+</div>
+
+    

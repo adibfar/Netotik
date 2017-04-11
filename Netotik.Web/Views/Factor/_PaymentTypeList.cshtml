@@ -1,0 +1,47 @@
+﻿@model List<Netotik.ViewModels.ShopPublic.PaymentTypeListModel>
+@{
+    Layout = null;
+}
+
+
+<div class="panel-box radios">
+
+    <div class="titles">
+        <h4 class="cart-title"> درگاه پرداخت</h4>
+    </div>
+
+    <div class="panel-body">
+        @if (Model.Any())
+        {
+            <table class="cart-table">
+                @foreach (var item in Model)
+                {
+                    <tr class="">
+
+                        <td width="95%" style="vertical-align:middle">
+                            <div class="row">
+                                
+                                <div class="col-md-10">
+                                    <h4 class="text-resalt" style="direction:rtl">
+                                        @item.Name
+                                    </h4>
+                                    <p style="direction:rtl">
+                                        @item.Description
+                                    </p>
+                                </div>
+                                <div class="col-md-2">
+                                    <img src="@Url.Content(string.IsNullOrEmpty(item.imgName) ? " />Content/img/1.jpg" : Path.Combine(_imagesShopPaymentTypePath, item.imgName))?w=120&h=110" alt="@item.Name">
+                                </div>
+                            </div>
+                        </td>
+                        <td width="5%" style="vertical-align:middle">
+                            @Html.RadioButton("PaymentTypeId", item.Id, false)
+                        </td>
+                    </tr>
+                }
+            </table>
+            <button class="btn btn-block btn-primary" onclick="AjaxForm.FactorSubmit(this, 'FactorForm')" data-loading-text="در حال ارسال اطلاعات"><i class="fa"></i> تایید اطلاعات </button>
+        }
+
+    </div>
+</div>

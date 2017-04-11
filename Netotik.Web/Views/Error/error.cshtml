@@ -1,0 +1,16 @@
+﻿@model Netotik.ViewModels.Common.Error.ErrorInfoModel
+@{
+    ViewBag.Title = "Error";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="middle-box text-center animated fadeInDown">
+    <h2>Error</h2>
+    <h3 class="font-bold">@Model.Message</h3>
+    <div class="error-desc">
+        @Model.Description
+        <br />
+        <h3>خطای سرور-لطفا این خطا را یادداشت کرده و برای پشتیبان سرور ارسال فرمایید.با تشکر</h3>
+        <br/>
+        شما می توانید به صفحه اصلی برگردید: <br /><a href="dnma.ir" class="btn btn-primary m-t">صفحه اصلی</a>
+    </div>
+</div>

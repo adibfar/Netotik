@@ -1,0 +1,38 @@
+﻿@model MvcPaging.IPagedList<Netotik.ViewModels.Common.AddressCity.TableAddressCityModel>
+@{
+    ViewBag.Title = "مدیریت شهر ها";
+}
+
+<div class="col-lg-12" id="ContentPage">
+    <section class="panel">
+        <header class="panel-heading">
+            @ViewBag.Title
+            @Html.ActionLink("شهر جدید", MVC.Admin.AddressCity.ActionNames.Create, MVC.Admin.AddressCity.Name, null, new { @class = "btn btn-sm btn-primary pull-left" })
+        </header>
+
+
+        @Html.Partial("_Table", Model)
+
+    </section>
+    <script type="text/javascript">
+
+        function beginPaging(args) {
+            // Animate
+            $('#gridlist').fadeOut('normal');
+        }
+
+        function successPaging() {
+            // Animate
+            $('#gridlist').fadeIn('normal');
+        }
+
+        function failurePaging() {
+            alert("Could not retrieve list.");
+        }
+
+
+    </script>
+
+
+
+</div>

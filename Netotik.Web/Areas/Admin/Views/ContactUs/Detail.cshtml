@@ -1,0 +1,26 @@
+﻿@model Netotik.Domain.Entity.InboxMessage
+
+<div class="col-lg-12" id="ContentPage">
+
+    <section class="panel">
+        <header class="panel-heading tab-bg-dark-navy-blue ">
+            <ul class="nav nav-tabs">
+                <li class="active">
+                    <a data-toggle="tab" href="#profile"><i class="icon-2x icon-message"></i> پیام دریافتی</a>
+                </li>
+            </ul>
+        </header>
+        <div class="panel-body">
+            <div class="tab-content">
+                <div id="profile" class="tab-pane active form-horizontal">
+                    @Html.DisplayFor(model => model.CreateDate)
+                    @Html.DisplayFor(model => model.Name)
+                    @Html.DisplayFor(model => model.MobileNumber)
+                    @Html.DisplayFor(model => model.Email)
+                    @Html.DisplayFor(model => model.Message,"Multiline")
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+

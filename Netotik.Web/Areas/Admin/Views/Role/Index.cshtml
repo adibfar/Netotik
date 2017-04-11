@@ -1,0 +1,37 @@
+﻿@model MvcPaging.IPagedList<Netotik.ViewModels.Identity.Role.RoleViewModel>
+@{
+    ViewBag.Title = "مدیریت گروه ها";
+    var roles = Html.CurrentUserPermissions();
+
+    var canAdd = roles.Any(x => x == Netotik.ViewModels.Identity.Security.AssignableToRolePermissions.CanCreateRole);
+}
+
+<div class="col-lg-12" id="ContentPage">
+    <section class="panel">
+        <header class="panel-heading">
+            @ViewBag.Title
+            @if (canAdd)
+            {
+                @Html.ActionLink("گروه جدید", MVC.Admin.Role.ActionNames.Create, MVC.Admin.Role.Name, null, new { @class = "btn btn-primary pull-left" })
+            }
+        </header>
+        @Html.Partial("_Table", Model)
+    </section>
+    <script type="text/javascript">
+
+        function beginPaging(args) {
+            // Animate
+            $('#gridlist').fadeOut('normal');
+        }
+
+        function successPaging() {
+            // Animate
+            $('#gridlist').fadeIn('normal');
+        }
+
+        function failurePaging() {
+            alert("Could not retrieve list.");
+        }
+    </script>
+
+</div>

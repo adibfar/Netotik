@@ -1,0 +1,138 @@
+﻿@using Netotik.ViewModels.Identity.Security
+@using MvcPaging
+@model IPagedList<Netotik.Domain.Entity.ProductComment>
+
+@{
+
+    var roles = Html.CurrentUserPermissions();
+
+    var canDelete = roles.Any(x => x == AssignableToRolePermissions.CanDeleteProductComment);
+    var canAccept = roles.Any(x => x == AssignableToRolePermissions.CanAcceptProductComment);
+    var canDontAccept = roles.Any(x => x == AssignableToRolePermissions.CanDontAcceptProductComment);
+
+    Layout = null;
+    string querySearch = "";
+
+
+    if (Request["Search"] != null)
+    {
+        querySearch = Request["Search"].ToString();
+    }
+}
+
+<div id="gridlist">
+    @if (!Model.Any())
+    {
+        <div class="gradeX odd">
+            هیچ نظری در سیستم وجود ندارد ..
+        </div>
+    }
+    else
+    {
+
+
+        <table class="table table-striped border-top dataTable">
+            <thead class="alert-info">
+                <tr role="row">
+                    <th role="columnheader" rowspan="1" colspan="1"> عنوان صفحه</th>
+                    <th role="columnheader" rowspan="1" colspan="1">@Netotik.Resources.Captions.MessageText</th>
+                    <th role="columnheader" rowspan="1" colspan="1">وضعیت</th>
+                    <th role="columnheader" rowspan="1" colspan="1">فرستنده</th>
+                    <th role="columnheader" rowspan="1" colspan="1">تاریخ ارسال</th>
+                    <th role="columnheader" rowspan="1" colspan="1"></th>
+                </tr>
+            </thead>
+
+            <tbody role="alert">
+                @foreach (var item in Model)
+                {
+                   
+                    <tr class="gradeX odd">
+                        <td class="text-resalt">
+                            @item.Product.Name
+                        </td>
+                        <td class="">
+                            @if (item.CommentText.Length > 50)
+                            {
+                                @item.CommentText.Substring(0, 50)
+                            }
+                            else
+                            {
+                                @item.CommentText
+                            }
+                        </td>
+                        <td class="">
+
+                            @if (item.Status == Netotik.Domain.Entity.CommentStatus.Accepted)
+                            {
+                                <label class="badge bg-info">تایید شده</label>
+                            }
+                            else if (item.Status == Netotik.Domain.Entity.CommentStatus.NotAccept)
+                            {
+                                <label class="badge bg-danger">تایید نشده</label>
+                            }
+                            else
+                            {
+                                <label class="badge bg-primary">در انتظار تایید</label>
+                            }
+
+                        </td>
+                        <td class="">
+                            @if (item.UserId.HasValue)
+                            {
+                                @Html.ActionLink(item.User.FirstName + " " + item.User.LastName, MVC.Admin.User.ActionNames.Detail, MVC.Admin.User.Name, routeValues: new { Id = item.UserId }, htmlAttributes: new { })
+                            }
+                            else
+                            {
+                                <text>@item.Name</text>
+                            }
+                        </td>
+                        <td class="">@ConvertDate.ToFa(item.CreateDate, "g")</td>
+                        <td>
+                            <button data-url="@Url.Action(MVC.Admin.ShopProductComments.ActionNames.Detail, new { id = item.Id })" class="btn btn-white btn-xs ajax-button"><i class="icon-search"></i></button>
+                            &nbsp;
+
+                            @if (canDelete)
+                            { <form style="float: right; margin: 0 3px;" method="post" action="@Url.Action(MVC.Admin.ShopProductComments.ActionNames.Remove, MVC.Admin.ShopProductComments.Name)">
+                                <input name="id" type="hidden" value="@item.Id" /> <button type="submit" class="btn btn-danger btn-xs">
+                                    <i class="icon-trash"></i>
+                                </button>
+                            </form>
+                            }
+                            &nbsp;
+
+                            @if (canDontAccept && (item.Status==Netotik.Domain.Entity.CommentStatus.Accepted))
+                            { <form style="float:right;margin:0 3px;" method="post" action="@Url.Action(MVC.Admin.ShopProductComments.ActionNames.DontAccept, MVC.Admin.ShopProductComments.Name)">
+                                <input name="id" type="hidden" value="@item.Id" /> <button type="submit" class="btn btn-danger btn-xs">
+                                    <i class="icon-ban-circle"></i>
+                                </button>
+                            </form>
+                            }
+                            &nbsp;
+
+                            @if ((item.Status == Netotik.Domain.Entity.CommentStatus.WaitForAccept || item.Status == Netotik.Domain.Entity.CommentStatus.NotAccept) && canAccept)
+                            {
+                                <form style="float: right; margin: 0 3px;" method="post" action="@Url.Action(MVC.Admin.ShopProductComments.ActionNames.Accept, MVC.Admin.ShopProductComments.Name)">
+                                    <input name="id" type="hidden" value="@item.Id" />
+                                    <button type="submit" class="btn btn-success btn-xs">
+                                        <i class="icon-check"></i>
+                                    </button>
+                                </form>
+                            }
+                        </td>
+
+                    </tr>
+                }
+
+
+            </tbody>
+            <tfoot>
+                <tr>
+                    <td colspan="6" style="padding:0;" class="pager">
+                        @Html.Raw(Ajax.Pager(new Options { PageSize = Model.PageSize, TotalItemCount = Model.TotalItemCount, CurrentPage = Model.PageNumber, ItemTexts = new ItemTexts() { Next = "", Previous = "", Page = "" }, ItemIcon = new ItemIcon() { First = "icon-backward", Previous = "icon-chevron-right", Next = "icon-chevron-left", Last = "icon-forward" }, TooltipTitles = new TooltipTitles() { Next = "Next page", Previous = "Previous page", Page = "Page {0}." }, Size = Size.normal, Alignment = Alignment.centered, IsShowControls = false, IsShowFirstLast = false, CssClass = "pagination pagination-sm" }, new AjaxOptions { UpdateTargetId = "gridlist", OnBegin = "beginPaging", OnSuccess = "successPaging", OnFailure = "failurePaging" }, new { controller = MVC.Admin.ShopProductComments.Name, action = MVC.Admin.ShopProductComments.ActionNames.Index, search = querySearch }))
+                    </td>
+                </tr>
+            </tfoot>
+        </table>
+    }
+</div>

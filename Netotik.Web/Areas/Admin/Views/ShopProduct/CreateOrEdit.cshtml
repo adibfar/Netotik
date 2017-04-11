@@ -1,0 +1,250 @@
+﻿@model Netotik.ViewModels.Shop.ProductAdmin.ProductModel
+@using Netotik.Common.Helpers
+@{
+    Layout = null;
+}
+
+
+@Html.HiddenFor(model => model.Id)
+
+<div class="tabs-container">
+
+    <ul class="nav nav-tabs">
+        <li class="active">
+            <a href="#tab1" data-toggle="tab">
+                <i class="fa fa-archive"></i>
+                مشخصات
+            </a>
+        </li>
+        <li>
+            <a href="#tab3" data-toggle="tab">
+                <i class="fa fa-list-alt"></i>
+                دسته ها
+            </a>
+        </li>
+        <li>
+            <a href="#tab2" data-toggle="tab">
+                <i class="fa fa-google"></i>
+                سئو محصول
+            </a>
+        </li>
+        <li>
+            <a href="#tab5" data-toggle="tab">
+                <i class="fa fa-file-image-o"></i>
+                تصویر اصلی
+            </a>
+        </li>
+    </ul>
+
+    <div class="tab-content">
+        <div class="tab-pane active" id="tab1">
+            <div class="panel-body">
+                <fieldset>
+                    <div class="form-group">
+                        <div class="col-md-5">
+                            @Html.EditorFor(model => model.Name)
+                        </div>
+                        <div class="col-sm-5">
+                            @Html.LabelFor(model => model.ManufacturerId)
+                            @Html.DropDownListFor(model => model.ManufacturerId, ViewBag.Manufactureres as SelectList, new { @class = "chosen-select chosen-rtl form-control" })
+                        </div>
+                    </div>
+                    <div class="hr-line-dashed"></div>
+                    <div class="form-group">
+                        <div class="col-sm-5">
+                            @Html.LabelFor(model => model.DeliveryDateId, new { @class = "control-label" })
+                            @Html.DropDownListFor(model => model.DeliveryDateId, ViewBag.DeliveryDates as SelectList, new { @class = "chosen-select chosen-rtl form-control" })
+                        </div>
+
+                        <div class="col-sm-5">
+                            @Html.LabelFor(model => model.TaxId, new { @class = "control-label" })
+                            @Html.DropDownListFor(model => model.TaxId, ViewBag.Taxes as SelectList, new { @class = "chosen-select chosen-rtl form-control" })
+                        </div>
+                    </div>
+                    <div class="hr-line-dashed"></div>
+                    <div class="form-group">
+                        <div class="col-md-5">
+                            @Html.Label("تخفیف ها", new { @class = "control-label" })
+                            @Html.DropDownListFor(model => model.DiscountIds, ViewBag.Discountes as List<SelectListItem>, new { @class = "chosen-select chosen-rtl form-control", multiple = "" })
+                        </div>
+                    </div>
+
+                    <div class="hr-line-dashed"></div>
+                    <div class="form-group">
+                        <div class="col-md-5">
+                            @Html.Label("رنگ های محصول", new { @class = "control-label" })
+                            @Html.DropDownListFor(model => model.ColorIds, ViewBag.Colors as List<SelectListItem>, new { @class = "chosen-select chosen-rtl form-control", multiple = "" })
+                        </div>
+                        <div class="col-md-5">
+                            @Html.Label("سایزهای محصولات", new { @class = "control-label" })
+                            @Html.DropDownListFor(model => model.SizeIds, ViewBag.Sizes as List<SelectListItem>, new { @class = "chosen-select chosen-rtl form-control", multiple = "" })
+                        </div>
+                    </div>
+                    <div class="hr-line-dashed"></div>
+
+                    <div class="form-group">
+                        <div class="col-md-3">
+                            @Html.EditorFor(model => model.IsPublished)
+                        </div>
+                        <div class="col-md-3">
+                            @Html.EditorFor(model => model.ShowOnHomePage)
+                        </div>
+                        <div class="col-md-3">
+                            @Html.EditorFor(model => model.CallForPrice)
+                        </div>
+                    </div>
+                    <div class="hr-line-dashed"></div>
+                    <div class="form-group">
+                        <div class="col-md-3">
+                            @Html.EditorFor(model => model.DisableBuyButton)
+                        </div>
+                        <div class="col-md-3">
+                            @Html.EditorFor(model => model.IsFreeShipping)
+                        </div>
+                    </div>
+                    <div class="hr-line-dashed"></div>
+                    <div class="form-group">
+                        <div class="col-md-3">
+                            @Html.EditorFor(model => model.Price)
+                        </div>
+                        <div class="col-md-3">
+                            @Html.EditorFor(model => model.MaxOffPrice)
+                        </div>
+                    </div>
+                    <div class="hr-line-dashed"></div>
+                    <div class="form-group">
+                        <div class="col-md-3">
+                            @Html.EditorFor(model => model.CanBuyIfNotInStock)
+                        </div>
+                        <div class="col-md-3">
+                            @Html.EditorFor(model => model.DisplayQuantityForUser)
+                        </div>
+                    </div>
+                    <div class="hr-line-dashed"></div>
+
+
+                    <div class="form-group">
+                        <div class="col-md-3">
+                            @Html.EditorFor(model => model.Quantity)
+                        </div>
+                        <div class="col-md-3">
+                            @Html.EditorFor(model => model.Weight)
+                        </div>
+                    </div>
+                    <div class="hr-line-dashed"></div>
+                    <div class="form-group">
+                        <div class="col-md-3">
+                            @Html.EditorFor(model => model.AvailableStartDate)
+                        </div>
+                        <div class="col-md-3">
+                            @Html.EditorFor(model => model.AvailableEndDate)
+                        </div>
+                    </div>
+                    <div class="hr-line-dashed"></div>
+                    <div class="form-group">
+                        <div class="col-md-3">
+                            @Html.EditorFor(model => model.AllowComment)
+                        </div>
+                        <div class="col-md-3">
+                            @Html.EditorFor(model => model.AllowViewComments)
+                        </div>
+                        <div class="col-md-3">
+                            @Html.EditorFor(model => model.IsMinQuantityNotify)
+                        </div>
+                    </div>
+                    <div class="hr-line-dashed"></div>
+                    <div class="form-group">
+                        <div class="col-md-3">
+                            @Html.EditorFor(model => model.MinQuantityNotify)
+                        </div>
+                        <div class="col-md-3">
+                            @Html.EditorFor(model => model.OrderMaximumQuantity)
+                        </div>
+                    </div>
+                    <div class="hr-line-dashed"></div>
+                    <div class="form-group">
+                        <div class="col-md-12">
+                            @Html.EditorFor(model => model.ShortDescription)
+                        </div>
+                    </div>
+                    <div class="hr-line-dashed"></div>
+                    <div class="form-group">
+                        <div class="col-md-12">
+                            @Html.EditorFor(model => model.FullDescription)
+                        </div>
+                    </div>
+
+                </fieldset>
+            </div>
+        </div>
+        <div class="tab-pane" id="tab3">
+            <div class="panel-body">
+                <fieldset>
+                    @{
+                        var categories = ViewBag.Categories as IEnumerable<Netotik.ViewModels.ContentCategory.ContentCategoryTreeJsModel>;
+                    }
+                    @if (categories != null)
+                    {
+                        @(Html.TreeView(categories)
+                        .EmptyContent("دسته ای در سیستم ثبت نشده...!")
+                        .Children(m => m.Childs)
+                        .HtmlAttributes(new { id = "tree", @class = "tree" })
+                        .ItemText(m => m.Name)
+                        .ItemTemplate(
+                        @<text>
+                            <label class="label_check c_on">
+                                <input class="check" type="checkbox" checked="@item.Selected" name="CategoryIds" value="#@item.Id">
+                                @item.Name
+                            </label>
+                        </text>)
+                        )
+                    }
+                </fieldset>
+            </div>
+        </div>
+        <div class="tab-pane" id="tab2">
+            <div class="panel-body">
+                <fieldset>
+                    <div class="form-group">
+                        <div class="col-md-12">
+                            @Html.EditorFor(model => model.MetaTitle)
+                        </div>
+                    </div>
+                    <div class="hr-line-dashed"></div>
+                    <div class="form-group">
+                        <div class="col-md-12">
+                            @Html.EditorFor(model => model.MetaKeywords)
+                        </div>
+                    </div>
+                    <div class="hr-line-dashed"></div>
+                    <div class="form-group">
+                        <div class="col-md-12">
+                            @Html.EditorFor(model => model.MetaDescription)
+                        </div>
+                    </div>
+                </fieldset>
+            </div>
+        </div>
+
+
+        @*<div class="tab-pane" id="tab4">
+                <div class="panel-body">
+                    <fieldset>
+                        @Netotik.Web.RazorHelpers.CheckBoxListBuilder.CheckBoxList("DiscountIds", ViewBag.Discountes)
+                    </fieldset>
+                </div>
+            </div>*@
+
+        <div class="tab-pane" id="tab5">
+            <div class="panel-body">
+                <fieldset>
+                    @Html.EditorFor(model => model.Image)
+                    @Html.Partial("_SingleImageForm")
+                </fieldset>
+            </div>
+        </div>
+
+    </div>
+
+
+</div>

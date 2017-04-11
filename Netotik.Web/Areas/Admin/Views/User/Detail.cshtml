@@ -1,0 +1,65 @@
+﻿@model Netotik.Domain.Entity.User
+@*@using Accounting.Common.Extension
+    @using Accounting.Domain.Entities*@
+
+@{
+    //var list = ViewBag.logins as List<LoginHistory>;
+    ViewBag.Title = Model.FirstName + "" + Model.LastName;
+}
+
+<div class="col-lg-12" id="ContentPage">
+
+    <section class="panel">
+        <header class="panel-heading tab-bg-dark-navy-blue ">
+            <ul class="nav nav-tabs">
+                <li class="active">
+                    <a data-toggle="tab" href="#profile"><i class="icon-2x icon-user"></i> اطلاعات پروفایل</a>
+                </li>
+                <li class="">
+                    <a data-toggle="tab" href="#login"><i class="icon-2x icon-flag"></i> تاریخچه ورود </a>
+                </li>
+            </ul>
+        </header>
+        <div class="panel-body">
+            <div class="tab-content">
+                <div id="profile" class="tab-pane active form-horizontal">
+
+                    @Html.DisplayFor(model => model.FirstName)
+                    @Html.DisplayFor(model => model.LastName)
+                    @Html.DisplayFor(model => model.Email)
+                    @Html.DisplayFor(model => model.MobileNumber)
+
+                </div>
+                <div id="login" class="tab-pane">
+                    @*@if (list.Any())
+                        {
+                            <table class="table table-striped border-top dataTable">
+                                <thead class="alert-info">
+                                    <tr>
+                                        <td style="width:30%">زمـــان</td>
+                                        <td>IP Addres </td>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var item in list)
+                                    {
+                                        <tr>
+                                            <td style="width:30%">@item.RegisterDate</td>
+                                            <td>@item.IP</td>
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                        }
+                        else
+                        {
+                            <div class="alert-warning">این کاربر تا به حال به سیستم وارد نشده</div>
+                        }*@
+
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+
+    

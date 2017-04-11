@@ -1,0 +1,19 @@
+﻿@model IList<Netotik.Domain.Entity.ContentTag>
+@{
+    Layout = null;
+}
+@if (Model.Any())
+{
+    <div class="section-offset3">
+        <h3>برچسب ها</h3>
+        <div class="tags_container">
+            <ul class="tags-cloud">
+                @foreach (var item in Model)
+                {
+                    <li><a class="button_grey" href="@Url.Action(MVC.Blog.ActionNames.Index, MVC.Blog.Name, new { tagId = item.Id,categoryId=0,page=1 })">@item.Text</a></li>
+                }
+
+            </ul>
+        </div>
+    </div>
+} 

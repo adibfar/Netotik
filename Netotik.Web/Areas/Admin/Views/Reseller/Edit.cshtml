@@ -1,0 +1,87 @@
+﻿@model Netotik.ViewModels.Identity.UserReseller.AdminEditModel
+@{
+    ViewBag.Title = " ویرایش اطلاعات ";
+}
+
+
+@using (Html.BeginForm(MVC.Admin.Reseller.ActionNames.Edit, MVC.Admin.Reseller.Name, FormMethod.Post,
+                        htmlAttributes: new { @class = "form cmxform form-horizontal tasi-form", enctype = "multipart/form-data", id = "form" }))
+{
+    <div class="ibox-content m-b-sm border-bottom">
+        <div class="row">
+            <div class="col-md-12">
+                <button name="actionType" value="@Netotik.Common.Controller.ActionType.Save" class="btn btn-outline btn-primary" onclick="AjaxForm.Post(this, 'form')" data-loading-text="در حال ارسال اطلاعات">
+                    <span class="fa fa-check"></span>
+                    @Netotik.Resources.Captions.Save
+                </button>
+                <button name="actionType" value="@Netotik.Common.Controller.ActionType.SaveContinue" class="btn btn-primary btn-outline" onclick="AjaxForm.Post(this, 'form')" data-loading-text="در حال ارسال اطلاعات">
+                    <span class="fa fa-edit"></span>
+                    @Netotik.Resources.Captions.SaveEdit
+                </button>
+                <a class="btn btn-default btn-outline pull-left" href="@Url.Action(MVC.Admin.Reseller.ActionNames.Index, MVC.Admin.Reseller.Name)">
+                    <span class="fa fa-reply"></span>
+                    @Netotik.Resources.Captions.Back
+                </a>
+            </div>
+
+            <div class="col-md-12">
+                @Html.ValidationSummary(false, "", htmlAttributes: new { @class = "text-danger" })
+            </div>
+        </div>
+    </div>
+    @Html.AntiForgeryToken()
+    @Html.HiddenFor(Model=>Model.Id)
+    <div class="tabs-container">
+
+        <ul class="nav nav-tabs">
+            <li class="active">
+                <a href="#requiredInfo" data-toggle="tab">مشخصات</a>
+            </li>
+        </ul>
+
+        <div class="tab-content">
+
+            <div class="tab-pane active" id="requiredInfo">
+                <div class="panel-body">
+                    <fieldset>
+                        <div class="form-group">
+                            <div class="col-md-5">
+                                @Html.EditorFor(model => model.Name)
+                            </div>
+                            <div class="col-md-5">
+                                @Html.EditorFor(model => model.CompanyName)
+                            </div>
+                        </div>
+                        <div class="hr-line-dashed"></div>
+                        <div class="form-group">
+                            <div class="col-md-5">
+                                @Html.EditorFor(model => model.PersonCode)
+                            </div>
+                        </div>
+                        <div class="hr-line-dashed"></div>
+                        <div class="form-group">
+                            <div class="col-md-5">
+                                @Html.EditorFor(model => model.Email)
+                            </div>
+                            <div class="col-md-5">
+                                @Html.EditorFor(model => model.MobileNumber)
+                            </div>
+                        </div>
+                        <div class="hr-line-dashed"></div>
+                        <div class="form-group">
+                            <div class="col-md-5">
+                                @Html.EditorFor(model => model.PostalCode)
+                            </div>
+                            <div class="col-md-5">
+                                @Html.EditorFor(model => model.Address)
+                            </div>
+                        </div>
+                    </fieldset>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+}
+

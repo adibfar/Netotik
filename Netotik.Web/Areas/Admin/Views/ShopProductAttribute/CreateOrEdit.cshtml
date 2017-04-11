@@ -1,0 +1,39 @@
+﻿@model Netotik.ViewModels.Shop.ProductAttribute.ProductAttributeModel
+    @{
+        Layout = null;
+    }
+
+@Html.HiddenFor(model => model.Id)
+
+
+    <div class="tabs-container">
+
+
+    <ul class="nav nav-tabs">
+        <li class="active">
+            <a href="#tab1" data-toggle="tab">
+                <i class="fa fa-archive"></i>
+                مشخصات
+            </a>
+        </li>
+    </ul>
+
+
+    <div class="tab-content">
+        <div class="tab-pane active" id="tab1">
+            <div class="panel-body">
+                <fieldset>
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.CategoryId, new { @class = "col-sm-2 control-label" })
+                        <div class="col-sm-4">
+                            @Html.DropDownListFor(model => model.CategoryId, ViewBag.Categories as SelectList, "----------انتخاب گروه---------", new { @class = "form-control" })
+                        </div>
+                    </div>
+                    @Html.EditorFor(model => model.Name)
+                    @Html.EditorFor(model => model.Description)
+                </fieldset>
+
+            </div>
+        </div>
+    </div>
+</div>

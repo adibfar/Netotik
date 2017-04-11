@@ -1,0 +1,64 @@
+﻿@using Netotik.ViewModels.Identity.Security
+@model List<Netotik.ViewModels.Shop.ShippingByWeight.TableShippingByWeightModel>
+
+@{
+
+    var roles = Html.CurrentUserPermissions();
+    var canDelete = roles.Any(x => x == AssignableToRolePermissions.CanDeleteShopShippingByWeight);
+    var canEdit = roles.Any(x => x == AssignableToRolePermissions.CanEditShopShippingByWeight);
+
+    Layout = null;
+
+}
+
+<div id="gridlist">
+    @if (!Model.Any())
+    {
+        <div class="gradeX odd">
+            هیچ شرط نحوه ارسالی در سیستم موجود نیست..
+        </div>
+    }
+    else
+    {
+
+
+        <table class="table table-striped border-top dataTable">
+            <thead class="alert-info">
+                <tr role="row">
+                    <th role="columnheader" rowspan="1" colspan="1">@Netotik.Resources.Captions.FromWeight</th>
+                    <th role="columnheader" rowspan="1" colspan="1">@Netotik.Resources.Captions.ToWeight</th>
+                    <th role="columnheader" rowspan="1" colspan="1">هزینه اضافی</th>
+                    <th role="columnheader" rowspan="1" colspan="1"></th>
+                </tr>
+            </thead>
+
+            <tbody role="alert">
+                @foreach (var item in Model)
+                {
+                    <tr class="gradeX odd">
+                        <td class="">@item.FromWeight</td>
+                        <td class="">@item.ToWeight</td>
+                        <td class="">@item.AdditionalFixedPrice.ToString("#.##") </td>
+                        <td>
+                            @if (canEdit)
+                            {
+                                <a href="@Url.Action(MVC.Admin.ShopShippingByWeight.ActionNames.Edit, new { id = item.Id })" class="btn btn-primary btn-xs "><i class="icon-pencil"></i></a>
+                            }
+                            @if (canDelete)
+                            {
+                                <form action="@Url.Action(MVC.Admin.ShopShippingByWeight.ActionNames.Remove)" style="float:right" method="post">
+                                    @Html.AntiForgeryToken()
+                                    <input type="hidden" name="id" value="@item.Id" />
+                                    <button class="btn btn-danger btn-xs"><i class="icon-trash"></i></button>
+                                </form>
+                            }
+                        </td>
+
+                    </tr>
+                }
+
+
+            </tbody>
+        </table>
+    }
+</div>

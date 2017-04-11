@@ -1,0 +1,51 @@
+﻿@model Netotik.ViewModels.Shop.PaymentType.PaymentTypeModel
+@{
+    Layout = null;
+}
+@Html.HiddenFor(model => model.Id)
+
+<div class="tabs-container">
+
+    <ul class="nav nav-tabs">
+        <li class="active">
+            <a href="#content" data-toggle="tab">
+                <i class="fa fa-archive"></i>
+                مشخصات
+            </a>
+        </li>
+        <li>
+            <a href="#image" data-toggle="tab">
+                <i class="fa fa-file-image-o"></i>
+                تصویر
+            </a>
+        </li>
+    </ul>
+    <div class="tab-content">
+        <div class="tab-pane active" id="content">
+            <div class="panel-body">
+                <fieldset>
+                    @Html.EditorFor(model => model.Name)
+                    @Html.EditorFor(model => model.GateWayUrl, MVC.Shared.Views.EditorTemplates.String)
+                    @Html.EditorFor(model => model.TerminalId, "Long")
+                    @Html.EditorFor(model => model.UserName)
+                    @Html.EditorFor(model => model.Password)
+                    @Html.EditorFor(model => model.IsDefault)
+                    @Html.EditorFor(model => model.IsActive)
+                    @Html.EditorFor(model => model.Description)
+                </fieldset>
+            </div>
+        </div>
+
+        <div class="tab-pane" id="image">
+            <div class="panel-body">
+                <fieldset>
+                    @Html.EditorFor(model => model.Image)
+                    @Html.Partial("_SingleImageForm")
+                </fieldset>
+            </div>
+        </div>
+
+    </div>
+
+
+</div>

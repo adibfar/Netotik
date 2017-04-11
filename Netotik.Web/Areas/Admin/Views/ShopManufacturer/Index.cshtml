@@ -1,0 +1,54 @@
+﻿@model MvcPaging.IPagedList<Netotik.ViewModels.Shop.Manufacturer.TableManufacturerModel>
+@{
+    ViewBag.Title = "مدیریت برند ها";
+    var roles = Html.CurrentUserPermissions();
+    var canAdd = roles.Any(x => x == Netotik.ViewModels.Identity.Security.AssignableToRolePermissions.CanCreateManufactur);
+}
+
+<div class="col-lg-12" id="ContentPage">
+    <section class="panel">
+        <header class="panel-heading">
+            @ViewBag.Title
+
+            @if (canAdd)
+            {
+                @Html.ActionLink("برند جدید", MVC.Admin.ShopManuFacturer.ActionNames.Create, MVC.Admin.ShopManuFacturer.Name, null, new { @class = "btn btn-sm btn-primary pull-left" })
+            }
+        </header>
+        <div class="panel-body">
+            <form class="form-inline" role="form" action="@Url.Action(MVC.Admin.ShopManuFacturer.ActionNames.Index, MVC.Admin.ShopManuFacturer.Name)">
+                <div class="input-group m-bot15">
+                    <span class="input-group-btn">
+                        <button class="btn btn-primary" type="submit">جستجو</button>
+                    </span>
+                    <input type="text" class="form-control" name="Search" placeholder="نام ..">
+                </div>
+            </form>
+
+        </div>
+
+        @Html.Partial("_Table", Model)
+
+    </section>
+    <script type="text/javascript">
+
+        function beginPaging(args) {
+            // Animate
+            $('#gridlist').fadeOut('normal');
+        }
+
+        function successPaging() {
+            // Animate
+            $('#gridlist').fadeIn('normal');
+        }
+
+        function failurePaging() {
+            alert("Could not retrieve list.");
+        }
+
+
+    </script>
+
+
+
+</div>

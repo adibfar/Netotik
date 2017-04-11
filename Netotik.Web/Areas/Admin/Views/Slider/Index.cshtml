@@ -1,0 +1,21 @@
+﻿@model List<Netotik.Domain.Entity.Slider>
+@{
+    ViewBag.Title = "مدیریت اسلاید ها";
+}
+
+<div class="col-lg-12" id="ContentPage">
+    <section class="panel">
+        <header class="panel-heading">
+            @ViewBag.Title
+
+            @Html.ActionLink("اسلاید جدید", MVC.Admin.Slider.ActionNames.Create, MVC.Admin.Slider.Name,null,new { @class = "btn btn-primary pull-left" })
+
+        </header>
+
+        @Html.Partial("_Table", Model)
+
+    </section>
+
+</div>
+
+
