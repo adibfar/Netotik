@@ -77,12 +77,11 @@
         });
 
         function edit(id) {
-            alert('hh');
-            var url = "/State/Edit"; // the url to the controller
+            var url = "@Url.Action(MVC.Admin.State.Edit())";
             $.get(url + '/' + id, function (data) {
-                alert(data);
                 $('#edit-container').html(data);
-                $('#create').modal('show');
+                $('#Edit').modal('show');
+                $.validator.unobtrusive.parse($('#Edit'));
             });
         };
     </script>
