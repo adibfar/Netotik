@@ -61,10 +61,10 @@ namespace Netotik.Web.Controllers
         [HttpPost]
         [AllowAnonymous]
         [OutputCache(Location = OutputCacheLocation.None, NoStore = true, Duration = 0, VaryByParam = "*")]
-        public virtual JsonResult CheckNationalCode(string nationalCode, long? Id)
+        public virtual JsonResult IsNationalCodeAvailable(string nationalCode, long? Id)
         {
-            var check = _applicationUserManager.CheckNationalCodeExist(nationalCode, Id);
-            var check2 = _applicationUserManager.CheckNationalCodeAlgoritm(nationalCode);
+            var check = _applicationUserManager.IsNationalCodeAvailableExist(nationalCode, Id);
+            var check2 = _applicationUserManager.IsNationalCodeAvailableAlgoritm(nationalCode);
             if(!check == check2 == true)
                 return Json(true);
             else
@@ -84,7 +84,7 @@ namespace Netotik.Web.Controllers
         [HttpPost]
         [AllowAnonymous]
         [OutputCache(Location = OutputCacheLocation.None, NoStore = true, Duration = 0, VaryByParam = "*")]
-        public virtual JsonResult IsResellerCompanyNameExist(string companyName,long? Id)
+        public virtual JsonResult IsResellerCodeAvailable(string companyName,long? Id)
         {
             var check = _applicationUserManager.CheckResellerCompanyNameExist(companyName, Id);
             return check ? Json(false) : Json(true);

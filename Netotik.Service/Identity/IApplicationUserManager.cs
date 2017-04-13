@@ -61,7 +61,7 @@ namespace Netotik.Services.Identity
         /// </summary>
         bool UserLockoutEnabledByDefault { get; set; }
 
-        bool CheckNationalCodeAlgoritm(string nationalCode);
+        bool IsNationalCodeAvailableAlgoritm(string nationalCode);
 
         /// <summary>
         /// Number of access attempts allowed before a user is locked out (if lockout is enabled)
@@ -584,7 +584,7 @@ namespace Netotik.Services.Identity
         Task<bool> LogicalRemove(long id);
         bool CheckUserNameExist(string userName, long? id);
         bool CheckEmailExist(string email, long? id);
-        bool CheckNationalCodeExist(string nCode, long? id);
+        bool IsNationalCodeAvailableExist(string nCode, long? id);
         bool CheckResellerCompanyNameExist(string name, long? id);
         bool CheckGooglePlusIdExist(string googlePlusId, long? id);
         bool CheckFacebookIdExist(string faceBookId, long? id);

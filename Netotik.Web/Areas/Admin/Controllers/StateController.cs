@@ -161,7 +161,7 @@ namespace Netotik.Web.Areas.Admin.Controllers
 
         [ValidateAntiForgeryToken]
         [HttpPost]
-        public virtual async Task<ActionResult> Edit(StateModel model, ActionType actionType)
+        public virtual async Task<ActionResult> Edit(StateModel model, ActionType actionType = ActionType.Save)
         {
 
             var state = _stateService.SingleOrDefault(model.Id);
@@ -171,7 +171,7 @@ namespace Netotik.Web.Areas.Admin.Controllers
             if (!ModelState.IsValid)
             {
                 this.MessageError(Messages.MissionFail, Messages.InvalidDataError);
-                return View(model);
+                return RedirectToAction(MVC.Admin.State.Index());
             }
 
             state.Name = model.Name;
@@ -187,7 +187,7 @@ namespace Netotik.Web.Areas.Admin.Controllers
             catch (Exception ex)
             {
                 this.MessageError(Messages.MissionFail, Messages.UpdateError);
-                return View();
+                return RedirectToAction(MVC.Admin.State.Index());
             }
 
             this.MessageSuccess(Messages.MissionSuccess, Messages.UpdateSuccess);

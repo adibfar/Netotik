@@ -84,20 +84,20 @@ small {
 
 /* fonts */
 .font-open-sans {
-       font-family: 'IRANSansWeb' !important;
+    font-family: 'IRANSansWeb' !important;
 }
 
 .timeline .timeline-entry,
 .font-lato {
-      font-family: 'IRANSansWeb' !important;
+    font-family: 'IRANSansWeb' !important;
 }
 
 .font-raleway {
-     font-family: 'IRANSansWeb' !important;
+    font-family: 'IRANSansWeb' !important;
 }
 /* elastic slider */
 .ei-title h3 {
-       font-family: 'IRANSansWeb' !important;
+    font-family: 'IRANSansWeb' !important;
 }
 
 .maintenance,
@@ -112,12 +112,15 @@ h1.blog-post-title,
 
 
 
-.dataTables_filter{
-    float:right!important;
-    text-align:right!important;
+.dataTables_filter {
+    float: right !important;
+    text-align: right !important;
 }
 
 
 
 
 
+.blockOverlay {
+    z-index: 1029 !important;
+}

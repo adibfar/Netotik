@@ -66,6 +66,8 @@ namespace Netotik.AutoMapperProfiles
                 .IgnoreAllNonExisting();
 
             CreateMap<User, ViewModels.Identity.UserReseller.ProfileModel>()
+                .ForMember(d => d.NationalCode, m => m.MapFrom(t=>t.UserReseller.NationalCode))
+                .ForMember(d => d.ResellerCode, m => m.MapFrom(t => t.UserReseller.ResellerCode))
                 .IgnoreAllNonExisting();
 
             CreateMap<ViewModels.Identity.UserReseller.ProfileModel, UserReseller>()

@@ -77,13 +77,19 @@
         });
 
         function edit(id) {
+            $('.card').block(
+                {
+                    message: 'در حال پردازش <div class="icon-spinner10 icon-spin icon-lg"></div>',
+                    overlayCSS: { backgroundColor: "#fff", opacity: .7, cursor: "wait" },
+                    css: { border: 0, padding: 0, backgroundColor: "transparent" }
+                });
             var url = "@Url.Action(MVC.Admin.State.Edit())";
             $.get(url + '/' + id, function (data) {
                 $('#edit-container').html(data);
                 $('#Edit').modal('show');
-                $.validator.unobtrusive.parse($('#Edit'));
+                $('.card').unblock();
+                AjaxForm.EnableAjaxFormvalidate('Edit');
             });
         };
     </script>
-
 }

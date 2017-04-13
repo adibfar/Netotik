@@ -82,11 +82,11 @@
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group has-feedback has-icon-left">
-                                        @Html.TextBoxFor(m => m.CompanyName, new { @class = "form-control", placeholder = "کد شرکت : انگلیسی و بدون فاصله" })
+                                        @Html.TextBoxFor(m => m.ResellerCode, new { @class = "form-control", placeholder = "کد شرکت : انگلیسی و بدون فاصله" })
                                         <div class="form-control-position">
                                             <i class="icon-office"></i>
                                         </div>
-                                        @Html.ValidationMessageFor(model => model.CompanyName, "", htmlAttributes: new { @class = "text-danger" })
+                                        @Html.ValidationMessageFor(model => model.ResellerCode, "", htmlAttributes: new { @class = "text-danger" })
                                     </div>
                                 </div>
                             </div>
@@ -111,26 +111,26 @@
                                 </div>
                             </div>
 
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <div class="form-group has-feedback has-icon-left">
-                                            @Html.PasswordFor(m => m.Password, new { @class = "form-control", placeholder = "گذرواژه" })
-                                            <div class="form-control-position">
-                                                <i class="icon-key2"></i>
-                                            </div>
-                                            @Html.ValidationMessageFor(model => model.Password, "", htmlAttributes: new { @class = "text-danger" })
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group has-feedback has-icon-left">
+                                        @Html.PasswordFor(m => m.Password, new { @class = "form-control", placeholder = "گذرواژه" })
+                                        <div class="form-control-position">
+                                            <i class="icon-key2"></i>
                                         </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="form-group has-feedback has-icon-left">
-                                            @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "form-control", placeholder = "تکرار گذرواژه" })
-                                            <div class="form-control-position">
-                                                <i class="icon-key2"></i>
-                                            </div>
-                                            @Html.ValidationMessageFor(model => model.ConfirmPassword, "", htmlAttributes: new { @class = "text-danger" })
-                                        </div>
+                                        @Html.ValidationMessageFor(model => model.Password, "", htmlAttributes: new { @class = "text-danger" })
                                     </div>
                                 </div>
+                                <div class="col-md-6">
+                                    <div class="form-group has-feedback has-icon-left">
+                                        @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "form-control", placeholder = "تکرار گذرواژه" })
+                                        <div class="form-control-position">
+                                            <i class="icon-key2"></i>
+                                        </div>
+                                        @Html.ValidationMessageFor(model => model.ConfirmPassword, "", htmlAttributes: new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                            </div>
                                 <div class="controls">
                                     <label class="custom-control custom-checkbox">
                                         <input required="" value="single" name="styled_single_checkbox" class="custom-control-input" aria-invalid="false" type="checkbox">

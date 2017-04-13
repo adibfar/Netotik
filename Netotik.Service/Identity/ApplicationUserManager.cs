@@ -402,7 +402,7 @@ namespace Netotik.Services.Identity
                : _users.Any(a => a.Email.ToLower() == email.ToLower() && a.Id != id.Value);
         }
 
-        public bool CheckNationalCodeExist(string nCode, long? id)
+        public bool IsNationalCodeAvailableExist(string nCode, long? id)
         {
             return id == null
                ? _users.Any(a => a.UserReseller.NationalCode == nCode)
@@ -596,7 +596,7 @@ namespace Netotik.Services.Identity
             return _users.Any(a => a.Email == email && (a.IsBanned || a.IsDeleted));
         }
 
-        public bool CheckNationalCodeAlgoritm(string nationalCode)
+        public bool IsNationalCodeAvailableAlgoritm(string nationalCode)
         {
             if (nationalCode.Length == 10)
             {
