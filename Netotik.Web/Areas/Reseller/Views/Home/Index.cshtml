@@ -1,47 +1,4 @@
-﻿@model Netotik.ViewModels.Reseller.ProfileModel
+﻿
 @{
-    ViewBag.Title = " پروفایل ";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
-<div class="row">
-    <div class="col-md-5">
-        <div class="ibox float-e-margins">
-            <div class="ibox-title">
-                <h5> جزئیات پروفایل</h5>
-            </div>
-            <div>
-                <div class="ibox-content no-padding border-left-right">
-                    <img alt="image" class="img-responsive" src="~/Content/img/profile_small.jpg">
-                </div>
-                <div class="ibox-content profile-content">
-                    <h4><i class="fa fa-user"></i> <strong> @Html.DisplayTextFor(model => model.Name)</strong></h4>
-                    <p><i class="fa "></i> آدرس ایمیل: @Html.DisplayTextFor(model => model.Email)</p>
-                    <p><i class="fa"></i> نام کمپانی: @Html.DisplayTextFor(model => model.CompanyName)</p>
-                    <p><i class="fa"></i> تاریخ ثبت نام شما: @Html.DisplayTextFor(model => model.CreateDate)</p>
-                    <p><i class="fa "></i> کد ملی: @Html.DisplayTextFor(model => model.PersonCode)</p>
-                    <p><i class="fa "></i> کد پستی: @Html.DisplayTextFor(model => model.PostalCode)</p>
-                    <p><i class="fa fa-map-marker"></i> آدرس: @Html.DisplayTextFor(model => model.Address)</p>
-                    <div class="row m-t-lg">
-                        <div class="col-md-12">
-                            <span class="bar" style="display: none;">5,3,9,6,5,9,7,3,5,2</span><svg class="peity" height="16" width="32"><rect fill="#1ab394" x="0" y="7.111111111111111" width="2.3" height="8.88888888888889"></rect><rect fill="#d7d7d7" x="3.3" y="10.666666666666668" width="2.3" height="5.333333333333333"></rect><rect fill="#1ab394" x="6.6" y="0" width="2.3" height="16"></rect><rect fill="#d7d7d7" x="9.899999999999999" y="5.333333333333334" width="2.3" height="10.666666666666666"></rect><rect fill="#1ab394" x="13.2" y="7.111111111111111" width="2.3" height="8.88888888888889"></rect><rect fill="#d7d7d7" x="16.5" y="0" width="2.3" height="16"></rect><rect fill="#1ab394" x="19.799999999999997" y="3.555555555555557" width="2.3" height="12.444444444444443"></rect><rect fill="#d7d7d7" x="23.099999999999998" y="10.666666666666668" width="2.3" height="5.333333333333333"></rect><rect fill="#1ab394" x="26.4" y="7.111111111111111" width="2.3" height="8.88888888888889"></rect><rect fill="#d7d7d7" x="29.7" y="12.444444444444445" width="2.3" height="3.5555555555555554"></rect></svg>
-                            <h5><strong>1</strong> کاربر</h5>
-                        </div>
-                    </div>
-                    <div class="user-button">
-                        <div class="row">
-                            <div class="col-md-6">
-                                <a href="@Url.Action(MVC.Reseller.Company.ActionNames.Create, MVC.Reseller.Company.Name, new { area = MVC.Reseller.Name })">
-                                    <button type="submit" class="btn btn-primary btn-sm btn-block"><i class="fa fa-user-plus"></i>   ایجاد کاربر</button>
-                                </a>
-                            </div>
-                            <div class="col-md-6 ">
-                                <a href="@Url.Action(MVC.Reseller.Company.ActionNames.Index, MVC.Reseller.Company.Name, new { area = MVC.Reseller.Name })">
-                                    <button class="btn btn-group btn-sm btn-block"><i class="fa fa-users"></i>  مدیریت کاربران</button>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>

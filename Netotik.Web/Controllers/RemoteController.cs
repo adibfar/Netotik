@@ -64,7 +64,11 @@ namespace Netotik.Web.Controllers
         public virtual JsonResult CheckNationalCode(string nationalCode, long? Id)
         {
             var check = _applicationUserManager.CheckNationalCodeExist(nationalCode, Id);
-            return Json(!check);
+            var check2 = _applicationUserManager.CheckNationalCodeAlgoritm(nationalCode);
+            if(!check == check2 == true)
+                return Json(true);
+            else
+                return Json(false);
         }
 
         [HttpPost]

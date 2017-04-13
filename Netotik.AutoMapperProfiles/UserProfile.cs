@@ -65,11 +65,25 @@ namespace Netotik.AutoMapperProfiles
             CreateMap<User, ViewModels.Identity.UserAdmin.ProfileModel>()
                 .IgnoreAllNonExisting();
 
+            CreateMap<User, ViewModels.Identity.UserReseller.ProfileModel>()
+                .IgnoreAllNonExisting();
+
+            CreateMap<ViewModels.Identity.UserReseller.ProfileModel, UserReseller>()
+                .IgnoreAllNonExisting();
+
             CreateMap<ViewModels.Identity.UserAdmin.ProfileModel, User>()
                 .ForMember(d => d.EditDate, m => m.UseValue(DateTime.Now))
                 .ForMember(d => d.Roles, m => m.Ignore())
                 .ForMember(d => d.Claims, m => m.Ignore())
                 .ForMember(d => d.Logins, m => m.Ignore())
+                .IgnoreAllNonExisting();
+
+            CreateMap<ViewModels.Identity.UserReseller.ProfileModel, User>()
+                .ForMember(d => d.EditDate, m => m.UseValue(DateTime.Now))
+                .ForMember(d => d.Roles, m => m.Ignore())
+                .ForMember(d => d.Claims, m => m.Ignore())
+                .ForMember(d => d.Logins, m => m.Ignore())
+                .ForMember(d => d.UserReseller, opt => opt.MapFrom(s => s))
                 .IgnoreAllNonExisting();
 
 

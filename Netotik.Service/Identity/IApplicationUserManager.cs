@@ -15,8 +15,10 @@ namespace Netotik.Services.Identity
     public interface IApplicationUserManager : IDisposable
     {
         ViewModels.Identity.UserAdmin.ProfileModel GetUserAdminProfile();
+        ViewModels.Identity.UserReseller.ProfileModel GetUserResellerProfile();
 
         Task UpdateUserAdminProfile(ViewModels.Identity.UserAdmin.ProfileModel model);
+        Task UpdateUserResellerProfile(ViewModels.Identity.UserReseller.ProfileModel model);
         IList<UserItem> GetListUserAdmins(RequestListModel model, out long TotalCount, out long ShowCount);
 
         /// <summary>
@@ -58,6 +60,8 @@ namespace Netotik.Services.Identity
         /// If true, will enable user lockout when users are created
         /// </summary>
         bool UserLockoutEnabledByDefault { get; set; }
+
+        bool CheckNationalCodeAlgoritm(string nationalCode);
 
         /// <summary>
         /// Number of access attempts allowed before a user is locked out (if lockout is enabled)

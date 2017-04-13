@@ -70,6 +70,7 @@
     <Compile Include="Identity\Account\ExternalLoginConfirmationViewModel.cs" />
     <Compile Include="Identity\Account\ExternalLoginListViewModel.cs" />
     <Compile Include="Identity\Account\ForgotPasswordViewModel.cs" />
+    <Compile Include="Identity\UserReseller\ProfileModel.cs" />
     <Compile Include="Identity\UserReseller\RegisterViewModel.cs" />
     <Compile Include="Identity\Account\ResetPasswordEmail.cs" />
     <Compile Include="Identity\Account\ResetPasswordViewModel.cs" />
@@ -172,7 +173,6 @@
     <Compile Include="Identity\UserReseller\ResellerAddModel.cs" />
     <Compile Include="Identity\UserReseller\ChangePasswordModel.cs" />
     <Compile Include="Identity\UserReseller\LoginModel.cs" />
-    <Compile Include="Identity\UserReseller\ProfileModel.cs" />
     <Compile Include="Identity\UserReseller\TableResellerModel.cs" />
     <Compile Include="Identity\UserAdmin\AdminEditModel.cs" />
     <Compile Include="Identity\UserAdmin\ChangePasswordModel.cs" />

@@ -166,7 +166,7 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="MvcPaging">
-      <HintPath>..\..\..\SeeYar\Hyperkade\Hyperkade src\Hyperkade.Service\bin\Debug\MvcPaging.dll</HintPath>
+      <HintPath>..\..\DnmaGroups\DnmaGroupsOld\DnmaGroups.Web\bin\MvcPaging.dll</HintPath>
     </Reference>
     <Reference Include="MvcSiteMapProvider, Version=4.0.0.0, Culture=neutral, PublicKeyToken=1923abe4657913cc, processorArchitecture=MSIL">
       <HintPath>..\packages\EnhancedMvcSiteMap.MVC5.Core.1.0.4\lib\net45\MvcSiteMapProvider.dll</HintPath>
@@ -288,7 +288,7 @@
       <HintPath>..\packages\Antlr.3.4.1.9004\lib\Antlr3.Runtime.dll</HintPath>
     </Reference>
     <Reference Include="T4MVCExtensions, Version=3.0.0.0, Culture=neutral, PublicKeyToken=7b26dc2a43f6a0d4, processorArchitecture=MSIL">
-      <HintPath>..\packages\T4MVCExtensions.3.17.5\lib\net40\T4MVCExtensions.dll</HintPath>
+      <HintPath>..\packages\T4MVCExtensions.4.0.0\lib\net45\T4MVCExtensions.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="WebActivatorEx, Version=2.0.0.0, Culture=neutral, PublicKeyToken=7b26dc2a43f6a0d4, processorArchitecture=MSIL">
@@ -471,11 +471,6 @@
     <Compile Include="BlogController.generated.cs">
       <DependentUpon>T4MVC.tt</DependentUpon>
     </Compile>
-    <Compile Include="Controllers\RemoteController.cs" />
-    <Compile Include="Extension\HtmlExtension.cs" />
-    <Compile Include="Infrastructure\BaseController.cs" />
-    <Compile Include="Infrastructure\BasePanelController.cs" />
-    <Compile Include="Infrastructure\Caching\WebCache.cs" />
     <Compile Include="Company.HomeController.generated.cs">
       <DependentUpon>T4MVC.tt</DependentUpon>
     </Compile>
@@ -491,6 +486,20 @@
     <Compile Include="ContactUsController.generated.cs">
       <DependentUpon>T4MVC.tt</DependentUpon>
     </Compile>
+    <Compile Include="Controllers\RemoteController.cs" />
+    <Compile Include="ErrorController.generated.cs">
+      <DependentUpon>T4MVC.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Extension\HtmlExtension.cs" />
+    <Compile Include="FactorController.generated.cs">
+      <DependentUpon>T4MVC.tt</DependentUpon>
+    </Compile>
+    <Compile Include="HomeController.generated.cs">
+      <DependentUpon>T4MVC.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Infrastructure\BaseController.cs" />
+    <Compile Include="Infrastructure\BasePanelController.cs" />
+    <Compile Include="Infrastructure\Caching\WebCache.cs" />
     <Compile Include="Controllers\FactorController.cs" />
     <Compile Include="Controllers\ErrorController.cs" />
     <Compile Include="Controllers\RegisterController.cs" />
@@ -501,9 +510,6 @@
     <Compile Include="Controllers\BlogController.cs" />
     <Compile Include="Controllers\MetaTagController.cs" />
     <Compile Include="Controllers\AccountController.cs" />
-    <Compile Include="ErrorController.generated.cs">
-      <DependentUpon>T4MVC.tt</DependentUpon>
-    </Compile>
     <Compile Include="Extension\ConvertExtentions.cs" />
     <Compile Include="Extension\CookieHelper.cs" />
     <Compile Include="Extension\EnumHelper.cs" />
@@ -511,14 +517,8 @@
     <Compile Include="Extension\Exception.cs" />
     <Compile Include="Extension\QueryHelper.cs" />
     <Compile Include="Extension\SeoExtentions.cs" />
-    <Compile Include="FactorController.generated.cs">
-      <DependentUpon>T4MVC.tt</DependentUpon>
-    </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
-    </Compile>
-    <Compile Include="HomeController.generated.cs">
-      <DependentUpon>T4MVC.tt</DependentUpon>
     </Compile>
     <Compile Include="HtmlCleaner\AntiXssModule.cs" />
     <Compile Include="HtmlCleaner\HtmlSanitizer.cs" />
@@ -2360,6 +2360,8 @@
     <Content Include="Areas\Admin\Views\Resource\Index.cshtml" />
     <Content Include="Areas\Admin\Views\Home\_ImageProfile.cshtml" />
     <Content Include="Areas\Admin\Views\Home\_ProfileData.cshtml" />
+    <Content Include="Areas\Reseller\Views\Home\_ProfileData.cshtml" />
+    <Content Include="Areas\Reseller\Views\Home\_ImageProfile.cshtml" />
     <None Include="Content\fonts\icomoon\icomoon.eot" />
     <Content Include="Content\fonts\icomoon\icomoon.svg" />
     <None Include="Content\fonts\icomoon\icomoon.ttf" />
@@ -2712,10 +2714,12 @@
     <Content Include="Areas\Admin\Views\Reseller\Detail.cshtml" />
     <Content Include="Areas\Admin\Views\Reseller\Edit.cshtml" />
     <Content Include="Areas\Admin\Views\Reseller\Index.cshtml" />
-    <Content Include="Areas\Reseller\Views\web.config" />
+    <Content Include="Areas\Reseller\Views\web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Areas\Reseller\Views\Home\ChangePassword.cshtml" />
     <Content Include="Areas\Reseller\Views\Home\Index.cshtml" />
-    <Content Include="Areas\Reseller\Views\Home\Profile.cshtml" />
+    <Content Include="Areas\Reseller\Views\Home\MyProfile.cshtml" />
     <Content Include="Areas\Reseller\Views\Company\_Table.cshtml" />
     <Content Include="Areas\Reseller\Views\Company\Create.cshtml" />
     <Content Include="Areas\Reseller\Views\Company\Detail.cshtml" />

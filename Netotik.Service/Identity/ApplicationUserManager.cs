@@ -71,7 +71,19 @@ namespace Netotik.Services.Identity
             return _mappingEngine.Map<ViewModels.Identity.UserAdmin.ProfileModel>(GetCurrentUser());
         }
 
+
+        public ViewModels.Identity.UserReseller.ProfileModel GetUserResellerProfile()
+        {
+            return _mappingEngine.Map<ViewModels.Identity.UserReseller.ProfileModel>(GetCurrentUser());
+        }
+
         public async Task UpdateUserAdminProfile(ViewModels.Identity.UserAdmin.ProfileModel model)
+        {
+            var user = _users.Find(GetCurrentUserId());
+            _mappingEngine.Map(model, user);
+            await _unitOfWork.SaveChangesAsync();
+        }
+        public async Task UpdateUserResellerProfile(ViewModels.Identity.UserReseller.ProfileModel model)
         {
             var user = _users.Find(GetCurrentUserId());
             _mappingEngine.Map(model, user);
@@ -386,8 +398,8 @@ namespace Netotik.Services.Identity
         public bool CheckEmailExist(string email, long? id)
         {
             return id == null
-               ? _users.Any(a => a.Email == email.ToLower())
-               : _users.Any(a => a.Email == email.ToLower() && a.Id != id.Value);
+               ? _users.Any(a => a.Email.ToLower() == email.ToLower())
+               : _users.Any(a => a.Email.ToLower() == email.ToLower() && a.Id != id.Value);
         }
 
         public bool CheckNationalCodeExist(string nCode, long? id)
@@ -584,6 +596,55 @@ namespace Netotik.Services.Identity
             return _users.Any(a => a.Email == email && (a.IsBanned || a.IsDeleted));
         }
 
+        public bool CheckNationalCodeAlgoritm(string nationalCode)
+        {
+            if (nationalCode.Length == 10)
+            {
+                if (nationalCode == "1111111111" ||
+                    nationalCode == "0000000000" ||
+                    nationalCode == "2222222222" ||
+                    nationalCode == "3333333333" ||
+                    nationalCode == "4444444444" ||
+                    nationalCode == "5555555555" ||
+                    nationalCode == "6666666666" ||
+                    nationalCode == "7777777777" ||
+                    nationalCode == "8888888888" ||
+                    nationalCode == "9999999999" ||
+                    nationalCode == "0123456789"
+                    )
+                {
+                    //Response.Write("كد ملي صحيح نمي باشد");          
+                    return false;
+                }
 
+                int c = Convert.ToInt16(nationalCode.Substring(9, 1));
+
+                int n = Convert.ToInt16(nationalCode.Substring(0, 1)) * 10 +
+                     Convert.ToInt16(nationalCode.Substring(1, 1)) * 9 +
+                     Convert.ToInt16(nationalCode.Substring(2, 1)) * 8 +
+                     Convert.ToInt16(nationalCode.Substring(3, 1)) * 7 +
+                     Convert.ToInt16(nationalCode.Substring(4, 1)) * 6 +
+                     Convert.ToInt16(nationalCode.Substring(5, 1)) * 5 +
+                     Convert.ToInt16(nationalCode.Substring(6, 1)) * 4 +
+                     Convert.ToInt16(nationalCode.Substring(7, 1)) * 3 +
+                     Convert.ToInt16(nationalCode.Substring(8, 1)) * 2;
+                int r = n - (n / 11) * 11;
+                if ((r == 0 && r == c) || (r == 1 && c == 1) || (r > 1 && c == 11 - r))
+                {
+                    //Response.Write(" کد ملی صحیح است");                
+                    return true;
+                }
+                else
+                {
+                    //Response.Write("كد ملي صحيح نمي باشد");         
+                    return false;
+                }
+            }
+            else
+            {
+                //Response.Write("طول کد ملی وارد شده باید 10 کاراکتر باشد");           
+                return false;
+            }
+        }
     }
 }

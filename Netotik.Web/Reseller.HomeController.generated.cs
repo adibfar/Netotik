@@ -58,6 +58,20 @@ namespace Netotik.Web.Areas.Reseller.Controllers
 
         [NonAction]
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public virtual System.Threading.Tasks.Task<System.Web.Mvc.ActionResult> changeImageProfile()
+        {
+            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.changeImageProfile);
+            return System.Threading.Tasks.Task.FromResult(callInfo as System.Web.Mvc.ActionResult);
+        }
+        [NonAction]
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public virtual System.Threading.Tasks.Task<System.Web.Mvc.ActionResult> UpdateProfile()
+        {
+            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.UpdateProfile);
+            return System.Threading.Tasks.Task.FromResult(callInfo as System.Web.Mvc.ActionResult);
+        }
+        [NonAction]
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public virtual System.Web.Mvc.ActionResult RedirectToLocal()
         {
             return new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.RedirectToLocal);
@@ -79,7 +93,10 @@ namespace Netotik.Web.Areas.Reseller.Controllers
         public class ActionNamesClass
         {
             public readonly string Index = "Index";
-            public readonly string Profile = "Profile";
+            public readonly string changeImageProfile = "changeImageProfile";
+            public readonly string UpdateProfile = "UpdateProfile";
+            public readonly string MyProfile = "MyProfile";
+            public readonly string ProfileData = "ProfileData";
             public readonly string ChangePassword = "ChangePassword";
             public readonly string RedirectToLocal = "RedirectToLocal";
         }
@@ -88,17 +105,28 @@ namespace Netotik.Web.Areas.Reseller.Controllers
         public class ActionNameConstants
         {
             public const string Index = "Index";
-            public const string Profile = "Profile";
+            public const string changeImageProfile = "changeImageProfile";
+            public const string UpdateProfile = "UpdateProfile";
+            public const string MyProfile = "MyProfile";
+            public const string ProfileData = "ProfileData";
             public const string ChangePassword = "ChangePassword";
             public const string RedirectToLocal = "RedirectToLocal";
         }
 
 
-        static readonly ActionParamsClass_Profile s_params_Profile = new ActionParamsClass_Profile();
+        static readonly ActionParamsClass_changeImageProfile s_params_changeImageProfile = new ActionParamsClass_changeImageProfile();
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public ActionParamsClass_Profile ProfileParams { get { return s_params_Profile; } }
+        public ActionParamsClass_changeImageProfile changeImageProfileParams { get { return s_params_changeImageProfile; } }
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public class ActionParamsClass_Profile
+        public class ActionParamsClass_changeImageProfile
+        {
+            public readonly string image = "image";
+        }
+        static readonly ActionParamsClass_UpdateProfile s_params_UpdateProfile = new ActionParamsClass_UpdateProfile();
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public ActionParamsClass_UpdateProfile UpdateProfileParams { get { return s_params_UpdateProfile; } }
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public class ActionParamsClass_UpdateProfile
         {
             public readonly string model = "model";
         }
@@ -128,13 +156,17 @@ namespace Netotik.Web.Areas.Reseller.Controllers
             public _ViewNamesClass ViewNames { get { return s_ViewNames; } }
             public class _ViewNamesClass
             {
+                public readonly string _ImageProfile = "_ImageProfile";
+                public readonly string _ProfileData = "_ProfileData";
                 public readonly string ChangePassword = "ChangePassword";
                 public readonly string Index = "Index";
-                public readonly string Profile = "Profile";
+                public readonly string MyProfile = "MyProfile";
             }
+            public readonly string _ImageProfile = "~/Areas/Reseller/Views/Home/_ImageProfile.cshtml";
+            public readonly string _ProfileData = "~/Areas/Reseller/Views/Home/_ProfileData.cshtml";
             public readonly string ChangePassword = "~/Areas/Reseller/Views/Home/ChangePassword.cshtml";
             public readonly string Index = "~/Areas/Reseller/Views/Home/Index.cshtml";
-            public readonly string Profile = "~/Areas/Reseller/Views/Home/Profile.cshtml";
+            public readonly string MyProfile = "~/Areas/Reseller/Views/Home/MyProfile.cshtml";
         }
     }
 
@@ -155,25 +187,48 @@ namespace Netotik.Web.Areas.Reseller.Controllers
         }
 
         [NonAction]
-        partial void ProfileOverride(T4MVC_System_Web_Mvc_ActionResult callInfo);
+        partial void changeImageProfileOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, System.Web.HttpPostedFileBase image);
 
         [NonAction]
-        public override System.Web.Mvc.ActionResult Profile()
+        public override System.Threading.Tasks.Task<System.Web.Mvc.ActionResult> changeImageProfile(System.Web.HttpPostedFileBase image)
         {
-            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Profile);
-            ProfileOverride(callInfo);
+            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.changeImageProfile);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "image", image);
+            changeImageProfileOverride(callInfo, image);
+            return System.Threading.Tasks.Task.FromResult(callInfo as System.Web.Mvc.ActionResult);
+        }
+
+        [NonAction]
+        partial void UpdateProfileOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, Netotik.ViewModels.Identity.UserReseller.ProfileModel model);
+
+        [NonAction]
+        public override System.Threading.Tasks.Task<System.Web.Mvc.ActionResult> UpdateProfile(Netotik.ViewModels.Identity.UserReseller.ProfileModel model)
+        {
+            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.UpdateProfile);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "model", model);
+            UpdateProfileOverride(callInfo, model);
+            return System.Threading.Tasks.Task.FromResult(callInfo as System.Web.Mvc.ActionResult);
+        }
+
+        [NonAction]
+        partial void MyProfileOverride(T4MVC_System_Web_Mvc_ActionResult callInfo);
+
+        [NonAction]
+        public override System.Web.Mvc.ActionResult MyProfile()
+        {
+            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.MyProfile);
+            MyProfileOverride(callInfo);
             return callInfo;
         }
 
         [NonAction]
-        partial void ProfileOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, Netotik.ViewModels.Identity.UserReseller.ProfileModel model);
+        partial void ProfileDataOverride(T4MVC_System_Web_Mvc_ActionResult callInfo);
 
         [NonAction]
-        public override System.Web.Mvc.ActionResult Profile(Netotik.ViewModels.Identity.UserReseller.ProfileModel model)
+        public override System.Web.Mvc.ActionResult ProfileData()
         {
-            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Profile);
-            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "model", model);
-            ProfileOverride(callInfo, model);
+            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.ProfileData);
+            ProfileDataOverride(callInfo);
             return callInfo;
         }
 
