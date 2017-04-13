@@ -120,8 +120,22 @@ namespace Netotik.Web.Areas.Reseller.Controllers
         }
 
         [HttpPost]
-        public virtual ActionResult ChangePassword(ChangePasswordModel model)
+        public virtual async Task<ActionResult> ChangePassword(ChangePasswordModel model)
         {
+            if (!ModelState.IsValid)
+            {
+                this.MessageError(Messages.MissionFail, Messages.InvalidDataError);
+                return RedirectToAction(MVC.Reseller.Home.ActionNames.ChangePassword);
+            }
+            try
+            {
+                await _applicationUserManager.ChangePasswordAsync(User.Identity.GetUserId<long>(), model.OldPassword, model.Password);
+                this.MessageInformation(Messages.MissionSuccess, Messages.UpdateSuccess);
+            }
+            catch
+            {
+                this.MessageInformation(Messages.MissionFail, Messages.UpdateError);
+            }
             return View();
         }
 

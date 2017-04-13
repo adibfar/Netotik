@@ -177,7 +177,7 @@ namespace Netotik.Web.Controllers
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public class ActionParamsClass_IsResellerCodeAvailable
         {
-            public readonly string companyName = "companyName";
+            public readonly string ResellerCode = "ResellerCode";
             public readonly string Id = "Id";
         }
         static readonly ActionParamsClass_IsUserNameAvailable s_params_IsUserNameAvailable = new ActionParamsClass_IsUserNameAvailable();
@@ -268,15 +268,15 @@ namespace Netotik.Web.Controllers
         }
 
         [NonAction]
-        partial void IsResellerCodeAvailableOverride(T4MVC_System_Web_Mvc_JsonResult callInfo, string companyName, long? Id);
+        partial void IsResellerCodeAvailableOverride(T4MVC_System_Web_Mvc_JsonResult callInfo, string ResellerCode, long? Id);
 
         [NonAction]
-        public override System.Web.Mvc.JsonResult IsResellerCodeAvailable(string companyName, long? Id)
+        public override System.Web.Mvc.JsonResult IsResellerCodeAvailable(string ResellerCode, long? Id)
         {
             var callInfo = new T4MVC_System_Web_Mvc_JsonResult(Area, Name, ActionNames.IsResellerCodeAvailable);
-            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "companyName", companyName);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "ResellerCode", ResellerCode);
             ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "Id", Id);
-            IsResellerCodeAvailableOverride(callInfo, companyName, Id);
+            IsResellerCodeAvailableOverride(callInfo, ResellerCode, Id);
             return callInfo;
         }
 
