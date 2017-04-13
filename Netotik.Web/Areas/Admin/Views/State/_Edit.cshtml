@@ -12,7 +12,7 @@
                 </button>
                 <h4 class="modal-title" id="myModalLabel20">ویرایش استان</h4>
             </div>
-            @using (Html.BeginForm(MVC.Admin.State.ActionNames.Create, MVC.Admin.State.Name, FormMethod.Post, htmlAttributes: new { @class = "form-horizontal", id = "form" }))
+            @using (Html.BeginForm(MVC.Admin.State.ActionNames.Edit, MVC.Admin.State.Name, FormMethod.Post, htmlAttributes: new { @class = "form-horizontal", id = "form" }))
             {
                 @Html.HiddenFor(m => m.Id)
                 @Html.AntiForgeryToken()
