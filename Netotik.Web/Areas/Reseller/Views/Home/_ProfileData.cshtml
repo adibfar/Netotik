@@ -84,13 +84,13 @@
                 <div class="row">
                     <div class="col-md-6">
                         <div class="form-group has-feedback has-icon-left">
-                            @Html.LabelFor(m => m.CompanyName)
+                            @Html.LabelFor(m => m.ResellerCode)
                             <div class="position-relative has-icon-left">
-                                @Html.TextBoxFor(m => m.CompanyName, new { @class = "form-control" })
+                                @Html.TextBoxFor(m => m.ResellerCode, new { @class = "form-control" })
                                 <div class="form-control-position">
                                     <i class="icon-office"></i>
                                 </div>
-                                @Html.ValidationMessageFor(model => model.CompanyName, "", htmlAttributes: new { @class = "text-danger" })
+                                @Html.ValidationMessageFor(model => model.ResellerCode, "", htmlAttributes: new { @class = "text-danger" })
                             </div>
                         </div>
                     </div>

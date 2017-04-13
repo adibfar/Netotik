@@ -84,9 +84,9 @@ namespace Netotik.Web.Controllers
         [HttpPost]
         [AllowAnonymous]
         [OutputCache(Location = OutputCacheLocation.None, NoStore = true, Duration = 0, VaryByParam = "*")]
-        public virtual JsonResult IsResellerCodeAvailable(string companyName,long? Id)
+        public virtual JsonResult IsResellerCodeAvailable(string ResellerCode, long? Id)
         {
-            var check = _applicationUserManager.CheckResellerCompanyNameExist(companyName, Id);
+            var check = _applicationUserManager.CheckResellerCompanyNameExist(ResellerCode, Id);
             return check ? Json(false) : Json(true);
 
         }
