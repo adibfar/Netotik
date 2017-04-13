@@ -12,7 +12,7 @@
                 </button>
                 <h4 class="modal-title" id="myModalLabel20">استان جدید</h4>
             </div>
-            @using (Html.BeginForm(MVC.Admin.State.ActionNames.Create, MVC.Admin.State.Name, FormMethod.Post, htmlAttributes: new { @class = "form-horizontal", id = "form" }))
+            @using (Html.BeginForm(MVC.Admin.State.ActionNames.Create, MVC.Admin.State.Name, FormMethod.Post, htmlAttributes: new { @class = "form-horizontal", id = "CreateForm" }))
             {
                 @Html.AntiForgeryToken()
                 <div class="modal-body">
@@ -51,7 +51,7 @@
                         <i class="icon-cross2"></i>
                         بستن
                     </button>
-                    <button name="actionType" value="@Netotik.Common.Controller.ActionType.Save" type="submit" class="btn btn-outline-success" onclick="AjaxForm.Post(this, 'form')" data-loading-text="در حال ارسال اطلاعات">
+                    <button name="actionType" value="@Netotik.Common.Controller.ActionType.Save" type="button" class="btn btn-outline-success" onclick="AjaxForm.Post(this, 'CreateForm')" data-loading-text="در حال ارسال اطلاعات">
                         <i class="icon-check2"></i>
                         @Netotik.Resources.Captions.Save
                     </button>

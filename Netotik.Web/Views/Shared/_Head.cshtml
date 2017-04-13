@@ -23,7 +23,7 @@
                         var user = Html.CurrentUser();
 
                         <li class="dropdown dropdown-user nav-item">
-                            <a href="#" data-toggle="dropdown" class="dropdown-toggle nav-link dropdown-user-link"><span class="avatar avatar-online"><img src="@Url.Content(Path.Combine(Netotik.Common.Controller.FilePathes._imagesUserAvatarsPath,user.PictureId.HasValue?user.Picture.FileName:"Default.png"))?h=100&w=100" alt="avatar"><i></i></span><span class="user-name">@user.FirstName @user.LastName </span></a>
+                            <a href="#" data-toggle="dropdown" class="dropdown-toggle nav-link dropdown-user-link"><span class="avatar avatar-online"><img src="@Url.Content(Path.Combine(Netotik.Common.Controller.FilePathes._imagesUserAvatarsPath,user.PictureId.HasValue?user.Picture.FileName:"Default.png"))?h=100&w=100" alt="avatar"></span><span class="user-name">@user.FirstName @user.LastName </span></a>
                             <div class="dropdown-menu dropdown-menu-right">
                                 @if (user.UserType == Netotik.Domain.Entity.UserType.UserAdmin)
                                 {
