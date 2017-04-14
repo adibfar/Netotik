@@ -394,7 +394,7 @@
     <Value>متاسفانه حذف اطلاعات با خطا مواجه شد.</Value>
   </LocaleResource>
   <LocaleResource Name="RemoveSuccess">
-    <Value>متاسفانه حذف اطلاعات با خطا مواجه شد.</Value>
+    <Value>حذف اطلاعات با موفقیتانجام شد.</Value>
   </LocaleResource>
   <LocaleResource Name="SelectRole">
     <Value>لطفا گروه کاربری را انتخاب کنید.</Value>

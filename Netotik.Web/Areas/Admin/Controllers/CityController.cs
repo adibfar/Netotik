@@ -76,15 +76,15 @@ namespace Netotik.Web.Areas.Admin.Controllers
 
         #region Create
         [BreadCrumb(Title = "شهر جدید", Order = 1)]
-        public virtual async Task<ActionResult> Create()
+        public virtual ActionResult Create()
         {
-            await LoadState();
+            LoadState();
             return View(new CityModel { IsActive = true });
         }
 
         [ValidateAntiForgeryToken]
         [HttpPost]
-        public virtual async Task<ActionResult> Create(CityModel model, ActionType actionType)
+        public virtual async Task<ActionResult> Create(CityModel model, ActionType actionType = ActionType.Save)
         {
             if (!ModelState.IsValid)
             {
@@ -96,7 +96,7 @@ namespace Netotik.Web.Areas.Admin.Controllers
             {
                 Name = model.Name,
                 IsActive = model.IsActive,
-                AddressStateId = model.AddressStateId,
+                StateId = model.StateId,
                 IsDefault = model.IsDefault
             };
 
@@ -134,13 +134,16 @@ namespace Netotik.Web.Areas.Admin.Controllers
 
 
         #region Edit
-        [HttpPost]
-        [BreadCrumb(Title = "ویرایش شهر", Order = 1)]
         public virtual async Task<ActionResult> Remove(int id = 0)
         {
-            var city = new City { Id = id };
-            _cityService.Remove(city);
-            await _uow.SaveChangesAsync();
+            var city = _cityService.SingleOrDefault(id);
+            if (city != null && !city.IsDeleted)
+            {
+                city.IsDeleted = true;
+                await _uow.SaveChangesAsync();
+                this.MessageInformation(Messages.MissionSuccess, Messages.RemoveSuccess);
+            }
+
             return RedirectToAction(MVC.Admin.City.Index());
         }
 
@@ -150,28 +153,29 @@ namespace Netotik.Web.Areas.Admin.Controllers
             if (model == null)
                 return RedirectToAction(MVC.Admin.City.Index());
 
-            await LoadState(model.AddressStateId);
+            LoadState(model.StateId);
 
-            return View(new CityModel
-            {
-                Id = model.Id,
-                Name = model.Name,
-                IsActive = model.IsActive,
-                AddressStateId = model.AddressStateId,
-                IsDefault = model.IsDefault
-            });
+            return PartialView(MVC.Admin.City.Views.Edit,
+                new CityModel
+                {
+                    Id = model.Id,
+                    Name = model.Name,
+                    IsActive = model.IsActive,
+                    StateId = model.StateId,
+                    IsDefault = model.IsDefault
+                });
         }
 
         [ValidateAntiForgeryToken]
         [HttpPost]
-        public virtual async Task<ActionResult> Edit(CityModel model, ActionType actionType)
+        public virtual async Task<ActionResult> Edit(CityModel model, ActionType actionType = ActionType.Save)
         {
 
             var city = _cityService.SingleOrDefault(model.Id);
             if (city == null)
                 return RedirectToAction(MVC.Admin.City.Index());
 
-            await LoadState(model.AddressStateId);
+            LoadState(model.StateId);
 
             if (!ModelState.IsValid)
             {
@@ -181,7 +185,7 @@ namespace Netotik.Web.Areas.Admin.Controllers
 
             city.Name = model.Name;
             city.IsDefault = model.IsDefault;
-            city.AddressStateId = model.AddressStateId;
+            city.StateId = model.StateId;
             city.IsActive = model.IsActive;
 
             _cityService.Update(city);
@@ -193,7 +197,7 @@ namespace Netotik.Web.Areas.Admin.Controllers
             }
             catch (Exception ex)
             {
-                this.MessageError(Messages.MissionFail,Messages.UpdateError);
+                this.MessageError(Messages.MissionFail, Messages.UpdateError);
                 return View();
             }
 
@@ -207,9 +211,9 @@ namespace Netotik.Web.Areas.Admin.Controllers
 
         #region Private
 
-        private async Task LoadState(int? selectedId = null)
+        private void LoadState(int? selectedId = null)
         {
-            var list = await _stateService.All().ToListAsync();
+            var list = _stateService.All().Where(x => !x.IsDeleted).ToList();
             ViewBag.States = new SelectList(list, "Id", "Name", selectedId);
         }
 

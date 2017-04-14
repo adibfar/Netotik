@@ -182,14 +182,12 @@ namespace Netotik.Web.Areas.Admin.Controllers
             {
                 public readonly string _Table = "_Table";
                 public readonly string Create = "Create";
-                public readonly string CreateOrEdit = "CreateOrEdit";
                 public readonly string Detail = "Detail";
                 public readonly string Edit = "Edit";
                 public readonly string Index = "Index";
             }
             public readonly string _Table = "~/Areas/Admin/Views/City/_Table.cshtml";
             public readonly string Create = "~/Areas/Admin/Views/City/Create.cshtml";
-            public readonly string CreateOrEdit = "~/Areas/Admin/Views/City/CreateOrEdit.cshtml";
             public readonly string Detail = "~/Areas/Admin/Views/City/Detail.cshtml";
             public readonly string Edit = "~/Areas/Admin/Views/City/Edit.cshtml";
             public readonly string Index = "~/Areas/Admin/Views/City/Index.cshtml";
@@ -228,11 +226,11 @@ namespace Netotik.Web.Areas.Admin.Controllers
         partial void CreateOverride(T4MVC_System_Web_Mvc_ActionResult callInfo);
 
         [NonAction]
-        public override System.Threading.Tasks.Task<System.Web.Mvc.ActionResult> Create()
+        public override System.Web.Mvc.ActionResult Create()
         {
             var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Create);
             CreateOverride(callInfo);
-            return System.Threading.Tasks.Task.FromResult(callInfo as System.Web.Mvc.ActionResult);
+            return callInfo;
         }
 
         [NonAction]

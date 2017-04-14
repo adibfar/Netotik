@@ -313,7 +313,7 @@ h1.blog-post-title,
 }
 
 @media (max-width:767px) {
-    .hidden-xs {
+    .hidden-xss {
         display: none !important;
     }
 }

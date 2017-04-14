@@ -3,7 +3,6 @@
         <div class="card">
             <div class="card-header">
                 <button type="button" class="btn btn-social width-150 btn-instagram" data-toggle="modal" data-target="#Create"><span class="icon-plus font-medium-4"></span> استان جدید</button>
-                @*<div class="form-group"><a href="" class="btn btn-icon btn-secondary mr-1" data-toggle="tooltip" data-placement="right" title="" data-original-title="Tooltip on right"><i class="icon-vertical_align_bottom"></i></a></div>*@
                 @Html.Action(MVC.Admin.State.Create())
             </div>
 
@@ -46,21 +45,33 @@
                 "aoColumnDefs": [
                     { "bSortable": false, "aTargets": [0] },
                     { "bSortable": false, "aTargets": [-1] },
-                     {
-                         "targets": -1,
-                         "render": function (data, type, full, meta) {
-                             return '<span class="dropdown">'
-                                 + '<button id="btnSearchDrop2" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" class="btn btn-success dropdown-toggle dropdown-menu-right">'
-                                 + '<i class="icon-cog3"></i></button>'
-                                 + '<span aria-labelledby="btnSearchDrop2" class="dropdown-menu mt-1 dropdown-menu-right">'
-                                 + '<a onclick="edit(' + full.Id + ');" class="edit dropdown-item">'
-                                 + '<i class="icon-pen3 primary"></i> ویرایش </a>'
-                                 + '<a href="/Admin/User/Delete/' + full.Id + '" class="dropdown-item">'
-                                 + '<i class="icon-trash4 danger"></i> حذف </a>'
-                                 + '<a href="/Admin/User/DeActive/' + full.Id + '" class="dropdown-item">'
-                                 + '<i class="icon-stop-circle-o warning"></i> غیرفعال </a></span></span>';
-                         }
-                     }
+                    {
+                        "targets": 1,
+                        "render": function (data, type, full, meta) {
+                            var result = full.Name;
+                            if (full.IsActive==false) {
+                                result+=' <div class="tag tag-danger">غیر فعال</div> '
+                            }
+                            if (full.IsDefault == true) {
+                                result += ' <div class="tag tag-success">پیش فرض</div> '
+                            }
+                            return result;
+                        }
+                    },
+                    {
+                        "targets": -1,
+                        "render": function (data, type, full, meta) {
+                            return '<span class="dropdown">'
+                                + '<button id="btnSearchDrop2" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" class="btn btn-outline-secondary dropdown-toggle dropdown-menu-right">'
+                                + '<i class="icon-cog3"></i> پردازش</button>'
+                                + '<span aria-labelledby="btnSearchDrop2" class="dropdown-menu mt-1 dropdown-menu-right">'
+                                + '<a onclick="edit(' + full.Id + ');" class="edit dropdown-item">'
+                                + '<i class="icon-pen3"></i> ویرایش </a>'
+                                + '<a href="/Admin/State/Remove/' + full.Id + '" class="dropdown-item">'
+                                + '<i class="icon-trash4"></i> حذف </a>';
+          
+                        }
+                    }
                 ]
                 ,
                 "aoColumns": [
@@ -77,17 +88,13 @@
         });
 
         function edit(id) {
-            $('.card').block(
-                {
-                    message: 'در حال پردازش <div class="icon-spinner10 icon-spin icon-lg"></div>',
-                    overlayCSS: { backgroundColor: "#fff", opacity: .7, cursor: "wait" },
-                    css: { border: 0, padding: 0, backgroundColor: "transparent" }
-                });
+            CardBlock();
             var url = "@Url.Action(MVC.Admin.State.Edit())";
             $.get(url + '/' + id, function (data) {
                 $('#edit-container').html(data);
                 $('#Edit').modal('show');
-                $('.card').unblock();
+                CardUnBlock();
+                Icheck();
                 AjaxForm.EnableAjaxFormvalidate('Edit');
             });
         };

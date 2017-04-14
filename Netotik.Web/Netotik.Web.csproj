@@ -2261,7 +2261,6 @@
     <Content Include="Areas\Admin\Views\State\Index.cshtml" />
     <Content Include="Areas\Admin\Views\City\_Table.cshtml" />
     <Content Include="Areas\Admin\Views\City\Create.cshtml" />
-    <Content Include="Areas\Admin\Views\City\CreateOrEdit.cshtml" />
     <Content Include="Areas\Admin\Views\City\Detail.cshtml" />
     <Content Include="Areas\Admin\Views\City\Edit.cshtml" />
     <Content Include="Areas\Admin\Views\City\Index.cshtml" />

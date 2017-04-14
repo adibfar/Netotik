@@ -103,7 +103,7 @@ namespace Netotik.Web.Areas.Admin.Controllers
                 Name = model.Name,
                 IsActive = model.IsActive,
                 AddressCityId = city.Id,
-                AddressStateId = city.AddressStateId,
+                AddressStateId = city.StateId,
                 Description = model.Description,
                 IsDelete = false,
                 Address = model.Address
@@ -231,7 +231,7 @@ namespace Netotik.Web.Areas.Admin.Controllers
 
             if (selectedId.HasValue)
             {
-                ViewBag.Cities = new SelectList(_addressCityService.Where(x => x.AddressStateId == selectedId).ToList(), "Id", "Name");
+                ViewBag.Cities = new SelectList(_addressCityService.Where(x => x.StateId == selectedId).ToList(), "Id", "Name");
             }
 
 
@@ -243,7 +243,7 @@ namespace Netotik.Web.Areas.Admin.Controllers
 
         public virtual ActionResult FillCity(int state)
         {
-            var cities = _addressCityService.Where(c => c.AddressStateId == state).Select(x => new { Id = x.Id, Name = x.Name }).ToList();
+            var cities = _addressCityService.Where(c => c.StateId == state).Select(x => new { Id = x.Id, Name = x.Name }).ToList();
             return Json(cities, JsonRequestBehavior.AllowGet);
         }
 
