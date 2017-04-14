@@ -20,14 +20,14 @@ namespace Netotik.Domain.EntityConfiguration
             // Table & Column Mappings
             this.ToTable("AddressCity");
             this.Property(t => t.Id).HasColumnName("Id");
-            this.Property(t => t.AddressStateId).HasColumnName("AddressStateId");
+            this.Property(t => t.StateId).HasColumnName("AddressStateId");
             this.Property(t => t.Name).HasColumnName("Name");
             this.Property(t => t.IsDefault).HasColumnName("IsDefault");
 
             // Relationships
             this.HasRequired(t => t.State)
                 .WithMany(t => t.Cities)
-                .HasForeignKey(d => d.AddressStateId)
+                .HasForeignKey(d => d.StateId)
                 .WillCascadeOnDelete(false);
 
         }

@@ -168,12 +168,32 @@ namespace Netotik.Web.Areas.Admin.Controllers
         #endregion
 
         #region Edit
+
         [Mvc5Authorize(Roles = AssignableToRolePermissions.CanEditUser)]
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public virtual ActionResult Remove(int id = 0)
+        public virtual async Task<ActionResult> Banne(int id = 0)
         {
-            _applicationUserManager.LogicalRemove(id);
+            if (await _applicationUserManager.BanneUser(id))
+                this.MessageSuccess(Messages.MissionSuccess, Messages.UpdateSuccess);
+            else this.MessageError(Messages.MissionFail, Messages.UpdateError);
+            return RedirectToAction(MVC.Admin.User.Index());
+        }
+
+
+        [Mvc5Authorize(Roles = AssignableToRolePermissions.CanEditUser)]
+        public virtual async Task<ActionResult> Active(int id = 0)
+        {
+            if (await _applicationUserManager.ActiveUser(id))
+                this.MessageSuccess(Messages.MissionSuccess, Messages.UpdateSuccess);
+            else this.MessageError(Messages.MissionFail, Messages.UpdateError);
+            return RedirectToAction(MVC.Admin.User.Index());
+        }
+
+        [Mvc5Authorize(Roles = AssignableToRolePermissions.CanEditUser)]
+        public virtual async Task<ActionResult> Remove(int id = 0)
+        {
+            if (await _applicationUserManager.LogicalRemove(id))
+                this.MessageSuccess(Messages.MissionSuccess, Messages.RemoveSuccess);
+            else this.MessageError(Messages.MissionFail, Messages.RemoveError);
             return RedirectToAction(MVC.Admin.User.Index());
         }
 

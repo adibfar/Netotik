@@ -582,6 +582,8 @@ namespace Netotik.Services.Identity
         void SetRolesToUser(User user, IEnumerable<Role> roles);
 
         Task<bool> LogicalRemove(long id);
+        Task<bool> BanneUser(long id);
+        Task<bool> ActiveUser(long id);
         bool CheckUserNameExist(string userName, long? id);
         bool CheckEmailExist(string email, long? id);
         bool IsNationalCodeAvailableExist(string nCode, long? id);

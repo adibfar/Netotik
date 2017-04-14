@@ -581,6 +581,23 @@ namespace Netotik.Services.Identity
             var result = await _users.Where(a => a.Id == id).UpdateAsync(a => new User { IsDeleted = true });
             return result > 0;
         }
+
+        public async Task<bool> BanneUser(long id)
+        {
+            var key = id.ToString(CultureInfo.InvariantCulture) + "_roles";
+            _contextBase.InvalidateCache(key);
+            var result = await _users.Where(a => a.Id == id).UpdateAsync(a => new User { IsBanned = true });
+            return result > 0;
+        }
+
+        public async Task<bool> ActiveUser(long id)
+        {
+            var key = id.ToString(CultureInfo.InvariantCulture) + "_roles";
+            _contextBase.InvalidateCache(key);
+            var result = await _users.Where(a => a.Id == id).UpdateAsync(a => new User { IsBanned = false });
+            return result > 0;
+        }
+
         public bool CheckIsUserBannedOrDelete(long id)
         {
             return _users.Any(a => a.Id == id && (a.IsBanned || a.IsDeleted));

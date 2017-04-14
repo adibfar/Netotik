@@ -26,15 +26,15 @@ namespace Netotik.Services.Implement
         public async Task<bool> ExistsByNameAsync(string name, int? id)
         {
             if (id.HasValue)
-                return await dbSet.AnyAsync(x => x.Name.Equals(name) && x.Id != id.Value);
-            return await dbSet.AnyAsync(x => x.Name.Equals(name));
+                return await dbSet.AnyAsync(x => !x.IsDeleted && x.Name.Equals(name) && x.Id != id.Value);
+            return await dbSet.AnyAsync(x => !x.IsDeleted && x.Name.Equals(name));
         }
 
 
 
         public IList<StateItem> GetList(RequestListModel model, out long TotalCount, out long ShowCount)
         {
-            IQueryable<State> all = dbSet.AsQueryable();
+            IQueryable<State> all = dbSet.Where(x => !x.IsDeleted).AsQueryable();
             TotalCount = all.LongCount();
 
             // Apply Filtering
@@ -64,14 +64,13 @@ namespace Netotik.Services.Implement
 
 
         }
-
-
+        
         public async Task Remove(int id)
         {
             var _Role = await dbSet.FirstOrDefaultAsync(x => x.Id == id);
             if (_Role != null)
                 Remove(_Role);
         }
-        
+
     }
 }
