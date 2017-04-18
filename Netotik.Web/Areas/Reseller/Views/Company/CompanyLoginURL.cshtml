@@ -1,37 +1,29 @@
 ﻿@{
     ViewBag.Title = "آدرس لاگین کاربران";
 }
-<div class="row">
-    <div class="ibox-content m-b-sm border-bottom">
-        <div class="row">
-            <div class="col-md-12">
-                <a class="btn btn-default btn-outline pull-left" href="@Url.Action(MVC.Reseller.Company.Index())">
-                    <span class="fa fa-reply"></span>
-                    @Netotik.Resources.Captions.Back
-                </a>
+<div class="col-md-12 col-sm-12">
+    <div class="card box-shadow-0 border-success">
+        <div class="card-header card-head-inverse bg-success">
+            <h4 class="card-title">لینک لاگین کاربران</h4>
+            <a class="heading-elements-toggle"><i class="icon-ellipsis font-medium-3"></i></a>
+            <div class="heading-elements">
+                <ul class="list-inline mb-0">
+                    <li><a data-action="collapse"><i class="icon-minus4"></i></a></li>
+                    <li><a data-action="reload"><i class="icon-reload"></i></a></li>
+                    <li><a data-action="close"><i class="icon-cross2"></i></a></li>
+                </ul>
             </div>
         </div>
-    </div>
-
-
-    <div class="tabs-container">
-        <div class="col-lg-12">
-            <div class="panel panel-primary">
-                <div class="panel-heading">
-                    لینک لاگین کاربران
-                </div>
-                <div class="panel-body">
-                    <p>کاربران شما برای ورود به پنل خودشان باید حتما از صفحه لاگین شما جهت ورود استفاده کنند.آدرس این صفحه در زیر نوشته شده
+        <div class="card-body collapse in">
+            <div class="card-block">
+                <p>
+                    کاربران شما برای ورود به پنل خودشان باید حتما از صفحه لاگین شما جهت ورود استفاده کنند.آدرس این صفحه در زیر نوشته شده
                     و به صورت لینک می باشد.
                     لینک زیر را به کاربران خود بدهید.
-                    در آینده در این صفحه اختصاصی ،شما می توانید تبلیغات خود را بگذارید که کاربران شما در هر بار ورود آنها را ببینند.</p>
-               </div>
-                    <div class="panel-footer">
-                        <center> <p><a href="https://dnma.ir/net/@ViewBag.CompanyName" target="_blank">https://dnma.ir/net/@ViewBag.CompanyName</a></p></center>
-                </div>
-                    
+                    در آینده در این صفحه اختصاصی ،شما می توانید تبلیغات خود را بگذارید که کاربران شما در هر بار ورود آنها را ببینند.
+                </p>
+                <a href="https://netotik.com/net/@ViewBag.ResellerCode" class="btn btn-float-lg btn-outline-pink btn-social" style="width:100%;"><i class="icon-world" style="padding-top:7px;"></i><span>https://netotik.com/net/@ViewBag.ResellerCode</span></a>
             </div>
         </div>
-        
     </div>
 </div>

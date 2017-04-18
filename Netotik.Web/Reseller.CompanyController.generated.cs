@@ -58,12 +58,6 @@ namespace Netotik.Web.Areas.Reseller.Controllers
 
         [NonAction]
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public virtual System.Web.Mvc.ActionResult Index()
-        {
-            return new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Index);
-        }
-        [NonAction]
-        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public virtual System.Web.Mvc.ActionResult Detail()
         {
             return new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Detail);
@@ -128,16 +122,6 @@ namespace Netotik.Web.Areas.Reseller.Controllers
         }
 
 
-        static readonly ActionParamsClass_Index s_params_Index = new ActionParamsClass_Index();
-        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public ActionParamsClass_Index IndexParams { get { return s_params_Index; } }
-        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public class ActionParamsClass_Index
-        {
-            public readonly string Search = "Search";
-            public readonly string Page = "Page";
-            public readonly string PageSize = "PageSize";
-        }
         static readonly ActionParamsClass_Create s_params_Create = new ActionParamsClass_Create();
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public ActionParamsClass_Create CreateParams { get { return s_params_Create; } }
@@ -145,7 +129,6 @@ namespace Netotik.Web.Areas.Reseller.Controllers
         public class ActionParamsClass_Create
         {
             public readonly string model = "model";
-            public readonly string actionType = "actionType";
         }
         static readonly ActionParamsClass_Detail s_params_Detail = new ActionParamsClass_Detail();
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -231,16 +214,13 @@ namespace Netotik.Web.Areas.Reseller.Controllers
         public T4MVC_CompanyController() : base(Dummy.Instance) { }
 
         [NonAction]
-        partial void IndexOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, string Search, int Page, int PageSize);
+        partial void IndexOverride(T4MVC_System_Web_Mvc_ActionResult callInfo);
 
         [NonAction]
-        public override System.Web.Mvc.ActionResult Index(string Search, int Page, int PageSize)
+        public override System.Web.Mvc.ActionResult Index()
         {
             var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Index);
-            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "Search", Search);
-            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "Page", Page);
-            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "PageSize", PageSize);
-            IndexOverride(callInfo, Search, Page, PageSize);
+            IndexOverride(callInfo);
             return callInfo;
         }
 
@@ -267,15 +247,14 @@ namespace Netotik.Web.Areas.Reseller.Controllers
         }
 
         [NonAction]
-        partial void CreateOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, Netotik.ViewModels.Identity.UserCompany.CompanyAddModel model, Netotik.Common.Controller.ActionType actionType);
+        partial void CreateOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, Netotik.ViewModels.Identity.UserCompany.Register model);
 
         [NonAction]
-        public override System.Threading.Tasks.Task<System.Web.Mvc.ActionResult> Create(Netotik.ViewModels.Identity.UserCompany.CompanyAddModel model, Netotik.Common.Controller.ActionType actionType)
+        public override System.Threading.Tasks.Task<System.Web.Mvc.ActionResult> Create(Netotik.ViewModels.Identity.UserCompany.Register model)
         {
             var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Create);
             ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "model", model);
-            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "actionType", actionType);
-            CreateOverride(callInfo, model, actionType);
+            CreateOverride(callInfo, model);
             return System.Threading.Tasks.Task.FromResult(callInfo as System.Web.Mvc.ActionResult);
         }
 

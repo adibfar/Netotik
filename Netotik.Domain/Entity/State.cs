@@ -15,7 +15,6 @@ namespace Netotik.Domain.Entity
         public string Name { get; set; }
         public bool IsDefault { get; set; }
         public bool IsActive { get; set; }
-        public bool IsDeleted { get; set; }
         public virtual ICollection<Address> Addresses { get; set; }
         public virtual ICollection<City> Cities { get; set; }
 

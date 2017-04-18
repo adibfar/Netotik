@@ -133,16 +133,13 @@ namespace Netotik.Web.Areas.Admin.Controllers
 
 
         #region Edit
+        [HttpPost]
+        [BreadCrumb(Title = "ویرایش استان", Order = 1)]
         public virtual async Task<ActionResult> Remove(int id = 0)
         {
-            var state = _stateService.SingleOrDefault(id);
-            if (state != null && !state.IsDeleted)
-            {
-                state.IsDeleted = true;
-                await _uow.SaveChangesAsync();
-                this.MessageInformation(Messages.MissionSuccess, Messages.RemoveSuccess);
-            }
-
+            var state = new State { Id = id };
+            _stateService.Remove(state);
+            await _uow.SaveChangesAsync();
             return RedirectToAction(MVC.Admin.State.Index());
         }
 

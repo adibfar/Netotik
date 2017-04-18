@@ -84,7 +84,7 @@ namespace Netotik.Web.Controllers
         public virtual async Task<ActionResult> Reseller(RegisterViewModel model)
         {
             #region Validation
-            if (_applicationUserManager.CheckEmailExist(model.Email, null))
+            if (_applicationUserManager.CheckResellerEmailExist(model.Email, null))
                 ModelState.AddModelError("Email", "این ایمیل قبلا در سیستم ثبت شده است");
 
             if (_applicationUserManager.CheckUserNameExist(model.UserName, null))

@@ -2,7 +2,6 @@
 
 $(function () {
     AjaxForm.EnablePostbackValidation();
-    Selectize();
 });
 
 
@@ -18,29 +17,6 @@ AjaxForm.ValidateForm = function (formId) {
     val.form();
     return val.valid();
 };
-
-Icheck = function () {
-    $('.skin-flat input').iCheck({ checkboxClass: "icheckbox_flat-green", radioClass: "iradio_flat-green" });
-}
-Selectize = function () {
-    $('.selectize-select').selectize();
-}
-
-CardBlock = function () {
-    $('.card').block(
-                {
-                    message: 'در حال پردازش <div class="icon-spinner10 icon-spin icon-lg"></div>',
-                    overlayCSS: { backgroundColor: "#fff", opacity: .7, cursor: "wait" },
-                    css: { border: 0, padding: 0, backgroundColor: "transparent" }
-                });
-};
-
-CardUnBlock = function () {
-    $('.card').unblock();
-};
-
-
-
 
 
 
