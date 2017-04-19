@@ -21,7 +21,7 @@ namespace Netotik.ViewModels.Common.City
 
         [Required(ErrorMessageResourceType = typeof(Messages), ErrorMessageResourceName = "RequiredError")]
         [Display(ResourceType = typeof(Captions), Name = "State")]
-        public int AddressStateId { get; set; }
+        public int StateId { get; set; }
 
         [Display(ResourceType = typeof(Captions), Name = "IsDefault")]
         [Required(ErrorMessageResourceType = typeof(Messages), ErrorMessageResourceName = "RequiredError")]

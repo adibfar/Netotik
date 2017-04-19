@@ -76,7 +76,7 @@ namespace Netotik.Services.Implement
 
         public IList<CityModel> GetByStateId(int stateId)
         {
-            return dbSet.Where(x => x.IsActive && x.AddressStateId == stateId).OrderByDescending(x => x.IsDefault).Select(x => new CityModel { Id = x.Id, Name = x.Name }).ToList();
+            return dbSet.Where(x => x.IsActive && x.StateId == stateId).OrderByDescending(x => x.IsDefault).Select(x => new CityModel { Id = x.Id, Name = x.Name }).ToList();
         }
     }
 }
