@@ -17,17 +17,9 @@ namespace Netotik.ViewModels.CMS.ContentCategory
         public int? ParentId { get; set; }
 
         [Required(ErrorMessageResourceType = typeof(Messages), ErrorMessageResourceName = "RequiredError")]
-        [Display(ResourceType = typeof(Captions), Name = "showInMenu")]
-        public bool showInMenu { get; set; }
-
-        [Required(ErrorMessageResourceType = typeof(Messages), ErrorMessageResourceName = "RequiredError")]
         [MaxLength(100, ErrorMessageResourceType = typeof(Messages), ErrorMessageResourceName = "MaxLengthError")]
         [MinLength(2, ErrorMessageResourceType = typeof(Messages), ErrorMessageResourceName = "MinLengthError")]
         [Display(ResourceType = typeof(Captions), Name = "Name")]
         public string Name { get; set; }
-
-        [Display(ResourceType = typeof(Captions), Name = "Description")]
-        [UIHint("Multiline")]
-        public string Description { get; set; }
     }
 }

@@ -27,6 +27,7 @@ using Netotik.Common.Controller;
 
 namespace Netotik.Web.Areas.Admin.Controllers
 {
+    [Mvc5Authorize(Roles = AssignableToRolePermissions.CanAccessDeliveryDate)]
     [BreadCrumb(Title = "لیست زمانهای تحویل", UseDefaultRouteUrl = true, RemoveAllDefaultRouteValues = true,
  Order = 0, GlyphIcon = "icon icon-table")]
 
@@ -48,7 +49,7 @@ namespace Netotik.Web.Areas.Admin.Controllers
 
 
         #region Index
-        [Mvc5Authorize(Roles = AssignableToRolePermissions.CanAccessDeliveryDate)]
+        
         public virtual ActionResult Index(string Search, int Page = 1, int PageSize = 10)
         {
 
@@ -67,14 +68,12 @@ namespace Netotik.Web.Areas.Admin.Controllers
 
         #region Create
 
-        [Mvc5Authorize(Roles = AssignableToRolePermissions.CanCreateDeliveryDate)]
         [BreadCrumb(Title = "زمان تحویل جدید", Order = 1)]
         public virtual ActionResult Create()
         {
             return View(new DeliveryDateModel { DisplayOrder = 0 });
         }
 
-        [Mvc5Authorize(Roles = AssignableToRolePermissions.CanCreateDeliveryDate)]
         [ValidateAntiForgeryToken]
         [HttpPost]
         public virtual async Task<ActionResult> Create(DeliveryDateModel model, ActionType actionType)
@@ -128,7 +127,6 @@ namespace Netotik.Web.Areas.Admin.Controllers
 
 
 
-        [Mvc5Authorize(Roles = AssignableToRolePermissions.CanDeleteDeliveryDate)]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public virtual async Task<ActionResult> Remove(int id = 0)
@@ -145,8 +143,6 @@ namespace Netotik.Web.Areas.Admin.Controllers
 
 
         #region Edit
-
-        [Mvc5Authorize(Roles = AssignableToRolePermissions.CanEditDeliveryDate)]
         [BreadCrumb(Title = "ویرایش زمان تحویل", Order = 1)]
         public virtual ActionResult Edit(int id)
         {
@@ -166,7 +162,6 @@ namespace Netotik.Web.Areas.Admin.Controllers
 
         }
 
-        [Mvc5Authorize(Roles = AssignableToRolePermissions.CanEditDeliveryDate)]
         [ValidateAntiForgeryToken]
         [HttpPost]
         public virtual async Task<ActionResult> Edit(DeliveryDateModel model, ActionType actionType)

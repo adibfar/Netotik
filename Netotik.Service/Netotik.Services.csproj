@@ -161,7 +161,6 @@
     <Compile Include="Abstract\IProductAttributeService.cs" />
     <Compile Include="Abstract\IAdvertiseService.cs" />
     <Compile Include="Abstract\IUserMailer.cs" />
-    <Compile Include="Abstract\IWareHouseService.cs" />
     <Compile Include="Abstract\IBaseService.cs" />
     <Compile Include="Abstract\ITaxService.cs" />
     <Compile Include="Abstract\IPaymentTypeService.cs" />
@@ -223,7 +222,6 @@
     <Compile Include="Implement\ProductAttributeValueService.cs" />
     <Compile Include="Implement\ProductService.cs" />
     <Compile Include="Implement\ProductAttributeService.cs" />
-    <Compile Include="Implement\WareHouseService.cs" />
     <Compile Include="Implement\BaseService.cs" />
     <Compile Include="Implement\TaxService.cs" />
     <Compile Include="Implement\PaymentService.cs" />
@@ -238,7 +236,7 @@
     <Compile Include="Implement\FileService.cs" />
     <Compile Include="Implement\CategoryService.cs" />
     <Compile Include="Implement\DeliveryDateService.cs" />
-    <Compile Include="Implement\AddressStateService.cs" />
+    <Compile Include="Implement\StateService.cs" />
     <Compile Include="Implement\SliderService.cs" />
     <Compile Include="Implement\InboxMessageService.cs" />
     <Compile Include="Implement\SettingService.cs" />

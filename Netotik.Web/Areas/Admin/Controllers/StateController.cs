@@ -79,7 +79,7 @@ namespace Netotik.Web.Areas.Admin.Controllers
         [HttpGet]
         public virtual ActionResult Create()
         {
-            return View(MVC.Admin.State.Views._Create, new StateModel { IsActive = true });
+            return PartialView(MVC.Admin.State.Views._Create, new StateModel { IsActive = true });
         }
 
 
@@ -93,7 +93,7 @@ namespace Netotik.Web.Areas.Admin.Controllers
             if (!ModelState.IsValid)
             {
                 this.MessageError(Messages.MissionFail, Messages.InvalidDataError);
-                return View(model);
+                return RedirectToAction(MVC.Admin.State.Index());
             }
             var state = new State()
             {

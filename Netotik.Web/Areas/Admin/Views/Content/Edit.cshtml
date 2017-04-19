@@ -1,35 +1,190 @@
-﻿@model Netotik.ViewModels.Common.Content.ContentModel
+﻿@model Netotik.ViewModels.CMS.Content.ContentModel
 @{
-    ViewBag.Title = " ویرایش مطلب ";
-    string avatar = ViewBag.Avatar;
+    ViewBag.Title = "ویرایش مطلب ";
 }
-@using (Html.BeginForm(MVC.Admin.Content.ActionNames.Edit, MVC.Admin.Content.Name, FormMethod.Post, htmlAttributes: new { @class = "form-horizontal", id = "form" }))
-{
-    <div class="ibox-content m-b-sm border-bottom">
+<section class="flexbox-container">
+    <div class="row">
+        <div class="col-md-12">
 
-        <div class="row">
-            <div class="col-md-12">
-                <button name="actionType" value="@Netotik.Common.Controller.ActionType.Save" class="btn btn-outline btn-primary" onclick="AjaxForm.Post(this, 'form')" data-loading-text="در حال ارسال اطلاعات">
-                    <span class="fa fa-check"></span>
-                    @Netotik.Resources.Captions.Save
-                </button>
-                <button name="actionType" value="@Netotik.Common.Controller.ActionType.SaveContinue" class="btn btn-primary btn-outline" onclick="AjaxForm.Post(this, 'form')" data-loading-text="در حال ارسال اطلاعات">
-                    <span class="fa fa-edit"></span>
-                    @Netotik.Resources.Captions.SaveEdit
-                </button>
-                <a class="btn btn-default btn-outline pull-left" href="@Url.Action(MVC.Admin.Content.ActionNames.Index, MVC.Admin.Content.Name)">
-                    <span class="fa fa-reply"></span>
-                    @Netotik.Resources.Captions.Back
-                </a>
-            </div>
+            @using (Html.BeginForm(MVC.Admin.Content.ActionNames.Edit, MVC.Admin.Content.Name, FormMethod.Post,
+            htmlAttributes: new { @class = "form-horizontal", enctype = "multipart/form-data", id = "form" }))
+            {
+                @Html.HiddenFor(model => model.Id)
+                @Html.AntiForgeryToken()
+                <div class="card">
+                    <div class="card-header">
+                        <button name="actionType" value="@Netotik.Common.Controller.ActionType.Save" class="btn btn-social width-100 btn-instagram" onclick="AjaxForm.Post(this, 'form')" data-loading-text="در حال ارسال اطلاعات">
+                            <span class="icon-checkmark2 font-medium-4"></span>
+                            @Netotik.Resources.Captions.Save
+                        </button>
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-9">
+                                <div class="card-block">
+                                    <h4 class="form-section"><i class="icon-file-text2"></i> محتوا </h4>
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="form-group">
+                                                @Html.LabelFor(m => m.Title)
+                                                <div class="position-relative">
+                                                    @Html.TextBoxFor(m => m.Title, new { @class = "form-control" })
+                                                    @Html.ValidationMessageFor(model => model.Title, "", htmlAttributes: new { @class = "text-danger" })
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="form-group">
+                                                @Html.LabelFor(m => m.Url)
+                                                <div class="position-relative">
+                                                    @Html.TextBoxFor(m => m.Url, new { @class = "form-control" })
+                                                    @Html.ValidationMessageFor(model => model.Url, "", htmlAttributes: new { @class = "text-danger" })
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="form-group">
+                                                @Html.LabelFor(m => m.BodyOverview)
+                                                <div class="position-relative">
+                                                    @Html.TextAreaFor(m => m.BodyOverview, new { @class = "form-control" })
+                                                    @Html.ValidationMessageFor(model => model.BodyOverview, "", htmlAttributes: new { @class = "text-danger" })
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="form-group">
+                                                @Html.LabelFor(m => m.Body)
+                                                <div class="position-relative">
+                                                    @Html.TextAreaFor(m => m.Body, new { @class = "summernote", cols = "20" })
+                                                    @Html.ValidationMessageFor(model => model.Body, "", htmlAttributes: new { @class = "text-danger" })
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
 
-            <div class="col-md-12">
-                @Html.ValidationSummary(false, "", htmlAttributes: new { @class = "text-danger" })
-            </div>
+                                    <h4 class="form-section"><i class="icon-bubbles4"></i> تنظیمات نظرات </h4>
+                                    <div class="row form-group skin skin-flat">
+                                        <div class="col-md-4 col-sm-6 col-xs-12">
+                                            <fieldset>
+                                                @Html.CheckBoxFor(model => model.AllowComments)
+                                                @Html.LabelFor(model => model.AllowComments)
+                                            </fieldset>
+                                        </div>
+                                        <div class="col-md-4 col-sm-6 col-xs-12">
+                                            <fieldset>
+                                                @Html.CheckBoxFor(model => model.AllowViewComments)
+                                                @Html.LabelFor(model => model.AllowViewComments)
+                                            </fieldset>
+                                        </div>
+                                    </div>
+
+                                    <h4 class="form-section"><i class="icon-google"></i> سئو </h4>
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="form-group has-feedback">
+                                                @Html.LabelFor(m => m.MetaTitle)
+                                                <div class="position-relative">
+                                                    @Html.TextAreaFor(m => m.MetaTitle, new { @class = "form-control" })
+                                                    @Html.ValidationMessageFor(model => model.MetaTitle, "", htmlAttributes: new { @class = "text-danger" })
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="form-group has-feedback">
+                                                @Html.LabelFor(m => m.MetaKeywords)
+                                                <div class="position-relative">
+                                                    @Html.TextAreaFor(m => m.MetaKeywords, new { @class = "form-control" })
+                                                    @Html.ValidationMessageFor(model => model.MetaKeywords, "", htmlAttributes: new { @class = "text-danger" })
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="form-group has-feedback has-icon-left">
+                                                @Html.LabelFor(m => m.MetaDescription)
+                                                <div class="position-relative">
+                                                    @Html.TextAreaFor(m => m.MetaDescription, new { @class = "form-control" })
+                                                    @Html.ValidationMessageFor(model => model.MetaDescription, "", htmlAttributes: new { @class = "text-danger" })
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="card-block">
+                                    <h4 class="form-section"><i class="icon-stack"></i> دسته بندی ها </h4>
+                                    <div class="row mb-3">
+                                        <div class="col-md-12 skin skin-flat">
+                                            @if (!Model.ContentCategories.Any())
+                                            {
+                                                <text>
+                                                    دسته ای در سیستم موجود نیست
+                                                </text>
+                                            }
+                                            else
+                                            {
+                                                <ul>
+                                                    @foreach (var item in Model.ContentCategories)
+                                                    {
+                                                        <li>
+                                                            <input type="checkbox" @(Model.CategoryIds.Any(x => x == item.Id) ? "checked" : "") name="CategoryIds" value="#@item.Id">
+                                                            @Html.Label("CategoryIds", item.Name)
+                                                            @if (item.SubCategories.Any())
+                                                            {
+                                                                <ul>
+                                                                    @foreach (var item2 in item.SubCategories)
+                                                                    {
+                                                                        <li>
+                                                                            <input type="checkbox" @(Model.CategoryIds.Any(x => x == item2.Id) ? "checked" : "") name="CategoryIds" value="#@item2.Id">
+                                                                            @Html.Label("CategoryIds", item2.Name)
+                                                                        </li>
+                                                                    }
+                                                                </ul>
+                                                            }
+                                                        </li>
+                                                    }
+                                                </ul>
+                                            }
+                                        </div>
+                                    </div>
+                                    <h4 class="form-section"><i class="icon-price-tags"></i> برچسب ها </h4>
+                                    <div class="row mb-3">
+                                        <div class="col-md-12 skin skin-flat">
+                                            @Html.DropDownListFor(model => model.TagIds, Model.ContentTages, new { @class = "selectize-select", multiple = "" })
+                                        </div>
+                                    </div>
+
+                                    <h4 class="form-section"><i class="icon-image2"></i> تصویر </h4>
+                                    <div class="row mb-3">
+                                        <div class="col-md-12">
+
+                                            @if (Model.Picture != null)
+                                            {
+                                                <fieldset class="mb-2">
+                                                    <img src="@Url.Content((Path.Combine(Netotik.Common.Controller.FilePathes._imagesContentPath, Model.Picture.FileName)))" class="gallery-thumbnail" />
+                                                </fieldset>
+                                            }
+                                            @Html.TextBoxFor(model => model.Image, new { @class = "form-control", type = "file" })
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
         </div>
     </div>
-
-    @Html.AntiForgeryToken()
-
-    @Html.Partial("CreateOrEdit", Model)
-}
+</section>

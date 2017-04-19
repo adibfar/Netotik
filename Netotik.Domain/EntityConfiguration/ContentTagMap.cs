@@ -12,7 +12,7 @@ namespace Netotik.Domain.EntityConfiguration
             this.HasKey(t => t.Id);
 
             // Properties
-            this.Property(t => t.Text)
+            this.Property(t => t.Name)
                 .IsRequired()
                 .HasMaxLength(500);
 
@@ -20,7 +20,7 @@ namespace Netotik.Domain.EntityConfiguration
             // Table & Column Mappings
             this.ToTable("ContentTag");
             this.Property(t => t.Id).HasColumnName("Id");
-            this.Property(t => t.Text).HasColumnName("Text");
+            this.Property(t => t.Name).HasColumnName("Text");
 
             // Relationships
             this.HasMany(t => t.Contents)

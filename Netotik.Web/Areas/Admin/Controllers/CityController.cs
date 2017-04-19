@@ -54,8 +54,6 @@ namespace Netotik.Web.Areas.Admin.Controllers
             return View();
         }
 
-
-
         public virtual JsonResult GetList(RequestListModel model)
         {
             long totalCount;
@@ -79,7 +77,7 @@ namespace Netotik.Web.Areas.Admin.Controllers
         public virtual ActionResult Create()
         {
             LoadState();
-            return View(new CityModel { IsActive = true });
+            return View(MVC.Admin.City.Views._Create, new CityModel { IsActive = true });
         }
 
         [ValidateAntiForgeryToken]
@@ -89,7 +87,7 @@ namespace Netotik.Web.Areas.Admin.Controllers
             if (!ModelState.IsValid)
             {
                 this.MessageError(Messages.MissionFail, Messages.InvalidDataError);
-                return View(model);
+                return RedirectToAction(MVC.Admin.City.Index());
             }
 
             var city = new City()
@@ -155,7 +153,7 @@ namespace Netotik.Web.Areas.Admin.Controllers
 
             LoadState(model.StateId);
 
-            return PartialView(MVC.Admin.City.Views.Edit,
+            return PartialView(MVC.Admin.City.Views._Edit,
                 new CityModel
                 {
                     Id = model.Id,
@@ -180,7 +178,7 @@ namespace Netotik.Web.Areas.Admin.Controllers
             if (!ModelState.IsValid)
             {
                 this.MessageError(Messages.MissionFail, Messages.InvalidDataError);
-                return View();
+                return RedirectToAction(MVC.Admin.City.Index());
             }
 
             city.Name = model.Name;

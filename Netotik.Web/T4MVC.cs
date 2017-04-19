@@ -86,7 +86,6 @@ namespace T4MVC
         public Netotik.Web.Areas.Admin.Controllers.ShopShippingByWeightController ShopShippingByWeight = new Netotik.Web.Areas.Admin.Controllers.T4MVC_ShopShippingByWeightController();
         public Netotik.Web.Areas.Admin.Controllers.ShopShippingMethodController ShopShippingMethod = new Netotik.Web.Areas.Admin.Controllers.T4MVC_ShopShippingMethodController();
         public Netotik.Web.Areas.Admin.Controllers.ShopTaxController ShopTax = new Netotik.Web.Areas.Admin.Controllers.T4MVC_ShopTaxController();
-        public Netotik.Web.Areas.Admin.Controllers.ShopWareHouseController ShopWareHouse = new Netotik.Web.Areas.Admin.Controllers.T4MVC_ShopWareHouseController();
         public Netotik.Web.Areas.Admin.Controllers.SliderController Slider = new Netotik.Web.Areas.Admin.Controllers.T4MVC_SliderController();
         public Netotik.Web.Areas.Admin.Controllers.StateController State = new Netotik.Web.Areas.Admin.Controllers.T4MVC_StateController();
         public Netotik.Web.Areas.Admin.Controllers.UserController User = new Netotik.Web.Areas.Admin.Controllers.T4MVC_UserController();
@@ -230,6 +229,7 @@ namespace Links
         public static readonly string jquery_1_10_2_min_js = Url("jquery-1.10.2.min.js");
         public static readonly string jquery_1_10_2_min_map = Url("jquery-1.10.2.min.map");
         public static readonly string jquery_2_1_4_min_js = Url("jquery-2.1.4.min.js");
+        public static readonly string jquery_3_1_0_slim_min_js = Url("jquery-3.1.0.slim.min.js");
         public static readonly string jquery_MVC_RemoveRow_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(UrlPath + "/jquery-MVC-RemoveRow.min.js") ? Url("jquery-MVC-RemoveRow.min.js") : Url("jquery-MVC-RemoveRow.js");
         public static readonly string jquery_ui_1_11_4_min_js = Url("jquery-ui-1.11.4.min.js");
         public static readonly string jquery_ui_1_8_11_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(UrlPath + "/jquery-ui-1.8.11.min.js") ? Url("jquery-ui-1.8.11.min.js") : Url("jquery-ui-1.8.11.js");
@@ -1423,10 +1423,9 @@ namespace Links
                 public const string UrlPath = "~/Content/fonts/summernote";
                 public static string Url() { return T4MVCHelpers.ProcessVirtualPath(UrlPath); }
                 public static string Url(string fileName) { return T4MVCHelpers.ProcessVirtualPath(UrlPath + "/" + fileName); }
-                public static readonly string summernote_eot_ = Url("summernote.eot@");
-                public static readonly string summernote_eot_ad8d7e2d177d2473aecd9b35d16211fb = Url("summernote.eot@ad8d7e2d177d2473aecd9b35d16211fb");
-                public static readonly string summernote_ttf_ad8d7e2d177d2473aecd9b35d16211fb = Url("summernote.ttf@ad8d7e2d177d2473aecd9b35d16211fb");
-                public static readonly string summernote_woff_ad8d7e2d177d2473aecd9b35d16211fb = Url("summernote.woff@ad8d7e2d177d2473aecd9b35d16211fb");
+                public static readonly string summernote_eot = Url("summernote.eot");
+                public static readonly string summernote_ttf = Url("summernote.ttf");
+                public static readonly string summernote_woff = Url("summernote.woff");
             }
         
         }
@@ -3563,6 +3562,7 @@ namespace Links
                 public const string jquery_1_10_2_js = "~/Scripts/jquery-1.10.2.js"; 
                 public const string jquery_1_10_2_min_js = "~/Scripts/jquery-1.10.2.min.js"; 
                 public const string jquery_2_1_4_min_js = "~/Scripts/jquery-2.1.4.min.js"; 
+                public const string jquery_3_1_0_slim_min_js = "~/Scripts/jquery-3.1.0.slim.min.js"; 
                 public const string jquery_MVC_RemoveRow_js = "~/Scripts/jquery-MVC-RemoveRow.js"; 
                 public const string jquery_ui_1_11_4_min_js = "~/Scripts/jquery-ui-1.11.4.min.js"; 
                 public const string jquery_ui_1_8_11_js = "~/Scripts/jquery-ui-1.8.11.js"; 

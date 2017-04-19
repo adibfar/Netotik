@@ -1,10 +1,21 @@
-﻿<section id="configuration">
+﻿@using Netotik.ViewModels.Identity.Security
+@{
+    var Roles = Html.CurrentUserPermissions();
+    var CanCreate = Roles.Any(x => x == AssignableToRolePermissions.CanCreateUser);
+    var CanEdit = Roles.Any(x => x == AssignableToRolePermissions.CanEditUser);
+    var CanDelete = Roles.Any(x => x == AssignableToRolePermissions.CanDeleteUser);
+}
+
+<section id="configuration">
     <div class="row">
         <div class="col-xs-12">
             <div class="card">
-                <div class="card-header">
-                    <a href="@Url.Action(MVC.Admin.User.Create())" class="btn btn-social width-150 btn-instagram"><span class="icon-person-add font-medium-4"></span> کاربر جدید</a>
-                </div>
+                @if (CanCreate)
+                {
+                    <div class="card-header">
+                        <a href="@Url.Action(MVC.Admin.User.Create())" class="btn btn-social width-150 btn-instagram"><span class="icon-person-add font-medium-4"></span> کاربر جدید</a>
+                    </div>
+                }
 
                 <div class="card-body collapse in">
                     <div class="card-block card-dashboard">
@@ -67,23 +78,33 @@
                      {
                          "targets": -1,
                          "render": function (data, type, full, meta) {
-                             var result = '<span class="dropdown">'
-                                    + '<button id="btnSearchDrop2" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" class="btn btn-outline-secondary dropdown-toggle dropdown-menu-right">'
-                                    + '<i class="icon-cog3"></i> پردازش</button>'
-                                    + '<span aria-labelledby="btnSearchDrop2" class="dropdown-menu mt-1 dropdown-menu-right">'
-                                    + '<a href="/Admin/User/Edit/' + full.Id + '" class="edit dropdown-item">'
-                                    + '<i class="icon-pen3"></i> ویرایش </a>'
-                                    + '<a href="/Admin/User/Remove/' + full.Id + '" class="dropdown-item">'
-                                    + '<i class="icon-trash4"></i> حذف </a>';
-                             if (full.IsBanned == false) {
-                                 result += '<a href="/Admin/User/Banne/' + full.Id + '" class="dropdown-item">'
-                                    + '<i class="icon-blocked"></i> مسدود کردن</a>';
-                             } else {
-                                 result += '<a href="/Admin/User/Active/' + full.Id + '" class="dropdown-item">'
-                                    + '<i class="icon-checkmark2"></i> فعال کردن</a>';
-                             }
+                             var canEdit = '@CanEdit';
+                             var canDelete = '@CanDelete';
+                             var result = '';
+                             if (canEdit == 'True' || canDelete == 'True') {
+                                 result = '<span class="dropdown">'
+                                     + '<button id="btnSearchDrop2" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" class="btn btn-outline-secondary dropdown-toggle dropdown-menu-right">'
+                                     + '<i class="icon-cog3"></i> پردازش</button><span aria-labelledby="btnSearchDrop2" class="dropdown-menu mt-1 dropdown-menu-right">';
+                                 if (canEdit == 'True') {
+                                     result += '<a href="Admin/User/Edit/' + full.Id + '" class="edit dropdown-item">'
+                                                                     + '<i class="icon-pen3"></i> ویرایش </a>'
+                                     if (full.IsBanned == false) {
+                                         result += '<a href="/Admin/User/Banne/' + full.Id + '" class="dropdown-item">'
+                                            + '<i class="icon-blocked"></i> مسدود کردن</a>';
+                                     } else {
+                                         result += '<a href="/Admin/User/Active/' + full.Id + '" class="dropdown-item">'
+                                            + '<i class="icon-checkmark2"></i> فعال کردن</a>';
+                                     }
+                                 }
 
+                                 if (canDelete == 'True') {
+                                     result += '<a href="/Admin/ContentCategory/Remove/' + full.Id + '" class="dropdown-item">'
+                                       + '<i class="icon-trash4"></i> حذف </a>';
+                                 }
+                                 result += "</span></span>";
+                             }
                              return result;
+
                          }
                      }
                 ]

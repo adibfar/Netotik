@@ -1,42 +1,93 @@
-﻿@model MvcPaging.IPagedList<Netotik.ViewModels.Common.ContentCategory.TableContentCategoryModel>
-@{
-    ViewBag.Title = "مدیریت دسته ها";
-    var canAdd = User.Roles.Any(x => x == Netotik.ViewModels.Common.Security.AssignableToRolePermissions.CanCreateContentCategory);
-}
+﻿<section id="configuration">
+    <div class="col-xs-12">
+        <div class="card">
 
-<div class="col-lg-12" id="ContentPage">
-    <section class="panel">
-        <header class="panel-heading">
-            @ViewBag.Title
-            @if (canAdd)
-            {
-                @Html.ActionLink("دسته جدید", MVC.Admin.ContentCategory.ActionNames.Create, MVC.Admin.ContentCategory.Name, null, new { @class = "btn btn-sm btn-primary pull-left" })
-            }
-        </header>
+            <div class="card-header">
+                <button type="button" class="btn btn-social width-150 btn-instagram" data-toggle="modal" data-target="#Create"><span class="icon-plus font-medium-4"></span> موضوع جدید</button>
+                @Html.Action(MVC.Admin.ContentCategory.Create())
+            </div>
 
 
-        @Html.Partial("_Table", Model)
+            <div class="card-body collapse in">
+                <div class="card-block card-dashboard">
+                    @Html.Partial(MVC.Admin.ContentCategory.Views._Table)
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
 
-    </section>
+
+<div id="edit-container"></div>
+
+@section DownScript{
+
     <script type="text/javascript">
+        $(function () {
+            var table = $('#grid').dataTable({
+                "order": [[1, 'asc']],
+                "iDisplayLength": 10,
+                "bProcessing": true,
+                "bStateSave": true,
+                "bServerSide": true,
+                "bFilter": true,
+                "aLengthMenu": [[10, 25, 50, 100], [10, 25, 50, 100]],
+                "bAutoWidth": false,
+                "sAjaxSource": "@Url.Action(MVC.Admin.ContentCategory.GetList())",
+                "fnServerData": function (sSource, aoData, fnCallback) {
+                    $.ajax({
+                        "dataType": 'json',
+                        "type": "POST",
+                        "url": sSource,
+                        "data": aoData,
+                        "success": fnCallback
+                    });
+                },
 
-        function beginPaging(args) {
-            // Animate
-            $('#gridlist').fadeOut('normal');
-        }
+                "aoColumnDefs": [
+                    { "bSortable": false, "aTargets": [0] },
+                    { "bSortable": false, "aTargets": [-1] },
+                    { "bSortable": false, "aTargets": [1] },
+                    {
+                        "targets": -1,
+                        "render": function (data, type, full, meta) {
+                            var result = '<span class="dropdown">'
+                                    + '<button id="btnSearchDrop2" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" class="btn btn-outline-secondary dropdown-toggle dropdown-menu-right">'
+                                    + '<i class="icon-cog3"></i> پردازش</button><span aria-labelledby="btnSearchDrop2" class="dropdown-menu mt-1 dropdown-menu-right">'
+                                    + '<a onclick="edit(' + full.Id + ');" class="edit dropdown-item">'
+                                    + '<i class="icon-pen3"></i> ویرایش </a>'
+                                    + '<a href="/Admin/ContentCategory/Remove/' + full.Id + '" class="dropdown-item">'
+                                    + '<i class="icon-trash4"></i> حذف </a>';
+                            + '</span></span>';
+                            return result;
+                        }
+                    }
+                ]
+                ,
+                "aoColumns": [
+                    { "mDataProp": "RowNumber" },
+                    { "mDataProp": "Parent" },
+                    { "mDataProp": "Name" },
+                    { "no": "no" }
+                ],
 
-        function successPaging() {
-            // Animate
-            $('#gridlist').fadeIn('normal');
-        }
+                "oLanguage": {
+                    "sUrl": "/Content/js/plugins/tables/datatable/dataTables.persian.txt"
+                }
+            });
 
-        function failurePaging() {
-            alert("Could not retrieve list.");
-        }
+        });
 
-
+        function edit(id) {
+            CardBlock('.card');
+            var url = "@Url.Action(MVC.Admin.ContentCategory.Edit())";
+            $.get(url + '/' + id, function (data) {
+                $('#edit-container').html(data);
+                EditSelectize();
+                $('#Edit').modal('show');
+                CardUnBlock('.card');
+                AjaxForm.EnableAjaxFormvalidate('Edit');
+            });
+        };
     </script>
-
-
-
-</div>
+}

@@ -482,34 +482,34 @@ namespace Netotik.Web.Areas.Admin.Controllers
         [NonAction]
         private async Task PopulateCategories(params int[] selectedIds)
         {
-            var list = (await _categoryService.All().Where(x => !x.IsDeleted && x.ParentCategoryId == null).ToListAsync()).Select(x => new
-            ContentCategoryTreeJsModel()
-            {
-                Name = x.Name,
-                Id = x.Id,
-                Childs = x.SubCategories.Select(z => new ContentCategoryTreeJsModel()
-                {
-                    Id = z.Id,
-                    Name = z.Name,
-                    Selected = (selectedIds != null) ? selectedIds.Any(y => y == z.Id) : false,
-                    Childs = z.SubCategories.Select(d => new ContentCategoryTreeJsModel()
-                    {
-                        Id = d.Id,
-                        Name = d.Name,
-                        Selected = (selectedIds != null) ? selectedIds.Any(y => y == d.Id) : false,
-                        Childs = d.SubCategories.Select(s => new ContentCategoryTreeJsModel()
-                        {
-                            Id = s.Id,
-                            Name = s.Name,
-                            Selected = (selectedIds != null) ? selectedIds.Any(y => y == s.Id) : false
-                        }).ToList()
-                    }).ToList()
-                }).ToList(),
-                Selected = (selectedIds != null) ? selectedIds.Any(y => y == x.Id) : false
-            }).ToList(); ;
+            //var list = (await _categoryService.All().Where(x => !x.IsDeleted && x.ParentCategoryId == null).ToListAsync()).Select(x => new
+            //ContentCategoryTreeJsModel()
+            //{
+            //    Name = x.Name,
+            //    Id = x.Id,
+            //    Childs = x.SubCategories.Select(z => new ContentCategoryTreeJsModel()
+            //    {
+            //        Id = z.Id,
+            //        Name = z.Name,
+            //        Selected = (selectedIds != null) ? selectedIds.Any(y => y == z.Id) : false,
+            //        Childs = z.SubCategories.Select(d => new ContentCategoryTreeJsModel()
+            //        {
+            //            Id = d.Id,
+            //            Name = d.Name,
+            //            Selected = (selectedIds != null) ? selectedIds.Any(y => y == d.Id) : false,
+            //            Childs = d.SubCategories.Select(s => new ContentCategoryTreeJsModel()
+            //            {
+            //                Id = s.Id,
+            //                Name = s.Name,
+            //                Selected = (selectedIds != null) ? selectedIds.Any(y => y == s.Id) : false
+            //            }).ToList()
+            //        }).ToList()
+            //    }).ToList(),
+            //    Selected = (selectedIds != null) ? selectedIds.Any(y => y == x.Id) : false
+            //}).ToList(); ;
 
 
-            ViewBag.Categories = list;
+            //ViewBag.Categories = list;
         }
         private async Task LoadManufacturer(int? selectedId = null)
         {

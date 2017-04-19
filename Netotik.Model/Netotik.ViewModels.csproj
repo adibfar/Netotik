@@ -61,6 +61,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CMS\ContentTag\ContentTagItem.cs" />
     <Compile Include="Common\City\CityModel.cs" />
     <Compile Include="Common\City\CityItem.cs" />
     <Compile Include="Common\Error\ErrorInfo.cs" />
@@ -84,14 +85,13 @@
     <Compile Include="CMS\Comment\AddCommentProduct.cs" />
     <Compile Include="CMS\Comment\AddComment.cs" />
     <Compile Include="Common\ContactUs\SendMessage.cs" />
-    <Compile Include="CMS\ContentCategory\ContentCategoryTreeJsModel.cs" />
     <Compile Include="CMS\ContentTag\ContentTagModel.cs" />
     <Compile Include="CMS\Content\ContentModel.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="CMS\Content\PublicTableContentModel.cs" />
     <Compile Include="CMS\Content\PublicItemContentModel.cs" />
-    <Compile Include="CMS\Content\TableContentModel.cs">
+    <Compile Include="CMS\Content\ContentItem.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Mikrotik\Log.cs" />
@@ -163,7 +163,7 @@
     <Compile Include="CMS\Slider\SliderModel.cs" />
     <Compile Include="Common\State\StateModel.cs" />
     <Compile Include="Common\State\StateItem.cs" />
-    <Compile Include="CMS\ContentCategory\TableContentCategoryModel.cs" />
+    <Compile Include="CMS\ContentCategory\ContentCategoryItem.cs" />
     <Compile Include="CMS\ContentCategory\ContentCategoryModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Identity\Permission\RolePermissionModel.cs" />

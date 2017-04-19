@@ -101,6 +101,8 @@
     <Compile Include="Extentions\StringToDateConverter.cs" />
     <Compile Include="Extentions\ToPersianDateTimeConverter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ContentTagProfile.cs" />
+    <Compile Include="ContentProfile.cs" />
     <Compile Include="RoleProfile.cs" />
     <Compile Include="Configuration.cs" />
     <Compile Include="UserProfile.cs" />

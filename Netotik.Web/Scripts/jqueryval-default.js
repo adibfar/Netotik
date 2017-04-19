@@ -3,6 +3,9 @@
 $(function () {
     AjaxForm.EnablePostbackValidation();
     Selectize();
+    StartSummerNote();
+
+    $(".datepicker").datetimepicker({ defaultDate: "" });
 });
 
 
@@ -26,8 +29,12 @@ Selectize = function () {
     $('.selectize-select').selectize();
 }
 
-CardBlock = function () {
-    $('.card').block(
+EditSelectize = function () {
+    $('#Edit .selectize-select').selectize();
+}
+
+CardBlock = function (element) {
+    $(element).block(
                 {
                     message: 'در حال پردازش <div class="icon-spinner10 icon-spin icon-lg"></div>',
                     overlayCSS: { backgroundColor: "#fff", opacity: .7, cursor: "wait" },
@@ -35,10 +42,15 @@ CardBlock = function () {
                 });
 };
 
-CardUnBlock = function () {
-    $('.card').unblock();
+CardUnBlock = function (element) {
+    $(element).unblock();
 };
 
+StartSummerNote = function () {
+    $(".summernote").summernote({
+        minHeight: 300,             // set minimum height of editor
+    });
+}
 
 
 

@@ -23,9 +23,12 @@ using DNTBreadCrumb;
 using Netotik.ViewModels.Identity.Security;
 using Netotik.ViewModels.CMS.ContentTag;
 using Netotik.Common.Controller;
+using Netotik.Common.DataTables;
 
 namespace Netotik.Web.Areas.Admin.Controllers
 {
+
+    [Mvc5Authorize(Roles = AssignableToRolePermissions.CanAccessTag)]
     [BreadCrumb(Title = "لیست برچسب ها", UseDefaultRouteUrl = true, RemoveAllDefaultRouteValues = true,
  Order = 0, GlyphIcon = "icon icon-table")]
     public partial class ContentTagController : BaseController
@@ -34,15 +37,12 @@ namespace Netotik.Web.Areas.Admin.Controllers
 
         #region ctor
         private readonly IContentTagService _contentTagService;
-        private readonly IContentService _contentService;
         private readonly IUnitOfWork _uow;
 
         public ContentTagController(
             IContentTagService contentTagService,
-            IContentService contentService,
             IUnitOfWork uow)
         {
-            _contentService = contentService;
             _contentTagService = contentTagService;
             _uow = uow;
         }
@@ -50,51 +50,58 @@ namespace Netotik.Web.Areas.Admin.Controllers
 
 
         #region Index
-        [Mvc5Authorize(Roles = AssignableToRolePermissions.CanAccessTag)]
-        public virtual ActionResult Index(string Search = "")
+        public virtual ActionResult Index()
         {
+            return View();
+        }
 
-            var pageList = _contentTagService.All()
-                .Where(x => x.Text.Contains(Search))
-                .ToList();
 
-            if (Request.IsAjaxRequest())
-                return View(MVC.Admin.ContentTag.Views._Table, pageList);
-            else
-                return View(MVC.Admin.ContentTag.ActionNames.Index, pageList);
 
+        public virtual JsonResult GetList(RequestListModel model)
+        {
+            long totalCount;
+            long showCount;
+
+            var result = _contentTagService.GetList(model, out totalCount, out showCount);
+
+            return Json(new
+            {
+                sEcho = model.sEcho,
+                iTotalRecords = totalCount,
+                iTotalDisplayRecords = showCount,
+                aaData = result
+            }, JsonRequestBehavior.AllowGet);
         }
         #endregion
 
 
         #region Create
-        [BreadCrumb(Title = "برچسب جدید", Order = 1)]
-        [Mvc5Authorize(Roles = AssignableToRolePermissions.CanCreateTag)]
+
+        [HttpGet]
         public virtual ActionResult Create()
         {
-            return View();
+            return PartialView(MVC.Admin.ContentTag.Views._Create);
         }
 
-        [Mvc5Authorize(Roles = AssignableToRolePermissions.CanCreateTag)]
+
+
         [ValidateAntiForgeryToken]
         [HttpPost]
-        public virtual async Task<ActionResult> Create(ContentTagModel model, ActionType actionType)
+        public virtual async Task<ActionResult> Create(ContentTagModel model, ActionType actionType = ActionType.Save)
         {
+
+            var a = actionType;
             if (!ModelState.IsValid)
             {
                 this.MessageError(Messages.MissionFail, Messages.InvalidDataError);
-                return View(model);
+                return RedirectToAction(MVC.Admin.ContentTag.Index());
             }
-
-
             var tag = new ContentTag()
             {
-                Text = model.Name
+                Name = model.Name,
             };
 
             _contentTagService.Add(tag);
-
-
             try
             {
                 await _uow.SaveChangesAsync();
@@ -103,75 +110,62 @@ namespace Netotik.Web.Areas.Admin.Controllers
             catch (Exception ex)
             {
                 this.MessageError(Messages.MissionFail, Messages.AddError);
-                return View();
+                return RedirectToAction(MVC.Admin.ContentTag.Index());
             }
 
             this.MessageSuccess(Messages.MissionSuccess, Messages.AddSuccess);
             return RedirectToAction(MVC.Admin.ContentTag.Index());
         }
-
-        #endregion
-
-
-        #region Detail
-
-        [Mvc5Authorize(Roles = AssignableToRolePermissions.CanAccessTag)]
-        public virtual ActionResult Detail(int id)
-        {
-            var tag = _contentTagService.SingleOrDefault(id);
-            if (tag == null) return HttpNotFound();
-            return View(tag);
-        }
-
         #endregion
 
 
         #region Edit
-        [Mvc5Authorize(Roles = AssignableToRolePermissions.CanDeleteTag)]
-        [HttpPost]
-        [BreadCrumb(Title = "ویرایش برچسب", Order = 1)]
         public virtual async Task<ActionResult> Remove(int id = 0)
         {
-            var tag = new ContentTag { Id = id };
-            _contentTagService.Remove(tag);
-            await _uow.SaveChangesAsync();
-            return RedirectToAction(MVC.Admin.ContentTag.ActionNames.Index);
+            var tag = _contentTagService.SingleOrDefault(id);
+            if (tag != null)
+            {
+                _contentTagService.Remove(tag);
+                await _uow.SaveChangesAsync();
+                this.MessageInformation(Messages.MissionSuccess, Messages.RemoveSuccess);
+            }
+
+            return RedirectToAction(MVC.Admin.ContentTag.Index());
         }
 
-        [Mvc5Authorize(Roles = AssignableToRolePermissions.CanEditTag)]
         public virtual ActionResult Edit(int id)
         {
             var model = _contentTagService.SingleOrDefault(id);
             if (model == null)
-                return RedirectToAction(MVC.Admin.ContentTag.ActionNames.Index);
+                return RedirectToAction(MVC.Admin.ContentTag.Index());
 
-            return View(new ContentTagModel
-            {
-                Id = model.Id,
-                Name = model.Text
-            });
+            return PartialView(MVC.Admin.ContentTag.Views._Edit,
+                new ContentTagModel
+                {
+                    Id = model.Id,
+                    Name = model.Name
+                });
         }
 
-        [Mvc5Authorize(Roles = AssignableToRolePermissions.CanEditTag)]
         [ValidateAntiForgeryToken]
         [HttpPost]
-        public virtual async Task<ActionResult> Edit(ContentTagModel model, ActionType actionType)
+        public virtual async Task<ActionResult> Edit(ContentTagModel model, ActionType actionType = ActionType.Save)
         {
 
             var tag = _contentTagService.SingleOrDefault(model.Id);
             if (tag == null)
-                return RedirectToAction(MVC.Admin.ContentTag.ActionNames.Index);
-
+                return RedirectToAction(MVC.Admin.ContentTag.Index());
 
             if (!ModelState.IsValid)
             {
                 this.MessageError(Messages.MissionFail, Messages.InvalidDataError);
-                return View();
+                return RedirectToAction(MVC.Admin.ContentTag.Index());
             }
 
-            tag.Text = model.Name;
+            tag.Name = model.Name;
 
             _contentTagService.Update(tag);
+
 
             try
             {
@@ -180,7 +174,7 @@ namespace Netotik.Web.Areas.Admin.Controllers
             catch (Exception ex)
             {
                 this.MessageError(Messages.MissionFail, Messages.UpdateError);
-                return View();
+                return RedirectToAction(MVC.Admin.ContentTag.Index());
             }
 
             this.MessageSuccess(Messages.MissionSuccess, Messages.UpdateSuccess);

@@ -1,0 +1,58 @@
+﻿@model Netotik.ViewModels.CMS.ContentCategory.ContentCategoryModel
+@{
+    Layout = null;
+}
+<!-- Modal -->
+<div class="modal fade text-xs-left" id="Create" tabindex="-1" role="dialog" aria-labelledby="myModalLabel20" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title" id="myModalLabel20">موضوع جدید</h4>
+            </div>
+            @using (Html.BeginForm(MVC.Admin.ContentCategory.ActionNames.Create, MVC.Admin.ContentCategory.Name, FormMethod.Post, htmlAttributes: new { @class = "form-horizontal", id = "CreateForm" }))
+            {
+                @Html.AntiForgeryToken()
+                <div class="modal-body">
+
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                @Html.LabelFor(m => m.ParentId)
+                                @Html.DropDownListFor(model => model.ParentId, ViewBag.Categories as SelectList, "", new { @class = "selectize-select" })
+                                @Html.ValidationMessageFor(model => model.ParentId, "", htmlAttributes: new { @class = "text-danger" })
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group has-feedback has-icon-left">
+                                @Html.LabelFor(m => m.Name)
+                                <div class="position-relative has-icon-left">
+                                    @Html.TextBoxFor(m => m.Name, new { @class = "form-control" })
+                                    <div class="form-control-position">
+                                        <i class="icon-location22"></i>
+                                    </div>
+                                    @Html.ValidationMessageFor(model => model.Name, "", htmlAttributes: new { @class = "text-danger" })
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">
+                        <i class="icon-cross2"></i>
+                        بستن
+                    </button>
+                    <button name="actionType" value="@Netotik.Common.Controller.ActionType.Save" type="button" class="btn btn-outline-success" onclick="AjaxForm.Post(this, 'CreateForm')" data-loading-text="در حال ارسال اطلاعات">
+                        <i class="icon-check2"></i>
+                        @Netotik.Resources.Captions.Save
+                    </button>
+                </div>
+            }
+        </div>
+    </div>
+</div>

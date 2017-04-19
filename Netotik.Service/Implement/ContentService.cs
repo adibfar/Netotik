@@ -12,16 +12,42 @@ using System.Data.Entity;
 using EntityFramework.Extensions;
 using Netotik.ViewModels.CMS.Content;
 using Netotik.ViewModels.Identity.Security;
+using Netotik.Common.DataTables;
+using Microsoft.Owin.Security;
+using Microsoft.AspNet.Identity;
+using Netotik.Services.Identity;
+using AutoMapper;
+using AutoMapper.QueryableExtensions;
+using EFSecondLevelCache;
+using System.Web.Mvc;
 
 namespace Netotik.Services.Implement
 {
     public class ContentService : BaseService<Content>, IContentService
     {
-        public ContentService(IUnitOfWork unit)
+
+        #region Fields
+        private readonly ApplicationUserManager _applicationUserManager;
+        private readonly IContentCategoryService _ContentCategoryService;
+        private readonly IContentTagService _ContentTagService;
+        private readonly IMappingEngine _mappingEngine;
+        #endregion
+
+        #region Constructor
+
+        public ContentService(IUnitOfWork unit,
+            IMappingEngine mappingEngine,
+            ApplicationUserManager applicationUserManager,
+            IContentCategoryService ContentCategoryService,
+            IContentTagService ContentTagService)
             : base(unit)
         {
-
+            _ContentCategoryService = ContentCategoryService;
+            _ContentTagService = ContentTagService;
+            _mappingEngine = mappingEngine;
+            _applicationUserManager = applicationUserManager;
         }
+        #endregion
 
 
 
@@ -35,48 +61,103 @@ namespace Netotik.Services.Implement
         public async Task UnPublish(int id)
         {
             var contents = await dbSet.FirstOrDefaultAsync(x => x.Id == id);
-            contents.status = ContentStatus.Delete;
+            contents.status = ContentStatus.Deleted;
             Update(contents);
         }
 
-
-        public IQueryable<TableContentModel> GetContentTable(string search, long userId, string[] Roles)
+        public async Task<ContentModel> GetForCreateAsync()
         {
-            var contents = dbSet.AsNoTracking().Include(x => x.ContentComments)
-                                  .OrderByDescending(x => x.CreateDate)
-                                  .AsQueryable();
+            var model = new ContentModel();
 
+            model.ContentTages = await _ContentTagService.All()
+                .AsNoTracking()
+                .Project(_mappingEngine).To<SelectListItem>()
+                .Cacheable().ToListAsync();
 
+            model.ContentCategories = await _ContentCategoryService.All()
+                .Where(x => !x.IsDeleted && !x.ParentId.HasValue)
+                .Include(x => x.SubCategories)
+                .AsNoTracking().Cacheable().ToListAsync();
 
-            if (Roles.Any(x => x == AssignableToRolePermissions.CanViewAllContent))
-            {
+            model.IsPublished = true;
+            model.AllowComments = true;
+            model.AllowViewComments = true;
 
-            }
-            else if (Roles.Any(x => x == AssignableToRolePermissions.CanAccessContent))
-            {
-                contents = contents.Where(x => x.CreatedUserId == userId);
-            }
-            else
-            {
-                contents = contents.Where(x => 1 == 0);
-            }
-
-
-            if (!string.IsNullOrWhiteSpace(search))
-                contents = contents.Where(x => x.Title.Contains(search)).AsQueryable();
-
-            return contents.Select(x => new TableContentModel
-            {
-                Id = x.Id,
-                AllowComments = x.AllowComments,
-                LastEdited = x.EditDate,
-                LastUserEdit = x.UserEdited.FirstName + " " + x.UserEdited.LastName,
-                status = x.status,
-                ViewCount = x.CountView,
-                CommentCount = x.ContentComments.Count,
-                Title = x.Title
-            }).AsQueryable();
+            return model;
         }
+
+        public async Task<ContentModel> GetForEditAsync(int Id)
+        {
+            var content = await dbSet.FirstOrDefaultAsync(x => x.Id == Id);
+            var model = _mappingEngine.Map<ContentModel>(content);
+            
+            model.ContentCategories = await _ContentCategoryService.All()
+                .Where(x => !x.IsDeleted && !x.ParentId.HasValue)
+                .Include(x => x.SubCategories)
+                .AsNoTracking().Cacheable().ToListAsync();
+
+            model.ContentTages = _ContentTagService.All().ToList().Select(x => new
+            SelectListItem
+            {
+                Text = x.Name,
+                Value = x.Id.ToString(),
+                Selected = (content.ContentTages != null) ? content.ContentTages.Any(y => y.Id == x.Id) : false
+            }).ToList();
+
+            model.CategoryIds = content.ContentCategories.Select(x => x.Id).ToArray();
+
+            model.Picture = content.Picture;
+
+            return model;
+        }
+
+
+        public IList<ContentItem> GetList(RequestListModel model, out long TotalCount, out long ShowCount)
+        {
+            IQueryable<Content> all = dbSet.Where(x => x.status != ContentStatus.Deleted).AsNoTracking().AsQueryable();
+            var permissions = _applicationUserManager.GetRoles(_applicationUserManager.GetCurrentUserId());
+
+            if (!permissions.Any(x => x == AssignableToRolePermissions.CanViewAllContent))
+                all = all.Where(x => x.CreatedUserId == _applicationUserManager.GetCurrentUserId());
+
+            TotalCount = all.LongCount();
+
+            // Apply Filtering
+            if (!string.IsNullOrEmpty(model.sSearch))
+            {
+                all = all.
+                    Where(x => x.UserCreated.FirstName.Contains(model.sSearch) ||
+                    x.UserCreated.LastName.Contains(model.sSearch) ||
+                    x.Title.Contains(model.sSearch))
+                    .AsQueryable();
+            }
+
+
+            // Apply Sorting
+            Func<Content, string> orderingFunction = (x => model.iSortCol_0 == 1 ? x.Title : x.UserCreated.FirstName);
+            // asc or desc
+            all = model.sSortDir_0 == "asc" ? all.OrderBy(orderingFunction).AsQueryable() : all.OrderByDescending(orderingFunction).AsQueryable();
+
+            ShowCount = all.Count();
+            return all.AsEnumerable().Skip(model.iDisplayStart).Take(model.iDisplayLength).ToList()
+                .Select((x, index) => new ContentItem
+                {
+                    Id = x.Id,
+                    RowNumber = model.iDisplayStart + index + 1,
+                    AllowComments = x.AllowComments,
+                    LastEdited = PersianDate.ConvertDate.ToFa(x.EditDate, "g"),
+                    UserCreator = x.UserEdited.FirstName + " " + x.UserEdited.LastName,
+                    status = x.status,
+                    ViewCount = x.CountView,
+                    CommentCount = x.ContentComments.Count,
+                    Title = x.Title,
+                    ImageFileName = x.PictureId.HasValue ? x.Picture.FileName : "Default.png",
+                })
+                .ToList();
+
+        }
+
+
 
         public IEnumerable<PublicItemContentModel> GetForPublicView(out int total, int page, int count, int? categoryId, int? tagId)
         {
@@ -98,7 +179,7 @@ namespace Netotik.Services.Implement
 
             var totalQuery = contents.FutureCount();
 
-            var selectQuery = contents.OrderBy(x=>x.StartDate).Skip((page - 1) * count).Take(count)
+            var selectQuery = contents.OrderBy(x => x.StartDate).Skip((page - 1) * count).Take(count)
                .Select(a => new PublicItemContentModel
                {
                    Id = a.Id,

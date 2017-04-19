@@ -21,12 +21,10 @@
     var ShopManufacturerMenu = Roles.Any(x => x == AssignableToRolePermissions.CanAccessManufactur);
     var ShopPaymentTypeMenu = Roles.Any(x => x == AssignableToRolePermissions.CanAccessPaymentType);
     var ShopProductMenu = Roles.Any(x => x == AssignableToRolePermissions.CanAccessProduct);
-    var ShopProductGalleryMenu = Roles.Any(x => x == AssignableToRolePermissions.CanAccessProductGallery);
     var ShopProductAttributeMenu = Roles.Any(x => x == AssignableToRolePermissions.CanAccessProductAttribute);
     var ShopProductCommentsMenu = Roles.Any(x => x == AssignableToRolePermissions.CanAccessProductComment);
     var ShopShippingMethodMenu = Roles.Any(x => x == AssignableToRolePermissions.CanAccessShopShippingByMethod);
     var ShopTaxMenu = Roles.Any(x => x == AssignableToRolePermissions.CanAccessTag);
-    var ShopWareHouseMenu = Roles.Any(x => x == AssignableToRolePermissions.CanAccessWareHouse);
     //--------------------------------------------------------------------------
 
     var FactorMenu = Roles.Any(x => AssignableToRolePermissions.GetAllFactorPermision().Any(y => y.Name == x));
@@ -38,7 +36,7 @@
     var UserMenu = Roles.Any(x => AssignableToRolePermissions.GetAllUserPermision().Any(y => y.Name == x));
 
     var UserAccountMenu = Roles.Any(x => x == AssignableToRolePermissions.CanAccessUser);
-    var RoleMenu = Roles.Any(x => x == AssignableToRolePermissions.CanCreateRole);
+    var RoleMenu = Roles.Any(x => x == AssignableToRolePermissions.CanAccessRole);
     var RolePermissionMenu = Roles.Any(x => x == AssignableToRolePermissions.CanViewAllPermissions);
 
     //-------------------------------------------------------------------------------
@@ -51,8 +49,6 @@
 
     var ConfigurationMenu = Roles.Any(x => AssignableToRolePermissions.GetAllConfigurationPermision().Any(y => y.Name == x));
 
-    var ConfigProductColor = Roles.Any(x => x == AssignableToRolePermissions.CanAccessProductColor);
-    var ConfigProductSize = Roles.Any(x => x == AssignableToRolePermissions.CanAccessProductSize);
     var ConfigMenuMenu = Roles.Any(x => x == AssignableToRolePermissions.CanAccessMenu);
     var ConfigPublicMenu = Roles.Any(x => x == AssignableToRolePermissions.CanAccessPublicSetting);
     var ConfigLinksMenu = Roles.Any(x => x == AssignableToRolePermissions.CanAccessLinks);
@@ -143,9 +139,6 @@
                         @if (ShopTaxMenu)
                         {
                             <li><a href="@Url.Action(MVC.Admin.ShopTax.Index())" data-toggle="dropdown" class="dropdown-item">انواع مالیات</a></li>}
-                        @if (ShopWareHouseMenu)
-                        {
-                            <li><a href="@Url.Action(MVC.Admin.ShopWareHouse.Index())" data-toggle="dropdown" class="dropdown-item">انبار ها</a></li>}
                         @if (ShopProductAttributeMenu)
                         {
                             <li><a href="@Url.Action(MVC.Admin.ShopProductAttribute.Index())" data-toggle="dropdown" class="dropdown-item">مشخصات محصولات</a></li>}

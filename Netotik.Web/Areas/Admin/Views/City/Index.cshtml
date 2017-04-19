@@ -89,14 +89,14 @@
         });
 
         function edit(id) {
-            CardBlock();
+            CardBlock('.card');
             var url = "@Url.Action(MVC.Admin.City.Edit())";
             $.get(url + '/' + id, function (data) {
                 $('#edit-container').html(data);
                 Selectize();
                 Icheck();
                 $('#Edit').modal('show');
-                CardUnBlock();
+                CardUnBlock('.card');
                 AjaxForm.EnableAjaxFormvalidate('Edit');
             });
         };

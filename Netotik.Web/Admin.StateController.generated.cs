@@ -200,13 +200,11 @@ namespace Netotik.Web.Areas.Admin.Controllers
                 public readonly string _Create = "_Create";
                 public readonly string _Edit = "_Edit";
                 public readonly string _Table = "_Table";
-                public readonly string Detail = "Detail";
                 public readonly string Index = "Index";
             }
             public readonly string _Create = "~/Areas/Admin/Views/State/_Create.cshtml";
             public readonly string _Edit = "~/Areas/Admin/Views/State/_Edit.cshtml";
             public readonly string _Table = "~/Areas/Admin/Views/State/_Table.cshtml";
-            public readonly string Detail = "~/Areas/Admin/Views/State/Detail.cshtml";
             public readonly string Index = "~/Areas/Admin/Views/State/Index.cshtml";
         }
     }

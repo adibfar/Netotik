@@ -1,4 +1,5 @@
-﻿using Netotik.Resources;
+﻿using Netotik.Domain.Entity;
+using Netotik.Resources;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -10,7 +11,7 @@ using System.Web.Mvc;
 
 namespace Netotik.ViewModels.CMS.Content
 {
-    public class ContentModel 
+    public class ContentModel
     {
         public int? Id { get; set; }
 
@@ -18,45 +19,28 @@ namespace Netotik.ViewModels.CMS.Content
         [Required(ErrorMessageResourceType = typeof(Messages), ErrorMessageResourceName = "RequiredError")]
         public string Title { get; set; }
 
+        [MaxLength(200, ErrorMessageResourceType = typeof(Messages), ErrorMessageResourceName = "MaxLengthError")]
+        [Display(ResourceType = typeof(Captions), Name = "Url")]
+        public string Url { get; set; }
+
         [Display(ResourceType = typeof(Captions), Name = "Body")]
         [Required(ErrorMessageResourceType = typeof(Messages), ErrorMessageResourceName = "RequiredError")]
-        [UIHint("SummerNoteEditor")]
         [AllowHtml]
         public string Body { get; set; }
 
         [Display(ResourceType = typeof(Captions), Name = "BodyOverview")]
         [Required(ErrorMessageResourceType = typeof(Messages), ErrorMessageResourceName = "RequiredError")]
-        [UIHint("Multiline")]
         public string BodyOverview { get; set; }
-
-        [UIHint("PersianDatePicker")]
-        [Display(ResourceType = typeof(Captions), Name = "StartDatePublish")]
-        public Nullable<System.DateTime> StartDate { get; set; }
-
-        [UIHint("TimePicker")]
-        [Display(ResourceType = typeof(Captions), Name = "StartTimePublish")]
-        public TimeSpan? StartDateTime { get; set; }
-
-        [UIHint("PersianDatePicker")]
-        [Display(ResourceType = typeof(Captions), Name = "EndDatePublish")]
-        public Nullable<System.DateTime> EndDate { get; set; }
-
-        [UIHint("TimePicker")]
-        [Display(ResourceType = typeof(Captions), Name = "EndTimePublish")]
-        public TimeSpan? EndDateTime { get; set; }
 
         [Display(ResourceType = typeof(Captions), Name = "MetaKeywords")]
         [MaxLength(400, ErrorMessageResourceType = typeof(Messages), ErrorMessageResourceName = "MaxLengthError")]
-        [UIHint("Multiline")]
         public string MetaKeywords { get; set; }
 
-        [UIHint("Multiline")]
         [Display(ResourceType = typeof(Captions), Name = "MetaDescription")]
         public string MetaDescription { get; set; }
 
         [Display(ResourceType = typeof(Captions), Name = "MetaTitle")]
         [MaxLength(400, ErrorMessageResourceType = typeof(Messages), ErrorMessageResourceName = "MaxLengthError")]
-        [UIHint("Multiline")]
         public string MetaTitle { get; set; }
 
         [Display(ResourceType = typeof(Captions), Name = "IsPublish")]
@@ -70,15 +54,11 @@ namespace Netotik.ViewModels.CMS.Content
         [Display(ResourceType = typeof(Captions), Name = "AllowViewComments")]
         [Required(ErrorMessageResourceType = typeof(Messages), ErrorMessageResourceName = "RequiredError")]
         public bool AllowViewComments { get; set; }
-
-        [UIHint("Multiline")]
-        [Display(ResourceType = typeof(Captions), Name = "AdminComment")]
-        public string AdminComment { get; set; }
-
-
+        public Picture Picture { get; set; }
         [Display(ResourceType = typeof(Captions), Name = "Image")]
         public HttpPostedFileBase Image { get; set; }
-
+        public IList<Netotik.Domain.Entity.ContentCategory> ContentCategories { get; set; }
+        public IEnumerable<SelectListItem> ContentTages { get; set; }
         public int[] TagIds { get; set; }
         public int[] CategoryIds { get; set; }
     }

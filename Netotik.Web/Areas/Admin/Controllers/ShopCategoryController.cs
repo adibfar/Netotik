@@ -27,6 +27,7 @@ using Netotik.Common.Controller;
 
 namespace Netotik.Web.Areas.Admin.Controllers
 {
+    [Mvc5Authorize(Roles = AssignableToRolePermissions.CanAccessProductCategory)]
     [BreadCrumb(Title = "لیست دسته های محصولی", UseDefaultRouteUrl = true, RemoveAllDefaultRouteValues = true,
  Order = 0, GlyphIcon = "icon icon-table")]
     public partial class ShopCategoryController : BaseController
@@ -50,7 +51,6 @@ namespace Netotik.Web.Areas.Admin.Controllers
 
 
         #region Index
-        [Mvc5Authorize(Roles = AssignableToRolePermissions.CanAccessProductCategory)]
         public virtual ActionResult Index(string Search, int Page = 1, int PageSize = 10)
         {
 
@@ -68,7 +68,6 @@ namespace Netotik.Web.Areas.Admin.Controllers
 
         #region Create
 
-        [Mvc5Authorize(Roles = AssignableToRolePermissions.CanCreateProductCategory)]
         [BreadCrumb(Title = "دسته جدید", Order = 1)]
         public virtual async Task<ActionResult> Create()
         {
@@ -78,7 +77,6 @@ namespace Netotik.Web.Areas.Admin.Controllers
             return View(new CategoryModel { DisplayOrder = 0, IsPublished = true });
         }
 
-        [Mvc5Authorize(Roles = AssignableToRolePermissions.CanCreateProductCategory)]
         [ValidateAntiForgeryToken]
         [HttpPost]
         public virtual async Task<ActionResult> Create(CategoryModel model, ActionType actionType)
@@ -162,9 +160,6 @@ namespace Netotik.Web.Areas.Admin.Controllers
 
         #endregion
 
-
-
-        [Mvc5Authorize(Roles = AssignableToRolePermissions.CanDeleteProductCategory)]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public virtual async Task<ActionResult> Remove(int id = 0)
@@ -182,7 +177,6 @@ namespace Netotik.Web.Areas.Admin.Controllers
 
         #region Edit
 
-        [Mvc5Authorize(Roles = AssignableToRolePermissions.CanEditProductCategory)]
         [BreadCrumb(Title = "ویرایش دسته", Order = 1)]
         public virtual async Task<ActionResult> Edit(int id)
         {
@@ -213,7 +207,6 @@ namespace Netotik.Web.Areas.Admin.Controllers
 
         }
 
-        [Mvc5Authorize(Roles = AssignableToRolePermissions.CanEditProductCategory)]
         [ValidateAntiForgeryToken]
         [AllowUploadSpecialFilesOnly(".jpg,.png,.gif", true)]
         [HttpPost]

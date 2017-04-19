@@ -27,6 +27,7 @@ using Netotik.Common.Controller;
 
 namespace Netotik.Web.Areas.Admin.Controllers
 {
+    [Mvc5Authorize(Roles = AssignableToRolePermissions.CanAccessShopShippingByWeight)]
     public partial class ShopShippingByWeightController : BaseController
     {
 
@@ -48,7 +49,6 @@ namespace Netotik.Web.Areas.Admin.Controllers
 
 
         #region Index
-        [Mvc5Authorize(Roles = AssignableToRolePermissions.CanAccessShopShippingByWeight)]
         public virtual ActionResult Index(int? Id)
         {
             if (Id == null) return HttpNotFound();
@@ -66,7 +66,6 @@ namespace Netotik.Web.Areas.Admin.Controllers
 
         #region Create
 
-        [Mvc5Authorize(Roles = AssignableToRolePermissions.CanCreateShopShippingByWeight)]
         public virtual ActionResult Create(int? Id)
         {
             var model = _shippingMethodService.SingleOrDefault(Id);
@@ -75,7 +74,6 @@ namespace Netotik.Web.Areas.Admin.Controllers
             return View(new ShippingByWeightModel() { AdditionalFixedPrice = 0, FromWeight = 0, ToWeight = 0, ShippingMethodId = Id.Value });
         }
 
-        [Mvc5Authorize(Roles = AssignableToRolePermissions.CanCreateShopShippingByWeight)]
         [ValidateAntiForgeryToken]
         [HttpPost]
         public virtual async Task<ActionResult> Create(ShippingByWeightModel model, ActionType actionType)
@@ -118,7 +116,6 @@ namespace Netotik.Web.Areas.Admin.Controllers
 
 
 
-        [Mvc5Authorize(Roles = AssignableToRolePermissions.CanDeleteShopShippingByWeight)]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public virtual async Task<ActionResult> Remove(int id = 0)
@@ -135,8 +132,6 @@ namespace Netotik.Web.Areas.Admin.Controllers
 
 
         #region Edit
-
-        [Mvc5Authorize(Roles = AssignableToRolePermissions.CanEditShopShippingByWeight)]
         public virtual ActionResult Edit(int id)
         {
 
@@ -158,7 +153,6 @@ namespace Netotik.Web.Areas.Admin.Controllers
 
         }
 
-        [Mvc5Authorize(Roles = AssignableToRolePermissions.CanEditShopShippingByWeight)]
         [ValidateAntiForgeryToken]
         [HttpPost]
         public virtual async Task<ActionResult> Edit(ShippingByWeightModel model, ActionType actionType)

@@ -404,9 +404,6 @@
     <Compile Include="Admin.ShopTaxController.generated.cs">
       <DependentUpon>T4MVC.tt</DependentUpon>
     </Compile>
-    <Compile Include="Admin.ShopWareHouseController.generated.cs">
-      <DependentUpon>T4MVC.tt</DependentUpon>
-    </Compile>
     <Compile Include="Admin.SliderController.generated.cs">
       <DependentUpon>T4MVC.tt</DependentUpon>
     </Compile>
@@ -434,7 +431,6 @@
     <Compile Include="Areas\Admin\Controllers\ShopDiscountController.cs" />
     <Compile Include="Areas\Admin\Controllers\ShopProductController.cs" />
     <Compile Include="Areas\Admin\Controllers\ShopCategoryController.cs" />
-    <Compile Include="Areas\Admin\Controllers\ShopWareHouseController.cs" />
     <Compile Include="Areas\Admin\Controllers\CityController.cs" />
     <Compile Include="Areas\Admin\Controllers\Configuration.cs" />
     <Compile Include="Areas\Admin\Controllers\StateController.cs" />
@@ -2099,17 +2095,20 @@
     <Content Include="Areas\Admin\Views\Home\_ProfileData.cshtml" />
     <Content Include="Areas\Reseller\Views\Home\_ProfileData.cshtml" />
     <Content Include="Areas\Reseller\Views\Home\_ImageProfile.cshtml" />
+    <Content Include="Areas\Admin\Views\ContentTag\_Create.cshtml" />
+    <Content Include="Areas\Admin\Views\ContentTag\_Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\ContentTag\_Table.cshtml" />
+    <Content Include="Areas\Admin\Views\ContentTag\Index.cshtml" />
     <None Include="Content\fonts\icomoon\icomoon.eot" />
     <Content Include="Content\fonts\icomoon\icomoon.svg" />
     <None Include="Content\fonts\icomoon\icomoon.ttf" />
-    <Content Include="Content\fonts\summernote\summernote.eot%40" />
-    <Content Include="Content\fonts\summernote\summernote.eot%40ad8d7e2d177d2473aecd9b35d16211fb" />
-    <Content Include="Content\fonts\summernote\summernote.ttf%40ad8d7e2d177d2473aecd9b35d16211fb" />
-    <Content Include="Content\fonts\summernote\summernote.woff%40ad8d7e2d177d2473aecd9b35d16211fb" />
     <Content Include="Content\scss\components\tables\handsontable.scss" />
     <Content Include="Content\fonts\IRANSansWeb\IRANSansWeb.eot" />
     <Content Include="Content\fonts\IRANSansWeb\IRANSansWeb.ttf" />
     <Content Include="Content\fonts\IRANSansWeb\IRANSansWeb.woff" />
+    <Content Include="Content\fonts\summernote\summernote.eot" />
+    <Content Include="Content\fonts\summernote\summernote.ttf" />
+    <Content Include="Content\fonts\summernote\summernote.woff" />
     <None Include="Properties\PublishProfiles\DNMA.pubxml" />
     <None Include="T4MVC.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
@@ -2160,6 +2159,7 @@
     <Content Include="Scripts\i18n\grid.locale-tw.js" />
     <Content Include="Scripts\i18n\grid.locale-ua.js" />
     <Content Include="Scripts\i18n\grid.locale-vi.js" />
+    <Content Include="Scripts\jquery-3.1.0.slim.min.js" />
     <Content Include="Scripts\jquery.jqGrid.min.js" />
     <Content Include="Scripts\jquery.jqGrid.src.js" />
     <Content Include="Views\Shared\Error.cshtml" />
@@ -2184,15 +2184,11 @@
     <Content Include="Areas\Admin\Views\Role\Edit.cshtml" />
     <Content Include="Areas\Admin\Views\Role\Index.cshtml" />
     <Content Include="Areas\Admin\Views\ContentCategory\_Table.cshtml" />
-    <Content Include="Areas\Admin\Views\ContentCategory\CreateOrEdit.cshtml" />
-    <Content Include="Areas\Admin\Views\ContentCategory\Detail.cshtml" />
-    <Content Include="Areas\Admin\Views\ContentCategory\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\ContentCategory\_Edit.cshtml" />
     <Content Include="Areas\Admin\Views\ContentCategory\Index.cshtml" />
-    <Content Include="Areas\Admin\Views\ContentCategory\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\ContentCategory\_Create.cshtml" />
     <Content Include="Areas\Admin\Views\Content\_Table.cshtml" />
     <Content Include="Areas\Admin\Views\Content\Create.cshtml" />
-    <Content Include="Areas\Admin\Views\Content\CreateOrEdit.cshtml" />
-    <Content Include="Areas\Admin\Views\Content\Detail.cshtml" />
     <Content Include="Areas\Admin\Views\Content\Edit.cshtml" />
     <Content Include="Areas\Admin\Views\Content\Index.cshtml" />
     <Content Include="Views\Shared\_SingleImageForm.cshtml" />
@@ -2235,12 +2231,6 @@
     <Content Include="Areas\Admin\Views\Comments\_Table.cshtml" />
     <Content Include="Areas\Admin\Views\Comments\Detail.cshtml" />
     <Content Include="Areas\Admin\Views\Comments\Index.cshtml" />
-    <Content Include="Areas\Admin\Views\ContentTag\_Table.cshtml" />
-    <Content Include="Areas\Admin\Views\ContentTag\Create.cshtml" />
-    <Content Include="Areas\Admin\Views\ContentTag\CreateOrEdit.cshtml" />
-    <Content Include="Areas\Admin\Views\ContentTag\Detail.cshtml" />
-    <Content Include="Areas\Admin\Views\ContentTag\Edit.cshtml" />
-    <Content Include="Areas\Admin\Views\ContentTag\Index.cshtml" />
     <Content Include="Views\Shared\_PicturesList.cshtml" />
     <Content Include="Areas\Admin\Views\ShopCategory\_Table.cshtml" />
     <Content Include="Areas\Admin\Views\ShopCategory\Create.cshtml" />
@@ -2256,13 +2246,11 @@
     <Content Include="Areas\Admin\Views\ShopDeliveryDate\Index.cshtml" />
     <Content Include="Areas\Admin\Views\State\_Table.cshtml" />
     <Content Include="Areas\Admin\Views\State\_Create.cshtml" />
-    <Content Include="Areas\Admin\Views\State\Detail.cshtml" />
     <Content Include="Areas\Admin\Views\State\_Edit.cshtml" />
     <Content Include="Areas\Admin\Views\State\Index.cshtml" />
     <Content Include="Areas\Admin\Views\City\_Table.cshtml" />
-    <Content Include="Areas\Admin\Views\City\Create.cshtml" />
-    <Content Include="Areas\Admin\Views\City\Detail.cshtml" />
-    <Content Include="Areas\Admin\Views\City\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\City\_Create.cshtml" />
+    <Content Include="Areas\Admin\Views\City\_Edit.cshtml" />
     <Content Include="Areas\Admin\Views\City\Index.cshtml" />
     <Content Include="Areas\Admin\Views\ShopManufacturer\_Table.cshtml" />
     <Content Include="Areas\Admin\Views\ShopManufacturer\Create.cshtml" />
@@ -2292,12 +2280,6 @@
     <Content Include="Areas\Admin\Views\Link\CreateOrEdit.cshtml" />
     <Content Include="Areas\Admin\Views\Link\Edit.cshtml" />
     <Content Include="Areas\Admin\Views\Link\Index.cshtml" />
-    <Content Include="Areas\Admin\Views\ShopWareHouse\_Table.cshtml" />
-    <Content Include="Areas\Admin\Views\ShopWareHouse\Create.cshtml" />
-    <Content Include="Areas\Admin\Views\ShopWareHouse\CreateOrEdit.cshtml" />
-    <Content Include="Areas\Admin\Views\ShopWareHouse\Detail.cshtml" />
-    <Content Include="Areas\Admin\Views\ShopWareHouse\Edit.cshtml" />
-    <Content Include="Areas\Admin\Views\ShopWareHouse\Index.cshtml" />
     <Content Include="Areas\Admin\Views\ShopProductAttribute\_Table.cshtml" />
     <Content Include="Areas\Admin\Views\ShopProductAttribute\Create.cshtml" />
     <Content Include="Areas\Admin\Views\ShopProductAttribute\CreateOrEdit.cshtml" />

@@ -54,7 +54,7 @@ namespace Netotik.Web.Controllers
                 var tag_ = await _contentTagService.SingleOrDefaultAsync(tagId.Value);
                 if (tag_ != null)
                 {
-                    tag = tag_.Text;
+                    tag = tag_.Name;
                 }
             }
 
@@ -174,7 +174,7 @@ namespace Netotik.Web.Controllers
 
         public virtual ActionResult SideBarCategory()
         {
-            return View(MVC.Blog.Views._Category, _contentCategoryService.All().Where(x => !x.IsDelete).ToList());
+            return View(MVC.Blog.Views._Category, _contentCategoryService.All().Where(x => !x.IsDeleted).ToList());
         }
 
         public virtual ActionResult SideBarTag()

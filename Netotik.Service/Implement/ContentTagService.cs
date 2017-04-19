@@ -11,6 +11,8 @@ using System.Threading.Tasks;
 using System.Data.Entity;
 using PersianDate;
 using Netotik.Common;
+using Netotik.ViewModels.CMS.ContentTag;
+using Netotik.Common.DataTables;
 
 namespace Netotik.Services.Implement
 {
@@ -22,6 +24,35 @@ namespace Netotik.Services.Implement
 
         }
 
+        public IList<ContentTagItem> GetList(RequestListModel model, out long TotalCount, out long ShowCount)
+        {
+            IQueryable<ContentTag> all = dbSet.AsQueryable();
+            TotalCount = all.LongCount();
+
+            // Apply Filtering
+            if (!string.IsNullOrEmpty(model.sSearch))
+            {
+                all = all.Where(x => x.Name.Contains(model.sSearch)).AsQueryable();
+            }
+
+
+            // Apply Sorting
+            Func<ContentTag, string> orderingFunction = (x => x.Name);
+
+            // asc or desc
+            all = model.sSortDir_0 == "asc" ? all.OrderBy(orderingFunction).AsQueryable() : all.OrderByDescending(orderingFunction).AsQueryable();
+
+            ShowCount = all.Count();
+            return all.AsEnumerable().Skip(model.iDisplayStart).Take(model.iDisplayLength).ToList()
+                .Select((x, index) => new ContentTagItem
+                {
+                    Name = x.Name,
+                    Id = x.Id,
+                    RowNumber = model.iDisplayStart + index + 1
+                })
+                .ToList();
+        }
+
         public async Task<ContentTag> SingleOrDefaultAsync(int primaryKey)
         {
             return await dbSet.SingleOrDefaultAsync(x => x.Id == primaryKey);
@@ -31,8 +62,8 @@ namespace Netotik.Services.Implement
         public async Task<bool> IsExistByName(string name, int? id)
         {
             if (id.HasValue)
-                return await dbSet.AnyAsync(x => x.Text == name && x.Id != id);
-            return await dbSet.AnyAsync(x => x.Text == name);
+                return await dbSet.AnyAsync(x => x.Name == name && x.Id != id);
+            return await dbSet.AnyAsync(x => x.Name == name);
         }
 
 
