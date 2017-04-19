@@ -104,13 +104,13 @@ namespace Netotik.Web.Areas.Admin.Controllers
         public virtual async Task<ActionResult> Create(AdminAddModel model)
         {
             #region Validation
-            if (_userManager.CheckIsPhoneNumberAvailable(model.PhoneNumber, null))
+            if (_userManager.CheckResellerPhoneNumberExist(model.PhoneNumber, null))
                 ModelState.AddModelError("PhoneNumber", "این شماره موبایل قبلا در سیستم ثبت شده است");
             if (_userManager.CheckUserNameExist(model.UserName, null))
                 ModelState.AddModelError("UserName", "این نام کاربری قبلا در سیستم ثبت شده است");
             if (!model.Password.IsSafePasword())
                 ModelState.AddModelError("Password", "این کلمه عبور به راحتی قابل تشخیص است");
-            if (_userManager.CheckEmailExist(model.Email, null))
+            if (_userManager.CheckResellerEmailExist(model.Email, null))
                 ModelState.AddModelError("Email", "این ایمیل قبلا در سیستم ثبت شده است");
             #endregion
 
@@ -168,32 +168,12 @@ namespace Netotik.Web.Areas.Admin.Controllers
         #endregion
 
         #region Edit
-
         [Mvc5Authorize(Roles = AssignableToRolePermissions.CanEditUser)]
-        public virtual async Task<ActionResult> Banne(int id = 0)
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public virtual ActionResult Remove(int id = 0)
         {
-            if (await _applicationUserManager.BanneUser(id))
-                this.MessageSuccess(Messages.MissionSuccess, Messages.UpdateSuccess);
-            else this.MessageError(Messages.MissionFail, Messages.UpdateError);
-            return RedirectToAction(MVC.Admin.User.Index());
-        }
-
-
-        [Mvc5Authorize(Roles = AssignableToRolePermissions.CanEditUser)]
-        public virtual async Task<ActionResult> Active(int id = 0)
-        {
-            if (await _applicationUserManager.ActiveUser(id))
-                this.MessageSuccess(Messages.MissionSuccess, Messages.UpdateSuccess);
-            else this.MessageError(Messages.MissionFail, Messages.UpdateError);
-            return RedirectToAction(MVC.Admin.User.Index());
-        }
-
-        [Mvc5Authorize(Roles = AssignableToRolePermissions.CanEditUser)]
-        public virtual async Task<ActionResult> Remove(int id = 0)
-        {
-            if (await _applicationUserManager.LogicalRemove(id))
-                this.MessageSuccess(Messages.MissionSuccess, Messages.RemoveSuccess);
-            else this.MessageError(Messages.MissionFail, Messages.RemoveError);
+            _applicationUserManager.LogicalRemove(id);
             return RedirectToAction(MVC.Admin.User.Index());
         }
 
@@ -220,11 +200,11 @@ namespace Netotik.Web.Areas.Admin.Controllers
         public virtual async Task<ActionResult> Edit(AdminEditModel model)
         {
             #region Validation
-            if (_userManager.CheckIsPhoneNumberAvailable(model.PhoneNumber, model.Id))
+            if (_userManager.CheckResellerPhoneNumberExist(model.PhoneNumber, model.Id))
                 ModelState.AddModelError("PhoneNumber", "این شماره موبایل قبلا در سیستم ثبت شده است");
             if (_userManager.CheckUserNameExist(model.UserName, model.Id))
                 ModelState.AddModelError("UserName", "این نام کاربری قبلا در سیستم ثبت شده است");
-            if (_userManager.CheckEmailExist(model.Email, model.Id))
+            if (_userManager.CheckResellerEmailExist(model.Email, model.Id))
                 ModelState.AddModelError("Email", "این ایمیل قبلا در سیستم ثبت شده است");
             #endregion
 

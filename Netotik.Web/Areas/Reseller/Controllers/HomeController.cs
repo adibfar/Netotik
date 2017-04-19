@@ -84,10 +84,10 @@ namespace Netotik.Web.Areas.Reseller.Controllers
         public virtual async Task<ActionResult> UpdateProfile(ProfileModel model)
         {
             #region Validation
-            if (_applicationUserManager.CheckEmailExist(model.Email, User.Identity.GetUserId<long>()))
+            if (_applicationUserManager.CheckResellerEmailExist(model.Email, User.Identity.GetUserId<long>()))
                 ModelState.AddModelError("Email", "این ایمیل قبلا در سیستم ثبت شده است");
 
-            if (_applicationUserManager.CheckIsPhoneNumberAvailable(model.PhoneNumber, User.Identity.GetUserId<long>()))
+            if (_applicationUserManager.CheckResellerPhoneNumberExist(model.PhoneNumber, User.Identity.GetUserId<long>()))
                 ModelState.AddModelError("PhoneNumber", "این شماره موبایل قبلا در سیستم ثبت شده است");
 
             if (!ModelState.IsValid)
@@ -97,6 +97,8 @@ namespace Netotik.Web.Areas.Reseller.Controllers
                 return RedirectToAction(MVC.Reseller.Home.ActionNames.MyProfile);
             }
             #endregion
+            if (model.Email != UserLogined.Email)
+                model.EmailConfirmed = false;
 
             this.MessageInformation(Messages.MissionSuccess, Messages.UpdateSuccess);
             await _applicationUserManager.UpdateUserResellerProfile(model);
@@ -127,15 +129,11 @@ namespace Netotik.Web.Areas.Reseller.Controllers
                 this.MessageError(Messages.MissionFail, Messages.InvalidDataError);
                 return RedirectToAction(MVC.Reseller.Home.ActionNames.ChangePassword);
             }
-            try
-            {
-                await _applicationUserManager.ChangePasswordAsync(User.Identity.GetUserId<long>(), model.OldPassword, model.Password);
+                var temp = await _applicationUserManager.ChangePasswordAsync(User.Identity.GetUserId<long>(), model.OldPassword, model.Password);
+            if(temp.Succeeded)
                 this.MessageInformation(Messages.MissionSuccess, Messages.UpdateSuccess);
-            }
-            catch
-            {
-                this.MessageInformation(Messages.MissionFail, Messages.UpdateError);
-            }
+            else
+                this.MessageError(Messages.MissionFail, Messages.UpdateError);
             return View();
         }
 

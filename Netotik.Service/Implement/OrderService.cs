@@ -43,8 +43,8 @@ namespace Netotik.Services.Implement
 
         public async Task<OrderDetail> GetFactorDetailAsync(FactorModel model, List<ShoppingCartModel> cart)
         {
-            var state = await _addressStateService.All().FirstOrDefaultAsync(x => !x.IsDeleted && x.IsActive && x.Id == model.StateId);
-            var city = await _addressCityService.All().FirstOrDefaultAsync(x => !x.IsDeleted && x.IsActive && x.Id == model.CityId);
+            var state = await _addressStateService.All().FirstOrDefaultAsync(x => x.IsActive && x.Id == model.StateId);
+            var city = await _addressCityService.All().FirstOrDefaultAsync(x => x.IsActive && x.Id == model.CityId);
             var shipping = await _shippingMethodService.All().FirstOrDefaultAsync(x => x.IsActive && !x.IsDelete && x.Id == model.ShipingMethodId);
             var payment = await _paymentTypeService.All().FirstOrDefaultAsync(x => x.IsActive && x.Id == model.PaymentTypeId);
             List<ShoppingCartFactorModel> shopingCartList = await _productSrevice.GetForFactorByIdsAsync(cart);
@@ -94,8 +94,8 @@ namespace Netotik.Services.Implement
 
         public async Task<Order> RegisterFactorAsync(FactorModel model, List<ShoppingCartModel> cart, string Ip, BuyerType buyerType)
         {
-            var state = await _addressStateService.All().FirstOrDefaultAsync(x => !x.IsDeleted && x.IsActive && x.Id == model.StateId);
-            var city = await _addressCityService.All().FirstOrDefaultAsync(x => !x.IsDeleted && x.IsActive && x.Id == model.CityId);
+            var state = await _addressStateService.All().FirstOrDefaultAsync(x => x.IsActive && x.Id == model.StateId);
+            var city = await _addressCityService.All().FirstOrDefaultAsync(x => x.IsActive && x.Id == model.CityId);
             var shipping = await _shippingMethodService.All().FirstOrDefaultAsync(x => x.IsActive && !x.IsDelete && x.Id == model.ShipingMethodId);
             var payment = await _paymentTypeService.All().FirstOrDefaultAsync(x => x.IsActive && x.Id == model.PaymentTypeId);
             List<ShoppingCartFactorModel> shopingCartList = await _productSrevice.GetForFactorByIdsAsync(cart);

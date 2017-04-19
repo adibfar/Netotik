@@ -12,7 +12,7 @@ namespace Netotik.Domain.Entity
         public string Expire_Date { get; set; }
         
         [Display(Name = "نام شرکت")]
-        public string CompanyName { get; set; }
+        public string CompanyCode { get; set; }
         [Display(Name = "کد ملی")]
         public string NationalCode { get; set; }
         [Display(ResourceType = typeof(Captions), Name = "Address")]
@@ -27,6 +27,9 @@ namespace Netotik.Domain.Entity
         public int R_Port { get; set; }
         [Display(Name = "کد پستی")]
         public string PostalCode { get; set; }
+
+        [Display(Name = "فعال سازی CLoud ")]
+        public bool cloud { get; set; }
 
         public long UserResellerId { get; set; }
         public virtual UserReseller UserReseller { get; set; }

@@ -58,13 +58,13 @@ namespace Netotik.Web.Areas.Admin.Controllers
         public virtual async Task<ActionResult> UpdateProfile(ProfileModel model)
         {
             #region Validation
-            if (_applicationUserManager.CheckEmailExist(model.Email, User.Identity.GetUserId<long>()))
+            if (_applicationUserManager.CheckResellerEmailExist(model.Email, User.Identity.GetUserId<long>()))
                 ModelState.AddModelError("Email", "این ایمیل قبلا در سیستم ثبت شده است");
 
             if (_applicationUserManager.CheckUserNameExist(model.UserName, User.Identity.GetUserId<long>()))
                 ModelState.AddModelError("UserName", "این نام کاربری قبلا در سیستم ثبت شده است");
 
-            if (_applicationUserManager.CheckIsPhoneNumberAvailable(model.PhoneNumber, User.Identity.GetUserId<long>()))
+            if (_applicationUserManager.CheckResellerPhoneNumberExist(model.PhoneNumber, User.Identity.GetUserId<long>()))
                 ModelState.AddModelError("PhoneNumber", "این شماره موبایل قبلا در سیستم ثبت شده است");
 
             if (!ModelState.IsValid)
