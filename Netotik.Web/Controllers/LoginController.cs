@@ -83,7 +83,7 @@ namespace Netotik.Web.Controllers
                 ViewBag.Message = "اطلاعات وارد شده صحیح نیست.";
                 return View(model);
             }
-
+            /*
             if (loggedinUser.IsBanned)
             {
                 ViewBag.Message = "حساب کاربری شما مسدود شده است.";
@@ -96,7 +96,7 @@ namespace Netotik.Web.Controllers
                 ViewBag.Link = true;
                 return View();
             }
-
+            */
             if (loggedinUser != null)
             {
                 await _applicationUserManager.UpdateSecurityStampAsync(loggedinUser.Id);

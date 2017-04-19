@@ -25,12 +25,13 @@ using Netotik.Common.MikrotikAPI;
 using Netotik.ViewModels.Identity.UserCompany;
 using Netotik.Services.Identity;
 using Netotik.Common.Controller;
+using Microsoft.AspNet.Identity;
 
 namespace Netotik.Web.Areas.Company.Controllers
 {
     [BreadCrumb(Title = "کاربر", UseDefaultRouteUrl = true, RemoveAllDefaultRouteValues = true,
  Order = 0, GlyphIcon = "icon icon-table")]
-    public partial class HomeController : BaseController
+    public partial class HomeController : BasePanelController
     {
         #region ctor
         private readonly IApplicationUserManager _applicationUserManager;
@@ -55,27 +56,74 @@ namespace Netotik.Web.Areas.Company.Controllers
         [Mvc5Authorize(Roles = "Company")]
         public virtual ActionResult Index()
         {
-            //return View(_applicationUserManager.GetProfile(User.UserId));
             return View();
         }
 
-        public virtual ActionResult Profile()
+        public virtual ActionResult MyProfile()
         {
-            //return View(_applicationUserManager.GetProfileEdit(User.UserId));
             return View();
         }
+        public virtual ActionResult ProfileData()
+        {
+            return PartialView(MVC.Company.Home.Views._ProfileData, _applicationUserManager.GetUserCompanyProfile(UserLogined.Id));
+        }
 
+        [ValidateAntiForgeryToken]
         [HttpPost]
-        public virtual ActionResult Profile(ProfileEditModel model)
+        public virtual async Task<ActionResult> changeImageProfile(HttpPostedFileBase image)
         {
-            //if (ModelState.IsValid)
-            //    {
-            //    if(model.cloud)
-            //    model.R_Host=_mikrotikServices.EnableAndGetCloud(model.R_Host,model.R_Port,model.R_User,model.R_Password);
-            //    SetResultMessage(_applicationUserManager.UpdateProfileEdit(model, User.UserId));
-            //}
-            return RedirectToAction(MVC.Company.Home.ActionNames.Profile);
+            var user = await _applicationUserManager.FindByIdAsync(User.Identity.GetUserId<long>());
+
+            if (image == null)
+            {
+                this.MessageError(Messages.MissionFail, Messages.InvalidDataError);
+                return View(MVC.Company.Home.Views.MyProfile);
+            }
+
+
+            if (user.PictureId.HasValue)
+                DeleteFile(Server.MapPath(Path.Combine(FilePathes._imagesUserAvatarsPath, user.Picture.FileName)));
+
+            var fileName = SaveFile(image, Common.Controller.FilePathes._imagesUserAvatarsPath);
+            var picture = new Picture
+            {
+                FileName = fileName,
+                OrginalName = image.FileName,
+                MimeType = image.ContentType
+            };
+            user.Picture = picture;
+            await _uow.SaveAllChangesAsync();
+
+            this.MessageInformation(Messages.MissionSuccess, Messages.UpdateSuccess);
+            return RedirectToAction(MVC.Company.Home.MyProfile());
         }
+
+        [ValidateAntiForgeryToken]
+        [HttpPost]
+        public virtual async Task<ActionResult> UpdateProfile(ProfileModel model)
+        {
+            #region Validation
+            if (_applicationUserManager.CheckCompanyEmailExist(model.Email, User.Identity.GetUserId<long>()))
+                ModelState.AddModelError("Email", "این ایمیل قبلا در سیستم ثبت شده است");
+
+            if (_applicationUserManager.CheckCompanyPhoneNumberExist(model.PhoneNumber, User.Identity.GetUserId<long>(),model.UserResellerId))
+                ModelState.AddModelError("PhoneNumber", "این شماره موبایل قبلا در سیستم ثبت شده است");
+
+            if (!ModelState.IsValid)
+            {
+                this.MessageError(Messages.MissionFail, Messages.InvalidDataError);
+                //return View(MVC.Reseller.Home.Views._ProfileData, model);
+                return RedirectToAction(MVC.Company.Home.ActionNames.MyProfile);
+            }
+            #endregion
+            if (model.Email != UserLogined.Email)
+                model.EmailConfirmed = false;
+
+            this.MessageInformation(Messages.MissionSuccess, Messages.UpdateSuccess);
+            await _applicationUserManager.UpdateUserCompanyProfile(model);
+            return RedirectToAction(MVC.Company.Home.ActionNames.MyProfile);
+        }
+
         #endregion
 
         #region Detail

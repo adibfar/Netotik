@@ -1,0 +1,185 @@
+﻿@model Netotik.ViewModels.Identity.UserCompany.ProfileModel
+@{
+    Layout = null;
+}
+
+@using (Html.BeginForm(MVC.Company.Home.ActionNames.UpdateProfile, MVC.Company.Home.Name, FormMethod.Post,
+                                 htmlAttributes: new { @class = "form-horizontal", enctype = "multipart/form-data", id = "form" }))
+{
+    @Html.AntiForgeryToken()
+    <div class="card">
+        <div class="card-header">
+            <button name="actionType" value="@Netotik.Common.Controller.ActionType.Save" class="btn btn-social width-100 btn-instagram" onclick="AjaxForm.Post(this, 'form')" data-loading-text="در حال ارسال اطلاعات">
+                <span class="icon-checkmark2 font-medium-4"></span>
+                @Netotik.Resources.Captions.Save
+            </button>
+        </div>
+        <div class="card-body">
+            <div class="card-block">
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="form-group has-icon-left">
+                            @Html.LabelFor(m => m.FirstName)
+                            <div class="position-relative has-icon-left">
+                                @Html.TextBoxFor(m => m.FirstName, new { @class = "form-control" })
+                                <div class="form-control-position">
+                                    <i class="icon-head"></i>
+                                </div>
+                                @Html.ValidationMessageFor(model => model.FirstName, "", htmlAttributes: new { @class = "text-danger" })
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group has-icon-left">
+                            @Html.LabelFor(m => m.LastName)
+                            <div class="position-relative has-icon-left">
+                                @Html.TextBoxFor(m => m.LastName, new { @class = "form-control" })
+                                <div class="form-control-position">
+                                    <i class="icon-user"></i>
+                                </div>
+                                @Html.ValidationMessageFor(model => model.LastName, "", htmlAttributes: new { @class = "text-danger" })
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group has-icon-left">
+                            @Html.LabelFor(m => m.PhoneNumber)
+                            <div class="position-relative has-icon-left">
+                                @Html.TextBoxFor(m => m.PhoneNumber, new { @class = "form-control" })
+                                <div class="form-control-position">
+                                    <i class="icon-phone"></i>
+                                </div>
+                                @Html.ValidationMessageFor(model => model.PhoneNumber, "", htmlAttributes: new { @class = "text-danger" })
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group has-feedback has-icon-left">
+                            @Html.LabelFor(m => m.NationalCode)
+                            <div class="position-relative has-icon-left">
+                                @Html.TextBoxFor(m => m.NationalCode, new { @class = "form-control" })
+                                <div class="form-control-position">
+                                    <i class="icon-user-tie"></i>
+                                </div>
+                                @Html.ValidationMessageFor(model => model.NationalCode, "", htmlAttributes: new { @class = "text-danger" })
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group has-feedback has-icon-left">
+                            @Html.LabelFor(m => m.Email)
+                            <div class="position-relative has-icon-left">
+                                @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
+                                <div class="form-control-position">
+                                    <i class="icon-mail"></i>
+                                </div>
+                                @Html.ValidationMessageFor(model => model.Email, "", htmlAttributes: new { @class = "text-danger" })
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group has-feedback has-icon-left">
+                            @Html.LabelFor(m => m.CompanyCode)
+                            <div class="position-relative has-icon-left">
+                                @Html.TextBoxFor(m => m.CompanyCode, new { @class = "form-control" })
+                                <div class="form-control-position">
+                                    <i class="icon-office"></i>
+                                </div>
+                                @Html.ValidationMessageFor(model => model.CompanyCode, "", htmlAttributes: new { @class = "text-danger" })
+                            </div>
+                        </div>
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+
+        <div class="card-body">
+            <div class="card-block">
+                
+                <div class="row">
+                    <div class="col-md-2">
+                        <br />
+                        <div class="controls">
+                            <label class="custom-control custom-checkbox">
+                                @Html.CheckBoxFor(m => m.cloud, htmlAttributes: new { @class = "custom-control-input" })
+                                <span class="custom-control-indicator"></span>
+                                <span class="custom-control-description">
+                                    @Html.LabelFor(m => m.cloud)
+                                </span>
+                            </label>
+                        </div>
+                    </div>
+                    <div class="col-md-8">
+                        <div class="form-group has-feedback has-icon-left">
+                            @Html.LabelFor(m => m.R_Host)
+                            <div class="position-relative has-icon-left">
+                                @Html.TextBoxFor(m => m.R_Host, new { @class = "form-control" })
+                                <div class="form-control-position">
+                                    <i class="icon-server"></i>
+                                </div>
+                                @Html.ValidationMessageFor(model => model.R_Host, "", htmlAttributes: new { @class = "text-danger" })
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-2">
+                        <div class="form-group has-feedback has-icon-left">
+                            @Html.LabelFor(m => m.R_Port)
+                            <div class="position-relative has-icon-left">
+                                @Html.TextBoxFor(m => m.R_Port, new { @class = "form-control" })
+                                <div class="form-control-position">
+                                    :
+                                </div>
+                                @Html.ValidationMessageFor(model => model.R_Port, "", htmlAttributes: new { @class = "text-danger" })
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group has-feedback has-icon-left">
+                            @Html.LabelFor(m => m.R_User)
+                            <div class="position-relative has-icon-left">
+                                @Html.TextBoxFor(m => m.R_User, new { @class = "form-control" })
+                                <div class="form-control-position">
+                                    <i class="icon-user-tie"></i>
+                                </div>
+                                @Html.ValidationMessageFor(model => model.R_User, "", htmlAttributes: new { @class = "text-danger" })
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group has-feedback has-icon-left">
+                            @Html.LabelFor(m => m.R_Password)
+                            <div class="position-relative has-icon-left">
+                                @Html.PasswordFor(m => m.R_Password, new { @class = "form-control" })
+                                <div class="form-control-position">
+                                    <i class="icon-key2"></i>
+                                </div>
+                                @Html.ValidationMessageFor(model => model.R_Password, "", htmlAttributes: new { @class = "text-danger" })
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group has-feedback has-icon-left">
+                            @Html.LabelFor(m => m.Userman_Customer)
+                            <div class="position-relative has-icon-left">
+                                @Html.TextBoxFor(m => m.Userman_Customer, new { @class = "form-control" })
+                                <div class="form-control-position">
+                                    <i class="icon-user-tie"></i>
+                                </div>
+                                @Html.ValidationMessageFor(model => model.Userman_Customer, "", htmlAttributes: new { @class = "text-danger" })
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}
