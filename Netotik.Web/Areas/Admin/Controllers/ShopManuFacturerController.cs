@@ -27,6 +27,7 @@ using Netotik.Common.Controller;
 
 namespace Netotik.Web.Areas.Admin.Controllers
 {
+    [Mvc5Authorize(Roles = AssignableToRolePermissions.CanAccessManufactur)]
     [BreadCrumb(Title = "لیست برند ها", UseDefaultRouteUrl = true, RemoveAllDefaultRouteValues = true,
  Order = 0, GlyphIcon = "icon icon-table")]
     public partial class ShopManuFacturerController : BaseController
@@ -50,7 +51,6 @@ namespace Netotik.Web.Areas.Admin.Controllers
 
 
         #region Index
-        [Mvc5Authorize(Roles = AssignableToRolePermissions.CanAccessManufactur)]
         public virtual ActionResult Index(string Search, int Page = 1, int PageSize = 10)
         {
 
@@ -68,7 +68,6 @@ namespace Netotik.Web.Areas.Admin.Controllers
 
         #region Create
 
-        [Mvc5Authorize(Roles = AssignableToRolePermissions.CanCreateManufactur)]
         [BreadCrumb(Title = "برند جدید", Order = 1)]
         public virtual ActionResult Create()
         {
@@ -76,7 +75,6 @@ namespace Netotik.Web.Areas.Admin.Controllers
             return View(new ManufacturerModel() { DisplayOrder = 0, IsPublished = true });
         }
 
-        [Mvc5Authorize(Roles = AssignableToRolePermissions.CanCreateManufactur)]
         [ValidateAntiForgeryToken]
         [HttpPost]
         public virtual async Task<ActionResult> Create(ManufacturerModel model, ActionType actionType)
@@ -158,7 +156,6 @@ namespace Netotik.Web.Areas.Admin.Controllers
 
 
 
-        [Mvc5Authorize(Roles = AssignableToRolePermissions.CanDeleteManufactur)]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public virtual async Task<ActionResult> Remove(int id = 0)
@@ -175,8 +172,6 @@ namespace Netotik.Web.Areas.Admin.Controllers
 
 
         #region Edit
-
-        [Mvc5Authorize(Roles = AssignableToRolePermissions.CanEditManufactur)]
         [BreadCrumb(Title = "ویرایش برند", Order = 1)]
         public virtual ActionResult Edit(int id)
         {
@@ -209,7 +204,6 @@ namespace Netotik.Web.Areas.Admin.Controllers
 
         }
 
-        [Mvc5Authorize(Roles = AssignableToRolePermissions.CanEditManufactur)]
         [ValidateAntiForgeryToken]
         [AllowUploadSpecialFilesOnly(".jpg,.png,.gif", true)]
         [HttpPost]

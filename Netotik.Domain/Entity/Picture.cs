@@ -11,7 +11,6 @@ namespace Netotik.Domain.Entity
             this.ImageGalleryItems = new List<ImageGalleryItem>();
             this.Users = new List<User>();
             this.Products = new List<Product>();
-            this.ContentCategories = new List<ContentCategory>();
             this.Sliders = new List<Slider>();
             this.categories = new List<Category>();
             this.manufacturers = new List<Manufacturer>();
@@ -34,7 +33,6 @@ namespace Netotik.Domain.Entity
         public virtual ICollection<ProductGallery> ProductGalleries { get; set; }
         public virtual ICollection<Product> BgProducts { get; set; }
         public virtual ICollection<ProductGallery> BgProductGalleries { get; set; }
-        public virtual ICollection<ContentCategory> ContentCategories { get; set; }
         public virtual ICollection<Slider> Sliders { get; set; }
         public virtual ICollection<Advertise> Advertises { get; set; }
 

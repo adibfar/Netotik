@@ -27,7 +27,7 @@ using Netotik.Common.Controller;
 
 namespace Netotik.Web.Areas.Admin.Controllers
 {
-
+    [Mvc5Authorize(Roles = AssignableToRolePermissions.CanAccessRole)]
     [BreadCrumb(Title = "لیست گروههای کاربری", UseDefaultRouteUrl = true, RemoveAllDefaultRouteValues = true,
  Order = 0, GlyphIcon = "icon icon-table")]
     public partial class RoleController : BaseController
@@ -51,7 +51,6 @@ namespace Netotik.Web.Areas.Admin.Controllers
 
 
         #region Index
-        [Mvc5Authorize(Roles = AssignableToRolePermissions.CanAccessRole)]
         public virtual ActionResult Index(string Search, int Page = 1, int PageSize = 10)
         {
 
@@ -66,7 +65,6 @@ namespace Netotik.Web.Areas.Admin.Controllers
 
         #region Create
 
-        [Mvc5Authorize(Roles = AssignableToRolePermissions.CanCreateRole)]
         [BreadCrumb(Title = "گروه جدید", Order = 1)]
         public virtual async Task<ActionResult> Create()
         {
@@ -75,7 +73,6 @@ namespace Netotik.Web.Areas.Admin.Controllers
             return View();
         }
 
-        [Mvc5Authorize(Roles = AssignableToRolePermissions.CanCreateRole)]
         [ValidateAntiForgeryToken]
         [HttpPost]
         public virtual async Task<ActionResult> Create(AddEditRoleViewModel model, ActionType actionType)
@@ -163,7 +160,6 @@ namespace Netotik.Web.Areas.Admin.Controllers
 
 
         #region Edit
-        [Mvc5Authorize(Roles = AssignableToRolePermissions.CanDeleteRole)]
         [HttpPost]
         public virtual async Task<ActionResult> Remove(int id = 0)
         {
@@ -175,7 +171,6 @@ namespace Netotik.Web.Areas.Admin.Controllers
             return View();
         }
 
-        [Mvc5Authorize(Roles = AssignableToRolePermissions.CanEditRole)]
         [BreadCrumb(Title = "ویرایش گروه", Order = 1)]
         public virtual async Task<ActionResult> Edit(int id)
         {
@@ -199,7 +194,6 @@ namespace Netotik.Web.Areas.Admin.Controllers
             return View();
         }
 
-        [Mvc5Authorize(Roles = AssignableToRolePermissions.CanEditRole)]
         [ValidateAntiForgeryToken]
         [HttpPost]
         public virtual async Task<ActionResult> Edit(AddEditRoleViewModel model, ActionType actionType)

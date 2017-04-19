@@ -26,6 +26,7 @@ using Netotik.Common.Controller;
 
 namespace Netotik.Web.Areas.Admin.Controllers
 {
+    [Mvc5Authorize(Roles = AssignableToRolePermissions.CanAccessMenu)]
     [BreadCrumb(Title = "لیست منو ها", UseDefaultRouteUrl = true, RemoveAllDefaultRouteValues = true,
  Order = 0, GlyphIcon = "icon icon-table")]
     public partial class MenuController : BaseController
@@ -52,7 +53,6 @@ namespace Netotik.Web.Areas.Admin.Controllers
 
 
         #region Index
-        [Mvc5Authorize(Roles = AssignableToRolePermissions.CanAccessMenu)]
         public virtual ActionResult Index(string Search = "")
         {
 
@@ -74,7 +74,6 @@ namespace Netotik.Web.Areas.Admin.Controllers
 
         #region Create
 
-        [Mvc5Authorize(Roles = AssignableToRolePermissions.CanCreateMenu)]
         [BreadCrumb(Title = "منو جدید", Order = 1)]
         public virtual ActionResult Create()
         {
@@ -83,7 +82,6 @@ namespace Netotik.Web.Areas.Admin.Controllers
             return View(new MenuModel() { Order = 0 });
         }
 
-        [Mvc5Authorize(Roles = AssignableToRolePermissions.CanCreateMenu)]
         [ValidateAntiForgeryToken]
         [HttpPost]
         public virtual async Task<ActionResult> Create(MenuModel model, ActionType actionType)
@@ -144,7 +142,6 @@ namespace Netotik.Web.Areas.Admin.Controllers
 
 
         #region Edit
-        [Mvc5Authorize(Roles = AssignableToRolePermissions.CanDeleteMenu)]
         [HttpPost]
         public virtual async Task<ActionResult> Remove(int id = 0)
         {
@@ -156,7 +153,6 @@ namespace Netotik.Web.Areas.Admin.Controllers
             return RedirectToAction(MVC.Admin.Menu.ActionNames.Index);
         }
 
-        [Mvc5Authorize(Roles = AssignableToRolePermissions.CanEditMenu)]
         [BreadCrumb(Title = "ویرایش منو", Order = 1)]
         public virtual ActionResult Edit(int id)
         {
@@ -177,10 +173,8 @@ namespace Netotik.Web.Areas.Admin.Controllers
             });
         }
 
-        [Mvc5Authorize(Roles = AssignableToRolePermissions.CanEditMenu)]
         [ValidateAntiForgeryToken]
         [HttpPost]
-
         public virtual async Task<ActionResult> Edit(MenuModel model, ActionType actionType)
         {
 

@@ -2,6 +2,10 @@
 
 $(function () {
     AjaxForm.EnablePostbackValidation();
+    Selectize();
+    StartSummerNote();
+
+    $(".datepicker").datetimepicker({ defaultDate: "" });
 });
 
 
@@ -17,6 +21,38 @@ AjaxForm.ValidateForm = function (formId) {
     val.form();
     return val.valid();
 };
+
+Icheck = function () {
+    $('.skin-flat input').iCheck({ checkboxClass: "icheckbox_flat-green", radioClass: "iradio_flat-green" });
+}
+Selectize = function () {
+    $('.selectize-select').selectize();
+}
+
+EditSelectize = function () {
+    $('#Edit .selectize-select').selectize();
+}
+
+CardBlock = function (element) {
+    $(element).block(
+                {
+                    message: 'در حال پردازش <div class="icon-spinner10 icon-spin icon-lg"></div>',
+                    overlayCSS: { backgroundColor: "#fff", opacity: .7, cursor: "wait" },
+                    css: { border: 0, padding: 0, backgroundColor: "transparent" }
+                });
+};
+
+CardUnBlock = function (element) {
+    $(element).unblock();
+};
+
+StartSummerNote = function () {
+    $(".summernote").summernote({
+        minHeight: 300,             // set minimum height of editor
+    });
+}
+
+
 
 
 

@@ -16,18 +16,10 @@ namespace Netotik.Domain.EntityConfiguration
                 .IsRequired()
                 .HasMaxLength(500);
 
-            this.Property(t => t.Description)
-              .HasMaxLength(1500);
-
-
             this.HasOptional(t => t.Parent)
                 .WithMany(t => t.SubCategories)
                 .HasForeignKey(d => d.ParentId);
 
-            
-            this.HasOptional(t => t.Picture)
-                .WithMany(t => t.ContentCategories)
-                .HasForeignKey(t => t.PictureId);
         }
     }
 }

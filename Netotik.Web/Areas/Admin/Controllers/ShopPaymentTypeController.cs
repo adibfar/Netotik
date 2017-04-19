@@ -28,6 +28,7 @@ using Netotik.Common.Controller;
 
 namespace Netotik.Web.Areas.Admin.Controllers
 {
+    [Mvc5Authorize(Roles = AssignableToRolePermissions.CanAccessPaymentType)]
     [BreadCrumb(Title = "لیست درگاه پرداخت", UseDefaultRouteUrl = true, RemoveAllDefaultRouteValues = true,
  Order = 0, GlyphIcon = "icon icon-table")]
     public partial class ShopPaymentTypeController : BaseController
@@ -48,7 +49,6 @@ namespace Netotik.Web.Areas.Admin.Controllers
 
 
         #region Index
-        [Mvc5Authorize(Roles = AssignableToRolePermissions.CanAccessPaymentType)]
         public virtual ActionResult Index(string Search, int Page = 1, int PageSize = 10)
         {
 
@@ -66,13 +66,11 @@ namespace Netotik.Web.Areas.Admin.Controllers
 
         #region Create
         [BreadCrumb(Title = "درگاه جدید", Order = 1)]
-        [Mvc5Authorize(Roles = AssignableToRolePermissions.CanCreatePaymentType)]
         public virtual ActionResult Create()
         {
             return View(new PaymentTypeModel() { IsActive = true });
         }
 
-        [Mvc5Authorize(Roles = AssignableToRolePermissions.CanCreatePaymentType)]
         [ValidateAntiForgeryToken]
         [HttpPost]
         public virtual async Task<ActionResult> Create(PaymentTypeModel model, ActionType actionType)
@@ -146,9 +144,6 @@ namespace Netotik.Web.Areas.Admin.Controllers
 
         #endregion
 
-
-
-        [Mvc5Authorize(Roles = AssignableToRolePermissions.CanDeletePaymentType)]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public virtual async Task<ActionResult> Remove(int id = 0)
@@ -166,7 +161,6 @@ namespace Netotik.Web.Areas.Admin.Controllers
 
         #region Edit
 
-        [Mvc5Authorize(Roles = AssignableToRolePermissions.CanEditPaymentType)]
         [BreadCrumb(Title = "ویرایش درگاه", Order = 1)]
         public virtual ActionResult Edit(int id)
         {
@@ -197,7 +191,6 @@ namespace Netotik.Web.Areas.Admin.Controllers
 
         }
 
-        [Mvc5Authorize(Roles = AssignableToRolePermissions.CanEditPaymentType)]
         [ValidateAntiForgeryToken]
         [AllowUploadSpecialFilesOnly(".jpg,.png,.gif", true)]
         [HttpPost]

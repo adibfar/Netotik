@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Netotik.ViewModels.CMS.ContentCategory;
+using Netotik.Common.DataTables;
 
 namespace Netotik.Services.Abstract
 {
@@ -13,7 +14,7 @@ namespace Netotik.Services.Abstract
         Task<bool> ExistsByNameAsync(string name, int? id);
 
         Task<ContentCategory> GetSubjectByNameAsync(string name);
-        IQueryable<TableContentCategoryModel> GetDataTableSubject(string search);
+        IList<ContentCategoryItem> GetList(RequestListModel model, out long TotalCount, out long ShowCount);
 
         IList<ContentCategory> GetbyIds(int[] ids);
 

@@ -343,6 +343,8 @@ namespace Netotik.Services.Identity
         /// <returns/>
         Task<IList<string>> GetRolesAsync(long userId);
 
+        IList<string> GetRoles(long userId);
+
         Task<AdminEditModel> GetUserByRolesAsync(long id);
 
         /// <summary>

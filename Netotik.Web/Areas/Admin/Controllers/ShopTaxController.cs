@@ -27,6 +27,7 @@ using Netotik.Common.Controller;
 
 namespace Netotik.Web.Areas.Admin.Controllers
 {
+    [Mvc5Authorize(Roles = AssignableToRolePermissions.CanAccessTax)]
     [BreadCrumb(Title = "لیست مالیات", UseDefaultRouteUrl = true, RemoveAllDefaultRouteValues = true,
  Order = 0, GlyphIcon = "icon icon-table")]
     public partial class ShopTaxController : BaseController
@@ -46,7 +47,6 @@ namespace Netotik.Web.Areas.Admin.Controllers
         #endregion
 
         #region Index
-        [Mvc5Authorize(Roles = AssignableToRolePermissions.CanAccessTax)]
         public virtual ActionResult Index()
         {
 
@@ -57,7 +57,6 @@ namespace Netotik.Web.Areas.Admin.Controllers
         #endregion
 
         #region Create
-        [Mvc5Authorize(Roles = AssignableToRolePermissions.CanCreateTax)]
         [BreadCrumb(Title = "مالیات جدید", Order = 1)]
         public virtual ActionResult Create()
         {
@@ -67,7 +66,6 @@ namespace Netotik.Web.Areas.Admin.Controllers
 
         [ValidateAntiForgeryToken]
         [HttpPost]
-        [Mvc5Authorize(Roles = AssignableToRolePermissions.CanCreateTax)]
         public virtual async Task<ActionResult> Create(TaxModel model, ActionType actionType)
         {
             if (!ModelState.IsValid)
@@ -104,7 +102,6 @@ namespace Netotik.Web.Areas.Admin.Controllers
         #endregion
 
         #region Edit
-        [Mvc5Authorize(Roles = AssignableToRolePermissions.CanDeleteTax)]
         public virtual async Task<ActionResult> Remove(int id = 0)
         {
             var link = _taxService.SingleOrDefault(id);
@@ -116,7 +113,6 @@ namespace Netotik.Web.Areas.Admin.Controllers
             return RedirectToAction("Index");
         }
 
-        [Mvc5Authorize(Roles = AssignableToRolePermissions.CanEditTax)]
         [BreadCrumb(Title = "ویرایش مالیات", Order = 1)]
         public virtual async Task<ActionResult> Edit(int id)
         {
@@ -137,7 +133,6 @@ namespace Netotik.Web.Areas.Admin.Controllers
 
         [ValidateAntiForgeryToken]
         [HttpPost]
-        [Mvc5Authorize(Roles = AssignableToRolePermissions.CanEditTax)]
         public virtual async Task<ActionResult> Edit(TaxModel model, ActionType actionType)
         {
             var tax = _taxService.SingleOrDefault(model.Id);

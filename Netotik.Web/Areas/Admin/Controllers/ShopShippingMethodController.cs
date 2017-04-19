@@ -27,6 +27,7 @@ using Netotik.Common.Controller;
 
 namespace Netotik.Web.Areas.Admin.Controllers
 {
+    [Mvc5Authorize(Roles = AssignableToRolePermissions.CanAccessShopShippingByMethod)]
     [BreadCrumb(Title = "لیست روش های ارسال", UseDefaultRouteUrl = true, RemoveAllDefaultRouteValues = true,
  Order = 0, GlyphIcon = "icon icon-table")]
     public partial class ShopShippingMethodController : BaseController
@@ -47,7 +48,6 @@ namespace Netotik.Web.Areas.Admin.Controllers
 
 
         #region Index
-        [Mvc5Authorize(Roles = AssignableToRolePermissions.CanAccessShopShippingByMethod)]
         public virtual ActionResult Index(string Search, int Page = 1, int PageSize = 10)
         {
 
@@ -65,14 +65,12 @@ namespace Netotik.Web.Areas.Admin.Controllers
 
         #region Create
 
-        [Mvc5Authorize(Roles = AssignableToRolePermissions.CanCreateShopShippingByMethod)]
         [BreadCrumb(Title = "روش جدید", Order = 1)]
         public virtual ActionResult Create()
         {
             return View(new ShippingMethodModel() { BasePrice = 0, DisplayOrder = 0, IsActive = true });
         }
 
-        [Mvc5Authorize(Roles = AssignableToRolePermissions.CanCreateShopShippingByMethod)]
         [ValidateAntiForgeryToken]
         [HttpPost]
         public virtual async Task<ActionResult> Create(ShippingMethodModel model, ActionType actionType)
@@ -133,7 +131,6 @@ namespace Netotik.Web.Areas.Admin.Controllers
 
         #region Detail
 
-        [Mvc5Authorize(Roles = AssignableToRolePermissions.CanAccessShopShippingByMethod)]
         public virtual ActionResult Detail(int id)
         {
             var man = _shippingMethodService.SingleOrDefault(id);
@@ -143,9 +140,6 @@ namespace Netotik.Web.Areas.Admin.Controllers
 
         #endregion
 
-
-
-        [Mvc5Authorize(Roles = AssignableToRolePermissions.CanDeleteShopShippingByMethod)]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public virtual async Task<ActionResult> Remove(int id = 0)
@@ -163,7 +157,6 @@ namespace Netotik.Web.Areas.Admin.Controllers
 
         #region Edit
 
-        [Mvc5Authorize(Roles = AssignableToRolePermissions.CanEditShopShippingByMethod)]
         [BreadCrumb(Title = "ویرایش روش", Order = 1)]
         public virtual ActionResult Edit(int id)
         {
@@ -191,7 +184,6 @@ namespace Netotik.Web.Areas.Admin.Controllers
 
         }
 
-        [Mvc5Authorize(Roles = AssignableToRolePermissions.CanEditShopShippingByMethod)]
         [ValidateAntiForgeryToken]
         [AllowUploadSpecialFilesOnly(".jpg,.png,.gif", true)]
         [HttpPost]

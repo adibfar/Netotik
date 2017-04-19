@@ -512,6 +512,14 @@ namespace Netotik.Services.Identity
             ////todo: any permission form other sections
             return userPermissions;
         }
+
+        public IList<string> GetRoles(long userId)
+        {
+
+            var userPermissions = _roleManager.FindUserPermissions(userId);
+            ////todo: any permission form other sections
+            return userPermissions;
+        }
         #endregion
 
 

@@ -23,9 +23,11 @@ using DNTBreadCrumb;
 using Netotik.ViewModels.Identity.Security;
 using Netotik.ViewModels.CMS.ContentCategory;
 using Netotik.Common.Controller;
+using Netotik.Common.DataTables;
 
 namespace Netotik.Web.Areas.Admin.Controllers
 {
+    [Mvc5Authorize(Roles = AssignableToRolePermissions.CanAccessContentCategory)]
     [BreadCrumb(Title = "لیست موضوعات مطالب", UseDefaultRouteUrl = true, RemoveAllDefaultRouteValues = true,
  Order = 0, GlyphIcon = "icon icon-table")]
     public partial class ContentCategoryController : BaseController
@@ -46,49 +48,51 @@ namespace Netotik.Web.Areas.Admin.Controllers
 
 
         #region Index
-        [Mvc5Authorize(Roles = AssignableToRolePermissions.CanAccessContentCategory)]
-        public virtual ActionResult Index(string Search, int Page = 1, int PageSize = 10)
+        public virtual ActionResult Index()
         {
+            return View();
+        }
 
-            var pageList = _contentCategoryService.GetDataTableSubject(Search)
-                .ToPagedList<TableContentCategoryModel>(Page, PageSize);
+        public virtual JsonResult GetList(RequestListModel model)
+        {
+            long totalCount;
+            long showCount;
 
-            if (Request.IsAjaxRequest())
-                return View(MVC.Admin.ContentCategory.Views._Table, pageList);
-            else
-                return View(MVC.Admin.ContentCategory.ActionNames.Index, pageList);
+            var result = _contentCategoryService.GetList(model, out totalCount, out showCount);
 
+            return Json(new
+            {
+                sEcho = model.sEcho,
+                iTotalRecords = totalCount,
+                iTotalDisplayRecords = showCount,
+                aaData = result
+            }, JsonRequestBehavior.AllowGet);
         }
         #endregion
 
 
         #region Create
-        [Mvc5Authorize(Roles = AssignableToRolePermissions.CanCreateContentCategory)]
-        [BreadCrumb(Title = "موضوع جدید", Order = 1)]
-        public virtual async Task<ActionResult> Create()
+        public virtual ActionResult Create()
         {
-            await LoadCategories();
-            return View();
+            LoadCategories();
+            return PartialView(MVC.Admin.ContentCategory.Views._Create);
         }
 
-        [Mvc5Authorize(Roles = AssignableToRolePermissions.CanCreateContentCategory)]
         [ValidateAntiForgeryToken]
         [HttpPost,]
-        public virtual async Task<ActionResult> Create(ContentCategoryModel model, ActionType actionType)
+        public virtual async Task<ActionResult> Create(ContentCategoryModel model, ActionType actionType = ActionType.Save)
         {
-            await LoadCategories(model.ParentId);
+            LoadCategories(model.ParentId);
 
             if (!ModelState.IsValid)
             {
                 this.MessageError(Messages.MissionFail, Messages.AddError);
-                return View(model);
+                return RedirectToAction(MVC.Admin.ContentCategory.Index());
             }
 
             var subject = new ContentCategory()
             {
-                showInMenu = model.showInMenu,
                 Name = model.Name,
-                Description = model.Description,
                 ParentId = model.ParentId
             };
 
@@ -111,22 +115,7 @@ namespace Netotik.Web.Areas.Admin.Controllers
         #endregion
 
 
-        #region Detail
-        [Mvc5Authorize(Roles = AssignableToRolePermissions.CanAccessContentCategory)]
-        public virtual ActionResult Detail(int id)
-        {
-            var sub = _contentCategoryService.SingleOrDefault(id);
-            if (sub == null)
-                return RedirectToAction(MVC.Admin.ContentCategory.ActionNames.Index);
-
-            return View(sub);
-        }
-
-        #endregion
-
-
         #region Edit
-        [Mvc5Authorize(Roles = AssignableToRolePermissions.CanDeleteContentCategory)]
         [HttpPost]
         public virtual async Task<ActionResult> Remove(int id = 0)
         {
@@ -134,49 +123,48 @@ namespace Netotik.Web.Areas.Admin.Controllers
             var subject = _contentCategoryService.SingleOrDefault(id);
             if (subject != null)
             {
-                subject.IsDelete = true;
+                subject.IsDeleted = true;
                 await _uow.SaveChangesAsync();
+                this.MessageSuccess(Messages.MissionSuccess, Messages.RemoveSuccess);
+                return RedirectToAction(MVC.Admin.ContentCategory.ActionNames.Index);
             }
-
+            this.MessageError(Messages.MissionFail, Messages.RemoveError);
             return RedirectToAction(MVC.Admin.ContentCategory.ActionNames.Index);
+
         }
 
-        [Mvc5Authorize(Roles = AssignableToRolePermissions.CanEditContentCategory)]
         [BreadCrumb(Title = "ویرایش موضوع", Order = 1)]
         public virtual async Task<ActionResult> Edit(int id)
         {
             var model = _contentCategoryService.SingleOrDefault(id);
-            if (model == null) return RedirectToAction(MVC.Admin.ContentCategory.ActionNames.Index);
-            await LoadCategories(model.ParentId, model.Id);
+            if (model == null) return RedirectToAction(MVC.Admin.ContentCategory.Index());
+            LoadCategories(model.ParentId, model.Id);
 
-            return View(new ContentCategoryModel
-            {
-                Id = model.Id,
-                showInMenu = model.showInMenu,
-                Name = model.Name,
-                Description = model.Description,
-            });
+            return View(MVC.Admin.ContentCategory.Views._Edit
+                , new ContentCategoryModel
+                {
+                    Id = model.Id,
+                    Name = model.Name,
+                    ParentId = model.ParentId
+                });
         }
 
         [ValidateAntiForgeryToken]
         [HttpPost]
-        [Mvc5Authorize(Roles = AssignableToRolePermissions.CanEditContentCategory)]
-        public virtual async Task<ActionResult> Edit(ContentCategoryModel model, ActionType actionType)
+        public virtual async Task<ActionResult> Edit(ContentCategoryModel model, ActionType actionType = ActionType.Save)
         {
             var cat = _contentCategoryService.SingleOrDefault(model.Id);
             if (cat == null) return RedirectToAction(MVC.Admin.ContentCategory.ActionNames.Index);
 
-            await LoadCategories(model.Id, model.ParentId);
+            LoadCategories(model.Id, model.ParentId);
 
             if (!ModelState.IsValid)
             {
                 this.MessageError(Messages.MissionFail, Messages.InvalidDataError);
-                return View();
+                return RedirectToAction(MVC.Admin.ContentCategory.Index());
             }
 
             cat.Name = model.Name;
-            cat.Description = model.Description;
-            cat.showInMenu = model.showInMenu;
             cat.ParentId = model.ParentId;
             _contentCategoryService.Update(cat);
             try
@@ -199,9 +187,9 @@ namespace Netotik.Web.Areas.Admin.Controllers
 
         #region Private
 
-        private async Task LoadCategories(int? selectedId = null, int? catId = null)
+        private void LoadCategories(int? selectedId = null, int? catId = null)
         {
-            var list = await _contentCategoryService.All().Where(x => !x.IsDelete).ToListAsync();
+            var list = _contentCategoryService.All().Where(x => !x.IsDeleted).ToList();
             if (catId.HasValue) list = list.Where(x => x.Id != catId.Value).ToList();
             ViewBag.Categories = new SelectList(list, "Id", "Name", selectedId);
         }
@@ -210,14 +198,12 @@ namespace Netotik.Web.Areas.Admin.Controllers
 
         #region RemoteValidations
 
-
-
         [HttpPost]
         [AjaxOnly]
         [OutputCache(NoStore = true, Duration = 0, VaryByParam = "*")]
         public virtual async Task<JsonResult> IsSubjectNameExist(string name, int? id)
         {
-            return await _contentCategoryService.ExistsByNameAsync(name, id) ? Json(false) : Json(true);
+            return Json(!await _contentCategoryService.ExistsByNameAsync(name, id));
         }
 
         #endregion
