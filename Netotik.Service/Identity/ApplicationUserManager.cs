@@ -77,6 +77,31 @@ namespace Netotik.Services.Identity
             return _mappingEngine.Map<ViewModels.Identity.UserReseller.ProfileModel>(GetCurrentUser());
         }
 
+        public ViewModels.Identity.UserCompany.ProfileModel GetUserCompanyProfile(long id)
+        {
+            return _mappingEngine.Map<ViewModels.Identity.UserCompany.ProfileModel>(_users.FirstOrDefault(a => a.Id == id && !a.IsDeleted));
+        }
+
+        public IList<ViewModels.Identity.UserCompany.CompanyList>  GetListUserCompany(long id)
+        {
+            IList<ViewModels.Identity.UserCompany.CompanyList> selectedUsers = _users.Where(x => !x.IsDeleted && x.UserCompany.UserResellerId==id)
+                                            .Select(x => new ViewModels.Identity.UserCompany.CompanyList
+                                            {
+                                                Id = x.Id,
+                                                CompanyCode = x.UserCompany.CompanyCode,
+                                                Email = x.Email,
+                                                FirstName = x.FirstName,
+                                                IsBanned = x.IsBanned,
+                                                LastName = x.LastName,
+                                                NationalCode = x.UserCompany.NationalCode,
+                                                PhoneNumber = x.PhoneNumber,
+                                                UserName = x.UserName,
+                                                //ImageAvatar = x.PictureId.HasValue ? x.Picture.FileName : "Default.png",
+                                            }).ToList();
+
+            return selectedUsers;
+        }
+
         public async Task UpdateUserAdminProfile(ViewModels.Identity.UserAdmin.ProfileModel model)
         {
             var user = _users.Find(GetCurrentUserId());
@@ -86,6 +111,12 @@ namespace Netotik.Services.Identity
         public async Task UpdateUserResellerProfile(ViewModels.Identity.UserReseller.ProfileModel model)
         {
             var user = _users.Find(GetCurrentUserId());
+            _mappingEngine.Map(model, user);
+            await _unitOfWork.SaveChangesAsync();
+        }
+        public async Task UpdateUserCompanyProfile(ViewModels.Identity.UserCompany.ProfileModel model)
+        {
+            var user = _users.Find(model.Id);
             _mappingEngine.Map(model, user);
             await _unitOfWork.SaveChangesAsync();
         }
@@ -383,6 +414,16 @@ namespace Netotik.Services.Identity
             return user.Id;
 
         }
+        public async Task<long> AddCompany(ViewModels.Identity.UserCompany.Register viewModel)
+        {
+            var user = _mappingEngine.Map<User>(viewModel);
+            user.UserType = UserType.UserCompany;
+
+            await CreateAsync(user, viewModel.Password);
+
+            return user.Id;
+
+        }
         #endregion
 
         #region Validations
@@ -395,24 +436,42 @@ namespace Netotik.Services.Identity
         }
 
 
-        public bool CheckEmailExist(string email, long? id)
+        public bool CheckResellerEmailExist(string email, long? id)
         {
             return id == null
                ? _users.Any(a => a.Email.ToLower() == email.ToLower())
                : _users.Any(a => a.Email.ToLower() == email.ToLower() && a.Id != id.Value);
         }
-
-        public bool IsNationalCodeAvailableExist(string nCode, long? id)
+        public bool CheckCompanyEmailExist(string email, long? id)
+        {
+            return id == null
+               ? _users.Any(a => a.Email.ToLower() == email.ToLower())
+               : _users.Any(a => a.Email.ToLower() == email.ToLower() && a.Id != id.Value);
+        }
+        public bool CheckResellerNationalCodeExist(string nCode, long? id)
         {
             return id == null
                ? _users.Any(a => a.UserReseller.NationalCode == nCode)
                : _users.Any(a => a.UserReseller.NationalCode == nCode && a.Id != id.Value);
+        }
+
+        public bool CheckCompanyNationalCodeExist(string nCode, long? id , long? resellerid)
+        {
+            return id == null
+               ? _users.Any(a => a.UserCompany.NationalCode == nCode && a.UserCompany.UserResellerId == resellerid)
+               : _users.Any(a => a.UserCompany.NationalCode == nCode && a.UserCompany.UserResellerId == resellerid && a.Id != id.Value);
         }
         public bool CheckResellerCompanyNameExist(string name, long? id)
         {
             return id == null
                ? _users.Any(a => a.UserReseller.ResellerCode == name.ToLower())
                : _users.Any(a => a.UserReseller.ResellerCode == name.ToLower() && a.Id != id.Value);
+        }
+        public bool CheckCompanyCompanyNameExist(string name, long? id, long? resellerid)
+        {
+            return id == null
+               ? _users.Any(a => a.UserCompany.CompanyCode == name.ToLower() && a.UserCompany.UserResellerId == resellerid)
+               : _users.Any(a => a.UserCompany.CompanyCode == name.ToLower() && a.UserCompany.UserResellerId == resellerid && a.Id != id.Value);
         }
 
         public bool CheckGooglePlusIdExist(string googlePlusId, long? id)
@@ -431,11 +490,17 @@ namespace Netotik.Services.Identity
             //  : _users.Any(a => a.FaceBookId == faceBookId && a.Id != id.Value);
         }
 
-        public bool CheckIsPhoneNumberAvailable(string phoneNumber, long? id)
+        public bool CheckResellerPhoneNumberExist(string phoneNumber, long? id)
         {
             return id == null
-               ? _users.Any(a => a.PhoneNumber == phoneNumber)
-               : _users.Any(a => a.PhoneNumber == phoneNumber && a.Id != id.Value);
+               ? _users.Any(a => a.PhoneNumber == phoneNumber && a.UserType == UserType.UserReseller)
+               : _users.Any(a => a.PhoneNumber == phoneNumber && a.UserType == UserType.UserReseller && a.Id != id.Value);
+        }
+        public bool CheckCompanyPhoneNumberExist(string phoneNumber, long? id,long? resellerid)
+        {
+            return id == null
+               ? _users.Any(a => a.PhoneNumber == phoneNumber && a.UserType == UserType.UserCompany && a.UserCompany.UserResellerId == resellerid)
+               : _users.Any(a => a.PhoneNumber == phoneNumber && a.UserType == UserType.UserCompany && a.UserCompany.UserResellerId == resellerid && a.Id != id.Value);
         }
         #endregion
 
@@ -525,7 +590,8 @@ namespace Netotik.Services.Identity
         #region FindUserByResellerCodeAsync
         public Task<User> FindByResellerCodeAsync(string Code)
         {
-            return _users.FirstOrDefaultAsync(x => !x.IsDeleted && x.IsBanned && x.EmailConfirmed && x.UserType == UserType.UserReseller && x.UserReseller.ResellerCode == Code);
+            //return _users.FirstOrDefaultAsync(x => !x.IsDeleted && x.IsBanned && x.EmailConfirmed && x.UserType == UserType.UserReseller && x.UserReseller.ResellerCode == Code);
+            return _users.FirstOrDefaultAsync(x => !x.IsDeleted && x.UserType == UserType.UserReseller && x.UserReseller.ResellerCode == Code);
         }
         #endregion
 
@@ -589,23 +655,6 @@ namespace Netotik.Services.Identity
             var result = await _users.Where(a => a.Id == id).UpdateAsync(a => new User { IsDeleted = true });
             return result > 0;
         }
-
-        public async Task<bool> BanneUser(long id)
-        {
-            var key = id.ToString(CultureInfo.InvariantCulture) + "_roles";
-            _contextBase.InvalidateCache(key);
-            var result = await _users.Where(a => a.Id == id).UpdateAsync(a => new User { IsBanned = true });
-            return result > 0;
-        }
-
-        public async Task<bool> ActiveUser(long id)
-        {
-            var key = id.ToString(CultureInfo.InvariantCulture) + "_roles";
-            _contextBase.InvalidateCache(key);
-            var result = await _users.Where(a => a.Id == id).UpdateAsync(a => new User { IsBanned = false });
-            return result > 0;
-        }
-
         public bool CheckIsUserBannedOrDelete(long id)
         {
             return _users.Any(a => a.Id == id && (a.IsBanned || a.IsDeleted));

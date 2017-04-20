@@ -16,10 +16,14 @@ namespace Netotik.Services.Identity
     {
         ViewModels.Identity.UserAdmin.ProfileModel GetUserAdminProfile();
         ViewModels.Identity.UserReseller.ProfileModel GetUserResellerProfile();
+        ViewModels.Identity.UserCompany.ProfileModel GetUserCompanyProfile(long id);
 
         Task UpdateUserAdminProfile(ViewModels.Identity.UserAdmin.ProfileModel model);
         Task UpdateUserResellerProfile(ViewModels.Identity.UserReseller.ProfileModel model);
+        Task UpdateUserCompanyProfile(ViewModels.Identity.UserCompany.ProfileModel model);
         IList<UserItem> GetListUserAdmins(RequestListModel model, out long TotalCount, out long ShowCount);
+
+        IList<ViewModels.Identity.UserCompany.CompanyList> GetListUserCompany(long id);
 
         /// <summary>
         /// Used to hash/verify passwords
@@ -50,6 +54,7 @@ namespace Netotik.Services.Identity
         /// Used to send a sms message
         /// </summary>
         IIdentityMessageService SmsService { get; set; }
+
 
         /// <summary>
         /// Used for generating reset password and confirmation tokens
@@ -584,20 +589,23 @@ namespace Netotik.Services.Identity
         void SetRolesToUser(User user, IEnumerable<Role> roles);
 
         Task<bool> LogicalRemove(long id);
-        Task<bool> BanneUser(long id);
-        Task<bool> ActiveUser(long id);
         bool CheckUserNameExist(string userName, long? id);
-        bool CheckEmailExist(string email, long? id);
-        bool IsNationalCodeAvailableExist(string nCode, long? id);
+        bool CheckResellerEmailExist(string email, long? id); 
+        bool CheckCompanyEmailExist(string email, long? id);
+        bool CheckResellerNationalCodeExist(string nCode, long? id);
+        bool CheckCompanyNationalCodeExist(string nCode, long? id, long? resellerid);
         bool CheckResellerCompanyNameExist(string name, long? id);
+        bool CheckCompanyCompanyNameExist(string name, long? id, long? resellerid);
         bool CheckGooglePlusIdExist(string googlePlusId, long? id);
         bool CheckFacebookIdExist(string faceBookId, long? id);
-        bool CheckIsPhoneNumberAvailable(string phoneNumber, long? id);
+        bool CheckResellerPhoneNumberExist(string phoneNumber, long? id);
+        bool CheckCompanyPhoneNumberExist(string phoneNumber, long? id,long? resellerid);
         Task<string> CustomValidatePasswordAsync(string pass);
         bool CheckIsUserBanned(long id);
         bool CheckIsUserBanned(string userName);
         Task<User> AddUser(AdminAddModel viewModel);
         Task<long> AddReseller(RegisterViewModel viewModel);
+        Task<long> AddCompany(Netotik.ViewModels.Identity.UserCompany.Register viewModel);
         IUserEmailStore<User, long> GetEmailStore();
 
         bool IsEmailConfirmedByUserNameAsync(string userName);

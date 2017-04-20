@@ -26,13 +26,13 @@ namespace Netotik.Services.Implement
         public async Task<bool> ExistsByNameAsync(string name, int? id)
         {
             if (id.HasValue)
-                return await dbSet.AnyAsync(x => x.Name.Equals(name) && x.Id != id.Value && !x.IsDeleted);
-            return await dbSet.AnyAsync(x => x.Name.Equals(name) && !x.IsDeleted);
+                return await dbSet.AnyAsync(x => x.Name.Equals(name) && x.Id != id.Value);
+            return await dbSet.AnyAsync(x => x.Name.Equals(name));
         }
 
         public IList<CityItem> GetList(RequestListModel model, out long TotalCount, out long ShowCount)
         {
-            IQueryable<City> all = dbSet.Where(x => !x.IsDeleted).Include(x => x.State).AsQueryable();
+            IQueryable<City> all = dbSet.Include(x => x.State).AsQueryable();
             TotalCount = all.LongCount();
 
             // Apply Filtering
@@ -76,7 +76,7 @@ namespace Netotik.Services.Implement
 
         public IList<CityModel> GetByStateId(int stateId)
         {
-            return dbSet.Where(x => !x.IsDeleted && x.IsActive && x.StateId == stateId).OrderByDescending(x => x.IsDefault).Select(x => new CityModel { Id = x.Id, Name = x.Name }).ToList();
+            return dbSet.Where(x => x.IsActive && x.StateId == stateId).OrderByDescending(x => x.IsDefault).Select(x => new CityModel { Id = x.Id, Name = x.Name }).ToList();
         }
     }
 }
