@@ -11,7 +11,7 @@
             <div id="navbar-mobile" class="collapse navbar-toggleable-sm">
                 <ul class="nav navbar-nav">
                     <li class="nav-item hidden-sm-down">
-                        <a href="#" class="nav-link nav-menu-main menu-toggle ">
+                        <a href="#" class="nav-link nav-menu-main menu-toggle hidden-xs">
                             <i class="icon-menu5"></i>
                         </a>
                     </li>
@@ -33,7 +33,7 @@
                                 }
                                 else if (user.UserType == Netotik.Domain.Entity.UserType.UserCompany)
                                 {
-                                    <a href="@Url.Action(MVC.Company.Home.Profile())" class="dropdown-item">
+                                    <a href="@Url.Action(MVC.Company.Home.MyProfile())" class="dropdown-item">
                                         <i class="icon-head"></i> پروفایل 
                                     </a>
                                 }

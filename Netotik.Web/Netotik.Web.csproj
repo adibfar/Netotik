@@ -1972,10 +1972,9 @@
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Areas\Admin\Views\Configuration\Index.cshtml" />
     <Content Include="Areas\Admin\Views\Home\Index.cshtml" />
-    <Content Include="Areas\Company\Views\Home\_Table.cshtml" />
     <Content Include="Areas\Company\Views\Home\Index.cshtml" />
     <Content Include="Areas\Reseller\Views\Company\ChangePassword.cshtml" />
-    <Content Include="Areas\Company\Views\Home\Profile.cshtml" />
+    <Content Include="Areas\Company\Views\Home\MyProfile.cshtml" />
     <Content Include="Areas\Reseller\Views\Shared\_Attachments.cshtml" />
     <Content Include="Areas\Reseller\Views\Shared\_BreadCrumb.cshtml" />
     <Content Include="Areas\Reseller\Views\Shared\_CaptchaPartial.cshtml" />
@@ -2095,6 +2094,8 @@
     <Content Include="Areas\Admin\Views\Home\_ProfileData.cshtml" />
     <Content Include="Areas\Reseller\Views\Home\_ProfileData.cshtml" />
     <Content Include="Areas\Reseller\Views\Home\_ImageProfile.cshtml" />
+    <Content Include="Areas\Company\Views\Home\_ProfileData.cshtml" />
+    <Content Include="Areas\Company\Views\Home\_ImageProfile.cshtml" />
     <Content Include="Areas\Admin\Views\ContentTag\_Create.cshtml" />
     <Content Include="Areas\Admin\Views\ContentTag\_Edit.cshtml" />
     <Content Include="Areas\Admin\Views\ContentTag\_Table.cshtml" />

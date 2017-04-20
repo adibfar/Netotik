@@ -41,46 +41,87 @@ namespace Netotik.Web.Controllers
 
         #endregion
 
-        
+        #region Email
         [HttpPost]
         [AllowAnonymous]
         [OutputCache(Location = OutputCacheLocation.None, NoStore = true, Duration = 0, VaryByParam = "*")]
-        public virtual JsonResult CheckPassword(string password)
+        public virtual JsonResult IsResellerEmailAvailable(string email, long? Id)
         {
-            return password.IsSafePasword() ? Json(true) : Json(false);
-        }
-        [HttpPost]
-        [AllowAnonymous]
-        [OutputCache(Location = OutputCacheLocation.None, NoStore = true, Duration = 0, VaryByParam = "*")]
-        public virtual JsonResult IsEmailAvailable(string email, long? Id)
-        {
-            var check = _applicationUserManager.CheckEmailExist(email, Id);
+            var check = _applicationUserManager.CheckResellerEmailExist(email, Id);
             return Json(!check);
         }
 
         [HttpPost]
         [AllowAnonymous]
         [OutputCache(Location = OutputCacheLocation.None, NoStore = true, Duration = 0, VaryByParam = "*")]
-        public virtual JsonResult IsNationalCodeAvailable(string nationalCode, long? Id)
+        public virtual JsonResult IsCompanyEmailAvailable(string email, long? Id)
         {
-            var check = _applicationUserManager.IsNationalCodeAvailableExist(nationalCode, Id);
-            var check2 = _applicationUserManager.IsNationalCodeAvailableAlgoritm(nationalCode);
-            if(!check == check2 == true)
-                return Json(true);
-            else
-                return Json(false);
+            var check = _applicationUserManager.CheckCompanyEmailExist(email, Id);
+            return Json(!check);
+        }
+
+        #endregion
+
+        #region PhoneNumber
+        [HttpPost]
+        [AllowAnonymous]
+        [OutputCache(Location = OutputCacheLocation.None, NoStore = true, Duration = 0, VaryByParam = "*")]
+        public virtual JsonResult IsResellerPhoneNumberAvailable(string phoneNumber, long? Id)
+        {
+            var check = _applicationUserManager.CheckResellerPhoneNumberExist(phoneNumber, Id);
+            return check ? Json(false) : Json(true);
         }
 
         [HttpPost]
         [AllowAnonymous]
         [OutputCache(Location = OutputCacheLocation.None, NoStore = true, Duration = 0, VaryByParam = "*")]
-        public virtual JsonResult IsPhoneNumberAvailable(string phoneNumber, long? Id)
+        public virtual JsonResult IsCompanyPhoneNumberAvailable(string phoneNumber, long? Id, long? Resellerid)
         {
-            var check = _applicationUserManager.CheckIsPhoneNumberAvailable(phoneNumber, Id);
+            var check = _applicationUserManager.CheckCompanyPhoneNumberExist(phoneNumber, Id , Resellerid);
             return check ? Json(false) : Json(true);
+        }
+        #endregion
+
+        #region NationalCode
+        [HttpPost]
+        [AllowAnonymous]
+        [OutputCache(Location = OutputCacheLocation.None, NoStore = true, Duration = 0, VaryByParam = "*")]
+        public virtual JsonResult IsResellerNationalCodeAvailable(string nationalCode, long? Id)
+        {
+            var check = _applicationUserManager.CheckResellerNationalCodeExist(nationalCode, Id);
+            var check2 = _applicationUserManager.IsNationalCodeAvailableAlgoritm(nationalCode);
+            if (!check == check2 == true)
+                return Json(true);
+            else
+                return Json(false);
         }
 
 
+        [HttpPost]
+        [AllowAnonymous]
+        [OutputCache(Location = OutputCacheLocation.None, NoStore = true, Duration = 0, VaryByParam = "*")]
+        public virtual JsonResult IsCompanyNationalCodeAvailable(string nationalCode, long? Id, long? Resellerid)
+        {
+            var check = _applicationUserManager.CheckCompanyNationalCodeExist(nationalCode, Id, Resellerid);
+            var check2 = _applicationUserManager.IsNationalCodeAvailableAlgoritm(nationalCode);
+            if (!check == check2 == true)
+                return Json(true);
+            else
+                return Json(false);
+        }
+        #endregion
+        
+        #region Username
+        [HttpPost]
+        [AllowAnonymous]
+        [OutputCache(Location = OutputCacheLocation.None, NoStore = true, Duration = 0, VaryByParam = "*")]
+        public virtual JsonResult IsUserNameAvailable(string userName, long? Id)
+        {
+            return _applicationUserManager.CheckUserNameExist(userName, Id) ? Json(false) : Json(true);
+        }
+        #endregion
+        
+        #region _Code
         [HttpPost]
         [AllowAnonymous]
         [OutputCache(Location = OutputCacheLocation.None, NoStore = true, Duration = 0, VaryByParam = "*")]
@@ -94,10 +135,22 @@ namespace Netotik.Web.Controllers
         [HttpPost]
         [AllowAnonymous]
         [OutputCache(Location = OutputCacheLocation.None, NoStore = true, Duration = 0, VaryByParam = "*")]
-        public virtual JsonResult IsUserNameAvailable(string userName,long? Id)
+        public virtual JsonResult IsCompanyCodeAvailable(string CompanyCode, long? Id,long? Resellerid)
         {
-            return _applicationUserManager.CheckUserNameExist(userName, Id) ? Json(false) : Json(true);
-        }
+            var check = _applicationUserManager.CheckCompanyCompanyNameExist(CompanyCode, Id, Resellerid);
+            return check ? Json(false) : Json(true);
 
+        }
+        #endregion
+        
+        #region Password
+        [HttpPost]
+        [AllowAnonymous]
+        [OutputCache(Location = OutputCacheLocation.None, NoStore = true, Duration = 0, VaryByParam = "*")]
+        public virtual JsonResult CheckPassword(string password)
+        {
+            return password.IsSafePasword() ? Json(true) : Json(false);
+        }
+        #endregion
     }
 }

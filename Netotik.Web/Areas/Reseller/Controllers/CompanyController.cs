@@ -25,59 +25,63 @@ using Netotik.Common.MikrotikAPI;
 using Netotik.ViewModels.Identity.UserCompany;
 using Netotik.Services.Identity;
 using Netotik.Common.Controller;
+using Microsoft.AspNet.Identity;
+using Netotik.Services.Implement;
+using Mvc.Mailer;
+using Netotik.ViewModels.Identity.Account;
 
 namespace Netotik.Web.Areas.Reseller.Controllers
 {
     [BreadCrumb(Title = "لیست کاربران شرکت ها", UseDefaultRouteUrl = true, RemoveAllDefaultRouteValues = true,
  Order = 0, GlyphIcon = "icon icon-table")]
-    public partial class CompanyController : BaseController
+    public partial class CompanyController : BasePanelController
     {
         #region ctor
         private readonly IApplicationUserManager _applicationUserManager;
         private readonly IPictureService _pictureService;
+        private readonly IUserMailer _userMailer;
         private readonly IApplicationRoleManager _applicationRoleManager;
+        private readonly IMikrotikServices _mikrotikServices;
         private readonly IUnitOfWork _uow;
 
         public CompanyController(
             IApplicationUserManager applicationUserManager,
             IPictureService pictureservice,
+            IUserMailer userMailer,
             IApplicationRoleManager applicationRoleManager,
+            IMikrotikServices mikrotikServices,
             IUnitOfWork uow)
         {
             _pictureService = pictureservice;
+            _userMailer = userMailer;
             _applicationRoleManager = applicationRoleManager;
             _applicationUserManager = applicationUserManager;
+            _mikrotikServices = mikrotikServices;
             _uow = uow;
         }
         #endregion
 
         #region Index
         [Mvc5Authorize(Roles = "Reseller")]
-        public virtual ActionResult Index(string Search, int Page = 1, int PageSize = 10)
-        {
-            var pageList = new List<object>(); //_applicationUserManager.GetDataTableCompanyAccounts(Search, User.UserId).ToPagedList(Page, PageSize);
+        public virtual ActionResult Index()
+        {       
+            var model = _applicationUserManager.GetListUserCompany(UserLogined.UserReseller.Id);
+            return View(model);
 
-            if (Request.IsAjaxRequest())
-                return View(MVC.Reseller.Company.Views._Table, pageList);
-            else
-                return View(MVC.Reseller.Company.ActionNames.Index, pageList);
         }
         [Mvc5Authorize(Roles = "Reseller")]
         public virtual ActionResult CompanyLoginURL()
         {
-            //var logined_user = _ResellerService.SingleOrDefault(User.UserId);
-            //ViewBag.CompanyName = logined_user.CompanyName;
-            //return View();
+            ViewBag.ResellerCode = UserLogined.UserReseller.ResellerCode;
             return View();
         }
         #endregion
-
-        #region Create
 
         [Mvc5Authorize(Roles = "Reseller")]
         [BreadCrumb(Title = "کاربر جدید", Order = 1)]
         public virtual ActionResult Create()
         {
+            IUserMailer mailer = new UserMailer();
             return View();
         }
 
@@ -86,76 +90,51 @@ namespace Netotik.Web.Areas.Reseller.Controllers
         [AllowUploadSpecialFilesOnly(".jpg,.png,.gif", true)]
         [ValidateAntiForgeryToken]
         [HttpPost]
-        public virtual async Task<ActionResult> Create(CompanyAddModel model, ActionType actionType)
+        public virtual async Task<ActionResult> Create(Register model)
         {
+            if (_applicationUserManager.CheckResellerEmailExist(model.Email, null))
+                ModelState.AddModelError("Email", "این ایمیل قبلا در سیستم ثبت شده است");
 
-            //if (!ModelState.IsValid)
-            //{
-            //    this.MessageError(Messages.MissionFail, Messages.InvalidDataError);
-            //    return View();
-            //}
-            //else
-            //{
+            if (_applicationUserManager.CheckUserNameExist(model.UserName, null))
+                ModelState.AddModelError("UserName", "این نام کاربری قبلا در سیستم ثبت شده است");
 
-            //    #region Initil User
-            //    var now = DateTime.Now;
-            //    var companyuser = new Domain.Entity.Company()
-            //    {
+            if (!model.Password.IsSafePasword())
+                ModelState.AddModelError("Password", "این کلمه عبور به راحتی قابل تشخیص است");
 
-            //        Userman_Customer = "admin",
-            //        Reseller_Id = base.User.UserId,
-            //        UserName = model.Username,
-            //        Email = model.Email,
-            //        MobileNumber = model.MobileNumber,
-            //        Name = model.Name,
-            //        PostalCode = model.PostalCode,
-            //        Address = model.Address,
-            //        Password = Encryption.EncryptingPassword(model.Password),
-            //        CompanyName = model.CompanyName,
-            //        PersonalCode = model.PersonCode,
-            //        R_Host = model.R_Host,
-            //        R_User = model.R_User,
-            //        R_Password = model.R_Password,
-            //        R_Port = model.R_Port,
-            //        IsActive = true,
-            //        CreateDate = now
+            if (!ModelState.IsValid)
+            {
+                this.MessageError(Messages.MissionFail, Messages.InvalidDataError);
+                return View(model);
+            }
+            model.UserResellerId = UserLogined.UserReseller.Id;
+            if (model.cloud)
+            {
+                model.R_Host = _mikrotikServices.EnableAndGetCloud(model.R_Host, model.R_Port, model.R_User, model.R_Password);
+            }
+            var userId = await _applicationUserManager.AddCompany(model);
+
+            await SendConfirmationEmail(model.Email, userId);
 
 
-            //    };
-            //    #endregion
+            var Success = "حساب کاربری شما با موفقیت ایجاد شد. برای فعال سازی " +
+                              "حساب خود به ایمیل خود مراجعه کنید";
 
-            //    #region SaveChanges
-            //    _applicationUserManager.Add(companyuser);
-            //    if (result.Status)
-            //    {
-            //        try
-            //        {
-            //            await _uow.SaveChangesAsync();
-            //        }
-            //        catch (DbEntityValidationException ex)
-            //        {
-            //            this.MessageError(Messages.MissionFail, Messages.AddError);
-            //        }
-            //        catch (Exception ex)
-            //        {
-            //            this.MessageError(Messages.MissionFail, Messages.AddError);
-            //        }
-            //    }
-            //    #endregion
+            ModelState.Clear();
 
-            //    SetResultMessage(result);
-            //    if (!result.Status) return View();
-
-            //    if (actionType == ActionType.SaveContinue) return RedirectToAction(MVC.Reseller.Company.Edit(companyuser.Id));
-            //    return RedirectToAction(MVC.Reseller.Company.Index());
-            //}
-
-            return View();
+            if (!_mikrotikServices.IP_Port_Check(model.R_Host,model.R_Port,model.R_User,model.R_Password)) {
+                this.MessageWarning("اتصال به روتر انجام نشد.", "پس از فعال سازی اکانت وارد پنل شده و آدرس روتر و پورت روتر را بررسی کنید یا از طریق ویرایش نسبت به اصلاح اقدام کنید.");
+                if (!_mikrotikServices.User_Pass_Check(model.R_Host, model.R_Port, model.R_User, model.R_Password))
+                {
+                    this.MessageWarning("نام کاربری یا رمز عبور روتر اشتباه می باشد.", "لطفا پس از فعال سازی اکانت وارد پنل شده و نام کاربری و رمز عبور صحیح را وارد کنید یا از طریق ویرایش نسبت به اصلاح اقدام کنید.");
+                    if (!_mikrotikServices.IsUsermangerInstall(model.R_Host, model.R_Port, model.R_User, model.R_Password))
+                        this.MessageWarning("پکیج یوزرمنیجر میکروتیک نصب نمی باشد.", "پکیج یوزرمنیجر بر روی روتر شما نصب نمی باشد.لطفا مراحل نصب را طی نمایید.");
+                }
+            }
+            this.MessageSuccess("فعال سازی!.", Success);
+            this.MessageSuccess("ثبت موفق!.", "اطلاعات شما با موفقیت ثبت شد.");
+            return RedirectToAction(MVC.Reseller.Company.ActionNames.Index);
 
         }
-
-
-        #endregion
 
         #region Detail
 
@@ -331,7 +310,6 @@ namespace Netotik.Web.Areas.Reseller.Controllers
         {
             //if (!ModelState.IsValid)
             //{
-
             //    this.MessageError(Messages.MissionFail, Messages.InvalidDataError);
             //}
             //else
@@ -355,38 +333,54 @@ namespace Netotik.Web.Areas.Reseller.Controllers
             return View();
         }
 
-        [HttpPost]
-        [ValidateAntiForgeryToken]
+        [Mvc5Authorize(Roles = "Reseller")]
         public virtual async Task<ActionResult> Disable(int id = 0)
         {
-            //var model = _applicationUserManager.SingleOrDefault(id);
-            //if (model == null)
-            //    return RedirectToAction(MVC.Reseller.Company.ActionNames.Index);
-            //model.IsActive = false;
-            //await _uow.SaveAllChangesAsync();
-
-            //return RedirectToAction(MVC.Reseller.Company.ActionNames.Index);
-
-            return View();
+            var model = _userManager.FindUserById(id);
+            if (model == null || model.UserCompany.UserResellerId != UserLogined.Id)
+            {
+                this.MessageError("خطا", "هیچ مقداری ارسال نشده یا مجوز ویرایش را ندارید.");
+                return RedirectToAction(MVC.Reseller.Company.ActionNames.Index);
+            }
+            model.IsBanned = true;
+            await _uow.SaveAllChangesAsync();
+            this.MessageSuccess("موفق! ", "کاربر غیره فعال شد.");
+            return RedirectToAction(MVC.Reseller.Company.ActionNames.Index);
         }
 
-        [HttpPost]
-        [ValidateAntiForgeryToken]
+        [Mvc5Authorize(Roles = "Reseller")]
         public virtual async Task<ActionResult> Enable(int id = 0)
         {
-            //var model = _applicationUserManager.SingleOrDefault(id);
-            //if (model == null)
-            //    return RedirectToAction(MVC.Reseller.Company.ActionNames.Index);
-            //model.IsActive = true;
-            //await _uow.SaveAllChangesAsync();
-
-            //return RedirectToAction(MVC.Reseller.Company.ActionNames.Index);
-
-            return View();
+            var model = _userManager.FindUserById(id);
+            if (model == null || model.UserCompany.UserResellerId != UserLogined.Id)
+            {
+                this.MessageError("خطا", "هیچ مقداری ارسال نشده یا مجوز ویرایش را ندارید.");
+                return RedirectToAction(MVC.Reseller.Company.ActionNames.Index);
+            }
+            model.IsBanned = false;
+            await _userManager.UpdateAsync(model);
+            this.MessageSuccess("موفق! ", "کاربر فعال شد.");
+            return RedirectToAction(MVC.Reseller.Company.ActionNames.Index);
         }
         #endregion
-        
-        
+
+        public async Task SendConfirmationEmail(string email, long userId)
+        {
+            var code = await _applicationUserManager.GenerateEmailConfirmationTokenAsync(userId);
+            var callbackUrl = Url.Abs(Url.Action(MVC.Account.ActionNames.ConfirmEmail, MVC.Account.Name,
+                new { userId, code, area = "" }, protocol: Request.Url.Scheme));
+
+            _userMailer.ConfirmAccount(new EmailViewModel
+            {
+                Message = "با سلام کاربر گرامی.برای فعال سازی حساب خود لازم است بر روی لینک مقابل کلیک کنید",
+                To = email,
+                Url = callbackUrl,
+                UrlText = "فعال سازی",
+                Subject = "فعال سازی اکانت کاربری",
+                ViewName = MVC.UserMailer.Views.ViewNames.ConfirmAccount
+            }).Send();
+
+        }
 
     }
 }

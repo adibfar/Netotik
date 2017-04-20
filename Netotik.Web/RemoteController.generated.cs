@@ -58,27 +58,45 @@ namespace Netotik.Web.Controllers
 
         [NonAction]
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public virtual System.Web.Mvc.JsonResult CheckPassword()
+        public virtual System.Web.Mvc.JsonResult IsResellerEmailAvailable()
         {
-            return new T4MVC_System_Web_Mvc_JsonResult(Area, Name, ActionNames.CheckPassword);
+            return new T4MVC_System_Web_Mvc_JsonResult(Area, Name, ActionNames.IsResellerEmailAvailable);
         }
         [NonAction]
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public virtual System.Web.Mvc.JsonResult IsEmailAvailable()
+        public virtual System.Web.Mvc.JsonResult IsCompanyEmailAvailable()
         {
-            return new T4MVC_System_Web_Mvc_JsonResult(Area, Name, ActionNames.IsEmailAvailable);
+            return new T4MVC_System_Web_Mvc_JsonResult(Area, Name, ActionNames.IsCompanyEmailAvailable);
         }
         [NonAction]
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public virtual System.Web.Mvc.JsonResult IsNationalCodeAvailable()
+        public virtual System.Web.Mvc.JsonResult IsResellerPhoneNumberAvailable()
         {
-            return new T4MVC_System_Web_Mvc_JsonResult(Area, Name, ActionNames.IsNationalCodeAvailable);
+            return new T4MVC_System_Web_Mvc_JsonResult(Area, Name, ActionNames.IsResellerPhoneNumberAvailable);
         }
         [NonAction]
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public virtual System.Web.Mvc.JsonResult IsPhoneNumberAvailable()
+        public virtual System.Web.Mvc.JsonResult IsCompanyPhoneNumberAvailable()
         {
-            return new T4MVC_System_Web_Mvc_JsonResult(Area, Name, ActionNames.IsPhoneNumberAvailable);
+            return new T4MVC_System_Web_Mvc_JsonResult(Area, Name, ActionNames.IsCompanyPhoneNumberAvailable);
+        }
+        [NonAction]
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public virtual System.Web.Mvc.JsonResult IsResellerNationalCodeAvailable()
+        {
+            return new T4MVC_System_Web_Mvc_JsonResult(Area, Name, ActionNames.IsResellerNationalCodeAvailable);
+        }
+        [NonAction]
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public virtual System.Web.Mvc.JsonResult IsCompanyNationalCodeAvailable()
+        {
+            return new T4MVC_System_Web_Mvc_JsonResult(Area, Name, ActionNames.IsCompanyNationalCodeAvailable);
+        }
+        [NonAction]
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public virtual System.Web.Mvc.JsonResult IsUserNameAvailable()
+        {
+            return new T4MVC_System_Web_Mvc_JsonResult(Area, Name, ActionNames.IsUserNameAvailable);
         }
         [NonAction]
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -88,9 +106,15 @@ namespace Netotik.Web.Controllers
         }
         [NonAction]
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public virtual System.Web.Mvc.JsonResult IsUserNameAvailable()
+        public virtual System.Web.Mvc.JsonResult IsCompanyCodeAvailable()
         {
-            return new T4MVC_System_Web_Mvc_JsonResult(Area, Name, ActionNames.IsUserNameAvailable);
+            return new T4MVC_System_Web_Mvc_JsonResult(Area, Name, ActionNames.IsCompanyCodeAvailable);
+        }
+        [NonAction]
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public virtual System.Web.Mvc.JsonResult CheckPassword()
+        {
+            return new T4MVC_System_Web_Mvc_JsonResult(Area, Name, ActionNames.CheckPassword);
         }
         [NonAction]
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -114,61 +138,99 @@ namespace Netotik.Web.Controllers
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public class ActionNamesClass
         {
-            public readonly string CheckPassword = "CheckPassword";
-            public readonly string IsEmailAvailable = "IsEmailAvailable";
-            public readonly string IsNationalCodeAvailable = "IsNationalCodeAvailable";
-            public readonly string IsPhoneNumberAvailable = "IsPhoneNumberAvailable";
-            public readonly string IsResellerCodeAvailable = "IsResellerCodeAvailable";
+            public readonly string IsResellerEmailAvailable = "IsResellerEmailAvailable";
+            public readonly string IsCompanyEmailAvailable = "IsCompanyEmailAvailable";
+            public readonly string IsResellerPhoneNumberAvailable = "IsResellerPhoneNumberAvailable";
+            public readonly string IsCompanyPhoneNumberAvailable = "IsCompanyPhoneNumberAvailable";
+            public readonly string IsResellerNationalCodeAvailable = "IsResellerNationalCodeAvailable";
+            public readonly string IsCompanyNationalCodeAvailable = "IsCompanyNationalCodeAvailable";
             public readonly string IsUserNameAvailable = "IsUserNameAvailable";
+            public readonly string IsResellerCodeAvailable = "IsResellerCodeAvailable";
+            public readonly string IsCompanyCodeAvailable = "IsCompanyCodeAvailable";
+            public readonly string CheckPassword = "CheckPassword";
             public readonly string RedirectToLocal = "RedirectToLocal";
         }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public class ActionNameConstants
         {
-            public const string CheckPassword = "CheckPassword";
-            public const string IsEmailAvailable = "IsEmailAvailable";
-            public const string IsNationalCodeAvailable = "IsNationalCodeAvailable";
-            public const string IsPhoneNumberAvailable = "IsPhoneNumberAvailable";
-            public const string IsResellerCodeAvailable = "IsResellerCodeAvailable";
+            public const string IsResellerEmailAvailable = "IsResellerEmailAvailable";
+            public const string IsCompanyEmailAvailable = "IsCompanyEmailAvailable";
+            public const string IsResellerPhoneNumberAvailable = "IsResellerPhoneNumberAvailable";
+            public const string IsCompanyPhoneNumberAvailable = "IsCompanyPhoneNumberAvailable";
+            public const string IsResellerNationalCodeAvailable = "IsResellerNationalCodeAvailable";
+            public const string IsCompanyNationalCodeAvailable = "IsCompanyNationalCodeAvailable";
             public const string IsUserNameAvailable = "IsUserNameAvailable";
+            public const string IsResellerCodeAvailable = "IsResellerCodeAvailable";
+            public const string IsCompanyCodeAvailable = "IsCompanyCodeAvailable";
+            public const string CheckPassword = "CheckPassword";
             public const string RedirectToLocal = "RedirectToLocal";
         }
 
 
-        static readonly ActionParamsClass_CheckPassword s_params_CheckPassword = new ActionParamsClass_CheckPassword();
+        static readonly ActionParamsClass_IsResellerEmailAvailable s_params_IsResellerEmailAvailable = new ActionParamsClass_IsResellerEmailAvailable();
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public ActionParamsClass_CheckPassword CheckPasswordParams { get { return s_params_CheckPassword; } }
+        public ActionParamsClass_IsResellerEmailAvailable IsResellerEmailAvailableParams { get { return s_params_IsResellerEmailAvailable; } }
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public class ActionParamsClass_CheckPassword
-        {
-            public readonly string password = "password";
-        }
-        static readonly ActionParamsClass_IsEmailAvailable s_params_IsEmailAvailable = new ActionParamsClass_IsEmailAvailable();
-        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public ActionParamsClass_IsEmailAvailable IsEmailAvailableParams { get { return s_params_IsEmailAvailable; } }
-        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public class ActionParamsClass_IsEmailAvailable
+        public class ActionParamsClass_IsResellerEmailAvailable
         {
             public readonly string email = "email";
             public readonly string Id = "Id";
         }
-        static readonly ActionParamsClass_IsNationalCodeAvailable s_params_IsNationalCodeAvailable = new ActionParamsClass_IsNationalCodeAvailable();
+        static readonly ActionParamsClass_IsCompanyEmailAvailable s_params_IsCompanyEmailAvailable = new ActionParamsClass_IsCompanyEmailAvailable();
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public ActionParamsClass_IsNationalCodeAvailable IsNationalCodeAvailableParams { get { return s_params_IsNationalCodeAvailable; } }
+        public ActionParamsClass_IsCompanyEmailAvailable IsCompanyEmailAvailableParams { get { return s_params_IsCompanyEmailAvailable; } }
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public class ActionParamsClass_IsNationalCodeAvailable
+        public class ActionParamsClass_IsCompanyEmailAvailable
+        {
+            public readonly string email = "email";
+            public readonly string Id = "Id";
+        }
+        static readonly ActionParamsClass_IsResellerPhoneNumberAvailable s_params_IsResellerPhoneNumberAvailable = new ActionParamsClass_IsResellerPhoneNumberAvailable();
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public ActionParamsClass_IsResellerPhoneNumberAvailable IsResellerPhoneNumberAvailableParams { get { return s_params_IsResellerPhoneNumberAvailable; } }
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public class ActionParamsClass_IsResellerPhoneNumberAvailable
+        {
+            public readonly string phoneNumber = "phoneNumber";
+            public readonly string Id = "Id";
+        }
+        static readonly ActionParamsClass_IsCompanyPhoneNumberAvailable s_params_IsCompanyPhoneNumberAvailable = new ActionParamsClass_IsCompanyPhoneNumberAvailable();
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public ActionParamsClass_IsCompanyPhoneNumberAvailable IsCompanyPhoneNumberAvailableParams { get { return s_params_IsCompanyPhoneNumberAvailable; } }
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public class ActionParamsClass_IsCompanyPhoneNumberAvailable
+        {
+            public readonly string phoneNumber = "phoneNumber";
+            public readonly string Id = "Id";
+            public readonly string Resellerid = "Resellerid";
+        }
+        static readonly ActionParamsClass_IsResellerNationalCodeAvailable s_params_IsResellerNationalCodeAvailable = new ActionParamsClass_IsResellerNationalCodeAvailable();
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public ActionParamsClass_IsResellerNationalCodeAvailable IsResellerNationalCodeAvailableParams { get { return s_params_IsResellerNationalCodeAvailable; } }
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public class ActionParamsClass_IsResellerNationalCodeAvailable
         {
             public readonly string nationalCode = "nationalCode";
             public readonly string Id = "Id";
         }
-        static readonly ActionParamsClass_IsPhoneNumberAvailable s_params_IsPhoneNumberAvailable = new ActionParamsClass_IsPhoneNumberAvailable();
+        static readonly ActionParamsClass_IsCompanyNationalCodeAvailable s_params_IsCompanyNationalCodeAvailable = new ActionParamsClass_IsCompanyNationalCodeAvailable();
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public ActionParamsClass_IsPhoneNumberAvailable IsPhoneNumberAvailableParams { get { return s_params_IsPhoneNumberAvailable; } }
+        public ActionParamsClass_IsCompanyNationalCodeAvailable IsCompanyNationalCodeAvailableParams { get { return s_params_IsCompanyNationalCodeAvailable; } }
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public class ActionParamsClass_IsPhoneNumberAvailable
+        public class ActionParamsClass_IsCompanyNationalCodeAvailable
         {
-            public readonly string phoneNumber = "phoneNumber";
+            public readonly string nationalCode = "nationalCode";
+            public readonly string Id = "Id";
+            public readonly string Resellerid = "Resellerid";
+        }
+        static readonly ActionParamsClass_IsUserNameAvailable s_params_IsUserNameAvailable = new ActionParamsClass_IsUserNameAvailable();
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public ActionParamsClass_IsUserNameAvailable IsUserNameAvailableParams { get { return s_params_IsUserNameAvailable; } }
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public class ActionParamsClass_IsUserNameAvailable
+        {
+            public readonly string userName = "userName";
             public readonly string Id = "Id";
         }
         static readonly ActionParamsClass_IsResellerCodeAvailable s_params_IsResellerCodeAvailable = new ActionParamsClass_IsResellerCodeAvailable();
@@ -180,14 +242,23 @@ namespace Netotik.Web.Controllers
             public readonly string ResellerCode = "ResellerCode";
             public readonly string Id = "Id";
         }
-        static readonly ActionParamsClass_IsUserNameAvailable s_params_IsUserNameAvailable = new ActionParamsClass_IsUserNameAvailable();
+        static readonly ActionParamsClass_IsCompanyCodeAvailable s_params_IsCompanyCodeAvailable = new ActionParamsClass_IsCompanyCodeAvailable();
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public ActionParamsClass_IsUserNameAvailable IsUserNameAvailableParams { get { return s_params_IsUserNameAvailable; } }
+        public ActionParamsClass_IsCompanyCodeAvailable IsCompanyCodeAvailableParams { get { return s_params_IsCompanyCodeAvailable; } }
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public class ActionParamsClass_IsUserNameAvailable
+        public class ActionParamsClass_IsCompanyCodeAvailable
         {
-            public readonly string userName = "userName";
+            public readonly string CompanyCode = "CompanyCode";
             public readonly string Id = "Id";
+            public readonly string Resellerid = "Resellerid";
+        }
+        static readonly ActionParamsClass_CheckPassword s_params_CheckPassword = new ActionParamsClass_CheckPassword();
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public ActionParamsClass_CheckPassword CheckPasswordParams { get { return s_params_CheckPassword; } }
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public class ActionParamsClass_CheckPassword
+        {
+            public readonly string password = "password";
         }
         static readonly ActionParamsClass_RedirectToLocal s_params_RedirectToLocal = new ActionParamsClass_RedirectToLocal();
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -217,53 +288,95 @@ namespace Netotik.Web.Controllers
         public T4MVC_RemoteController() : base(Dummy.Instance) { }
 
         [NonAction]
-        partial void CheckPasswordOverride(T4MVC_System_Web_Mvc_JsonResult callInfo, string password);
+        partial void IsResellerEmailAvailableOverride(T4MVC_System_Web_Mvc_JsonResult callInfo, string email, long? Id);
 
         [NonAction]
-        public override System.Web.Mvc.JsonResult CheckPassword(string password)
+        public override System.Web.Mvc.JsonResult IsResellerEmailAvailable(string email, long? Id)
         {
-            var callInfo = new T4MVC_System_Web_Mvc_JsonResult(Area, Name, ActionNames.CheckPassword);
-            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "password", password);
-            CheckPasswordOverride(callInfo, password);
-            return callInfo;
-        }
-
-        [NonAction]
-        partial void IsEmailAvailableOverride(T4MVC_System_Web_Mvc_JsonResult callInfo, string email, long? Id);
-
-        [NonAction]
-        public override System.Web.Mvc.JsonResult IsEmailAvailable(string email, long? Id)
-        {
-            var callInfo = new T4MVC_System_Web_Mvc_JsonResult(Area, Name, ActionNames.IsEmailAvailable);
+            var callInfo = new T4MVC_System_Web_Mvc_JsonResult(Area, Name, ActionNames.IsResellerEmailAvailable);
             ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "email", email);
             ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "Id", Id);
-            IsEmailAvailableOverride(callInfo, email, Id);
+            IsResellerEmailAvailableOverride(callInfo, email, Id);
             return callInfo;
         }
 
         [NonAction]
-        partial void IsNationalCodeAvailableOverride(T4MVC_System_Web_Mvc_JsonResult callInfo, string nationalCode, long? Id);
+        partial void IsCompanyEmailAvailableOverride(T4MVC_System_Web_Mvc_JsonResult callInfo, string email, long? Id);
 
         [NonAction]
-        public override System.Web.Mvc.JsonResult IsNationalCodeAvailable(string nationalCode, long? Id)
+        public override System.Web.Mvc.JsonResult IsCompanyEmailAvailable(string email, long? Id)
         {
-            var callInfo = new T4MVC_System_Web_Mvc_JsonResult(Area, Name, ActionNames.IsNationalCodeAvailable);
-            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "nationalCode", nationalCode);
+            var callInfo = new T4MVC_System_Web_Mvc_JsonResult(Area, Name, ActionNames.IsCompanyEmailAvailable);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "email", email);
             ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "Id", Id);
-            IsNationalCodeAvailableOverride(callInfo, nationalCode, Id);
+            IsCompanyEmailAvailableOverride(callInfo, email, Id);
             return callInfo;
         }
 
         [NonAction]
-        partial void IsPhoneNumberAvailableOverride(T4MVC_System_Web_Mvc_JsonResult callInfo, string phoneNumber, long? Id);
+        partial void IsResellerPhoneNumberAvailableOverride(T4MVC_System_Web_Mvc_JsonResult callInfo, string phoneNumber, long? Id);
 
         [NonAction]
-        public override System.Web.Mvc.JsonResult IsPhoneNumberAvailable(string phoneNumber, long? Id)
+        public override System.Web.Mvc.JsonResult IsResellerPhoneNumberAvailable(string phoneNumber, long? Id)
         {
-            var callInfo = new T4MVC_System_Web_Mvc_JsonResult(Area, Name, ActionNames.IsPhoneNumberAvailable);
+            var callInfo = new T4MVC_System_Web_Mvc_JsonResult(Area, Name, ActionNames.IsResellerPhoneNumberAvailable);
             ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "phoneNumber", phoneNumber);
             ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "Id", Id);
-            IsPhoneNumberAvailableOverride(callInfo, phoneNumber, Id);
+            IsResellerPhoneNumberAvailableOverride(callInfo, phoneNumber, Id);
+            return callInfo;
+        }
+
+        [NonAction]
+        partial void IsCompanyPhoneNumberAvailableOverride(T4MVC_System_Web_Mvc_JsonResult callInfo, string phoneNumber, long? Id, long? Resellerid);
+
+        [NonAction]
+        public override System.Web.Mvc.JsonResult IsCompanyPhoneNumberAvailable(string phoneNumber, long? Id, long? Resellerid)
+        {
+            var callInfo = new T4MVC_System_Web_Mvc_JsonResult(Area, Name, ActionNames.IsCompanyPhoneNumberAvailable);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "phoneNumber", phoneNumber);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "Id", Id);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "Resellerid", Resellerid);
+            IsCompanyPhoneNumberAvailableOverride(callInfo, phoneNumber, Id, Resellerid);
+            return callInfo;
+        }
+
+        [NonAction]
+        partial void IsResellerNationalCodeAvailableOverride(T4MVC_System_Web_Mvc_JsonResult callInfo, string nationalCode, long? Id);
+
+        [NonAction]
+        public override System.Web.Mvc.JsonResult IsResellerNationalCodeAvailable(string nationalCode, long? Id)
+        {
+            var callInfo = new T4MVC_System_Web_Mvc_JsonResult(Area, Name, ActionNames.IsResellerNationalCodeAvailable);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "nationalCode", nationalCode);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "Id", Id);
+            IsResellerNationalCodeAvailableOverride(callInfo, nationalCode, Id);
+            return callInfo;
+        }
+
+        [NonAction]
+        partial void IsCompanyNationalCodeAvailableOverride(T4MVC_System_Web_Mvc_JsonResult callInfo, string nationalCode, long? Id, long? Resellerid);
+
+        [NonAction]
+        public override System.Web.Mvc.JsonResult IsCompanyNationalCodeAvailable(string nationalCode, long? Id, long? Resellerid)
+        {
+            var callInfo = new T4MVC_System_Web_Mvc_JsonResult(Area, Name, ActionNames.IsCompanyNationalCodeAvailable);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "nationalCode", nationalCode);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "Id", Id);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "Resellerid", Resellerid);
+            IsCompanyNationalCodeAvailableOverride(callInfo, nationalCode, Id, Resellerid);
+            return callInfo;
+        }
+
+        [NonAction]
+        partial void IsUserNameAvailableOverride(T4MVC_System_Web_Mvc_JsonResult callInfo, string userName, long? Id);
+
+        [NonAction]
+        public override System.Web.Mvc.JsonResult IsUserNameAvailable(string userName, long? Id)
+        {
+            var callInfo = new T4MVC_System_Web_Mvc_JsonResult(Area, Name, ActionNames.IsUserNameAvailable);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "userName", userName);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "Id", Id);
+            IsUserNameAvailableOverride(callInfo, userName, Id);
             return callInfo;
         }
 
@@ -281,15 +394,28 @@ namespace Netotik.Web.Controllers
         }
 
         [NonAction]
-        partial void IsUserNameAvailableOverride(T4MVC_System_Web_Mvc_JsonResult callInfo, string userName, long? Id);
+        partial void IsCompanyCodeAvailableOverride(T4MVC_System_Web_Mvc_JsonResult callInfo, string CompanyCode, long? Id, long? Resellerid);
 
         [NonAction]
-        public override System.Web.Mvc.JsonResult IsUserNameAvailable(string userName, long? Id)
+        public override System.Web.Mvc.JsonResult IsCompanyCodeAvailable(string CompanyCode, long? Id, long? Resellerid)
         {
-            var callInfo = new T4MVC_System_Web_Mvc_JsonResult(Area, Name, ActionNames.IsUserNameAvailable);
-            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "userName", userName);
+            var callInfo = new T4MVC_System_Web_Mvc_JsonResult(Area, Name, ActionNames.IsCompanyCodeAvailable);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "CompanyCode", CompanyCode);
             ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "Id", Id);
-            IsUserNameAvailableOverride(callInfo, userName, Id);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "Resellerid", Resellerid);
+            IsCompanyCodeAvailableOverride(callInfo, CompanyCode, Id, Resellerid);
+            return callInfo;
+        }
+
+        [NonAction]
+        partial void CheckPasswordOverride(T4MVC_System_Web_Mvc_JsonResult callInfo, string password);
+
+        [NonAction]
+        public override System.Web.Mvc.JsonResult CheckPassword(string password)
+        {
+            var callInfo = new T4MVC_System_Web_Mvc_JsonResult(Area, Name, ActionNames.CheckPassword);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "password", password);
+            CheckPasswordOverride(callInfo, password);
             return callInfo;
         }
 
