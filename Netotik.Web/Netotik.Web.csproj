@@ -2100,6 +2100,10 @@
     <Content Include="Areas\Admin\Views\ContentTag\_Edit.cshtml" />
     <Content Include="Areas\Admin\Views\ContentTag\_Table.cshtml" />
     <Content Include="Areas\Admin\Views\ContentTag\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Menu\_Create.cshtml" />
+    <Content Include="Areas\Admin\Views\Menu\_Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\Menu\_Table.cshtml" />
+    <Content Include="Areas\Admin\Views\Menu\Index.cshtml" />
     <None Include="Content\fonts\icomoon\icomoon.eot" />
     <Content Include="Content\fonts\icomoon\icomoon.svg" />
     <None Include="Content\fonts\icomoon\icomoon.ttf" />
@@ -2223,12 +2227,6 @@
     <Content Include="Areas\Admin\Views\ContactUs\Index.cshtml" />
     <Content Include="Views\Shared\DisplayTemplates\DateTime.cshtml" />
     <Content Include="Views\Shared\_SideBarResellerMenu.cshtml" />
-    <Content Include="Areas\Admin\Views\Menu\_Table.cshtml" />
-    <Content Include="Areas\Admin\Views\Menu\Create.cshtml" />
-    <Content Include="Areas\Admin\Views\Menu\CreateOrEdit.cshtml" />
-    <Content Include="Areas\Admin\Views\Menu\Detail.cshtml" />
-    <Content Include="Areas\Admin\Views\Menu\Edit.cshtml" />
-    <Content Include="Areas\Admin\Views\Menu\Index.cshtml" />
     <Content Include="Areas\Admin\Views\Comments\_Table.cshtml" />
     <Content Include="Areas\Admin\Views\Comments\Detail.cshtml" />
     <Content Include="Areas\Admin\Views\Comments\Index.cshtml" />

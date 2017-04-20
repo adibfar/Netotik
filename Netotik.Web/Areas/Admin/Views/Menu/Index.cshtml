@@ -1,23 +1,108 @@
-﻿@model List<Netotik.ViewModels.CMS.Menu.TableAdminMenu>
-@{
-    ViewBag.Title = "مدیریت منو ها";
-    var roles = Html.CurrentUserPermissions();
+﻿
+<section id="configuration">
+    <div class="col-xs-12">
+        <div class="card">
+            <div class="card-header">
+                <button type="button" class="btn btn-social width-150 btn-instagram" data-toggle="modal" data-target="#Create"><span class="icon-plus font-medium-4"></span> منو جدید</button>
+                @Html.Action(MVC.Admin.Menu.Create())
+            </div>
 
-    var canAdd = roles.Any(x => x == Netotik.ViewModels.Identity.Security.AssignableToRolePermissions.CanCreateMenu);
+            <div class="card-body collapse in">
+                <div class="card-block card-dashboard">
+                    @Html.Partial(MVC.Admin.Menu.Views._Table)
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<div id="edit-container"></div>
+
+@section DownScript{
+
+    <script type="text/javascript">
+        $(function () {
+            var table = $('#grid').dataTable({
+                "order": [[1, 'asc']],
+                "iDisplayLength": 10,
+                "bProcessing": true,
+                "bStateSave": true,
+                "bServerSide": true,
+                "bFilter": true,
+                "aLengthMenu": [[10, 25, 50, 100], [10, 25, 50, 100]],
+                "bAutoWidth": false,
+                "sAjaxSource": "@Url.Action(MVC.Admin.Menu.GetList())",
+                "fnServerData": function (sSource, aoData, fnCallback) {
+                    $.ajax({
+                        "dataType": 'json',
+                        "type": "POST",
+                        "url": sSource,
+                        "data": aoData,
+                        "success": fnCallback
+                    });
+                },
+
+                "aoColumnDefs": [
+                    { "bSortable": false, "aTargets": [0] },
+                    { "bSortable": false, "aTargets": [-1] },
+                     {
+                         "targets": 2,
+                         "render": function (data, type, full, meta) {
+                             var result = full.Text;
+                             if (full.IsActive == false) {
+                                 result += ' <div class="tag tag-danger">غیر فعال</div> '
+                             }
+                             return result;
+                         }
+                     },
+                     {
+                         "targets": -1,
+                         "render": function (data, type, full, meta) {
+                             return '<span class="dropdown">'
+                                 + '<button id="btnSearchDrop2" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" class="btn btn-outline-secondary dropdown-toggle dropdown-menu-right">'
+                                 + '<i class="icon-cog3"></i> پردازش</button>'
+                                 + '<span aria-labelledby="btnSearchDrop2" class="dropdown-menu mt-1 dropdown-menu-right">'
+                                 + '<a onclick="edit(' + full.Id + ');" class="edit dropdown-item">'
+                                 + '<i class="icon-pen3"></i> ویرایش </a>'
+                                 + '<a onclick="remove(' + full.Id + ')" class="dropdown-item">'
+                                 + '<i class="icon-trash4"></i> حذف </a>';
+                         }
+                     }
+                ]
+                ,
+                "aoColumns": [
+                    { "mDataProp": "RowNumber" },
+                    { "mDataProp": "Parent" },
+                    { "mDataProp": "Text" },
+                    { "mDataProp": "Url" },
+                    { "mDataProp": "Icon" },
+                    { "no": "no" }
+                ],
+
+                "oLanguage": {
+                    "sUrl": "/Content/js/plugins/tables/datatable/dataTables.persian.txt"
+                }
+            });
+
+        });
+
+        function edit(id) {
+            CardBlock('.card');
+            var url = "@Url.Action(MVC.Admin.Menu.Edit())";
+            $.get(url + '/' + id, function (data) {
+                $('#edit-container').html(data);
+                Selectize();
+                Icheck();
+                $('#Edit').modal('show');
+                CardUnBlock('.card');
+                AjaxForm.EnableAjaxFormvalidate('Edit');
+            });
+        };
+
+        function remove(id) {
+            PostData("@Url.Action(MVC.Admin.Menu.Remove())", { id: id });
+        }
+        
+    </script>
 }
-
-<div class="col-lg-12" id="ContentPage">
-    <section class="panel">
-        <header class="panel-heading">
-            @ViewBag.Title
-            @if (canAdd)
-            {
-                @Html.ActionLink("منو جدید", MVC.Admin.Menu.ActionNames.Create, MVC.Admin.Menu.Name, null, new { @class = "btn btn-sm btn-primary pull-left" })
-            }
-        </header>
-
-
-        @Html.Partial("_Table", Model)
-
-    </section>
-</div>

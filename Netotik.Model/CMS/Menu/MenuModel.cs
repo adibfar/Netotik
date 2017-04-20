@@ -21,7 +21,7 @@ namespace Netotik.ViewModels.CMS.Menu
         [MaxLength(30, ErrorMessageResourceType = typeof(Messages), ErrorMessageResourceName = "MaxLengthError")]
         [MinLength(3, ErrorMessageResourceType = typeof(Messages), ErrorMessageResourceName = "MinLengthError")]
         [Display(ResourceType = typeof(Captions), Name = "Name")]
-        public string Name { get; set; }
+        public string Text { get; set; }
 
         [Display(ResourceType = typeof(Captions), Name = "Url")]
         [Required(ErrorMessageResourceType = typeof(Messages), ErrorMessageResourceName = "RequiredError")]

@@ -23,6 +23,7 @@ using DNTBreadCrumb;
 using Netotik.ViewModels.Identity.Security;
 using Netotik.ViewModels.CMS.Menu;
 using Netotik.Common.Controller;
+using Netotik.Common.DataTables;
 
 namespace Netotik.Web.Areas.Admin.Controllers
 {
@@ -34,70 +35,63 @@ namespace Netotik.Web.Areas.Admin.Controllers
 
         #region ctor
         private readonly IMenuService _menuService;
-        private readonly IContentService _contentService;
-        private readonly IContentCategoryService _sessionSubject;
         private readonly IUnitOfWork _uow;
 
         public MenuController(
             IMenuService menuService,
-            IContentService contentService,
-            IContentCategoryService sessionSubject,
             IUnitOfWork uow)
         {
-            _sessionSubject = sessionSubject;
-            _contentService = contentService;
             _menuService = menuService;
             _uow = uow;
         }
         #endregion
 
-
         #region Index
-        public virtual ActionResult Index(string Search = "")
+        public virtual ActionResult Index()
         {
+            return View();
+        }
 
-            var pageList = _menuService.All()
-                .Include(x => x.Parent)
-                .Where(x => x.Text.Contains(Search))
-                .OrderBy(x => x.ParentId)
-                .ToList()
-                .Select(x => new TableAdminMenu { Id = x.Id, Url = x.Url, Name = MenuExtension.GetName(x.Parent, x.Text) })
-                .ToList();
+        public virtual JsonResult GetList(RequestListModel model)
+        {
+            long totalCount;
+            long showCount;
 
-            if (Request.IsAjaxRequest())
-                return View(MVC.Admin.Menu.Views._Table, pageList);
-            else
-                return View(MVC.Admin.Menu.ActionNames.Index, pageList);
+            var result = _menuService.GetList(model, out totalCount, out showCount);
+
+            return Json(new
+            {
+                sEcho = model.sEcho,
+                iTotalRecords = totalCount,
+                iTotalDisplayRecords = showCount,
+                aaData = result
+            }, JsonRequestBehavior.AllowGet);
         }
         #endregion
 
-
         #region Create
 
-        [BreadCrumb(Title = "منو جدید", Order = 1)]
         public virtual ActionResult Create()
         {
-            LoadPages();
-            LoadParents();
-            return View(new MenuModel() { Order = 0 });
+            PopulateParents();
+            return View(MVC.Admin.Menu.Views._Create, new MenuModel() { Order = 0 });
         }
 
         [ValidateAntiForgeryToken]
         [HttpPost]
-        public virtual async Task<ActionResult> Create(MenuModel model, ActionType actionType)
+        public virtual async Task<ActionResult> Create(MenuModel model, ActionType actionType = ActionType.Save)
         {
-            LoadParents(model.ParentId);
-            LoadPages();
+            PopulateParents(model.ParentId);
 
             if (!ModelState.IsValid)
             {
                 this.MessageError(Messages.MissionFail, Messages.InvalidDataError);
-                return View(model);
+                return RedirectToAction(MVC.Admin.Menu.Index());
             }
 
             var menu = new Menu()
             {
-                Text = model.Name,
+                Text = model.Text,
                 Url = model.Url,
                 ParentId = model.ParentId,
                 IsActive = model.IsActive,
@@ -117,54 +111,38 @@ namespace Netotik.Web.Areas.Admin.Controllers
             catch (Exception ex)
             {
                 this.MessageError(Messages.MissionFail, Messages.AddError);
-                return View();
+                return RedirectToAction(MVC.Admin.Menu.Index());
             }
 
-            this.MessageError(Messages.MissionSuccess, Messages.AddSuccess);
+            this.MessageSuccess(Messages.MissionSuccess, Messages.AddSuccess);
             return RedirectToAction(MVC.Admin.Menu.Index());
         }
         #endregion
-
-
-        #region Detail
-
-        [Mvc5Authorize(Roles = AssignableToRolePermissions.CanAccessMenu)]
-        public virtual ActionResult Detail(int id)
-        {
-            var sub = _menuService.SingleOrDefault(id);
-            if (sub == null)
-                return RedirectToAction("Index");
-
-            return PartialView(sub);
-        }
-
-        #endregion
-
 
         #region Edit
         [HttpPost]
         public virtual async Task<ActionResult> Remove(int id = 0)
         {
-            var menu = new Menu { Id = id };
-            _menuService.Remove(menu);
-            if (!menu.SubMenues.Any())
+            var menu = _menuService.SingleOrDefault(id);
+            if (menu != null)
+            {
+                _menuService.Remove(menu);
                 await _uow.SaveChangesAsync();
-
-            return RedirectToAction(MVC.Admin.Menu.ActionNames.Index);
+                this.MessageInformation(Messages.MissionSuccess, Messages.RemoveSuccess);
+            }
+            return RedirectToAction(MVC.Admin.Menu.Index());
         }
 
-        [BreadCrumb(Title = "ویرایش منو", Order = 1)]
         public virtual ActionResult Edit(int id)
         {
             var model = _menuService.SingleOrDefault(id);
-            if (model == null) return RedirectToAction(MVC.Admin.Menu.ActionNames.Index);
+            if (model == null) return RedirectToAction(MVC.Admin.Menu.Index());
 
-            LoadPages();
-            LoadParents(model.ParentId, model.Id);
-            return View(new MenuModel
+            PopulateParents(model.ParentId, model.Id);
+            return PartialView(MVC.Admin.Menu.Views._Edit,new MenuModel
             {
                 Id = model.Id,
-                Name = model.Text,
+                Text = model.Text,
                 Url = model.Url,
                 Order = model.Order,
                 Icon = model.Icon,
@@ -175,23 +153,22 @@ namespace Netotik.Web.Areas.Admin.Controllers
 
         [ValidateAntiForgeryToken]
         [HttpPost]
-        public virtual async Task<ActionResult> Edit(MenuModel model, ActionType actionType)
+        public virtual async Task<ActionResult> Edit(MenuModel model, ActionType actionType=ActionType.Save)
         {
 
             var menu = _menuService.SingleOrDefault(model.Id);
             if (menu == null)
-                return RedirectToAction(MVC.Admin.Menu.ActionNames.Index);
+                return RedirectToAction(MVC.Admin.Menu.Index());
 
-            LoadPages();
-            LoadParents(model.ParentId, model.Id.Value);
+            PopulateParents(model.ParentId, model.Id.Value);
 
             if (!ModelState.IsValid)
             {
                 this.MessageError(Messages.MissionFail, Messages.InvalidDataError);
-                return View();
+                return RedirectToAction(MVC.Admin.Menu.Index());
             }
 
-            menu.Text = model.Name;
+            menu.Text = model.Text;
             menu.IsActive = model.IsActive;
             menu.Url = model.Url;
             menu.ParentId = model.ParentId;
@@ -207,7 +184,7 @@ namespace Netotik.Web.Areas.Admin.Controllers
             catch (Exception ex)
             {
                 this.MessageError(Messages.MissionFail, Messages.UpdateError);
-                return View();
+                return RedirectToAction(MVC.Admin.Menu.Index());
             }
 
             this.MessageSuccess(Messages.MissionSuccess, Messages.UpdateSuccess);
@@ -216,35 +193,14 @@ namespace Netotik.Web.Areas.Admin.Controllers
 
         #endregion
 
-
-
         #region private
-
-        private void LoadParents(int? selectedId = null, int menuId = 0)
+        private void PopulateParents(int? selectedId = null, int menuId = 0)
         {
             var list = _menuService.All().ToList().Where(x => x.Id != menuId)
                 .Select(x => new Menu { Text = MenuExtension.GetName(x.Parent, x.Text), Id = x.Id }).ToList();
 
             ViewBag.Menues = new SelectList(list, "Id", "Text", selectedId);
-
         }
-
-        private void LoadPages()
-        {
-            List<SelectListItem> list = new List<SelectListItem>
-            {
-                new SelectListItem{Text="لیست صفحات موجود", Value=""},
-                new SelectListItem{Text="تماس با ما", Value=Url.Action(MVC.ContactUs.ActionNames.Index,MVC.ContactUs.Name,new {Area=""},null)},
-                new SelectListItem{Text="صفحه اصلی", Value=Url.Action(MVC.Home.ActionNames.Index,MVC.Home.Name,new {Area=""},null)},
-                new SelectListItem{Text="اخرین مطالب", Value=Url.Action(MVC.Blog.ActionNames.Index, MVC.Blog.Name,new {Area=""},null)},
-                new SelectListItem{Text="فروشگاه", Value=Url.Action(MVC.Product.ActionNames.Index, MVC.Product.Name,new {Area="",categoryId=0,brandId=0},null)},
-            };
-            ViewBag.Pages = list;
-        }
-
         #endregion
-
-
-
     }
 }

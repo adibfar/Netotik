@@ -1,43 +1,79 @@
 ﻿@model Netotik.ViewModels.CMS.Menu.MenuModel
 @{
-    ViewBag.Title = " ثبت اطلاعات ";
+    Layout = null;
 }
-
-        @using (Html.BeginForm(MVC.Admin.Menu.ActionNames.Create, MVC.Admin.Menu.Name,FormMethod.Post, htmlAttributes: new { @class = "form cmxform form-horizontal tasi-form",id="form" }))
-        {
-          <div class="ibox-content m-b-sm border-bottom">
-
-        <div class="row">
-            <div class="col-md-12">
-                <button name="actionType" value="@Netotik.Common.Controller.ActionType.Save" class="btn btn-outline btn-primary" onclick="AjaxForm.Post(this, 'form')" data-loading-text="در حال ارسال اطلاعات">
-                    <span class="fa fa-check"></span>
-                    @Netotik.Resources.Captions.Save
+<!-- Modal -->
+<div class="modal fade text-xs-left" id="Create" tabindex="-1" role="dialog" aria-labelledby="myModalLabel20" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
                 </button>
-                <button name="actionType" value="@Netotik.Common.Controller.ActionType.SaveContinue" class="btn btn-primary btn-outline" onclick="AjaxForm.Post(this, 'form')" data-loading-text="در حال ارسال اطلاعات">
-                    <span class="fa fa-edit"></span>
-                    @Netotik.Resources.Captions.SaveEdit
-                </button>
-                <a class="btn btn-default btn-outline pull-left" href="@Url.Action(MVC.Admin.Menu.ActionNames.Index, MVC.Admin.Menu.Name)">
-                    <span class="fa fa-reply"></span>
-                    @Netotik.Resources.Captions.Back
-                </a>
+                <h4 class="modal-title" id="myModalLabel20">منو جدید</h4>
             </div>
+            @using (Html.BeginForm(MVC.Admin.Menu.ActionNames.Create, MVC.Admin.Menu.Name, FormMethod.Post, htmlAttributes: new { @class = "form-horizontal", id = "CreateForm" }))
+            {
+                @Html.AntiForgeryToken()
+                <div class="modal-body">
 
-            <div class="col-md-12">
-                @Html.ValidationSummary(false, "", htmlAttributes: new { @class = "text-danger" })
-            </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                @Html.LabelFor(m => m.ParentId)
+                                @Html.DropDownListFor(model => model.ParentId, ViewBag.Menues as SelectList, new { @class = "selectize-select" })
+                                @Html.ValidationMessageFor(model => model.ParentId, "", htmlAttributes: new { @class = "text-danger" })
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                @Html.LabelFor(m => m.Text)
+                                @Html.TextBoxFor(m => m.Text, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.Text, "", htmlAttributes: new { @class = "text-danger" })
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group has-feedback">
+                                @Html.LabelFor(m => m.Url)
+                                @Html.TextBoxFor(m => m.Url, new { @class = "form-control", dir = "ltr" })
+                                @Html.ValidationMessageFor(model => model.Url, "", htmlAttributes: new { @class = "text-danger" })
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                @Html.LabelFor(m => m.Icon)
+                                @Html.TextBoxFor(m => m.Icon, new { @class = "form-control", dir = "ltr" })
+                                @Html.ValidationMessageFor(model => model.Icon, "", htmlAttributes: new { @class = "text-danger" })
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row form-group skin skin-flat">
+                        <div class="col-md-4 col-sm-6 col-xs-12">
+                            <fieldset>
+                                @Html.CheckBoxFor(model => model.IsActive)
+                                @Html.LabelFor(model => model.IsActive)
+                            </fieldset>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">
+                        <i class="icon-cross2"></i>
+                        بستن
+                    </button>
+                    <button name="actionType" value="@Netotik.Common.Controller.ActionType.Save" type="button" class="btn btn-outline-success" onclick="AjaxForm.Post(this, 'CreateForm')" data-loading-text="در حال ارسال اطلاعات">
+                        <i class="icon-check2"></i>
+                        @Netotik.Resources.Captions.Save
+                    </button>
+                </div>
+            }
         </div>
     </div>
-
-    @Html.AntiForgeryToken()
-    @Html.Partial("CreateOrEdit", Model)
-        }
-
-
-
-
-@section DownScript{
-    <script>
-        $("#PageList").change(function () { $("#Url").val(this.value); });
-    </script>
-}
+</div>

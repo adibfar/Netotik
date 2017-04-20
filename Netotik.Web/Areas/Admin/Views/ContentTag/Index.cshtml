@@ -46,19 +46,6 @@
                     { "bSortable": false, "aTargets": [0] },
                     { "bSortable": false, "aTargets": [-1] },
                     {
-                        "targets": 1,
-                        "render": function (data, type, full, meta) {
-                            var result = full.Name;
-                            if (full.IsActive==false) {
-                                result+=' <div class="tag tag-danger">غیر فعال</div> '
-                            }
-                            if (full.IsDefault == true) {
-                                result += ' <div class="tag tag-success">پیش فرض</div> '
-                            }
-                            return result;
-                        }
-                    },
-                    {
                         "targets": -1,
                         "render": function (data, type, full, meta) {
                             return '<span class="dropdown">'
@@ -67,9 +54,9 @@
                                 + '<span aria-labelledby="btnSearchDrop2" class="dropdown-menu mt-1 dropdown-menu-right">'
                                 + '<a onclick="edit(' + full.Id + ');" class="edit dropdown-item">'
                                 + '<i class="icon-pen3"></i> ویرایش </a>'
-                                + '<a href="/Admin/ContentTag/Remove/' + full.Id + '" class="dropdown-item">'
+                                + '<a onclick="remove(' + full.Id + ');" class="dropdown-item">'
                                 + '<i class="icon-trash4"></i> حذف </a>';
-          
+
                         }
                     }
                 ]
@@ -98,5 +85,10 @@
                 AjaxForm.EnableAjaxFormvalidate('Edit');
             });
         };
+
+         function remove(id) {
+            PostData("@Url.Action(MVC.Admin.ContentTag.Remove())", { id: id });
+        }
+
     </script>
 }

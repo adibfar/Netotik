@@ -64,12 +64,6 @@ namespace Netotik.Web.Areas.Admin.Controllers
         }
         [NonAction]
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public virtual System.Web.Mvc.ActionResult Detail()
-        {
-            return new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Detail);
-        }
-        [NonAction]
-        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public virtual System.Web.Mvc.ActionResult Edit()
         {
             return new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Edit);
@@ -106,7 +100,6 @@ namespace Netotik.Web.Areas.Admin.Controllers
             public readonly string Index = "Index";
             public readonly string GetList = "GetList";
             public readonly string Create = "Create";
-            public readonly string Detail = "Detail";
             public readonly string Remove = "Remove";
             public readonly string Edit = "Edit";
             public readonly string IsNameExist = "IsNameExist";
@@ -119,7 +112,6 @@ namespace Netotik.Web.Areas.Admin.Controllers
             public const string Index = "Index";
             public const string GetList = "GetList";
             public const string Create = "Create";
-            public const string Detail = "Detail";
             public const string Remove = "Remove";
             public const string Edit = "Edit";
             public const string IsNameExist = "IsNameExist";
@@ -143,14 +135,6 @@ namespace Netotik.Web.Areas.Admin.Controllers
         {
             public readonly string model = "model";
             public readonly string actionType = "actionType";
-        }
-        static readonly ActionParamsClass_Detail s_params_Detail = new ActionParamsClass_Detail();
-        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public ActionParamsClass_Detail DetailParams { get { return s_params_Detail; } }
-        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public class ActionParamsClass_Detail
-        {
-            public readonly string id = "id";
         }
         static readonly ActionParamsClass_Remove s_params_Remove = new ActionParamsClass_Remove();
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -259,18 +243,6 @@ namespace Netotik.Web.Areas.Admin.Controllers
             ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "actionType", actionType);
             CreateOverride(callInfo, model, actionType);
             return System.Threading.Tasks.Task.FromResult(callInfo as System.Web.Mvc.ActionResult);
-        }
-
-        [NonAction]
-        partial void DetailOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, int id);
-
-        [NonAction]
-        public override System.Web.Mvc.ActionResult Detail(int id)
-        {
-            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Detail);
-            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "id", id);
-            DetailOverride(callInfo, id);
-            return callInfo;
         }
 
         [NonAction]

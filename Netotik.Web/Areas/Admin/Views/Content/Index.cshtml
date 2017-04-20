@@ -92,17 +92,17 @@
                                 if (canEdit == 'True') {
                                     result += '<a href="/Admin/Content/Edit/' + full.Id + '" class="edit dropdown-item">'
                                                                     + '<i class="icon-pen3"></i> ویرایش </a>'
-                                    if (full.status == 0 && canDontAccept == 'True') {
-                                        result += '<a href="/Admin/Content/Banne/' + full.Id + '" class="dropdown-item">'
+                                    if ((full.status == 0 || full.status == 1)&& canDontAccept == 'True') {
+                                        result += '<a onclick="notAccept(' + full.Id + ');" class="dropdown-item">'
                                            + '<i class="icon-blocked"></i> عدم تایید</a>';
                                     } else if ((full.status == 1 || full.status == 2) && canAccept == 'True') {
-                                        result += '<a href="/Admin/Content/Active/' + full.Id + '" class="dropdown-item">'
-                                           + '<i class="icon-checkmark2"></i> تایید و انتشار</a>';
+                                        result += '<a onclick="accept(' + full.Id + ');" class="dropdown-item">'
+                                            + '<i class="icon-checkmark2"></i> تایید و انتشار</a>';
                                     }
                                 }
 
                                 if (canDelete == 'True') {
-                                    result += '<a href="/Admin/Content/Remove/' + full.Id + '" class="dropdown-item">'
+                                    result += '<a onclick="remove(' + full.Id + ');" class="dropdown-item">'
                                       + '<i class="icon-trash4"></i> حذف </a>';
                                 }
                                 result += "</span></span>";
@@ -126,8 +126,20 @@
                     "sUrl": "/Content/js/plugins/tables/datatable/dataTables.persian.txt"
                 }
             });
-
         });
+
+
+            function remove(id) {
+                PostData("@Url.Action(MVC.Admin.Content.Remove())", { id: id });
+            }
+
+            function accept(id) {
+                PostData("@Url.Action(MVC.Admin.Content.Accept())", { id: id });
+            }
+
+            function notAccept(id) {
+                PostData("@Url.Action(MVC.Admin.Content.NotAccept())", { id: id });
+            }
     </script>
 }
 

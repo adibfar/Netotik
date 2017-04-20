@@ -169,7 +169,7 @@ namespace Netotik.Web.Areas.Admin.Controllers
 
         [Mvc5Authorize(Roles = AssignableToRolePermissions.CanDeleteContent)]
         [HttpPost]
-        public virtual async Task<ActionResult> Remove(int id = 0)
+        public virtual async Task<ActionResult> Remove(int id)
         {
             var news = _contentService.SingleOrDefault(id);
             if (news == null) return HttpNotFound();
@@ -185,7 +185,7 @@ namespace Netotik.Web.Areas.Admin.Controllers
 
         [Mvc5Authorize(Roles = AssignableToRolePermissions.CanAcceptContent)]
         [HttpPost]
-        public virtual async Task<ActionResult> Accept(int id = 0)
+        public virtual async Task<ActionResult> Accept(int id)
         {
             var news = _contentService.SingleOrDefault(id);
             if (news == null) return HttpNotFound();
@@ -202,7 +202,7 @@ namespace Netotik.Web.Areas.Admin.Controllers
 
         [Mvc5Authorize(Roles = AssignableToRolePermissions.CanDontAcceptContent)]
         [HttpPost]
-        public virtual async Task<ActionResult> NotAccept(int id = 0)
+        public virtual async Task<ActionResult> NotAccept(int id)
         {
             var news = _contentService.SingleOrDefault(id);
             if (news == null) return HttpNotFound();
