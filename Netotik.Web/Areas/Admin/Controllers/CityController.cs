@@ -77,7 +77,7 @@ namespace Netotik.Web.Areas.Admin.Controllers
         public virtual ActionResult Create()
         {
             LoadState();
-            return View(MVC.Admin.City.Views._Create, new CityModel { IsActive = true });
+            return PartialView(MVC.Admin.City.Views._Create, new CityModel { IsActive = true });
         }
 
         [ValidateAntiForgeryToken]
@@ -109,7 +109,7 @@ namespace Netotik.Web.Areas.Admin.Controllers
             catch (Exception ex)
             {
                 this.MessageError(Messages.MissionFail, Messages.AddError);
-                return View();
+                return RedirectToAction(MVC.Admin.City.Index());
             }
 
             this.MessageSuccess(Messages.MissionSuccess, Messages.AddSuccess);
@@ -118,20 +118,8 @@ namespace Netotik.Web.Areas.Admin.Controllers
         }
         #endregion
 
-
-        #region Detail
-
-        public virtual ActionResult Detail(int id)
-        {
-            var city = _cityService.SingleOrDefault(id);
-            if (city == null) return HttpNotFound();
-            return View(city);
-        }
-
-        #endregion
-
-
         #region Edit
+        [HttpPost]
         public virtual async Task<ActionResult> Remove(int id = 0)
         {
             var city = _cityService.SingleOrDefault(id);
@@ -196,7 +184,7 @@ namespace Netotik.Web.Areas.Admin.Controllers
             catch (Exception ex)
             {
                 this.MessageError(Messages.MissionFail, Messages.UpdateError);
-                return View();
+                return RedirectToAction(MVC.Admin.City.Index());
             }
 
             this.MessageSuccess(Messages.MissionSuccess, Messages.UpdateSuccess);

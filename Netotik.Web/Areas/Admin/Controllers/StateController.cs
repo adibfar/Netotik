@@ -111,7 +111,7 @@ namespace Netotik.Web.Areas.Admin.Controllers
             catch (Exception ex)
             {
                 this.MessageError(Messages.MissionFail, Messages.AddError);
-                return View();
+                return RedirectToAction(MVC.Admin.State.Index());
             }
 
             this.MessageSuccess(Messages.MissionSuccess, Messages.AddSuccess);
@@ -120,26 +120,18 @@ namespace Netotik.Web.Areas.Admin.Controllers
         #endregion
 
 
-        #region Detail
-
-        public virtual ActionResult Detail(int id)
-        {
-            var state = _stateService.SingleOrDefault(id);
-            if (state == null) return HttpNotFound();
-            return View(state);
-        }
-
-        #endregion
-
-
         #region Edit
         [HttpPost]
-        [BreadCrumb(Title = "ویرایش استان", Order = 1)]
         public virtual async Task<ActionResult> Remove(int id = 0)
         {
-            var state = new State { Id = id };
-            _stateService.Remove(state);
-            await _uow.SaveChangesAsync();
+            var state = _stateService.SingleOrDefault(id);
+            if (state != null && !state.IsDeleted)
+            {
+                state.IsDeleted = true;
+                await _uow.SaveChangesAsync();
+                this.MessageInformation(Messages.MissionSuccess, Messages.RemoveSuccess);
+            }
+
             return RedirectToAction(MVC.Admin.State.Index());
         }
 
@@ -196,8 +188,6 @@ namespace Netotik.Web.Areas.Admin.Controllers
 
         #endregion
 
-
-
         #region private
 
         [HttpPost]
@@ -207,8 +197,6 @@ namespace Netotik.Web.Areas.Admin.Controllers
             return await _stateService.ExistsByNameAsync(name, id) ? Json(false) : Json(true);
         }
         #endregion
-
-
 
     }
 }

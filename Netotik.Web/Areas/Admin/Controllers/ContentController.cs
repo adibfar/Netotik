@@ -169,7 +169,6 @@ namespace Netotik.Web.Areas.Admin.Controllers
 
         [Mvc5Authorize(Roles = AssignableToRolePermissions.CanDeleteContent)]
         [HttpPost]
-        [ValidateAntiForgeryToken]
         public virtual async Task<ActionResult> Remove(int id = 0)
         {
             var news = _contentService.SingleOrDefault(id);
@@ -186,7 +185,6 @@ namespace Netotik.Web.Areas.Admin.Controllers
 
         [Mvc5Authorize(Roles = AssignableToRolePermissions.CanAcceptContent)]
         [HttpPost]
-        [ValidateAntiForgeryToken]
         public virtual async Task<ActionResult> Accept(int id = 0)
         {
             var news = _contentService.SingleOrDefault(id);
@@ -204,7 +202,6 @@ namespace Netotik.Web.Areas.Admin.Controllers
 
         [Mvc5Authorize(Roles = AssignableToRolePermissions.CanDontAcceptContent)]
         [HttpPost]
-        [ValidateAntiForgeryToken]
         public virtual async Task<ActionResult> NotAccept(int id = 0)
         {
             var news = _contentService.SingleOrDefault(id);

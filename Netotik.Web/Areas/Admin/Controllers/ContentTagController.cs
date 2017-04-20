@@ -120,6 +120,7 @@ namespace Netotik.Web.Areas.Admin.Controllers
 
 
         #region Edit
+        [HttpPost]
         public virtual async Task<ActionResult> Remove(int id = 0)
         {
             var tag = _contentTagService.SingleOrDefault(id);

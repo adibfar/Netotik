@@ -170,14 +170,13 @@ namespace Netotik.Web.Areas.Admin.Controllers
         #region Edit
         [Mvc5Authorize(Roles = AssignableToRolePermissions.CanEditUser)]
         [HttpPost]
-        [ValidateAntiForgeryToken]
         public virtual ActionResult Remove(int id = 0)
         {
             _applicationUserManager.LogicalRemove(id);
             return RedirectToAction(MVC.Admin.User.Index());
         }
 
-        [Mvc5Authorize(Roles = AssignableToRolePermissions.CanEditUser)]
+        [Mvc5Authorize(Roles = AssignableToRolePermissions.CanDeleteUser)]
         [BreadCrumb(Title = "ویرایش", Order = 1)]
         public virtual async Task<ActionResult> Edit(long? id)
         {
