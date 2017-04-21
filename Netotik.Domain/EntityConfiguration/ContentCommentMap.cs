@@ -12,7 +12,7 @@ namespace Netotik.Domain.EntityConfiguration
             this.HasKey(t => t.Id);
 
             // Properties
-            this.Property(t => t.CommentText)
+            this.Property(t => t.Text)
                 .HasMaxLength(500)
                 .IsRequired();
 

@@ -142,7 +142,7 @@ namespace Netotik.Web.Controllers
                 {
                     Status = CommentStatus.WaitForAccept,
                     CreateDate = DateTime.Now,
-                    CommentText = model.Text,
+                    Text = model.Text,
                     Name = model.Name,
                     Email = model.Email,
                     ContentId = model.ContentId,

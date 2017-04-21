@@ -1,46 +1,165 @@
-﻿@model MvcPaging.IPagedList<Netotik.Domain.Entity.ContentComment>
+﻿@using Netotik.ViewModels.Identity.Security
 @{
-    ViewBag.Title = "مدیریت نظرات";
+    var Roles = Html.CurrentUserPermissions();
+    var CanAccept = Roles.Any(x => x == AssignableToRolePermissions.CanAcceptComment);
+    var CanDontAccept = Roles.Any(x => x == AssignableToRolePermissions.CanDontAcceptComment);
+    var CanDelete = Roles.Any(x => x == AssignableToRolePermissions.CanDeleteComment);
 }
 
-<div class="col-lg-12" id="ContentPage">
-    <section class="panel">
-
-        <header class="panel-heading">
-            @ViewBag.Title
-        </header>
-
-        <div class="panel-body">
-            <form class="form-inline" role="form" action="@Url.Action(MVC.Admin.Comments.ActionNames.Index,MVC.Admin.Comments.Name)">
-                <div class="input-group m-bot15">
-                    <span class="input-group-btn">
-                        <button class="btn btn-primary" type="submit">جستجو</button>
-                    </span>
-                    <input type="text" class="form-control" name="Search" placeholder="نام ، شماره تماس، ایمیل و ..">
+<section id="configuration">
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="card">
+                <div class="card-body collapse in">
+                    <div class="card-block card-dashboard">
+                        @Html.Partial(MVC.Admin.Comments.Views._Table)
+                    </div>
                 </div>
-            </form>
+            </div>
         </div>
+    </div>
+</section>
 
-        @Html.Partial("_Table", Model)
 
-    </section>
+<div id="edit-container"></div>
+<div id="reply-container"></div>
+
+@section DownScript{
+
     <script type="text/javascript">
+        $(function () {
+            var table = $('#grid').dataTable({
+                "order": [[1, 'asc']],
+                "iDisplayLength": 10,
+                "bProcessing": true,
+                "bStateSave": true,
+                "bServerSide": true,
+                "bFilter": true,
+                "aLengthMenu": [[10, 25, 50, 100], [10, 25, 50, 100]],
+                "bAutoWidth": false,
+                "sAjaxSource": "@Url.Action(MVC.Admin.Comments.GetList())",
+                "fnServerData": function (sSource, aoData, fnCallback) {
+                    $.ajax({
+                        "dataType": 'json',
+                        "type": "POST",
+                        "url": sSource,
+                        "data": aoData,
+                        "success": fnCallback
+                    });
+                },
 
-        function beginPaging(args) {
-            // Animate
-            $('#gridlist').fadeOut('normal');
+                "aoColumnDefs": [
+                    { "bSortable": false, "aTargets": [0] },
+                    { "bSortable": false, "aTargets": [-1] },
+                    {
+                        "targets": 1,
+                        "render": function (data, type, full, meta) {
+                            var result = full.Name;
+                            if (full.Status == 0) {
+                                result += ' <div class="tag tag-success">تایید شده</div>'
+                            } else if (full.Status == 1) {
+                                result += ' <div class="tag tag-default">در انتظار تایید</div>'
+                            } else if (full.Status == 2) {
+                                result += ' <div class="tag tag-danger">تایید نشده</div>'
+                            }
+                            return result;
+                        }
+                    },
+                     {
+                         "targets": -1,
+                         "render": function (data, type, full, meta) {
+                             var canAccept = '@CanAccept';
+                             var canDontAccept = '@CanDontAccept';
+                             var canDelete = '@CanDelete';
+                             var canEdit = 'True';
+                             var canReply = 'True';
+                             var result = '';
+                             if (canAccept == 'True' || canDontAccept == 'True' || canDelete == 'True' || canEdit == 'True' || canReply == 'True') {
+                                 result = '<span class="dropdown">'
+                                     + '<button id="btnSearchDrop2" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" class="btn btn-outline-secondary dropdown-toggle dropdown-menu-right">'
+                                     + '<i class="icon-cog3"></i> پردازش</button><span aria-labelledby="btnSearchDrop2" class="dropdown-menu mt-1 dropdown-menu-right">';
+
+                                 if (canEdit == 'True') {
+                                     result += '<a onclick="edit(' + full.Id + ');" class="dropdown-item">'
+                                         + '<i class="icon-pen3"></i> ویرایش </a>';
+                                 }
+                                 if (canReply == 'True') {
+                                     result += '<a onclick="reply(' + full.Id + ');" class="dropdown-item">'
+                                         + '<i class="icon-bubbles4"></i> پاسخ </a>';
+                                 }
+                                 if (canAccept == 'True' && full.Status != 0) {
+                                     result += '<a onclick="accept(' + full.Id + ');" class="edit dropdown-item">'
+                                         + '<i class="icon-checkmark2"></i> تایید </a>';
+                                 }
+                                 if (canDontAccept == 'True' &&  full.Status != 2) {
+                                     result += '<a onclick="dontAccept(' + full.Id + ');" class="dropdown-item">'
+                                            + '<i class="icon-blocked"></i> عدم تایید</a>';
+                                 }
+                                 if (canDelete == 'True') {
+                                     result += '<a onclick="remove(' + full.Id + ');" class="dropdown-item">'
+                                       + '<i class="icon-trash4"></i> حذف </a>';
+                                 }
+
+                                 result += "</span></span>";
+                             }
+                             return result;
+
+                         }
+                     }
+                ]
+                ,
+                "aoColumns": [
+                    { "mDataProp": "RowNumber" },
+                    { "mDataProp": "Name" },
+                    { "mDataProp": "Email" },
+                    { "mDataProp": "Text" },
+                    { "no": "no" }
+                ],
+
+                "oLanguage": {
+                    "sUrl": "/Content/js/plugins/tables/datatable/dataTables.persian.txt"
+                }
+            });
+        });
+
+
+        function edit(id) {
+            CardBlock('.card');
+            var url = "@Url.Action(MVC.Admin.Comments.Edit())";
+            $.get(url + '/' + id, function (data) {
+                $('#edit-container').html(data);
+                Selectize();
+                Icheck();
+                $('#Edit').modal('show');
+                CardUnBlock('.card');
+                AjaxForm.EnableAjaxFormvalidate('Edit');
+            });
+        };
+
+        function reply(id) {
+            CardBlock('.card');
+            var url = "@Url.Action(MVC.Admin.Comments.Reply())";
+            $.get(url + '/' + id, function (data) {
+                $('#reply-container').html(data);
+                Selectize();
+                Icheck();
+                $('#Reply').modal('show');
+                CardUnBlock('.card');
+                AjaxForm.EnableAjaxFormvalidate('Reply');
+            });
+        };
+
+        function remove(id) {
+            PostData("@Url.Action(MVC.Admin.Comments.Remove())", { id: id });
         }
 
-        function successPaging() {
-            // Animate
-            $('#gridlist').fadeIn('normal');
+        function accept(id) {
+            PostData("@Url.Action(MVC.Admin.Comments.Accept())", { id: id });
+        }
+        function dontAccept(id) {
+            PostData("@Url.Action(MVC.Admin.Comments.DontAccept())", { id: id });
         }
 
-        function failurePaging() {
-            alert("Could not retrieve list.");
-        }
     </script>
-
-</div>
-
+}
 

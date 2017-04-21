@@ -77,7 +77,7 @@ namespace Netotik.Web.Areas.Admin.Controllers
 
         public virtual ActionResult Create()
         {
-            return PartialView(new AdvertiseModel { Order = 0 });
+            return PartialView(MVC.Admin.Advertise.Views._Create, new AdvertiseModel { Order = 0 });
         }
 
         [ValidateAntiForgeryToken]
@@ -93,6 +93,7 @@ namespace Netotik.Web.Areas.Admin.Controllers
             #region Initial Content
             var ads = new Netotik.Domain.Entity.Advertise()
             {
+                Alt = model.Alt,
                 Url = model.Url,
                 Order = model.Order,
             };
@@ -146,22 +147,22 @@ namespace Netotik.Web.Areas.Admin.Controllers
             return RedirectToAction(MVC.Admin.Advertise.Index());
         }
 
-        [BreadCrumb(Title = "ویرایش بنر", Order = 1)]
         public virtual async Task<ActionResult> Edit(int id)
         {
             var model = await _advertiseService.All().Include(x => x.Picture).FirstOrDefaultAsync(x => x.Id == id);
             if (model == null) return RedirectToAction(MVC.Admin.Advertise.Index());
 
-            ViewBag.Avatar = Path.Combine(FilePathes._imagesAdvertisePath, model.Picture.FileName);
 
             var editModel = new AdvertiseModel
             {
                 Id = model.Id,
                 Url = model.Url,
+                Alt = model.Alt,
                 Order = model.Order,
+                Picture = model.Picture
             };
 
-            return View(editModel);
+            return PartialView(MVC.Admin.Advertise.Views._Edit, editModel);
 
         }
 
@@ -185,6 +186,7 @@ namespace Netotik.Web.Areas.Admin.Controllers
 
             ads.Order = model.Order;
             ads.Url = model.Url;
+            ads.Alt = model.Alt;
 
             if (model.Image != null)
             {
@@ -203,7 +205,6 @@ namespace Netotik.Web.Areas.Admin.Controllers
                 }
                 #endregion
             }
-            ViewBag.Avatar = Path.Combine(FilePathes._imagesAdvertisePath, ads.Picture.FileName);
             #endregion
 
             _advertiseService.Update(ads);
@@ -215,7 +216,7 @@ namespace Netotik.Web.Areas.Admin.Controllers
             catch (Exception ex)
             {
                 this.MessageError(Messages.MissionFail, Messages.UpdateError);
-                return View();
+                return RedirectToAction(MVC.Admin.Advertise.Index());
             }
 
             this.MessageSuccess(Messages.MissionSuccess, Messages.UpdateSuccess);

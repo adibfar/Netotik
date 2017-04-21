@@ -53,7 +53,7 @@ namespace Netotik.Web.Areas.Admin.Controllers
         {
 
             var pageList = _productCommentService.All()
-                .Where(x => x.Status != CommentStatus.Delete)
+                .Where(x => x.Status != CommentStatus.Deleted)
                 .Include(x => x.User)
                 .OrderByDescending(x => x.CreateDate)
                 .ToPagedList<ProductComment>(Page, PageSize);
@@ -72,7 +72,7 @@ namespace Netotik.Web.Areas.Admin.Controllers
             var comment = _productCommentService.SingleOrDefault(id);
             if (comment == null) return HttpNotFound();
 
-            ViewBag.Comments = comment.Product.ProductComments.Where(x => x.Status != CommentStatus.Delete).OrderByDescending(x => x.CreateDate).ToList();
+            ViewBag.Comments = comment.Product.ProductComments.Where(x => x.Status != CommentStatus.Deleted).OrderByDescending(x => x.CreateDate).ToList();
 
             return PartialView(comment);
         }
@@ -113,7 +113,7 @@ namespace Netotik.Web.Areas.Admin.Controllers
             if (comment == null) return HttpNotFound();
 
             comment.Product.CommentCount--;
-            comment.Status = CommentStatus.Delete;
+            comment.Status = CommentStatus.Deleted;
             await _uow.SaveChangesAsync();
 
             return RedirectToAction(MVC.Admin.ShopProductComments.ActionNames.Index);

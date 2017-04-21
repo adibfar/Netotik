@@ -58,6 +58,19 @@ namespace Netotik.Web.Areas.Admin.Controllers
 
         [NonAction]
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public virtual System.Web.Mvc.JsonResult GetList()
+        {
+            return new T4MVC_System_Web_Mvc_JsonResult(Area, Name, ActionNames.GetList);
+        }
+        [NonAction]
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public virtual System.Threading.Tasks.Task<System.Web.Mvc.ActionResult> Remove()
+        {
+            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Remove);
+            return System.Threading.Tasks.Task.FromResult(callInfo as System.Web.Mvc.ActionResult);
+        }
+        [NonAction]
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public virtual System.Threading.Tasks.Task<System.Web.Mvc.ActionResult> Edit()
         {
             var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Edit);
@@ -86,6 +99,7 @@ namespace Netotik.Web.Areas.Admin.Controllers
         public class ActionNamesClass
         {
             public readonly string Index = "Index";
+            public readonly string GetList = "GetList";
             public readonly string Create = "Create";
             public readonly string Remove = "Remove";
             public readonly string Edit = "Edit";
@@ -96,6 +110,7 @@ namespace Netotik.Web.Areas.Admin.Controllers
         public class ActionNameConstants
         {
             public const string Index = "Index";
+            public const string GetList = "GetList";
             public const string Create = "Create";
             public const string Remove = "Remove";
             public const string Edit = "Edit";
@@ -103,6 +118,14 @@ namespace Netotik.Web.Areas.Admin.Controllers
         }
 
 
+        static readonly ActionParamsClass_GetList s_params_GetList = new ActionParamsClass_GetList();
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public ActionParamsClass_GetList GetListParams { get { return s_params_GetList; } }
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public class ActionParamsClass_GetList
+        {
+            public readonly string model = "model";
+        }
         static readonly ActionParamsClass_Create s_params_Create = new ActionParamsClass_Create();
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public ActionParamsClass_Create CreateParams { get { return s_params_Create; } }
@@ -148,16 +171,14 @@ namespace Netotik.Web.Areas.Admin.Controllers
             public _ViewNamesClass ViewNames { get { return s_ViewNames; } }
             public class _ViewNamesClass
             {
+                public readonly string _Create = "_Create";
+                public readonly string _Edit = "_Edit";
                 public readonly string _Table = "_Table";
-                public readonly string Create = "Create";
-                public readonly string CreateOrEdit = "CreateOrEdit";
-                public readonly string Edit = "Edit";
                 public readonly string Index = "Index";
             }
+            public readonly string _Create = "~/Areas/Admin/Views/Advertise/_Create.cshtml";
+            public readonly string _Edit = "~/Areas/Admin/Views/Advertise/_Edit.cshtml";
             public readonly string _Table = "~/Areas/Admin/Views/Advertise/_Table.cshtml";
-            public readonly string Create = "~/Areas/Admin/Views/Advertise/Create.cshtml";
-            public readonly string CreateOrEdit = "~/Areas/Admin/Views/Advertise/CreateOrEdit.cshtml";
-            public readonly string Edit = "~/Areas/Admin/Views/Advertise/Edit.cshtml";
             public readonly string Index = "~/Areas/Admin/Views/Advertise/Index.cshtml";
         }
     }
@@ -175,6 +196,18 @@ namespace Netotik.Web.Areas.Admin.Controllers
         {
             var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Index);
             IndexOverride(callInfo);
+            return callInfo;
+        }
+
+        [NonAction]
+        partial void GetListOverride(T4MVC_System_Web_Mvc_JsonResult callInfo, Netotik.Common.DataTables.RequestListModel model);
+
+        [NonAction]
+        public override System.Web.Mvc.JsonResult GetList(Netotik.Common.DataTables.RequestListModel model)
+        {
+            var callInfo = new T4MVC_System_Web_Mvc_JsonResult(Area, Name, ActionNames.GetList);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "model", model);
+            GetListOverride(callInfo, model);
             return callInfo;
         }
 

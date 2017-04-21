@@ -62,6 +62,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CMS\Advertise\AdvertiseItem.cs" />
+    <Compile Include="CMS\Comment\ReplyCommentModel.cs" />
+    <Compile Include="CMS\Comment\EditCommentModel.cs" />
+    <Compile Include="CMS\Comment\CommentItem.cs" />
     <Compile Include="CMS\ContentTag\ContentTagItem.cs" />
     <Compile Include="CMS\Menu\MenuItem.cs" />
     <Compile Include="Common\City\CityModel.cs" />
@@ -86,7 +89,7 @@
     <Compile Include="Support\Issue\IssueModel.cs" />
     <Compile Include="Support\Issue\TableIssueModel.cs" />
     <Compile Include="CMS\Comment\AddCommentProduct.cs" />
-    <Compile Include="CMS\Comment\AddComment.cs" />
+    <Compile Include="CMS\Comment\AddCommentModel.cs" />
     <Compile Include="Common\ContactUs\SendMessage.cs" />
     <Compile Include="CMS\ContentTag\ContentTagModel.cs" />
     <Compile Include="CMS\Content\ContentModel.cs">

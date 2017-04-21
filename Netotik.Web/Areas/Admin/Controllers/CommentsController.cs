@@ -23,12 +23,15 @@ using System.IO;
 using DNTBreadCrumb;
 using Netotik.ViewModels.Identity.Security;
 using Netotik.Services.Identity;
+using Netotik.Common.DataTables;
+using Netotik.ViewModels.CMS.Comment;
+using Netotik.Common.Controller;
 
 namespace Netotik.Web.Areas.Admin.Controllers
 {
-       [BreadCrumb(Title = "نظرات مقالات", UseDefaultRouteUrl = true, RemoveAllDefaultRouteValues = true,
-    Order = 0, GlyphIcon = "icon icon-table")]
-    public partial class CommentsController : BaseController
+    [BreadCrumb(Title = "نظرات مقالات", UseDefaultRouteUrl = true, RemoveAllDefaultRouteValues = true,
+ Order = 0, GlyphIcon = "icon icon-table")]
+    public partial class CommentsController : BasePanelController
     {
 
         #region ctor
@@ -53,34 +56,27 @@ namespace Netotik.Web.Areas.Admin.Controllers
 
         #region Index
         [Mvc5Authorize(Roles = AssignableToRolePermissions.CanAccessComment)]
-        public virtual ActionResult Index(string Search, int Page = 1, int PageSize = 10)
+        public virtual ActionResult Index()
         {
+            return View();
+        }
 
-            var pageList = _contentCommentService.All()
-                .Where(x => x.Status != CommentStatus.Delete)
-                .Include(x => x.User)
-                .OrderByDescending(x => x.CreateDate)
-                .ToPagedList<ContentComment>(Page, PageSize);
+        public virtual JsonResult GetList(RequestListModel model)
+        {
+            long totalCount;
+            long showCount;
 
-            if (Request.IsAjaxRequest())
-                return View(MVC.Admin.Comments.Views._Table, pageList);
-            else
-                return View(MVC.Admin.Comments.ActionNames.Index, pageList);
+            var result = _contentCommentService.GetList(model, out totalCount, out showCount);
+
+            return Json(new
+            {
+                sEcho = model.sEcho,
+                iTotalRecords = totalCount,
+                iTotalDisplayRecords = showCount,
+                aaData = result
+            }, JsonRequestBehavior.AllowGet);
         }
         #endregion
-
-
-        [Mvc5Authorize(Roles = AssignableToRolePermissions.CanAccessComment)]
-        public virtual ActionResult Detail(int id)
-        {
-            var comment = _contentCommentService.SingleOrDefault(id);
-            if (comment == null) return HttpNotFound();
-
-            ViewBag.Comments = comment.Content.ContentComments.Where(x => x.Status != CommentStatus.Delete).OrderByDescending(x => x.CreateDate).ToList();
-
-            return View(comment);
-        }
-
 
         [Mvc5Authorize(Roles = AssignableToRolePermissions.CanAcceptComment)]
         [HttpPost]
@@ -93,7 +89,7 @@ namespace Netotik.Web.Areas.Admin.Controllers
             comment.Content.CommentCount++;
             await _uow.SaveChangesAsync();
 
-            return RedirectToAction(MVC.Admin.Comments.ActionNames.Index);
+            return RedirectToAction(MVC.Admin.Comments.Index());
         }
 
         [Mvc5Authorize(Roles = AssignableToRolePermissions.CanDontAcceptComment)]
@@ -106,7 +102,7 @@ namespace Netotik.Web.Areas.Admin.Controllers
             comment.Status = CommentStatus.NotAccept;
             await _uow.SaveChangesAsync();
 
-            return RedirectToAction(MVC.Admin.Comments.ActionNames.Index);
+            return RedirectToAction(MVC.Admin.Comments.Index());
         }
 
         [Mvc5Authorize(Roles = AssignableToRolePermissions.CanDeleteComment)]
@@ -117,14 +113,119 @@ namespace Netotik.Web.Areas.Admin.Controllers
             if (comment == null) return HttpNotFound();
 
             comment.Content.CommentCount--;
-            comment.Status = CommentStatus.Delete;
+            comment.Status = CommentStatus.Deleted;
             await _uow.SaveChangesAsync();
 
-            return RedirectToAction(MVC.Admin.Comments.ActionNames.Index);
+            return RedirectToAction(MVC.Admin.Comments.Index());
         }
 
 
 
+        public virtual async Task<ActionResult> Edit(int id)
+        {
+            var model = _contentCommentService.SingleOrDefault(id);
+            if (model == null) return RedirectToAction(MVC.Admin.Comments.Index());
+
+            return PartialView(MVC.Admin.Comments.Views._Edit
+                , new EditCommentModel
+                {
+                    Id = model.Id,
+                    Name = model.Name,
+                    Email = model.Email,
+                    Text = model.Text
+                });
+        }
+
+        [ValidateAntiForgeryToken]
+        [HttpPost]
+        public virtual async Task<ActionResult> Edit(EditCommentModel model, ActionType actionType = ActionType.Save)
+        {
+            var comment = _contentCommentService.SingleOrDefault(model.Id);
+            if (comment == null) return RedirectToAction(MVC.Admin.Comments.Index());
+
+            if (!ModelState.IsValid)
+            {
+                this.MessageError(Messages.MissionFail, Messages.InvalidDataError);
+                return RedirectToAction(MVC.Admin.Comments.Index());
+            }
+
+            comment.Name = model.Name;
+            comment.Text = model.Text;
+            comment.Email = model.Email;
+
+            _contentCommentService.Update(comment);
+            try
+            {
+                await _uow.SaveChangesAsync();
+            }
+            catch (Exception ex)
+            {
+                this.MessageError(Messages.MissionFail, Messages.UpdateSuccess);
+                return RedirectToAction(MVC.Admin.Comments.Index());
+            }
+
+            this.MessageSuccess(Messages.MissionSuccess, Messages.UpdateSuccess);
+            return RedirectToAction(MVC.Admin.Comments.Index());
+        }
+
+
+
+        public virtual async Task<ActionResult> Reply(int id)
+        {
+            var model = _contentCommentService.SingleOrDefault(id);
+            if (model == null) return RedirectToAction(MVC.Admin.Comments.Index());
+
+            return PartialView(MVC.Admin.Comments.Views._Reply
+                , new ReplyCommentModel
+                {
+                    Id = model.Id,
+                    CommentName = model.Name,
+                    CommentEmail = model.Email,
+                    CommentText = model.Text,
+                    Name = string.Format("{0} {1}", UserLogined.FirstName, UserLogined.LastName),
+                    Email = UserLogined.Email
+                });
+        }
+
+        [ValidateAntiForgeryToken]
+        [HttpPost]
+        public virtual async Task<ActionResult> Reply(ReplyCommentModel model, ActionType actionType = ActionType.Save)
+        {
+            var comment = _contentCommentService.SingleOrDefault(model.Id);
+            if (comment == null) return RedirectToAction(MVC.Admin.Comments.Index());
+
+            if (!ModelState.IsValid)
+            {
+                this.MessageError(Messages.MissionFail, Messages.InvalidDataError);
+                return RedirectToAction(MVC.Admin.Comments.Index());
+            }
+
+            comment.Comments.Add(new ContentComment
+            {
+                CreateDate = DateTime.Now,
+                Status = CommentStatus.WaitForAccept,
+                UserId = UserLogined.Id,
+                CommentId = comment.Id,
+                ContentId = comment.ContentId,
+                Text = model.Text,
+                Name = model.Name,
+                Email = model.Email
+            });
+
+            _contentCommentService.Update(comment);
+            try
+            {
+                await _uow.SaveChangesAsync();
+            }
+            catch (Exception ex)
+            {
+                this.MessageError(Messages.MissionFail, Messages.UpdateError);
+                return RedirectToAction(MVC.Admin.Comments.Index());
+            }
+
+            this.MessageSuccess(Messages.MissionSuccess, Messages.UpdateSuccess);
+            return RedirectToAction(MVC.Admin.Comments.Index());
+        }
 
     }
 }

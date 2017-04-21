@@ -30,7 +30,7 @@ namespace Netotik.Domain.Entity
         Accepted = 0,
         WaitForAccept = 1,
         NotAccept = 2,
-        Delete = 3
+        Deleted = 3
     }
 
 }
