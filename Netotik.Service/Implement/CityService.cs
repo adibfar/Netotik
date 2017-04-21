@@ -69,11 +69,7 @@ namespace Netotik.Services.Implement
             if (_Role != null)
                 Remove(_Role);
         }
-
-
-
-
-
+        
         public IList<CityModel> GetByStateId(int stateId)
         {
             return dbSet.Where(x => x.IsActive && x.StateId == stateId).OrderByDescending(x => x.IsDefault).Select(x => new CityModel { Id = x.Id, Name = x.Name }).ToList();

@@ -97,7 +97,7 @@ namespace Netotik.Web.Areas.Admin.Controllers
                 IsActive = model.IsActive,
                 Icon = model.Icon,
                 Description = model.Description,
-
+                Order = model.Order
             };
 
             _menuService.Add(menu);
@@ -139,7 +139,7 @@ namespace Netotik.Web.Areas.Admin.Controllers
             if (model == null) return RedirectToAction(MVC.Admin.Menu.Index());
 
             PopulateParents(model.ParentId, model.Id);
-            return PartialView(MVC.Admin.Menu.Views._Edit,new MenuModel
+            return PartialView(MVC.Admin.Menu.Views._Edit, new MenuModel
             {
                 Id = model.Id,
                 Text = model.Text,
@@ -153,7 +153,7 @@ namespace Netotik.Web.Areas.Admin.Controllers
 
         [ValidateAntiForgeryToken]
         [HttpPost]
-        public virtual async Task<ActionResult> Edit(MenuModel model, ActionType actionType=ActionType.Save)
+        public virtual async Task<ActionResult> Edit(MenuModel model, ActionType actionType = ActionType.Save)
         {
 
             var menu = _menuService.SingleOrDefault(model.Id);

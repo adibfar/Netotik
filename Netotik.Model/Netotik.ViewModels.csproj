@@ -61,6 +61,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CMS\Advertise\AdvertiseItem.cs" />
     <Compile Include="CMS\ContentTag\ContentTagItem.cs" />
     <Compile Include="CMS\Menu\MenuItem.cs" />
     <Compile Include="Common\City\CityModel.cs" />
