@@ -2112,6 +2112,9 @@
     <Content Include="Areas\Admin\Views\Advertise\Index.cshtml" />
     <Content Include="Areas\Admin\Views\Comments\_Edit.cshtml" />
     <Content Include="Areas\Admin\Views\Comments\_Reply.cshtml" />
+    <Content Include="Areas\Admin\Views\ContactUs\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\ContactUs\_Table.cshtml" />
+    <Content Include="Areas\Admin\Views\ContactUs\_Show.cshtml" />
     <None Include="Content\fonts\icomoon\icomoon.eot" />
     <Content Include="Content\fonts\icomoon\icomoon.svg" />
     <None Include="Content\fonts\icomoon\icomoon.ttf" />
@@ -2230,9 +2233,6 @@
     <Content Include="Areas\Admin\Views\Slider\CreateOrEdit.cshtml" />
     <Content Include="Areas\Admin\Views\Slider\Edit.cshtml" />
     <Content Include="Areas\Admin\Views\Slider\Index.cshtml" />
-    <Content Include="Areas\Admin\Views\ContactUs\_Table.cshtml" />
-    <Content Include="Areas\Admin\Views\ContactUs\Detail.cshtml" />
-    <Content Include="Areas\Admin\Views\ContactUs\Index.cshtml" />
     <Content Include="Views\Shared\DisplayTemplates\DateTime.cshtml" />
     <Content Include="Views\Shared\_SideBarResellerMenu.cshtml" />
     <Content Include="Views\Shared\_PicturesList.cshtml" />

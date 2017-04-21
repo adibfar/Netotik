@@ -178,7 +178,7 @@
     <Compile Include="Abstract\ISliderService.cs" />
     <Compile Include="Abstract\IPictureService.cs" />
     <Compile Include="Abstract\IImageGalleryItemService.cs" />
-    <Compile Include="Abstract\IInboxMessageService.cs" />
+    <Compile Include="Abstract\IInboxContactUsMessageService.cs" />
     <Compile Include="Abstract\IContentCategoryService.cs" />
     <Compile Include="Abstract\ISettingService.cs" />
     <Compile Include="Abstract\IContentService.cs" />
@@ -238,7 +238,7 @@
     <Compile Include="Implement\DeliveryDateService.cs" />
     <Compile Include="Implement\StateService.cs" />
     <Compile Include="Implement\SliderService.cs" />
-    <Compile Include="Implement\InboxMessageService.cs" />
+    <Compile Include="Implement\InboxContactMessageService.cs" />
     <Compile Include="Implement\SettingService.cs" />
     <Compile Include="Implement\PictureService.cs" />
     <Compile Include="Implement\ContentCategoryService.cs" />

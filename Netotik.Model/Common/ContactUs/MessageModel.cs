@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Netotik.ViewModels.Common.ContactUs
 {
-    public class SendMessage
+    public class MessageModel
     {
         [MaxLength(100, ErrorMessageResourceType=typeof(Messages),ErrorMessageResourceName = "MaxLengthError")]
         [MinLength(2, ErrorMessageResourceType = typeof(Messages), ErrorMessageResourceName = "MinLengthError")]

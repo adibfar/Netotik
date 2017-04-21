@@ -69,6 +69,7 @@
     <Compile Include="CMS\Menu\MenuItem.cs" />
     <Compile Include="Common\City\CityModel.cs" />
     <Compile Include="Common\City\CityItem.cs" />
+    <Compile Include="Common\ContactUs\MessageItem.cs" />
     <Compile Include="Common\Error\ErrorInfo.cs" />
     <Compile Include="Identity\Account\ActivationEmailViewModel.cs" />
     <Compile Include="Identity\Account\ChangePasswordViewModel.cs" />
@@ -90,7 +91,7 @@
     <Compile Include="Support\Issue\TableIssueModel.cs" />
     <Compile Include="CMS\Comment\AddCommentProduct.cs" />
     <Compile Include="CMS\Comment\AddCommentModel.cs" />
-    <Compile Include="Common\ContactUs\SendMessage.cs" />
+    <Compile Include="Common\ContactUs\MessageModel.cs" />
     <Compile Include="CMS\ContentTag\ContentTagModel.cs" />
     <Compile Include="CMS\Content\ContentModel.cs">
       <SubType>Code</SubType>

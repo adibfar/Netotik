@@ -1,0 +1,53 @@
+﻿@model Netotik.Domain.Entity.InboxContactUsMessage
+@{
+    Layout = null;
+}
+<!-- Modal -->
+<div class="modal fade text-xs-left" id="Show" tabindex="-1" role="dialog" aria-labelledby="myModalLabel20" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title" id="myModalLabel20">پیام</h4>
+            </div>
+                <div class="modal-body">
+
+                    <div class="row">
+                        <div class="col-md-3">نام</div>
+                        <div class="col-md-3"> @Model.Name </div>
+                    </div>
+                    <hr />
+                    <div class="row">
+                        <div class="col-md-3">شماره تماس</div>
+                        <div class="col-md-9"> @Model.PhoneNumber</div>
+                    </div>
+                    <hr />
+                    <div class="row">
+                        <div class="col-md-3">ایمیل</div>
+                        <div class="col-md-9"> @Model.Email</div>
+                    </div>
+                    <hr />
+                    <div class="row">
+                        <div class="col-md-3">زمان</div>
+                        <div class="col-md-9"> @PersianDate.ConvertDate.ToFa(Model.CreateDate,"f")</div>
+                    </div>
+                    <hr />
+                    <div class="row">
+                        <div class="col-md-3">پیام</div>
+                        <div class="col-md-9"> @Model.Message </div>
+                    </div>
+
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">
+                        <i class="icon-cross2"></i>
+                        بستن
+                    </button>
+                </div>
+            
+        </div>
+    </div>
+</div>

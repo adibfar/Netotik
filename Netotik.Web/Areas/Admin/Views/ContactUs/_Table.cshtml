@@ -1,73 +1,13 @@
-﻿@using MvcPaging
-@model IPagedList<Netotik.Domain.Entity.InboxMessage>
-
-@{
-    Layout = null;
-    string querySearch = "";
-    string pageIndex = "";
-    string pageSize = "";
-
-
-    if (Request["Page"] != null)
-    {
-        pageIndex = Request["Page"].ToString();
-    }
-    if (Request["PageSize"] != null)
-    {
-        pageSize = Request["PageSize"].ToString();
-    }
-    if (Request["Search"] != null)
-    {
-        querySearch = Request["Search"].ToString();
-    }
-}
-
-<div id="gridlist">
-    @if (!Model.Any())
-    {
-        <div class="gradeX odd">
-            هیچ پیامی دریافت نشده..
-        </div>
-    }
-    else
-    {
-
-
-        <table class="table">
-            <thead class="alert-info">
-                <tr role="row">
-                    <th role="columnheader" rowspan="1" colspan="1">@Netotik.Resources.Captions.Name</th>
-                    <th role="columnheader" rowspan="1" colspan="1">@Netotik.Resources.Captions.Tel</th>
-                    <th role="columnheader" rowspan="1" colspan="1">@Netotik.Resources.Captions.Email</th>
-                    <th role="columnheader" rowspan="1" colspan="1">@Netotik.Resources.Captions.SendDate</th>
-                    <th role="columnheader" rowspan="1" colspan="1"></th>
-                </tr>
-            </thead>
-
-            <tbody role="alert">
-                @foreach (var item in Model)
-                {
-                    <tr class="gradeX odd" style="background-color:@(item.IsRead?"":"#efefef")">
-                        <td class="">@item.Name</td>
-                        <td class="">@item.MobileNumber</td>
-                        <td class="">@item.Email</td>
-                        <td class="">@ConvertDate.ToFa(item.CreateDate, "g")</td>
-                        <td>
-                            <a href="@Url.Action(MVC.Admin.ContactUs.ActionNames.Detail, new { id = item.Id })" class="btn btn-white btn-xs"><i class="icon-search"></i></a>
-                        </td>
-
-                    </tr>
-                }
-
-
-            </tbody>
-            <tfoot>
-                <tr>
-                    <td colspan="6" style="padding:0;" class="pager">
-                        @Html.Raw(Ajax.Pager(new Options { PageSize = Model.PageSize, TotalItemCount = Model.TotalItemCount, CurrentPage = Model.PageNumber, ItemTexts = new ItemTexts() { Next = "", Previous = "", Page = "" }, ItemIcon = new ItemIcon() { First = "icon-backward", Previous = "icon-chevron-right", Next = "icon-chevron-left", Last = "icon-forward" }, TooltipTitles = new TooltipTitles() { Next = "Next page", Previous = "Previous page", Page = "Page {0}." }, Size = Size.normal, Alignment = Alignment.centered, IsShowControls = false, IsShowFirstLast = false, CssClass = "pagination pagination-sm" }, new AjaxOptions { UpdateTargetId = "gridlist", OnBegin = "beginPaging", OnSuccess = "successPaging", OnFailure = "failurePaging" }, new { controller = MVC.Admin.ContactUs.Name, action = MVC.Admin.ContactUs.ActionNames.Index, search = querySearch }))
-                    </td>
-                </tr>
-            </tfoot>
-        </table>
-    }
-</div>
+﻿
+<table class="table table-striped table-bordered table-hover zero-configuration" id="grid">
+    <thead>
+        <tr>
+            <th width="3%">#</th>
+            <th width="23%">نام</th>
+            <th width="24%">ایمیل</th>
+            <th width="40%">شماره تماس</th>
+            <th width="10%"></th>
+        </tr>
+    </thead>
+    <tbody></tbody>
+</table>

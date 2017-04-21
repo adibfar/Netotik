@@ -18,10 +18,10 @@ namespace Netotik.Web.Controllers
 {
     public partial class ContactUsController : Controller
     {
-        private readonly IInboxMessageService _inboxMessageService;
+        private readonly IInboxContactUsMessageService _inboxMessageService;
         private readonly ISettingService _settingService;
         private readonly IUnitOfWork _uow;
-        public ContactUsController(IInboxMessageService inboxMessageService, ISettingService settingService, IUnitOfWork uow)
+        public ContactUsController(IInboxContactUsMessageService inboxMessageService, ISettingService settingService, IUnitOfWork uow)
         {
             _settingService = settingService;
             _inboxMessageService = inboxMessageService;
@@ -37,7 +37,7 @@ namespace Netotik.Web.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [CaptchaVerify("تصویر امنیتی را درست وارد کنید")]
-        public virtual async Task<ActionResult> Index(SendMessage model)
+        public virtual async Task<ActionResult> Index(MessageModel model)
         {
             ViewBag.siteConfig = WebCache.GetSiteConfig(HttpContext, _settingService);
             if (ModelState.IsValid)
@@ -46,11 +46,11 @@ namespace Netotik.Web.Controllers
                 {
 
 
-                    InboxMessage entity = new InboxMessage
+                    InboxContactUsMessage entity = new InboxContactUsMessage
                     {
                         Name = model.Name,
                         Message = model.Text,
-                        MobileNumber = model.MobileNumber,
+                        PhoneNumber = model.MobileNumber,
                         Email = model.Email,
                         CreateDate = DateTime.Now
                     };
