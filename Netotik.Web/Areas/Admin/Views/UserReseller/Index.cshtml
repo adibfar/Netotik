@@ -13,13 +13,13 @@
                 @if (CanCreate)
                 {
                     <div class="card-header">
-                        <a href="@Url.Action(MVC.Admin.User.Create())" class="btn btn-social width-150 btn-instagram"><span class="icon-person-add font-medium-4"></span> کاربر جدید</a>
+                        <a href="@Url.Action(MVC.Admin.UserReseller.Create())" class="btn btn-social width-150 btn-instagram"><span class="icon-person-add font-medium-4"></span> نماینده جدید</a>
                     </div>
                 }
 
                 <div class="card-body collapse in">
                     <div class="card-block card-dashboard">
-                        @Html.Partial(MVC.Admin.User.Views._Table)
+                        @Html.Partial(MVC.Admin.UserReseller.Views._Table)
                     </div>
                 </div>
             </div>
@@ -44,7 +44,7 @@
                 "bFilter": true,
                 "aLengthMenu": [[10, 25, 50, 100], [10, 25, 50, 100]],
                 "bAutoWidth": false,
-                "sAjaxSource": "@Url.Action(MVC.Admin.User.GetList())",
+                "sAjaxSource": "@Url.Action(MVC.Admin.UserReseller.GetList())",
                 "fnServerData": function (sSource, aoData, fnCallback) {
                     $.ajax({
                         "dataType": 'json',
@@ -86,19 +86,19 @@
                                      + '<button id="btnSearchDrop2" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" class="btn btn-outline-secondary dropdown-toggle dropdown-menu-right">'
                                      + '<i class="icon-cog3"></i> پردازش</button><span aria-labelledby="btnSearchDrop2" class="dropdown-menu mt-1 dropdown-menu-right">';
                                  if (canEdit == 'True') {
-                                     result += '<a href="/Admin/User/Edit/' + full.Id + '" class="edit dropdown-item">'
+                                     result += '<a href="/Admin/UserReseller/Edit/' + full.Id + '" class="edit dropdown-item">'
                                                                      + '<i class="icon-pen3"></i> ویرایش </a>'
                                      if (full.IsBanned == false) {
-                                         result += '<a href="/Admin/User/Banne/' + full.Id + '" class="dropdown-item">'
+                                         result += '<a href="/Admin/UserReseller/Banne/' + full.Id + '" class="dropdown-item">'
                                             + '<i class="icon-blocked"></i> مسدود کردن</a>';
                                      } else {
-                                         result += '<a href="/Admin/User/Active/' + full.Id + '" class="dropdown-item">'
+                                         result += '<a href="/Admin/UserReseller/Active/' + full.Id + '" class="dropdown-item">'
                                             + '<i class="icon-checkmark2"></i> فعال کردن</a>';
                                      }
                                  }
 
                                  if (canDelete == 'True') {
-                                     result += '<a href="/Admin/User/Remove/' + full.Id + '" class="dropdown-item">'
+                                     result += '<a href="/Admin/UserReseller/Remove/' + full.Id + '" class="dropdown-item">'
                                        + '<i class="icon-trash4"></i> حذف </a>';
                                  }
                                  result += "</span></span>";

@@ -407,7 +407,10 @@
     <Compile Include="Admin.TicketTagController.generated.cs">
       <DependentUpon>T4MVC.tt</DependentUpon>
     </Compile>
-    <Compile Include="Admin.UserController.generated.cs">
+    <Compile Include="Admin.UserAdminController.generated.cs">
+      <DependentUpon>T4MVC.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Admin.UserResellerController.generated.cs">
       <DependentUpon>T4MVC.tt</DependentUpon>
     </Compile>
     <Compile Include="App_Start\ApplicationStart.cs" />
@@ -450,8 +453,8 @@
     <Compile Include="Areas\Admin\Controllers\RoleController.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Areas\Admin\Controllers\ResellerController.cs" />
-    <Compile Include="Areas\Admin\Controllers\UserController.cs" />
+    <Compile Include="Areas\Admin\Controllers\UserResellerController.cs" />
+    <Compile Include="Areas\Admin\Controllers\UserAdminController.cs" />
     <Compile Include="Areas\Company\CompanyAreaRegistration.cs" />
     <Compile Include="Areas\Company\Controllers\RouterController.cs" />
     <Compile Include="Areas\Company\Controllers\UserManagerController.cs" />
@@ -2111,6 +2114,11 @@
     <Content Include="Areas\Admin\Views\ContactUs\Index.cshtml" />
     <Content Include="Areas\Admin\Views\ContactUs\_Table.cshtml" />
     <Content Include="Areas\Admin\Views\ContactUs\_Show.cshtml" />
+    <Content Include="Areas\Admin\Views\UserReseller\_Table.cshtml" />
+    <Content Include="Areas\Admin\Views\UserReseller\ChangePassword.cshtml" />
+    <Content Include="Areas\Admin\Views\UserReseller\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\UserReseller\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\UserReseller\Index.cshtml" />
     <None Include="Content\fonts\icomoon\icomoon.eot" />
     <Content Include="Content\fonts\icomoon\icomoon.svg" />
     <None Include="Content\fonts\icomoon\icomoon.ttf" />
@@ -2178,12 +2186,11 @@
     <Content Include="Views\Shared\_Head.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Shared\_Message.cshtml" />
-    <Content Include="Areas\Admin\Views\User\ChangePassword.cshtml" />
-    <Content Include="Areas\Admin\Views\User\Create.cshtml" />
-    <Content Include="Areas\Admin\Views\User\Detail.cshtml" />
-    <Content Include="Areas\Admin\Views\User\Edit.cshtml" />
-    <Content Include="Areas\Admin\Views\User\Index.cshtml" />
-    <Content Include="Areas\Admin\Views\User\_Table.cshtml" />
+    <Content Include="Areas\Admin\Views\UserAdmin\ChangePassword.cshtml" />
+    <Content Include="Areas\Admin\Views\UserAdmin\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\UserAdmin\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\UserAdmin\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\UserAdmin\_Table.cshtml" />
     <Content Include="Areas\Admin\Views\Web.config" />
     <Content Include="Areas\Admin\Views\_ViewStart.cshtml" />
     <Content Include="RazorHelpers\CheckBoxListBuilder.cshtml">

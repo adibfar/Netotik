@@ -1,14 +1,15 @@
-﻿@model Netotik.ViewModels.Identity.UserAdmin.AdminAddModel
+﻿@model Netotik.ViewModels.Identity.UserReseller.ResellerEditModel
 @{
-    ViewBag.Title = " کاربر جدید ";
+    ViewBag.Title = " ویرایش نماینده";
     var roles = ViewBag.Roles as List<SelectListItem>;
 }
 <section class="flexbox-container">
     <div class="row">
         <div class="col-md-12">
-            @using (Html.BeginForm(MVC.Admin.User.ActionNames.Create, MVC.Admin.User.Name, FormMethod.Post,
-             htmlAttributes: new { @class = "form-horizontal", enctype = "multipart/form-data", id = "form" }))
+            @using (Html.BeginForm(MVC.Admin.UserReseller.ActionNames.Edit, MVC.Admin.UserReseller.Name, FormMethod.Post,
+            htmlAttributes: new { @class = "form-horizontal", enctype = "multipart/form-data", id = "form" }))
             {
+                @Html.HiddenFor(m => m.Id)
                 @Html.AntiForgeryToken()
                 <div class="card">
                     <div class="card-header">
@@ -21,7 +22,7 @@
                         <div class="row">
                             <div class="col-md-9">
                                 <div class="card-block">
-                                    <h4 class="form-section"><i class="icon-profile"></i> مشخصات کاربر</h4>
+                                    <h4 class="form-section"><i class="icon-profile"></i> مشخصات نماینده</h4>
                                     <div class="row">
                                         <div class="col-md-4">
                                             <div class="form-group has-icon-left">
@@ -63,6 +64,32 @@
                                     <div class="row">
                                         <div class="col-md-6">
                                             <div class="form-group has-feedback has-icon-left">
+                                                @Html.LabelFor(m => m.NationalCode)
+                                                <div class="position-relative has-icon-left">
+                                                    @Html.TextBoxFor(m => m.NationalCode, new { @class = "form-control" })
+                                                    <div class="form-control-position">
+                                                        <i class="icon-diamonds"></i>
+                                                    </div>
+                                                    @Html.ValidationMessageFor(model => model.NationalCode, "", htmlAttributes: new { @class = "text-danger" })
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group has-feedback has-icon-left">
+                                                @Html.LabelFor(m => m.ResellerCode)
+                                                <div class="position-relative has-icon-left">
+                                                    @Html.TextBoxFor(m => m.ResellerCode, new { @class = "form-control" })
+                                                    <div class="form-control-position">
+                                                        <i class="icon-office"></i>
+                                                    </div>
+                                                    @Html.ValidationMessageFor(model => model.ResellerCode, "", htmlAttributes: new { @class = "text-danger" })
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group has-feedback has-icon-left">
                                                 @Html.LabelFor(m => m.UserName)
                                                 <div class="position-relative has-icon-left">
                                                     @Html.TextBoxFor(m => m.UserName, new { @class = "form-control" })
@@ -86,69 +113,28 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="row">
-                                        <div class="col-md-6">
-                                            <div class="form-group has-feedback has-icon-left">
-                                                @Html.LabelFor(m => m.Password)
-                                                <div class="position-relative has-icon-left">
-                                                    @Html.PasswordFor(m => m.Password, new { @class = "form-control" })
-                                                    <div class="form-control-position">
-                                                        <i class="icon-key2"></i>
-                                                    </div>
-                                                    @Html.ValidationMessageFor(model => model.Password, "", htmlAttributes: new { @class = "text-danger" })
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div class="form-group has-feedback has-icon-left">
-                                                @Html.LabelFor(m => m.ConfirmPassword)
-                                                <div class="position-relative has-icon-left">
-                                                    @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "form-control" })
-                                                    <div class="form-control-position">
-                                                        <i class="icon-key2"></i>
-                                                    </div>
-                                                    @Html.ValidationMessageFor(model => model.ConfirmPassword, "", htmlAttributes: new { @class = "text-danger" })
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
                                 </div>
                             </div>
                             <div class="col-md-3">
                                 <div class="card-block">
-                                    <h4 class="form-section"><i class="icon-stack"></i> دسته بندی ها </h4>
-                                    <div class="row mb-3">
-                                        <div class="col-md-12 skin skin-flat">
-                                            @if (!roles.Any())
-                                            {
-                                                <text>
-                                                    گروه کاربری موجود نیست
-                                                </text>
-                                            }
-                                            else
-                                            {
-                                                <ul>
-                                                    @foreach (var item in roles)
-                                                    {
-                                                        <li>
-                                                            <input type="checkbox" name="RoleIds" value="#@item.Value">
-                                                            @item.Text
-                                                        </li>
-                                                    }
-                                                </ul>
-                                            }
-                                        </div>
-                                    </div>
-
-                                    <h4 class="form-section"><i class="icon-image2"></i> تصویر پروفایل</h4>
+                                    <h4 class="form-section"><i class="icon-camera5"></i> تصویر پروفایل</h4>
                                     <div class="row mb-3">
                                         <div class="col-md-12">
+
+                                            @if (ViewBag.Avatar != null)
+                                            {
+                                                <fieldset class="mb-2">
+                                                    <img src="@Url.Content(ViewBag.Avatar)?w=200&h=200" class="rounded-circle img-border " />
+                                                </fieldset>
+                                            }
                                             <fieldset>
                                                 @Html.EditorFor(model => model.ImageAvatar)
                                             </fieldset>
                                         </div>
                                     </div>
+
                                 </div>
+
                             </div>
                         </div>
                     </div>

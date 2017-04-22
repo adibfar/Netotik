@@ -45,7 +45,7 @@ namespace Netotik.Web.Controllers
         #region Email
 
         [HttpPost]
-        [Mvc5Authorize(Roles = AssignableToRolePermissions.CanAccessUser)]
+        [Mvc5Authorize(Roles = AssignableToRolePermissions.CanViewAdminPanel)]
         [OutputCache(Location = OutputCacheLocation.None, NoStore = true, Duration = 0, VaryByParam = "*")]
         public virtual JsonResult IsAdminEmailAvailable(string email, long? Id)
         {
@@ -75,7 +75,7 @@ namespace Netotik.Web.Controllers
 
         #region PhoneNumber
         [HttpPost]
-        [Mvc5Authorize(Roles = AssignableToRolePermissions.CanAccessUser)]
+        [Mvc5Authorize(Roles = AssignableToRolePermissions.CanViewAdminPanel)]
         [OutputCache(Location = OutputCacheLocation.None, NoStore = true, Duration = 0, VaryByParam = "*")]
         public virtual JsonResult IsAdminPhoneNumberAvailable(string phoneNumber, long? Id)
         {
@@ -97,7 +97,7 @@ namespace Netotik.Web.Controllers
         [OutputCache(Location = OutputCacheLocation.None, NoStore = true, Duration = 0, VaryByParam = "*")]
         public virtual JsonResult IsCompanyPhoneNumberAvailable(string phoneNumber, long? Id, long? Resellerid)
         {
-            var check = _applicationUserManager.CheckCompanyPhoneNumberExist(phoneNumber, Id , Resellerid);
+            var check = _applicationUserManager.CheckCompanyPhoneNumberExist(phoneNumber, Id, Resellerid);
             return check ? Json(false) : Json(true);
         }
         #endregion
@@ -108,12 +108,14 @@ namespace Netotik.Web.Controllers
         [OutputCache(Location = OutputCacheLocation.None, NoStore = true, Duration = 0, VaryByParam = "*")]
         public virtual JsonResult IsResellerNationalCodeAvailable(string nationalCode, long? Id)
         {
-            var check = _applicationUserManager.CheckResellerNationalCodeExist(nationalCode, Id);
-            var check2 = _applicationUserManager.IsNationalCodeAvailableAlgoritm(nationalCode);
-            if (!check == check2 == true)
-                return Json(true);
-            else
+            if (_applicationUserManager.CheckResellerNationalCodeExist(nationalCode, Id))
                 return Json(false);
+
+            if (!_applicationUserManager.IsNationalCodeValid(nationalCode))
+                return Json(false);
+
+            return Json(true);
+
         }
 
 
@@ -122,15 +124,16 @@ namespace Netotik.Web.Controllers
         [OutputCache(Location = OutputCacheLocation.None, NoStore = true, Duration = 0, VaryByParam = "*")]
         public virtual JsonResult IsCompanyNationalCodeAvailable(string nationalCode, long? Id, long? Resellerid)
         {
-            var check = _applicationUserManager.CheckCompanyNationalCodeExist(nationalCode, Id, Resellerid);
-            var check2 = _applicationUserManager.IsNationalCodeAvailableAlgoritm(nationalCode);
-            if (!check == check2 == true)
-                return Json(true);
-            else
+            if (_applicationUserManager.CheckCompanyNationalCodeExist(nationalCode, Id, Resellerid))
                 return Json(false);
+
+            if (!_applicationUserManager.IsNationalCodeValid(nationalCode))
+                return Json(false);
+
+            return Json(true);
         }
         #endregion
-        
+
         #region Username
         [HttpPost]
         [AllowAnonymous]
@@ -140,7 +143,7 @@ namespace Netotik.Web.Controllers
             return _applicationUserManager.CheckUserNameExist(userName, Id) ? Json(false) : Json(true);
         }
         #endregion
-        
+
         #region _Code
         [HttpPost]
         [AllowAnonymous]
@@ -155,14 +158,14 @@ namespace Netotik.Web.Controllers
         [HttpPost]
         [AllowAnonymous]
         [OutputCache(Location = OutputCacheLocation.None, NoStore = true, Duration = 0, VaryByParam = "*")]
-        public virtual JsonResult IsCompanyCodeAvailable(string CompanyCode, long? Id,long? Resellerid)
+        public virtual JsonResult IsCompanyCodeAvailable(string CompanyCode, long? Id, long? Resellerid)
         {
             var check = _applicationUserManager.CheckCompanyCompanyNameExist(CompanyCode, Id, Resellerid);
             return check ? Json(false) : Json(true);
 
         }
         #endregion
-        
+
         #region Password
         [HttpPost]
         [AllowAnonymous]

@@ -69,7 +69,6 @@ namespace T4MVC
         public Netotik.Web.Areas.Admin.Controllers.MenuController Menu = new Netotik.Web.Areas.Admin.Controllers.T4MVC_MenuController();
         public Netotik.Web.Areas.Admin.Controllers.OrderController Order = new Netotik.Web.Areas.Admin.Controllers.T4MVC_OrderController();
         public Netotik.Web.Areas.Admin.Controllers.OrderNotPaymentController OrderNotPayment = new Netotik.Web.Areas.Admin.Controllers.T4MVC_OrderNotPaymentController();
-        public Netotik.Web.Areas.Admin.Controllers.ResellerController Reseller = new Netotik.Web.Areas.Admin.Controllers.T4MVC_ResellerController();
         public Netotik.Web.Areas.Admin.Controllers.ResourceController Resource = new Netotik.Web.Areas.Admin.Controllers.T4MVC_ResourceController();
         public Netotik.Web.Areas.Admin.Controllers.RoleController Role = new Netotik.Web.Areas.Admin.Controllers.T4MVC_RoleController();
         public Netotik.Web.Areas.Admin.Controllers.ShopCategoryController ShopCategory = new Netotik.Web.Areas.Admin.Controllers.T4MVC_ShopCategoryController();
@@ -87,7 +86,9 @@ namespace T4MVC
         public Netotik.Web.Areas.Admin.Controllers.StateController State = new Netotik.Web.Areas.Admin.Controllers.T4MVC_StateController();
         public Netotik.Web.Areas.Admin.Controllers.TicketController Ticket = new Netotik.Web.Areas.Admin.Controllers.T4MVC_TicketController();
         public Netotik.Web.Areas.Admin.Controllers.TicketTagController TicketTag = new Netotik.Web.Areas.Admin.Controllers.T4MVC_TicketTagController();
-        public Netotik.Web.Areas.Admin.Controllers.UserController User = new Netotik.Web.Areas.Admin.Controllers.T4MVC_UserController();
+        public Netotik.Web.Areas.Admin.Controllers.UserAdminController UserAdmin = new Netotik.Web.Areas.Admin.Controllers.T4MVC_UserAdminController();
+        public Netotik.Web.Areas.Admin.Controllers.UserResellerController UserReseller = new Netotik.Web.Areas.Admin.Controllers.T4MVC_UserResellerController();
+        public T4MVC.Admin.ResellerController Reseller = new T4MVC.Admin.ResellerController();
         public T4MVC.Admin.SharedController Shared = new T4MVC.Admin.SharedController();
     }
     [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]

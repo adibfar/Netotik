@@ -5,9 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNet.Identity;
 using Microsoft.Owin.Security.Cookies;
 using Netotik.Domain.Entity;
-using Netotik.ViewModels.Identity.UserAdmin;
 using Netotik.Common.DataTables;
-using Netotik.ViewModels.Identity.UserReseller;
 
 namespace Netotik.Services.Identity
 {
@@ -21,7 +19,8 @@ namespace Netotik.Services.Identity
         Task UpdateUserAdminProfile(ViewModels.Identity.UserAdmin.ProfileModel model);
         Task UpdateUserResellerProfile(ViewModels.Identity.UserReseller.ProfileModel model);
         Task UpdateUserCompanyProfile(ViewModels.Identity.UserCompany.ProfileModel model);
-        IList<UserItem> GetListUserAdmins(RequestListModel model, out long TotalCount, out long ShowCount);
+        IList<ViewModels.Identity.UserAdmin.UserItem> GetListUserAdmins(RequestListModel model, out long TotalCount, out long ShowCount);
+        IList<ViewModels.Identity.UserReseller.UserItem> GetListUserResellers(RequestListModel model, out long TotalCount, out long ShowCount);
 
         IList<ViewModels.Identity.UserCompany.CompanyList> GetListUserCompany(long id);
 
@@ -66,7 +65,7 @@ namespace Netotik.Services.Identity
         /// </summary>
         bool UserLockoutEnabledByDefault { get; set; }
 
-        bool IsNationalCodeAvailableAlgoritm(string nationalCode);
+        bool IsNationalCodeValid(string nationalCode);
 
         /// <summary>
         /// Number of access attempts allowed before a user is locked out (if lockout is enabled)
@@ -345,7 +344,8 @@ namespace Netotik.Services.Identity
 
         IList<string> GetRoles(long userId);
 
-        Task<AdminEditModel> GetUserByRolesAsync(long id);
+        Task<ViewModels.Identity.UserAdmin.AdminEditModel> GetUserAdminByIdAsync(long id);
+        Task<ViewModels.Identity.UserReseller.ResellerEditModel> GetUserResellerByIdAsync(long id);
 
         /// <summary>
         /// Returns true if the user is in the specified role
@@ -584,7 +584,8 @@ namespace Netotik.Services.Identity
         void AddRange(IEnumerable<User> users);
         bool AutoCommitEnabled { get; set; }
         void SeedDatabase();
-        Task<bool> EditUser(AdminEditModel viewModel);
+        Task<bool> EditUser(ViewModels.Identity.UserAdmin.AdminEditModel viewModel);
+        Task<bool> EditReseller(ViewModels.Identity.UserReseller.ResellerEditModel viewModel);
 
         void SetRolesToUser(User user, IEnumerable<Role> roles);
 
@@ -605,8 +606,9 @@ namespace Netotik.Services.Identity
         Task<string> CustomValidatePasswordAsync(string pass);
         bool CheckIsUserBanned(long id);
         bool CheckIsUserBanned(string userName);
-        Task<User> AddUser(AdminAddModel viewModel);
-        Task<long> AddReseller(RegisterViewModel viewModel);
+        Task<User> AddUser(ViewModels.Identity.UserAdmin.AdminAddModel viewModel);
+        Task<User> AddReseller(ViewModels.Identity.UserReseller.ResellerAddModel viewModel);
+        Task<long> AddReseller(ViewModels.Identity.UserReseller.RegisterViewModel viewModel);
         Task<long> AddCompany(Netotik.ViewModels.Identity.UserCompany.Register viewModel);
         IUserEmailStore<User, long> GetEmailStore();
 

@@ -6,7 +6,7 @@
 <section class="flexbox-container">
     <div class="row">
         <div class="col-md-12">
-            @using (Html.BeginForm(MVC.Admin.User.ActionNames.Edit, MVC.Admin.User.Name, FormMethod.Post,
+            @using (Html.BeginForm(MVC.Admin.UserAdmin.ActionNames.Edit, MVC.Admin.UserAdmin.Name, FormMethod.Post,
             htmlAttributes: new { @class = "form-horizontal", enctype = "multipart/form-data", id = "form" }))
             {
                 @Html.HiddenFor(m => m.Id)
@@ -91,7 +91,7 @@
                             </div>
                             <div class="col-md-3">
                                 <div class="card-block">
-                                    <h4 class="form-section"><i class="icon-stack"></i> دسته بندی ها </h4>
+                                    <h4 class="form-section"><i class="icon-users2"></i> گروه کاربری</h4>
                                     <div class="row mb-3">
                                         <div class="col-md-12 skin skin-flat">
                                             @if (!roles.Any())
@@ -115,7 +115,7 @@
                                         </div>
                                     </div>
 
-                                    <h4 class="form-section"><i class="icon-image2"></i> تصویر پروفایل</h4>
+                                    <h4 class="form-section"><i class="icon-camera5"></i> تصویر پروفایل</h4>
                                     <div class="row mb-3">
                                         <div class="col-md-12">
 

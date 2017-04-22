@@ -25,10 +25,10 @@ using System.Web.Routing;
 using T4MVC;
 namespace Netotik.Web.Areas.Admin.Controllers
 {
-    public partial class UserController
+    public partial class UserResellerController
     {
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        protected UserController(Dummy d) { }
+        protected UserResellerController(Dummy d) { }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         protected RedirectToRouteResult RedirectToAction(ActionResult result)
@@ -64,12 +64,6 @@ namespace Netotik.Web.Areas.Admin.Controllers
         }
         [NonAction]
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public virtual System.Web.Mvc.ActionResult Detail()
-        {
-            return new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Detail);
-        }
-        [NonAction]
-        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public virtual System.Threading.Tasks.Task<System.Web.Mvc.ActionResult> Edit()
         {
             var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Edit);
@@ -89,13 +83,13 @@ namespace Netotik.Web.Areas.Admin.Controllers
         }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public UserController Actions { get { return MVC.Admin.User; } }
+        public UserResellerController Actions { get { return MVC.Admin.UserReseller; } }
         [GeneratedCode("T4MVC", "2.0")]
         public readonly string Area = "Admin";
         [GeneratedCode("T4MVC", "2.0")]
-        public readonly string Name = "User";
+        public readonly string Name = "UserReseller";
         [GeneratedCode("T4MVC", "2.0")]
-        public const string NameConst = "User";
+        public const string NameConst = "UserReseller";
         [GeneratedCode("T4MVC", "2.0")]
         static readonly ActionNamesClass s_actions = new ActionNamesClass();
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -106,7 +100,6 @@ namespace Netotik.Web.Areas.Admin.Controllers
             public readonly string Index = "Index";
             public readonly string GetList = "GetList";
             public readonly string Create = "Create";
-            public readonly string Detail = "Detail";
             public readonly string Remove = "Remove";
             public readonly string Edit = "Edit";
             public readonly string ChangePassword = "ChangePassword";
@@ -119,7 +112,6 @@ namespace Netotik.Web.Areas.Admin.Controllers
             public const string Index = "Index";
             public const string GetList = "GetList";
             public const string Create = "Create";
-            public const string Detail = "Detail";
             public const string Remove = "Remove";
             public const string Edit = "Edit";
             public const string ChangePassword = "ChangePassword";
@@ -142,14 +134,6 @@ namespace Netotik.Web.Areas.Admin.Controllers
         public class ActionParamsClass_Create
         {
             public readonly string model = "model";
-        }
-        static readonly ActionParamsClass_Detail s_params_Detail = new ActionParamsClass_Detail();
-        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public ActionParamsClass_Detail DetailParams { get { return s_params_Detail; } }
-        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public class ActionParamsClass_Detail
-        {
-            public readonly string id = "id";
         }
         static readonly ActionParamsClass_Remove s_params_Remove = new ActionParamsClass_Remove();
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -198,23 +182,21 @@ namespace Netotik.Web.Areas.Admin.Controllers
                 public readonly string _Table = "_Table";
                 public readonly string ChangePassword = "ChangePassword";
                 public readonly string Create = "Create";
-                public readonly string Detail = "Detail";
                 public readonly string Edit = "Edit";
                 public readonly string Index = "Index";
             }
-            public readonly string _Table = "~/Areas/Admin/Views/User/_Table.cshtml";
-            public readonly string ChangePassword = "~/Areas/Admin/Views/User/ChangePassword.cshtml";
-            public readonly string Create = "~/Areas/Admin/Views/User/Create.cshtml";
-            public readonly string Detail = "~/Areas/Admin/Views/User/Detail.cshtml";
-            public readonly string Edit = "~/Areas/Admin/Views/User/Edit.cshtml";
-            public readonly string Index = "~/Areas/Admin/Views/User/Index.cshtml";
+            public readonly string _Table = "~/Areas/Admin/Views/UserReseller/_Table.cshtml";
+            public readonly string ChangePassword = "~/Areas/Admin/Views/UserReseller/ChangePassword.cshtml";
+            public readonly string Create = "~/Areas/Admin/Views/UserReseller/Create.cshtml";
+            public readonly string Edit = "~/Areas/Admin/Views/UserReseller/Edit.cshtml";
+            public readonly string Index = "~/Areas/Admin/Views/UserReseller/Index.cshtml";
         }
     }
 
     [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-    public partial class T4MVC_UserController : Netotik.Web.Areas.Admin.Controllers.UserController
+    public partial class T4MVC_UserResellerController : Netotik.Web.Areas.Admin.Controllers.UserResellerController
     {
-        public T4MVC_UserController() : base(Dummy.Instance) { }
+        public T4MVC_UserResellerController() : base(Dummy.Instance) { }
 
         [NonAction]
         partial void IndexOverride(T4MVC_System_Web_Mvc_ActionResult callInfo);
@@ -251,27 +233,15 @@ namespace Netotik.Web.Areas.Admin.Controllers
         }
 
         [NonAction]
-        partial void CreateOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, Netotik.ViewModels.Identity.UserAdmin.AdminAddModel model);
+        partial void CreateOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, Netotik.ViewModels.Identity.UserReseller.ResellerAddModel model);
 
         [NonAction]
-        public override System.Threading.Tasks.Task<System.Web.Mvc.ActionResult> Create(Netotik.ViewModels.Identity.UserAdmin.AdminAddModel model)
+        public override System.Threading.Tasks.Task<System.Web.Mvc.ActionResult> Create(Netotik.ViewModels.Identity.UserReseller.ResellerAddModel model)
         {
             var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Create);
             ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "model", model);
             CreateOverride(callInfo, model);
             return System.Threading.Tasks.Task.FromResult(callInfo as System.Web.Mvc.ActionResult);
-        }
-
-        [NonAction]
-        partial void DetailOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, int id);
-
-        [NonAction]
-        public override System.Web.Mvc.ActionResult Detail(int id)
-        {
-            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Detail);
-            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "id", id);
-            DetailOverride(callInfo, id);
-            return callInfo;
         }
 
         [NonAction]
@@ -299,10 +269,10 @@ namespace Netotik.Web.Areas.Admin.Controllers
         }
 
         [NonAction]
-        partial void EditOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, Netotik.ViewModels.Identity.UserAdmin.AdminEditModel model);
+        partial void EditOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, Netotik.ViewModels.Identity.UserReseller.ResellerEditModel model);
 
         [NonAction]
-        public override System.Threading.Tasks.Task<System.Web.Mvc.ActionResult> Edit(Netotik.ViewModels.Identity.UserAdmin.AdminEditModel model)
+        public override System.Threading.Tasks.Task<System.Web.Mvc.ActionResult> Edit(Netotik.ViewModels.Identity.UserReseller.ResellerEditModel model)
         {
             var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Edit);
             ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "model", model);
@@ -323,10 +293,10 @@ namespace Netotik.Web.Areas.Admin.Controllers
         }
 
         [NonAction]
-        partial void ChangePasswordOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, Netotik.ViewModels.Identity.UserAdmin.UserChangePasswordModel model);
+        partial void ChangePasswordOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, Netotik.ViewModels.Identity.UserReseller.ChangePasswordModel model);
 
         [NonAction]
-        public override System.Threading.Tasks.Task<System.Web.Mvc.ActionResult> ChangePassword(Netotik.ViewModels.Identity.UserAdmin.UserChangePasswordModel model)
+        public override System.Threading.Tasks.Task<System.Web.Mvc.ActionResult> ChangePassword(Netotik.ViewModels.Identity.UserReseller.ChangePasswordModel model)
         {
             var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.ChangePassword);
             ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "model", model);

@@ -22,7 +22,7 @@ using Netotik.Web.Extension;
 using System.IO;
 using DNTBreadCrumb;
 using Netotik.ViewModels.Identity.Security;
-using Netotik.ViewModels.Identity.UserAdmin;
+using Netotik.ViewModels.Identity.UserReseller;
 using Netotik.Services.Identity;
 using Netotik.Common.Controller;
 using Netotik.Common.DataTables;
@@ -31,9 +31,9 @@ using System.Net;
 
 namespace Netotik.Web.Areas.Admin.Controllers
 {
-    [BreadCrumb(Title = "لیست کاربران", UseDefaultRouteUrl = true, RemoveAllDefaultRouteValues = true,
+    [BreadCrumb(Title = "لیست نمایندگان", UseDefaultRouteUrl = true, RemoveAllDefaultRouteValues = true,
  Order = 0, GlyphIcon = "icon icon-table")]
-    public partial class UserController : BasePanelController
+    public partial class UserResellerController : BasePanelController
     {
 
         #region ctor
@@ -42,7 +42,7 @@ namespace Netotik.Web.Areas.Admin.Controllers
         private readonly IApplicationRoleManager _applicationRoleManager;
         private readonly IUnitOfWork _uow;
 
-        public UserController(
+        public UserResellerController(
             IPictureService pictureservice,
             IApplicationUserManager applicationUserManager,
             IApplicationRoleManager applicationRoleManager,
@@ -68,7 +68,7 @@ namespace Netotik.Web.Areas.Admin.Controllers
             long totalCount;
             long showCount;
 
-            var result = _applicationUserManager.GetListUserAdmins(model, out totalCount, out showCount);
+            var result = _applicationUserManager.GetListUserResellers(model, out totalCount, out showCount);
 
             return Json(new
             {
@@ -86,10 +86,9 @@ namespace Netotik.Web.Areas.Admin.Controllers
         #region Create
 
         [Mvc5Authorize(Roles = AssignableToRolePermissions.CanCreateUser)]
-        [BreadCrumb(Title = "کاربر جدید", Order = 1)]
+        [BreadCrumb(Title = "نماینده جدید", Order = 1)]
         public virtual async Task<ActionResult> Create()
         {
-            await PopulateRoles();
             return View();
         }
 
@@ -97,7 +96,7 @@ namespace Netotik.Web.Areas.Admin.Controllers
         [AllowUploadSpecialFilesOnly(".jpg,.png,.gif", true)]
         [ValidateAntiForgeryToken]
         [HttpPost]
-        public virtual async Task<ActionResult> Create(AdminAddModel model)
+        public virtual async Task<ActionResult> Create(ResellerAddModel model)
         {
             #region Validation
             if (_userManager.CheckResellerPhoneNumberExist(model.PhoneNumber, null))
@@ -112,18 +111,11 @@ namespace Netotik.Web.Areas.Admin.Controllers
 
             if (!ModelState.IsValid)
             {
-                await PopulateRoles(model.RoleIds);
                 this.MessageError(Messages.MissionFail, Messages.InvalidDataError);
                 return View(model);
             }
-            if (model.RoleIds == null || model.RoleIds.Length < 1)
-            {
-                this.MessageError(Messages.MissionFail, "لطفا برای  کاربر مورد نظر ، گروه کاربری تعیین کنید");
-                await PopulateRoles(model.RoleIds);
-                return View(model);
-            }
 
-            var user = await _userManager.AddUser(model);
+            var user = await _userManager.AddReseller(model);
             #region Add Avatar Image
             if (model.ImageAvatar != null && model.ImageAvatar.ContentLength > 0)
             {
@@ -141,47 +133,30 @@ namespace Netotik.Web.Areas.Admin.Controllers
             #endregion
 
             this.MessageSuccess(Messages.MissionSuccess, Messages.AddSuccess);
-            return RedirectToAction(MVC.Admin.User.Index());
+            return RedirectToAction(MVC.Admin.UserReseller.Index());
 
         }
 
-
-        #endregion
-
-        #region Detail
-
-        [Mvc5Authorize(Roles = AssignableToRolePermissions.CanAccessUser)]
-        public virtual ActionResult Detail(int id)
-        {
-            //var user = _applicationUserManager.SingleOrDefault(id);
-            //if (user == null)
-            //    return RedirectToAction(MVC.Admin.User.ActionNames.Index);
-
-            ////ViewBag.logins = user.LoginHistories.OrderByDescending(x => x.RegisterDate).Take(10).ToList();
-            //return View(user);
-            return View();
-        }
 
         #endregion
 
         #region Edit
-        [Mvc5Authorize(Roles = AssignableToRolePermissions.CanEditUser)]
+        [Mvc5Authorize(Roles = AssignableToRolePermissions.CanDeleteUser)]
         [HttpPost]
         public virtual ActionResult Remove(int id = 0)
         {
             _applicationUserManager.LogicalRemove(id);
-            return RedirectToAction(MVC.Admin.User.Index());
+            return RedirectToAction(MVC.Admin.UserReseller.Index());
         }
 
-        [Mvc5Authorize(Roles = AssignableToRolePermissions.CanDeleteUser)]
+        [Mvc5Authorize(Roles = AssignableToRolePermissions.CanEditUser)]
         [BreadCrumb(Title = "ویرایش", Order = 1)]
         public virtual async Task<ActionResult> Edit(long? id)
         {
             if (id == null) return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
 
-            var viewModel = await _userManager.GetUserByRolesAsync(id.Value);
+            var viewModel = await _userManager.GetUserResellerByIdAsync(id.Value);
             if (viewModel == null) return HttpNotFound();
-            await PopulateRoles(viewModel.Roles.Select(a => a.RoleId).ToArray());
 
             if (viewModel.Picture != null)
                 ViewBag.Avatar = Path.Combine(Common.Controller.FilePathes._imagesUserAvatarsPath, viewModel.Picture.FileName);
@@ -193,7 +168,7 @@ namespace Netotik.Web.Areas.Admin.Controllers
         [Mvc5Authorize(Roles = AssignableToRolePermissions.CanEditUser)]
         [ValidateAntiForgeryToken]
         [HttpPost]
-        public virtual async Task<ActionResult> Edit(AdminEditModel model)
+        public virtual async Task<ActionResult> Edit(ResellerEditModel model)
         {
             #region Validation
             if (_userManager.CheckResellerPhoneNumberExist(model.PhoneNumber, model.Id))
@@ -207,7 +182,6 @@ namespace Netotik.Web.Areas.Admin.Controllers
 
             if (!ModelState.IsValid)
             {
-                await PopulateRoles(model.RoleIds);
                 return View(model);
             }
 
@@ -233,18 +207,17 @@ namespace Netotik.Web.Areas.Admin.Controllers
             }
             #endregion
 
-            if (!await _userManager.EditUser(model))
+            if (!await _userManager.EditReseller(model))
             {
                 if (model.Picture != null)
                     DeleteFile(Server.MapPath(Path.Combine(FilePathes._imagesUserAvatarsPath, model.Picture.FileName)));
 
-                this.MessageError(Messages.MissionFail, "لطفا برای کاربر مورد نظر ، گروه کاربری تعیین کنید");
-                await PopulateRoles();
+                this.MessageError(Messages.MissionFail, Messages.UpdateError);
                 return View(model);
             }
 
             this.MessageSuccess(Messages.MissionSuccess, Messages.UpdateSuccess);
-            return RedirectToAction(MVC.Admin.User.Index());
+            return RedirectToAction(MVC.Admin.UserReseller.Index());
         }
 
 
@@ -258,7 +231,7 @@ namespace Netotik.Web.Areas.Admin.Controllers
 
         [Mvc5Authorize(Roles = AssignableToRolePermissions.CanEditUser)]
         [HttpPost]
-        public virtual async Task<ActionResult> ChangePassword(UserChangePasswordModel model)
+        public virtual async Task<ActionResult> ChangePassword(ChangePasswordModel model)
         {
             //if (!ModelState.IsValid)
             //{
@@ -287,21 +260,5 @@ namespace Netotik.Web.Areas.Admin.Controllers
 
         #endregion
 
-
-        #region Private
-        [NonAction]
-        private async Task PopulateRoles(params long[] selectedIds)
-        {
-            var roles = await _applicationRoleManager.GetAllAsSelectListAsync();
-
-            if (selectedIds != null)
-            {
-                roles.ForEach(a => a.Selected = selectedIds.Any(b => long.Parse(a.Value) == b));
-            }
-
-            ViewBag.Roles = roles;
-        }
-
-        #endregion
     }
 }

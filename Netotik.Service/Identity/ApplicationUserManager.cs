@@ -17,7 +17,6 @@ using RefactorThis.GraphDiff;
 using Netotik.Domain.Entity;
 using Netotik.Data;
 using Netotik.Common.Extensions;
-using Netotik.ViewModels.Identity.UserAdmin;
 using Netotik.Common.Caching;
 using Netotik.Common.Controller;
 using Netotik.Common.DataTables;
@@ -120,9 +119,9 @@ namespace Netotik.Services.Identity
             _mappingEngine.Map(model, user);
             await _unitOfWork.SaveChangesAsync();
         }
-        public IList<UserItem> GetListUserAdmins(RequestListModel model, out long TotalCount, out long ShowCount)
+        public IList<ViewModels.Identity.UserAdmin.UserItem> GetListUserAdmins(RequestListModel model, out long TotalCount, out long ShowCount)
         {
-            IQueryable<User> all = _users.Where(x => !x.IsDeleted).AsQueryable();
+            IQueryable<User> all = _users.Where(x => !x.IsDeleted && x.UserType == UserType.UserAdmin).AsQueryable();
             TotalCount = all.LongCount();
 
             // Apply Filtering
@@ -145,7 +144,47 @@ namespace Netotik.Services.Identity
 
             ShowCount = all.Count();
             return all.AsEnumerable().Skip(model.iDisplayStart).Take(model.iDisplayLength).ToList()
-                .Select((x, index) => new UserItem
+                .Select((x, index) => new ViewModels.Identity.UserAdmin.UserItem
+                {
+                    ImageFileName = x.PictureId.HasValue ? x.Picture.FileName : "Default.png",
+                    PhoneNumber = x.PhoneNumber,
+                    Name = string.Format("{0} {1}", x.FirstName, x.LastName),
+                    LastLoginDate = PersianDate.ConvertDate.ToFa(x.LastLoginDate, "g"),
+                    Email = x.Email,
+                    Id = x.Id,
+                    IsBanned = x.IsBanned,
+                    RowNumber = model.iDisplayStart + index + 1
+                })
+                .ToList();
+
+        }
+
+        public IList<ViewModels.Identity.UserReseller.UserItem> GetListUserResellers(RequestListModel model, out long TotalCount, out long ShowCount)
+        {
+            IQueryable<User> all = _users.Where(x => !x.IsDeleted && x.UserType == UserType.UserReseller).AsQueryable();
+            TotalCount = all.LongCount();
+
+            // Apply Filtering
+            if (!string.IsNullOrEmpty(model.sSearch))
+            {
+                all = all.
+                    Where(x => x.FirstName.Contains(model.sSearch) ||
+                    x.LastName.Contains(model.sSearch) ||
+                    x.Email.Contains(model.sSearch) ||
+                    x.PhoneNumber.Contains(model.sSearch))
+                    .AsQueryable();
+            }
+
+
+            // Apply Sorting
+            Func<User, string> orderingFunction = (x => model.iSortCol_0 == 1 ? x.FirstName :
+                                                            model.iSortCol_0 == 2 ? x.Email : x.PhoneNumber);
+            // asc or desc
+            all = model.sSortDir_0 == "asc" ? all.OrderBy(orderingFunction).AsQueryable() : all.OrderByDescending(orderingFunction).AsQueryable();
+
+            ShowCount = all.Count();
+            return all.AsEnumerable().Skip(model.iDisplayStart).Take(model.iDisplayLength).ToList()
+                .Select((x, index) => new ViewModels.Identity.UserReseller.UserItem
                 {
                     ImageFileName = x.PictureId.HasValue ? x.Picture.FileName : "Default.png",
                     PhoneNumber = x.PhoneNumber,
@@ -338,19 +377,27 @@ namespace Netotik.Services.Identity
         #endregion
 
         #region GetUserByRoles
-        public async Task<AdminEditModel> GetUserByRolesAsync(long id)
+        public async Task<ViewModels.Identity.UserAdmin.AdminEditModel> GetUserAdminByIdAsync(long id)
         {
             var userWithRoles = await
                  _users.AsNoTracking()
                      .Include(a => a.Roles)
                      .FirstOrDefaultAsync(a => a.Id == id);
-            return _mappingEngine.Map<AdminEditModel>(userWithRoles);
+            return _mappingEngine.Map<ViewModels.Identity.UserAdmin.AdminEditModel>(userWithRoles);
+        }
+
+        public async Task<ViewModels.Identity.UserReseller.ResellerEditModel> GetUserResellerByIdAsync(long id)
+        {
+            var userWithRoles = await
+                 _users.AsNoTracking().FirstOrDefaultAsync(a => a.Id == id);
+
+            return _mappingEngine.Map<ViewModels.Identity.UserReseller.ResellerEditModel>(userWithRoles);
         }
 
         #endregion
 
         #region EditUser
-        public async Task<bool> EditUser(AdminEditModel viewModel)
+        public async Task<bool> EditUser(ViewModels.Identity.UserAdmin.AdminEditModel viewModel)
         {
             var passwordModify = false;
 
@@ -389,6 +436,40 @@ namespace Netotik.Services.Identity
         }
         #endregion
 
+        public async Task<bool> EditReseller(ViewModels.Identity.UserReseller.ResellerEditModel viewModel)
+        {
+            var passwordModify = false;
+
+            var user = _users.Find(viewModel.Id);
+            //_unitOfWork.MarkAsDetached(user);
+
+            _mappingEngine.Map(viewModel, user);
+            if (viewModel.Picture != null)
+                user.Picture = viewModel.Picture;
+
+            //var emailModify = viewModel.Email != user.Email;
+
+            //if (emailModify)
+            //{
+            //    user.EmailConfirmed = false;
+            //}
+
+            //user.Picture = viewModel.Picture;
+            //_unitOfWork.Update(user, a => a.AssociatedCollection(u => u.Roles));
+
+
+
+            //if (passwordModify || emailModify)
+            if (passwordModify)
+                this.UpdateSecurityStamp(user.Id);
+            //else
+            //    await _unitOfWork.SaveAllChangesAsync();
+
+            await _unitOfWork.SaveChangesAsync();
+            return await Task.FromResult(true);
+        }
+
+
         #region SetRolesToUser
         public void SetRolesToUser(User user, IEnumerable<Role> roles)
         {
@@ -397,22 +478,24 @@ namespace Netotik.Services.Identity
         #endregion
 
         #region AddUser
-        public async Task<User> AddUser(AdminAddModel viewModel)
+        public async Task<User> AddUser(ViewModels.Identity.UserAdmin.AdminAddModel viewModel)
         {
             var user = _mappingEngine.Map<User>(viewModel);
             viewModel.RoleIds.ToList().ForEach(roleId => user.Roles.Add(new UserRole { RoleId = roleId }));
             await CreateAsync(user, viewModel.Password);
             return user;
         }
+        public async Task<User> AddReseller(ViewModels.Identity.UserReseller.ResellerAddModel viewModel)
+        {
+            var user = _mappingEngine.Map<User>(viewModel);
+            await CreateAsync(user, viewModel.Password);
+            return user;
+        }
         public async Task<long> AddReseller(ViewModels.Identity.UserReseller.RegisterViewModel viewModel)
         {
             var user = _mappingEngine.Map<User>(viewModel);
-            user.UserType = UserType.UserReseller;
-
             await CreateAsync(user, viewModel.Password);
-
             return user.Id;
-
         }
         public async Task<long> AddCompany(ViewModels.Identity.UserCompany.Register viewModel)
         {
@@ -458,7 +541,7 @@ namespace Netotik.Services.Identity
         public bool CheckResellerNationalCodeExist(string nCode, long? id)
         {
             return id == null
-               ? _users.Any(a => a.UserReseller.NationalCode == nCode && !a.IsDeleted )
+               ? _users.Any(a => a.UserReseller.NationalCode == nCode && !a.IsDeleted)
                : _users.Any(a => a.UserReseller.NationalCode == nCode && !a.IsDeleted && a.Id != id.Value);
         }
 
@@ -683,7 +766,7 @@ namespace Netotik.Services.Identity
             return _users.Any(a => a.Email == email && (a.IsBanned || a.IsDeleted));
         }
 
-        public bool IsNationalCodeAvailableAlgoritm(string nationalCode)
+        public bool IsNationalCodeValid(string nationalCode)
         {
             if (nationalCode.Length == 10)
             {

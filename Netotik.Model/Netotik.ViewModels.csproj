@@ -85,6 +85,7 @@
     <Compile Include="Identity\Account\SetPasswordViewModel.cs" />
     <Compile Include="Identity\UserCompany\CompanyAddModel.cs" />
     <Compile Include="Identity\UserCompany\CompanyEditModel.cs" />
+    <Compile Include="Identity\UserReseller\UserItem.cs" />
     <Compile Include="Ticketing\Issue\IssueLabelModel.cs" />
     <Compile Include="Ticketing\Issue\IssueTrackModel.cs" />
     <Compile Include="Ticketing\Issue\IssueModel.cs" />
@@ -179,7 +180,6 @@
     <Compile Include="Identity\UserReseller\ResellerAddModel.cs" />
     <Compile Include="Identity\UserReseller\ChangePasswordModel.cs" />
     <Compile Include="Identity\UserReseller\LoginModel.cs" />
-    <Compile Include="Identity\UserReseller\TableResellerModel.cs" />
     <Compile Include="Identity\UserAdmin\AdminEditModel.cs" />
     <Compile Include="Identity\UserAdmin\ChangePasswordModel.cs" />
     <Compile Include="Identity\UserAdmin\AdminAddModel.cs" />

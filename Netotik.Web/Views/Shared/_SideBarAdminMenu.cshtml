@@ -187,7 +187,7 @@
                     <ul class="dropdown-menu">
                         @if (UserAccountMenu)
                         {
-                            <li><a href="@Url.Action(MVC.Admin.User.Index())" data-toggle="dropdown" class="dropdown-item">مدیرت کاربران</a></li>}
+                            <li><a href="@Url.Action(MVC.Admin.UserAdmin.Index())" data-toggle="dropdown" class="dropdown-item">مدیرت کاربران</a></li>}
                         @if (RoleMenu)
                         {
                             <li><a href="@Url.Action(MVC.Admin.Role.Index())" data-toggle="dropdown" class="dropdown-item">مدیرت گروه ها</a></li>}
@@ -198,7 +198,7 @@
             @if (AdminNetAccMenu)
             {
                 <li class="nav-item">
-                    <a href="@Url.Action(MVC.Admin.Reseller.Index())" class="nav-link"><i class="icon-user-tie"></i><span>نمایندگی ها</span> </a>
+                    <a href="@Url.Action(MVC.Admin.UserReseller.Index())" class="nav-link"><i class="icon-user-tie"></i><span>نمایندگی ها</span> </a>
                 </li>
             }
 
