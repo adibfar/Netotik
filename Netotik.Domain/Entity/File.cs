@@ -8,8 +8,8 @@ namespace Netotik.Domain.Entity
         public File()
         {
             this.Contents = new List<Content>();
-            this.Issues = new List<Issue>();
-            this.IssueTracks = new List<IssueTrack>();
+            this.Issues = new List<Ticket>();
+            this.IssueTracks = new List<TicketTrack>();
         }
 
         public int Id { get; set; }
@@ -17,7 +17,7 @@ namespace Netotik.Domain.Entity
         public string OrginalName { get; set; }
         public string MimeType { get; set; }
         public virtual ICollection<Content> Contents { get; set; }
-        public virtual ICollection<Issue> Issues { get; set; }
-        public virtual ICollection<IssueTrack> IssueTracks { get; set; }
+        public virtual ICollection<Ticket> Issues { get; set; }
+        public virtual ICollection<TicketTrack> IssueTracks { get; set; }
     }
 }

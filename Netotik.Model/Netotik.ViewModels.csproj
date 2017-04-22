@@ -85,10 +85,10 @@
     <Compile Include="Identity\Account\SetPasswordViewModel.cs" />
     <Compile Include="Identity\UserCompany\CompanyAddModel.cs" />
     <Compile Include="Identity\UserCompany\CompanyEditModel.cs" />
-    <Compile Include="Support\Issue\IssueLabelModel.cs" />
-    <Compile Include="Support\Issue\IssueTrackModel.cs" />
-    <Compile Include="Support\Issue\IssueModel.cs" />
-    <Compile Include="Support\Issue\TableIssueModel.cs" />
+    <Compile Include="Ticketing\Issue\IssueLabelModel.cs" />
+    <Compile Include="Ticketing\Issue\IssueTrackModel.cs" />
+    <Compile Include="Ticketing\Issue\IssueModel.cs" />
+    <Compile Include="Ticketing\Issue\TableIssueModel.cs" />
     <Compile Include="CMS\Comment\AddCommentProduct.cs" />
     <Compile Include="CMS\Comment\AddCommentModel.cs" />
     <Compile Include="Common\ContactUs\MessageModel.cs" />

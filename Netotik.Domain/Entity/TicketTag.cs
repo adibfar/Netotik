@@ -4,17 +4,17 @@ using System.ComponentModel;
 
 namespace Netotik.Domain.Entity
 {
-    public partial class IssueLabel
+    public partial class TicketTag
     {
-        public IssueLabel()
+        public TicketTag()
         {
-            this.Issues = new List<Issue>();
+            this.Tickets = new List<Ticket>();
         }
 
         public int Id { get; set; }
         public string Name { get; set; }
         public string ColorCode { get; set; }
-        public virtual ICollection<Issue> Issues { get; set; }
+        public virtual ICollection<Ticket> Tickets { get; set; }
 
 
 

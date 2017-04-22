@@ -5,14 +5,13 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Netotik.Domain.Entity
 {
-    public partial class Issue
+    public partial class Ticket
     {
-        public Issue()
+        public Ticket()
         {
-            this.IssueTracks = new List<IssueTrack>();
+            this.TicketTracks = new List<TicketTrack>();
             this.FilesAttach = new List<File>();
-            this.IssueLabels = new List<IssueLabel>();
-            this.IssueUsers = new List<User>();
+            this.TicketTags = new List<TicketTag>();
         }
 
         public long Id { get; set; }
@@ -28,11 +27,8 @@ namespace Netotik.Domain.Entity
         public virtual User UserCreated { get; set; }
         public virtual User LastResponseUser { get; set; }
         public virtual ICollection<File> FilesAttach { get; set; }
-        public virtual ICollection<User> IssueUsers { get; set; }
-        public virtual ICollection<Role> IssueRoles { get; set; }
-        public virtual ICollection<IssueTrack> IssueTracks { get; set; }
-
-        public virtual ICollection<IssueLabel> IssueLabels { get; set; }
+        public virtual ICollection<TicketTrack> TicketTracks { get; set; }
+        public virtual ICollection<TicketTag> TicketTags { get; set; }
 
 
         [System.ComponentModel.DataAnnotations.Schema.NotMapped]

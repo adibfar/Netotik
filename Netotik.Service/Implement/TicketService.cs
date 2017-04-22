@@ -11,14 +11,14 @@ using System.Threading.Tasks;
 using System.Data.Entity;
 using PersianDate;
 using Netotik.Common;
-using Netotik.ViewModels.Support.Issue;
+using Netotik.ViewModels.Ticket.Issue;
 using Netotik.ViewModels.Identity.Security;
 
 namespace Netotik.Services.Implement
 {
-    public class IssueService : BaseService<Issue>, IIssueService
+    public class TicketService : BaseService<Ticket>, ITicketService
     {
-        public IssueService(IUnitOfWork unit)
+        public TicketService(IUnitOfWork unit)
             : base(unit)
         {
 

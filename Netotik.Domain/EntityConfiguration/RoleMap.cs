@@ -15,17 +15,7 @@ namespace Netotik.Domain.EntityConfiguration
             this.Property(t => t.Name)
                 .IsRequired()
                 .HasMaxLength(255);
-
-            this.HasMany(t => t.Issues)
-                .WithMany(t => t.IssueRoles)
-               .Map(m =>
-               {
-                   m.ToTable("IssueRoleMap");
-                   m.MapLeftKey("RoleId");
-                   m.MapRightKey("IssueId");
-               });
-
-
+            
         }
     }
 }

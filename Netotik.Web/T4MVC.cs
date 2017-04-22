@@ -65,8 +65,8 @@ namespace T4MVC
         public Netotik.Web.Areas.Admin.Controllers.ContentController Content = new Netotik.Web.Areas.Admin.Controllers.T4MVC_ContentController();
         public Netotik.Web.Areas.Admin.Controllers.ContentTagController ContentTag = new Netotik.Web.Areas.Admin.Controllers.T4MVC_ContentTagController();
         public Netotik.Web.Areas.Admin.Controllers.HomeController Home = new Netotik.Web.Areas.Admin.Controllers.T4MVC_HomeController();
-        public Netotik.Web.Areas.Admin.Controllers.IssueController Issue = new Netotik.Web.Areas.Admin.Controllers.T4MVC_IssueController();
-        public Netotik.Web.Areas.Admin.Controllers.IssueLabelController IssueLabel = new Netotik.Web.Areas.Admin.Controllers.T4MVC_IssueLabelController();
+        public Netotik.Web.Areas.Admin.Controllers.TicketController Issue = new Netotik.Web.Areas.Admin.Controllers.T4MVC_IssueController();
+        public Netotik.Web.Areas.Admin.Controllers.TicketLabelController IssueLabel = new Netotik.Web.Areas.Admin.Controllers.T4MVC_IssueLabelController();
         public Netotik.Web.Areas.Admin.Controllers.LinkController Link = new Netotik.Web.Areas.Admin.Controllers.T4MVC_LinkController();
         public Netotik.Web.Areas.Admin.Controllers.LuceneIndexingController LuceneIndexing = new Netotik.Web.Areas.Admin.Controllers.T4MVC_LuceneIndexingController();
         public Netotik.Web.Areas.Admin.Controllers.MenuController Menu = new Netotik.Web.Areas.Admin.Controllers.T4MVC_MenuController();

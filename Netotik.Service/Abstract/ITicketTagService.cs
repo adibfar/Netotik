@@ -9,12 +9,12 @@ using System.Threading.Tasks;
 
 namespace Netotik.Services.Abstract
 {
-    public interface IIssueLabelService : IBaseService<IssueLabel>
+    public interface ITicketTagService : IBaseService<TicketTag>
     {
-        Task<IssueLabel> SingleOrDefaultAsync(int primaryKey);
+        Task<TicketTag> SingleOrDefaultAsync(int primaryKey);
 
         Task<bool> IsExistByName(string name,int? id);
 
-        IList<IssueLabel> GetbyIds(int[] ids);
+        IList<TicketTag> GetbyIds(int[] ids);
     }
 }

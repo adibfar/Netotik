@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 using Netotik.Resources;
 using Netotik.Domain.Entity;
 
-namespace Netotik.ViewModels.Support.Issue
+namespace Netotik.ViewModels.Ticket.Issue
 {
     public class TableIssueModel
     {

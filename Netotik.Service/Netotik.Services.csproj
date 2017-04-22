@@ -149,8 +149,8 @@
     <Compile Include="Abstract\ICustomRoleStore.cs" />
     <Compile Include="Abstract\ICustomUserStore.cs" />
     <Compile Include="Abstract\IResourceService.cs" />
-    <Compile Include="Abstract\IIssueLabelService.cs" />
-    <Compile Include="Abstract\IIssueService.cs" />
+    <Compile Include="Abstract\ITicketTagService.cs" />
+    <Compile Include="Abstract\ITicketService.cs" />
     <Compile Include="Abstract\IOrderPaymentService.cs" />
     <Compile Include="Abstract\IOrderService.cs" />
     <Compile Include="Abstract\IProductCommentService.cs" />
@@ -206,11 +206,11 @@
     <Compile Include="Identity\PermissionRecord.cs" />
     <Compile Include="Identity\PermissionService.cs" />
     <Compile Include="Identity\StandardRoles.cs" />
+    <Compile Include="Implement\TicketTagService.cs" />
     <Compile Include="Implement\AdertiseService.cs" />
     <Compile Include="Implement\MikrotikServices.cs" />
     <Compile Include="Implement\ResourceService.cs" />
-    <Compile Include="Implement\IssueLabelService.cs" />
-    <Compile Include="Implement\IssueService.cs" />
+    <Compile Include="Implement\TicketService.cs" />
     <Compile Include="Implement\ProductGalleryService.cs" />
     <Compile Include="Implement\UserMailer.cs" />
     <Compile Include="Enums\VerifyUserStatus.cs" />

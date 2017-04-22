@@ -4,9 +4,9 @@ using System.Data.Entity.ModelConfiguration;
 
 namespace Netotik.Domain.EntityConfiguration
 {
-    public class IssueTrackMap : EntityTypeConfiguration<IssueTrack>
+    public class TicketTrackMap : EntityTypeConfiguration<TicketTrack>
     {
-        public IssueTrackMap()
+        public TicketTrackMap()
         {
             // Primary Key
             this.HasKey(t => t.Id);

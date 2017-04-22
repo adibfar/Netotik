@@ -342,7 +342,7 @@ namespace Netotik.Services.Identity
         {
             var userWithRoles = await
                  _users.AsNoTracking()
-                     .Include(a => a.Roles)
+                     .Include(a => a.UserRoles)
                      .FirstOrDefaultAsync(a => a.Id == id);
             return _mappingEngine.Map<AdminEditModel>(userWithRoles);
         }
@@ -370,8 +370,8 @@ namespace Netotik.Services.Identity
             //    user.EmailConfirmed = false;
             //}
 
-            user.Roles.Clear();
-            viewModel.RoleIds.ToList().ForEach(roleId => user.Roles.Add(new UserRole { RoleId = roleId, UserId = user.Id }));
+            user.UserRoles.Clear();
+            viewModel.RoleIds.ToList().ForEach(roleId => user.UserRoles.Add(new UserRole { RoleId = roleId, UserId = user.Id }));
 
             //user.Picture = viewModel.Picture;
             //_unitOfWork.Update(user, a => a.AssociatedCollection(u => u.Roles));
@@ -400,7 +400,7 @@ namespace Netotik.Services.Identity
         public async Task<User> AddUser(AdminAddModel viewModel)
         {
             var user = _mappingEngine.Map<User>(viewModel);
-            viewModel.RoleIds.ToList().ForEach(roleId => user.Roles.Add(new UserRole { RoleId = roleId }));
+            viewModel.RoleIds.ToList().ForEach(roleId => user.UserRoles.Add(new UserRole { RoleId = roleId }));
             await CreateAsync(user, viewModel.Password);
             return user;
         }

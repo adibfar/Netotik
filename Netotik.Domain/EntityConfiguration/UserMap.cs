@@ -42,16 +42,7 @@ namespace Netotik.Domain.EntityConfiguration
                 .WithRequired(t => t.LastResponseUser)
                 .HasForeignKey(t => t.LastResponseUserId)
                 .WillCascadeOnDelete(false);
-
-            this.HasMany(t => t.IssueUsers)
-                .WithMany(t => t.IssueUsers)
-               .Map(m =>
-               {
-                   m.ToTable("IssueUserMap");
-                   m.MapLeftKey("IssueId");
-                   m.MapRightKey("UserId");
-               });
-
+            
             this.HasOptional(t => t.Picture)
                 .WithMany(t => t.Users)
                 .HasForeignKey(d => d.PictureId);

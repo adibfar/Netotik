@@ -20,28 +20,28 @@ using System.IO;
 using Microsoft.AspNet.Identity;
 using DNTBreadCrumb;
 using Netotik.ViewModels.Identity.Security;
-using Netotik.ViewModels.Support.Issue;
+using Netotik.ViewModels.Ticket.Issue;
 using Netotik.Services.Identity;
 using Netotik.Common.Controller;
 
 namespace Netotik.Web.Areas.Admin.Controllers
 {
-    [BreadCrumb(Title = "لیست کارها", UseDefaultRouteUrl = true, RemoveAllDefaultRouteValues = true,
+    [BreadCrumb(Title = "لیست تیکت ها", UseDefaultRouteUrl = true, RemoveAllDefaultRouteValues = true,
      Order = 0, GlyphIcon = "icon icon-table")]
-    public partial class IssueController : BasePanelController
+    public partial class TicketController : BasePanelController
     {
 
         #region ctor
 
-        private readonly IIssueService _issueService;
-        private readonly IIssueLabelService _issueLabelService;
+        private readonly ITicketService _issueService;
+        private readonly ITicketTagService _issueLabelService;
         private readonly IApplicationUserManager _applicationUserManager;
         private readonly IApplicationRoleManager _applicationRoleManager;
         private readonly IUnitOfWork _uow;
 
-        public IssueController(
-            IIssueService issueService,
-            IIssueLabelService issueLabelService,
+        public TicketController(
+            ITicketService issueService,
+            ITicketTagService issueLabelService,
             IApplicationUserManager applicationUserManager,
             IApplicationRoleManager applicationRoleManager,
             IUnitOfWork uow)
@@ -108,7 +108,7 @@ namespace Netotik.Web.Areas.Admin.Controllers
             #region Initial Content
             var now = DateTime.Now;
 
-            var issue = new Netotik.Domain.Entity.Issue()
+            var issue = new Netotik.Domain.Entity.Ticket()
             {
                 CreateDate = now,
                 CreatedUserId = User.Identity.GetUserId<long>(),
@@ -121,8 +121,7 @@ namespace Netotik.Web.Areas.Admin.Controllers
                 MessageCount = 0
             };
 
-            issue.IssueUsers = _applicationUserManager.GetbyIds(model.UserIds);
-            issue.IssueLabels = _issueLabelService.GetbyIds(model.LabelIds);
+            issue.TicketTags = _issueLabelService.GetbyIds(model.LabelIds);
 
             #endregion
 
@@ -168,13 +167,6 @@ namespace Netotik.Web.Areas.Admin.Controllers
                 this.MessageError(Messages.MissionFail, Messages.InvalidDataError);
                 return RedirectToAction(MVC.Admin.Issue.ActionNames.Index);
             }
-            var canTrack = (issue.IssueUsers.Any(x => x.Id == User.Identity.GetUserId<long>())) ? true : UserPermissions.Any(x => x == AssignableToRolePermissions.CanViewAllIssue && x == AssignableToRolePermissions.CanTrackIssue);
-            if (canTrack == false)
-            {
-                this.MessageError(Messages.MissionFail, Messages.InvalidDataError);
-                return RedirectToAction(MVC.Admin.Issue.ActionNames.Index);
-            }
-
             if (!ModelState.IsValid || string.IsNullOrWhiteSpace(model.Description))
             {
                 this.MessageError(Messages.MissionFail, Messages.InvalidDataError);
@@ -185,7 +177,7 @@ namespace Netotik.Web.Areas.Admin.Controllers
             var now = DateTime.Now;
 
 
-            var issueTrack = new Netotik.Domain.Entity.IssueTrack()
+            var issueTrack = new Netotik.Domain.Entity.TicketTrack()
             {
                 CreateDate = now,
                 CreatedUserId = 1,
@@ -196,7 +188,7 @@ namespace Netotik.Web.Areas.Admin.Controllers
             issue.LastResponseDate = now;
             issue.LastResponseUserId = 1;
             issue.status = IssueStatus.ResponseByUser;
-            issue.IssueTracks.Add(issueTrack);
+            issue.TicketTracks.Add(issueTrack);
 
             #endregion
             

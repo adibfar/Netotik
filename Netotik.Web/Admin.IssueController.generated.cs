@@ -25,10 +25,10 @@ using System.Web.Routing;
 using T4MVC;
 namespace Netotik.Web.Areas.Admin.Controllers
 {
-    public partial class IssueController
+    public partial class TicketController
     {
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        protected IssueController(Dummy d) { }
+        protected TicketController(Dummy d) { }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         protected RedirectToRouteResult RedirectToAction(ActionResult result)
@@ -76,7 +76,7 @@ namespace Netotik.Web.Areas.Admin.Controllers
         }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public IssueController Actions { get { return MVC.Admin.Issue; } }
+        public TicketController Actions { get { return MVC.Admin.Issue; } }
         [GeneratedCode("T4MVC", "2.0")]
         public readonly string Area = "Admin";
         [GeneratedCode("T4MVC", "2.0")]
@@ -198,7 +198,7 @@ namespace Netotik.Web.Areas.Admin.Controllers
     }
 
     [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-    public partial class T4MVC_IssueController : Netotik.Web.Areas.Admin.Controllers.IssueController
+    public partial class T4MVC_IssueController : Netotik.Web.Areas.Admin.Controllers.TicketController
     {
         public T4MVC_IssueController() : base(Dummy.Instance) { }
 
@@ -228,10 +228,10 @@ namespace Netotik.Web.Areas.Admin.Controllers
         }
 
         [NonAction]
-        partial void CreateOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, Netotik.ViewModels.Support.Issue.IssueModel model);
+        partial void CreateOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, Netotik.ViewModels.Ticket.Issue.IssueModel model);
 
         [NonAction]
-        public override System.Threading.Tasks.Task<System.Web.Mvc.ActionResult> Create(Netotik.ViewModels.Support.Issue.IssueModel model)
+        public override System.Threading.Tasks.Task<System.Web.Mvc.ActionResult> Create(Netotik.ViewModels.Ticket.Issue.IssueModel model)
         {
             var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Create);
             ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "model", model);
@@ -252,10 +252,10 @@ namespace Netotik.Web.Areas.Admin.Controllers
         }
 
         [NonAction]
-        partial void IssueTrackOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, Netotik.ViewModels.Support.Issue.IssueTrackModel model, Netotik.Common.Controller.ActionType actionType);
+        partial void IssueTrackOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, Netotik.ViewModels.Ticket.Issue.IssueTrackModel model, Netotik.Common.Controller.ActionType actionType);
 
         [NonAction]
-        public override System.Web.Mvc.ActionResult IssueTrack(Netotik.ViewModels.Support.Issue.IssueTrackModel model, Netotik.Common.Controller.ActionType actionType)
+        public override System.Web.Mvc.ActionResult IssueTrack(Netotik.ViewModels.Ticket.Issue.IssueTrackModel model, Netotik.Common.Controller.ActionType actionType)
         {
             var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.IssueTrack);
             ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "model", model);

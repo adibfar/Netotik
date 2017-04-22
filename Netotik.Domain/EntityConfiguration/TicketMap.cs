@@ -4,9 +4,9 @@ using System.Data.Entity.ModelConfiguration;
 
 namespace Netotik.Domain.EntityConfiguration
 {
-    public class IssueMap : EntityTypeConfiguration<Issue>
+    public class TicketMap : EntityTypeConfiguration<Ticket>
     {
-        public IssueMap()
+        public TicketMap()
         {
             // Primary Key
             this.HasKey(t => t.Id);
@@ -30,26 +30,6 @@ namespace Netotik.Domain.EntityConfiguration
                .WithMany(t => t.IssuesResponsed)
                .HasForeignKey(d => d.LastResponseUserId)
                .WillCascadeOnDelete(false);
-
-
-
-            this.HasMany(t => t.IssueUsers)
-                .WithMany(t => t.IssueUsers)
-                .Map(m =>
-                    {
-                    m.ToTable("UserIssueMap");
-                    m.MapLeftKey("IssueId");
-                    m.MapRightKey("UserId");
-                    });
-
-            this.HasMany(t => t.IssueRoles)
-                .WithMany(t => t.Issues)
-                .Map(m =>
-                {
-                    m.ToTable("RoleIssueMap");
-                    m.MapLeftKey("IssueId");
-                    m.MapRightKey("RoleId");
-                });
 
         }
     }

@@ -36,10 +36,6 @@ namespace Netotik.Web.Areas.Admin.Controllers
         }
         public virtual ActionResult Index()
         {
-            this.MessageSuccess("تراکنش موفق!.","اطلاعات شما با موفقیت ثبت شد.");
-            this.MessageError("تراکنش ناموفق!.", "اطلاعات شما با موفقیت ثبت شد.");
-            this.MessageWarning("تراکنش !.", "اطلاعات شما با موفقیت ثبت شد.");
-            this.MessageInformation("تراکنش موفق!.", "اطلاعات شما با موفقیت ثبت شد.");
             return View();
         }
 

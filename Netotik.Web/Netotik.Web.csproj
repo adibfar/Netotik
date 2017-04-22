@@ -422,8 +422,8 @@
     <Compile Include="App_Start\StructureMapControllerFactory.cs" />
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
     <Compile Include="Areas\Admin\Controllers\ResourceController.cs" />
-    <Compile Include="Areas\Admin\Controllers\IssueLabelController.cs" />
-    <Compile Include="Areas\Admin\Controllers\IssueController.cs" />
+    <Compile Include="Areas\Admin\Controllers\TicketLabelController.cs" />
+    <Compile Include="Areas\Admin\Controllers\TicketController.cs" />
     <Compile Include="Areas\Admin\Controllers\LuceneIndexingController.cs" />
     <Compile Include="Areas\Admin\Controllers\OrderNotPaymentController.cs" />
     <Compile Include="Areas\Admin\Controllers\OrderController.cs" />

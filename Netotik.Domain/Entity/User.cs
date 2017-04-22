@@ -8,9 +8,9 @@ namespace Netotik.Domain.Entity
     {
         public User()
         {
-            this.IssuesCreated = new List<Issue>();
-            this.IssuesResponsed = new List<Issue>();
-            this.IssueUsers = new List<Issue>();
+            this.IssuesCreated = new List<Ticket>();
+            this.IssuesResponsed = new List<Ticket>();
+            this.IssueUsers = new List<Ticket>();
             this.ContentsCreated = new List<Content>();
             this.ContentsEdited = new List<Content>();
             this.ContentComments = new List<ContentComment>();
@@ -19,7 +19,7 @@ namespace Netotik.Domain.Entity
             this.ReturnRequests = new List<ReturnRequest>();
             this.ProductComments = new List<ProductComment>();
             this.Addresses = new List<Address>();
-            this.Roles = new List<UserRole>();
+            this.UserRoles = new List<UserRole>();
         }
 
         public bool IsBanned { get; set; }
@@ -34,10 +34,10 @@ namespace Netotik.Domain.Entity
         public UserType UserType { get; set; }
         public virtual ICollection<Content> ContentsEdited { get; set; }
         public virtual ICollection<Content> ContentsCreated { get; set; }
-        public virtual ICollection<Issue> IssuesResponsed { get; set; }
-        public virtual ICollection<IssueTrack> IssuesTracksResponsed { get; set; }
-        public virtual ICollection<Issue> IssuesCreated { get; set; }
-        public virtual ICollection<Issue> IssueUsers { get; set; }
+        public virtual ICollection<Ticket> IssuesResponsed { get; set; }
+        public virtual ICollection<TicketTrack> IssuesTracksResponsed { get; set; }
+        public virtual ICollection<Ticket> IssuesCreated { get; set; }
+        public virtual ICollection<Ticket> IssueUsers { get; set; }
         public virtual ICollection<ContentComment> ContentComments { get; set; }
         public virtual ICollection<ProductComment> ProductComments { get; set; }
         public virtual ICollection<Order> Orders { get; set; }
@@ -49,9 +49,9 @@ namespace Netotik.Domain.Entity
         public virtual UserCompany UserCompany { get; set; }
         public List<Address> Addresses { get; set; }
 
-        public virtual ICollection<UserRole> Roles { get; set; }
-        public virtual ICollection<UserClaim> Claims { get; set; }
-        public virtual ICollection<UserLogin> Logins { get; set; }
+        public virtual ICollection<UserRole> UserRoles { get; set; }
+        public virtual ICollection<UserClaim> UserClaims { get; set; }
+        public virtual ICollection<UserLogin> UserLogins { get; set; }
     }
 
     public enum UserType : short

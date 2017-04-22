@@ -21,26 +21,26 @@ using System.Data.Entity.Validation;
 using Netotik.Web.Extension;
 using DNTBreadCrumb;
 using Netotik.ViewModels.Identity.Security;
-using Netotik.ViewModels.Support.Issue;
+using Netotik.ViewModels.Ticket.Issue;
 using Netotik.Common.Controller;
 
 namespace Netotik.Web.Areas.Admin.Controllers
 {
     [Mvc5Authorize(Roles = AssignableToRolePermissions.CanAccessIssueLabel)]
-    [BreadCrumb(Title = "لیست برچسب های وظایف", UseDefaultRouteUrl = true, RemoveAllDefaultRouteValues = true,
+    [BreadCrumb(Title = "لیست برچسب های تیکت", UseDefaultRouteUrl = true, RemoveAllDefaultRouteValues = true,
  Order = 0, GlyphIcon = "icon icon-table")]
-    public partial class IssueLabelController : BaseController
+    public partial class TicketLabelController : BaseController
     {
 
 
         #region ctor
-        private readonly IIssueLabelService _issueLabelService;
-        private readonly IIssueService _issueService;
+        private readonly ITicketTagService _issueLabelService;
+        private readonly ITicketService _issueService;
         private readonly IUnitOfWork _uow;
 
-        public IssueLabelController(
-            IIssueLabelService issueLabelService,
-            IIssueService issueService,
+        public TicketLabelController(
+            ITicketTagService issueLabelService,
+            ITicketService issueService,
             IUnitOfWork uow)
         {
             _issueService = issueService;
@@ -84,7 +84,7 @@ namespace Netotik.Web.Areas.Admin.Controllers
                 return View(model);
             }
 
-            var label = new IssueLabel()
+            var label = new TicketTag()
             {
                 Name = model.Name,
                 ColorCode = model.Color
@@ -116,7 +116,7 @@ namespace Netotik.Web.Areas.Admin.Controllers
         [BreadCrumb(Title = "ویرایش برچسب وظایف", Order = 1)]
         public virtual async Task<ActionResult> Remove(int id = 0)
         {
-            var label = new IssueLabel { Id = id };
+            var label = new TicketTag { Id = id };
             _issueLabelService.Remove(label);
             await _uow.SaveChangesAsync();
             return RedirectToAction(MVC.Admin.IssueLabel.ActionNames.Index);

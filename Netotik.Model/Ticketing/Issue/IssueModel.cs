@@ -8,7 +8,7 @@ using Netotik.Resources;
 using System.Web.Mvc;
 using Netotik.Domain.Entity;
 
-namespace Netotik.ViewModels.Support.Issue
+namespace Netotik.ViewModels.Ticket.Issue
 {
     public class IssueModel
     {
