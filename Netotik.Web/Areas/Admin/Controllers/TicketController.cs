@@ -55,22 +55,22 @@ namespace Netotik.Web.Areas.Admin.Controllers
         #endregion
 
         #region Index
-        [Mvc5Authorize(Roles = AssignableToRolePermissions.CanAccessIssue)]
+        [Mvc5Authorize(Roles = AssignableToRolePermissions.CanAccessTicket)]
         public virtual ActionResult Index(string Search, int Page = 1, int PageSize = 10)
         {
             var pageList = _issueService.GetContentTable(Search, 1, new string[] { "1" })
                 .ToPagedList<TableIssueModel>(Page, PageSize);
 
             if (Request.IsAjaxRequest())
-                return View(MVC.Admin.Issue.Views._Table, pageList);
+                return View(MVC.Admin.Ticket.Views._Table, pageList);
             else
-                return View(MVC.Admin.Issue.ActionNames.Index, pageList);
+                return View(MVC.Admin.Ticket.ActionNames.Index, pageList);
         }
         #endregion
 
         #region Create
 
-        [Mvc5Authorize(Roles = AssignableToRolePermissions.CanCreateIssue)]
+        [Mvc5Authorize(Roles = AssignableToRolePermissions.CanCreateTicket)]
         [BreadCrumb(Title = "کار جدید", Order = 1)]
         public virtual ActionResult Create()
         {
@@ -81,7 +81,7 @@ namespace Netotik.Web.Areas.Admin.Controllers
             return View();
         }
 
-        [Mvc5Authorize(Roles = AssignableToRolePermissions.CanCreateIssue)]
+        [Mvc5Authorize(Roles = AssignableToRolePermissions.CanCreateTicket)]
         [ValidateAntiForgeryToken]
         [HttpPost]
         public virtual async Task<ActionResult> Create(IssueModel model)
@@ -138,25 +138,25 @@ namespace Netotik.Web.Areas.Admin.Controllers
             }
 
             this.MessageError(Messages.MissionSuccess, Messages.AddSuccess);
-            return RedirectToAction(MVC.Admin.Issue.ActionNames.Index);
+            return RedirectToAction(MVC.Admin.Ticket.Index());
         }
         #endregion
 
 
 
-        [Mvc5Authorize(Roles = AssignableToRolePermissions.CanAccessIssue)]
+        [Mvc5Authorize(Roles = AssignableToRolePermissions.CanAccessTicket)]
         public virtual ActionResult Show(int id = 0)
         {
             var issue = _issueService.SingleOrDefault(id);
             if (issue == null) return HttpNotFound();
-            var canShow = (issue.CreatedUserId == User.Identity.GetUserId<long>()) ? true : UserPermissions.Any(x => x == AssignableToRolePermissions.CanViewAllIssue);
+            var canShow = (issue.CreatedUserId == User.Identity.GetUserId<long>()) ? true : UserPermissions.Any(x => x == AssignableToRolePermissions.CanViewAllTicket);
             if (canShow) return View(issue);
             return HttpNotFound();
         }
 
 
 
-        [Mvc5Authorize(Roles = AssignableToRolePermissions.CanAccessIssue)]
+        [Mvc5Authorize(Roles = AssignableToRolePermissions.CanAccessTicket)]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public virtual ActionResult IssueTrack(IssueTrackModel model, ActionType actionType)
@@ -165,12 +165,12 @@ namespace Netotik.Web.Areas.Admin.Controllers
             if (issue == null)
             {
                 this.MessageError(Messages.MissionFail, Messages.InvalidDataError);
-                return RedirectToAction(MVC.Admin.Issue.ActionNames.Index);
+                return RedirectToAction(MVC.Admin.Ticket.ActionNames.Index);
             }
             if (!ModelState.IsValid || string.IsNullOrWhiteSpace(model.Description))
             {
                 this.MessageError(Messages.MissionFail, Messages.InvalidDataError);
-                return RedirectToAction(MVC.Admin.Issue.ActionNames.Show, new { id = model.IssueId });
+                return RedirectToAction(MVC.Admin.Ticket.ActionNames.Show, new { id = model.IssueId });
             }
 
             #region Initial Issue Track
@@ -191,7 +191,7 @@ namespace Netotik.Web.Areas.Admin.Controllers
             issue.TicketTracks.Add(issueTrack);
 
             #endregion
-            
+
             try
             {
                 _uow.SaveChanges();
@@ -201,47 +201,47 @@ namespace Netotik.Web.Areas.Admin.Controllers
                 this.MessageError(Messages.MissionFail, Messages.AddError);
                 return View();
             }
-            
+
 
             this.MessageSuccess(Messages.MissionSuccess, Messages.AddSuccess);
             ModelState.Clear();
-            return View(MVC.Admin.Issue.Views.Show, issue);
+            return View(MVC.Admin.Ticket.Views.Show, issue);
         }
 
 
 
 
-        [Mvc5Authorize(Roles = AssignableToRolePermissions.CanChangeStatusIssue)]
+        [Mvc5Authorize(Roles = AssignableToRolePermissions.CanChangeStatusTicket)]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public virtual async Task<ActionResult> CloseIssue(int id = 0)
         {
             var issue = _issueService.SingleOrDefault(id);
             if (issue == null) return HttpNotFound();
-            var canChange = (issue.CreatedUserId == User.Identity.GetUserId<long>()) ? true : UserPermissions.Any(x => x == AssignableToRolePermissions.CanViewAllIssue);
+            var canChange = (issue.CreatedUserId == User.Identity.GetUserId<long>()) ? true : UserPermissions.Any(x => x == AssignableToRolePermissions.CanViewAllTicket);
             if (canChange && issue.status != IssueStatus.close)
             {
                 issue.status = IssueStatus.close;
                 await _uow.SaveChangesAsync();
             }
-            return RedirectToAction(MVC.Admin.Issue.ActionNames.Show, new { id = id });
+            return RedirectToAction(MVC.Admin.Ticket.Show(id));
         }
 
 
-        [Mvc5Authorize(Roles = AssignableToRolePermissions.CanChangeStatusIssue)]
+        [Mvc5Authorize(Roles = AssignableToRolePermissions.CanChangeStatusTicket)]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public virtual async Task<ActionResult> OpenIssue(int id = 0)
         {
             var issue = _issueService.SingleOrDefault(id);
             if (issue == null) return HttpNotFound();
-            var canChange = (issue.CreatedUserId == User.Identity.GetUserId<long>()) ? true : UserPermissions.Any(x => x == AssignableToRolePermissions.CanViewAllIssue);
+            var canChange = (issue.CreatedUserId == User.Identity.GetUserId<long>()) ? true : UserPermissions.Any(x => x == AssignableToRolePermissions.CanViewAllTicket);
             if (canChange && issue.status == IssueStatus.close)
             {
                 issue.status = IssueStatus.Reopened;
                 await _uow.SaveChangesAsync();
             }
-            return RedirectToAction(MVC.Admin.Issue.Show(id));
+            return RedirectToAction(MVC.Admin.Ticket.Show(id));
         }
 
 

@@ -42,6 +42,6 @@ namespace Netotik.ViewModels.Identity.Permisson
         Factor,
         ProductColor,
         ProductSize,
-        Issue
+        Ticket
     }
 }

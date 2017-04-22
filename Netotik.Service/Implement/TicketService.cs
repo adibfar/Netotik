@@ -32,11 +32,11 @@ namespace Netotik.Services.Implement
                 .OrderByDescending(x => x.CreateDate)
                 .AsQueryable();
 
-            if (Roles.Any(x => x == AssignableToRolePermissions.CanViewAllIssue))
+            if (Roles.Any(x => x == AssignableToRolePermissions.CanViewAllTicket))
             {
 
             }
-            else if (Roles.Any(x => x == AssignableToRolePermissions.CanAccessIssue))
+            else if (Roles.Any(x => x == AssignableToRolePermissions.CanAccessTicket))
             {
                 issues = issues.Where(x => x.CreatedUserId == userId);
             }

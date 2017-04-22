@@ -65,9 +65,6 @@ namespace T4MVC
         public Netotik.Web.Areas.Admin.Controllers.ContentController Content = new Netotik.Web.Areas.Admin.Controllers.T4MVC_ContentController();
         public Netotik.Web.Areas.Admin.Controllers.ContentTagController ContentTag = new Netotik.Web.Areas.Admin.Controllers.T4MVC_ContentTagController();
         public Netotik.Web.Areas.Admin.Controllers.HomeController Home = new Netotik.Web.Areas.Admin.Controllers.T4MVC_HomeController();
-        public Netotik.Web.Areas.Admin.Controllers.TicketController Issue = new Netotik.Web.Areas.Admin.Controllers.T4MVC_IssueController();
-        public Netotik.Web.Areas.Admin.Controllers.TicketLabelController IssueLabel = new Netotik.Web.Areas.Admin.Controllers.T4MVC_IssueLabelController();
-        public Netotik.Web.Areas.Admin.Controllers.LinkController Link = new Netotik.Web.Areas.Admin.Controllers.T4MVC_LinkController();
         public Netotik.Web.Areas.Admin.Controllers.LuceneIndexingController LuceneIndexing = new Netotik.Web.Areas.Admin.Controllers.T4MVC_LuceneIndexingController();
         public Netotik.Web.Areas.Admin.Controllers.MenuController Menu = new Netotik.Web.Areas.Admin.Controllers.T4MVC_MenuController();
         public Netotik.Web.Areas.Admin.Controllers.OrderController Order = new Netotik.Web.Areas.Admin.Controllers.T4MVC_OrderController();
@@ -88,6 +85,8 @@ namespace T4MVC
         public Netotik.Web.Areas.Admin.Controllers.ShopTaxController ShopTax = new Netotik.Web.Areas.Admin.Controllers.T4MVC_ShopTaxController();
         public Netotik.Web.Areas.Admin.Controllers.SliderController Slider = new Netotik.Web.Areas.Admin.Controllers.T4MVC_SliderController();
         public Netotik.Web.Areas.Admin.Controllers.StateController State = new Netotik.Web.Areas.Admin.Controllers.T4MVC_StateController();
+        public Netotik.Web.Areas.Admin.Controllers.TicketController Ticket = new Netotik.Web.Areas.Admin.Controllers.T4MVC_TicketController();
+        public Netotik.Web.Areas.Admin.Controllers.TicketTagController TicketTag = new Netotik.Web.Areas.Admin.Controllers.T4MVC_TicketTagController();
         public Netotik.Web.Areas.Admin.Controllers.UserController User = new Netotik.Web.Areas.Admin.Controllers.T4MVC_UserController();
         public T4MVC.Admin.SharedController Shared = new T4MVC.Admin.SharedController();
     }

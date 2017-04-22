@@ -26,10 +26,10 @@ using Netotik.Common.Controller;
 
 namespace Netotik.Web.Areas.Admin.Controllers
 {
-    [Mvc5Authorize(Roles = AssignableToRolePermissions.CanAccessIssueLabel)]
+    [Mvc5Authorize(Roles = AssignableToRolePermissions.CanAccessTicketTag)]
     [BreadCrumb(Title = "لیست برچسب های تیکت", UseDefaultRouteUrl = true, RemoveAllDefaultRouteValues = true,
  Order = 0, GlyphIcon = "icon icon-table")]
-    public partial class TicketLabelController : BaseController
+    public partial class TicketTagController : BaseController
     {
 
 
@@ -38,7 +38,7 @@ namespace Netotik.Web.Areas.Admin.Controllers
         private readonly ITicketService _issueService;
         private readonly IUnitOfWork _uow;
 
-        public TicketLabelController(
+        public TicketTagController(
             ITicketTagService issueLabelService,
             ITicketService issueService,
             IUnitOfWork uow)
@@ -59,9 +59,9 @@ namespace Netotik.Web.Areas.Admin.Controllers
                 .ToList();
 
             if (Request.IsAjaxRequest())
-                return View(MVC.Admin.IssueLabel.Views._Table, pageList);
+                return View(MVC.Admin.TicketTag.Views._Table, pageList);
             else
-                return View(MVC.Admin.IssueLabel.ActionNames.Index, pageList);
+                return View(MVC.Admin.TicketTag.ActionNames.Index, pageList);
 
         }
         #endregion
@@ -105,7 +105,7 @@ namespace Netotik.Web.Areas.Admin.Controllers
             }
 
             this.MessageSuccess(Messages.MissionSuccess, Messages.AddSuccess);
-            return RedirectToAction(MVC.Admin.IssueLabel.Index());
+            return RedirectToAction(MVC.Admin.TicketTag.Index());
 
         }
         #endregion
@@ -119,14 +119,14 @@ namespace Netotik.Web.Areas.Admin.Controllers
             var label = new TicketTag { Id = id };
             _issueLabelService.Remove(label);
             await _uow.SaveChangesAsync();
-            return RedirectToAction(MVC.Admin.IssueLabel.ActionNames.Index);
+            return RedirectToAction(MVC.Admin.TicketTag.Index());
         }
 
         public virtual ActionResult Edit(int id)
         {
             var model = _issueLabelService.SingleOrDefault(id);
             if (model == null)
-                return RedirectToAction(MVC.Admin.IssueLabel.ActionNames.Index);
+                return RedirectToAction(MVC.Admin.TicketTag.Index());
 
             return View(new IssueLabelModel
             {
@@ -143,7 +143,7 @@ namespace Netotik.Web.Areas.Admin.Controllers
 
             var label = _issueLabelService.SingleOrDefault(model.Id);
             if (label == null)
-                return RedirectToAction(MVC.Admin.IssueLabel.ActionNames.Index);
+                return RedirectToAction(MVC.Admin.TicketTag.Index());
 
 
             if (!ModelState.IsValid)
@@ -167,7 +167,7 @@ namespace Netotik.Web.Areas.Admin.Controllers
             }
 
             this.MessageSuccess(Messages.MissionSuccess, Messages.UpdateSuccess);
-            return RedirectToAction(MVC.Admin.IssueLabel.Index());
+            return RedirectToAction(MVC.Admin.TicketTag.Index());
         }
 
         #endregion
