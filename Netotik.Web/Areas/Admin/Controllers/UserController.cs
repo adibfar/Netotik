@@ -83,10 +83,6 @@ namespace Netotik.Web.Areas.Admin.Controllers
 
         #endregion
 
-
-
-
-
         #region Create
 
         [Mvc5Authorize(Roles = AssignableToRolePermissions.CanCreateUser)]
@@ -117,6 +113,7 @@ namespace Netotik.Web.Areas.Admin.Controllers
             if (!ModelState.IsValid)
             {
                 await PopulateRoles(model.RoleIds);
+                this.MessageError(Messages.MissionFail, Messages.InvalidDataError);
                 return View(model);
             }
             if (model.RoleIds == null || model.RoleIds.Length < 1)

@@ -22,6 +22,7 @@ using Microsoft.AspNet.Identity.Owin;
 using Netotik.Common.Filters;
 using Microsoft.AspNet.Identity;
 using Netotik.Common.Controller;
+using Netotik.ViewModels.Identity.Security;
 
 namespace Netotik.Web.Controllers
 {
@@ -42,6 +43,16 @@ namespace Netotik.Web.Controllers
         #endregion
 
         #region Email
+
+        [HttpPost]
+        [Mvc5Authorize(Roles = AssignableToRolePermissions.CanAccessUser)]
+        [OutputCache(Location = OutputCacheLocation.None, NoStore = true, Duration = 0, VaryByParam = "*")]
+        public virtual JsonResult IsAdminEmailAvailable(string email, long? Id)
+        {
+            var check = _applicationUserManager.CheckAdminEmailExist(email, Id);
+            return Json(!check);
+        }
+
         [HttpPost]
         [AllowAnonymous]
         [OutputCache(Location = OutputCacheLocation.None, NoStore = true, Duration = 0, VaryByParam = "*")]
@@ -63,6 +74,15 @@ namespace Netotik.Web.Controllers
         #endregion
 
         #region PhoneNumber
+        [HttpPost]
+        [Mvc5Authorize(Roles = AssignableToRolePermissions.CanAccessUser)]
+        [OutputCache(Location = OutputCacheLocation.None, NoStore = true, Duration = 0, VaryByParam = "*")]
+        public virtual JsonResult IsAdminPhoneNumberAvailable(string phoneNumber, long? Id)
+        {
+            var check = _applicationUserManager.CheckAdminPhoneNumberExist(phoneNumber, Id);
+            return check ? Json(false) : Json(true);
+        }
+
         [HttpPost]
         [AllowAnonymous]
         [OutputCache(Location = OutputCacheLocation.None, NoStore = true, Duration = 0, VaryByParam = "*")]

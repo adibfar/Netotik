@@ -590,6 +590,7 @@ namespace Netotik.Services.Identity
 
         Task<bool> LogicalRemove(long id);
         bool CheckUserNameExist(string userName, long? id);
+        bool CheckAdminEmailExist(string email, long? id);
         bool CheckResellerEmailExist(string email, long? id); 
         bool CheckCompanyEmailExist(string email, long? id);
         bool CheckResellerNationalCodeExist(string nCode, long? id);
@@ -599,6 +600,7 @@ namespace Netotik.Services.Identity
         bool CheckGooglePlusIdExist(string googlePlusId, long? id);
         bool CheckFacebookIdExist(string faceBookId, long? id);
         bool CheckResellerPhoneNumberExist(string phoneNumber, long? id);
+        bool CheckAdminPhoneNumberExist(string phoneNumber, long? id);
         bool CheckCompanyPhoneNumberExist(string phoneNumber, long? id,long? resellerid);
         Task<string> CustomValidatePasswordAsync(string pass);
         bool CheckIsUserBanned(long id);

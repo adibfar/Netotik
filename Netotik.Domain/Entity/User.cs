@@ -19,7 +19,7 @@ namespace Netotik.Domain.Entity
             this.ReturnRequests = new List<ReturnRequest>();
             this.ProductComments = new List<ProductComment>();
             this.Addresses = new List<Address>();
-            this.UserRoles = new List<UserRole>();
+            this.Roles = new List<UserRole>();
         }
 
         public bool IsBanned { get; set; }
@@ -49,9 +49,9 @@ namespace Netotik.Domain.Entity
         public virtual UserCompany UserCompany { get; set; }
         public List<Address> Addresses { get; set; }
 
-        public virtual ICollection<UserRole> UserRoles { get; set; }
-        public virtual ICollection<UserClaim> UserClaims { get; set; }
-        public virtual ICollection<UserLogin> UserLogins { get; set; }
+        public virtual ICollection<UserRole> Roles { get; set; }
+        public virtual ICollection<UserClaim> Claims { get; set; }
+        public virtual ICollection<UserLogin> Logins { get; set; }
     }
 
     public enum UserType : short

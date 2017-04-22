@@ -27,9 +27,9 @@ namespace Netotik.AutoMapperProfiles
                 .ForMember(d => d.TwoFactorEnabled, m => m.UseValue(false))
                 .ForMember(d => d.UserName, m => m.MapFrom(s => s.UserName.ToLower()))
                 .ForMember(d => d.UserReseller, opt => opt.MapFrom(s => s))
-                .ForMember(d => d.UserRoles, m => m.Ignore())
-                .ForMember(d => d.UserClaims, m => m.Ignore())
-                .ForMember(d => d.UserLogins, m => m.Ignore())
+                .ForMember(d => d.Roles, m => m.Ignore())
+                .ForMember(d => d.Claims, m => m.Ignore())
+                .ForMember(d => d.Logins, m => m.Ignore())
                 .IgnoreAllNonExisting();
 
 
@@ -42,9 +42,9 @@ namespace Netotik.AutoMapperProfiles
                 .ForMember(d => d.PhoneNumberConfirmed, m => m.UseValue(false))
                 .ForMember(d => d.TwoFactorEnabled, m => m.UseValue(false))
                 .ForMember(d => d.UserName, m => m.MapFrom(s => s.UserName.ToLower()))
-                .ForMember(d => d.UserRoles, m => m.Ignore())
-                .ForMember(d => d.UserClaims, m => m.Ignore())
-                .ForMember(d => d.UserLogins, m => m.Ignore())
+                .ForMember(d => d.Roles, m => m.Ignore())
+                .ForMember(d => d.Claims, m => m.Ignore())
+                .ForMember(d => d.Logins, m => m.Ignore())
                 .IgnoreAllNonExisting();
 
             CreateMap<ViewModels.Identity.UserAdmin.AdminEditModel, User>()
@@ -52,9 +52,9 @@ namespace Netotik.AutoMapperProfiles
                 .ForMember(d => d.PictureId, m => m.Ignore())
                 .ForMember(d => d.EditDate, m => m.UseValue(DateTime.Now))
                 .ForMember(d => d.UserName, m => m.MapFrom(s => s.UserName.ToLower()))
-                .ForMember(d => d.UserRoles, m => m.Ignore())
-                .ForMember(d => d.UserClaims, m => m.Ignore())
-                .ForMember(d => d.UserLogins, m => m.Ignore())
+                .ForMember(d => d.Roles, m => m.Ignore())
+                .ForMember(d => d.Claims, m => m.Ignore())
+                .ForMember(d => d.Logins, m => m.Ignore())
                 .IgnoreAllNonExisting();
 
             CreateMap<User, ViewModels.Identity.UserAdmin.AdminEditModel>()
@@ -83,9 +83,9 @@ namespace Netotik.AutoMapperProfiles
 
             CreateMap<ViewModels.Identity.UserAdmin.ProfileModel, User>()
                 .ForMember(d => d.EditDate, m => m.UseValue(DateTime.Now))
-                .ForMember(d => d.UserRoles, m => m.Ignore())
-                .ForMember(d => d.UserClaims, m => m.Ignore())
-                .ForMember(d => d.UserLogins, m => m.Ignore())
+                .ForMember(d => d.Roles, m => m.Ignore())
+                .ForMember(d => d.Claims, m => m.Ignore())
+                .ForMember(d => d.Logins, m => m.Ignore())
                 .IgnoreAllNonExisting();
 
             CreateMap<ViewModels.Identity.UserReseller.ProfileModel, UserReseller>()
@@ -93,9 +93,9 @@ namespace Netotik.AutoMapperProfiles
 
             CreateMap<ViewModels.Identity.UserReseller.ProfileModel, User>()
                 .ForMember(d => d.EditDate, m => m.UseValue(DateTime.Now))
-                .ForMember(d => d.UserRoles, m => m.Ignore())
-                .ForMember(d => d.UserClaims, m => m.Ignore())
-                .ForMember(d => d.UserLogins, m => m.Ignore())
+                .ForMember(d => d.Roles, m => m.Ignore())
+                .ForMember(d => d.Claims, m => m.Ignore())
+                .ForMember(d => d.Logins, m => m.Ignore())
                 .ForMember(d => d.UserReseller, opt => opt.MapFrom(s => s))
                 .IgnoreAllNonExisting();
 
@@ -105,9 +105,9 @@ namespace Netotik.AutoMapperProfiles
 
             CreateMap<ViewModels.Identity.UserCompany.ProfileModel, User>()
                 .ForMember(d => d.EditDate, m => m.UseValue(DateTime.Now))
-                .ForMember(d => d.UserRoles, m => m.Ignore())
-                .ForMember(d => d.UserClaims, m => m.Ignore())
-                .ForMember(d => d.UserLogins, m => m.Ignore())
+                .ForMember(d => d.Roles, m => m.Ignore())
+                .ForMember(d => d.Claims, m => m.Ignore())
+                .ForMember(d => d.Logins, m => m.Ignore())
                 .ForMember(d => d.UserCompany, opt => opt.MapFrom(s => s))
                 .IgnoreAllNonExisting();
 
@@ -125,9 +125,9 @@ namespace Netotik.AutoMapperProfiles
                 .ForMember(d => d.TwoFactorEnabled, m => m.UseValue(false))
                 .ForMember(d => d.UserName, m => m.MapFrom(s => s.UserName.ToLower()))
                 .ForMember(d => d.UserCompany, opt => opt.MapFrom(s => s))
-                .ForMember(d => d.UserRoles, m => m.Ignore())
-                .ForMember(d => d.UserClaims, m => m.Ignore())
-                .ForMember(d => d.UserLogins, m => m.Ignore())
+                .ForMember(d => d.Roles, m => m.Ignore())
+                .ForMember(d => d.Claims, m => m.Ignore())
+                .ForMember(d => d.Logins, m => m.Ignore())
                 .IgnoreAllNonExisting();
 
 

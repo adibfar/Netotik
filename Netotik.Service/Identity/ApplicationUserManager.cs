@@ -82,9 +82,9 @@ namespace Netotik.Services.Identity
             return _mappingEngine.Map<ViewModels.Identity.UserCompany.ProfileModel>(_users.FirstOrDefault(a => a.Id == id && !a.IsDeleted));
         }
 
-        public IList<ViewModels.Identity.UserCompany.CompanyList>  GetListUserCompany(long id)
+        public IList<ViewModels.Identity.UserCompany.CompanyList> GetListUserCompany(long id)
         {
-            IList<ViewModels.Identity.UserCompany.CompanyList> selectedUsers = _users.Where(x => !x.IsDeleted && x.UserCompany.UserResellerId==id)
+            IList<ViewModels.Identity.UserCompany.CompanyList> selectedUsers = _users.Where(x => !x.IsDeleted && x.UserCompany.UserResellerId == id)
                                             .Select(x => new ViewModels.Identity.UserCompany.CompanyList
                                             {
                                                 Id = x.Id,
@@ -342,7 +342,7 @@ namespace Netotik.Services.Identity
         {
             var userWithRoles = await
                  _users.AsNoTracking()
-                     .Include(a => a.UserRoles)
+                     .Include(a => a.Roles)
                      .FirstOrDefaultAsync(a => a.Id == id);
             return _mappingEngine.Map<AdminEditModel>(userWithRoles);
         }
@@ -370,8 +370,8 @@ namespace Netotik.Services.Identity
             //    user.EmailConfirmed = false;
             //}
 
-            user.UserRoles.Clear();
-            viewModel.RoleIds.ToList().ForEach(roleId => user.UserRoles.Add(new UserRole { RoleId = roleId, UserId = user.Id }));
+            user.Roles.Clear();
+            viewModel.RoleIds.ToList().ForEach(roleId => user.Roles.Add(new UserRole { RoleId = roleId, UserId = user.Id }));
 
             //user.Picture = viewModel.Picture;
             //_unitOfWork.Update(user, a => a.AssociatedCollection(u => u.Roles));
@@ -400,7 +400,7 @@ namespace Netotik.Services.Identity
         public async Task<User> AddUser(AdminAddModel viewModel)
         {
             var user = _mappingEngine.Map<User>(viewModel);
-            viewModel.RoleIds.ToList().ForEach(roleId => user.UserRoles.Add(new UserRole { RoleId = roleId }));
+            viewModel.RoleIds.ToList().ForEach(roleId => user.Roles.Add(new UserRole { RoleId = roleId }));
             await CreateAsync(user, viewModel.Password);
             return user;
         }
@@ -431,47 +431,54 @@ namespace Netotik.Services.Identity
         public bool CheckUserNameExist(string userName, long? id)
         {
             return id == null
-                ? _users.Any(a => a.UserName == userName.ToLower())
-                : _users.Any(a => a.UserName == userName.ToLower() && a.Id != id.Value);
+                ? _users.Any(a => a.UserName == userName.ToLower() && !a.IsDeleted)
+                : _users.Any(a => a.UserName == userName.ToLower() && !a.IsDeleted && a.Id != id.Value);
         }
 
 
         public bool CheckResellerEmailExist(string email, long? id)
         {
             return id == null
-               ? _users.Any(a => a.Email.ToLower() == email.ToLower())
-               : _users.Any(a => a.Email.ToLower() == email.ToLower() && a.Id != id.Value);
+               ? _users.Any(a => a.Email.ToLower() == email.ToLower() && !a.IsDeleted && a.UserType == UserType.UserReseller)
+               : _users.Any(a => a.Email.ToLower() == email.ToLower() && !a.IsDeleted && a.Id != id.Value && a.UserType == UserType.UserReseller);
+        }
+
+        public bool CheckAdminEmailExist(string email, long? id)
+        {
+            return id == null
+               ? _users.Any(a => a.Email.ToLower() == email.ToLower() && !a.IsDeleted && a.UserType == UserType.UserAdmin)
+               : _users.Any(a => a.Email.ToLower() == email.ToLower() && !a.IsDeleted && a.UserType == UserType.UserAdmin && a.Id != id.Value);
         }
         public bool CheckCompanyEmailExist(string email, long? id)
         {
             return id == null
-               ? _users.Any(a => a.Email.ToLower() == email.ToLower())
-               : _users.Any(a => a.Email.ToLower() == email.ToLower() && a.Id != id.Value);
+               ? _users.Any(a => a.Email.ToLower() == email.ToLower() && a.UserType == UserType.UserCompany && !a.IsDeleted)
+               : _users.Any(a => a.Email.ToLower() == email.ToLower() && !a.IsDeleted && a.UserType == UserType.UserCompany && a.Id != id.Value);
         }
         public bool CheckResellerNationalCodeExist(string nCode, long? id)
         {
             return id == null
-               ? _users.Any(a => a.UserReseller.NationalCode == nCode)
-               : _users.Any(a => a.UserReseller.NationalCode == nCode && a.Id != id.Value);
+               ? _users.Any(a => a.UserReseller.NationalCode == nCode && !a.IsDeleted )
+               : _users.Any(a => a.UserReseller.NationalCode == nCode && !a.IsDeleted && a.Id != id.Value);
         }
 
-        public bool CheckCompanyNationalCodeExist(string nCode, long? id , long? resellerid)
+        public bool CheckCompanyNationalCodeExist(string nCode, long? id, long? resellerid)
         {
             return id == null
-               ? _users.Any(a => a.UserCompany.NationalCode == nCode && a.UserCompany.UserResellerId == resellerid)
-               : _users.Any(a => a.UserCompany.NationalCode == nCode && a.UserCompany.UserResellerId == resellerid && a.Id != id.Value);
+               ? _users.Any(a => a.UserCompany.NationalCode == nCode && a.UserCompany.UserResellerId == resellerid && !a.IsDeleted)
+               : _users.Any(a => a.UserCompany.NationalCode == nCode && a.UserCompany.UserResellerId == resellerid && !a.IsDeleted && a.Id != id.Value);
         }
         public bool CheckResellerCompanyNameExist(string name, long? id)
         {
             return id == null
-               ? _users.Any(a => a.UserReseller.ResellerCode == name.ToLower())
-               : _users.Any(a => a.UserReseller.ResellerCode == name.ToLower() && a.Id != id.Value);
+               ? _users.Any(a => a.UserReseller.ResellerCode == name.ToLower() && !a.IsDeleted)
+               : _users.Any(a => a.UserReseller.ResellerCode == name.ToLower() && !a.IsDeleted && a.Id != id.Value);
         }
         public bool CheckCompanyCompanyNameExist(string name, long? id, long? resellerid)
         {
             return id == null
-               ? _users.Any(a => a.UserCompany.CompanyCode == name.ToLower() && a.UserCompany.UserResellerId == resellerid)
-               : _users.Any(a => a.UserCompany.CompanyCode == name.ToLower() && a.UserCompany.UserResellerId == resellerid && a.Id != id.Value);
+               ? _users.Any(a => a.UserCompany.CompanyCode == name.ToLower() && a.UserCompany.UserResellerId == resellerid && !a.IsDeleted)
+               : _users.Any(a => a.UserCompany.CompanyCode == name.ToLower() && a.UserCompany.UserResellerId == resellerid && !a.IsDeleted && a.Id != id.Value);
         }
 
         public bool CheckGooglePlusIdExist(string googlePlusId, long? id)
@@ -493,14 +500,20 @@ namespace Netotik.Services.Identity
         public bool CheckResellerPhoneNumberExist(string phoneNumber, long? id)
         {
             return id == null
-               ? _users.Any(a => a.PhoneNumber == phoneNumber && a.UserType == UserType.UserReseller)
-               : _users.Any(a => a.PhoneNumber == phoneNumber && a.UserType == UserType.UserReseller && a.Id != id.Value);
+               ? _users.Any(a => a.PhoneNumber == phoneNumber && a.UserType == UserType.UserReseller && !a.IsDeleted)
+               : _users.Any(a => a.PhoneNumber == phoneNumber && a.UserType == UserType.UserReseller && !a.IsDeleted && a.Id != id.Value);
         }
-        public bool CheckCompanyPhoneNumberExist(string phoneNumber, long? id,long? resellerid)
+        public bool CheckAdminPhoneNumberExist(string phoneNumber, long? id)
         {
             return id == null
-               ? _users.Any(a => a.PhoneNumber == phoneNumber && a.UserType == UserType.UserCompany && a.UserCompany.UserResellerId == resellerid)
-               : _users.Any(a => a.PhoneNumber == phoneNumber && a.UserType == UserType.UserCompany && a.UserCompany.UserResellerId == resellerid && a.Id != id.Value);
+               ? _users.Any(a => a.PhoneNumber == phoneNumber && a.UserType == UserType.UserAdmin && !a.IsDeleted)
+               : _users.Any(a => a.PhoneNumber == phoneNumber && a.UserType == UserType.UserAdmin && !a.IsDeleted && a.Id != id.Value);
+        }
+        public bool CheckCompanyPhoneNumberExist(string phoneNumber, long? id, long? resellerid)
+        {
+            return id == null
+               ? _users.Any(a => a.PhoneNumber == phoneNumber && a.UserType == UserType.UserCompany && a.UserCompany.UserResellerId == resellerid && !a.IsDeleted)
+               : _users.Any(a => a.PhoneNumber == phoneNumber && a.UserType == UserType.UserCompany && a.UserCompany.UserResellerId == resellerid && !a.IsDeleted && a.Id != id.Value);
         }
         #endregion
 
