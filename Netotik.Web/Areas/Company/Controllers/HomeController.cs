@@ -273,37 +273,26 @@ namespace Netotik.Web.Areas.Company.Controllers
         {
             return View();
         }
-
         [Mvc5Authorize(Roles = "Company")]
         [HttpPost]
         public virtual async Task<ActionResult> ChangePassword(ChangePasswordModel model)
         {
-            //if (!ModelState.IsValid)
-            //{
-            //    this.MessageError(Messages.MissionFail, Messages.InvalidDataError);
-            //}
-            //else
-            //{
-            //    var result = await _applicationUserManager.ChangePasswordAsync(User.UserId, Encryption.EncryptingPassword(model.Password));
-            //    if (result.Status)
-            //    {
-            //        try
-            //        {
-            //            await _uow.SaveChangesAsync();
-            //        }
-            //        catch (Exception ex)
-            //        {
-            //            this.MessageError(Messages.MissionFail, Messages.UpdateError);
-            //        }
-            //    }
-            //    SetResultMessage(result);
-            //}
-            return View(model);
+            if (!ModelState.IsValid)
+            {
+                this.MessageError(Messages.MissionFail, Messages.InvalidDataError);
+                return RedirectToAction(MVC.Reseller.Home.ActionNames.ChangePassword);
+            }
+            var temp = await _applicationUserManager.ChangePasswordAsync(User.Identity.GetUserId<long>(), model.OldPassword, model.Password);
+            if (temp.Succeeded)
+                this.MessageInformation(Messages.MissionSuccess, Messages.UpdateSuccess);
+            else
+                this.MessageError(Messages.MissionFail, Messages.UpdateError);
+            return View();
         }
 
         #endregion
 
-        
+
 
     }
 }
