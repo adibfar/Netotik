@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
+using System.Web.Mvc;
 
 namespace Netotik.ViewModels.Identity.Security
 {
@@ -17,6 +18,16 @@ namespace Netotik.ViewModels.Identity.Security
 
         private static Lazy<IEnumerable<string>> _permissionNamesLazy = new Lazy<IEnumerable<string>>(
             GetPermisionNames, LazyThreadSafetyMode.ExecutionAndPublication);
+        #endregion
+
+
+
+        #region GetAsSelectedList
+
+        public static IEnumerable<SelectListItem> GetAsSelectListItems()
+        {
+            return Permissions.Select(a => new SelectListItem { Text = a.Description, Value = a.Name }).ToList();
+        }
         #endregion
 
 

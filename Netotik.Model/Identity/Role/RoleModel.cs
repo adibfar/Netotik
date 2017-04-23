@@ -6,20 +6,19 @@ using System.Web.Mvc;
 
 namespace Netotik.ViewModels.Identity.Role
 {
-    public class AddEditRoleViewModel
+    public class RoleModel
     {
-        public int? Id { get; set; }
+        public long? Id { get; set; }
 
         [Required(ErrorMessageResourceType = typeof(Messages), ErrorMessageResourceName = "RequiredError")]
         [MaxLength(100, ErrorMessageResourceType = typeof(Messages), ErrorMessageResourceName = "MaxLengthError")]
         [MinLength(3, ErrorMessageResourceType = typeof(Messages), ErrorMessageResourceName = "MinLengthError")]
         [Display(ResourceType = typeof(Captions), Name = "Name")]
-        [Remote("IsRoleNameExist", "Role", AdditionalFields = "Id", HttpMethod = "POST", ErrorMessageResourceType = typeof(Messages), ErrorMessageResourceName = "ExistError")]
+        [Remote("IsRoleNameAvailable", "Role", AdditionalFields = "Id", HttpMethod = "POST", ErrorMessageResourceType = typeof(Messages), ErrorMessageResourceName = "ExistError")]
         public string Name { get; set; }
-        
-        [Required(ErrorMessageResourceType = typeof(Messages), ErrorMessageResourceName = "RequiredError")]
-        [Display(ResourceType = typeof(Captions), Name = "Active")]
-        public bool Active { get; set; }
+
+        [Display(ResourceType = typeof(Captions), Name = "Description")]
+        public string Description { get; set; }
 
         [Required(ErrorMessageResourceType = typeof(Messages), ErrorMessageResourceName = "RequiredError")]
         [Display(ResourceType = typeof(Captions), Name = "IsDefaultRoleRegisteredUser")]

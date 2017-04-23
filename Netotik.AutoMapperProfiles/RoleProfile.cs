@@ -11,15 +11,15 @@ namespace Netotik.AutoMapperProfiles
     {
         protected override void Configure()
         {
-            CreateMap<Role, RoleViewModel>().IgnoreAllNonExisting();
+            CreateMap<Role, RoleItem>().IgnoreAllNonExisting();
 
-            CreateMap<RoleViewModel, Role>().IgnoreAllNonExisting();
+            CreateMap<RoleItem, Role>().IgnoreAllNonExisting();
 
-            CreateMap<AddEditRoleViewModel, Role>()
+            CreateMap<RoleModel, Role>()
                 .ForMember(d => d.IsSystemRole, m => m.Ignore())
                .IgnoreAllNonExisting();
 
-            CreateMap<Role, AddEditRoleViewModel>().IgnoreAllNonExisting();
+            CreateMap<Role, RoleModel>().IgnoreAllNonExisting();
             CreateMap<Role, SelectListItem>()
                 .ForMember(d => d.Text, m => m.MapFrom(s => s.Name))
                 .ForMember(d => d.Value, m => m.MapFrom(s => s.Id));

@@ -174,8 +174,8 @@
     <Compile Include="CMS\ContentCategory\ContentCategoryModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Identity\Permission\RolePermissionModel.cs" />
-    <Compile Include="Identity\Role\RoleViewModel.cs" />
-    <Compile Include="Identity\Role\AddEditRoleViewModel.cs" />
+    <Compile Include="Identity\Role\RoleItem.cs" />
+    <Compile Include="Identity\Role\RoleModel.cs" />
     <Compile Include="Common\Setting\GeneralSettingModel.cs" />
     <Compile Include="Identity\UserReseller\ResellerAddModel.cs" />
     <Compile Include="Identity\UserReseller\ChangePasswordModel.cs" />
