@@ -72,6 +72,7 @@
     <Compile Include="Identity\Account\ExternalLoginListViewModel.cs" />
     <Compile Include="Identity\Account\ForgotPasswordViewModel.cs" />
     <Compile Include="Identity\UserCompany\CompanyList.cs" />
+    <Compile Include="Identity\UserCompany\MikrotikConfModel.cs" />
     <Compile Include="Identity\UserReseller\ProfileModel.cs" />
     <Compile Include="Identity\UserReseller\RegisterViewModel.cs" />
     <Compile Include="Identity\Account\ResetPasswordEmail.cs" />

@@ -18,9 +18,12 @@ namespace Netotik.Services.Identity
         ViewModels.Identity.UserReseller.ProfileModel GetUserResellerProfile();
         ViewModels.Identity.UserCompany.ProfileModel GetUserCompanyProfile(long id);
 
+        ViewModels.Identity.UserCompany.MikrotikConfModel GetUserCompanyMikrotikConf(long id);
+
         Task UpdateUserAdminProfile(ViewModels.Identity.UserAdmin.ProfileModel model);
         Task UpdateUserResellerProfile(ViewModels.Identity.UserReseller.ProfileModel model);
         Task UpdateUserCompanyProfile(ViewModels.Identity.UserCompany.ProfileModel model);
+        Task UpdateUserCompanyMikrotikConf(ViewModels.Identity.UserCompany.MikrotikConfModel model);
         IList<UserItem> GetListUserAdmins(RequestListModel model, out long TotalCount, out long ShowCount);
 
         IList<ViewModels.Identity.UserCompany.CompanyList> GetListUserCompany(long id);

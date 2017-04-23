@@ -118,12 +118,39 @@ namespace Netotik.Web.Areas.Company.Controllers
             #endregion
             if (model.Email != UserLogined.Email)
                 model.EmailConfirmed = false;
-
+            model.Id = UserLogined.Id;
+            model.UserResellerId = UserLogined.UserCompany.UserResellerId;
             this.MessageInformation(Messages.MissionSuccess, Messages.UpdateSuccess);
             await _applicationUserManager.UpdateUserCompanyProfile(model);
             return RedirectToAction(MVC.Company.Home.ActionNames.MyProfile);
         }
 
+        public virtual ActionResult MikrotikConf()
+        {
+            return View(_applicationUserManager.GetUserCompanyMikrotikConf(UserLogined.Id));
+        }
+        [ValidateAntiForgeryToken]
+        [HttpPost]
+        public virtual async Task<ActionResult> MikrotikConf(MikrotikConfModel model)
+        {
+            #region Validation
+            if (!ModelState.IsValid)
+            {
+                this.MessageError(Messages.MissionFail, Messages.InvalidDataError);
+                //return View(MVC.Reseller.Home.Views._ProfileData, model);
+                return RedirectToAction(MVC.Company.Home.ActionNames.MikrotikConf);
+            }
+            #endregion
+            if (model.R_Password == "" || model.R_Password == null)
+            {
+                model.R_Password = UserLogined.UserCompany.R_Password;
+                this.MessageInformation("توجه:", "پسورد روتر خالی نمی تواند باشد.ما پسورد قبلی که در سیستم گذاشته اید را تغییر ندادیم.");
+            }
+            model.Id = UserLogined.Id;
+            this.MessageInformation(Messages.MissionSuccess, Messages.UpdateSuccess);
+            await _applicationUserManager.UpdateUserCompanyMikrotikConf(model);
+            return RedirectToAction(MVC.Company.Home.ActionNames.MikrotikConf);
+        }
         #endregion
 
         #region Detail

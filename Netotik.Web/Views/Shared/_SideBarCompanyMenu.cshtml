@@ -31,6 +31,14 @@
                     <li><a href="@Url.Action(MVC.Company.Router.Wireless())" data-toggle="dropdown" class="dropdown-item">Wireless</a></li>
                 </ul>
             </li>
+            <li data-menu="dropdown" class="dropdown nav-item">
+                <a href="#" data-toggle="dropdown" class="dropdown-toggle nav-link"><i class="icon-cog"></i><span>تنظیمات</span></a>
+                <ul class="dropdown-menu">
+                    <li><a href="@Url.Action(MVC.Company.Home.MyProfile())" data-toggle="dropdown" class="dropdown-item">پروفایل</a></li>
+                    <li><a href="@Url.Action(MVC.Company.Home.MikrotikConf())" data-toggle="dropdown" class="dropdown-item">تنظیمات میکروتیک</a></li>
+                    <li><a href="@Url.Action(MVC.Company.Home.ChangePassword())" data-toggle="dropdown" class="dropdown-item">تغییر گذرواژه</a></li>
+                </ul>
+            </li>
 
             @if (false)
             {
@@ -64,6 +72,7 @@
                         <li><a href="@Url.Action(MVC.Company.Router.Wireless())" data-toggle="dropdown" class="dropdown-item">Wireless</a></li>
                     </ul>
                 </li>
+               
             }
 
         </ul>
