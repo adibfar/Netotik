@@ -83,6 +83,7 @@ namespace Netotik.Web.Areas.Company.Controllers
             public readonly string PPP = "PPP";
             public readonly string Interfaces = "Interfaces";
             public readonly string Wireless = "Wireless";
+            public readonly string Hotspot_Temp = "Hotspot_Temp";
             public readonly string RedirectToLocal = "RedirectToLocal";
         }
 
@@ -94,6 +95,7 @@ namespace Netotik.Web.Areas.Company.Controllers
             public const string PPP = "PPP";
             public const string Interfaces = "Interfaces";
             public const string Wireless = "Wireless";
+            public const string Hotspot_Temp = "Hotspot_Temp";
             public const string RedirectToLocal = "RedirectToLocal";
         }
 
@@ -189,6 +191,17 @@ namespace Netotik.Web.Areas.Company.Controllers
         {
             var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Wireless);
             WirelessOverride(callInfo);
+            return callInfo;
+        }
+
+        [NonAction]
+        partial void Hotspot_TempOverride(T4MVC_System_Web_Mvc_ActionResult callInfo);
+
+        [NonAction]
+        public override System.Web.Mvc.ActionResult Hotspot_Temp()
+        {
+            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Hotspot_Temp);
+            Hotspot_TempOverride(callInfo);
             return callInfo;
         }
 

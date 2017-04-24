@@ -143,7 +143,6 @@ namespace Netotik.Web.Areas.Company.Controllers
             public readonly string UserCreate = "UserCreate";
             public readonly string PackageList = "PackageList";
             public readonly string Report = "Report";
-            public readonly string Hotspot_Temp = "Hotspot_Temp";
             public readonly string Register = "Register";
             public readonly string UserEdit = "UserEdit";
             public readonly string UserEdit_Save = "UserEdit_Save";
@@ -164,7 +163,6 @@ namespace Netotik.Web.Areas.Company.Controllers
             public const string UserCreate = "UserCreate";
             public const string PackageList = "PackageList";
             public const string Report = "Report";
-            public const string Hotspot_Temp = "Hotspot_Temp";
             public const string Register = "Register";
             public const string UserEdit = "UserEdit";
             public const string UserEdit_Save = "UserEdit_Save";
@@ -274,7 +272,6 @@ namespace Netotik.Web.Areas.Company.Controllers
             public class _ViewNamesClass
             {
                 public readonly string _Table = "_Table";
-                public readonly string Hotspot_Temp = "Hotspot_Temp";
                 public readonly string PackageCreate = "PackageCreate";
                 public readonly string PackageDetails = "PackageDetails";
                 public readonly string PackageList = "PackageList";
@@ -286,7 +283,6 @@ namespace Netotik.Web.Areas.Company.Controllers
                 public readonly string UserList = "UserList";
             }
             public readonly string _Table = "~/Areas/Company/Views/UserManager/_Table.cshtml";
-            public readonly string Hotspot_Temp = "~/Areas/Company/Views/UserManager/Hotspot_Temp.cshtml";
             public readonly string PackageCreate = "~/Areas/Company/Views/UserManager/PackageCreate.cshtml";
             public readonly string PackageDetails = "~/Areas/Company/Views/UserManager/PackageDetails.cshtml";
             public readonly string PackageList = "~/Areas/Company/Views/UserManager/PackageList.cshtml";
@@ -443,17 +439,6 @@ namespace Netotik.Web.Areas.Company.Controllers
         {
             var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Report);
             ReportOverride(callInfo);
-            return callInfo;
-        }
-
-        [NonAction]
-        partial void Hotspot_TempOverride(T4MVC_System_Web_Mvc_ActionResult callInfo);
-
-        [NonAction]
-        public override System.Web.Mvc.ActionResult Hotspot_Temp()
-        {
-            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Hotspot_Temp);
-            Hotspot_TempOverride(callInfo);
             return callInfo;
         }
 

@@ -670,11 +670,6 @@ namespace Netotik.Web.Areas.Company.Controllers
             return View();
         }
         [Mvc5Authorize(Roles = "Company")]
-        public virtual ActionResult Hotspot_Temp()
-        {
-            return View();
-        }
-        [Mvc5Authorize(Roles = "Company")]
         public virtual ActionResult Register()
         {
             return View();

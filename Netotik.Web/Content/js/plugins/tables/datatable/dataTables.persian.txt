@@ -8,6 +8,10 @@
     "sInfoPostFix":  "",
     "sSearch":       "جستجو : ",
     "sUrl":          "",
+	"buttonText":	"ویرایش جدول",
+	"restore":		 "پیشفرض",
+    "showAll":		"نمایش همه",
+    "showNone":		"پنهان سازی",
     "oPaginate": {
         "sFirst":    "ابتدا",
         "sPrevious": "قبلی",
