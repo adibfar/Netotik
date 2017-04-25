@@ -1,0 +1,80 @@
+﻿@model Netotik.ViewModels.Identity.Role.RoleModel
+@{
+    Layout = null;
+    var permissions = ViewBag.Permissions as List<SelectListItem>;
+}
+<!-- Modal -->
+<div class="modal fade text-xs-left" id="Create" tabindex="-1" role="dialog" aria-labelledby="myModalLabel20" aria-hidden="true">
+    <div class="modal-lg modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title" id="myModalLabel20">گروه کاربری جدید</h4>
+            </div>
+            @using (Html.BeginForm(MVC.Admin.Role.ActionNames.Create, MVC.Admin.Role.Name, FormMethod.Post, htmlAttributes: new { @class = "form-horizontal", id = "CreateForm" }))
+            {
+                @Html.AntiForgeryToken()
+                <div class="modal-body">
+                    <h4 class="form-section"><i class="icon-address-book"></i> مشخصات</h4>
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="form-group has-feedback has-icon-left">
+                                @Html.LabelFor(m => m.Name)
+                                <div class="position-relative has-icon-left">
+                                    @Html.TextBoxFor(m => m.Name, new { @class = "form-control" })
+                                    <div class="form-control-position">
+                                        <i class="icon-users2"></i>
+                                    </div>
+                                    @Html.ValidationMessageFor(model => model.Name, "", htmlAttributes: new { @class = "text-danger" })
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-8">
+                            <div class="form-group has-feedback has-icon-left">
+                                @Html.LabelFor(m => m.Description)
+                                <div class="position-relative has-icon-left">
+                                    @Html.TextBoxFor(m => m.Description, new { @class = "form-control" })
+                                    <div class="form-control-position">
+                                        <i class="icon-quotes-right"></i>
+                                    </div>
+                                    @Html.ValidationMessageFor(model => model.Description, "", htmlAttributes: new { @class = "text-danger" })
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row skin skin-flat">
+                        <div class="col-md-12 col-sm-12 col-xs-12">
+                            <fieldset>
+                                @Html.CheckBoxFor(model => model.IsDefaultForRegister)
+                                @Html.LabelFor(model => model.IsDefaultForRegister)
+                            </fieldset>
+                        </div>
+                    </div>
+                    <h4 class="form-section mt-3"><i class="icon-list"></i> مجوزهای دسترسی</h4>
+                    <div class="row skin skin-flat">
+                        @foreach (var item in permissions)
+                        {
+                            <div class="col-md-4">
+                                <input type="checkbox" name="PermissionNames" value="#@item.Value">
+                                @Html.Label("PermissionNames", item.Text)
+                            </div>
+                        }
+                    </div>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">
+                        <i class="icon-cross2"></i>
+                        بستن
+                    </button>
+                    <button name="actionType" value="@Netotik.Common.Controller.ActionType.Save" type="button" class="btn btn-outline-success" onclick="AjaxForm.Post(this, 'CreateForm')" data-loading-text="در حال ارسال اطلاعات">
+                        <i class="icon-check2"></i>
+                        @Netotik.Resources.Captions.Save
+                    </button>
+                </div>
+            }
+        </div>
+    </div>
+</div>

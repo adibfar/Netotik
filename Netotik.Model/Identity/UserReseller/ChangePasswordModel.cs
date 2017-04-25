@@ -23,6 +23,7 @@ namespace Netotik.ViewModels.Identity.UserReseller
         [Required(ErrorMessageResourceType = typeof(Messages), ErrorMessageResourceName = "RequiredError")]
         [MaxLength(100, ErrorMessageResourceType = typeof(Messages), ErrorMessageResourceName = "MaxLengthError")]
         [MinLength(6, ErrorMessageResourceType = typeof(Messages), ErrorMessageResourceName = "MinLengthError")]
+        [System.Web.Mvc.Remote("CheckPassword", "Remote", System.Web.Mvc.AreaReference.UseRoot, ErrorMessage = "این گذرواژه به راحتی قابل تشخیص است", HttpMethod = "POST")]
         [Display(ResourceType = typeof(Captions), Name = "Password")]
         public string Password { get; set; }
 

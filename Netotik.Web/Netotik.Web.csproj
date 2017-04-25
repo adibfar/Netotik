@@ -338,15 +338,6 @@
     <Compile Include="Admin.HomeController.generated.cs">
       <DependentUpon>T4MVC.tt</DependentUpon>
     </Compile>
-    <Compile Include="Admin.IssueController.generated.cs">
-      <DependentUpon>T4MVC.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Admin.IssueLabelController.generated.cs">
-      <DependentUpon>T4MVC.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Admin.LinkController.generated.cs">
-      <DependentUpon>T4MVC.tt</DependentUpon>
-    </Compile>
     <Compile Include="Admin.LuceneIndexingController.generated.cs">
       <DependentUpon>T4MVC.tt</DependentUpon>
     </Compile>
@@ -410,7 +401,16 @@
     <Compile Include="Admin.StateController.generated.cs">
       <DependentUpon>T4MVC.tt</DependentUpon>
     </Compile>
-    <Compile Include="Admin.UserController.generated.cs">
+    <Compile Include="Admin.TicketController.generated.cs">
+      <DependentUpon>T4MVC.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Admin.TicketTagController.generated.cs">
+      <DependentUpon>T4MVC.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Admin.UserAdminController.generated.cs">
+      <DependentUpon>T4MVC.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Admin.UserResellerController.generated.cs">
       <DependentUpon>T4MVC.tt</DependentUpon>
     </Compile>
     <Compile Include="App_Start\ApplicationStart.cs" />
@@ -422,8 +422,8 @@
     <Compile Include="App_Start\StructureMapControllerFactory.cs" />
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
     <Compile Include="Areas\Admin\Controllers\ResourceController.cs" />
-    <Compile Include="Areas\Admin\Controllers\IssueLabelController.cs" />
-    <Compile Include="Areas\Admin\Controllers\IssueController.cs" />
+    <Compile Include="Areas\Admin\Controllers\TicketTagController.cs" />
+    <Compile Include="Areas\Admin\Controllers\TicketController.cs" />
     <Compile Include="Areas\Admin\Controllers\LuceneIndexingController.cs" />
     <Compile Include="Areas\Admin\Controllers\OrderNotPaymentController.cs" />
     <Compile Include="Areas\Admin\Controllers\OrderController.cs" />
@@ -440,7 +440,6 @@
     <Compile Include="Areas\Admin\Controllers\ShopTaxController.cs" />
     <Compile Include="Areas\Admin\Controllers\MenuController.cs" />
     <Compile Include="Areas\Admin\Controllers\CommentsController.cs" />
-    <Compile Include="Areas\Admin\Controllers\LinkController.cs" />
     <Compile Include="Areas\Admin\Controllers\ShopPaymentTypeController.cs" />
     <Compile Include="Areas\Admin\Controllers\ShopShippingByWeightController.cs" />
     <Compile Include="Areas\Admin\Controllers\ShopShippingMethodController.cs" />
@@ -454,8 +453,8 @@
     <Compile Include="Areas\Admin\Controllers\RoleController.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Areas\Admin\Controllers\ResellerController.cs" />
-    <Compile Include="Areas\Admin\Controllers\UserController.cs" />
+    <Compile Include="Areas\Admin\Controllers\UserResellerController.cs" />
+    <Compile Include="Areas\Admin\Controllers\UserAdminController.cs" />
     <Compile Include="Areas\Company\CompanyAreaRegistration.cs" />
     <Compile Include="Areas\Company\Controllers\RouterController.cs" />
     <Compile Include="Areas\Company\Controllers\UserManagerController.cs" />
@@ -2099,6 +2098,30 @@
     <Content Include="Areas\Admin\Views\ContentTag\_Edit.cshtml" />
     <Content Include="Areas\Admin\Views\ContentTag\_Table.cshtml" />
     <Content Include="Areas\Admin\Views\ContentTag\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Menu\_Create.cshtml" />
+    <Content Include="Areas\Admin\Views\Menu\_Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\Menu\_Table.cshtml" />
+    <Content Include="Areas\Admin\Views\Menu\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Comments\_Table.cshtml" />
+    <Content Include="Areas\Admin\Views\Comments\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Advertise\_Create.cshtml" />
+    <Content Include="Areas\Admin\Views\Advertise\_Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\Advertise\_Table.cshtml" />
+    <Content Include="Areas\Admin\Views\Advertise\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Comments\_Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\Comments\_Reply.cshtml" />
+    <Content Include="Areas\Admin\Views\ContactUs\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\ContactUs\_Table.cshtml" />
+    <Content Include="Areas\Admin\Views\ContactUs\_Show.cshtml" />
+    <Content Include="Areas\Admin\Views\UserReseller\_Table.cshtml" />
+    <Content Include="Areas\Admin\Views\UserReseller\ChangePassword.cshtml" />
+    <Content Include="Areas\Admin\Views\UserReseller\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\UserReseller\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\UserReseller\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Role\_Create.cshtml" />
+    <Content Include="Areas\Admin\Views\Role\_Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\Role\_Table.cshtml" />
+    <Content Include="Areas\Admin\Views\Role\Index.cshtml" />
     <Content Include="Areas\Company\Views\Home\MikrotikConf.cshtml" />
     <Content Include="Areas\Company\Views\Router\InterfaceDetails.cshtml" />
     <Content Include="Areas\Company\Views\Router\WirelessDetails.cshtml" />
@@ -2169,23 +2192,17 @@
     <Content Include="Views\Shared\_Head.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Shared\_Message.cshtml" />
-    <Content Include="Areas\Admin\Views\User\ChangePassword.cshtml" />
-    <Content Include="Areas\Admin\Views\User\Create.cshtml" />
-    <Content Include="Areas\Admin\Views\User\Detail.cshtml" />
-    <Content Include="Areas\Admin\Views\User\Edit.cshtml" />
-    <Content Include="Areas\Admin\Views\User\Index.cshtml" />
-    <Content Include="Areas\Admin\Views\User\_Table.cshtml" />
+    <Content Include="Areas\Admin\Views\UserAdmin\ChangePassword.cshtml" />
+    <Content Include="Areas\Admin\Views\UserAdmin\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\UserAdmin\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\UserAdmin\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\UserAdmin\_Table.cshtml" />
     <Content Include="Areas\Admin\Views\Web.config" />
     <Content Include="Areas\Admin\Views\_ViewStart.cshtml" />
     <Content Include="RazorHelpers\CheckBoxListBuilder.cshtml">
       <Generator>RazorGenerator</Generator>
       <LastGenOutput>CheckBoxListBuilder.generated.cs</LastGenOutput>
     </Content>
-    <Content Include="Areas\Admin\Views\Role\_Table.cshtml" />
-    <Content Include="Areas\Admin\Views\Role\Create.cshtml" />
-    <Content Include="Areas\Admin\Views\Role\Detail.cshtml" />
-    <Content Include="Areas\Admin\Views\Role\Edit.cshtml" />
-    <Content Include="Areas\Admin\Views\Role\Index.cshtml" />
     <Content Include="Areas\Admin\Views\ContentCategory\_Table.cshtml" />
     <Content Include="Areas\Admin\Views\ContentCategory\_Edit.cshtml" />
     <Content Include="Areas\Admin\Views\ContentCategory\Index.cshtml" />
@@ -2220,20 +2237,8 @@
     <Content Include="Areas\Admin\Views\Slider\CreateOrEdit.cshtml" />
     <Content Include="Areas\Admin\Views\Slider\Edit.cshtml" />
     <Content Include="Areas\Admin\Views\Slider\Index.cshtml" />
-    <Content Include="Areas\Admin\Views\ContactUs\_Table.cshtml" />
-    <Content Include="Areas\Admin\Views\ContactUs\Detail.cshtml" />
-    <Content Include="Areas\Admin\Views\ContactUs\Index.cshtml" />
     <Content Include="Views\Shared\DisplayTemplates\DateTime.cshtml" />
     <Content Include="Views\Shared\_SideBarResellerMenu.cshtml" />
-    <Content Include="Areas\Admin\Views\Menu\_Table.cshtml" />
-    <Content Include="Areas\Admin\Views\Menu\Create.cshtml" />
-    <Content Include="Areas\Admin\Views\Menu\CreateOrEdit.cshtml" />
-    <Content Include="Areas\Admin\Views\Menu\Detail.cshtml" />
-    <Content Include="Areas\Admin\Views\Menu\Edit.cshtml" />
-    <Content Include="Areas\Admin\Views\Menu\Index.cshtml" />
-    <Content Include="Areas\Admin\Views\Comments\_Table.cshtml" />
-    <Content Include="Areas\Admin\Views\Comments\Detail.cshtml" />
-    <Content Include="Areas\Admin\Views\Comments\Index.cshtml" />
     <Content Include="Views\Shared\_PicturesList.cshtml" />
     <Content Include="Areas\Admin\Views\ShopCategory\_Table.cshtml" />
     <Content Include="Areas\Admin\Views\ShopCategory\Create.cshtml" />
@@ -2278,11 +2283,6 @@
     <Content Include="Areas\Admin\Views\ShopPaymentType\Detail.cshtml" />
     <Content Include="Areas\Admin\Views\ShopPaymentType\Edit.cshtml" />
     <Content Include="Areas\Admin\Views\ShopPaymentType\Index.cshtml" />
-    <Content Include="Areas\Admin\Views\Link\_Table.cshtml" />
-    <Content Include="Areas\Admin\Views\Link\Create.cshtml" />
-    <Content Include="Areas\Admin\Views\Link\CreateOrEdit.cshtml" />
-    <Content Include="Areas\Admin\Views\Link\Edit.cshtml" />
-    <Content Include="Areas\Admin\Views\Link\Index.cshtml" />
     <Content Include="Areas\Admin\Views\ShopProductAttribute\_Table.cshtml" />
     <Content Include="Areas\Admin\Views\ShopProductAttribute\Create.cshtml" />
     <Content Include="Areas\Admin\Views\ShopProductAttribute\CreateOrEdit.cshtml" />
@@ -2324,24 +2324,19 @@
     <Content Include="Areas\Admin\Views\OrderNotPayment\Index.cshtml" />
     <Content Include="Views\Shared\DisplayTemplates\Bool.cshtml" />
     <Content Include="Views\Shared\_BreadCrumb.cshtml" />
-    <Content Include="Areas\Admin\Views\Advertise\_Table.cshtml" />
-    <Content Include="Areas\Admin\Views\Advertise\Create.cshtml" />
-    <Content Include="Areas\Admin\Views\Advertise\CreateOrEdit.cshtml" />
-    <Content Include="Areas\Admin\Views\Advertise\Edit.cshtml" />
-    <Content Include="Areas\Admin\Views\Advertise\Index.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\Long.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\ColorPicker.cshtml" />
-    <Content Include="Areas\Admin\Views\Issue\_Table.cshtml" />
-    <Content Include="Areas\Admin\Views\Issue\Create.cshtml" />
-    <Content Include="Areas\Admin\Views\Issue\CreateOrEdit.cshtml" />
-    <Content Include="Areas\Admin\Views\Issue\Index.cshtml" />
-    <Content Include="Areas\Admin\Views\Issue\Show.cshtml" />
-    <Content Include="Areas\Admin\Views\Issue\_IssueResponse.cshtml" />
-    <Content Include="Areas\Admin\Views\IssueLabel\_Table.cshtml" />
-    <Content Include="Areas\Admin\Views\IssueLabel\Create.cshtml" />
-    <Content Include="Areas\Admin\Views\IssueLabel\CreateOrEdit.cshtml" />
-    <Content Include="Areas\Admin\Views\IssueLabel\Edit.cshtml" />
-    <Content Include="Areas\Admin\Views\IssueLabel\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Ticket\_Table.cshtml" />
+    <Content Include="Areas\Admin\Views\Ticket\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\Ticket\CreateOrEdit.cshtml" />
+    <Content Include="Areas\Admin\Views\Ticket\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Ticket\Show.cshtml" />
+    <Content Include="Areas\Admin\Views\Ticket\_IssueResponse.cshtml" />
+    <Content Include="Areas\Admin\Views\TicketTag\_Table.cshtml" />
+    <Content Include="Areas\Admin\Views\TicketTag\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\TicketTag\CreateOrEdit.cshtml" />
+    <Content Include="Areas\Admin\Views\TicketTag\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\TicketTag\Index.cshtml" />
     <Content Include="Areas\Admin\Views\Shared\_Attachments.cshtml" />
     <Content Include="Areas\Admin\Views\Shared\_BreadCrumb.cshtml" />
     <Content Include="Areas\Admin\Views\Shared\_CaptchaPartial.cshtml" />

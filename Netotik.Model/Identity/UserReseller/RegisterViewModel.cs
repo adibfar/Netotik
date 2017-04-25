@@ -60,6 +60,7 @@ namespace Netotik.ViewModels.Identity.UserReseller
         [DisplayName("تکرار گذرواژه")]
         [System.ComponentModel.DataAnnotations.Compare("Password", ErrorMessage = "گذرواژه های وارد شده مطابقت ندارند")]
         public string ConfirmPassword { get; set; }
+
         [Required(ErrorMessage = "نام کاربری را وارد کنید")]
         [DisplayName("نام کاربری")]
         [StringLength(256, ErrorMessage = "نام کاربری نباید کمتر از 5 حرف و بیتشر از 256 حرف باشد", MinimumLength = 5)]

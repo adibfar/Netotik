@@ -22,6 +22,7 @@ using Netotik.Web.Extension;
 using System.IO;
 using DNTBreadCrumb;
 using Netotik.ViewModels.Identity.Security;
+using Netotik.Common.DataTables;
 
 namespace Netotik.Web.Areas.Admin.Controllers
 {
@@ -32,9 +33,9 @@ namespace Netotik.Web.Areas.Admin.Controllers
     {
 
         #region ctor
-        private readonly IInboxMessageService _inboxMessageService;
+        private readonly IInboxContactUsMessageService _inboxMessageService;
         private readonly IUnitOfWork _uow;
-        public ContactUsController(IInboxMessageService inboxMessageService, IUnitOfWork uow)
+        public ContactUsController(IInboxContactUsMessageService inboxMessageService, IUnitOfWork uow)
         {
             _uow = uow;
             _inboxMessageService = inboxMessageService;
@@ -42,24 +43,31 @@ namespace Netotik.Web.Areas.Admin.Controllers
         #endregion
 
         #region Index
-        public virtual ActionResult Index(string Search = "", int Page = 1, int PageSize = 10)
+        public virtual ActionResult Index()
         {
+            return View();
+        }
 
-            var pageList = _inboxMessageService.All()
-                .Where(x => x.Name.Contains(Search) || x.Email.Contains(Search))
-                .OrderByDescending(x => x.CreateDate)
-                .ToPagedList(Page, PageSize);
+        public virtual JsonResult GetList(RequestListModel model)
+        {
+            long totalCount;
+            long showCount;
 
-            if (Request.IsAjaxRequest())
-                return View(MVC.Admin.ContactUs.Views._Table, pageList);
-            else
-                return View(MVC.Admin.ContactUs.ActionNames.Index, pageList);
+            var result = _inboxMessageService.GetList(model, out totalCount, out showCount);
+
+            return Json(new
+            {
+                sEcho = model.sEcho,
+                iTotalRecords = totalCount,
+                iTotalDisplayRecords = showCount,
+                aaData = result
+            }, JsonRequestBehavior.AllowGet);
         }
         #endregion
 
         #region Detail
 
-        public virtual async Task<ActionResult> Detail(int id)
+        public virtual async Task<ActionResult> Show(int id)
         {
             var message = _inboxMessageService.SingleOrDefault(id);
             if (message == null)
@@ -68,7 +76,7 @@ namespace Netotik.Web.Areas.Admin.Controllers
             message.IsRead = true;
             await _uow.SaveChangesAsync();
 
-            return View(message);
+            return PartialView(MVC.Admin.ContactUs.Views._Show,message);
         }
 
         #endregion
@@ -85,11 +93,10 @@ namespace Netotik.Web.Areas.Admin.Controllers
             _inboxMessageService.Remove(message);
             await _uow.SaveChangesAsync();
 
-            return RedirectToAction(MVC.ContactUs.ActionNames.Index);
+            return RedirectToAction(MVC.ContactUs.Index());
         }
 
         #endregion
-
-
+        
     }
 }

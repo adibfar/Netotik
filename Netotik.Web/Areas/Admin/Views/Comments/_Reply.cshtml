@@ -1,0 +1,94 @@
+﻿@model Netotik.ViewModels.CMS.Comment.ReplyCommentModel
+@{
+    Layout = null;
+}
+<!-- Modal -->
+<div class="modal fade text-xs-left" id="Reply" tabindex="-1" role="dialog" aria-labelledby="myModalLabel20" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title" id="myModalLabel20">پاسخ به دیدگاه</h4>
+            </div>
+            @using (Html.BeginForm(MVC.Admin.Comments.ActionNames.Reply, MVC.Admin.Comments.Name, FormMethod.Post, htmlAttributes: new { @class = "form-horizontal", id = "ReplyForm" }))
+            {
+                @Html.HiddenFor(model => model.Id)
+                @Html.HiddenFor(model => model.CommentId)
+                @Html.AntiForgeryToken()
+                <div class="modal-body">
+                    <h4 class="form-section"><i class="icon-file-text2"></i> دیدگاه</h4>
+                    <div class="row">
+                        <div class="col-md-3">@Html.LabelFor(model=>model.CommentName)</div>
+                        <div class="col-md-9"> @Model.CommentName </div>
+                    </div>
+                    <hr />
+                    <div class="row">
+                        <div class="col-md-3">@Html.LabelFor(model => model.CommentEmail)</div>
+                        <div class="col-md-9"> @Model.CommentEmail</div>
+                    </div>
+                    <hr />
+                    <div class="row">
+                        <div class="col-md-3">@Html.LabelFor(model => model.CommentText)</div>
+                        <div class="col-md-9"> @Model.CommentText </div>
+                    </div>
+                    <h4 class="form-section"><i class="icon-file-text2"></i> پاسخ به دیدگاه</h4>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group has-feedback has-icon-left">
+                                @Html.LabelFor(m => m.Name)
+                                <div class="position-relative has-icon-left">
+                                    @Html.TextBoxFor(m => m.Name, new { @class = "form-control" })
+                                    <div class="form-control-position">
+                                        <i class="icon-person"></i>
+                                    </div>
+                                    @Html.ValidationMessageFor(model => model.Name, "", htmlAttributes: new { @class = "text-danger" })
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group has-feedback has-icon-left">
+                                @Html.LabelFor(m => m.Email)
+                                <div class="position-relative has-icon-left">
+                                    @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
+                                    <div class="form-control-position">
+                                        <i class="icon-mail"></i>
+                                    </div>
+                                    @Html.ValidationMessageFor(model => model.Email, "", htmlAttributes: new { @class = "text-danger" })
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                @Html.LabelFor(m => m.Text)
+                                <div class="position-relative">
+                                    @Html.TextAreaFor(m => m.Text, new { @class = "form-control",style="min-height:130px;" })
+                                    @Html.ValidationMessageFor(model => model.Text, "", htmlAttributes: new { @class = "text-danger" })
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">
+                        <i class="icon-cross2"></i>
+                        بستن
+                    </button>
+                    <button name="actionType" value="@Netotik.Common.Controller.ActionType.Save" type="button" class="btn btn-outline-success" onclick="AjaxForm.Post(this, 'ReplyForm')" data-loading-text="در حال ارسال اطلاعات">
+                        <i class="icon-check2"></i>
+                        @Netotik.Resources.Captions.Save
+                    </button>
+                </div>
+            }
+        </div>
+    </div>
+</div>

@@ -14,7 +14,7 @@ namespace Netotik.Domain.Entity
         public long? UserId { get; set; }
         public string Name { get; set; }
         public string Email { get; set; }
-        public string CommentText { get; set; }
+        public string Text { get; set; }
         public int ContentId { get; set; }
         public int? CommentId { get; set; }
         public CommentStatus Status { get; set; }

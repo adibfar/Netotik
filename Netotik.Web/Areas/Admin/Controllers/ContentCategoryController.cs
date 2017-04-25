@@ -133,14 +133,14 @@ namespace Netotik.Web.Areas.Admin.Controllers
 
         }
 
-        [BreadCrumb(Title = "ویرایش موضوع", Order = 1)]
+
         public virtual async Task<ActionResult> Edit(int id)
         {
             var model = _contentCategoryService.SingleOrDefault(id);
             if (model == null) return RedirectToAction(MVC.Admin.ContentCategory.Index());
             LoadCategories(model.ParentId, model.Id);
 
-            return View(MVC.Admin.ContentCategory.Views._Edit
+            return PartialView(MVC.Admin.ContentCategory.Views._Edit
                 , new ContentCategoryModel
                 {
                     Id = model.Id,

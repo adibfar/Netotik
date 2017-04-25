@@ -24,6 +24,7 @@ using DNTBreadCrumb;
 using Netotik.ViewModels.Identity.Security;
 using Netotik.ViewModels.CMS.Advertise;
 using Netotik.Common.Controller;
+using Netotik.Common.DataTables;
 
 namespace Netotik.Web.Areas.Admin.Controllers
 {
@@ -49,19 +50,34 @@ namespace Netotik.Web.Areas.Admin.Controllers
         #region Index
         public virtual ActionResult Index()
         {
-
-            var list = _advertiseService.All().Include(x => x.Picture).OrderBy(x => x.Order).ToList();
-            return View(MVC.Admin.Advertise.ActionNames.Index, list);
+            return View();
 
         }
+
+
+        public virtual JsonResult GetList(RequestListModel model)
+        {
+            long totalCount;
+            long showCount;
+
+            var result = _advertiseService.GetList(model, out totalCount, out showCount);
+
+            return Json(new
+            {
+                sEcho = model.sEcho,
+                iTotalRecords = totalCount,
+                iTotalDisplayRecords = showCount,
+                aaData = result
+            }, JsonRequestBehavior.AllowGet);
+        }
+
         #endregion
 
         #region Create
 
-        [BreadCrumb(Title = "بنر جدید", Order = 1)]
         public virtual ActionResult Create()
         {
-            return View(new AdvertiseModel { Order = 0 });
+            return PartialView(MVC.Admin.Advertise.Views._Create, new AdvertiseModel { Order = 0 });
         }
 
         [ValidateAntiForgeryToken]
@@ -71,12 +87,13 @@ namespace Netotik.Web.Areas.Admin.Controllers
             if (!ModelState.IsValid || model.Image == null)
             {
                 this.MessageError(Messages.MissionFail, Messages.InvalidDataError);
-                return View();
+                return RedirectToAction(MVC.Admin.Advertise.Index());
             }
 
             #region Initial Content
             var ads = new Netotik.Domain.Entity.Advertise()
             {
+                Alt = model.Alt,
                 Url = model.Url,
                 Order = model.Order,
             };
@@ -107,7 +124,7 @@ namespace Netotik.Web.Areas.Admin.Controllers
             catch (Exception ex)
             {
                 this.MessageError(Messages.MissionFail, Messages.AddError);
-                return View();
+                return RedirectToAction(MVC.Admin.Advertise.Index());
             }
             this.MessageSuccess(Messages.MissionSuccess, Messages.AddSuccess);
             return RedirectToAction(MVC.Admin.Advertise.Index());
@@ -116,7 +133,8 @@ namespace Netotik.Web.Areas.Admin.Controllers
 
 
         #region Edit
-        public virtual async Task<ActionResult> Remove(int id = 0)
+        [HttpPost]
+        public virtual async Task<ActionResult> Remove(int id)
         {
             var advertise = _advertiseService.All().Where(x => x.Id == id).Include(x => x.Picture).FirstOrDefault();
             if (advertise != null)
@@ -126,25 +144,25 @@ namespace Netotik.Web.Areas.Admin.Controllers
                 await _uow.SaveChangesAsync();
 
             }
-            return RedirectToAction(MVC.Admin.Advertise.ActionNames.Index);
+            return RedirectToAction(MVC.Admin.Advertise.Index());
         }
 
-        [BreadCrumb(Title = "ویرایش بنر", Order = 1)]
         public virtual async Task<ActionResult> Edit(int id)
         {
             var model = await _advertiseService.All().Include(x => x.Picture).FirstOrDefaultAsync(x => x.Id == id);
-            if (model == null) return RedirectToAction(MVC.Admin.Advertise.ActionNames.Index);
+            if (model == null) return RedirectToAction(MVC.Admin.Advertise.Index());
 
-            ViewBag.Avatar = Path.Combine(FilePathes._imagesAdvertisePath, model.Picture.FileName);
 
             var editModel = new AdvertiseModel
             {
                 Id = model.Id,
                 Url = model.Url,
+                Alt = model.Alt,
                 Order = model.Order,
+                Picture = model.Picture
             };
 
-            return View(editModel);
+            return PartialView(MVC.Admin.Advertise.Views._Edit, editModel);
 
         }
 
@@ -155,19 +173,20 @@ namespace Netotik.Web.Areas.Admin.Controllers
         {
             var ads = _advertiseService.SingleOrDefault(model.Id);
             if (ads == null)
-                return RedirectToAction("Index");
+                return RedirectToAction(MVC.Admin.Advertise.Index());
 
 
             if (!ModelState.IsValid)
             {
                 this.MessageError(Messages.MissionFail, Messages.InvalidDataError);
-                return View();
+                return RedirectToAction(MVC.Admin.Advertise.Index());
             }
 
             #region Update
 
             ads.Order = model.Order;
             ads.Url = model.Url;
+            ads.Alt = model.Alt;
 
             if (model.Image != null)
             {
@@ -186,7 +205,6 @@ namespace Netotik.Web.Areas.Admin.Controllers
                 }
                 #endregion
             }
-            ViewBag.Avatar = Path.Combine(FilePathes._imagesAdvertisePath, ads.Picture.FileName);
             #endregion
 
             _advertiseService.Update(ads);
@@ -198,7 +216,7 @@ namespace Netotik.Web.Areas.Admin.Controllers
             catch (Exception ex)
             {
                 this.MessageError(Messages.MissionFail, Messages.UpdateError);
-                return View();
+                return RedirectToAction(MVC.Admin.Advertise.Index());
             }
 
             this.MessageSuccess(Messages.MissionSuccess, Messages.UpdateSuccess);

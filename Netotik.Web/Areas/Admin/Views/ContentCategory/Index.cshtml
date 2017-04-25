@@ -55,8 +55,8 @@
                                     + '<button id="btnSearchDrop2" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" class="btn btn-outline-secondary dropdown-toggle dropdown-menu-right">'
                                     + '<i class="icon-cog3"></i> پردازش</button><span aria-labelledby="btnSearchDrop2" class="dropdown-menu mt-1 dropdown-menu-right">'
                                     + '<a onclick="edit(' + full.Id + ');" class="edit dropdown-item">'
-                                    + '<i class="icon-pen3"></i> ویرایش </a>'
-                                    + '<a href="/Admin/ContentCategory/Remove/' + full.Id + '" class="dropdown-item">'
+                                + '<i class="icon-pen3"></i> ویرایش </a>'
+                                + '<a onclick="remove(' + full.Id + ')" class="dropdown-item">'
                                     + '<i class="icon-trash4"></i> حذف </a>';
                             + '</span></span>';
                             return result;
@@ -89,5 +89,10 @@
                 AjaxForm.EnableAjaxFormvalidate('Edit');
             });
         };
+
+
+        function remove(id) {
+            PostData("@Url.Action(MVC.Admin.ContentCategory.Remove())", { id: id });
+        }
     </script>
 }

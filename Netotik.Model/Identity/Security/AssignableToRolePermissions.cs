@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
+using System.Web.Mvc;
 
 namespace Netotik.ViewModels.Identity.Security
 {
@@ -17,6 +18,16 @@ namespace Netotik.ViewModels.Identity.Security
 
         private static Lazy<IEnumerable<string>> _permissionNamesLazy = new Lazy<IEnumerable<string>>(
             GetPermisionNames, LazyThreadSafetyMode.ExecutionAndPublication);
+        #endregion
+
+
+
+        #region GetAsSelectedList
+
+        public static IEnumerable<SelectListItem> GetAsSelectListItems()
+        {
+            return Permissions.Select(a => new SelectListItem { Text = a.Description, Value = a.Name }).ToList();
+        }
         #endregion
 
 
@@ -251,25 +262,25 @@ namespace Netotik.ViewModels.Identity.Security
         public static readonly PermissionModel CanAccessFailORderPermission = new PermissionModel { Name = CanAccessFailOrder, Description = "مدیریت فاکتورهای پرداخت نشده", Section = SectionPermisson.Factor };
         #endregion
 
-        #region Issue
-        public const string CanCreateIssue = "153";
-        public const string CanTrackIssue = "154";
-        public const string CanDeleteIssue = "155";
-        public const string CanChangeStatusIssue = "156";
-        public const string CanViewAllIssue = "157";
-        public const string CanAccessIssue = "158";
-        public static readonly PermissionModel CanAccessIssuePermission = new PermissionModel { Name = CanAccessIssue, Description = "دسترسی به بخش وظایف", Section = SectionPermisson.Issue };
-        public static readonly PermissionModel CanCreateIssuesPermission = new PermissionModel { Name = CanCreateIssue, Description = "ایجاد وظیفه", Section = SectionPermisson.Issue };
-        public static readonly PermissionModel CanTrackIssuesPermission = new PermissionModel { Name = CanTrackIssue, Description = "ارسال پیام در وظیفه", Section = SectionPermisson.Issue };
-        public static readonly PermissionModel CanDeleteIssuesPermission = new PermissionModel { Name = CanDeleteIssue, Description = "حذف وظیفه", Section = SectionPermisson.Issue };
-        public static readonly PermissionModel CanCahngeStatusIssuesPermission = new PermissionModel { Name = CanChangeStatusIssue, Description = "تغییر وضعیت وظیفه", Section = SectionPermisson.Issue };
-        public static readonly PermissionModel CanViewAllIssuesPermission = new PermissionModel { Name = CanViewAllIssue, Description = "نمایش تمامی وظایف", Section = SectionPermisson.Issue };
+        #region Ticket
+        public const string CanCreateTicket = "153";
+        public const string CanTrackTicket = "154";
+        public const string CanDeleteTicket = "155";
+        public const string CanChangeStatusTicket = "156";
+        public const string CanViewAllTicket = "157";
+        public const string CanAccessTicket = "158";
+        public static readonly PermissionModel CanAccessTicketPermission = new PermissionModel { Name = CanAccessTicket, Description = "دسترسی به بخش تیکت", Section = SectionPermisson.Ticket };
+        public static readonly PermissionModel CanCreateTicketPermission = new PermissionModel { Name = CanCreateTicket, Description = "ایجاد تیکت", Section = SectionPermisson.Ticket };
+        public static readonly PermissionModel CanTrackTicketPermission = new PermissionModel { Name = CanTrackTicket, Description = "ارسال پیام در تیکت", Section = SectionPermisson.Ticket };
+        public static readonly PermissionModel CanDeleteTicketPermission = new PermissionModel { Name = CanDeleteTicket, Description = "حذف تیکت", Section = SectionPermisson.Ticket };
+        public static readonly PermissionModel CanCahngeStatusTicketPermission = new PermissionModel { Name = CanChangeStatusTicket, Description = "تغییر وضعیت تیکت", Section = SectionPermisson.Ticket };
+        public static readonly PermissionModel CanViewAllTicketPermission = new PermissionModel { Name = CanViewAllTicket, Description = "نمایش تمامی تیکت", Section = SectionPermisson.Ticket };
         #endregion
 
 
-        #region Issue Label
-        public const string CanAccessIssueLabel = "159";
-        public static readonly PermissionModel CanAccessIssueLabelPermission = new PermissionModel { Name = CanAccessIssueLabel, Description = "دسترسی به بخش برچسب های وظایف", Section = SectionPermisson.Issue };
+        #region Ticket Tag
+        public const string CanAccessTicketTag = "159";
+        public static readonly PermissionModel CanAccessTicketTagPermission = new PermissionModel { Name = CanAccessTicketTag, Description = "دسترسی به بخش برچسب های تیکت", Section = SectionPermisson.Ticket };
 
         #endregion
 
@@ -371,14 +382,14 @@ namespace Netotik.ViewModels.Identity.Security
                 CanAccessSuccessOrderPermission,
                 CanAccessFailORderPermission,
 
-                CanAccessIssueLabelPermission,
+                CanAccessTicketTagPermission,
 
-                CanAccessIssuePermission,
-                CanViewAllIssuesPermission,
-                CanCreateIssuesPermission,
-                CanTrackIssuesPermission,
-                CanDeleteIssuesPermission,
-                CanCahngeStatusIssuesPermission,
+                CanAccessTicketPermission,
+                CanViewAllTicketPermission,
+                CanCreateTicketPermission,
+                CanTrackTicketPermission,
+                CanDeleteTicketPermission,
+                CanCahngeStatusTicketPermission,
             };
         }
 
@@ -471,14 +482,14 @@ namespace Netotik.ViewModels.Identity.Security
                 CanAccessSuccessOrder,
                 CanAccessFailOrder,
 
-                CanAccessIssueLabel,
+                CanAccessTicketTag,
 
-                CanAccessIssue,
-                CanViewAllIssue,
-                CanCreateIssue,
-                CanTrackIssue,
-                CanDeleteIssue,
-                CanChangeStatusIssue
+                CanAccessTicket,
+                CanViewAllTicket,
+                CanCreateTicket,
+                CanTrackTicket,
+                CanDeleteTicket,
+                CanChangeStatusTicket
             };
         }
 
@@ -488,14 +499,14 @@ namespace Netotik.ViewModels.Identity.Security
         {
             return new List<PermissionModel>
             {
-                CanAccessIssueLabelPermission,
+                CanAccessTicketTagPermission,
 
-                CanAccessIssuePermission,
-                CanViewAllIssuesPermission,
-                CanCreateIssuesPermission,
-                CanTrackIssuesPermission,
-                CanDeleteIssuesPermission,
-                CanCahngeStatusIssuesPermission,
+                CanAccessTicketPermission,
+                CanViewAllTicketPermission,
+                CanCreateTicketPermission,
+                CanTrackTicketPermission,
+                CanDeleteTicketPermission,
+                CanCahngeStatusTicketPermission,
             };
         }
 

@@ -14,6 +14,8 @@ using Netotik.Data;
 using Netotik.Common.Security.RijndaelEncryption;
 using Netotik.Common.Extensions;
 using Netotik.ViewModels.Identity.Role;
+using Netotik.Common.DataTables;
+using System;
 
 namespace Netotik.Services.Identity
 {
@@ -112,7 +114,7 @@ namespace Netotik.Services.Identity
             var user = await _users.FirstOrDefaultAsync(x => x.Id == userId);
 
             if (user.UserType == UserType.UserCompany) return new List<string> { "Company" };
-            else if(user.UserType == UserType.UserReseller) return new List<string> { "Reseller" };
+            else if (user.UserType == UserType.UserReseller) return new List<string> { "Reseller" };
             else if (user.UserType == UserType.UserNet) return new List<string> { "UserNet" };
 
             var userRolesQuery = from role in Roles
@@ -233,16 +235,42 @@ namespace Netotik.Services.Identity
         #endregion
 
         #region GetList
-
-
-        public async Task<IEnumerable<RoleViewModel>> GetList()
+        public IList<RoleItem> GetList(RequestListModel model, out long TotalCount, out long ShowCount)
         {
-            return await _roles.Project(_mappingEngine).To<RoleViewModel>().ToListAsync();
+            IQueryable<Role> all = _roles.AsQueryable();
+            TotalCount = all.LongCount();
+
+            // Apply Filtering
+            if (!string.IsNullOrEmpty(model.sSearch))
+            {
+                all = all.Where(x => x.Name.Contains(model.sSearch)).AsQueryable();
+            }
+
+
+            // Apply Sorting
+            Func<Role, string> orderingFunction = (x => x.Name);
+            // asc or desc
+            all = model.sSortDir_0 == "asc" ? all.OrderBy(orderingFunction).AsQueryable() : all.OrderByDescending(orderingFunction).AsQueryable();
+
+            ShowCount = all.Count();
+            return all.AsEnumerable().Skip(model.iDisplayStart).Take(model.iDisplayLength).ToList()
+                .Select((x, index) => new RoleItem
+                {
+                    Name = x.Name,
+                    Description = x.Description,
+                    IsDefaultForRegister = x.IsDefaultForRegister,
+                    IsSystemRole = x.IsSystemRole,
+                    Id = x.Id,
+                    RowNumber = model.iDisplayStart + index + 1
+                })
+                .ToList();
+
         }
+
         #endregion
 
         #region AddRole
-        public Task<bool> AddRole(AddEditRoleViewModel viewModel)
+        public Task<bool> AddRole(RoleModel viewModel)
         {
 
             var XmlPermissions = "";
@@ -267,10 +295,10 @@ namespace Netotik.Services.Identity
         #endregion
 
         #region GetRoleByPermissions
-        public async Task<AddEditRoleViewModel> GetRoleByPermissionsAsync(long id)
+        public async Task<RoleModel> GetRoleByIdAsync(long id)
         {
             var role = await _roles.FirstOrDefaultAsync(r => r.Id == id);
-            var viewModel = _mappingEngine.Map<AddEditRoleViewModel>(role);
+            var viewModel = _mappingEngine.Map<RoleModel>(role);
 
 
             var securityTamp = role.SecurityStamp;
@@ -287,18 +315,21 @@ namespace Netotik.Services.Identity
 
         #region EditRole
 
-        public async Task<bool> EditRole(AddEditRoleViewModel viewModel)
+        public async Task<bool> EditRole(RoleModel viewModel)
         {
-            if (viewModel.PermissionNames == null || viewModel.PermissionNames.Length < 1)
-                return false;
-            var role = await ((DbSet<Role>)_roles).FindAsync(viewModel.Id);
+            var role = await _roles.FirstOrDefaultAsync(x => x.Id == viewModel.Id);
 
             var securityTamp = role.SecurityStamp;
             IEncryptSettingsProvider settings = new EncryptSettingsProvider();
             var encrypter = new RijndaelStringEncrypter(settings, securityTamp);
 
+
             _mappingEngine.Map(viewModel, role);
-            role.Permissions = encrypter.Encrypt(_permissionService.GetPermissionsAsXml(viewModel.PermissionNames).ToString());
+
+            if (viewModel.PermissionNames == null || viewModel.PermissionNames.Length < 1)
+                role.Permissions = _permissionService.GetPermissionsAsXml("null").ToString(); 
+            else role.Permissions = encrypter.Encrypt(_permissionService.GetPermissionsAsXml(viewModel.PermissionNames).ToString());
+
             return true;
 
         }
@@ -336,14 +367,14 @@ namespace Netotik.Services.Identity
         #endregion
 
         #region GetPageList
-        public IEnumerable<RoleViewModel> GetPageList(out int total, string term, int page, int count = 10)
+        public IEnumerable<RoleItem> GetPageList(out int total, string term, int page, int count = 10)
         {
             var roles = _roles.AsNoTracking().OrderBy(a => a.Id).AsQueryable();
             if (!string.IsNullOrEmpty(term))
                 roles = roles.Where(a => a.Name.Contains(term));
             total = roles.FutureCount();
             var result =
-                roles.Skip((page - 1) * count).Take(count).Project(_mappingEngine).To<RoleViewModel>().Future().ToList();
+                roles.Skip((page - 1) * count).Take(count).Project(_mappingEngine).To<RoleItem>().Future().ToList();
 
             return result;
         }

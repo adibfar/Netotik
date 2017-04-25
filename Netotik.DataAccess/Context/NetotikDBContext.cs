@@ -77,7 +77,7 @@ namespace Netotik.Data.Context
         public DbSet<ContentTag> ContentTags { get; set; }
         public DbSet<Tax> Taxes { get; set; }
         public DbSet<Warehouse> Warehouses { get; set; }
-        public DbSet<InboxMessage> InboxMessages { get; set; }
+        public DbSet<InboxContactUsMessage> InboxMessages { get; set; }
         public DbSet<Link> Linkes { get; set; }
         public DbSet<Resource> Resources { get; set; }
 

@@ -16,14 +16,14 @@ using Netotik.Common.Security;
 using Netotik.Web.Infrastructure.Filters;
 using System.Web.UI;
 using System.Threading.Tasks;
-using Netotik.Web;
-using System.Data.Entity.Validation;
-using Netotik.Web.Extension;
+using WebGrease.Css.Extensions;
 using DNTBreadCrumb;
 using Netotik.ViewModels.Identity.Security;
 using Netotik.ViewModels.Identity.Role;
 using Netotik.Services.Identity;
 using Netotik.Common.Controller;
+using System.Net;
+using Netotik.Common.DataTables;
 
 namespace Netotik.Web.Areas.Admin.Controllers
 {
@@ -33,274 +33,171 @@ namespace Netotik.Web.Areas.Admin.Controllers
     public partial class RoleController : BaseController
     {
 
-        #region ctor
-        private readonly IApplicationRoleManager _applicationRoleManagerService;
-        //private readonly IPermissonService _PermissonService;
-        private readonly IUnitOfWork _uow;
+        #region Fields
 
-        public RoleController(
-            IApplicationRoleManager applicationRoleManagerService,
-            //  IPermissonService PermissonService,
-            IUnitOfWork uow)
-        {
-            //_PermissonService = PermissonService;
-            _applicationRoleManagerService = applicationRoleManagerService;
-            _uow = uow;
-        }
+        private readonly IUnitOfWork _unitOfWork;
+        private readonly IApplicationRoleManager _roleManager;
+
         #endregion
 
+        #region Const
+
+        public RoleController(IUnitOfWork unitOfWork, IApplicationRoleManager roleManager)
+        {
+            _unitOfWork = unitOfWork;
+            _roleManager = roleManager;
+        }
+
+        #endregion
 
         #region Index
-        public virtual ActionResult Index(string Search, int Page = 1, int PageSize = 10)
+        [HttpGet]
+        public virtual ActionResult Index()
         {
+            return View();
+        }
 
-            var pageList = new List<RoleViewModel>(); //_applicationRoleManagerService.GetDataTableRole(Search).ToPagedList<RoleViewModel>(Page, PageSize);
-            if (Request.IsAjaxRequest())
-                return View(MVC.Admin.Role.Views._Table, pageList);
-            else
-                return View(MVC.Admin.Role.ActionNames.Index, pageList);
+        public virtual JsonResult GetList(RequestListModel model)
+        {
+            long totalCount;
+            long showCount;
+
+            var result = _roleManager.GetList(model, out totalCount, out showCount);
+
+            return Json(new
+            {
+                sEcho = model.sEcho,
+                iTotalRecords = totalCount,
+                iTotalDisplayRecords = showCount,
+                aaData = result
+            }, JsonRequestBehavior.AllowGet);
         }
         #endregion
-
 
         #region Create
 
-        [BreadCrumb(Title = "گروه جدید", Order = 1)]
-        public virtual async Task<ActionResult> Create()
+        [HttpGet]
+        public virtual ActionResult Create()
         {
-            await LoadRoles();
-            PopulatePermissones();
-            return View();
+            PopulatePermissions();
+            return View(MVC.Admin.Role.Views._Create);
         }
-
-        [ValidateAntiForgeryToken]
         [HttpPost]
-        public virtual async Task<ActionResult> Create(AddEditRoleViewModel model, ActionType actionType)
+        [ValidateAntiForgeryToken]
+        public virtual async Task<ActionResult> Create(RoleModel viewModel)
         {
-            //if (model.PermissonIds != null && model.PermissonIds.Count() > 0)
-            //    PopulatePermissones(model.PermissonIds);
-            //else PopulatePermissones();
+            if (!ModelState.IsValid)
+            {
+                this.MessageError(Messages.MissionFail,Messages.InvalidDataError);
+                PopulatePermissions(viewModel.PermissionNames);
+                return View(viewModel);
+            }
+            if (!await _roleManager.AddRole(viewModel))
+            {
+                this.MessageError(Messages.MissionFail,"لطفا برای گروه کاربری مورد نظر ، دسترسی تعیین کنید");
+                PopulatePermissions();
+                return View(viewModel);
+            }
 
-            //await LoadRoles(model.ParentId);
-
-            //if (!ModelState.IsValid)
-            //{
-
-            //    this.MessageError(Messages.MissionFail, Messages.InvalidDataError);
-            //    return View(model);
-            //}
-            //else
-            //{
-            //    var now = DateTime.Now;
-
-            //    var role = new Role()
-            //    {
-            //        IsSystemRole = false,
-            //        ParentRoleId = model.ParentId,
-            //        IsDefaultRoleRegisteredUser = model.IsDefaultRoleRegisteredUser,
-            //        TaxExemt = model.TaxExemt,
-            //        FreeShipping = model.FreeShipping,
-            //        Active = model.Active,
-            //        Name = model.Name,
-            //        SystemName = model.SystemName
-            //    };
-
-            //    role.Permissons = await _PermissonService.GetPermissonesbyIdsAsync(model.PermissonIds);
-
-            //    if (model.IsDefaultRoleRegisteredUser)
-            //        await _applicationRoleManagerService.DisableAllDefaultRoleRegister();
-
-            //    _applicationRoleManagerService.Add(role);
-
-
-            //    if (result.Status)
-            //    {
-            //        try
-            //        {
-            //            await _uow.SaveChangesAsync();
-            //        }
-            //        catch (DbEntityValidationException ex)
-            //        {
-            //            this.MessageError(Messages.MissionFail, Messages.AddError);
-            //        }
-            //        catch (Exception ex)
-            //        {
-            //            this.MessageError(Messages.MissionFail, Messages.AddError);
-            //        }
-            //    }
-            //    SetResultMessage(result);
-            //    if (!result.Status) return View(model);
-
-            //    if (actionType == ActionType.SaveContinue) return RedirectToAction(MVC.Admin.Role.Edit(role.Id));
-            //    return RedirectToAction(MVC.Admin.Role.Index());
-            //}
-
-            return View();
-
-
-        }
-        #endregion
-
-
-        #region Detail
-
-        [Mvc5Authorize(Roles = AssignableToRolePermissions.CanAccessRole)]
-        public virtual ActionResult Detail(int id)
-        {
-            //var user = _applicationRoleManagerService.SingleOrDefault(id);
-            //if (user == null)
-            //    return RedirectToAction(MVC.Admin.Role.ActionNames.Index);
-
-            //ViewBag.logins = user.LoginHistories.OrderByDescending(x => x.RegisterDate).Take(10).ToList();
-            //return View(user);
-            return View();
+            await _unitOfWork.SaveChangesAsync();
+            this.MessageSuccess(Messages.MissionSuccess, Messages.AddSuccess);
+            return RedirectToAction(MVC.Admin.Role.Index());
         }
 
         #endregion
-
 
         #region Edit
+        [HttpGet]
+        public virtual async Task<ActionResult> Edit(int? id)
+        {
+            if (id == null)
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+
+            var viewModel = await _roleManager.GetRoleByIdAsync(id.Value);
+            if (viewModel == null)
+                return HttpNotFound();
+
+            PopulatePermissions(viewModel.PermissionNames);
+            return PartialView(MVC.Admin.Role.Views._Edit,viewModel);
+        }
+
         [HttpPost]
-        public virtual async Task<ActionResult> Remove(int id = 0)
-        {
-
-            //await _applicationRoleManagerService.Remove(id);
-            //await _uow.SaveChangesAsync();
-            //return RedirectToAction(MVC.Admin.Role.ActionNames.Index);
-
-            return View();
-        }
-
-        [BreadCrumb(Title = "ویرایش گروه", Order = 1)]
-        public virtual async Task<ActionResult> Edit(int id)
-        {
-            //var model = _applicationRoleManagerService.SingleOrDefault(id);
-            //if (model == null)
-            //    return RedirectToAction(MVC.Admin.Role.ActionNames.Index);
-
-            //await LoadRoles(model.ParentRoleId);
-
-            //PopulatePermissones(model.Permissons.Select(x => x.Id).ToArray());
-            //return View(new AddEditRoleViewModel
-            //{
-            //    Id = model.Id,
-            //    Name = model.Name,
-            //    SystemName = model.SystemName,
-            //    FreeShipping = model.FreeShipping,
-            //    TaxExemt = model.TaxExemt,
-            //    Active = model.Active,
-            //    IsDefaultRoleRegisteredUser = model.IsDefaultRoleRegisteredUser
-            //});
-            return View();
-        }
-
         [ValidateAntiForgeryToken]
-        [HttpPost]
-        public virtual async Task<ActionResult> Edit(AddEditRoleViewModel model, ActionType actionType)
+        public virtual async Task<ActionResult> Edit(RoleModel viewModel)
         {
-            //var user = _applicationRoleManagerService.SingleOrDefault(model.Id.Value);
-            //if (user == null)
-            //    return RedirectToAction(MVC.Admin.Role.ActionNames.Index);
+            if (_roleManager.ChechForExisByName(viewModel.Name, viewModel.Id))
+                ModelState.AddModelError("Name", "این گروه  قبلا در سیستم ثبت شده است");
 
-            //await LoadRoles(model.ParentId);
-            //PopulatePermissones(model.PermissonIds);
+            if (!ModelState.IsValid)
+            {
+                this.MessageError(Messages.MissionFail, Messages.InvalidDataError);
+                PopulatePermissions(viewModel.PermissionNames);
+                return RedirectToAction(MVC.Admin.Role.Index());
+            }
 
-            //if (ModelState.IsValid)
-            //{
-            //    user.Name = model.Name;
-            //    user.SystemName = model.SystemName;
-            //    user.FreeShipping = model.FreeShipping;
-            //    user.TaxExemt = model.TaxExemt;
-            //    user.Active = model.Active;
-            //    user.IsDefaultRoleRegisteredUser = model.IsDefaultRoleRegisteredUser;
-
-            //    user.Permissons.Clear();
-            //    user.Permissons = await _PermissonService.GetPermissonesbyIdsAsync(model.PermissonIds);
-
-            //    if (model.IsDefaultRoleRegisteredUser)
-            //        await _applicationRoleManagerService.DisableAllDefaultRoleRegister();
-
-            //    _applicationRoleManagerService.Update(user);
+            var dbRole = await _roleManager.FindByIdAsync(viewModel.Id.Value);
+            if (dbRole == null)
+                return HttpNotFound();
 
 
+            if (!await _roleManager.EditRole(viewModel))
+            {
+                this.MessageError(Messages.MissionFail, "لطفا برای گروه کاربری مورد نظر ، دسترسی تعیین کنید");
+                PopulatePermissions();
+                return RedirectToAction(MVC.Admin.Role.Index());
+            }
 
-            //    if (result.Status)
-            //    {
-            //        try
-            //        {
-            //            await _uow.SaveChangesAsync();
-            //        }
-            //        catch (DbEntityValidationException ex)
-            //        {
-            //            this.MessageError(Messages.MissionFail, Messages.AddError);
-            //        }
-            //        catch (Exception ex)
-            //        {
-            //            this.MessageError(Messages.MissionFail, Messages.AddError);
-            //        }
-            //    }
-            //    SetResultMessage(result);
-            //    if (!result.Status) return View();
-            //}
-
-            //if (actionType == ActionType.SaveContinue) return RedirectToAction(MVC.Admin.Role.Edit(model.Id.Value));
-            //return RedirectToAction(MVC.Admin.Role.Index());
-
-            return View();
+            await _unitOfWork.SaveChangesAsync();
+            this.MessageSuccess(Messages.MissionSuccess, Messages.UpdateSuccess);
+            return RedirectToAction(MVC.Admin.Role.Index());
         }
 
         #endregion
 
+        #region Delete
 
+        [HttpPost]
+        public virtual async Task<ActionResult> Remove(int? id)
+        {
+            if (id == null) return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            if (await _roleManager.CheckRoleIsSystemRoleAsync(id.Value))
+            {
+                this.MessageError(Messages.MissionFail,"این گروه کاربری سیستمی است و حذف آن باعث اختلال در سیستم خواهد شد");
+                return RedirectToAction(MVC.Admin.Role.Index());
+            }
+            await _roleManager.RemoveById(id.Value);
+            this.MessageSuccess(Messages.MissionSuccess, Messages.RemoveSuccess);
+            return RedirectToAction(MVC.Admin.Role.Index());
+        }
 
-        #region RemoteValidations
+        #endregion
 
-
+        #region RemoteValidation
 
         [HttpPost]
         [AjaxOnly]
         [OutputCache(NoStore = true, Duration = 0, VaryByParam = "*")]
-        public virtual async Task<JsonResult> IsRoleNameExist(string name, int? id)
+        public virtual JsonResult IsRoleNameAvailable(string name, int? id)
         {
-            //return await _applicationRoleManagerService.ExistsByNameAsync(name, id) ? Json(false) : Json(true);
-            return Json(false);
-        }
-
-        [HttpPost]
-        [AjaxOnly]
-        [OutputCache(Location = OutputCacheLocation.None, NoStore = true, Duration = 0, VaryByParam = "*")]
-        public virtual async Task<JsonResult> IsRoleSystemNameExist(string systemName, int? id)
-        {
-            //return await _applicationRoleManagerService.ExistsBySystemNameAsync(systemName, id) ? Json(false) : Json(true);
-            return Json(false);
+            return _roleManager.ChechForExisByName(name, id) ? Json(false) : Json(true);
         }
 
         #endregion
 
-
-
         #region Private
         [NonAction]
-        private void PopulatePermissones(params int[] selectedIds)
+        private void PopulatePermissions(params string[] selectedpermissions)
         {
-            //var permitssons = _PermissonService.All().ToList().Select(x => new
-            //SelectListItem
-            //{
-            //    Text = x.Description,
-            //    Value = x.Id.ToString(),
-            //    Group = new SelectListGroup() { Name = ((short)x.Section).ToString() },
-            //    Selected = (selectedIds != null) ? selectedIds.Any(y => y == x.Id) : false
-            //}).ToList();
-            //ViewBag.Permissones = permitssons;
+            var permissions = AssignableToRolePermissions.GetAsSelectListItems();
+
+            if (selectedpermissions != null)
+            {
+                permissions.ForEach(
+                    a => a.Selected = selectedpermissions.Any(s => s == a.Value));
+            }
+
+            ViewBag.Permissions = permissions;
         }
-
-
-        private async Task LoadRoles(int? selectedId = null)
-        {
-            //var list = await _applicationRoleManagerService.All().ToListAsync();
-            //ViewBag.Roles = new SelectList(list, "Id", "Name", selectedId);
-        }
-
 
         #endregion
     }

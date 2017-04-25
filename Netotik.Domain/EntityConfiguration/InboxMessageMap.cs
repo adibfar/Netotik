@@ -4,7 +4,7 @@ using System.Data.Entity.ModelConfiguration;
 
 namespace Netotik.Domain.EntityConfiguration
 {
-    public class InboxMessageMap : EntityTypeConfiguration<InboxMessage>
+    public class InboxMessageMap : EntityTypeConfiguration<InboxContactUsMessage>
     {
         public InboxMessageMap()
         {
@@ -28,7 +28,7 @@ namespace Netotik.Domain.EntityConfiguration
             this.Property(t => t.Id).HasColumnName("Id");
             this.Property(t => t.Name).HasColumnName("Name");
             this.Property(t => t.Email).HasColumnName("Email");
-            this.Property(t => t.MobileNumber).HasColumnName("MobileNumber");
+            this.Property(t => t.PhoneNumber).HasColumnName("MobileNumber");
             this.Property(t => t.IsRead).HasColumnName("IsRead");
             this.Property(t => t.CreateDate).HasColumnName("CreateDate");
         }

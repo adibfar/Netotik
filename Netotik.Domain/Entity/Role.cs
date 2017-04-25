@@ -12,6 +12,5 @@ namespace Netotik.Domain.Entity
         public virtual byte[] RowVersion { get; set; }
         public virtual string Permissions { get; set; }
         public string SecurityStamp { get; set; }
-        public virtual ICollection<Issue> Issues { get; set; }
     }
 }

@@ -6,6 +6,7 @@ using System.Xml.Linq;
 using Microsoft.AspNet.Identity;
 using Netotik.Domain.Entity;
 using Netotik.ViewModels.Identity.Role;
+using Netotik.Common.DataTables;
 
 namespace Netotik.Services.Identity
 {
@@ -71,10 +72,10 @@ namespace Netotik.Services.Identity
         Task<IList<Role>> GetAllRolesAsync();
         void SeedDatabase();
         Task RemoteAll();
-        Task<IEnumerable<RoleViewModel>> GetList();
-        Task<bool> AddRole(AddEditRoleViewModel viewModel);
-        Task<bool> EditRole(AddEditRoleViewModel viewModel);
-        Task<AddEditRoleViewModel> GetRoleByPermissionsAsync(long id);
+        IList<RoleItem> GetList(RequestListModel model, out long TotalCount, out long ShowCount);
+        Task<bool> AddRole(RoleModel viewModel);
+        Task<bool> EditRole(RoleModel viewModel);
+        Task<RoleModel> GetRoleByIdAsync(long id);
         void AddRange(IEnumerable<Role> roles);
         Task<bool> AnyAsync();
         bool AutoCommitEnabled { get; set; }
@@ -83,7 +84,7 @@ namespace Netotik.Services.Identity
         Task RemoveById(long id);
         Task<bool> CheckRoleIsSystemRoleAsync(long id);
         Task SetRoleAsRegistrationDefaultRoleAsync(long id);
-        IEnumerable<RoleViewModel> GetPageList(out int total, string term, int page, int count = 10);
+        IEnumerable<RoleItem> GetPageList(out int total, string term, int page, int count = 10);
         Task<IEnumerable<SelectListItem>> GetAllAsSelectListAsync();
         IEnumerable<long> FindUserRoleIds(long userId);
         Task<IList<string>> FindUserPermissionsAsync(long userId);

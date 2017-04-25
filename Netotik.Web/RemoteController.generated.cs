@@ -58,6 +58,12 @@ namespace Netotik.Web.Controllers
 
         [NonAction]
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public virtual System.Web.Mvc.JsonResult IsAdminEmailAvailable()
+        {
+            return new T4MVC_System_Web_Mvc_JsonResult(Area, Name, ActionNames.IsAdminEmailAvailable);
+        }
+        [NonAction]
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public virtual System.Web.Mvc.JsonResult IsResellerEmailAvailable()
         {
             return new T4MVC_System_Web_Mvc_JsonResult(Area, Name, ActionNames.IsResellerEmailAvailable);
@@ -67,6 +73,12 @@ namespace Netotik.Web.Controllers
         public virtual System.Web.Mvc.JsonResult IsCompanyEmailAvailable()
         {
             return new T4MVC_System_Web_Mvc_JsonResult(Area, Name, ActionNames.IsCompanyEmailAvailable);
+        }
+        [NonAction]
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public virtual System.Web.Mvc.JsonResult IsAdminPhoneNumberAvailable()
+        {
+            return new T4MVC_System_Web_Mvc_JsonResult(Area, Name, ActionNames.IsAdminPhoneNumberAvailable);
         }
         [NonAction]
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -138,8 +150,10 @@ namespace Netotik.Web.Controllers
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public class ActionNamesClass
         {
+            public readonly string IsAdminEmailAvailable = "IsAdminEmailAvailable";
             public readonly string IsResellerEmailAvailable = "IsResellerEmailAvailable";
             public readonly string IsCompanyEmailAvailable = "IsCompanyEmailAvailable";
+            public readonly string IsAdminPhoneNumberAvailable = "IsAdminPhoneNumberAvailable";
             public readonly string IsResellerPhoneNumberAvailable = "IsResellerPhoneNumberAvailable";
             public readonly string IsCompanyPhoneNumberAvailable = "IsCompanyPhoneNumberAvailable";
             public readonly string IsResellerNationalCodeAvailable = "IsResellerNationalCodeAvailable";
@@ -154,8 +168,10 @@ namespace Netotik.Web.Controllers
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public class ActionNameConstants
         {
+            public const string IsAdminEmailAvailable = "IsAdminEmailAvailable";
             public const string IsResellerEmailAvailable = "IsResellerEmailAvailable";
             public const string IsCompanyEmailAvailable = "IsCompanyEmailAvailable";
+            public const string IsAdminPhoneNumberAvailable = "IsAdminPhoneNumberAvailable";
             public const string IsResellerPhoneNumberAvailable = "IsResellerPhoneNumberAvailable";
             public const string IsCompanyPhoneNumberAvailable = "IsCompanyPhoneNumberAvailable";
             public const string IsResellerNationalCodeAvailable = "IsResellerNationalCodeAvailable";
@@ -168,6 +184,15 @@ namespace Netotik.Web.Controllers
         }
 
 
+        static readonly ActionParamsClass_IsAdminEmailAvailable s_params_IsAdminEmailAvailable = new ActionParamsClass_IsAdminEmailAvailable();
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public ActionParamsClass_IsAdminEmailAvailable IsAdminEmailAvailableParams { get { return s_params_IsAdminEmailAvailable; } }
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public class ActionParamsClass_IsAdminEmailAvailable
+        {
+            public readonly string email = "email";
+            public readonly string Id = "Id";
+        }
         static readonly ActionParamsClass_IsResellerEmailAvailable s_params_IsResellerEmailAvailable = new ActionParamsClass_IsResellerEmailAvailable();
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public ActionParamsClass_IsResellerEmailAvailable IsResellerEmailAvailableParams { get { return s_params_IsResellerEmailAvailable; } }
@@ -184,6 +209,15 @@ namespace Netotik.Web.Controllers
         public class ActionParamsClass_IsCompanyEmailAvailable
         {
             public readonly string email = "email";
+            public readonly string Id = "Id";
+        }
+        static readonly ActionParamsClass_IsAdminPhoneNumberAvailable s_params_IsAdminPhoneNumberAvailable = new ActionParamsClass_IsAdminPhoneNumberAvailable();
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public ActionParamsClass_IsAdminPhoneNumberAvailable IsAdminPhoneNumberAvailableParams { get { return s_params_IsAdminPhoneNumberAvailable; } }
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public class ActionParamsClass_IsAdminPhoneNumberAvailable
+        {
+            public readonly string phoneNumber = "phoneNumber";
             public readonly string Id = "Id";
         }
         static readonly ActionParamsClass_IsResellerPhoneNumberAvailable s_params_IsResellerPhoneNumberAvailable = new ActionParamsClass_IsResellerPhoneNumberAvailable();
@@ -288,6 +322,19 @@ namespace Netotik.Web.Controllers
         public T4MVC_RemoteController() : base(Dummy.Instance) { }
 
         [NonAction]
+        partial void IsAdminEmailAvailableOverride(T4MVC_System_Web_Mvc_JsonResult callInfo, string email, long? Id);
+
+        [NonAction]
+        public override System.Web.Mvc.JsonResult IsAdminEmailAvailable(string email, long? Id)
+        {
+            var callInfo = new T4MVC_System_Web_Mvc_JsonResult(Area, Name, ActionNames.IsAdminEmailAvailable);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "email", email);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "Id", Id);
+            IsAdminEmailAvailableOverride(callInfo, email, Id);
+            return callInfo;
+        }
+
+        [NonAction]
         partial void IsResellerEmailAvailableOverride(T4MVC_System_Web_Mvc_JsonResult callInfo, string email, long? Id);
 
         [NonAction]
@@ -310,6 +357,19 @@ namespace Netotik.Web.Controllers
             ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "email", email);
             ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "Id", Id);
             IsCompanyEmailAvailableOverride(callInfo, email, Id);
+            return callInfo;
+        }
+
+        [NonAction]
+        partial void IsAdminPhoneNumberAvailableOverride(T4MVC_System_Web_Mvc_JsonResult callInfo, string phoneNumber, long? Id);
+
+        [NonAction]
+        public override System.Web.Mvc.JsonResult IsAdminPhoneNumberAvailable(string phoneNumber, long? Id)
+        {
+            var callInfo = new T4MVC_System_Web_Mvc_JsonResult(Area, Name, ActionNames.IsAdminPhoneNumberAvailable);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "phoneNumber", phoneNumber);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "Id", Id);
+            IsAdminPhoneNumberAvailableOverride(callInfo, phoneNumber, Id);
             return callInfo;
         }
 

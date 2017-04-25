@@ -59,8 +59,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="EntityConfiguration\IssueTrackMap.cs" />
-    <Compile Include="EntityConfiguration\IssueMap.cs" />
+    <Compile Include="EntityConfiguration\TicketTrackMap.cs" />
+    <Compile Include="EntityConfiguration\TicketMap.cs" />
     <Compile Include="EntityConfiguration\ProductCommentMap.cs" />
     <Compile Include="EntityConfiguration\ContentTagMap.cs" />
     <Compile Include="EntityConfiguration\LinkMap.cs" />
@@ -75,9 +75,9 @@
     <Compile Include="Entity\City.cs" />
     <Compile Include="Entity\State.cs" />
     <Compile Include="Entity\Category.cs" />
-    <Compile Include="Entity\IssueLabel.cs" />
-    <Compile Include="Entity\IssueTrack.cs" />
-    <Compile Include="Entity\Issue.cs" />
+    <Compile Include="Entity\TicketTag.cs" />
+    <Compile Include="Entity\TicketTrack.cs" />
+    <Compile Include="Entity\Ticket.cs" />
     <Compile Include="Entity\Content.cs" />
     <Compile Include="Entity\ProductGallery.cs" />
     <Compile Include="Entity\ProductComment.cs" />

@@ -10,6 +10,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Data.Entity;
 using Netotik.ViewModels.CMS.Menu;
+using Netotik.Common.DataTables;
 
 namespace Netotik.Services.Implement
 {
@@ -20,23 +21,37 @@ namespace Netotik.Services.Implement
         {
 
         }
-
-        public IQueryable<TableAdminMenu> GetDataTableMenu(string search)
+        public IList<MenuItem> GetList(RequestListModel model, out long TotalCount, out long ShowCount)
         {
-            IQueryable<TableAdminMenu> contents = dbSet
-                                  .OrderByDescending(x => x.Text)
-                                  .Select(x => new TableAdminMenu
-                                  {
-                                      Id = x.Id,
-                                      Name = x.Text,
-                                      Url = x.Url,
-                                      Parent = "",
-                                  }).AsQueryable();
+            IQueryable<Menu> all = dbSet.AsQueryable();
+            TotalCount = all.LongCount();
 
-            if (!string.IsNullOrWhiteSpace(search))
-                contents = contents.Where(x => x.Name.Contains(search)).AsQueryable();
+            // Apply Filtering
+            if (!string.IsNullOrEmpty(model.sSearch))
+            {
+                all = all.
+                    Where(x => x.Text.Contains(model.sSearch))
+                    .AsQueryable();
+            }
 
-            return contents;
+
+            // Apply Sorting
+            Func<Menu, string> orderingFunction = (x => x.Text);
+            // asc or desc
+            all = model.sSortDir_0 == "asc" ? all.OrderBy(orderingFunction).AsQueryable() : all.OrderByDescending(orderingFunction).AsQueryable();
+
+            ShowCount = all.Count();
+            return all.AsEnumerable().Skip(model.iDisplayStart).Take(model.iDisplayLength).ToList()
+                .Select((x, index) => new MenuItem
+                {
+                    Text = x.Text,
+                    Id = x.Id,
+                    Icon = x.Icon,
+                    IsActive = x.IsActive,
+                    Parent = x.ParentId.HasValue ? x.Parent.Text : "",
+                    Url = x.Url,
+                    RowNumber = model.iDisplayStart + index + 1
+                }).ToList();
         }
     }
 }

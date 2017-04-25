@@ -58,15 +58,9 @@ namespace Netotik.Web.Areas.Admin.Controllers
 
         [NonAction]
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public virtual System.Web.Mvc.ActionResult Index()
+        public virtual System.Web.Mvc.JsonResult GetList()
         {
-            return new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Index);
-        }
-        [NonAction]
-        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public virtual System.Web.Mvc.ActionResult Detail()
-        {
-            return new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Detail);
+            return new T4MVC_System_Web_Mvc_JsonResult(Area, Name, ActionNames.GetList);
         }
         [NonAction]
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -77,17 +71,16 @@ namespace Netotik.Web.Areas.Admin.Controllers
         }
         [NonAction]
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public virtual System.Threading.Tasks.Task<System.Web.Mvc.JsonResult> IsRoleNameExist()
+        public virtual System.Threading.Tasks.Task<System.Web.Mvc.ActionResult> Remove()
         {
-            var callInfo = new T4MVC_System_Web_Mvc_JsonResult(Area, Name, ActionNames.IsRoleNameExist);
-            return System.Threading.Tasks.Task.FromResult(callInfo as System.Web.Mvc.JsonResult);
+            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Remove);
+            return System.Threading.Tasks.Task.FromResult(callInfo as System.Web.Mvc.ActionResult);
         }
         [NonAction]
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public virtual System.Threading.Tasks.Task<System.Web.Mvc.JsonResult> IsRoleSystemNameExist()
+        public virtual System.Web.Mvc.JsonResult IsRoleNameAvailable()
         {
-            var callInfo = new T4MVC_System_Web_Mvc_JsonResult(Area, Name, ActionNames.IsRoleSystemNameExist);
-            return System.Threading.Tasks.Task.FromResult(callInfo as System.Web.Mvc.JsonResult);
+            return new T4MVC_System_Web_Mvc_JsonResult(Area, Name, ActionNames.IsRoleNameAvailable);
         }
         [NonAction]
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -112,12 +105,11 @@ namespace Netotik.Web.Areas.Admin.Controllers
         public class ActionNamesClass
         {
             public readonly string Index = "Index";
+            public readonly string GetList = "GetList";
             public readonly string Create = "Create";
-            public readonly string Detail = "Detail";
-            public readonly string Remove = "Remove";
             public readonly string Edit = "Edit";
-            public readonly string IsRoleNameExist = "IsRoleNameExist";
-            public readonly string IsRoleSystemNameExist = "IsRoleSystemNameExist";
+            public readonly string Remove = "Remove";
+            public readonly string IsRoleNameAvailable = "IsRoleNameAvailable";
             public readonly string RedirectToLocal = "RedirectToLocal";
         }
 
@@ -125,25 +117,22 @@ namespace Netotik.Web.Areas.Admin.Controllers
         public class ActionNameConstants
         {
             public const string Index = "Index";
+            public const string GetList = "GetList";
             public const string Create = "Create";
-            public const string Detail = "Detail";
-            public const string Remove = "Remove";
             public const string Edit = "Edit";
-            public const string IsRoleNameExist = "IsRoleNameExist";
-            public const string IsRoleSystemNameExist = "IsRoleSystemNameExist";
+            public const string Remove = "Remove";
+            public const string IsRoleNameAvailable = "IsRoleNameAvailable";
             public const string RedirectToLocal = "RedirectToLocal";
         }
 
 
-        static readonly ActionParamsClass_Index s_params_Index = new ActionParamsClass_Index();
+        static readonly ActionParamsClass_GetList s_params_GetList = new ActionParamsClass_GetList();
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public ActionParamsClass_Index IndexParams { get { return s_params_Index; } }
+        public ActionParamsClass_GetList GetListParams { get { return s_params_GetList; } }
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public class ActionParamsClass_Index
+        public class ActionParamsClass_GetList
         {
-            public readonly string Search = "Search";
-            public readonly string Page = "Page";
-            public readonly string PageSize = "PageSize";
+            public readonly string model = "model";
         }
         static readonly ActionParamsClass_Create s_params_Create = new ActionParamsClass_Create();
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -151,16 +140,16 @@ namespace Netotik.Web.Areas.Admin.Controllers
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public class ActionParamsClass_Create
         {
-            public readonly string model = "model";
-            public readonly string actionType = "actionType";
+            public readonly string viewModel = "viewModel";
         }
-        static readonly ActionParamsClass_Detail s_params_Detail = new ActionParamsClass_Detail();
+        static readonly ActionParamsClass_Edit s_params_Edit = new ActionParamsClass_Edit();
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public ActionParamsClass_Detail DetailParams { get { return s_params_Detail; } }
+        public ActionParamsClass_Edit EditParams { get { return s_params_Edit; } }
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public class ActionParamsClass_Detail
+        public class ActionParamsClass_Edit
         {
             public readonly string id = "id";
+            public readonly string viewModel = "viewModel";
         }
         static readonly ActionParamsClass_Remove s_params_Remove = new ActionParamsClass_Remove();
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -170,32 +159,13 @@ namespace Netotik.Web.Areas.Admin.Controllers
         {
             public readonly string id = "id";
         }
-        static readonly ActionParamsClass_Edit s_params_Edit = new ActionParamsClass_Edit();
+        static readonly ActionParamsClass_IsRoleNameAvailable s_params_IsRoleNameAvailable = new ActionParamsClass_IsRoleNameAvailable();
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public ActionParamsClass_Edit EditParams { get { return s_params_Edit; } }
+        public ActionParamsClass_IsRoleNameAvailable IsRoleNameAvailableParams { get { return s_params_IsRoleNameAvailable; } }
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public class ActionParamsClass_Edit
-        {
-            public readonly string id = "id";
-            public readonly string model = "model";
-            public readonly string actionType = "actionType";
-        }
-        static readonly ActionParamsClass_IsRoleNameExist s_params_IsRoleNameExist = new ActionParamsClass_IsRoleNameExist();
-        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public ActionParamsClass_IsRoleNameExist IsRoleNameExistParams { get { return s_params_IsRoleNameExist; } }
-        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public class ActionParamsClass_IsRoleNameExist
+        public class ActionParamsClass_IsRoleNameAvailable
         {
             public readonly string name = "name";
-            public readonly string id = "id";
-        }
-        static readonly ActionParamsClass_IsRoleSystemNameExist s_params_IsRoleSystemNameExist = new ActionParamsClass_IsRoleSystemNameExist();
-        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public ActionParamsClass_IsRoleSystemNameExist IsRoleSystemNameExistParams { get { return s_params_IsRoleSystemNameExist; } }
-        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public class ActionParamsClass_IsRoleSystemNameExist
-        {
-            public readonly string systemName = "systemName";
             public readonly string id = "id";
         }
         static readonly ActionParamsClass_RedirectToLocal s_params_RedirectToLocal = new ActionParamsClass_RedirectToLocal();
@@ -216,16 +186,14 @@ namespace Netotik.Web.Areas.Admin.Controllers
             public _ViewNamesClass ViewNames { get { return s_ViewNames; } }
             public class _ViewNamesClass
             {
+                public readonly string _Create = "_Create";
+                public readonly string _Edit = "_Edit";
                 public readonly string _Table = "_Table";
-                public readonly string Create = "Create";
-                public readonly string Detail = "Detail";
-                public readonly string Edit = "Edit";
                 public readonly string Index = "Index";
             }
+            public readonly string _Create = "~/Areas/Admin/Views/Role/_Create.cshtml";
+            public readonly string _Edit = "~/Areas/Admin/Views/Role/_Edit.cshtml";
             public readonly string _Table = "~/Areas/Admin/Views/Role/_Table.cshtml";
-            public readonly string Create = "~/Areas/Admin/Views/Role/Create.cshtml";
-            public readonly string Detail = "~/Areas/Admin/Views/Role/Detail.cshtml";
-            public readonly string Edit = "~/Areas/Admin/Views/Role/Edit.cshtml";
             public readonly string Index = "~/Areas/Admin/Views/Role/Index.cshtml";
         }
     }
@@ -236,16 +204,25 @@ namespace Netotik.Web.Areas.Admin.Controllers
         public T4MVC_RoleController() : base(Dummy.Instance) { }
 
         [NonAction]
-        partial void IndexOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, string Search, int Page, int PageSize);
+        partial void IndexOverride(T4MVC_System_Web_Mvc_ActionResult callInfo);
 
         [NonAction]
-        public override System.Web.Mvc.ActionResult Index(string Search, int Page, int PageSize)
+        public override System.Web.Mvc.ActionResult Index()
         {
             var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Index);
-            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "Search", Search);
-            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "Page", Page);
-            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "PageSize", PageSize);
-            IndexOverride(callInfo, Search, Page, PageSize);
+            IndexOverride(callInfo);
+            return callInfo;
+        }
+
+        [NonAction]
+        partial void GetListOverride(T4MVC_System_Web_Mvc_JsonResult callInfo, Netotik.Common.DataTables.RequestListModel model);
+
+        [NonAction]
+        public override System.Web.Mvc.JsonResult GetList(Netotik.Common.DataTables.RequestListModel model)
+        {
+            var callInfo = new T4MVC_System_Web_Mvc_JsonResult(Area, Name, ActionNames.GetList);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "model", model);
+            GetListOverride(callInfo, model);
             return callInfo;
         }
 
@@ -253,55 +230,30 @@ namespace Netotik.Web.Areas.Admin.Controllers
         partial void CreateOverride(T4MVC_System_Web_Mvc_ActionResult callInfo);
 
         [NonAction]
-        public override System.Threading.Tasks.Task<System.Web.Mvc.ActionResult> Create()
+        public override System.Web.Mvc.ActionResult Create()
         {
             var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Create);
             CreateOverride(callInfo);
-            return System.Threading.Tasks.Task.FromResult(callInfo as System.Web.Mvc.ActionResult);
-        }
-
-        [NonAction]
-        partial void CreateOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, Netotik.ViewModels.Identity.Role.AddEditRoleViewModel model, Netotik.Common.Controller.ActionType actionType);
-
-        [NonAction]
-        public override System.Threading.Tasks.Task<System.Web.Mvc.ActionResult> Create(Netotik.ViewModels.Identity.Role.AddEditRoleViewModel model, Netotik.Common.Controller.ActionType actionType)
-        {
-            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Create);
-            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "model", model);
-            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "actionType", actionType);
-            CreateOverride(callInfo, model, actionType);
-            return System.Threading.Tasks.Task.FromResult(callInfo as System.Web.Mvc.ActionResult);
-        }
-
-        [NonAction]
-        partial void DetailOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, int id);
-
-        [NonAction]
-        public override System.Web.Mvc.ActionResult Detail(int id)
-        {
-            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Detail);
-            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "id", id);
-            DetailOverride(callInfo, id);
             return callInfo;
         }
 
         [NonAction]
-        partial void RemoveOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, int id);
+        partial void CreateOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, Netotik.ViewModels.Identity.Role.RoleModel viewModel);
 
         [NonAction]
-        public override System.Threading.Tasks.Task<System.Web.Mvc.ActionResult> Remove(int id)
+        public override System.Threading.Tasks.Task<System.Web.Mvc.ActionResult> Create(Netotik.ViewModels.Identity.Role.RoleModel viewModel)
         {
-            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Remove);
-            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "id", id);
-            RemoveOverride(callInfo, id);
+            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Create);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "viewModel", viewModel);
+            CreateOverride(callInfo, viewModel);
             return System.Threading.Tasks.Task.FromResult(callInfo as System.Web.Mvc.ActionResult);
         }
 
         [NonAction]
-        partial void EditOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, int id);
+        partial void EditOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, int? id);
 
         [NonAction]
-        public override System.Threading.Tasks.Task<System.Web.Mvc.ActionResult> Edit(int id)
+        public override System.Threading.Tasks.Task<System.Web.Mvc.ActionResult> Edit(int? id)
         {
             var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Edit);
             ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "id", id);
@@ -310,42 +262,40 @@ namespace Netotik.Web.Areas.Admin.Controllers
         }
 
         [NonAction]
-        partial void EditOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, Netotik.ViewModels.Identity.Role.AddEditRoleViewModel model, Netotik.Common.Controller.ActionType actionType);
+        partial void EditOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, Netotik.ViewModels.Identity.Role.RoleModel viewModel);
 
         [NonAction]
-        public override System.Threading.Tasks.Task<System.Web.Mvc.ActionResult> Edit(Netotik.ViewModels.Identity.Role.AddEditRoleViewModel model, Netotik.Common.Controller.ActionType actionType)
+        public override System.Threading.Tasks.Task<System.Web.Mvc.ActionResult> Edit(Netotik.ViewModels.Identity.Role.RoleModel viewModel)
         {
             var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Edit);
-            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "model", model);
-            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "actionType", actionType);
-            EditOverride(callInfo, model, actionType);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "viewModel", viewModel);
+            EditOverride(callInfo, viewModel);
             return System.Threading.Tasks.Task.FromResult(callInfo as System.Web.Mvc.ActionResult);
         }
 
         [NonAction]
-        partial void IsRoleNameExistOverride(T4MVC_System_Web_Mvc_JsonResult callInfo, string name, int? id);
+        partial void RemoveOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, int? id);
 
         [NonAction]
-        public override System.Threading.Tasks.Task<System.Web.Mvc.JsonResult> IsRoleNameExist(string name, int? id)
+        public override System.Threading.Tasks.Task<System.Web.Mvc.ActionResult> Remove(int? id)
         {
-            var callInfo = new T4MVC_System_Web_Mvc_JsonResult(Area, Name, ActionNames.IsRoleNameExist);
-            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "name", name);
+            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Remove);
             ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "id", id);
-            IsRoleNameExistOverride(callInfo, name, id);
-            return System.Threading.Tasks.Task.FromResult(callInfo as System.Web.Mvc.JsonResult);
+            RemoveOverride(callInfo, id);
+            return System.Threading.Tasks.Task.FromResult(callInfo as System.Web.Mvc.ActionResult);
         }
 
         [NonAction]
-        partial void IsRoleSystemNameExistOverride(T4MVC_System_Web_Mvc_JsonResult callInfo, string systemName, int? id);
+        partial void IsRoleNameAvailableOverride(T4MVC_System_Web_Mvc_JsonResult callInfo, string name, int? id);
 
         [NonAction]
-        public override System.Threading.Tasks.Task<System.Web.Mvc.JsonResult> IsRoleSystemNameExist(string systemName, int? id)
+        public override System.Web.Mvc.JsonResult IsRoleNameAvailable(string name, int? id)
         {
-            var callInfo = new T4MVC_System_Web_Mvc_JsonResult(Area, Name, ActionNames.IsRoleSystemNameExist);
-            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "systemName", systemName);
+            var callInfo = new T4MVC_System_Web_Mvc_JsonResult(Area, Name, ActionNames.IsRoleNameAvailable);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "name", name);
             ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "id", id);
-            IsRoleSystemNameExistOverride(callInfo, systemName, id);
-            return System.Threading.Tasks.Task.FromResult(callInfo as System.Web.Mvc.JsonResult);
+            IsRoleNameAvailableOverride(callInfo, name, id);
+            return callInfo;
         }
 
         [NonAction]

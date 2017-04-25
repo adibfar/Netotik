@@ -43,8 +43,8 @@
 
     var IssueMenu = Roles.Any(x => AssignableToRolePermissions.GetAllIssuePermision().Any(y => y.Name == x));
 
-    var IssueListMenu = Roles.Any(x => x == AssignableToRolePermissions.CanAccessIssue);
-    var IssueLabelMenu = Roles.Any(x => x == AssignableToRolePermissions.CanAccessIssueLabel);
+    var IssueListMenu = Roles.Any(x => x == AssignableToRolePermissions.CanAccessTicket);
+    var IssueLabelMenu = Roles.Any(x => x == AssignableToRolePermissions.CanAccessTicketTag);
     //-------------------------------------------------------------------------------
 
     var ConfigurationMenu = Roles.Any(x => AssignableToRolePermissions.GetAllConfigurationPermision().Any(y => y.Name == x));
@@ -172,10 +172,10 @@
                     <ul class="dropdown-menu">
                         @if (IssueListMenu)
                         {
-                            <li><a href="@Url.Action(MVC.Admin.Issue.Index())" data-toggle="dropdown" class="dropdown-item">لیست تیکت ها</a></li>}
+                            <li><a href="@Url.Action(MVC.Admin.Ticket.Index())" data-toggle="dropdown" class="dropdown-item">لیست تیکت ها</a></li>}
                         @if (IssueLabelMenu)
                         {
-                            <li><a href="@Url.Action(MVC.Admin.IssueLabel.Index())" data-toggle="dropdown" class="dropdown-item">برچسب ها</a></li>}
+                            <li><a href="@Url.Action(MVC.Admin.TicketTag.Index())" data-toggle="dropdown" class="dropdown-item">برچسب ها</a></li>}
                     </ul>
                 </li>
             }
@@ -187,7 +187,7 @@
                     <ul class="dropdown-menu">
                         @if (UserAccountMenu)
                         {
-                            <li><a href="@Url.Action(MVC.Admin.User.Index())" data-toggle="dropdown" class="dropdown-item">مدیرت کاربران</a></li>}
+                            <li><a href="@Url.Action(MVC.Admin.UserAdmin.Index())" data-toggle="dropdown" class="dropdown-item">مدیرت کاربران</a></li>}
                         @if (RoleMenu)
                         {
                             <li><a href="@Url.Action(MVC.Admin.Role.Index())" data-toggle="dropdown" class="dropdown-item">مدیرت گروه ها</a></li>}
@@ -198,7 +198,7 @@
             @if (AdminNetAccMenu)
             {
                 <li class="nav-item">
-                    <a href="@Url.Action(MVC.Admin.Reseller.Index())" class="nav-link"><i class="icon-user-tie"></i><span>نمایندگی ها</span> </a>
+                    <a href="@Url.Action(MVC.Admin.UserReseller.Index())" class="nav-link"><i class="icon-user-tie"></i><span>نمایندگی ها</span> </a>
                 </li>
             }
 
@@ -213,9 +213,6 @@
                         @if (ConfigMenuMenu)
                         {
                             <li><a href="@Url.Action(MVC.Admin.Menu.Index())" data-toggle="dropdown" class="dropdown-item">مدیریت منو</a></li>}
-                        @if (ConfigLinksMenu)
-                        {
-                            <li><a href="@Url.Action(MVC.Admin.Link.Index())" data-toggle="dropdown" class="dropdown-item">مدیریت پیوندها</a></li>}
                         @if (ConfigStateMenu)
                         {
                             <li><a href="@Url.Action(MVC.Admin.State.Index())" data-toggle="dropdown" class="dropdown-item">مدیریت استان ها</a></li>}

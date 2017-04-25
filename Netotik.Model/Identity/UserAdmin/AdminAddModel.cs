@@ -27,7 +27,7 @@ namespace Netotik.ViewModels.Identity.UserAdmin
 
         [Display(ResourceType = typeof(Captions), Name = "MobileNumber")]
         [RegularExpression(@"^0?9\d{9}$", ErrorMessageResourceType = typeof(Messages), ErrorMessageResourceName = "NotValidError")]
-        [System.Web.Mvc.Remote("IsPhoneNumberAvailable", "Remote",System.Web.Mvc.AreaReference.UseRoot, AdditionalFields = "Id", HttpMethod = "POST", ErrorMessageResourceType = typeof(Messages), ErrorMessageResourceName = "ExistError")]
+        [System.Web.Mvc.Remote("IsAdminPhoneNumberAvailable", "Remote",System.Web.Mvc.AreaReference.UseRoot, HttpMethod = "POST", ErrorMessageResourceType = typeof(Messages), ErrorMessageResourceName = "ExistError")]
         public string PhoneNumber { get; set; }
 
 
@@ -36,7 +36,7 @@ namespace Netotik.ViewModels.Identity.UserAdmin
         [Display(ResourceType = typeof(Captions), Name = "Email")]
         [RegularExpression(@"^([a-zA-Z0-9_\-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([a-zA-Z0-9\-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$",
             ErrorMessageResourceType = typeof(Messages), ErrorMessageResourceName = "NotValidError")]
-        [System.Web.Mvc.Remote("IsEmailAvailable", "Remote", System.Web.Mvc.AreaReference.UseRoot, AdditionalFields = "Id", HttpMethod = "POST", ErrorMessageResourceType = typeof(Messages), ErrorMessageResourceName = "ExistError")]
+        [System.Web.Mvc.Remote("IsAdminEmailAvailable", "Remote", System.Web.Mvc.AreaReference.UseRoot, HttpMethod = "POST", ErrorMessageResourceType = typeof(Messages), ErrorMessageResourceName = "ExistError")]
         public string Email { get; set; }
 
 
@@ -44,7 +44,7 @@ namespace Netotik.ViewModels.Identity.UserAdmin
         [MaxLength(300, ErrorMessageResourceType = typeof(Messages), ErrorMessageResourceName = "MaxLengthError")]
         [MinLength(6, ErrorMessageResourceType = typeof(Messages), ErrorMessageResourceName = "MinLengthError")]
         [Display(ResourceType = typeof(Captions), Name = "UserName")]
-        [System.Web.Mvc.Remote("IsUserNameAvailable", "Remote", System.Web.Mvc.AreaReference.UseRoot, AdditionalFields = "Id", HttpMethod = "POST", ErrorMessageResourceType = typeof(Messages), ErrorMessageResourceName = "ExistError")]
+        [System.Web.Mvc.Remote("IsUserNameAvailable", "Remote", System.Web.Mvc.AreaReference.UseRoot, HttpMethod = "POST", ErrorMessageResourceType = typeof(Messages), ErrorMessageResourceName = "ExistError")]
         public string UserName { get; set; }
         
         [DataType(DataType.Password)]
