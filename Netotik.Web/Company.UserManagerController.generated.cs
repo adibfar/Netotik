@@ -58,6 +58,18 @@ namespace Netotik.Web.Areas.Company.Controllers
 
         [NonAction]
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public virtual System.Web.Mvc.ActionResult ResetCounter()
+        {
+            return new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.ResetCounter);
+        }
+        [NonAction]
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public virtual System.Web.Mvc.ActionResult CloseSession()
+        {
+            return new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.CloseSession);
+        }
+        [NonAction]
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public virtual System.Web.Mvc.ActionResult Userdisable()
         {
             return new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Userdisable);
@@ -126,6 +138,8 @@ namespace Netotik.Web.Areas.Company.Controllers
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public class ActionNamesClass
         {
+            public readonly string ResetCounter = "ResetCounter";
+            public readonly string CloseSession = "CloseSession";
             public readonly string PackageCreate = "PackageCreate";
             public readonly string UserList = "UserList";
             public readonly string Userdisable = "Userdisable";
@@ -137,6 +151,7 @@ namespace Netotik.Web.Areas.Company.Controllers
             public readonly string UserCreate = "UserCreate";
             public readonly string PackageList = "PackageList";
             public readonly string Report = "Report";
+            public readonly string Hotspot_Temp = "Hotspot_Temp";
             public readonly string Register = "Register";
             public readonly string UserEdit = "UserEdit";
             public readonly string UserEdit_Save = "UserEdit_Save";
@@ -146,6 +161,8 @@ namespace Netotik.Web.Areas.Company.Controllers
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public class ActionNameConstants
         {
+            public const string ResetCounter = "ResetCounter";
+            public const string CloseSession = "CloseSession";
             public const string PackageCreate = "PackageCreate";
             public const string UserList = "UserList";
             public const string Userdisable = "Userdisable";
@@ -157,6 +174,7 @@ namespace Netotik.Web.Areas.Company.Controllers
             public const string UserCreate = "UserCreate";
             public const string PackageList = "PackageList";
             public const string Report = "Report";
+            public const string Hotspot_Temp = "Hotspot_Temp";
             public const string Register = "Register";
             public const string UserEdit = "UserEdit";
             public const string UserEdit_Save = "UserEdit_Save";
@@ -164,6 +182,24 @@ namespace Netotik.Web.Areas.Company.Controllers
         }
 
 
+        static readonly ActionParamsClass_ResetCounter s_params_ResetCounter = new ActionParamsClass_ResetCounter();
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public ActionParamsClass_ResetCounter ResetCounterParams { get { return s_params_ResetCounter; } }
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public class ActionParamsClass_ResetCounter
+        {
+            public readonly string user = "user";
+            public readonly string id = "id";
+        }
+        static readonly ActionParamsClass_CloseSession s_params_CloseSession = new ActionParamsClass_CloseSession();
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public ActionParamsClass_CloseSession CloseSessionParams { get { return s_params_CloseSession; } }
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public class ActionParamsClass_CloseSession
+        {
+            public readonly string user = "user";
+            public readonly string id = "id";
+        }
         static readonly ActionParamsClass_PackageCreate s_params_PackageCreate = new ActionParamsClass_PackageCreate();
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public ActionParamsClass_PackageCreate PackageCreateParams { get { return s_params_PackageCreate; } }
@@ -293,6 +329,32 @@ namespace Netotik.Web.Areas.Company.Controllers
     public partial class T4MVC_UserManagerController : Netotik.Web.Areas.Company.Controllers.UserManagerController
     {
         public T4MVC_UserManagerController() : base(Dummy.Instance) { }
+
+        [NonAction]
+        partial void ResetCounterOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, string user, string id);
+
+        [NonAction]
+        public override System.Web.Mvc.ActionResult ResetCounter(string user, string id)
+        {
+            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.ResetCounter);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "user", user);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "id", id);
+            ResetCounterOverride(callInfo, user, id);
+            return callInfo;
+        }
+
+        [NonAction]
+        partial void CloseSessionOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, string user, string id);
+
+        [NonAction]
+        public override System.Web.Mvc.ActionResult CloseSession(string user, string id)
+        {
+            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.CloseSession);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "user", user);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "id", id);
+            CloseSessionOverride(callInfo, user, id);
+            return callInfo;
+        }
 
         [NonAction]
         partial void PackageCreateOverride(T4MVC_System_Web_Mvc_ActionResult callInfo);
@@ -444,6 +506,17 @@ namespace Netotik.Web.Areas.Company.Controllers
         {
             var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Report);
             ReportOverride(callInfo);
+            return callInfo;
+        }
+
+        [NonAction]
+        partial void Hotspot_TempOverride(T4MVC_System_Web_Mvc_ActionResult callInfo);
+
+        [NonAction]
+        public override System.Web.Mvc.ActionResult Hotspot_Temp()
+        {
+            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Hotspot_Temp);
+            Hotspot_TempOverride(callInfo);
             return callInfo;
         }
 

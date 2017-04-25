@@ -24,7 +24,6 @@ namespace Netotik.Services.Identity
         IList<ViewModels.Identity.UserAdmin.UserItem> GetListUserAdmins(RequestListModel model, out long TotalCount, out long ShowCount);
         IList<ViewModels.Identity.UserReseller.UserItem> GetListUserResellers(RequestListModel model, out long TotalCount, out long ShowCount);
         Task UpdateUserCompanyMikrotikConf(ViewModels.Identity.UserCompany.MikrotikConfModel model);
-        IList<UserItem> GetListUserAdmins(RequestListModel model, out long TotalCount, out long ShowCount);
 
         IList<ViewModels.Identity.UserCompany.CompanyList> GetListUserCompany(long id);
 
