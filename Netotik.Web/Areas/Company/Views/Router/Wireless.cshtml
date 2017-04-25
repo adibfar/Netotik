@@ -70,8 +70,32 @@
                                                 <span class="dropdown">
                                                     <button id="btnSearchDrop2" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" class="btn btn-success dropdown-toggle dropdown-menu-right"><i class="icon-cog3"></i></button>
                                                     <span aria-labelledby="btnSearchDrop2" class="dropdown-menu mt-1 dropdown-menu-right">
-                                                        <a href="#" class="dropdown-item"><i class="icon-pen3 primary"></i> ویرایش </a>
-                                                        <a href="#" class="dropdown-item"><i class="icon-trash4 danger"></i> حذف </a>
+                                                        <form action="" style="float:right" method="post">
+                                                            @Html.AntiForgeryToken()
+                                                            <input type="hidden" name="id" value="@item.id" />
+                                                            <button class="dropdown-item"><i class="icon-pen3 primary"></i>ویرایش</button>
+                                                        </form>
+                                                        <form action="@Url.Action(MVC.Company.Router.ActionNames.WirelessDetails)" style="float:right" method="post">
+                                                            @Html.AntiForgeryToken()
+                                                            <input type="hidden" name="id" value="@item.id" />
+                                                            <button class="dropdown-item"><i class="note-icon-pencil primary"></i>جزئیات</button>
+                                                        </form>
+                                                        @if (item.disabled == "false")
+                                                        {
+                                                            <form action="@Url.Action(MVC.Company.Router.ActionNames.WirelessDisable)" style="float:right" method="post">
+                                                                @Html.AntiForgeryToken()
+                                                                <input type="hidden" name="id" value="@item.id" />
+                                                                <button class="dropdown-item"><i class="icon-lock danger"></i>غیره فعال</button>
+                                                            </form>
+                                                        }
+                                                        else
+                                                        {
+                                                            <form action="@Url.Action(MVC.Company.Router.ActionNames.WirelessEnable)" style="float:right" method="post">
+                                                                @Html.AntiForgeryToken()
+                                                                <input type="hidden" name="id" value="@item.id" />
+                                                                <button class="dropdown-item"><i class="icon-unlock primary"></i>فعال</button>
+                                                            </form>
+                                                        }
                                                     </span>
                                                 </span>
                                             </td>

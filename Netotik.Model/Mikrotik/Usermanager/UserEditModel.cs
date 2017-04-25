@@ -1,14 +1,8 @@
-﻿using Netotik.Resources;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace Netotik.ViewModels.Mikrotik
 {
-    public class UsermanagerUserEdit
+    public class Usermanager_UserEditModel
     {
         public string id { get; set; }
         [RegularExpression(@"^[a-zA-Z1-9]+$", ErrorMessage = "فقط انگلیسی وارد کنید")]

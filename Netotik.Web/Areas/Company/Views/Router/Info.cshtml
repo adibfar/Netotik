@@ -1,4 +1,5 @@
-﻿@{
+﻿@model Netotik.ViewModels.Mikrotik.Router_InfoModel
+@{
     ViewBag.Title = "مشخصات روتر";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
@@ -12,10 +13,10 @@
                             <div class="float-xs-left pl-2">
                                 <span class="grey darken-1 block">مدل روتر</span>
                                 <span class="font-large-2 line-height-1 text-bold-300">
-                                    @if (ViewBag.router_model == "")
+                                    @if (Model.Router_model == "")
                                     { <span>روتر نمی باشد</span> }
                                     else
-                                    { @ViewBag.router_model }
+                                    { @Html.DisplayTextFor(model => model.Router_model) }
                                 </span>
                             </div>
                             <div class="float-xs-left mt-2">
@@ -25,7 +26,7 @@
                         <div class="col-xl-3 col-lg-6 col-md-12 border-right-grey border-right-lighten-3 clearfix">
                             <div class="float-xs-left pl-2">
                                 <span class="grey darken-1 block">نام دستگاه</span>
-                                <span class="font-large-2 line-height-1 text-bold-300">@ViewBag.RouterName</span>
+                                <span class="font-large-2 line-height-1 text-bold-300">@Html.DisplayTextFor(model => model.RouterName)</span>
                             </div>
                             <div class="float-xs-left mt-2">
                                 <span class="grey darken-1 block"></span>
@@ -34,7 +35,7 @@
                         <div class="col-xl-3 col-lg-6 col-md-12 border-right-grey border-right-lighten-3 clearfix">
                             <div class="float-xs-left pl-2">
                                 <span class="grey darken-1 block">ورژن لایسنس</span>
-                                <span class="font-large-1 line-height-1 text-bold-300">@ViewBag.nlevel</span>
+                                <span class="font-large-1 line-height-1 text-bold-300">@Html.DisplayTextFor(model => model.nlevel)</span>
                             </div>
                             <div class="float-xs-left mt-2">
                                 <span class="grey darken-2 block"><a href="https://wiki.mikrotik.com/wiki/Manual:License">اطلاعات بیشتر</a></span>
@@ -43,7 +44,7 @@
                         <div class="col-xl-3 col-lg-6 col-md-12 clearfix">
                             <div class="float-xs-left pl-2">
                                 <span class="grey darken-1 block">سریال نرم افزاری</span>
-                                <span class="font-large-1 line-height-1 text-bold-300">@ViewBag.software_id</span>
+                                <span class="font-large-1 line-height-1 text-bold-300">@Html.DisplayTextFor(model => model.Software_id)</span>
                             </div>
                             <div class="float-xs-left mt-2">
                                 <span class="grey darken-1 block"></span>
@@ -64,7 +65,7 @@
                         <div class="col-xl-3 col-lg-6 col-md-12 border-right-grey border-right-lighten-3 clearfix">
                             <div class="float-xs-left pl-2">
                                 <span class="grey darken-1 block">ساعت روتر</span>
-                                <span class="font-large-1 line-height-1 text-bold-300">@ViewBag.router_time</span>
+                                <span class="font-large-1 line-height-1 text-bold-300">@Html.DisplayTextFor(model => model.Router_time)</span>
                             </div>
                             <div class="float-xs-left mt-2">
                                 <span class="grey darken-1 block">ساعت روتر با سرور یکی است.(پیاده نشده)</span>
@@ -73,7 +74,7 @@
                         <div class="col-xl-3 col-lg-6 col-md-12 border-right-grey border-right-lighten-3 clearfix">
                             <div class="float-xs-left pl-2">
                                 <span class="grey darken-1 block">تاریخ روتر</span>
-                                <span class="font-large-1 line-height-1 text-bold-300">@ViewBag.router_date</span>
+                                <span class="font-large-1 line-height-1 text-bold-300">@Html.DisplayTextFor(model => model.Router_date)</span>
                             </div>
                             <div class="float-xs-left mt-2">
                                 <span class="grey darken-1 block">تاریخ روتر با سرور یکی است.(پیاده نشده)</span>
@@ -82,7 +83,7 @@
                         <div class="col-xl-3 col-lg-6 col-md-12 border-right-grey border-right-lighten-3 clearfix">
                             <div class="float-xs-left pl-2">
                                 <span class="grey darken-1 block">UP Time</span>
-                                <span class="font-large-1 line-height-1 text-bold-300">@ViewBag.uptime</span>
+                                <span class="font-large-1 line-height-1 text-bold-300">@Html.DisplayTextFor(model => model.Uptime)</span>
                             </div>
                             <div class="float-xs-left mt-2">
                                 <span class="grey darken-2 block"></span>
@@ -91,17 +92,27 @@
                         <div class="col-xl-3 col-lg-6 col-md-12 clearfix">
                             <div class="float-xs-left pl-2">
                                 <span class="grey darken-1 block">ورژن سیستم عامل</span>
-                                <span class="font-large-1 line-height-1 text-bold-300">@ViewBag.version</span>
+                                <span class="font-large-1 line-height-1 text-bold-300">@Html.DisplayTextFor(model => model.Version)</span>
                             </div>
                             <div class="float-xs-left mt-2">
                                 <span class="grey darken-1 block">
-                                    @if (ViewBag.update_status == "System is already up to date")
+                                    @if (Model.Update_status == "New version is available")
                                     {
-                                        <a href="@Url.Action(MVC.Company.Router.ActionNames.Info_Update)">  بروزرسانی به @ViewBag.latest_version  </a>
+                                        <span class="fa fa-toggle-up">
+                                            <a href="@Url.Action(MVC.Company.Router.ActionNames.Info_Update)">
+                                                بروزرسانی به
+                                                @Model.Latest_version
+                                            </a>
+                                        </span>
                                     }
                                     else
-                                    { <span class="fa fa-check"> آخرین بروزرسانی ها نصب می باشد  </span>}
+                                    {
+                                        <span class="fa fa-check">
+                                            بروزرسانی ها نصب می باشد  <a href="@Url.Action(MVC.Company.Router.ActionNames.Check_Update)">  چک کردن  </a>
+                                        </span>
+                                    }
                                 </span>
+
                             </div>
                         </div>
                     </div>
@@ -121,17 +132,17 @@
                         <div class="my-1 text-xs-center">
                             <div class="card-header mb-2 pt-0">
                                 <span class="info">RAM</span>
-                                <h3 class="font-large-2 text-bold-200">@(Int32.Parse(ViewBag.total_memory) / 1048576)MB</h3>
+                                <h3 class="font-large-2 text-bold-200">@Html.DisplayTextFor(model => model.Total_memory)MB</h3>
                             </div>
                             <div class="card-body">
                                 <input type="text" class="knob-ram hide-value responsive angle-offset" data-readOnly="true" data-thickness=".25" data-fgColor="#00BCD4">
                                 <ul class="list-inline clearfix mt-1 mb-0">
                                     <li class="border-right-grey border-right-lighten-2 pr-2">
-                                        <h2 class="grey darken-1 text-bold-400">@(Int32.Parse(ViewBag.total_memory) / 1048576 - Int32.Parse(ViewBag.free_memory) / 1048576)MB</h2>
+                                        <h2 class="grey darken-1 text-bold-400">@ViewBag.UsedMemory MB</h2>
                                         <span class="danger">استفاده شده</span>
                                     </li>
                                     <li class="pl-2">
-                                        <h2 class="grey darken-1 text-bold-400">@(Int32.Parse(ViewBag.free_memory) / 1048576)MB</h2>
+                                        <h2 class="grey darken-1 text-bold-400">@Html.DisplayTextFor(model => model.Free_memory) MB</h2>
                                         <span class="success">آزاد</span>
                                     </li>
                                 </ul>
@@ -142,17 +153,17 @@
                         <div class="my-1 text-xs-center">
                             <div class="card-header mb-2 pt-0">
                                 <span class="info">CPU</span>
-                                <h3 class="font-large-2 text-bold-200">@ViewBag.cpu_frequency Mhz</h3>
+                                <h3 class="font-large-2 text-bold-200">@Html.DisplayTextFor(model => model.Cpu_frequency) Mhz</h3>
                             </div>
                             <div class="card-body">
                                 <input type="text" class="knob-cpu responsive angle-offset" data-readOnly="true" data-thickness=".25" data-fgColor="#00BCD4">
                                 <ul class="list-inline clearfix mt-1 mb-0">
                                     <li class="pl-2">
-                                        <h2 class="grey darken-1 text-bold-400">@ViewBag.cpu</h2>
+                                        <h2 class="grey darken-1 text-bold-400">@Html.DisplayTextFor(model => model.Cpu)</h2>
                                         <span class="success">ساختار</span>
                                     </li>
                                     <li class="pl-2">
-                                        <h2 class="grey darken-1 text-bold-400">@ViewBag.cpu_count</h2>
+                                        <h2 class="grey darken-1 text-bold-400">@Html.DisplayTextFor(model => model.Cpu_count)</h2>
                                         <span class="success">تعداد هسته</span>
                                     </li>
                                 </ul>
@@ -163,17 +174,17 @@
                         <div class="my-1 text-xs-center">
                             <div class="card-header mb-2 pt-0">
                                 <span class="info">HDD</span>
-                                <h3 class="font-large-2 text-bold-200">@(Int32.Parse(ViewBag.total_hdd_space) / 1048576)MB</h3>
+                                <h3 class="font-large-2 text-bold-200">@Html.DisplayTextFor(model => model.Total_hdd_space) MB</h3>
                             </div>
                             <div class="card-body">
                                 <input type="text" class="knob-hdd hide-value responsive angle-offset" data-readOnly="true" data-thickness=".25" data-fgColor="#00BCD4">
                                 <ul class="list-inline clearfix mt-1 mb-0">
                                     <li class="border-right-grey border-right-lighten-2 pr-2">
-                                        <h2 class="grey darken-1 text-bold-400">@((Int32.Parse(ViewBag.total_hdd_space) / 1048576) - (Int32.Parse(ViewBag.free_hdd_space) / 1048576))MB</h2>
+                                        <h2 class="grey darken-1 text-bold-400">@ViewBag.UsedHDD MB</h2>
                                         <span class="danger">استفاده شده</span>
                                     </li>
                                     <li class="pl-2">
-                                        <h2 class="grey darken-1 text-bold-400">@(Int32.Parse(ViewBag.free_hdd_space) / 1048576)MB</h2>
+                                        <h2 class="grey darken-1 text-bold-400">@Html.DisplayTextFor(model => model.Free_hdd_space)MB</h2>
                                         <span class="success">آزاد</span>
                                     </li>
                                 </ul>
@@ -191,13 +202,13 @@
     <script type="text/javascript">
         $(function () {
             $(".knob-cpu")
-                .val(@(ViewBag.cpu_load))
+                .val(@Html.DisplayTextFor(model => model.Cpu_load))
                 .knob();
             $(".knob-hdd")
-                .val(@((((Int32.Parse(ViewBag.total_hdd_space) / 1048576) - (Int32.Parse(ViewBag.free_hdd_space) / 1048576)) * 100)/ (Int32.Parse(ViewBag.total_hdd_space) / 1048576)))
+                .val(@ViewBag.UsedHDDPercent)
                 .knob();
             $(".knob-ram")
-                    .val(@((((Int32.Parse(ViewBag.total_memory) / 1048576) - (Int32.Parse(ViewBag.free_memory) / 1048576)) * 100)/ (Int32.Parse(ViewBag.total_memory) / 1048576)))
+                    .val(@ViewBag.UsedMemoryPercent)
                     .knob();
         });
     </script>

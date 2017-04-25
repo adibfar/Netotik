@@ -58,6 +58,42 @@ namespace Netotik.Web.Areas.Company.Controllers
 
         [NonAction]
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public virtual System.Web.Mvc.ActionResult WirelessDetails()
+        {
+            return new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.WirelessDetails);
+        }
+        [NonAction]
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public virtual System.Web.Mvc.ActionResult InterfaceDisable()
+        {
+            return new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.InterfaceDisable);
+        }
+        [NonAction]
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public virtual System.Web.Mvc.ActionResult WirelessEnable()
+        {
+            return new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.WirelessEnable);
+        }
+        [NonAction]
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public virtual System.Web.Mvc.ActionResult WirelessDisable()
+        {
+            return new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.WirelessDisable);
+        }
+        [NonAction]
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public virtual System.Web.Mvc.ActionResult InterfaceEnable()
+        {
+            return new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.InterfaceEnable);
+        }
+        [NonAction]
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public virtual System.Web.Mvc.ActionResult InterfaceDetails()
+        {
+            return new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.InterfaceDetails);
+        }
+        [NonAction]
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public virtual System.Web.Mvc.ActionResult RedirectToLocal()
         {
             return new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.RedirectToLocal);
@@ -80,9 +116,16 @@ namespace Netotik.Web.Areas.Company.Controllers
         {
             public readonly string Info = "Info";
             public readonly string Info_Update = "Info_Update";
+            public readonly string Check_Update = "Check_Update";
             public readonly string PPP = "PPP";
             public readonly string Interfaces = "Interfaces";
             public readonly string Wireless = "Wireless";
+            public readonly string WirelessDetails = "WirelessDetails";
+            public readonly string InterfaceDisable = "InterfaceDisable";
+            public readonly string WirelessEnable = "WirelessEnable";
+            public readonly string WirelessDisable = "WirelessDisable";
+            public readonly string InterfaceEnable = "InterfaceEnable";
+            public readonly string InterfaceDetails = "InterfaceDetails";
             public readonly string Hotspot_Temp = "Hotspot_Temp";
             public readonly string RedirectToLocal = "RedirectToLocal";
         }
@@ -92,14 +135,69 @@ namespace Netotik.Web.Areas.Company.Controllers
         {
             public const string Info = "Info";
             public const string Info_Update = "Info_Update";
+            public const string Check_Update = "Check_Update";
             public const string PPP = "PPP";
             public const string Interfaces = "Interfaces";
             public const string Wireless = "Wireless";
+            public const string WirelessDetails = "WirelessDetails";
+            public const string InterfaceDisable = "InterfaceDisable";
+            public const string WirelessEnable = "WirelessEnable";
+            public const string WirelessDisable = "WirelessDisable";
+            public const string InterfaceEnable = "InterfaceEnable";
+            public const string InterfaceDetails = "InterfaceDetails";
             public const string Hotspot_Temp = "Hotspot_Temp";
             public const string RedirectToLocal = "RedirectToLocal";
         }
 
 
+        static readonly ActionParamsClass_WirelessDetails s_params_WirelessDetails = new ActionParamsClass_WirelessDetails();
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public ActionParamsClass_WirelessDetails WirelessDetailsParams { get { return s_params_WirelessDetails; } }
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public class ActionParamsClass_WirelessDetails
+        {
+            public readonly string id = "id";
+        }
+        static readonly ActionParamsClass_InterfaceDisable s_params_InterfaceDisable = new ActionParamsClass_InterfaceDisable();
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public ActionParamsClass_InterfaceDisable InterfaceDisableParams { get { return s_params_InterfaceDisable; } }
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public class ActionParamsClass_InterfaceDisable
+        {
+            public readonly string id = "id";
+        }
+        static readonly ActionParamsClass_WirelessEnable s_params_WirelessEnable = new ActionParamsClass_WirelessEnable();
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public ActionParamsClass_WirelessEnable WirelessEnableParams { get { return s_params_WirelessEnable; } }
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public class ActionParamsClass_WirelessEnable
+        {
+            public readonly string id = "id";
+        }
+        static readonly ActionParamsClass_WirelessDisable s_params_WirelessDisable = new ActionParamsClass_WirelessDisable();
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public ActionParamsClass_WirelessDisable WirelessDisableParams { get { return s_params_WirelessDisable; } }
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public class ActionParamsClass_WirelessDisable
+        {
+            public readonly string id = "id";
+        }
+        static readonly ActionParamsClass_InterfaceEnable s_params_InterfaceEnable = new ActionParamsClass_InterfaceEnable();
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public ActionParamsClass_InterfaceEnable InterfaceEnableParams { get { return s_params_InterfaceEnable; } }
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public class ActionParamsClass_InterfaceEnable
+        {
+            public readonly string id = "id";
+        }
+        static readonly ActionParamsClass_InterfaceDetails s_params_InterfaceDetails = new ActionParamsClass_InterfaceDetails();
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public ActionParamsClass_InterfaceDetails InterfaceDetailsParams { get { return s_params_InterfaceDetails; } }
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public class ActionParamsClass_InterfaceDetails
+        {
+            public readonly string id = "id";
+        }
         static readonly ActionParamsClass_RedirectToLocal s_params_RedirectToLocal = new ActionParamsClass_RedirectToLocal();
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public ActionParamsClass_RedirectToLocal RedirectToLocalParams { get { return s_params_RedirectToLocal; } }
@@ -121,16 +219,20 @@ namespace Netotik.Web.Areas.Company.Controllers
                 public readonly string _Table = "_Table";
                 public readonly string Hotspot_Temp = "Hotspot_Temp";
                 public readonly string Info = "Info";
+                public readonly string InterfaceDetails = "InterfaceDetails";
                 public readonly string Interfaces = "Interfaces";
                 public readonly string PPP = "PPP";
                 public readonly string Wireless = "Wireless";
+                public readonly string WirelessDetails = "WirelessDetails";
             }
             public readonly string _Table = "~/Areas/Company/Views/Router/_Table.cshtml";
             public readonly string Hotspot_Temp = "~/Areas/Company/Views/Router/Hotspot_Temp.cshtml";
             public readonly string Info = "~/Areas/Company/Views/Router/Info.cshtml";
+            public readonly string InterfaceDetails = "~/Areas/Company/Views/Router/InterfaceDetails.cshtml";
             public readonly string Interfaces = "~/Areas/Company/Views/Router/Interfaces.cshtml";
             public readonly string PPP = "~/Areas/Company/Views/Router/PPP.cshtml";
             public readonly string Wireless = "~/Areas/Company/Views/Router/Wireless.cshtml";
+            public readonly string WirelessDetails = "~/Areas/Company/Views/Router/WirelessDetails.cshtml";
         }
     }
 
@@ -158,6 +260,17 @@ namespace Netotik.Web.Areas.Company.Controllers
         {
             var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Info_Update);
             Info_UpdateOverride(callInfo);
+            return callInfo;
+        }
+
+        [NonAction]
+        partial void Check_UpdateOverride(T4MVC_System_Web_Mvc_ActionResult callInfo);
+
+        [NonAction]
+        public override System.Web.Mvc.ActionResult Check_Update()
+        {
+            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Check_Update);
+            Check_UpdateOverride(callInfo);
             return callInfo;
         }
 
@@ -191,6 +304,78 @@ namespace Netotik.Web.Areas.Company.Controllers
         {
             var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Wireless);
             WirelessOverride(callInfo);
+            return callInfo;
+        }
+
+        [NonAction]
+        partial void WirelessDetailsOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, string id);
+
+        [NonAction]
+        public override System.Web.Mvc.ActionResult WirelessDetails(string id)
+        {
+            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.WirelessDetails);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "id", id);
+            WirelessDetailsOverride(callInfo, id);
+            return callInfo;
+        }
+
+        [NonAction]
+        partial void InterfaceDisableOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, string id);
+
+        [NonAction]
+        public override System.Web.Mvc.ActionResult InterfaceDisable(string id)
+        {
+            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.InterfaceDisable);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "id", id);
+            InterfaceDisableOverride(callInfo, id);
+            return callInfo;
+        }
+
+        [NonAction]
+        partial void WirelessEnableOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, string id);
+
+        [NonAction]
+        public override System.Web.Mvc.ActionResult WirelessEnable(string id)
+        {
+            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.WirelessEnable);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "id", id);
+            WirelessEnableOverride(callInfo, id);
+            return callInfo;
+        }
+
+        [NonAction]
+        partial void WirelessDisableOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, string id);
+
+        [NonAction]
+        public override System.Web.Mvc.ActionResult WirelessDisable(string id)
+        {
+            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.WirelessDisable);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "id", id);
+            WirelessDisableOverride(callInfo, id);
+            return callInfo;
+        }
+
+        [NonAction]
+        partial void InterfaceEnableOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, string id);
+
+        [NonAction]
+        public override System.Web.Mvc.ActionResult InterfaceEnable(string id)
+        {
+            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.InterfaceEnable);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "id", id);
+            InterfaceEnableOverride(callInfo, id);
+            return callInfo;
+        }
+
+        [NonAction]
+        partial void InterfaceDetailsOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, string id);
+
+        [NonAction]
+        public override System.Web.Mvc.ActionResult InterfaceDetails(string id)
+        {
+            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.InterfaceDetails);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "id", id);
+            InterfaceDetailsOverride(callInfo, id);
             return callInfo;
         }
 

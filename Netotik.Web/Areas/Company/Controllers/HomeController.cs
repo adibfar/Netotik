@@ -138,7 +138,7 @@ namespace Netotik.Web.Areas.Company.Controllers
             {
                 this.MessageError(Messages.MissionFail, Messages.InvalidDataError);
                 //return View(MVC.Reseller.Home.Views._ProfileData, model);
-                return RedirectToAction(MVC.Company.Home.ActionNames.MikrotikConf);
+                return RedirectToAction(MVC.Company.Home.ActionNames.MikrotikConf, MVC.Company.Home.Name, new { area = MVC.Company.Name });
             }
             #endregion
             if (model.R_Password == "" || model.R_Password == null)
@@ -149,7 +149,7 @@ namespace Netotik.Web.Areas.Company.Controllers
             model.Id = UserLogined.Id;
             this.MessageInformation(Messages.MissionSuccess, Messages.UpdateSuccess);
             await _applicationUserManager.UpdateUserCompanyMikrotikConf(model);
-            return RedirectToAction(MVC.Company.Home.ActionNames.MikrotikConf);
+            return RedirectToAction(MVC.Company.Home.ActionNames.MikrotikConf, MVC.Company.Home.Name, new { area = MVC.Company.Name });
         }
         #endregion
 
@@ -160,9 +160,9 @@ namespace Netotik.Web.Areas.Company.Controllers
         {
             //var user = _applicationUserManager.SingleOrDefault(id);
             //if(user.Reseller_Id !=User.UserId)
-            //    return RedirectToAction(MVC.Company.Home.ActionNames.Index);
+            //    return RedirectToAction(MVC.Company.Home.ActionNames.Index, MVC.Company.Home.Name, new { area = MVC.Company.Name });
             //if (user == null)
-            //    return RedirectToAction(MVC.Company.Home.ActionNames.Index);
+            //    return RedirectToAction(MVC.Company.Home.ActionNames.Index, MVC.Company.Home.Name, new { area = MVC.Company.Name });
 
             ////ViewBag.logins = user.LoginHistories.OrderByDescending(x => x.RegisterDate).Take(10).ToList();
             //return View(user);
@@ -178,9 +178,9 @@ namespace Netotik.Web.Areas.Company.Controllers
         {
             //var model = _applicationUserManager.SingleOrDefault(id);
             //if (model.Reseller_Id != User.UserId)
-            //    return RedirectToAction(MVC.Company.Home.ActionNames.Index);
+            //    return RedirectToAction(MVC.Company.Home.ActionNames.Index, MVC.Company.Home.Name, new { area = MVC.Company.Name });
             //if (model == null)
-            //    return RedirectToAction(MVC.Company.Home.ActionNames.Index);
+            //    return RedirectToAction(MVC.Company.Home.ActionNames.Index, MVC.Company.Home.Name, new { area = MVC.Company.Name });
 
             //var editModel = new UserEditModel
             //{
@@ -213,9 +213,9 @@ namespace Netotik.Web.Areas.Company.Controllers
         {
             //var companyuser = _applicationUserManager.SingleOrDefault(model.Id);
             //if (companyuser.Reseller_Id != User.UserId)
-            //    return RedirectToAction(MVC.Company.Home.ActionNames.Index);
+            //    return RedirectToAction(MVC.Company.Home.ActionNames.Index, MVC.Company.Home.Name, new { area = MVC.Company.Name });
             //if (companyuser == null)
-            //    return RedirectToAction(MVC.Company.Home.ActionNames.Index);
+            //    return RedirectToAction(MVC.Company.Home.ActionNames.Index, MVC.Company.Home.Name, new { area = MVC.Company.Name });
 
             //if (ModelState.IsValid)
             //{

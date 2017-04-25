@@ -94,12 +94,6 @@ namespace Netotik.Web.Areas.Company.Controllers
         }
         [NonAction]
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public virtual System.Web.Mvc.ActionResult UserCreate()
-        {
-            return new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.UserCreate);
-        }
-        [NonAction]
-        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public virtual System.Web.Mvc.ActionResult UserEdit()
         {
             return new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.UserEdit);
@@ -312,10 +306,10 @@ namespace Netotik.Web.Areas.Company.Controllers
         }
 
         [NonAction]
-        partial void PackageCreateOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, Netotik.ViewModels.Mikrotik.UsermanProfileLimitionCreate model, Netotik.Common.Controller.ActionType actionType);
+        partial void PackageCreateOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, Netotik.ViewModels.Mikrotik.Usermanager_ProfileLimitionCreateModel model, Netotik.Common.Controller.ActionType actionType);
 
         [NonAction]
-        public override System.Web.Mvc.ActionResult PackageCreate(Netotik.ViewModels.Mikrotik.UsermanProfileLimitionCreate model, Netotik.Common.Controller.ActionType actionType)
+        public override System.Web.Mvc.ActionResult PackageCreate(Netotik.ViewModels.Mikrotik.Usermanager_ProfileLimitionCreateModel model, Netotik.Common.Controller.ActionType actionType)
         {
             var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.PackageCreate);
             ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "model", model);
@@ -408,10 +402,21 @@ namespace Netotik.Web.Areas.Company.Controllers
         }
 
         [NonAction]
-        partial void UserCreateOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, Netotik.ViewModels.Mikrotik.UsermanagerUserRegister model, Netotik.Common.Controller.ActionType actionType);
+        partial void UserCreateOverride(T4MVC_System_Web_Mvc_ActionResult callInfo);
 
         [NonAction]
-        public override System.Web.Mvc.ActionResult UserCreate(Netotik.ViewModels.Mikrotik.UsermanagerUserRegister model, Netotik.Common.Controller.ActionType actionType)
+        public override System.Web.Mvc.ActionResult UserCreate()
+        {
+            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.UserCreate);
+            UserCreateOverride(callInfo);
+            return callInfo;
+        }
+
+        [NonAction]
+        partial void UserCreateOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, Netotik.ViewModels.Mikrotik.Usermanager_UserRegisterModel model, Netotik.Common.Controller.ActionType actionType);
+
+        [NonAction]
+        public override System.Web.Mvc.ActionResult UserCreate(Netotik.ViewModels.Mikrotik.Usermanager_UserRegisterModel model, Netotik.Common.Controller.ActionType actionType)
         {
             var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.UserCreate);
             ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "model", model);
@@ -466,10 +471,10 @@ namespace Netotik.Web.Areas.Company.Controllers
         }
 
         [NonAction]
-        partial void UserEdit_SaveOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, Netotik.ViewModels.Mikrotik.UsermanagerUserEdit model, Netotik.Common.Controller.ActionType actionType);
+        partial void UserEdit_SaveOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, Netotik.ViewModels.Mikrotik.Usermanager_UserEditModel model, Netotik.Common.Controller.ActionType actionType);
 
         [NonAction]
-        public override System.Web.Mvc.ActionResult UserEdit_Save(Netotik.ViewModels.Mikrotik.UsermanagerUserEdit model, Netotik.Common.Controller.ActionType actionType)
+        public override System.Web.Mvc.ActionResult UserEdit_Save(Netotik.ViewModels.Mikrotik.Usermanager_UserEditModel model, Netotik.Common.Controller.ActionType actionType)
         {
             var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.UserEdit_Save);
             ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "model", model);
