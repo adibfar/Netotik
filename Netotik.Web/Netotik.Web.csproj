@@ -2373,12 +2373,6 @@
     <Content Include="Areas\Admin\Views\Shared\EditorTemplates\SummerNoteEditorNoLabel.cshtml" />
     <Content Include="Areas\Admin\Views\Shared\EditorTemplates\TimePicker.cshtml" />
     <Content Include="Areas\Admin\Views\Shared\Error.cshtml" />
-    <Content Include="Areas\Admin\Views\Reseller\_Table.cshtml" />
-    <Content Include="Areas\Admin\Views\Reseller\ChangePassword.cshtml" />
-    <Content Include="Areas\Admin\Views\Reseller\Create.cshtml" />
-    <Content Include="Areas\Admin\Views\Reseller\Detail.cshtml" />
-    <Content Include="Areas\Admin\Views\Reseller\Edit.cshtml" />
-    <Content Include="Areas\Admin\Views\Reseller\Index.cshtml" />
     <Content Include="Areas\Reseller\Views\web.config">
       <SubType>Designer</SubType>
     </Content>
