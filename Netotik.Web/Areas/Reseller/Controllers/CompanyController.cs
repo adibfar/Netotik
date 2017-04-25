@@ -126,7 +126,7 @@ namespace Netotik.Web.Areas.Reseller.Controllers
                 if (!_mikrotikServices.User_Pass_Check(model.R_Host, model.R_Port, model.R_User, model.R_Password))
                 {
                     this.MessageWarning("نام کاربری یا رمز عبور روتر اشتباه می باشد.", "لطفا پس از فعال سازی اکانت وارد پنل شده و نام کاربری و رمز عبور صحیح را وارد کنید یا از طریق ویرایش نسبت به اصلاح اقدام کنید.");
-                    if (!_mikrotikServices.IsUsermangerInstall(model.R_Host, model.R_Port, model.R_User, model.R_Password))
+                    if (!_mikrotikServices.Usermanager_IsInstall(model.R_Host, model.R_Port, model.R_User, model.R_Password))
                         this.MessageWarning("پکیج یوزرمنیجر میکروتیک نصب نمی باشد.", "پکیج یوزرمنیجر بر روی روتر شما نصب نمی باشد.لطفا مراحل نصب را طی نمایید.");
                 }
             }
@@ -259,6 +259,10 @@ namespace Netotik.Web.Areas.Reseller.Controllers
             //    companyuser.R_Password = model.R_Password;
             //    companyuser.R_Port = model.R_Port;
 
+            //if (model.cloud)
+            //{
+            //    model.R_Host = _mikrotikServices.EnableAndGetCloud(model.R_Host, model.R_Port, model.R_User, model.R_Password);
+            //}
             //    _applicationUserManager.Update(companyuser);
 
             //    if (result.Status)

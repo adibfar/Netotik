@@ -87,7 +87,11 @@
                     <div class="panel-body">
                         <fieldset>
                             <div class="form-group">
-                                <div class="col-md-7">
+                                <div class="col-md-3">
+                                    <div class="hr-line-dashed"></div>
+                                    <div class="i-checks">@Html.EditorFor(model => model.cloud)</div>
+                                </div>
+                                <div class="col-md-6">
                                     @Html.EditorFor(model => model.R_Host)
                                 </div>
                                 <div class="col-md-3">

@@ -78,6 +78,7 @@
     <Compile Include="Identity\Account\ExternalLoginListViewModel.cs" />
     <Compile Include="Identity\Account\ForgotPasswordViewModel.cs" />
     <Compile Include="Identity\UserCompany\CompanyList.cs" />
+    <Compile Include="Identity\UserCompany\MikrotikConfModel.cs" />
     <Compile Include="Identity\UserReseller\ProfileModel.cs" />
     <Compile Include="Identity\UserReseller\RegisterViewModel.cs" />
     <Compile Include="Identity\Account\ResetPasswordEmail.cs" />
@@ -86,10 +87,28 @@
     <Compile Include="Identity\UserCompany\CompanyAddModel.cs" />
     <Compile Include="Identity\UserCompany\CompanyEditModel.cs" />
     <Compile Include="Identity\UserReseller\UserItem.cs" />
-    <Compile Include="Ticketing\Issue\IssueLabelModel.cs" />
-    <Compile Include="Ticketing\Issue\IssueTrackModel.cs" />
-    <Compile Include="Ticketing\Issue\IssueModel.cs" />
-    <Compile Include="Ticketing\Issue\TableIssueModel.cs" />
+    <Compile Include="Mikrotik\Router\ClockModel.cs" />
+    <Compile Include="Mikrotik\Router\EthernetModel.cs" />
+    <Compile Include="Mikrotik\Router\IdentityModel.cs" />
+    <Compile Include="Mikrotik\Router\InfoModel.cs" />
+    <Compile Include="Mikrotik\Router\InterfaceModel.cs" />
+    <Compile Include="Mikrotik\Router\LicenseModel.cs" />
+    <Compile Include="Mikrotik\Router\LogModel.cs" />
+    <Compile Include="Mikrotik\Router\PackageUpdateModel.cs" />
+    <Compile Include="Mikrotik\Router\ResourceModel.cs" />
+    <Compile Include="Mikrotik\Router\RouterBoardModel.cs" />
+    <Compile Include="Mikrotik\Router\WirelessModel.cs" />
+    <Compile Include="Mikrotik\Usermanager\CustomerModel.cs" />
+    <Compile Include="Mikrotik\Usermanager\LimitionModel.cs" />
+    <Compile Include="Mikrotik\Usermanager\ProfileLimitationModel.cs" />
+    <Compile Include="Mikrotik\Usermanager\ProfileLimitonCreateModel.cs" />
+    <Compile Include="Mikrotik\Usermanager\ProfileLimitonView.cs" />
+    <Compile Include="Mikrotik\Usermanager\ProfileModel.cs" />
+    <Compile Include="Mikrotik\Usermanager\UserDetailsModel.cs" />
+    <Compile Include="Mikrotik\Usermanager\UserEditModel.cs" />
+    <Compile Include="Mikrotik\Usermanager\UserModel.cs" />
+    <Compile Include="Mikrotik\Usermanager\UserRegisterModel.cs" />
+    <Compile Include="Mikrotik\Usermanager\UserSessionModel.cs" />
     <Compile Include="CMS\Comment\AddCommentProduct.cs" />
     <Compile Include="CMS\Comment\AddCommentModel.cs" />
     <Compile Include="Common\ContactUs\MessageModel.cs" />
@@ -102,18 +121,6 @@
     <Compile Include="CMS\Content\ContentItem.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Mikrotik\Log.cs" />
-    <Compile Include="Mikrotik\UsermanagerCustomer.cs" />
-    <Compile Include="Mikrotik\UsermanagerUserEdit.cs" />
-    <Compile Include="Mikrotik\UsermanagerUserSession.cs" />
-    <Compile Include="Mikrotik\UsermanagerUserRegister.cs" />
-    <Compile Include="Mikrotik\RouterInterface.cs" />
-    <Compile Include="Mikrotik\UsermanProfile.cs" />
-    <Compile Include="Mikrotik\UsermanProfileLimitonCreate.cs" />
-    <Compile Include="Mikrotik\UsermanProfileLimitonView.cs" />
-    <Compile Include="Mikrotik\UsermanProfileLimitation.cs" />
-    <Compile Include="Mikrotik\UsermanLimition.cs" />
-    <Compile Include="Mikrotik\UsermanagerUser.cs" />
     <Compile Include="Identity\UserCompany\LoginModel.cs" />
     <Compile Include="Identity\UserCompany\ProfileModel.cs" />
     <Compile Include="Identity\UserCompany\ChangePasswordModel.cs" />
@@ -187,6 +194,10 @@
     <Compile Include="Identity\UserAdmin\UserItem.cs" />
     <Compile Include="Identity\UserAdmin\UserChangePasswordModel.cs" />
     <Compile Include="Identity\UserAdmin\LoginModel.cs" />
+    <Compile Include="Ticketing\Issue\IssueLabelModel.cs" />
+    <Compile Include="Ticketing\Issue\IssueModel.cs" />
+    <Compile Include="Ticketing\Issue\IssueTrackModel.cs" />
+    <Compile Include="Ticketing\Issue\TableIssueModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

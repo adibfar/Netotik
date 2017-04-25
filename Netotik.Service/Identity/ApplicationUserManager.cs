@@ -81,6 +81,10 @@ namespace Netotik.Services.Identity
             return _mappingEngine.Map<ViewModels.Identity.UserCompany.ProfileModel>(_users.FirstOrDefault(a => a.Id == id && !a.IsDeleted));
         }
 
+        public ViewModels.Identity.UserCompany.MikrotikConfModel GetUserCompanyMikrotikConf(long id)
+        {
+            return _mappingEngine.Map<ViewModels.Identity.UserCompany.MikrotikConfModel>(_users.FirstOrDefault(a => a.Id == id && !a.IsDeleted));
+        }
         public IList<ViewModels.Identity.UserCompany.CompanyList> GetListUserCompany(long id)
         {
             IList<ViewModels.Identity.UserCompany.CompanyList> selectedUsers = _users.Where(x => !x.IsDeleted && x.UserCompany.UserResellerId == id)
@@ -158,7 +162,13 @@ namespace Netotik.Services.Identity
                 .ToList();
 
         }
-
+        
+        public async Task UpdateUserCompanyMikrotikConf(ViewModels.Identity.UserCompany.MikrotikConfModel model)
+        {
+            var user = _users.Find(model.Id);
+            _mappingEngine.Map(model, user);
+            await _unitOfWork.SaveChangesAsync();
+        }
         public IList<ViewModels.Identity.UserReseller.UserItem> GetListUserResellers(RequestListModel model, out long TotalCount, out long ShowCount)
         {
             IQueryable<User> all = _users.Where(x => !x.IsDeleted && x.UserType == UserType.UserReseller).AsQueryable();

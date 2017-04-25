@@ -1,0 +1,103 @@
+﻿@model Netotik.ViewModels.Identity.UserCompany.MikrotikConfModel
+@{
+    ViewBag.Title = "تنظیمات میکروتیک";
+}
+
+
+<div class="col-md-12 box-shadow-2 p-0">
+    <div class="card border-grey border-lighten-3 m-0">
+        <div class="card-body collapse in">
+            <div class="card-block">
+                @using (Html.BeginForm(MVC.Company.Home.ActionNames.MikrotikConf, MVC.Company.Home.Name, null, FormMethod.Post, htmlAttributes: new { @class = "cmxform form-horizontal tasi-form", id = "form" }))
+                {
+                    @Html.AntiForgeryToken()
+                    <div class="row">
+                        <div class="col-md-2">
+                            <br />
+                            <div class="controls">
+                                <label class="custom-control custom-checkbox">
+                                    @Html.CheckBoxFor(m => m.cloud, htmlAttributes: new { @class = "custom-control-input" })
+                                    <span class="custom-control-indicator"></span>
+                                    <span class="custom-control-description">
+                                        @Html.LabelFor(m => m.cloud)
+                                    </span>
+                                </label>
+                            </div>
+                        </div>
+                        <div class="col-md-8">
+                            <div class="form-group has-feedback has-icon-left">
+                                @Html.LabelFor(m => m.R_Host)
+                                <div class="position-relative has-icon-left">
+                                    @Html.TextBoxFor(m => m.R_Host, new { @class = "form-control" })
+                                    <div class="form-control-position">
+                                        <i class="icon-server"></i>
+                                    </div>
+                                    @Html.ValidationMessageFor(model => model.R_Host, "", htmlAttributes: new { @class = "text-danger" })
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-2">
+                            <div class="form-group has-feedback has-icon-left">
+                                @Html.LabelFor(m => m.R_Port)
+                                <div class="position-relative has-icon-left">
+                                    @Html.TextBoxFor(m => m.R_Port, new { @class = "form-control" })
+                                    <div class="form-control-position">
+                                        :
+                                    </div>
+                                    @Html.ValidationMessageFor(model => model.R_Port, "", htmlAttributes: new { @class = "text-danger" })
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group has-feedback has-icon-left">
+                                @Html.LabelFor(m => m.R_User)
+                                <div class="position-relative has-icon-left">
+                                    @Html.TextBoxFor(m => m.R_User, new { @class = "form-control" })
+                                    <div class="form-control-position">
+                                        <i class="icon-user-tie"></i>
+                                    </div>
+                                    @Html.ValidationMessageFor(model => model.R_User, "", htmlAttributes: new { @class = "text-danger" })
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group has-feedback has-icon-left">
+                                @Html.LabelFor(m => m.R_Password)
+                                <div class="position-relative has-icon-left">
+                                    @Html.PasswordFor(m => m.R_Password, new { @class = "form-control" })
+                                    <div class="form-control-position">
+                                        <i class="icon-key2"></i>
+                                    </div>
+                                    @Html.ValidationMessageFor(model => model.R_Password, "", htmlAttributes: new { @class = "text-danger" })
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group has-feedback has-icon-left">
+                                @Html.LabelFor(m => m.Userman_Customer)
+                                <div class="position-relative has-icon-left">
+                                    @Html.TextBoxFor(m => m.Userman_Customer, new { @class = "form-control" })
+                                    <div class="form-control-position">
+                                        <i class="icon-user-tie"></i>
+                                    </div>
+                                    @Html.ValidationMessageFor(model => model.Userman_Customer, "", htmlAttributes: new { @class = "text-danger" })
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-success btn-block">
+                        <i class="icon-key4"></i>  ذخیره
+                    </button>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+

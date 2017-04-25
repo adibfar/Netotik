@@ -1,14 +1,8 @@
-﻿using Netotik.Resources;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace Netotik.ViewModels.Mikrotik
 {
-    public class UsermanProfileLimition
+    public class Usermanager_ProfileLimitionModel
     {
         public string id { get; set; }
         [Display(Name = "نام پروفایل")]

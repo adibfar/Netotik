@@ -109,6 +109,7 @@ namespace Netotik.Web.Areas.Company.Controllers
             public readonly string ProfileData = "ProfileData";
             public readonly string changeImageProfile = "changeImageProfile";
             public readonly string UpdateProfile = "UpdateProfile";
+            public readonly string MikrotikConf = "MikrotikConf";
             public readonly string Detail = "Detail";
             public readonly string Edit = "Edit";
             public readonly string ChangePassword = "ChangePassword";
@@ -123,6 +124,7 @@ namespace Netotik.Web.Areas.Company.Controllers
             public const string ProfileData = "ProfileData";
             public const string changeImageProfile = "changeImageProfile";
             public const string UpdateProfile = "UpdateProfile";
+            public const string MikrotikConf = "MikrotikConf";
             public const string Detail = "Detail";
             public const string Edit = "Edit";
             public const string ChangePassword = "ChangePassword";
@@ -143,6 +145,14 @@ namespace Netotik.Web.Areas.Company.Controllers
         public ActionParamsClass_UpdateProfile UpdateProfileParams { get { return s_params_UpdateProfile; } }
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public class ActionParamsClass_UpdateProfile
+        {
+            public readonly string model = "model";
+        }
+        static readonly ActionParamsClass_MikrotikConf s_params_MikrotikConf = new ActionParamsClass_MikrotikConf();
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public ActionParamsClass_MikrotikConf MikrotikConfParams { get { return s_params_MikrotikConf; } }
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public class ActionParamsClass_MikrotikConf
         {
             public readonly string model = "model";
         }
@@ -194,12 +204,14 @@ namespace Netotik.Web.Areas.Company.Controllers
                 public readonly string _ProfileData = "_ProfileData";
                 public readonly string ChangePassword = "ChangePassword";
                 public readonly string Index = "Index";
+                public readonly string MikrotikConf = "MikrotikConf";
                 public readonly string MyProfile = "MyProfile";
             }
             public readonly string _ImageProfile = "~/Areas/Company/Views/Home/_ImageProfile.cshtml";
             public readonly string _ProfileData = "~/Areas/Company/Views/Home/_ProfileData.cshtml";
             public readonly string ChangePassword = "~/Areas/Company/Views/Home/ChangePassword.cshtml";
             public readonly string Index = "~/Areas/Company/Views/Home/Index.cshtml";
+            public readonly string MikrotikConf = "~/Areas/Company/Views/Home/MikrotikConf.cshtml";
             public readonly string MyProfile = "~/Areas/Company/Views/Home/MyProfile.cshtml";
         }
     }
@@ -263,6 +275,29 @@ namespace Netotik.Web.Areas.Company.Controllers
             var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.UpdateProfile);
             ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "model", model);
             UpdateProfileOverride(callInfo, model);
+            return System.Threading.Tasks.Task.FromResult(callInfo as System.Web.Mvc.ActionResult);
+        }
+
+        [NonAction]
+        partial void MikrotikConfOverride(T4MVC_System_Web_Mvc_ActionResult callInfo);
+
+        [NonAction]
+        public override System.Web.Mvc.ActionResult MikrotikConf()
+        {
+            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.MikrotikConf);
+            MikrotikConfOverride(callInfo);
+            return callInfo;
+        }
+
+        [NonAction]
+        partial void MikrotikConfOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, Netotik.ViewModels.Identity.UserCompany.MikrotikConfModel model);
+
+        [NonAction]
+        public override System.Threading.Tasks.Task<System.Web.Mvc.ActionResult> MikrotikConf(Netotik.ViewModels.Identity.UserCompany.MikrotikConfModel model)
+        {
+            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.MikrotikConf);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "model", model);
+            MikrotikConfOverride(callInfo, model);
             return System.Threading.Tasks.Task.FromResult(callInfo as System.Web.Mvc.ActionResult);
         }
 

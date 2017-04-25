@@ -118,12 +118,39 @@ namespace Netotik.Web.Areas.Company.Controllers
             #endregion
             if (model.Email != UserLogined.Email)
                 model.EmailConfirmed = false;
-
+            model.Id = UserLogined.Id;
+            model.UserResellerId = UserLogined.UserCompany.UserResellerId;
             this.MessageInformation(Messages.MissionSuccess, Messages.UpdateSuccess);
             await _applicationUserManager.UpdateUserCompanyProfile(model);
             return RedirectToAction(MVC.Company.Home.ActionNames.MyProfile);
         }
 
+        public virtual ActionResult MikrotikConf()
+        {
+            return View(_applicationUserManager.GetUserCompanyMikrotikConf(UserLogined.Id));
+        }
+        [ValidateAntiForgeryToken]
+        [HttpPost]
+        public virtual async Task<ActionResult> MikrotikConf(MikrotikConfModel model)
+        {
+            #region Validation
+            if (!ModelState.IsValid)
+            {
+                this.MessageError(Messages.MissionFail, Messages.InvalidDataError);
+                //return View(MVC.Reseller.Home.Views._ProfileData, model);
+                return RedirectToAction(MVC.Company.Home.ActionNames.MikrotikConf, MVC.Company.Home.Name, new { area = MVC.Company.Name });
+            }
+            #endregion
+            if (model.R_Password == "" || model.R_Password == null)
+            {
+                model.R_Password = UserLogined.UserCompany.R_Password;
+                this.MessageInformation("توجه:", "پسورد روتر خالی نمی تواند باشد.ما پسورد قبلی که در سیستم گذاشته اید را تغییر ندادیم.");
+            }
+            model.Id = UserLogined.Id;
+            this.MessageInformation(Messages.MissionSuccess, Messages.UpdateSuccess);
+            await _applicationUserManager.UpdateUserCompanyMikrotikConf(model);
+            return RedirectToAction(MVC.Company.Home.ActionNames.MikrotikConf, MVC.Company.Home.Name, new { area = MVC.Company.Name });
+        }
         #endregion
 
         #region Detail
@@ -133,9 +160,9 @@ namespace Netotik.Web.Areas.Company.Controllers
         {
             //var user = _applicationUserManager.SingleOrDefault(id);
             //if(user.Reseller_Id !=User.UserId)
-            //    return RedirectToAction(MVC.Company.Home.ActionNames.Index);
+            //    return RedirectToAction(MVC.Company.Home.ActionNames.Index, MVC.Company.Home.Name, new { area = MVC.Company.Name });
             //if (user == null)
-            //    return RedirectToAction(MVC.Company.Home.ActionNames.Index);
+            //    return RedirectToAction(MVC.Company.Home.ActionNames.Index, MVC.Company.Home.Name, new { area = MVC.Company.Name });
 
             ////ViewBag.logins = user.LoginHistories.OrderByDescending(x => x.RegisterDate).Take(10).ToList();
             //return View(user);
@@ -151,9 +178,9 @@ namespace Netotik.Web.Areas.Company.Controllers
         {
             //var model = _applicationUserManager.SingleOrDefault(id);
             //if (model.Reseller_Id != User.UserId)
-            //    return RedirectToAction(MVC.Company.Home.ActionNames.Index);
+            //    return RedirectToAction(MVC.Company.Home.ActionNames.Index, MVC.Company.Home.Name, new { area = MVC.Company.Name });
             //if (model == null)
-            //    return RedirectToAction(MVC.Company.Home.ActionNames.Index);
+            //    return RedirectToAction(MVC.Company.Home.ActionNames.Index, MVC.Company.Home.Name, new { area = MVC.Company.Name });
 
             //var editModel = new UserEditModel
             //{
@@ -186,9 +213,9 @@ namespace Netotik.Web.Areas.Company.Controllers
         {
             //var companyuser = _applicationUserManager.SingleOrDefault(model.Id);
             //if (companyuser.Reseller_Id != User.UserId)
-            //    return RedirectToAction(MVC.Company.Home.ActionNames.Index);
+            //    return RedirectToAction(MVC.Company.Home.ActionNames.Index, MVC.Company.Home.Name, new { area = MVC.Company.Name });
             //if (companyuser == null)
-            //    return RedirectToAction(MVC.Company.Home.ActionNames.Index);
+            //    return RedirectToAction(MVC.Company.Home.ActionNames.Index, MVC.Company.Home.Name, new { area = MVC.Company.Name });
 
             //if (ModelState.IsValid)
             //{
@@ -246,37 +273,26 @@ namespace Netotik.Web.Areas.Company.Controllers
         {
             return View();
         }
-
         [Mvc5Authorize(Roles = "Company")]
         [HttpPost]
         public virtual async Task<ActionResult> ChangePassword(ChangePasswordModel model)
         {
-            //if (!ModelState.IsValid)
-            //{
-            //    this.MessageError(Messages.MissionFail, Messages.InvalidDataError);
-            //}
-            //else
-            //{
-            //    var result = await _applicationUserManager.ChangePasswordAsync(User.UserId, Encryption.EncryptingPassword(model.Password));
-            //    if (result.Status)
-            //    {
-            //        try
-            //        {
-            //            await _uow.SaveChangesAsync();
-            //        }
-            //        catch (Exception ex)
-            //        {
-            //            this.MessageError(Messages.MissionFail, Messages.UpdateError);
-            //        }
-            //    }
-            //    SetResultMessage(result);
-            //}
-            return View(model);
+            if (!ModelState.IsValid)
+            {
+                this.MessageError(Messages.MissionFail, Messages.InvalidDataError);
+                return RedirectToAction(MVC.Reseller.Home.ActionNames.ChangePassword);
+            }
+            var temp = await _applicationUserManager.ChangePasswordAsync(User.Identity.GetUserId<long>(), model.OldPassword, model.Password);
+            if (temp.Succeeded)
+                this.MessageInformation(Messages.MissionSuccess, Messages.UpdateSuccess);
+            else
+                this.MessageError(Messages.MissionFail, Messages.UpdateError);
+            return View();
         }
 
         #endregion
 
-        
+
 
     }
 }

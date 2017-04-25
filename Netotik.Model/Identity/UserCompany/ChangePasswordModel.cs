@@ -1,6 +1,7 @@
 ﻿using Netotik.Resources;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
@@ -11,7 +12,14 @@ namespace Netotik.ViewModels.Identity.UserCompany
 {
     public class ChangePasswordModel
     {
-        public int? Id { get; set; }
+
+        [DataType(DataType.Password)]
+        [Required(ErrorMessageResourceType = typeof(Messages), ErrorMessageResourceName = "RequiredError")]
+        [MaxLength(100, ErrorMessageResourceType = typeof(Messages), ErrorMessageResourceName = "MaxLengthError")]
+        [MinLength(6, ErrorMessageResourceType = typeof(Messages), ErrorMessageResourceName = "MinLengthError")]
+        [DisplayName("OldPassword")]
+        public string OldPassword { get; set; }
+
         [DataType(DataType.Password)]
         [Required(ErrorMessageResourceType = typeof(Messages), ErrorMessageResourceName = "RequiredError")]
         [MaxLength(100, ErrorMessageResourceType = typeof(Messages), ErrorMessageResourceName = "MaxLengthError")]

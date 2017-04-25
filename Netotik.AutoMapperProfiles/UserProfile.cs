@@ -110,13 +110,15 @@ namespace Netotik.AutoMapperProfiles
             CreateMap<User, ViewModels.Identity.UserCompany.ProfileModel>()
               .ForMember(d => d.NationalCode, m => m.MapFrom(t => t.UserCompany.NationalCode))
               .ForMember(d => d.CompanyCode, m => m.MapFrom(t => t.UserCompany.CompanyCode))
+              .IgnoreAllNonExisting();
+
+            CreateMap<User, ViewModels.Identity.UserCompany.MikrotikConfModel>()
               .ForMember(d => d.R_Host, m => m.MapFrom(t => t.UserCompany.R_Host))
               .ForMember(d => d.R_Password, m => m.MapFrom(t => t.UserCompany.R_Password))
               .ForMember(d => d.R_Port, m => m.MapFrom(t => t.UserCompany.R_Port))
               .ForMember(d => d.R_User, m => m.MapFrom(t => t.UserCompany.R_User))
               .ForMember(d => d.Userman_Customer, m => m.MapFrom(t => t.UserCompany.Userman_Customer))
               .IgnoreAllNonExisting();
-
 
             CreateMap<ViewModels.Identity.UserAdmin.ProfileModel, User>()
                 .ForMember(d => d.EditDate, m => m.UseValue(DateTime.Now))
@@ -148,6 +150,16 @@ namespace Netotik.AutoMapperProfiles
                 .ForMember(d => d.UserCompany, opt => opt.MapFrom(s => s))
                 .IgnoreAllNonExisting();
 
+            CreateMap<ViewModels.Identity.UserCompany.MikrotikConfModel, UserCompany>()
+                .IgnoreAllNonExisting();
+
+            CreateMap<ViewModels.Identity.UserCompany.MikrotikConfModel, User>()
+                .ForMember(d => d.EditDate, m => m.UseValue(DateTime.Now))
+                .ForMember(d => d.Roles, m => m.Ignore())
+                .ForMember(d => d.Claims, m => m.Ignore())
+                .ForMember(d => d.Logins, m => m.Ignore())
+                .ForMember(d => d.UserCompany, opt => opt.MapFrom(s => s))
+                .IgnoreAllNonExisting();
 
             CreateMap<ViewModels.Identity.UserCompany.Register, UserCompany>()
                .IgnoreAllNonExisting();

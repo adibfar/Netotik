@@ -1,14 +1,6 @@
-﻿using Netotik.Resources;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Netotik.ViewModels.Mikrotik
+﻿namespace Netotik.ViewModels.Mikrotik
 {
-    public class RouterInterface
+    public class Router_InterfaceModel
     {
         public string id { get; set; }
 

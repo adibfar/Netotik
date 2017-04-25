@@ -58,6 +58,18 @@ namespace Netotik.Web.Areas.Company.Controllers
 
         [NonAction]
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public virtual System.Web.Mvc.ActionResult ResetCounter()
+        {
+            return new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.ResetCounter);
+        }
+        [NonAction]
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public virtual System.Web.Mvc.ActionResult CloseSession()
+        {
+            return new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.CloseSession);
+        }
+        [NonAction]
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public virtual System.Web.Mvc.ActionResult Userdisable()
         {
             return new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Userdisable);
@@ -94,12 +106,6 @@ namespace Netotik.Web.Areas.Company.Controllers
         }
         [NonAction]
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public virtual System.Web.Mvc.ActionResult UserCreate()
-        {
-            return new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.UserCreate);
-        }
-        [NonAction]
-        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public virtual System.Web.Mvc.ActionResult UserEdit()
         {
             return new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.UserEdit);
@@ -132,6 +138,8 @@ namespace Netotik.Web.Areas.Company.Controllers
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public class ActionNamesClass
         {
+            public readonly string ResetCounter = "ResetCounter";
+            public readonly string CloseSession = "CloseSession";
             public readonly string PackageCreate = "PackageCreate";
             public readonly string UserList = "UserList";
             public readonly string Userdisable = "Userdisable";
@@ -153,6 +161,8 @@ namespace Netotik.Web.Areas.Company.Controllers
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public class ActionNameConstants
         {
+            public const string ResetCounter = "ResetCounter";
+            public const string CloseSession = "CloseSession";
             public const string PackageCreate = "PackageCreate";
             public const string UserList = "UserList";
             public const string Userdisable = "Userdisable";
@@ -172,6 +182,24 @@ namespace Netotik.Web.Areas.Company.Controllers
         }
 
 
+        static readonly ActionParamsClass_ResetCounter s_params_ResetCounter = new ActionParamsClass_ResetCounter();
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public ActionParamsClass_ResetCounter ResetCounterParams { get { return s_params_ResetCounter; } }
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public class ActionParamsClass_ResetCounter
+        {
+            public readonly string user = "user";
+            public readonly string id = "id";
+        }
+        static readonly ActionParamsClass_CloseSession s_params_CloseSession = new ActionParamsClass_CloseSession();
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public ActionParamsClass_CloseSession CloseSessionParams { get { return s_params_CloseSession; } }
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public class ActionParamsClass_CloseSession
+        {
+            public readonly string user = "user";
+            public readonly string id = "id";
+        }
         static readonly ActionParamsClass_PackageCreate s_params_PackageCreate = new ActionParamsClass_PackageCreate();
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public ActionParamsClass_PackageCreate PackageCreateParams { get { return s_params_PackageCreate; } }
@@ -274,7 +302,6 @@ namespace Netotik.Web.Areas.Company.Controllers
             public class _ViewNamesClass
             {
                 public readonly string _Table = "_Table";
-                public readonly string Hotspot_Temp = "Hotspot_Temp";
                 public readonly string PackageCreate = "PackageCreate";
                 public readonly string PackageDetails = "PackageDetails";
                 public readonly string PackageList = "PackageList";
@@ -286,7 +313,6 @@ namespace Netotik.Web.Areas.Company.Controllers
                 public readonly string UserList = "UserList";
             }
             public readonly string _Table = "~/Areas/Company/Views/UserManager/_Table.cshtml";
-            public readonly string Hotspot_Temp = "~/Areas/Company/Views/UserManager/Hotspot_Temp.cshtml";
             public readonly string PackageCreate = "~/Areas/Company/Views/UserManager/PackageCreate.cshtml";
             public readonly string PackageDetails = "~/Areas/Company/Views/UserManager/PackageDetails.cshtml";
             public readonly string PackageList = "~/Areas/Company/Views/UserManager/PackageList.cshtml";
@@ -305,6 +331,32 @@ namespace Netotik.Web.Areas.Company.Controllers
         public T4MVC_UserManagerController() : base(Dummy.Instance) { }
 
         [NonAction]
+        partial void ResetCounterOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, string user, string id);
+
+        [NonAction]
+        public override System.Web.Mvc.ActionResult ResetCounter(string user, string id)
+        {
+            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.ResetCounter);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "user", user);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "id", id);
+            ResetCounterOverride(callInfo, user, id);
+            return callInfo;
+        }
+
+        [NonAction]
+        partial void CloseSessionOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, string user, string id);
+
+        [NonAction]
+        public override System.Web.Mvc.ActionResult CloseSession(string user, string id)
+        {
+            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.CloseSession);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "user", user);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "id", id);
+            CloseSessionOverride(callInfo, user, id);
+            return callInfo;
+        }
+
+        [NonAction]
         partial void PackageCreateOverride(T4MVC_System_Web_Mvc_ActionResult callInfo);
 
         [NonAction]
@@ -316,10 +368,10 @@ namespace Netotik.Web.Areas.Company.Controllers
         }
 
         [NonAction]
-        partial void PackageCreateOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, Netotik.ViewModels.Mikrotik.UsermanProfileLimitionCreate model, Netotik.Common.Controller.ActionType actionType);
+        partial void PackageCreateOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, Netotik.ViewModels.Mikrotik.Usermanager_ProfileLimitionCreateModel model, Netotik.Common.Controller.ActionType actionType);
 
         [NonAction]
-        public override System.Web.Mvc.ActionResult PackageCreate(Netotik.ViewModels.Mikrotik.UsermanProfileLimitionCreate model, Netotik.Common.Controller.ActionType actionType)
+        public override System.Web.Mvc.ActionResult PackageCreate(Netotik.ViewModels.Mikrotik.Usermanager_ProfileLimitionCreateModel model, Netotik.Common.Controller.ActionType actionType)
         {
             var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.PackageCreate);
             ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "model", model);
@@ -412,10 +464,21 @@ namespace Netotik.Web.Areas.Company.Controllers
         }
 
         [NonAction]
-        partial void UserCreateOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, Netotik.ViewModels.Mikrotik.UsermanagerUserRegister model, Netotik.Common.Controller.ActionType actionType);
+        partial void UserCreateOverride(T4MVC_System_Web_Mvc_ActionResult callInfo);
 
         [NonAction]
-        public override System.Web.Mvc.ActionResult UserCreate(Netotik.ViewModels.Mikrotik.UsermanagerUserRegister model, Netotik.Common.Controller.ActionType actionType)
+        public override System.Web.Mvc.ActionResult UserCreate()
+        {
+            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.UserCreate);
+            UserCreateOverride(callInfo);
+            return callInfo;
+        }
+
+        [NonAction]
+        partial void UserCreateOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, Netotik.ViewModels.Mikrotik.Usermanager_UserRegisterModel model, Netotik.Common.Controller.ActionType actionType);
+
+        [NonAction]
+        public override System.Web.Mvc.ActionResult UserCreate(Netotik.ViewModels.Mikrotik.Usermanager_UserRegisterModel model, Netotik.Common.Controller.ActionType actionType)
         {
             var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.UserCreate);
             ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "model", model);
@@ -481,10 +544,10 @@ namespace Netotik.Web.Areas.Company.Controllers
         }
 
         [NonAction]
-        partial void UserEdit_SaveOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, Netotik.ViewModels.Mikrotik.UsermanagerUserEdit model, Netotik.Common.Controller.ActionType actionType);
+        partial void UserEdit_SaveOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, Netotik.ViewModels.Mikrotik.Usermanager_UserEditModel model, Netotik.Common.Controller.ActionType actionType);
 
         [NonAction]
-        public override System.Web.Mvc.ActionResult UserEdit_Save(Netotik.ViewModels.Mikrotik.UsermanagerUserEdit model, Netotik.Common.Controller.ActionType actionType)
+        public override System.Web.Mvc.ActionResult UserEdit_Save(Netotik.ViewModels.Mikrotik.Usermanager_UserEditModel model, Netotik.Common.Controller.ActionType actionType)
         {
             var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.UserEdit_Save);
             ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "model", model);
