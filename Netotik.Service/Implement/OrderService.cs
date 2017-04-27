@@ -17,7 +17,6 @@ namespace Netotik.Services.Implement
     public class OrderService : BaseService<Order>, IOrderService
     {
         private readonly IDiscountService _discountService;
-        private readonly IShippingMethodService _shippingMethodService;
         private readonly IPaymentTypeService _paymentTypeService;
         private readonly IStateService _addressStateService;
         private readonly ICityService _addressCityService;
@@ -27,7 +26,6 @@ namespace Netotik.Services.Implement
                             IDiscountService discountService,
                             IProductService productService,
                             IPaymentTypeService paymentTypeService,
-                            IShippingMethodService shippingMethodService,
                             ICityService addressCityService,
                             IStateService addressStateService)
             : base(unit)
@@ -35,7 +33,6 @@ namespace Netotik.Services.Implement
             _productSrevice = productService;
             _discountService = discountService;
             _paymentTypeService = paymentTypeService;
-            _shippingMethodService = shippingMethodService;
             _addressCityService = addressCityService;
             _addressStateService = addressStateService;
         }
@@ -45,7 +42,6 @@ namespace Netotik.Services.Implement
         {
             var state = await _addressStateService.All().FirstOrDefaultAsync(x => x.IsActive && x.Id == model.StateId);
             var city = await _addressCityService.All().FirstOrDefaultAsync(x => x.IsActive && x.Id == model.CityId);
-            var shipping = await _shippingMethodService.All().FirstOrDefaultAsync(x => x.IsActive && !x.IsDelete && x.Id == model.ShipingMethodId);
             var payment = await _paymentTypeService.All().FirstOrDefaultAsync(x => x.IsActive && x.Id == model.PaymentTypeId);
             List<ShoppingCartFactorModel> shopingCartList = await _productSrevice.GetForFactorByIdsAsync(cart);
 
@@ -61,8 +57,6 @@ namespace Netotik.Services.Implement
             FactorDetail.StateName = state.Name;
             FactorDetail.CityId = model.CityId;
             FactorDetail.CityName = city.Name;
-            FactorDetail.ShipingMethodId = model.ShipingMethodId.Value;
-            FactorDetail.ShippingMethodName = shipping.Name;
             FactorDetail.PaymentTypeId = model.PaymentTypeId.Value;
             FactorDetail.PaymentTypeName = payment.Name;
             FactorDetail.Coupon = model.coupon;
@@ -72,7 +66,6 @@ namespace Netotik.Services.Implement
 
 
             FactorDetail.TotalPrice = shopingCartList.Sum(x => x.UnitPrice * x.Count);
-            FactorDetail.ShippingPrice = _productSrevice.CalculateShipmentPrice(cart, shipping.Id);
             FactorDetail.ProductDiscountPrice = shopingCartList.Sum(x => x.UnitOffPrice * x.Count);
             FactorDetail.CouponDiscountPrice = await _discountService.GetCouponDiscount(FactorDetail.TotalPrice, model.coupon); ;
             FactorDetail.FactorDiscountPrice = await _discountService.GetDsicountFactorAsync(FactorDetail.TotalPrice);
@@ -96,7 +89,6 @@ namespace Netotik.Services.Implement
         {
             var state = await _addressStateService.All().FirstOrDefaultAsync(x => x.IsActive && x.Id == model.StateId);
             var city = await _addressCityService.All().FirstOrDefaultAsync(x => x.IsActive && x.Id == model.CityId);
-            var shipping = await _shippingMethodService.All().FirstOrDefaultAsync(x => x.IsActive && !x.IsDelete && x.Id == model.ShipingMethodId);
             var payment = await _paymentTypeService.All().FirstOrDefaultAsync(x => x.IsActive && x.Id == model.PaymentTypeId);
             List<ShoppingCartFactorModel> shopingCartList = await _productSrevice.GetForFactorByIdsAsync(cart);
 
@@ -133,13 +125,10 @@ namespace Netotik.Services.Implement
                 orderItem.UnitTaxPrice = item.UnitTaxPrice;
                 orderItem.PeymentPrice = (item.UnitPrice * item.Count) - (item.UnitOffPrice * item.Count) + (item.UnitTaxPrice * item.Count);
                 order.OrderItems.Add(orderItem);
-                order.ShippingMethod = shipping;
-                order.ShippingMethodId = shipping.Id;
             }
 
 
             order.TotalPrice = order.OrderItems.Sum(x => x.UnitPrice * x.Quantity);
-            order.TotalShippingPrice = _productSrevice.CalculateShipmentPrice(cart, shipping.Id);
             order.TotalProductDiscountPrice = order.OrderItems.Sum(x => x.UnitDiscountPrice * x.Quantity);
             order.TotalFactorCouponDiscountPrice = await _discountService.GetCouponDiscount(order.TotalPrice, model.coupon);
             order.CouponText = order.TotalFactorCouponDiscountPrice > 0 ? model.coupon : string.Empty;
@@ -151,8 +140,7 @@ namespace Netotik.Services.Implement
                 order.TotalProductDiscountPrice -
                 order.TotalFactorCouponDiscountPrice -
                 order.TotalFactorDiscountPrice +
-                order.TotalTaxPrice +
-                order.TotalShippingPrice;
+                order.TotalTaxPrice;
 
 
             var orderPayment = new OrderPayment();

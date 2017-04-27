@@ -21,11 +21,9 @@ namespace Netotik.Services.Implement
 {
     public class ProductService : BaseService<Product>, IProductService
     {
-        private readonly IShippingMethodService _shippingMethodService;
-        public ProductService(IUnitOfWork unit, IShippingMethodService shippingMethodService)
+        public ProductService(IUnitOfWork unit)
             : base(unit)
         {
-            _shippingMethodService = shippingMethodService;
         }
         public async Task<bool> ExistsByNameAsync(string name, int? id)
         {
@@ -234,8 +232,6 @@ namespace Netotik.Services.Implement
                 .AsNoTracking()
                 .Where(x => x.Price.HasValue && !x.IsDeleted && x.IsPublished && !x.CallForPrice && !x.DisableBuyButton)
                 .Include(x => x.Picture)
-                .Include(x => x.DeliveryDate)
-                .Include(x => x.Tax)
                 .Include(x => x.Manufacturer.Discounts)
                 .Include(x => x.Categories)
                 .Include(x => x.Discounts)
@@ -255,9 +251,7 @@ namespace Netotik.Services.Implement
                     Name = prod.Name,
                     Manfacturer = prod.Manufacturer.Name,
                     Category = "",
-                    DeliveryDate = prod.DeliveryDate.Name,
-                    // tax price calcalulate with off price
-                    UnitTaxPrice = prod.TaxId.HasValue ? calculatePercentagePrice(prod.Price.Value - CalculateOff(prod), prod.Tax.Percentage) : 0,
+                    //UnitTaxPrice = prod.TaxId.HasValue ? calculatePercentagePrice(prod.Price.Value - CalculateOff(prod), prod.Tax.Percentage) : 0,
                     imgName = prod.PictureId.HasValue ? prod.Picture.FileName : "",
                     IsFreeShipping = prod.IsFreeShipping,
                     weight = prod.Weight,
@@ -268,45 +262,7 @@ namespace Netotik.Services.Implement
             }
             return result;
         }
-
-
-        public decimal CalculateShipmentPrice(List<ShoppingCartModel> list, int shipmentId)
-        {
-            var ids = list.Select(z => z.Id).ToArray();
-            var products = dbSet
-                .Where(x => ids.Any(y => y == x.Id)).ToList();
-
-            var shipment = _shippingMethodService.All()
-                .Include(x => x.ShippingByWeights)
-                .Single(x => x.Id == shipmentId && !x.IsDelete && x.IsActive);
-
-
-            decimal price = shipment.BasePrice;
-            int weight = 0;
-
-            foreach (var item in products)
-                if (!item.IsFreeShipping)
-                    weight += item.Weight * list.Single(x => x.Id == item.Id).Count;
-
-            foreach (var item in shipment.ShippingByWeights)
-            {
-                if ((item.FromWeight.HasValue && item.FromWeight > weight))
-                    continue;
-
-                if ((item.ToWeight.HasValue && item.ToWeight < weight))
-                    continue;
-
-                price += item.AdditionalFixedPrice;
-                return price;
-            }
-
-
-
-            return price;
-        }
-
-
-
+        
 
     }
 }

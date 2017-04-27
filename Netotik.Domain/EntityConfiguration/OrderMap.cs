@@ -11,7 +11,6 @@ namespace Netotik.Domain.EntityConfiguration
             // Primary Key
             this.HasKey(t => t.Id);
 
-            this.Property(t => t.TotalShippingPrice).HasPrecision(18, 0);
             this.Property(t => t.TotalTaxPrice).HasPrecision(18, 0);
             this.Property(t => t.TotalPrice).HasPrecision(18, 0);
             this.Property(t => t.PaymentPrice).HasPrecision(18, 0);
@@ -23,11 +22,6 @@ namespace Netotik.Domain.EntityConfiguration
             this.HasRequired(t => t.Address)
                 .WithMany(t => t.Orders)
                 .HasForeignKey(d => d.AddressId)
-                .WillCascadeOnDelete(false);
-
-            this.HasRequired(t => t.ShippingMethod)
-                .WithMany(t => t.Orders)
-                .HasForeignKey(d => d.ShippingMethodId)
                 .WillCascadeOnDelete(false);
 
             this.HasOptional(t => t.User)

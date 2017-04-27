@@ -19,6 +19,5 @@ namespace Netotik.Domain.Entity
         public virtual ICollection<Address> Addresses { get; set; }
         public virtual ICollection<City> Cities { get; set; }
 
-        public virtual ICollection<Warehouse> WareHoses { get; set; }
     }
 }

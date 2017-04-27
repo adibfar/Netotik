@@ -23,18 +23,9 @@ namespace Netotik.Domain.EntityConfiguration
                 .HasPrecision(18, 0);
 
 
-            this.HasOptional(t => t.DeliveryDate)
-                .WithMany(t => t.Products)
-                .HasForeignKey(d => d.DeliveryDateId);
-
             this.HasOptional(t => t.Manufacturer)
                 .WithMany(t => t.Products)
                 .HasForeignKey(d => d.ManufacturerId);
-
-            this.HasOptional(t => t.Tax)
-                .WithMany(t => t.Products)
-                .HasForeignKey(d => d.TaxId);
-
 
             this.HasOptional(t => t.Picture)
                 .WithMany(t => t.BgProducts)

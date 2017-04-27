@@ -51,10 +51,8 @@ namespace Netotik.Domain.Entity
         public System.DateTime EditDate { get; set; }
         public virtual Picture Picture { get; set; }
         public virtual ICollection<Category> Categories { get; set; }
-        public virtual DeliveryDate DeliveryDate { get; set; }
         public virtual Manufacturer Manufacturer { get; set; }
         public virtual ICollection<OrderItem> OrderItems { get; set; }
-        public virtual Tax Tax { get; set; }
         public virtual ICollection<ProductAttributeValue> ProductAttributeValues { get; set; }
         public virtual ICollection<Discount> Discounts { get; set; }
         public virtual ICollection<Picture> Pictures { get; set; }

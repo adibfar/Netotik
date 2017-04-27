@@ -21,8 +21,6 @@ namespace Netotik.ViewModels.ShopPublic
         public string CityName { get; set; }
         public string Address { get; set; }
         public string Description { get; set; }
-        public int ShipingMethodId { get; set; }
-        public string ShippingMethodName{ get; set; }
         public int PaymentTypeId { get; set; }
         public string PaymentTypeName { get; set; }
         public decimal TotalPrice { get; set; }

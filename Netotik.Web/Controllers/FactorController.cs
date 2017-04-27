@@ -23,7 +23,6 @@ namespace Netotik.Web.Controllers
         private readonly IOrderService _orderService;
         private readonly IOrderPaymentService _orderPaymentService;
         private readonly IDiscountService _discountService;
-        private readonly IShippingMethodService _shippingMethodService;
         private readonly IPaymentTypeService _paymentTypeService;
         private readonly IStateService _addressStateService;
         private readonly ICityService _addressCityService;
@@ -38,7 +37,6 @@ namespace Netotik.Web.Controllers
             IOrderPaymentService orderPaymentService,
             IDiscountService discountService,
             IPaymentTypeService paymentTypeService,
-            IShippingMethodService shippingMethodService,
             ICityService addressCityService,
             IStateService addressStateService,
             IManufacturerService manufacturerService,
@@ -51,7 +49,6 @@ namespace Netotik.Web.Controllers
             _orderService = orderService;
             _discountService = discountService;
             _paymentTypeService = paymentTypeService;
-            _shippingMethodService = shippingMethodService;
             _addressCityService = addressCityService;
             _addressStateService = addressStateService;
             _categoryService = categoryService;
@@ -66,7 +63,6 @@ namespace Netotik.Web.Controllers
             if (User != null)
             {
                 await LoadState();
-                await loadShipmentPrice();
                 await loadPaymentType();
             }
 
@@ -311,7 +307,6 @@ namespace Netotik.Web.Controllers
                 .Include(x => x.Categories)
                 .Include(x => x.Manufacturer.Discounts)
                 .Include(x => x.Discounts)
-                .Include(x => x.DeliveryDate)
                 .FirstOrDefault(x => !x.IsDeleted && x.Price.HasValue && x.IsPublished && x.Id == id);
 
 
@@ -359,37 +354,6 @@ namespace Netotik.Web.Controllers
 
 
         #region Private
-
-        private async Task loadShipmentPrice()
-        {
-            List<ShoppingCartModel> cart;
-            string cartCookie = HttpContext.GetCookieValue("ShoppingCart");
-
-            if (string.IsNullOrEmpty(cartCookie))
-                cart = new List<ShoppingCartModel>();
-            else cart = JsonConvert.DeserializeObject<List<ShoppingCartModel>>(cartCookie);
-
-
-            var list = await _shippingMethodService
-                .All()
-                .AsNoTracking()
-                .Include(x => x.Picture)
-                .Where(x => !x.IsDelete && x.IsActive)
-                .ToListAsync();
-
-
-            ViewBag.ShippingMethodes = list.OrderBy(x => x.DisplayOrder).Select(x => new ShippingListModel
-            {
-                Id = x.Id,
-                imgName = x.PictureId.HasValue ? x.Picture.FileName : "",
-                Name = x.Name,
-                Description = x.Description,
-                PriceAfterRecive = x.PriceAfterRecive,
-                Price = x.PriceAfterRecive ? 0 : _productSrevice.CalculateShipmentPrice(cart, x.Id),
-                Selected = x.IsDefault
-            }).ToList();
-
-        }
 
         private async Task loadPaymentType()
         {
