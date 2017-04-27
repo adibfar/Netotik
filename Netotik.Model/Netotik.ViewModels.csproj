@@ -143,8 +143,6 @@
     <Compile Include="Shop\ShopPublic\ShoppingCartModel.cs" />
     <Compile Include="Shop\Discount\DiscountModel.cs" />
     <Compile Include="Shop\Discount\TableDiscountModel.cs" />
-    <Compile Include="Shop\ProductGalleryAdmin\ProductGalleryModel.cs" />
-    <Compile Include="Shop\ProductGalleryAdmin\TableProductGalleryModel.cs" />
     <Compile Include="Shop\ProductGalleryPanel\BoxProductGalleryModel.cs" />
     <Compile Include="Shop\ProductGalleryPanel\FilterProductGalleryModel.cs" />
     <Compile Include="Shop\ProductGalleryPanel\ProductGalleryGridModel.cs" />
@@ -156,15 +154,8 @@
     <Compile Include="Shop\ProductAttributeValue\ProductAttributeValueModel.cs" />
     <Compile Include="Shop\ProductAttribute\ProductAttributeModel.cs" />
     <Compile Include="Shop\ProductAttribute\TableProductAttributeModel.cs" />
-    <Compile Include="Shop\WareHouse\WareHouseModel.cs" />
-    <Compile Include="Shop\WareHouse\TableWareHouseModel.cs" />
-    <Compile Include="Shop\Tax\TaxModel.cs" />
     <Compile Include="Shop\PeymentType\PeymentTypeModel.cs" />
     <Compile Include="Shop\PeymentType\TableManufacturerModel.cs" />
-    <Compile Include="Shop\ShippingByWeight\ShippingByWeightModel.cs" />
-    <Compile Include="Shop\ShippingByWeight\TableShippingByWeightModel.cs" />
-    <Compile Include="Shop\ShippingMethod\ShippingMethodModel.cs" />
-    <Compile Include="Shop\ShippingMethod\TableShippingMethodModel.cs" />
     <Compile Include="Shop\Manufacturer\ManufacturerModel.cs" />
     <Compile Include="Shop\Manufacturer\TableManufacturerModel.cs" />
     <Compile Include="Shop\DeliveryDate\DeliveryDateModel.cs" />
