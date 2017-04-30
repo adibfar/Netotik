@@ -141,11 +141,36 @@ namespace Netotik.Web.Areas.Admin.Controllers
         #endregion
 
         #region Edit
+
         [Mvc5Authorize(Roles = AssignableToRolePermissions.CanDeleteUser)]
         [HttpPost]
         public virtual ActionResult Remove(int id = 0)
         {
             _applicationUserManager.LogicalRemove(id);
+            return RedirectToAction(MVC.Admin.UserReseller.Index());
+        }
+
+        [Mvc5Authorize(Roles = AssignableToRolePermissions.CanDeleteUser)]
+        [HttpPost]
+        public virtual ActionResult Active(int id = 0)
+        {
+            var user = _applicationUserManager.FindUserById(id);
+            if (user.IsBanned == true && user.UserType == UserType.UserReseller)
+                _applicationUserManager.ActiveUser(id);
+            // add message
+
+            return RedirectToAction(MVC.Admin.UserReseller.Index());
+        }
+
+        [Mvc5Authorize(Roles = AssignableToRolePermissions.CanDeleteUser)]
+        [HttpPost]
+        public virtual ActionResult Banne(int id = 0)
+        {
+            var user = _applicationUserManager.FindUserById(id);
+            if (user.IsBanned == false && user.UserType == UserType.UserReseller)
+                _applicationUserManager.BanneUser(id);
+            // add message
+
             return RedirectToAction(MVC.Admin.UserReseller.Index());
         }
 
@@ -218,44 +243,6 @@ namespace Netotik.Web.Areas.Admin.Controllers
 
             this.MessageSuccess(Messages.MissionSuccess, Messages.UpdateSuccess);
             return RedirectToAction(MVC.Admin.UserReseller.Index());
-        }
-
-
-        [Mvc5Authorize(Roles = AssignableToRolePermissions.CanEditUser)]
-        public virtual ActionResult ChangePassword(int id)
-        {
-            //var user = _applicationUserManager.SingleOrDefault(id);
-            //return View(new UserChangePasswordModel() { Id = user.Id });
-            return View();
-        }
-
-        [Mvc5Authorize(Roles = AssignableToRolePermissions.CanEditUser)]
-        [HttpPost]
-        public virtual async Task<ActionResult> ChangePassword(ChangePasswordModel model)
-        {
-            //if (!ModelState.IsValid)
-            //{
-
-            //    this.MessageError(Messages.MissionFail, Messages.InvalidDataError);
-            //}
-            //else
-            //{
-            //    var result = await _applicationUserManager.ChangePasswordAsync(model.Id, Encryption.EncryptingPassword(model.Password));
-            //    if (result.Status)
-            //    {
-            //        try
-            //        {
-            //            await _uow.SaveChangesAsync();
-            //        }
-            //        catch (Exception ex)
-            //        {
-            //            this.MessageError(Messages.MissionFail, Messages.UpdateError);
-            //        }
-            //    }
-            //    SetResultMessage(result);
-            //}
-            //return View(model);
-            return View();
         }
 
         #endregion

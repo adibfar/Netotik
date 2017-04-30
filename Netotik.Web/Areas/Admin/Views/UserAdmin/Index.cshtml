@@ -89,16 +89,16 @@
                                      result += '<a href="/Admin/UserAdmin/Edit/' + full.Id + '" class="edit dropdown-item">'
                                                                      + '<i class="icon-pen3"></i> ویرایش </a>'
                                      if (full.IsBanned == false) {
-                                         result += '<a href="/Admin/UserAdmin/Banne/' + full.Id + '" class="dropdown-item">'
+                                         result += '<a onclick="banne(' + full.Id + ');" class="dropdown-item">'
                                             + '<i class="icon-blocked"></i> مسدود کردن</a>';
                                      } else {
-                                         result += '<a href="/Admin/User/ActiveAdmin/' + full.Id + '" class="dropdown-item">'
+                                         result += '<a onclick="active(' + full.Id + ');" class="dropdown-item">'
                                             + '<i class="icon-checkmark2"></i> فعال کردن</a>';
                                      }
                                  }
 
                                  if (canDelete == 'True') {
-                                     result += '<a href="/Admin/UserAdmin/Remove/' + full.Id + '" class="dropdown-item">'
+                                     result += '<a onclick="remove(' + full.Id + ');" class="dropdown-item">'
                                        + '<i class="icon-trash4"></i> حذف </a>';
                                  }
                                  result += "</span></span>";
@@ -122,8 +122,21 @@
                     "sUrl": "/Content/js/plugins/tables/datatable/dataTables.persian.txt"
                 }
             });
-
         });
+
+
+        function remove(id) {
+                PostData("@Url.Action(MVC.Admin.UserAdmin.Remove())", { id: id });
+        }
+
+        function active(id) {
+                PostData("@Url.Action(MVC.Admin.UserAdmin.Active())", { id: id });
+        }
+
+        function banne(id) {
+                PostData("@Url.Action(MVC.Admin.UserAdmin.Banne())", { id: id });
+        }
+
     </script>
 }
 
