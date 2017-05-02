@@ -58,16 +58,17 @@ namespace Netotik.Web.Areas.Company.Controllers
         {
             return View();
         }
-
+        [Mvc5Authorize(Roles = "Company")]
         public virtual ActionResult MyProfile()
         {
             return View();
         }
+        [Mvc5Authorize(Roles = "Company")]
         public virtual ActionResult ProfileData()
         {
             return PartialView(MVC.Company.Home.Views._ProfileData, _applicationUserManager.GetUserCompanyProfile(UserLogined.Id));
         }
-
+        [Mvc5Authorize(Roles = "Company")]
         [ValidateAntiForgeryToken]
         [HttpPost]
         public virtual async Task<ActionResult> changeImageProfile(HttpPostedFileBase image)
@@ -97,7 +98,7 @@ namespace Netotik.Web.Areas.Company.Controllers
             this.MessageInformation(Messages.MissionSuccess, Messages.UpdateSuccess);
             return RedirectToAction(MVC.Company.Home.MyProfile());
         }
-
+        [Mvc5Authorize(Roles = "Company")]
         [ValidateAntiForgeryToken]
         [HttpPost]
         public virtual async Task<ActionResult> UpdateProfile(ProfileModel model)
@@ -124,11 +125,12 @@ namespace Netotik.Web.Areas.Company.Controllers
             await _applicationUserManager.UpdateUserCompanyProfile(model);
             return RedirectToAction(MVC.Company.Home.ActionNames.MyProfile);
         }
-
+        [Mvc5Authorize(Roles = "Company")]
         public virtual ActionResult MikrotikConf()
         {
             return View(_applicationUserManager.GetUserCompanyMikrotikConf(UserLogined.Id));
         }
+        [Mvc5Authorize(Roles = "Company")]
         [ValidateAntiForgeryToken]
         [HttpPost]
         public virtual async Task<ActionResult> MikrotikConf(MikrotikConfModel model)

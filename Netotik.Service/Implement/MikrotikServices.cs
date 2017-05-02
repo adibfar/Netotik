@@ -365,7 +365,7 @@ namespace Netotik.Services.Implement
             if (!mikrotik.Login(user, pass)) mikrotik.Close();
             //-----------------------------------------------
             mikrotik.Send("/tool/user-manager/user/set");
-            string temp = String.Format("=.id={0}", model.username);
+            string temp = String.Format("=.id={0}", model.id);
             mikrotik.Send(temp);
             temp = String.Format("=comment={0}", model.comment);
             mikrotik.Send(temp);
@@ -385,6 +385,7 @@ namespace Netotik.Services.Implement
             mikrotik.Send(temp);
             temp = String.Format("=username={0}", model.username);
             mikrotik.Send(temp, true);
+            var temp96 = mikrotik.Read();
             if (model.profile != "")
             {
                 mikrotik.Send("/tool/user-manager/user/create-and-activate-profile");

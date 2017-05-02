@@ -1,9 +1,11 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.Web.Mvc;
 
 namespace Netotik.ViewModels.Mikrotik
 {
     public class Usermanager_UserEditModel
     {
+        [AllowHtml]
         public string id { get; set; }
         [RegularExpression(@"^[a-zA-Z1-9]+$", ErrorMessage = "فقط انگلیسی وارد کنید")]
         [Display(Name = "ایجاد کننده")]

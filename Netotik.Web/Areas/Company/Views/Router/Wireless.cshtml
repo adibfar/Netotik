@@ -68,7 +68,7 @@
                                             </td>
                                             <td>
                                                 <span class="dropdown">
-                                                    <button id="btnSearchDrop2" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" class="btn btn-success dropdown-toggle dropdown-menu-right"><i class="icon-cog3"></i></button>
+                                                    <button id="btnSearchDrop2" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" class="btn btn-outline-secondary dropdown-toggle dropdown-menu-right"><i class="icon-cog3"></i> پردازش</button>
                                                     <span aria-labelledby="btnSearchDrop2" class="dropdown-menu mt-1 dropdown-menu-right">
                                                         <form action="" style="float:right" method="post">
                                                             @Html.AntiForgeryToken()
@@ -104,6 +104,7 @@
                                 }
                             </tbody>
                         </table>
+                        <br /><br /><br /><br />
                     </div>
                 </div>
             </div>
@@ -125,6 +126,7 @@
                 "bFilter": true,
                 "scrollX": true,
                 "bAutoWidth": true,
+                "aoColumnDefs": [{ "bSortable": false, "aTargets": [-1] }],
                 "aLengthMenu": [[10, 25, 50, 100], [10, 25, 50, 100]],
                 "oLanguage": {
                     "sUrl": "/Content/js/plugins/tables/datatable/dataTables.persian.txt"
@@ -132,9 +134,8 @@
                 dom: 'C<"clear">lfrtip',
                 columnDefs: [{
                     visible: !1,
-                    targets: [6,7,8,9,10,11,12,13,14,15,16],
+                    targets: [6, 7, 8, 9, 10, 11, 12, 13,14,15,16],
                     buttonText: "ویرایش جدول",
-                    exclude: [0]
                 }],
                 colVis: {
                     restore: "پیشفرض",
@@ -144,9 +145,27 @@
             });
         });
 
-        $(window).bind('resize', function () {
-            table.fnAdjustColumnSizing();
-        });
+
+        function Userremove(id) {
+            PostData("@Url.Action(MVC.Company.UserManager.Userremove())", { id: id });
+        }
+
+        function Userdisable(id) {
+            PostData("@Url.Action(MVC.Company.UserManager.Userdisable())", { id: id });
+        }
+
+        function Userenable(id) {
+            PostData("@Url.Action(MVC.Company.UserManager.Userenable())", { id: id });
+        }
+
+
+        function UserEdit(id) {
+            PostData("@Url.Action(MVC.Company.UserManager.UserEdit())", { id: id });
+        }
+
+        function UserDetails(id) {
+            PostData("@Url.Action(MVC.Company.UserManager.UserDetails())", { id: id });
+        }
+
     </script>
 }
-

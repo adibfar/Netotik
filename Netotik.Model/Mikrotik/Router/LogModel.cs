@@ -1,7 +1,10 @@
-﻿namespace Netotik.ViewModels.Mikrotik
+﻿using System.Web.Mvc;
+
+namespace Netotik.ViewModels.Mikrotik
 {
     public class Router_LogModel
     {
+        [AllowHtml]
         public string id { get; set; }
 
         public string time { get; set; }
