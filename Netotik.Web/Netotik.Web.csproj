@@ -350,9 +350,6 @@
     <Compile Include="Admin.OrderNotPaymentController.generated.cs">
       <DependentUpon>T4MVC.tt</DependentUpon>
     </Compile>
-    <Compile Include="Admin.ResellerController.generated.cs">
-      <DependentUpon>T4MVC.tt</DependentUpon>
-    </Compile>
     <Compile Include="Admin.ResourceController.generated.cs">
       <DependentUpon>T4MVC.tt</DependentUpon>
     </Compile>
@@ -363,9 +360,6 @@
       <DependentUpon>T4MVC.tt</DependentUpon>
     </Compile>
     <Compile Include="Admin.ShopCategoryController.generated.cs">
-      <DependentUpon>T4MVC.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Admin.ShopDeliveryDateController.generated.cs">
       <DependentUpon>T4MVC.tt</DependentUpon>
     </Compile>
     <Compile Include="Admin.ShopDiscountController.generated.cs">
@@ -384,12 +378,6 @@
       <DependentUpon>T4MVC.tt</DependentUpon>
     </Compile>
     <Compile Include="Admin.ShopProductController.generated.cs">
-      <DependentUpon>T4MVC.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Admin.ShopShippingByWeightController.generated.cs">
-      <DependentUpon>T4MVC.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Admin.ShopShippingMethodController.generated.cs">
       <DependentUpon>T4MVC.tt</DependentUpon>
     </Compile>
     <Compile Include="Admin.ShopTaxController.generated.cs">
@@ -437,14 +425,10 @@
     <Compile Include="Areas\Admin\Controllers\HomeController.cs" />
     <Compile Include="Areas\Admin\Controllers\ContactUsController.cs" />
     <Compile Include="Areas\Admin\Controllers\ContentTagController.cs" />
-    <Compile Include="Areas\Admin\Controllers\ShopTaxController.cs" />
     <Compile Include="Areas\Admin\Controllers\MenuController.cs" />
     <Compile Include="Areas\Admin\Controllers\CommentsController.cs" />
     <Compile Include="Areas\Admin\Controllers\ShopPaymentTypeController.cs" />
-    <Compile Include="Areas\Admin\Controllers\ShopShippingByWeightController.cs" />
-    <Compile Include="Areas\Admin\Controllers\ShopShippingMethodController.cs" />
     <Compile Include="Areas\Admin\Controllers\ShopManuFacturerController.cs" />
-    <Compile Include="Areas\Admin\Controllers\ShopDeliveryDateController.cs" />
     <Compile Include="Areas\Admin\Controllers\ShopProductAttributeController.cs" />
     <Compile Include="Areas\Admin\Controllers\AdvertiseController.cs" />
     <Compile Include="Areas\Admin\Controllers\SliderController.cs" />
@@ -2114,7 +2098,6 @@
     <Content Include="Areas\Admin\Views\ContactUs\_Table.cshtml" />
     <Content Include="Areas\Admin\Views\ContactUs\_Show.cshtml" />
     <Content Include="Areas\Admin\Views\UserReseller\_Table.cshtml" />
-    <Content Include="Areas\Admin\Views\UserReseller\ChangePassword.cshtml" />
     <Content Include="Areas\Admin\Views\UserReseller\Create.cshtml" />
     <Content Include="Areas\Admin\Views\UserReseller\Edit.cshtml" />
     <Content Include="Areas\Admin\Views\UserReseller\Index.cshtml" />
@@ -2192,7 +2175,6 @@
     <Content Include="Views\Shared\_Head.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Shared\_Message.cshtml" />
-    <Content Include="Areas\Admin\Views\UserAdmin\ChangePassword.cshtml" />
     <Content Include="Areas\Admin\Views\UserAdmin\Create.cshtml" />
     <Content Include="Areas\Admin\Views\UserAdmin\Edit.cshtml" />
     <Content Include="Areas\Admin\Views\UserAdmin\Index.cshtml" />
@@ -2246,12 +2228,6 @@
     <Content Include="Areas\Admin\Views\ShopCategory\Detail.cshtml" />
     <Content Include="Areas\Admin\Views\ShopCategory\Edit.cshtml" />
     <Content Include="Areas\Admin\Views\ShopCategory\Index.cshtml" />
-    <Content Include="Areas\Admin\Views\ShopDeliveryDate\_Table.cshtml" />
-    <Content Include="Areas\Admin\Views\ShopDeliveryDate\Create.cshtml" />
-    <Content Include="Areas\Admin\Views\ShopDeliveryDate\CreateOrEdit.cshtml" />
-    <Content Include="Areas\Admin\Views\ShopDeliveryDate\Detail.cshtml" />
-    <Content Include="Areas\Admin\Views\ShopDeliveryDate\Edit.cshtml" />
-    <Content Include="Areas\Admin\Views\ShopDeliveryDate\Index.cshtml" />
     <Content Include="Areas\Admin\Views\State\_Table.cshtml" />
     <Content Include="Areas\Admin\Views\State\_Create.cshtml" />
     <Content Include="Areas\Admin\Views\State\_Edit.cshtml" />
@@ -2266,17 +2242,6 @@
     <Content Include="Areas\Admin\Views\ShopManufacturer\Detail.cshtml" />
     <Content Include="Areas\Admin\Views\ShopManufacturer\Edit.cshtml" />
     <Content Include="Areas\Admin\Views\ShopManufacturer\Index.cshtml" />
-    <Content Include="Areas\Admin\Views\ShopShippingMethod\_Table.cshtml" />
-    <Content Include="Areas\Admin\Views\ShopShippingMethod\Create.cshtml" />
-    <Content Include="Areas\Admin\Views\ShopShippingMethod\CreateOrEdit.cshtml" />
-    <Content Include="Areas\Admin\Views\ShopShippingMethod\Detail.cshtml" />
-    <Content Include="Areas\Admin\Views\ShopShippingMethod\Edit.cshtml" />
-    <Content Include="Areas\Admin\Views\ShopShippingMethod\Index.cshtml" />
-    <Content Include="Areas\Admin\Views\ShopShippingByWeight\_Table.cshtml" />
-    <Content Include="Areas\Admin\Views\ShopShippingByWeight\Create.cshtml" />
-    <Content Include="Areas\Admin\Views\ShopShippingByWeight\CreateOrEdit.cshtml" />
-    <Content Include="Areas\Admin\Views\ShopShippingByWeight\Edit.cshtml" />
-    <Content Include="Areas\Admin\Views\ShopShippingByWeight\Index.cshtml" />
     <Content Include="Areas\Admin\Views\ShopPaymentType\_Table.cshtml" />
     <Content Include="Areas\Admin\Views\ShopPaymentType\Create.cshtml" />
     <Content Include="Areas\Admin\Views\ShopPaymentType\CreateOrEdit.cshtml" />
@@ -2375,12 +2340,6 @@
     <Content Include="Areas\Admin\Views\Shared\EditorTemplates\SummerNoteEditorNoLabel.cshtml" />
     <Content Include="Areas\Admin\Views\Shared\EditorTemplates\TimePicker.cshtml" />
     <Content Include="Areas\Admin\Views\Shared\Error.cshtml" />
-    <Content Include="Areas\Admin\Views\Reseller\_Table.cshtml" />
-    <Content Include="Areas\Admin\Views\Reseller\ChangePassword.cshtml" />
-    <Content Include="Areas\Admin\Views\Reseller\Create.cshtml" />
-    <Content Include="Areas\Admin\Views\Reseller\Detail.cshtml" />
-    <Content Include="Areas\Admin\Views\Reseller\Edit.cshtml" />
-    <Content Include="Areas\Admin\Views\Reseller\Index.cshtml" />
     <Content Include="Areas\Reseller\Views\web.config">
       <SubType>Designer</SubType>
     </Content>

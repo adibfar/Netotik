@@ -48,7 +48,6 @@ namespace Netotik.Data.Context
         public DbSet<Category> Categories { get; set; }
         public DbSet<Content> Contents { get; set; }
         public DbSet<ContentComment> ContentComments { get; set; }
-        public DbSet<DeliveryDate> DeliveryDates { get; set; }
         public DbSet<Discount> Discounts { get; set; }
         public DbSet<DiscountRequirement> DiscountRequirements { get; set; }
         public DbSet<DiscountUsageHistory> DiscountUsageHistories { get; set; }
@@ -64,19 +63,12 @@ namespace Netotik.Data.Context
         public DbSet<ProductAttribute> ProductAttributes { get; set; }
         public DbSet<ProductAttributeValue> ProductAttributeValues { get; set; }
         public DbSet<Product> Products { get; set; }
-        public DbSet<ProductGallery> GalleryProducts { get; set; }
         public DbSet<ProductComment> ProductComments { get; set; }
         public DbSet<ReturnRequest> ReturnRequests { get; set; }
         public DbSet<Permisson> Permissons { get; set; }
         public DbSet<Setting> Settings { get; set; }
-        public DbSet<Shipment> Shipments { get; set; }
-        public DbSet<ShipmentItem> ShipmentItems { get; set; }
-        public DbSet<ShippingByWeight> ShippingByWeights { get; set; }
-        public DbSet<ShippingMethod> ShippingMethods { get; set; }
         public DbSet<ContentCategory> ContentCategories { get; set; }
         public DbSet<ContentTag> ContentTags { get; set; }
-        public DbSet<Tax> Taxes { get; set; }
-        public DbSet<Warehouse> Warehouses { get; set; }
         public DbSet<InboxContactUsMessage> InboxMessages { get; set; }
         public DbSet<Link> Linkes { get; set; }
         public DbSet<Resource> Resources { get; set; }
@@ -90,11 +82,10 @@ namespace Netotik.Data.Context
             modelBuilder.Configurations.Add(new LinkMap());
             modelBuilder.Configurations.Add(new AddressMap());
             modelBuilder.Configurations.Add(new AddressCityMap());
-            modelBuilder.Configurations.Add(new AddressStateMap());
+            modelBuilder.Configurations.Add(new StateMap());
             modelBuilder.Configurations.Add(new CategoryMap());
             modelBuilder.Configurations.Add(new ContentMap());
             modelBuilder.Configurations.Add(new ContentCommentMap());
-            modelBuilder.Configurations.Add(new DeliveryDateMap());
             modelBuilder.Configurations.Add(new DiscountMap());
             modelBuilder.Configurations.Add(new DiscountRequirementMap());
             modelBuilder.Configurations.Add(new DiscountUsageHistoryMap());
@@ -108,21 +99,14 @@ namespace Netotik.Data.Context
             modelBuilder.Configurations.Add(new PictureMap());
             modelBuilder.Configurations.Add(new FileMap());
             modelBuilder.Configurations.Add(new ProductMap());
-            modelBuilder.Configurations.Add(new ProductGalleryMap());
             modelBuilder.Configurations.Add(new ProductCommentMap());
             modelBuilder.Configurations.Add(new ProductAttributeMap());
             modelBuilder.Configurations.Add(new ProductAttributeValueMap());
             modelBuilder.Configurations.Add(new ReturnRequestMap());
             modelBuilder.Configurations.Add(new PermissonMap());
             modelBuilder.Configurations.Add(new SettingMap());
-            modelBuilder.Configurations.Add(new ShipmentMap());
-            modelBuilder.Configurations.Add(new ShipmentItemMap());
-            modelBuilder.Configurations.Add(new ShippingByWeightMap());
-            modelBuilder.Configurations.Add(new ShippingMethodMap());
             modelBuilder.Configurations.Add(new ContentCategoryMap());
             modelBuilder.Configurations.Add(new ContentTagMap());
-            modelBuilder.Configurations.Add(new TaxMap());
-            modelBuilder.Configurations.Add(new WarehouseMap());
             modelBuilder.Configurations.Add(new InboxMessageMap());
 
 

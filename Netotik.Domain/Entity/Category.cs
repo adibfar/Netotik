@@ -10,7 +10,6 @@ namespace Netotik.Domain.Entity
         {
             this.SubCategories = new List<Category>();
             this.Products = new List<Product>();
-            this.GalleryProducts = new List<ProductGallery>();
             this.Discounts = new List<Discount>();
             this.ProductAttributes = new List<ProductAttribute>();
         }
@@ -43,7 +42,6 @@ namespace Netotik.Domain.Entity
         public virtual Category Parent { get; set; }
         public virtual Picture Picture { get; set; }
         public virtual ICollection<Product> Products { get; set; }
-        public virtual ICollection<ProductGallery> GalleryProducts { get; set; }
         public virtual ICollection<ProductAttribute> ProductAttributes { get; set; }
         public virtual ICollection<Discount> Discounts { get; set; }
     }

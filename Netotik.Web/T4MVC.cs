@@ -72,24 +72,20 @@ namespace T4MVC
         public Netotik.Web.Areas.Admin.Controllers.ResourceController Resource = new Netotik.Web.Areas.Admin.Controllers.T4MVC_ResourceController();
         public Netotik.Web.Areas.Admin.Controllers.RoleController Role = new Netotik.Web.Areas.Admin.Controllers.T4MVC_RoleController();
         public Netotik.Web.Areas.Admin.Controllers.ShopCategoryController ShopCategory = new Netotik.Web.Areas.Admin.Controllers.T4MVC_ShopCategoryController();
-        public Netotik.Web.Areas.Admin.Controllers.ShopDeliveryDateController ShopDeliveryDate = new Netotik.Web.Areas.Admin.Controllers.T4MVC_ShopDeliveryDateController();
         public Netotik.Web.Areas.Admin.Controllers.ShopDiscountController ShopDiscount = new Netotik.Web.Areas.Admin.Controllers.T4MVC_ShopDiscountController();
         public Netotik.Web.Areas.Admin.Controllers.ShopManuFacturerController ShopManuFacturer = new Netotik.Web.Areas.Admin.Controllers.T4MVC_ShopManuFacturerController();
         public Netotik.Web.Areas.Admin.Controllers.ShopPaymentTypeController ShopPaymentType = new Netotik.Web.Areas.Admin.Controllers.T4MVC_ShopPaymentTypeController();
         public Netotik.Web.Areas.Admin.Controllers.ShopProductAttributeController ShopProductAttribute = new Netotik.Web.Areas.Admin.Controllers.T4MVC_ShopProductAttributeController();
         public Netotik.Web.Areas.Admin.Controllers.ShopProductCommentsController ShopProductComments = new Netotik.Web.Areas.Admin.Controllers.T4MVC_ShopProductCommentsController();
         public Netotik.Web.Areas.Admin.Controllers.ShopProductController ShopProduct = new Netotik.Web.Areas.Admin.Controllers.T4MVC_ShopProductController();
-        public Netotik.Web.Areas.Admin.Controllers.ShopShippingByWeightController ShopShippingByWeight = new Netotik.Web.Areas.Admin.Controllers.T4MVC_ShopShippingByWeightController();
-        public Netotik.Web.Areas.Admin.Controllers.ShopShippingMethodController ShopShippingMethod = new Netotik.Web.Areas.Admin.Controllers.T4MVC_ShopShippingMethodController();
-        public Netotik.Web.Areas.Admin.Controllers.ShopTaxController ShopTax = new Netotik.Web.Areas.Admin.Controllers.T4MVC_ShopTaxController();
         public Netotik.Web.Areas.Admin.Controllers.SliderController Slider = new Netotik.Web.Areas.Admin.Controllers.T4MVC_SliderController();
         public Netotik.Web.Areas.Admin.Controllers.StateController State = new Netotik.Web.Areas.Admin.Controllers.T4MVC_StateController();
         public Netotik.Web.Areas.Admin.Controllers.TicketController Ticket = new Netotik.Web.Areas.Admin.Controllers.T4MVC_TicketController();
         public Netotik.Web.Areas.Admin.Controllers.TicketTagController TicketTag = new Netotik.Web.Areas.Admin.Controllers.T4MVC_TicketTagController();
         public Netotik.Web.Areas.Admin.Controllers.UserAdminController UserAdmin = new Netotik.Web.Areas.Admin.Controllers.T4MVC_UserAdminController();
         public Netotik.Web.Areas.Admin.Controllers.UserResellerController UserReseller = new Netotik.Web.Areas.Admin.Controllers.T4MVC_UserResellerController();
-        public T4MVC.Admin.ResellerController Reseller = new T4MVC.Admin.ResellerController();
         public T4MVC.Admin.SharedController Shared = new T4MVC.Admin.SharedController();
+        public T4MVC.Admin.ShopTaxController ShopTax = new T4MVC.Admin.ShopTaxController();
     }
     [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
     public class CompanyClass

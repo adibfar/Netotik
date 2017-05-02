@@ -66,7 +66,6 @@
     <Compile Include="EntityConfiguration\LinkMap.cs" />
     <Compile Include="EntityConfiguration\FileMap.cs" />
     <Compile Include="EntityConfiguration\AdvertiseMap.cs" />
-    <Compile Include="EntityConfiguration\ProductGalleryMap.cs" />
     <Compile Include="EntityConfiguration\SliderMap.cs" />
     <Compile Include="EntityConfiguration\InboxMessageMap.cs" />
     <Compile Include="EntityConfiguration\UserResellerMap.cs" />
@@ -79,10 +78,8 @@
     <Compile Include="Entity\TicketTrack.cs" />
     <Compile Include="Entity\Ticket.cs" />
     <Compile Include="Entity\Content.cs" />
-    <Compile Include="Entity\ProductGallery.cs" />
     <Compile Include="Entity\ProductComment.cs" />
     <Compile Include="Entity\ContentComment.cs" />
-    <Compile Include="Entity\DeliveryDate.cs" />
     <Compile Include="Entity\Discount.cs" />
     <Compile Include="Entity\DiscountRequirement.cs" />
     <Compile Include="Entity\DiscountUsageHistory.cs" />
@@ -91,11 +88,10 @@
     <Compile Include="Entity\Manufacturer.cs" />
     <Compile Include="EntityConfiguration\AddressCityMap.cs" />
     <Compile Include="EntityConfiguration\AddressMap.cs" />
-    <Compile Include="EntityConfiguration\AddressStateMap.cs" />
+    <Compile Include="EntityConfiguration\StateMap.cs" />
     <Compile Include="EntityConfiguration\CategoryMap.cs" />
     <Compile Include="EntityConfiguration\ContentCommentMap.cs" />
     <Compile Include="EntityConfiguration\ContentMap.cs" />
-    <Compile Include="EntityConfiguration\DeliveryDateMap.cs" />
     <Compile Include="EntityConfiguration\DiscountMap.cs" />
     <Compile Include="EntityConfiguration\DiscountRequirementMap.cs" />
     <Compile Include="EntityConfiguration\DiscountUsageHistoryMap.cs" />
@@ -113,16 +109,10 @@
     <Compile Include="EntityConfiguration\ReturnRequestMap.cs" />
     <Compile Include="EntityConfiguration\PermissonMap.cs" />
     <Compile Include="EntityConfiguration\SettingMap.cs" />
-    <Compile Include="EntityConfiguration\ShipmentItemMap.cs" />
-    <Compile Include="EntityConfiguration\ShipmentMap.cs" />
-    <Compile Include="EntityConfiguration\ShippingByWeightMap.cs" />
-    <Compile Include="EntityConfiguration\ShippingMethodMap.cs" />
     <Compile Include="EntityConfiguration\ContentCategoryMap.cs" />
-    <Compile Include="EntityConfiguration\TaxMap.cs" />
     <Compile Include="EntityConfiguration\UserMap.cs" />
     <Compile Include="EntityConfiguration\UserAdminMap.cs" />
     <Compile Include="EntityConfiguration\RoleMap.cs" />
-    <Compile Include="EntityConfiguration\WarehouseMap.cs" />
     <Compile Include="Entity\Link.cs" />
     <Compile Include="Entity\File.cs" />
     <Compile Include="Entity\Advertise.cs" />
@@ -146,16 +136,10 @@
     <Compile Include="Entity\ReturnRequest.cs" />
     <Compile Include="Entity\Permisson.cs" />
     <Compile Include="Entity\Setting.cs" />
-    <Compile Include="Entity\Shipment.cs" />
-    <Compile Include="Entity\ShipmentItem.cs" />
-    <Compile Include="Entity\ShippingByWeight.cs" />
-    <Compile Include="Entity\ShippingMethod.cs" />
     <Compile Include="Entity\ContentCategory.cs" />
-    <Compile Include="Entity\Tax.cs" />
     <Compile Include="Entity\User.cs" />
     <Compile Include="Entity\UserAdmin.cs" />
     <Compile Include="Entity\Role.cs" />
-    <Compile Include="Entity\Warehouse.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -18,7 +18,6 @@ namespace Netotik.Services.Abstract
         List<BoxProductModel> GetRelativeProduct(int size, int[] categoryIds, int productId);
         List<BoxProductModel> GetLastProduct(int size);
 
-        decimal CalculateShipmentPrice(List<ShoppingCartModel> list, int shipmentId);
         Task<List<ShoppingCartFactorModel>> GetForFactorByIdsAsync(List<ShoppingCartModel> list);
 
         Task<bool> ExistsByNameAsync(string name, int? id);

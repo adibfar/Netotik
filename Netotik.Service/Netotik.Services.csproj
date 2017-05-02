@@ -156,16 +156,12 @@
     <Compile Include="Abstract\IProductCommentService.cs" />
     <Compile Include="Abstract\IDiscountService.cs" />
     <Compile Include="Abstract\IProductAttributeValueService.cs" />
-    <Compile Include="Abstract\IProductGalleryService.cs" />
     <Compile Include="Abstract\IProductService.cs" />
     <Compile Include="Abstract\IProductAttributeService.cs" />
     <Compile Include="Abstract\IAdvertiseService.cs" />
     <Compile Include="Abstract\IUserMailer.cs" />
     <Compile Include="Abstract\IBaseService.cs" />
-    <Compile Include="Abstract\ITaxService.cs" />
     <Compile Include="Abstract\IPaymentTypeService.cs" />
-    <Compile Include="Abstract\IShippingByWeightService.cs" />
-    <Compile Include="Abstract\IShippingMathodService.cs" />
     <Compile Include="Abstract\IManufacturerService.cs" />
     <Compile Include="Abstract\IContentTagService.cs" />
     <Compile Include="Abstract\IMenuService.cs" />
@@ -173,7 +169,6 @@
     <Compile Include="Abstract\ILinkService.cs" />
     <Compile Include="Abstract\IFileService.cs" />
     <Compile Include="Abstract\ICategoryService.cs" />
-    <Compile Include="Abstract\IDeliveryDateService.cs" />
     <Compile Include="Abstract\IStateService.cs" />
     <Compile Include="Abstract\ISliderService.cs" />
     <Compile Include="Abstract\IPictureService.cs" />
@@ -211,7 +206,6 @@
     <Compile Include="Implement\MikrotikServices.cs" />
     <Compile Include="Implement\ResourceService.cs" />
     <Compile Include="Implement\TicketService.cs" />
-    <Compile Include="Implement\ProductGalleryService.cs" />
     <Compile Include="Implement\UserMailer.cs" />
     <Compile Include="Enums\VerifyUserStatus.cs" />
     <Compile Include="Implement\CityService.cs" />
@@ -223,10 +217,7 @@
     <Compile Include="Implement\ProductService.cs" />
     <Compile Include="Implement\ProductAttributeService.cs" />
     <Compile Include="Implement\BaseService.cs" />
-    <Compile Include="Implement\TaxService.cs" />
     <Compile Include="Implement\PaymentService.cs" />
-    <Compile Include="Implement\ShippingByWeightService.cs" />
-    <Compile Include="Implement\ShippingMethodService.cs" />
     <Compile Include="Implement\ManufacturerService.cs" />
     <Compile Include="Implement\ContentTagService.cs" />
     <Compile Include="Implement\MenuService.cs" />
@@ -235,7 +226,6 @@
     <Compile Include="Implement\LinkService.cs" />
     <Compile Include="Implement\FileService.cs" />
     <Compile Include="Implement\CategoryService.cs" />
-    <Compile Include="Implement\DeliveryDateService.cs" />
     <Compile Include="Implement\StateService.cs" />
     <Compile Include="Implement\SliderService.cs" />
     <Compile Include="Implement\InboxContactMessageService.cs" />

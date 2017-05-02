@@ -41,16 +41,12 @@ namespace Netotik.Web.Areas.Admin.Controllers
         private readonly IDiscountService _discountService;
         private readonly ICategoryService _categoryService;
         private readonly IManufacturerService _manufacturerService;
-        private readonly IDeliveryDateService _deliveryDateService;
-        private readonly ITaxService _taxService;
         private readonly IUnitOfWork _uow;
 
         public OrderController(
             IOrderService orderService,
             ICategoryService categroyService,
-            ITaxService taxService,
             IDiscountService discountService,
-            IDeliveryDateService deliveryDateservice,
             IManufacturerService manufacturerService,
             IProductService productService,
             IUnitOfWork uow)
@@ -58,8 +54,6 @@ namespace Netotik.Web.Areas.Admin.Controllers
             _orderService = orderService;
             _categoryService = categroyService;
             _manufacturerService = manufacturerService;
-            _taxService = taxService;
-            _deliveryDateService = deliveryDateservice;
             _discountService = discountService;
             _productService = productService;
             _uow = uow;
@@ -93,8 +87,6 @@ namespace Netotik.Web.Areas.Admin.Controllers
                 .Include(x => x.Address)
                 .Include(x => x.OrderItems)
                 .Include(x => x.OrderPayments)
-                .Include(x => x.ShippingMethod)
-                .Include(x => x.Shipments)
                 .FirstOrDefault(x => x.Id == id && x.PaymentStatus == PaymentStatus.Success);
 
             if (order == null) return HttpNotFound();

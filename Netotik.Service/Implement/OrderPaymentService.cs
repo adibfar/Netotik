@@ -29,7 +29,6 @@ namespace Netotik.Services.Implement
                 .Include(x => x.Order.Address.AddressCity)
                 .Include(x => x.Order.Address.AddressCity.State)
                 .Include(x => x.PaymentType)
-                .Include(x=>x.Order.ShippingMethod)
                 .FirstOrDefault(x => x.Id == id);
         }
     }

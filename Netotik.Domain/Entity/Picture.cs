@@ -14,12 +14,9 @@ namespace Netotik.Domain.Entity
             this.Sliders = new List<Slider>();
             this.categories = new List<Category>();
             this.manufacturers = new List<Manufacturer>();
-            this.ShippingMethodes = new List<ShippingMethod>();
             this.PaymentTypes = new List<PaymentType>();
             this.Products = new List<Product>();
-            this.ProductGalleries = new List<ProductGallery>();
             this.BgProducts = new List<Product>();
-            this.BgProductGalleries = new List<ProductGallery>();
         }
 
         public int Id { get; set; }
@@ -30,15 +27,11 @@ namespace Netotik.Domain.Entity
         public virtual ICollection<ImageGalleryItem> ImageGalleryItems { get; set; }
         public virtual ICollection<User> Users { get; set; }
         public virtual ICollection<Product> Products { get; set; }
-        public virtual ICollection<ProductGallery> ProductGalleries { get; set; }
         public virtual ICollection<Product> BgProducts { get; set; }
-        public virtual ICollection<ProductGallery> BgProductGalleries { get; set; }
         public virtual ICollection<Slider> Sliders { get; set; }
         public virtual ICollection<Advertise> Advertises { get; set; }
-
         public virtual ICollection<Category> categories { get; set; }
         public virtual ICollection<Manufacturer> manufacturers { get; set; }
-        public virtual ICollection<ShippingMethod> ShippingMethodes { get; set; }
         public virtual ICollection<PaymentType> PaymentTypes { get; set; }
 
 

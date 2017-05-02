@@ -18,7 +18,6 @@ namespace Netotik.Domain.Entity
         public bool IsActive { get; set; }
         public virtual ICollection<Address> Addresses { get; set; }
         public virtual State State { get; set; }
-        public virtual ICollection<Warehouse> WareHoses { get; set; }
     }
 
 }

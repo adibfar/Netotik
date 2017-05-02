@@ -8,7 +8,6 @@ namespace Netotik.Domain.Entity
         public OrderItem()
         {
             this.ReturnRequests = new List<ReturnRequest>();
-            this.ShipmentItems = new List<ShipmentItem>();
         }
 
         public int Id { get; set; }
@@ -24,6 +23,5 @@ namespace Netotik.Domain.Entity
         public virtual Order Order { get; set; }
         public virtual Product Product { get; set; }
         public virtual ICollection<ReturnRequest> ReturnRequests { get; set; }
-        public virtual ICollection<ShipmentItem> ShipmentItems { get; set; }
     }
 }

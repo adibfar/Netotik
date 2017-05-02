@@ -46,8 +46,6 @@ namespace Netotik.Web.Areas.Admin.Controllers
         private readonly IDiscountService _discountService;
         private readonly ICategoryService _categoryService;
         private readonly IManufacturerService _manufacturerService;
-        private readonly IDeliveryDateService _deliveryDateService;
-        private readonly ITaxService _taxService;
         private readonly IPictureService _pictureService;
         private readonly IUnitOfWork _uow;
 
@@ -55,9 +53,7 @@ namespace Netotik.Web.Areas.Admin.Controllers
             IProductAttributeValueService productAttributeValueService,
             IProductAttributeService productAttributeService,
             ICategoryService categroyService,
-            ITaxService taxService,
             IDiscountService discountService,
-            IDeliveryDateService deliveryDateservice,
             IManufacturerService manufacturerService,
             IProductService productService,
             IPictureService pictureService,
@@ -67,8 +63,6 @@ namespace Netotik.Web.Areas.Admin.Controllers
             _productAttributeService = productAttributeService;
             _categoryService = categroyService;
             _manufacturerService = manufacturerService;
-            _taxService = taxService;
-            _deliveryDateService = deliveryDateservice;
             _discountService = discountService;
             _productService = productService;
             _pictureService = pictureService;
@@ -100,8 +94,6 @@ namespace Netotik.Web.Areas.Admin.Controllers
         public virtual async Task<ActionResult> Create()
         {
             await PopulateCategories();
-            await LoadDeliveryDate();
-            await LoadTax();
             await LoadManufacturer();
             PopulateDisCountes();
 
@@ -113,9 +105,6 @@ namespace Netotik.Web.Areas.Admin.Controllers
         [HttpPost]
         public virtual async Task<ActionResult> Create(ProductModel model, ActionType actionType)
         {
-
-            await LoadDeliveryDate(model.DeliveryDateId);
-            await LoadTax(model.TaxId);
             await LoadManufacturer(model.ManufacturerId);
 
             if (model.CategoryIds == null) await PopulateCategories();
@@ -265,8 +254,6 @@ namespace Netotik.Web.Areas.Admin.Controllers
 
             await PopulateCategories(model.Categories.Select(x => x.Id).ToArray());
             await LoadManufacturer(model.ManufacturerId);
-            await LoadDeliveryDate(model.DeliveryDateId);
-            await LoadTax(model.TaxId);
 
             PopulateDisCountes(model.Discounts.Select(x => x.Id).ToArray());
 
@@ -321,10 +308,6 @@ namespace Netotik.Web.Areas.Admin.Controllers
 
 
             await LoadManufacturer(model.ManufacturerId);
-            await LoadDeliveryDate(model.DeliveryDateId);
-            await LoadTax(model.TaxId);
-
-
 
             if (model.DiscountIds == null) PopulateDisCountes();
             else PopulateDisCountes(model.DiscountIds);
@@ -516,18 +499,7 @@ namespace Netotik.Web.Areas.Admin.Controllers
             var list = await _manufacturerService.All().ToListAsync();
             ViewBag.Manufactureres = new SelectList(list, "Id", "Name", selectedId);
         }
-
-        private async Task LoadTax(int? selectedId = null)
-        {
-            var list = await _taxService.All().ToListAsync();
-            ViewBag.Taxes = new SelectList(list, "Id", "Name", selectedId);
-        }
-
-        private async Task LoadDeliveryDate(int? selectedId = null)
-        {
-            var list = await _deliveryDateService.All().ToListAsync();
-            ViewBag.DeliveryDates = new SelectList(list, "Id", "Name", selectedId);
-        }
+        
         #endregion
 
 

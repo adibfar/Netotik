@@ -101,6 +101,8 @@ namespace Netotik.Web.Areas.Admin.Controllers
             public readonly string GetList = "GetList";
             public readonly string Create = "Create";
             public readonly string Remove = "Remove";
+            public readonly string Active = "Active";
+            public readonly string Banne = "Banne";
             public readonly string Edit = "Edit";
             public readonly string ChangePassword = "ChangePassword";
             public readonly string RedirectToLocal = "RedirectToLocal";
@@ -113,6 +115,8 @@ namespace Netotik.Web.Areas.Admin.Controllers
             public const string GetList = "GetList";
             public const string Create = "Create";
             public const string Remove = "Remove";
+            public const string Active = "Active";
+            public const string Banne = "Banne";
             public const string Edit = "Edit";
             public const string ChangePassword = "ChangePassword";
             public const string RedirectToLocal = "RedirectToLocal";
@@ -140,6 +144,22 @@ namespace Netotik.Web.Areas.Admin.Controllers
         public ActionParamsClass_Remove RemoveParams { get { return s_params_Remove; } }
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public class ActionParamsClass_Remove
+        {
+            public readonly string id = "id";
+        }
+        static readonly ActionParamsClass_Active s_params_Active = new ActionParamsClass_Active();
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public ActionParamsClass_Active ActiveParams { get { return s_params_Active; } }
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public class ActionParamsClass_Active
+        {
+            public readonly string id = "id";
+        }
+        static readonly ActionParamsClass_Banne s_params_Banne = new ActionParamsClass_Banne();
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public ActionParamsClass_Banne BanneParams { get { return s_params_Banne; } }
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public class ActionParamsClass_Banne
         {
             public readonly string id = "id";
         }
@@ -253,6 +273,30 @@ namespace Netotik.Web.Areas.Admin.Controllers
             var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Remove);
             ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "id", id);
             RemoveOverride(callInfo, id);
+            return callInfo;
+        }
+
+        [NonAction]
+        partial void ActiveOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, int id);
+
+        [NonAction]
+        public override System.Web.Mvc.ActionResult Active(int id)
+        {
+            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Active);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "id", id);
+            ActiveOverride(callInfo, id);
+            return callInfo;
+        }
+
+        [NonAction]
+        partial void BanneOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, int id);
+
+        [NonAction]
+        public override System.Web.Mvc.ActionResult Banne(int id)
+        {
+            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Banne);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "id", id);
+            BanneOverride(callInfo, id);
             return callInfo;
         }
 
