@@ -1,0 +1,47 @@
+﻿@model IList<Netotik.Domain.Entity.Content>
+
+<h4 class="letter-spacing-1">مقالات محبوب</h4>
+
+<div class="owl-carousel text-center owl-mini-testimonial nomargin" data-plugin-options='{"singleItem": true, "autoPlay": 4000, "navigation": false, "pagination": true, "transitionStyle":"goDown"}'>
+
+    @foreach (var item in Model)
+    {
+        <div class="testimonial">
+            <figure>
+                <img class="" src="@Url.Content(Path.Combine(Netotik.Common.Controller.FilePathes._imagesContentPath,item.PictureId.HasValue?item.Picture.FileName:""))?w=280&h=200" alt="@item.Title" />
+            </figure>
+            <div class="testimonial-content nopadding">
+                <a href="@Url.Action(MVC.Blog.ActionNames.Detail, MVC.Blog.Name, new { Id = item.Id, name = item.Title.GenerateSlug() })">
+                    @item.BodyOverview
+                </a>
+                <cite>
+                    <span class="text-left">
+                        @PersianDate.ConvertDate.ToFa(item.StartDate.Value, "g")
+                    </span>
+                </cite>
+            </div>
+        </div>
+    }
+</div>
+
+<hr />
+<!-- Social Icons -->
+<div class="margin-top-20">
+
+    <a href="http://facebook.com/ZagrosServices" target="_blank" class="social-icon social-icon-border social-facebook pull-left" data-toggle="tooltip" data-placement="top" title="Facebook">
+        <i class="icon-facebook"></i>
+        <i class="icon-facebook"></i>
+    </a>
+
+    <a href="https://plus.google.com/collection/EBi9oB" target="_blank"  class="social-icon social-icon-border social-gplus pull-left" data-toggle="tooltip" data-placement="top" title="Google plus">
+        <i class="icon-gplus"></i>
+        <i class="icon-gplus"></i>
+    </a>
+
+    <a href="http://instagram.com/ZagrosServices" target="_blank"  class="social-icon social-icon-border social-instagram pull-left" data-toggle="tooltip" data-placement="top" title="Instagram">
+        <i class="icon-instagram2"></i>
+        <i class="icon-instagram2"></i>
+    </a>
+
+</div>
+<!-- /Social Icons -->

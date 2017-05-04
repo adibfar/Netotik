@@ -42,7 +42,7 @@ namespace T4MVC
                 public readonly string _BreadCrumb = "_BreadCrumb";
                 public readonly string _CaptchaPartial = "_CaptchaPartial";
                 public readonly string _CaptchaPartial2 = "_CaptchaPartial2";
-                public readonly string _Head = "_Head";
+                public readonly string _Header = "_Header";
                 public readonly string _Layout = "_Layout";
                 public readonly string _Message = "_Message";
                 public readonly string _PicturesList = "_PicturesList";
@@ -50,13 +50,12 @@ namespace T4MVC
                 public readonly string _SideBarCompanyMenu = "_SideBarCompanyMenu";
                 public readonly string _SideBarResellerMenu = "_SideBarResellerMenu";
                 public readonly string _SingleImageForm = "_SingleImageForm";
-                public readonly string Error = "Error";
             }
             public readonly string _Attachments = "~/Views/Shared/_Attachments.cshtml";
             public readonly string _BreadCrumb = "~/Views/Shared/_BreadCrumb.cshtml";
             public readonly string _CaptchaPartial = "~/Views/Shared/_CaptchaPartial.cshtml";
             public readonly string _CaptchaPartial2 = "~/Views/Shared/_CaptchaPartial2.cshtml";
-            public readonly string _Head = "~/Views/Shared/_Head.cshtml";
+            public readonly string _Header = "~/Views/Shared/_Header.cshtml";
             public readonly string _Layout = "~/Views/Shared/_Layout.cshtml";
             public readonly string _Message = "~/Views/Shared/_Message.cshtml";
             public readonly string _PicturesList = "~/Views/Shared/_PicturesList.cshtml";
@@ -64,43 +63,12 @@ namespace T4MVC
             public readonly string _SideBarCompanyMenu = "~/Views/Shared/_SideBarCompanyMenu.cshtml";
             public readonly string _SideBarResellerMenu = "~/Views/Shared/_SideBarResellerMenu.cshtml";
             public readonly string _SingleImageForm = "~/Views/Shared/_SingleImageForm.cshtml";
-            public readonly string Error = "~/Views/Shared/Error.cshtml";
-            static readonly _DisplayTemplatesClass s_DisplayTemplates = new _DisplayTemplatesClass();
-            public _DisplayTemplatesClass DisplayTemplates { get { return s_DisplayTemplates; } }
-            [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-            public partial class _DisplayTemplatesClass
-            {
-                public readonly string Bool = "Bool";
-                public readonly string CKEditor = "CKEditor";
-                public readonly string DateTime = "DateTime";
-                public readonly string Decimal = "Decimal";
-                public readonly string File = "File";
-                public readonly string Int32 = "Int32";
-                public readonly string Multiline = "Multiline";
-                public readonly string Password = "Password";
-                public readonly string PersianDatePicker = "PersianDatePicker";
-                public readonly string String = "String";
-            }
             static readonly _EditorTemplatesClass s_EditorTemplates = new _EditorTemplatesClass();
             public _EditorTemplatesClass EditorTemplates { get { return s_EditorTemplates; } }
             [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
             public partial class _EditorTemplatesClass
             {
-                public readonly string Boolean = "Boolean";
-                public readonly string ColorPicker = "ColorPicker";
-                public readonly string Decimal = "Decimal";
-                public readonly string DropDown = "DropDown";
-                public readonly string Enum = "Enum";
                 public readonly string HttpPostedFileBase = "HttpPostedFileBase";
-                public readonly string Int32 = "Int32";
-                public readonly string Long = "Long";
-                public readonly string Multiline = "Multiline";
-                public readonly string Password = "Password";
-                public readonly string PersianDatePicker = "PersianDatePicker";
-                public readonly string String = "String";
-                public readonly string SummerNoteEditor = "SummerNoteEditor";
-                public readonly string SummerNoteEditorNoLabel = "SummerNoteEditorNoLabel";
-                public readonly string TimePicker = "TimePicker";
             }
         }
     }

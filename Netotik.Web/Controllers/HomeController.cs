@@ -9,6 +9,8 @@ using Netotik.Web.Lucene;
 using Microsoft.Owin.Security;
 using Microsoft.AspNet.Identity;
 using Netotik.Services.Identity;
+using Netotik.Common.Controller;
+using System.Web;
 
 namespace Netotik.Web.Controllers
 {
@@ -33,10 +35,12 @@ namespace Netotik.Web.Controllers
         private readonly ILinkService _linkService;
         private readonly IContentService _contentService;
         private readonly IMenuService _menuService;
+        private readonly ISliderService _sliderService;
         #endregion
 
         #region Constructor
         public HomeController(
+            ISliderService sliderService,
             IApplicationRoleManager applicationRoleManager,
             IAuthenticationManager authenticationManager,
             ILinkService linkService,
@@ -47,6 +51,7 @@ namespace Netotik.Web.Controllers
             IContentService contentService,
             IMenuService menuService)
         {
+            _sliderService = sliderService;
             _applicationRoleManager = applicationRoleManager;
             _authenticationManager = authenticationManager;
             _userMailer = userMailer;
@@ -67,9 +72,9 @@ namespace Netotik.Web.Controllers
             return View();
         }
 
-        public virtual ActionResult Head()
+        public virtual ActionResult AdminHeader()
         {
-            return PartialView(MVC.Shared.Views._Head);
+            return PartialView(MVC.Shared.Views._Header);
         }
 
         [Authorize]
@@ -91,22 +96,78 @@ namespace Netotik.Web.Controllers
             return View("");
         }
 
-
-
-        public virtual ActionResult AutoComplete(string q)
+        //[OutputCache(Duration = min10, VaryByParam = "none")]
+        public virtual PartialViewResult LastBlog()
         {
-            if (string.IsNullOrWhiteSpace(q))
-                Content(null);
+            return PartialView(MVC.Home.Views._LastBlog, _contentService.GetLastContents(6));
+        }
 
-            var result = new StringBuilder();
-            var items = LuceneIndex.Search(q, "Name", "Description").Take(5).ToList();
 
-            foreach (var item in items)
+
+        //[OutputCache(Duration = hour12, VaryByParam = "none")]
+        public virtual PartialViewResult Slider()
+        {
+            var list = _sliderService.All().Where(x => x.IsActive)
+                .OrderBy(x => x.Order)
+                .Include(x => x.Picture)
+                .ToList();
+            return PartialView(MVC.Home.Views._Slider, list);
+        }
+
+        //[OutputCache(Duration = oneDay, VaryByParam = "none")]
+        public virtual PartialViewResult Footer()
+        {
+            //ViewBag.setting = WebCache.GetSiteConfig(HttpContext, _settingService);
+            return PartialView(MVC.SharedPublic.Views._Footer);
+        }
+
+
+        //[OutputCache(Duration = oneDay, VaryByParam = "none")]
+        public virtual PartialViewResult FooterAddress()
+        {
+            return PartialView(MVC.SharedPublic.Views._FooterAddress);//, WebCache.GetSiteConfig(HttpContext, _settingService));
+        }
+
+        //[OutputCache(Duration = oneDay, VaryByParam = "none")]
+        public virtual PartialViewResult FooterPopularPost()
+        {
+            return PartialView(MVC.SharedPublic.Views._FooterPopularPost, _contentService.GetLastPopular(4));
+        }
+
+
+        //[OutputCache(Duration = oneDay, VaryByParam = "none")]
+        public virtual PartialViewResult Header()
+        {
+            return PartialView(MVC.SharedPublic.Views._Header);
+        }
+
+        //[OutputCache(Duration = hour12, VaryByParam = "none")]
+        public virtual PartialViewResult HeaderMenu()
+        {
+            var list = _menuService.All()
+                .Where(x => x.IsActive).Include(x => x.SubMenues).OrderBy(x => x.Order).ToList();
+
+            return PartialView(MVC.SharedPublic.Views._HeaderMenu, list);
+        }
+        public virtual ActionResult SetCulture(string culture)
+        {
+            // Validate input
+            culture = CultureHelper.GetImplementedCulture(culture);
+
+            // Save culture in a cookie
+            HttpCookie cookie = Request.Cookies["_culture"];
+            if (cookie != null)
+                cookie.Value = culture;   // update cookie value
+            else
             {
-                var prodUrl = this.Url.Action(MVC.Product.ActionNames.Show, MVC.Product.Name, new { id = item.Id, name = item.Name.GenerateSlug() });
-                result.AppendLine(item.Name + "|" + prodUrl + "|" + item.ImageName + "|" + item.Description);
+
+                cookie = new HttpCookie("_culture");
+                cookie.Value = culture;
+                cookie.Expires = DateTime.Now.AddYears(1);
             }
-            return Content(result.ToString());
+            Response.Cookies.Add(cookie);
+
+            return RedirectToAction(MVC.Home.Index());
         }
 
     }

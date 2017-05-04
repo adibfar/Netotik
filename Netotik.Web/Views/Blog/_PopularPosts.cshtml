@@ -5,27 +5,47 @@
 
 @if (Model.Any())
 {
-    <div class="section-offset">
-        <h3>محبوب ترین مطالب</h3>
-        <ul class="list-of-entries">
 
-            @foreach (var item in Model)
-            {
-                <li>
-                    <div class="entry">
-                        <a class="entry-thumb" href="@Url.Action(MVC.Blog.ActionNames.Detail, MVC.Blog.Name, new { Id = item.Id, name = item.Title.GenerateSlug() })">
-                            <img alt="" src="@Url.Content((item.PictureId.HasValue ? Path.Combine(_imagesContentPath, item.Picture.FileName) : "/Content/img/1.jpg")+"?w=70&h=70")">
-                        </a>
-                        <div class="wrapper">
-                            <h6 class="entry-title"><a href="@Url.Action(MVC.Blog.ActionNames.Detail, MVC.Blog.Name, new { Id = item.Id, name = item.Title.GenerateSlug() })">@item.Title</a></h6>
-                            <div class="entry-meta">
-                                <span><i class="fa fa-calendar"></i> @PersianDate.ConvertDate.ToFa(item.StartDate.Value)</span>
-                                <span><a class="comments" href="#"><i class="fa fa-eye"></i> @item.CountView</a></span>
-                            </div>
-                        </div>
-                    </div>
-                </li>
-            }
+
+
+    <div class="tabs nomargin-top hidden-xs margin-bottom-60">
+
+
+        <ul class="nav nav-tabs nav-bottom-border nav-justified">
+            <li class="active">
+                <a href="#tab_1" data-toggle="tab">
+                    محبوب ترین ها
+                </a>
+            </li>
+
         </ul>
+
+
+        <div class="tab-content margin-bottom-60 margin-top-30">
+
+
+            <div id="tab_1" class="tab-pane active">
+
+                @foreach (var item in Model)
+                {
+                    <div class="row tab-post">
+                        <!-- post -->
+                        <div class="col-md-3 col-sm-3 col-xs-3">
+                            <a href="@Url.Action(MVC.Blog.ActionNames.Detail, MVC.Blog.Name, new { Id = item.Id, name = item.Title.GenerateSlug() })">
+                                <img src="@Url.Content((item.PictureId.HasValue ? Path.Combine(Netotik.Common.Controller.FilePathes._imagesContentPath, item.Picture.FileName) : "/Content/img/1.jpg")+"?w=200&h=200")" width="55" alt="" />
+                            </a>
+                        </div>
+                        <div class="col-md-9 col-sm-9 col-xs-9">
+                            <a href="@Url.Action(MVC.Blog.ActionNames.Detail, MVC.Blog.Name, new { Id = item.Id, name = item.Title.GenerateSlug() })" class="tab-post-link">@item.Title</a>
+                            <small>
+                                    @PersianDate.ConvertDate.ToFa(item.StartDate.Value, "d")
+                            </small>
+                        </div>
+                    </div><!-- /post -->
+                }
+            </div>
+        </div>
+
     </div>
+
 }

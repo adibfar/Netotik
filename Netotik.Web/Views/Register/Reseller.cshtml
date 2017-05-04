@@ -3,7 +3,9 @@
 @using Netotik.ViewModels.Identity.UserReseller
 
 @model RegisterViewModel
-
+@{
+    Layout = MVC.Shared.Views._Layout;
+}
 
 <section class="flexbox-container">
     @if (ViewBag.Success != null)

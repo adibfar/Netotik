@@ -1,0 +1,43 @@
+﻿@model ZagrosServices.Model.Shop.ProductPanel.BoxProductModel
+@using ZagrosServices.Web.Extension
+
+@{
+    Layout = null;
+}
+
+<div class="col-xs-12 col-sm-3">
+    <form method="post" action="@Url.Action(MVC.Product.ActionNames.AddToCart,MVC.Product.Name)">
+        <div class="featured-inner">
+            <div class="featured-image">
+                <a href="@Url.Action(MVC.Product.ActionNames.Show, MVC.Product.Name, new { id = Model.Id, name = Model.Name.GenerateSlug() })">
+                    <img src="@Url.Content(string.IsNullOrWhiteSpace(Model.imgName) ? "/Content/img/1.jpg" : Path.Combine(FileManager._imagesShopProductPath, Model.imgName))?w=300&h=300" alt="">
+                </a>
+                @*<span class="price-percent-reduction">@Model.PriceOff</span>*@
+            </div>
+            <div class="featured-info">
+                <a href="@Url.Action(MVC.Product.ActionNames.Show, MVC.Product.Name, new { id = Model.Id, name = Model.Name.GenerateSlug() })">@Model.Name</a>
+                <p class="reating">
+                    <span class="rate">
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                    </span>
+                </p>
+                <span class="price">@String.Format("{0:0,0}", Model.Price) تومان</span>
+
+                <div class="featured-button">
+                    @*<a href="wishlists.html" class="wishlist"><i class="fa fa-heart"></i></a>*@
+                    @*<a href="" class="fetu-comment"><i class="fa fa-signal"></i></a>*@
+                    @Html.Hidden("id", Model.Id)
+                    @*<button class="add-to-card" style="width:100%" type="submit"><i class="fa fa-shopping-cart"></i>افزودن به سبد خرید</button>*@
+
+                    <a class="add-to-card" href="@Url.Action(MVC.Product.ActionNames.Show, MVC.Product.Name, new { id = Model.Id, name = Model.Name.GenerateSlug() })" style="width:100%" type="submit"><i class="fa fa-search"></i>&nbsp;  نمایش محصول</a>
+
+                </div>
+
+            </div>
+        </div>
+    </form>
+</div>

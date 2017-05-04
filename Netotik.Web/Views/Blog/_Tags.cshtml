@@ -4,16 +4,16 @@
 }
 @if (Model.Any())
 {
-    <div class="section-offset3">
-        <h3>برچسب ها</h3>
-        <div class="tags_container">
-            <ul class="tags-cloud">
-                @foreach (var item in Model)
+    <!-- TAGS -->
+    <h3 class="hidden-xs size-16 margin-bottom-20">برچسب ها</h3>
+    <div class="hidden-xs margin-bottom-60">
+        @foreach (var item in Model)
                 {
-                    <li><a class="button_grey" href="@Url.Action(MVC.Blog.ActionNames.Index, MVC.Blog.Name, new { tagId = item.Id,categoryId=0,page=1 })">@item.Text</a></li>
-                }
+            <a class="tag" href="@Url.Action(MVC.Blog.ActionNames.Index, MVC.Blog.Name, new { tagId = item.Id,categoryId=0,page=1 })">
 
-            </ul>
-        </div>
+                <span class="txt">@item.Name</span>
+                <span class="num">@item.Contents.Count</span>
+            </a>
+        }
     </div>
 } 

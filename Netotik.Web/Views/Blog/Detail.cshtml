@@ -4,36 +4,49 @@
     ViewBag.Keywords = (string.IsNullOrWhiteSpace(Model.MetaKeywords) ? Model.BodyOverview : Model.MetaKeywords);
     ViewBag.Description = (string.IsNullOrWhiteSpace(Model.MetaDescription) ? Model.BodyOverview : Model.MetaDescription);
 }
-@section Down{
-    @Scripts.Render("~/bundles/jqueryvalpublic")
-    @Html.Partial(@MVC.Shared.Views._AddValidationCss)
-}
 
-<!-- Start page content -->
-<div class="page-content">
-    <div class="blog-area" style="padding-top: 30px;">
-        <div class="container">
-            <div class="row">
-                <div class="col-xs-12 col-sm-4 col-md-4 pull-right">
-                    @Html.Partial(MVC.Blog.Views._SideBar)
-                </div>
+<section class="page-header page-header-2xlg parallax parallax-3" style="background-image:url('../../Content/Upload/Image/Content/@Model.Picture.FileName')">
+    <div class="overlay dark-2"><!-- dark overlay [1 to 9 opacity] --></div>
 
-                <div class="col-xs-12 col-sm-8 col-md-8">
-                    @Html.Partial(MVC.Blog.Views._Post)
+    <div class="container text-center">
 
-                    <div class="blog-coment-box">
-                        @if (Model.AllowViewComments)
-                        {
-                            @Html.Partial(MVC.Blog.Views._Comments, Model.ContentComments)
-                        }
-                        @if (Model.AllowComments)
-                        {
-                            @Html.Partial(MVC.Blog.Views._AddComment, new Netotik.ViewModels.Comment.AddCommentModel() { ContentId = Model.Id })
-                        }
-                    </div>
-                </div>
+        <h1>@Model.Title</h1>
+        <span class="font-lato size-18 weight-300">@PersianDate.ConvertDate.ToFa(Model.StartDate.Value, "f")</span>
+    </div>
+</section>
+
+<!-- -->
+<section>
+    <div class="container">
+
+        <div class="row">
+
+            <!-- LEFT -->
+            <div class="col-md-3 col-sm-3">
+                @Html.Partial(MVC.Blog.Views._SideBar)
+            </div>
+
+            <!-- RIGHT -->
+            <div class="col-md-9 col-sm-9">
+
+                @Html.Partial(MVC.Blog.Views._Post)
+
             </div>
         </div>
     </div>
-    @Html.Action(MVC.Home.ActionNames.LastBlog, MVC.Home.Name)
-</div>
+</section>
+
+
+
+
+
+@*@if (Model.AllowViewComments)
+{
+    @Html.Partial(MVC.Blog.Views._Comments, Model.ContentComments)
+}
+@if (Model.AllowComments)
+{
+    @Html.Partial(MVC.Blog.Views._AddComment, new SmartyShop.Model.Comment.AddCommentModel() { ContentId = Model.Id })
+}*@
+
+

@@ -1,52 +1,106 @@
 ﻿@using CaptchaMvc.HtmlHelpers
-@model Netotik.ViewModels.ContactUs.SendMessage
+@model Netotik.ViewModels.Common.ContactUs.MessageModel
 
-@section Down{
-    @Scripts.Render("~/bundles/jqueryvalpublic")
-    @Html.Partial(MVC.Shared.Views._AddValidationCss)
+@{
+    ViewBag.Title = "ارتباط با ما";
 }
-<!-- Start page content -->
-<div class="page-content">
-    <!-- Start contact page area -->
-    <div class="container">
-        <!-- Start contact-map -->
-        <!-- End contact-map -->
-        <!-- Start contact from atea -->
-        <div class="contact-from-atea">
-            <div class="form-and-info">
-                <div class="row">
-                    <div class="col-xs-12 col-sm-8 col-md-8">
-                        <div class="contactfrom">
-                            <h3>ارسال پیام</h3>
-                            @using (Html.BeginForm(MVC.ContactUs.ActionNames.Index, MVC.ContactUs.Name, FormMethod.Post))
-                            {
-                                <div class="row">
 
-                                    @Html.AntiForgeryToken()
-                                    <div class="col-md-6 contactemail">
-                                        @Html.TextBoxFor(model => model.Email, new { @class = "form-control", placeholder = "ایمیل" })
-                                    </div>
-                                    <div class="col-md-6">
-                                        @Html.TextBoxFor(model => model.Name, new { @class = "form-control", placeholder = "نام و نام خانوادگی" })
-                                    </div>
-                                    <div class="col-md-12">
-                                        @Html.TextAreaFor(model => model.Text, new { @class = "form-control", rows = "13", placeholder = "متن پیام" })
-                                    </div>
-                                    <div class="row">
-                                        <div class="form-group">
-                                            @Html.MathCaptcha(MVC.Shared.Views._CaptchaPartial)
-                                        </div>
-                                    </div>
-                                </div>
-                                <button class="btn btnContact" type="submit">ارسال</button>
-                            }
-                        </div>
-                    </div>
-                    @Html.Partial(MVC.ContactUs.Views._SideBar, (Netotik.ViewModels.Setting.GeneralSettingModel)ViewBag.siteConfig)
-                </div>
-            </div>
-            <!-- End contact from atea -->
-        </div>
+
+<section class="page-header page-header-md parallax parallax-3" style="background-image:url('../../Content/PublicUI/images/demo/1200x800/18-min.jpg')">
+    <div class="overlay dark-5"><!-- dark overlay [1 to 9 opacity] --></div>
+
+    <div class="container">
+
+        <h1>تماس با ما</h1>
+        <span class="font-lato size-18 weight-300">مشاوران ما بهترین پیشنهادات را به شما می دهند</span>
+
+        
     </div>
-    <!-- End contact page area -->
-</div>
+</section>
+
+<!-- /PAGE HEADER -->
+<!-- -->
+<section>
+    <div class="container">
+        
+        <div class="row">
+
+            <!-- FORM -->
+            <div class="col-md-9 col-sm-9">
+
+                @*@if (result != null)
+                {
+                    if (result.Color == MessageColor.Success)
+                    {
+                        <div class="alert alert-success margin-bottom-30">
+                            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                            <strong> با تشکر </strong> پیام شما با موفقیت ارسال شد.
+                        </div>
+                    }
+
+                    if (result.Color == MessageColor.Danger)
+                    {
+                        <div class="alert alert-danger margin-bottom-30">
+                            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                            متاسفانه خطایی رخ داده است، لطفا تماس بگیرید.
+                        </div>
+                    }
+                }*@
+
+                @using (Html.BeginForm(MVC.ContactUs.ActionNames.Index, MVC.ContactUs.Name, FormMethod.Post))
+                {
+                    @Html.AntiForgeryToken()
+
+                    <fieldset>
+
+                        <div class="row">
+                            <div class="form-group">
+                                <div class="col-md-4">
+                                    <label for="contact:name">نــام *</label>
+                                    @Html.TextBoxFor(model => model.Name, new { @class = "form-control" })
+                                </div>
+                                <div class="col-md-4">
+                                    <label for="contact:email">ایمیل *</label>
+                                    @Html.TextBoxFor(model => model.Email, new { @class = "form-control" })
+                                </div>
+                                <div class="col-md-4">
+                                    <label for="contact:phone">شماره موبایل</label>
+                                    @Html.TextBoxFor(model => model.PhoneNumber, new { @class = "form-control" })
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="form-group">
+                                <div class="col-md-12">
+                                    <label for="contact:message">متن پیام *</label>
+                                    @Html.TextAreaFor(model => model.Text, new { @class = "form-control", maxlength = "10000", rows = "8" })
+                                </div>
+                            </div>
+                        </div>
+                    </fieldset>
+
+                    <div class="row">
+                        <div class="col-md-12">
+                            @Html.MathCaptcha(MVC.Shared.Views._CaptchaPartial)
+                        </div>
+
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <button type="submit" class="btn btn-primary"><i class="fa fa-check"></i> ارسال </button>
+                        </div>
+
+                    </div>
+                }
+
+            </div>
+            <!-- /FORM -->
+            <!-- INFO -->
+            <div class="col-md-3 col-sm-3">
+                @Html.Partial(MVC.ContactUs.Views._SideBar, (Netotik.ViewModels.Common.Setting.GeneralSettingModel)ViewBag.siteConfig)
+            </div>
+        </div>
+
+    </div>
+</section>
+

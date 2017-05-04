@@ -1,0 +1,110 @@
+﻿
+@font-face {
+    font-family: 'IRANSansWeb';
+    src: url('/Content/PublicUI/fonts/IRANSansWeb/IRANSansWeb.eot');
+    src: url('/Content/PublicUI/fonts/IRANSansWeb/IRANSansWeb.eot?#iefix') format('embedded-opentype');
+    src: local('☺'), url('/Content/PublicUI/fonts/IRANSansWeb/IRANSansWeb.woff') format('woff'), url('/Content/design/fonts/IRANSansWeb/IRANSansWeb.ttf') format('truetype'), url('/Content/design/fonts/IRANSansWeb/IRANSansWeb.svg#IRANSansWeb') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+a,
+body,
+p,
+div,
+span,
+label,
+section,
+.countTo-sm,
+.countTo-md,
+.countTo-lg,
+.countdown,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: 'IRANSansWeb';
+}
+
+.ribbon-inner {
+    font-family: "IRANSansWeb" !important;
+}
+
+div.mega-price-table .pricing-head small {
+    font-family: 'IRANSansWeb' !important;
+}
+
+.datepicker.dropdown-menu {
+    font-family: 'IRANSansWeb' !important;
+}
+
+
+
+.time_pick .time,
+.time_pick .mins,
+.time_pick .meridian,
+.mfp-close,
+.price-clean {
+    font-family: 'IRANSansWeb' !important;
+}
+
+.daterangepicker .calendar th, .daterangepicker .calendar td {
+    font-family: 'IRANSansWeb' !important;
+}
+
+.flex-caption {
+    font-family: 'IRANSansWeb' !important;
+}
+
+.switch > .switch-label {
+    font-family: 'IRANSansWeb' !important;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+/** layout.css 
+ *********************** **/
+
+
+small {
+    font-family: 'IRANSansWeb' !important;
+}
+
+/* fonts */
+.font-open-sans {
+       font-family: 'IRANSansWeb' !important;
+}
+
+.timeline .timeline-entry,
+.font-lato {
+      font-family: 'IRANSansWeb' !important;
+}
+
+.font-raleway {
+     font-family: 'IRANSansWeb' !important;
+}
+/* elastic slider */
+.ei-title h3 {
+       font-family: 'IRANSansWeb' !important;
+}
+
+.maintenance,
+.timeline .timeline-entry > span,
+#footer ul.footer-list li small,
+.comments small,
+h1.blog-post-title,
+.blog-post-item h2 {
+    font-family: 'IRANSansWeb' !important;
+}

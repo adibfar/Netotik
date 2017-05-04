@@ -1,22 +1,21 @@
-﻿using Netotik.Services.Abstract;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using System.Data.Entity;
-using Netotik.Data;
 using System.Threading.Tasks;
-using Netotik.Domain.Entity;
-using Netotik.Common.Controller;
-using Netotik.Web.Caching;
 using CaptchaMvc.Attributes;
+using Netotik.Web.Infrastructure;
+using Netotik.Services.Abstract;
+using Netotik.Data;
+using Netotik.Web.Caching;
 using Netotik.ViewModels.Common.ContactUs;
-using Netotik.Resources;
+using Netotik.Domain.Entity;
 
 namespace Netotik.Web.Controllers
 {
-    public partial class ContactUsController : Controller
+    public partial class ContactUsController : BaseController
     {
         private readonly IInboxContactUsMessageService _inboxMessageService;
         private readonly ISettingService _settingService;
@@ -50,20 +49,17 @@ namespace Netotik.Web.Controllers
                     {
                         Name = model.Name,
                         Message = model.Text,
-                        PhoneNumber = model.MobileNumber,
+                        PhoneNumber = model.PhoneNumber,
                         Email = model.Email,
                         CreateDate = DateTime.Now
                     };
                     _inboxMessageService.Add(entity);
                     await _uow.SaveChangesAsync();
 
-                    this.MessageSuccess("ثبت شد","پیام شما با موفقیت برای مدیریت ارسال شد.");
-
                     ModelState.Clear();
                 }
                 catch (Exception ex)
                 {
-                    this.MessageError(Messages.MissionFail, "مشکلی در ارسال پیام بوجود امده، لطفا با ما تماس بگیرید.");
                 }
 
             }

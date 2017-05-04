@@ -1,6 +1,0 @@
-﻿@model Enum
-@Html.LabelFor(model => model, new { @class = "control-label" })
-
-@(System.Web.Mvc.Html.EnumHelper.IsValidForEnumHelper(ViewData.ModelMetadata) ?
-Html.EnumDropDownListFor(model => model, htmlAttributes: new { @class = "form-control chosen-select chosen-rtl" })
-: Html.TextBoxFor(model => model, htmlAttributes: new { @class = "form-control" }))

@@ -1,4 +1,5 @@
-﻿@model List<Netotik.Domain.Entity.ContentComment>
+﻿@using Netotik.Domain.Entity
+@model List<ContentComment>
 @{
     Layout = null;
 }
@@ -10,7 +11,7 @@
     <div class="single0blog-coment">
         <h4 class="text-right">نظرات کاربران</h4>
         <ul>
-            @foreach (var item in Model.Where(x => x.Status == Netotik.ViewModels.CommentStatus.Accepted).OrderByDescending(x=>x.CreateDate))
+            @foreach (var item in Model.Where(x => x.Status == CommentStatus.Accepted).OrderByDescending(x=>x.CreateDate))
             {
                 <li>
                     <div class="coment-image">
@@ -23,7 +24,7 @@
                     </div>
                     <div class="coment0-text">
                         <p>
-                            @item.CommentText
+                            @item.Text
                         </p>
                     </div>
                 </li>

@@ -67,6 +67,7 @@
     <Compile Include="CMS\Comment\CommentItem.cs" />
     <Compile Include="CMS\ContentTag\ContentTagItem.cs" />
     <Compile Include="CMS\Menu\MenuItem.cs" />
+    <Compile Include="CMS\Slider\SliderItem.cs" />
     <Compile Include="Common\City\CityModel.cs" />
     <Compile Include="Common\City\CityItem.cs" />
     <Compile Include="Common\ContactUs\MessageItem.cs" />

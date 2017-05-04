@@ -5,31 +5,38 @@
     Layout = null;
 }
 
-<div class="blog-post2">
-    <div class="blog-box2">
-        <div class="entry-date">
-            <div class="day">@PersianDate.ConvertDate.ToFa(Model.StartDate, "dd") </div>
-            <div class="month">@PersianDate.ConvertDate.ToFa(Model.StartDate,"MMM") </div>
-        </div>
-        <div class="entry-main-content">
-            <div class="entry-thumbnail">
-                <img alt="" src="@Url.Content((Model.PictureId.HasValue ? Path.Combine(_imagesContentPath, Model.Picture.FileName) : "/Content/img/1.jpg"))">
-                <div class="block_hover">
-                    <div class="blog-link">
-                        <a class="fancybox" href="@Url.Content((Model.PictureId.HasValue ? Path.Combine(_imagesContentPath, Model.Picture.FileName) : "/Content/img/1.jpg"))">
-                            <i class="fa fa-search" data-fancybox-group="gallery"></i>
-                        </a>
-                    </div>
-                </div>
-            </div>
-            <div class="entry-content-other">
-                <h3>@Model.Title</h3>
-                <div class="summary">
-                    @Html.Raw(Model.Body)
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
 
+<ul class="blog-post-info list-inline">
+    <li>
+        <i class="fa fa-folder-open-o"></i>
+
+        @foreach (var cat in Model.ContentCategories)
+        {
+            <a class="category" href="@Url.Action(MVC.Blog.Index(categoryId: cat.Id,tagId:null))">
+                <span class="font-lato">@cat.Name</span>
+            </a>
+        }
+    </li>
+
+</ul>
+
+
+@Html.Raw(Model.Body)
+
+<div class="divider divider-dotted"><!-- divider --></div>
+
+
+<!-- TAGS -->
+@foreach (var item in Model.ContentTages)
+{
+    <a class="tag" href="@Url.Action(MVC.Blog.ActionNames.Index, MVC.Blog.Name, new { tagId = item.Id,categoryId=0,page=1 })">
+
+        <span class="txt">@item.Name</span>
+        <span class="num">@item.Contents.Count</span>
+    </a>
+}
+
+<!-- /TAGS -->
+
+<div class="divider"><!-- divider --></div>
 

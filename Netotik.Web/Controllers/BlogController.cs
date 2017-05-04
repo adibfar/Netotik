@@ -1,19 +1,16 @@
-﻿using Netotik.Services.Abstract;
-using Netotik.Web.Caching;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using System.Threading.Tasks;
-using Netotik.Data;
-using Netotik.Domain.Entity;
-using Netotik.Common.Controller;
 using Netotik.Web.Infrastructure;
-using MvcPaging;
+using Netotik.Services.Abstract;
+using Netotik.Services.Identity;
+using Netotik.Data;
 using Netotik.ViewModels.CMS.Content;
 using Netotik.ViewModels.CMS.Comment;
-using Netotik.Resources;
+using Netotik.Domain.Entity;
 
 namespace Netotik.Web.Controllers
 {
@@ -24,6 +21,7 @@ namespace Netotik.Web.Controllers
         private readonly IContentTagService _contentTagService;
         private readonly IContentCategoryService _contentCategoryService;
         private readonly IContentCommentService _contentCommentService;
+        private readonly IApplicationUserManager _applicationUserManager;
         private readonly IUnitOfWork _uow;
 
         public BlogController(
@@ -31,12 +29,14 @@ namespace Netotik.Web.Controllers
             IContentTagService contentTagService,
             IContentCategoryService contentCategoryService,
             IContentCommentService contentCommentService,
+            IApplicationUserManager applicationUserManager,
             IUnitOfWork uow)
         {
             _contentTagService = contentTagService;
             _contentCategoryService = contentCategoryService;
             _contentCommentService = contentCommentService;
             _contentService = contentService;
+            _applicationUserManager = applicationUserManager;
             _uow = uow;
         }
 
@@ -113,13 +113,14 @@ namespace Netotik.Web.Controllers
                 await _uow.SaveChangesAsync();
             }
             #endregion
+            
 
             if (content == null)
                 return RedirectToAction(MVC.Home.ActionNames.Index, MVC.Home.Name);
 
             if (content.AllowViewComments)
             {
-                ViewBag.Comments = content.ContentComments.Where(x => x.Status == CommentStatus.Accepted).ToList();
+                ViewBag.Comments = content.ContentComments.Where(x => x.Status == Netotik.Domain.Entity.CommentStatus.Accepted).ToList();
             }
 
 
@@ -158,11 +159,7 @@ namespace Netotik.Web.Controllers
 
                 if (content.AllowViewComments) ViewBag.Comments = content.ContentComments.Where(x => x.Status == CommentStatus.Accepted).ToList();
 
-                this.MessageSuccess(Messages.MissionSuccess, "نظر شما با موفقیت ثبت شد ، پس از بررسی و تایید در سایت نمایش داده خواهد شد..");
-
                 ModelState.Clear();
-
-
                 return RedirectToAction(MVC.Blog.ActionNames.Detail, new { Id = model.ContentId });
             }
 
@@ -174,12 +171,14 @@ namespace Netotik.Web.Controllers
 
         public virtual ActionResult SideBarCategory()
         {
-            return View(MVC.Blog.Views._Category, _contentCategoryService.All().Where(x => !x.IsDeleted).ToList());
+            var list = _contentCategoryService.All().Where(x => !x.IsDeleted).ToList();
+            return View(MVC.Blog.Views._Category, list);
         }
 
         public virtual ActionResult SideBarTag()
         {
-            return View(MVC.Blog.Views._Tags, _contentTagService.All().ToList());
+            var list = _contentTagService.All().ToList();
+            return View(MVC.Blog.Views._Tags, list);
         }
 
 

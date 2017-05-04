@@ -1,0 +1,107 @@
+﻿@model List<Netotik.Domain.Entity.Menu>
+
+@{
+    Layout = null;
+}
+<div id="header"    >
+
+    <!-- TOP NAV -->
+    <header id="topNav">
+        <div class="container">
+
+            <!-- Mobile Menu Button -->
+            <button class="btn btn-mobile" data-toggle="collapse" data-target=".nav-main-collapse">
+                <i class="fa fa-bars"></i>
+            </button>
+
+            <!-- Logo -->
+            <a class="logo pull-right" href="@Url.Action(MVC.Home.Index())">
+                <img src="~/Content/images/logo/NetotikLogo.png" />
+                <img src="~/Content/images/logo/NetotikLogo.png" />
+            </a>
+
+            <div class="navbar-collapse nav-main-collapse collapse">
+                <nav class="nav-main">
+                    <ul id="topMain" class="nav nav-pills nav-main">
+                        <li>
+                            <a href="@Url.Action(MVC.Home.Index())">
+                                <span class="topMain-icon">
+                                    <i class="fa fa-home"></i>
+                                    خــــانه
+                                </span>
+                            </a>
+                        </li>
+                        @foreach (var One in Model.Where(x => x.ParentId == null))
+                        {
+                            if (One.SubMenues.Any())
+                            {
+                                <li class="dropdown">
+                                    <a class="dropdown-toggle" href="#">
+                                        <span class="topMain-icon">
+                                            <i class="fa fa-@One.Description"></i>
+                                            @One.Text
+                                        </span>
+                                    </a>
+                                    <ul class="dropdown-menu">
+                                        @foreach (var two in One.SubMenues)
+                                        {
+                                            if (two.SubMenues.Any())
+                                            {
+                                                <li class="dropdown">
+                                                    <a href="@two.Url">
+                                                        <span class="topMain-icon">
+                                                            <i class="fa fa-@two.Description "></i>
+                                                            @two.Text
+                                                        </span>
+                                                    </a>
+
+                                                    <ul class="dropdown-menu">
+                                                        @foreach (var three in two.SubMenues)
+                                                        {
+                                                            <li class="dropdown-toggle">
+                                                                <a href="@three.Url">
+                                                                    <span class="topMain-icon">
+                                                                        <i class="fa fa-@three.Description"></i>
+                                                                        @three.Text
+                                                                    </span>
+                                                                </a>
+                                                            </li>
+                                                        }
+                                                    </ul>
+                                                </li>
+                                            }
+                                            else
+                                            {
+                                                <li>
+                                                    <a href="@two.Url">
+                                                        <span class="topMain-icon">
+                                                            <i class="fa fa-@two.Description"></i>
+                                                            @two.Text
+                                                        </span>
+                                                    </a>
+                                                </li>
+                                            }
+                                        }
+                                    </ul>
+                                </li>
+                            }
+                            else
+                            {
+                                <li>
+                                    <a href="@One.Url">
+                                        <span class="topMain-icon">
+                                            <i class="fa fa-@One.Description"></i>
+                                            @One.Text
+                                        </span>
+                                    </a>
+                                </li>
+                            }
+                        }
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+    <!-- /Top Nav -->
+</div>
+    

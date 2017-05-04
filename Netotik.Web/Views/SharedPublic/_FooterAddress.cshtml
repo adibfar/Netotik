@@ -1,0 +1,29 @@
+﻿@*@model Netotik.ViewModels.Common.Setting.GeneralSettingModel
+@{
+    var isRtl = CultureHelper.GetCurrentCulture() == CultureHelper.GetDefaultCulture() ? true : false;
+}
+
+<!-- Footer Logo -->
+<img class="footer-logo" src="~/Content/design/images/logo-footer.png" alt="@Captions.FotterBrandDescription | @Captions.ParsPinnova" />
+
+<!-- Small Description -->
+<p>@Captions.FotterBrandDescription</p>
+
+<address>
+    <ul class="list-unstyled">
+
+        <li class="margin-bottom-10">
+            <i class="fa fa-map-o"></i>
+            @(isRtl ? Model.CompanyAddress : Model.CompanyAddressEnglish)
+        </li>
+        <li class="margin-bottom-10">
+            <i class="fa fa-phone"></i>
+            @Model.CompanyTel1 - @Model.CompanyTel2
+        </li>
+        <li class="">
+            <i class="fa fa-google"></i>
+            <a href="#">@Model.CompanyEmail1</a>
+        </li>
+    </ul>
+</address>*@
+

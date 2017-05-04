@@ -58,9 +58,9 @@ namespace Netotik.Web.Controllers
 
         [NonAction]
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public virtual System.Web.Mvc.ActionResult AutoComplete()
+        public virtual System.Web.Mvc.ActionResult SetCulture()
         {
-            return new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.AutoComplete);
+            return new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.SetCulture);
         }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -79,28 +79,42 @@ namespace Netotik.Web.Controllers
         public class ActionNamesClass
         {
             public readonly string Index = "Index";
-            public readonly string Head = "Head";
+            public readonly string AdminHeader = "AdminHeader";
             public readonly string AdminMenu = "AdminMenu";
-            public readonly string AutoComplete = "AutoComplete";
+            public readonly string LastBlog = "LastBlog";
+            public readonly string Slider = "Slider";
+            public readonly string Footer = "Footer";
+            public readonly string FooterAddress = "FooterAddress";
+            public readonly string FooterPopularPost = "FooterPopularPost";
+            public readonly string Header = "Header";
+            public readonly string HeaderMenu = "HeaderMenu";
+            public readonly string SetCulture = "SetCulture";
         }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public class ActionNameConstants
         {
             public const string Index = "Index";
-            public const string Head = "Head";
+            public const string AdminHeader = "AdminHeader";
             public const string AdminMenu = "AdminMenu";
-            public const string AutoComplete = "AutoComplete";
+            public const string LastBlog = "LastBlog";
+            public const string Slider = "Slider";
+            public const string Footer = "Footer";
+            public const string FooterAddress = "FooterAddress";
+            public const string FooterPopularPost = "FooterPopularPost";
+            public const string Header = "Header";
+            public const string HeaderMenu = "HeaderMenu";
+            public const string SetCulture = "SetCulture";
         }
 
 
-        static readonly ActionParamsClass_AutoComplete s_params_AutoComplete = new ActionParamsClass_AutoComplete();
+        static readonly ActionParamsClass_SetCulture s_params_SetCulture = new ActionParamsClass_SetCulture();
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public ActionParamsClass_AutoComplete AutoCompleteParams { get { return s_params_AutoComplete; } }
+        public ActionParamsClass_SetCulture SetCultureParams { get { return s_params_SetCulture; } }
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public class ActionParamsClass_AutoComplete
+        public class ActionParamsClass_SetCulture
         {
-            public readonly string q = "q";
+            public readonly string culture = "culture";
         }
         static readonly ViewsClass s_views = new ViewsClass();
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -112,8 +126,16 @@ namespace Netotik.Web.Controllers
             public _ViewNamesClass ViewNames { get { return s_ViewNames; } }
             public class _ViewNamesClass
             {
+                public readonly string _LastBlog = "_LastBlog";
+                public readonly string _SideBarCategory = "_SideBarCategory";
+                public readonly string _Slider = "_Slider";
+                public readonly string _StaticSlider = "_StaticSlider";
                 public readonly string Index = "Index";
             }
+            public readonly string _LastBlog = "~/Views/Home/_LastBlog.cshtml";
+            public readonly string _SideBarCategory = "~/Views/Home/_SideBarCategory.cshtml";
+            public readonly string _Slider = "~/Views/Home/_Slider.cshtml";
+            public readonly string _StaticSlider = "~/Views/Home/_StaticSlider.cshtml";
             public readonly string Index = "~/Views/Home/Index.cshtml";
         }
     }
@@ -135,13 +157,13 @@ namespace Netotik.Web.Controllers
         }
 
         [NonAction]
-        partial void HeadOverride(T4MVC_System_Web_Mvc_ActionResult callInfo);
+        partial void AdminHeaderOverride(T4MVC_System_Web_Mvc_ActionResult callInfo);
 
         [NonAction]
-        public override System.Web.Mvc.ActionResult Head()
+        public override System.Web.Mvc.ActionResult AdminHeader()
         {
-            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Head);
-            HeadOverride(callInfo);
+            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.AdminHeader);
+            AdminHeaderOverride(callInfo);
             return callInfo;
         }
 
@@ -157,14 +179,91 @@ namespace Netotik.Web.Controllers
         }
 
         [NonAction]
-        partial void AutoCompleteOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, string q);
+        partial void LastBlogOverride(T4MVC_System_Web_Mvc_PartialViewResult callInfo);
 
         [NonAction]
-        public override System.Web.Mvc.ActionResult AutoComplete(string q)
+        public override System.Web.Mvc.PartialViewResult LastBlog()
         {
-            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.AutoComplete);
-            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "q", q);
-            AutoCompleteOverride(callInfo, q);
+            var callInfo = new T4MVC_System_Web_Mvc_PartialViewResult(Area, Name, ActionNames.LastBlog);
+            LastBlogOverride(callInfo);
+            return callInfo;
+        }
+
+        [NonAction]
+        partial void SliderOverride(T4MVC_System_Web_Mvc_PartialViewResult callInfo);
+
+        [NonAction]
+        public override System.Web.Mvc.PartialViewResult Slider()
+        {
+            var callInfo = new T4MVC_System_Web_Mvc_PartialViewResult(Area, Name, ActionNames.Slider);
+            SliderOverride(callInfo);
+            return callInfo;
+        }
+
+        [NonAction]
+        partial void FooterOverride(T4MVC_System_Web_Mvc_PartialViewResult callInfo);
+
+        [NonAction]
+        public override System.Web.Mvc.PartialViewResult Footer()
+        {
+            var callInfo = new T4MVC_System_Web_Mvc_PartialViewResult(Area, Name, ActionNames.Footer);
+            FooterOverride(callInfo);
+            return callInfo;
+        }
+
+        [NonAction]
+        partial void FooterAddressOverride(T4MVC_System_Web_Mvc_PartialViewResult callInfo);
+
+        [NonAction]
+        public override System.Web.Mvc.PartialViewResult FooterAddress()
+        {
+            var callInfo = new T4MVC_System_Web_Mvc_PartialViewResult(Area, Name, ActionNames.FooterAddress);
+            FooterAddressOverride(callInfo);
+            return callInfo;
+        }
+
+        [NonAction]
+        partial void FooterPopularPostOverride(T4MVC_System_Web_Mvc_PartialViewResult callInfo);
+
+        [NonAction]
+        public override System.Web.Mvc.PartialViewResult FooterPopularPost()
+        {
+            var callInfo = new T4MVC_System_Web_Mvc_PartialViewResult(Area, Name, ActionNames.FooterPopularPost);
+            FooterPopularPostOverride(callInfo);
+            return callInfo;
+        }
+
+        [NonAction]
+        partial void HeaderOverride(T4MVC_System_Web_Mvc_PartialViewResult callInfo);
+
+        [NonAction]
+        public override System.Web.Mvc.PartialViewResult Header()
+        {
+            var callInfo = new T4MVC_System_Web_Mvc_PartialViewResult(Area, Name, ActionNames.Header);
+            HeaderOverride(callInfo);
+            return callInfo;
+        }
+
+        [NonAction]
+        partial void HeaderMenuOverride(T4MVC_System_Web_Mvc_PartialViewResult callInfo);
+
+        [NonAction]
+        public override System.Web.Mvc.PartialViewResult HeaderMenu()
+        {
+            var callInfo = new T4MVC_System_Web_Mvc_PartialViewResult(Area, Name, ActionNames.HeaderMenu);
+            HeaderMenuOverride(callInfo);
+            return callInfo;
+        }
+
+        [NonAction]
+        partial void SetCultureOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, string culture);
+
+        [NonAction]
+        public override System.Web.Mvc.ActionResult SetCulture(string culture)
+        {
+            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.SetCulture);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "culture", culture);
+            SetCultureOverride(callInfo, culture);
             return callInfo;
         }
 

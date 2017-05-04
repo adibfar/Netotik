@@ -24,6 +24,7 @@ using DNTBreadCrumb;
 using Netotik.ViewModels.Identity.Security;
 using Netotik.ViewModels.CMS.Slider;
 using Netotik.Common.Controller;
+using Netotik.Common.DataTables;
 
 namespace Netotik.Web.Areas.Admin.Controllers
 {
@@ -49,36 +50,56 @@ namespace Netotik.Web.Areas.Admin.Controllers
         #region Index
         public virtual ActionResult Index()
         {
-
-            var list = _sliderService.All().Include(x => x.Picture).OrderBy(x => x.Order).ToList();
-            return View(MVC.Admin.Slider.ActionNames.Index, list);
-
+            return View();
         }
+
+        public virtual JsonResult GetList(RequestListModel model)
+        {
+            var result = _sliderService
+                .All()
+                .ToList()
+                .Select((x, index) => new SliderItem
+                {
+                    Id = x.Id,
+                    ImageFileName = Path.Combine(FilePathes._imagesSliderPath, x.Picture.FileName),
+                    IsActive = x.IsActive,
+                    Order = x.Order,
+                    Url = x.Url,
+                    RowNumber = ++index
+                })
+                .ToList();
+
+            return Json(new
+            {
+                sEcho = model.sEcho,
+                iTotalRecords = result.Count,
+                iTotalDisplayRecords = result.Count,
+                aaData = result
+            }, JsonRequestBehavior.AllowGet);
+        }
+
         #endregion
 
         #region Create
-
-        [BreadCrumb(Title = "اسلاید جدید", Order = 1)]
         public virtual ActionResult Create()
         {
-            return View(new SliderModel { Order = 0, IsActive = true });
+            return PartialView(MVC.Admin.Slider.Views._Create, new SliderModel { Order = 0, IsActive = true });
         }
+
 
         [ValidateAntiForgeryToken]
         [HttpPost]
-        public virtual async Task<ActionResult> Create(SliderModel model, ActionType actionType)
+        public virtual async Task<ActionResult> Create(SliderModel model, ActionType actionType = ActionType.Save)
         {
             if (!ModelState.IsValid || model.Image == null)
             {
                 this.MessageError(Messages.MissionFail, Messages.InvalidDataError);
-                return View();
+                return RedirectToAction(MVC.Admin.Slider.Index());
             }
 
             #region Initial Content
             var slider = new Netotik.Domain.Entity.Slider()
             {
-                BigText = model.BigText,
-                SmallText = model.SmallText,
                 Url = model.Url,
                 Order = model.Order,
                 IsActive = model.IsActive
@@ -111,10 +132,10 @@ namespace Netotik.Web.Areas.Admin.Controllers
             catch (Exception ex)
             {
                 this.MessageError(Messages.MissionFail, Messages.AddError);
-                return View();
+                return RedirectToAction(MVC.Admin.Slider.Index());
             }
 
-            this.MessageError(Messages.MissionSuccess, Messages.AddSuccess);
+            this.MessageSuccess(Messages.MissionSuccess, Messages.AddSuccess);
             return RedirectToAction(MVC.Admin.Slider.Index());
         }
         #endregion
@@ -130,7 +151,7 @@ namespace Netotik.Web.Areas.Admin.Controllers
                 await _uow.SaveChangesAsync();
 
             }
-            return RedirectToAction(MVC.Admin.Slider.ActionNames.Index);
+            return RedirectToAction(MVC.Admin.Slider.Index());
         }
 
         [BreadCrumb(Title = "ویرایش اسلاید", Order = 1)]
@@ -144,14 +165,12 @@ namespace Netotik.Web.Areas.Admin.Controllers
             var editModel = new SliderModel
             {
                 Id = model.Id,
-                BigText = model.BigText,
-                SmallText = model.SmallText,
                 Url = model.Url,
                 Order = model.Order,
                 IsActive = model.IsActive
             };
 
-            return View(editModel);
+            return View(MVC.Admin.Slider.Views._Edit, editModel);
 
         }
 
@@ -162,22 +181,19 @@ namespace Netotik.Web.Areas.Admin.Controllers
         {
             var slider = _sliderService.SingleOrDefault(model.Id);
             if (slider == null)
-                return RedirectToAction("Index");
+                return HttpNotFound();
 
 
             if (!ModelState.IsValid)
             {
-
                 this.MessageError(Messages.MissionFail, Messages.InvalidDataError);
-                return View();
+                return RedirectToAction(MVC.Admin.Slider.Index());
             }
 
             #region Update
 
             slider.IsActive = model.IsActive;
             slider.Order = model.Order;
-            slider.SmallText = model.SmallText;
-            slider.BigText = model.BigText;
             slider.Url = model.Url;
 
             if (model.Image != null)
@@ -209,10 +225,10 @@ namespace Netotik.Web.Areas.Admin.Controllers
             catch (Exception ex)
             {
                 this.MessageError(Messages.MissionFail, Messages.UpdateError);
-                return View();
+                return RedirectToAction(MVC.Admin.Slider.Index());
             }
 
-            this.MessageError(Messages.MissionSuccess, Messages.UpdateSuccess);
+            this.MessageSuccess(Messages.MissionSuccess, Messages.UpdateSuccess);
             return RedirectToAction(MVC.Admin.Slider.Index());
 
         }

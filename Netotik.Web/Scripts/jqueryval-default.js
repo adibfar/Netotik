@@ -6,6 +6,7 @@ $(function () {
     StartSummerNote();
 
     $(".datepicker").datetimepicker({ defaultDate: "" });
+    $("#unslider").unslider({ animation: "fade", infinite: !0 });
 });
 
 

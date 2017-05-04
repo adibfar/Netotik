@@ -1,4 +1,4 @@
-﻿@model Netotik.ViewModels.Content.PublicTableContentModel
+﻿@model Netotik.ViewModels.CMS.Content.PublicTableContentModel
 @using Netotik.Common.Extensions
 @using Netotik.Web.Extension
 
@@ -6,32 +6,52 @@
     Layout = null;
 }
 
+
 @foreach (var item in Model.Contents)
 {
-    <div class="blog-post2">
-        <div class="blog-box2">
-            <div class="entry-date">
-                <div class="day">@PersianDate.ConvertDate.ToFa(item.StartPublish, "dd")</div>
-                <div class="month">@PersianDate.ConvertDate.ToFa(item.StartPublish, "MMM")</div>
-            </div>
-            <div class="entry-main-content">
-                <div class="entry-thumbnail">
-                    <img alt="" src="@Url.Content((!string.IsNullOrEmpty(item.Image) ? Path.Combine(_imagesContentPath, item.Image) : "/Content/img/1.jpg"))">
-                    <div class="block_hover">
-                        <div class="blog-link">
-                            <a class="fancybox" href="@Url.Content((!string.IsNullOrEmpty(item.Image) ? Path.Combine(_imagesContentPath, item.Image) : "/Content/img/1.jpg"))"><i class="fa fa-search" data-fancybox-group="gallery"></i></a>
-                            <a href="@Url.Action(MVC.Blog.ActionNames.Detail, MVC.Blog.Name, new { Id = item.Id, name = item.Title.GenerateSlug() })"><i class="fa fa-link"></i></a>
-                        </div>
-                    </div>
-                </div>
-                <div class="entry-content-other">
-                    <h3><a href="@Url.Action(MVC.Blog.ActionNames.Detail, MVC.Blog.Name, new { Id = item.Id, name = item.Title.GenerateSlug() })">@item.Title</a></h3>
-                    <div class="summary">
-                        @item.Description
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-}
+    <div class="blog-post-item">
+        <!-- .blog-post-item-inverse = image right side [left on RTL] -->
+        <!-- IMAGE -->
+        <figure class="blog-item-small-image margin-bottom-20">
+            <img class="img-responsive" src="@Url.Content((!string.IsNullOrEmpty(item.Image) ? Path.Combine(Netotik.Common.Controller.FilePathes._imagesContentPath, item.Image) : "/Content/img/1.jpg"))" alt="@item.Title">
+        </figure>
 
+        <div class="blog-item-small-content">
+
+            <h2><a href="@Url.Action(MVC.Blog.Detail(item.Id))">@item.Title</a></h2>
+
+            <ul class="blog-post-info list-inline">
+                <li>
+                    <a href="#">
+                        <i class="fa fa-clock-o"></i>
+                        <span class="font-lato size-12">@PersianDate.ConvertDate.ToFa(item.StartPublish, "D")</span>
+                    </a>
+                </li>
+
+                <li>
+                    <a href="#">
+                        <i class="fa fa-eye"></i>
+                        <span class="font-lato size-12">@item.ViewCount </span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <i class="fa fa-comment-o"></i>
+                        <span class="font-lato size-12">@item.CommentCount</span>
+                    </a>
+                </li>
+            </ul>
+
+            <p>
+                @item.Description
+            </p>
+            <a href="@Url.Action(MVC.Blog.Detail(item.Id))" class="btn btn-reveal btn-default">
+                <i class="fa fa-eye"></i>
+                <span>ادامه مطلب</span>
+            </a>
+        </div>
+
+    </div>
+    
+    
+}

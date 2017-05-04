@@ -1,3 +1,187 @@
 ﻿@{
     ViewBag.Title = "خــانه";
 }
+
+@*@Html.Action(MVC.Home.Slider())*@
+
+@Html.Partial("_StaticSlider")
+
+
+<div class="container">
+
+    <header class="text-center margin-bottom-60 margin-top-30">
+        <h3>We Are Smarty</h3>
+        <p class="lead font-lato">Lorem ipsum dolor sit amet adipiscium elit</p>
+        <hr>
+    </header>
+
+
+    <div class="row">
+
+        <div class="col-sm-6">
+            <img class="img-responsive" src="~/Content/images/laptop.png" alt="">
+        </div>
+
+        <div class="col-sm-6">
+            <p>Lorem ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt. Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen.Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam.</p>
+
+            <hr>
+
+            <div class="row countTo-sm text-center">
+
+                <div class="col-xs-6 col-sm-4">
+                    <i class="fa fa-icon-users size-20"></i> &nbsp;
+                    <span class="countTo" data-speed="3000" style="color:#59BA41">475</span>
+                    <h6>نمایندگان فعال</h6>
+                </div>
+
+                <div class="col-xs-6 col-sm-4">
+                    <i class="fa fa-briefcase size-20"></i> &nbsp;
+                    <span class="countTo" data-speed="3000" style="color:#774F38">560</span>
+                    <h6>شبکه های فعال</h6>
+                </div>
+
+                <div class="col-xs-6 col-sm-4">
+                    <i class="fa fa-users size-20"></i> &nbsp;
+                    <span class="countTo" data-speed="3000" style="color:#C02942">14897</span>
+                    <h6>کاربران شبکه</h6>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+
+</div>
+<div class="divider">
+</div>
+<div class="container">
+    <div class="row">
+
+        <div class="col-md-4">
+
+            <div class="box-icon box-icon-side box-icon-round">
+                <i class="fa fa-tablet"></i>
+                <a class="box-icon-title" href="#">
+                    <h2>Fully Reposnive</h2>
+                </a>
+                <p>Nullam id dolor id nibh ultricies vehicula ut id elit. Integer posuere erat a ante venenatis dapibus posuere velit aliquet.</p>
+                <a class="box-icon-more font-lato weight-300" href="#">Learn More</a>
+            </div>
+
+        </div>
+
+        <div class="col-md-4">
+
+            <div class="box-icon box-icon-side box-icon-round">
+                <i class="fa fa-tint"></i>
+                <a class="box-icon-title" href="#">
+                    <h2>Reusable Elements</h2>
+                </a>
+                <p>Nullam id dolor id nibh ultricies vehicula ut id elit. Integer posuere erat a ante venenatis dapibus posuere velit aliquet.</p>
+                <a class="box-icon-more font-lato weight-300" href="#">Learn More</a>
+            </div>
+
+        </div>
+
+        <div class="col-md-4">
+
+            <div class="box-icon box-icon-side box-icon-round">
+                <i class="fa fa-cogs"></i>
+                <a class="box-icon-title" href="#">
+                    <h2>Multipurpose</h2>
+                </a>
+                <p>Nullam id dolor id nibh ultricies vehicula ut id elit. Integer posuere erat a ante venenatis dapibus posuere velit aliquet.</p>
+                <a class="box-icon-more font-lato weight-300" href="#">Learn More</a>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<div class="heading-title heading-dotted text-center">
+    <h2>آخرین مطالب  <span>وبلاگ</span></h2>
+</div>
+
+@Html.Action(MVC.Home.ActionNames.LastBlog)
+
+
+<section class="heading-title heading-arrow-bottom ">
+    <div class="container">
+        <div class="text-center">
+            <h3>برخی از <span>مشتریان ما</span></h3>
+            <p>در کمتر از یک سال از رونمایی سامانه نتوتیک بیش از 400 مجموعه از این سامانه مدیریتی استفاده می کنند</p>
+        </div>
+    </div>
+</section>	
+
+<section>
+    <div class="container">
+        <ul class="row clients-dotted list-inline">
+            <li class="col-md-3 col-sm-3 col-xs-6">
+                <a href="#">
+                    <img class="img-responsive" src="~/Content/images/brands/chamran.jpg?w=140&h=80" alt="client" />
+                </a>
+            </li>
+            <li class="col-md-3 col-sm-3 col-xs-6">
+                <a href="#">
+                    <img class="img-responsive" src="~/Content/images/brands/azad.png?w=140&h=80" alt="client" />
+                </a>
+            </li>
+            <li class="col-md-3 col-sm-3 col-xs-6">
+                <a href="#">
+                    <img class="img-responsive" src="~/Content/images/brands/avatech.png?w=140&h=80" alt="client" />
+                </a>
+            </li>
+            <li class="col-md-3 col-sm-3 col-xs-6">
+                <a href="#">
+                    <img class="img-responsive" src="~/Content/images/brands/ice.png?w=140&h=80" alt="client" />
+                </a>
+            </li>
+            <li class="col-md-3 col-sm-3 col-xs-6">
+                <a href="#">
+                    <img class="img-responsive" src="~/Content/images/brands/anet.png?w=140&h=80" alt="client" />
+                </a>
+            </li>
+
+            <li class="col-md-3 col-sm-3 col-xs-6">
+                <a href="#">
+                    <img class="img-responsive" src="~/Content/images/brands/rightel.jpg?w=140&h=80" alt="client" />
+                </a>
+            </li>
+
+            <li class="col-md-3 col-sm-3 col-xs-6">
+                <a href="#">
+                    <img class="img-responsive" src="~/Content/images/brands/snap.jpg?w=140&h=80" alt="client" />
+                </a>
+            </li>
+
+            <li class="col-md-3 col-sm-3 col-xs-6">
+                <a href="#">
+                    <img class="img-responsive" src="~/Content/images/brands/sepa.jpg?w=140&h=80" alt="client" />
+                </a>
+            </li>
+        </ul>
+
+    </div>
+</section>
+
+
+<div class="callout alert alert-default noborder noradius nomargin">
+
+    <div class="text-center">
+
+        <h3>متخصصین ما بهترین راهکار را به شما پیشنهاد میدهند</h3>
+        <p class="font-lato size-20">
+            برای اطلاعات بیشتر و نحوه استفاده از سامانه نتوتیک می توانید با متخصصان ما مشورت کنید.
+        </p>
+
+        <a href="#purchase" rel="nofollow" target="_blank" class="btn btn-success btn-lg margin-top-30">
+            <i class="et-envelope"></i>
+            درخواست مشاوره رایگان
+        </a>
+
+    </div>
+
+</div>
+

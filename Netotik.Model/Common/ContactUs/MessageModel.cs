@@ -17,8 +17,8 @@ namespace Netotik.ViewModels.Common.ContactUs
         public string Name { get; set; }
 
         [Display(ResourceType = typeof(Captions), Name = "MobileNumber")]
-        [RegularExpression(@"^0?9\d{9}$", ErrorMessageResourceType = typeof(Messages), ErrorMessageResourceName = "MobileNumberNotValid")]
-        public string MobileNumber { get; set; }
+        [RegularExpression(@"^0?9\d{9}$", ErrorMessageResourceType = typeof(Messages), ErrorMessageResourceName = "NotValidError")]
+        public string PhoneNumber { get; set; }
 
 
         [Required(ErrorMessageResourceType = typeof(Messages), ErrorMessageResourceName = "RequiredError")]

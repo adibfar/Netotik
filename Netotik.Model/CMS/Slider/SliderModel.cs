@@ -12,10 +12,6 @@ namespace Netotik.ViewModels.CMS.Slider
     public class SliderModel
     {
         public int? Id { get; set; }
-        [Display(Name="متن بزرگ")]
-        public string BigText { get; set; }
-        [Display(Name = "متن کوچک")]
-        public string SmallText { get; set; }
         [Display(Name = "متن لینک")]
         public string Url { get; set; }
         [Display(ResourceType = typeof(Captions),Name="Order")]

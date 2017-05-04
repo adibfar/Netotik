@@ -1,54 +1,53 @@
 ﻿@{
-    var setting = ViewBag.siteConfig as Netotik.ViewModels.Setting.GeneralSettingModel;
+    var setting = ViewBag.siteConfig as Netotik.ViewModels.Common.Setting.GeneralSettingModel;
 }
 
-
-<div class="col-xs-12 col-sm-4 col-md-4">
-    <div class="contactDetails contactHead">
-        <h3>اطلاعات تماس</h3>
-        <p>
-            <span class="iconContact"><i class="fa fa-map-marker"></i></span>
-            @setting.CompanyName
-            <br />
-            @setting.CompanyAddress
-        </p>
-        <p>
-            <span class="iconContact"><i class="fa fa-phone"></i></span>
-            تلفن : @setting.CompanyTel1
-            @if (!string.IsNullOrEmpty(setting.CompanyTel2))
-            { <text><br />تلفن : </text> @setting.CompanyTel2 }
-        </p>
-        <p style="direction: rtl;">
-            <span class="iconContact"><i class="fa fa-envelope-o"></i></span>
-            ایمیل: @setting.CompanyEmail1
-
-            @if (!string.IsNullOrEmpty(setting.CompanyEmail2))
-            { <text> <br /> ایمیل: </text> @setting.CompanyEmail2 }
-
-
-        </p>
-    </div>
-    <div class="social-area contactHead">
-        <h3>ما را در شبکه های اجتماعی دنبال کنید</h3>
-        <ul class="socila-icon">
-            @if (!string.IsNullOrEmpty(setting.Facebook))
+<p>
+    <span class="block"><strong><i class="fa fa-map-marker"></i> ادرس :</strong> @setting.CompanyAddress </span>
+    <span class="block">
+        <strong><i class="fa fa-phone"></i> شماره تماس :</strong> <a href="#">
+            @setting.CompanyTel1
+            @if (string.IsNullOrWhiteSpace(setting.CompanyTel2))
             {
-                <li><a href="@setting.Facebook" target="_blank"><i class="fa fa-facebook"></i></a></li>
+                <text>-</text> @setting.CompanyTel2
             }
-            @if (!string.IsNullOrEmpty(setting.Twitter))
-            {
-                <li><a href="@setting.Twitter" target="_blank"><i class="fa fa-twitter"></i></a></li>
-            }
-            @if (!string.IsNullOrEmpty(setting.GooglePlus))
-            {
-                <li><a href="@setting.GooglePlus" target="_blank"><i class="fa fa-google-plus"></i></a></li>
-            }
-            @if (!string.IsNullOrEmpty(setting.Instagram))
-            {
-                <li><a href="@setting.GooglePlus" target="_blank"><i class="fa fa-instagram"></i></a></li>
-            }
+        </a>
+    </span>
+    <span class="block"><strong><i class="fa fa-envelope"></i> ایمیل:</strong> <a href="#"> @setting.CompanyEmail1</a></span>
+</p>
 
+<hr />
 
-        </ul>
-    </div>
+<div class="margin-top-30 text-center">
+    @if (!string.IsNullOrEmpty(setting.Facebook))
+    {
+        <a target="_blank" href="@setting.Facebook" class="social-icon social-icon-sm social-icon-border social-facebook" data-toggle="tooltip" data-placement="top" title="" data-original-title="Facebook">
+
+            <i class="icon-facebook"></i>
+            <i class="icon-facebook"></i>
+        </a>
+    }
+    @if (!string.IsNullOrEmpty(setting.Twitter))
+    {
+
+        <a target="_blank" href="@setting.Twitter" class="social-icon social-icon-sm social-icon-border social-twitter" data-toggle="tooltip" data-placement="top" title="" data-original-title="Twitter">
+            <i class="icon-twitter"></i>
+            <i class="icon-twitter"></i>
+        </a>
+    }
+    @if (!string.IsNullOrEmpty(setting.GooglePlus))
+    {
+        <a target="_blank" href="@setting.GooglePlus" class="social-icon social-icon-sm social-icon-border social-gplus" data-toggle="tooltip" data-placement="top" title="" data-original-title="Google plus">
+            <i class="icon-gplus"></i>
+            <i class="icon-gplus"></i>
+        </a>
+    }
+    @if (!string.IsNullOrEmpty(setting.Instagram))
+    {
+        <a target="_blank" href="@setting.Instagram" class="social-icon social-icon-sm social-icon-border social-instagram" data-toggle="tooltip" data-placement="top" title="" data-original-title="Instagram">
+            <i class="icon-instagram"></i>
+            <i class="icon-instagram"></i>
+        </a>
+    }
+
 </div>

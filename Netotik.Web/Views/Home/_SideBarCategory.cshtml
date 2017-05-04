@@ -1,0 +1,37 @@
+﻿@model IList<Netotik.Domain.Entity.Category>
+@{
+    Layout = null;
+}
+<div class="categori-menu">
+    <div class="sidebar-menu-title">
+        <h2><i class="fa fa-th-list"></i>دسته بندی ها </h2>
+    </div>
+    <div class="sidebar-menu">
+        <ul>
+            @foreach (var item in Model.OrderBy(x => x.DisplayOrder))
+            {
+                if (!item.SubCategories.Any())
+                {
+                    <li><a href="@Url.Action(MVC.Blog.Index(categoryId: item.Id,tagId:null))" class="single-menu">@item.Name</a></li>
+                }
+                else
+                {
+                    <li>
+                        <a href="@Url.Action(MVC.Blog.Index(categoryId: item.Id,tagId:null))">@item.Name</a>
+
+                        <div class="megamenudown-sub mini">
+                            <div class="mega-top">
+                                <div class="mega-item-menu">
+                                    @foreach (var item2 in item.SubCategories)
+                                    {
+                                        <a href="@Url.Action(MVC.Blog.Index(categoryId: item2.Id, tagId: null))"><span>@item2.Name</span></a>
+                                    }
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                }
+            }
+        </ul>
+    </div>
+</div>

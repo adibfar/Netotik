@@ -1,9 +1,0 @@
-﻿@model TimeSpan?
-
-@Html.LabelFor(model => model)
-<div class="input-group clockpicker" data-autoclose="true">
-    <span class="input-group-addon">
-        <span class="fa fa-clock-o"></span>
-    </span>
-    @Html.TextBoxFor(model => model, new { @class = "form-control", value = "09:30" })
-</div>

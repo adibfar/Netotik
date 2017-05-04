@@ -3,16 +3,21 @@
     Layout = null;
 }
 
-@if (Model.Any())
-{
-    <div class="blog-categoris">
-        <h3>دسته بندی</h3>
-        <ul class="bside-menu">
-            <li><a href="@Url.Action(MVC.Blog.ActionNames.Index, MVC.Blog.Name, new { categoryId = 0, tagId = "",page=1 })">جدیدترین مطالب</a></li>
-            @foreach (var item in Model)
-            {
-                <li><a href="@Url.Action(MVC.Blog.ActionNames.Index, MVC.Blog.Name, new { categoryId = item.Id, tagId = "",page=1 })">@item.Name</a></li>
-            }
-        </ul>
-    </div>
-}
+
+<div class="side-nav-head">
+    <button class="fa fa-bars"></button>
+    <h4>دسته بندی</h4>
+</div>
+<ul class="list-group list-group-bordered list-group-noicon uppercase">
+    <li class="list-group-item"><a href="@Url.Action(MVC.Blog.ActionNames.Index, MVC.Blog.Name, new { categoryId = 0, tagId = "",page=1 })">جدیدترین ها</a></li>
+    @foreach (var item in Model)
+    {
+        <li class="list-group-item">
+            <a href="@Url.Action(MVC.Blog.ActionNames.Index, MVC.Blog.Name, new { categoryId = item.Id, tagId = "",page=1 })">
+                <span class="size-11 text-muted pull-right">(@item.Contents.Count)</span>
+                @item.Name
+            </a>
+        </li>
+    }
+</ul>
+
