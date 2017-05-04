@@ -41,6 +41,7 @@ namespace Netotik.Web.Areas.Company.Controllers
         [Mvc5Authorize(Roles = "Company")]
         [ValidateAntiForgeryToken]
         [HttpPost]
+        [ValidateInput(false)]
         public virtual ActionResult ResetCounter(string user, string id)
         {
             if (!_mikrotikServices.IP_Port_Check(UserLogined.UserCompany.R_Host, UserLogined.UserCompany.R_Port, UserLogined.UserCompany.R_User, UserLogined.UserCompany.R_Password))
@@ -61,6 +62,7 @@ namespace Netotik.Web.Areas.Company.Controllers
         [Mvc5Authorize(Roles = "Company")]
         [ValidateAntiForgeryToken]
         [HttpPost]
+        [ValidateInput(false)]
         public virtual ActionResult CloseSession(string user, string id)
         {
             //-------------------------------
@@ -348,6 +350,8 @@ namespace Netotik.Web.Areas.Company.Controllers
             return View();
         }
         [Mvc5Authorize(Roles = "Company")]
+        [ValidateInput(false)]
+        [HttpPost]
         public virtual ActionResult Userdisable(string id)
         {
             
@@ -372,6 +376,8 @@ namespace Netotik.Web.Areas.Company.Controllers
             return RedirectToAction(MVC.Company.UserManager.ActionNames.UserList);
         }
         [Mvc5Authorize(Roles = "Company")]
+        [ValidateInput(false)]
+        [HttpPost]
         public virtual ActionResult Userremove(string id)
         {
             
@@ -396,6 +402,8 @@ namespace Netotik.Web.Areas.Company.Controllers
             return RedirectToAction(MVC.Company.UserManager.ActionNames.UserList);
         }
         [Mvc5Authorize(Roles = "Company")]
+        [ValidateInput(false)]
+        [HttpPost]
         public virtual ActionResult ProfileRemove(string id)
         {
             
@@ -420,6 +428,8 @@ namespace Netotik.Web.Areas.Company.Controllers
             return RedirectToAction(MVC.Company.UserManager.ActionNames.PackageList);
         }
         [Mvc5Authorize(Roles = "Company")]
+        [ValidateInput(false)]
+        [HttpPost]
         public virtual ActionResult Userenable(string id)
         {
             
@@ -444,6 +454,8 @@ namespace Netotik.Web.Areas.Company.Controllers
             return RedirectToAction(MVC.Company.UserManager.ActionNames.UserList);
         }
         [Mvc5Authorize(Roles = "Company")]
+        [ValidateInput(false)]
+        [HttpPost]
         public virtual ActionResult PackageDetails(string id)
         {
             
@@ -502,6 +514,8 @@ namespace Netotik.Web.Areas.Company.Controllers
             return View(resualtmodel);
         }
         [Mvc5Authorize(Roles = "Company")]
+        [ValidateInput(false)]
+        [HttpPost]
         public virtual ActionResult UserDetails(string id)
         {
             
@@ -711,6 +725,7 @@ namespace Netotik.Web.Areas.Company.Controllers
         }
         [Mvc5Authorize(Roles = "Company")]
         [HttpPost]
+        [ValidateInput(false)]
         public virtual ActionResult UserEdit(string id)
         {
             

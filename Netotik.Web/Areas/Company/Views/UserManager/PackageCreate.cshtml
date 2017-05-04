@@ -1,277 +1,276 @@
-﻿@model Netotik.ViewModels.Mikrotik.UsermanProfileLimitionCreate
+﻿@model Netotik.ViewModels.Mikrotik.Usermanager_ProfileLimitionCreateModel
 @{
     ViewBag.Title = " پکیج جدید ";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
-@using (Html.BeginForm(MVC.Company.UserManager.ActionNames.PackageCreate, MVC.Company.UserManager.Name, FormMethod.Post, htmlAttributes: new { @class = "form cmxform form-horizontal tasi-form", enctype = "multipart/form-data", id = "form" }))
-{
-
-    <div class="ibox-content m-b-sm border-bottom">
-        <div class="row">
-            <div class="col-md-12">
-                <button name="actionType" value="@Netotik.Common.Controller.ActionType.Save" class="btn btn-outline btn-primary" onclick="AjaxForm.Post(this, 'form')" data-loading-text="در حال ارسال اطلاعات">
-                    <span class="fa fa-check"></span>
-                    @Netotik.Resources.Captions.Save
-                </button>
-                <a class="btn btn-default btn-outline pull-left" href="@Url.Action(MVC.Company.UserManager.ActionNames.PackageList, MVC.Company.UserManager.Name)">
-                    <span class="fa fa-reply"></span>
-                    @Netotik.Resources.Captions.Back
-                </a>
-            </div>
-            <div class="col-md-12">
-                @Html.ValidationSummary(false, "", htmlAttributes: new { @class = "text-danger" })
-            </div>
-        </div>
-    </div>
-    @Html.AntiForgeryToken()
+<section class="flexbox-container">
     <div class="row">
-        <div class="tabs-container">
-            <div class="nav-tabs">
-                <ul class="nav nav-tabs">
-                    <li class="active">
-                        <a href="#profile" data-toggle="tab">عمومی </a>
-                    </li>
-                    <li class="">
-                        <a href="#time" data-toggle="tab">زمان </a>
-                    </li>
-                    <li class="">
-                        <a href="#transfer" data-toggle="tab">حجم و سرعت </a>
-                    </li>
-                </ul>
-            </div>
-            <div class="tab-content">
-                <div class="tab-pane active form-horizontal" id="profile">
-                    <div class="panel-body">
-                        <fieldset>
-                            <div class="form-group">
-                                <div class="col-md-5">
-                                    @Html.EditorFor(model => model.profile_name)
-                                </div>
-                                <div class="col-md-5">
-                                    @Html.EditorFor(model => model.profile_name_for_users)
-                                </div>
-                            </div>
-                            <div class="hr-line-dashed"></div>
-                            <div class="form-group">
-                                <div class="col-md-5">
-                                    <div class="input-group m-b">
-                                        <span class="input-group-addon">تعداد کاربران آنلاین همزمان</span>
-                                        <select class="form-control m-b" name="onlineusers" id="onlineusers">
-                                            <option value="1">1</option>
-                                            <option value="2">2</option>
-                                            <option value="3">3</option>
-                                            <option value="4">4</option>
-                                            <option value="5">5</option>
-                                            <option value="6">6</option>
-                                            <option value="7">7</option>
-                                            <option value="8">8</option>
-                                            <option value="9">9</option>
-                                            <option value="10">10</option>
-                                            <option value="-1">نامحدود</option>
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="col-md-5">
-                                    <div class="input-group m-b"><span class="input-group-addon">قیمت</span>@Html.TextBoxFor(model => model.profile_price, new { @class = "form-control" }) <span class="input-group-addon">تومان</span></div>
+        <div class="col-md-12">
+            @using (Html.BeginForm(MVC.Company.UserManager.ActionNames.PackageCreate, MVC.Company.UserManager.Name, FormMethod.Post,
+                                                                    htmlAttributes: new { @class = "form cmxform form-horizontal tasi-form", enctype = "multipart/form-data", id = "form" }))
+            {
+                @Html.AntiForgeryToken()
+                <div class="card">
+                    <div class="card-header">
+                        <button name="actionType" value="@Netotik.Common.Controller.ActionType.Save" class="btn btn-social width-100 btn-instagram" onclick="AjaxForm.Post(this, 'form')" data-loading-text="در حال ارسال اطلاعات">
+                            <span class="icon-checkmark2 font-medium-4"></span>
+                            @Netotik.Resources.Captions.Save
+                        </button>
 
-                                </div>
-                            </div>
-                            <div class="hr-line-dashed"></div>
-                            <div class="form-group">
-                                <div class="col-md-5">
-                                    <div class="input-group m-b">
-                                        <span class="input-group-addon">تعداد کاربران آنلاین همزمان</span>
-                                        <select class="form-control m-b" name="startat" id="startat">
-                                            <option value="logon">از زمان اولین اتصال</option>
-                                            <option value="now">از زمان انتساب پکیج</option>
-                                        </select>
-                                    </div>
-                                </div>
-                            </div>
-                        </fieldset>
+                        <div class="col-md-12">
+                            @Html.ValidationSummary(false, "", htmlAttributes: new { @class = "text-danger" })
+                            <span class="text-danger">توجه کنید تمامی مقادیر را انگلیسی تکمیل کنید.</span>
+                        </div>
                     </div>
-                </div>
-                <div class="tab-pane form-horizontal" id="time">
-                    <div class="panel-body">
-                        <fieldset>
-                            <div class="form-group">
-                                <div class="col-md-5">
-                                    <div class="input-group m-b">
-                                        <span class="input-group-addon">زمان مجاز اتصال از</span>
-                                        <div class="input-group clockpicker" data-autoclose="true">
-                                            <input type="text" class="form-control" value="00:00" id="fromtime" name="fromtime">
-                                            <span class="input-group-addon">
-                                                <span class="fa fa-clock-o"></span>
-                                            </span>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-5">
-                                    <div class="input-group m-b">
-                                        <span class="input-group-addon">زمان مجاز اتصال تا</span>
-                                        <div class="input-group clockpicker" data-autoclose="true">
-                                            <input type="text" class="form-control" value="24:00" id="tilltime" name="tilltime">
-                                            <span class="input-group-addon">
-                                                <span class="fa fa-clock-o"></span>
-                                            </span>
-                                        </div>
-                                    </div>
+                    <div class="card-body">
+                        <div class="card-block">
+                            <ul class="nav nav-tabs nav-underline nav-justified">
+                                <li class="nav-item">
+                                    <a class="nav-link active" id="activeIcon12-tab1" data-toggle="tab" href="#profile" aria-controls="activeIcon12" aria-expanded="true"><i class="icon-file-text"></i>مشخصات</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" id="linkIconOpt11-tab1" data-toggle="tab" href="#time" aria-controls="linkIconOpt11"><i class="icon-ios-time"></i>زمان</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" id="linkIcon12-tab1" data-toggle="tab" href="#traffic" aria-controls="linkIcon12" aria-expanded="false"><i class="icon-data"></i>حجم و سرعت</a>
+                                </li>
+                            </ul>
 
-                                </div>
-                            </div>
-                            <div class="hr-line-dashed"></div>
-                            <div class="form-group">
-                                <div class="col-md-10">
-                                    <div class="input-group">
-                                        <label>روزهای هفته مجاز</label>
-                                        <select data-placeholder="روزهای هفته" class="chosen-select chosen-rtl" multiple style="width:100%;" tabindex="4" id="weekdays" name="weekdays">
-                                            <option selected value="1">شنبه</option>
-                                            <option selected value="2">یکشنبه</option>
-                                            <option selected value="3">دوشنبه</option>
-                                            <option selected value="4">سه شنبه</option>
-                                            <option selected value="5">چهارشنبه</option>
-                                            <option selected value="6">پنجشنبه</option>
-                                            <option selected value="7">جمعه</option>
-                                        </select>
+                            <div class="tab-content px-1 pt-1" style="min-height:260px!important">
+
+                                <div class="tab-pane active form-horizontal" id="profile">
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                            <div class="form-group has-icon-left">
+                                                @Html.LabelFor(m => m.profile_name)
+                                                <div class="position-relative has-icon-left">
+                                                    @Html.TextBoxFor(m => m.profile_name, new { @class = "form-control" })
+                                                    <div class="form-control-position">
+                                                        <i class="icon-head"></i>
+                                                    </div>
+                                                    @Html.ValidationMessageFor(model => model.profile_name, "", htmlAttributes: new { @class = "text-danger" })
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="form-group has-icon-left">
+                                                @Html.LabelFor(m => m.profile_name_for_users)
+                                                <div class="position-relative has-icon-left">
+                                                    @Html.TextBoxFor(m => m.profile_name_for_users, new { @class = "form-control" })
+                                                    <div class="form-control-position">
+                                                        <i class="icon-head"></i>
+                                                    </div>
+                                                    @Html.ValidationMessageFor(model => model.profile_name_for_users, "", htmlAttributes: new { @class = "text-danger" })
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="form-group has-icon-left">
+                                                @Html.LabelFor(m => m.profile_price)
+                                                <div class="position-relative has-icon-left">
+                                                    <div class="input-group m-b"><span class="input-group-addon">قیمت</span>@Html.TextBoxFor(model => model.profile_price, new { @class = "form-control" }) <span class="input-group-addon">تومان</span></div>
+                                                    @Html.ValidationMessageFor(model => model.profile_price, "", htmlAttributes: new { @class = "text-danger" })
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-4">
+                                            <div class="input-group m-b">
+                                                <span class="input-group-addon">تعداد کاربران آنلاین همزمان</span>
+                                                <select class="form-control m-b" name="onlineusers" id="onlineusers">
+                                                    <option value="1">1</option>
+                                                    <option value="2">2</option>
+                                                    <option value="3">3</option>
+                                                    <option value="4">4</option>
+                                                    <option value="5">5</option>
+                                                    <option value="6">6</option>
+                                                    <option value="7">7</option>
+                                                    <option value="8">8</option>
+                                                    <option value="9">9</option>
+                                                    <option value="10">10</option>
+                                                    <option value="-1">نامحدود</option>
+                                                </select>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-4">
+                                            <div class="input-group m-b">
+                                                <span class="input-group-addon">تعداد کاربران آنلاین همزمان</span>
+                                                <select class="form-control m-b" name="startat" id="startat">
+                                                    <option value="logon">از زمان اولین اتصال</option>
+                                                    <option value="now">از زمان انتساب پکیج</option>
+                                                </select>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="hr-line-dashed"></div>
-                            <div class="form-group">
-                                <div class="col-md-10">
-                                    <label>محدودیت زمان اتصالات (برای نامحدود شدن همه مقادیر را 0 قرار دهید)</label><br />
-                                    <div class="m-l-md inline">
-                                        <label>دقیقه</label>
-                                        <input type="text" value="0" class="dial m-l" data-fgColor="#1AB394" data-width="70" data-height="70" data-max="59" id="onlinemin" name="onlinemin" />
+                                <div class="tab-pane form-horizontal" id="time">
+                                    <div class="row">
+                                                <div class="col-md-4">
+                                                    <div class="input-group m-b">
+                                                        <span class="input-group-addon">زمان مجاز اتصال از</span>
+                                                        <div class="input-group clockpicker" data-autoclose="true">
+                                                            <input type="text" class="form-control input-lg time" value="00:00" id="fromtime" name="fromtime">
+                                                            <span class="input-group-addon">
+                                                                <span class="icon-ios-time"></span>
+                                                            </span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <div class="input-group m-b">
+                                                        <span class="input-group-addon">زمان مجاز اتصال تا</span>
+                                                        <div class="input-group clockpicker" data-autoclose="true">
+                                                            <input type="text" class="form-control input-lg time" value="23:59" id="tilltime" name="tilltime">
+                                                            <span class="input-group-addon">
+                                                                <span class="icon-ios-time"></span>
+                                                            </span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-8">
+                                                    <div class="input-group">
+                                                        <label>روزهای هفته مجاز</label>
+                                                        <select data-placeholder="روزهای هفته" class="selectize-multiple selectize-select" multiple id="weekdays" name="weekdays">
+                                                            <option selected value="1">شنبه</option>
+                                                            <option selected value="2">یکشنبه</option>
+                                                            <option selected value="3">دوشنبه</option>
+                                                            <option selected value="4">سه شنبه</option>
+                                                            <option selected value="5">چهارشنبه</option>
+                                                            <option selected value="6">پنجشنبه</option>
+                                                            <option selected value="7">جمعه</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-10">
+                                                    <label>محدودیت زمان اتصالات (برای نامحدود شدن همه مقادیر را 0 قرار دهید)</label><br />
+                                                        <label>دقیقه</label>
+                                                        <input type="text" value="0" class="dial m-l" data-fgColor="#1AB394" data-width="70" data-height="70" data-max="59" id="onlinemin" name="onlinemin" />
+                                                        <label>ساعت</label>
+                                                        <input type="text" value="0" class="dial m-l" data-fgColor="#1AB394" data-width="70" data-height="70" data-max="23" id="onlinehour" name="onlinehour" />
+                                                        <label>روز</label>
+                                                        <input type="text" value="0" class="dial m-l" data-fgColor="#1AB394" data-width="70" data-height="70" data-max="29" id="onlineday" name="onlineday" />
+                                                        <label>ماه</label>
+                                                        <input type="text" value="0" class="dial m-l" data-fgColor="#1AB394" data-width="70" data-height="70" data-max="99" id="onlinemon" name="onlinemon" />
+                                                </div>
+                                        <br /><br /><br /><br />
+                                                <div class="col-md-10">
+                                                    <label>محدودیت اعتبار اکانت (برای نامحدود شدن همه مقادیر را 0 قرار دهید)</label><br />
+                                                        <label>دقیقه</label>
+                                                        <input type="text" value="0" class="dial m-l" data-fgColor="#2AB394" data-width="70" data-height="70" data-max="59" id="onlineusermin" name="onlineusermin" />
+                                                        <label>ساعت</label>
+                                                        <input type="text" value="0" class="dial m-l" data-fgColor="#2AB394" data-width="70" data-height="70" data-max="23" id="onlineuserhour" name="onlineuserhour" />
+                                                        <label>روز</label>
+                                                        <input type="text" value="0" class="dial m-l" data-fgColor="#2AB394" data-width="70" data-height="70" data-max="29" id="onlineuserday" name="onlineuserday" />
+                                                        <label>ماه</label>
+                                                        <input value="0" class="dial m-l" data-fgColor="#2AB394" data-width="70" data-height="70" data-max="99" id="onlineusermon" name="onlineusermon" />
+                                                </div>
                                     </div>
-                                    <div class="m-l-md inline">
-                                        <label>ساعت</label>
-                                        <input type="text" value="0" class="dial m-l" data-fgColor="#1AB394" data-width="70" data-height="70" data-max="23" id="onlinehour" name="onlinehour" />
-                                    </div>
-                                    <div class="m-l-md inline">
-                                        <label>روز</label>
-                                        <input type="text" value="0" class="dial m-l" data-fgColor="#1AB394" data-width="70" data-height="70" data-max="29" id="onlineday" name="onlineday" />
-                                    </div>
-                                    <div class="m-l-md inline">
-                                        <label>ماه</label>
-                                        <input type="text" value="0" class="dial m-l" data-fgColor="#1AB394" data-width="70" data-height="70" data-max="99" id="onlinemon" name="onlinemon" />
+                                </div>
+                                <div class="tab-pane form-horizontal" id="traffic">
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                            <label>محدودیت حجم دانلود</label>
+                                            <div class="input-group">
+                                                <input type="text" class="form-control m-b" style="height:45px !important;" placeholder="0" name="downloadlimit" id="downloadlimit" />
+                                                <div class="input-group-addon">
+                                                    <select name="downloadlimitB" id="downloadlimitB">
+                                                        <option value="1">MB</option>
+                                                        <option value="2">GB</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <label>محدودیت حجم آپلود</label>
+                                            <div class="input-group">
+                                                <input type="text" class="form-control m-b" style="height:45px !important;" placeholder="0" name="uploadlimit" id="uploadlimit" />
+                                                <div class="input-group-addon">
+                                                    <select name="uploadlimitB" id="uploadlimitB">
+                                                        <option value="1">MB</option>
+                                                        <option value="2">GB</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <label>محدودیت حجم دانلود+آپلود</label>
+                                            <div class="input-group">
+                                                <input type="text" class="form-control m-b" style="height:45px !important;" placeholder="0" name="downloaduploadlimit" id="downloaduploadlimit" />
+                                                <div class="input-group-addon">
+                                                    <select name="downloaduploadlimitB" id="downloaduploadlimitB">
+                                                        <option value="1">MB</option>
+                                                        <option value="2">GB</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <label>محدودیت سرعت دانلود</label>
+                                            <div class="input-group">
+                                                <input type="text" class="form-control m-b" style="height:45px !important;" placeholder="0" name="downloadrate" id="downloadrate" />
+                                                <div class="input-group-addon">
+                                                    <select name="downloadrateB" id="downloadrateB">
+                                                        <option value="1">KB</option>
+                                                        <option value="2">kb</option>
+                                                        <option value="3">MB</option>
+                                                        <option value="4">mb</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <label>محدودیت سرعت آپلود</label>
+                                            <div class="input-group">
+                                                <input type="text" class="form-control m-b" style="height:45px !important;" placeholder="0" name="uploadrate" id="uploadrate" />
+                                                <div class="input-group-addon">
+                                                    <select name="uploadrateB" id="uploadrateB">
+                                                        <option value="1">KB</option>
+                                                        <option value="2">kb</option>
+                                                        <option value="3">MB</option>
+                                                        <option value="4">mb</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                            <div class="hr-line-dashed"></div>
-                            <div class="form-group">
-                                <div class="col-md-10">
-                                    <label>محدودیت اعتبار اکانت (برای نامحدود شدن همه مقادیر را 0 قرار دهید)</label><br />
-                                    <div class="m-l-md inline">
-                                        <label>دقیقه</label>
-                                        <input type="text" value="0" class="dial m-l" data-fgColor="#2AB394" data-width="70" data-height="70" data-max="59" id="onlineusermin" name="onlineusermin" />
-                                    </div>
-                                    <div class="m-l-md inline">
-                                        <label>ساعت</label>
-                                        <input type="text" value="0" class="dial m-l" data-fgColor="#2AB394" data-width="70" data-height="70" data-max="23" id="onlineuserhour" name="onlineuserhour" />
-                                    </div>
-                                    <div class="m-l-md inline">
-                                        <label>روز</label>
-                                        <input type="text" value="0" class="dial m-l" data-fgColor="#2AB394" data-width="70" data-height="70" data-max="29" id="onlineuserday" name="onlineuserday" />
-                                    </div>
-                                    <div class="m-l-md inline">
-                                        <label>ماه</label>
-                                        <input type="text" value="0" class="dial m-l" data-fgColor="#2AB394" data-width="70" data-height="70" data-max="99" id="onlineusermon" name="onlineusermon" />
-                                    </div>
-                                </div>
-                            </div>
-                        </fieldset>
+                        </div>
                     </div>
                 </div>
-                <div class="tab-pane form-horizontal" id="transfer">
-                    <div class="panel-body">
-                        <fieldset>
-                            <div class="hr-line-dashed"></div>
-                            <div class="form-group">
-                                <div class="col-md-5">
-                                    <label>محدودیت حجم دانلود</label>
-                                    <div class="input-group">
-                                        <input type="text" class="form-control m-b" style="height:45px !important;" placeholder="0" name="downloadlimit" id="downloadlimit" />
-                                        <div class="input-group-addon">
-                                            <select name="downloadlimitB" id="downloadlimitB">
-                                                <option value="1">MB</option>
-                                                <option value="2">GB</option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-5">
-                                    <label>محدودیت حجم آپلود</label>
-                                    <div class="input-group">
-                                        <input type="text" class="form-control m-b" style="height:45px !important;" placeholder="0" name="uploadlimit" id="uploadlimit" />
-                                        <div class="input-group-addon">
-                                            <select name="uploadlimitB" id="uploadlimitB">
-                                                <option value="1">MB</option>
-                                                <option value="2">GB</option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <div class="col-md-10">
-                                    <label>محدودیت حجم دانلود+آپلود</label>
-                                    <div class="input-group">
-                                        <input type="text" class="form-control m-b" style="height:45px !important;" placeholder="0" name="downloaduploadlimit" id="downloaduploadlimit" />
-                                        <div class="input-group-addon">
-                                            <select name="downloaduploadlimitB" id="downloaduploadlimitB">
-                                                <option value="1">MB</option>
-                                                <option value="2">GB</option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <div class="col-md-5">
-                                    <label>محدودیت سرعت دانلود</label>
-                                    <div class="input-group">
-                                        <input type="text" class="form-control m-b" style="height:45px !important;" placeholder="0" name="downloadrate" id="downloadrate" />
-                                        <div class="input-group-addon">
-                                            <select name="downloadrateB" id="downloadrateB">
-                                                <option value="1">KB</option>
-                                                <option value="2">kb</option>
-                                                <option value="3">MB</option>
-                                                <option value="4">mb</option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-5">
-                                    <label>محدودیت سرعت آپلود</label>
-                                    <div class="input-group">
-                                        <input type="text" class="form-control m-b" style="height:45px !important;" placeholder="0" name="uploadrate" id="uploadrate" />
-                                        <div class="input-group-addon">
-                                            <select name="uploadrateB" id="uploadrateB">
-                                                <option value="1">KB</option>
-                                                <option value="2">kb</option>
-                                                <option value="3">MB</option>
-                                                <option value="4">mb</option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </fieldset>
-                    </div>
-                </div>
-            </div>
+            }
         </div>
     </div>
-}
+</section>
+@section ScriptUp{
+<link rel="stylesheet" type="text/css" href="~/Content/css/plugins/extensions/timedropper.min.css">
+    }
 @section DownScript {
-    <script src="~/Content/js/plugins/jsKnob/jquery.knob-rtl.js"></script>
+    <script src="~/Content/js/plugins/extensions/jquery.knob.min.js" type="text/javascript"></script>
+<script src="~/Content/js/plugins/extensions/timedropper.min.js" type="text/javascript"></script>
     <script>
-        $('.clockpicker').clockpicker();
-        $(document).ready(function () {
-            $(".chosen-container-multi").css("min-width", "350px");
+        $(function () {
+            $('.dial')
+                .knob();
         });
-        $(".dial").knob();
+
+        $(document).ready(function () {
+            $(".time").timeDropper({
+                init_animation: "dropDown",
+                format: "HH:mm",
+                setCurrentTime: false,
+                meridians: !0
+            })
+        });
+
+        $(document).ready(function () {
+            $(".input-selectize").selectize({
+                persist: !1,
+                createOnBlur: !0,
+                create: !0
+            });
+        });
+
     </script>
 }

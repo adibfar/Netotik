@@ -1,9 +1,11 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.Web.Mvc;
 
 namespace Netotik.ViewModels.Mikrotik
 {
     public class Usermanager_UserSessionModel
     {
+        [AllowHtml]
         public string id { get; set; }
         [Display(Name = "ایجاد کننده")]
         public string customer { get; set; }
