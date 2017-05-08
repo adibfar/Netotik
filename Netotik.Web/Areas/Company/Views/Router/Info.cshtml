@@ -96,7 +96,7 @@
                             </div>
                             <div class="float-xs-left mt-2">
                                 <span class="grey darken-1 block">
-                                    @if (Model.Update_status == "New version is available")
+                                    @if (Model.Update_status.Contains("New"))
                                     {
                                         <span class="fa fa-toggle-up">
                                             <a href="@Url.Action(MVC.Company.Router.ActionNames.Info_Update)">

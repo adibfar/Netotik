@@ -1,247 +1,309 @@
 ﻿@model Netotik.ViewModels.Mikrotik.Usermanager_ProfileLimitionView
-@{
-    Layout = "~/Views/Shared/_Layout.cshtml";
-    //var list = ViewBag.logins as List<LoginHistory>;
-}
-<div class="ibox-content m-b-sm border-bottom">
+
+
+<section class="flexbox-container">
     <div class="row">
         <div class="col-md-12">
-            <a class="btn btn-default btn-outline pull-left" href="@Url.Action(MVC.Company.UserManager.ActionNames.PackageList, MVC.Company.UserManager.Name)">
-                <span class="fa fa-reply"></span>
-                @Netotik.Resources.Captions.Back
-            </a>
-        </div>
-        <div class="panel-body">
-            <div class="input-group m-bot15">
-                <span class="input-group-btn">
-                    <button class="btn btn-primary" type="submit">جستجو</button>
-                </span>
-                <input style="width:50%;" type="text" class="form-control" name="Search" id="filter" placeholder="جستجوی نام،مک آدرس،حجم و...">
-            </div>
-        </div>
-    </div>
-</div>
-
-<div class="row">
-    <div class="tabs-container">
-        <div class="col-lg-12" id="ContentPage">
-            <section class="panel">
-                <header class="panel-heading tab-bg-dark-navy-blue ">
-                    <ul class="nav nav-tabs">
-                        <li class="active">
-                            <a data-toggle="tab" href="#profile"><i class="icon-2x icon-user"></i> اطلاعات پروفایل</a>
-                        </li>
-                        <li class="">
-                            <a data-toggle="tab" href="#time"><i class="icon-2x icon-flag"></i> محدودیت زمانی </a>
-                        </li>
-                        <li class="">
-                            <a data-toggle="tab" href="#rate"><i class="icon-2x icon-flag"></i> محدودیت حجم و سرعت </a>
-                        </li>
-                    </ul>
-                </header>
-                <div class="panel-body">
-                    <div class="tab-content">
-                        <div id="profile" class="tab-pane active form-horizontal">
-                            <fieldset>
-                                <div class="form-group">
-                                    <div class="col-md-5">
-                                        @Html.DisplayFor(model => model.UsermanProfile.name)
-                                    </div>
-                                    <div class="col-md-5">
-                                        @Html.DisplayFor(model => model.UsermanProfile.owner)
-                                    </div>
-                                </div>
-                                <div class="hr-line-dashed"></div>
-                                <div class="form-group">
-                                    <div class="col-md-5">
-                                        <div class="input-group m-b"><span class="input-group-addon">قیمت</span>@Html.TextBoxFor(model => model.UsermanProfile.price, new { @class = "form-control", disabled = "disabled" }) <span class="input-group-addon">تومان</span></div>
-                                    </div>
-                                    <div class="col-md-5">
-                                        @Html.DisplayFor(model => model.UsermanProfile.starts_at)
-                                    </div>
-                                </div>
-                                <div class="hr-line-dashed"></div>
-                                <div class="form-group">
-                                    <div class="col-md-5">
-                                        @Html.DisplayFor(model => model.UsermanProfile.override_shared_users)
-                                    </div>
-                                </div>
-                            </fieldset>
-                        </div>
-                        <div id="time" class="tab-pane form-horizontal">
-                            <fieldset>
-                                <div class="form-group">
-                                    <div class="col-md-5">
-                                        @Html.DisplayFor(model => model.UsermanProfileLimition.from_time)
-                                    </div>
-                                    <div class="col-md-5">
-                                        @Html.DisplayFor(model => model.UsermanProfileLimition.till_time)
-                                    </div>
-                                </div>
-                                <div class="hr-line-dashed"></div>
-                                <div class="form-group">
-                                    <div class="col-md-10">
-                                        @Html.DisplayFor(model => model.UsermanProfileLimition.weekdays)
-                                    </div>
-                                </div>
-                                <div class="hr-line-dashed"></div>
-                                <div class="form-group">
-                                    <div class="col-md-5">
-                                        @Html.DisplayFor(model => model.UsermanProfile.validity)
-                                    </div>
-                                    <div class="col-md-5">
-                                        @Html.DisplayFor(model => model.UsermanLimition.uptime_limit)
-                                    </div>
-                                </div>
-
-                            </fieldset>
-                        </div>
-                        <div id="rate" class="tab-pane form-horizontal">
-                            <fieldset>
-                                <div class="form-group">
-                                    <div class="col-md-5">
-                                        <label>@Html.DisplayNameFor(model => model.UsermanLimition.download_limit)</label>
-                                        <div class="input-group">
-                                            <input type="text" class="form-control m-b" value="@Html.DisplayTextFor(model => model.UsermanLimition.download_limit)" style="height:45px !important;" placeholder="0" name="downloadlimit" id="downloadlimit" disabled />
-                                            <div class="input-group-addon">
-                                                <select onchange="changeval('downloadlimitB', 'downloadlimit')" name="downloadlimitB" id="downloadlimitB">
-                                                    <option value="4">MB</option>
-                                                    <option value="5">GB</option>
-                                                </select>
+            <div class="card">
+                <div class="card-header">
+                    <a value="حذف" class="btn btn-social btn-instagram" onclick="ProfileRemove('@Model.UsermanProfile.id');" href="#">
+                        <span class="icon-remove font-medium-4"></span>
+                        حذف
+                    </a>
+                </div>
+                <div class="card-body">
+                    <div class="card-block">
+                        <ul class="nav nav-tabs nav-underline nav-justified">
+                            <li class="nav-item">
+                                <a class="nav-link active" id="activeIcon12-tab1" data-toggle="tab" href="#profile" aria-controls="activeIcon12" aria-expanded="true"><i class="icon-file-text"></i>مشخصات</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" id="linkIconOpt11-tab1" data-toggle="tab" href="#time" aria-controls="linkIconOpt11"><i class="icon-ios-time"></i>زمان</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" id="linkIcon12-tab1" data-toggle="tab" href="#traffic" aria-controls="linkIcon12" aria-expanded="false"><i class="icon-data"></i>حجم و سرعت</a>
+                            </li>
+                        </ul>
+                        <div class="tab-content px-1 pt-1" style="min-height:260px!important">
+                            <div role="tabpanel" class="tab-pane fade active in" id="profile" aria-labelledby="activeIcon12-tab1" aria-expanded="true">
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <div class="form-group has-icon-left">
+                                            @Html.LabelFor(m => m.UsermanProfile.name)
+                                            <div class="position-relative has-icon-left">
+                                                @Html.TextBoxFor(m => m.UsermanProfile.name, new { @class = "form-control", @readonly = "yes" })
+                                                <div class="form-control-position">
+                                                    <i class="icon-head"></i>
+                                                </div>
+                                                @Html.ValidationMessageFor(model => model.UsermanProfile.name, "", htmlAttributes: new { @class = "text-danger" })
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="col-md-5">
-                                        <label>@Html.DisplayNameFor(model => model.UsermanLimition.upload_limit)</label>
-                                        <div class="input-group">
-                                            <input type="text" class="form-control m-b" value="@Html.DisplayTextFor(model => model.UsermanLimition.upload_limit)" style="height:45px !important;" placeholder="0" name="uploadlimit" id="uploadlimit" disabled />
-                                            <div class="input-group-addon">
-                                                <select onchange="changeval('uploadlimitB', 'uploadlimit')" name="uploadlimitB" id="uploadlimitB">
-                                                    <option value="4">MB</option>
-                                                    <option value="5">GB</option>
-                                                </select>
+                                    <div class="col-md-4">
+                                        <div class="form-group has-icon-left">
+                                            @Html.LabelFor(m => m.UsermanProfile.name_for_users)
+                                            <div class="position-relative has-icon-left">
+                                                @Html.TextBoxFor(m => m.UsermanProfile.name_for_users, new { @class = "form-control", @readonly = "yes" })
+                                                <div class="form-control-position">
+                                                    <i class="icon-head"></i>
+                                                </div>
+                                                @Html.ValidationMessageFor(model => model.UsermanProfile.name_for_users, "", htmlAttributes: new { @class = "text-danger" })
                                             </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            @Html.LabelFor(m => m.UsermanProfile.price)
+                                            <div class="position-relative">
+                                                <div class="input-group m-b"><span class="input-group-addon">قیمت</span>@Html.TextBoxFor(model => model.UsermanProfile.price, new { @class = "form-control", @readonly = "yes" }) <span class="input-group-addon">تومان</span></div>
+                                                @Html.ValidationMessageFor(model => model.UsermanProfile.price, "", htmlAttributes: new { @class = "text-danger" })
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="input-group m-b">
+                                            <span class="input-group-addon">تعداد کاربران آنلاین همزمان</span>
+                                            @Html.TextBoxFor(model => model.UsermanProfile.override_shared_users, new { @class = "form-control", @readonly = "yes" })
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="input-group m-b">
+                                            <span class="input-group-addon">زمان شروع محاسبه</span>
+                                            @Html.TextBoxFor(model => model.UsermanProfile.starts_at, new { @class = "form-control", @readonly = "yes" })
                                         </div>
                                     </div>
                                 </div>
-                                <div class="hr-line-dashed"></div>
-                                <div class="form-group">
-                                    <div class="col-md-10">
-                                        <label>@Html.DisplayNameFor(model => model.UsermanLimition.transfer_limit)</label>
-                                        <div class="input-group">
-                                            <input type="text" class="form-control m-b" value="@Html.DisplayTextFor(model => model.UsermanLimition.transfer_limit)" disabled style="height:45px !important;" placeholder="0" name="downloaduploadlimit" id="downloaduploadlimit" />
-                                            <div class="input-group-addon">
-                                                <select onchange="changeval('downloaduploadlimitB', 'downloaduploadlimit')" name="downloaduploadlimitB" id="downloaduploadlimitB">
-                                                    <option value="4">MB</option>
-                                                    <option value="5">GB</option>
-                                                </select>
+                            </div>
+                            <div class="tab-pane fade" id="time" role="tabpanel" aria-labelledby="linkIcon12-tab1" aria-expanded="false">
+                                <div class="row">
+                                    <div class="col-md-3">
+                                        <div class="form-group has-icon-left">
+                                            @Html.LabelFor(m => m.UsermanProfileLimition.from_time)
+                                            <div class="position-relative has-icon-left">
+                                                @Html.TextBoxFor(m => m.UsermanProfileLimition.from_time, new { @class = "form-control", @readonly = "yes" })
+                                                <div class="form-control-position">
+                                                    <i class="icon-clock2"></i>
+                                                </div>
+                                                @Html.ValidationMessageFor(model => model.UsermanProfileLimition.from_time, "", htmlAttributes: new { @class = "text-danger" })
                                             </div>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="hr-line-dashed"></div>
-                                <div class="form-group">
-                                    <div class="col-md-5">
-                                        <label>@Html.DisplayNameFor(model => model.UsermanLimition.rate_limit_rx)</label>
-                                        <div class="input-group">
-                                            <input type="text" class="form-control m-b" value="@Html.DisplayTextFor(model => model.UsermanLimition.rate_limit_rx)" disabled style="height:45px !important;" placeholder="0" name="downloadrate" id="downloadrate" />
-                                            <div class="input-group-addon">
-                                                <select onchange="changeval('downloadrateB', 'downloadrate')" name="downloadrateB" id="downloadrateB">
-                                                    <option value="2">KB</option>
-                                                    <option value="1">kb</option>
-                                                    <option value="4">MB</option>
-                                                    <option value="3">mb</option>
-                                                </select>
+                                    <div class="col-md-3">
+                                        <div class="form-group has-icon-left">
+                                            @Html.LabelFor(m => m.UsermanProfileLimition.till_time)
+                                            <div class="position-relative has-icon-left">
+                                                @Html.TextBoxFor(m => m.UsermanProfileLimition.till_time, new { @class = "form-control", @readonly = "yes" })
+                                                <div class="form-control-position">
+                                                    <i class="icon-clock2"></i>
+                                                </div>
+                                                @Html.ValidationMessageFor(model => model.UsermanProfileLimition.till_time, "", htmlAttributes: new { @class = "text-danger" })
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="col-md-5">
-                                        <label>@Html.DisplayNameFor(model => model.UsermanLimition.rate_limit_tx)</label>
-                                        <div class="input-group">
-                                            <input type="text" disabled value="@Html.DisplayTextFor(model => model.UsermanLimition.rate_limit_tx)" class="form-control m-b" style="height:45px !important;" placeholder="0" name="uploadrate" id="uploadrate" />
-                                            <div class="input-group-addon">
-                                                <select onchange="changeval('uploadrateB', 'uploadrate')" name="uploadrateB" id="uploadrateB">
-                                                    <option value="2">KB</option>
-                                                    <option value="1">kb</option>
-                                                    <option value="4">MB</option>
-                                                    <option value="3">mb</option>
-                                                </select>
+                                    <div class="col-md-6">
+                                        <div class="form-group m-b">
+                                            <div class="form-group has-icon-left">
+                                                @Html.LabelFor(m => m.UsermanProfileLimition.weekdays)
+                                                <div class="position-relative has-icon-left">
+                                                    @Html.TextBoxFor(m => m.UsermanProfileLimition.weekdays, new { @class = "form-control", @readonly = "yes" })
+                                                    <div class="form-control-position">
+                                                        <i class="icon-calendar-times-o"></i>
+                                                    </div>
+                                                    @Html.ValidationMessageFor(model => model.UsermanProfileLimition.weekdays, "", htmlAttributes: new { @class = "text-danger" })
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <div class="form-group has-icon-left">
+                                            @Html.LabelFor(m => m.UsermanProfile.validity)
+                                            <div class="position-relative has-icon-left">
+                                                @Html.TextBoxFor(m => m.UsermanProfile.validity, new { @class = "form-control", @readonly = "yes" })
+                                                <div class="form-control-position">
+                                                    <i class="icon-calendar-times-o"></i>
+                                                </div>
+                                                @Html.ValidationMessageFor(model => model.UsermanProfile.validity, "", htmlAttributes: new { @class = "text-danger" })
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <div class="form-group has-icon-left">
+                                            @Html.LabelFor(m => m.UsermanLimition.uptime_limit)
+                                            <div class="position-relative has-icon-left">
+                                                @Html.TextBoxFor(m => m.UsermanLimition.uptime_limit, new { @class = "form-control", @readonly = "yes" })
+                                                <div class="form-control-position">
+                                                    <i class="icon-calendar-times-o"></i>
+                                                </div>
+                                                @Html.ValidationMessageFor(model => model.UsermanLimition.uptime_limit, "", htmlAttributes: new { @class = "text-danger" })
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                            </fieldset>
+                            </div>
+                            <div class="tab-pane fade" id="traffic" role="tabpanel" aria-labelledby="linkIconOpt11-tab1" aria-expanded="false">
+                                <div class="row">
+                                        <div class="col-md-4">
+                                            <label>@Html.DisplayNameFor(model => model.UsermanLimition.download_limit)</label>
+                                            <div class="input-group">
+                                                <input type="text" class="form-control m-b" value="@Html.DisplayTextFor(model => model.UsermanLimition.download_limit)" style="height:45px !important;" placeholder="0" name="downloadlimit" id="downloadlimit" readonly />
+                                                <div class="input-group-addon">
+                                                    <select onchange="changeval('downloadlimitB', 'downloadlimit')" name="downloadlimitB" id="downloadlimitB">
+                                                        <option value="4">MB</option>
+                                                        <option value="5">GB</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <label>@Html.DisplayNameFor(model => model.UsermanLimition.upload_limit)</label>
+                                            <div class="input-group">
+                                                <input type="text" class="form-control m-b" value="@Html.DisplayTextFor(model => model.UsermanLimition.upload_limit)" style="height:45px !important;" placeholder="0" name="uploadlimit" id="uploadlimit" readonly />
+                                                <div class="input-group-addon">
+                                                    <select onchange="changeval('uploadlimitB', 'uploadlimit')" name="uploadlimitB" id="uploadlimitB">
+                                                        <option value="4">MB</option>
+                                                        <option value="5">GB</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <label>@Html.DisplayNameFor(model => model.UsermanLimition.transfer_limit)</label>
+                                            <div class="input-group">
+                                                <input type="text" class="form-control m-b" value="@Html.DisplayTextFor(model => model.UsermanLimition.transfer_limit)" readonly style="height:45px !important;" placeholder="0" name="downloaduploadlimit" id="downloaduploadlimit" />
+                                                <div class="input-group-addon">
+                                                    <select onchange="changeval('downloaduploadlimitB', 'downloaduploadlimit')" name="downloaduploadlimitB" id="downloaduploadlimitB">
+                                                        <option value="4">MB</option>
+                                                        <option value="5">GB</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <label>@Html.DisplayNameFor(model => model.UsermanLimition.rate_limit_rx)</label>
+                                            <div class="input-group">
+                                                <input type="text" class="form-control m-b" value="@Html.DisplayTextFor(model => model.UsermanLimition.rate_limit_rx)" readonly style="height:45px !important;" placeholder="0" name="downloadrate" id="downloadrate" />
+                                                <div class="input-group-addon">
+                                                    <select onchange="changeval('downloadrateB', 'downloadrate')" name="downloadrateB" id="downloadrateB">
+                                                        <option value="2">KB</option>
+                                                        <option value="1">kb</option>
+                                                        <option value="4">MB</option>
+                                                        <option value="3">mb</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <label>@Html.DisplayNameFor(model => model.UsermanLimition.rate_limit_tx)</label>
+                                            <div class="input-group">
+                                                <input type="text" readonly value="@Html.DisplayTextFor(model => model.UsermanLimition.rate_limit_tx)" class="form-control m-b" style="height:45px !important;" placeholder="0" name="uploadrate" id="uploadrate" />
+                                                <div class="input-group-addon">
+                                                    <select onchange="changeval('uploadrateB', 'uploadrate')" name="uploadrateB" id="uploadrateB">
+                                                        <option value="2">KB</option>
+                                                        <option value="1">kb</option>
+                                                        <option value="4">MB</option>
+                                                        <option value="3">mb</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </section>
+            </div>
         </div>
     </div>
-</div>
-@section DownScript {
-    <script>
-            $(document).ready(function () {
+</section>
 
-                changeval('downloadlimitB', 'downloadlimit');
-                changeval('uploadlimitB', 'uploadlimit');
-                changeval('downloaduploadlimitB', 'downloaduploadlimit');
-                changeval('downloadrateB', 'downloadrate');
-                changeval('uploadrateB', 'uploadrate');
-            });
+@section DownScript{
+    <script type="text/javascript">
+        $(document).ready(function () {
+            changeval('downloadlimitB', 'downloadlimit');
+            changeval('uploadlimitB', 'uploadlimit');
+            changeval('downloaduploadlimitB', 'downloaduploadlimit');
+            changeval('downloadrateB', 'downloadrate');
+            changeval('uploadrateB', 'uploadrate');
+            changeval('downloaduploadremainB', 'downloaduploadremain');
+            changeval('downloadusedB', 'downloadused');
+            changeval('uploadusedB', 'uploadused');
+        });
 
-            var downloadlimit = document.getElementById('downloadlimit').value;
-            var uploadlimit = document.getElementById('uploadlimit').value;
-            var downloaduploadlimit = document.getElementById('downloaduploadlimit').value;
-            var downloadrate = document.getElementById('downloadrate').value;
-            var uploadrate = document.getElementById('uploadrate').value;
-            
+        var downloadlimit = document.getElementById('downloadlimit').value;
+        var uploadlimit = document.getElementById('uploadlimit').value;
+        var downloaduploadlimit = document.getElementById('downloaduploadlimit').value;
+        var downloadrate = document.getElementById('downloadrate').value;
+        var uploadrate = document.getElementById('uploadrate').value;
+        var downloaduploadremain = document.getElementById('downloaduploadremain').value;
+        var downloadused = document.getElementById('downloadused').value;
+        var uploadused = document.getElementById('uploadused').value;
 
-            function changeval(selectid, inputid) {
-                var e = document.getElementById(selectid);
-                var strUser = e.options[e.selectedIndex].value;
-                var temp;
-                switch (strUser) {
-                    case '1':
-                        if (inputid == 'uploadrate') temp = parseInt(uploadrate)/1024;
-                        if (inputid == 'downloadrate') temp = parseInt(downloadrate) / 1024;
-                        if (inputid == 'downloaduploadlimit') temp = parseInt(downloaduploadlimit) / 1024;
-                        if (inputid == 'uploadlimit') temp = parseInt(uploadlimit) / 1024;
-                        if (inputid == 'downloadlimit') temp = parseInt(downloadlimit) / 1024;
-                        document.getElementById(inputid).value = temp.toString();
-                        break;
-                    case '2':
-                        if (inputid == 'uploadrate') temp = parseInt(uploadrate) / 8192;
-                        if (inputid == 'downloadrate') temp = parseInt(downloadrate) / 8192;
-                        if (inputid == 'downloaduploadlimit') temp = parseInt(downloaduploadlimit) / 8192;
-                        if (inputid == 'uploadlimit') temp = parseInt(uploadlimit) / 8192;
-                        if (inputid == 'downloadlimit') temp = parseInt(downloadlimit) / 8192;
-                        document.getElementById(inputid).value = temp.toString();
-                        break;
-                    case '3':
-                        if (inputid == 'uploadrate') temp = parseInt(uploadrate) / 1048576;
-                        if (inputid == 'downloadrate') temp = parseInt(downloadrate) / 1048576;
-                        if (inputid == 'downloaduploadlimit') temp = parseInt(downloaduploadlimit) / 1048576;
-                        if (inputid == 'uploadlimit') temp = parseInt(uploadlimit) / 1048576;
-                        if (inputid == 'downloadlimit') temp = parseInt(downloadlimit) / 1048576;
-                        document.getElementById(inputid).value = temp.toString();
-                        break;
-                    case '4':
-                        if (inputid == 'uploadrate') temp = (parseInt(uploadrate) / 8388608).toString();
-                        if (inputid == 'downloadrate') temp = (parseInt(downloadrate) / 8388608).toString();
-                        if (inputid == 'downloaduploadlimit') temp = (parseInt(downloaduploadlimit) / 1048576).toString();
-                        if (inputid == 'uploadlimit') temp = parseInt(uploadlimit) / 1048576;
-                        if (inputid == 'downloadlimit') temp = (parseInt(downloadlimit) / 1048576).toString();
-                        document.getElementById(inputid).value = temp;
-                        break;
-                    case '5':
-                        if (inputid == 'uploadrate') temp = (parseInt(uploadrate) / 1073741824).toString();
-                        if (inputid == 'downloadrate') temp = (parseInt(downloadrate) / 1073741824).toString();
-                        if (inputid == 'downloaduploadlimit') temp = (parseInt(downloaduploadlimit) / 1073741824).toString();
-                        if (inputid == 'uploadlimit') temp = (parseInt(uploadlimit) / 1073741824).toString();
-                        if (inputid == 'downloadlimit') temp = (parseInt(downloadlimit) / 1073741824).toString();
-                        document.getElementById(inputid).value = temp;
-                        break;
-                }
+        function changeval(selectid, inputid) {
+            var e = document.getElementById(selectid);
+            var strUser = e.options[e.selectedIndex].value;
+            var temp;
+            switch (strUser) {
+                case '1':
+                    if (inputid == 'uploadrate') temp = parseInt(uploadrate) / 1024;
+                    if (inputid == 'downloadrate') temp = parseInt(downloadrate) / 1024;
+                    if (inputid == 'downloaduploadlimit') temp = parseInt(downloaduploadlimit) / 1024;
+                    if (inputid == 'downloaduploadremain') temp = parseInt(downloaduploadremain) / 1024;
+                    if (inputid == 'uploadlimit') temp = parseInt(uploadlimit) / 1024;
+                    if (inputid == 'downloadlimit') temp = parseInt(downloadlimit) / 1024;
+                    if (inputid == 'downloadused') temp = parseInt(downloadused) / 1024;
+                    if (inputid == 'uploadused') temp = parseInt(uploadused) / 1024;
+                    document.getElementById(inputid).value = temp.toString();
+                    break;
+                case '2':
+                    if (inputid == 'uploadrate') temp = parseInt(uploadrate) / 8192;
+                    if (inputid == 'downloadrate') temp = parseInt(downloadrate) / 8192;
+                    if (inputid == 'downloaduploadlimit') temp = parseInt(downloaduploadlimit) / 8192;
+                    if (inputid == 'downloaduploadremain') temp = parseInt(downloaduploadremain) / 8192;
+                    if (inputid == 'uploadlimit') temp = parseInt(uploadlimit) / 8192;
+                    if (inputid == 'downloadlimit') temp = parseInt(downloadlimit) / 8192;
+                    if (inputid == 'downloadused') temp = parseInt(downloadused) / 8192;
+                    if (inputid == 'uploadused') temp = parseInt(uploadused) / 8192;
+                    document.getElementById(inputid).value = temp.toString();
+                    break;
+                case '3':
+                    if (inputid == 'uploadrate') temp = parseInt(uploadrate) / 1048576;
+                    if (inputid == 'downloadrate') temp = parseInt(downloadrate) / 1048576;
+                    if (inputid == 'downloaduploadlimit') temp = parseInt(downloaduploadlimit) / 1048576;
+                    if (inputid == 'downloaduploadremain') temp = parseInt(downloaduploadremain) / 1048576;
+                    if (inputid == 'uploadlimit') temp = parseInt(uploadlimit) / 1048576;
+                    if (inputid == 'downloadlimit') temp = parseInt(downloadlimit) / 1048576;
+                    if (inputid == 'downloadused') temp = parseInt(downloadused) / 1048576;
+                    if (inputid == 'uploadused') temp = parseInt(uploadused) / 1048576;
+                    document.getElementById(inputid).value = temp.toString();
+                    break;
+                case '4':
+                    if (inputid == 'uploadrate') temp = (parseInt(uploadrate) / 8388608).toString();
+                    if (inputid == 'downloadrate') temp = (parseInt(downloadrate) / 8388608).toString();
+                    if (inputid == 'downloaduploadlimit') temp = (parseInt(downloaduploadlimit) / 1048576).toString();
+                    if (inputid == 'downloaduploadremain') temp = (parseInt(downloaduploadremain) / 1048576).toString();
+                    if (inputid == 'uploadlimit') temp = parseInt(uploadlimit) / 1048576;
+                    if (inputid == 'downloadlimit') temp = (parseInt(downloadlimit) / 1048576).toString();
+                    if (inputid == 'downloadused') temp = (parseInt(downloadused) / 1048576).toString();
+                    if (inputid == 'uploadused') temp = (parseInt(uploadused) / 1048576).toString();
+                    document.getElementById(inputid).value = temp;
+                    break;
+                case '5':
+                    if (inputid == 'uploadrate') temp = (parseInt(uploadrate) / 1073741824).toString();
+                    if (inputid == 'downloadrate') temp = (parseInt(downloadrate) / 1073741824).toString();
+                    if (inputid == 'downloaduploadlimit') temp = (parseInt(downloaduploadlimit) / 1073741824).toString();
+                    if (inputid == 'downloaduploadremain') temp = (parseInt(downloaduploadremain) / 1073741824).toString();
+                    if (inputid == 'uploadlimit') temp = (parseInt(uploadlimit) / 1073741824).toString();
+                    if (inputid == 'downloadlimit') temp = (parseInt(downloadlimit) / 1073741824).toString();
+                    if (inputid == 'downloadused') temp = (parseInt(downloadused) / 1073741824).toString();
+                    if (inputid == 'uploadused') temp = (parseInt(uploadused) / 1073741824).toString();
+                    document.getElementById(inputid).value = temp;
+                    break;
             }
+        }
+
+        function ProfileRemove(id) {
+            PostData("@Url.Action(MVC.Company.UserManager.ProfileRemove())", { id: id });
+        }
+
     </script>
 }

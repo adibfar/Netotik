@@ -16,7 +16,38 @@
                             <span class="icon-checkmark2 font-medium-4"></span>
                             @Netotik.Resources.Captions.Save
                         </button>
-
+                        <a value="قطع اتصال" class="btn btn-social btn-instagram" href="#" onclick="UserCloseSession('@Model.id','@Model.username');">
+                            <span class="icon-close font-medium-4"></span>
+                            قطع اتصال
+                        </a>
+                        <a value="ریست کردن" class="btn btn-social btn-instagram" href="#" onclick="UserResetCounter('@Model.id','@Model.username');">
+                            <span class="icon-refresh font-medium-4"></span>
+                            ریست کردن
+                        </a>
+                        <a value="چاپ گزارش" class="btn btn-social btn-instagram" href="#" >
+                            <span class="icon-printer2 font-medium-4"></span>
+                            چاپ گزارش
+                        </a>
+                        <a value="حذف" class="btn btn-social btn-instagram" href="#" onclick="Userremove('@Model.id');">
+                            <span class="icon-remove font-medium-4"></span>
+                            حذف
+                        </a>
+                        @if (Model.disabled == "false")
+                        {
+                            <a onclick="Userdisable('@Model.id');" class="btn btn-social btn-instagram">
+                                <span class="icon-lock font-medium-4"></span> غیره فعال
+                            </a>
+                        }
+                        else
+                        {
+                            <a onclick="Userenable('@Model.id');" class="btn btn-social btn-instagram">
+                                <span class="icon-unlock font-medium-4"></span> فعال
+                            </a>
+                        }
+                        <a value="ساخت کارت" class="btn btn-social btn-instagram" href="#">
+                            <span class="icon-card font-medium-4"></span>
+                            ساخت کارت
+                        </a>
                         <div class="col-md-12">
                             @Html.ValidationSummary(false, "", htmlAttributes: new { @class = "text-danger" })
                             <span class="text-danger">توجه کنید تمامی مقادیر را انگلیسی تکمیل کنید.</span>
@@ -142,3 +173,31 @@
         </div>
     </div>
 </section>
+
+
+@section DownScript{
+    <script type="text/javascript">
+
+
+        function Userremove(id) {
+            PostData("@Url.Action(MVC.Company.UserManager.Userremove())", { id: id });
+        }
+
+        function Userdisable(id) {
+            PostData("@Url.Action(MVC.Company.UserManager.Userdisable())", { id: id });
+        }
+
+        function Userenable(id) {
+            PostData("@Url.Action(MVC.Company.UserManager.Userenable())", { id: id });
+        }
+
+        function UserResetCounter(id,name) {
+            PostData("@Url.Action(MVC.Company.UserManager.ResetCounter())", { id: id, user: name});
+        }
+
+        function UserCloseSession(id , name) {
+            PostData("@Url.Action(MVC.Company.UserManager.CloseSession())", { id: id ,user: name});
+        }
+
+    </script>
+}
