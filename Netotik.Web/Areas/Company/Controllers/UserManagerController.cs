@@ -569,8 +569,11 @@ namespace Netotik.Web.Areas.Company.Controllers
                     ViewBag.rate_limit_rx = UserLimition.rate_limit_rx;
                     ViewBag.rate_limit_tx = UserLimition.rate_limit_tx;
                     int Downloadlimit = 0;
+                    if (UserLimition.transfer_limit == null) UserLimition.transfer_limit = "0";
                     if (UserLimition.transfer_limit != "0") Downloadlimit += Int32.Parse(UserLimition.transfer_limit);
+                    if (UserLimition.upload_limit == null) UserLimition.upload_limit = "0";
                     if (UserLimition.upload_limit != "0") Downloadlimit += Int32.Parse(UserLimition.upload_limit);
+                    if (UserLimition.download_limit == null) UserLimition.download_limit = "0";
                     if (UserLimition.download_limit != "0") Downloadlimit += Int32.Parse(UserLimition.download_limit);
                     if (UserLimition.download_limit != "" && item.download_used != "")
                         ViewBag.download_remain = (Downloadlimit - Int32.Parse(item.download_used)).ToString();
@@ -655,7 +658,7 @@ namespace Netotik.Web.Areas.Company.Controllers
             if (!ModelState.IsValid)
             {
                 //SetResultMessage(false, MessageColor.Danger, Messages.InvalidDataError, Messages.MissionFail);
-                return View();
+                return RedirectToAction(MVC.Company.UserManager.UserCreate());
             }
             else
             {
