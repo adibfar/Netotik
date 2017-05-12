@@ -462,6 +462,7 @@
       <DependentUpon>T4MVC.tt</DependentUpon>
     </Compile>
     <Compile Include="Infrastructure\Caching\LanguageCache.cs" />
+    <Compile Include="Infrastructure\EnglishConvertDate.cs" />
     <Compile Include="Infrastructure\HtmlCurrentUserExtension.cs" />
     <Compile Include="HomeController.generated.cs">
       <DependentUpon>T4MVC.tt</DependentUpon>

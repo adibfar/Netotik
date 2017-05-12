@@ -17,13 +17,6 @@ namespace Netotik.Web
 
             routes.MapMvcAttributeRoutes();
 
-            //routes.MapRoute(
-            //    name: "Language",
-            //    url: "{lang}/{controller}/{action}/{id}",
-            //    defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional},
-            //    namespaces: new[] { "Netotik.Web.Controllers" }
-            //);
-
             routes.MapRoute(
               name: "Default",
               url: "{lang}/{controller}/{action}/{id}",
