@@ -2,22 +2,22 @@
 
 namespace Netotik.Web.Areas.Reseller
 {
-    public class ResellerRegistration : AreaRegistration 
+    public class ResellerRegistration : AreaRegistration
     {
-        public override string AreaName 
+        public override string AreaName
         {
-            get 
+            get
             {
                 return "Reseller";
             }
         }
 
-        public override void RegisterArea(AreaRegistrationContext context) 
+        public override void RegisterArea(AreaRegistrationContext context)
         {
             context.MapRoute(
                 "Reseller_default",
-                "Reseller/{controller}/{action}/{id}",
-                new { action = "Index", id = UrlParameter.Optional }
+                "{lang}/Reseller/{controller}/{action}/{id}",
+                new { action = "Index", id = UrlParameter.Optional, lang = "fa" }
             );
         }
     }

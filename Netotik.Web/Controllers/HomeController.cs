@@ -3,28 +3,26 @@ using System;
 using System.Linq;
 using System.Web.Mvc;
 using System.Data.Entity;
-using Netotik.Web.Extension;
-using System.Text;
-using Netotik.Web.Lucene;
 using Microsoft.Owin.Security;
-using Microsoft.AspNet.Identity;
 using Netotik.Services.Identity;
 using Netotik.Common.Controller;
 using System.Web;
+using Netotik.Web.Infrastructure;
+using Netotik.Web.Infrastructure.Caching;
 
 namespace Netotik.Web.Controllers
 {
-    public partial class HomeController : Controller
+    public partial class HomeController : BaseController
     {
 
 
         #region Fields
-        private const int oneDay = 86400;
-        private const int hour12 = 43200;
-        private const int hour1 = 3600;
-        private const int min30 = 1800;
-        private const int min15 = 900;
-        private const int min10 = 600;
+        private const int _oneDay = 86400;
+        private const int _hour12 = 43200;
+        private const int _hour1 = 3600;
+        private const int _min30 = 1800;
+        private const int _min15 = 900;
+        private const int _min10 = 600;
 
         private readonly IAuthenticationManager _authenticationManager;
         private readonly IApplicationRoleManager _applicationRoleManager;
@@ -36,6 +34,7 @@ namespace Netotik.Web.Controllers
         private readonly IContentService _contentService;
         private readonly IMenuService _menuService;
         private readonly ISliderService _sliderService;
+        private readonly ILanguageService _languageService;
         #endregion
 
         #region Constructor
@@ -49,8 +48,11 @@ namespace Netotik.Web.Controllers
             IContentCategoryService contentCategoryService,
             ICategoryService categoryService,
             IContentService contentService,
-            IMenuService menuService)
+            IMenuService menuService,
+            ILanguageService languageService
+            )
         {
+            _languageService = languageService;
             _sliderService = sliderService;
             _applicationRoleManager = applicationRoleManager;
             _authenticationManager = authenticationManager;
@@ -121,6 +123,12 @@ namespace Netotik.Web.Controllers
             return PartialView(MVC.SharedPublic.Views._Footer);
         }
 
+        //[OutputCache(Duration = _min10, VaryByParam = "none")]
+        public virtual PartialViewResult LanguageSelector()
+        {
+            return PartialView(MVC.SharedPublic.Views._LanagaugeSelector,LanguageCache.GetLanguages(this.HttpContext,_languageService));
+        }
+
 
         //[OutputCache(Duration = oneDay, VaryByParam = "none")]
         public virtual PartialViewResult FooterAddress()
@@ -149,26 +157,5 @@ namespace Netotik.Web.Controllers
 
             return PartialView(MVC.SharedPublic.Views._HeaderMenu, list);
         }
-        public virtual ActionResult SetCulture(string culture)
-        {
-            // Validate input
-            culture = CultureHelper.GetImplementedCulture(culture);
-
-            // Save culture in a cookie
-            HttpCookie cookie = Request.Cookies["_culture"];
-            if (cookie != null)
-                cookie.Value = culture;   // update cookie value
-            else
-            {
-
-                cookie = new HttpCookie("_culture");
-                cookie.Value = culture;
-                cookie.Expires = DateTime.Now.AddYears(1);
-            }
-            Response.Cookies.Add(cookie);
-
-            return RedirectToAction(MVC.Home.Index());
-        }
-
     }
 }

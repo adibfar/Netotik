@@ -148,7 +148,8 @@
     <Compile Include="Abstract\ICityService.cs" />
     <Compile Include="Abstract\ICustomRoleStore.cs" />
     <Compile Include="Abstract\ICustomUserStore.cs" />
-    <Compile Include="Abstract\IResourceService.cs" />
+    <Compile Include="Abstract\ILanguageService.cs" />
+    <Compile Include="Abstract\ILocaleStringResourceService.cs" />
     <Compile Include="Abstract\ITicketTagService.cs" />
     <Compile Include="Abstract\ITicketService.cs" />
     <Compile Include="Abstract\IOrderPaymentService.cs" />
@@ -201,10 +202,11 @@
     <Compile Include="Identity\PermissionRecord.cs" />
     <Compile Include="Identity\PermissionService.cs" />
     <Compile Include="Identity\StandardRoles.cs" />
+    <Compile Include="Implement\LanguageService.cs" />
     <Compile Include="Implement\TicketTagService.cs" />
     <Compile Include="Implement\AdertiseService.cs" />
     <Compile Include="Implement\MikrotikServices.cs" />
-    <Compile Include="Implement\ResourceService.cs" />
+    <Compile Include="Implement\LocaleStringResourceService.cs" />
     <Compile Include="Implement\TicketService.cs" />
     <Compile Include="Implement\UserMailer.cs" />
     <Compile Include="Enums\VerifyUserStatus.cs" />

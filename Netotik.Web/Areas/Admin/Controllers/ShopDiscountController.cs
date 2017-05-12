@@ -18,7 +18,7 @@ using System.Web.UI;
 using System.Threading.Tasks;
 using Netotik.Web;
 using System.Data.Entity.Validation;
-using Netotik.Web.Extension;
+
 using Netotik.ViewModels.Shop.Discount;
 using System.IO;
 using DNTBreadCrumb;

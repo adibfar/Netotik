@@ -87,6 +87,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Binders\PersianDateModelBinder.cs" />
     <Compile Include="Caching\CacheManager.cs" />
     <Compile Include="Controller\ActionType.cs" />
     <Compile Include="Controller\ControllerExtentions.cs" />
@@ -105,15 +106,16 @@
     <Compile Include="Extensions\ConvertExtentions.cs" />
     <Compile Include="Extensions\CookieExtention.cs" />
     <Compile Include="Extensions\EnumExtensions.cs" />
+    <Compile Include="Extensions\MenuExtension.cs" />
     <Compile Include="Extensions\NormalizationInfo.cs" />
     <Compile Include="Extensions\RemainingDateTime.cs" />
     <Compile Include="Extensions\TypeExtentions.cs" />
     <Compile Include="Extensions\YeKe.cs" />
     <Compile Include="Extensions\YeKeInterceptor.cs" />
+    <Compile Include="Filters\AjaxOnlyAttribute.cs" />
     <Compile Include="Filters\Mcv5AuthorizeAttribute.cs" />
     <Compile Include="Filters\ThrottleAttribute.cs" />
     <Compile Include="Helpers\MvcHtmlHelperExtentions.cs" />
-    <Compile Include="Helpers\TreeView.cs" />
     <Compile Include="MikrotikAPI\MikrotikAPI.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Security\ActionKey.cs" />

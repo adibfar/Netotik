@@ -1,52 +1,51 @@
 ﻿@using Netotik.Common.Controller
 @{
     var IsIr = CultureHelper.GetDefaultCulture() == CultureHelper.GetCurrentCulture() ? true : false;
+    var user = Html.CurrentUser();
 }
 <!-- Top Bar -->
 <div id="topBar">
     <div class="container">
 
         <!-- right -->
-        @*<ul class="top-links list-inline pull-right">
-                <li><a href="@Url.Action(MVC.ContactUs.Index())"> @Captions.ContactUs </a></li>
-                <li><a href="@Url.Action(MVC.AboutUs.Index())"> @Captions.AboutUs </a> </li>
-                @if (User != null && User.Identity.IsAuthenticated)
+        <ul class="top-links list-inline">
+            @if (user != null)
+            {
+                if (user.UserType == Netotik.Domain.Entity.UserType.UserAdmin)
                 {
-                    <li><a href="@Url.Action(MVC.Admin.Home.Index())"> @Captions.AdminPanel </a></li>
+                    <li>
+
+                        <a href="@Url.Action(MVC.Admin.Home.Index())">
+                            پنل مدیریت
+                        </a>
+                    </li>
                 }
-            </ul>*@
+                if (user.UserType == Netotik.Domain.Entity.UserType.UserReseller)
+                {
+                    <li>
+                        <a href="@Url.Action(MVC.Reseller.Home.Index())">
+                            پنل نمایندگی
+                        </a>
+                    </li>
+                }
+                if (user.UserType == Netotik.Domain.Entity.UserType.UserCompany)
+                {
+                    <li>
+                        <a href="@Url.Action(MVC.Company.Home.Index())">
+                            پنل کاربری
+                        </a>
+                    </li>
+                }
+            }
+        </ul>
 
         <!-- left -->
         <ul class="top-links list-inline pull-right">
 
             <li>
-                <a class="dropdown-toggle no-text-underline" data-toggle="dropdown" href="#">
-
-                    @if (!IsIr)
-                    {
-                        @("ENGLISH") <img class="flag-lang" src="~/Content/images/flags/us.png" width="16" height="11" alt="lang" />
-
-                    }
-                    else
-                    {
-                        @("PERSIAN") <img class="flag-lang" src="~/Content/images/flags/ir.png" width="16" height="11" alt="lang" />
-                    }
-                </a>
-                <ul class="dropdown-langs dropdown-menu">
-                    @if (!IsIr)
-                    {
-                        <li><a tabindex="-1" href="@Url.Action(MVC.Home.SetCulture("fa-ir"))"><img class="flag-lang" src="~/Content/images/flags/ir.png" width="16" height="11" alt="lang" /> PERSIAN</a></li>
-                    }
-                    else
-                    {
-                        <li><a tabindex="-1" href="@Url.Action(MVC.Home.SetCulture("en-us"))"><img class="flag-lang" src="~/Content/images/flags/us.png" width="16" height="11" alt="lang" /> ENGLISH</a></li>
-                    }
-                    <li><a tabindex="-1" href="@Url.Action(MVC.Home.SetCulture("en-us"))"><img class="flag-lang" src="~/Content/images/flags/sa.png" width="16" height="11" alt="lang" /> ARABIA</a></li>
-                </ul>
+                @Html.Action(MVC.Home.LanguageSelector())
             </li>
-            @*<li>
-                <a href="@Url.Action(MVC.Home.Index())">Netotik</a>
-            </li>*@
+
         </ul>
 
     </div>

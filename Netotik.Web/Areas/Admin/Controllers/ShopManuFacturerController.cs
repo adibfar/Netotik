@@ -17,7 +17,7 @@ using System.Web.UI;
 using System.Threading.Tasks;
 using Netotik.Web;
 using System.Data.Entity.Validation;
-using Netotik.Web.Extension;
+
 using Netotik.ViewModels.Shop.Manufacturer;
 using System.IO;
 using DNTBreadCrumb;
@@ -205,7 +205,6 @@ namespace Netotik.Web.Areas.Admin.Controllers
         }
 
         [ValidateAntiForgeryToken]
-        [AllowUploadSpecialFilesOnly(".jpg,.png,.gif", true)]
         [HttpPost]
         public virtual async Task<ActionResult> Edit(ManufacturerModel model, ActionType actionType)
         {

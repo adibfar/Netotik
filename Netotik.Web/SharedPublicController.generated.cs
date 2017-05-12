@@ -46,10 +46,9 @@ namespace T4MVC
                 public readonly string _FooterPopularPost = "_FooterPopularPost";
                 public readonly string _Header = "_Header";
                 public readonly string _HeaderMenu = "_HeaderMenu";
+                public readonly string _LanagaugeSelector = "_LanagaugeSelector";
                 public readonly string _Layout = "_Layout";
                 public readonly string _MessageResult = "_MessageResult";
-                public readonly string _ProductBox = "_ProductBox";
-                public readonly string _SearchPartial = "_SearchPartial";
             }
             public readonly string _BreadCrumb = "~/Views/SharedPublic/_BreadCrumb.cshtml";
             public readonly string _CaptchaPartial = "~/Views/SharedPublic/_CaptchaPartial.cshtml";
@@ -59,10 +58,9 @@ namespace T4MVC
             public readonly string _FooterPopularPost = "~/Views/SharedPublic/_FooterPopularPost.cshtml";
             public readonly string _Header = "~/Views/SharedPublic/_Header.cshtml";
             public readonly string _HeaderMenu = "~/Views/SharedPublic/_HeaderMenu.cshtml";
+            public readonly string _LanagaugeSelector = "~/Views/SharedPublic/_LanagaugeSelector.cshtml";
             public readonly string _Layout = "~/Views/SharedPublic/_Layout.cshtml";
             public readonly string _MessageResult = "~/Views/SharedPublic/_MessageResult.cshtml";
-            public readonly string _ProductBox = "~/Views/SharedPublic/_ProductBox.cshtml";
-            public readonly string _SearchPartial = "~/Views/SharedPublic/_SearchPartial.cshtml";
         }
     }
 

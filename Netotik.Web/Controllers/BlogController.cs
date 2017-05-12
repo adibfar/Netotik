@@ -14,7 +14,7 @@ using Netotik.Domain.Entity;
 
 namespace Netotik.Web.Controllers
 {
-    [RoutePrefix("Blog")]
+    [RoutePrefix("{lang}/Blog")]
     public partial class BlogController : BaseController
     {
         private readonly IContentService _contentService;

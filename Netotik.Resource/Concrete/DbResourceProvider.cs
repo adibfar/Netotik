@@ -29,7 +29,7 @@ namespace Netotik.Resources.Resources.Concrete
         {
             var resources = new List<ResourceEntry>();
 
-            const string sql = "select Culture, Name, Value from dbo.Resources;";
+            const string sql = "select LanguageCulture, LocaleStringResources.Name, LocaleStringResources.Value from dbo.LocaleStringResources JOIN Languages ON Languages.Id=LocaleStringResources.LanguageId;";
 
             using (var con = new SqlConnection(connectionString)) {
                 var cmd = new SqlCommand(sql, con);
@@ -41,10 +41,9 @@ namespace Netotik.Resources.Resources.Concrete
                         resources.Add(new ResourceEntry { 
                             Name = reader["Name"].ToString(),
                             Value = reader["Value"].ToString(),
-                            Culture = reader["Culture"].ToString()
+                            Culture = reader["LanguageCulture"].ToString()
                         });
                     }
-
                     if (!reader.HasRows) throw new Exception("No resources were found");
                 }
             }
@@ -57,7 +56,7 @@ namespace Netotik.Resources.Resources.Concrete
         {
             ResourceEntry resource = null;
 
-            const string sql = "select Culture, Name, Value from dbo.Resources where culture = @culture and name = @name;";
+            const string sql = "select LanguageCulture, LocaleStringResources.Name, LocaleStringResources.Value from dbo.LocaleStringResources JOIN Languages ON Languages.Id=LocaleStringResources.LanguageId where culture = @culture and name = @name;";
 
             using (var con = new SqlConnection(connectionString)) {
                 var cmd = new SqlCommand(sql, con);
@@ -72,7 +71,7 @@ namespace Netotik.Resources.Resources.Concrete
                         resource = new ResourceEntry {
                             Name = reader["Name"].ToString(),
                             Value = reader["Value"].ToString(),
-                            Culture = reader["Culture"].ToString()
+                            Culture = reader["LanguageCulture"].ToString()
                         };
                     }
 

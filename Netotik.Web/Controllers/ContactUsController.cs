@@ -9,9 +9,9 @@ using CaptchaMvc.Attributes;
 using Netotik.Web.Infrastructure;
 using Netotik.Services.Abstract;
 using Netotik.Data;
-using Netotik.Web.Caching;
 using Netotik.ViewModels.Common.ContactUs;
 using Netotik.Domain.Entity;
+using Netotik.Web.Infrastructure.Caching;
 
 namespace Netotik.Web.Controllers
 {
@@ -29,7 +29,7 @@ namespace Netotik.Web.Controllers
 
         public virtual ActionResult Index()
         {
-            ViewBag.siteConfig = WebCache.GetSiteConfig(HttpContext, _settingService);
+            ViewBag.siteConfig = PublicUICache.GetSiteConfig(HttpContext, _settingService);
             return View();
         }
 
@@ -38,7 +38,7 @@ namespace Netotik.Web.Controllers
         [CaptchaVerify("تصویر امنیتی را درست وارد کنید")]
         public virtual async Task<ActionResult> Index(MessageModel model)
         {
-            ViewBag.siteConfig = WebCache.GetSiteConfig(HttpContext, _settingService);
+            ViewBag.siteConfig = PublicUICache.GetSiteConfig(HttpContext, _settingService);
             if (ModelState.IsValid)
             {
                 try

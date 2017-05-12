@@ -337,7 +337,7 @@
     <Compile Include="Admin.HomeController.generated.cs">
       <DependentUpon>T4MVC.tt</DependentUpon>
     </Compile>
-    <Compile Include="Admin.LuceneIndexingController.generated.cs">
+    <Compile Include="Admin.LanguageController.generated.cs">
       <DependentUpon>T4MVC.tt</DependentUpon>
     </Compile>
     <Compile Include="Admin.MenuController.generated.cs">
@@ -402,10 +402,10 @@
     <Compile Include="App_Start\Startup.cs" />
     <Compile Include="App_Start\StructureMapControllerFactory.cs" />
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
+    <Compile Include="Areas\Admin\Controllers\LanguageController.cs" />
     <Compile Include="Areas\Admin\Controllers\ResourceController.cs" />
     <Compile Include="Areas\Admin\Controllers\TicketTagController.cs" />
     <Compile Include="Areas\Admin\Controllers\TicketController.cs" />
-    <Compile Include="Areas\Admin\Controllers\LuceneIndexingController.cs" />
     <Compile Include="Areas\Admin\Controllers\OrderNotPaymentController.cs" />
     <Compile Include="Areas\Admin\Controllers\OrderController.cs" />
     <Compile Include="Areas\Admin\Controllers\ShopProductCommentsController.cs" />
@@ -461,64 +461,27 @@
     <Compile Include="ErrorController.generated.cs">
       <DependentUpon>T4MVC.tt</DependentUpon>
     </Compile>
-    <Compile Include="Extension\HtmlExtension.cs" />
-    <Compile Include="FactorController.generated.cs">
-      <DependentUpon>T4MVC.tt</DependentUpon>
-    </Compile>
+    <Compile Include="Infrastructure\Caching\LanguageCache.cs" />
+    <Compile Include="Infrastructure\HtmlCurrentUserExtension.cs" />
     <Compile Include="HomeController.generated.cs">
       <DependentUpon>T4MVC.tt</DependentUpon>
     </Compile>
     <Compile Include="Infrastructure\BaseController.cs" />
     <Compile Include="Infrastructure\BasePanelController.cs" />
-    <Compile Include="Infrastructure\Caching\WebCache.cs" />
-    <Compile Include="Controllers\FactorController.cs" />
+    <Compile Include="Infrastructure\Caching\PublicUICache.cs" />
     <Compile Include="Controllers\ErrorController.cs" />
     <Compile Include="Controllers\RegisterController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
-    <Compile Include="Controllers\ProductController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\MetaTagController.cs" />
     <Compile Include="Controllers\AccountController.cs" />
-    <Compile Include="Extension\ConvertExtentions.cs" />
-    <Compile Include="Extension\CookieHelper.cs" />
-    <Compile Include="Extension\EnumHelper.cs" />
-    <Compile Include="Extension\MenuExtension.cs" />
-    <Compile Include="Extension\Exception.cs" />
-    <Compile Include="Extension\QueryHelper.cs" />
-    <Compile Include="Extension\SeoExtentions.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="HtmlCleaner\AntiXssModule.cs" />
-    <Compile Include="HtmlCleaner\HtmlSanitizer.cs" />
-    <Compile Include="HtmlCleaner\PersianProofWriter.cs" />
-    <Compile Include="HttpCompress\CompressingFilter.cs" />
-    <Compile Include="HttpCompress\DeflateFilter.cs" />
-    <Compile Include="HttpCompress\Enums.cs" />
-    <Compile Include="HttpCompress\GZipFilter.cs" />
-    <Compile Include="HttpCompress\HttpModule.cs" />
-    <Compile Include="HttpCompress\HttpOutputFilter.cs" />
-    <Compile Include="HttpCompress\SectionHandler.cs" />
-    <Compile Include="HttpCompress\Settings.cs" />
-    <Compile Include="Infrastructure\Binders\PersianDateModelBinder.cs" />
-    <Compile Include="Infrastructure\Filters\AjaxOnlyAttribute.cs" />
-    <Compile Include="Infrastructure\Filters\AllowUploadSafeFilesAttribute.cs" />
-    <Compile Include="Infrastructure\Filters\AllowUploadSpecialFilesAttribute.cs" />
-    <Compile Include="Infrastructure\Filters\ThrottleAttribute.cs" />
-    <Compile Include="Infrastructure\Helpers\HtmlHelperDropdown.cs" />
-    <Compile Include="Infrastructure\Helpers\Security\MimeTypeDetector.cs" />
-    <Compile Include="Infrastructure\HttpModules\DosAttackModule.cs" />
-    <Compile Include="Infrastructure\HttpModules\IpBlockModule.cs" />
-    <Compile Include="Infrastructure\Http\HttpExtentions.cs" />
-    <Compile Include="Infrastructure\PaylineGateway.cs" />
     <Compile Include="LoginController.generated.cs">
       <DependentUpon>T4MVC.tt</DependentUpon>
     </Compile>
-    <Compile Include="Lucene\LuceneIndex.cs" />
     <Compile Include="MetaTagController.generated.cs">
-      <DependentUpon>T4MVC.tt</DependentUpon>
-    </Compile>
-    <Compile Include="ProductController.generated.cs">
       <DependentUpon>T4MVC.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -531,11 +494,6 @@
       <AutoGen>True</AutoGen>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <DependentUpon>Settings.settings</DependentUpon>
-    </Compile>
-    <Compile Include="RazorHelpers\CheckBoxListBuilder.generated.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>CheckBoxListBuilder.cshtml</DependentUpon>
     </Compile>
     <Compile Include="RegisterController.generated.cs">
       <DependentUpon>T4MVC.tt</DependentUpon>
@@ -565,10 +523,7 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="403.html" />
-    <Content Include="404.html" />
-    <Content Include="500.html" />
-    <Content Include="App_Data\DefaultResources.xml">
+    <Content Include="App_Data\Fa-LocaleStringResource.xml">
       <SubType>Designer</SubType>
     </Content>
     <Content Include="Content\css\my-style.css" />
@@ -856,7 +811,7 @@
     <Content Include="Content\images\logo\faveicon\ms-icon-150x150.png" />
     <Content Include="Content\images\logo\faveicon\ms-icon-310x310.png" />
     <Content Include="Content\images\logo\faveicon\ms-icon-70x70.png" />
-    <Content Include="favicon.ico" />
+    <Content Include="Content\images\logo\LogoPanelAdmin.png" />
     <Content Include="Content\images\logo\NetotikLogo.png" />
     <Content Include="Content\images\particles_bg.jpg" />
     <Content Include="Content\js\plugins\tables\datatable\dataTables.persian.txt" />
@@ -1534,12 +1489,6 @@
     <Content Include="Content\fonts\flag-icon-css\flags\4x3\zm.svg" />
     <Content Include="Content\fonts\flag-icon-css\flags\4x3\zw.svg" />
     <Content Include="Content\fonts\icomoon.css" />
-    <Content Include="Content\ico\apple-icon-120.png" />
-    <Content Include="Content\ico\apple-icon-152.png" />
-    <Content Include="Content\ico\apple-icon-60.png" />
-    <Content Include="Content\ico\apple-icon-76.png" />
-    <Content Include="Content\ico\favicon-32.png" />
-    <Content Include="Content\ico\favicon.ico" />
     <Content Include="Content\images\backgrounds\bg-12.jpg" />
     <Content Include="Content\images\backgrounds\bg-14.jpg" />
     <Content Include="Content\images\backgrounds\bg-2.jpg" />
@@ -3435,15 +3384,10 @@
     <Content Include="Content\PublicUI\plugins\widget.jflickr\style.css" />
     <Content Include="Content\PublicUI\plugins\widget.twittie\twittie.min.js" />
     <Content Include="Content\Upload\Image\Avatar\Default.png" />
-    <Content Include="Dynamic Expressions.html" />
     <Content Include="NoScript.html" />
     <Content Include="persian date info.txt" />
     <Content Include="readme.txt" />
-    <Content Include="Scripts\admin.js" />
-    <Content Include="Scripts\ajaxfileupload.js" />
     <Content Include="Global.asax" />
-    <Content Include="Scripts\bootstrap.js" />
-    <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Areas\Admin\Views\Configuration\Index.cshtml" />
     <Content Include="Areas\Admin\Views\Home\Index.cshtml" />
     <Content Include="Areas\Company\Views\Home\Index.cshtml" />
@@ -3657,62 +3601,12 @@
     </None>
     <None Include="T4MVC.tt.hooks.t4" />
     <None Include="T4MVC.tt.settings.xml" />
-    <Content Include="Scripts\i18n\grid.locale-ar.js" />
-    <Content Include="Scripts\i18n\grid.locale-bg.js" />
-    <Content Include="Scripts\i18n\grid.locale-bg1251.js" />
-    <Content Include="Scripts\i18n\grid.locale-cat.js" />
-    <Content Include="Scripts\i18n\grid.locale-cn.js" />
-    <Content Include="Scripts\i18n\grid.locale-cs.js" />
-    <Content Include="Scripts\i18n\grid.locale-da.js" />
-    <Content Include="Scripts\i18n\grid.locale-de.js" />
-    <Content Include="Scripts\i18n\grid.locale-dk.js" />
-    <Content Include="Scripts\i18n\grid.locale-el.js" />
-    <Content Include="Scripts\i18n\grid.locale-en.js" />
-    <Content Include="Scripts\i18n\grid.locale-es.js" />
-    <Content Include="Scripts\i18n\grid.locale-fa.js" />
-    <Content Include="Scripts\i18n\grid.locale-fi.js" />
-    <Content Include="Scripts\i18n\grid.locale-fr.js" />
-    <Content Include="Scripts\i18n\grid.locale-gl.js" />
-    <Content Include="Scripts\i18n\grid.locale-he.js" />
-    <Content Include="Scripts\i18n\grid.locale-hr.js" />
-    <Content Include="Scripts\i18n\grid.locale-hr1250.js" />
-    <Content Include="Scripts\i18n\grid.locale-hu.js" />
-    <Content Include="Scripts\i18n\grid.locale-id.js" />
-    <Content Include="Scripts\i18n\grid.locale-is.js" />
-    <Content Include="Scripts\i18n\grid.locale-it.js" />
-    <Content Include="Scripts\i18n\grid.locale-ja.js" />
-    <Content Include="Scripts\i18n\grid.locale-kr.js" />
-    <Content Include="Scripts\i18n\grid.locale-lt.js" />
-    <Content Include="Scripts\i18n\grid.locale-mne.js" />
-    <Content Include="Scripts\i18n\grid.locale-nl.js" />
-    <Content Include="Scripts\i18n\grid.locale-no.js" />
-    <Content Include="Scripts\i18n\grid.locale-pl.js" />
-    <Content Include="Scripts\i18n\grid.locale-pt-br.js" />
-    <Content Include="Scripts\i18n\grid.locale-pt.js" />
-    <Content Include="Scripts\i18n\grid.locale-ro.js" />
-    <Content Include="Scripts\i18n\grid.locale-ru.js" />
-    <Content Include="Scripts\i18n\grid.locale-sk.js" />
-    <Content Include="Scripts\i18n\grid.locale-sr-latin.js" />
-    <Content Include="Scripts\i18n\grid.locale-sr.js" />
-    <Content Include="Scripts\i18n\grid.locale-sv.js" />
-    <Content Include="Scripts\i18n\grid.locale-th.js" />
-    <Content Include="Scripts\i18n\grid.locale-tr.js" />
-    <Content Include="Scripts\i18n\grid.locale-tw.js" />
-    <Content Include="Scripts\i18n\grid.locale-ua.js" />
-    <Content Include="Scripts\i18n\grid.locale-vi.js" />
-    <Content Include="Scripts\jquery-3.1.0.slim.min.js" />
-    <Content Include="Scripts\jquery.jqGrid.min.js" />
-    <Content Include="Scripts\jquery.jqGrid.src.js" />
     <Content Include="Areas\Admin\Views\UserAdmin\Create.cshtml" />
     <Content Include="Areas\Admin\Views\UserAdmin\Edit.cshtml" />
     <Content Include="Areas\Admin\Views\UserAdmin\Index.cshtml" />
     <Content Include="Areas\Admin\Views\UserAdmin\_Table.cshtml" />
     <Content Include="Areas\Admin\Views\Web.config" />
     <Content Include="Areas\Admin\Views\_ViewStart.cshtml" />
-    <Content Include="RazorHelpers\CheckBoxListBuilder.cshtml">
-      <Generator>RazorGenerator</Generator>
-      <LastGenOutput>CheckBoxListBuilder.generated.cs</LastGenOutput>
-    </Content>
     <Content Include="Areas\Admin\Views\ContentCategory\_Table.cshtml" />
     <Content Include="Areas\Admin\Views\ContentCategory\_Edit.cshtml" />
     <Content Include="Areas\Admin\Views\ContentCategory\Index.cshtml" />
@@ -3721,8 +3615,6 @@
     <Content Include="Areas\Admin\Views\Content\Create.cshtml" />
     <Content Include="Areas\Admin\Views\Content\Edit.cshtml" />
     <Content Include="Areas\Admin\Views\Content\Index.cshtml" />
-    <Content Include="Scripts\cloud-zoom.js" />
-    <Content Include="Scripts\fileinput.min.js" />
     <Content Include="Areas\Admin\Views\ShopCategory\_Table.cshtml" />
     <Content Include="Areas\Admin\Views\ShopCategory\Create.cshtml" />
     <Content Include="Areas\Admin\Views\ShopCategory\CreateOrEdit.cshtml" />
@@ -3813,33 +3705,13 @@
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
-    <None Include="Scripts\jquery-1.10.2.intellisense.js" />
-    <Content Include="Scripts\jquery-1.10.2.js" />
-    <Content Include="Scripts\jquery-1.10.2.min.js" />
-    <Content Include="Scripts\jquery-2.1.4.min.js" />
-    <Content Include="Scripts\jquery-MVC-RemoveRow.js" />
-    <Content Include="Scripts\jquery-ui-1.11.4.min.js" />
-    <Content Include="Scripts\jquery-ui-1.8.11.js" />
-    <Content Include="Scripts\jquery-ui-1.8.11.min.js" />
-    <Content Include="Scripts\jquery.autocomplete.js" />
-    <Content Include="Scripts\jquery.blockUI.min.js" />
     <Content Include="Scripts\jquery.unobtrusive-ajax.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
     <Content Include="Scripts\jquery.unobtrusive-ajax.min.js" />
     <Content Include="Scripts\jquery.validate.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
-    <Content Include="Scripts\Factor.js" />
-    <Content Include="Scripts\jqueryval-default.js" />
-    <Content Include="Scripts\lazysizes.js" />
-    <Content Include="Scripts\modernizr-2.8.3.js" />
-    <Content Include="Scripts\PersianDatePicker.js" />
-    <Content Include="Scripts\respond.js" />
-    <Content Include="Scripts\respond.matchmedia.addListener.js" />
-    <Content Include="Scripts\respond.matchmedia.addListener.min.js" />
-    <Content Include="Scripts\respond.min.js" />
-    <Content Include="Scripts\sweet-alert.min.js" />
-    <Content Include="Scripts\thumbelina.js" />
-    <Content Include="Scripts\_references.js" />
+    <Content Include="Scripts\Panel.js" />
+    <Content Include="Scripts\Public.js" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -3851,22 +3723,7 @@
     </Content>
     <Content Include="Views\Web.config" />
     <Content Include="Views\_ViewStart.cshtml" />
-    <Content Include="Scripts\jquery-1.10.2.min.map" />
     <Content Include="Views\MetaTag\Index.cshtml" />
-    <Content Include="Views\Product\_Filters.cshtml" />
-    <Content Include="Views\Product\_List.cshtml" />
-    <Content Include="Views\Product\Index.cshtml" />
-    <Content Include="Views\Product\Show.cshtml" />
-    <Content Include="Views\Product\_AddComment.cshtml" />
-    <Content Include="Views\Product\_Comments.cshtml" />
-    <Content Include="Views\Product\_RelativeProduct.cshtml" />
-    <Content Include="Views\Factor\Index.cshtml" />
-    <Content Include="Views\Factor\_FactorPrice.cshtml" />
-    <Content Include="Views\Factor\_ShippingList.cshtml" />
-    <Content Include="Views\Factor\_PaymentTypeList.cshtml" />
-    <Content Include="Views\Factor\OrderDetail.cshtml" />
-    <Content Include="Views\Factor\Result.cshtml" />
-    <Content Include="Views\Factor\_LoginRegister.cshtml" />
     <Content Include="Views\Login\Reseller.cshtml" />
     <Content Include="Views\Login\Company.cshtml" />
     <Content Include="Views\Register\Reseller.cshtml" />
@@ -3903,8 +3760,6 @@
     <Content Include="Views\SharedPublic\_HeaderMenu.cshtml" />
     <Content Include="Views\SharedPublic\_Layout.cshtml" />
     <Content Include="Views\SharedPublic\_MessageResult.cshtml" />
-    <Content Include="Views\SharedPublic\_ProductBox.cshtml" />
-    <Content Include="Views\SharedPublic\_SearchPartial.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Home\_LastBlog.cshtml" />
     <Content Include="Views\Home\_SideBarCategory.cshtml" />
@@ -3923,6 +3778,7 @@
     <Content Include="Views\Blog\_Tags.cshtml" />
     <Content Include="Views\ContactUs\Index.cshtml" />
     <Content Include="Views\ContactUs\_SideBar.cshtml" />
+    <Content Include="Views\SharedPublic\_LanagaugeSelector.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />

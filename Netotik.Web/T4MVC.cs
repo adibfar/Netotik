@@ -39,11 +39,9 @@ public static partial class MVC
     public static Netotik.Web.Controllers.BlogController Blog = new Netotik.Web.Controllers.T4MVC_BlogController();
     public static Netotik.Web.Controllers.ContactUsController ContactUs = new Netotik.Web.Controllers.T4MVC_ContactUsController();
     public static Netotik.Web.Controllers.ErrorController Error = new Netotik.Web.Controllers.T4MVC_ErrorController();
-    public static Netotik.Web.Controllers.FactorController Factor = new Netotik.Web.Controllers.T4MVC_FactorController();
     public static Netotik.Web.Controllers.HomeController Home = new Netotik.Web.Controllers.T4MVC_HomeController();
     public static Netotik.Web.Controllers.LoginController Login = new Netotik.Web.Controllers.T4MVC_LoginController();
     public static Netotik.Web.Controllers.MetaTagController MetaTag = new Netotik.Web.Controllers.T4MVC_MetaTagController();
-    public static Netotik.Web.Controllers.ProductController Product = new Netotik.Web.Controllers.T4MVC_ProductController();
     public static Netotik.Web.Controllers.RegisterController Register = new Netotik.Web.Controllers.T4MVC_RegisterController();
     public static Netotik.Web.Controllers.RemoteController Remote = new Netotik.Web.Controllers.T4MVC_RemoteController();
     public static T4MVC.SharedController Shared = new T4MVC.SharedController();
@@ -66,7 +64,7 @@ namespace T4MVC
         public Netotik.Web.Areas.Admin.Controllers.ContentController Content = new Netotik.Web.Areas.Admin.Controllers.T4MVC_ContentController();
         public Netotik.Web.Areas.Admin.Controllers.ContentTagController ContentTag = new Netotik.Web.Areas.Admin.Controllers.T4MVC_ContentTagController();
         public Netotik.Web.Areas.Admin.Controllers.HomeController Home = new Netotik.Web.Areas.Admin.Controllers.T4MVC_HomeController();
-        public Netotik.Web.Areas.Admin.Controllers.LuceneIndexingController LuceneIndexing = new Netotik.Web.Areas.Admin.Controllers.T4MVC_LuceneIndexingController();
+        public Netotik.Web.Areas.Admin.Controllers.LanguageController Language = new Netotik.Web.Areas.Admin.Controllers.T4MVC_LanguageController();
         public Netotik.Web.Areas.Admin.Controllers.MenuController Menu = new Netotik.Web.Areas.Admin.Controllers.T4MVC_MenuController();
         public Netotik.Web.Areas.Admin.Controllers.OrderController Order = new Netotik.Web.Areas.Admin.Controllers.T4MVC_OrderController();
         public Netotik.Web.Areas.Admin.Controllers.OrderNotPaymentController OrderNotPayment = new Netotik.Web.Areas.Admin.Controllers.T4MVC_OrderNotPaymentController();
@@ -171,93 +169,13 @@ namespace Links
         public const string UrlPath = "~/Scripts";
         public static string Url() { return T4MVCHelpers.ProcessVirtualPath(UrlPath); }
         public static string Url(string fileName) { return T4MVCHelpers.ProcessVirtualPath(UrlPath + "/" + fileName); }
-        public static readonly string _references_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(UrlPath + "/_references.min.js") ? Url("_references.min.js") : Url("_references.js");
-        public static readonly string admin_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(UrlPath + "/admin.min.js") ? Url("admin.min.js") : Url("admin.js");
-        public static readonly string ajaxfileupload_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(UrlPath + "/ajaxfileupload.min.js") ? Url("ajaxfileupload.min.js") : Url("ajaxfileupload.js");
-        public static readonly string bootstrap_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(UrlPath + "/bootstrap.min.js") ? Url("bootstrap.min.js") : Url("bootstrap.js");
-        public static readonly string bootstrap_min_js = Url("bootstrap.min.js");
-        public static readonly string cloud_zoom_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(UrlPath + "/cloud-zoom.min.js") ? Url("cloud-zoom.min.js") : Url("cloud-zoom.js");
-        public static readonly string Factor_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(UrlPath + "/Factor.min.js") ? Url("Factor.min.js") : Url("Factor.js");
-        public static readonly string fileinput_min_js = Url("fileinput.min.js");
-        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public static class i18n {
-            public const string UrlPath = "~/Scripts/i18n";
-            public static string Url() { return T4MVCHelpers.ProcessVirtualPath(UrlPath); }
-            public static string Url(string fileName) { return T4MVCHelpers.ProcessVirtualPath(UrlPath + "/" + fileName); }
-            public static readonly string grid_locale_ar_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(UrlPath + "/grid.locale-ar.min.js") ? Url("grid.locale-ar.min.js") : Url("grid.locale-ar.js");
-            public static readonly string grid_locale_bg_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(UrlPath + "/grid.locale-bg.min.js") ? Url("grid.locale-bg.min.js") : Url("grid.locale-bg.js");
-            public static readonly string grid_locale_bg1251_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(UrlPath + "/grid.locale-bg1251.min.js") ? Url("grid.locale-bg1251.min.js") : Url("grid.locale-bg1251.js");
-            public static readonly string grid_locale_cat_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(UrlPath + "/grid.locale-cat.min.js") ? Url("grid.locale-cat.min.js") : Url("grid.locale-cat.js");
-            public static readonly string grid_locale_cn_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(UrlPath + "/grid.locale-cn.min.js") ? Url("grid.locale-cn.min.js") : Url("grid.locale-cn.js");
-            public static readonly string grid_locale_cs_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(UrlPath + "/grid.locale-cs.min.js") ? Url("grid.locale-cs.min.js") : Url("grid.locale-cs.js");
-            public static readonly string grid_locale_da_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(UrlPath + "/grid.locale-da.min.js") ? Url("grid.locale-da.min.js") : Url("grid.locale-da.js");
-            public static readonly string grid_locale_de_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(UrlPath + "/grid.locale-de.min.js") ? Url("grid.locale-de.min.js") : Url("grid.locale-de.js");
-            public static readonly string grid_locale_dk_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(UrlPath + "/grid.locale-dk.min.js") ? Url("grid.locale-dk.min.js") : Url("grid.locale-dk.js");
-            public static readonly string grid_locale_el_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(UrlPath + "/grid.locale-el.min.js") ? Url("grid.locale-el.min.js") : Url("grid.locale-el.js");
-            public static readonly string grid_locale_en_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(UrlPath + "/grid.locale-en.min.js") ? Url("grid.locale-en.min.js") : Url("grid.locale-en.js");
-            public static readonly string grid_locale_es_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(UrlPath + "/grid.locale-es.min.js") ? Url("grid.locale-es.min.js") : Url("grid.locale-es.js");
-            public static readonly string grid_locale_fa_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(UrlPath + "/grid.locale-fa.min.js") ? Url("grid.locale-fa.min.js") : Url("grid.locale-fa.js");
-            public static readonly string grid_locale_fi_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(UrlPath + "/grid.locale-fi.min.js") ? Url("grid.locale-fi.min.js") : Url("grid.locale-fi.js");
-            public static readonly string grid_locale_fr_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(UrlPath + "/grid.locale-fr.min.js") ? Url("grid.locale-fr.min.js") : Url("grid.locale-fr.js");
-            public static readonly string grid_locale_gl_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(UrlPath + "/grid.locale-gl.min.js") ? Url("grid.locale-gl.min.js") : Url("grid.locale-gl.js");
-            public static readonly string grid_locale_he_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(UrlPath + "/grid.locale-he.min.js") ? Url("grid.locale-he.min.js") : Url("grid.locale-he.js");
-            public static readonly string grid_locale_hr_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(UrlPath + "/grid.locale-hr.min.js") ? Url("grid.locale-hr.min.js") : Url("grid.locale-hr.js");
-            public static readonly string grid_locale_hr1250_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(UrlPath + "/grid.locale-hr1250.min.js") ? Url("grid.locale-hr1250.min.js") : Url("grid.locale-hr1250.js");
-            public static readonly string grid_locale_hu_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(UrlPath + "/grid.locale-hu.min.js") ? Url("grid.locale-hu.min.js") : Url("grid.locale-hu.js");
-            public static readonly string grid_locale_id_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(UrlPath + "/grid.locale-id.min.js") ? Url("grid.locale-id.min.js") : Url("grid.locale-id.js");
-            public static readonly string grid_locale_is_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(UrlPath + "/grid.locale-is.min.js") ? Url("grid.locale-is.min.js") : Url("grid.locale-is.js");
-            public static readonly string grid_locale_it_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(UrlPath + "/grid.locale-it.min.js") ? Url("grid.locale-it.min.js") : Url("grid.locale-it.js");
-            public static readonly string grid_locale_ja_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(UrlPath + "/grid.locale-ja.min.js") ? Url("grid.locale-ja.min.js") : Url("grid.locale-ja.js");
-            public static readonly string grid_locale_kr_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(UrlPath + "/grid.locale-kr.min.js") ? Url("grid.locale-kr.min.js") : Url("grid.locale-kr.js");
-            public static readonly string grid_locale_lt_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(UrlPath + "/grid.locale-lt.min.js") ? Url("grid.locale-lt.min.js") : Url("grid.locale-lt.js");
-            public static readonly string grid_locale_mne_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(UrlPath + "/grid.locale-mne.min.js") ? Url("grid.locale-mne.min.js") : Url("grid.locale-mne.js");
-            public static readonly string grid_locale_nl_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(UrlPath + "/grid.locale-nl.min.js") ? Url("grid.locale-nl.min.js") : Url("grid.locale-nl.js");
-            public static readonly string grid_locale_no_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(UrlPath + "/grid.locale-no.min.js") ? Url("grid.locale-no.min.js") : Url("grid.locale-no.js");
-            public static readonly string grid_locale_pl_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(UrlPath + "/grid.locale-pl.min.js") ? Url("grid.locale-pl.min.js") : Url("grid.locale-pl.js");
-            public static readonly string grid_locale_pt_br_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(UrlPath + "/grid.locale-pt-br.min.js") ? Url("grid.locale-pt-br.min.js") : Url("grid.locale-pt-br.js");
-            public static readonly string grid_locale_pt_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(UrlPath + "/grid.locale-pt.min.js") ? Url("grid.locale-pt.min.js") : Url("grid.locale-pt.js");
-            public static readonly string grid_locale_ro_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(UrlPath + "/grid.locale-ro.min.js") ? Url("grid.locale-ro.min.js") : Url("grid.locale-ro.js");
-            public static readonly string grid_locale_ru_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(UrlPath + "/grid.locale-ru.min.js") ? Url("grid.locale-ru.min.js") : Url("grid.locale-ru.js");
-            public static readonly string grid_locale_sk_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(UrlPath + "/grid.locale-sk.min.js") ? Url("grid.locale-sk.min.js") : Url("grid.locale-sk.js");
-            public static readonly string grid_locale_sr_latin_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(UrlPath + "/grid.locale-sr-latin.min.js") ? Url("grid.locale-sr-latin.min.js") : Url("grid.locale-sr-latin.js");
-            public static readonly string grid_locale_sr_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(UrlPath + "/grid.locale-sr.min.js") ? Url("grid.locale-sr.min.js") : Url("grid.locale-sr.js");
-            public static readonly string grid_locale_sv_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(UrlPath + "/grid.locale-sv.min.js") ? Url("grid.locale-sv.min.js") : Url("grid.locale-sv.js");
-            public static readonly string grid_locale_th_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(UrlPath + "/grid.locale-th.min.js") ? Url("grid.locale-th.min.js") : Url("grid.locale-th.js");
-            public static readonly string grid_locale_tr_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(UrlPath + "/grid.locale-tr.min.js") ? Url("grid.locale-tr.min.js") : Url("grid.locale-tr.js");
-            public static readonly string grid_locale_tw_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(UrlPath + "/grid.locale-tw.min.js") ? Url("grid.locale-tw.min.js") : Url("grid.locale-tw.js");
-            public static readonly string grid_locale_ua_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(UrlPath + "/grid.locale-ua.min.js") ? Url("grid.locale-ua.min.js") : Url("grid.locale-ua.js");
-            public static readonly string grid_locale_vi_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(UrlPath + "/grid.locale-vi.min.js") ? Url("grid.locale-vi.min.js") : Url("grid.locale-vi.js");
-        }
-    
-        public static readonly string jquery_1_10_2_intellisense_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(UrlPath + "/jquery-1.10.2.intellisense.min.js") ? Url("jquery-1.10.2.intellisense.min.js") : Url("jquery-1.10.2.intellisense.js");
-        public static readonly string jquery_1_10_2_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(UrlPath + "/jquery-1.10.2.min.js") ? Url("jquery-1.10.2.min.js") : Url("jquery-1.10.2.js");
-        public static readonly string jquery_1_10_2_min_js = Url("jquery-1.10.2.min.js");
-        public static readonly string jquery_1_10_2_min_map = Url("jquery-1.10.2.min.map");
-        public static readonly string jquery_2_1_4_min_js = Url("jquery-2.1.4.min.js");
-        public static readonly string jquery_3_1_0_slim_min_js = Url("jquery-3.1.0.slim.min.js");
-        public static readonly string jquery_MVC_RemoveRow_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(UrlPath + "/jquery-MVC-RemoveRow.min.js") ? Url("jquery-MVC-RemoveRow.min.js") : Url("jquery-MVC-RemoveRow.js");
-        public static readonly string jquery_ui_1_11_4_min_js = Url("jquery-ui-1.11.4.min.js");
-        public static readonly string jquery_ui_1_8_11_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(UrlPath + "/jquery-ui-1.8.11.min.js") ? Url("jquery-ui-1.8.11.min.js") : Url("jquery-ui-1.8.11.js");
-        public static readonly string jquery_ui_1_8_11_min_js = Url("jquery-ui-1.8.11.min.js");
-        public static readonly string jquery_autocomplete_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(UrlPath + "/jquery.autocomplete.min.js") ? Url("jquery.autocomplete.min.js") : Url("jquery.autocomplete.js");
-        public static readonly string jquery_blockUI_min_js = Url("jquery.blockUI.min.js");
-        public static readonly string jquery_jqGrid_min_js = Url("jquery.jqGrid.min.js");
-        public static readonly string jquery_jqGrid_src_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(UrlPath + "/jquery.jqGrid.src.min.js") ? Url("jquery.jqGrid.src.min.js") : Url("jquery.jqGrid.src.js");
         public static readonly string jquery_unobtrusive_ajax_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(UrlPath + "/jquery.unobtrusive-ajax.min.js") ? Url("jquery.unobtrusive-ajax.min.js") : Url("jquery.unobtrusive-ajax.js");
         public static readonly string jquery_unobtrusive_ajax_min_js = Url("jquery.unobtrusive-ajax.min.js");
         public static readonly string jquery_validate_vsdoc_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(UrlPath + "/jquery.validate-vsdoc.min.js") ? Url("jquery.validate-vsdoc.min.js") : Url("jquery.validate-vsdoc.js");
         public static readonly string jquery_validate_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(UrlPath + "/jquery.validate.min.js") ? Url("jquery.validate.min.js") : Url("jquery.validate.js");
         public static readonly string jquery_validate_unobtrusive_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(UrlPath + "/jquery.validate.unobtrusive.min.js") ? Url("jquery.validate.unobtrusive.min.js") : Url("jquery.validate.unobtrusive.js");
-        public static readonly string jqueryval_default_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(UrlPath + "/jqueryval-default.min.js") ? Url("jqueryval-default.min.js") : Url("jqueryval-default.js");
-        public static readonly string lazysizes_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(UrlPath + "/lazysizes.min.js") ? Url("lazysizes.min.js") : Url("lazysizes.js");
-        public static readonly string modernizr_2_8_3_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(UrlPath + "/modernizr-2.8.3.min.js") ? Url("modernizr-2.8.3.min.js") : Url("modernizr-2.8.3.js");
-        public static readonly string PersianDatePicker_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(UrlPath + "/PersianDatePicker.min.js") ? Url("PersianDatePicker.min.js") : Url("PersianDatePicker.js");
-        public static readonly string respond_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(UrlPath + "/respond.min.js") ? Url("respond.min.js") : Url("respond.js");
-        public static readonly string respond_matchmedia_addListener_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(UrlPath + "/respond.matchmedia.addListener.min.js") ? Url("respond.matchmedia.addListener.min.js") : Url("respond.matchmedia.addListener.js");
-        public static readonly string respond_matchmedia_addListener_min_js = Url("respond.matchmedia.addListener.min.js");
-        public static readonly string respond_min_js = Url("respond.min.js");
-        public static readonly string sweet_alert_min_js = Url("sweet-alert.min.js");
-        public static readonly string thumbelina_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(UrlPath + "/thumbelina.min.js") ? Url("thumbelina.min.js") : Url("thumbelina.js");
+        public static readonly string Panel_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(UrlPath + "/Panel.min.js") ? Url("Panel.min.js") : Url("Panel.js");
+        public static readonly string Public_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(UrlPath + "/Public.min.js") ? Url("Public.min.js") : Url("Public.js");
     }
 
     [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -1412,19 +1330,6 @@ namespace Links
         }
     
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public static class ico {
-            public const string UrlPath = "~/Content/ico";
-            public static string Url() { return T4MVCHelpers.ProcessVirtualPath(UrlPath); }
-            public static string Url(string fileName) { return T4MVCHelpers.ProcessVirtualPath(UrlPath + "/" + fileName); }
-            public static readonly string apple_icon_120_png = Url("apple-icon-120.png");
-            public static readonly string apple_icon_152_png = Url("apple-icon-152.png");
-            public static readonly string apple_icon_60_png = Url("apple-icon-60.png");
-            public static readonly string apple_icon_76_png = Url("apple-icon-76.png");
-            public static readonly string favicon_32_png = Url("favicon-32.png");
-            public static readonly string favicon_ico = Url("favicon.ico");
-        }
-    
-        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public static class images {
             public const string UrlPath = "~/Content/images";
             public static string Url() { return T4MVCHelpers.ProcessVirtualPath(UrlPath); }
@@ -1821,6 +1726,7 @@ namespace Links
                     public static readonly string ms_icon_70x70_png = Url("ms-icon-70x70.png");
                 }
             
+                public static readonly string LogoPanelAdmin_png = Url("LogoPanelAdmin.png");
                 public static readonly string NetotikLogo_png = Url("NetotikLogo.png");
                 public static readonly string robust_80x80_png = Url("robust-80x80.png");
                 public static readonly string robust_logo_dark_big_png = Url("robust-logo-dark-big.png");
@@ -6667,92 +6573,14 @@ namespace Links
     {
         public static partial class Scripts 
         {
-            public static partial class i18n 
-            {
-                public static class Assets
-                {
-                    public const string grid_locale_ar_js = "~/Scripts/i18n/grid.locale-ar.js"; 
-                    public const string grid_locale_bg_js = "~/Scripts/i18n/grid.locale-bg.js"; 
-                    public const string grid_locale_bg1251_js = "~/Scripts/i18n/grid.locale-bg1251.js"; 
-                    public const string grid_locale_cat_js = "~/Scripts/i18n/grid.locale-cat.js"; 
-                    public const string grid_locale_cn_js = "~/Scripts/i18n/grid.locale-cn.js"; 
-                    public const string grid_locale_cs_js = "~/Scripts/i18n/grid.locale-cs.js"; 
-                    public const string grid_locale_da_js = "~/Scripts/i18n/grid.locale-da.js"; 
-                    public const string grid_locale_de_js = "~/Scripts/i18n/grid.locale-de.js"; 
-                    public const string grid_locale_dk_js = "~/Scripts/i18n/grid.locale-dk.js"; 
-                    public const string grid_locale_el_js = "~/Scripts/i18n/grid.locale-el.js"; 
-                    public const string grid_locale_en_js = "~/Scripts/i18n/grid.locale-en.js"; 
-                    public const string grid_locale_es_js = "~/Scripts/i18n/grid.locale-es.js"; 
-                    public const string grid_locale_fa_js = "~/Scripts/i18n/grid.locale-fa.js"; 
-                    public const string grid_locale_fi_js = "~/Scripts/i18n/grid.locale-fi.js"; 
-                    public const string grid_locale_fr_js = "~/Scripts/i18n/grid.locale-fr.js"; 
-                    public const string grid_locale_gl_js = "~/Scripts/i18n/grid.locale-gl.js"; 
-                    public const string grid_locale_he_js = "~/Scripts/i18n/grid.locale-he.js"; 
-                    public const string grid_locale_hr_js = "~/Scripts/i18n/grid.locale-hr.js"; 
-                    public const string grid_locale_hr1250_js = "~/Scripts/i18n/grid.locale-hr1250.js"; 
-                    public const string grid_locale_hu_js = "~/Scripts/i18n/grid.locale-hu.js"; 
-                    public const string grid_locale_id_js = "~/Scripts/i18n/grid.locale-id.js"; 
-                    public const string grid_locale_is_js = "~/Scripts/i18n/grid.locale-is.js"; 
-                    public const string grid_locale_it_js = "~/Scripts/i18n/grid.locale-it.js"; 
-                    public const string grid_locale_ja_js = "~/Scripts/i18n/grid.locale-ja.js"; 
-                    public const string grid_locale_kr_js = "~/Scripts/i18n/grid.locale-kr.js"; 
-                    public const string grid_locale_lt_js = "~/Scripts/i18n/grid.locale-lt.js"; 
-                    public const string grid_locale_mne_js = "~/Scripts/i18n/grid.locale-mne.js"; 
-                    public const string grid_locale_nl_js = "~/Scripts/i18n/grid.locale-nl.js"; 
-                    public const string grid_locale_no_js = "~/Scripts/i18n/grid.locale-no.js"; 
-                    public const string grid_locale_pl_js = "~/Scripts/i18n/grid.locale-pl.js"; 
-                    public const string grid_locale_pt_br_js = "~/Scripts/i18n/grid.locale-pt-br.js"; 
-                    public const string grid_locale_pt_js = "~/Scripts/i18n/grid.locale-pt.js"; 
-                    public const string grid_locale_ro_js = "~/Scripts/i18n/grid.locale-ro.js"; 
-                    public const string grid_locale_ru_js = "~/Scripts/i18n/grid.locale-ru.js"; 
-                    public const string grid_locale_sk_js = "~/Scripts/i18n/grid.locale-sk.js"; 
-                    public const string grid_locale_sr_latin_js = "~/Scripts/i18n/grid.locale-sr-latin.js"; 
-                    public const string grid_locale_sr_js = "~/Scripts/i18n/grid.locale-sr.js"; 
-                    public const string grid_locale_sv_js = "~/Scripts/i18n/grid.locale-sv.js"; 
-                    public const string grid_locale_th_js = "~/Scripts/i18n/grid.locale-th.js"; 
-                    public const string grid_locale_tr_js = "~/Scripts/i18n/grid.locale-tr.js"; 
-                    public const string grid_locale_tw_js = "~/Scripts/i18n/grid.locale-tw.js"; 
-                    public const string grid_locale_ua_js = "~/Scripts/i18n/grid.locale-ua.js"; 
-                    public const string grid_locale_vi_js = "~/Scripts/i18n/grid.locale-vi.js"; 
-                }
-            }
             public static class Assets
             {
-                public const string _references_js = "~/Scripts/_references.js"; 
-                public const string admin_js = "~/Scripts/admin.js"; 
-                public const string ajaxfileupload_js = "~/Scripts/ajaxfileupload.js"; 
-                public const string bootstrap_js = "~/Scripts/bootstrap.js"; 
-                public const string bootstrap_min_js = "~/Scripts/bootstrap.min.js"; 
-                public const string cloud_zoom_js = "~/Scripts/cloud-zoom.js"; 
-                public const string Factor_js = "~/Scripts/Factor.js"; 
-                public const string fileinput_min_js = "~/Scripts/fileinput.min.js"; 
-                public const string jquery_1_10_2_intellisense_js = "~/Scripts/jquery-1.10.2.intellisense.js"; 
-                public const string jquery_1_10_2_js = "~/Scripts/jquery-1.10.2.js"; 
-                public const string jquery_1_10_2_min_js = "~/Scripts/jquery-1.10.2.min.js"; 
-                public const string jquery_2_1_4_min_js = "~/Scripts/jquery-2.1.4.min.js"; 
-                public const string jquery_3_1_0_slim_min_js = "~/Scripts/jquery-3.1.0.slim.min.js"; 
-                public const string jquery_MVC_RemoveRow_js = "~/Scripts/jquery-MVC-RemoveRow.js"; 
-                public const string jquery_ui_1_11_4_min_js = "~/Scripts/jquery-ui-1.11.4.min.js"; 
-                public const string jquery_ui_1_8_11_js = "~/Scripts/jquery-ui-1.8.11.js"; 
-                public const string jquery_ui_1_8_11_min_js = "~/Scripts/jquery-ui-1.8.11.min.js"; 
-                public const string jquery_autocomplete_js = "~/Scripts/jquery.autocomplete.js"; 
-                public const string jquery_blockUI_min_js = "~/Scripts/jquery.blockUI.min.js"; 
-                public const string jquery_jqGrid_min_js = "~/Scripts/jquery.jqGrid.min.js"; 
-                public const string jquery_jqGrid_src_js = "~/Scripts/jquery.jqGrid.src.js"; 
                 public const string jquery_unobtrusive_ajax_js = "~/Scripts/jquery.unobtrusive-ajax.js"; 
                 public const string jquery_unobtrusive_ajax_min_js = "~/Scripts/jquery.unobtrusive-ajax.min.js"; 
                 public const string jquery_validate_js = "~/Scripts/jquery.validate.js"; 
                 public const string jquery_validate_unobtrusive_js = "~/Scripts/jquery.validate.unobtrusive.js"; 
-                public const string jqueryval_default_js = "~/Scripts/jqueryval-default.js"; 
-                public const string lazysizes_js = "~/Scripts/lazysizes.js"; 
-                public const string modernizr_2_8_3_js = "~/Scripts/modernizr-2.8.3.js"; 
-                public const string PersianDatePicker_js = "~/Scripts/PersianDatePicker.js"; 
-                public const string respond_js = "~/Scripts/respond.js"; 
-                public const string respond_matchmedia_addListener_js = "~/Scripts/respond.matchmedia.addListener.js"; 
-                public const string respond_matchmedia_addListener_min_js = "~/Scripts/respond.matchmedia.addListener.min.js"; 
-                public const string respond_min_js = "~/Scripts/respond.min.js"; 
-                public const string sweet_alert_min_js = "~/Scripts/sweet-alert.min.js"; 
-                public const string thumbelina_js = "~/Scripts/thumbelina.js"; 
+                public const string Panel_js = "~/Scripts/Panel.js"; 
+                public const string Public_js = "~/Scripts/Public.js"; 
             }
         }
         public static partial class Content 
@@ -7234,12 +7062,6 @@ namespace Links
                 public static class Assets
                 {
                     public const string icomoon_css = "~/Content/fonts/icomoon.css";
-                }
-            }
-            public static partial class ico 
-            {
-                public static class Assets
-                {
                 }
             }
             public static partial class images 
