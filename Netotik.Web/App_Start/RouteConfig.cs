@@ -12,14 +12,24 @@ namespace Netotik.Web
         public static void RegisterRoutes(RouteCollection routes)
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
+            routes.IgnoreRoute("{*favicon}",
+            new { favicon = @"(.*/)?favicon.ico(/.*)?" });
+
             routes.MapMvcAttributeRoutes();
 
+            //routes.MapRoute(
+            //    name: "Language",
+            //    url: "{lang}/{controller}/{action}/{id}",
+            //    defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional},
+            //    namespaces: new[] { "Netotik.Web.Controllers" }
+            //);
+
             routes.MapRoute(
-                name: "Default",
-                url: "{controller}/{action}/{id}",
-                defaults: new { area = "", controller = "Home", action = "Index", id = UrlParameter.Optional },
-                namespaces: new[] { "Netotik.Web.Controllers" }
-            );
+              name: "Default",
+              url: "{lang}/{controller}/{action}/{id}",
+              defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional, lang = "fa" },
+              namespaces: new[] { "Netotik.Web.Controllers" }
+          );
         }
     }
 }

@@ -31,12 +31,12 @@
                     <div class="row tab-post">
                         <!-- post -->
                         <div class="col-md-3 col-sm-3 col-xs-3">
-                            <a href="@Url.Action(MVC.Blog.ActionNames.Detail, MVC.Blog.Name, new { Id = item.Id, name = item.Title.GenerateSlug() })">
+                            <a href="@Url.Action(MVC.Blog.ActionNames.Detail, MVC.Blog.Name, new { Id = item.Id, name = item.Title })">
                                 <img src="@Url.Content((item.PictureId.HasValue ? Path.Combine(Netotik.Common.Controller.FilePathes._imagesContentPath, item.Picture.FileName) : "/Content/img/1.jpg")+"?w=200&h=200")" width="55" alt="" />
                             </a>
                         </div>
                         <div class="col-md-9 col-sm-9 col-xs-9">
-                            <a href="@Url.Action(MVC.Blog.ActionNames.Detail, MVC.Blog.Name, new { Id = item.Id, name = item.Title.GenerateSlug() })" class="tab-post-link">@item.Title</a>
+                            <a href="@Url.Action(MVC.Blog.ActionNames.Detail, MVC.Blog.Name, new { Id = item.Id, name = item.Title})" class="tab-post-link">@item.Title</a>
                             <small>
                                     @PersianDate.ConvertDate.ToFa(item.StartDate.Value, "d")
                             </small>

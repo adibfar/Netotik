@@ -1,8 +1,14 @@
-﻿using Netotik.Common;
+﻿using System.Linq;
 using System;
+using System.Globalization;
 using System.IO;
+using System.Threading;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Routing;
+using Netotik.Web.Infrastructure.Caching;
+using Netotik.IocConfig;
+using Netotik.Services.Abstract;
 
 namespace Netotik.Web.Infrastructure
 {
@@ -10,6 +16,34 @@ namespace Netotik.Web.Infrastructure
     public class BaseController : System.Web.Mvc.Controller
     {
 
+        public BaseController()
+        {
+
+        }
+
+        protected override void Initialize(RequestContext requestContext)
+        {
+            var languages = LanguageCache.GetLanguages(requestContext.HttpContext, ProjectObjectFactory.Container.GetInstance<ILanguageService>());
+
+            if (requestContext.RouteData.Values["lang"] != null && requestContext.RouteData.Values["lang"] as string != "null")
+            {
+                var lang = (string)requestContext.RouteData.Values["lang"];
+                string culture = languages.FirstOrDefault(x => x.IsDefault).LanguageCulture;
+                requestContext.RouteData.Values["lang"] = languages.FirstOrDefault(x => x.IsDefault).UniqueSeoCode;
+                if (lang != null)
+                {
+                    var language = languages.FirstOrDefault(x => x.Published && x.UniqueSeoCode == lang);
+                    if (language != null)
+                    {
+                        culture = language.LanguageCulture;
+                        requestContext.RouteData.Values["lang"] = language.UniqueSeoCode;
+                    }
+                }
+
+                Thread.CurrentThread.CurrentCulture = Thread.CurrentThread.CurrentUICulture = new CultureInfo(culture);
+            }
+            base.Initialize(requestContext);
+        }
 
 
 
@@ -21,7 +55,7 @@ namespace Netotik.Web.Infrastructure
             {
                 return Redirect(returnUrl);
             }
-            return RedirectToAction("Index","Home");
+            return RedirectToAction("Index", "Home");
         }
 
         public string SaveFile(HttpPostedFileBase image, string path)

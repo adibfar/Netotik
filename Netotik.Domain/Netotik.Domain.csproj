@@ -72,6 +72,7 @@
     <Compile Include="EntityConfiguration\UserCompanyMap.cs" />
     <Compile Include="Entity\Address.cs" />
     <Compile Include="Entity\City.cs" />
+    <Compile Include="Entity\Language.cs" />
     <Compile Include="Entity\State.cs" />
     <Compile Include="Entity\Category.cs" />
     <Compile Include="Entity\TicketTag.cs" />
@@ -116,7 +117,7 @@
     <Compile Include="Entity\Link.cs" />
     <Compile Include="Entity\File.cs" />
     <Compile Include="Entity\Advertise.cs" />
-    <Compile Include="Entity\Reource.cs" />
+    <Compile Include="Entity\LocaleStringReource.cs" />
     <Compile Include="Entity\Slider.cs" />
     <Compile Include="Entity\Menu.cs" />
     <Compile Include="Entity\ContentTag.cs" />

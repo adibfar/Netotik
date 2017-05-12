@@ -18,7 +18,7 @@ using System.Web.UI;
 using System.Threading.Tasks;
 using Netotik.Web;
 using System.Data.Entity.Validation;
-using Netotik.Web.Extension;
+
 using System.IO;
 using Microsoft.AspNet.Identity;
 using DNTBreadCrumb;
@@ -228,7 +228,6 @@ namespace Netotik.Web.Areas.Admin.Controllers
 
         [Mvc5Authorize(Roles = AssignableToRolePermissions.CanEditContent)]
         [ValidateAntiForgeryToken]
-        [AllowUploadSpecialFilesOnly(".jpg,.png,.gif", true)]
         [HttpPost]
         public virtual async Task<ActionResult> Edit(ContentModel model, ActionType actionType)
         {

@@ -58,9 +58,9 @@ namespace Netotik.Web.Controllers
 
         [NonAction]
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public virtual System.Web.Mvc.ActionResult SetCulture()
+        public virtual System.Web.Mvc.ActionResult RedirectToLocal()
         {
-            return new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.SetCulture);
+            return new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.RedirectToLocal);
         }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -84,11 +84,12 @@ namespace Netotik.Web.Controllers
             public readonly string LastBlog = "LastBlog";
             public readonly string Slider = "Slider";
             public readonly string Footer = "Footer";
+            public readonly string LanguageSelector = "LanguageSelector";
             public readonly string FooterAddress = "FooterAddress";
             public readonly string FooterPopularPost = "FooterPopularPost";
             public readonly string Header = "Header";
             public readonly string HeaderMenu = "HeaderMenu";
-            public readonly string SetCulture = "SetCulture";
+            public readonly string RedirectToLocal = "RedirectToLocal";
         }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -100,21 +101,22 @@ namespace Netotik.Web.Controllers
             public const string LastBlog = "LastBlog";
             public const string Slider = "Slider";
             public const string Footer = "Footer";
+            public const string LanguageSelector = "LanguageSelector";
             public const string FooterAddress = "FooterAddress";
             public const string FooterPopularPost = "FooterPopularPost";
             public const string Header = "Header";
             public const string HeaderMenu = "HeaderMenu";
-            public const string SetCulture = "SetCulture";
+            public const string RedirectToLocal = "RedirectToLocal";
         }
 
 
-        static readonly ActionParamsClass_SetCulture s_params_SetCulture = new ActionParamsClass_SetCulture();
+        static readonly ActionParamsClass_RedirectToLocal s_params_RedirectToLocal = new ActionParamsClass_RedirectToLocal();
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public ActionParamsClass_SetCulture SetCultureParams { get { return s_params_SetCulture; } }
+        public ActionParamsClass_RedirectToLocal RedirectToLocalParams { get { return s_params_RedirectToLocal; } }
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public class ActionParamsClass_SetCulture
+        public class ActionParamsClass_RedirectToLocal
         {
-            public readonly string culture = "culture";
+            public readonly string returnUrl = "returnUrl";
         }
         static readonly ViewsClass s_views = new ViewsClass();
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -212,6 +214,17 @@ namespace Netotik.Web.Controllers
         }
 
         [NonAction]
+        partial void LanguageSelectorOverride(T4MVC_System_Web_Mvc_PartialViewResult callInfo);
+
+        [NonAction]
+        public override System.Web.Mvc.PartialViewResult LanguageSelector()
+        {
+            var callInfo = new T4MVC_System_Web_Mvc_PartialViewResult(Area, Name, ActionNames.LanguageSelector);
+            LanguageSelectorOverride(callInfo);
+            return callInfo;
+        }
+
+        [NonAction]
         partial void FooterAddressOverride(T4MVC_System_Web_Mvc_PartialViewResult callInfo);
 
         [NonAction]
@@ -256,14 +269,14 @@ namespace Netotik.Web.Controllers
         }
 
         [NonAction]
-        partial void SetCultureOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, string culture);
+        partial void RedirectToLocalOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, string returnUrl);
 
         [NonAction]
-        public override System.Web.Mvc.ActionResult SetCulture(string culture)
+        public override System.Web.Mvc.ActionResult RedirectToLocal(string returnUrl)
         {
-            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.SetCulture);
-            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "culture", culture);
-            SetCultureOverride(callInfo, culture);
+            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.RedirectToLocal);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "returnUrl", returnUrl);
+            RedirectToLocalOverride(callInfo, returnUrl);
             return callInfo;
         }
 

@@ -3,7 +3,9 @@ using Netotik.Common.Security.RijndaelEncryption;
 using Netotik.IocConfig;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
+using System.Threading;
 using System.Web.Mvc;
 using System.Web.Routing;
 
@@ -13,6 +15,7 @@ namespace Netotik.Web
     {
         #region Fields
         private readonly IEncryptSettingsProvider _settings;
+        private string _DefaultLanguage = "fa";
         #endregion
 
         #region Ctor
@@ -62,7 +65,7 @@ namespace Netotik.Web
             }
 
             decrypter?.Dispose();
-
+            
             return base.CreateController(requestContext, controllerName);
         }
 
@@ -73,9 +76,11 @@ namespace Netotik.Web
 
         protected override IController GetControllerInstance(RequestContext requestContext, Type controllerType)
         {
+         
+
             if (controllerType == null)
             {
-                //requestContext.RouteData.Values["controller"] = MVC.Error.Name;
+                
                 //requestContext.RouteData.Values["action"] = MVC.Error.ActionNames.NotFound;
                 //return CreateController(requestContext, MVC.Error.Name);
 
@@ -90,6 +95,7 @@ namespace Netotik.Web
                 (controller as Controller).TempDataProvider = ProjectObjectFactory.Container.GetInstance<ITempDataProvider>();
 
             }
+
             return controller as Controller;
         }
         #endregion

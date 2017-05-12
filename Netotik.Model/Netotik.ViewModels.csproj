@@ -72,6 +72,8 @@
     <Compile Include="Common\City\CityItem.cs" />
     <Compile Include="Common\ContactUs\MessageItem.cs" />
     <Compile Include="Common\Error\ErrorInfo.cs" />
+    <Compile Include="Common\Language\LanguageItem.cs" />
+    <Compile Include="Common\Language\LanguageModel.cs" />
     <Compile Include="Identity\Account\ActivationEmailViewModel.cs" />
     <Compile Include="Identity\Account\ChangePasswordViewModel.cs" />
     <Compile Include="Identity\Account\EmailViewModel.cs" />
@@ -132,7 +134,7 @@
     <Compile Include="Shop\ShopPublic\ProductSearchModel.cs" />
     <Compile Include="CMS\Menu\MenuModel.cs" />
     <Compile Include="Shop\Order\TableOrderModel.cs" />
-    <Compile Include="Common\Resource\ResourceItem.cs" />
+    <Compile Include="Common\Language\ResourceItem.cs" />
     <Compile Include="Identity\Security\AssignableToRolePermissions.cs" />
     <Compile Include="CMS\Link\LinkModel.cs" />
     <Compile Include="Shop\ShopPublic\OrderDetail.cs" />

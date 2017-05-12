@@ -2,22 +2,22 @@
 
 namespace Netotik.Web.Areas.Company
 {
-    public class CompanyRegistration : AreaRegistration 
+    public class CompanyRegistration : AreaRegistration
     {
-        public override string AreaName 
+        public override string AreaName
         {
-            get 
+            get
             {
                 return "Company";
             }
         }
 
-        public override void RegisterArea(AreaRegistrationContext context) 
+        public override void RegisterArea(AreaRegistrationContext context)
         {
             context.MapRoute(
                 "Company_default",
-                "Company/{controller}/{action}/{id}",
-                new { action = "Index", id = UrlParameter.Optional }
+                "{lang}/Company/{controller}/{action}/{id}",
+                new { action = "Index", id = UrlParameter.Optional, lang = "fa" }
             );
         }
     }

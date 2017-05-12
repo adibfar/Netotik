@@ -11,10 +11,15 @@ namespace Netotik.Web
             bundles.Add(new ScriptBundle("~/bundles/jquery").Include(
                         "~/Scripts/jquery-{version}.js"));
 
-            bundles.Add(new ScriptBundle("~/bundles/jqueryval").Include(
+            bundles.Add(new ScriptBundle("~/bundles/jqueryvalpublic").Include(
                 "~/Scripts/jquery.unobtrusive*",
                 "~/Scripts/jquery.validate*",
-                "~/Scripts/jqueryval-default.js"));
+                "~/Scripts/public.js"));
+
+            bundles.Add(new ScriptBundle("~/bundles/jqueryvalpanel").Include(
+                "~/Scripts/jquery.unobtrusive*",
+                "~/Scripts/jquery.validate*",
+                "~/Scripts/panel.js"));
 
 
             bundles.Add(new ScriptBundle("~/bundles/modernizr").Include(
@@ -22,66 +27,73 @@ namespace Netotik.Web
 
 
             bundles.Add(new StyleBundle("~/Content/publiccss").Include(
-                      "~/Content/PublicUI/css/bootstrap.min.css",
-                      "~/Content/PublicUI/css/owl.carousel.css",
-                      "~/Content/PublicUI/css/owl.theme.css",
-                      "~/Content/PublicUI/css/owl.transitions.css",
-                      "~/Content/PublicUI/css/fancb/jquery.fancybox.css",
-                      "~/Content/PublicUI/css/animate.css",
-                      "~/Content/PublicUI/css/meanmenu.min.css",
-                      "~/Content/PublicUI/css/normalize.css",
-                      "~/Content/PublicUI/css/main.css",
-                      "~/Content/PublicUI/css/nivo-slider.css",
-                      "~/Content/PublicUI/style.css",
-                      "~/Content/PagedList.css",
-                      "~/Content/PublicUI/css/responsive.css"
-                      ).Include("~/Content/PublicUI/css/font-awesome.min.css", new CssRewriteUrlTransform()));
+                                "~/Content/PublicUI/plugins/bootstrap/css/bootstrap.min.css",
+                                "~/Content/PublicUI/css/essentials.css",
+                                "~/Content/PublicUI/css/layout.css",
+                                "~/Content/PublicUI/css/header-1.css",
+                                "~/Content/PublicUI/css/color_scheme/blue.css",
+                                "~/Content/PublicUI/plugins/slider.revolution/css/extralayers.css",
+                                "~/Content/PublicUI/plugins/slider.revolution/css/settings.css",
+                                "~/Content/PublicUI/css/header-5.css",
+                                "~/Content/PublicUI/css/layout-shop.css",
+                                "~/Content/PublicUI/plugins/bootstrap/RTL/bootstrap-rtl.min.css",
+                                "~/Content/PublicUI/plugins/bootstrap/RTL/bootstrap-flipped.min.css",
+                                "~/Content/PublicUI/css/layout-RTL.css",
+                                "~/Content/PublicUI/css/_layout-font-rewrite.farsi.css"));
+            //).Include("~/Content/PublicUI/css/font-awesome.min.css", new CssRewriteUrlTransform()));
 
 
             bundles.Add(new StyleBundle("~/Content/admincss").Include(
-                      "~/Content/css/bootstrap.min.css",
-                      "~/Content/css/bootstrap.rtl.min.css",
-                      "~/Content/css/plugins/toastr/toastr.min.css",
-                      "~/Content/css/plugins/iCheck/custom.css",
-                      "~/Content/css/plugins/summernote/summernote.css",
-                      "~/Content/css/plugins/summernote/summernote-bs3.css",
-                      "~/Content/css/plugins/colorpicker/bootstrap-colorpicker.min.css",
-                      "~/Content/css/plugins/jsTree/style.min.css",
-                      "~/Content/css/plugins/clockpicker/clockpicker.css",
-                      "~/Content/css/plugins/chosen/chosen.css",
-                      "~/Content/css/animate.css",
-                      "~/Content/css/style.rtl.css",
-                      "~/Content/css/fileinput.min.css",
-                      "~/Content/css/sweet-alert.css",
-                      "~/Content/css/PersianDatePicker.css"
-                      ).Include("~/Content/font-awesome/css/font-awesome.min.css", new CssRewriteUrlTransform()));
+                                "~/Content/css/vendors.min.css",
+                                "~/Content/fonts/icomoon.css",
+                                "~/Content/fonts/flag-icon-css/css/flag-icon.min.css",
+                                "~/Content/css/plugins/sliders/slick/slick.css",
+                                "~/Content/css/plugins/extensions/bootstrap-treeview.min.css",
+                                "~/Content/css/plugins/forms/icheck/icheck.css",
+                                "~/Content/css/plugins/forms/icheck/custom.css",
+                                "~/Content/css/plugins/extensions/unslider.css",
+                                "~/Content/css/plugins/editors/summernote.css",
+                                "~/Content/css/plugins/forms/selects/selectize.css",
+                                "~/Content/css/plugins/forms/selects/selectize.default.css",
+                                "~/Content/css/plugins/forms/spinner/jquery.bootstrap-touchspin.css",
+                                "~/Content/css/plugins/forms/toggle/bootstrap-switch.min.css",
+                                "~/Content/css/plugins/forms/toggle/switchery.min.css",
+                                "~/Content/css/plugins/tables/datatable/dataTables.bootstrap4.min.css",
+                                "~/Content/css/app.min.css",
+                                "~/Content/css/components/weather-icons/climacons.min.css",
+                                "~/Content/css/my-style.css"));
 
 
-            bundles.Add(new ScriptBundle("~/bundles/adminjs").Include(
-           "~/Content/js/jquery-2.1.1.js",
-           "~/Content/js/bootstrap.min.js",
-           "~/Content/js/plugins/chosen/chosen.jquery.js",
-           "~/Content/js/plugins/metisMenu/jquery.metisMenu.js",
-           "~/Content/js/plugins/slimscroll/jquery.slimscroll.min.js",
-           "~/Content/js/plugins/jsTree/jstree.min.js",
-           "~/Content/js/plugins/toastr/toastr.min.js",
-           "~/Content/js/plugins/summernote/summernote.min.js",
-           "~/Content/js/plugins/colorpicker/bootstrap-colorpicker.min.js",
-           "~/Content/js/plugins/iCheck/icheck.min.js",
-           "~/Content/js/plugins/clockpicker/clockpicker.js",
-           "~/Content/js/rada.js",
-           "~/Scripts/PersianDatePicker.js",
-           "~/Scripts/sweet-alert.min.js",
-           "~/Scripts/lazysizes.js",
-           "~/Scripts/admin.js",
-           "~/Scripts/jquery-MVC-RemoveRow.js"));
+
+
+            bundles.Add(new ScriptBundle("~/bundles/paneljs").Include(
+                                "~/Content/js/vendors.min.js",
+                                "~/Content/js/plugins/ui/jquery.sticky.js",
+                                "~/Content/js/plugins/forms/spinner/jquery.bootstrap-touchspin.js",
+                                "~/Content/js/plugins/forms/validation/jqBootstrapValidation.js",
+                                "~/Content/js/plugins/forms/toggle/bootstrap-switch.min.js",
+                                "~/Content/js/plugins/forms/toggle/switchery.min.js",
+                                "~/Content/js/plugins/forms/icheck/icheck.min.js",
+                                "~/Content/js/components/forms/checkbox-radio.js",
+                                "~/Content/js/components/extensions/block-ui.js",
+                                "~/Content/js/plugins/extensions/bootstrap-treeview.min.js",
+                                "~/Content/js/plugins/tables/jquery.dataTables.min.js",
+                                "~/Content/js/plugins/tables/datatable/dataTables.bootstrap4.min.js",
+                                "~/Content/js/app.min.js",
+                                "~/Content/js/components/tooltip/tooltip.js",
+                                "~/Content/js/plugins/forms/select/selectize.min.js",
+                                "~/Content/js/plugins/editors/summernote/summernote.js",
+                                "~/Content/js/plugins/pickers/dateTime/moment-with-locales.min.js",
+                                "~/Content/js/plugins/pickers/dateTime/bootstrap-datetimepicker.min.js",
+                                "~/Content/js/plugins/extensions/unslider-min.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/publicjs").Include(
                      "~/Content/PublicUI/plugins/jquery/jquery-2.2.3.min.js",
                      "~/Content/PublicUI/js/scripts.js",
                      "~/Content/PublicUI/plugins/slider.revolution/js/jquery.themepunch.tools.min.js",
                      "~/Content/PublicUI/plugins/slider.revolution/js/jquery.themepunch.revolution.min.js",
-                     "~/Content/PublicUI/js/view/demo.revolution_slider.js"));
+                     "~/Content/PublicUI/js/view/demo.revolution_slider.js",
+                     "~/Content/PublicUI/plugins/effects/canvas.particles.js"));
 
 
         }

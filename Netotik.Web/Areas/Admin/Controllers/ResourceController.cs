@@ -18,7 +18,7 @@ using System.Web.UI;
 using System.Threading.Tasks;
 using Netotik.Web;
 using System.Data.Entity.Validation;
-using Netotik.Web.Extension;
+
 using DNTBreadCrumb;
 using Netotik.ViewModels.Identity.Security;
 using Netotik.ViewModels.Common.State;
@@ -35,11 +35,11 @@ namespace Netotik.Web.Areas.Admin.Controllers
     {
 
         #region ctor
-        private readonly IResourceService _resourceService;
+        private readonly ILocaleStringResourceService _resourceService;
         private readonly IUnitOfWork _uow;
 
         public ResourceController(
-            IResourceService resourceService,
+            ILocaleStringResourceService resourceService,
             IUnitOfWork uow)
         {
             _resourceService = resourceService;

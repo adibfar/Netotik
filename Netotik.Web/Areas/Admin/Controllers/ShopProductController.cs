@@ -18,14 +18,13 @@ using System.Web.UI;
 using System.Threading.Tasks;
 using Netotik.Web;
 using System.Data.Entity.Validation;
-using Netotik.Web.Extension;
+
 using Netotik.ViewModels.Shop.ProductAdmin;
 using System.IO;
 using Netotik.ViewModels;
 using System.Net;
 using Netotik.ViewModels.Shop.ProductAttributeValue;
 using DNTBreadCrumb;
-using Netotik.Web.Lucene;
 using Netotik.ViewModels.Identity.Security;
 using Netotik.ViewModels.CMS.ContentCategory;
 using Netotik.Common.Controller;
@@ -190,19 +189,7 @@ namespace Netotik.Web.Areas.Admin.Controllers
                 this.MessageError(Messages.MissionFail, Messages.AddError);
                 return View();
             }
-
-            if (prod.IsPublished)
-            {
-                //Index the new product lucene.NET
-                LuceneIndex.AddUpdateLuceneIndex(new ProductSearchModel
-                {
-                    Id = prod.Id,
-                    Description = prod.ShortDescription,
-                    Name = prod.Name,
-                    ImageName = prod.PictureId.HasValue ? Path.Combine(FilePathes._imagesShopProductPath, prod.Picture.FileName) : "",
-                });
-            }
-
+            
             this.MessageSuccess(Messages.MissionSuccess, Messages.AddSuccess);
             return RedirectToAction(MVC.Admin.ShopProduct.Index());
 
@@ -235,7 +222,6 @@ namespace Netotik.Web.Areas.Admin.Controllers
 
             prod.IsDeleted = true;
             await _uow.SaveChangesAsync();
-            LuceneIndex.ClearLuceneIndexRecord(prod.Id);
             return RedirectToAction(MVC.Admin.ShopProduct.ActionNames.Index);
         }
 
@@ -299,7 +285,6 @@ namespace Netotik.Web.Areas.Admin.Controllers
 
         [Mvc5Authorize(Roles = AssignableToRolePermissions.CanEditProduct)]
         [ValidateAntiForgeryToken]
-        [AllowUploadSpecialFilesOnly(".jpg,.png,.gif", true)]
         [HttpPost]
         public virtual async Task<ActionResult> Edit(ProductModel model, ActionType actionType)
         {
@@ -386,21 +371,6 @@ namespace Netotik.Web.Areas.Admin.Controllers
                 ViewBag.Avatar = Path.Combine(FilePathes._imagesShopProductPath, prod.Picture.FileName);
 
             _productService.Update(prod);
-
-
-            LuceneIndex.ClearLuceneIndexRecord(prod.Id);
-
-            if (prod.IsPublished)
-            {
-                //Index the new product lucene.NET
-                LuceneIndex.AddUpdateLuceneIndex(new ProductSearchModel
-                {
-                    Id = prod.Id,
-                    Description = prod.ShortDescription,
-                    Name = prod.Name,
-                    ImageName = prod.PictureId.HasValue ? Path.Combine(FilePathes._imagesShopProductPath, prod.Picture.FileName) : "",
-                });
-            }
 
             try
             {

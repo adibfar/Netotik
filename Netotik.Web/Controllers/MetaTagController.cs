@@ -1,6 +1,6 @@
 ﻿using Netotik.ViewModels.Common.Setting;
 using Netotik.Services.Abstract;
-using Netotik.Web.Caching;
+using Netotik.Web.Infrastructure.Caching;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,7 +18,7 @@ namespace Netotik.Web.Controllers
         }
         public virtual ActionResult Index(string title, string keywords, string description)
         {
-            GeneralSettingModel siteConfig = WebCache.GetSiteConfig(HttpContext, _settingService);
+            GeneralSettingModel siteConfig = PublicUICache.GetSiteConfig(HttpContext, _settingService);
 
             ViewBag.Title = !string.IsNullOrWhiteSpace(title)
                 ? string.Format("{0} | {1}", title, siteConfig.SiteName)

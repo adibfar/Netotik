@@ -1,6 +1,5 @@
 ﻿using Netotik.Data.Context;
 using Netotik.Data.Migrations;
-using Netotik.Web.Infrastructure.Binders;
 using Netotik.Common.Filters;
 using CaptchaMvc.Infrastructure;
 using Newtonsoft.Json;
@@ -15,6 +14,9 @@ using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
 using System.Web.Security;
+using System.Globalization;
+using System.Threading;
+using Netotik.Common.Binders;
 
 namespace Netotik.Web
 {
@@ -23,7 +25,7 @@ namespace Netotik.Web
         protected void Application_Start()
         {
             // change captcha provider for using cookie
-          //  CaptchaUtils.CaptchaManager.StorageProvider = new CookieStorageProvider();
+            //  CaptchaUtils.CaptchaManager.StorageProvider = new CookieStorageProvider();
 
 
             ViewEngines.Engines.Clear();
@@ -40,8 +42,8 @@ namespace Netotik.Web
 
 
 
-            var resourceService = (Netotik.Services.Abstract.IResourceService)IocConfig.ProjectObjectFactory.Container.GetInstance(typeof(Netotik.Services.Abstract.IResourceService));
-            resourceService.SeedDataBase(System.IO.File.ReadAllText(Server.MapPath("/App_Data/DefaultResources.xml")), "en-us");
+            var languageService = (Netotik.Services.Abstract.ILanguageService)IocConfig.ProjectObjectFactory.Container.GetInstance(typeof(Netotik.Services.Abstract.ILanguageService));
+            languageService.SeedDataBase(System.IO.File.ReadAllText(Server.MapPath("/App_Data/Fa-LocaleStringResource.xml")));
 
         }
         protected void Application_Error(object sender, EventArgs e)
@@ -54,6 +56,20 @@ namespace Netotik.Web
                 Server.ClearError();
             }
         }
+        protected void Application_BeginRequest()
+        {
+            if (!Request.IsLocal)
+            {
+                if (!Context.Request.IsSecureConnection)
+                    Response.Redirect(Context.Request.Url.ToString().Replace("http:", "https:"));
+            }
+
+
+            var a = Request.RequestContext.RouteData.Values["lang"];
+
+        }
+
+
 
     }
 }

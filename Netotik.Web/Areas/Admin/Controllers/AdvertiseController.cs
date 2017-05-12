@@ -18,7 +18,6 @@ using System.Web.UI;
 using System.Threading.Tasks;
 using Netotik.Web;
 using System.Data.Entity.Validation;
-using Netotik.Web.Extension;
 using System.IO;
 using DNTBreadCrumb;
 using Netotik.ViewModels.Identity.Security;
@@ -167,7 +166,6 @@ namespace Netotik.Web.Areas.Admin.Controllers
         }
 
         [ValidateAntiForgeryToken]
-        [AllowUploadSpecialFilesOnly(".jpg,.png,.gif", true)]
         [HttpPost]
         public virtual async Task<ActionResult> Edit(AdvertiseModel model, ActionType actionType)
         {

@@ -21,7 +21,6 @@ using Netotik.Common;
 using CaptchaMvc.Attributes;
 using System.Data.Entity;
 using System.Data.Entity.Validation;
-using Netotik.Web.Extension;
 using System.Web.UI;
 using Netotik.ViewModels.Identity.UserReseller;
 using Netotik.Services.Identity;

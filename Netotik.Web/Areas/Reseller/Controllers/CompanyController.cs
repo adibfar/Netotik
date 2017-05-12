@@ -18,7 +18,6 @@ using System.Web.UI;
 using System.Threading.Tasks;
 using Netotik.Web;
 using System.Data.Entity.Validation;
-using Netotik.Web.Extension;
 using System.IO;
 using DNTBreadCrumb;
 using Netotik.Common.MikrotikAPI;
@@ -87,7 +86,6 @@ namespace Netotik.Web.Areas.Reseller.Controllers
 
 
         [Mvc5Authorize(Roles = "Reseller")]
-        [AllowUploadSpecialFilesOnly(".jpg,.png,.gif", true)]
         [ValidateAntiForgeryToken]
         [HttpPost]
         public virtual async Task<ActionResult> Create(Register model)

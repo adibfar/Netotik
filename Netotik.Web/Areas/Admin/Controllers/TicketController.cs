@@ -15,7 +15,7 @@ using Netotik.Domain.Entity;
 using System.Threading.Tasks;
 using Netotik.Web;
 using System.Data.Entity.Validation;
-using Netotik.Web.Extension;
+
 using System.IO;
 using Microsoft.AspNet.Identity;
 using DNTBreadCrumb;

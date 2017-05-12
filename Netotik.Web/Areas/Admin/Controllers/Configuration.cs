@@ -46,7 +46,7 @@ namespace Netotik.Web.Areas.Admin.Controllers
             {
                 _settingService.Update(model);
                 _uow.SaveChanges();
-                Netotik.Web.Caching.WebCache.RemoveSiteConfig(HttpContext);
+                Netotik.Web.Infrastructure.Caching.PublicUICache.RemoveSiteConfig(HttpContext);
                 this.MessageSuccess(Messages.MissionSuccess, Messages.UpdateSettingSuccess);
             }
             catch (Exception ex)

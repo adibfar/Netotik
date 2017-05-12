@@ -71,7 +71,8 @@ namespace Netotik.Data.Context
         public DbSet<ContentTag> ContentTags { get; set; }
         public DbSet<InboxContactUsMessage> InboxMessages { get; set; }
         public DbSet<Link> Linkes { get; set; }
-        public DbSet<Resource> Resources { get; set; }
+        public DbSet<LocaleStringResource> LocaleStringResources { get; set; }
+        public DbSet<Language> Languages { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {

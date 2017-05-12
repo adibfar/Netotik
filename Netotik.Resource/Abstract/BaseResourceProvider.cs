@@ -36,21 +36,32 @@ namespace Netotik.Resources.Resources.Abstract
             // normalize
             culture = culture.ToLowerInvariant();
 
-            if (Cache && resources == null) {
-                // Fetch all resources
-                
-                lock (lockResources) {
+            try
+            {
+                if (Cache && resources == null)
+                {
+                    // Fetch all resources
 
-                    if (resources == null) {
-                        resources = ReadResources().ToDictionary(r => string.Format("{0}.{1}", r.Culture.ToLowerInvariant(), r.Name));
+                    lock (lockResources)
+                    {
+
+                        if (resources == null)
+                        {
+                            resources = ReadResources().ToDictionary(r => string.Format("{0}.{1}", r.Culture.ToLowerInvariant(), r.Name));
+                        }
                     }
                 }
-            }
 
-            if (Cache) {
-                return resources[string.Format("{0}.{1}", culture, name)].Value;
-            }
+                if (Cache)
+                {
+                    return resources[string.Format("{0}.{1}", culture, name)].Value;
+                }
 
+            }
+            catch(Exception ex)
+            {
+                return name+" not found..";
+            }
             return ReadResource(name, culture).Value;
 
         }

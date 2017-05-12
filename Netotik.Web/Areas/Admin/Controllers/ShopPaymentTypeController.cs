@@ -18,7 +18,7 @@ using System.Web.UI;
 using System.Threading.Tasks;
 using Netotik.Web;
 using System.Data.Entity.Validation;
-using Netotik.Web.Extension;
+
 using Netotik.ViewModels.Shop.PaymentType;
 using System.IO;
 using Netotik.ViewModels;
@@ -192,7 +192,6 @@ namespace Netotik.Web.Areas.Admin.Controllers
         }
 
         [ValidateAntiForgeryToken]
-        [AllowUploadSpecialFilesOnly(".jpg,.png,.gif", true)]
         [HttpPost]
         public virtual async Task<ActionResult> Edit(PaymentTypeModel model, ActionType actionType)
         {
