@@ -1,10 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Web;
-using System.Data.Entity;
 using System.Web.Mvc;
-using MvcPaging;
 using Netotik.Common.Filters;
 using Netotik.Web.Infrastructure;
 using Netotik.Services.Abstract;
