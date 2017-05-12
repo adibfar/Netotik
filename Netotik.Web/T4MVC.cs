@@ -1787,7 +1787,41 @@ namespace Links
                 public const string UrlPath = "~/Content/images/logo";
                 public static string Url() { return T4MVCHelpers.ProcessVirtualPath(UrlPath); }
                 public static string Url(string fileName) { return T4MVCHelpers.ProcessVirtualPath(UrlPath + "/" + fileName); }
-                public static readonly string Netotik_png = Url("Netotik.png");
+                [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+                public static class faveicon {
+                    public const string UrlPath = "~/Content/images/logo/faveicon";
+                    public static string Url() { return T4MVCHelpers.ProcessVirtualPath(UrlPath); }
+                    public static string Url(string fileName) { return T4MVCHelpers.ProcessVirtualPath(UrlPath + "/" + fileName); }
+                    public static readonly string android_icon_144x144_png = Url("android-icon-144x144.png");
+                    public static readonly string android_icon_192x192_png = Url("android-icon-192x192.png");
+                    public static readonly string android_icon_36x36_png = Url("android-icon-36x36.png");
+                    public static readonly string android_icon_48x48_png = Url("android-icon-48x48.png");
+                    public static readonly string android_icon_72x72_png = Url("android-icon-72x72.png");
+                    public static readonly string android_icon_96x96_png = Url("android-icon-96x96.png");
+                    public static readonly string apple_icon_114x114_png = Url("apple-icon-114x114.png");
+                    public static readonly string apple_icon_120x120_png = Url("apple-icon-120x120.png");
+                    public static readonly string apple_icon_144x144_png = Url("apple-icon-144x144.png");
+                    public static readonly string apple_icon_152x152_png = Url("apple-icon-152x152.png");
+                    public static readonly string apple_icon_180x180_png = Url("apple-icon-180x180.png");
+                    public static readonly string apple_icon_57x57_png = Url("apple-icon-57x57.png");
+                    public static readonly string apple_icon_60x60_png = Url("apple-icon-60x60.png");
+                    public static readonly string apple_icon_72x72_png = Url("apple-icon-72x72.png");
+                    public static readonly string apple_icon_76x76_png = Url("apple-icon-76x76.png");
+                    public static readonly string apple_icon_precomposed_png = Url("apple-icon-precomposed.png");
+                    public static readonly string apple_icon_png = Url("apple-icon.png");
+                    public static readonly string browserconfig_xml = Url("browserconfig.xml");
+                    public static readonly string favicon_16x16_png = Url("favicon-16x16.png");
+                    public static readonly string favicon_32x32_png = Url("favicon-32x32.png");
+                    public static readonly string favicon_96x96_png = Url("favicon-96x96.png");
+                    public static readonly string favicon_ico = Url("favicon.ico");
+                    public static readonly string manifest_json = Url("manifest.json");
+                    public static readonly string ms_icon_144x144_png = Url("ms-icon-144x144.png");
+                    public static readonly string ms_icon_150x150_png = Url("ms-icon-150x150.png");
+                    public static readonly string ms_icon_310x310_png = Url("ms-icon-310x310.png");
+                    public static readonly string ms_icon_70x70_png = Url("ms-icon-70x70.png");
+                }
+            
+                public static readonly string NetotikLogo_png = Url("NetotikLogo.png");
                 public static readonly string robust_80x80_png = Url("robust-80x80.png");
                 public static readonly string robust_logo_dark_big_png = Url("robust-logo-dark-big.png");
                 public static readonly string robust_logo_dark_png = Url("robust-logo-dark.png");
@@ -7272,6 +7306,12 @@ namespace Links
                 }
                 public static partial class logo 
                 {
+                    public static partial class faveicon 
+                    {
+                        public static class Assets
+                        {
+                        }
+                    }
                     public static class Assets
                     {
                     }

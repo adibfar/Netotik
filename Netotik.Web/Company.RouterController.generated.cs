@@ -127,6 +127,14 @@ namespace Netotik.Web.Areas.Company.Controllers
             public readonly string InterfaceEnable = "InterfaceEnable";
             public readonly string InterfaceDetails = "InterfaceDetails";
             public readonly string Hotspot_Temp = "Hotspot_Temp";
+            public readonly string RouterSetting = "RouterSetting";
+            public readonly string Reboot = "Reboot";
+            public readonly string ResetRouter = "ResetRouter";
+            public readonly string RestoreUsermanager = "RestoreUsermanager";
+            public readonly string RestoreRouter = "RestoreRouter";
+            public readonly string ResetUsermanager = "ResetUsermanager";
+            public readonly string BackupUsermanager = "BackupUsermanager";
+            public readonly string BackupRouter = "BackupRouter";
             public readonly string RedirectToLocal = "RedirectToLocal";
         }
 
@@ -146,6 +154,14 @@ namespace Netotik.Web.Areas.Company.Controllers
             public const string InterfaceEnable = "InterfaceEnable";
             public const string InterfaceDetails = "InterfaceDetails";
             public const string Hotspot_Temp = "Hotspot_Temp";
+            public const string RouterSetting = "RouterSetting";
+            public const string Reboot = "Reboot";
+            public const string ResetRouter = "ResetRouter";
+            public const string RestoreUsermanager = "RestoreUsermanager";
+            public const string RestoreRouter = "RestoreRouter";
+            public const string ResetUsermanager = "ResetUsermanager";
+            public const string BackupUsermanager = "BackupUsermanager";
+            public const string BackupRouter = "BackupRouter";
             public const string RedirectToLocal = "RedirectToLocal";
         }
 
@@ -222,6 +238,7 @@ namespace Netotik.Web.Areas.Company.Controllers
                 public readonly string InterfaceDetails = "InterfaceDetails";
                 public readonly string Interfaces = "Interfaces";
                 public readonly string PPP = "PPP";
+                public readonly string RouterSetting = "RouterSetting";
                 public readonly string Wireless = "Wireless";
                 public readonly string WirelessDetails = "WirelessDetails";
             }
@@ -231,6 +248,7 @@ namespace Netotik.Web.Areas.Company.Controllers
             public readonly string InterfaceDetails = "~/Areas/Company/Views/Router/InterfaceDetails.cshtml";
             public readonly string Interfaces = "~/Areas/Company/Views/Router/Interfaces.cshtml";
             public readonly string PPP = "~/Areas/Company/Views/Router/PPP.cshtml";
+            public readonly string RouterSetting = "~/Areas/Company/Views/Router/RouterSetting.cshtml";
             public readonly string Wireless = "~/Areas/Company/Views/Router/Wireless.cshtml";
             public readonly string WirelessDetails = "~/Areas/Company/Views/Router/WirelessDetails.cshtml";
         }
@@ -387,6 +405,94 @@ namespace Netotik.Web.Areas.Company.Controllers
         {
             var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Hotspot_Temp);
             Hotspot_TempOverride(callInfo);
+            return callInfo;
+        }
+
+        [NonAction]
+        partial void RouterSettingOverride(T4MVC_System_Web_Mvc_ActionResult callInfo);
+
+        [NonAction]
+        public override System.Web.Mvc.ActionResult RouterSetting()
+        {
+            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.RouterSetting);
+            RouterSettingOverride(callInfo);
+            return callInfo;
+        }
+
+        [NonAction]
+        partial void RebootOverride(T4MVC_System_Web_Mvc_ActionResult callInfo);
+
+        [NonAction]
+        public override System.Web.Mvc.ActionResult Reboot()
+        {
+            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Reboot);
+            RebootOverride(callInfo);
+            return callInfo;
+        }
+
+        [NonAction]
+        partial void ResetRouterOverride(T4MVC_System_Web_Mvc_ActionResult callInfo);
+
+        [NonAction]
+        public override System.Web.Mvc.ActionResult ResetRouter()
+        {
+            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.ResetRouter);
+            ResetRouterOverride(callInfo);
+            return callInfo;
+        }
+
+        [NonAction]
+        partial void RestoreUsermanagerOverride(T4MVC_System_Web_Mvc_ActionResult callInfo);
+
+        [NonAction]
+        public override System.Web.Mvc.ActionResult RestoreUsermanager()
+        {
+            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.RestoreUsermanager);
+            RestoreUsermanagerOverride(callInfo);
+            return callInfo;
+        }
+
+        [NonAction]
+        partial void RestoreRouterOverride(T4MVC_System_Web_Mvc_ActionResult callInfo);
+
+        [NonAction]
+        public override System.Web.Mvc.ActionResult RestoreRouter()
+        {
+            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.RestoreRouter);
+            RestoreRouterOverride(callInfo);
+            return callInfo;
+        }
+
+        [NonAction]
+        partial void ResetUsermanagerOverride(T4MVC_System_Web_Mvc_ActionResult callInfo);
+
+        [NonAction]
+        public override System.Web.Mvc.ActionResult ResetUsermanager()
+        {
+            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.ResetUsermanager);
+            ResetUsermanagerOverride(callInfo);
+            return callInfo;
+        }
+
+        [NonAction]
+        partial void BackupUsermanagerOverride(T4MVC_System_Web_Mvc_ActionResult callInfo);
+
+        [NonAction]
+        public override System.Web.Mvc.ActionResult BackupUsermanager()
+        {
+            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.BackupUsermanager);
+            BackupUsermanagerOverride(callInfo);
+            return callInfo;
+        }
+
+        [NonAction]
+        partial void BackupRouterOverride(T4MVC_System_Web_Mvc_ActionResult callInfo);
+
+        [NonAction]
+        public override System.Web.Mvc.ActionResult BackupRouter()
+        {
+            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.BackupRouter);
+            BackupRouterOverride(callInfo);
             return callInfo;
         }
 

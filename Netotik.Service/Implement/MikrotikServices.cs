@@ -1054,6 +1054,58 @@ namespace Netotik.Services.Implement
         #endregion
 
         #region Other
+        public bool ResetUsermanager(string ip, int port, string user, string pass, bool users, bool logs, bool session, bool history, bool packages)
+        {
+            var mikrotik = new MikrotikAPI();
+            mikrotik.MK(ip, port);
+            if (!mikrotik.Login(user, pass)) mikrotik.Close();
+            //-----------------------------------------------
+            var temp = "";
+            mikrotik.Send("/system/backup/save");
+            temp = String.Format("=name='beforeXresetX{0}'", DateTime.Now);
+            mikrotik.Send(temp);
+            mikrotik.Send("dont-encrypt=yes", true);
+            mikrotik.Send("/system/reset-configuration");
+            //if (keepusers)
+                mikrotik.Send("keep-users=yes");
+            //if (nosettings)
+                mikrotik.Send("no-defaults=yes");
+            mikrotik.Send("yes", true);
+            return true;
+
+        }
+        public bool ResetRouter(string ip, int port, string user, string pass,bool keepusers,bool nosettings)
+        {
+            var mikrotik = new MikrotikAPI();
+            mikrotik.MK(ip, port);
+            if (!mikrotik.Login(user, pass)) mikrotik.Close();
+            //-----------------------------------------------
+            var temp = "";
+            mikrotik.Send("/system/backup/save");
+            temp = String.Format("=name='beforeXresetX{0}'", DateTime.Now);
+            mikrotik.Send(temp);
+            mikrotik.Send("dont-encrypt=yes",true);
+            mikrotik.Send("/system/reset-configuration");
+            if (true)
+                mikrotik.Send("keep-users=yes");
+            if (nosettings)
+                mikrotik.Send("no-defaults=yes");
+            mikrotik.Send("yes", true);
+            return true;
+
+        }
+        public bool RebootRouter(string ip, int port, string user, string pass)
+        {
+            var mikrotik = new MikrotikAPI();
+            mikrotik.MK(ip, port);
+            if (!mikrotik.Login(user, pass)) mikrotik.Close();
+            //-----------------------------------------------
+            
+            mikrotik.Send("/system/reboot");
+            mikrotik.Send("yes",true);
+            return true;
+
+        }
         public bool IP_Port_Check(string ip, int port, string user, string pass)
         {
             var mikrotik = new MikrotikAPI();

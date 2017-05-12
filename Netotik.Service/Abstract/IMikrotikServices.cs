@@ -24,6 +24,9 @@ namespace Netotik.Services.Abstract
         bool Usermanager_IsProfileExist(string ip, int port, string user, string pass, Usermanager_ProfileLimitionCreateModel usermanProfile);
         List<Router_InterfaceModel> Interface(string ip, int port, string user, string pass);
         bool IP_Port_Check(string ip, int port, string user, string pass);
+        bool RebootRouter(string ip, int port, string user, string pass);
+        bool ResetRouter(string ip, int port, string user, string pass, bool keepusers, bool nosettings);
+        bool ResetUsermanager(string ip, int port, string user, string pass, bool users, bool logs,bool session,bool history,bool packages);
         bool User_Pass_Check(string ip, int port, string user, string pass);
         void Usermanager_ResetCounter(string r_Host, int r_Port, string r_User, string r_Password, string user);
         void Router_Info_Update(string ip, int port, string user, string pass);

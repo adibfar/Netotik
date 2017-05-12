@@ -333,5 +333,201 @@ namespace Netotik.Web.Areas.Company.Controllers
         {
             return View();
         }
+        [Mvc5Authorize(Roles = "Company")]
+        public virtual ActionResult RouterSetting()
+        {
+
+            //-------------------------------
+
+            if (!_mikrotikServices.IP_Port_Check(UserLogined.UserCompany.R_Host, UserLogined.UserCompany.R_Port, UserLogined.UserCompany.R_User, UserLogined.UserCompany.R_Password))
+            {
+                this.MessageError("خطا", "آدرس IP یا Port دستگاه اشتباه وارد شده است یا دستگاه شما از طریق سرور قابل دسترس نمی باشد.لطفا آدرس IP ویا Port دستگاه را تصحیح کنید.");
+                return RedirectToAction(MVC.Company.Home.ActionNames.MikrotikConf, MVC.Company.Home.Name, new { area = MVC.Company.Name });
+            }
+            if (!_mikrotikServices.User_Pass_Check(UserLogined.UserCompany.R_Host, UserLogined.UserCompany.R_Port, UserLogined.UserCompany.R_User, UserLogined.UserCompany.R_Password))
+            {
+                this.MessageError("خطا", "نام کاربری یا رمز عبور صحیح وارد نشده است.لطفا نام کاربری یا رمز عبور را تصحیح کنید.");
+                return RedirectToAction(MVC.Company.Home.ActionNames.MikrotikConf, MVC.Company.Home.Name, new { area = MVC.Company.Name });
+            }
+            //-------------------------------
+
+            var Router_PackageUpdate = _mikrotikServices.Router_PackageUpdate(UserLogined.UserCompany.R_Host, UserLogined.UserCompany.R_Port, UserLogined.UserCompany.R_User, UserLogined.UserCompany.R_Password);
+            ViewBag.Channel = Router_PackageUpdate.FirstOrDefault().Channel;
+            ViewBag.Installed_version = Router_PackageUpdate.FirstOrDefault().Installed_version;
+            ViewBag.Latest_version = Router_PackageUpdate.FirstOrDefault().Latest_version;
+            ViewBag.Update_status = Router_PackageUpdate.FirstOrDefault().Update_status;
+
+            return View();
+        }
+        public virtual ActionResult Reboot()
+        {
+
+            //-------------------------------
+
+            if (!_mikrotikServices.IP_Port_Check(UserLogined.UserCompany.R_Host, UserLogined.UserCompany.R_Port, UserLogined.UserCompany.R_User, UserLogined.UserCompany.R_Password))
+            {
+                this.MessageError("خطا", "آدرس IP یا Port دستگاه اشتباه وارد شده است یا دستگاه شما از طریق سرور قابل دسترس نمی باشد.لطفا آدرس IP ویا Port دستگاه را تصحیح کنید.");
+                return RedirectToAction(MVC.Company.Home.ActionNames.MikrotikConf, MVC.Company.Home.Name, new { area = MVC.Company.Name });
+            }
+            if (!_mikrotikServices.User_Pass_Check(UserLogined.UserCompany.R_Host, UserLogined.UserCompany.R_Port, UserLogined.UserCompany.R_User, UserLogined.UserCompany.R_Password))
+            {
+                this.MessageError("خطا", "نام کاربری یا رمز عبور صحیح وارد نشده است.لطفا نام کاربری یا رمز عبور را تصحیح کنید.");
+                return RedirectToAction(MVC.Company.Home.ActionNames.MikrotikConf, MVC.Company.Home.Name, new { area = MVC.Company.Name });
+            }
+            //-------------------------------
+            _mikrotikServices.RebootRouter(UserLogined.UserCompany.R_Host, UserLogined.UserCompany.R_Port, UserLogined.UserCompany.R_User, UserLogined.UserCompany.R_Password);
+            this.MessageSuccess("ریبوت","روتر در حال راه اندازی مجدد می باشد.لطفا یک دقیقه منتظر بمانید.");
+            return RedirectToAction(MVC.Company.Router.ActionNames.RouterSetting);
+        }
+        [HttpPost]
+        public virtual ActionResult ResetRouter()
+        {
+
+            //-------------------------------
+
+            if (!_mikrotikServices.IP_Port_Check(UserLogined.UserCompany.R_Host, UserLogined.UserCompany.R_Port, UserLogined.UserCompany.R_User, UserLogined.UserCompany.R_Password))
+            {
+                this.MessageError("خطا", "آدرس IP یا Port دستگاه اشتباه وارد شده است یا دستگاه شما از طریق سرور قابل دسترس نمی باشد.لطفا آدرس IP ویا Port دستگاه را تصحیح کنید.");
+                return RedirectToAction(MVC.Company.Home.ActionNames.MikrotikConf, MVC.Company.Home.Name, new { area = MVC.Company.Name });
+            }
+            if (!_mikrotikServices.User_Pass_Check(UserLogined.UserCompany.R_Host, UserLogined.UserCompany.R_Port, UserLogined.UserCompany.R_User, UserLogined.UserCompany.R_Password))
+            {
+                this.MessageError("خطا", "نام کاربری یا رمز عبور صحیح وارد نشده است.لطفا نام کاربری یا رمز عبور را تصحیح کنید.");
+                return RedirectToAction(MVC.Company.Home.ActionNames.MikrotikConf, MVC.Company.Home.Name, new { area = MVC.Company.Name });
+            }
+
+            //-------------------------------
+            if (Request.Form["reset"].ToString() == "yes")
+            {
+                _mikrotikServices.ResetRouter(UserLogined.UserCompany.R_Host, UserLogined.UserCompany.R_Port, UserLogined.UserCompany.R_User, UserLogined.UserCompany.R_Password, true, true);
+                this.MessageSuccess("Reset", "روتر در حال ریست شدن است.ممکن است سامانه دیگر قادر به اتصال به روتر نباشد.با پشتیبان خود تماس بگیرید.");
+            }
+            else
+            {
+                this.MessageSuccess("Reset", "متن مورد نظر را به درستی وارد کنید.");
+            }
+            return RedirectToAction(MVC.Company.Router.ActionNames.RouterSetting);
+        }
+        [HttpPost]
+        public virtual ActionResult RestoreUsermanager()
+        {
+
+            //-------------------------------
+
+            if (!_mikrotikServices.IP_Port_Check(UserLogined.UserCompany.R_Host, UserLogined.UserCompany.R_Port, UserLogined.UserCompany.R_User, UserLogined.UserCompany.R_Password))
+            {
+                this.MessageError("خطا", "آدرس IP یا Port دستگاه اشتباه وارد شده است یا دستگاه شما از طریق سرور قابل دسترس نمی باشد.لطفا آدرس IP ویا Port دستگاه را تصحیح کنید.");
+                return RedirectToAction(MVC.Company.Home.ActionNames.MikrotikConf, MVC.Company.Home.Name, new { area = MVC.Company.Name });
+            }
+            if (!_mikrotikServices.User_Pass_Check(UserLogined.UserCompany.R_Host, UserLogined.UserCompany.R_Port, UserLogined.UserCompany.R_User, UserLogined.UserCompany.R_Password))
+            {
+                this.MessageError("خطا", "نام کاربری یا رمز عبور صحیح وارد نشده است.لطفا نام کاربری یا رمز عبور را تصحیح کنید.");
+                return RedirectToAction(MVC.Company.Home.ActionNames.MikrotikConf, MVC.Company.Home.Name, new { area = MVC.Company.Name });
+            }
+
+            //-------------------------------
+            if (Request.Form["reset"].ToString() == "yes")
+            {
+                _mikrotikServices.ResetRouter(UserLogined.UserCompany.R_Host, UserLogined.UserCompany.R_Port, UserLogined.UserCompany.R_User, UserLogined.UserCompany.R_Password, true, true);
+                this.MessageSuccess("Reset", "روتر در حال ریست شدن است.ممکن است سامانه دیگر قادر به اتصال به روتر نباشد.با پشتیبان خود تماس بگیرید.");
+            }
+            else
+            {
+                this.MessageSuccess("Reset", "متن مورد نظر را به درستی وارد کنید.");
+            }
+            return RedirectToAction(MVC.Company.Router.ActionNames.RouterSetting);
+        }
+        [HttpPost]
+        public virtual ActionResult RestoreRouter()
+        {
+
+            //-------------------------------
+
+            if (!_mikrotikServices.IP_Port_Check(UserLogined.UserCompany.R_Host, UserLogined.UserCompany.R_Port, UserLogined.UserCompany.R_User, UserLogined.UserCompany.R_Password))
+            {
+                this.MessageError("خطا", "آدرس IP یا Port دستگاه اشتباه وارد شده است یا دستگاه شما از طریق سرور قابل دسترس نمی باشد.لطفا آدرس IP ویا Port دستگاه را تصحیح کنید.");
+                return RedirectToAction(MVC.Company.Home.ActionNames.MikrotikConf, MVC.Company.Home.Name, new { area = MVC.Company.Name });
+            }
+            if (!_mikrotikServices.User_Pass_Check(UserLogined.UserCompany.R_Host, UserLogined.UserCompany.R_Port, UserLogined.UserCompany.R_User, UserLogined.UserCompany.R_Password))
+            {
+                this.MessageError("خطا", "نام کاربری یا رمز عبور صحیح وارد نشده است.لطفا نام کاربری یا رمز عبور را تصحیح کنید.");
+                return RedirectToAction(MVC.Company.Home.ActionNames.MikrotikConf, MVC.Company.Home.Name, new { area = MVC.Company.Name });
+            }
+
+            //-------------------------------
+            if (Request.Form["reset"].ToString() == "yes")
+            {
+                _mikrotikServices.ResetRouter(UserLogined.UserCompany.R_Host, UserLogined.UserCompany.R_Port, UserLogined.UserCompany.R_User, UserLogined.UserCompany.R_Password, true, true);
+                this.MessageSuccess("Reset", "روتر در حال ریست شدن است.ممکن است سامانه دیگر قادر به اتصال به روتر نباشد.با پشتیبان خود تماس بگیرید.");
+            }
+            else
+            {
+                this.MessageSuccess("Reset", "متن مورد نظر را به درستی وارد کنید.");
+            }
+            return RedirectToAction(MVC.Company.Router.ActionNames.RouterSetting);
+        }
+        public virtual ActionResult ResetUsermanager()
+        {
+
+            //-------------------------------
+
+            if (!_mikrotikServices.IP_Port_Check(UserLogined.UserCompany.R_Host, UserLogined.UserCompany.R_Port, UserLogined.UserCompany.R_User, UserLogined.UserCompany.R_Password))
+            {
+                this.MessageError("خطا", "آدرس IP یا Port دستگاه اشتباه وارد شده است یا دستگاه شما از طریق سرور قابل دسترس نمی باشد.لطفا آدرس IP ویا Port دستگاه را تصحیح کنید.");
+                return RedirectToAction(MVC.Company.Home.ActionNames.MikrotikConf, MVC.Company.Home.Name, new { area = MVC.Company.Name });
+            }
+            if (!_mikrotikServices.User_Pass_Check(UserLogined.UserCompany.R_Host, UserLogined.UserCompany.R_Port, UserLogined.UserCompany.R_User, UserLogined.UserCompany.R_Password))
+            {
+                this.MessageError("خطا", "نام کاربری یا رمز عبور صحیح وارد نشده است.لطفا نام کاربری یا رمز عبور را تصحیح کنید.");
+                return RedirectToAction(MVC.Company.Home.ActionNames.MikrotikConf, MVC.Company.Home.Name, new { area = MVC.Company.Name });
+            }
+
+            //-------------------------------
+            _mikrotikServices.ResetRouter(UserLogined.UserCompany.R_Host, UserLogined.UserCompany.R_Port, UserLogined.UserCompany.R_User, UserLogined.UserCompany.R_Password, true, true);
+            this.MessageSuccess("Reset", "روتر در حال ریست شدن است.ممکن است سامانه دیگر قادر به اتصال به روتر نباشد.با پشتیبان خود تماس بگیرید.");
+            return RedirectToAction(MVC.Company.Router.ActionNames.RouterSetting);
+        }
+        public virtual ActionResult BackupUsermanager()
+        {
+
+            //-------------------------------
+
+            if (!_mikrotikServices.IP_Port_Check(UserLogined.UserCompany.R_Host, UserLogined.UserCompany.R_Port, UserLogined.UserCompany.R_User, UserLogined.UserCompany.R_Password))
+            {
+                this.MessageError("خطا", "آدرس IP یا Port دستگاه اشتباه وارد شده است یا دستگاه شما از طریق سرور قابل دسترس نمی باشد.لطفا آدرس IP ویا Port دستگاه را تصحیح کنید.");
+                return RedirectToAction(MVC.Company.Home.ActionNames.MikrotikConf, MVC.Company.Home.Name, new { area = MVC.Company.Name });
+            }
+            if (!_mikrotikServices.User_Pass_Check(UserLogined.UserCompany.R_Host, UserLogined.UserCompany.R_Port, UserLogined.UserCompany.R_User, UserLogined.UserCompany.R_Password))
+            {
+                this.MessageError("خطا", "نام کاربری یا رمز عبور صحیح وارد نشده است.لطفا نام کاربری یا رمز عبور را تصحیح کنید.");
+                return RedirectToAction(MVC.Company.Home.ActionNames.MikrotikConf, MVC.Company.Home.Name, new { area = MVC.Company.Name });
+            }
+
+            //-------------------------------
+            _mikrotikServices.ResetRouter(UserLogined.UserCompany.R_Host, UserLogined.UserCompany.R_Port, UserLogined.UserCompany.R_User, UserLogined.UserCompany.R_Password, true, true);
+            this.MessageSuccess("Reset", "روتر در حال ریست شدن است.ممکن است سامانه دیگر قادر به اتصال به روتر نباشد.با پشتیبان خود تماس بگیرید.");
+            return RedirectToAction(MVC.Company.Router.ActionNames.RouterSetting);
+        }
+        public virtual ActionResult BackupRouter()
+        {
+
+            //-------------------------------
+
+            if (!_mikrotikServices.IP_Port_Check(UserLogined.UserCompany.R_Host, UserLogined.UserCompany.R_Port, UserLogined.UserCompany.R_User, UserLogined.UserCompany.R_Password))
+            {
+                this.MessageError("خطا", "آدرس IP یا Port دستگاه اشتباه وارد شده است یا دستگاه شما از طریق سرور قابل دسترس نمی باشد.لطفا آدرس IP ویا Port دستگاه را تصحیح کنید.");
+                return RedirectToAction(MVC.Company.Home.ActionNames.MikrotikConf, MVC.Company.Home.Name, new { area = MVC.Company.Name });
+            }
+            if (!_mikrotikServices.User_Pass_Check(UserLogined.UserCompany.R_Host, UserLogined.UserCompany.R_Port, UserLogined.UserCompany.R_User, UserLogined.UserCompany.R_Password))
+            {
+                this.MessageError("خطا", "نام کاربری یا رمز عبور صحیح وارد نشده است.لطفا نام کاربری یا رمز عبور را تصحیح کنید.");
+                return RedirectToAction(MVC.Company.Home.ActionNames.MikrotikConf, MVC.Company.Home.Name, new { area = MVC.Company.Name });
+            }
+
+            //-------------------------------
+            _mikrotikServices.ResetRouter(UserLogined.UserCompany.R_Host, UserLogined.UserCompany.R_Port, UserLogined.UserCompany.R_User, UserLogined.UserCompany.R_Password, true, true);
+            this.MessageSuccess("Reset", "روتر در حال ریست شدن است.ممکن است سامانه دیگر قادر به اتصال به روتر نباشد.با پشتیبان خود تماس بگیرید.");
+            return RedirectToAction(MVC.Company.Router.ActionNames.RouterSetting);
+        }
     }
 }
