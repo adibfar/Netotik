@@ -58,6 +58,18 @@ namespace Netotik.Web.Areas.Company.Controllers
 
         [NonAction]
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public virtual System.Web.Mvc.ActionResult UpdateRouter()
+        {
+            return new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.UpdateRouter);
+        }
+        [NonAction]
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public virtual System.Web.Mvc.ActionResult UpdateRouterCheck()
+        {
+            return new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.UpdateRouterCheck);
+        }
+        [NonAction]
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public virtual System.Web.Mvc.ActionResult WirelessDetails()
         {
             return new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.WirelessDetails);
@@ -115,8 +127,8 @@ namespace Netotik.Web.Areas.Company.Controllers
         public class ActionNamesClass
         {
             public readonly string Info = "Info";
-            public readonly string Info_Update = "Info_Update";
-            public readonly string Check_Update = "Check_Update";
+            public readonly string UpdateRouter = "UpdateRouter";
+            public readonly string UpdateRouterCheck = "UpdateRouterCheck";
             public readonly string PPP = "PPP";
             public readonly string Interfaces = "Interfaces";
             public readonly string Wireless = "Wireless";
@@ -133,6 +145,7 @@ namespace Netotik.Web.Areas.Company.Controllers
             public readonly string RestoreUsermanager = "RestoreUsermanager";
             public readonly string RestoreRouter = "RestoreRouter";
             public readonly string ResetUsermanager = "ResetUsermanager";
+            public readonly string RemoveLogs = "RemoveLogs";
             public readonly string BackupUsermanager = "BackupUsermanager";
             public readonly string BackupRouter = "BackupRouter";
             public readonly string RedirectToLocal = "RedirectToLocal";
@@ -142,8 +155,8 @@ namespace Netotik.Web.Areas.Company.Controllers
         public class ActionNameConstants
         {
             public const string Info = "Info";
-            public const string Info_Update = "Info_Update";
-            public const string Check_Update = "Check_Update";
+            public const string UpdateRouter = "UpdateRouter";
+            public const string UpdateRouterCheck = "UpdateRouterCheck";
             public const string PPP = "PPP";
             public const string Interfaces = "Interfaces";
             public const string Wireless = "Wireless";
@@ -160,12 +173,29 @@ namespace Netotik.Web.Areas.Company.Controllers
             public const string RestoreUsermanager = "RestoreUsermanager";
             public const string RestoreRouter = "RestoreRouter";
             public const string ResetUsermanager = "ResetUsermanager";
+            public const string RemoveLogs = "RemoveLogs";
             public const string BackupUsermanager = "BackupUsermanager";
             public const string BackupRouter = "BackupRouter";
             public const string RedirectToLocal = "RedirectToLocal";
         }
 
 
+        static readonly ActionParamsClass_UpdateRouter s_params_UpdateRouter = new ActionParamsClass_UpdateRouter();
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public ActionParamsClass_UpdateRouter UpdateRouterParams { get { return s_params_UpdateRouter; } }
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public class ActionParamsClass_UpdateRouter
+        {
+            public readonly string ReturnURL = "ReturnURL";
+        }
+        static readonly ActionParamsClass_UpdateRouterCheck s_params_UpdateRouterCheck = new ActionParamsClass_UpdateRouterCheck();
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public ActionParamsClass_UpdateRouterCheck UpdateRouterCheckParams { get { return s_params_UpdateRouterCheck; } }
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public class ActionParamsClass_UpdateRouterCheck
+        {
+            public readonly string ReturnURL = "ReturnURL";
+        }
         static readonly ActionParamsClass_WirelessDetails s_params_WirelessDetails = new ActionParamsClass_WirelessDetails();
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public ActionParamsClass_WirelessDetails WirelessDetailsParams { get { return s_params_WirelessDetails; } }
@@ -271,24 +301,26 @@ namespace Netotik.Web.Areas.Company.Controllers
         }
 
         [NonAction]
-        partial void Info_UpdateOverride(T4MVC_System_Web_Mvc_ActionResult callInfo);
+        partial void UpdateRouterOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, string ReturnURL);
 
         [NonAction]
-        public override System.Web.Mvc.ActionResult Info_Update()
+        public override System.Web.Mvc.ActionResult UpdateRouter(string ReturnURL)
         {
-            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Info_Update);
-            Info_UpdateOverride(callInfo);
+            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.UpdateRouter);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "ReturnURL", ReturnURL);
+            UpdateRouterOverride(callInfo, ReturnURL);
             return callInfo;
         }
 
         [NonAction]
-        partial void Check_UpdateOverride(T4MVC_System_Web_Mvc_ActionResult callInfo);
+        partial void UpdateRouterCheckOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, string ReturnURL);
 
         [NonAction]
-        public override System.Web.Mvc.ActionResult Check_Update()
+        public override System.Web.Mvc.ActionResult UpdateRouterCheck(string ReturnURL)
         {
-            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Check_Update);
-            Check_UpdateOverride(callInfo);
+            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.UpdateRouterCheck);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "ReturnURL", ReturnURL);
+            UpdateRouterCheckOverride(callInfo, ReturnURL);
             return callInfo;
         }
 
@@ -471,6 +503,17 @@ namespace Netotik.Web.Areas.Company.Controllers
         {
             var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.ResetUsermanager);
             ResetUsermanagerOverride(callInfo);
+            return callInfo;
+        }
+
+        [NonAction]
+        partial void RemoveLogsOverride(T4MVC_System_Web_Mvc_ActionResult callInfo);
+
+        [NonAction]
+        public override System.Web.Mvc.ActionResult RemoveLogs()
+        {
+            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.RemoveLogs);
+            RemoveLogsOverride(callInfo);
             return callInfo;
         }
 

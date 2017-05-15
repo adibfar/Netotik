@@ -45,23 +45,21 @@
                                                 <h4 class="form-section"><i class="icon-cloud-download"></i>بروزرسانی</h4>
                                                 @if (ViewBag.Update_status.Contains("New"))
                                                 {
-                                                    <span class="fa fa-toggle-up">
+                                                    <p>
                                                         بروزرسانی به
                                                         @ViewBag.Latest_version
-                                                    </span>
+                                                    </p>
                                                     <div style="direction:ltr;">
-                                                        <a href="@Url.Action(MVC.Company.Router.ActionNames.Info_Update)" class="btn btn-outline-primary">
+                                                        <a href="@Url.Action(MVC.Company.Router.ActionNames.UpdateRouter)" class="btn btn-outline-primary">
                                                             <i class="icon-cloud-download"></i> Update
                                                         </a>
                                                     </div>
                                                 }
                                                 else
                                                 {
-                                                    <span class="icon-cloud-check">
-                                                        .بروزرسانی ها نصب می باشد
-                                                    </span>
+                                                    <div class="inline">بروزرسانی ها نصب می باشد</div>
                                                     <div style="direction:ltr;">
-                                                        <a href="@Url.Action(MVC.Company.Router.ActionNames.Check_Update)" class="btn btn-outline-primary">
+                                                        <a href="@Url.Action(MVC.Company.Router.ActionNames.UpdateRouterCheck)" class="btn btn-outline-primary">
                                                             <span class="icon-cloud-check"></span> Check
                                                         </a>
                                                     </div>
@@ -72,7 +70,26 @@
                                     </div>
                                 </div>
                             </div>
+                            <div class="col-lg-4 col-md-12">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <div class="card-block">
+                                            <form>
+                                                <h4 class="form-section"><i class="icon-file-text2"></i>پاک کردن لاگ روتر</h4>
+                                                با پاک کردن لاگ ها تمامی لاگ هایی که روتر ذخیره کرده است پاک خواهد شد.
+                                                این عملیات بدون ریبوت شدن روتر انجام می شود.
+                                                <div style="direction:ltr;">
+                                                    <a href="@Url.Action(MVC.Company.Router.ActionNames.RemoveLogs)" class="btn btn-outline-primary">
+                                                        <i class="icon-file-text2"></i> Remove Logs
+                                                    </a>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
+
                         <div class="row">
                             <div class="col-lg-4 col-md-12">
                                 <div class="card">
@@ -84,12 +101,12 @@
                                                 توجه: ممکن است پس از ریست، سامانه دیگر قادر به اتصال به روتر شما نباشد.لطفا با پشتیبان شبکه خود تماس بگیرید.
                                                 پس از ریست روتر تمامی تنظیمات و کانفیگ های انجام شده پاک خواهد شد.در صورتی که از طریق سامانه اقدام به ریست کنید،سامانه
                                                 به صورت خودکار قبل از ریست شدن دستگاه یک بک آپ از تنظیمات شما خواهد گرفت.
-                                                
+
                                                 <div class="col-md-6">
                                                     <br />
                                                     <div class="controls">
                                                         <label class="custom-control custom-checkbox">
-                                                            <input type="checkbox" class="custom-control-input" id="nodefualt" name="nodefualt"/>
+                                                            <input type="checkbox" class="custom-control-input" id="nodefualt" name="nodefualt" />
                                                             <span class="custom-control-indicator"></span>
                                                             <span class="custom-control-description">
                                                                 تنظیمات پیش فرض
@@ -143,100 +160,109 @@
                                             <form action="@Url.Action(MVC.Company.Router.ActionNames.RestoreRouter)">
                                                 @Html.AntiForgeryToken()
                                                 <h4 class="form-section"><i class="icon-reload"></i>بازگردانی روتر</h4>
-                                                توجه: ممکن است پس از ریست سامانه دیگر قادر به اتصال به روتر شما نباشد.لطفا با پشتیبان شبکه خود تماس بگیرید.
-                                                <center>
-                                                    <input name="reset" id="reset" />لطفا کلمه"yes" را تایپ کنید.
+                                                بازگردانی روتر ممکن است باعث شود سامانه دیگر قادر به اتصال به روتر نباشد.
+                                                فقط بک آپ گیری هایی که توسط سامانه گرفته شده است نمایش داده می شود.
+                                                <div class="col-md-12">
+                                                    <label class="font-noraml">انتخاب بک آپ</label>
+                                                    <select name="RestoreRouter" data-placeholder="انتخاب بک آپ" class="selectize-select" style="min-width:350px;" tabindex="2">
+                                                        @foreach (var item in ViewBag.RestoreRouter)
+                                                        {
+                                                            <option value="@item.Name">@item.Name</option>
+                                                        }
+                                                    </select>
+                                                </div>
+                                                <div style="direction:ltr;">
                                                     <button class="btn btn-outline-primary" type="submit">
                                                         <i class="icon-reload"></i> Restore Router
                                                     </button>
-                                                </center>
+                                                </div>
                                             </form>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                            <div class="row">
-                                <div class="col-lg-4 col-md-12">
-                                    <div class="card">
-                                        <div class="card-body">
-                                            <div class="card-block">
-                                                <form action="@Url.Action(MVC.Company.Router.ActionNames.ResetRouter)">
-                                                    @Html.AntiForgeryToken()
-                                                    <h4 class="form-section"><i class="icon-android-alert"></i>ریست یوزرمنیجر</h4>
-                                                    توجه: در صورتی که از این قسمت اطلاعی ندارید لطفا با پشتیبان خود تماس بگیرید.
-                                                    این سامانه به صورت خودکار قبل از ریست کردن بک آپ تهیه می کند.
+                        <div class="row">
+                            <div class="col-lg-4 col-md-12">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <div class="card-block">
+                                            <form action="@Url.Action(MVC.Company.Router.ActionNames.ResetUsermanager)">
+                                                @Html.AntiForgeryToken()
+                                                <h4 class="form-section"><i class="icon-android-alert"></i>ریست یوزرمنیجر</h4>
+                                                توجه: در صورتی که از این قسمت اطلاعی ندارید لطفا با پشتیبان خود تماس بگیرید.
+                                                این سامانه به صورت خودکار قبل از ریست کردن بک آپ تهیه می کند.
+                                                <br />
+                                                <br /><br />
+                                                <div class="col-md-6">
                                                     <br />
-                                                    <br /><br />
-                                                    <div class="col-md-6">
-                                                        <br />
-                                                        <div class="controls">
-                                                            <label class="custom-control custom-checkbox">
-                                                                <input type="checkbox" class="custom-control-input" id="nodefualt" name="nodefualt" />
-                                                                <span class="custom-control-indicator"></span>
-                                                                <span class="custom-control-description">
-                                                                   پاک کردن لاگ ها
-                                                                </span>
-                                                            </label>
-                                                        </div>
+                                                    <div class="controls">
+                                                        <label class="custom-control custom-checkbox">
+                                                            <input type="checkbox" class="custom-control-input" id="nodefualt" name="nodefualt" />
+                                                            <span class="custom-control-indicator"></span>
+                                                            <span class="custom-control-description">
+                                                                پاک کردن لاگ ها
+                                                            </span>
+                                                        </label>
                                                     </div>
-                                                    <div class="col-md-6">
-                                                        <br />
-                                                        <div class="controls">
-                                                            <label class="custom-control custom-checkbox">
-                                                                <input type="checkbox" class="custom-control-input" id="nodefualt" name="nodefualt" />
-                                                                <span class="custom-control-indicator"></span>
-                                                                <span class="custom-control-description">
-                                                                    پاک کردن یوزرها
-                                                                </span>
-                                                            </label>
-                                                        </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <br />
+                                                    <div class="controls">
+                                                        <label class="custom-control custom-checkbox">
+                                                            <input type="checkbox" class="custom-control-input" id="nodefualt" name="nodefualt" />
+                                                            <span class="custom-control-indicator"></span>
+                                                            <span class="custom-control-description">
+                                                                پاک کردن یوزرها
+                                                            </span>
+                                                        </label>
                                                     </div>
-                                                    <div class="col-md-6">
-                                                        <br />
-                                                        <div class="controls">
-                                                            <label class="custom-control custom-checkbox">
-                                                                <input type="checkbox" class="custom-control-input" id="nodefualt" name="nodefualt" />
-                                                                <span class="custom-control-indicator"></span>
-                                                                <span class="custom-control-description">
-                                                                    پاک کردن سشن ها
-                                                                </span>
-                                                            </label>
-                                                        </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <br />
+                                                    <div class="controls">
+                                                        <label class="custom-control custom-checkbox">
+                                                            <input type="checkbox" class="custom-control-input" id="nodefualt" name="nodefualt" />
+                                                            <span class="custom-control-indicator"></span>
+                                                            <span class="custom-control-description">
+                                                                پاک کردن سشن ها
+                                                            </span>
+                                                        </label>
                                                     </div>
-                                                    <div class="col-md-6">
-                                                        <br />
-                                                        <div class="controls">
-                                                            <label class="custom-control custom-checkbox">
-                                                                <input type="checkbox" class="custom-control-input" id="nodefualt" name="nodefualt" />
-                                                                <span class="custom-control-indicator"></span>
-                                                                <span class="custom-control-description">
-                                                                    پاک کردن کل دیتابیس(بجز لاگ)
-                                                                </span>
-                                                            </label>
-                                                        </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <br />
+                                                    <div class="controls">
+                                                        <label class="custom-control custom-checkbox">
+                                                            <input type="checkbox" class="custom-control-input" id="nodefualt" name="nodefualt" />
+                                                            <span class="custom-control-indicator"></span>
+                                                            <span class="custom-control-description">
+                                                                پاک کردن کل دیتابیس(بجز لاگ)
+                                                            </span>
+                                                        </label>
                                                     </div>
-                                                    <div class="col-md-6">
-                                                        <div class="form-group has-icon-left">
-                                                            بنویسید "yes"
-                                                            <div class="position-relative has-icon-left">
-                                                                <input name="reset" id="reset" class="form-control" />
-                                                                <div class="form-control-position">
-                                                                    <i class="icon-ei-pencil"></i>
-                                                                </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="form-group has-icon-left">
+                                                        بنویسید "yes"
+                                                        <div class="position-relative has-icon-left">
+                                                            <input name="reset" id="reset" class="form-control" />
+                                                            <div class="form-control-position">
+                                                                <i class="icon-ei-pencil"></i>
                                                             </div>
                                                         </div>
                                                     </div>
-                                                    <div style="direction:ltr;">
-                                                        <button class="btn btn-outline-primary danger" type="submit">
-                                                            <i class="icon-alert"></i> Reset
-                                                        </button>
-                                                    </div>
-                                                </form>
-                                            </div>
+                                                </div>
+                                                <div style="direction:ltr;">
+                                                    <button class="btn btn-outline-primary danger" type="submit">
+                                                        <i class="icon-alert"></i> Reset
+                                                    </button>
+                                                </div>
+                                            </form>
                                         </div>
                                     </div>
                                 </div>
+                            </div>
                             <div class="col-lg-4 col-md-12">
                                 <div class="card">
                                     <div class="card-body">
@@ -261,13 +287,22 @@
                                             <form action="@Url.Action(MVC.Company.Router.ActionNames.RestoreUsermanager)">
                                                 @Html.AntiForgeryToken()
                                                 <h4 class="form-section"><i class="icon-reload"></i>بازگردانی یوزرمنیجر</h4>
-                                                توجه: ممکن است پس از ریست سامانه دیگر قادر به اتصال به روتر شما نباشد.لطفا با پشتیبان شبکه خود تماس بگیرید.
-                                                <center>
-                                                    <input name="reset" id="reset" />لطفا کلمه"yes" را تایپ کنید.
+                                                بازگردانی دیتابیس یوزرمنیجر باعث می شود تمامی لاگ ها و یوزرها به حالت بک آپ مورد نظر بازگردند.
+                                                <div class="col-md-12">
+                                                    <label class="font-noraml">انتخاب بک آپ</label>
+                                                    <select name="RestoreUsermanager" data-placeholder="انتخاب بک آپ" class="selectize-select" style="min-width:350px;" tabindex="2">
+                                                        @*@foreach (var item in ViewBag.RestoreRouter)
+                                                        {
+                                                            <option value="@item.name">@item.name</option>
+                                                        }*@
+                                                        <option value="بک آپ یک">بک آپ یک</option>
+                                                    </select>
+                                                </div>
+                                                <div style="direction:ltr;">
                                                     <button class="btn btn-outline-primary" type="submit">
                                                         <i class="icon-reload"></i> Restore UserManager
                                                     </button>
-                                                </center>
+                                                </div>
                                             </form>
                                         </div>
                                     </div>

@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using Netotik.ViewModels.Mikrotik;
+using PersianDate;
 
 namespace Netotik.Services.Implement
 {
@@ -1054,23 +1055,272 @@ namespace Netotik.Services.Implement
         #endregion
 
         #region Other
-        public bool ResetUsermanager(string ip, int port, string user, string pass, bool users, bool logs, bool session, bool history, bool packages)
+        public bool ResetUsermanager(string ip, int port, string user, string pass, bool users, bool logs, bool session, bool history, bool packages,bool db)
         {
             var mikrotik = new MikrotikAPI();
             mikrotik.MK(ip, port);
             if (!mikrotik.Login(user, pass)) mikrotik.Close();
             //-----------------------------------------------
             var temp = "";
-            mikrotik.Send("/system/backup/save");
-            temp = String.Format("=name='beforeXresetX{0}'", DateTime.Now);
-            mikrotik.Send(temp);
-            mikrotik.Send("dont-encrypt=yes", true);
-            mikrotik.Send("/system/reset-configuration");
-            //if (keepusers)
-                mikrotik.Send("keep-users=yes");
-            //if (nosettings)
-                mikrotik.Send("no-defaults=yes");
-            mikrotik.Send("yes", true);
+            mikrotik.Send("/tool/user-manager/database/save");
+            temp = ConvertDate.ToFa(DateTime.Now, "yyyy-MM-dd ").ToString() + " " + ConvertDate.ToFa(DateTime.Now, "T").ToString();
+            temp = String.Format("=name=\"Netotik.({0}).UsermanagerReset\"", temp);
+            mikrotik.Send(temp,true);
+            mikrotik.Send("/tool/user-manager/database/save-logs");
+            temp = ConvertDate.ToFa(DateTime.Now, "yyyy-MM-dd ").ToString() + " " + ConvertDate.ToFa(DateTime.Now, "T").ToString();
+            temp = String.Format("=name=\"Netotik.({0}).UsermanagerResetLog\"", temp);
+            mikrotik.Send(temp, true);
+            //------------------------------------------------
+            if (logs)
+            {
+                mikrotik.Send("/tool/user-manager/database/clear-log");
+                mikrotik.Send("yes", true);
+            }
+            if (db)
+            {
+                mikrotik.Send("/tool/user-manager/database/clear");
+                mikrotik.Send("yes", true);
+            }
+            if (history)
+            {
+                mikrotik.Send("/tool/user-manager/history/clear");
+                mikrotik.Send("yes", true);
+            }
+            var count = 0;
+            if (packages)
+            {
+                mikrotik.Send("/tool/user-manager/profile/print");
+                mikrotik.Send("=count-only", true);
+                var tep = mikrotik.Read();
+                mikrotik.Send("/tool/user-manager/profile/print");
+                mikrotik.Send("?count-only", true);
+                tep = mikrotik.Read();
+                mikrotik.Send("/tool/user-manager/profile/print");
+                mikrotik.Send("=count-only=", true);
+                tep = mikrotik.Read();
+                mikrotik.Send("/tool/user-manager/profile/print");
+                mikrotik.Send("?count-only=", true);
+                tep = mikrotik.Read();
+                mikrotik.Send("/tool/user-manager/profile/print");
+                mikrotik.Send("=count-only=yes", true);
+                tep = mikrotik.Read();
+                mikrotik.Send("/tool/user-manager/profile/print");
+                mikrotik.Send("?count-only=yes", true);
+                tep = mikrotik.Read();
+                foreach (var item in tep)
+                {
+                    var cols = item.Split('=');
+                    var ColumnList = new Dictionary<string, string>();
+                    for (int i = 1; i < cols.Count(); i += 2)
+                    {
+                        ColumnList.Add(cols[i], cols[i + 1]);
+                    }
+                    count = Int32.Parse(ColumnList.Any(x => x.Key == "ret") ? (ColumnList.FirstOrDefault(x => x.Key == "ret").Value) : "");
+                }
+                for (int i = 0;i<count;i++)
+                {
+                    mikrotik.Send("/tool/user-manager/profile/remove");
+                    temp = String.Format("=numbers={0}", i);
+                    mikrotik.Send(temp, true);
+                }
+                mikrotik.Send("/tool/user-manager/profile/limitation/print");
+                mikrotik.Send("=count-only", true);
+                tep = mikrotik.Read();
+                mikrotik.Send("/tool/user-manager/profile/limitation/print");
+                mikrotik.Send("?count-only", true);
+                tep = mikrotik.Read();
+                mikrotik.Send("/tool/user-manager/profile/limitation/print");
+                mikrotik.Send("=count-only=", true);
+                tep = mikrotik.Read();
+                mikrotik.Send("/tool/user-manager/profile/limitation/print");
+                mikrotik.Send("?count-only=", true);
+                tep = mikrotik.Read();
+                mikrotik.Send("/tool/user-manager/profile/limitation/print");
+                mikrotik.Send("=count-only=yes", true);
+                tep = mikrotik.Read();
+                mikrotik.Send("/tool/user-manager/profile/limitation/print");
+                mikrotik.Send("?count-only=yes", true);
+                tep = mikrotik.Read();
+                foreach (var item in tep)
+                {
+                    var cols = item.Split('=');
+                    var ColumnList = new Dictionary<string, string>();
+                    for (int i = 1; i < cols.Count(); i += 2)
+                    {
+                        ColumnList.Add(cols[i], cols[i + 1]);
+                    }
+                    count = Int32.Parse(ColumnList.Any(x => x.Key == "ret") ? (ColumnList.FirstOrDefault(x => x.Key == "ret").Value) : "");
+                }
+                for (int i = 0; i < count; i++)
+                {
+                    mikrotik.Send("/tool/user-manager/profile/limitation/remove");
+                    temp = String.Format("=numbers={0}", i);
+                    mikrotik.Send(temp, true);
+                }
+
+                mikrotik.Send("/tool/user-manager/profile/profile-limitation/print");
+                mikrotik.Send("=count-only", true);
+                tep = mikrotik.Read();
+                mikrotik.Send("/tool/user-manager/profile/profile-limitation/print");
+                mikrotik.Send("?count-only", true);
+                tep = mikrotik.Read();
+                mikrotik.Send("/tool/user-manager/profile/profile-limitation/print");
+                mikrotik.Send("=count-only=", true);
+                tep = mikrotik.Read();
+                mikrotik.Send("/tool/user-manager/profile/profile-limitation/print");
+                mikrotik.Send("?count-only=", true);
+                tep = mikrotik.Read();
+                mikrotik.Send("/tool/user-manager/profile/profile-limitation/print");
+                mikrotik.Send("=count-only=yes", true);
+                tep = mikrotik.Read();
+                mikrotik.Send("/tool/user-manager/profile/profile-limitation/print");
+                mikrotik.Send("?count-only=yes", true);
+                tep = mikrotik.Read();
+                foreach (var item in tep)
+                {
+                    var cols = item.Split('=');
+                    var ColumnList = new Dictionary<string, string>();
+                    for (int i = 1; i < cols.Count(); i += 2)
+                    {
+                        ColumnList.Add(cols[i], cols[i + 1]);
+                    }
+                    count = Int32.Parse(ColumnList.Any(x => x.Key == "ret") ? (ColumnList.FirstOrDefault(x => x.Key == "ret").Value) : "");
+                }
+                for (int i = 0; i < count; i++)
+                {
+                    mikrotik.Send("/tool/user-manager/profile/profile-limitation/remove");
+                    temp = String.Format("=numbers={0}", i);
+                    mikrotik.Send(temp, true);
+                }
+
+            }
+            if (users)
+            {
+                mikrotik.Send("/tool/user-manager/user/print");
+                mikrotik.Send("=count-only", true);
+                var tep = mikrotik.Read();
+                mikrotik.Send("/tool/user-manager/user/print");
+                mikrotik.Send("?count-only", true);
+                tep = mikrotik.Read();
+                mikrotik.Send("/tool/user-manager/user/print");
+                mikrotik.Send("=count-only=", true);
+                tep = mikrotik.Read();
+                mikrotik.Send("/tool/user-manager/user/print");
+                mikrotik.Send("?count-only=", true);
+                tep = mikrotik.Read();
+                mikrotik.Send("/tool/user-manager/user/print");
+                mikrotik.Send("=count-only=yes", true);
+                tep = mikrotik.Read();
+                mikrotik.Send("/tool/user-manager/user/print");
+                mikrotik.Send("?count-only=yes", true);
+                tep = mikrotik.Read();
+                foreach (var item in tep)
+                {
+                    var cols = item.Split('=');
+                    var ColumnList = new Dictionary<string, string>();
+                    for (int i = 1; i < cols.Count(); i += 2)
+                    {
+                        ColumnList.Add(cols[i], cols[i + 1]);
+                    }
+                    count = Int32.Parse(ColumnList.Any(x => x.Key == "ret") ? (ColumnList.FirstOrDefault(x => x.Key == "ret").Value) : "");
+                }
+                for (int i = 0; i < count; i++)
+                {
+                    mikrotik.Send("/tool/user-manager/user/remove");
+                    temp = String.Format("=numbers={0}", i);
+                    mikrotik.Send(temp, true);
+                }
+            }
+            if (session)
+            {
+                mikrotik.Send("/tool/user-manager/session/print");
+                mikrotik.Send("=count-only", true);
+                var tep = mikrotik.Read();
+                mikrotik.Send("/tool/user-manager/session/print");
+                mikrotik.Send("?count-only", true);
+                tep = mikrotik.Read();
+                mikrotik.Send("/tool/user-manager/session/print");
+                mikrotik.Send("=count-only=", true);
+                tep = mikrotik.Read();
+                mikrotik.Send("/tool/user-manager/session/print");
+                mikrotik.Send("?count-only=", true);
+                tep = mikrotik.Read();
+                mikrotik.Send("/tool/user-manager/session/print");
+                mikrotik.Send("=count-only=yes", true);
+                tep = mikrotik.Read();
+                mikrotik.Send("/tool/user-manager/session/print");
+                mikrotik.Send("?count-only=yes", true);
+                tep = mikrotik.Read();
+                foreach (var item in tep)
+                {
+                    var cols = item.Split('=');
+                    var ColumnList = new Dictionary<string, string>();
+                    for (int i = 1; i < cols.Count(); i += 2)
+                    {
+                        ColumnList.Add(cols[i], cols[i + 1]);
+                    }
+                    count = Int32.Parse(ColumnList.Any(x => x.Key == "ret") ? (ColumnList.FirstOrDefault(x => x.Key == "ret").Value) : "");
+                }
+                for (int i = 0; i < count; i++)
+                {
+                    mikrotik.Send("/tool/user-manager/session/remove");
+                    temp = String.Format("=numbers={0}", i);
+                    mikrotik.Send(temp, true);
+                }
+            }
+            return true;
+
+        }
+        public bool RemoveLogs(string ip, int port, string user, string pass)
+        {
+            var mikrotik = new MikrotikAPI();
+            mikrotik.MK(ip, port);
+            if (!mikrotik.Login(user, pass)) mikrotik.Close();
+            //-----------------------------------------------
+            mikrotik.Send("/system/logging/action/add");
+            mikrotik.Send("=name=NetotikLog");
+            mikrotik.Send("=memory-lines=1");
+            mikrotik.Send("=target=memory",true);
+            mikrotik.Read();
+            mikrotik.Send("/system/logging/print", true);
+            var LoggingList = mikrotik.Read();
+            foreach(var item in LoggingList)
+            {
+                if (item != "!done")
+                {
+                    var cols = item.Split('=');
+                    var ColumnList = new Dictionary<string, string>();
+                    for (int i = 1; i < cols.Count(); i += 2)
+                    {
+                        ColumnList.Add(cols[i], cols[i + 1]);
+                    }
+                    mikrotik.Send("/system/logging/set");
+                    var temp = String.Format("=.id={0}", ColumnList.Any(x => x.Key == ".id") ? (ColumnList.FirstOrDefault(x => x.Key == ".id").Value) : "".ToString());
+                    mikrotik.Send(temp);
+                    mikrotik.Send("=action=NetotikLog", true);
+                }
+            }
+            foreach (var item in LoggingList)
+            {
+                if (item != "!done")
+                {
+                    var cols = item.Split('=');
+                    var ColumnList = new Dictionary<string, string>();
+                    for (int i = 1; i < cols.Count(); i += 2)
+                    {
+                        ColumnList.Add(cols[i], cols[i + 1]);
+                    }
+                    var LastAction = ColumnList.Any(x => x.Key == "action") ? (ColumnList.FirstOrDefault(x => x.Key == "action").Value) : "".ToString();
+                    mikrotik.Send("/system/logging/set");
+                    var temp = String.Format("=.id={0}", ColumnList.Any(x => x.Key == ".id") ? (ColumnList.FirstOrDefault(x => x.Key == ".id").Value) : "".ToString());
+                    mikrotik.Send(temp);
+                    temp = String.Format("=action={0}", LastAction);
+                    mikrotik.Send(temp, true);
+                }
+            }
+            mikrotik.Send("/system/logging/action/remove");
+            mikrotik.Send("?name=NetotikLog",true);
+
             return true;
 
         }
@@ -1082,7 +1332,8 @@ namespace Netotik.Services.Implement
             //-----------------------------------------------
             var temp = "";
             mikrotik.Send("/system/backup/save");
-            temp = String.Format("=name='beforeXresetX{0}'", DateTime.Now);
+            temp = ConvertDate.ToFa(DateTime.Now, "yyyy-MM-dd ").ToString() + " " + ConvertDate.ToFa(DateTime.Now, "T").ToString();
+            temp = String.Format("=name=\"Netotik.({0}).RouterReset\"", temp);
             mikrotik.Send(temp);
             mikrotik.Send("dont-encrypt=yes",true);
             mikrotik.Send("/system/reset-configuration");
@@ -1091,6 +1342,22 @@ namespace Netotik.Services.Implement
             if (nosettings)
                 mikrotik.Send("no-defaults=yes");
             mikrotik.Send("yes", true);
+            return true;
+
+        }
+
+        public bool BackupRouter(string ip, int port, string user, string pass)
+        {
+            var mikrotik = new MikrotikAPI();
+            mikrotik.MK(ip, port);
+            if (!mikrotik.Login(user, pass)) mikrotik.Close();
+            //-----------------------------------------------
+            var temp = "";
+            mikrotik.Send("/system/backup/save");
+            temp = ConvertDate.ToFa(DateTime.Now, "yyyy-MM-dd ").ToString() + " "+ ConvertDate.ToFa(DateTime.Now, "T").ToString();
+            temp = String.Format("=name=\"Netotik.({0}).Router\"", temp);
+            mikrotik.Send(temp);
+            mikrotik.Send("dont-encrypt=yes", true);
             return true;
 
         }
@@ -1105,6 +1372,51 @@ namespace Netotik.Services.Implement
             mikrotik.Send("yes",true);
             return true;
 
+        }
+        public void RestoreRouter(string r_Host, int r_Port, string r_User, string r_Password, string FileName)
+        {
+            var mikrotik = new MikrotikAPI();
+            mikrotik.MK(r_Host, r_Port);
+            if (!mikrotik.Login(r_User, r_Password)) mikrotik.Close();
+            //-----------------------------------------------
+            var temp = "";
+            mikrotik.Send("/system/backup/load");
+            temp = String.Format("=name='{0}'", FileName);
+            mikrotik.Send(temp,true);
+        }
+        public List<Router_FileModel> GetBackupRouterList(string r_Host, int r_Port, string r_User, string r_Password)
+        {
+            var mikrotik = new MikrotikAPI();
+            mikrotik.MK(r_Host, r_Port);
+            if (!mikrotik.Login(r_User, r_Password)) mikrotik.Close();
+            //-----------------------------------------------
+            mikrotik.Send("/file/print", true);
+            var Router_File = new List<Router_FileModel>();
+            var list = mikrotik.Read();
+            foreach (var item in list)
+            {
+                if (item != "!done")
+                {
+                    var cols = item.Split('=');
+                    var ColumnList = new Dictionary<string, string>();
+                    for (int i = 1; i < 9; i += 2)
+                    {
+                        ColumnList.Add(cols[i], cols[i + 1]);
+                    }
+                    if ((ColumnList.Any(x => x.Key == "type") ? (ColumnList.FirstOrDefault(x => x.Key == "type").Value) : "")== "backup")
+                    {
+                        Router_File.Add(new Router_FileModel()
+                        {
+                            CreateTime = ColumnList.Any(x => x.Key == "creation-time") ? (ColumnList.FirstOrDefault(x => x.Key == "creation-time").Value) : "",
+                            Name = ColumnList.Any(x => x.Key == "name") ? (ColumnList.FirstOrDefault(x => x.Key == "name").Value) : "",
+                            Size = ColumnList.Any(x => x.Key == "size") ? (ColumnList.FirstOrDefault(x => x.Key == "size").Value) : "",
+                            Type = ColumnList.Any(x => x.Key == "type") ? (ColumnList.FirstOrDefault(x => x.Key == "type").Value) : ""
+                        });
+                    }
+
+                }
+            }
+            return Router_File;
         }
         public bool IP_Port_Check(string ip, int port, string user, string pass)
         {
@@ -1182,11 +1494,6 @@ namespace Netotik.Services.Implement
                 return false;
             }
         }
-
-
-
-
-
 
         #endregion
 

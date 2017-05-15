@@ -90,6 +90,7 @@
     <Compile Include="Identity\UserCompany\CompanyAddModel.cs" />
     <Compile Include="Identity\UserCompany\CompanyEditModel.cs" />
     <Compile Include="Identity\UserReseller\UserItem.cs" />
+    <Compile Include="Mikrotik\Router\RouterFileModel.cs" />
     <Compile Include="Mikrotik\Router\ClockModel.cs" />
     <Compile Include="Mikrotik\Router\EthernetModel.cs" />
     <Compile Include="Mikrotik\Router\IdentityModel.cs" />
