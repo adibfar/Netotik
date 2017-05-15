@@ -99,7 +99,7 @@
                                     @if (Model.Update_status.Contains("New"))
                                     {
                                         <span class="fa fa-toggle-up">
-                                            <a href="@Url.Action(MVC.Company.Router.ActionNames.Info_Update)">
+                                            <a href="@Url.Action(MVC.Company.Router.ActionNames.UpdateRouter)">
                                                 بروزرسانی به
                                                 @Model.Latest_version
                                             </a>
@@ -108,7 +108,7 @@
                                     else
                                     {
                                         <span class="fa fa-check">
-                                            بروزرسانی ها نصب می باشد  <a href="@Url.Action(MVC.Company.Router.ActionNames.Check_Update)">  چک کردن  </a>
+                                            بروزرسانی ها نصب می باشد  <a href="@Url.Action(MVC.Company.Router.ActionNames.UpdateRouterCheck)">  چک کردن  </a>
                                         </span>
                                     }
                                 </span>
