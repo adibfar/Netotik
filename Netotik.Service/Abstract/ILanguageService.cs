@@ -2,7 +2,7 @@
 using Netotik.Common.DataTables;
 using Netotik.Domain.Entity;
 using Netotik.Services.Enums;
-using Netotik.ViewModels.Common.Resource;
+using Netotik.ViewModels.Common.Language;
 using System;
 using System.Collections.Generic;
 using System.Linq;

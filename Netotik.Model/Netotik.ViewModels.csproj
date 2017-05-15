@@ -73,6 +73,7 @@
     <Compile Include="Common\ContactUs\MessageItem.cs" />
     <Compile Include="Common\Error\ErrorInfo.cs" />
     <Compile Include="Common\Language\LanguageItem.cs" />
+    <Compile Include="Common\Language\ResourceModel.cs" />
     <Compile Include="Common\Language\LanguageModel.cs" />
     <Compile Include="Identity\Account\ActivationEmailViewModel.cs" />
     <Compile Include="Identity\Account\ChangePasswordViewModel.cs" />

@@ -1,15 +1,14 @@
 ﻿@model IList<Netotik.Domain.Entity.Language>
-@using Netotik.Common.Controller
 @{
-    //var IsIr = CultureHelper.GetDefaultCulture() == CultureHelper.GetCurrentCulture() ? true : false;
     var lang = Model.First(x => x.UniqueSeoCode == ViewContext.RouteData.Values["lang"].ToString());
 }
 <a class="dropdown-toggle no-text-underline" data-toggle="dropdown" href="#">
     @lang.Name<img class="flag-lang" src="~/Content/images/flags/@lang.FlagImageFileName" width="16" height="11" alt="lang" />
 </a>
-@foreach (var item in Model.Where(x => x.Id != lang.Id).OrderBy(x => x.DisplayOrder))
-{
-    <ul class="dropdown-langs dropdown-menu">
+<ul class="dropdown-langs dropdown-menu">
+    @foreach (var item in Model.Where(x => x.Id != lang.Id).OrderBy(x => x.DisplayOrder))
+    {
+
         <li>
             <a tabindex="-1" href="@Url.Action(MVC.Home.ActionNames.Index,MVC.Home.Name,new { lang = item.UniqueSeoCode })">
                 <img class="flag-lang" src="~/Content/images/flags/@item.FlagImageFileName" width="16" height="11" alt="lang" />
@@ -17,5 +16,6 @@
             </a>
         </li>
 
-    </ul>
-}
+
+    }
+</ul>

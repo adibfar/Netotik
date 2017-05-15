@@ -64,6 +64,30 @@ namespace Netotik.Web.Areas.Admin.Controllers
         }
         [NonAction]
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public virtual System.Web.Mvc.ActionResult Edit()
+        {
+            return new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Edit);
+        }
+        [NonAction]
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public virtual System.Web.Mvc.ActionResult Resources()
+        {
+            return new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Resources);
+        }
+        [NonAction]
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public virtual System.Web.Mvc.JsonResult GetResourceList()
+        {
+            return new T4MVC_System_Web_Mvc_JsonResult(Area, Name, ActionNames.GetResourceList);
+        }
+        [NonAction]
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public virtual System.Web.Mvc.ActionResult EditResource()
+        {
+            return new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.EditResource);
+        }
+        [NonAction]
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public virtual System.Web.Mvc.ActionResult RedirectToLocal()
         {
             return new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.RedirectToLocal);
@@ -86,6 +110,12 @@ namespace Netotik.Web.Areas.Admin.Controllers
         {
             public readonly string Index = "Index";
             public readonly string GetList = "GetList";
+            public readonly string Create = "Create";
+            public readonly string Remove = "Remove";
+            public readonly string Edit = "Edit";
+            public readonly string Resources = "Resources";
+            public readonly string GetResourceList = "GetResourceList";
+            public readonly string EditResource = "EditResource";
             public readonly string RedirectToLocal = "RedirectToLocal";
         }
 
@@ -94,6 +124,12 @@ namespace Netotik.Web.Areas.Admin.Controllers
         {
             public const string Index = "Index";
             public const string GetList = "GetList";
+            public const string Create = "Create";
+            public const string Remove = "Remove";
+            public const string Edit = "Edit";
+            public const string Resources = "Resources";
+            public const string GetResourceList = "GetResourceList";
+            public const string EditResource = "EditResource";
             public const string RedirectToLocal = "RedirectToLocal";
         }
 
@@ -105,6 +141,60 @@ namespace Netotik.Web.Areas.Admin.Controllers
         public class ActionParamsClass_GetList
         {
             public readonly string model = "model";
+        }
+        static readonly ActionParamsClass_Create s_params_Create = new ActionParamsClass_Create();
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public ActionParamsClass_Create CreateParams { get { return s_params_Create; } }
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public class ActionParamsClass_Create
+        {
+            public readonly string model = "model";
+            public readonly string actionType = "actionType";
+        }
+        static readonly ActionParamsClass_Remove s_params_Remove = new ActionParamsClass_Remove();
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public ActionParamsClass_Remove RemoveParams { get { return s_params_Remove; } }
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public class ActionParamsClass_Remove
+        {
+            public readonly string id = "id";
+        }
+        static readonly ActionParamsClass_Edit s_params_Edit = new ActionParamsClass_Edit();
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public ActionParamsClass_Edit EditParams { get { return s_params_Edit; } }
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public class ActionParamsClass_Edit
+        {
+            public readonly string id = "id";
+            public readonly string model = "model";
+            public readonly string actionType = "actionType";
+        }
+        static readonly ActionParamsClass_Resources s_params_Resources = new ActionParamsClass_Resources();
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public ActionParamsClass_Resources ResourcesParams { get { return s_params_Resources; } }
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public class ActionParamsClass_Resources
+        {
+            public readonly string Id = "Id";
+        }
+        static readonly ActionParamsClass_GetResourceList s_params_GetResourceList = new ActionParamsClass_GetResourceList();
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public ActionParamsClass_GetResourceList GetResourceListParams { get { return s_params_GetResourceList; } }
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public class ActionParamsClass_GetResourceList
+        {
+            public readonly string model = "model";
+            public readonly string Id = "Id";
+        }
+        static readonly ActionParamsClass_EditResource s_params_EditResource = new ActionParamsClass_EditResource();
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public ActionParamsClass_EditResource EditResourceParams { get { return s_params_EditResource; } }
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public class ActionParamsClass_EditResource
+        {
+            public readonly string id = "id";
+            public readonly string model = "model";
+            public readonly string actionType = "actionType";
         }
         static readonly ActionParamsClass_RedirectToLocal s_params_RedirectToLocal = new ActionParamsClass_RedirectToLocal();
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -124,7 +214,21 @@ namespace Netotik.Web.Areas.Admin.Controllers
             public _ViewNamesClass ViewNames { get { return s_ViewNames; } }
             public class _ViewNamesClass
             {
+                public readonly string _Create = "_Create";
+                public readonly string _Edit = "_Edit";
+                public readonly string _EditResource = "_EditResource";
+                public readonly string _TableLanguage = "_TableLanguage";
+                public readonly string _TableResource = "_TableResource";
+                public readonly string Index = "Index";
+                public readonly string IndexResources = "IndexResources";
             }
+            public readonly string _Create = "~/Areas/Admin/Views/Language/_Create.cshtml";
+            public readonly string _Edit = "~/Areas/Admin/Views/Language/_Edit.cshtml";
+            public readonly string _EditResource = "~/Areas/Admin/Views/Language/_EditResource.cshtml";
+            public readonly string _TableLanguage = "~/Areas/Admin/Views/Language/_TableLanguage.cshtml";
+            public readonly string _TableResource = "~/Areas/Admin/Views/Language/_TableResource.cshtml";
+            public readonly string Index = "~/Areas/Admin/Views/Language/Index.cshtml";
+            public readonly string IndexResources = "~/Areas/Admin/Views/Language/IndexResources.cshtml";
         }
     }
 
@@ -154,6 +258,117 @@ namespace Netotik.Web.Areas.Admin.Controllers
             ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "model", model);
             GetListOverride(callInfo, model);
             return callInfo;
+        }
+
+        [NonAction]
+        partial void CreateOverride(T4MVC_System_Web_Mvc_ActionResult callInfo);
+
+        [NonAction]
+        public override System.Web.Mvc.ActionResult Create()
+        {
+            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Create);
+            CreateOverride(callInfo);
+            return callInfo;
+        }
+
+        [NonAction]
+        partial void CreateOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, Netotik.ViewModels.Common.Language.LanguageModel model, Netotik.Common.Controller.ActionType actionType);
+
+        [NonAction]
+        public override System.Threading.Tasks.Task<System.Web.Mvc.ActionResult> Create(Netotik.ViewModels.Common.Language.LanguageModel model, Netotik.Common.Controller.ActionType actionType)
+        {
+            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Create);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "model", model);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "actionType", actionType);
+            CreateOverride(callInfo, model, actionType);
+            return System.Threading.Tasks.Task.FromResult(callInfo as System.Web.Mvc.ActionResult);
+        }
+
+        [NonAction]
+        partial void RemoveOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, int id);
+
+        [NonAction]
+        public override System.Threading.Tasks.Task<System.Web.Mvc.ActionResult> Remove(int id)
+        {
+            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Remove);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "id", id);
+            RemoveOverride(callInfo, id);
+            return System.Threading.Tasks.Task.FromResult(callInfo as System.Web.Mvc.ActionResult);
+        }
+
+        [NonAction]
+        partial void EditOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, int id);
+
+        [NonAction]
+        public override System.Web.Mvc.ActionResult Edit(int id)
+        {
+            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Edit);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "id", id);
+            EditOverride(callInfo, id);
+            return callInfo;
+        }
+
+        [NonAction]
+        partial void EditOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, Netotik.ViewModels.Common.Language.LanguageModel model, Netotik.Common.Controller.ActionType actionType);
+
+        [NonAction]
+        public override System.Threading.Tasks.Task<System.Web.Mvc.ActionResult> Edit(Netotik.ViewModels.Common.Language.LanguageModel model, Netotik.Common.Controller.ActionType actionType)
+        {
+            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Edit);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "model", model);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "actionType", actionType);
+            EditOverride(callInfo, model, actionType);
+            return System.Threading.Tasks.Task.FromResult(callInfo as System.Web.Mvc.ActionResult);
+        }
+
+        [NonAction]
+        partial void ResourcesOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, int Id);
+
+        [NonAction]
+        public override System.Web.Mvc.ActionResult Resources(int Id)
+        {
+            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Resources);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "Id", Id);
+            ResourcesOverride(callInfo, Id);
+            return callInfo;
+        }
+
+        [NonAction]
+        partial void GetResourceListOverride(T4MVC_System_Web_Mvc_JsonResult callInfo, Netotik.Common.DataTables.RequestListModel model, int Id);
+
+        [NonAction]
+        public override System.Web.Mvc.JsonResult GetResourceList(Netotik.Common.DataTables.RequestListModel model, int Id)
+        {
+            var callInfo = new T4MVC_System_Web_Mvc_JsonResult(Area, Name, ActionNames.GetResourceList);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "model", model);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "Id", Id);
+            GetResourceListOverride(callInfo, model, Id);
+            return callInfo;
+        }
+
+        [NonAction]
+        partial void EditResourceOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, int id);
+
+        [NonAction]
+        public override System.Web.Mvc.ActionResult EditResource(int id)
+        {
+            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.EditResource);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "id", id);
+            EditResourceOverride(callInfo, id);
+            return callInfo;
+        }
+
+        [NonAction]
+        partial void EditResourceOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, Netotik.ViewModels.Common.Language.ResourceModel model, Netotik.Common.Controller.ActionType actionType);
+
+        [NonAction]
+        public override System.Threading.Tasks.Task<System.Web.Mvc.ActionResult> EditResource(Netotik.ViewModels.Common.Language.ResourceModel model, Netotik.Common.Controller.ActionType actionType)
+        {
+            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.EditResource);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "model", model);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "actionType", actionType);
+            EditResourceOverride(callInfo, model, actionType);
+            return System.Threading.Tasks.Task.FromResult(callInfo as System.Web.Mvc.ActionResult);
         }
 
         [NonAction]

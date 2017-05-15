@@ -1,10 +1,9 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
-<Language Name="Persian">
+﻿<Language Name="English" Image="us.png" DisplayOrder="2" LanguageCulture = "en-us" Rtl = "false" IsDefault = "false" UniqueSeoCode = "en" >
   <LocaleResource Name="Save">
     <Value>ذخیره</Value>
   </LocaleResource>
   <LocaleResource Name="SaveEdit">
-    <Value>@Netotik.Resources.Captions.SaveEdit</Value>
+    <Value>ذخیره و ادامه ویرایش</Value>
   </LocaleResource>
   <LocaleResource Name="Back">
     <Value>بازگشت</Value>

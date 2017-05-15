@@ -58,7 +58,7 @@ namespace Netotik.Resources.Resources.Abstract
                 }
 
             }
-            catch(Exception ex)
+            catch
             {
                 return name+" not found..";
             }

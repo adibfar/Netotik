@@ -16,8 +16,8 @@ namespace Netotik.Web.Areas.Admin
         {
             context.MapRoute(
                 "Admin_default",
-                "{lang}/Admin/{controller}/{action}/{id}",
-                new { action = "Index", id = UrlParameter.Optional, lang = "fa" },
+                "{lang}/admin/{controller}/{action}/{id}",
+                new { area="admin", action = "Index", id = UrlParameter.Optional, lang = "fa" },
                 new[] { "Netotik.Web.Areas.Admin.Controllers" }
             );
         }

@@ -129,7 +129,7 @@ namespace Netotik.Web.Areas.Admin.Controllers
             {
                 await _uow.SaveChangesAsync();
             }
-            catch (Exception ex)
+            catch
             {
                 this.MessageError(Messages.MissionFail, Messages.AddError);
                 return RedirectToAction(MVC.Admin.Slider.Index());
@@ -221,7 +221,7 @@ namespace Netotik.Web.Areas.Admin.Controllers
             {
                 await _uow.SaveChangesAsync();
             }
-            catch (Exception ex)
+            catch
             {
                 this.MessageError(Messages.MissionFail, Messages.UpdateError);
                 return RedirectToAction(MVC.Admin.Slider.Index());

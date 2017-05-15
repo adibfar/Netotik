@@ -98,7 +98,7 @@ namespace Netotik.Web.Areas.Admin.Controllers
                 await _uow.SaveChangesAsync();
                 ModelState.Clear();
             }
-            catch (Exception ex)
+            catch
             {
                 this.MessageError(Messages.MissionFail, Messages.AddError);
                 return View();
@@ -160,7 +160,7 @@ namespace Netotik.Web.Areas.Admin.Controllers
             {
                 await _uow.SaveChangesAsync();
             }
-            catch (Exception ex)
+            catch
             {
                 this.MessageError(Messages.MissionFail, Messages.UpdateError);
                 return View();

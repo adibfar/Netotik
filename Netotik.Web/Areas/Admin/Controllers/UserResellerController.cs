@@ -87,7 +87,7 @@ namespace Netotik.Web.Areas.Admin.Controllers
 
         [Mvc5Authorize(Roles = AssignableToRolePermissions.CanCreateUser)]
         [BreadCrumb(Title = "نماینده جدید", Order = 1)]
-        public virtual async Task<ActionResult> Create()
+        public virtual ActionResult Create()
         {
             return View();
         }

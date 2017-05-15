@@ -12,7 +12,7 @@ namespace Netotik.AutoMapperProfiles.Extentions
                 {
                     expression.ForMember(property, a => a.Ignore());
                 }
-                catch (System.Exception ex)
+                catch
                 {
                     throw;
                 }

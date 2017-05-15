@@ -13,23 +13,23 @@ namespace Netotik.Web.Infrastructure.Caching
 {
     public class LanguageCache
     {
-        public const string SiteConfigKey = "LanguageConfig";
+        public const string Key = "LanguageConfig";
 
         public static IList<Language> GetLanguages(HttpContextBase httpContext, ILanguageService languageService)
         {
-            var siteConfig = httpContext.CacheRead<List<Language>>(SiteConfigKey);
+            var siteConfig = httpContext.CacheRead<List<Language>>(Key);
 
             if (siteConfig == null)
             {
                 siteConfig = languageService.All().ToList();
-                httpContext.CacheInsert(SiteConfigKey, siteConfig, 360);
+                httpContext.CacheInsert(Key, siteConfig, 360);
             }
             return siteConfig;
         }
 
-        public static void RemoveSiteConfig(HttpContextBase httpContext)
+        public static void RemoveLanguageCache(HttpContextBase httpContext)
         {
-            httpContext.InvalidateCache(SiteConfigKey);
+            httpContext.InvalidateCache(Key);
         }
     }
 }

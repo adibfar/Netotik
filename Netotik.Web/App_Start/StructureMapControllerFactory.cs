@@ -15,7 +15,6 @@ namespace Netotik.Web
     {
         #region Fields
         private readonly IEncryptSettingsProvider _settings;
-        private string _DefaultLanguage = "fa";
         #endregion
 
         #region Ctor

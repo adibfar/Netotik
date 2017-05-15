@@ -49,7 +49,7 @@ namespace Netotik.Web.Areas.Admin.Controllers
                 Netotik.Web.Infrastructure.Caching.PublicUICache.RemoveSiteConfig(HttpContext);
                 this.MessageSuccess(Messages.MissionSuccess, Messages.UpdateSettingSuccess);
             }
-            catch (Exception ex)
+            catch
             {
                 this.MessageError(Messages.MissionFail, Messages.AddError);
                 return View();

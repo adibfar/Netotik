@@ -103,7 +103,7 @@ namespace Netotik.Web.Areas.Admin.Controllers
             {
                 await _uow.SaveChangesAsync();
             }
-            catch (Exception ex)
+            catch
             {
                 this.MessageError(Messages.MissionFail, Messages.AddError);
                 return View();
@@ -134,7 +134,7 @@ namespace Netotik.Web.Areas.Admin.Controllers
         }
 
 
-        public virtual async Task<ActionResult> Edit(int id)
+        public virtual ActionResult Edit(int id)
         {
             var model = _contentCategoryService.SingleOrDefault(id);
             if (model == null) return RedirectToAction(MVC.Admin.ContentCategory.Index());
@@ -171,7 +171,7 @@ namespace Netotik.Web.Areas.Admin.Controllers
             {
                 await _uow.SaveChangesAsync();
             }
-            catch (Exception ex)
+            catch
             {
                 this.MessageError(Messages.MissionFail, Messages.UpdateSuccess);
                 return View();

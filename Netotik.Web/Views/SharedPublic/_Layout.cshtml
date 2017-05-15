@@ -34,9 +34,9 @@
     @Html.Action(MVC.MetaTag.ActionNames.Index, MVC.MetaTag.Name, new { title = ViewBag.Title, keywords = ViewBag.Keywords, description = ViewBag.Description })
     @RenderSection("metatags", false)
     @Styles.Render("~/Content/publiccss")
+    @Html.Action(MVC.Home.HeaderPublicCss())
 
     @RenderSection("Top", false)
-
     <noscript>
         <meta http-equiv="refresh" content="0;url=/NoScript.html">
     </noscript>

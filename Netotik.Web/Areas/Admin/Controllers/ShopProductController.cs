@@ -92,7 +92,7 @@ namespace Netotik.Web.Areas.Admin.Controllers
         [BreadCrumb(Title = "محصول جدید", Order = 1)]
         public virtual async Task<ActionResult> Create()
         {
-            await PopulateCategories();
+            PopulateCategories();
             await LoadManufacturer();
             PopulateDisCountes();
 
@@ -106,8 +106,8 @@ namespace Netotik.Web.Areas.Admin.Controllers
         {
             await LoadManufacturer(model.ManufacturerId);
 
-            if (model.CategoryIds == null) await PopulateCategories();
-            else await PopulateCategories(model.CategoryIds);
+            if (model.CategoryIds == null) PopulateCategories();
+            else PopulateCategories(model.CategoryIds);
 
             if (model.DiscountIds == null) PopulateDisCountes();
             else PopulateDisCountes(model.DiscountIds);
@@ -184,7 +184,7 @@ namespace Netotik.Web.Areas.Admin.Controllers
             {
                 await _uow.SaveChangesAsync();
             }
-            catch (Exception ex)
+            catch
             {
                 this.MessageError(Messages.MissionFail, Messages.AddError);
                 return View();
@@ -238,7 +238,7 @@ namespace Netotik.Web.Areas.Admin.Controllers
             var model = _productService.SingleOrDefault(id);
             if (model == null) return HttpNotFound();
 
-            await PopulateCategories(model.Categories.Select(x => x.Id).ToArray());
+            PopulateCategories(model.Categories.Select(x => x.Id).ToArray());
             await LoadManufacturer(model.ManufacturerId);
 
             PopulateDisCountes(model.Discounts.Select(x => x.Id).ToArray());
@@ -297,8 +297,8 @@ namespace Netotik.Web.Areas.Admin.Controllers
             if (model.DiscountIds == null) PopulateDisCountes();
             else PopulateDisCountes(model.DiscountIds);
 
-            if (model.CategoryIds == null) await PopulateCategories();
-            else await PopulateCategories(model.CategoryIds);
+            if (model.CategoryIds == null) PopulateCategories();
+            else PopulateCategories(model.CategoryIds);
 
 
             if (!ModelState.IsValid)
@@ -376,7 +376,7 @@ namespace Netotik.Web.Areas.Admin.Controllers
             {
                 await _uow.SaveChangesAsync();
             }
-            catch (Exception ex)
+            catch
             {
                 this.MessageError(Messages.MissionFail, Messages.UpdateError);
                 return View();
@@ -406,7 +406,7 @@ namespace Netotik.Web.Areas.Admin.Controllers
                 _productAttributeValueService.AddOrUpdateProductAttributes(values);
                 _uow.SaveChanges();
             }
-            catch (Exception ex)
+            catch
             {
                 this.MessageError(Messages.MissionFail, Messages.AddError);
                 return View(values);
@@ -433,7 +433,7 @@ namespace Netotik.Web.Areas.Admin.Controllers
         }
 
         [NonAction]
-        private async Task PopulateCategories(params int[] selectedIds)
+        private void PopulateCategories(params int[] selectedIds)
         {
             //var list = (await _categoryService.All().Where(x => !x.IsDeleted && x.ParentCategoryId == null).ToListAsync()).Select(x => new
             //ContentCategoryTreeJsModel()

@@ -85,6 +85,9 @@ namespace Netotik.Web.Controllers
             public readonly string Slider = "Slider";
             public readonly string Footer = "Footer";
             public readonly string LanguageSelector = "LanguageSelector";
+            public readonly string HeaderPublicCss = "HeaderPublicCss";
+            public readonly string HeaderPanelCss = "HeaderPanelCss";
+            public readonly string PanelLanguageSelector = "PanelLanguageSelector";
             public readonly string FooterAddress = "FooterAddress";
             public readonly string FooterPopularPost = "FooterPopularPost";
             public readonly string Header = "Header";
@@ -102,6 +105,9 @@ namespace Netotik.Web.Controllers
             public const string Slider = "Slider";
             public const string Footer = "Footer";
             public const string LanguageSelector = "LanguageSelector";
+            public const string HeaderPublicCss = "HeaderPublicCss";
+            public const string HeaderPanelCss = "HeaderPanelCss";
+            public const string PanelLanguageSelector = "PanelLanguageSelector";
             public const string FooterAddress = "FooterAddress";
             public const string FooterPopularPost = "FooterPopularPost";
             public const string Header = "Header";
@@ -221,6 +227,39 @@ namespace Netotik.Web.Controllers
         {
             var callInfo = new T4MVC_System_Web_Mvc_PartialViewResult(Area, Name, ActionNames.LanguageSelector);
             LanguageSelectorOverride(callInfo);
+            return callInfo;
+        }
+
+        [NonAction]
+        partial void HeaderPublicCssOverride(T4MVC_System_Web_Mvc_PartialViewResult callInfo);
+
+        [NonAction]
+        public override System.Web.Mvc.PartialViewResult HeaderPublicCss()
+        {
+            var callInfo = new T4MVC_System_Web_Mvc_PartialViewResult(Area, Name, ActionNames.HeaderPublicCss);
+            HeaderPublicCssOverride(callInfo);
+            return callInfo;
+        }
+
+        [NonAction]
+        partial void HeaderPanelCssOverride(T4MVC_System_Web_Mvc_PartialViewResult callInfo);
+
+        [NonAction]
+        public override System.Web.Mvc.PartialViewResult HeaderPanelCss()
+        {
+            var callInfo = new T4MVC_System_Web_Mvc_PartialViewResult(Area, Name, ActionNames.HeaderPanelCss);
+            HeaderPanelCssOverride(callInfo);
+            return callInfo;
+        }
+
+        [NonAction]
+        partial void PanelLanguageSelectorOverride(T4MVC_System_Web_Mvc_PartialViewResult callInfo);
+
+        [NonAction]
+        public override System.Web.Mvc.PartialViewResult PanelLanguageSelector()
+        {
+            var callInfo = new T4MVC_System_Web_Mvc_PartialViewResult(Area, Name, ActionNames.PanelLanguageSelector);
+            PanelLanguageSelectorOverride(callInfo);
             return callInfo;
         }
 
