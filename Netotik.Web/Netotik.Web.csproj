@@ -349,9 +349,6 @@
     <Compile Include="Admin.OrderNotPaymentController.generated.cs">
       <DependentUpon>T4MVC.tt</DependentUpon>
     </Compile>
-    <Compile Include="Admin.ResourceController.generated.cs">
-      <DependentUpon>T4MVC.tt</DependentUpon>
-    </Compile>
     <Compile Include="Admin.RoleController.generated.cs">
       <DependentUpon>T4MVC.tt</DependentUpon>
     </Compile>
@@ -403,7 +400,6 @@
     <Compile Include="App_Start\StructureMapControllerFactory.cs" />
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
     <Compile Include="Areas\Admin\Controllers\LanguageController.cs" />
-    <Compile Include="Areas\Admin\Controllers\ResourceController.cs" />
     <Compile Include="Areas\Admin\Controllers\TicketTagController.cs" />
     <Compile Include="Areas\Admin\Controllers\TicketController.cs" />
     <Compile Include="Areas\Admin\Controllers\OrderNotPaymentController.cs" />
@@ -463,6 +459,7 @@
     </Compile>
     <Compile Include="Infrastructure\Caching\LanguageCache.cs" />
     <Compile Include="Infrastructure\EnglishConvertDate.cs" />
+    <Compile Include="Infrastructure\HtmlCurrentLanguageExtension.cs" />
     <Compile Include="Infrastructure\HtmlCurrentUserExtension.cs" />
     <Compile Include="HomeController.generated.cs">
       <DependentUpon>T4MVC.tt</DependentUpon>
@@ -524,10 +521,15 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="App_Data\Fa-LocaleStringResource.xml">
+    <Content Include="App_Data\Languages\en.xml">
       <SubType>Designer</SubType>
     </Content>
-    <Content Include="Content\css\my-style.css" />
+    <Content Include="App_Data\Languages\fa.xml">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Content\css\Ltr\app.min.css" />
+    <Content Include="Content\css\Ltr\vendors.min.css" />
+    <Content Include="Content\css\Rtl\my-style.css" />
     <Content Include="Content\images\3.jpg" />
     <Content Include="Content\images\brands\anet.png" />
     <Content Include="Content\images\brands\avatech.png" />
@@ -816,7 +818,7 @@
     <Content Include="Content\images\logo\NetotikLogo.png" />
     <Content Include="Content\images\particles_bg.jpg" />
     <Content Include="Content\js\plugins\tables\datatable\dataTables.persian.txt" />
-    <Content Include="Content\css\app.min.css" />
+    <Content Include="Content\css\Rtl\app.min.css" />
     <Content Include="Content\css\components\buttons\ladda-themeless.min.css" />
     <Content Include="Content\css\components\weather-icons\climacons.min.css" />
     <Content Include="Content\css\plugins\calendars\fullcalendar.min.css" />
@@ -981,7 +983,7 @@
     <Content Include="Content\css\plugins\ui\jquery-ui-slider-pips.min.css" />
     <Content Include="Content\css\plugins\ui\jquery-ui.min.css" />
     <Content Include="Content\css\plugins\ui\prism.min.css" />
-    <Content Include="Content\css\vendors.min.css" />
+    <Content Include="Content\css\Rtl\vendors.min.css" />
     <Content Include="Content\fonts\flag-icon-css\css\flag-icon.min.css" />
     <Content Include="Content\fonts\flag-icon-css\flags\1x1\ad.svg" />
     <Content Include="Content\fonts\flag-icon-css\flags\1x1\ae.svg" />
@@ -3431,7 +3433,6 @@
     <Content Include="Content\css\plugins\extensions\raty\fonts\raty.eot%40" />
     <Content Include="Content\css\plugins\extensions\raty\fonts\raty.ttf" />
     <Content Include="Content\css\plugins\extensions\raty\fonts\raty.woff" />
-    <Content Include="Areas\Admin\Views\Resource\Index.cshtml" />
     <Content Include="Areas\Admin\Views\Home\_ImageProfile.cshtml" />
     <Content Include="Areas\Admin\Views\Home\_ProfileData.cshtml" />
     <Content Include="Areas\Reseller\Views\Home\_ProfileData.cshtml" />
@@ -3472,7 +3473,13 @@
     <Content Include="Areas\Admin\Views\Slider\_Edit.cshtml" />
     <Content Include="Areas\Admin\Views\Slider\_Table.cshtml" />
     <Content Include="Areas\Admin\Views\Slider\Index.cshtml" />
-    <Content Include="Areas\Company\Views\Router\RouterSetting.cshtml" />
+    <Content Include="Areas\Admin\Views\Language\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Language\_Create.cshtml" />
+    <Content Include="Areas\Admin\Views\Language\_Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\Language\_TableLanguage.cshtml" />
+    <Content Include="Areas\Admin\Views\Language\_TableResource.cshtml" />
+    <Content Include="Areas\Admin\Views\Language\IndexResources.cshtml" />
+    <Content Include="Areas\Admin\Views\Language\_EditResource.cshtml" />
     <None Include="Content\fonts\icomoon\icomoon.eot" />
     <Content Include="Content\fonts\icomoon\icomoon.svg" />
     <None Include="Content\fonts\icomoon\icomoon.ttf" />
@@ -3780,6 +3787,9 @@
     <Content Include="Views\ContactUs\Index.cshtml" />
     <Content Include="Views\ContactUs\_SideBar.cshtml" />
     <Content Include="Views\SharedPublic\_LanagaugeSelector.cshtml" />
+    <Content Include="Views\SharedPublic\_HeaderPublicCss.cshtml" />
+    <Content Include="Views\Shared\_HeaderPanelCss.cshtml" />
+    <Content Include="Views\Shared\_LanagaugeSelector.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />

@@ -27,7 +27,7 @@ namespace Netotik.Web
                 .Use(() => appBuilder.GetDataProtectionProvider()));
 
             appBuilder.CreatePerOwinContext(
-                () =>ProjectObjectFactory.Container.GetInstance<ApplicationUserManager>());
+                () => ProjectObjectFactory.Container.GetInstance<ApplicationUserManager>());
 
             appBuilder.UseCookieAuthentication(new CookieAuthenticationOptions
             {
@@ -43,13 +43,24 @@ namespace Netotik.Web
                 }
             });
 
+            var languageService = (Netotik.Services.Abstract.ILanguageService)IocConfig.ProjectObjectFactory.Container.GetInstance(typeof(Netotik.Services.Abstract.ILanguageService));
+            var files = System.IO.Directory.GetFiles(System.Web.Hosting.HostingEnvironment.MapPath("~/App_Data/Languages/"));
+            foreach (var item in files)
+            {
+                languageService.SeedDataBase(System.IO.File.ReadAllText(item));
+            }
+
             ProjectObjectFactory.Container.GetInstance<IApplicationRoleManager>()
            .SeedDatabase();
 
             ProjectObjectFactory.Container.GetInstance<IApplicationUserManager>()
                .SeedDatabase();
 
+
+
+
             appBuilder.UseExternalSignInCookie(DefaultAuthenticationTypes.ExternalCookie);
+
 
             // Enables the application to temporarily store user information when they are verifying the second factor in the two-factor authentication process.
             //appBuilder.UseTwoFactorSignInCookie(DefaultAuthenticationTypes.TwoFactorCookie, TimeSpan.FromMinutes(5));
@@ -59,7 +70,7 @@ namespace Netotik.Web
             // This is similar to the RememberMe option when you log in.
             // appBuilder.UseTwoFactorRememberBrowserCookie(DefaultAuthenticationTypes.TwoFactorRememberBrowserCookie);
 
-           
+
             //appBuilder.UseFacebookAuthentication(
             //   appId: "fdsfdsfs",
             //   appSecret: "fdfsfs");

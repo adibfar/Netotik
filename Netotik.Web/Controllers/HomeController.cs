@@ -130,6 +130,21 @@ namespace Netotik.Web.Controllers
         }
 
 
+        public virtual PartialViewResult HeaderPublicCss()
+        {
+            return PartialView(MVC.SharedPublic.Views._HeaderPublicCss, LanguageCache.GetLanguages(this.HttpContext, _languageService));
+        }
+
+        public virtual PartialViewResult HeaderPanelCss()
+        {
+            return PartialView(MVC.Shared.Views._HeaderPanelCss, LanguageCache.GetLanguages(this.HttpContext, _languageService));
+        }
+
+        public virtual PartialViewResult PanelLanguageSelector()
+        {
+            return PartialView(MVC.Shared.Views._LanagaugeSelector, LanguageCache.GetLanguages(this.HttpContext, _languageService));
+        }
+
         //[OutputCache(Duration = oneDay, VaryByParam = "none")]
         public virtual PartialViewResult FooterAddress()
         {

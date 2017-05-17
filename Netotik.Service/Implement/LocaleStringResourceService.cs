@@ -11,7 +11,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Linq;
 using Netotik.Common.DataTables;
-using Netotik.ViewModels.Common.Resource;
+using Netotik.ViewModels.Common.Language;
 using AutoMapper;
 
 namespace Netotik.Services.Implement
@@ -26,9 +26,11 @@ namespace Netotik.Services.Implement
             _mappingEngine = mappingEngine;
         }
 
-        public IList<ResourceItem> GetList(RequestListModel model, out long TotalCount, out long ShowCount)
+        public IList<ResourceItem> GetList(RequestListModel model, int LanguageId, out long TotalCount, out long ShowCount)
         {
-            IQueryable<LocaleStringResource> all = dbSet.Include(x=>x.Language).AsQueryable();
+            IQueryable<LocaleStringResource> all = dbSet.Where(x => x.LanguageId == LanguageId)
+                .Include(x => x.Language).AsQueryable();
+
             TotalCount = all.LongCount();
 
             // Apply Filtering
@@ -51,12 +53,12 @@ namespace Netotik.Services.Implement
                 {
                     Key = x.Name,
                     Value = x.Value,
-                    Language = x.Language.Name,
+                    Id = x.Id,
                     RowNumber = model.iDisplayStart + index + 1
                 })
                 .ToList();
 
         }
-        
+
     }
 }

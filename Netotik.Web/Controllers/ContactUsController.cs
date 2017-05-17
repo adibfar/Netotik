@@ -58,7 +58,7 @@ namespace Netotik.Web.Controllers
 
                     ModelState.Clear();
                 }
-                catch (Exception ex)
+                catch 
                 {
                 }
 

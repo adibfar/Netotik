@@ -1,9 +1,9 @@
 ﻿@model List<Netotik.Domain.Entity.Menu>
-
 @{
     Layout = null;
+    var language = Html.CurrentLanguage(base.Context, ViewContext.RouteData.Values["lang"].ToString());
 }
-<div id="header"    >
+<div id="header">
 
     <!-- TOP NAV -->
     <header id="topNav">
@@ -15,7 +15,7 @@
             </button>
 
             <!-- Logo -->
-            <a class="logo pull-right" href="@Url.Action(MVC.Home.Index())">
+            <a class="logo @(language.Rtl?"pull-right": "")" href="@Url.Action(MVC.Home.Index())">
                 <img src="~/Content/images/logo/NetotikLogo.png" />
                 <img src="~/Content/images/logo/NetotikLogo.png" />
             </a>
@@ -104,4 +104,3 @@
     </header>
     <!-- /Top Nav -->
 </div>
-    

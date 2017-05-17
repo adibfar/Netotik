@@ -121,7 +121,7 @@ namespace Netotik.Web.Areas.Admin.Controllers
 
 
 
-        public virtual async Task<ActionResult> Edit(int id)
+        public virtual ActionResult Edit(int id)
         {
             var model = _contentCommentService.SingleOrDefault(id);
             if (model == null) return RedirectToAction(MVC.Admin.Comments.Index());
@@ -158,7 +158,7 @@ namespace Netotik.Web.Areas.Admin.Controllers
             {
                 await _uow.SaveChangesAsync();
             }
-            catch (Exception ex)
+            catch
             {
                 this.MessageError(Messages.MissionFail, Messages.UpdateSuccess);
                 return RedirectToAction(MVC.Admin.Comments.Index());
@@ -170,7 +170,7 @@ namespace Netotik.Web.Areas.Admin.Controllers
 
 
 
-        public virtual async Task<ActionResult> Reply(int id)
+        public virtual ActionResult Reply(int id)
         {
             var model = _contentCommentService.SingleOrDefault(id);
             if (model == null) return RedirectToAction(MVC.Admin.Comments.Index());
@@ -217,7 +217,7 @@ namespace Netotik.Web.Areas.Admin.Controllers
             {
                 await _uow.SaveChangesAsync();
             }
-            catch (Exception ex)
+            catch
             {
                 this.MessageError(Messages.MissionFail, Messages.UpdateError);
                 return RedirectToAction(MVC.Admin.Comments.Index());

@@ -1,0 +1,80 @@
+﻿
+<section id="configuration">
+    <div class="col-xs-12">
+        <div class="card">
+            <div class="card-body collapse in">
+                <div class="card-block card-dashboard">
+                    @Html.Partial(MVC.Admin.Language.Views._TableResource)
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<div id="edit-container"></div>
+
+@section DownScript{
+
+    <script type="text/javascript">
+        $(function () {
+            var table = $('#grid').dataTable({
+                "order": [[1, 'asc']],
+                "iDisplayLength": 10,
+                "bProcessing": true,
+                "bStateSave": true,
+                "bServerSide": true,
+                "bFilter": true,
+                "aLengthMenu": [[10, 25, 50, 100], [10, 25, 50, 100]],
+                "bAutoWidth": false,
+                "sAjaxSource": "/admin/language/getresourcelist/@ViewContext.RouteData.Values["Id"]",
+                "fnServerData": function (sSource, aoData, fnCallback) {
+                    $.ajax({
+                        "dataType": 'json',
+                        "type": "POST",
+                        "url": sSource,
+                        "data": aoData,
+                        "success": fnCallback
+                    });
+                },
+                "aoColumnDefs": [
+                    { "bSortable": false, "aTargets": [0] },
+                    { "bSortable": false, "aTargets": [-1] },
+                     {
+                         "targets": -1,
+                         "render": function (data, type, full, meta) {
+                             return '<span class="dropdown">'
+                                 + '<button id="btnSearchDrop2" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" class="btn btn-outline-secondary dropdown-toggle dropdown-menu-right">'
+                                 + '<i class="icon-cog3"></i> پردازش</button>'
+                                 + '<span aria-labelledby="btnSearchDrop2" class="dropdown-menu mt-1 dropdown-menu-right">'
+                                 + '<a onclick="edit(' + full.Id + ');" class="edit dropdown-item">'
+                                 + '<i class="icon-pen3"></i> ویرایش </a>'
+                         }
+                     }
+                ]
+                ,
+                "aoColumns": [
+                    { "mDataProp": "RowNumber" },
+                    { "mDataProp": "Key" },
+                    { "mDataProp": "Value" },
+                    { "no": "no" }
+                ]
+            });
+
+        });
+
+        function edit(id) {
+            CardBlock('.card');
+            var url = "@Url.Action(MVC.Admin.Language.EditResource())";
+            $.get(url + '/' + id, function (data) {
+                $('#edit-container').html(data);
+                Selectize();
+                Icheck();
+                $('#Edit').modal('show');
+                CardUnBlock('.card');
+                AjaxForm.EnableAjaxFormvalidate('Edit');
+            });
+        };
+
+    </script>
+}

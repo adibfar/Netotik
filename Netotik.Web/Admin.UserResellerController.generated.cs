@@ -226,11 +226,11 @@ namespace Netotik.Web.Areas.Admin.Controllers
         partial void CreateOverride(T4MVC_System_Web_Mvc_ActionResult callInfo);
 
         [NonAction]
-        public override System.Threading.Tasks.Task<System.Web.Mvc.ActionResult> Create()
+        public override System.Web.Mvc.ActionResult Create()
         {
             var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Create);
             CreateOverride(callInfo);
-            return System.Threading.Tasks.Task.FromResult(callInfo as System.Web.Mvc.ActionResult);
+            return callInfo;
         }
 
         [NonAction]

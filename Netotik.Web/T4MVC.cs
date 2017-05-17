@@ -68,7 +68,6 @@ namespace T4MVC
         public Netotik.Web.Areas.Admin.Controllers.MenuController Menu = new Netotik.Web.Areas.Admin.Controllers.T4MVC_MenuController();
         public Netotik.Web.Areas.Admin.Controllers.OrderController Order = new Netotik.Web.Areas.Admin.Controllers.T4MVC_OrderController();
         public Netotik.Web.Areas.Admin.Controllers.OrderNotPaymentController OrderNotPayment = new Netotik.Web.Areas.Admin.Controllers.T4MVC_OrderNotPaymentController();
-        public Netotik.Web.Areas.Admin.Controllers.ResourceController Resource = new Netotik.Web.Areas.Admin.Controllers.T4MVC_ResourceController();
         public Netotik.Web.Areas.Admin.Controllers.RoleController Role = new Netotik.Web.Areas.Admin.Controllers.T4MVC_RoleController();
         public Netotik.Web.Areas.Admin.Controllers.ShopCategoryController ShopCategory = new Netotik.Web.Areas.Admin.Controllers.T4MVC_ShopCategoryController();
         public Netotik.Web.Areas.Admin.Controllers.ShopDiscountController ShopDiscount = new Netotik.Web.Areas.Admin.Controllers.T4MVC_ShopDiscountController();
@@ -188,7 +187,6 @@ namespace Links
             public const string UrlPath = "~/Content/css";
             public static string Url() { return T4MVCHelpers.ProcessVirtualPath(UrlPath); }
             public static string Url(string fileName) { return T4MVCHelpers.ProcessVirtualPath(UrlPath + "/" + fileName); }
-            public static readonly string app_min_css = Url("app.min.css");
             [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
             public static class components {
                 public const string UrlPath = "~/Content/css/components";
@@ -230,7 +228,15 @@ namespace Links
             
             }
         
-            public static readonly string my_style_css = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(UrlPath + "/my-style.min.css") ? Url("my-style.min.css") : Url("my-style.css");
+            [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+            public static class Ltr {
+                public const string UrlPath = "~/Content/css/Ltr";
+                public static string Url() { return T4MVCHelpers.ProcessVirtualPath(UrlPath); }
+                public static string Url(string fileName) { return T4MVCHelpers.ProcessVirtualPath(UrlPath + "/" + fileName); }
+                public static readonly string app_min_css = Url("app.min.css");
+                public static readonly string vendors_min_css = Url("vendors.min.css");
+            }
+        
             [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
             public static class plugins {
                 public const string UrlPath = "~/Content/css/plugins";
@@ -746,7 +752,16 @@ namespace Links
             
             }
         
-            public static readonly string vendors_min_css = Url("vendors.min.css");
+            [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+            public static class Rtl {
+                public const string UrlPath = "~/Content/css/Rtl";
+                public static string Url() { return T4MVCHelpers.ProcessVirtualPath(UrlPath); }
+                public static string Url(string fileName) { return T4MVCHelpers.ProcessVirtualPath(UrlPath + "/" + fileName); }
+                public static readonly string app_min_css = Url("app.min.css");
+                public static readonly string my_style_css = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(UrlPath + "/my-style.min.css") ? Url("my-style.min.css") : Url("my-style.css");
+                public static readonly string vendors_min_css = Url("vendors.min.css");
+            }
+        
         }
     
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -6619,6 +6634,14 @@ namespace Links
                     {
                     }
                 }
+                public static partial class Ltr 
+                {
+                    public static class Assets
+                    {
+                        public const string app_min_css = "~/Content/css/Ltr/app.min.css";
+                        public const string vendors_min_css = "~/Content/css/Ltr/vendors.min.css";
+                    }
+                }
                 public static partial class plugins 
                 {
                     public static partial class calendars 
@@ -7001,11 +7024,17 @@ namespace Links
                     {
                     }
                 }
+                public static partial class Rtl 
+                {
+                    public static class Assets
+                    {
+                        public const string app_min_css = "~/Content/css/Rtl/app.min.css";
+                        public const string my_style_css = "~/Content/css/Rtl/my-style.css";
+                        public const string vendors_min_css = "~/Content/css/Rtl/vendors.min.css";
+                    }
+                }
                 public static class Assets
                 {
-                    public const string app_min_css = "~/Content/css/app.min.css";
-                    public const string my_style_css = "~/Content/css/my-style.css";
-                    public const string vendors_min_css = "~/Content/css/vendors.min.css";
                 }
             }
             public static partial class fonts 

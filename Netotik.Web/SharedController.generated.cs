@@ -43,6 +43,8 @@ namespace T4MVC
                 public readonly string _CaptchaPartial = "_CaptchaPartial";
                 public readonly string _CaptchaPartial2 = "_CaptchaPartial2";
                 public readonly string _Header = "_Header";
+                public readonly string _HeaderPanelCss = "_HeaderPanelCss";
+                public readonly string _LanagaugeSelector = "_LanagaugeSelector";
                 public readonly string _Layout = "_Layout";
                 public readonly string _Message = "_Message";
                 public readonly string _PicturesList = "_PicturesList";
@@ -56,6 +58,8 @@ namespace T4MVC
             public readonly string _CaptchaPartial = "~/Views/Shared/_CaptchaPartial.cshtml";
             public readonly string _CaptchaPartial2 = "~/Views/Shared/_CaptchaPartial2.cshtml";
             public readonly string _Header = "~/Views/Shared/_Header.cshtml";
+            public readonly string _HeaderPanelCss = "~/Views/Shared/_HeaderPanelCss.cshtml";
+            public readonly string _LanagaugeSelector = "~/Views/Shared/_LanagaugeSelector.cshtml";
             public readonly string _Layout = "~/Views/Shared/_Layout.cshtml";
             public readonly string _Message = "~/Views/Shared/_Message.cshtml";
             public readonly string _PicturesList = "~/Views/Shared/_PicturesList.cshtml";

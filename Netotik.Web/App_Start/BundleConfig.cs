@@ -30,21 +30,26 @@ namespace Netotik.Web
                                 "~/Content/PublicUI/plugins/bootstrap/css/bootstrap.min.css",
                                 "~/Content/PublicUI/css/essentials.css",
                                 "~/Content/PublicUI/css/layout.css",
-                                "~/Content/PublicUI/css/header-1.css",
-                                "~/Content/PublicUI/css/color_scheme/blue.css",
+                                "~/Content/PublicUI/css/color_scheme/darkblue.css",
                                 "~/Content/PublicUI/plugins/slider.revolution/css/extralayers.css",
                                 "~/Content/PublicUI/plugins/slider.revolution/css/settings.css",
                                 "~/Content/PublicUI/css/header-5.css",
-                                "~/Content/PublicUI/css/layout-shop.css",
+                                "~/Content/PublicUI/css/_layout-font-rewrite.css"
+                                ));
+            //).Include("~/Content/PublicUI/css/font-awesome.min.css", new CssRewriteUrlTransform()));
+
+
+            bundles.Add(new StyleBundle("~/Content/publicrtlcss").Include(
                                 "~/Content/PublicUI/plugins/bootstrap/RTL/bootstrap-rtl.min.css",
                                 "~/Content/PublicUI/plugins/bootstrap/RTL/bootstrap-flipped.min.css",
                                 "~/Content/PublicUI/css/layout-RTL.css",
                                 "~/Content/PublicUI/css/_layout-font-rewrite.farsi.css"));
-            //).Include("~/Content/PublicUI/css/font-awesome.min.css", new CssRewriteUrlTransform()));
 
 
-            bundles.Add(new StyleBundle("~/Content/admincss").Include(
-                                "~/Content/css/vendors.min.css",
+            
+
+
+                     bundles.Add(new StyleBundle("~/Content/admincss").Include(
                                 "~/Content/fonts/icomoon.css",
                                 "~/Content/fonts/flag-icon-css/css/flag-icon.min.css",
                                 "~/Content/css/plugins/sliders/slick/slick.css",
@@ -59,10 +64,19 @@ namespace Netotik.Web
                                 "~/Content/css/plugins/forms/toggle/bootstrap-switch.min.css",
                                 "~/Content/css/plugins/forms/toggle/switchery.min.css",
                                 "~/Content/css/plugins/tables/datatable/dataTables.bootstrap4.min.css",
-                                "~/Content/css/app.min.css",
-                                "~/Content/css/components/weather-icons/climacons.min.css",
-                                "~/Content/css/my-style.css"));
+                                "~/Content/css/components/weather-icons/climacons.min.css"));
 
+
+
+            bundles.Add(new StyleBundle("~/Content/panelrtlcss").Include(
+                       "~/Content/css/Rtl/vendors.min.css",
+                       "~/Content/css/Rtl/app.min.css",
+                       "~/Content/css/Rtl/my-style.css"));
+
+
+            bundles.Add(new StyleBundle("~/Content/panelltrcss").Include(
+                       "~/Content/css/Ltr/vendors.min.css",
+                       "~/Content/css/Ltr/app.min.css"));
 
 
 

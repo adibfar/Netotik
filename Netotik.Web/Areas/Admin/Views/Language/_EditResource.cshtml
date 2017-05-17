@@ -1,0 +1,54 @@
+﻿@model Netotik.ViewModels.Common.Language.ResourceModel
+@{
+    Layout = null;
+}
+<!-- Modal -->
+<div class="modal fade text-xs-left" id="Edit" tabindex="-1" role="dialog" aria-labelledby="myModalLabel20" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title" id="myModalLabel20">ویرایش متن</h4>
+            </div>
+            @using (Html.BeginForm(MVC.Admin.Language.ActionNames.EditResource, MVC.Admin.Language.Name, FormMethod.Post, htmlAttributes: new { @class = "form-horizontal", enctype = "multipart/form-data", id = "EditForm" }))
+            {
+                @Html.HiddenFor(model => model.Id)
+                @Html.AntiForgeryToken()
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-md-12">
+                            @Model.Key
+                        </div>
+                    </div>
+                    <hr />
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group has-feedback has-icon-left">
+                                @Html.LabelFor(m => m.Value)
+                                <div class="position-relative has-icon-left">
+                                    @Html.TextBoxFor(m => m.Value, new { @class = "form-control" })
+                                    <div class="form-control-position">
+                                        <i class="icon-location22"></i>
+                                    </div>
+                                    @Html.ValidationMessageFor(model => model.Value, "", htmlAttributes: new { @class = "text-danger" })
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">
+                        <i class="icon-cross2"></i>
+                        بستن
+                    </button>
+                    <button name="actionType" value="@Netotik.Common.Controller.ActionType.Save" type="button" class="btn btn-outline-success" onclick="AjaxForm.Post(this, 'EditForm')" data-loading-text="در حال ارسال اطلاعات">
+                        <i class="icon-check2"></i>
+                        @Netotik.Resources.Captions.Save
+                    </button>
+                </div>
+            }
+        </div>
+    </div>
+</div>

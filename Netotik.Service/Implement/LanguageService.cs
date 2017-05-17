@@ -10,7 +10,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Linq;
 using Netotik.Common.DataTables;
-using Netotik.ViewModels.Common.Resource;
+using Netotik.ViewModels.Common.Language;
 using AutoMapper;
 
 namespace Netotik.Services.Implement
@@ -52,6 +52,7 @@ namespace Netotik.Services.Implement
                     DisplayOrder = x.DisplayOrder,
                     Id = x.Id,
                     Published = x.Published,
+                    IsDefault = x.IsDefault,
                     RowNumber = model.iDisplayStart + index + 1
                 })
                 .ToList();
@@ -60,27 +61,29 @@ namespace Netotik.Services.Implement
 
         public void SeedDataBase(string xmlResource)
         {
-            if (!dbSet.Any())
-            {
 
-                var list = XDocument.Parse(xmlResource)
-                    .Element("Language")
-                    .Elements("LocaleResource")
-                    .Select(e => new Netotik.Domain.Entity.LocaleStringResource
-                    {
-                        Name = e.Attribute("Name").Value,
-                        Value = e.Value,
-                    });
+            var xml = XDocument.Parse(xmlResource).Element("Language");
+            var langName = xml.Attribute("Name").Value;
+
+            if (!dbSet.Any(x => x.Name == langName))
+            {
+                var list = xml.Elements("LocaleResource")
+                .Select(e => new Netotik.Domain.Entity.LocaleStringResource
+                {
+                    Name = e.Attribute("Name").Value,
+                    Value = e.Value,
+                });
 
                 var lang = new Language()
                 {
-                    Name = "Persian",
-                    DisplayOrder = 0,
-                    FlagImageFileName = "ir.png",
-                    LanguageCulture = "en-us",
+                    Name = langName,
+                    DisplayOrder = int.Parse(xml.Attribute("DisplayOrder").Value),
+                    FlagImageFileName = xml.Attribute("Image").Value,
+                    LanguageCulture = xml.Attribute("LanguageCulture").Value,
+                    UniqueSeoCode = xml.Attribute("UniqueSeoCode").Value,
+                    Rtl = xml.Attribute("Rtl").Value == "true" ? true : false,
+                    IsDefault = xml.Attribute("IsDefault").Value == "true" ? true : false,
                     Published = true,
-                    Rtl = true,
-                    UniqueSeoCode = "Persian",
                     LocaleStringResources = list.ToList()
                 };
                 dbSet.Add(lang);
@@ -88,5 +91,9 @@ namespace Netotik.Services.Implement
             }
 
         }
+
+
+
+
     }
 }

@@ -1,0 +1,13 @@
+﻿@model IList<Netotik.Domain.Entity.Language>
+@{
+    var lang = Model.First(x => x.UniqueSeoCode == ViewContext.RouteData.Values["lang"].ToString());
+    Layout = null;
+}
+@if (lang.Rtl)
+{
+    @Styles.Render("~/Content/panelrtlcss")
+}
+else
+{
+    @Styles.Render("~/Content/panelltrcss")
+}

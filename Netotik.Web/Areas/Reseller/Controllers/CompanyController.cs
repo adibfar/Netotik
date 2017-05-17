@@ -308,7 +308,7 @@ namespace Netotik.Web.Areas.Reseller.Controllers
 
         [Mvc5Authorize(Roles = "Reseller")]
         [HttpPost]
-        public virtual async Task<ActionResult> ChangePassword(ChangePasswordModel model)
+        public virtual ActionResult ChangePassword(ChangePasswordModel model)
         {
             //if (!ModelState.IsValid)
             //{

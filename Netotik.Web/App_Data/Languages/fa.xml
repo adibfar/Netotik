@@ -1,0 +1,453 @@
+﻿<Language Name="Persian" Image="ir.png" DisplayOrder="1" LanguageCulture = "fa-ir" IsDefault = "true" Rtl = "true" UniqueSeoCode = "fa" >
+  <LocaleResource Name="Save">
+    <Value>ذخیره</Value>
+  </LocaleResource>
+  <LocaleResource Name="SaveEdit">
+    <Value>ذخیره و ادامه ویرایش</Value>
+  </LocaleResource>
+  <LocaleResource Name="Back">
+    <Value>بازگشت</Value>
+  </LocaleResource>
+  <LocaleResource Name="Name">
+    <Value>نام</Value>
+  </LocaleResource>
+  <LocaleResource Name="LastName">
+    <Value>نام خانوادگی</Value>
+  </LocaleResource>
+  <LocaleResource Name="UserName">
+    <Value>نام کاربری</Value>
+  </LocaleResource>
+  <LocaleResource Name="UserNameOrEmail">
+    <Value>نام کاربری یا ایمیل</Value>
+  </LocaleResource>
+  <LocaleResource Name="Email">
+    <Value>پست الکترونیک</Value>
+  </LocaleResource>
+  <LocaleResource Name="Email2">
+    <Value>ایمیل</Value>
+  </LocaleResource>
+  <LocaleResource Name="Tel">
+    <Value>شماره تماس</Value>
+  </LocaleResource>
+  <LocaleResource Name="Address">
+    <Value>آدرس</Value>
+  </LocaleResource>
+  <LocaleResource Name="PostalCode">
+    <Value>کدپستی</Value>
+  </LocaleResource>
+  <LocaleResource Name="AdminComment">
+    <Value>نظر مدیر</Value>
+  </LocaleResource>
+  <LocaleResource Name="AllowComment">
+    <Value>اجازه ارسال نظر</Value>
+  </LocaleResource>
+  <LocaleResource Name="AllowViewComments">
+    <Value>نمایش نظرات</Value>
+  </LocaleResource>
+  <LocaleResource Name="ApiCode">
+    <Value>کد درگاه پرداخت</Value>
+  </LocaleResource>
+  <LocaleResource Name="Body">
+    <Value>محتوا</Value>
+  </LocaleResource>
+  <LocaleResource Name="BodyOverview">
+    <Value>توضیح کوتاه</Value>
+  </LocaleResource>
+  <LocaleResource Name="CallForPrice">
+    <Value>فعال کردن تماس به جای درج قیمت</Value>
+  </LocaleResource>
+  <LocaleResource Name="CanBuyIfNotInStock">
+    <Value>امکان خرید در صورت عدم وجود در انبار</Value>
+  </LocaleResource>
+  <LocaleResource Name="DisplayQuantityForUser">
+    <Value>نمایش تعداد محصولات به کاربر</Value>
+  </LocaleResource>
+  <LocaleResource Name="Category">
+    <Value>دسته</Value>
+  </LocaleResource>
+  <LocaleResource Name="ProductCategory">
+    <Value>دسته محصولی</Value>
+  </LocaleResource>
+  <LocaleResource Name="City">
+    <Value>شهر</Value>
+  </LocaleResource>
+  <LocaleResource Name="CompanyName">
+    <Value>شرکت</Value>
+  </LocaleResource>
+  <LocaleResource Name="Password">
+    <Value>گذرواژه</Value>
+  </LocaleResource>
+  <LocaleResource Name="ConfirmPassword">
+    <Value>تکرار گذرواژه</Value>
+  </LocaleResource>
+  <LocaleResource Name="CountLastContent">
+    <Value>تعداد ایتم های آخرین مطالب</Value>
+  </LocaleResource>
+  <LocaleResource Name="CountSpecialProduct">
+    <Value>تعداد محصولات ویژه</Value>
+  </LocaleResource>
+  <LocaleResource Name="DeliveryDate">
+    <Value>مدت ارسال</Value>
+  </LocaleResource>
+  <LocaleResource Name="Description">
+    <Value>توضیحات</Value>
+  </LocaleResource>
+  <LocaleResource Name="DisableBuy">
+    <Value>غیر فعال کردن خرید</Value>
+  </LocaleResource>
+  <LocaleResource Name="DisableQuantityForUser">
+    <Value>نمایش تعداد محصول برای کاربران</Value>
+  </LocaleResource>
+  <LocaleResource Name="StartDatePublish">
+    <Value>تاریخ شروع انتشار</Value>
+  </LocaleResource>
+  <LocaleResource Name="StartTimePublish">
+    <Value>زمان شروع انتشار</Value>
+  </LocaleResource>
+  <LocaleResource Name="EndDatePublish">
+    <Value>تاریخ پایان انتشار</Value>
+  </LocaleResource>
+  <LocaleResource Name="EndTimePublish">
+    <Value>زمان پایان انتشار</Value>
+  </LocaleResource>
+  <LocaleResource Name="FreeShipping">
+    <Value>ارسال محصول رایگان</Value>
+  </LocaleResource>
+  <LocaleResource Name="FromWeight">
+    <Value>از وزن</Value>
+  </LocaleResource>
+  <LocaleResource Name="GateWayUrl">
+    <Value>آدرس اینترنتی درگاه پرداخت</Value>
+  </LocaleResource>
+  <LocaleResource Name="Image">
+    <Value>تصویر</Value>
+  </LocaleResource>
+  <LocaleResource Name="ImageProfile">
+    <Value>تصویر پروفایل</Value>
+  </LocaleResource>
+  <LocaleResource Name="Active">
+    <Value>فعال؟</Value>
+  </LocaleResource>
+  <LocaleResource Name="ActiveStatus">
+    <Value>وضعیت فعالیت</Value>
+  </LocaleResource>
+  <LocaleResource Name="IsDefault">
+    <Value>پیش فرض؟</Value>
+  </LocaleResource>
+  <LocaleResource Name="IsDefaultRoleRegisteredUser">
+    <Value>گروه پیش فرض برای کاربران ثبت نام شده</Value>
+  </LocaleResource>
+  <LocaleResource Name="IsMinNotifyQuantityWareHouse">
+    <Value>هشدار در صورت کمتر شدن از حد استانه</Value>
+  </LocaleResource>
+
+  <LocaleResource Name="AddPrice">
+    <Value>هزینه اضاف شده</Value>
+  </LocaleResource>
+  <LocaleResource Name="BasePrice">
+    <Value>هزینه پایه</Value>
+  </LocaleResource>
+  <LocaleResource Name="TaxPercent">
+    <Value>درصد مالیات</Value>
+  </LocaleResource>
+  <LocaleResource Name="Text">
+    <Value>متن</Value>
+  </LocaleResource>
+  <LocaleResource Name="showInMenu">
+    <Value>نمایش در منو</Value>
+  </LocaleResource>
+  <LocaleResource Name="IsPasKeraye">
+    <Value>پس کرایه</Value>
+  </LocaleResource>
+  <LocaleResource Name="IsPublish">
+    <Value>انتشار یافته؟</Value>
+  </LocaleResource>
+  <LocaleResource Name="IsRemember">
+    <Value>مرا به خاطر بسپار</Value>
+  </LocaleResource>
+  <LocaleResource Name="LastEdit">
+    <Value>آخرین ویرایش</Value>
+  </LocaleResource>
+  <LocaleResource Name="LastUserEdit">
+    <Value>آخرین ویرایش توسط</Value>
+  </LocaleResource>
+  <LocaleResource Name="MailServerLogin">
+    <Value>نام کاربری حساب ایمیل</Value>
+  </LocaleResource>
+  <LocaleResource Name="MailServerPass">
+    <Value>گذرواژه حساب ایمیل</Value>
+  </LocaleResource>
+  <LocaleResource Name="MailServerPort">
+    <Value>پورت سرور ایمیل</Value>
+  </LocaleResource>
+  <LocaleResource Name="MailServerUrl">
+    <Value>ادرس سرور ایمیل</Value>
+  </LocaleResource>
+  <LocaleResource Name="Brand">
+    <Value>برند</Value>
+  </LocaleResource>
+  <LocaleResource Name="MaxOffPrice">
+    <Value>حداکثر تخفیف</Value>
+  </LocaleResource>
+  <LocaleResource Name="MessageText">
+    <Value>متن پیام</Value>
+  </LocaleResource>
+  <LocaleResource Name="MetaDescription">
+    <Value>توضیحات متا</Value>
+  </LocaleResource>
+  <LocaleResource Name="MetaKeywords">
+    <Value>کلمات کلیدی</Value>
+  </LocaleResource>
+  <LocaleResource Name="MetaTitle">
+    <Value>عنوان متا</Value>
+  </LocaleResource>
+  <LocaleResource Name="MinNotifyQuantityWareHouse">
+    <Value>میزان تعداد آستانه جهت هشدار</Value>
+  </LocaleResource>
+  <LocaleResource Name="MobileNumber">
+    <Value>شماره موبایل</Value>
+  </LocaleResource>
+  <LocaleResource Name="Order">
+    <Value>ترتیب</Value>
+  </LocaleResource>
+  <LocaleResource Name="OrderMaximumQuantity">
+    <Value>حداکثر  تعداد سفارش در یک فاکتور</Value>
+  </LocaleResource>
+  <LocaleResource Name="Parent">
+    <Value>سرگروه</Value>
+  </LocaleResource>
+  <LocaleResource Name="CouponRequire">
+    <Value>نیازمند کد کوپن؟</Value>
+  </LocaleResource>
+  <LocaleResource Name="CouponCode">
+    <Value>کد کوپن</Value>
+  </LocaleResource>
+
+  <LocaleResource Name="MaximumDiscountAmount">
+    <Value>حداکثر حجم تخفیف</Value>
+  </LocaleResource>
+  <LocaleResource Name="DiscountPercentage">
+    <Value>درصد تخفیف</Value>
+  </LocaleResource>
+  <LocaleResource Name="UsePercentage">
+    <Value>استفاده از درصد برای تخفیف</Value>
+  </LocaleResource>
+  <LocaleResource Name="DiscountType">
+    <Value>نوع تخفیف</Value>
+  </LocaleResource>
+  <LocaleResource Name="MaximumDiscountQuantity">
+    <Value>حداکثر تعداد استفاده</Value>
+  </LocaleResource>
+  <LocaleResource Name="DiscountAmount">
+    <Value> میزان تخفیف</Value>
+  </LocaleResource>
+  <LocaleResource Name="ColorCode">
+    <Value>کد رنگ</Value>
+  </LocaleResource>
+  <LocaleResource Name="PriceProduct">
+    <Value>قیمت محصول</Value>
+  </LocaleResource>
+  <LocaleResource Name="QuantityWareHouse">
+    <Value>تعداد در انبار</Value>
+  </LocaleResource>
+  <LocaleResource Name="SelectFile">
+    <Value>انتخاب تصویر</Value>
+  </LocaleResource>
+  <LocaleResource Name="SendDate">
+    <Value>تاریخ ارسال</Value>
+  </LocaleResource>
+  <LocaleResource Name="ShowOnHomePage">
+    <Value>نمایش در صفحه اصلی</Value>
+  </LocaleResource>
+  <LocaleResource Name="ShowRss">
+    <Value>نمایش اخبار Rss</Value>
+  </LocaleResource>
+  <LocaleResource Name="ShowSpecialProduct">
+    <Value>نمایش محصولات ویژه</Value>
+  </LocaleResource>
+  <LocaleResource Name="SiteName">
+    <Value>عنوان وب سایت</Value>
+  </LocaleResource>
+  <LocaleResource Name="SiteUrl">
+    <Value>آدرس سایت</Value>
+  </LocaleResource>
+  <LocaleResource Name="SmsNumber">
+    <Value>شماره خط پیامکی</Value>
+  </LocaleResource>
+  <LocaleResource Name="SmsPassword">
+    <Value>گذرواژه پیامکی</Value>
+  </LocaleResource>
+  <LocaleResource Name="SmsUserName">
+    <Value>نام کاربری خط پیامک</Value>
+  </LocaleResource>
+
+  <LocaleResource Name="State">
+    <Value>استان</Value>
+  </LocaleResource>
+  <LocaleResource Name="StateName">
+    <Value>نام استان</Value>
+  </LocaleResource>
+  <LocaleResource Name="Subject">
+    <Value>دسته بندی</Value>
+  </LocaleResource>
+  <LocaleResource Name="SystemEmail">
+    <Value>ایمیل سایت</Value>
+  </LocaleResource>
+  <LocaleResource Name="SystemName">
+    <Value>نام سیستمی</Value>
+  </LocaleResource>
+  <LocaleResource Name="Tags">
+    <Value>برچسب ها</Value>
+  </LocaleResource>
+  <LocaleResource Name="Tax">
+    <Value>مالیات</Value>
+  </LocaleResource>
+  <LocaleResource Name="TaxExcemt">
+    <Value>معاف از مالیات</Value>
+  </LocaleResource>
+  <LocaleResource Name="Title">
+    <Value>عنوان</Value>
+  </LocaleResource>
+  <LocaleResource Name="ToWeight">
+    <Value>از وزن</Value>
+  </LocaleResource>
+  <LocaleResource Name="Url">
+    <Value>آدرس اینترنتی</Value>
+  </LocaleResource>
+  <LocaleResource Name="UserCanRegister">
+    <Value>فعال بودن ثبت نام کاربران</Value>
+  </LocaleResource>
+  <LocaleResource Name="VideoCode">
+    <Value>کد آپارات</Value>
+  </LocaleResource>
+  <LocaleResource Name="WeightProduct">
+    <Value>وزن محصول</Value>
+  </LocaleResource>
+  <LocaleResource Name="Logout">
+    <Value>خروج</Value>
+  </LocaleResource>
+  <LocaleResource Name="Login">
+    <Value>ورود</Value>
+  </LocaleResource>
+  <!--<LocaleResource Name="">
+    <Value></Value>
+  </LocaleResource>
+  <LocaleResource Name="">
+    <Value></Value>
+  </LocaleResource>
+  <LocaleResource Name="">
+    <Value></Value>
+  </LocaleResource>-->
+  
+  <!--======================Messages===========================-->
+
+  <LocaleResource Name="AddError">
+    <Value>متاسفانه ثبت اطلاعات انجام نشد.</Value>
+  </LocaleResource>
+  <LocaleResource Name="AddSuccess">
+    <Value>ثبت اطلاعات با موفقیت انجام شد.</Value>
+  </LocaleResource>
+  <LocaleResource Name="AdminUserCreated">
+    <Value>کاربر جدید با موفقیت در سیستم ثبت شد.</Value>
+  </LocaleResource>
+  <LocaleResource Name="ChangePasswordFail">
+    <Value>تغییر گذرواژه با شکست مواجه شد.</Value>
+  </LocaleResource>
+  <LocaleResource Name="ChangePasswordSuccess">
+    <Value>تغییر گذرواژه با موفقیت انجام شد.</Value>
+  </LocaleResource>
+  <LocaleResource Name="ConfirmPasswordNotValid">
+    <Value>گذرواژه ها یکسان نیستند.</Value>
+  </LocaleResource>
+  <LocaleResource Name="ExistError">
+    <Value>این {0} قبلا در سیستم ثبت شده.</Value>
+  </LocaleResource>
+  <LocaleResource Name="NotValidError">
+    <Value>{0} وارد شده نامعتبر است.</Value>
+  </LocaleResource>
+  <LocaleResource Name="RequiredError">
+    <Value>{0} را وارد کنید.</Value>
+  </LocaleResource>
+  <LocaleResource Name="MaxLengthError">
+    <Value>{0} حداکثر {1} کاراکتر باشد.</Value>
+  </LocaleResource>
+  <LocaleResource Name="MinLengthError">
+    <Value>{0} حداقل {1} کاراکتر باشد.</Value>
+  </LocaleResource>
+  <LocaleResource Name="RangeError">
+    <Value>{0} باید عددی بین {1} و {2} باشد.</Value>
+  </LocaleResource>
+  <LocaleResource Name="InvalidDataError">
+    <Value>اطلاعات وارد شده نامعتبر است.</Value>
+  </LocaleResource>
+  <LocaleResource Name="LoginFail">
+    <Value>اطلاعات وارد شده اشتباه است.</Value>
+  </LocaleResource>
+  <LocaleResource Name="MissionFail">
+    <Value>انجام نشد</Value>
+  </LocaleResource>
+  <LocaleResource Name="MissonSuccess">
+    <Value>انجام شد</Value>
+  </LocaleResource>
+  <LocaleResource Name="RemoveError">
+    <Value>متاسفانه حذف اطلاعات با خطا مواجه شد.</Value>
+  </LocaleResource>
+  <LocaleResource Name="RemoveSuccess">
+    <Value>متاسفانه حذف اطلاعات با خطا مواجه شد.</Value>
+  </LocaleResource>
+  <LocaleResource Name="SelectRole">
+    <Value>لطفا گروه کاربری را انتخاب کنید.</Value>
+  </LocaleResource>
+  <LocaleResource Name="SettingUpdateError">
+    <Value>متاسفانه در ویرایش تنظیمات مشکلی خطایی رخ داده است.</Value>
+  </LocaleResource>
+  <LocaleResource Name="SettingUpdateSuccess">
+    <Value>تنظیمات با موفقیت ویرایش شد.</Value>
+  </LocaleResource>
+  <LocaleResource Name="UpdateError">
+    <Value>در هنگام ویرایش اطلاعات خطایی رخ داده است.</Value>
+  </LocaleResource>
+  <LocaleResource Name="UpdateSettingFail">
+    <Value>ویرایش تنظیمات با شکست مواجه شد.</Value>
+  </LocaleResource>
+  <LocaleResource Name="UpdateSettingSuccess">
+    <Value>تنظیمات سایت با موفقیت ویرایش شد.</Value>
+  </LocaleResource>
+  <LocaleResource Name="UpdateSuccess">
+    <Value>ویرایش اطلاعات با موفقیت انجام شد.</Value>
+  </LocaleResource>
+  <LocaleResource Name="UserIsBanned">
+    <Value>حساب کاربری شما مسدود است.</Value>
+  </LocaleResource>
+  <LocaleResource Name="UserNameOrEmailReqired">
+    <Value>نام کاربری یا ایمیل خود را وارد کنید.</Value>
+  </LocaleResource>
+  <!--<LocaleResource Name="">
+    <Value></Value>
+  </LocaleResource>
+  <LocaleResource Name="">
+    <Value></Value>
+  </LocaleResource>
+  <LocaleResource Name="">
+    <Value></Value>
+  </LocaleResource>-->
+
+
+
+
+
+  <!--=================Statics=======================-->
+
+  <LocaleResource Name="EmailPattern">
+    <Value>
+      ^([a-zA-Z0-9_\-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([a-zA-Z0-9\-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$
+    </Value>
+  </LocaleResource>
+
+  <LocaleResource Name="MobileNumberPattern">
+    <Value>
+      ^0?9\d{9}$
+    </Value>
+  </LocaleResource>
+
+</Language>

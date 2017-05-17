@@ -7,7 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Web;
 
-namespace Netotik.ViewModels.Common.Resource
+namespace Netotik.ViewModels.Common.Language
 {
     public class LanguageItem
     {
@@ -19,6 +19,7 @@ namespace Netotik.ViewModels.Common.Resource
         public string FlagImageFileName { get; set; }
         public bool Rtl { get; set; }
         public bool Published { get; set; }
+        public bool IsDefault { get; set; }
         public int DisplayOrder { get; set; }
     }
 }

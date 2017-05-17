@@ -39,12 +39,6 @@ namespace Netotik.Web
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
             ApplicationStart.Config();
-
-
-
-            var languageService = (Netotik.Services.Abstract.ILanguageService)IocConfig.ProjectObjectFactory.Container.GetInstance(typeof(Netotik.Services.Abstract.ILanguageService));
-            languageService.SeedDataBase(System.IO.File.ReadAllText(Server.MapPath("/App_Data/Fa-LocaleStringResource.xml")));
-
         }
         protected void Application_Error(object sender, EventArgs e)
         {

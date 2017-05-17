@@ -85,17 +85,15 @@ namespace Netotik.Web.Areas.Admin.Controllers
         }
         [NonAction]
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public virtual System.Threading.Tasks.Task<System.Web.Mvc.ActionResult> Edit()
+        public virtual System.Web.Mvc.ActionResult Edit()
         {
-            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Edit);
-            return System.Threading.Tasks.Task.FromResult(callInfo as System.Web.Mvc.ActionResult);
+            return new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Edit);
         }
         [NonAction]
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public virtual System.Threading.Tasks.Task<System.Web.Mvc.ActionResult> Reply()
+        public virtual System.Web.Mvc.ActionResult Reply()
         {
-            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Reply);
-            return System.Threading.Tasks.Task.FromResult(callInfo as System.Web.Mvc.ActionResult);
+            return new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Reply);
         }
         [NonAction]
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -293,12 +291,12 @@ namespace Netotik.Web.Areas.Admin.Controllers
         partial void EditOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, int id);
 
         [NonAction]
-        public override System.Threading.Tasks.Task<System.Web.Mvc.ActionResult> Edit(int id)
+        public override System.Web.Mvc.ActionResult Edit(int id)
         {
             var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Edit);
             ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "id", id);
             EditOverride(callInfo, id);
-            return System.Threading.Tasks.Task.FromResult(callInfo as System.Web.Mvc.ActionResult);
+            return callInfo;
         }
 
         [NonAction]
@@ -318,12 +316,12 @@ namespace Netotik.Web.Areas.Admin.Controllers
         partial void ReplyOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, int id);
 
         [NonAction]
-        public override System.Threading.Tasks.Task<System.Web.Mvc.ActionResult> Reply(int id)
+        public override System.Web.Mvc.ActionResult Reply(int id)
         {
             var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Reply);
             ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "id", id);
             ReplyOverride(callInfo, id);
-            return System.Threading.Tasks.Task.FromResult(callInfo as System.Web.Mvc.ActionResult);
+            return callInfo;
         }
 
         [NonAction]

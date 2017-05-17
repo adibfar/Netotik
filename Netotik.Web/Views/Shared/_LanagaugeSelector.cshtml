@@ -1,0 +1,27 @@
+﻿@model IList<Netotik.Domain.Entity.Language>
+@{
+    var lang = Model.First(x => x.UniqueSeoCode == ViewContext.RouteData.Values["lang"].ToString());
+    var user = Html.CurrentUser().UserType;
+    var _actionResult = (user == Netotik.Domain.Entity.UserType.UserAdmin) ? MVC.Admin.Home.Index() :
+        (user == Netotik.Domain.Entity.UserType.UserReseller) ? MVC.Reseller.Home.Index() :
+        (user == Netotik.Domain.Entity.UserType.UserCompany) ? MVC.Company.Home.Index() : null;
+}
+
+
+
+<a id="dropdown-flag" href="index.html#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="dropdown-toggle nav-link">
+    <img class="flag-lang" src="~/Content/images/flags/@lang.FlagImageFileName" width="16" height="11" alt="lang" />
+    <span class="selected-language">@lang.Name</span>
+</a>
+<div aria-labelledby="dropdown-flag" class="dropdown-menu">
+    @foreach (var item in Model.Where(x => x.Id != lang.Id).OrderBy(x => x.DisplayOrder))
+    {
+
+        <a class="dropdown-item" href="@Url.Action(_actionResult.AddRouteValue("lang" ,item.UniqueSeoCode))">
+            <img class="flag-lang" src="~/Content/images/flags/@item.FlagImageFileName" width="16" height="11" alt="lang" />
+            @item.Name
+        </a>
+
+    }
+
+</div>
