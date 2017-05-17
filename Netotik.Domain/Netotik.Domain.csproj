@@ -75,6 +75,8 @@
     <Compile Include="Entity\Language.cs" />
     <Compile Include="Entity\State.cs" />
     <Compile Include="Entity\Category.cs" />
+    <Compile Include="Entity\Statistic.cs" />
+    <Compile Include="Entity\StatisticCountry.cs" />
     <Compile Include="Entity\TicketTag.cs" />
     <Compile Include="Entity\TicketTrack.cs" />
     <Compile Include="Entity\Ticket.cs" />

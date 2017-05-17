@@ -35,6 +35,8 @@ namespace Netotik.Web
             ModelBinders.Binders.Add(typeof(DateTime?), new PersianDateModelBinder());
 
             AreaRegistration.RegisterAllAreas();
+            
+
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);

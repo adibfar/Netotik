@@ -1,0 +1,52 @@
+﻿@model IEnumerable<Netotik.Domain.Entity.StatisticCountry>
+
+<div class="row">
+    <div class="col-xl-12 col-lg-12">
+        <div class="card" style="min-height:400px;">
+            <div class="card-header no-border">
+                <h4 class="card-title">بازدید بر اساس کشورها</h4>
+                <a class="heading-elements-toggle"><i class="icon-ellipsis font-medium-3"></i></a>
+            </div>
+            <div class="card-body">
+                <div id="audience-list-scroll" class="table-responsive height-300 position-relative ps-container ps-theme-default ps-active-y" data-ps-id="fdbd59c9-a797-78a3-bcd8-86b6ed5cc94c">
+                    <table class="table table-hover table-bordered">
+                        <thead>
+                            <tr>
+                                <th>
+                                    <span class="icon-flag" aria-hidden="true"></span>
+                                    نام کشور
+                                </th>
+                                <th>تعداد بازدید</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @{
+                                foreach (var country in Model)
+                                {
+                                    var flag = "../Content/Images/flags/" + country.CountryCode + ".png";
+
+                                    <tr>
+                                        <td>
+                                            @if (!string.IsNullOrWhiteSpace(country.CountryName))
+                                            {
+                                                <img src="@flag" style="width: 35px; height: 20px" />
+                                                @country.CountryName
+                                            }
+                                            else{ 
+                                                @("نامعلوم")
+                                            }
+                                        </td>
+                                        <td><span class="badge">@country.ViewCount</span></td>
+                                    </tr>
+
+                                }
+
+                            }
+                        </tbody>
+                    </table>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

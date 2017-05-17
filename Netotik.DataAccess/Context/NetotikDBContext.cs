@@ -38,6 +38,8 @@ namespace Netotik.Data.Context
 
 
 
+        public DbSet<StatisticCountry> StatisticCountries { get; set; }
+        public DbSet<Statistic> Statistics { get; set; }
 
         public DbSet<UserReseller> UserReselleres { get; set; }
         public DbSet<UserCompany> UserCompanies { get; set; }

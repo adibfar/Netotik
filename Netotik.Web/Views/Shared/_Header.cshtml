@@ -11,16 +11,30 @@
             <div id="navbar-mobile" class="collapse navbar-toggleable-sm">
                 <ul class="nav navbar-nav">
                     <li class="nav-item hidden-sm-down">
-                        <a href="#" class="nav-link nav-menu-main menu-toggle hidden-xs">
-                            <i class="icon-menu5"></i>
+                        <a href="#" class="nav-link nav-link-expand">
+                            <i class="ficon icon-expand2"></i>
                         </a>
                     </li>
+
                     @if (User.Identity.IsAuthenticated)
                     {
                         <li class="dropdown dropdown-language nav-item">
                             @Html.Action(MVC.Home.PanelLanguageSelector())
                         </li>
                     }
+
+
+                    @if (User.Identity.IsAuthenticated)
+                    {
+
+                        <li class="nav-item hidden-sm-down">
+                            <a href="#" class="nav-link nav-link-expand">
+                                کاربران آنلاین : <span id="usersCount"></span>
+                            </a>
+                        </li>
+
+                    }
+
                 </ul>
                 <ul class="nav navbar-nav float-xs-right">
                     @if (User.Identity.IsAuthenticated)
@@ -68,3 +82,5 @@
         </div>
     </div>
 </nav>
+
+

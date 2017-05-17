@@ -1,0 +1,51 @@
+﻿@model Netotik.ViewModels.Statistics.StatisticsViewModel
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row">
+    <div class="col-xs-12">
+        <div class="card">
+            <div class="card-body">
+                <div class="card-block">
+                    <div class="row">
+                        <div class="col-xl-3 col-lg-6 col-md-12 border-right-grey border-right-lighten-3 clearfix">
+                            <div class="float-xs-left pl-2">
+                                <span class="grey darken-1 block">افراد آنلاین</span>
+                                <span id="usersCountt" class="font-large-3 line-height-1 text-bold-300"></span>
+                            </div>
+                        </div>
+                        <div class="col-xl-3 col-lg-6 col-md-12 border-right-grey border-right-lighten-3 clearfix">
+                            <div class="float-xs-left pl-2">
+                                <span class="grey darken-1 block">بازدید امروز</span>
+                                <span class="font-large-3 line-height-1 text-bold-300">@Model.TodayVisits</span>
+                            </div>
+                        </div>
+                        <div class="col-xl-3 col-lg-6 col-md-12 border-right-grey border-right-lighten-3 clearfix">
+                            <div class="float-xs-left pl-2">
+                                <span class="grey darken-1 block">بازدید کل</span>
+                                <span class="font-large-3 line-height-1 text-bold-300">@Model.TotallVisits</span>
+                            </div>
+                        </div>
+                        <div class="col-xl-3 col-lg-6 col-md-12 clearfix">
+                            <div class="float-xs-left pl-2">
+                                <span class="grey darken-1 block">بازدید یونیک</span>
+                                <span class="font-large-3 line-height-1 text-bold-300">@Model.UniquVisitors</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    @{Html.RenderAction(MVC.Admin.Statistics.BrowserTable());}
+    @{Html.RenderAction(MVC.Admin.Statistics.OsTable());}
+</div>
+
+<div class="row">
+    @{Html.RenderAction(MVC.Admin.Statistics.PageView());}
+    @{Html.RenderAction(MVC.Admin.Statistics.Referrer());}
+</div>

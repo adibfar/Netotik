@@ -49,7 +49,7 @@ namespace Netotik.Web
                 task.Execute();
             }
 
-            // Microsoft.AspNet.SignalR.GlobalHost.DependencyResolver = ProjectObjectFactory.Container.GetInstance<Microsoft.AspNet.SignalR.IDependencyResolver>();
+            Microsoft.AspNet.SignalR.GlobalHost.DependencyResolver = ProjectObjectFactory.Container.GetInstance<Microsoft.AspNet.SignalR.IDependencyResolver>();
         }
 
            

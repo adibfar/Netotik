@@ -190,6 +190,16 @@
     <Compile Include="Identity\UserAdmin\UserItem.cs" />
     <Compile Include="Identity\UserAdmin\UserChangePasswordModel.cs" />
     <Compile Include="Identity\UserAdmin\LoginModel.cs" />
+    <Compile Include="Statistics\BrowserTableViewModel.cs" />
+    <Compile Include="Statistics\CountryViewModel.cs" />
+    <Compile Include="Statistics\CurrentVisitorViewModel.cs" />
+    <Compile Include="Statistics\OsTableViewModel.cs" />
+    <Compile Include="Statistics\PageViewViewModel.cs" />
+    <Compile Include="Statistics\ReferrerViewModel.cs" />
+    <Compile Include="Statistics\StatisticsViewModel.cs" />
+    <Compile Include="Statistics\SubDetailsViewModel.cs" />
+    <Compile Include="Statistics\UserOsViewModel.cs" />
+    <Compile Include="Statistics\VectorMapViewModel.cs" />
     <Compile Include="Ticketing\Issue\IssueLabelModel.cs" />
     <Compile Include="Ticketing\Issue\IssueModel.cs" />
     <Compile Include="Ticketing\Issue\IssueTrackModel.cs" />

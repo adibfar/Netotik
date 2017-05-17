@@ -21,6 +21,10 @@ namespace Netotik.Web
                 "~/Scripts/jquery.validate*",
                 "~/Scripts/panel.js"));
 
+            bundles.Add(new ScriptBundle("~/bundles/SignalR").Include(
+                        "~/Scripts/jquery.signalR-2.2.2.min.js"));
+
+
 
             bundles.Add(new ScriptBundle("~/bundles/modernizr").Include(
                         "~/Content/PublicUI/js/vendor/modernizr-2.8.3.min.js"));

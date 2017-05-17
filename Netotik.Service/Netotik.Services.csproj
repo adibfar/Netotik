@@ -145,6 +145,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Abstract\IStatisticsCountryService.cs" />
+    <Compile Include="Abstract\IStatisticsService.cs" />
     <Compile Include="Abstract\ICityService.cs" />
     <Compile Include="Abstract\ICustomRoleStore.cs" />
     <Compile Include="Abstract\ICustomUserStore.cs" />
@@ -202,6 +204,8 @@
     <Compile Include="Identity\PermissionRecord.cs" />
     <Compile Include="Identity\PermissionService.cs" />
     <Compile Include="Identity\StandardRoles.cs" />
+    <Compile Include="Implement\StatisticsCountryService.cs" />
+    <Compile Include="Implement\StatisticsService.cs" />
     <Compile Include="Implement\LanguageService.cs" />
     <Compile Include="Implement\TicketTagService.cs" />
     <Compile Include="Implement\AdertiseService.cs" />

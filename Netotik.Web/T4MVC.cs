@@ -78,6 +78,7 @@ namespace T4MVC
         public Netotik.Web.Areas.Admin.Controllers.ShopProductController ShopProduct = new Netotik.Web.Areas.Admin.Controllers.T4MVC_ShopProductController();
         public Netotik.Web.Areas.Admin.Controllers.SliderController Slider = new Netotik.Web.Areas.Admin.Controllers.T4MVC_SliderController();
         public Netotik.Web.Areas.Admin.Controllers.StateController State = new Netotik.Web.Areas.Admin.Controllers.T4MVC_StateController();
+        public Netotik.Web.Areas.Admin.Controllers.StatisticsController Statistics = new Netotik.Web.Areas.Admin.Controllers.T4MVC_StatisticsController();
         public Netotik.Web.Areas.Admin.Controllers.TicketController Ticket = new Netotik.Web.Areas.Admin.Controllers.T4MVC_TicketController();
         public Netotik.Web.Areas.Admin.Controllers.TicketTagController TicketTag = new Netotik.Web.Areas.Admin.Controllers.T4MVC_TicketTagController();
         public Netotik.Web.Areas.Admin.Controllers.UserAdminController UserAdmin = new Netotik.Web.Areas.Admin.Controllers.T4MVC_UserAdminController();
@@ -168,6 +169,8 @@ namespace Links
         public const string UrlPath = "~/Scripts";
         public static string Url() { return T4MVCHelpers.ProcessVirtualPath(UrlPath); }
         public static string Url(string fileName) { return T4MVCHelpers.ProcessVirtualPath(UrlPath + "/" + fileName); }
+        public static readonly string jquery_signalR_2_2_2_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(UrlPath + "/jquery.signalR-2.2.2.min.js") ? Url("jquery.signalR-2.2.2.min.js") : Url("jquery.signalR-2.2.2.js");
+        public static readonly string jquery_signalR_2_2_2_min_js = Url("jquery.signalR-2.2.2.min.js");
         public static readonly string jquery_unobtrusive_ajax_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(UrlPath + "/jquery.unobtrusive-ajax.min.js") ? Url("jquery.unobtrusive-ajax.min.js") : Url("jquery.unobtrusive-ajax.js");
         public static readonly string jquery_unobtrusive_ajax_min_js = Url("jquery.unobtrusive-ajax.min.js");
         public static readonly string jquery_validate_vsdoc_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(UrlPath + "/jquery.validate-vsdoc.min.js") ? Url("jquery.validate-vsdoc.min.js") : Url("jquery.validate-vsdoc.js");
@@ -6590,6 +6593,8 @@ namespace Links
         {
             public static class Assets
             {
+                public const string jquery_signalR_2_2_2_js = "~/Scripts/jquery.signalR-2.2.2.js"; 
+                public const string jquery_signalR_2_2_2_min_js = "~/Scripts/jquery.signalR-2.2.2.min.js"; 
                 public const string jquery_unobtrusive_ajax_js = "~/Scripts/jquery.unobtrusive-ajax.js"; 
                 public const string jquery_unobtrusive_ajax_min_js = "~/Scripts/jquery.unobtrusive-ajax.min.js"; 
                 public const string jquery_validate_js = "~/Scripts/jquery.validate.js"; 
