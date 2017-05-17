@@ -383,6 +383,20 @@ namespace Netotik.Web.Areas.Company.Controllers
             }
             ViewBag.RestoreRouter = filelist;
             //-------------------------------
+            var fileUlist = _mikrotikServices.GetBackupUsermanagerList(UserLogined.UserCompany.R_Host, UserLogined.UserCompany.R_Port, UserLogined.UserCompany.R_User, UserLogined.UserCompany.R_Password);
+            if (fileUlist == null)
+            {
+                fileUlist = new List<Router_FileModel>();
+                fileUlist.Add(new Router_FileModel()
+                {
+                    Name = "هیچ موردی پیدا نشد",
+                    CreateTime = "",
+                    Size = "",
+                    Type = ""
+                });
+            }
+            ViewBag.RestoreUsermanager = fileUlist;
+            //-------------------------------
             var Router_PackageUpdate = _mikrotikServices.Router_PackageUpdate(UserLogined.UserCompany.R_Host, UserLogined.UserCompany.R_Port, UserLogined.UserCompany.R_User, UserLogined.UserCompany.R_Password);
             ViewBag.Channel = Router_PackageUpdate.FirstOrDefault().Channel;
             ViewBag.Installed_version = Router_PackageUpdate.FirstOrDefault().Installed_version;
@@ -462,12 +476,12 @@ namespace Netotik.Web.Areas.Company.Controllers
             //-------------------------------
             if (Request.Form["reset"].ToString() == "yes")
             {
-                _mikrotikServices.ResetRouter(UserLogined.UserCompany.R_Host, UserLogined.UserCompany.R_Port, UserLogined.UserCompany.R_User, UserLogined.UserCompany.R_Password, true, true);
-                this.MessageSuccess("Reset", "روتر در حال ریست شدن است.ممکن است سامانه دیگر قادر به اتصال به روتر نباشد.با پشتیبان خود تماس بگیرید.");
+                _mikrotikServices.RestoreUsermanager(UserLogined.UserCompany.R_Host, UserLogined.UserCompany.R_Port, UserLogined.UserCompany.R_User, UserLogined.UserCompany.R_Password, Request.Form["RestoreUsermanager"].ToString());
+                this.MessageSuccess("Restore Usermanager", "بک آپ مورد نظر درحال بازگردانی می باشد.");
             }
             else
             {
-                this.MessageSuccess("Reset", "متن مورد نظر را به درستی وارد کنید.");
+                this.MessageSuccess("Restore Usermanager", "متن مورد نظر را به درستی وارد کنید.");
             }
             return RedirectToAction(MVC.Company.Router.ActionNames.RouterSetting);
         }
@@ -552,8 +566,8 @@ namespace Netotik.Web.Areas.Company.Controllers
             }
 
             //-------------------------------
-            _mikrotikServices.ResetRouter(UserLogined.UserCompany.R_Host, UserLogined.UserCompany.R_Port, UserLogined.UserCompany.R_User, UserLogined.UserCompany.R_Password, true, true);
-            this.MessageSuccess("Reset", "روتر در حال ریست شدن است.ممکن است سامانه دیگر قادر به اتصال به روتر نباشد.با پشتیبان خود تماس بگیرید.");
+            _mikrotikServices.BackupUsermanager(UserLogined.UserCompany.R_Host, UserLogined.UserCompany.R_Port, UserLogined.UserCompany.R_User, UserLogined.UserCompany.R_Password);
+            this.MessageSuccess("Backup Usermanager", "از دیتابیس یوزرمنیجر و دیتابیس لاگ یوزرمنیجر به درستی بک آپ گرفته شد.");
             return RedirectToAction(MVC.Company.Router.ActionNames.RouterSetting);
         }
         public virtual ActionResult BackupRouter()

@@ -27,6 +27,7 @@ namespace Netotik.Services.Abstract
         bool RebootRouter(string ip, int port, string user, string pass);
         bool ResetRouter(string ip, int port, string user, string pass, bool keepusers, bool nosettings);
         bool BackupRouter(string ip, int port, string user, string pass);
+        bool BackupUsermanager(string ip, int port, string user, string pass);
         bool RemoveLogs(string ip, int port, string user, string pass);
         bool ResetUsermanager(string ip, int port, string user, string pass, bool users, bool logs,bool session,bool history,bool packages,bool db);
         bool User_Pass_Check(string ip, int port, string user, string pass);
@@ -47,6 +48,8 @@ namespace Netotik.Services.Abstract
         Router_WirelessModel GetWirelessDetails(string r_Host, int r_Port, string r_User, string r_Password, string id);
         Router_EthernetModel GetEthernetDetails(string r_Host, int r_Port, string r_User, string r_Password, string id);
         List<Router_FileModel> GetBackupRouterList(string r_Host, int r_Port, string r_User, string r_Password);
+        List<Router_FileModel> GetBackupUsermanagerList(string r_Host, int r_Port, string r_User, string r_Password);
         void RestoreRouter(string r_Host, int r_Port, string r_User, string r_Password, string FileName);
+        void RestoreUsermanager(string r_Host, int r_Port, string r_User, string r_Password, string FileName);
     }
 }
