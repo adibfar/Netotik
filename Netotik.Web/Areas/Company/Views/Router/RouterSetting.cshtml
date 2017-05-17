@@ -291,11 +291,10 @@
                                                 <div class="col-md-12">
                                                     <label class="font-noraml">انتخاب بک آپ</label>
                                                     <select name="RestoreUsermanager" data-placeholder="انتخاب بک آپ" class="selectize-select" style="min-width:350px;" tabindex="2">
-                                                        @*@foreach (var item in ViewBag.RestoreRouter)
+                                                        @foreach (var item in ViewBag.RestoreUsermanager)
                                                         {
-                                                            <option value="@item.name">@item.name</option>
-                                                        }*@
-                                                        <option value="بک آپ یک">بک آپ یک</option>
+                                                            <option value="@item.Name">@item.Name</option>
+                                                        }
                                                     </select>
                                                 </div>
                                                 <div style="direction:ltr;">

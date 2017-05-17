@@ -1319,7 +1319,7 @@ namespace Netotik.Services.Implement
                 }
             }
             mikrotik.Send("/system/logging/action/remove");
-            mikrotik.Send("?name=NetotikLog",true);
+            mikrotik.Send("=name=NetotikLog",true);
 
             return true;
 
@@ -1361,6 +1361,26 @@ namespace Netotik.Services.Implement
             return true;
 
         }
+        public bool BackupUsermanager(string ip, int port, string user, string pass)
+        {
+            var mikrotik = new MikrotikAPI();
+            mikrotik.MK(ip, port);
+            if (!mikrotik.Login(user, pass)) mikrotik.Close();
+            //-----------------------------------------------
+            var temp = "";
+            mikrotik.Send("/tool/user-manager/database/save");
+            temp = ConvertDate.ToFa(DateTime.Now, "yyyy-MM-dd ").ToString() + " " + ConvertDate.ToFa(DateTime.Now, "T").ToString();
+            temp = String.Format("=name=\"Netotik.({0}).Usermanager\"", temp);
+            mikrotik.Send(temp,true);
+
+            mikrotik.Send("/tool/user-manager/database/save-logs");
+            temp = ConvertDate.ToFa(DateTime.Now, "yyyy-MM-dd ").ToString() + " " + ConvertDate.ToFa(DateTime.Now, "T").ToString();
+            temp = String.Format("=name=\"Netotik.({0}).UsermanagerLog\"", temp);
+            mikrotik.Send(temp, true);
+
+            return true;
+
+        }
         public bool RebootRouter(string ip, int port, string user, string pass)
         {
             var mikrotik = new MikrotikAPI();
@@ -1372,6 +1392,26 @@ namespace Netotik.Services.Implement
             mikrotik.Send("yes",true);
             return true;
 
+        }
+        public void RestoreUsermanager(string r_Host, int r_Port, string r_User, string r_Password, string FileName)
+        {
+            var mikrotik = new MikrotikAPI();
+            mikrotik.MK(r_Host, r_Port);
+            if (!mikrotik.Login(r_User, r_Password)) mikrotik.Close();
+            //-----------------------------------------------
+            var temp = "";
+            if (FileName.Contains("UsermanagerLog"))
+            {
+                mikrotik.Send("/tool/user-manager/database/load-logs");
+                temp = String.Format("=name='{0}'", FileName);
+                mikrotik.Send(temp, true);
+            }
+            else
+            {
+                mikrotik.Send("/tool/user-manager/database/load");
+                temp = String.Format("=name='{0}'", FileName);
+                mikrotik.Send(temp, true);
+            }
         }
         public void RestoreRouter(string r_Host, int r_Port, string r_User, string r_Password, string FileName)
         {
@@ -1404,6 +1444,40 @@ namespace Netotik.Services.Implement
                         ColumnList.Add(cols[i], cols[i + 1]);
                     }
                     if ((ColumnList.Any(x => x.Key == "type") ? (ColumnList.FirstOrDefault(x => x.Key == "type").Value) : "")== "backup")
+                    {
+                        Router_File.Add(new Router_FileModel()
+                        {
+                            CreateTime = ColumnList.Any(x => x.Key == "creation-time") ? (ColumnList.FirstOrDefault(x => x.Key == "creation-time").Value) : "",
+                            Name = ColumnList.Any(x => x.Key == "name") ? (ColumnList.FirstOrDefault(x => x.Key == "name").Value) : "",
+                            Size = ColumnList.Any(x => x.Key == "size") ? (ColumnList.FirstOrDefault(x => x.Key == "size").Value) : "",
+                            Type = ColumnList.Any(x => x.Key == "type") ? (ColumnList.FirstOrDefault(x => x.Key == "type").Value) : ""
+                        });
+                    }
+
+                }
+            }
+            return Router_File;
+        }
+        public List<Router_FileModel> GetBackupUsermanagerList(string r_Host, int r_Port, string r_User, string r_Password)
+        {
+            var mikrotik = new MikrotikAPI();
+            mikrotik.MK(r_Host, r_Port);
+            if (!mikrotik.Login(r_User, r_Password)) mikrotik.Close();
+            //-----------------------------------------------
+            mikrotik.Send("/file/print", true);
+            var Router_File = new List<Router_FileModel>();
+            var list = mikrotik.Read();
+            foreach (var item in list)
+            {
+                if (item != "!done")
+                {
+                    var cols = item.Split('=');
+                    var ColumnList = new Dictionary<string, string>();
+                    for (int i = 1; i < 9; i += 2)
+                    {
+                        ColumnList.Add(cols[i], cols[i + 1]);
+                    }
+                    if ((ColumnList.Any(x => x.Key == "type") ? (ColumnList.FirstOrDefault(x => x.Key == "type").Value) : "") == "userman backup")
                     {
                         Router_File.Add(new Router_FileModel()
                         {
