@@ -1,0 +1,421 @@
+﻿@{
+    ViewBag.Title = "دسترسی ها";
+    int IPBindingsCounter = 1;
+    int IPWalledGardenCounter = 1;
+}
+<div class="row">
+    <div class="col-md-12">
+        <div class="card">
+            <div class="card-header">
+                <h4 class="card-title">دسترسی کاربر(ان)</h4>
+                <a class="heading-elements-toggle"><i class="icon-ellipsis font-medium-3"></i></a>
+                <div class="heading-elements">
+                    <ul class="list-inline mb-0">
+                        <li><a data-action="collapse"><i class="icon-minus4"></i></a></li>
+                        <li><a data-action="reload"><i class="icon-reload"></i></a></li>
+                        <li><a data-action="expand"><i class="icon-expand2"></i></a></li>
+                        <li><a data-action="close"><i class="icon-cross2"></i></a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="card-body collapse in">
+                <div class="card-block">
+                    <div class="form-body">
+                        <div class="col-xs-12">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    در این قسمت با اضافه کردن یک دستگاه می توانید اجازه دهید که آن دستگاه بدون اینکه
+                                    صفحه ورود هات اسپات برایش باز شود ، اینترنت و دسترسی به شبکه را داشته باشد.
+                                    جهت اضافه کردن یک دستگاه بهتر است با استفاده از مک آدرس دستگاه توسط فرم زیر آن دستگاه را اضافه کنید.
+                                </div>
+
+                            </div>
+                            <table class="table table-striped table-bordered table-hover zero-configuration dataex-colvis-restore" id="grid">
+                                <thead>
+                                    <tr>
+                                        <th>#</th>
+                                        <th data-toggle="true">MAC Address</th>
+                                        <th>IP Address</th>
+                                        <th>Server</th>
+                                        <th>Type</th>
+                                        <th>Hits</th>
+                                        <th>Comments</th>
+                                        <th>Disable</th>
+                                        <th>Remove</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var item in ViewBag.ipbindings)
+                                    {
+                                        <tr>
+                                            <td>@(IPBindingsCounter++)</td>
+                                            <td>@item.mac_address</td>
+                                            <td>@item.address</td>
+                                            <td>@item.server</td>
+                                            <td>@item.type</td>
+                                            <td>@item.hits</td>
+                                            <td>@item.comment</td>
+                                            <td>
+                                                @if (item.disabled == "false")
+                                                {
+                                                    <a onclick="IpBindigsDisable('@item.id');" class="dropdown-item">
+                                                        <i class="icon-lock danger"></i> غیره فعال کردن
+                                                    </a>
+                                                }
+                                                else
+                                                {
+                                                    <a onclick="IpBindigsEnable('@item.id');" class="dropdown-item">
+                                                        <i class="icon-unlock primary"></i> فعال کردن
+                                                    </a>
+                                                }
+                                            </td>
+                                            <td>
+                                                <a onclick="IpBindigsRemove('@item.id');" class="dropdown-item">
+                                                    <i class="icon-trash4 danger"></i> حذف
+                                                </a>
+                                            </td>
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                            <div class="col-md-12">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <div class="card-block">
+                                            @using (Html.BeginForm(MVC.Company.Hotspot.ActionNames.AddIpBindings, MVC.Company.Hotspot.Name, FormMethod.Post,
+    htmlAttributes: new { @class = "form cmxform form-horizontal tasi-form", enctype = "multipart/form-data", id = "form" }))
+                                            {
+                                                <h4 class="form-section"><i class="icon-plus"></i>اضافه کردن</h4>
+                                                <div class="col-md-4">
+                                                    <div class="form-group">
+                                                        Mac
+                                                        <div class="position-relative">
+                                                            <input class="form-control" name="MacAddress" />
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <div class="form-group">
+                                                        IP Address
+                                                        <div class="position-relative">
+                                                            <input class="form-control" name="IpAddress" />
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <div class="form-group">
+                                                        Nat To IP Address
+                                                        <div class="position-relative">
+                                                            <input class="form-control" name="NatIpAddress" />
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <div class="form-group">
+                                                        <label class="font-noraml">Server</label>
+                                                        <select name="Server" data-placeholder="Server" class="selectize-select" style="min-width:350px;" tabindex="2">
+                                                            <option value="all">All</option>
+                                                            @foreach (var item in ViewBag.servers)
+                                                            {
+                                                                    <option value="@item.name">@item.name</option>
+                                                            }
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <div class="form-group">
+                                                        <label class="font-noraml">Type</label>
+                                                        <select name="Type" data-placeholder="Types" class="selectize-select" style="min-width:350px;" tabindex="2">
+                                                            <option value="blocked">بستن</option>
+                                                            <option value="bypassed">عدم نمایش لاگین</option>
+                                                            <option value="regular">خارج کردن بر اساس آدرس</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-3">
+                                                    <div class="form-group">
+                                                        Comment
+                                                        <div class="position-relative">
+                                                            <input class="form-control" name="Comment" />
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-1" style="direction:ltr; padding-top:15px;">
+                                                    <button type="submit" class="btn btn-outline-primary">
+                                                        <i class="icon-plus"></i> Add
+                                                    </button>
+                                                </div>
+                                            }
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="card">
+            <div class="card-header">
+                <h4 class="card-title">دسترسی آدرس(ها)</h4>
+                <a class="heading-elements-toggle"><i class="icon-ellipsis font-medium-3"></i></a>
+                <div class="heading-elements">
+                    <ul class="list-inline mb-0">
+                        <li><a data-action="collapse"><i class="icon-minus4"></i></a></li>
+                        <li><a data-action="reload"><i class="icon-reload"></i></a></li>
+                        <li><a data-action="expand"><i class="icon-expand2"></i></a></li>
+                        <li><a data-action="close"><i class="icon-cross2"></i></a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="card-body collapse in">
+                <div class="card-block">
+                    <div class="form-body">
+                        <div class="col-xs-12">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    با این روش می توانید دسترسی یک سایت را برای همه کاربران یا کاربر(ان) خاصی باز کنید.
+                                </div>
+
+                            </div>
+                            <table class="table table-striped table-bordered table-hover zero-configuration dataex-colvis-restore" id="grid2">
+                                <thead>
+                                    <tr>
+                                        <th>#</th>
+                                        <th data-toggle="true">Dst Host</th>
+                                        <th>Dst Port</th>
+                                        <th>Portocol</th>
+                                        <th>Server</th>
+                                        <th>Action</th>
+                                        <th>Hits</th>
+                                        <th>Comments</th>
+                                        <th>Disable</th>
+                                        <th>Remove</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var item in ViewBag.ipwalledgarden)
+                                    {
+                                        <tr>
+                                            <td>@(IPWalledGardenCounter++)</td>
+                                            @if (item.dst_host != "")
+                                            {
+                                                <td>@item.dst_host</td>
+                                            }
+                                            else
+                                            {
+                                                <td>@item.dst_address</td>
+                                            }
+                                            <td>@item.dst_port</td>
+                                            <td>@item.protocol</td>
+                                            <td>@item.server</td>
+                                            <td>@item.action</td>
+                                            <td>@item.hits</td>
+                                            <td>@item.comment</td>
+                                            <td>
+                                                @if (item.disabled == "false")
+                                                {
+                                                    <a onclick="IpWalledGardenDisable('@item.id');" class="dropdown-item">
+                                                        <i class="icon-lock danger"></i> غیره فعال کردن
+                                                    </a>
+                                                }
+                                                else
+                                                {
+                                                    <a onclick="IpWalledGardenEnable('@item.id');" class="dropdown-item">
+                                                        <i class="icon-unlock primary"></i> فعال کردن
+                                                    </a>
+                                                }
+                                            </td>
+                                            <td>
+                                                <a onclick="IpWalledGardenRemove('@item.id');" class="dropdown-item">
+                                                    <i class="icon-trash4 danger"></i> حذف
+                                                </a>
+                                            </td>
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                            <div class="col-md-12">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <div class="card-block">
+                                            @using (Html.BeginForm(MVC.Company.Hotspot.ActionNames.AddIpWalledGarden, MVC.Company.Hotspot.Name, FormMethod.Post,
+                                    htmlAttributes: new { @class = "form cmxform form-horizontal tasi-form", enctype = "multipart/form-data", id = "form" }))
+                                            {
+                                                <h4 class="form-section"><i class="icon-plus"></i>اضافه کردن</h4>
+                                                <div class="col-md-4">
+                                                    <div class="form-group">
+                                                        Dst Host
+                                                        <div class="position-relative">
+                                                            <input class="form-control" name="DstHost" />
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <div class="form-group">
+                                                        Dst Port
+                                                        <div class="position-relative">
+                                                            <input class="form-control" name="DstPort" placeholder="80 Or 443 Or ... (خالی گذاشت=همه پورت ها)"/>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <div class="form-group">
+                                                        <label class="font-noraml">Portocol</label>
+                                                        <select name="Portocol" data-placeholder="Portocol" class="selectize-select" style="min-width:350px;" tabindex="2">
+                                                            <option value="">No</option>
+                                                            <option value="tcp">tcp</option>
+                                                            <option value="udp">udp</option>
+                                                            <option value="rdp">rdp</option>
+                                                            <option value="l2tp">l2tp</option>
+                                                            <option value="icmp">icmp</option>
+                                                            <option value="udp-lite">udp-lite</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <div class="form-group">
+                                                        <label class="font-noraml">Server</label>
+                                                        <select name="Server" data-placeholder="Server" class="selectize-select" style="min-width:350px;" tabindex="2">
+                                                            
+                                                            @foreach (var item in ViewBag.servers)
+                                                            {
+                                                                    <option value="@item.name">@item.name</option>
+                                                            }
+                                                            <option value=""></option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <div class="form-group">
+                                                        <label class="font-noraml">Action</label>
+                                                        <select name="Action" data-placeholder="Action" class="selectize-select" style="min-width:350px;" tabindex="2">
+                                                            <option value="drop">بلاک کردن</option>
+                                                            <option value="accept">قبول کردن</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-3">
+                                                    <div class="form-group">
+                                                        Comment
+                                                        <div class="position-relative">
+                                                            <input class="form-control" name="Comment" />
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-1" style="direction:ltr; padding-top:15px;">
+                                                    <button type="submit" class="btn btn-outline-primary">
+                                                        <i class="icon-plus"></i> Add
+                                                    </button>
+                                                </div>
+                                            }
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@section ScriptUp{
+    <link rel="stylesheet" type="text/css" href="~/Content/css/plugins/tables/extensions/dataTables.colVis.css">
+}
+@section DownScript{
+    <script src="~/Content/js/plugins/tables/datatable/dataTables.colVis.js" type="text/javascript"></script>
+    <script type="text/javascript">
+        $(function () {
+            var table = $('#grid').dataTable({
+                "order": [[1, 'asc']],
+                "iDisplayLength": 10,
+                "bProcessing": true,
+                "bStateSave": true,
+                "bFilter": true,
+                "scrollX": true,
+                "bAutoWidth": true,
+                "aoColumnDefs": [{ "bSortable": false, "aTargets": [-1] }],
+                "aLengthMenu": [[10, 25, 50, 100], [10, 25, 50, 100]],
+                "oLanguage": {
+                    "sUrl": "/Content/js/plugins/tables/datatable/dataTables.persian.txt"
+                },
+                dom: 'C<"clear">lfrtip',
+                columnDefs: [{
+                    buttonText: "ویرایش جدول"
+                }],
+                colVis: {
+                    restore: "پیشفرض",
+                    showAll: "نمایش همه",
+                    showNone: "پنهان سازی"
+                }
+            });
+        });
+
+
+
+        $(function () {
+            var table = $('#grid2').dataTable({
+                "order": [[1, 'asc']],
+                "iDisplayLength": 10,
+                "bProcessing": true,
+                "bStateSave": true,
+                "bFilter": true,
+                "scrollX": true,
+                "bAutoWidth": true,
+                "aoColumnDefs": [{ "bSortable": false, "aTargets": [-1] }],
+                "aLengthMenu": [[10, 25, 50, 100], [10, 25, 50, 100]],
+                "oLanguage": {
+                    "sUrl": "/Content/js/plugins/tables/datatable/dataTables.persian.txt"
+                },
+                dom: 'C<"clear">lfrtip',
+                columnDefs: [{
+                    buttonText: "ویرایش جدول"
+                }],
+                colVis: {
+                    restore: "پیشفرض",
+                    showAll: "نمایش همه",
+                    showNone: "پنهان سازی"
+                }
+            });
+        });
+
+
+        function IpBindigsRemove(id) {
+            PostData("@Url.Action(MVC.Company.Hotspot.IpBindigsRemove())", { id: id });
+        }
+
+        function IpBindigsDisable(id) {
+            PostData("@Url.Action(MVC.Company.Hotspot.IpBindigsDisable())", { id: id });
+        }
+
+        function IpBindigsEnable(id) {
+            PostData("@Url.Action(MVC.Company.Hotspot.IpBindigsEnable())", { id: id });
+        }
+
+
+        function IpWalledGardenRemove(id) {
+            PostData("@Url.Action(MVC.Company.Hotspot.IpWalledGardenRemove())", { id: id });
+        }
+
+        function IpWalledGardenDisable(id) {
+            PostData("@Url.Action(MVC.Company.Hotspot.IpWalledGardenDisable())", { id: id });
+        }
+
+        function IpWalledGardenEnable(id) {
+            PostData("@Url.Action(MVC.Company.Hotspot.IpWalledGardenEnable())", { id: id });
+        }
+
+    </script>
+}

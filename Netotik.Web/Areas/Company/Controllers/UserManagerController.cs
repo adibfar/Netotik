@@ -13,7 +13,7 @@ using Netotik.Common.Controller;
 
 namespace Netotik.Web.Areas.Company.Controllers
 {
-    [BreadCrumb(Title = "کاربر", UseDefaultRouteUrl = true, RemoveAllDefaultRouteValues = true,
+    [BreadCrumb(Title = "یوزرمنیجر", UseDefaultRouteUrl = true, RemoveAllDefaultRouteValues = true,
  Order = 0, GlyphIcon = "icon icon-table")]
     public partial class UserManagerController : BasePanelController
     {

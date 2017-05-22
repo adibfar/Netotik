@@ -430,6 +430,7 @@
     <Compile Include="Areas\Admin\Controllers\UserAdminController.cs" />
     <Compile Include="Areas\Company\CompanyAreaRegistration.cs" />
     <Compile Include="Areas\Company\Controllers\RouterController.cs" />
+    <Compile Include="Areas\Company\Controllers\HotspotController.cs" />
     <Compile Include="Areas\Company\Controllers\UserManagerController.cs" />
     <Compile Include="Areas\Reseller\ResellerAreaRegistration.cs" />
     <Compile Include="Areas\Reseller\Controllers\CompanyController.cs" />
@@ -440,6 +441,9 @@
       <DependentUpon>T4MVC.tt</DependentUpon>
     </Compile>
     <Compile Include="Company.HomeController.generated.cs">
+      <DependentUpon>T4MVC.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Company.HotspotController.generated.cs">
       <DependentUpon>T4MVC.tt</DependentUpon>
     </Compile>
     <Compile Include="Company.RouterController.generated.cs">
@@ -3413,7 +3417,7 @@
     <Content Include="Areas\Company\Views\UserManager\UserDetails.cshtml" />
     <Content Include="Areas\Company\Views\UserManager\UserEdit.cshtml" />
     <Content Include="Areas\Company\Views\Router\_Table.cshtml" />
-    <Content Include="Areas\Company\Views\Router\Hotspot_Temp.cshtml" />
+    <Content Include="Areas\Company\Views\Hotspot\Template.cshtml" />
     <Content Include="Areas\Company\Views\Router\Info.cshtml" />
     <Content Include="Areas\Company\Views\Router\Interfaces.cshtml" />
     <Content Include="Areas\Company\Views\Router\PPP.cshtml" />
@@ -3480,6 +3484,9 @@
     <Content Include="Areas\Admin\Views\Language\_TableResource.cshtml" />
     <Content Include="Areas\Admin\Views\Language\IndexResources.cshtml" />
     <Content Include="Areas\Admin\Views\Language\_EditResource.cshtml" />
+    <Content Include="Areas\Company\Views\Hotspot\Access.cshtml" />
+    <Content Include="Areas\Company\Views\Router\RouterSetting.cshtml" />
+    <Content Include="Areas\Company\Views\Hotspot\Servers.cshtml" />
     <None Include="Content\fonts\icomoon\icomoon.eot" />
     <Content Include="Content\fonts\icomoon\icomoon.svg" />
     <None Include="Content\fonts\icomoon\icomoon.ttf" />

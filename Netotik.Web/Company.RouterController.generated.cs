@@ -138,7 +138,6 @@ namespace Netotik.Web.Areas.Company.Controllers
             public readonly string WirelessDisable = "WirelessDisable";
             public readonly string InterfaceEnable = "InterfaceEnable";
             public readonly string InterfaceDetails = "InterfaceDetails";
-            public readonly string Hotspot_Temp = "Hotspot_Temp";
             public readonly string RouterSetting = "RouterSetting";
             public readonly string Reboot = "Reboot";
             public readonly string ResetRouter = "ResetRouter";
@@ -166,7 +165,6 @@ namespace Netotik.Web.Areas.Company.Controllers
             public const string WirelessDisable = "WirelessDisable";
             public const string InterfaceEnable = "InterfaceEnable";
             public const string InterfaceDetails = "InterfaceDetails";
-            public const string Hotspot_Temp = "Hotspot_Temp";
             public const string RouterSetting = "RouterSetting";
             public const string Reboot = "Reboot";
             public const string ResetRouter = "ResetRouter";
@@ -263,7 +261,6 @@ namespace Netotik.Web.Areas.Company.Controllers
             public class _ViewNamesClass
             {
                 public readonly string _Table = "_Table";
-                public readonly string Hotspot_Temp = "Hotspot_Temp";
                 public readonly string Info = "Info";
                 public readonly string InterfaceDetails = "InterfaceDetails";
                 public readonly string Interfaces = "Interfaces";
@@ -273,7 +270,6 @@ namespace Netotik.Web.Areas.Company.Controllers
                 public readonly string WirelessDetails = "WirelessDetails";
             }
             public readonly string _Table = "~/Areas/Company/Views/Router/_Table.cshtml";
-            public readonly string Hotspot_Temp = "~/Areas/Company/Views/Router/Hotspot_Temp.cshtml";
             public readonly string Info = "~/Areas/Company/Views/Router/Info.cshtml";
             public readonly string InterfaceDetails = "~/Areas/Company/Views/Router/InterfaceDetails.cshtml";
             public readonly string Interfaces = "~/Areas/Company/Views/Router/Interfaces.cshtml";
@@ -426,17 +422,6 @@ namespace Netotik.Web.Areas.Company.Controllers
             var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.InterfaceDetails);
             ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "id", id);
             InterfaceDetailsOverride(callInfo, id);
-            return callInfo;
-        }
-
-        [NonAction]
-        partial void Hotspot_TempOverride(T4MVC_System_Web_Mvc_ActionResult callInfo);
-
-        [NonAction]
-        public override System.Web.Mvc.ActionResult Hotspot_Temp()
-        {
-            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Hotspot_Temp);
-            Hotspot_TempOverride(callInfo);
             return callInfo;
         }
 

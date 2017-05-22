@@ -930,6 +930,174 @@ namespace Netotik.Services.Implement
 
         }
 
+        public List<Hotspot_IPBindingsModel> Hotspot_IpBindings(string r_Host, int r_Port, string r_User, string r_Password)
+        {
+            var mikrotik = new MikrotikAPI();
+            mikrotik.MK(r_Host, r_Port);
+            if (!mikrotik.Login(r_User, r_Password)) mikrotik.Close();
+            //-----------------------------------------------
+            mikrotik.Send("/ip/hotspot/ip-binding/print", true);
+            var Hotspot_IpBindings = new List<Hotspot_IPBindingsModel>();
+            foreach (var item in mikrotik.Read())
+            {
+                if (item != "!done")
+                {
+                    var cols = item.Split('=');
+                    var ColumnList = new Dictionary<string, string>();
+                    for (int i = 1; i < cols.Count(); i += 2)
+                    {
+                        ColumnList.Add(cols[i], cols[i + 1]);
+                    }
+
+                    Hotspot_IpBindings.Add(new Hotspot_IPBindingsModel()
+                    {
+                        id = ColumnList.Any(x => x.Key == ".id") ? (ColumnList.FirstOrDefault(x => x.Key == ".id").Value) : "",
+                        comment = ColumnList.Any(x => x.Key == "comment") ? (ColumnList.FirstOrDefault(x => x.Key == "comment").Value) : "",
+                        disabled = ColumnList.Any(x => x.Key == "disabled") ? (ColumnList.FirstOrDefault(x => x.Key == "disabled").Value) : "",
+                        mac_address = ColumnList.Any(x => x.Key == "mac-address") ? (ColumnList.FirstOrDefault(x => x.Key == "mac-address").Value) : "",
+                        server = ColumnList.Any(x => x.Key == "server") ? (ColumnList.FirstOrDefault(x => x.Key == "server").Value) : "",
+                        type = ColumnList.Any(x => x.Key == "type") ? (ColumnList.FirstOrDefault(x => x.Key == "type").Value) : "",
+                        to_address = ColumnList.Any(x => x.Key == "to-address") ? (ColumnList.FirstOrDefault(x => x.Key == "to-address").Value) : "",
+                        address = ColumnList.Any(x => x.Key == "address") ? (ColumnList.FirstOrDefault(x => x.Key == "address").Value) : "",
+                        hits = ColumnList.Any(x => x.Key == "hits") ? (ColumnList.FirstOrDefault(x => x.Key == "hits").Value) : ""
+                    });
+
+                }
+            }
+            if(Hotspot_IpBindings==null)
+            {
+                Hotspot_IpBindings.Add(new Hotspot_IPBindingsModel()
+                {
+                    id = "",
+                    comment = "",
+                    disabled = "",
+                    mac_address = "",
+                    server = "",
+                    type = "",
+                    to_address = "",
+                    address = "",
+                    hits = ""
+                });
+            }
+            return Hotspot_IpBindings;
+
+
+        }
+        public List<Hotspot_IPWalledGardenModel> Hotspot_IpWalledGarden(string r_Host, int r_Port, string r_User, string r_Password)
+        {
+            var mikrotik = new MikrotikAPI();
+            mikrotik.MK(r_Host, r_Port);
+            if (!mikrotik.Login(r_User, r_Password)) mikrotik.Close();
+            //-----------------------------------------------
+            mikrotik.Send("/ip/hotspot/walled-garden/ip/print", true);
+            var Hotspot_IpWalledGarden = new List<Hotspot_IPWalledGardenModel>();
+            foreach (var item in mikrotik.Read())
+            {
+                if (item != "!done")
+                {
+                    var cols = item.Split('=');
+                    var ColumnList = new Dictionary<string, string>();
+                    for (int i = 1; i < cols.Count(); i += 2)
+                    {
+                        ColumnList.Add(cols[i], cols[i + 1]);
+                    }
+
+                    Hotspot_IpWalledGarden.Add(new Hotspot_IPWalledGardenModel()
+                    {
+                        id = ColumnList.Any(x => x.Key == ".id") ? (ColumnList.FirstOrDefault(x => x.Key == ".id").Value) : "",
+                        action = ColumnList.Any(x => x.Key == "action") ? (ColumnList.FirstOrDefault(x => x.Key == "action").Value) : "",
+                        disabled = ColumnList.Any(x => x.Key == "disabled") ? (ColumnList.FirstOrDefault(x => x.Key == "disabled").Value) : "",
+                        dst_host = ColumnList.Any(x => x.Key == "dst-host") ? (ColumnList.FirstOrDefault(x => x.Key == "dst-host").Value) : "",
+                        dst_port = ColumnList.Any(x => x.Key == "dst-port") ? (ColumnList.FirstOrDefault(x => x.Key == "dst-port").Value) : "",
+                        protocol = ColumnList.Any(x => x.Key == "protocol") ? (ColumnList.FirstOrDefault(x => x.Key == "protocol").Value) : "",
+                        server = ColumnList.Any(x => x.Key == "server") ? (ColumnList.FirstOrDefault(x => x.Key == "server").Value) : "",
+                        src_address = ColumnList.Any(x => x.Key == "src-address") ? (ColumnList.FirstOrDefault(x => x.Key == "src-address").Value) : "",
+                        hits = ColumnList.Any(x => x.Key == "hits") ? (ColumnList.FirstOrDefault(x => x.Key == "hits").Value) : "",
+                        dst_address = ColumnList.Any(x => x.Key == "dst-address") ? (ColumnList.FirstOrDefault(x => x.Key == "dst-address").Value) : "",
+                        comment = ColumnList.Any(x => x.Key == "comment") ? (ColumnList.FirstOrDefault(x => x.Key == "comment").Value) : ""
+                    });
+
+                }
+            }
+            if(Hotspot_IpWalledGarden==null)
+            {
+                Hotspot_IpWalledGarden.Add(new Hotspot_IPWalledGardenModel()
+                {
+                    id = "",
+                    action = "",
+                    disabled = "",
+                    dst_host = "",
+                    dst_port = "",
+                    protocol = "",
+                    server = "",
+                    src_address = "",
+                    hits = "",
+                    dst_address = "",
+                    comment = ""
+                });
+            }
+            return Hotspot_IpWalledGarden;
+
+
+        }
+        public List<Hotspot_WalledGardenModel> Hotspot_WalledGarden(string r_Host, int r_Port, string r_User, string r_Password)
+        {
+            var mikrotik = new MikrotikAPI();
+            mikrotik.MK(r_Host, r_Port);
+            if (!mikrotik.Login(r_User, r_Password)) mikrotik.Close();
+            //-----------------------------------------------
+            mikrotik.Send("/ip/hotspot/walled-garden/print", true);
+            var Hotspot_WalledGarden = new List<Hotspot_WalledGardenModel>();
+            foreach (var item in mikrotik.Read())
+            {
+                if (item != "!done")
+                {
+                    var cols = item.Split('=');
+                    var ColumnList = new Dictionary<string, string>();
+                    for (int i = 1; i < cols.Count(); i += 2)
+                    {
+                        ColumnList.Add(cols[i], cols[i + 1]);
+                    }
+
+                    Hotspot_WalledGarden.Add(new Hotspot_WalledGardenModel()
+                    {
+                        id = ColumnList.Any(x => x.Key == ".id") ? (ColumnList.FirstOrDefault(x => x.Key == ".id").Value) : "",
+                        action = ColumnList.Any(x => x.Key == "action") ? (ColumnList.FirstOrDefault(x => x.Key == "action").Value) : "",
+                        disabled = ColumnList.Any(x => x.Key == "disabled") ? (ColumnList.FirstOrDefault(x => x.Key == "disabled").Value) : "",
+                        dst_host = ColumnList.Any(x => x.Key == "dst-host") ? (ColumnList.FirstOrDefault(x => x.Key == "dst-host").Value) : "",
+                        dst_port = ColumnList.Any(x => x.Key == "dst-port") ? (ColumnList.FirstOrDefault(x => x.Key == "dst-port").Value) : "",
+                        method = ColumnList.Any(x => x.Key == "method") ? (ColumnList.FirstOrDefault(x => x.Key == "method").Value) : "",
+                        path = ColumnList.Any(x => x.Key == "path") ? (ColumnList.FirstOrDefault(x => x.Key == "path").Value) : "",
+                        server = ColumnList.Any(x => x.Key == "server") ? (ColumnList.FirstOrDefault(x => x.Key == "server").Value) : "",
+                        src_address = ColumnList.Any(x => x.Key == "src-address") ? (ColumnList.FirstOrDefault(x => x.Key == "src-address").Value) : "",
+                        hits = ColumnList.Any(x => x.Key == "hits") ? (ColumnList.FirstOrDefault(x => x.Key == "hits").Value) : "",
+                        comment = ColumnList.Any(x => x.Key == "comment") ? (ColumnList.FirstOrDefault(x => x.Key == "comment").Value) : ""
+                    });
+
+                }
+            }
+            if(Hotspot_WalledGarden == null)
+            {
+                Hotspot_WalledGarden.Add(new Hotspot_WalledGardenModel()
+                {
+                    id = "",
+                    action = "",
+                    disabled = "",
+                    dst_host = "",
+                    dst_port = "",
+                    method = "",
+                    path = "",
+                    server = "",
+                    src_address = "",
+                    hits = "",
+                    comment = ""
+                });
+            }
+            return Hotspot_WalledGarden;
+
+
+        }
+
         public List<Router_LicenseModel> Router_License(string r_Host, int r_Port, string r_User, string r_Password)
         {
             var mikrotik = new MikrotikAPI();
@@ -1029,7 +1197,7 @@ namespace Netotik.Services.Implement
 
                     Router_Resource.Add(new Router_ResourceModel()
                     {
-                        Uptime = ColumnList.Any(x => x.Key == "uptime") ? (ColumnList.FirstOrDefault(x => x.Key == "uptime").Value.Replace("d", " ").Replace("h", ":").Replace("m", ":").Replace("s", "")) : "",
+                        Uptime = ColumnList.Any(x => x.Key == "uptime") ? (ColumnList.FirstOrDefault(x => x.Key == "uptime").Value.Replace("d", "روز").Replace("h", ":").Replace("m", ":").Replace("s", "")) : "",
                         Version = ColumnList.Any(x => x.Key == "version") ? (ColumnList.FirstOrDefault(x => x.Key == "version").Value) : "",
                         Build_time = ColumnList.Any(x => x.Key == "build-time") ? (ColumnList.FirstOrDefault(x => x.Key == "build-time").Value) : "",
                         Free_memory = ColumnList.Any(x => x.Key == "free-memory") ? (ColumnList.FirstOrDefault(x => x.Key == "free-memory").Value) : "",
@@ -1063,12 +1231,12 @@ namespace Netotik.Services.Implement
             //-----------------------------------------------
             var temp = "";
             mikrotik.Send("/tool/user-manager/database/save");
-            temp = ConvertDate.ToFa(DateTime.Now, "yyyy-MM-dd ").ToString() + " " + ConvertDate.ToFa(DateTime.Now, "T").ToString();
-            temp = String.Format("=name=\"Netotik.({0}).UsermanagerReset\"", temp);
+            temp = ConvertDate.ToFa(DateTime.Now, "yyyy-MM-dd").ToString() + ")(" + ConvertDate.ToFa(DateTime.Now, "T").ToString();
+            temp = String.Format("=name=Netotik.({0}).UsermanagerReset", temp);
             mikrotik.Send(temp,true);
             mikrotik.Send("/tool/user-manager/database/save-logs");
-            temp = ConvertDate.ToFa(DateTime.Now, "yyyy-MM-dd ").ToString() + " " + ConvertDate.ToFa(DateTime.Now, "T").ToString();
-            temp = String.Format("=name=\"Netotik.({0}).UsermanagerResetLog\"", temp);
+            temp = ConvertDate.ToFa(DateTime.Now, "yyyy-MM-dd").ToString() + ")(" + ConvertDate.ToFa(DateTime.Now, "T").ToString();
+            temp = String.Format("=name=Netotik.({0}).UsermanagerResetLog", temp);
             mikrotik.Send(temp, true);
             //------------------------------------------------
             if (logs)
@@ -1332,8 +1500,8 @@ namespace Netotik.Services.Implement
             //-----------------------------------------------
             var temp = "";
             mikrotik.Send("/system/backup/save");
-            temp = ConvertDate.ToFa(DateTime.Now, "yyyy-MM-dd ").ToString() + " " + ConvertDate.ToFa(DateTime.Now, "T").ToString();
-            temp = String.Format("=name=\"Netotik.({0}).RouterReset\"", temp);
+            temp = ConvertDate.ToFa(DateTime.Now, "yyyy-MM-dd").ToString() + ")(" + ConvertDate.ToFa(DateTime.Now, "T").ToString();
+            temp = String.Format("=name=Netotik.({0}).RouterReset", temp);
             mikrotik.Send(temp);
             mikrotik.Send("dont-encrypt=yes",true);
             mikrotik.Send("/system/reset-configuration");
@@ -1354,8 +1522,8 @@ namespace Netotik.Services.Implement
             //-----------------------------------------------
             var temp = "";
             mikrotik.Send("/system/backup/save");
-            temp = ConvertDate.ToFa(DateTime.Now, "yyyy-MM-dd ").ToString() + " "+ ConvertDate.ToFa(DateTime.Now, "T").ToString();
-            temp = String.Format("=name=\"Netotik.({0}).Router\"", temp);
+            temp = ConvertDate.ToFa(DateTime.Now, "yyyy-MM-dd").ToString() + ")("+ ConvertDate.ToFa(DateTime.Now, "T").ToString();
+            temp = String.Format("=name=Netotik.({0}).Router", temp);
             mikrotik.Send(temp);
             mikrotik.Send("dont-encrypt=yes", true);
             return true;
@@ -1369,13 +1537,13 @@ namespace Netotik.Services.Implement
             //-----------------------------------------------
             var temp = "";
             mikrotik.Send("/tool/user-manager/database/save");
-            temp = ConvertDate.ToFa(DateTime.Now, "yyyy-MM-dd ").ToString() + " " + ConvertDate.ToFa(DateTime.Now, "T").ToString();
-            temp = String.Format("=name=\"Netotik.({0}).Usermanager\"", temp);
+            temp = ConvertDate.ToFa(DateTime.Now, "yyyy-MM-dd").ToString() + ")(" + ConvertDate.ToFa(DateTime.Now, "T").ToString();
+            temp = String.Format("=name=Netotik.({0}).Usermanager", temp);
             mikrotik.Send(temp,true);
 
             mikrotik.Send("/tool/user-manager/database/save-logs");
-            temp = ConvertDate.ToFa(DateTime.Now, "yyyy-MM-dd ").ToString() + " " + ConvertDate.ToFa(DateTime.Now, "T").ToString();
-            temp = String.Format("=name=\"Netotik.({0}).UsermanagerLog\"", temp);
+            temp = ConvertDate.ToFa(DateTime.Now, "yyyy-MM-dd").ToString() + ")(" + ConvertDate.ToFa(DateTime.Now, "T").ToString();
+            temp = String.Format("=name=Netotik.({0}).UsermanagerLog", temp);
             mikrotik.Send(temp, true);
 
             return true;
@@ -1403,13 +1571,13 @@ namespace Netotik.Services.Implement
             if (FileName.Contains("UsermanagerLog"))
             {
                 mikrotik.Send("/tool/user-manager/database/load-logs");
-                temp = String.Format("=name='{0}'", FileName);
+                temp = String.Format("=name={0}", FileName);
                 mikrotik.Send(temp, true);
             }
             else
             {
                 mikrotik.Send("/tool/user-manager/database/load");
-                temp = String.Format("=name='{0}'", FileName);
+                temp = String.Format("=name={0}", FileName);
                 mikrotik.Send(temp, true);
             }
         }
@@ -1421,7 +1589,7 @@ namespace Netotik.Services.Implement
             //-----------------------------------------------
             var temp = "";
             mikrotik.Send("/system/backup/load");
-            temp = String.Format("=name='{0}'", FileName);
+            temp = String.Format("=name={0}", FileName);
             mikrotik.Send(temp,true);
         }
         public List<Router_FileModel> GetBackupRouterList(string r_Host, int r_Port, string r_User, string r_Password)
@@ -1569,6 +1737,170 @@ namespace Netotik.Services.Implement
             }
         }
 
+        public void Hotspot_IpBindingsRemove(string ip, int port, string user, string pass, string id)
+        {
+            var mikrotik = new MikrotikAPI();
+            mikrotik.MK(ip, port);
+            if (!mikrotik.Login(user, pass)) mikrotik.Close();
+            //-----------------------------------------------
+            mikrotik.Send("/ip/hotspot/ip-binding/remove");
+            string temp = String.Format("=.id={0}", id);
+            mikrotik.Send(temp, true);
+        }
+
+        public void Hotspot_IpBindingsEnable(string ip, int port, string user, string pass, string id)
+        {
+            var mikrotik = new MikrotikAPI();
+            mikrotik.MK(ip, port);
+            if (!mikrotik.Login(user, pass)) mikrotik.Close();
+            //-----------------------------------------------
+            mikrotik.Send("/ip/hotspot/ip-binding/enable");
+            string temp = String.Format("=.id={0}", id);
+            mikrotik.Send(temp, true);
+        }
+
+        public void Hotspot_IpBindingsDisable(string ip, int port, string user, string pass, string id)
+        {
+            var mikrotik = new MikrotikAPI();
+            mikrotik.MK(ip, port);
+            if (!mikrotik.Login(user, pass)) mikrotik.Close();
+            //-----------------------------------------------
+            mikrotik.Send("/ip/hotspot/ip-binding/disable");
+            string temp = String.Format("=.id={0}", id);
+            mikrotik.Send(temp, true);
+        }
+
+        public void Hotspot_IpWalledGardenRemove(string ip, int port, string user, string pass, string id)
+        {
+            var mikrotik = new MikrotikAPI();
+            mikrotik.MK(ip, port);
+            if (!mikrotik.Login(user, pass)) mikrotik.Close();
+            //-----------------------------------------------
+            mikrotik.Send("/ip/hotspot/walled-garden/ip/remove");
+            string temp = String.Format("=.id={0}", id);
+            mikrotik.Send(temp, true);
+        }
+
+        public void Hotspot_IpWalledGardenEnable(string ip, int port, string user, string pass, string id)
+        {
+            var mikrotik = new MikrotikAPI();
+            mikrotik.MK(ip, port);
+            if (!mikrotik.Login(user, pass)) mikrotik.Close();
+            //-----------------------------------------------
+            mikrotik.Send("/ip/hotspot/walled-garden/ip/enable");
+            string temp = String.Format("=.id={0}", id);
+            mikrotik.Send(temp, true);
+        }
+
+        public void Hotspot_IpWalledGardenDisable(string ip, int port, string user, string pass, string id)
+        {
+            var mikrotik = new MikrotikAPI();
+            mikrotik.MK(ip, port);
+            if (!mikrotik.Login(user, pass)) mikrotik.Close();
+            //-----------------------------------------------
+            mikrotik.Send("/ip/hotspot/walled-garden/ip/disable");
+            string temp = String.Format("=.id={0}", id);
+            mikrotik.Send(temp, true);
+        }
+
+        public List<Hotspot_ServerModel> Hotspot_ServersList(string r_Host, int r_Port, string r_User, string r_Password)
+        {
+            var mikrotik = new MikrotikAPI();
+            mikrotik.MK(r_Host, r_Port);
+            if (!mikrotik.Login(r_User, r_Password)) mikrotik.Close();
+            //-----------------------------------------------
+            mikrotik.Send("/ip/hotspot/print", true);
+            var Hotspot_Servers = new List<Hotspot_ServerModel>();
+            foreach (var item in mikrotik.Read())
+            {
+                if (item != "!done")
+                {
+                    var cols = item.Split('=');
+                    var ColumnList = new Dictionary<string, string>();
+                    for (int i = 1; i < cols.Count(); i += 2)
+                    {
+                        ColumnList.Add(cols[i], cols[i + 1]);
+                    }
+
+                    Hotspot_Servers.Add(new Hotspot_ServerModel()
+                    {
+                        id = ColumnList.Any(x => x.Key == ".id") ? (ColumnList.FirstOrDefault(x => x.Key == ".id").Value) : "",
+                        addresses_per_mac = ColumnList.Any(x => x.Key == "addresses-per-mac") ? (ColumnList.FirstOrDefault(x => x.Key == "addresses-per-mac").Value) : "",
+                        address_pool = ColumnList.Any(x => x.Key == "address-pool") ? (ColumnList.FirstOrDefault(x => x.Key == "address-pool").Value) : "",
+                        disabled = ColumnList.Any(x => x.Key == "disabled") ? (ColumnList.FirstOrDefault(x => x.Key == "disabled").Value) : "",
+                        Hinterface = ColumnList.Any(x => x.Key == "interface") ? (ColumnList.FirstOrDefault(x => x.Key == "interface").Value) : "",
+                        idle_timeout = ColumnList.Any(x => x.Key == "idle-timeout") ? (ColumnList.FirstOrDefault(x => x.Key == "idle-timeout").Value) : "",
+                        keepalive_timeout = ColumnList.Any(x => x.Key == "keepalive-timeout") ? (ColumnList.FirstOrDefault(x => x.Key == "keepalive-timeout").Value) : "",
+                        login_timeout = ColumnList.Any(x => x.Key == "login-timeout") ? (ColumnList.FirstOrDefault(x => x.Key == "login-timeout").Value) : "",
+                        name = ColumnList.Any(x => x.Key == "name") ? (ColumnList.FirstOrDefault(x => x.Key == "name").Value) : "",
+                        profile = ColumnList.Any(x => x.Key == "profile") ? (ColumnList.FirstOrDefault(x => x.Key == "profile").Value) : "",
+                        proxy_status = ColumnList.Any(x => x.Key == "proxy-status") ? (ColumnList.FirstOrDefault(x => x.Key == "proxy-status").Value) : "",
+                    });
+
+                }
+            }
+            return Hotspot_Servers;
+        }
+
+        public void Hotspot_IpBindingsAdd(string r_Host, int r_Port, string r_User, string r_Password, Hotspot_IPBindingsModel model)
+        {
+            var mikrotik = new MikrotikAPI();
+            mikrotik.MK(r_Host, r_Port);
+            if (!mikrotik.Login(r_User, r_Password)) mikrotik.Close();
+            //------------------------------------------------    to-address  type
+            mikrotik.Send("/ip/hotspot/ip-binding/add");
+            string temp = String.Format("=address={0}", model.address);
+            if (model.address != "")
+                mikrotik.Send(temp);
+            
+            temp = String.Format("=mac-address={0}", model.mac_address);
+            if (model.mac_address != "")
+                mikrotik.Send(temp);
+            temp = String.Format("=server={0}", model.server);
+            if (model.server != "")
+                mikrotik.Send(temp);
+            temp = String.Format("=type={0}", model.type);
+            if (model.type != "")
+                mikrotik.Send(temp);
+            mikrotik.Send("=disabled=no",true);
+            var resualt = mikrotik.Read();
+        }
+
+
+        public void Hotspot_IpWalledGardenAdd(string r_Host, int r_Port, string r_User, string r_Password, Hotspot_IPWalledGardenModel model)
+        {
+            var mikrotik = new MikrotikAPI();
+            mikrotik.MK(r_Host, r_Port);
+            if (!mikrotik.Login(r_User, r_Password)) mikrotik.Close();
+            //------------------------    dst-address    dst-port  place-before    server  
+            mikrotik.Send("/ip/hotspot/walled-garden/ip/add");
+            /*string temp = String.Format("=dst-address={0}", model.dst_address);
+            if (model.dst_address != "")
+                mikrotik.Send(temp);
+                */
+            string temp = String.Format("=dst-host={0}", model.dst_host);
+            if (model.dst_host != "")
+                mikrotik.Send(temp);
+            temp = String.Format("=server={0}", model.server);
+            if (model.server != "")
+                mikrotik.Send(temp);
+            temp = String.Format("=action={0}", model.action);
+            if (model.action != "")
+                mikrotik.Send(temp);
+            temp = String.Format("=dst-port={0}", model.dst_port);
+            if (model.dst_port != "")
+                mikrotik.Send(temp);
+            temp = String.Format("=protocol={0}", model.protocol);
+            if (model.protocol != "" )
+                mikrotik.Send(temp);
+            /*
+            temp = String.Format("=src-address={0}", model.src_address);
+            if (model.src_address != "")
+                mikrotik.Send(temp);
+                */
+            mikrotik.Send("=disabled=no", true);
+            var resualt = mikrotik.Read();
+        }
         #endregion
 
     }

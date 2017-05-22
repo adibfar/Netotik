@@ -95,13 +95,15 @@
                                 <div class="card">
                                     <div class="card-body">
                                         <div class="card-block">
-                                            <form action="@Url.Action(MVC.Company.Router.ActionNames.ResetRouter)">
+                                            @using (Html.BeginForm(MVC.Company.Router.ActionNames.ResetRouter, MVC.Company.Router.Name, FormMethod.Post,
+                                            htmlAttributes: new { @class = "form-horizontal", enctype = "multipart/form-data", id = "form" }))
+                                            {
                                                 @Html.AntiForgeryToken()
-                                                <h4 class="form-section"><i class="icon-android-alert"></i>ریست روتر</h4>
-                                                توجه: ممکن است پس از ریست، سامانه دیگر قادر به اتصال به روتر شما نباشد.لطفا با پشتیبان شبکه خود تماس بگیرید.
-                                                پس از ریست روتر تمامی تنظیمات و کانفیگ های انجام شده پاک خواهد شد.در صورتی که از طریق سامانه اقدام به ریست کنید،سامانه
-                                                به صورت خودکار قبل از ریست شدن دستگاه یک بک آپ از تنظیمات شما خواهد گرفت.
-
+                                                <h4 class="form-section"><i class="icon-android-alert"></i>ریست روتر</h4><div>
+    توجه: ممکن است پس از ریست، سامانه دیگر قادر به اتصال به روتر شما نباشد.لطفا با پشتیبان شبکه خود تماس بگیرید.
+    پس از ریست روتر تمامی تنظیمات و کانفیگ های انجام شده پاک خواهد شد.در صورتی که از طریق سامانه اقدام به ریست کنید،سامانه
+    به صورت خودکار قبل از ریست شدن دستگاه یک بک آپ از تنظیمات شما خواهد گرفت.
+</div>
                                                 <div class="col-md-6">
                                                     <br />
                                                     <div class="controls">
@@ -130,7 +132,7 @@
                                                         <i class="icon-alert"></i> Reset
                                                     </button>
                                                 </div>
-                                            </form>
+                                            }
                                         </div>
                                     </div>
                                 </div>
@@ -157,11 +159,15 @@
                                 <div class="card">
                                     <div class="card-body">
                                         <div class="card-block">
-                                            <form action="@Url.Action(MVC.Company.Router.ActionNames.RestoreRouter)">
+                                            @using (Html.BeginForm(MVC.Company.Router.ActionNames.RestoreRouter, MVC.Company.Router.Name, FormMethod.Post,
+                                            htmlAttributes: new { @class = "form-horizontal", enctype = "multipart/form-data", id = "form" }))
+                                            {
                                                 @Html.AntiForgeryToken()
                                                 <h4 class="form-section"><i class="icon-reload"></i>بازگردانی روتر</h4>
+                                            <div>
                                                 بازگردانی روتر ممکن است باعث شود سامانه دیگر قادر به اتصال به روتر نباشد.
                                                 فقط بک آپ گیری هایی که توسط سامانه گرفته شده است نمایش داده می شود.
+                                            </div>
                                                 <div class="col-md-12">
                                                     <label class="font-noraml">انتخاب بک آپ</label>
                                                     <select name="RestoreRouter" data-placeholder="انتخاب بک آپ" class="selectize-select" style="min-width:350px;" tabindex="2">
@@ -176,7 +182,7 @@
                                                         <i class="icon-reload"></i> Restore Router
                                                     </button>
                                                 </div>
-                                            </form>
+                                            }
                                         </div>
                                     </div>
                                 </div>
@@ -187,18 +193,22 @@
                                 <div class="card">
                                     <div class="card-body">
                                         <div class="card-block">
-                                            <form action="@Url.Action(MVC.Company.Router.ActionNames.ResetUsermanager)">
+                                            @using (Html.BeginForm(MVC.Company.Router.ActionNames.ResetUsermanager, MVC.Company.Router.Name, FormMethod.Post,
+                                            htmlAttributes: new { @class = "form-horizontal", enctype = "multipart/form-data", id = "form" }))
+                                            {
                                                 @Html.AntiForgeryToken()
                                                 <h4 class="form-section"><i class="icon-android-alert"></i>ریست یوزرمنیجر</h4>
+                                            <div>
                                                 توجه: در صورتی که از این قسمت اطلاعی ندارید لطفا با پشتیبان خود تماس بگیرید.
                                                 این سامانه به صورت خودکار قبل از ریست کردن بک آپ تهیه می کند.
+                                            </div>
                                                 <br />
                                                 <br /><br />
                                                 <div class="col-md-6">
                                                     <br />
                                                     <div class="controls">
                                                         <label class="custom-control custom-checkbox">
-                                                            <input type="checkbox" class="custom-control-input" id="nodefualt" name="nodefualt" />
+                                                            <input type="checkbox" class="custom-control-input" name="logs" />
                                                             <span class="custom-control-indicator"></span>
                                                             <span class="custom-control-description">
                                                                 پاک کردن لاگ ها
@@ -210,7 +220,7 @@
                                                     <br />
                                                     <div class="controls">
                                                         <label class="custom-control custom-checkbox">
-                                                            <input type="checkbox" class="custom-control-input" id="nodefualt" name="nodefualt" />
+                                                            <input type="checkbox" class="custom-control-input" name="users" />
                                                             <span class="custom-control-indicator"></span>
                                                             <span class="custom-control-description">
                                                                 پاک کردن یوزرها
@@ -218,11 +228,35 @@
                                                         </label>
                                                     </div>
                                                 </div>
+                                            <div class="col-md-6">
+                                                <br />
+                                                <div class="controls">
+                                                    <label class="custom-control custom-checkbox">
+                                                        <input type="checkbox" class="custom-control-input" name="history" />
+                                                        <span class="custom-control-indicator"></span>
+                                                        <span class="custom-control-description">
+                                                            پاک کردن پکیج ها
+                                                        </span>
+                                                    </label>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <br />
+                                                <div class="controls">
+                                                    <label class="custom-control custom-checkbox">
+                                                        <input type="checkbox" class="custom-control-input" name="history" />
+                                                        <span class="custom-control-indicator"></span>
+                                                        <span class="custom-control-description">
+                                                            پاک کردن تاریخچه
+                                                        </span>
+                                                    </label>
+                                                </div>
+                                            </div>
                                                 <div class="col-md-6">
                                                     <br />
                                                     <div class="controls">
                                                         <label class="custom-control custom-checkbox">
-                                                            <input type="checkbox" class="custom-control-input" id="nodefualt" name="nodefualt" />
+                                                            <input type="checkbox" class="custom-control-input" name="session" />
                                                             <span class="custom-control-indicator"></span>
                                                             <span class="custom-control-description">
                                                                 پاک کردن سشن ها
@@ -234,7 +268,7 @@
                                                     <br />
                                                     <div class="controls">
                                                         <label class="custom-control custom-checkbox">
-                                                            <input type="checkbox" class="custom-control-input" id="nodefualt" name="nodefualt" />
+                                                            <input type="checkbox" class="custom-control-input" name="db" />
                                                             <span class="custom-control-indicator"></span>
                                                             <span class="custom-control-description">
                                                                 پاک کردن کل دیتابیس(بجز لاگ)
@@ -258,7 +292,7 @@
                                                         <i class="icon-alert"></i> Reset
                                                     </button>
                                                 </div>
-                                            </form>
+                                            }
                                         </div>
                                     </div>
                                 </div>
@@ -284,10 +318,12 @@
                                 <div class="card">
                                     <div class="card-body">
                                         <div class="card-block">
-                                            <form action="@Url.Action(MVC.Company.Router.ActionNames.RestoreUsermanager)">
+                                            @using (Html.BeginForm(MVC.Company.Router.ActionNames.RestoreUsermanager, MVC.Company.Router.Name, FormMethod.Post,
+                                            htmlAttributes: new { @class = "form-horizontal", enctype = "multipart/form-data", id = "form" }))
+                                            {
                                                 @Html.AntiForgeryToken()
                                                 <h4 class="form-section"><i class="icon-reload"></i>بازگردانی یوزرمنیجر</h4>
-                                                بازگردانی دیتابیس یوزرمنیجر باعث می شود تمامی لاگ ها و یوزرها به حالت بک آپ مورد نظر بازگردند.
+                                            <div>بازگردانی دیتابیس یوزرمنیجر باعث می شود تمامی لاگ ها و یوزرها به حالت بک آپ مورد نظر بازگردند.</div>
                                                 <div class="col-md-12">
                                                     <label class="font-noraml">انتخاب بک آپ</label>
                                                     <select name="RestoreUsermanager" data-placeholder="انتخاب بک آپ" class="selectize-select" style="min-width:350px;" tabindex="2">
@@ -302,7 +338,7 @@
                                                         <i class="icon-reload"></i> Restore UserManager
                                                     </button>
                                                 </div>
-                                            </form>
+                                            }
                                         </div>
                                     </div>
                                 </div>

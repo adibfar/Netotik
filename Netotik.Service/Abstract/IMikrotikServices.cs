@@ -35,12 +35,17 @@ namespace Netotik.Services.Abstract
         void Router_Info_Update(string ip, int port, string user, string pass);
         string EnableAndGetCloud(string ip, int port, string user, string pass);
         void Usermanager_UserEdit(string ip, int port, string user, string pass, Usermanager_UserEditModel model);
+        void Hotspot_IpWalledGardenAdd(string r_Host, int r_Port, string r_User, string r_Password, Hotspot_IPWalledGardenModel temp);
+        void Hotspot_IpBindingsAdd(string r_Host, int r_Port, string r_User, string r_Password, Hotspot_IPBindingsModel temp);
         bool CheckMeliCode(string PersonCode, int? id);
         void Usermanager_CloseSession(string r_Host, int r_Port, string r_User, string r_Password, string user);
         List<Router_PackageUpdateModel> Router_PackageUpdate(string r_Host, int r_Port, string r_User, string r_Password);
         List<Router_ClockModel> Router_Clock(string r_Host, int r_Port, string r_User, string r_Password);
         List<Router_RouterBoardModel> Router_Routerboard(string r_Host, int r_Port, string r_User, string r_Password);
         List<Router_IdentityModel> Router_Identity(string r_Host, int r_Port, string r_User, string r_Password);
+        List<Hotspot_IPBindingsModel> Hotspot_IpBindings(string r_Host, int r_Port, string r_User, string r_Password);
+        List<Hotspot_IPWalledGardenModel> Hotspot_IpWalledGarden(string r_Host, int r_Port, string r_User, string r_Password);
+        List<Hotspot_WalledGardenModel> Hotspot_WalledGarden(string r_Host, int r_Port, string r_User, string r_Password);
         List<Router_LicenseModel> Router_License(string r_Host, int r_Port, string r_User, string r_Password);
         List<Router_ResourceModel> Router_Resource(string r_Host, int r_Port, string r_User, string r_Password);
         void Router_InterfaceEnable(string r_Host, int r_Port, string r_User, string r_Password, string id);
@@ -49,7 +54,16 @@ namespace Netotik.Services.Abstract
         Router_EthernetModel GetEthernetDetails(string r_Host, int r_Port, string r_User, string r_Password, string id);
         List<Router_FileModel> GetBackupRouterList(string r_Host, int r_Port, string r_User, string r_Password);
         List<Router_FileModel> GetBackupUsermanagerList(string r_Host, int r_Port, string r_User, string r_Password);
+        List<Hotspot_ServerModel> Hotspot_ServersList(string r_Host, int r_Port, string r_User, string r_Password);
         void RestoreRouter(string r_Host, int r_Port, string r_User, string r_Password, string FileName);
         void RestoreUsermanager(string r_Host, int r_Port, string r_User, string r_Password, string FileName);
+
+        void Hotspot_IpBindingsRemove(string ip, int port, string user, string pass, string id);
+        void Hotspot_IpBindingsEnable(string ip, int port, string user, string pass, string id);
+        void Hotspot_IpBindingsDisable(string ip, int port, string user, string pass, string id);
+
+        void Hotspot_IpWalledGardenRemove(string ip, int port, string user, string pass, string id);
+        void Hotspot_IpWalledGardenEnable(string ip, int port, string user, string pass, string id);
+        void Hotspot_IpWalledGardenDisable(string ip, int port, string user, string pass, string id);
     }
 }

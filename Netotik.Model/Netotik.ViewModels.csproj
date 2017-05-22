@@ -91,6 +91,10 @@
     <Compile Include="Identity\UserCompany\CompanyAddModel.cs" />
     <Compile Include="Identity\UserCompany\CompanyEditModel.cs" />
     <Compile Include="Identity\UserReseller\UserItem.cs" />
+    <Compile Include="Mikrotik\Hotspot\IpWalledGardenModel.cs" />
+    <Compile Include="Mikrotik\Hotspot\ServersModel.cs" />
+    <Compile Include="Mikrotik\Hotspot\WalledGardenModel.cs" />
+    <Compile Include="Mikrotik\Hotspot\IpBindingsModel.cs" />
     <Compile Include="Mikrotik\Router\RouterFileModel.cs" />
     <Compile Include="Mikrotik\Router\ClockModel.cs" />
     <Compile Include="Mikrotik\Router\EthernetModel.cs" />

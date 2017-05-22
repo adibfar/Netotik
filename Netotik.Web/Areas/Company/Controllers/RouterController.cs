@@ -24,7 +24,7 @@ using System.Collections.Generic;
 
 namespace Netotik.Web.Areas.Company.Controllers
 {
-    [BreadCrumb(Title = "کاربر", UseDefaultRouteUrl = true, RemoveAllDefaultRouteValues = true,
+    [BreadCrumb(Title = "روتر", UseDefaultRouteUrl = true, RemoveAllDefaultRouteValues = true,
  Order = 0, GlyphIcon = "icon icon-table")]
     public partial class RouterController : BasePanelController
     {
@@ -103,6 +103,7 @@ namespace Netotik.Web.Areas.Company.Controllers
             //------------------------------------------
             var Router_Clock = _mikrotikServices.Router_Clock(UserLogined.UserCompany.R_Host, UserLogined.UserCompany.R_Port, UserLogined.UserCompany.R_User, UserLogined.UserCompany.R_Password);
             Router_Info.Router_date = Router_Clock.FirstOrDefault().Router_date;
+            //PersianDate.ConvertDate.ToFa();
             Router_Info.Router_time = Router_Clock.FirstOrDefault().Router_time;
             //------------------------------------------
             var Router_Routerboard = _mikrotikServices.Router_Routerboard(UserLogined.UserCompany.R_Host, UserLogined.UserCompany.R_Port, UserLogined.UserCompany.R_User, UserLogined.UserCompany.R_Password);
@@ -346,12 +347,6 @@ namespace Netotik.Web.Areas.Company.Controllers
             return View(Ethernet);
         }
         #endregion
-
-        [Mvc5Authorize(Roles = "Company")]
-        public virtual ActionResult Hotspot_Temp()
-        {
-            return View();
-        }
         [Mvc5Authorize(Roles = "Company")]
         public virtual ActionResult RouterSetting()
         {
@@ -443,10 +438,11 @@ namespace Netotik.Web.Areas.Company.Controllers
             }
 
             //-------------------------------
+            if (Request.Form["reset"]!=null)
             if (Request.Form["reset"].ToString() == "yes")
             {
                 bool nosetting = false;
-                if (Request.Form["nodefualt"] == "true") { nosetting = true; }
+                if (Request.Form["nodefualt"] !=null) { nosetting = true; }
                 _mikrotikServices.ResetRouter(UserLogined.UserCompany.R_Host, UserLogined.UserCompany.R_Port, UserLogined.UserCompany.R_User, UserLogined.UserCompany.R_Password, true, nosetting);
                 this.MessageSuccess("Reset", "روتر در حال ریست شدن است.ممکن است سامانه دیگر قادر به اتصال به روتر نباشد.با پشتیبان خود تماس بگیرید.");
             }
@@ -474,7 +470,7 @@ namespace Netotik.Web.Areas.Company.Controllers
             }
 
             //-------------------------------
-            if (Request.Form["reset"].ToString() == "yes")
+            if (true)
             {
                 _mikrotikServices.RestoreUsermanager(UserLogined.UserCompany.R_Host, UserLogined.UserCompany.R_Port, UserLogined.UserCompany.R_User, UserLogined.UserCompany.R_Password, Request.Form["RestoreUsermanager"].ToString());
                 this.MessageSuccess("Restore Usermanager", "بک آپ مورد نظر درحال بازگردانی می باشد.");
@@ -522,10 +518,41 @@ namespace Netotik.Web.Areas.Company.Controllers
                 this.MessageError("خطا", "نام کاربری یا رمز عبور صحیح وارد نشده است.لطفا نام کاربری یا رمز عبور را تصحیح کنید.");
                 return RedirectToAction(MVC.Company.Home.ActionNames.MikrotikConf, MVC.Company.Home.Name, new { area = MVC.Company.Name });
             }
-
-            //-------------------------------
-            _mikrotikServices.ResetUsermanager(UserLogined.UserCompany.R_Host, UserLogined.UserCompany.R_Port, UserLogined.UserCompany.R_User, UserLogined.UserCompany.R_Password, true, true,true,true,true,true);
-            this.MessageSuccess("Reset Usermanager", "یوزرمنیجر با تنظیمات انتخابی ریست شد.بک آپ کلی از یوزرمنیجر به صورت خودکار گرفته شد.");
+            if(Request.Form["reset"] !=null)
+            if (Request.Form["reset"].ToString() == "yes")
+            {
+                bool logs = true; bool users = true; bool packages = true; bool history = true; bool session = true; bool db = true;
+                if (Request.Form["logs"] == null)
+                    logs = false;
+                if (Request.Form["users"] == null)
+                    users = false;
+                if (Request.Form["packages"] == null)
+                    packages = false;
+                if (Request.Form["history"] == null)
+                    history = false;
+                if (Request.Form["logs"] == null)
+                    session = false;
+                if (Request.Form["logs"] == null)
+                    db = false;
+                //-------------------------------
+                if (logs==false && false == users && false == packages && false == history && false== session &&db == false)
+                {
+                    this.MessageInformation("انتخاب مقادیر", "هیچ مقداری انتخاب نشده است.");
+                }
+                else
+                {
+                    _mikrotikServices.ResetUsermanager(UserLogined.UserCompany.R_Host, UserLogined.UserCompany.R_Port, UserLogined.UserCompany.R_User, UserLogined.UserCompany.R_Password,users,logs,session,history,packages,db );
+                    this.MessageSuccess("Reset Usermanager", "یوزرمنیجر با تنظیمات انتخابی ریست شد.بک آپ کلی از یوزرمنیجر به صورت خودکار گرفته شد.");
+                }
+                }
+                else
+                {
+                    this.MessageInformation("مقدار تایید", "مقدار تاییدیه به درستی پر نشده است..");
+                }
+            else
+            {
+                this.MessageInformation("مقدار تایید", "مقدار تاییدیه به درستی پر نشده است..");
+            }
             return RedirectToAction(MVC.Company.Router.ActionNames.RouterSetting);
         }
         public virtual ActionResult RemoveLogs()
