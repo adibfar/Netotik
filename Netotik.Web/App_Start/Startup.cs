@@ -15,7 +15,7 @@ namespace Netotik.Web
         public void Configuration(IAppBuilder app)
         {
             ConfigureAuth(app);
-            //app.MapSignalR();
+            app.MapSignalR();
         }
 
         private static void ConfigureAuth(IAppBuilder appBuilder)

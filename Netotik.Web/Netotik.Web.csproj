@@ -140,6 +140,12 @@
       <HintPath>..\packages\Microsoft.AspNet.Identity.Owin.2.2.1\lib\net45\Microsoft.AspNet.Identity.Owin.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="Microsoft.AspNet.SignalR.Core, Version=2.2.2.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.SignalR.Core.2.2.2\lib\net45\Microsoft.AspNet.SignalR.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.SignalR.SystemWeb, Version=2.2.2.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.SignalR.SystemWeb.2.2.2\lib\net45\Microsoft.AspNet.SignalR.SystemWeb.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="Microsoft.Owin, Version=3.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.Owin.3.0.1\lib\net45\Microsoft.Owin.dll</HintPath>
@@ -291,6 +297,9 @@
       <HintPath>..\packages\T4MVCExtensions.4.0.0\lib\net45\T4MVCExtensions.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="UAParser, Version=2.1.0.0, Culture=neutral, PublicKeyToken=f7377bf021646069, processorArchitecture=MSIL">
+      <HintPath>..\packages\UAParser.2.1.0.0\lib\net40-Client\UAParser.dll</HintPath>
+    </Reference>
     <Reference Include="WebActivatorEx, Version=2.0.0.0, Culture=neutral, PublicKeyToken=7b26dc2a43f6a0d4, processorArchitecture=MSIL">
       <HintPath>..\packages\WebActivatorEx.2.0.1\lib\net40\WebActivatorEx.dll</HintPath>
       <Private>True</Private>
@@ -379,6 +388,9 @@
     <Compile Include="Admin.StateController.generated.cs">
       <DependentUpon>T4MVC.tt</DependentUpon>
     </Compile>
+    <Compile Include="Admin.StatisticsController.generated.cs">
+      <DependentUpon>T4MVC.tt</DependentUpon>
+    </Compile>
     <Compile Include="Admin.TicketController.generated.cs">
       <DependentUpon>T4MVC.tt</DependentUpon>
     </Compile>
@@ -399,6 +411,7 @@
     <Compile Include="App_Start\Startup.cs" />
     <Compile Include="App_Start\StructureMapControllerFactory.cs" />
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
+    <Compile Include="Areas\Admin\Controllers\StatisticsController.cs" />
     <Compile Include="Areas\Admin\Controllers\LanguageController.cs" />
     <Compile Include="Areas\Admin\Controllers\TicketTagController.cs" />
     <Compile Include="Areas\Admin\Controllers\TicketController.cs" />
@@ -480,6 +493,8 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Infrastructure\Hubs\OnlineUsersHub.cs" />
+    <Compile Include="Infrastructure\Modules\StatModule.cs" />
     <Compile Include="LoginController.generated.cs">
       <DependentUpon>T4MVC.tt</DependentUpon>
     </Compile>
@@ -3484,6 +3499,18 @@
     <Content Include="Areas\Admin\Views\Language\_TableResource.cshtml" />
     <Content Include="Areas\Admin\Views\Language\IndexResources.cshtml" />
     <Content Include="Areas\Admin\Views\Language\_EditResource.cshtml" />
+    <Content Include="App_Browsers\edge.browser" />
+    <Content Include="Areas\Admin\Views\Statistics\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Statistics\Chart.cshtml" />
+    <Content Include="Areas\Admin\Views\Statistics\Chart2.cshtml" />
+    <Content Include="Areas\Admin\Views\Statistics\Map.cshtml" />
+    <Content Include="Areas\Admin\Views\Statistics\Table.cshtml" />
+    <Content Include="Areas\Admin\Views\Statistics\_BrowserTablePartial.cshtml" />
+    <Content Include="Areas\Admin\Views\Statistics\_CurrentVisitorPartial.cshtml" />
+    <Content Include="Areas\Admin\Views\Statistics\_OsTablePartial.cshtml" />
+    <Content Include="Areas\Admin\Views\Statistics\_PageViewPartial.cshtml" />
+    <Content Include="Areas\Admin\Views\Statistics\_SubDetailsPartial.cshtml" />
+    <Content Include="Areas\Admin\Views\Statistics\_UserReferrerPartial.cshtml" />
     <Content Include="Areas\Company\Views\Hotspot\Access.cshtml" />
     <Content Include="Areas\Company\Views\Router\RouterSetting.cshtml" />
     <Content Include="Areas\Company\Views\Hotspot\Servers.cshtml" />
@@ -3720,6 +3747,8 @@
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
+    <Content Include="Scripts\jquery.signalR-2.2.2.js" />
+    <Content Include="Scripts\jquery.signalR-2.2.2.min.js" />
     <Content Include="Scripts\jquery.unobtrusive-ajax.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
     <Content Include="Scripts\jquery.unobtrusive-ajax.min.js" />

@@ -1,0 +1,36 @@
+﻿@model List<Netotik.ViewModels.Statistics.OsTableViewModel>
+
+
+<div class="col-xl-6 col-lg-12">
+    <div class="card">
+        <div class="card-header no-border">
+            <h4 class="card-title">به تفکیک سیستم های عامل</h4>
+            <a class="heading-elements-toggle"><i class="icon-ellipsis font-medium-3"></i></a>
+        </div>
+        <div class="card-body">
+            <div id="audience-list-scroll" class="table-responsive height-300 position-relative ps-container ps-theme-default ps-active-y" data-ps-id="fdbd59c9-a797-78a3-bcd8-86b6ed5cc94c">
+                <table class="table mb-0">
+                    <tbody>
+                        @{
+                            foreach (var item in Model)
+                            {
+                                double CurrentNum = (double)item.OsViewCount * 100 / item.TottalVisits;
+                                var RoundUpPercentage = Math.Ceiling(CurrentNum);
+
+                                <tr>
+                                    <td>
+                                        <i class="icon-@item.OsIcon.ToLower()" aria-hidden="true"></i>
+                                    </td>
+                                    <td>@item.OsName</td>
+                                    <td>@item.OsViewCount</td>
+                                    <td class="text-xs-center font-small-2">@RoundUpPercentage% <progress class="progress progress-sm progress-success mb-0" value="@RoundUpPercentage" max="100"></progress></td>
+                                </tr>
+                            }
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+

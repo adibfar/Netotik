@@ -29,7 +29,7 @@
     <meta name="apple-touch-fullscreen" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="default">
 
-    
+
     @Styles.Render("~/Content/admincss")
 
     @Html.Action(MVC.Home.HeaderPanelCss())
@@ -71,11 +71,31 @@
         </p>
     </footer>
 
-    
+
     @Scripts.Render("~/bundles/paneljs")
     @Scripts.Render("~/bundles/jqueryvalpanel")
+    @Scripts.Render("~/bundles/SignalR")
+    <script type="text/javascript" src="~/signalr/hubs"></script>
+
 
     @RenderSection("DownScript", false)
 
+    @if (User.Identity.IsAuthenticated)
+    {
+
+        <script type="text/javascript">
+
+            $(function () {
+                $.connection.hub.logging = true;
+                var onlineUsersHub = $.connection.onlineUsersHub;
+                onlineUsersHub.client.updateUsersOnlineCount = function (count) {
+                    $('#usersCount').text(count);
+                    $('#usersCountt').text(count);
+                };
+                $.connection.hub.start();
+            });
+
+        </script>
+    }
 </body>
 </html>

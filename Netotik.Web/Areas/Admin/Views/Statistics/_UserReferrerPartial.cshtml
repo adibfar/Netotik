@@ -1,0 +1,28 @@
+﻿@model List<Netotik.ViewModels.Statistics.ReferrerViewModel>
+
+<div class="col-xl-4 col-lg-12">
+    <div class="card" style="min-height:300px;">
+        <div class="card-header no-border">
+            <h4 class="card-title">ارجاعات</h4>
+            <a class="heading-elements-toggle"><i class="icon-ellipsis font-medium-3"></i></a>
+        </div>
+        <div class="card-body">
+            <div id="audience-list-scroll" class="table-responsive height-300 position-relative ps-container ps-theme-default ps-active-y" data-ps-id="fdbd59c9-a797-78a3-bcd8-86b6ed5cc94c">
+                <table class="table mb-0">
+                    <tbody>
+                        @{
+                            foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td><span class="badge">@item.ReferrerCount</span></td>
+                                    <td><span class="referrerurl">@item.ReferrerUrl</span></td>
+                                </tr>
+                            }
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+

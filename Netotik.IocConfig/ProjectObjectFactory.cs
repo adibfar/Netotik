@@ -35,6 +35,12 @@ namespace Netotik.IocConfig
         {
             var container = new Container(ioc =>
             {
+
+                ioc.For<Microsoft.AspNet.SignalR.IDependencyResolver>()
+                  .Singleton()
+                  .Add<StructureMapSignalRDependencyResolver>();
+
+
                 ioc.For<IUnitOfWork>()
                     .HybridHttpOrThreadLocalScoped()
                     .Use<NetotikDBContext>();

@@ -216,6 +216,16 @@
 
             }
 
+
+
+            <li data-menu="dropdown" class="dropdown nav-item">
+                <a href="#" data-toggle="dropdown" class="dropdown-toggle nav-link"><i class="icon-trending_up"></i><span>آمار بازدید</span></a>
+                <ul class="dropdown-menu">
+                    <li><a href="@Url.Action(MVC.Admin.Statistics.Index())" data-toggle="dropdown" class="dropdown-item">نمایش کلی بازدید</a></li>
+                    <li><a href="@Url.Action(MVC.Admin.Statistics.Table())" data-toggle="dropdown" class="dropdown-item">بازدید بر اساس کشورها</a></li>
+                </ul>
+            </li>
+
         </ul>
     </div>
     <!-- /horizontal menu content-->
