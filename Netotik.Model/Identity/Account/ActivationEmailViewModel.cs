@@ -15,7 +15,6 @@ namespace  Netotik.ViewModels.Identity.Account
         [EmailAddress(ErrorMessage = "ایمیل را به شکل صحیح وارد کنید")]
         [DisplayName("ایمیل")]
         [StringLength(256, ErrorMessage = "حداکثر طول ایمیل 256 حرف است")]
-        [Remote("IsEmailAvailable", "Remote", AreaReference.UseRoot, ErrorMessage = "ایمیل مورد نظر یافت نشد", HttpMethod = "POST")]
         public string Email { get; set; }
     }
 }

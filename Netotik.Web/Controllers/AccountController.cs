@@ -271,7 +271,6 @@ namespace Netotik.Web.Controllers
         [AllowAnonymous]
         // [CheckReferrer]
         [ValidateAntiForgeryToken]
-        [CaptchaVerify("تصویر امنیتی را درست وارد کنید")]
         public virtual async Task<ActionResult> ReceiveActivatorEmail(ActivationEmailViewModel viewModel)
         {
             if (!_userManager.IsEmailAvailableForConfirm(viewModel.Email))
