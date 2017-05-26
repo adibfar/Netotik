@@ -726,12 +726,16 @@ namespace Netotik.Services.Implement
             //-----------------------------------------------
             mikrotik.Send("/ip/cloud/set");
             mikrotik.Send("=ddns-enabled=yes", true);
+            mikrotik.Read();
             mikrotik.Send("/ip/cloud/set");
             mikrotik.Send("=update-time=yes", true);
+            mikrotik.Read();
             mikrotik.Send("/ip/cloud/force-update", true);
+            mikrotik.Read();
             mikrotik.Send("/ip/cloud/print", true);
             string dns_name = "";
-            foreach (var item in mikrotik.Read())
+            var data = mikrotik.Read();
+            foreach (var item in data)
             {
                 if (item != "!done")
                 {
