@@ -8,10 +8,10 @@ namespace Netotik.ViewModels.Mikrotik
         [AllowHtml]
         public string id { get; set; }
         [Display(Name = "نام پروفایل")]
-        [RegularExpression(@"^[a-zA-Z1-9]+$", ErrorMessage = "فقط انگلیسی وارد کنید")]
+        [RegularExpression(@"(^$)|(^[a-zA-Z0-9: .-_]*$)", ErrorMessage = "مقدار وارد شده معتبر نمی باشد")]
         public string profile { get; set; }
         [Display(Name = "محدودیت")]
-        [RegularExpression(@"^[a-zA-Z1-9]+$", ErrorMessage = "فقط انگلیسی وارد کنید")]
+        [RegularExpression(@"(^$)|(^[a-zA-Z0-9: .-_]*$)", ErrorMessage = "مقدار وارد شده معتبر نمی باشد")]
         public string limitation { get; set; }
         [Display(Name = "از ساعت")]
         public string from_time { get; set; }

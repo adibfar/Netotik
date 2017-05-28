@@ -8,7 +8,7 @@ namespace Netotik.ViewModels.Mikrotik
         [AllowHtml]
         public string id { get; set; }
         [Display(Name = "نام کاربری")]
-        [RegularExpression(@"^[a-zA-Z1-9]+$", ErrorMessage = "فقط انگلیسی وارد کنید")]
+        [RegularExpression(@"(^[a-zA-Z0-9:.-_]*$)", ErrorMessage = "مقدار وارد شده معتبر نمی باشد")]
         public string login { get; set; }
         
     }

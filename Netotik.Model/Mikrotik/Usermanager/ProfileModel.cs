@@ -8,13 +8,13 @@ namespace Netotik.ViewModels.Mikrotik
         [AllowHtml]
         public string id { get; set; }
         [Display(Name = "نام")]
-        [RegularExpression(@"^[a-zA-Z1-9]+$", ErrorMessage = "فقط انگلیسی وارد کنید")]
+        [RegularExpression(@"(^$)|(^[a-zA-Z0-9: .-_]*$)", ErrorMessage = "مقدار وارد شده معتبر نمی باشد")]
         public string name { get; set; }
         [Display(Name = "ایجاد کننده")]
-        [RegularExpression(@"^[a-zA-Z1-9]+$", ErrorMessage = "فقط انگلیسی وارد کنید")]
+        [RegularExpression(@"(^$)|(^[a-zA-Z0-9:.-_]*$)", ErrorMessage = "مقدار وارد شده معتبر نمی باشد")]
         public string owner { get; set; }
         [Display(Name = "نام کاربران این تعرفه")]
-        [RegularExpression(@"^[a-zA-Z1-9]+$", ErrorMessage = "فقط انگلیسی وارد کنید")]
+        [RegularExpression(@"(^$)|(^[a-zA-Z0-9: .-_]*$)", ErrorMessage = "مقدار وارد شده معتبر نمی باشد")]
         public string name_for_users { get; set; }
         [Display(Name = "اعتبار زمانی")]
         public string validity { get; set; }

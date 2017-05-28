@@ -18,7 +18,7 @@ namespace Netotik.Services.Implement
             if (!mikrotik.Login(r_User, r_Password)) mikrotik.Close();
             //-----------------------------------------------
             mikrotik.Send("/tool/user-manager/user/reset-counters");
-            string temp = String.Format("=.id={0}", user);
+            string temp = String.Format("=.id=\"{0}\"", user);
             mikrotik.Send(temp, true);
         }
         public void Usermanager_CloseSession(string r_Host, int r_Port, string r_User, string r_Password, string user)
@@ -28,7 +28,7 @@ namespace Netotik.Services.Implement
             if (!mikrotik.Login(r_User, r_Password)) mikrotik.Close();
             //-----------------------------------------------
             mikrotik.Send("/tool/user-manager/session/close-session");
-            string temp = String.Format("=.id={0}", user);
+            string temp = String.Format("=.id=\"{0}\"", user);
             mikrotik.Send(temp, true);
         }
         public List<Usermanager_ProfileModel> Usermanager_GetAllProfile(string ip, int port, string user, string pass)
@@ -246,7 +246,7 @@ namespace Netotik.Services.Implement
             if (!mikrotik.Login(user, pass)) mikrotik.Close();
             //-----------------------------------------------
             mikrotik.Send("/tool/user-manager/user/disable");
-            string temp = String.Format("=.id={0}", id);
+            string temp = String.Format("=.id=\"{0}\"", id);
             mikrotik.Send(temp, true);
         }
         public void Usermanager_EnableUser(string ip, int port, string user, string pass, string id)
@@ -256,7 +256,7 @@ namespace Netotik.Services.Implement
             if (!mikrotik.Login(user, pass)) mikrotik.Close();
             //-----------------------------------------------
             mikrotik.Send("/tool/user-manager/user/enable");
-            mikrotik.Send(String.Format("=.id={0}", id), true);
+            mikrotik.Send(String.Format("=.id=\"{0}\"", id), true);
         }
         public void Usermanager_RemoveUser(string ip, int port, string user, string pass, string id)
         {
@@ -265,7 +265,7 @@ namespace Netotik.Services.Implement
             if (!mikrotik.Login(user, pass)) mikrotik.Close();
             //-----------------------------------------------
             mikrotik.Send("/tool/user-manager/user/remove");
-            string temp = String.Format("=.id={0}", id);
+            string temp = String.Format("=.id=\"{0}\"", id);
             mikrotik.Send(temp, true);
         }
         public void Usermanager_RemoveProfile(string ip, int port, string user, string pass, string id)
@@ -284,7 +284,7 @@ namespace Netotik.Services.Implement
                         if (item2.name == item.name)
                         {
                             mikrotik.Send("/tool/user-manager/profile/limitation/remove");
-                            string temp3 = String.Format("=.id={0}", item2.id);
+                            string temp3 = String.Format("=.id=\"{0}\"", item2.id);
                             mikrotik.Send(temp3, true);
                         }
                     }
@@ -293,12 +293,12 @@ namespace Netotik.Services.Implement
                         if (item2.profile == item.name && item2.limitation == item.name)
                         {
                             mikrotik.Send("/tool/user-manager/profile/profile-limitation/remove");
-                            string temp3 = String.Format("=.id={0}", item2.id);
+                            string temp3 = String.Format("=.id=\"{0}\"", item2.id);
                             mikrotik.Send(temp3, true);
                         }
                     }
                     mikrotik.Send("/tool/user-manager/profile/remove");
-                    string temp2 = String.Format("=.id={0}", id);
+                    string temp2 = String.Format("=.id=\"{0}\"", id);
                     mikrotik.Send(temp2, true);
                 }
             }
@@ -323,40 +323,40 @@ namespace Netotik.Services.Implement
             if (!mikrotik.Login(user, pass)) mikrotik.Close();
             //-------------------------------------------------
             mikrotik.Send("/tool/user-manager/user/add");
-            string temp = String.Format("=phone={0}", usermanuser.phone);
+            string temp = String.Format("=phone=\"{0}\"", usermanuser.phone);
             if (usermanuser.phone != "")
                 mikrotik.Send(temp);
-            temp = String.Format("=comment={0}", usermanuser.comment);
+            temp = String.Format("=comment=\"{0}\"", usermanuser.comment);
             if (usermanuser.comment != "")
                 mikrotik.Send(temp);
-            temp = String.Format("=customer={0}", usermanuser.customer);
+            temp = String.Format("=customer=\"{0}\"", usermanuser.customer);
             if (usermanuser.customer != "")
                 mikrotik.Send(temp);
-            temp = String.Format("=email={0}", usermanuser.email);
+            temp = String.Format("=email=\"{0}\"", usermanuser.email);
             if (usermanuser.email != "")
                 mikrotik.Send(temp);
-            temp = String.Format("=first-name={0}", usermanuser.first_name);
+            temp = String.Format("=first-name=\"{0}\"", usermanuser.first_name);
             if (usermanuser.first_name != "")
                 mikrotik.Send(temp);
-            temp = String.Format("=last-name={0}", usermanuser.last_name);
+            temp = String.Format("=last-name=\"{0}\"", usermanuser.last_name);
             if (usermanuser.last_name != "")
                 mikrotik.Send(temp);
-            temp = String.Format("=location={0}", usermanuser.location);
+            temp = String.Format("=location=\"{0}\"", usermanuser.location);
             if (usermanuser.location != "")
                 mikrotik.Send(temp);
-            temp = String.Format("=password={0}", usermanuser.password);
+            temp = String.Format("=password=\"{0}\"", usermanuser.password);
             if (usermanuser.password != "")
                 mikrotik.Send(temp);
-            temp = String.Format("=username={0}", usermanuser.username);
+            temp = String.Format("=username=\"{0}\"", usermanuser.username);
             mikrotik.Send(temp, true);
             foreach (var item in Usermanager_GetAllUsers(ip, port, user, pass))
                 if (item.username == usermanuser.username)
                     temp = String.Format("=.id={0}", item.id);
             mikrotik.Send("/tool/user-manager/user/create-and-activate-profile");
             mikrotik.Send(temp);
-            temp = String.Format("=customer={0}", usermanuser.customer);
+            temp = String.Format("=customer=\"{0}\"", usermanuser.customer);
             mikrotik.Send(temp);
-            temp = String.Format("=profile={0}", usermanuser.profile);
+            temp = String.Format("=profile=\"{0}\"", usermanuser.profile);
             mikrotik.Send(temp, true);
         }
         public void Usermanager_UserEdit(string ip, int port, string user, string pass, Usermanager_UserEditModel model)
@@ -366,35 +366,35 @@ namespace Netotik.Services.Implement
             if (!mikrotik.Login(user, pass)) mikrotik.Close();
             //-----------------------------------------------
             mikrotik.Send("/tool/user-manager/user/set");
-            string temp = String.Format("=.id={0}", model.id);
+            string temp = String.Format("=.id=\"{0}\"", model.id);
             mikrotik.Send(temp);
-            temp = String.Format("=comment={0}", model.comment);
+            temp = String.Format("=comment=\"{0}\"", model.comment);
             mikrotik.Send(temp);
-            temp = String.Format("=customer={0}", model.customer);
+            temp = String.Format("=customer=\"{0}\"", model.customer);
             mikrotik.Send(temp);
-            temp = String.Format("=email={0}", model.email);
+            temp = String.Format("=email=\"{0}\"", model.email);
             mikrotik.Send(temp);
-            temp = String.Format("=first-name={0}", model.first_name);
+            temp = String.Format("=first-name=\"{0}\"", model.first_name);
             mikrotik.Send(temp);
-            temp = String.Format("=last-name={0}", model.last_name);
+            temp = String.Format("=last-name=\"{0}\"", model.last_name);
             mikrotik.Send(temp);
-            temp = String.Format("=location={0}", model.location);
+            temp = String.Format("=location=\"{0}\"", model.location);
             mikrotik.Send(temp);
-            temp = String.Format("=password={0}", model.password);
+            temp = String.Format("=password=\"{0}\"", model.password);
             mikrotik.Send(temp);
-            temp = String.Format("=phone={0}", model.phone);
+            temp = String.Format("=phone=\"{0}\"", model.phone);
             mikrotik.Send(temp);
-            temp = String.Format("=username={0}", model.username);
+            temp = String.Format("=username=\"{0}\"", model.username);
             mikrotik.Send(temp, true);
             var temp96 = mikrotik.Read();
             if (model.profile != "")
             {
                 mikrotik.Send("/tool/user-manager/user/create-and-activate-profile");
-                temp = String.Format("=.id={0}", model.username);
+                temp = String.Format("=.id=\"{0}\"", model.username);
                 mikrotik.Send(temp);
-                temp = String.Format("=customer={0}", model.customer);
+                temp = String.Format("=customer=\"{0}\"", model.customer);
                 mikrotik.Send(temp);
-                temp = String.Format("=profile={0}", model.profile);
+                temp = String.Format("=profile=\"{0}\"", model.profile);
                 mikrotik.Send(temp, true);
                 var temp55 = mikrotik.Read();
             }
@@ -407,7 +407,7 @@ namespace Netotik.Services.Implement
             //-----------------------------------------------
             mikrotik.Send("/tool/user-manager/session/print");
             //  mikrotik.Send("where");
-            string temp = String.Format("?=user={0}", UsermanUser);
+            string temp = String.Format("?=user=\"{0}\"", UsermanUser);
             mikrotik.Send(temp, true);
 
             var usersessionmodel = new List<Usermanager_UserSessionModel>();
@@ -462,104 +462,104 @@ namespace Netotik.Services.Implement
             if (!mikrotik.Login(user, pass)) mikrotik.Close();
             //-------------------------------------------------
             mikrotik.Send("/tool/user-manager/profile/add");
-            string temp = String.Format("=price={0}", usermanProfile.profile_price);
+            string temp = String.Format("=price=\"{0}\"", usermanProfile.profile_price);
             if (usermanProfile.profile_price == null || usermanProfile.profile_price == "")
-                temp = String.Format("=price={0}", "0");
+                temp = String.Format("=price=\"{0}\"", "0");
             mikrotik.Send(temp);
-            temp = String.Format("=validity={0}", usermanProfile.profile_validity);
+            temp = String.Format("=validity=\"{0}\"", usermanProfile.profile_validity);
             if (usermanProfile.profile_validity != null && usermanProfile.profile_validity != "")
                 mikrotik.Send(temp);
-            temp = String.Format("=starts-at={0}", usermanProfile.profile_starts_at);
+            temp = String.Format("=starts-at=\"{0}\"", usermanProfile.profile_starts_at);
             if (usermanProfile.profile_starts_at == null || usermanProfile.profile_starts_at == "")
-                temp = String.Format("=starts-at={0}", "Now");
+                temp = String.Format("=starts-at=\"{0}\"", "Now");
             mikrotik.Send(temp);
-            temp = String.Format("=name-for-users={0}", usermanProfile.profile_name_for_users);
+            temp = String.Format("=name-for-users=\"{0}\"", usermanProfile.profile_name_for_users);
             if (usermanProfile.profile_name_for_users == null)
-                temp = String.Format("=name-for-users={0}", usermanProfile.profile_name);
+                temp = String.Format("=name-for-users=\"{0}\"", usermanProfile.profile_name);
             mikrotik.Send(temp);
-            temp = String.Format("=override-shared-users={0}", usermanProfile.profile_override_shared_users);
+            temp = String.Format("=override-shared-users=\"{0}\"", usermanProfile.profile_override_shared_users);
             if (usermanProfile.profile_override_shared_users == null || usermanProfile.limition_ip_pool == "")
-                temp = String.Format("=override-shared-users={0}", "1");
+                temp = String.Format("=override-shared-users=\"{0}\"", "1");
             mikrotik.Send(temp);
-            temp = String.Format("=owner={0}", usermanProfile.profile_owner);
+            temp = String.Format("=owner=\"{0}\"", usermanProfile.profile_owner);
             if (usermanProfile.profile_owner == null)
-                temp = String.Format("=owner={0}", "admin");
+                temp = String.Format("=owner=\"{0}\"", "admin");
             mikrotik.Send(temp);
-            temp = String.Format("=name={0}", usermanProfile.profile_name);
+            temp = String.Format("=name=\"{0}\"", usermanProfile.profile_name);
             mikrotik.Send(temp, true);
             var temp66 = mikrotik.Read();
             //---------------------
             mikrotik.Send("/tool/user-manager/profile/limitation/add");
-            temp = String.Format("=address-list={0}", usermanProfile.limition_address_list);
+            temp = String.Format("=address-list=\"{0}\"", usermanProfile.limition_address_list);
             if (usermanProfile.limition_address_list != null && usermanProfile.limition_address_list != "")
                 mikrotik.Send(temp);
-            temp = String.Format("=group-name={0}", usermanProfile.limition_group_name);
+            temp = String.Format("=group-name=\"{0}\"", usermanProfile.limition_group_name);
             if (usermanProfile.limition_group_name != null && usermanProfile.limition_group_name != "")
                 mikrotik.Send(temp);
-            temp = String.Format("=ip-pool={0}", usermanProfile.limition_ip_pool);
+            temp = String.Format("=ip-pool=\"{0}\"", usermanProfile.limition_ip_pool);
             if (usermanProfile.limition_ip_pool != null && usermanProfile.limition_ip_pool != "")
                 mikrotik.Send(temp);
-            temp = String.Format("=rate-limit-rx={0}", usermanProfile.limition_rate_limit_rx);
+            temp = String.Format("=rate-limit-rx=\"{0}\"", usermanProfile.limition_rate_limit_rx);
             if (usermanProfile.limition_rate_limit_rx != null && usermanProfile.limition_rate_limit_rx != "")
                 mikrotik.Send(temp);
-            temp = String.Format("=rate-limit-tx={0}", usermanProfile.limition_rate_limit_tx);
+            temp = String.Format("=rate-limit-tx=\"{0}\"", usermanProfile.limition_rate_limit_tx);
             if (usermanProfile.limition_rate_limit_tx != null && usermanProfile.limition_rate_limit_tx != "")
                 mikrotik.Send(temp);
-            temp = String.Format("=transfer-limit={0}", usermanProfile.limition_transfer_limit);
+            temp = String.Format("=transfer-limit=\"{0}\"", usermanProfile.limition_transfer_limit);
             if (usermanProfile.limition_transfer_limit != null && usermanProfile.limition_transfer_limit != "")
                 mikrotik.Send(temp);
-            temp = String.Format("=upload-limit={0}", usermanProfile.limition_upload_limit);
+            temp = String.Format("=upload-limit=\"{0}\"", usermanProfile.limition_upload_limit);
             if (usermanProfile.limition_upload_limit != null && usermanProfile.limition_upload_limit != "")
                 mikrotik.Send(temp);
-            temp = String.Format("=uptime-limit={0}", usermanProfile.limition_uptime_limit);
+            temp = String.Format("=uptime-limit=\"{0}\"", usermanProfile.limition_uptime_limit);
             if (usermanProfile.limition_uptime_limit != null && usermanProfile.limition_uptime_limit != "")
                 mikrotik.Send(temp);
-            temp = String.Format("=download-limit={0}", usermanProfile.limition_download_limit);
+            temp = String.Format("=download-limit=\"{0}\"", usermanProfile.limition_download_limit);
             if (usermanProfile.limition_download_limit != null && usermanProfile.limition_download_limit != "")
                 mikrotik.Send(temp);
-            temp = String.Format("=owner={0}", usermanProfile.limition_owner);
+            temp = String.Format("=owner=\"{0}\"", usermanProfile.limition_owner);
             if (usermanProfile.limition_owner == null)
-                temp = String.Format("=owner={0}", "admin");
+                temp = String.Format("=owner=\"{0}\"", "admin");
             mikrotik.Send(temp);
-            temp = String.Format("=name={0}", usermanProfile.profile_name);
+            temp = String.Format("=name=\"{0}\"", usermanProfile.profile_name);
             mikrotik.Send(temp, true);
             var temp65 = mikrotik.Read();
             //----------------------
             mikrotik.Send("/tool/user-manager/profile/profile-limitation/add");
-            temp = String.Format("=from-time={0}", usermanProfile.profilelimition_from_time);
+            temp = String.Format("=from-time=\"{0}\"", usermanProfile.profilelimition_from_time);
             if (usermanProfile.profilelimition_from_time == null || usermanProfile.limition_ip_pool == "")
-                temp = String.Format("=from-time={0}", "0s");
+                temp = String.Format("=from-time=\"{0}\"", "0s");
             mikrotik.Send(temp);
-            temp = String.Format("=weekdays={0}", usermanProfile.profilelimition_weekdays);
+            temp = String.Format("=weekdays=\"{0}\"", usermanProfile.profilelimition_weekdays);
             if (usermanProfile.profilelimition_weekdays != null && usermanProfile.profilelimition_weekdays != "")
                 mikrotik.Send(temp);
-            temp = String.Format("=till-time={0}", usermanProfile.profilelimition_till_time);
+            temp = String.Format("=till-time=\"{0}\"", usermanProfile.profilelimition_till_time);
             if (usermanProfile.profilelimition_till_time == null || usermanProfile.limition_ip_pool == "")
-                temp = String.Format("=till-time={0}", "1d");
+                temp = String.Format("=till-time=\"{0}\"", "1d");
             mikrotik.Send(temp);
-            temp = String.Format("=limitation={0}", usermanProfile.profile_name);
+            temp = String.Format("=limitation=\"{0}\"", usermanProfile.profile_name);
             mikrotik.Send(temp);
-            temp = String.Format("=profile={0}", usermanProfile.profile_name);
+            temp = String.Format("=profile=\"{0}\"", usermanProfile.profile_name);
             mikrotik.Send(temp, true);
             var temp64 = mikrotik.Read();
 
 
 
             mikrotik.Send("/tool/user-manager/profile/profile-limitation/add");
-            temp = String.Format("=from-time={0}", usermanProfile.profilelimition_from_time);
+            temp = String.Format("=from-time=\"{0}\"", usermanProfile.profilelimition_from_time);
             if (usermanProfile.profilelimition_from_time == null || usermanProfile.limition_ip_pool == "")
-                temp = String.Format("=from-time={0}", "0s");
+                temp = String.Format("=from-time=\"{0}\"", "0s");
             mikrotik.Send(temp);
-            temp = String.Format("=weekdays={0}", usermanProfile.profilelimition_weekdays);
+            temp = String.Format("=weekdays=\"{0}\"", usermanProfile.profilelimition_weekdays);
             if (usermanProfile.profilelimition_weekdays != null && usermanProfile.profilelimition_weekdays != "")
                 mikrotik.Send(temp);
-            temp = String.Format("=till-time={0}", usermanProfile.profilelimition_till_time);
+            temp = String.Format("=till-time=\"{0}\"", usermanProfile.profilelimition_till_time);
             if (usermanProfile.profilelimition_till_time == null || usermanProfile.limition_ip_pool == "")
-                temp = String.Format("=till-time={0}", "1d");
+                temp = String.Format("=till-time=\"{0}\"", "1d");
             mikrotik.Send(temp);
-            temp = String.Format("=limitation={0}", usermanProfile.profile_name);
+            temp = String.Format("=limitation=\"{0}\"", usermanProfile.profile_name);
             mikrotik.Send(temp);
-            temp = String.Format("=profile={0}", usermanProfile.profile_name);
+            temp = String.Format("=profile=\"{0}\"", usermanProfile.profile_name);
             mikrotik.Send(temp, true);
             var temp63 = mikrotik.Read();
         }
@@ -585,7 +585,7 @@ namespace Netotik.Services.Implement
             if (!mikrotik.Login(r_User, r_Password)) mikrotik.Close();
             //-----------------------------------------------
             mikrotik.Send("/interface/wireless/print");
-            string temp = String.Format("?=.id={0}", id);
+            string temp = String.Format("?=.id=\"{0}\"", id);
             mikrotik.Send(temp, true);
 
             var Wireless = new Router_WirelessModel();
@@ -695,7 +695,7 @@ namespace Netotik.Services.Implement
             if (!mikrotik.Login(r_User, r_Password)) mikrotik.Close();
             //-----------------------------------------------
             mikrotik.Send("/interface/enable");
-            string temp = String.Format("=.id={0}", id);
+            string temp = String.Format("=.id=\"{0}\"", id);
             mikrotik.Send(temp, true);
         }
 
@@ -706,7 +706,7 @@ namespace Netotik.Services.Implement
             if (!mikrotik.Login(r_User, r_Password)) mikrotik.Close();
             //-----------------------------------------------
             mikrotik.Send("/interface/disable");
-            string temp = String.Format("=.id={0}", id);
+            string temp = String.Format("=.id=\"{0}\"", id);
             mikrotik.Send(temp, true);
         }
 
@@ -1139,7 +1139,7 @@ namespace Netotik.Services.Implement
             if (!mikrotik.Login(r_User, r_Password)) mikrotik.Close();
             //-----------------------------------------------
             mikrotik.Send("/interface/ethernet/print");
-            string temp = String.Format("?=.id={0}", id);
+            string temp = String.Format("?=.id=\"{0}\"", id);
             mikrotik.Send(temp, true);
 
             var Ethernet = new Router_EthernetModel();
@@ -1236,11 +1236,11 @@ namespace Netotik.Services.Implement
             var temp = "";
             mikrotik.Send("/tool/user-manager/database/save");
             temp = ConvertDate.ToFa(DateTime.Now, "yyyy-MM-dd").ToString() + ")(" + ConvertDate.ToFa(DateTime.Now, "T").ToString();
-            temp = String.Format("=name=Netotik.({0}).UsermanagerReset", temp);
+            temp = String.Format("=name=\"Netotik.({0}).UsermanagerReset\"", temp);
             mikrotik.Send(temp,true);
             mikrotik.Send("/tool/user-manager/database/save-logs");
             temp = ConvertDate.ToFa(DateTime.Now, "yyyy-MM-dd").ToString() + ")(" + ConvertDate.ToFa(DateTime.Now, "T").ToString();
-            temp = String.Format("=name=Netotik.({0}).UsermanagerResetLog", temp);
+            temp = String.Format("=name=\"Netotik.({0}).UsermanagerResetLog\"", temp);
             mikrotik.Send(temp, true);
             //------------------------------------------------
             if (logs)
@@ -1292,7 +1292,7 @@ namespace Netotik.Services.Implement
                 for (int i = 0;i<count;i++)
                 {
                     mikrotik.Send("/tool/user-manager/profile/remove");
-                    temp = String.Format("=numbers={0}", i);
+                    temp = String.Format("=numbers=\"{0}\"", i);
                     mikrotik.Send(temp, true);
                 }
                 mikrotik.Send("/tool/user-manager/profile/limitation/print");
@@ -1326,7 +1326,7 @@ namespace Netotik.Services.Implement
                 for (int i = 0; i < count; i++)
                 {
                     mikrotik.Send("/tool/user-manager/profile/limitation/remove");
-                    temp = String.Format("=numbers={0}", i);
+                    temp = String.Format("=numbers=\"{0}\"", i);
                     mikrotik.Send(temp, true);
                 }
 
@@ -1361,7 +1361,7 @@ namespace Netotik.Services.Implement
                 for (int i = 0; i < count; i++)
                 {
                     mikrotik.Send("/tool/user-manager/profile/profile-limitation/remove");
-                    temp = String.Format("=numbers={0}", i);
+                    temp = String.Format("=numbers=\"{0}\"", i);
                     mikrotik.Send(temp, true);
                 }
 
@@ -1436,7 +1436,7 @@ namespace Netotik.Services.Implement
                 for (int i = 0; i < count; i++)
                 {
                     mikrotik.Send("/tool/user-manager/session/remove");
-                    temp = String.Format("=numbers={0}", i);
+                    temp = String.Format("=numbers=\"{0}\"", i);
                     mikrotik.Send(temp, true);
                 }
             }
@@ -1467,7 +1467,7 @@ namespace Netotik.Services.Implement
                         ColumnList.Add(cols[i], cols[i + 1]);
                     }
                     mikrotik.Send("/system/logging/set");
-                    var temp = String.Format("=.id={0}", ColumnList.Any(x => x.Key == ".id") ? (ColumnList.FirstOrDefault(x => x.Key == ".id").Value) : "".ToString());
+                    var temp = String.Format("=.id=\"{0}\"", ColumnList.Any(x => x.Key == ".id") ? (ColumnList.FirstOrDefault(x => x.Key == ".id").Value) : "".ToString());
                     mikrotik.Send(temp);
                     mikrotik.Send("=action=NetotikLog", true);
                 }
@@ -1484,9 +1484,9 @@ namespace Netotik.Services.Implement
                     }
                     var LastAction = ColumnList.Any(x => x.Key == "action") ? (ColumnList.FirstOrDefault(x => x.Key == "action").Value) : "".ToString();
                     mikrotik.Send("/system/logging/set");
-                    var temp = String.Format("=.id={0}", ColumnList.Any(x => x.Key == ".id") ? (ColumnList.FirstOrDefault(x => x.Key == ".id").Value) : "".ToString());
+                    var temp = String.Format("=.id=\"{0}\"", ColumnList.Any(x => x.Key == ".id") ? (ColumnList.FirstOrDefault(x => x.Key == ".id").Value) : "".ToString());
                     mikrotik.Send(temp);
-                    temp = String.Format("=action={0}", LastAction);
+                    temp = String.Format("=action=\"{0}\"", LastAction);
                     mikrotik.Send(temp, true);
                 }
             }
@@ -1505,7 +1505,7 @@ namespace Netotik.Services.Implement
             var temp = "";
             mikrotik.Send("/system/backup/save");
             temp = ConvertDate.ToFa(DateTime.Now, "yyyy-MM-dd").ToString() + ")(" + ConvertDate.ToFa(DateTime.Now, "T").ToString();
-            temp = String.Format("=name=Netotik.({0}).RouterReset", temp);
+            temp = String.Format("=name=\"Netotik.({0}).RouterReset\"", temp);
             mikrotik.Send(temp);
             mikrotik.Send("dont-encrypt=yes",true);
             mikrotik.Send("/system/reset-configuration");
@@ -1527,7 +1527,7 @@ namespace Netotik.Services.Implement
             var temp = "";
             mikrotik.Send("/system/backup/save");
             temp = ConvertDate.ToFa(DateTime.Now, "yyyy-MM-dd").ToString() + ")("+ ConvertDate.ToFa(DateTime.Now, "T").ToString();
-            temp = String.Format("=name=Netotik.({0}).Router", temp);
+            temp = String.Format("=name=\"Netotik.({0}).Router\"", temp);
             mikrotik.Send(temp);
             mikrotik.Send("dont-encrypt=yes", true);
             return true;
@@ -1542,12 +1542,12 @@ namespace Netotik.Services.Implement
             var temp = "";
             mikrotik.Send("/tool/user-manager/database/save");
             temp = ConvertDate.ToFa(DateTime.Now, "yyyy-MM-dd").ToString() + ")(" + ConvertDate.ToFa(DateTime.Now, "T").ToString();
-            temp = String.Format("=name=Netotik.({0}).Usermanager", temp);
+            temp = String.Format("=name=\"Netotik.({0}).Usermanager\"", temp);
             mikrotik.Send(temp,true);
 
             mikrotik.Send("/tool/user-manager/database/save-logs");
             temp = ConvertDate.ToFa(DateTime.Now, "yyyy-MM-dd").ToString() + ")(" + ConvertDate.ToFa(DateTime.Now, "T").ToString();
-            temp = String.Format("=name=Netotik.({0}).UsermanagerLog", temp);
+            temp = String.Format("=name=\"Netotik.({0}).UsermanagerLog\"", temp);
             mikrotik.Send(temp, true);
 
             return true;
@@ -1575,13 +1575,13 @@ namespace Netotik.Services.Implement
             if (FileName.Contains("UsermanagerLog"))
             {
                 mikrotik.Send("/tool/user-manager/database/load-logs");
-                temp = String.Format("=name={0}", FileName);
+                temp = String.Format("=name=\"{0}\"", FileName);
                 mikrotik.Send(temp, true);
             }
             else
             {
                 mikrotik.Send("/tool/user-manager/database/load");
-                temp = String.Format("=name={0}", FileName);
+                temp = String.Format("=name=\"{0}\"", FileName);
                 mikrotik.Send(temp, true);
             }
         }
@@ -1593,7 +1593,7 @@ namespace Netotik.Services.Implement
             //-----------------------------------------------
             var temp = "";
             mikrotik.Send("/system/backup/load");
-            temp = String.Format("=name={0}", FileName);
+            temp = String.Format("=name=\"{0}\"", FileName);
             mikrotik.Send(temp,true);
         }
         public List<Router_FileModel> GetBackupRouterList(string r_Host, int r_Port, string r_User, string r_Password)
@@ -1748,7 +1748,7 @@ namespace Netotik.Services.Implement
             if (!mikrotik.Login(user, pass)) mikrotik.Close();
             //-----------------------------------------------
             mikrotik.Send("/ip/hotspot/ip-binding/remove");
-            string temp = String.Format("=.id={0}", id);
+            string temp = String.Format("=.id=\"{0}\"", id);
             mikrotik.Send(temp, true);
         }
 
@@ -1759,7 +1759,7 @@ namespace Netotik.Services.Implement
             if (!mikrotik.Login(user, pass)) mikrotik.Close();
             //-----------------------------------------------
             mikrotik.Send("/ip/hotspot/ip-binding/enable");
-            string temp = String.Format("=.id={0}", id);
+            string temp = String.Format("=.id=\"{0}\"", id);
             mikrotik.Send(temp, true);
         }
 
@@ -1770,7 +1770,7 @@ namespace Netotik.Services.Implement
             if (!mikrotik.Login(user, pass)) mikrotik.Close();
             //-----------------------------------------------
             mikrotik.Send("/ip/hotspot/ip-binding/disable");
-            string temp = String.Format("=.id={0}", id);
+            string temp = String.Format("=.id=\"{0}\"", id);
             mikrotik.Send(temp, true);
         }
 
@@ -1781,7 +1781,7 @@ namespace Netotik.Services.Implement
             if (!mikrotik.Login(user, pass)) mikrotik.Close();
             //-----------------------------------------------
             mikrotik.Send("/ip/hotspot/walled-garden/ip/remove");
-            string temp = String.Format("=.id={0}", id);
+            string temp = String.Format("=.id=\"{0}\"", id);
             mikrotik.Send(temp, true);
         }
 
@@ -1792,7 +1792,7 @@ namespace Netotik.Services.Implement
             if (!mikrotik.Login(user, pass)) mikrotik.Close();
             //-----------------------------------------------
             mikrotik.Send("/ip/hotspot/walled-garden/ip/enable");
-            string temp = String.Format("=.id={0}", id);
+            string temp = String.Format("=.id=\"{0}\"", id);
             mikrotik.Send(temp, true);
         }
 
@@ -1803,7 +1803,7 @@ namespace Netotik.Services.Implement
             if (!mikrotik.Login(user, pass)) mikrotik.Close();
             //-----------------------------------------------
             mikrotik.Send("/ip/hotspot/walled-garden/ip/disable");
-            string temp = String.Format("=.id={0}", id);
+            string temp = String.Format("=.id=\"{0}\"", id);
             mikrotik.Send(temp, true);
         }
 
@@ -1853,17 +1853,17 @@ namespace Netotik.Services.Implement
             if (!mikrotik.Login(r_User, r_Password)) mikrotik.Close();
             //------------------------------------------------    to-address  type
             mikrotik.Send("/ip/hotspot/ip-binding/add");
-            string temp = String.Format("=address={0}", model.address);
+            string temp = String.Format("=address=\"{0}\"", model.address);
             if (model.address != "")
                 mikrotik.Send(temp);
             
-            temp = String.Format("=mac-address={0}", model.mac_address);
+            temp = String.Format("=mac-address=\"{0}\"", model.mac_address);
             if (model.mac_address != "")
                 mikrotik.Send(temp);
-            temp = String.Format("=server={0}", model.server);
+            temp = String.Format("=server=\"{0}\"", model.server);
             if (model.server != "")
                 mikrotik.Send(temp);
-            temp = String.Format("=type={0}", model.type);
+            temp = String.Format("=type=\"{0}\"", model.type);
             if (model.type != "")
                 mikrotik.Send(temp);
             mikrotik.Send("=disabled=no",true);
@@ -1882,19 +1882,19 @@ namespace Netotik.Services.Implement
             if (model.dst_address != "")
                 mikrotik.Send(temp);
                 */
-            string temp = String.Format("=dst-host={0}", model.dst_host);
+            string temp = String.Format("=dst-host=\"{0}\"", model.dst_host);
             if (model.dst_host != "")
                 mikrotik.Send(temp);
-            temp = String.Format("=server={0}", model.server);
+            temp = String.Format("=server=\"{0}\"", model.server);
             if (model.server != "")
                 mikrotik.Send(temp);
-            temp = String.Format("=action={0}", model.action);
+            temp = String.Format("=action=\"{0}\"", model.action);
             if (model.action != "")
                 mikrotik.Send(temp);
-            temp = String.Format("=dst-port={0}", model.dst_port);
+            temp = String.Format("=dst-port=\"{0}\"", model.dst_port);
             if (model.dst_port != "")
                 mikrotik.Send(temp);
-            temp = String.Format("=protocol={0}", model.protocol);
+            temp = String.Format("=protocol=\"{0}\"", model.protocol);
             if (model.protocol != "" )
                 mikrotik.Send(temp);
             /*
