@@ -81,6 +81,83 @@
                         </div>
                     </div>
                 </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group has-feedback has-icon-left">
+                            @Html.LabelFor(m => m.Facebook)
+                            <div class="position-relative has-icon-left">
+                                @Html.TextBoxFor(m => m.Facebook, new { @class = "form-control" })
+                                <div class="form-control-position">
+                                    <i class="icon-facebook-f"></i>
+                                </div>
+                                @Html.ValidationMessageFor(model => model.Facebook, "", htmlAttributes: new { @class = "text-danger" })
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group has-feedback has-icon-left">
+                            @Html.LabelFor(m => m.Twitter)
+                            <div class="position-relative has-icon-left">
+                                @Html.TextBoxFor(m => m.Twitter, new { @class = "form-control" })
+                                <div class="form-control-position">
+                                    <i class="icon-twitter"></i>
+                                </div>
+                                @Html.ValidationMessageFor(model => model.Twitter, "", htmlAttributes: new { @class = "text-danger" })
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group has-feedback has-icon-left">
+                            @Html.LabelFor(m => m.Instagram)
+                            <div class="position-relative has-icon-left">
+                                @Html.TextBoxFor(m => m.Instagram, new { @class = "form-control" })
+                                <div class="form-control-position">
+                                    <i class="icon-instagram2"></i>
+                                </div>
+                                @Html.ValidationMessageFor(model => model.Instagram, "", htmlAttributes: new { @class = "text-danger" })
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group has-feedback has-icon-left">
+                            @Html.LabelFor(m => m.LinkedIn)
+                            <div class="position-relative has-icon-left">
+                                @Html.TextBoxFor(m => m.LinkedIn, new { @class = "form-control" })
+                                <div class="form-control-position">
+                                    <i class="icon-linkedin2"></i>
+                                </div>
+                                @Html.ValidationMessageFor(model => model.LinkedIn, "", htmlAttributes: new { @class = "text-danger" })
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group has-feedback has-icon-left">
+                            @Html.LabelFor(m => m.Website)
+                            <div class="position-relative has-icon-left">
+                                @Html.TextBoxFor(m => m.Website, new { @class = "form-control" })
+                                <div class="form-control-position">
+                                    <i class="icon-earth"></i>
+                                </div>
+                                @Html.ValidationMessageFor(model => model.Website, "", htmlAttributes: new { @class = "text-danger" })
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="form-group has-feedback">
+                            @Html.LabelFor(m => m.ShortBio)
+                            <div class="position-relative ">
+                                @Html.TextAreaFor(m => m.ShortBio, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.ShortBio, "", htmlAttributes: new { @class = "text-danger" })
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>

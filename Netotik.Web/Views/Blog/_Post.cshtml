@@ -1,28 +1,51 @@
 ﻿@model Netotik.Domain.Entity.Content
 @{
     Layout = null;
+    var user = Model.UserCreated;
 }
 
-
+<h1 class="blog-post-title">@Model.Title</h1>
 <ul class="blog-post-info list-inline">
     <li>
-        <i class="fa fa-folder-open-o"></i>
-
-        @foreach (var cat in Model.ContentCategories)
-        {
-            <a class="category" href="@Url.Action(MVC.Blog.Index(categoryId: cat.Id,tagId:null))">
-                <span class="font-lato">@cat.Name</span>
-            </a>
-        }
+        <a href="#">
+            <i class="fa fa-calendar"></i>
+            <span class="font-lato">@PersianDate.ConvertDate.ToFa(Model.StartDate, "D")</span>
+        </a>
     </li>
-
+    <li>
+        <a href="#comments">
+            <i class="fa fa-comments-o"></i>
+            <span class="font-lato">@Model.CommentCount دیدگاه</span>
+        </a>
+    </li>
+    <li>
+        <a href="#addComment">
+            <i class="fa fa-user"></i>
+            <span class="font-lato">@Model.UserCreated.FirstName @Model.UserCreated.LastName</span>
+        </a>
+    </li>
+    @if (Model.ContentCategories.Any())
+    {
+        <li>
+            <i class="fa fa-folder-open-o"></i>
+            @foreach (var cat in Model.ContentCategories)
+            {
+                <a class="category" href="@Url.Action(MVC.Blog.Index(categoryId: cat.Id, tagId: null))">
+                    <span class="font-lato">@cat.Name</span>
+                </a>
+            }
+        </li>
+    }
 </ul>
 
+@if (Model.PictureId.HasValue)
+{
+    <figure class="margin-bottom-20">
+        <img class="img-responsive" src="@Url.Content(Path.Combine(Netotik.Common.Controller.FilePathes._imagesContentPath, Model.PictureId.HasValue ? Model.Picture.FileName : "Default.png"))" alt="@Model.Title" />
+    </figure>
+}
 
 @Html.Raw(Model.Body)
-
-<div class="divider divider-dotted"><!-- divider --></div>
-
 
 <!-- TAGS -->
 @foreach (var item in Model.ContentTages)
@@ -33,8 +56,70 @@
         <span class="num">@item.Contents.Count</span>
     </a>
 }
+<div class="divider divider-dotted"><!-- divider --></div>
 
-<!-- /TAGS -->
+<div class="row" id="comments">
+    <div class="col-md-12">
+        <div class="testimonial testimonial-bordered padding-15">
+            <figure class="pull-left">
+                <img class="" src="@Url.Content(Path.Combine(Netotik.Common.Controller.FilePathes._imagesUserAvatarsPath, Model.UserCreated.PictureId.HasValue ? Model.UserCreated.Picture.FileName : "Default.png"))?w=100&h=100&mode=crop" alt="@Model.UserCreated.FirstName @Model.UserCreated.LastName">
+            </figure>
+            <div class="testimonial-content">
+                @if (!string.IsNullOrWhiteSpace(user.UserAdmin.Facebook))
+                {
+                    <a target="_blank" href="@user.UserAdmin.Facebook" class="pull-right social-icon social-icon-sm social-icon-dark social-icon-round" data-toggle="tooltip" data-placement="top" title="" data-original-title="Facebook">
+                        <i class="icon-facebook"></i>
+                        <i class="icon-facebook"></i>
+                    </a>
+                }
+                @if (!string.IsNullOrWhiteSpace(user.UserAdmin.Instagram))
+                {
 
-<div class="divider"><!-- divider --></div>
+                    <a target="_blank" href="@user.UserAdmin.Instagram" class="pull-right social-icon social-icon-sm social-icon-dark social-icon-round" data-toggle="tooltip" data-placement="top" title="" data-original-title="Instagrm">
+                        <i class="icon-instagram2"></i>
+                        <i class="icon-instagram2"></i>
+                    </a>
+                }
 
+                @if (!string.IsNullOrWhiteSpace(user.UserAdmin.Twitter))
+                {
+
+                    <a target="_blank" href="@user.UserAdmin.Twitter" class="pull-right social-icon social-icon-sm social-icon-dark social-icon-round" data-toggle="tooltip" data-placement="top" title="" data-original-title="Twitter">
+                        <i class="icon-twitter"></i>
+                        <i class="icon-twitter"></i>
+                    </a>
+                }
+
+                @if (!string.IsNullOrWhiteSpace(user.UserAdmin.Linkedin))
+                {
+
+                    <a target="_blank" href="@user.UserAdmin.Linkedin" class="pull-right social-icon social-icon-sm social-icon-dark social-icon-round" data-toggle="tooltip" data-placement="top" title="" data-original-title="Linked In">
+                        <i class="icon-linkedin"></i>
+                        <i class="icon-linkedin"></i>
+                    </a>
+                }
+
+                @if (!string.IsNullOrWhiteSpace(user.UserAdmin.Website))
+                {
+
+                    <a target="_blank" href="@user.UserAdmin.Website" class="pull-right social-icon social-icon-sm social-icon-dark social-icon-round" data-toggle="tooltip" data-placement="top" title="" data-original-title="Website">
+                        <i class="et et-global"></i>
+                        <i class="et et-global"></i>
+                    </a>
+                }
+                <h4>
+                    @user.FirstName @user.LastName
+                </h4>
+                <p>
+                    @user.UserAdmin.ShortBio
+                </p>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@Html.Partial(MVC.Blog.Views._Comments, Model.ContentComments)
+
+@Html.Partial(MVC.Blog.Views._AddComment, new Netotik.ViewModels.CMS.Comment.AddCommentModel() { ContentId = Model.Id })

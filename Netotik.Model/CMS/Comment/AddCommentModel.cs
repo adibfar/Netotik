@@ -31,5 +31,10 @@ namespace Netotik.ViewModels.CMS.Comment
                     ErrorMessage = "ایمیل نامعتبر است")]
         public string Email { get; set; }
 
+
+        [MaxLength(300, ErrorMessage = "حدااکثر 300 کاراکتر")]
+        public string WebSite { get; set; }
+
+
     }
 }

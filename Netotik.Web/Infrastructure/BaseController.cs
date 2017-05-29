@@ -23,7 +23,7 @@ namespace Netotik.Web.Infrastructure
 
         protected override void Initialize(RequestContext requestContext)
         {
-            var languages = LanguageCache.GetLanguages(requestContext.HttpContext, ProjectObjectFactory.Container.GetInstance<ILanguageService>());
+            var languages = LanguageCache.GetLanguages(requestContext.HttpContext);
 
             if (requestContext.RouteData.Values["lang"] != null && requestContext.RouteData.Values["lang"] as string != "null")
             {

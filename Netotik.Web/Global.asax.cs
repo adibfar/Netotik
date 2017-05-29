@@ -57,11 +57,9 @@ namespace Netotik.Web
             if (!Request.IsLocal)
             {
                 if (!Context.Request.IsSecureConnection)
-                    Response.Redirect(Context.Request.Url.ToString().Replace("http:", "https:"));
+                    Response.Redirect(Context.Request.Url.ToString().Replace("http:", "https:").ToLower());
+
             }
-
-
-            var a = Request.RequestContext.RouteData.Values["lang"];
 
         }
 

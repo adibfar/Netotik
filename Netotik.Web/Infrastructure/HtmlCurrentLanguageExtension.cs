@@ -14,10 +14,7 @@ namespace Netotik.Web.Infrastructure
         public static Language CurrentLanguage(this HtmlHelper helper, HttpContextBase context, string lang)
         {
 
-            var langs = Caching.LanguageCache.GetLanguages(context,
-            ProjectObjectFactory
-                    .Container
-                    .GetInstance<ILanguageService>());
+            var langs = Caching.LanguageCache.GetLanguages(context);
 
             return langs.FirstOrDefault(x => x.UniqueSeoCode == lang);
         }

@@ -15,6 +15,14 @@ namespace Netotik.Web
             routes.IgnoreRoute("{*favicon}",
             new { favicon = @"(.*/)?favicon.ico(/.*)?" });
 
+
+            routes.MapRoute(
+            name: "sitemap.xml",
+            url: "sitemap.xml",
+            defaults: new { controller = "Sitemap", action = "Index" },
+            namespaces: new[] { "Netotik.Web.Controllers" }
+            );
+
             routes.MapMvcAttributeRoutes();
 
             routes.MapRoute(

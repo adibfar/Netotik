@@ -8,6 +8,7 @@ using System.Collections.Generic;
 using Netotik.Services.Identity;
 using Netotik.Domain.Entity;
 using System.Linq;
+using Netotik.IocConfig;
 
 namespace Netotik.Web.Infrastructure.Caching
 {
@@ -15,13 +16,14 @@ namespace Netotik.Web.Infrastructure.Caching
     {
         public const string Key = "LanguageConfig";
 
-        public static IList<Language> GetLanguages(HttpContextBase httpContext, ILanguageService languageService)
+        public static IList<Language> GetLanguages(HttpContextBase httpContext)
         {
             var siteConfig = httpContext.CacheRead<List<Language>>(Key);
 
             if (siteConfig == null)
             {
-                siteConfig = languageService.All().ToList();
+                var languageService = ProjectObjectFactory.Container.GetInstance<ILanguageService>();
+                siteConfig = languageService.All().Where(x => x.Published).OrderBy(x => x.DisplayOrder).ToList();
                 httpContext.CacheInsert(Key, siteConfig, 360);
             }
             return siteConfig;

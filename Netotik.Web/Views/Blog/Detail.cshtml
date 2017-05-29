@@ -5,13 +5,9 @@
     ViewBag.Description = (string.IsNullOrWhiteSpace(Model.MetaDescription) ? Model.BodyOverview : Model.MetaDescription);
 }
 
-<section class="page-header page-header-2xlg parallax" style="background-image:url('/Content/Upload/Image/Content/@Model.Picture.FileName')">
-    <div class="overlay dark-2"><!-- dark overlay [1 to 9 opacity] --></div>
-
-    <div class="container text-center">
-
-        <h1>@Model.Title</h1>
-        <span class="font-lato size-18 weight-300">@PersianDate.ConvertDate.ToFa(Model.StartDate.Value, "f")</span>
+<section class="page-header page-header-md parallax parallax-3" style="background-image:url('/Content/Upload/Image/Content/@Model.Picture.FileName')">
+    <div class="overlay dark-5"></div>
+    <div class="container">
     </div>
 </section>
 

@@ -10,7 +10,7 @@
         <!-- .blog-post-item-inverse = image right side [left on RTL] -->
         <!-- IMAGE -->
         <figure class="blog-item-small-image margin-bottom-20">
-            <img class="img-responsive" src="@Url.Content((!string.IsNullOrEmpty(item.Image) ? Path.Combine(Netotik.Common.Controller.FilePathes._imagesContentPath, item.Image) : "/Content/img/1.jpg"))" alt="@item.Title">
+            <img class="img-responsive" src="@Url.Content((!string.IsNullOrEmpty(item.Image) ? Path.Combine(Netotik.Common.Controller.FilePathes._imagesContentPath, item.Image) : "/Content/Upload/Image/Content/Default.png"))" alt="@item.Title">
         </figure>
 
         <div class="blog-item-small-content">
@@ -20,24 +20,24 @@
             <ul class="blog-post-info list-inline">
                 <li>
                     <a href="#">
-                        <i class="fa fa-clock-o"></i>
-                        <span class="font-lato size-12">@PersianDate.ConvertDate.ToFa(item.StartPublish, "D")</span>
-                    </a>
-                </li>
-
-                <li>
-                    <a href="#">
-                        <i class="fa fa-eye"></i>
-                        <span class="font-lato size-12">@item.ViewCount </span>
+                        <i class="fa fa-calendar"></i>
+                        <span class="font-lato">@PersianDate.ConvertDate.ToFa(item.StartPublish, "D")</span>
                     </a>
                 </li>
                 <li>
                     <a href="#">
-                        <i class="fa fa-comment-o"></i>
-                        <span class="font-lato size-12">@item.CommentCount</span>
+                        <i class="fa fa-comments-o"></i>
+                        <span class="font-lato">@item.CommentCount دیدگاه</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <i class="fa fa-user"></i>
+                        <span class="font-lato">@item.User</span>
                     </a>
                 </li>
             </ul>
+
 
             <p>
                 @item.Description

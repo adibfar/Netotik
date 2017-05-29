@@ -25,10 +25,10 @@ using System.Web.Routing;
 using T4MVC;
 namespace Netotik.Web.Controllers
 {
-    public partial class MetaTagController
+    public partial class SitemapController
     {
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        protected MetaTagController(Dummy d) { }
+        protected SitemapController(Dummy d) { }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         protected RedirectToRouteResult RedirectToAction(ActionResult result)
@@ -56,21 +56,15 @@ namespace Netotik.Web.Controllers
             return RedirectToActionPermanent(taskResult.Result);
         }
 
-        [NonAction]
-        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public virtual System.Web.Mvc.ActionResult Index()
-        {
-            return new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Index);
-        }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public MetaTagController Actions { get { return MVC.MetaTag; } }
+        public SitemapController Actions { get { return MVC.Sitemap; } }
         [GeneratedCode("T4MVC", "2.0")]
         public readonly string Area = "";
         [GeneratedCode("T4MVC", "2.0")]
-        public readonly string Name = "MetaTag";
+        public readonly string Name = "Sitemap";
         [GeneratedCode("T4MVC", "2.0")]
-        public const string NameConst = "MetaTag";
+        public const string NameConst = "Sitemap";
         [GeneratedCode("T4MVC", "2.0")]
         static readonly ActionNamesClass s_actions = new ActionNamesClass();
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -88,16 +82,6 @@ namespace Netotik.Web.Controllers
         }
 
 
-        static readonly ActionParamsClass_Index s_params_Index = new ActionParamsClass_Index();
-        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public ActionParamsClass_Index IndexParams { get { return s_params_Index; } }
-        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public class ActionParamsClass_Index
-        {
-            public readonly string title = "title";
-            public readonly string keywords = "keywords";
-            public readonly string description = "description";
-        }
         static readonly ViewsClass s_views = new ViewsClass();
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public ViewsClass Views { get { return s_views; } }
@@ -108,28 +92,23 @@ namespace Netotik.Web.Controllers
             public _ViewNamesClass ViewNames { get { return s_ViewNames; } }
             public class _ViewNamesClass
             {
-                public readonly string Index = "Index";
             }
-            public readonly string Index = "~/Views/MetaTag/Index.cshtml";
         }
     }
 
     [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-    public partial class T4MVC_MetaTagController : Netotik.Web.Controllers.MetaTagController
+    public partial class T4MVC_SitemapController : Netotik.Web.Controllers.SitemapController
     {
-        public T4MVC_MetaTagController() : base(Dummy.Instance) { }
+        public T4MVC_SitemapController() : base(Dummy.Instance) { }
 
         [NonAction]
-        partial void IndexOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, string title, string keywords, string description);
+        partial void IndexOverride(T4MVC_System_Web_Mvc_ContentResult callInfo);
 
         [NonAction]
-        public override System.Web.Mvc.ActionResult Index(string title, string keywords, string description)
+        public override System.Web.Mvc.ContentResult Index()
         {
-            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Index);
-            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "title", title);
-            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "keywords", keywords);
-            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "description", description);
-            IndexOverride(callInfo, title, keywords, description);
+            var callInfo = new T4MVC_System_Web_Mvc_ContentResult(Area, Name, ActionNames.Index);
+            IndexOverride(callInfo);
             return callInfo;
         }
 
