@@ -6,6 +6,10 @@
         <div class="col-md-12">
             <div class="card">
                 <div class="card-header">
+                    <a value="بازگشت" class="btn btn-social btn-instagram" href="@Url.Action(MVC.Company.UserManager.PackageList())">
+                        <span class="icon-reply font-medium-4"></span>
+                        بازگشت
+                    </a>
                     <a value="حذف" class="btn btn-social btn-instagram" onclick="ProfileRemove('@Model.UsermanProfile.id');" href="#">
                         <span class="icon-remove font-medium-4"></span>
                         حذف
@@ -178,20 +182,7 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="col-md-4">
-                                            <label>@Html.DisplayNameFor(model => model.UsermanLimition.rate_limit_rx)</label>
-                                            <div class="input-group">
-                                                <input type="text" class="form-control m-b" value="@Html.DisplayTextFor(model => model.UsermanLimition.rate_limit_rx)" readonly style="height:45px !important;" placeholder="0" name="downloadrate" id="downloadrate" />
-                                                <div class="input-group-addon">
-                                                    <select onchange="changeval('downloadrateB', 'downloadrate')" name="downloadrateB" id="downloadrateB">
-                                                        <option value="2">KB</option>
-                                                        <option value="1">kb</option>
-                                                        <option value="4">MB</option>
-                                                        <option value="3">mb</option>
-                                                    </select>
-                                                </div>
-                                            </div>
-                                        </div>
+                                        
                                         <div class="col-md-4">
                                             <label>@Html.DisplayNameFor(model => model.UsermanLimition.rate_limit_tx)</label>
                                             <div class="input-group">
@@ -206,6 +197,20 @@
                                                 </div>
                                             </div>
                                         </div>
+                                    <div class="col-md-4">
+                                        <label>@Html.DisplayNameFor(model => model.UsermanLimition.rate_limit_rx)</label>
+                                        <div class="input-group">
+                                            <input type="text" class="form-control m-b" value="@Html.DisplayTextFor(model => model.UsermanLimition.rate_limit_rx)" readonly style="height:45px !important;" placeholder="0" name="downloadrate" id="downloadrate" />
+                                            <div class="input-group-addon">
+                                                <select onchange="changeval('downloadrateB', 'downloadrate')" name="downloadrateB" id="downloadrateB">
+                                                    <option value="2">KB</option>
+                                                    <option value="1">kb</option>
+                                                    <option value="4">MB</option>
+                                                    <option value="3">mb</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
                                     </div>
                             </div>
                         </div>
@@ -244,59 +249,59 @@
             var temp;
             switch (strUser) {
                 case '1':
-                    if (inputid == 'uploadrate') temp = parseInt(uploadrate) / 1024;
-                    if (inputid == 'downloadrate') temp = parseInt(downloadrate) / 1024;
-                    if (inputid == 'downloaduploadlimit') temp = parseInt(downloaduploadlimit) / 1024;
-                    if (inputid == 'downloaduploadremain') temp = parseInt(downloaduploadremain) / 1024;
-                    if (inputid == 'uploadlimit') temp = parseInt(uploadlimit) / 1024;
-                    if (inputid == 'downloadlimit') temp = parseInt(downloadlimit) / 1024;
-                    if (inputid == 'downloadused') temp = parseInt(downloadused) / 1024;
-                    if (inputid == 'uploadused') temp = parseInt(uploadused) / 1024;
+                    if (inputid == 'uploadrate') temp = (parseInt(uploadrate) / 1024).toFixed(2);
+                    if (inputid == 'downloadrate') temp = (parseInt(downloadrate) / 1024).toFixed(2);
+                    if (inputid == 'downloaduploadlimit') temp = (parseInt(downloaduploadlimit) / 1024).toFixed(2);
+                    if (inputid == 'downloaduploadremain') temp = (parseInt(downloaduploadremain) / 1024).toFixed(2);
+                    if (inputid == 'uploadlimit') temp = (parseInt(uploadlimit) / 1024).toFixed(2);
+                    if (inputid == 'downloadlimit') temp = (parseInt(downloadlimit) / 1024).toFixed(2);
+                    if (inputid == 'downloadused') temp = (parseInt(downloadused) / 1024).toFixed(2);
+                    if (inputid == 'uploadused') temp = (parseInt(uploadused) / 1024).toFixed(2);
                     document.getElementById(inputid).value = temp.toString();
                     break;
                 case '2':
-                    if (inputid == 'uploadrate') temp = parseInt(uploadrate) / 8192;
-                    if (inputid == 'downloadrate') temp = parseInt(downloadrate) / 8192;
-                    if (inputid == 'downloaduploadlimit') temp = parseInt(downloaduploadlimit) / 8192;
-                    if (inputid == 'downloaduploadremain') temp = parseInt(downloaduploadremain) / 8192;
-                    if (inputid == 'uploadlimit') temp = parseInt(uploadlimit) / 8192;
-                    if (inputid == 'downloadlimit') temp = parseInt(downloadlimit) / 8192;
-                    if (inputid == 'downloadused') temp = parseInt(downloadused) / 8192;
-                    if (inputid == 'uploadused') temp = parseInt(uploadused) / 8192;
+                    if (inputid == 'uploadrate') temp = (parseInt(uploadrate) / 8192).toFixed(2);
+                    if (inputid == 'downloadrate') temp = (parseInt(downloadrate) / 8192).toFixed(2);
+                    if (inputid == 'downloaduploadlimit') temp = (parseInt(downloaduploadlimit) / 8192).toFixed(2);
+                    if (inputid == 'downloaduploadremain') temp = (parseInt(downloaduploadremain) / 8192).toFixed(2);
+                    if (inputid == 'uploadlimit') temp = (parseInt(uploadlimit) / 8192).toFixed(2);
+                    if (inputid == 'downloadlimit') temp = (parseInt(downloadlimit) / 8192).toFixed(2);
+                    if (inputid == 'downloadused') temp = (parseInt(downloadused) / 8192).toFixed(2);
+                    if (inputid == 'uploadused') temp = (parseInt(uploadused) / 8192).toFixed(2);
                     document.getElementById(inputid).value = temp.toString();
                     break;
                 case '3':
-                    if (inputid == 'uploadrate') temp = parseInt(uploadrate) / 1048576;
-                    if (inputid == 'downloadrate') temp = parseInt(downloadrate) / 1048576;
-                    if (inputid == 'downloaduploadlimit') temp = parseInt(downloaduploadlimit) / 1048576;
-                    if (inputid == 'downloaduploadremain') temp = parseInt(downloaduploadremain) / 1048576;
-                    if (inputid == 'uploadlimit') temp = parseInt(uploadlimit) / 1048576;
-                    if (inputid == 'downloadlimit') temp = parseInt(downloadlimit) / 1048576;
-                    if (inputid == 'downloadused') temp = parseInt(downloadused) / 1048576;
-                    if (inputid == 'uploadused') temp = parseInt(uploadused) / 1048576;
+                    if (inputid == 'uploadrate') temp = (parseInt(uploadrate) / 1048576).toFixed(2);
+                    if (inputid == 'downloadrate') temp = (parseInt(downloadrate) / 1048576).toFixed(2);
+                    if (inputid == 'downloaduploadlimit') temp = (parseInt(downloaduploadlimit) / 1048576).toFixed(2);
+                    if (inputid == 'downloaduploadremain') temp = (parseInt(downloaduploadremain) / 1048576).toFixed(2);
+                    if (inputid == 'uploadlimit') temp = (parseInt(uploadlimit) / 1048576).toFixed(2);
+                    if (inputid == 'downloadlimit') temp = (parseInt(downloadlimit) / 1048576).toFixed(2);
+                    if (inputid == 'downloadused') temp = (parseInt(downloadused) / 1048576).toFixed(2);
+                    if (inputid == 'uploadused') temp = (parseInt(uploadused) / 1048576).toFixed(2);
                     document.getElementById(inputid).value = temp.toString();
                     break;
                 case '4':
-                    if (inputid == 'uploadrate') temp = (parseInt(uploadrate) / 8388608).toString();
-                    if (inputid == 'downloadrate') temp = (parseInt(downloadrate) / 8388608).toString();
-                    if (inputid == 'downloaduploadlimit') temp = (parseInt(downloaduploadlimit) / 1048576).toString();
-                    if (inputid == 'downloaduploadremain') temp = (parseInt(downloaduploadremain) / 1048576).toString();
-                    if (inputid == 'uploadlimit') temp = parseInt(uploadlimit) / 1048576;
-                    if (inputid == 'downloadlimit') temp = (parseInt(downloadlimit) / 1048576).toString();
-                    if (inputid == 'downloadused') temp = (parseInt(downloadused) / 1048576).toString();
-                    if (inputid == 'uploadused') temp = (parseInt(uploadused) / 1048576).toString();
-                    document.getElementById(inputid).value = temp;
+                    if (inputid == 'uploadrate') temp = ((parseInt(uploadrate) / 8388608)).toFixed(2);
+                    if (inputid == 'downloadrate') temp = ((parseInt(downloadrate) / 8388608)).toFixed(2);
+                    if (inputid == 'downloaduploadlimit') temp = ((parseInt(downloaduploadlimit) / 1048576)).toFixed(2);
+                    if (inputid == 'downloaduploadremain') temp = ((parseInt(downloaduploadremain) / 1048576)).toFixed(2);
+                    if (inputid == 'uploadlimit') temp = (parseInt(uploadlimit) / 1048576).toFixed(2);
+                    if (inputid == 'downloadlimit') temp = ((parseInt(downloadlimit) / 1048576)).toFixed(2);
+                    if (inputid == 'downloadused') temp = ((parseInt(downloadused) / 1048576)).toFixed(2);
+                    if (inputid == 'uploadused') temp = ((parseInt(uploadused) / 1048576)).toFixed(2);
+                    document.getElementById(inputid).value = temp.toString();
                     break;
                 case '5':
-                    if (inputid == 'uploadrate') temp = (parseInt(uploadrate) / 1073741824).toString();
-                    if (inputid == 'downloadrate') temp = (parseInt(downloadrate) / 1073741824).toString();
-                    if (inputid == 'downloaduploadlimit') temp = (parseInt(downloaduploadlimit) / 1073741824).toString();
-                    if (inputid == 'downloaduploadremain') temp = (parseInt(downloaduploadremain) / 1073741824).toString();
-                    if (inputid == 'uploadlimit') temp = (parseInt(uploadlimit) / 1073741824).toString();
-                    if (inputid == 'downloadlimit') temp = (parseInt(downloadlimit) / 1073741824).toString();
-                    if (inputid == 'downloadused') temp = (parseInt(downloadused) / 1073741824).toString();
-                    if (inputid == 'uploadused') temp = (parseInt(uploadused) / 1073741824).toString();
-                    document.getElementById(inputid).value = temp;
+                    if (inputid == 'uploadrate') temp = ((parseInt(uploadrate) / 1073741824)).toFixed(2);
+                    if (inputid == 'downloadrate') temp = ((parseInt(downloadrate) / 1073741824)).toFixed(2);
+                    if (inputid == 'downloaduploadlimit') temp = ((parseInt(downloaduploadlimit) / 1073741824)).toFixed(2);
+                    if (inputid == 'downloaduploadremain') temp = ((parseInt(downloaduploadremain) / 1073741824)).toFixed(2);
+                    if (inputid == 'uploadlimit') temp = ((parseInt(uploadlimit) / 1073741824)).toFixed(2);
+                    if (inputid == 'downloadlimit') temp = ((parseInt(downloadlimit) / 1073741824)).toFixed(2);
+                    if (inputid == 'downloadused') temp = ((parseInt(downloadused) / 1073741824)).toFixed(2);
+                    if (inputid == 'uploadused') temp = ((parseInt(uploadused) / 1073741824)).toFixed(2);
+                    document.getElementById(inputid).value = temp.toString();
                     break;
             }
         }

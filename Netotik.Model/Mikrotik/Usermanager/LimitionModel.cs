@@ -21,9 +21,9 @@ namespace Netotik.ViewModels.Mikrotik
         public string transfer_limit { get; set; }
         [Display(Name = "محدودیت زمان اتصال")]
         public string uptime_limit { get; set; }
-        [Display(Name = "محدودیت سرعت دانلود")]
-        public string rate_limit_rx { get; set; }
         [Display(Name = "محدودیت سرعت آپلود")]
+        public string rate_limit_rx { get; set; }
+        [Display(Name = "محدودیت سرعت دانلود")]
         public string rate_limit_tx { get; set; }
         public string rate_limit_min_tx { get; set; }
         public string group_name { get; set; }

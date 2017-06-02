@@ -10,6 +10,7 @@ using Netotik.Services.Identity;
 using Netotik.Data;
 using Netotik.Common.Filters;
 using Netotik.Common.Controller;
+using System.Collections.Generic;
 
 namespace Netotik.Web.Areas.Company.Controllers
 {
@@ -39,7 +40,6 @@ namespace Netotik.Web.Areas.Company.Controllers
 
         #region Usermanager
         [Mvc5Authorize(Roles = "Company")]
-        [ValidateAntiForgeryToken]
         [HttpPost]
         [ValidateInput(false)]
         public virtual ActionResult ResetCounter(string user, string id)
@@ -60,7 +60,6 @@ namespace Netotik.Web.Areas.Company.Controllers
             return RedirectToAction(MVC.Company.UserManager.UserList());
         }
         [Mvc5Authorize(Roles = "Company")]
-        [ValidateAntiForgeryToken]
         [HttpPost]
         [ValidateInput(false)]
         public virtual ActionResult CloseSession(string user, string id)
@@ -154,7 +153,7 @@ namespace Netotik.Web.Areas.Company.Controllers
                 if (Request.Form["onlineday"].ToString() != "0")
                 {
                     if (days == null) days = "0";
-                    days = (Int32.Parse(days) + Int32.Parse(Request.Form["onlineday"].ToString())).ToString();
+                    days = (ulong.Parse(days) + ulong.Parse(Request.Form["onlineday"].ToString())).ToString();
                 }
                 if (days != null)
                     online += days + "d";
@@ -171,7 +170,7 @@ namespace Netotik.Web.Areas.Company.Controllers
                 if (Request.Form["onlineuserday"].ToString() != "0")
                 {
                     if (days == null) days = "0";
-                    days = (Int32.Parse(days) + Int32.Parse(Request.Form["onlineuserday"].ToString())).ToString();
+                    days = (ulong.Parse(days) + ulong.Parse(Request.Form["onlineuserday"].ToString())).ToString();
                 }
                 if (days != null)
                     valid += days + "d";
@@ -187,10 +186,10 @@ namespace Netotik.Web.Areas.Company.Controllers
                     switch (Request.Form["downloadlimitB"].ToString())
                     {
                         case "1":
-                            downloadlimit = (Int32.Parse(Request.Form["downloadlimit"]) * 1048576).ToString();
+                            downloadlimit = (ulong.Parse(Request.Form["downloadlimit"]) * 1048576).ToString();
                             break;
                         case "2":
-                            downloadlimit = (Int32.Parse(Request.Form["downloadlimit"]) * 1073741824).ToString();
+                            downloadlimit = (ulong.Parse(Request.Form["downloadlimit"]) * 1073741824).ToString();
                             break;
                     }
                 model.limition_download_limit = downloadlimit;
@@ -200,10 +199,10 @@ namespace Netotik.Web.Areas.Company.Controllers
                     switch (Request.Form["uploadlimitB"].ToString())
                     {
                         case "1":
-                            downloadlimit = (Int32.Parse(Request.Form["uploadlimit"]) * 1048576).ToString();
+                            downloadlimit = (ulong.Parse(Request.Form["uploadlimit"]) * 1048576).ToString();
                             break;
                         case "2":
-                            downloadlimit = (Int32.Parse(Request.Form["uploadlimit"]) * 1073741824).ToString();
+                            downloadlimit = (ulong.Parse(Request.Form["uploadlimit"]) * 1073741824).ToString();
                             break;
                     }
                 model.limition_upload_limit = uploadlimit;
@@ -213,10 +212,10 @@ namespace Netotik.Web.Areas.Company.Controllers
                     switch (Request.Form["downloaduploadlimitB"].ToString())
                     {
                         case "1":
-                            downloaduploadlimit = (Int32.Parse(Request.Form["downloaduploadlimit"]) * 1048576).ToString();
+                            downloaduploadlimit = (ulong.Parse(Request.Form["downloaduploadlimit"]) * 1048576).ToString();
                             break;
                         case "2":
-                            downloaduploadlimit = (Int32.Parse(Request.Form["downloaduploadlimit"]) * 1073741824).ToString();
+                            downloaduploadlimit = (ulong.Parse(Request.Form["downloaduploadlimit"]) * 1073741824).ToString();
                             break;
                     }
                 model.limition_transfer_limit = downloaduploadlimit;
@@ -226,16 +225,16 @@ namespace Netotik.Web.Areas.Company.Controllers
                     switch (Request.Form["downloadrateB"].ToString())
                     {
                         case "1":
-                            downloadrate = (Int32.Parse(Request.Form["downloadrate"]) * 8192).ToString();
+                            downloadrate = (ulong.Parse(Request.Form["downloadrate"]) * 8192).ToString();
                             break;
                         case "2":
-                            downloadrate = (Int32.Parse(Request.Form["downloadrate"]) * 1024).ToString();
+                            downloadrate = (ulong.Parse(Request.Form["downloadrate"]) * 1024).ToString();
                             break;
                         case "3":
-                            downloadrate = (Int32.Parse(Request.Form["downloadrate"]) * 8388608).ToString();
+                            downloadrate = (ulong.Parse(Request.Form["downloadrate"]) * 8388608).ToString();
                             break;
                         case "4":
-                            downloadrate = (Int32.Parse(Request.Form["downloadrate"]) * 1048576).ToString();
+                            downloadrate = (ulong.Parse(Request.Form["downloadrate"]) * 1048576).ToString();
                             break;
                     }
                 model.limition_rate_limit_rx = downloadrate;
@@ -245,16 +244,16 @@ namespace Netotik.Web.Areas.Company.Controllers
                     switch (Request.Form["uploadrateB"].ToString())
                     {
                         case "1":
-                            uploadrate = (Int32.Parse(Request.Form["uploadrate"]) * 8192).ToString();
+                            uploadrate = (ulong.Parse(Request.Form["uploadrate"]) * 8192).ToString();
                             break;
                         case "2":
-                            uploadrate = (Int32.Parse(Request.Form["uploadrate"]) * 1024).ToString();
+                            uploadrate = (ulong.Parse(Request.Form["uploadrate"]) * 1024).ToString();
                             break;
                         case "3":
-                            uploadrate = (Int32.Parse(Request.Form["uploadrate"]) * 8388608).ToString();
+                            uploadrate = (ulong.Parse(Request.Form["uploadrate"]) * 8388608).ToString();
                             break;
                         case "4":
-                            uploadrate = (Int32.Parse(Request.Form["uploadrate"]) * 1048576).ToString();
+                            uploadrate = (ulong.Parse(Request.Form["uploadrate"]) * 1048576).ToString();
                             break;
                     }
                 model.limition_rate_limit_tx = uploadrate;
@@ -339,7 +338,25 @@ namespace Netotik.Web.Areas.Company.Controllers
             }
             //-------------------------------
             if (_mikrotikServices.Usermanager_IsInstall(UserLogined.UserCompany.R_Host, UserLogined.UserCompany.R_Port, UserLogined.UserCompany.R_User, UserLogined.UserCompany.R_Password))
-                ViewBag.userlist = _mikrotikServices.Usermanager_GetAllUsers(UserLogined.UserCompany.R_Host, UserLogined.UserCompany.R_Port, UserLogined.UserCompany.R_User, UserLogined.UserCompany.R_Password);
+            {
+                var userlist = _mikrotikServices.Usermanager_GetAllUsers(UserLogined.UserCompany.R_Host, UserLogined.UserCompany.R_Port, UserLogined.UserCompany.R_User, UserLogined.UserCompany.R_Password);
+                var UserListModel = new List<Usermanager_UserModel>();
+                foreach (var item in userlist)
+                {
+                    if (item.download_used == "0" || item.download_used == "")
+                        item.download_used = "0";
+                    if (item.upload_used == "0" || item.upload_used == "")
+                        item.upload_used = "0";
+                    item.download_used = (ulong.Parse(item.download_used) / 1048576).ToString();
+                    item.last_seen = item.last_seen.Replace("never", " بدون اتصال ");
+                    item.shared_users = item.shared_users.Replace("unlimited", " بدون محدودیت ");
+                    item.upload_used = (ulong.Parse(item.upload_used)/ 1048576).ToString();
+                    item.uptime_used= item.uptime_used.Replace("d", " روز ").Replace("w", " هفته ").Replace("h", " ساعت ").Replace("m", " دقیقه ").Replace("s", " ثانیه ").Replace("never", " بدون اتصال ");
+                    UserListModel.Add(item);
+                }
+                ViewBag.userlist = UserListModel;
+            }
+                  
             /*
             var mikrotik = new MikrotikAPI();
             mikrotik.MK("192.168.216.128", 8728);
@@ -536,17 +553,19 @@ namespace Netotik.Web.Areas.Company.Controllers
                 return RedirectToAction(MVC.Company.Home.ActionNames.Index);
             }
             //-------------------------------
-            var users = _mikrotikServices.Usermanager_GetAllUsers(UserLogined.UserCompany.R_Host, UserLogined.UserCompany.R_Port, UserLogined.UserCompany.R_User, UserLogined.UserCompany.R_Password);
+            var users = _mikrotikServices.Usermanager_GetUser(UserLogined.UserCompany.R_Host, UserLogined.UserCompany.R_Port, UserLogined.UserCompany.R_User, UserLogined.UserCompany.R_Password,id);
             foreach (var item in users)
                 if (item.id == id)
                 {
-                    ViewBag.session = _mikrotikServices.Usermanager_UserSession(UserLogined.UserCompany.R_Host, UserLogined.UserCompany.R_Port, UserLogined.UserCompany.R_User, UserLogined.UserCompany.R_Password, item.username);
+                    var session = _mikrotikServices.Usermanager_UserSession(UserLogined.UserCompany.R_Host, UserLogined.UserCompany.R_Port, UserLogined.UserCompany.R_User, UserLogined.UserCompany.R_Password, item.username);
                     var profile = _mikrotikServices.Usermanager_GetAllProfile(UserLogined.UserCompany.R_Host, UserLogined.UserCompany.R_Port, UserLogined.UserCompany.R_User, UserLogined.UserCompany.R_Password);
                     var Limition = _mikrotikServices.Usermanager_GetAllLimition(UserLogined.UserCompany.R_Host, UserLogined.UserCompany.R_Port, UserLogined.UserCompany.R_User, UserLogined.UserCompany.R_Password);
                     var profileLimition = _mikrotikServices.Usermanager_GetAllProfileLimition(UserLogined.UserCompany.R_Host, UserLogined.UserCompany.R_Port, UserLogined.UserCompany.R_User, UserLogined.UserCompany.R_Password);
                     var UserProfile = new Usermanager_ProfileModel();
                     var UserProfileLimition = new Usermanager_ProfileLimitionModel();
                     var UserLimition = new Usermanager_LimitionModel();
+                    var UserSession = new List<Usermanager_UserSessionModel>();
+                    ViewBag.session = UserSession;
                     if (profile != null)
                         foreach (var item0 in profile)
                             if (item0.name == item.actual_profile)
@@ -568,17 +587,17 @@ namespace Netotik.Web.Areas.Company.Controllers
                     ViewBag.transfer_limit = UserLimition.transfer_limit;
                     ViewBag.rate_limit_rx = UserLimition.rate_limit_rx;
                     ViewBag.rate_limit_tx = UserLimition.rate_limit_tx;
-                    int Downloadlimit = 0;
+                    decimal Downloadlimit = 0;
                     if (UserLimition.transfer_limit == null) UserLimition.transfer_limit = "0";
-                    if (UserLimition.transfer_limit != "0") Downloadlimit += Int32.Parse(UserLimition.transfer_limit);
+                    if (UserLimition.transfer_limit != "0") Downloadlimit += ulong.Parse(UserLimition.transfer_limit);
                     if (UserLimition.upload_limit == null) UserLimition.upload_limit = "0";
-                    if (UserLimition.upload_limit != "0") Downloadlimit += Int32.Parse(UserLimition.upload_limit);
+                    if (UserLimition.upload_limit != "0") Downloadlimit += ulong.Parse(UserLimition.upload_limit);
                     if (UserLimition.download_limit == null) UserLimition.download_limit = "0";
-                    if (UserLimition.download_limit != "0") Downloadlimit += Int32.Parse(UserLimition.download_limit);
+                    if (UserLimition.download_limit != "0") Downloadlimit += ulong.Parse(UserLimition.download_limit);
                     if (UserLimition.download_limit != "" && item.download_used != "")
-                        ViewBag.download_remain = (Downloadlimit - Int32.Parse(item.download_used)).ToString();
+                        ViewBag.download_remain = (Downloadlimit - ulong.Parse(item.download_used)).ToString();
                     if (UserLimition.upload_limit != "" && item.upload_used != "")
-                        ViewBag.upload_remain = (Int32.Parse(UserLimition.upload_limit) - Int32.Parse(item.upload_used)).ToString();
+                        ViewBag.upload_remain = (ulong.Parse(UserLimition.upload_limit) - ulong.Parse(item.upload_used)).ToString();
                     if (UserLimition.uptime_limit != null)
                         ViewBag.uptime_limit = UserLimition.uptime_limit.Replace("d", " روز ").Replace("w", " هفته ").Replace("h", " ساعت ").Replace("m", " دقیقه ").Replace("s", " ثانیه ");
                     if (UserProfile.validity != null)
@@ -708,7 +727,17 @@ namespace Netotik.Web.Areas.Company.Controllers
             }
             //-------------------------------
             if (_mikrotikServices.Usermanager_IsInstall(UserLogined.UserCompany.R_Host, UserLogined.UserCompany.R_Port, UserLogined.UserCompany.R_User, UserLogined.UserCompany.R_Password))
-                ViewBag.userlist = _mikrotikServices.Usermanager_GetAllProfile(UserLogined.UserCompany.R_Host, UserLogined.UserCompany.R_Port, UserLogined.UserCompany.R_User, UserLogined.UserCompany.R_Password);
+            {
+                var Profiles = _mikrotikServices.Usermanager_GetAllProfile(UserLogined.UserCompany.R_Host, UserLogined.UserCompany.R_Port, UserLogined.UserCompany.R_User, UserLogined.UserCompany.R_Password);
+                var RouterProfiles = new List<Usermanager_ProfileModel>();
+                foreach(var item in Profiles)
+                {
+                    item.starts_at = item.starts_at.Replace("logon", " زمان اولین اتصال ").Replace("now", " زمان انتساب پکیج ");
+                    item.validity = item.validity.Replace("d", " روز ").Replace("w", " هفته ").Replace("h", " ساعت ").Replace("m", " دقیقه ").Replace("s", " ثانیه "); ;
+                    RouterProfiles.Add(item);
+                }
+                ViewBag.userlist = RouterProfiles;
+            }
             return View();
         }
         [Mvc5Authorize(Roles = "Company")]

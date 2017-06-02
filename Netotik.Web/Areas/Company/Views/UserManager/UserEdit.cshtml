@@ -12,19 +12,19 @@
                 @Html.AntiForgeryToken()
                 <div class="card">
                     <div class="card-header">
-                        <button name="actionType" value="@Netotik.Common.Controller.ActionType.Save" class="btn btn-social width-100 btn-instagram" onclick="AjaxForm.Post(this, 'form')" data-loading-text="در حال ارسال اطلاعات">
-                            <span class="icon-checkmark2 font-medium-4"></span>
-                            @Netotik.Resources.Captions.Save
-                        </button>
+                        <a value="بازگشت" class="btn btn-social btn-instagram" href="@Url.Action(MVC.Company.UserManager.UserList())">
+                            <span class="icon-reply font-medium-4"></span>
+                            بازگشت
+                        </a>
                         <a value="قطع اتصال" class="btn btn-social btn-instagram" href="#" onclick="UserCloseSession('@Model.id','@Model.username');">
-                            <span class="icon-close font-medium-4"></span>
+                            <span class="icon-blocked font-medium-4"></span>
                             قطع اتصال
                         </a>
                         <a value="ریست کردن" class="btn btn-social btn-instagram" href="#" onclick="UserResetCounter('@Model.id','@Model.username');">
                             <span class="icon-refresh font-medium-4"></span>
                             ریست کردن
                         </a>
-                        <a value="چاپ گزارش" class="btn btn-social btn-instagram" href="#" >
+                        <a value="چاپ گزارش" class="btn btn-social btn-instagram" href="#">
                             <span class="icon-printer2 font-medium-4"></span>
                             چاپ گزارش
                         </a>
@@ -34,14 +34,14 @@
                         </a>
                         @if (Model.disabled == "false")
                         {
-                            <a onclick="Userdisable('@Model.id');" class="btn btn-social btn-instagram">
-                                <span class="icon-lock font-medium-4"></span> غیره فعال
+                            <a onclick="Userdisable('@Model.id');" class="btn btn-social btn-instagram" value="فعال" href="#">
+                                <span class="icon-eye-blocked font-medium-4"></span> غیره فعال
                             </a>
                         }
                         else
                         {
-                            <a onclick="Userenable('@Model.id');" class="btn btn-social btn-instagram">
-                                <span class="icon-unlock font-medium-4"></span> فعال
+                            <a href="#" onclick="Userenable('@Model.id');" class="btn btn-social btn-instagram" value="فعال">
+                                <span class="icon-eye font-medium-4"></span> فعال
                             </a>
                         }
                         <a value="ساخت کارت" class="btn btn-social btn-instagram" href="#">
@@ -53,7 +53,7 @@
                             <span class="text-danger">توجه کنید تمامی مقادیر را انگلیسی تکمیل کنید.</span>
                         </div>
                     </div>
-                    @Html.HiddenFor(model=>model.id);
+                    @Html.HiddenFor(model=>model.id)
                     <div class="card-body">
                         <div class="card-block">
                             <div class="row">

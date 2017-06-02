@@ -80,11 +80,11 @@ namespace Netotik.Web.Areas.Company.Controllers
             Router_Info.Cpu_count = Router_Resource.FirstOrDefault().Cpu_count;
             Router_Info.Cpu_frequency = Router_Resource.FirstOrDefault().Cpu_frequency;
             Router_Info.Cpu_load = Router_Resource.FirstOrDefault().Cpu_load;
-            Router_Info.Free_hdd_space = (Int32.Parse(Router_Resource.FirstOrDefault().Free_hdd_space) / 1048576).ToString();
-            Router_Info.Free_memory = (Int32.Parse(Router_Resource.FirstOrDefault().Free_memory) / 1048576).ToString();
+            Router_Info.Free_hdd_space = (ulong.Parse(Router_Resource.FirstOrDefault().Free_hdd_space) / 1048576).ToString();
+            Router_Info.Free_memory = (ulong.Parse(Router_Resource.FirstOrDefault().Free_memory) / 1048576).ToString();
             Router_Info.Platform = Router_Resource.FirstOrDefault().Platform;
-            Router_Info.Total_hdd_space = (Int32.Parse(Router_Resource.FirstOrDefault().Total_hdd_space) / 1048576).ToString();
-            Router_Info.Total_memory = (Int32.Parse(Router_Resource.FirstOrDefault().Total_memory) / 1048576).ToString();
+            Router_Info.Total_hdd_space = (ulong.Parse(Router_Resource.FirstOrDefault().Total_hdd_space) / 1048576).ToString();
+            Router_Info.Total_memory = (ulong.Parse(Router_Resource.FirstOrDefault().Total_memory) / 1048576).ToString();
             Router_Info.Uptime = Router_Resource.FirstOrDefault().Uptime;
             Router_Info.Version = Router_Resource.FirstOrDefault().Version;
             //--------------------------------------
@@ -102,18 +102,20 @@ namespace Netotik.Web.Areas.Company.Controllers
             Router_Info.Update_status = Router_PackageUpdate.FirstOrDefault().Update_status;
             //------------------------------------------
             var Router_Clock = _mikrotikServices.Router_Clock(UserLogined.UserCompany.R_Host, UserLogined.UserCompany.R_Port, UserLogined.UserCompany.R_User, UserLogined.UserCompany.R_Password);
-            Router_Info.Router_date = Router_Clock.FirstOrDefault().Router_date;
+            Router_Info.Router_date = Infrastructure.EnglishConvertDate.ConvertToFa(Router_Clock.FirstOrDefault().Router_date, "d");
+            ViewBag.Server_Date = PersianDate.ConvertDate.ToFa(DateTime.Now,"d");
             //PersianDate.ConvertDate.ToFa();
+            Infrastructure.EnglishConvertDate.ConvertToFa(Router_Clock.FirstOrDefault().Router_date, "d");
             Router_Info.Router_time = Router_Clock.FirstOrDefault().Router_time;
             //------------------------------------------
             var Router_Routerboard = _mikrotikServices.Router_Routerboard(UserLogined.UserCompany.R_Host, UserLogined.UserCompany.R_Port, UserLogined.UserCompany.R_User, UserLogined.UserCompany.R_Password);
             Router_Info.Serial_number = Router_Routerboard.FirstOrDefault().Serial_number;
             Router_Info.Router_model = Router_Routerboard.FirstOrDefault().Router_model;
             //------------------------------------------
-            ViewBag.UsedMemory = Int32.Parse(Router_Info.Total_memory) - Int32.Parse(Router_Info.Free_memory);
-            ViewBag.UsedMemoryPercent = ((Int32.Parse(Router_Info.Total_memory) - Int32.Parse(Router_Info.Free_memory)) * 100) / Int32.Parse(Router_Info.Total_memory);
-            ViewBag.UsedHDD = Int32.Parse(Router_Info.Total_hdd_space) - Int32.Parse(Router_Info.Free_hdd_space);
-            ViewBag.UsedHDDPercent = ((Int32.Parse(Router_Info.Total_hdd_space) - Int32.Parse(Router_Info.Free_hdd_space)) * 100) / Int32.Parse(Router_Info.Total_hdd_space);
+            ViewBag.UsedMemory = ulong.Parse(Router_Info.Total_memory) - ulong.Parse(Router_Info.Free_memory);
+            ViewBag.UsedMemoryPercent = ((ulong.Parse(Router_Info.Total_memory) - ulong.Parse(Router_Info.Free_memory)) * 100) / ulong.Parse(Router_Info.Total_memory);
+            ViewBag.UsedHDD = ulong.Parse(Router_Info.Total_hdd_space) - ulong.Parse(Router_Info.Free_hdd_space);
+            ViewBag.UsedHDDPercent = ((ulong.Parse(Router_Info.Total_hdd_space) - ulong.Parse(Router_Info.Free_hdd_space)) * 100) / ulong.Parse(Router_Info.Total_hdd_space);
             //------------------------------------------
             return View(Router_Info);
         }

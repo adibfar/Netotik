@@ -70,7 +70,7 @@
     <script type="text/javascript">
         $(function () {
             var table = $('#grid').dataTable({
-                "order": [[1, 'asc']],
+                "order": [[0, 'asc']],
                 "iDisplayLength": 10,
                 "bProcessing": true,
                 "bStateSave": true,
@@ -81,17 +81,6 @@
                 "aLengthMenu": [[10, 25, 50, 100], [10, 25, 50, 100]],
                 "oLanguage": {
                     "sUrl": "/Content/js/plugins/tables/datatable/dataTables.persian.txt"
-                },
-                dom: 'C<"clear">lfrtip',
-                columnDefs: [{
-                    visible: !1,
-                    targets: [6, 7, 8, 9, 10, 11, 12, 13],
-                    buttonText: "ویرایش جدول",
-                }],
-                colVis: {
-                    restore: "پیشفرض",
-                    showAll: "نمایش همه",
-                    showNone: "پنهان سازی"
                 }
             });
         });

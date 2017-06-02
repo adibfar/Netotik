@@ -8,6 +8,7 @@ namespace Netotik.Services.Abstract
     {
         string GetRouterName(string ip, int port, string user, string pass);
         List<Usermanager_UserModel> Usermanager_GetAllUsers(string ip, int port, string user, string pass);
+        List<Usermanager_UserModel> Usermanager_GetUser(string ip, int port, string user, string pass,string id);
         void Usermanager_DisableUser(string ip, int port, string user, string pass, string UsermanUser);
         List<Usermanager_UserSessionModel> Usermanager_UserSession(string ip, int port, string user, string pass, string UsermanUser);
         void Usermanager_RemoveUser(string ip, int port, string user, string pass, string UsermanUser);

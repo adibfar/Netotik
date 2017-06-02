@@ -67,9 +67,6 @@
                                 <span class="grey darken-1 block">ساعت روتر</span>
                                 <span class="font-large-1 line-height-1 text-bold-300">@Html.DisplayTextFor(model => model.Router_time)</span>
                             </div>
-                            <div class="float-xs-left mt-2">
-                                <span class="grey darken-1 block">ساعت روتر با سرور یکی است.(پیاده نشده)</span>
-                            </div>
                         </div>
                         <div class="col-xl-3 col-lg-6 col-md-12 border-right-grey border-right-lighten-3 clearfix">
                             <div class="float-xs-left pl-2">
@@ -77,7 +74,14 @@
                                 <span class="font-large-1 line-height-1 text-bold-300">@Html.DisplayTextFor(model => model.Router_date)</span>
                             </div>
                             <div class="float-xs-left mt-2">
-                                <span class="grey darken-1 block">تاریخ روتر با سرور یکی است.(پیاده نشده)</span>
+                                @if (Model.Router_date == ViewBag.Server_Date)
+                                {
+                                    <span class="grey darken-1 block">تاریخ سرور و روتر یکی می باشد.</span>
+                                }
+                                else
+                                {
+                                    <span class="grey darken-1 block">تاریخ سرور @ViewBag.Server_Date</span>
+                                }
                             </div>
                         </div>
                         <div class="col-xl-3 col-lg-6 col-md-12 border-right-grey border-right-lighten-3 clearfix">
