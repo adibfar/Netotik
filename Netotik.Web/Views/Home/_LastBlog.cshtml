@@ -20,7 +20,7 @@
                 {
                     <div class="img-hover">
                         <a title="@item.Title" href="@Url.Action(MVC.Blog.ActionNames.Detail, MVC.Blog.Name, new { Id = item.Id, name = item.Title })">
-                            <img class="img-responsive" src="@Url.Content((item.PictureId.HasValue ? Path.Combine(Netotik.Common.Controller.FilePathes._imagesContentPath, item.Picture.FileName) : "/Content/img/1.jpg"))?w=370&h=243&mode=crop" alt="@item.Title">
+                            <img class="img-responsive" src="@Url.Content(Path.Combine(Netotik.Common.Controller.FilePathes._imagesContentPath, item.PictureId.HasValue ? item.Picture.FileName:"Default.png"))?w=370&h=243&mode=crop" alt="@item.Title" />
                         </a>
 
                         <h4 class="text-right margin-top-20" style="min-height:70px;"><a href="@Url.Action(MVC.Blog.ActionNames.Detail, MVC.Blog.Name, new { Id = item.Id, name = item.Title })">@item.Title</a></h4>

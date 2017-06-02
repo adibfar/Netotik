@@ -1,0 +1,87 @@
+﻿@model Netotik.ViewModels.Common.Meta.MetaViewModel
+@{
+    var languages = Netotik.Web.Infrastructure.Caching.LanguageCache.GetLanguages(ViewContext.HttpContext);
+}
+<title>@Model.Title</title>
+
+@if (!string.IsNullOrEmpty(Model.Description))
+{
+    <meta name="description" content="@Model.Description.Substring(0,Math.Min(Model.Description.Length - 1, 50))" />
+}
+@if (!string.IsNullOrEmpty(Model.Keywords))
+{
+    <meta name="keywords" content="@Model.Keywords" />
+}
+@if (!string.IsNullOrEmpty(Model.Conanical))
+{
+    <link rel="canonical" href="@Model.Conanical" />
+}
+@foreach (var item in languages)
+{
+    if (item.UniqueSeoCode == ViewContext.RouteData.Values["lang"].ToString())
+    {
+        <meta property="og:locale" content="@item.LanguageCulture.Replace('-','_')">
+    }
+    else
+    {
+        <meta property="og:locale:alternate" content="@item.LanguageCulture.Replace('-','_')">
+    }
+}
+
+
+@if (!string.IsNullOrEmpty(Model.OgSiteName))
+{
+    <meta property="og:site_name" content="@Model.OgSiteName" />
+}
+@if (!string.IsNullOrEmpty(Model.OgTitle))
+{
+    <meta property="og:title" content="@Model.OgTitle" />
+}
+@if (!string.IsNullOrEmpty(Model.OgType))
+{
+    <meta property="og:type" content="@Model.OgType" />
+}
+@if (!string.IsNullOrEmpty(Model.OgDescription))
+{
+    <meta property="og:description" content="@Model.OgDescription" />
+}
+@if (!string.IsNullOrEmpty(Model.OgUrl))
+{
+    <meta property="og:url" content="@Model.OgUrl" />
+}
+@if (!string.IsNullOrEmpty(Model.OgType))
+{
+    <meta property="og:type" content="@Model.OgType" />
+}
+@if (!string.IsNullOrEmpty(Model.OgImage))
+{
+    <meta property="og:image" content="@Model.OgImage" />
+}
+@if (!string.IsNullOrEmpty(Model.OgImageType))
+{
+    <meta property="og:image:type" content="@Model.OgImageType" />
+}
+@if (!string.IsNullOrEmpty(Model.OgPublishTime))
+{
+    <meta property="og:article:published_time" content="@Model.OgPublishTime" />
+}
+@if (!string.IsNullOrEmpty(Model.OgModifiedTime))
+{
+    <meta property="og:article:modified_time" content="@Model.OgModifiedTime" />
+}
+@if (!string.IsNullOrEmpty(Model.OgArticleSection))
+{
+    <meta property="og:article:section" content="@Model.OgArticleSection" />
+}
+@if (Model.OgTags.Any())
+{
+    foreach (var item in Model.OgTags)
+    {
+        <meta property="og:article:tag" content="@item" />
+    }
+}
+
+@foreach (var item in languages)
+{
+    <link rel="alternate" hreflang="@item.UniqueSeoCode" href="@Url.Action(MVC.Home.ActionNames.Index,MVC.Home.Name, new { lang = item.UniqueSeoCode })" />
+}

@@ -49,7 +49,8 @@ namespace T4MVC
                 public readonly string _HeaderPublicCss = "_HeaderPublicCss";
                 public readonly string _LanagaugeSelector = "_LanagaugeSelector";
                 public readonly string _Layout = "_Layout";
-                public readonly string _MessageResult = "_MessageResult";
+                public readonly string _Message = "_Message";
+                public readonly string _Meta = "_Meta";
             }
             public readonly string _BreadCrumb = "~/Views/SharedPublic/_BreadCrumb.cshtml";
             public readonly string _CaptchaPartial = "~/Views/SharedPublic/_CaptchaPartial.cshtml";
@@ -62,7 +63,8 @@ namespace T4MVC
             public readonly string _HeaderPublicCss = "~/Views/SharedPublic/_HeaderPublicCss.cshtml";
             public readonly string _LanagaugeSelector = "~/Views/SharedPublic/_LanagaugeSelector.cshtml";
             public readonly string _Layout = "~/Views/SharedPublic/_Layout.cshtml";
-            public readonly string _MessageResult = "~/Views/SharedPublic/_MessageResult.cshtml";
+            public readonly string _Message = "~/Views/SharedPublic/_Message.cshtml";
+            public readonly string _Meta = "~/Views/SharedPublic/_Meta.cshtml";
         }
     }
 

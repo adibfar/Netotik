@@ -34,7 +34,6 @@ namespace Netotik.Web.Controllers
         private readonly IContentService _contentService;
         private readonly IMenuService _menuService;
         private readonly ISliderService _sliderService;
-        private readonly ILanguageService _languageService;
         #endregion
 
         #region Constructor
@@ -48,11 +47,9 @@ namespace Netotik.Web.Controllers
             IContentCategoryService contentCategoryService,
             ICategoryService categoryService,
             IContentService contentService,
-            IMenuService menuService,
-            ILanguageService languageService
+            IMenuService menuService
             )
         {
-            _languageService = languageService;
             _sliderService = sliderService;
             _applicationRoleManager = applicationRoleManager;
             _authenticationManager = authenticationManager;
@@ -126,23 +123,23 @@ namespace Netotik.Web.Controllers
         //[OutputCache(Duration = _min10, VaryByParam = "none")]
         public virtual PartialViewResult LanguageSelector()
         {
-            return PartialView(MVC.SharedPublic.Views._LanagaugeSelector,LanguageCache.GetLanguages(this.HttpContext,_languageService));
+            return PartialView(MVC.SharedPublic.Views._LanagaugeSelector,LanguageCache.GetLanguages(this.HttpContext));
         }
 
 
         public virtual PartialViewResult HeaderPublicCss()
         {
-            return PartialView(MVC.SharedPublic.Views._HeaderPublicCss, LanguageCache.GetLanguages(this.HttpContext, _languageService));
+            return PartialView(MVC.SharedPublic.Views._HeaderPublicCss, LanguageCache.GetLanguages(this.HttpContext));
         }
 
         public virtual PartialViewResult HeaderPanelCss()
         {
-            return PartialView(MVC.Shared.Views._HeaderPanelCss, LanguageCache.GetLanguages(this.HttpContext, _languageService));
+            return PartialView(MVC.Shared.Views._HeaderPanelCss, LanguageCache.GetLanguages(this.HttpContext));
         }
 
         public virtual PartialViewResult PanelLanguageSelector()
         {
-            return PartialView(MVC.Shared.Views._LanagaugeSelector, LanguageCache.GetLanguages(this.HttpContext, _languageService));
+            return PartialView(MVC.Shared.Views._LanagaugeSelector, LanguageCache.GetLanguages(this.HttpContext));
         }
 
         //[OutputCache(Duration = oneDay, VaryByParam = "none")]

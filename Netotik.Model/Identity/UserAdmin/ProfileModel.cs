@@ -49,5 +49,27 @@ namespace Netotik.ViewModels.Identity.UserAdmin
         [RegularExpression("^[a-zA-Z0-9_]*$", ErrorMessage = "فقط از حروف انگلیسی و اعداد استفاده کنید")]
         public string UserName { get; set; }
 
+        [DisplayName("فیس بوک")]
+        [DataType(DataType.Url,ErrorMessage ="لینک وارد شده نامعتبر است.")]
+        public string Facebook { get; set; }
+
+        [DisplayName("لینکداین")]
+        [DataType(DataType.Url, ErrorMessage = "لینک وارد شده نامعتبر است.")]
+        public string LinkedIn { get; set; }
+
+        [DisplayName("توییتر")]
+        [DataType(DataType.Url, ErrorMessage = "لینک وارد شده نامعتبر است.")]
+        public string Twitter { get; set; }
+
+        [DisplayName("اینستاگرام")]
+        [DataType(DataType.Url, ErrorMessage = "لینک وارد شده نامعتبر است.")]
+        public string Instagram { get; set; }
+
+        [DisplayName("وب سایت")]
+        [DataType(DataType.Url, ErrorMessage = "لینک وارد شده نامعتبر است.")]
+        public string Website { get; set; }
+
+
+        public string ShortBio { get; set; }
     }
 }

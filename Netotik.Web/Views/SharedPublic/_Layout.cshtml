@@ -8,7 +8,8 @@
 <html class="no-js" lang="">
 
 <head>
-    
+    @RenderSection("Meta", false)
+
     <link rel="apple-touch-icon" sizes="57x57" href="~/Content/Images/Logo/faveicon/apple-icon-57x57.png">
     <link rel="apple-touch-icon" sizes="60x60" href="~/Content/Images/Logo/faveicon/apple-icon-60x60.png">
     <link rel="apple-touch-icon" sizes="72x72" href="~/Content/Images/Logo/faveicon/apple-icon-72x72.png">
@@ -23,16 +24,15 @@
     <link rel="icon" type="image/png" sizes="96x96" href="~/Content/Images/Logo/faveicon/favicon-96x96.png">
     <link rel="icon" type="image/png" sizes="16x16" href="~/Content/Images/Logo/faveicon/favicon-16x16.png">
     <link rel="manifest" href="~/Content/Images/Logo/faveicon/manifest.json">
-    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-TileColor" content="#397c79">
     <meta name="msapplication-TileImage" content="~/Content/Images/Logo/faveicon/ms-icon-144x144.png">
-    <meta name="theme-color" content="#ffffff">
+    <meta name="theme-color" content="#397c79">
 
     <!-- mobile settings -->
     <meta name="viewport" content="width=device-width, maximum-scale=1, initial-scale=1, user-scalable=0" />
     <!--[if IE]><meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'><![endif]-->
 
-    @Html.Action(MVC.MetaTag.ActionNames.Index, MVC.MetaTag.Name, new { title = ViewBag.Title, keywords = ViewBag.Keywords, description = ViewBag.Description })
-    @RenderSection("metatags", false)
+    
     @Styles.Render("~/Content/publiccss")
     @Html.Action(MVC.Home.HeaderPublicCss())
 

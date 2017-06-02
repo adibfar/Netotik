@@ -100,6 +100,12 @@ namespace Netotik.AutoMapperProfiles
             //CreateMap<User, AddEditUserViewModel>().IgnoreAllNonExisting();
 
             CreateMap<User, ViewModels.Identity.UserAdmin.ProfileModel>()
+                .ForMember(d => d.Facebook, m => m.MapFrom(t => t.UserAdmin.Facebook))
+                .ForMember(d => d.Twitter, m => m.MapFrom(t => t.UserAdmin.Twitter))
+                .ForMember(d => d.LinkedIn, m => m.MapFrom(t => t.UserAdmin.Linkedin))
+                .ForMember(d => d.Instagram, m => m.MapFrom(t => t.UserAdmin.Instagram))
+                .ForMember(d => d.Website, m => m.MapFrom(t => t.UserAdmin.Website))
+                .ForMember(d => d.ShortBio, m => m.MapFrom(t => t.UserAdmin.ShortBio))
                 .IgnoreAllNonExisting();
 
             CreateMap<User, ViewModels.Identity.UserReseller.ProfileModel>()
@@ -120,7 +126,11 @@ namespace Netotik.AutoMapperProfiles
               .ForMember(d => d.Userman_Customer, m => m.MapFrom(t => t.UserCompany.Userman_Customer))
               .IgnoreAllNonExisting();
 
+            CreateMap<ViewModels.Identity.UserAdmin.ProfileModel, UserAdmin>()
+                .IgnoreAllNonExisting();
+
             CreateMap<ViewModels.Identity.UserAdmin.ProfileModel, User>()
+                .ForMember(d => d.UserAdmin, m => m.MapFrom(t => t))
                 .ForMember(d => d.EditDate, m => m.UseValue(DateTime.Now))
                 .ForMember(d => d.Roles, m => m.Ignore())
                 .ForMember(d => d.Claims, m => m.Ignore())

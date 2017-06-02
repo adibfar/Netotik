@@ -80,7 +80,7 @@ namespace Netotik.Web.Controllers
         public virtual JsonResult IsAdminPhoneNumberAvailable(string phoneNumber, long? Id)
         {
             var check = _applicationUserManager.CheckAdminPhoneNumberExist(phoneNumber, Id);
-            return check ? Json(false) : Json(true);
+            return Json(!check);
         }
 
         [HttpPost]

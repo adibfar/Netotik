@@ -41,9 +41,10 @@ public static partial class MVC
     public static Netotik.Web.Controllers.ErrorController Error = new Netotik.Web.Controllers.T4MVC_ErrorController();
     public static Netotik.Web.Controllers.HomeController Home = new Netotik.Web.Controllers.T4MVC_HomeController();
     public static Netotik.Web.Controllers.LoginController Login = new Netotik.Web.Controllers.T4MVC_LoginController();
-    public static Netotik.Web.Controllers.MetaTagController MetaTag = new Netotik.Web.Controllers.T4MVC_MetaTagController();
     public static Netotik.Web.Controllers.RegisterController Register = new Netotik.Web.Controllers.T4MVC_RegisterController();
     public static Netotik.Web.Controllers.RemoteController Remote = new Netotik.Web.Controllers.T4MVC_RemoteController();
+    public static Netotik.Web.Controllers.RssController Rss = new Netotik.Web.Controllers.T4MVC_RssController();
+    public static Netotik.Web.Controllers.SitemapController Sitemap = new Netotik.Web.Controllers.T4MVC_SitemapController();
     public static T4MVC.SharedController Shared = new T4MVC.SharedController();
     public static T4MVC.SharedPublicController SharedPublic = new T4MVC.SharedPublicController();
     public static T4MVC.UserMailerController UserMailer = new T4MVC.UserMailerController();
@@ -151,6 +152,19 @@ internal partial class T4MVC_System_Web_Mvc_PartialViewResult : System.Web.Mvc.P
 internal partial class T4MVC_System_Web_Mvc_JsonResult : System.Web.Mvc.JsonResult, IT4MVCActionResult
 {
     public T4MVC_System_Web_Mvc_JsonResult(string area, string controller, string action, string protocol = null): base()
+    {
+        this.InitMVCT4Result(area, controller, action, protocol);
+    }
+    
+    public string Controller { get; set; }
+    public string Action { get; set; }
+    public string Protocol { get; set; }
+    public RouteValueDictionary RouteValueDictionary { get; set; }
+}
+[GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+internal partial class T4MVC_System_Web_Mvc_ContentResult : System.Web.Mvc.ContentResult, IT4MVCActionResult
+{
+    public T4MVC_System_Web_Mvc_ContentResult(string area, string controller, string action, string protocol = null): base()
     {
         this.InitMVCT4Result(area, controller, action, protocol);
     }
@@ -3666,7 +3680,6 @@ namespace Links
                 public static string Url(string fileName) { return T4MVCHelpers.ProcessVirtualPath(UrlPath + "/" + fileName); }
                 public static readonly string _layout_font_rewrite_css = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(UrlPath + "/_layout-font-rewrite.min.css") ? Url("_layout-font-rewrite.min.css") : Url("_layout-font-rewrite.css");
                 public static readonly string _layout_font_rewrite_farsi_css = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(UrlPath + "/_layout-font-rewrite.farsi.min.css") ? Url("_layout-font-rewrite.farsi.min.css") : Url("_layout-font-rewrite.farsi.css");
-                public static readonly string added_to_essentials_zip = Url("added_to_essentials.zip");
                 [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
                 public static class color_scheme {
                     public const string UrlPath = "~/Content/PublicUI/css/color_scheme";
@@ -3705,40 +3718,6 @@ namespace Links
                 public static readonly string thematics_music_css = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(UrlPath + "/thematics-music.min.css") ? Url("thematics-music.min.css") : Url("thematics-music.css");
                 public static readonly string thematics_restaurant_css = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(UrlPath + "/thematics-restaurant.min.css") ? Url("thematics-restaurant.min.css") : Url("thematics-restaurant.css");
                 public static readonly string thematics_wedding_css = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(UrlPath + "/thematics-wedding.min.css") ? Url("thematics-wedding.min.css") : Url("thematics-wedding.css");
-            }
-        
-            [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-            public static class FaveIcon {
-                public const string UrlPath = "~/Content/PublicUI/FaveIcon";
-                public static string Url() { return T4MVCHelpers.ProcessVirtualPath(UrlPath); }
-                public static string Url(string fileName) { return T4MVCHelpers.ProcessVirtualPath(UrlPath + "/" + fileName); }
-                public static readonly string android_icon_144x144_png = Url("android-icon-144x144.png");
-                public static readonly string android_icon_192x192_png = Url("android-icon-192x192.png");
-                public static readonly string android_icon_36x36_png = Url("android-icon-36x36.png");
-                public static readonly string android_icon_48x48_png = Url("android-icon-48x48.png");
-                public static readonly string android_icon_72x72_png = Url("android-icon-72x72.png");
-                public static readonly string android_icon_96x96_png = Url("android-icon-96x96.png");
-                public static readonly string apple_icon_114x114_png = Url("apple-icon-114x114.png");
-                public static readonly string apple_icon_120x120_png = Url("apple-icon-120x120.png");
-                public static readonly string apple_icon_144x144_png = Url("apple-icon-144x144.png");
-                public static readonly string apple_icon_152x152_png = Url("apple-icon-152x152.png");
-                public static readonly string apple_icon_180x180_png = Url("apple-icon-180x180.png");
-                public static readonly string apple_icon_57x57_png = Url("apple-icon-57x57.png");
-                public static readonly string apple_icon_60x60_png = Url("apple-icon-60x60.png");
-                public static readonly string apple_icon_72x72_png = Url("apple-icon-72x72.png");
-                public static readonly string apple_icon_76x76_png = Url("apple-icon-76x76.png");
-                public static readonly string apple_icon_precomposed_png = Url("apple-icon-precomposed.png");
-                public static readonly string apple_icon_png = Url("apple-icon.png");
-                public static readonly string browserconfig_xml = Url("browserconfig.xml");
-                public static readonly string favicon_16x16_png = Url("favicon-16x16.png");
-                public static readonly string favicon_32x32_png = Url("favicon-32x32.png");
-                public static readonly string favicon_96x96_png = Url("favicon-96x96.png");
-                public static readonly string favicon_ico = Url("favicon.ico");
-                public static readonly string manifest_json = Url("manifest.json");
-                public static readonly string ms_icon_144x144_png = Url("ms-icon-144x144.png");
-                public static readonly string ms_icon_150x150_png = Url("ms-icon-150x150.png");
-                public static readonly string ms_icon_310x310_png = Url("ms-icon-310x310.png");
-                public static readonly string ms_icon_70x70_png = Url("ms-icon-70x70.png");
             }
         
             [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -6577,6 +6556,15 @@ namespace Links
                     public const string UrlPath = "~/Content/Upload/Image/Avatar";
                     public static string Url() { return T4MVCHelpers.ProcessVirtualPath(UrlPath); }
                     public static string Url(string fileName) { return T4MVCHelpers.ProcessVirtualPath(UrlPath + "/" + fileName); }
+                    public static readonly string CommentUser_png = Url("CommentUser.png");
+                    public static readonly string Default_png = Url("Default.png");
+                }
+            
+                [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+                public static class Content {
+                    public const string UrlPath = "~/Content/Upload/Image/Content";
+                    public static string Url() { return T4MVCHelpers.ProcessVirtualPath(UrlPath); }
+                    public static string Url(string fileName) { return T4MVCHelpers.ProcessVirtualPath(UrlPath + "/" + fileName); }
                     public static readonly string Default_png = Url("Default.png");
                 }
             
@@ -8935,12 +8923,6 @@ namespace Links
                         public const string thematics_wedding_css = "~/Content/PublicUI/css/thematics-wedding.css";
                     }
                 }
-                public static partial class FaveIcon 
-                {
-                    public static class Assets
-                    {
-                    }
-                }
                 public static partial class fonts 
                 {
                     public static partial class IRANSansWeb 
@@ -10949,6 +10931,12 @@ namespace Links
                 public static partial class Image 
                 {
                     public static partial class Avatar 
+                    {
+                        public static class Assets
+                        {
+                        }
+                    }
+                    public static partial class Content 
                     {
                         public static class Assets
                         {

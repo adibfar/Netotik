@@ -1,0 +1,5 @@
+﻿User-agent: *
+Disallow:/Account/Login
+Disallow:/Login
+
+Sitemap: http://www.netotik.com/sitemap.xml

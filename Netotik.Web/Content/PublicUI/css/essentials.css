@@ -3207,11 +3207,11 @@ section.dark h2.owl-featured {
 /* Et-Line */
 @font-face {
 	font-family: 'et-line';
-	src:url('../fonts/et-line.eot');
-	src:url('../fonts/et-line.eot?#iefix') format('embedded-opentype'),
-		url('../fonts/et-line.woff') format('woff'),
-		url('../fonts/et-line.ttf') format('truetype'),
-		url('../fonts/et-line.svg#et-line') format('svg');
+	src:url('/Content/PublicUI/fonts/et-line.eot');
+	src:url('/Content/PublicUI/fonts/et-line.eot?#iefix') format('embedded-opentype'),
+		url('/Content/PublicUI/fonts/et-line.woff') format('woff'),
+		url('/Content/PublicUI/fonts/et-line.ttf') format('truetype'),
+		url('/Content/PublicUI/fonts/et-line.svg#et-line') format('svg');
 	font-weight: normal;
 	font-style: normal;
 }
@@ -3220,11 +3220,11 @@ section.dark h2.owl-featured {
 /* Font Icons */
 @font-face {
 	font-family: 'font-icons';
-	src:url('../fonts/font-icons.eot');
-	src:url('../fonts/font-icons.eot') format('embedded-opentype'),
-		url('../fonts/font-icons.woff') format('woff'),
-		url('../fonts/font-icons.ttf') format('truetype'),
-		url('../fonts/font-icons.svg') format('svg');
+	src:url('/Content/PublicUI/fonts/font-icons.eot');
+	src:url('/Content/PublicUI/fonts/font-icons.eot') format('embedded-opentype'),
+		url('/Content/PublicUI/fonts/font-icons.woff') format('woff'),
+		url('/Content/PublicUI/fonts/font-icons.ttf') format('truetype'),
+		url('/Content/PublicUI/fonts/font-icons.svg') format('svg');
 	font-weight: normal;
 	font-style: normal;
 }

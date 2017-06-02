@@ -5,27 +5,54 @@
 }
 
 
-<div class="leave-reply">
-    <h2>نظر خود را بنویسید</h2>
-    @using (Html.BeginForm(MVC.Blog.ActionNames.AddComment, MVC.Blog.Name, FormMethod.Post, new { @class = "form-theme" }))
-    {
-        @Html.AntiForgeryToken()
-        @Html.HiddenFor(model => model.ContentId)
-        <ul>
-            <li>
-                @Html.TextBoxFor(model => model.Name, new { @class = "input-block-level", placeholder = "نام" })<i class="fa fa-user"></i>
-            </li>
-            <li>
-            @Html.TextBoxFor(model => model.Email, new { @class = "input-block-level", placeholder = "ایمیل" })<i class="fa fa-envelope-o"></i>
-            </li>
-            <li>@Html.TextAreaFor(model => model.Text, new { @class = "input-block-level" })</li>
-            <li>
+<h4 id="addComment" class="page-header size-25 margin-bottom-60">
+    <i class="fa fa-commenting-o"></i>
+    ارسال <span>دیدگاه</span>
+</h4>
 
-            </li>
-            <li><button class="btn-style" type="submit">ارسال</button></li>
-        </ul>
-    }
-</div>
+@using (Html.BeginForm(MVC.Blog.ActionNames.AddComment, MVC.Blog.Name, FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+    @Html.HiddenFor(model => model.ContentId)
+    <div class="row">
+        @Html.Partial(MVC.SharedPublic.Views.ViewNames._Message)
+        <div class="form-group">
+            <div class="col-md-4">
+                @Html.LabelFor(x => x.Name)
+                @Html.TextBoxFor(model => model.Name, new { @class = "form-control input-lg" })
+                @Html.ValidationMessageFor(model => model.Name, "", htmlAttributes: new { @class = "text-danger" })
+            </div>
+            <div class="col-md-4">
+                @Html.LabelFor(x => x.Email)
+                @Html.TextBoxFor(model => model.Email, new { @class = "form-control input-lg" })
+                @Html.ValidationMessageFor(model => model.Email, "", htmlAttributes: new { @class = "text-danger" })
+            </div>
+            <div class="col-md-4">
+                @Html.LabelFor(x => x.WebSite)
+                @Html.TextBoxFor(model => model.WebSite, new { @class = "form-control input-lg" })
+                @Html.ValidationMessageFor(model => model.WebSite, "", htmlAttributes: new { @class = "text-danger" })
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="form-group">
+            <div class="col-md-12">
+                @Html.LabelFor(x => x.Text)
+                @Html.TextAreaFor(model => model.Text, new { @class = "form-control", rows = 6 })
+                @Html.ValidationMessageFor(model => model.Text, "", htmlAttributes: new { @class = "text-danger" })
+            </div>
+        </div>
+    </div>
+
+        <div class="row">
+            <div class="col-md-12">
+                <button class="btn btn-3d btn-lg btn-reveal btn-black" type="submit">
+                    <i class="fa fa-paper-plane-o"></i>
+                    <span>ارسال</span>
+                </button>
+            </div>
+        </div>
 
 
-@*@Html.Partial(MVC.Shared.Views._AddValidationCss)*@
+}

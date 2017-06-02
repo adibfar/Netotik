@@ -11,6 +11,7 @@ using Netotik.Data;
 using Netotik.ViewModels.CMS.Content;
 using Netotik.ViewModels.CMS.Comment;
 using Netotik.Domain.Entity;
+using Netotik.Common.Controller;
 
 namespace Netotik.Web.Controllers
 {
@@ -113,7 +114,7 @@ namespace Netotik.Web.Controllers
                 await _uow.SaveChangesAsync();
             }
             #endregion
-            
+
 
             if (content == null)
                 return RedirectToAction(MVC.Home.ActionNames.Index, MVC.Home.Name);
@@ -129,7 +130,6 @@ namespace Netotik.Web.Controllers
         }
 
 
-
         [HttpPost]
         [ValidateAntiForgeryToken]
         public virtual async Task<ActionResult> AddComment(AddCommentModel model)
@@ -137,14 +137,16 @@ namespace Netotik.Web.Controllers
             if (ModelState.IsValid)
             {
                 var content = await _contentService.SingleOrDefaultAsync(model.ContentId);
-                if (content == null || !content.AllowComments) return RedirectToAction(MVC.Home.ActionNames.Index, MVC.Home.Name);
+                if (content == null || !content.AllowComments) return RedirectToAction(MVC.Home.Index());
 
                 ContentComment entity = new ContentComment
                 {
+                    WebSite = model.WebSite,
                     Status = CommentStatus.WaitForAccept,
                     CreateDate = DateTime.Now,
                     Text = model.Text,
                     Name = model.Name,
+
                     Email = model.Email,
                     ContentId = model.ContentId,
                 };
@@ -155,15 +157,20 @@ namespace Netotik.Web.Controllers
                     if (comment != null) entity.Comments.Add(comment);
                 }
                 _contentCommentService.Add(entity);
-                await _uow.SaveChangesAsync();
+                try
+                {
+                    await _uow.SaveChangesAsync();
+                    this.MessageSuccess("سپاسگذاریم", "دیدگاه شما پس از تایید توسط مدیر در سایت نمایش داده می شود.");
+                }
+                catch
+                {
+                    this.MessageError("خطا در ثبت اطلاعات!", "متاسفانه دیدگاه شما ثبت نشد.");
+                }
 
-                if (content.AllowViewComments) ViewBag.Comments = content.ContentComments.Where(x => x.Status == CommentStatus.Accepted).ToList();
 
-                ModelState.Clear();
-                return RedirectToAction(MVC.Blog.ActionNames.Detail, new { Id = model.ContentId });
             }
 
-            return RedirectToAction(MVC.Home.ActionNames.Index, MVC.Home.Name);
+            return Redirect(Url.Action(MVC.Blog.Detail(model.ContentId)) + "#addComment");
         }
 
 

@@ -90,7 +90,7 @@ namespace Netotik.Services.Implement
         {
             var content = await dbSet.FirstOrDefaultAsync(x => x.Id == Id);
             var model = _mappingEngine.Map<ContentModel>(content);
-            
+
             model.ContentCategories = await _ContentCategoryService.All()
                 .Where(x => !x.IsDeleted && !x.ParentId.HasValue)
                 .Include(x => x.SubCategories)
@@ -188,7 +188,8 @@ namespace Netotik.Services.Implement
                    Title = a.Title,
                    Image = a.PictureId.HasValue ? a.Picture.FileName : "",
                    Description = a.BodyOverview,
-                   StartPublish = a.StartDate.Value
+                   StartPublish = a.StartDate.Value,
+                   User = a.UserCreated.FirstName + " " + a.UserCreated.LastName
                }).Future();
 
             total = totalQuery.Value;

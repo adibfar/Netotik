@@ -228,7 +228,7 @@ namespace Netotik.Common.Controller
             };
             controller.AddMessage(msg);
         }
-        public static void NotyAlert(this ControllerBase controller, string title, string message)
+        public static void MessageAlert(this ControllerBase controller, string title, string message)
         {
             var msg = new TemplateMessage
             {

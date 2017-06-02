@@ -12,6 +12,7 @@ namespace Netotik.Domain.Entity
         public int Id { get; set; }
         public DateTime CreateDate { get; set; }
         public long? UserId { get; set; }
+        public string WebSite { get; set; }
         public string Name { get; set; }
         public string Email { get; set; }
         public string Text { get; set; }

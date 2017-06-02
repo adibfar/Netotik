@@ -265,6 +265,7 @@ namespace Netotik.Web.Areas.Company.Controllers
                 public readonly string InterfaceDetails = "InterfaceDetails";
                 public readonly string Interfaces = "Interfaces";
                 public readonly string PPP = "PPP";
+                public readonly string RouterSetting = "RouterSetting";
                 public readonly string Wireless = "Wireless";
                 public readonly string WirelessDetails = "WirelessDetails";
             }
@@ -273,6 +274,7 @@ namespace Netotik.Web.Areas.Company.Controllers
             public readonly string InterfaceDetails = "~/Areas/Company/Views/Router/InterfaceDetails.cshtml";
             public readonly string Interfaces = "~/Areas/Company/Views/Router/Interfaces.cshtml";
             public readonly string PPP = "~/Areas/Company/Views/Router/PPP.cshtml";
+            public readonly string RouterSetting = "~/Areas/Company/Views/Router/RouterSetting.cshtml";
             public readonly string Wireless = "~/Areas/Company/Views/Router/Wireless.cshtml";
             public readonly string WirelessDetails = "~/Areas/Company/Views/Router/WirelessDetails.cshtml";
         }

@@ -5,30 +5,62 @@
 }
 
 
-@if (Model.Any())
+@if (Model.Any(x => x.Status == CommentStatus.Accepted))
 {
+    <div id="comments" class="comments">
 
-    <div class="single0blog-coment">
-        <h4 class="text-right">نظرات کاربران</h4>
-        <ul>
-            @foreach (var item in Model.Where(x => x.Status == CommentStatus.Accepted).OrderByDescending(x=>x.CreateDate))
-            {
-                <li>
-                    <div class="coment-image">
-                        <a href="#"><img src="img/blog/user-1.jpg" alt=""></a>
-                    </div>
-                    <div class="comment-heading">
-                        <h5><a href="#">@item.Name</a></h5>
-                        | 
-                        <p>@PersianDate.ConvertDate.ToFa(item.CreateDate, "ddd dd MMM yyyy ساعت mm:hh")</p>
-                    </div>
-                    <div class="coment0-text">
-                        <p>
-                            @item.Text
-                        </p>
-                    </div>
-                </li>
-            }
-        </ul>
+        <h4 class="page-header margin-bottom-60 size-20">
+            <i class="fa fa-comments-o"></i> تعداد <span>@Model.Count(x => x.Status == CommentStatus.Accepted)</span> دیدگاه برای مطلب ارسال شده است.
+        </h4>
+
+        @foreach (var item in Model.Where(x => x.Status == CommentStatus.Accepted && !x.CommentId.HasValue).OrderByDescending(x => x.CreateDate))
+                {
+            <div class="comment-item">
+
+                <!-- user-avatar -->
+                <span class="user-avatar">
+                    @if (item.UserId.HasValue && item.User.PictureId.HasValue)
+                    {
+                        <img class="pull-left media-object" src="~/Content/Upload/Image/Avatar/@item.User.Picture.FileName?h=64&w=64&mode=crop" width="64" height="64" alt="">
+                    }
+                    else
+                    {
+                        <img class="pull-left media-object" src="~/Content/Upload/Image/Avatar/CommentUser.png" width="64" height="64" alt="">
+                    }
+                </span>
+
+                <div class="media-body">
+                    <h4 class="media-heading bold">@item.Name</h4>
+                    <small class="block">@PersianDate.ConvertDate.ToFa(item.CreateDate, "g")</small>
+                    @item.Text
+
+                    @foreach (var sub1 in item.Comments.Where(x => x.Status == CommentStatus.Accepted).OrderByDescending(x => x.CreateDate))
+                    {
+                        <!-- comment reply -->
+                        <div class="media">
+                            <!-- user-avatar -->
+                            <span class="user-avatar">
+                                @if (sub1.UserId.HasValue && sub1.User.PictureId.HasValue)
+                                {
+                                    <img class="media-object" src="~/Content/Upload/Image/Avatar/@sub1.User.Picture.FileName?h=64&w=64&mode=crop" width="64" height="64" alt="">
+                                }
+                                else
+                                {
+                                    <img class="media-object" src="~/Content/Upload/Image/Avatar/CommentUser.png" width="64" height="64" alt="">
+                                }
+                                
+                            </span>
+                            <div class="media-body">
+                                <h4 class="media-heading bold">@sub1.Name</h4>
+                                <small class="block">@PersianDate.ConvertDate.ToFa(sub1.CreateDate, "g")</small>
+                                @sub1.Text
+                            </div>
+                        </div>
+                    }
+
+                </div>
+            </div>
+        }
     </div>
+    <hr />
 }
