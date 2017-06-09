@@ -8,9 +8,9 @@ namespace Netotik.ViewModels.Mikrotik
         [AllowHtml]
         public string id { get; set; }
         [Display(Name = "ایجاد کننده")]
-        [RegularExpression(@"^[a-zA-Z1-9]+$", ErrorMessage = "فقط انگلیسی وارد کنید")]
+        [RegularExpression(@"(^[a-zA-Z0-9:.-_]*$)", ErrorMessage = "مقدار وارد شده معتبر نمی باشد")]
         public string customer { get; set; }
-        [RegularExpression(@"^[a-zA-Z1-9]+$", ErrorMessage = "فقط انگلیسی وارد کنید")]
+        [RegularExpression(@"(^[a-zA-Z0-9:.-_]*$)", ErrorMessage = "مقدار وارد شده معتبر نمی باشد")]
         [Display(Name = "نام کاربری")]
         public string username { get; set; }
         [Display(Name = "گذرواژه")]
@@ -27,19 +27,19 @@ namespace Netotik.ViewModels.Mikrotik
         [Display(Name = "فعال")]
         public string disabled { get; set; }
         [Display(Name = "نام تعرفه")]
-        [RegularExpression(@"^[a-zA-Z1-9]+$", ErrorMessage = "فقط انگلیسی وارد کنید")]
+        [RegularExpression(@"(^[a-zA-Z0-9: .-_]*$)", ErrorMessage = "مقدار وارد شده معتبر نمی باشد")]
         public string actual_profile { get; set; }
         public string caller_id { get; set; }
         [Display(Name = "نام")]
-        [RegularExpression(@"^[a-zA-Z1-9]+$", ErrorMessage = "فقط انگلیسی وارد کنید")]
+        [RegularExpression(@"(^$)|(^[a-zA-Z0-9: .-_]*$)", ErrorMessage = "مقدار وارد شده معتبر نمی باشد")]
         public string first_name { get; set; }
         [Display(Name = "نام خانوادگی")]
-        [RegularExpression(@"^[a-zA-Z1-9]+$", ErrorMessage = "فقط انگلیسی وارد کنید")]
+        [RegularExpression(@"(^$)|(^[a-zA-Z0-9: .-_]*$)", ErrorMessage = "مقدار وارد شده معتبر نمی باشد")]
         public string last_name { get; set; }
         [Display(Name = "شماره تماس")]
         public string phone { get; set; }
         [Display(Name = "آدرس")]
-        [RegularExpression(@"^[a-zA-Z1-9]+$", ErrorMessage = "فقط انگلیسی وارد کنید")]
+        [RegularExpression(@"(^$)|(^[a-zA-Z0-9: .-_]*$)", ErrorMessage = "مقدار وارد شده معتبر نمی باشد")]
         public string location { get; set; }
         [Display(Name = "ایمیل")]
         public string email { get; set; }
@@ -51,7 +51,7 @@ namespace Netotik.ViewModels.Mikrotik
         [Display(Name = "آپلود استفاده شده")]
         public string upload_used { get; set; }
         [Display(Name = "توضیحات")]
-        [RegularExpression(@"^[a-zA-Z1-9]+$", ErrorMessage = "فقط انگلیسی وارد کنید")]
+        [RegularExpression(@"(^$)|(^[a-zA-Z0-9: .-_]*$)", ErrorMessage = "مقدار وارد شده معتبر نمی باشد")]
         public string comment { get; set; }
 
         

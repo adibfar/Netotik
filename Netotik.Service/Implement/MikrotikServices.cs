@@ -239,6 +239,59 @@ namespace Netotik.Services.Implement
             }
             return usermodel;
         }
+        public List<Usermanager_UserModel> Usermanager_GetUser(string ip, int port, string user, string pass,string id)
+        {
+            var mikrotik = new MikrotikAPI();
+            mikrotik.MK(ip, port);
+            if (!mikrotik.Login(user, pass)) mikrotik.Close();
+            //-----------------------------------------------
+            mikrotik.Send("/tool/user-manager/user/print");
+            string temp = String.Format("?=.id={0}", id);
+            mikrotik.Send(temp, true);
+
+            var usermodel = new List<Usermanager_UserModel>();
+            foreach (var item in mikrotik.Read())
+            {
+                if (item != "!done")
+                {
+                    var cols = item.Split('=');
+                    var ColumnList = new Dictionary<string, string>();
+                    for (int i = 1; i < cols.Count(); i += 2)
+                    {
+                        ColumnList.Add(cols[i], cols[i + 1]);
+                    }
+
+                    usermodel.Add(new Usermanager_UserModel()
+                    {
+                        id = ColumnList.Any(x => x.Key == ".id") ? (ColumnList.FirstOrDefault(x => x.Key == ".id").Value) : "",
+                        customer = ColumnList.Any(x => x.Key == "customer") ? (ColumnList.FirstOrDefault(x => x.Key == "customer").Value) : "",
+                        actual_profile = ColumnList.Any(x => x.Key == "actual-profile") ? (ColumnList.FirstOrDefault(x => x.Key == "actual-profile").Value) : "",
+                        username = ColumnList.Any(x => x.Key == "username") ? (ColumnList.FirstOrDefault(x => x.Key == "username").Value) : "",
+                        password = ColumnList.Any(x => x.Key == "password") ? (ColumnList.FirstOrDefault(x => x.Key == "password").Value) : "",
+                        caller_id = ColumnList.Any(x => x.Key == "caller-id") ? (ColumnList.FirstOrDefault(x => x.Key == "caller-id").Value) : "",
+                        first_name = ColumnList.Any(x => x.Key == "first-name") ? (ColumnList.FirstOrDefault(x => x.Key == "first-name").Value) : "",
+                        last_name = ColumnList.Any(x => x.Key == "last-name") ? (ColumnList.FirstOrDefault(x => x.Key == "last-name").Value) : "",
+                        phone = ColumnList.Any(x => x.Key == "phone") ? (ColumnList.FirstOrDefault(x => x.Key == "phone").Value) : "",
+                        location = ColumnList.Any(x => x.Key == "location") ? (ColumnList.FirstOrDefault(x => x.Key == "location").Value) : "",
+                        email = ColumnList.Any(x => x.Key == "email") ? (ColumnList.FirstOrDefault(x => x.Key == "email").Value) : "",
+                        ip_address = ColumnList.Any(x => x.Key == "ip-address") ? (ColumnList.FirstOrDefault(x => x.Key == "ip-address").Value) : "",
+                        shared_users = ColumnList.Any(x => x.Key == "shared-users") ? (ColumnList.FirstOrDefault(x => x.Key == "shared-users").Value) : "",
+                        wireless_psk = ColumnList.Any(x => x.Key == "wireless-psk") ? (ColumnList.FirstOrDefault(x => x.Key == "wireless-psk").Value) : "",
+                        wireless_enc_key = ColumnList.Any(x => x.Key == "wireless-enc-key") ? (ColumnList.FirstOrDefault(x => x.Key == "wireless-enc-key").Value) : "",
+                        wireless_enc_algo = ColumnList.Any(x => x.Key == "wireless-enc-algo") ? (ColumnList.FirstOrDefault(x => x.Key == "wireless-enc-algo").Value) : "",
+                        last_seen = ColumnList.Any(x => x.Key == "last-seen") ? (ColumnList.FirstOrDefault(x => x.Key == "last-seen").Value) : "",
+                        active = ColumnList.Any(x => x.Key == "active") ? (ColumnList.FirstOrDefault(x => x.Key == "active").Value) : "",
+                        incomplete = ColumnList.Any(x => x.Key == "incomplete") ? (ColumnList.FirstOrDefault(x => x.Key == "incomplete").Value) : "",
+                        disabled = ColumnList.Any(x => x.Key == "disabled") ? (ColumnList.FirstOrDefault(x => x.Key == "disabled").Value) : "",
+                        comment = ColumnList.Any(x => x.Key == "comment") ? (ColumnList.FirstOrDefault(x => x.Key == "comment").Value) : "",
+                        uptime_used = ColumnList.Any(x => x.Key == "uptime-used") ? (ColumnList.FirstOrDefault(x => x.Key == "uptime-used").Value) : "",
+                        download_used = ColumnList.Any(x => x.Key == "download-used") ? (ColumnList.FirstOrDefault(x => x.Key == "download-used").Value) : "",
+                        upload_used = ColumnList.Any(x => x.Key == "upload-used") ? (ColumnList.FirstOrDefault(x => x.Key == "upload-used").Value) : ""
+                    });
+                }
+            }
+            return usermodel;
+        }
         public void Usermanager_DisableUser(string ip, int port, string user, string pass, string id)
         {
             var mikrotik = new MikrotikAPI();
@@ -257,6 +310,7 @@ namespace Netotik.Services.Implement
             //-----------------------------------------------
             mikrotik.Send("/tool/user-manager/user/enable");
             mikrotik.Send(String.Format("=.id={0}", id), true);
+            
         }
         public void Usermanager_RemoveUser(string ip, int port, string user, string pass, string id)
         {
@@ -332,9 +386,11 @@ namespace Netotik.Services.Implement
             temp = String.Format("=customer={0}", usermanuser.customer);
             if (usermanuser.customer != "")
                 mikrotik.Send(temp);
+
             temp = String.Format("=email={0}", usermanuser.email);
             if (usermanuser.email != "")
-                mikrotik.Send(temp);
+                if(usermanuser.email != null)
+                    mikrotik.Send(temp);
             temp = String.Format("=first-name={0}", usermanuser.first_name);
             if (usermanuser.first_name != "")
                 mikrotik.Send(temp);
@@ -533,7 +589,7 @@ namespace Netotik.Services.Implement
             temp = String.Format("=weekdays={0}", usermanProfile.profilelimition_weekdays);
             if (usermanProfile.profilelimition_weekdays != null && usermanProfile.profilelimition_weekdays != "")
                 mikrotik.Send(temp);
-            temp = String.Format("=till-time={0}", usermanProfile.profilelimition_till_time);
+            temp = String.Format("=till-time={0}:59", usermanProfile.profilelimition_till_time);
             if (usermanProfile.profilelimition_till_time == null || usermanProfile.limition_ip_pool == "")
                 temp = String.Format("=till-time={0}", "1d");
             mikrotik.Send(temp);
@@ -553,7 +609,7 @@ namespace Netotik.Services.Implement
             temp = String.Format("=weekdays={0}", usermanProfile.profilelimition_weekdays);
             if (usermanProfile.profilelimition_weekdays != null && usermanProfile.profilelimition_weekdays != "")
                 mikrotik.Send(temp);
-            temp = String.Format("=till-time={0}", usermanProfile.profilelimition_till_time);
+            temp = String.Format("=till-time={0}:59", usermanProfile.profilelimition_till_time);
             if (usermanProfile.profilelimition_till_time == null || usermanProfile.limition_ip_pool == "")
                 temp = String.Format("=till-time={0}", "1d");
             mikrotik.Send(temp);
@@ -1201,7 +1257,7 @@ namespace Netotik.Services.Implement
 
                     Router_Resource.Add(new Router_ResourceModel()
                     {
-                        Uptime = ColumnList.Any(x => x.Key == "uptime") ? (ColumnList.FirstOrDefault(x => x.Key == "uptime").Value.Replace("d", "روز").Replace("h", ":").Replace("m", ":").Replace("s", "")) : "",
+                        Uptime = ColumnList.Any(x => x.Key == "uptime") ? (ColumnList.FirstOrDefault(x => x.Key == "uptime").Value.Replace("d", "روز").Replace("w", "هفته").Replace("h", ":").Replace("m", ":").Replace("s", "")) : "",
                         Version = ColumnList.Any(x => x.Key == "version") ? (ColumnList.FirstOrDefault(x => x.Key == "version").Value) : "",
                         Build_time = ColumnList.Any(x => x.Key == "build-time") ? (ColumnList.FirstOrDefault(x => x.Key == "build-time").Value) : "",
                         Free_memory = ColumnList.Any(x => x.Key == "free-memory") ? (ColumnList.FirstOrDefault(x => x.Key == "free-memory").Value) : "",

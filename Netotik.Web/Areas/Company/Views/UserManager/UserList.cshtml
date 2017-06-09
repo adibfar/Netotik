@@ -58,12 +58,12 @@
                                         <td>@item.uptime_used</td>
                                         <td>
                                             @try
-                                            { @(Int32.Parse(item.download_used) / 1048576) }
+                                            { @item.download_used }
                                             catch { }
                                         </td>
                                         <td>
                                             @try
-                                            { @(Int32.Parse(item.upload_used) / 1048576) }
+                                            { @item.upload_used }
                                             catch { }
                                         </td>
                                         <td>@item.last_seen</td>

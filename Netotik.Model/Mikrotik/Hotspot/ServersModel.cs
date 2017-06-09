@@ -1,4 +1,5 @@
-﻿using System.Web.Mvc;
+﻿using System.ComponentModel.DataAnnotations;
+using System.Web.Mvc;
 
 namespace Netotik.ViewModels.Mikrotik
 {
@@ -6,7 +7,9 @@ namespace Netotik.ViewModels.Mikrotik
     {
         [AllowHtml]
         public string id { get; set; }
+        [RegularExpression(@"(^$)|(^[a-zA-Z0-9: .-_]*$)", ErrorMessage = "مقدار وارد شده معتبر نمی باشد")]
         public string name { get; set; }
+        [RegularExpression(@"(^$)|(^[a-zA-Z0-9: .-_]*$)", ErrorMessage = "مقدار وارد شده معتبر نمی باشد")]
         public string Hinterface { get; set; }
         public string address_pool { get; set; }
         public string profile { get; set; }
