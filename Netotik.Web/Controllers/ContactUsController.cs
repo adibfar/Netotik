@@ -43,8 +43,6 @@ namespace Netotik.Web.Controllers
             {
                 try
                 {
-
-
                     InboxContactUsMessage entity = new InboxContactUsMessage
                     {
                         Name = model.Name,

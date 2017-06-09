@@ -17,6 +17,10 @@ namespace Netotik.Domain.EntityConfiguration
                 .HasForeignKey(d => d.PictureId)
                 .WillCascadeOnDelete(false);
 
+            this.HasRequired(t => t.Language)
+          .WithMany(t => t.Sliders)
+          .HasForeignKey(d => d.LanguageId)
+          .WillCascadeOnDelete(false);
         }
     }
 }

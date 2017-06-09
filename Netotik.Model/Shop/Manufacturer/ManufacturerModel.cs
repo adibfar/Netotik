@@ -14,11 +14,11 @@ namespace Netotik.ViewModels.Shop.Manufacturer
     {
         public int? Id { get; set; }
 
-        [Required(ErrorMessageResourceType = typeof(Messages), ErrorMessageResourceName = "RequiredError")]
-        [MaxLength(200, ErrorMessageResourceType = typeof(Messages), ErrorMessageResourceName = "MaxLengthError")]
-        [MinLength(3, ErrorMessageResourceType = typeof(Messages), ErrorMessageResourceName = "MinLengthError")]
+        [Required(ErrorMessageResourceType = typeof(Captions), ErrorMessageResourceName = "RequiredError")]
+        [MaxLength(200, ErrorMessageResourceType = typeof(Captions), ErrorMessageResourceName = "MaxLengthError")]
+        [MinLength(3, ErrorMessageResourceType = typeof(Captions), ErrorMessageResourceName = "MinLengthError")]
         [Display(ResourceType = typeof(Captions), Name = "Name")]
-        [Remote("IsNameExist", "ShopManufacturer", AdditionalFields = "Id", HttpMethod = "POST", ErrorMessageResourceType = typeof(Messages), ErrorMessageResourceName = "ExistError")]
+        [Remote("IsNameExist", "ShopManufacturer", AdditionalFields = "Id", HttpMethod = "POST", ErrorMessageResourceType = typeof(Captions), ErrorMessageResourceName = "ExistError")]
         public string Name { get; set; }
 
         [Display(ResourceType = typeof(Captions), Name = "Description")]
@@ -26,7 +26,7 @@ namespace Netotik.ViewModels.Shop.Manufacturer
         public string Description { get; set; }
 
         [Display(ResourceType = typeof(Captions), Name = "MetaKeywords")]
-        [MaxLength(400, ErrorMessageResourceType = typeof(Messages), ErrorMessageResourceName = "MaxLengthError")]
+        [MaxLength(400, ErrorMessageResourceType = typeof(Captions), ErrorMessageResourceName = "MaxLengthError")]
         [UIHint("Multiline")]
         public string MetaKeywords { get; set; }
 
@@ -36,7 +36,7 @@ namespace Netotik.ViewModels.Shop.Manufacturer
 
 
         [Display(ResourceType = typeof(Captions), Name = "MetaTitle")]
-        [MaxLength(400, ErrorMessageResourceType = typeof(Messages), ErrorMessageResourceName = "MaxLengthError")]
+        [MaxLength(400, ErrorMessageResourceType = typeof(Captions), ErrorMessageResourceName = "MaxLengthError")]
         [UIHint("Multiline")]
         public string MetaTitle { get; set; }
 

@@ -31,12 +31,12 @@ using Netotik.Common.DataTables;
 
 namespace Netotik.Web.Areas.Admin.Controllers
 {
-    [BreadCrumb(Title = "لیست مطالب", UseDefaultRouteUrl = true, RemoveAllDefaultRouteValues = true,
- Order = 0, GlyphIcon = "icon icon-table")]
+    [BreadCrumb(Title = "ContentsList", UseDefaultRouteUrl = true,Order = 0, GlyphIcon = "icon-files-o")]
     public partial class ContentController : BasePanelController
     {
 
         #region ctor
+        private readonly ILanguageService _languageService;
         private readonly IContentTagService _contentTagService;
         private readonly IContentService _contentService;
         private readonly IContentCategoryService _categoryService;
@@ -44,12 +44,14 @@ namespace Netotik.Web.Areas.Admin.Controllers
         private readonly IUnitOfWork _uow;
 
         public ContentController(
+            ILanguageService languageService,
             IContentCategoryService categoryService,
             IContentTagService contentTagService,
             IApplicationUserManager applicationUserManagerService,
             IContentService contentService,
             IUnitOfWork uow)
         {
+            _languageService = languageService;
             _categoryService = categoryService;
             _contentTagService = contentTagService;
             _applicationUserManagerService = applicationUserManagerService;
@@ -89,9 +91,10 @@ namespace Netotik.Web.Areas.Admin.Controllers
         #region Create
 
         [Mvc5Authorize(Roles = AssignableToRolePermissions.CanCreateContent)]
-        [BreadCrumb(Title = "مطلب جدید", Order = 1)]
+        [BreadCrumb(Title = "NewContent", GlyphIcon = "icon-plus", Order = 1)]
         public virtual async Task<ActionResult> Create()
         {
+            PopulateLangauges();
             return View(await _contentService.GetForCreateAsync());
         }
 
@@ -103,7 +106,7 @@ namespace Netotik.Web.Areas.Admin.Controllers
 
             if (!ModelState.IsValid)
             {
-                this.MessageError(Messages.MissionFail, Messages.InvalidDataError);
+                this.MessageError(Captions.MissionFail, Captions.InvalidDataError);
                 return RedirectToAction(MVC.Admin.Content.Create());
             }
 
@@ -116,6 +119,10 @@ namespace Netotik.Web.Areas.Admin.Controllers
                 AllowViewComments = model.AllowViewComments,
                 Body = model.Body,
                 BodyOverview = model.BodyOverview,
+                HasSideBar = model.HasSideBar,
+                DontShowBlog = model.DontShowBlog,
+                DontShowImageDetail = model.DontShowImageDetail,
+                LanguageId = model.LanguageId,
                 CreateDate = now,
                 CreatedUserId = User.Identity.GetUserId<long>(),
                 EditDate = now,
@@ -157,11 +164,11 @@ namespace Netotik.Web.Areas.Admin.Controllers
             }
             catch
             {
-                this.MessageError(Messages.MissionFail, Messages.AddError);
+                this.MessageError(Captions.MissionFail, Captions.AddError);
                 return RedirectToAction(MVC.Admin.Content.Create());
             }
 
-            this.MessageSuccess(Messages.MissionSuccess, Messages.AddSuccess);
+            this.MessageSuccess(Captions.MissionSuccess, Captions.AddSuccess);
             return RedirectToAction(MVC.Admin.Content.Index());
         }
         #endregion
@@ -180,7 +187,7 @@ namespace Netotik.Web.Areas.Admin.Controllers
                 await _uow.SaveChangesAsync();
             }
 
-            return RedirectToAction(MVC.Admin.Content.ActionNames.Index);
+            return RedirectToAction(MVC.Admin.Content.Index());
         }
 
         [Mvc5Authorize(Roles = AssignableToRolePermissions.CanAcceptContent)]
@@ -196,7 +203,7 @@ namespace Netotik.Web.Areas.Admin.Controllers
                 await _uow.SaveChangesAsync();
             }
 
-            return RedirectToAction(MVC.Admin.Content.ActionNames.Index);
+            return RedirectToAction(MVC.Admin.Content.Index());
         }
 
 
@@ -220,10 +227,12 @@ namespace Netotik.Web.Areas.Admin.Controllers
         #region Edit
 
         [Mvc5Authorize(Roles = AssignableToRolePermissions.CanEditContent)]
-        [BreadCrumb(Title = "ویرایش مطلب", Order = 1)]
+        [BreadCrumb(Title = "EditContent", GlyphIcon = "icon-edit2", Order = 1)]
         public virtual async Task<ActionResult> Edit(int id)
         {
-            return View(await _contentService.GetForEditAsync(id));
+            var model = await _contentService.GetForEditAsync(id);
+            PopulateLangauges(model.LanguageId);
+            return View(model);
         }
 
         [Mvc5Authorize(Roles = AssignableToRolePermissions.CanEditContent)]
@@ -234,12 +243,13 @@ namespace Netotik.Web.Areas.Admin.Controllers
             var entity = _contentService.SingleOrDefault(model.Id);
             if (entity == null) return HttpNotFound();
 
-            var canEdit = (entity.CreatedUserId == User.Identity.GetUserId<long>()) ? true : UserPermissions.Any(x => x == AssignableToRolePermissions.CanViewAllContent);
+            var canEdit = (entity.CreatedUserId == User.Identity.GetUserId<long>()) ? true : UserPermissions.Any(x => x == AssignableToRolePermissions.CanEditContent);
             if (canEdit == false) return HttpNotFound();
 
+            PopulateLangauges(model.LanguageId);
             if (!ModelState.IsValid)
             {
-                this.MessageError(Messages.MissionFail, Messages.InvalidDataError);
+                this.MessageError(Captions.MissionFail, Captions.InvalidDataError);
                 return View();
             }
 
@@ -251,9 +261,13 @@ namespace Netotik.Web.Areas.Admin.Controllers
             entity.Url = model.Url;
             entity.BodyOverview = model.BodyOverview;
             entity.Body = model.Body;
+            entity.HasSideBar = model.HasSideBar;
+            entity.DontShowBlog = model.DontShowBlog;
+            entity.DontShowImageDetail = model.DontShowImageDetail;
             entity.AllowComments = model.AllowComments;
+            entity.LanguageId = model.LanguageId;
             entity.AllowViewComments = model.AllowViewComments;
-            entity.EditedUserId = 1;
+            entity.EditedUserId = User.Identity.GetUserId<long>();
             entity.MetaTitle = model.MetaTitle;
             entity.MetaKeywords = model.MetaKeywords;
             entity.MetaDescription = model.MetaDescription;
@@ -293,15 +307,30 @@ namespace Netotik.Web.Areas.Admin.Controllers
             {
                 await _uow.SaveChangesAsync();
             }
-            catch 
+            catch
             {
-                this.MessageError(Messages.MissionFail, Messages.UpdateError);
+                this.MessageError(Captions.MissionFail, Captions.UpdateError);
                 return View();
             }
 
-            this.MessageSuccess(Messages.MissionSuccess, Messages.UpdateSuccess);
+            this.MessageSuccess(Captions.MissionSuccess, Captions.UpdateSuccess);
             return RedirectToAction(MVC.Admin.Content.Index());
         }
         #endregion
+
+        private void PopulateLangauges(int? selectedId = null)
+        {
+            var list = _languageService.All().Where(x => x.Published).ToList();
+            ViewBag.Languages = new SelectList(list, "Id", "Name", selectedId);
+        }
+
+        [HttpPost]
+        [AjaxOnly]
+        public virtual ActionResult FillTag(int? languageId)
+        {
+            return languageId.HasValue ? Json(_contentTagService.GetByLanguageId(languageId.Value)) : Json(null);
+        }
+
+
     }
 }

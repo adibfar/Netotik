@@ -25,6 +25,9 @@ namespace Netotik.Domain.Entity
         public bool AllowViewComments { get; set; }
         public int CommentCount { get; set; }
         public int CountView { get; set; }
+        public bool HasSideBar { get; set; }
+        public bool DontShowBlog { get; set; }
+        public bool DontShowImageDetail { get; set; }
         public Nullable<System.DateTime> StartDate { get; set; }
         public Nullable<System.DateTime> EndDate { get; set; }
         public string MetaKeywords { get; set; }
@@ -35,6 +38,8 @@ namespace Netotik.Domain.Entity
         public long CreatedUserId { get; set; }
         public long EditedUserId { get; set; }
         public ContentStatus status { get; set; }
+        public int LanguageId { get; set; }
+        public virtual Language Language { get; set; }
         public Nullable<int> PictureId { get; set; }
         public virtual Picture Picture { get; set; }
         public virtual User UserCreated { get; set; }

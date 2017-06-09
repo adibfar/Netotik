@@ -27,8 +27,7 @@ using Netotik.Common.Controller;
 namespace Netotik.Web.Areas.Admin.Controllers
 {
     [Mvc5Authorize(Roles = AssignableToRolePermissions.CanAccessTicketTag)]
-    [BreadCrumb(Title = "لیست برچسب های تیکت", UseDefaultRouteUrl = true, RemoveAllDefaultRouteValues = true,
- Order = 0, GlyphIcon = "icon icon-table")]
+    [BreadCrumb(Title = "لیست برچسب های تیکت", UseDefaultRouteUrl = true,Order = 0, GlyphIcon = "icon icon-table")]
     public partial class TicketTagController : BaseController
     {
 
@@ -80,7 +79,7 @@ namespace Netotik.Web.Areas.Admin.Controllers
         {
             if (!ModelState.IsValid)
             {
-                this.MessageError(Messages.MissionFail, Messages.InvalidDataError);
+                this.MessageError(Captions.MissionFail, Captions.InvalidDataError);
                 return View(model);
             }
 
@@ -100,11 +99,11 @@ namespace Netotik.Web.Areas.Admin.Controllers
             }
             catch
             {
-                this.MessageError(Messages.MissionFail, Messages.AddError);
+                this.MessageError(Captions.MissionFail, Captions.AddError);
                 return View();
             }
 
-            this.MessageSuccess(Messages.MissionSuccess, Messages.AddSuccess);
+            this.MessageSuccess(Captions.MissionSuccess, Captions.AddSuccess);
             return RedirectToAction(MVC.Admin.TicketTag.Index());
 
         }
@@ -148,7 +147,7 @@ namespace Netotik.Web.Areas.Admin.Controllers
 
             if (!ModelState.IsValid)
             {
-                this.MessageError(Messages.MissionFail, Messages.InvalidDataError);
+                this.MessageError(Captions.MissionFail, Captions.InvalidDataError);
                 return View();
             }
             label.Name = model.Name;
@@ -162,11 +161,11 @@ namespace Netotik.Web.Areas.Admin.Controllers
             }
             catch
             {
-                this.MessageError(Messages.MissionFail, Messages.UpdateError);
+                this.MessageError(Captions.MissionFail, Captions.UpdateError);
                 return View();
             }
 
-            this.MessageSuccess(Messages.MissionSuccess, Messages.UpdateSuccess);
+            this.MessageSuccess(Captions.MissionSuccess, Captions.UpdateSuccess);
             return RedirectToAction(MVC.Admin.TicketTag.Index());
         }
 

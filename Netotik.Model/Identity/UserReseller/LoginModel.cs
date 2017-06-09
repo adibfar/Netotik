@@ -10,14 +10,16 @@ namespace Netotik.ViewModels.Identity.UserReseller
 {
     public class LoginModel
     {
-        [Required(ErrorMessageResourceName = "RequiredError", ErrorMessageResourceType = typeof(Netotik.Resources.Messages))]
-        [Display(Name = "UserName", ResourceType = typeof(Netotik.Resources.Captions))]
+        [Required(ErrorMessageResourceName = "RequiredError", ErrorMessageResourceType = typeof(Captions))]
+        [Display(Name = "UserName", ResourceType = typeof(Captions))]
         public string UserName { get; set; }
-        [Required(ErrorMessageResourceName = "RequiredError", ErrorMessageResourceType = typeof(Netotik.Resources.Messages))]
+
+        [Required(ErrorMessageResourceName = "RequiredError", ErrorMessageResourceType = typeof(Captions))]
         [DataType(DataType.Password)]
-        [Display(Name = "Password", ResourceType = typeof(Netotik.Resources.Captions))]
+        [Display(Name = "Password", ResourceType = typeof(Captions))]
         public string Password { get; set; }
-        [Display(Name = "مرا بخاطر بسپار")]
+
+        [Display(Name = "RememberMe", ResourceType = typeof(Captions))]
         public bool RememberMe { get; set; }
 
     }

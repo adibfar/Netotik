@@ -30,8 +30,7 @@ using Netotik.ViewModels.Shop.Order;
 
 namespace Netotik.Web.Areas.Admin.Controllers
 {
-       [BreadCrumb(Title = "لیست سفارشات موفق", UseDefaultRouteUrl = true, RemoveAllDefaultRouteValues = true,
-    Order = 0, GlyphIcon = "icon icon-table")]
+       [BreadCrumb(Title = "لیست سفارشات موفق", UseDefaultRouteUrl = true, Order = 0, GlyphIcon = "icon icon-table")]
     public partial class OrderController : BaseController
     {
 

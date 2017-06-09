@@ -26,8 +26,7 @@ using Netotik.Common.Controller;
 
 namespace Netotik.Web.Areas.Admin.Controllers
 {
-    [BreadCrumb(Title = "لیست تیکت ها", UseDefaultRouteUrl = true, RemoveAllDefaultRouteValues = true,
-     Order = 0, GlyphIcon = "icon icon-table")]
+    [BreadCrumb(Title = "لیست تیکت ها", UseDefaultRouteUrl = true, Order = 0, GlyphIcon = "icon icon-table")]
     public partial class TicketController : BasePanelController
     {
 
@@ -95,13 +94,13 @@ namespace Netotik.Web.Areas.Admin.Controllers
 
             if (model.UserIds == null)
             {
-                this.MessageError(Messages.MissionFail, "لطفا مسئول این کار را مشخص کنید.");
+                this.MessageError(Captions.MissionFail, "لطفا مسئول این کار را مشخص کنید.");
                 return View();
             }
 
             if (!ModelState.IsValid)
             {
-                this.MessageError(Messages.MissionFail, Messages.InvalidDataError);
+                this.MessageError(Captions.MissionFail, Captions.InvalidDataError);
                 return View();
             }
 
@@ -133,11 +132,11 @@ namespace Netotik.Web.Areas.Admin.Controllers
             }
             catch
             {
-                this.MessageError(Messages.MissionFail, Messages.AddError);
+                this.MessageError(Captions.MissionFail, Captions.AddError);
                 return View();
             }
 
-            this.MessageError(Messages.MissionSuccess, Messages.AddSuccess);
+            this.MessageError(Captions.MissionSuccess, Captions.AddSuccess);
             return RedirectToAction(MVC.Admin.Ticket.Index());
         }
         #endregion
@@ -164,12 +163,12 @@ namespace Netotik.Web.Areas.Admin.Controllers
             var issue = _issueService.SingleOrDefault(model.IssueId);
             if (issue == null)
             {
-                this.MessageError(Messages.MissionFail, Messages.InvalidDataError);
+                this.MessageError(Captions.MissionFail, Captions.InvalidDataError);
                 return RedirectToAction(MVC.Admin.Ticket.ActionNames.Index);
             }
             if (!ModelState.IsValid || string.IsNullOrWhiteSpace(model.Description))
             {
-                this.MessageError(Messages.MissionFail, Messages.InvalidDataError);
+                this.MessageError(Captions.MissionFail, Captions.InvalidDataError);
                 return RedirectToAction(MVC.Admin.Ticket.ActionNames.Show, new { id = model.IssueId });
             }
 
@@ -198,12 +197,12 @@ namespace Netotik.Web.Areas.Admin.Controllers
             }
             catch
             {
-                this.MessageError(Messages.MissionFail, Messages.AddError);
+                this.MessageError(Captions.MissionFail, Captions.AddError);
                 return View();
             }
 
 
-            this.MessageSuccess(Messages.MissionSuccess, Messages.AddSuccess);
+            this.MessageSuccess(Captions.MissionSuccess, Captions.AddSuccess);
             ModelState.Clear();
             return View(MVC.Admin.Ticket.Views.Show, issue);
         }

@@ -20,6 +20,7 @@ using AutoMapper;
 using AutoMapper.QueryableExtensions;
 using EFSecondLevelCache;
 using System.Web.Mvc;
+using Netotik.ViewModels.Common.Rss;
 
 namespace Netotik.Services.Implement
 {
@@ -82,6 +83,9 @@ namespace Netotik.Services.Implement
             model.IsPublished = true;
             model.AllowComments = true;
             model.AllowViewComments = true;
+            model.HasSideBar = true;
+            model.DontShowBlog = false;
+            model.DontShowImageDetail = true;
 
             return model;
         }
@@ -105,7 +109,7 @@ namespace Netotik.Services.Implement
             }).ToList();
 
             model.CategoryIds = content.ContentCategories.Select(x => x.Id).ToArray();
-
+            model.LanguageId = content.LanguageId;
             model.Picture = content.Picture;
 
             return model;
@@ -114,7 +118,7 @@ namespace Netotik.Services.Implement
 
         public IList<ContentItem> GetList(RequestListModel model, out long TotalCount, out long ShowCount)
         {
-            IQueryable<Content> all = dbSet.Where(x => x.status != ContentStatus.Deleted).AsNoTracking().AsQueryable();
+            IQueryable<Content> all = dbSet.Where(x => x.status != ContentStatus.Deleted).Include(x => x.Language).AsNoTracking().AsQueryable();
             var permissions = _applicationUserManager.GetRoles(_applicationUserManager.GetCurrentUserId());
 
             if (!permissions.Any(x => x == AssignableToRolePermissions.CanViewAllContent))
@@ -151,6 +155,7 @@ namespace Netotik.Services.Implement
                     ViewCount = x.CountView,
                     CommentCount = x.ContentComments.Count,
                     Title = x.Title,
+                    FlagLanguage = x.Language.FlagImageFileName,
                     ImageFileName = x.PictureId.HasValue ? x.Picture.FileName : "Default.png",
                 })
                 .ToList();
@@ -159,14 +164,14 @@ namespace Netotik.Services.Implement
 
 
 
-        public IEnumerable<PublicItemContentModel> GetForPublicView(out int total, int page, int count, int? categoryId, int? tagId)
+        public IEnumerable<PublicItemContentModel> GetForPublicView(out int total, int page, int count, int languageId, int? categoryId, int? tagId)
         {
             var date = DateTime.Now;
             var date1 = new DateTime(date.Year, date.Month, date.Day, 23, 59, 59);
             var date2 = new DateTime(date.Year, date.Month, date.Day, 0, 0, 0);
 
             var contents = dbSet.AsNoTracking()
-                .Where(x => x.status == ContentStatus.Accepted)
+                .Where(x => x.status == ContentStatus.Accepted && x.LanguageId == languageId)
                 .Where(x => (x.StartDate.HasValue ? x.StartDate.Value <= date1 : true) &&
                             (x.EndDate.HasValue ? x.EndDate.Value >= date2 : true))
                 .Include(x => x.Picture)
@@ -197,13 +202,13 @@ namespace Netotik.Services.Implement
         }
 
 
-        public IList<Content> GetLastContents(int size)
+        public IList<Content> GetLastContents(int size, int languageId)
         {
             var date = DateTime.Now.Date;
             var date1 = new DateTime(date.Year, date.Month, date.Day, 23, 59, 59);
             var date2 = new DateTime(date.Year, date.Month, date.Day, 0, 0, 0);
             return dbSet
-                .Where(x => x.status == ContentStatus.Accepted &&
+                .Where(x => x.status == ContentStatus.Accepted && x.LanguageId == languageId &&
                       (x.StartDate.HasValue ? x.StartDate.Value <= date1 : true) &&
                       (x.EndDate.HasValue ? x.EndDate.Value >= date2 : true))
                 .Include(x => x.Picture).Include(x => x.UserCreated)
@@ -212,13 +217,30 @@ namespace Netotik.Services.Implement
 
         }
 
-        public IList<Content> GetLastPopular(int size)
+        public IList<Content> GetRss(int size, int languageId)
+        {
+            var date = DateTime.Now.Date;
+            var date1 = new DateTime(date.Year, date.Month, date.Day, 23, 59, 59);
+            var date2 = new DateTime(date.Year, date.Month, date.Day, 0, 0, 0);
+            return dbSet
+                .Where(x => x.status == ContentStatus.Accepted && x.LanguageId == languageId &&
+                      (x.StartDate.HasValue ? x.StartDate.Value <= date1 : true) &&
+                      (x.EndDate.HasValue ? x.EndDate.Value >= date2 : true))
+                .OrderByDescending(x => x.StartDate)
+                .Take(size)
+                .ToList();
+
+        }
+
+
+
+        public IList<Content> GetLastPopular(int size, int languageId)
         {
             var date = DateTime.Now.Date;
             var date1 = new DateTime(date.Year, date.Month, date.Day, 23, 59, 59);
             var date2 = new DateTime(date.Year, date.Month, date.Day, 0, 0, 0);
 
-            return dbSet.Where(x => x.status == ContentStatus.Accepted &&
+            return dbSet.Where(x => x.status == ContentStatus.Accepted && x.LanguageId == languageId &&
                             (x.StartDate.HasValue ? x.StartDate.Value <= date1 : true) &&
                             (x.EndDate.HasValue ? x.EndDate.Value >= date2 : true))
              .Include(x => x.Picture).Include(x => x.UserCreated)
@@ -232,5 +254,9 @@ namespace Netotik.Services.Implement
         {
             return await dbSet.SingleOrDefaultAsync(x => x.Id == primaryKey);
         }
+
+
+
+
     }
 }

@@ -58,7 +58,7 @@ namespace Netotik.Web
                                 "~/Content/fonts/flag-icon-css/css/flag-icon.min.css",
                                 "~/Content/css/plugins/sliders/slick/slick.css",
                                 "~/Content/css/plugins/extensions/bootstrap-treeview.min.css",
-                                "~/Content/css/plugins/forms/icheck/icheck.css",
+                                "~/Content/css/plugins/forms/icheck/flat/_all.css",
                                 "~/Content/css/plugins/forms/icheck/custom.css",
                                 "~/Content/css/plugins/extensions/unslider.css",
                                 "~/Content/css/plugins/editors/summernote.css",

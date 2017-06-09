@@ -31,8 +31,7 @@ using Netotik.Common.Controller;
 
 namespace Netotik.Web.Areas.Admin.Controllers
 {
-    [BreadCrumb(Title = "لیست محصولات", UseDefaultRouteUrl = true, RemoveAllDefaultRouteValues = true,
- Order = 0, GlyphIcon = "icon icon-table")]
+    [BreadCrumb(Title = "لیست محصولات", UseDefaultRouteUrl = true,Order = 0, GlyphIcon = "icon icon-table")]
 
     public partial class ShopProductController : BaseController
     {
@@ -114,7 +113,7 @@ namespace Netotik.Web.Areas.Admin.Controllers
 
             if (!ModelState.IsValid)
             {
-                this.MessageError(Messages.MissionFail, Messages.InvalidDataError);
+                this.MessageError(Captions.MissionFail, Captions.InvalidDataError);
                 return View(model);
             }
 
@@ -186,11 +185,11 @@ namespace Netotik.Web.Areas.Admin.Controllers
             }
             catch
             {
-                this.MessageError(Messages.MissionFail, Messages.AddError);
+                this.MessageError(Captions.MissionFail, Captions.AddError);
                 return View();
             }
             
-            this.MessageSuccess(Messages.MissionSuccess, Messages.AddSuccess);
+            this.MessageSuccess(Captions.MissionSuccess, Captions.AddSuccess);
             return RedirectToAction(MVC.Admin.ShopProduct.Index());
 
         }
@@ -303,7 +302,7 @@ namespace Netotik.Web.Areas.Admin.Controllers
 
             if (!ModelState.IsValid)
             {
-                this.MessageError(Messages.MissionFail, Messages.InvalidDataError);
+                this.MessageError(Captions.MissionFail, Captions.InvalidDataError);
                 return View();
             }
             #region Update
@@ -378,11 +377,11 @@ namespace Netotik.Web.Areas.Admin.Controllers
             }
             catch
             {
-                this.MessageError(Messages.MissionFail, Messages.UpdateError);
+                this.MessageError(Captions.MissionFail, Captions.UpdateError);
                 return View();
             }
 
-            this.MessageError(Messages.MissionSuccess, Messages.UpdateSuccess);
+            this.MessageError(Captions.MissionSuccess, Captions.UpdateSuccess);
             return RedirectToAction(MVC.Admin.ShopProduct.Index());
         }
 
@@ -408,11 +407,11 @@ namespace Netotik.Web.Areas.Admin.Controllers
             }
             catch
             {
-                this.MessageError(Messages.MissionFail, Messages.AddError);
+                this.MessageError(Captions.MissionFail, Captions.AddError);
                 return View(values);
             }
 
-            this.MessageSuccess(Messages.MissionSuccess, Messages.UpdateSuccess);
+            this.MessageSuccess(Captions.MissionSuccess, Captions.UpdateSuccess);
             return View(values);
         }
 

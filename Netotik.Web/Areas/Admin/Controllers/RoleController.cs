@@ -28,8 +28,7 @@ using Netotik.Common.DataTables;
 namespace Netotik.Web.Areas.Admin.Controllers
 {
     [Mvc5Authorize(Roles = AssignableToRolePermissions.CanAccessRole)]
-    [BreadCrumb(Title = "لیست گروههای کاربری", UseDefaultRouteUrl = true, RemoveAllDefaultRouteValues = true,
- Order = 0, GlyphIcon = "icon icon-table")]
+    [BreadCrumb(Title = "RolesList", UseDefaultRouteUrl = true, Order = 0, GlyphIcon = "icon-th-large")]
     public partial class RoleController : BaseController
     {
 
@@ -88,19 +87,19 @@ namespace Netotik.Web.Areas.Admin.Controllers
         {
             if (!ModelState.IsValid)
             {
-                this.MessageError(Messages.MissionFail,Messages.InvalidDataError);
+                this.MessageError(Captions.MissionFail, Captions.InvalidDataError);
                 PopulatePermissions(viewModel.PermissionNames);
                 return View(viewModel);
             }
             if (!await _roleManager.AddRole(viewModel))
             {
-                this.MessageError(Messages.MissionFail,"لطفا برای گروه کاربری مورد نظر ، دسترسی تعیین کنید");
+                this.MessageError(Captions.MissionFail, Captions.SelectRole);
                 PopulatePermissions();
                 return View(viewModel);
             }
 
             await _unitOfWork.SaveChangesAsync();
-            this.MessageSuccess(Messages.MissionSuccess, Messages.AddSuccess);
+            this.MessageSuccess(Captions.MissionSuccess, Captions.AddSuccess);
             return RedirectToAction(MVC.Admin.Role.Index());
         }
 
@@ -118,7 +117,7 @@ namespace Netotik.Web.Areas.Admin.Controllers
                 return HttpNotFound();
 
             PopulatePermissions(viewModel.PermissionNames);
-            return PartialView(MVC.Admin.Role.Views._Edit,viewModel);
+            return PartialView(MVC.Admin.Role.Views._Edit, viewModel);
         }
 
         [HttpPost]
@@ -126,11 +125,11 @@ namespace Netotik.Web.Areas.Admin.Controllers
         public virtual async Task<ActionResult> Edit(RoleModel viewModel)
         {
             if (_roleManager.ChechForExisByName(viewModel.Name, viewModel.Id))
-                ModelState.AddModelError("Name", "این گروه  قبلا در سیستم ثبت شده است");
+                ModelState.AddModelError("Name", string.Format(Captions.ExistError, Captions.Name));
 
             if (!ModelState.IsValid)
             {
-                this.MessageError(Messages.MissionFail, Messages.InvalidDataError);
+                this.MessageError(Captions.MissionFail, Captions.InvalidDataError);
                 PopulatePermissions(viewModel.PermissionNames);
                 return RedirectToAction(MVC.Admin.Role.Index());
             }
@@ -142,13 +141,13 @@ namespace Netotik.Web.Areas.Admin.Controllers
 
             if (!await _roleManager.EditRole(viewModel))
             {
-                this.MessageError(Messages.MissionFail, "لطفا برای گروه کاربری مورد نظر ، دسترسی تعیین کنید");
+                this.MessageError(Captions.MissionFail, Captions.SelectRole);
                 PopulatePermissions();
                 return RedirectToAction(MVC.Admin.Role.Index());
             }
 
             await _unitOfWork.SaveChangesAsync();
-            this.MessageSuccess(Messages.MissionSuccess, Messages.UpdateSuccess);
+            this.MessageSuccess(Captions.MissionSuccess, Captions.UpdateSuccess);
             return RedirectToAction(MVC.Admin.Role.Index());
         }
 
@@ -162,11 +161,11 @@ namespace Netotik.Web.Areas.Admin.Controllers
             if (id == null) return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             if (await _roleManager.CheckRoleIsSystemRoleAsync(id.Value))
             {
-                this.MessageError(Messages.MissionFail,"این گروه کاربری سیستمی است و حذف آن باعث اختلال در سیستم خواهد شد");
+                this.MessageError(Captions.MissionFail, "این گروه کاربری سیستمی است و حذف آن باعث اختلال در سیستم خواهد شد");
                 return RedirectToAction(MVC.Admin.Role.Index());
             }
             await _roleManager.RemoveById(id.Value);
-            this.MessageSuccess(Messages.MissionSuccess, Messages.RemoveSuccess);
+            this.MessageSuccess(Captions.MissionSuccess, Captions.RemoveSuccess);
             return RedirectToAction(MVC.Admin.Role.Index());
         }
 

@@ -22,6 +22,7 @@ using Microsoft.AspNet.Identity.Owin;
 using Netotik.Common.Filters;
 using Microsoft.AspNet.Identity;
 using Netotik.Common.Controller;
+using Netotik.Resources;
 
 namespace Netotik.Web.Controllers
 {
@@ -73,26 +74,31 @@ namespace Netotik.Web.Controllers
 
             if (!ModelState.IsValid)
             {
-                ViewBag.Message = "اطلاعات وارد شده صحیح نیست.";
+                ViewBag.Message = Captions.UsernameOrPasswordWrong;
                 return View(model);
             }
 
             var loggedinUser = await _applicationUserManager.FindAsync(model.UserName, model.Password);
             if (loggedinUser == null || loggedinUser.IsDeleted)
             {
-                ViewBag.Message = "اطلاعات وارد شده صحیح نیست.";
+                ViewBag.Message = Captions.UsernameOrPasswordWrong;
+                return View(model);
+            }
+            if (loggedinUser.UserType == Domain.Entity.UserType.UserAdmin)
+            {
+                ViewBag.Message = Captions.UsernameOrPasswordWrong;
                 return View(model);
             }
 
             if (loggedinUser.IsBanned)
             {
-                ViewBag.Message = "حساب کاربری شما مسدود شده است.";
+                ViewBag.Message = Captions.YourAccountIsBlock;
                 return View(model);
             }
 
             if (!loggedinUser.EmailConfirmed)
             {
-                ViewBag.Message = "برای ورود به سایت لازم است حساب خود را فعال کنید.";
+                ViewBag.Message = Captions.ActiveYourAccount;
                 ViewBag.Link = true;
                 return View();
             }
@@ -112,11 +118,11 @@ namespace Netotik.Web.Controllers
                     return RedirectToLocal(ReturnUrl);
                 case SignInStatus.LockedOut:
                     ModelState.AddModelError("UserName",
-                        $"دقیقه دوباره امتحان کنید {_applicationUserManager.DefaultAccountLockoutTimeSpan} حساب شما قفل شد ! لطفا بعد از ");
+                        $"دقیقه دوباره امتحان کنید {_applicationUserManager.DefaultAccountLockoutTimeSpan} حساب شما قفل شد ! لطفا بعد از");
                     return View(model);
                 case SignInStatus.Failure:
-                    ModelState.AddModelError("UserName", "نام کاربری یا کلمه عبور  صحیح نمی باشد");
-                    ModelState.AddModelError("Password", "نام کاربری یا کلمه عبور  صحیح نمی باشد");
+                    ModelState.AddModelError("UserName", Captions.UsernameOrPasswordWrong);
+                    ModelState.AddModelError("Password", Captions.UsernameOrPasswordWrong);
                     return View(model);
                 default:
                     ModelState.AddModelError("UserName",
@@ -135,7 +141,7 @@ namespace Netotik.Web.Controllers
             var result = await _userManager.ConfirmEmailAsync(userId.Value, code);
             if (result.Succeeded)
                 return View();
-            this.MessageWarning("ناموفق","مشکلی در فعال سازی اکانت شما به وجود آمد");
+            this.MessageWarning(Captions.MissionFail, Captions.ActivationError);
             return RedirectToAction(MVC.Account.ReceiveActivatorEmail());
         }
         #endregion
@@ -169,11 +175,12 @@ namespace Netotik.Web.Controllers
                 new { userId = user.Id, code }, protocol: Request.Url.Scheme);
             _userMailer.ResetPassword(new EmailViewModel
             {
-                Message = "با سلام کاربر گرامی.برای بازیابی کلمه عبور خود لازم است بر روی لینک مقابل کلیک کنید",
+                Message = Captions.ForgetPasswordMailMessage,
+
                 To = model.Email,
                 Url = callbackUrl,
-                UrlText = "بازیابی کلمه عبور",
-                Subject = "بازیابی کلمه عبور",
+                UrlText = Captions.ForgetPasswordMailSubject,
+                Subject = Captions.ForgetPasswordMailSubject,
                 ViewName = MVC.UserMailer.Views.ViewNames.ResetPassword
             }
                ).Send();
@@ -222,12 +229,11 @@ namespace Netotik.Web.Controllers
         [AllowAnonymous]
         //[CheckReferrer]
         [ValidateAntiForgeryToken]
-        [CaptchaVerify("تصویر امنیتی را درست وارد کنید")]
         public virtual async Task<ActionResult> ResetPassword(ResetPasswordViewModel model)
         {
 
             if (!model.Password.IsSafePasword())
-                ModelState.AddModelError("Password", "این کلمه عبور به راحتی قابل تشخیص است");
+                ModelState.AddModelError("Password", Captions.PasswordEasy);
 
             if (!ModelState.IsValid)
                 return View(model);
@@ -247,7 +253,7 @@ namespace Netotik.Web.Controllers
                 return RedirectToAction(MVC.Account.ResetPasswordConfirmation());
             }
             //this.AddErrors(result);
-            this.MessageError("خطا: ",ModelState.GetListOfErrors());
+            this.MessageError(Captions.MissionFail, ModelState.GetListOfErrors());
             return View(model);
         }
 
@@ -274,14 +280,14 @@ namespace Netotik.Web.Controllers
         public virtual async Task<ActionResult> ReceiveActivatorEmail(ActivationEmailViewModel viewModel)
         {
             if (!_userManager.IsEmailAvailableForConfirm(viewModel.Email))
-                ModelState.AddModelError("Email", "ایمیل مورد نظر یافت نشد");
+                ModelState.AddModelError("Email", Captions.EmailNotFound);
             if (_userManager.CheckIsUserBannedOrDeleteByEmail(viewModel.Email))
-                ModelState.AddModelError("Email", "اکانت شما مسدود شده است");
+                ModelState.AddModelError("Email", Captions.YourAccountIsBlock);
             if (!ModelState.IsValid)
                 return View(viewModel);
             var user = await _userManager.FindByEmailAsync(viewModel.Email);
             await SendConfirmationEmail(viewModel.Email, user.Id);
-            this.MessageSuccess("موفق","ایمیلی تحت عنوان فعال سازی اکانت به آدرس ایمیل شما ارسال گردید");
+            this.MessageSuccess(Captions.MissionSuccess, Captions.WillSendActivationAccountMessage);
             return RedirectToAction(MVC.Account.ReceiveActivatorEmail());
         }
 
@@ -295,11 +301,11 @@ namespace Netotik.Web.Controllers
 
             _userMailer.ConfirmAccount(new EmailViewModel
             {
-                Message = "با سلام کاربر گرامی.برای فعال سازی حساب خود لازم است بر روی لینک مقابل کلیک کنید",
+                Message = Captions.ActivationMailMessage,
                 To = email,
                 Url = callbackUrl,
-                UrlText = "فعال سازی",
-                Subject = "فعال سازی اکانت کاربری",
+                UrlText = Captions.ActivationMailSubject,
+                Subject = Captions.ActivationMailSubject,
                 ViewName = MVC.UserMailer.Views.ViewNames.ConfirmAccount
             }).Send();
 

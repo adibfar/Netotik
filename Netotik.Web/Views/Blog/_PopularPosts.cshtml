@@ -14,7 +14,7 @@
         <ul class="nav nav-tabs nav-bottom-border nav-justified">
             <li class="active">
                 <a href="#tab_1" data-toggle="tab">
-                    محبوب ترین ها
+                    @Captions.Populars
                 </a>
             </li>
 
@@ -32,7 +32,7 @@
                         <!-- post -->
                         <div class="col-md-3 col-sm-3 col-xs-3">
                             <a href="@Url.Action(MVC.Blog.ActionNames.Detail, MVC.Blog.Name, new { Id = item.Id, name = item.Title })">
-                                <img src="@Url.Content((item.PictureId.HasValue ? Path.Combine(Netotik.Common.Controller.FilePathes._imagesContentPath, item.Picture.FileName) : "/Content/img/1.jpg")+"?w=200&h=200")" width="55" alt="" />
+                                <img src="@Url.Content((item.PictureId.HasValue ? Path.Combine(Netotik.Common.Controller.FilePathes._imagesContentPath, item.Picture.FileName) : "/Content/Upload/Image/Content/Default.png")+"?w=200&h=200")" width="55" alt="" />
                             </a>
                         </div>
                         <div class="col-md-9 col-sm-9 col-xs-9">

@@ -76,7 +76,7 @@ namespace Netotik.Web.Areas.Company.Controllers
 
             if (image == null)
             {
-                this.MessageError(Messages.MissionFail, Messages.InvalidDataError);
+                this.MessageError(Captions.MissionFail, Captions.InvalidDataError);
                 return View(MVC.Company.Home.Views.MyProfile);
             }
 
@@ -94,7 +94,7 @@ namespace Netotik.Web.Areas.Company.Controllers
             user.Picture = picture;
             await _uow.SaveAllChangesAsync();
 
-            this.MessageInformation(Messages.MissionSuccess, Messages.UpdateSuccess);
+            this.MessageInformation(Captions.MissionSuccess, Captions.UpdateSuccess);
             return RedirectToAction(MVC.Company.Home.MyProfile());
         }
         [Mvc5Authorize(Roles = "Company")]
@@ -111,7 +111,7 @@ namespace Netotik.Web.Areas.Company.Controllers
 
             if (!ModelState.IsValid)
             {
-                this.MessageError(Messages.MissionFail, Messages.InvalidDataError);
+                this.MessageError(Captions.MissionFail, Captions.InvalidDataError);
                 //return View(MVC.Reseller.Home.Views._ProfileData, model);
                 return RedirectToAction(MVC.Company.Home.ActionNames.MyProfile);
             }
@@ -120,7 +120,7 @@ namespace Netotik.Web.Areas.Company.Controllers
                 model.EmailConfirmed = false;
             model.Id = UserLogined.Id;
             model.UserResellerId = UserLogined.UserCompany.UserResellerId;
-            this.MessageInformation(Messages.MissionSuccess, Messages.UpdateSuccess);
+            this.MessageInformation(Captions.MissionSuccess, Captions.UpdateSuccess);
             await _applicationUserManager.UpdateUserCompanyProfile(model);
             return RedirectToAction(MVC.Company.Home.ActionNames.MyProfile);
         }
@@ -137,7 +137,7 @@ namespace Netotik.Web.Areas.Company.Controllers
             #region Validation
             if (!ModelState.IsValid)
             {
-                this.MessageError(Messages.MissionFail, Messages.InvalidDataError);
+                this.MessageError(Captions.MissionFail, Captions.InvalidDataError);
                 //return View(MVC.Reseller.Home.Views._ProfileData, model);
                 return RedirectToAction(MVC.Company.Home.ActionNames.MikrotikConf, MVC.Company.Home.Name, new { area = MVC.Company.Name });
             }
@@ -150,7 +150,7 @@ namespace Netotik.Web.Areas.Company.Controllers
             model.Id = UserLogined.Id;
             if (model.cloud == true)
                 model.R_Host = _mikrotikServices.EnableAndGetCloud(UserLogined.UserCompany.R_Host, UserLogined.UserCompany.R_Port, UserLogined.UserCompany.R_User, UserLogined.UserCompany.R_Password);
-            this.MessageInformation(Messages.MissionSuccess, Messages.UpdateSuccess);
+            this.MessageInformation(Captions.MissionSuccess, Captions.UpdateSuccess);
             await _applicationUserManager.UpdateUserCompanyMikrotikConf(model);
             return RedirectToAction(MVC.Company.Home.ActionNames.MikrotikConf, MVC.Company.Home.Name, new { area = MVC.Company.Name });
         }
@@ -247,11 +247,11 @@ namespace Netotik.Web.Areas.Company.Controllers
             //        }
             //        catch (DbEntityValidationException ex)
             //        {
-            //            this.MessageError(Messages.MissionFail, Messages.AddError);
+            //            this.MessageError(Captions.MissionFail, Captions.AddError);
             //        }
             //        catch (Exception ex)
             //        {
-            //            this.MessageError(Messages.MissionFail, Messages.AddError);
+            //            this.MessageError(Captions.MissionFail, Captions.AddError);
             //        }
             //    }
             //    SetResultMessage(result);
@@ -262,7 +262,7 @@ namespace Netotik.Web.Areas.Company.Controllers
             //}
             //else
             //{
-            //    this.MessageError(Messages.MissionFail, Messages.InvalidDataError);
+            //    this.MessageError(Captions.MissionFail, Captions.InvalidDataError);
             //    return View();
             //}
 
@@ -282,14 +282,14 @@ namespace Netotik.Web.Areas.Company.Controllers
         {
             if (!ModelState.IsValid)
             {
-                this.MessageError(Messages.MissionFail, Messages.InvalidDataError);
+                this.MessageError(Captions.MissionFail, Captions.InvalidDataError);
                 return RedirectToAction(MVC.Reseller.Home.ActionNames.ChangePassword);
             }
             var temp = await _applicationUserManager.ChangePasswordAsync(User.Identity.GetUserId<long>(), model.OldPassword, model.Password);
             if (temp.Succeeded)
-                this.MessageInformation(Messages.MissionSuccess, Messages.UpdateSuccess);
+                this.MessageInformation(Captions.MissionSuccess, Captions.UpdateSuccess);
             else
-                this.MessageError(Messages.MissionFail, Messages.UpdateError);
+                this.MessageError(Captions.MissionFail, Captions.UpdateError);
             return View();
         }
 

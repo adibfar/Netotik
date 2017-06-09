@@ -3,9 +3,9 @@
 }
 
 <p>
-    <span class="block"><strong><i class="fa fa-map-marker"></i> ادرس :</strong> @setting.CompanyAddress </span>
+    <span class="block"><strong><i class="fa fa-map-marker"></i> @Captions.Address :</strong> @setting.CompanyAddress </span>
     <span class="block">
-        <strong><i class="fa fa-phone"></i> شماره تماس :</strong> <a href="#">
+        <strong><i class="fa fa-phone"></i> @Captions.Tel :</strong> <a href="#">
             @setting.CompanyTel1
             @if (string.IsNullOrWhiteSpace(setting.CompanyTel2))
             {
@@ -13,7 +13,7 @@
             }
         </a>
     </span>
-    <span class="block"><strong><i class="fa fa-envelope"></i> ایمیل:</strong> <a href="#"> @setting.CompanyEmail1</a></span>
+    <span class="block"><strong><i class="fa fa-envelope"></i> @Captions.Email :</strong> <a href="#"> @setting.CompanyEmail1</a></span>
 </p>
 
 <hr />

@@ -1,6 +1,5 @@
 ﻿using Netotik.Common.DataTables;
 using Netotik.Domain.Entity;
-using Netotik.ViewModels.CMS.Advertise;
 using System;
 using System.Collections.Generic;
 using System.Linq;

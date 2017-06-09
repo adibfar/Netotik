@@ -4,19 +4,17 @@ using System.Data.Entity.ModelConfiguration;
 
 namespace Netotik.Domain.EntityConfiguration
 {
-    public class AdvertiseMap : EntityTypeConfiguration<Advertise>
+    public class LocaleStringResourceMap : EntityTypeConfiguration<LocaleStringResource>
     {
-        public AdvertiseMap()
+        public LocaleStringResourceMap()
         {
             // Primary Key
             this.HasKey(t => t.Id);
 
-            // Relationships
-            this.HasRequired(t => t.Picture)
-                .WithMany(t => t.Advertises)
-                .HasForeignKey(d => d.PictureId)
+            this.HasRequired(x => x.Language)
+                .WithMany(x => x.LocaleStringResources)
+                .HasForeignKey(x => x.LanguageId)
                 .WillCascadeOnDelete(false);
-
         }
     }
 }

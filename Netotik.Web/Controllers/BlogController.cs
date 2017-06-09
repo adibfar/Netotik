@@ -12,10 +12,12 @@ using Netotik.ViewModels.CMS.Content;
 using Netotik.ViewModels.CMS.Comment;
 using Netotik.Domain.Entity;
 using Netotik.Common.Controller;
+using Netotik.Web.Infrastructure.Caching;
+using Netotik.Resources;
 
 namespace Netotik.Web.Controllers
 {
-    [RoutePrefix("{lang}/Blog")]
+
     public partial class BlogController : BaseController
     {
         private readonly IContentService _contentService;
@@ -42,7 +44,49 @@ namespace Netotik.Web.Controllers
         }
 
 
-        [Route("category/{categoryId=0}/page/{page=1}/count/{count=8}/tag/{tagId?}")]
+        [Route("{lang}/Blog")]
+        public virtual async Task<ActionResult> IndexFirst(int? categoryId, int? tagId, int page = 1, int count = 8)
+        {
+            categoryId = categoryId == 0 ? null : categoryId;
+            int total;
+
+            string tag = "";
+            string category = "";
+            if (tagId.HasValue)
+            {
+                var tag_ = await _contentTagService.SingleOrDefaultAsync(tagId.Value);
+                if (tag_ != null)
+                {
+                    tag = tag_.Name;
+                }
+            }
+
+            if (categoryId.HasValue)
+            {
+                var cat_ = await _contentCategoryService.SingleOrDefaultAsync(categoryId.Value);
+                if (cat_ != null)
+                {
+                    category = cat_.Name;
+                }
+            }
+
+            var result = _contentService.GetForPublicView(out total, page, count, LanguageCache.GetLanguage(HttpContext).Id, categoryId, tagId);
+            var model = new PublicTableContentModel
+            {
+                CategoryId = categoryId,
+                Category = category,
+                Tag = tag,
+                TagId = tagId,
+                Total = total,
+                Page = page,
+                Count = count,
+                Contents = result
+            };
+            return View(MVC.Blog.Views.Index, model);
+        }
+
+
+        [Route("{lang}/Blog/category/{categoryId=0}/page/{page=1}/count/{count=8}/tag/{tagId?}")]
         public virtual async Task<ActionResult> Index(int? categoryId, int? tagId, int page = 1, int count = 8)
         {
             categoryId = categoryId == 0 ? null : categoryId;
@@ -68,7 +112,7 @@ namespace Netotik.Web.Controllers
                 }
             }
 
-            var result = _contentService.GetForPublicView(out total, page, count, categoryId, tagId);
+            var result = _contentService.GetForPublicView(out total, page, count, LanguageCache.GetLanguage(HttpContext).Id, categoryId, tagId);
             var model = new PublicTableContentModel
             {
                 CategoryId = categoryId,
@@ -84,6 +128,7 @@ namespace Netotik.Web.Controllers
         }
 
 
+        [Route("{lang}/Page/{id}")]
         public virtual async Task<ActionResult> Detail(int? id)
         {
 
@@ -115,7 +160,6 @@ namespace Netotik.Web.Controllers
             }
             #endregion
 
-
             if (content == null)
                 return RedirectToAction(MVC.Home.ActionNames.Index, MVC.Home.Name);
 
@@ -123,7 +167,6 @@ namespace Netotik.Web.Controllers
             {
                 ViewBag.Comments = content.ContentComments.Where(x => x.Status == Netotik.Domain.Entity.CommentStatus.Accepted).ToList();
             }
-
 
 
             return View(content);
@@ -160,11 +203,11 @@ namespace Netotik.Web.Controllers
                 try
                 {
                     await _uow.SaveChangesAsync();
-                    this.MessageSuccess("سپاسگذاریم", "دیدگاه شما پس از تایید توسط مدیر در سایت نمایش داده می شود.");
+                    this.MessageSuccess(Captions.Thanks, Captions.CommentRegisterSuccess);
                 }
                 catch
                 {
-                    this.MessageError("خطا در ثبت اطلاعات!", "متاسفانه دیدگاه شما ثبت نشد.");
+                    this.MessageError(Captions.MissionFail, Captions.CommentRegisterFail);
                 }
 
 
@@ -178,20 +221,18 @@ namespace Netotik.Web.Controllers
 
         public virtual ActionResult SideBarCategory()
         {
-            var list = _contentCategoryService.All().Where(x => !x.IsDeleted).ToList();
-            return View(MVC.Blog.Views._Category, list);
+            return View(MVC.Blog.Views._Category, _contentCategoryService.GetAll(LanguageCache.GetLanguage(HttpContext).Id));
         }
 
         public virtual ActionResult SideBarTag()
         {
-            var list = _contentTagService.All().ToList();
-            return View(MVC.Blog.Views._Tags, list);
+            return View(MVC.Blog.Views._Tags, _contentTagService.GetAll(LanguageCache.GetLanguage(HttpContext).Id));
         }
 
 
         public virtual ActionResult SideBarPopularPost()
         {
-            return View(MVC.Blog.Views._PopularPosts, _contentService.GetLastPopular(5));
+            return View(MVC.Blog.Views._PopularPosts, _contentService.GetLastPopular(8, LanguageCache.GetLanguage(HttpContext).Id));
         }
 
     }

@@ -1,15 +1,11 @@
 ﻿@using CaptchaMvc.HtmlHelpers
 @model Netotik.ViewModels.Common.ContactUs.MessageModel
 
-@{
-    ViewBag.Title = "ارتباط با ما";
-}
 
-
-<section class="page-header page-header-md parallax parallax-3" style="background-image:url('../../Content/PublicUI/images/demo/1200x800/18-min.jpg')">
+<section class="page-header page-header-md parallax parallax-3" style="background-image:url('../../Content/PublicUI/images/backgrounds/blue.jpg')">
     <div class="overlay dark-5"><!-- dark overlay [1 to 9 opacity] --></div>
     <div class="container">
-        <h1>تماس با ما</h1>
+        <h1>@Captions.ContactUs</h1>
         <span class="font-lato size-18 weight-300">مشاوران ما بهترین پیشنهادات را به شما می دهند</span>
     </div>
 </section>
@@ -52,15 +48,15 @@
                         <div class="row">
                             <div class="form-group">
                                 <div class="col-md-4">
-                                    <label for="contact:name">نــام *</label>
+                                    <label for="contact:name">@Captions.Name *</label>
                                     @Html.TextBoxFor(model => model.Name, new { @class = "form-control" })
                                 </div>
                                 <div class="col-md-4">
-                                    <label for="contact:email">ایمیل *</label>
+                                    <label for="contact:email">@Captions.Email *</label>
                                     @Html.TextBoxFor(model => model.Email, new { @class = "form-control" })
                                 </div>
                                 <div class="col-md-4">
-                                    <label for="contact:phone">شماره موبایل</label>
+                                    <label for="contact:phone">@Captions.MobileNumber</label>
                                     @Html.TextBoxFor(model => model.PhoneNumber, new { @class = "form-control" })
                                 </div>
                             </div>
@@ -68,7 +64,7 @@
                         <div class="row">
                             <div class="form-group">
                                 <div class="col-md-12">
-                                    <label for="contact:message">متن پیام *</label>
+                                    <label for="contact:message">@Captions.MessageText *</label>
                                     @Html.TextAreaFor(model => model.Text, new { @class = "form-control", maxlength = "10000", rows = "8" })
                                 </div>
                             </div>
@@ -83,7 +79,7 @@
                     </div>
                     <div class="row">
                         <div class="col-md-12">
-                            <button type="submit" class="btn btn-primary"><i class="fa fa-check"></i> ارسال </button>
+                            <button type="submit" class="btn btn-primary"><i class="fa fa-check"></i> @Captions.Send</button>
                         </div>
 
                     </div>

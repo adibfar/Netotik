@@ -17,6 +17,7 @@ using System.Web.Security;
 using System.Globalization;
 using System.Threading;
 using Netotik.Common.Binders;
+using System.Text.RegularExpressions;
 
 namespace Netotik.Web
 {
@@ -35,7 +36,7 @@ namespace Netotik.Web
             ModelBinders.Binders.Add(typeof(DateTime?), new PersianDateModelBinder());
 
             AreaRegistration.RegisterAllAreas();
-            
+
 
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
@@ -57,12 +58,27 @@ namespace Netotik.Web
             if (!Request.IsLocal)
             {
                 if (!Context.Request.IsSecureConnection)
-                    Response.Redirect(Context.Request.Url.ToString().Replace("http:", "https:").ToLower());
+                    Response.Redirect(Context.Request.Url.ToString().Replace("http:", "https:"));
 
             }
 
-        }
+            bool isGet = HttpContext.Current.Request.RequestType.ToLowerInvariant().Contains("get");
+            if (isGet && HttpContext.Current.Request.Url.AbsolutePath.Contains(".") == false)
+            {
+                string lowercaseURL = (Request.Url.Scheme + "://" + HttpContext.Current.Request.Url.Authority + HttpContext.Current.Request.Url.AbsolutePath);
+                if (Regex.IsMatch(lowercaseURL, @"[A-Z]"))
+                {
+                    //You don't want to change casing on query strings
+                    lowercaseURL = lowercaseURL.ToLower() + HttpContext.Current.Request.Url.Query;
 
+                    Response.Clear();
+                    Response.Status = "301 Moved Permanently";
+                    Response.AddHeader("Location", lowercaseURL);
+                    Response.End();
+                }
+
+            }
+        }
 
 
     }

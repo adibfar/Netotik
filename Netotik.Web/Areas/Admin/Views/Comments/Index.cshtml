@@ -1,5 +1,6 @@
 ﻿@using Netotik.ViewModels.Identity.Security
 @{
+    ViewBag.Title = Captions.Comments;
     var Roles = Html.CurrentUserPermissions();
     var CanAccept = Roles.Any(x => x == AssignableToRolePermissions.CanAcceptComment);
     var CanDontAccept = Roles.Any(x => x == AssignableToRolePermissions.CanDontAcceptComment);
@@ -56,11 +57,11 @@
                         "render": function (data, type, full, meta) {
                             var result = full.Name;
                             if (full.Status == 0) {
-                                result += ' <div class="tag tag-success">تایید شده</div>'
+                                result += ' <div class="tag tag-success">'+'@Captions.Accepted'+'</div>'
                             } else if (full.Status == 1) {
-                                result += ' <div class="tag tag-default">در انتظار تایید</div>'
+                                result += ' <div class="tag tag-default">'+'@Captions.WaitingForAccept'+'</div>'
                             } else if (full.Status == 2) {
-                                result += ' <div class="tag tag-danger">تایید نشده</div>'
+                                result += ' <div class="tag tag-danger">'+'@Captions.NotAccept'+'</div>'
                             }
                             return result;
                         }
@@ -77,27 +78,27 @@
                              if (canAccept == 'True' || canDontAccept == 'True' || canDelete == 'True' || canEdit == 'True' || canReply == 'True') {
                                  result = '<span class="dropdown">'
                                      + '<button id="btnSearchDrop2" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" class="btn btn-outline-secondary dropdown-toggle dropdown-menu-right">'
-                                     + '<i class="icon-cog3"></i> پردازش</button><span aria-labelledby="btnSearchDrop2" class="dropdown-menu mt-1 dropdown-menu-right">';
+                                     + '<i class="icon-cog3"></i> '+'@Captions.Action'+'</button><span aria-labelledby="btnSearchDrop2" class="dropdown-menu mt-1 dropdown-menu-right">';
 
                                  if (canEdit == 'True') {
                                      result += '<a onclick="edit(' + full.Id + ');" class="dropdown-item">'
-                                         + '<i class="icon-pen3"></i> ویرایش </a>';
+                                         + '<i class="icon-pen3"></i> '+'@Captions.Edit'+' </a>';
                                  }
                                  if (canReply == 'True') {
                                      result += '<a onclick="reply(' + full.Id + ');" class="dropdown-item">'
-                                         + '<i class="icon-bubbles4"></i> پاسخ </a>';
+                                         + '<i class="icon-bubbles4"></i> '+'@Captions.Answer'+' </a>';
                                  }
                                  if (canAccept == 'True' && full.Status != 0) {
                                      result += '<a onclick="accept(' + full.Id + ');" class="edit dropdown-item">'
-                                         + '<i class="icon-checkmark2"></i> تایید </a>';
+                                         + '<i class="icon-checkmark2"></i> '+'@Captions.Accept'+' </a>';
                                  }
                                  if (canDontAccept == 'True' &&  full.Status != 2) {
                                      result += '<a onclick="dontAccept(' + full.Id + ');" class="dropdown-item">'
-                                            + '<i class="icon-blocked"></i> عدم تایید</a>';
+                                            + '<i class="icon-blocked"></i> '+'@Captions.DontAccept'+'</a>';
                                  }
                                  if (canDelete == 'True') {
                                      result += '<a onclick="remove(' + full.Id + ');" class="dropdown-item">'
-                                       + '<i class="icon-trash4"></i> حذف </a>';
+                                       + '<i class="icon-trash4"></i> '+'@Captions.Remove'+' </a>';
                                  }
 
                                  result += "</span></span>";
@@ -114,11 +115,7 @@
                     { "mDataProp": "Email" },
                     { "mDataProp": "Text" },
                     { "no": "no" }
-                ],
-
-                "oLanguage": {
-                    "sUrl": "/Content/js/plugins/tables/datatable/dataTables.persian.txt"
-                }
+                ]
             });
         });
 

@@ -57,7 +57,7 @@ namespace Netotik.Web.Areas.Reseller.Controllers
 
             if (image == null)
             {
-                this.MessageError(Messages.MissionFail, Messages.InvalidDataError);
+                this.MessageError(Captions.MissionFail, Captions.InvalidDataError);
                 return View(MVC.Reseller.Home.Views.MyProfile);
             }
 
@@ -75,7 +75,7 @@ namespace Netotik.Web.Areas.Reseller.Controllers
             user.Picture = picture;
             await _uow.SaveAllChangesAsync();
 
-            this.MessageInformation(Messages.MissionSuccess, Messages.UpdateSuccess);
+            this.MessageInformation(Captions.MissionSuccess, Captions.UpdateSuccess);
             return RedirectToAction(MVC.Reseller.Home.MyProfile());
         }
 
@@ -92,7 +92,7 @@ namespace Netotik.Web.Areas.Reseller.Controllers
 
             if (!ModelState.IsValid)
             {
-                this.MessageError(Messages.MissionFail, Messages.InvalidDataError);
+                this.MessageError(Captions.MissionFail, Captions.InvalidDataError);
                 //return View(MVC.Reseller.Home.Views._ProfileData, model);
                 return RedirectToAction(MVC.Reseller.Home.ActionNames.MyProfile);
             }
@@ -100,7 +100,7 @@ namespace Netotik.Web.Areas.Reseller.Controllers
             if (model.Email != UserLogined.Email)
                 model.EmailConfirmed = false;
 
-            this.MessageInformation(Messages.MissionSuccess, Messages.UpdateSuccess);
+            this.MessageInformation(Captions.MissionSuccess, Captions.UpdateSuccess);
             await _applicationUserManager.UpdateUserResellerProfile(model);
             return RedirectToAction(MVC.Reseller.Home.ActionNames.MyProfile);
         }
@@ -126,14 +126,14 @@ namespace Netotik.Web.Areas.Reseller.Controllers
         {
             if (!ModelState.IsValid)
             {
-                this.MessageError(Messages.MissionFail, Messages.InvalidDataError);
+                this.MessageError(Captions.MissionFail, Captions.InvalidDataError);
                 return RedirectToAction(MVC.Reseller.Home.ActionNames.ChangePassword);
             }
                 var temp = await _applicationUserManager.ChangePasswordAsync(User.Identity.GetUserId<long>(), model.OldPassword, model.Password);
             if(temp.Succeeded)
-                this.MessageInformation(Messages.MissionSuccess, Messages.UpdateSuccess);
+                this.MessageInformation(Captions.MissionSuccess, Captions.UpdateSuccess);
             else
-                this.MessageError(Messages.MissionFail, Messages.UpdateError);
+                this.MessageError(Captions.MissionFail, Captions.UpdateError);
             return View();
         }
 

@@ -4,10 +4,10 @@
 }
 
 @using (Html.BeginForm(MVC.Admin.Home.ActionNames.UpdateProfile, MVC.Admin.Home.Name, FormMethod.Post,
-                                 htmlAttributes: new { @class = "form-horizontal", enctype = "multipart/form-data", id = "form" }))
+                                                                                                                                                                     htmlAttributes: new { @class = "form-horizontal", enctype = "multipart/form-data", id = "form" }))
 {
     @Html.AntiForgeryToken()
-    @Html.Hidden("Id",Html.CurrentUser().Id)
+    @Html.Hidden("Id", Html.CurrentUser().Id)
     <div class="card">
         <div class="card-header">
             <button name="actionType" value="@Netotik.Common.Controller.ActionType.Save" class="btn btn-social width-100 btn-instagram" onclick="AjaxForm.Post(this, 'form')" data-loading-text="در حال ارسال اطلاعات">
@@ -136,6 +136,18 @@
                 <div class="row">
                     <div class="col-md-6">
                         <div class="form-group has-feedback has-icon-left">
+                            @Html.LabelFor(m => m.ShowName)
+                            <div class="position-relative has-icon-left">
+                                @Html.TextBoxFor(m => m.ShowName, new { @class = "form-control" })
+                                <div class="form-control-position">
+                                    <i class="icon-text-color"></i>
+                                </div>
+                                @Html.ValidationMessageFor(model => model.ShowName, "", htmlAttributes: new { @class = "text-danger" })
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group has-feedback has-icon-left">
                             @Html.LabelFor(m => m.Website)
                             <div class="position-relative has-icon-left">
                                 @Html.TextBoxFor(m => m.Website, new { @class = "form-control" })
@@ -158,7 +170,43 @@
                         </div>
                     </div>
                 </div>
+
             </div>
         </div>
     </div>
+
+    foreach (var item in Model.Items)
+    {
+        @Html.Hidden("LanguageIds", item.Language.Id)
+        <div class="card">
+            <div class="card-header">
+                <img src="~/Content/images/flags/@item.Language.FlagImageFileName" /> @item.Language.Name
+            </div>
+            <div class="card-body">
+                <div class="card-block">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group has-feedback">
+                                @Html.LabelFor(m => m.ShowName)
+                                <div class="position-relative ">
+                                    @Html.TextBox("ShowNames", item.ShortBio, new { @class = "form-control" })
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group has-feedback">
+                                @Html.LabelFor(m => m.ShortBio)
+                                <div class="position-relative ">
+                                    @Html.TextArea("ShortBios", item.ShortBio, new { @class = "form-control" })
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+
 }

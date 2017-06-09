@@ -15,6 +15,7 @@ using System.IO;
 using Netotik.Common.Controller;
 using Netotik.Domain.Entity;
 using Netotik.Resources;
+using System.Linq;
 
 namespace Netotik.Web.Areas.Admin.Controllers
 {
@@ -23,13 +24,16 @@ namespace Netotik.Web.Areas.Admin.Controllers
     {
         private readonly IInboxContactUsMessageService _inboxMessageService;
         private readonly IApplicationUserManager _applicationUserManager;
+        private readonly ILanguageService _languageService;
         private readonly IUnitOfWork _uow;
 
         public HomeController(
+            ILanguageService languageService,
             IInboxContactUsMessageService inboxMessageService,
             IApplicationUserManager applicationUserManager,
             IUnitOfWork uow)
         {
+            _languageService = languageService;
             _applicationUserManager = applicationUserManager;
             _inboxMessageService = inboxMessageService;
             _uow = uow;
@@ -43,9 +47,10 @@ namespace Netotik.Web.Areas.Admin.Controllers
         {
             return View();
         }
-        
+
         public virtual ActionResult ProfileData()
         {
+            PopulateLangauges();
             return PartialView(MVC.Admin.Home.Views._ProfileData, _applicationUserManager.GetUserAdminProfile());
         }
 
@@ -55,22 +60,22 @@ namespace Netotik.Web.Areas.Admin.Controllers
         {
             #region Validation
             if (_applicationUserManager.CheckAdminEmailExist(model.Email, User.Identity.GetUserId<long>()))
-                ModelState.AddModelError("Email", "این ایمیل قبلا در سیستم ثبت شده است");
+                ModelState.AddModelError("Email",string.Format(Captions.ExistError,Captions.Email));
 
             if (_applicationUserManager.CheckUserNameExist(model.UserName, User.Identity.GetUserId<long>()))
-                ModelState.AddModelError("UserName", "این نام کاربری قبلا در سیستم ثبت شده است");
+                ModelState.AddModelError("UserName", string.Format(Captions.ExistError, Captions.UserName));
 
             if (_applicationUserManager.CheckAdminPhoneNumberExist(model.PhoneNumber, User.Identity.GetUserId<long>()))
-                ModelState.AddModelError("PhoneNumber", "این شماره موبایل قبلا در سیستم ثبت شده است");
+                ModelState.AddModelError("PhoneNumber", string.Format(Captions.ExistError, Captions.MobileNumber));
 
             if (!ModelState.IsValid)
             {
-                this.MessageError(Messages.MissionFail,Messages.InvalidDataError);
+                this.MessageError(Captions.MissionFail, Captions.InvalidDataError);
                 return RedirectToAction(MVC.Admin.Home.MyProfile());
             }
             #endregion
 
-            this.MessageInformation(Messages.MissionSuccess, Messages.UpdateSuccess);
+            this.MessageInformation(Captions.MissionSuccess, Captions.UpdateSuccess);
             await _applicationUserManager.UpdateUserAdminProfile(model);
             return RedirectToAction(MVC.Admin.Home.ActionNames.MyProfile);
         }
@@ -83,7 +88,7 @@ namespace Netotik.Web.Areas.Admin.Controllers
 
             if (image == null)
             {
-                this.MessageError(Messages.MissionFail, Messages.InvalidDataError);
+                this.MessageError(Captions.MissionFail, Captions.InvalidDataError);
                 return View(MVC.Admin.Home.Views.MyProfile);
             }
 
@@ -101,7 +106,7 @@ namespace Netotik.Web.Areas.Admin.Controllers
             user.Picture = picture;
             await _uow.SaveAllChangesAsync();
 
-            this.MessageInformation(Messages.MissionSuccess, Messages.UpdateSuccess);
+            this.MessageInformation(Captions.MissionSuccess, Captions.UpdateSuccess);
             return RedirectToAction(MVC.Admin.Home.MyProfile());
         }
 
@@ -120,6 +125,15 @@ namespace Netotik.Web.Areas.Admin.Controllers
             //    SetResultMessage(_applicationUserManager.ChangePassword(model, User.UserId));
             //}
             return RedirectToAction(MVC.Admin.Home.ActionNames.ChangePassword);
+        }
+
+        private void PopulateLangauges(int? selectedId = null)
+        {
+            ViewBag.Languages = _languageService
+                .All()
+                .Where(x => x.Published)
+                .OrderBy(x => x.DisplayOrder)
+                .ToList();
         }
 
     }

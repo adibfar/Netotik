@@ -26,6 +26,7 @@ namespace Netotik.Domain.Entity
         public bool IsDeleted { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
+        public string ShowName { get; set; }
         public System.DateTime CreateDate { get; set; }
         public System.DateTime EditDate { get; set; }
         public Nullable<System.DateTime> LastLoginDate { get; set; }

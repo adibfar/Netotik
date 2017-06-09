@@ -15,6 +15,7 @@ namespace Netotik.Web
             routes.IgnoreRoute("{*favicon}",
             new { favicon = @"(.*/)?favicon.ico(/.*)?" });
 
+            routes.LowercaseUrls = true;
 
             routes.MapRoute(
             name: "sitemap.xml",
@@ -26,11 +27,22 @@ namespace Netotik.Web
             routes.MapMvcAttributeRoutes();
 
             routes.MapRoute(
-              name: "Default",
+              name: "multiLang",
               url: "{lang}/{controller}/{action}/{id}",
+              defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional },
+              namespaces: new[] { "Netotik.Web.Controllers" }
+          );
+
+            routes.MapRoute(
+              name: "Default",
+              url: "{controller}/{action}/{id}",
               defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional, lang = "fa" },
               namespaces: new[] { "Netotik.Web.Controllers" }
           );
+
+
+
+
         }
     }
 }

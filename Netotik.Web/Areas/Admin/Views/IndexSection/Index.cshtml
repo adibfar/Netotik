@@ -1,14 +1,14 @@
 ﻿<section id="configuration">
-    <div class="col-xs-12">
-        <div class="card">
-            <div class="card-header">
-                <button type="button" class="btn btn-social width-150 btn-instagram" data-toggle="modal" data-target="#Create"><span class="icon-plus font-medium-4"></span> بنر جدید</button>
-                @Html.Action(MVC.Admin.Advertise.Create())
-            </div>
-
-            <div class="card-body collapse in">
-                <div class="card-block card-dashboard">
-                    @Html.Partial(MVC.Admin.Advertise.Views._Table)
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="card">
+                <div class="card-header">
+                    <a href="@Url.Action(MVC.Admin.IndexSection.Create())" class="btn btn-social width-150 btn-instagram"><span class="icon-plus font-medium-4"></span> @Captions.NewIndexSectoin</a>
+                </div>
+                <div class="card-body collapse in">
+                    <div class="card-block card-dashboard">
+                        @Html.Partial(MVC.Admin.IndexSection.Views._Table)
+                    </div>
                 </div>
             </div>
         </div>
@@ -16,7 +16,8 @@
 </section>
 
 
-<div id="edit-container"></div>
+
+
 
 @section DownScript{
 
@@ -31,7 +32,7 @@
                 "bFilter": true,
                 "aLengthMenu": [[10, 25, 50, 100], [10, 25, 50, 100]],
                 "bAutoWidth": false,
-                "sAjaxSource": "@Url.Action(MVC.Admin.Advertise.GetList())",
+                "sAjaxSource": "@Url.Action(MVC.Admin.IndexSection.GetList())",
                 "fnServerData": function (sSource, aoData, fnCallback) {
                     $.ajax({
                         "dataType": 'json',
@@ -50,46 +51,36 @@
                         "render": function (data, type, full, meta) {
                             return '<span class="dropdown">'
                                 + '<button id="btnSearchDrop2" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" class="btn btn-outline-secondary dropdown-toggle dropdown-menu-right">'
-                                + '<i class="icon-cog3"></i> پردازش</button>'
+                                + '<i class="icon-cog3"></i> '+'@Captions.Action'+'</button>'
                                 + '<span aria-labelledby="btnSearchDrop2" class="dropdown-menu mt-1 dropdown-menu-right">'
-                                + '<a onclick="edit(' + full.Id + ');" class="edit dropdown-item">'
-                                + '<i class="icon-pen3"></i> ویرایش </a>'
+                                + '<a href="'+'@Url.Action(MVC.Admin.IndexSection.Edit())'+'/'+ full.Id + '" class="edit dropdown-item">'
+                                + '<i class="icon-pen3"></i> '+'@Captions.Edit'+' </a>'
                                 + '<a onclick="remove(' + full.Id + ');" class="dropdown-item">'
-                                + '<i class="icon-trash4"></i> حذف </a>';
+                                + '<i class="icon-trash4"></i> '+'@Captions.Remove'+' </a>';
 
                         }
-                    }
-                ]
-                ,
+                    },
+                    {
+                        "targets": 1,
+                        "render": function (data, type, full, meta) {
+                            return '<img src="/Content/images/flags/' + full.FlagLanguage + '" class="thumbnail"> ' + full.Title;
+                        }
+                    },
+                ],
                 "aoColumns": [
                     { "mDataProp": "RowNumber" },
-                    { "mDataProp": "Url" },
+                    { "mDataProp": "Language" },
                     { "mDataProp": "Order" },
                     { "no": "no" }
-                ],
-
-                "oLanguage": {
-                    "sUrl": "/Content/js/plugins/tables/datatable/dataTables.persian.txt"
-                }
+                ]
             });
-
         });
 
-        function edit(id) {
-            CardBlock('.card');
-            var url = "@Url.Action(MVC.Admin.Advertise.Edit())";
-            $.get(url + '/' + id, function (data) {
-                $('#edit-container').html(data);
-                $('#Edit').modal('show');
-                CardUnBlock('.card');
-                Icheck();
-                AjaxForm.EnableAjaxFormvalidate('Edit');
-            });
-        };
 
-         function remove(id) {
-            PostData("@Url.Action(MVC.Admin.Advertise.Remove())", { id: id });
-        }
+            function remove(id) {
+                PostData("@Url.Action(MVC.Admin.IndexSection.Remove())", { id: id });
+            }
 
     </script>
 }
+

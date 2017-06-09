@@ -18,8 +18,7 @@ using Netotik.ViewModels.Common.Setting;
 namespace Netotik.Web.Areas.Admin.Controllers
 {
     [Mvc5Authorize(Roles = AssignableToRolePermissions.CanAccessPublicSetting)]
-    [BreadCrumb(Title = "تنظیمات سایت", UseDefaultRouteUrl = true, RemoveAllDefaultRouteValues = true,
- Order = 0, GlyphIcon = "icon icon-cog")]
+    [BreadCrumb(Title = "PublicConfig", UseDefaultRouteUrl = true,Order = 0, GlyphIcon = "icon-cogs2")]
     public partial class ConfigurationController : BaseController
     {
         private readonly ISettingService _settingService;
@@ -47,11 +46,11 @@ namespace Netotik.Web.Areas.Admin.Controllers
                 _settingService.Update(model);
                 _uow.SaveChanges();
                 Netotik.Web.Infrastructure.Caching.PublicUICache.RemoveSiteConfig(HttpContext);
-                this.MessageSuccess(Messages.MissionSuccess, Messages.UpdateSettingSuccess);
+                this.MessageSuccess(Captions.MissionSuccess, Captions.UpdateSettingSuccess);
             }
             catch
             {
-                this.MessageError(Messages.MissionFail, Messages.AddError);
+                this.MessageError(Captions.MissionFail, Captions.AddError);
                 return View();
             }
 

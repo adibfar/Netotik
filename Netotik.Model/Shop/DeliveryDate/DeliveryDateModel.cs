@@ -14,8 +14,8 @@ namespace Netotik.ViewModels.Shop.DeliveryDate
     {
         public int? Id { get; set; }
 
-         [Required(ErrorMessageResourceType = typeof(Messages), ErrorMessageResourceName = "RequiredError")]
-        [MaxLength(100, ErrorMessageResourceType = typeof(Messages), ErrorMessageResourceName = "MaxLengthError")]
+         [Required(ErrorMessageResourceType = typeof(Captions), ErrorMessageResourceName = "RequiredError")]
+        [MaxLength(100, ErrorMessageResourceType = typeof(Captions), ErrorMessageResourceName = "MaxLengthError")]
         [Display(ResourceType = typeof(Captions), Name = "Name")]
         public string Name { get; set; }
         

@@ -311,9 +311,6 @@
     <Compile Include="AccountController.generated.cs">
       <DependentUpon>T4MVC.tt</DependentUpon>
     </Compile>
-    <Compile Include="Admin.AdvertiseController.generated.cs">
-      <DependentUpon>T4MVC.tt</DependentUpon>
-    </Compile>
     <Compile Include="Admin.CityController.generated.cs">
       <DependentUpon>T4MVC.tt</DependentUpon>
     </Compile>
@@ -336,6 +333,9 @@
       <DependentUpon>T4MVC.tt</DependentUpon>
     </Compile>
     <Compile Include="Admin.HomeController.generated.cs">
+      <DependentUpon>T4MVC.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Admin.IndexSectionController.generated.cs">
       <DependentUpon>T4MVC.tt</DependentUpon>
     </Compile>
     <Compile Include="Admin.LanguageController.generated.cs">
@@ -403,6 +403,7 @@
     <Compile Include="App_Start\Startup.cs" />
     <Compile Include="App_Start\StructureMapControllerFactory.cs" />
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
+    <Compile Include="Areas\Admin\Controllers\IndexSectionController.cs" />
     <Compile Include="Areas\Admin\Controllers\StatisticsController.cs" />
     <Compile Include="Areas\Admin\Controllers\LanguageController.cs" />
     <Compile Include="Areas\Admin\Controllers\TicketTagController.cs" />
@@ -424,7 +425,6 @@
     <Compile Include="Areas\Admin\Controllers\ShopPaymentTypeController.cs" />
     <Compile Include="Areas\Admin\Controllers\ShopManuFacturerController.cs" />
     <Compile Include="Areas\Admin\Controllers\ShopProductAttributeController.cs" />
-    <Compile Include="Areas\Admin\Controllers\AdvertiseController.cs" />
     <Compile Include="Areas\Admin\Controllers\SliderController.cs" />
     <Compile Include="Areas\Admin\Controllers\ContentController.cs" />
     <Compile Include="Areas\Admin\Controllers\ContentCategoryController.cs" />
@@ -487,6 +487,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Infrastructure\Hubs\OnlineUsersHub.cs" />
+    <Compile Include="Infrastructure\InternationalizationAttribute.cs" />
     <Compile Include="Infrastructure\Modules\StatModule.cs" />
     <Compile Include="LoginController.generated.cs">
       <DependentUpon>T4MVC.tt</DependentUpon>
@@ -536,16 +537,16 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="App_Data\Languages\en.xml">
-      <SubType>Designer</SubType>
-    </Content>
+    <Content Include="App_Data\Languages\en.xml" />
     <Content Include="App_Data\Languages\fa.xml">
       <SubType>Designer</SubType>
     </Content>
     <Content Include="Content\css\Ltr\app.min.css" />
     <Content Include="Content\css\Ltr\vendors.min.css" />
     <Content Include="Content\css\Rtl\my-style.css" />
-    <Content Include="Content\images\3.jpg" />
+    <Content Include="Content\fonts\icomoon.css" />
+    <Content Include="Content\fonts\icomoon\icomoon.svg" />
+    <Content Include="Content\images\earth.jpg" />
     <Content Include="Content\images\brands\anet.png" />
     <Content Include="Content\images\brands\avatech.png" />
     <Content Include="Content\images\brands\azad.png" />
@@ -1506,7 +1507,6 @@
     <Content Include="Content\fonts\flag-icon-css\flags\4x3\za.svg" />
     <Content Include="Content\fonts\flag-icon-css\flags\4x3\zm.svg" />
     <Content Include="Content\fonts\flag-icon-css\flags\4x3\zw.svg" />
-    <Content Include="Content\fonts\icomoon.css" />
     <Content Include="Content\images\backgrounds\bg-12.jpg" />
     <Content Include="Content\images\backgrounds\bg-14.jpg" />
     <Content Include="Content\images\backgrounds\bg-2.jpg" />
@@ -2254,10 +2254,6 @@
     <Content Include="Content\PublicUI\images\loaders\8s.gif" />
     <Content Include="Content\PublicUI\images\loaders\9.gif" />
     <Content Include="Content\PublicUI\images\loaders\9s.gif" />
-    <Content Include="Content\PublicUI\images\logo-footer-dark.png" />
-    <Content Include="Content\PublicUI\images\logo-footer.png" />
-    <Content Include="Content\PublicUI\images\logo_dark.png" />
-    <Content Include="Content\PublicUI\images\logo_light.png" />
     <Content Include="Content\PublicUI\images\male.png" />
     <Content Include="Content\PublicUI\images\misc\icon-amazon.png" />
     <Content Include="Content\PublicUI\images\misc\shadow1.png" />
@@ -3377,6 +3373,7 @@
     <Content Include="Content\PublicUI\plugins\widget.twittie\twittie.min.js" />
     <Content Include="Content\Upload\Image\Avatar\CommentUser.png" />
     <Content Include="Content\Upload\Image\Avatar\Default.png" />
+    <Content Include="Content\Upload\Image\Content\background.jpg" />
     <Content Include="Content\Upload\Image\Content\Default.png" />
     <Content Include="NoScript.html" />
     <Content Include="persian date info.txt" />
@@ -3440,10 +3437,6 @@
     <Content Include="Areas\Admin\Views\Menu\Index.cshtml" />
     <Content Include="Areas\Admin\Views\Comments\_Table.cshtml" />
     <Content Include="Areas\Admin\Views\Comments\Index.cshtml" />
-    <Content Include="Areas\Admin\Views\Advertise\_Create.cshtml" />
-    <Content Include="Areas\Admin\Views\Advertise\_Edit.cshtml" />
-    <Content Include="Areas\Admin\Views\Advertise\_Table.cshtml" />
-    <Content Include="Areas\Admin\Views\Advertise\Index.cshtml" />
     <Content Include="Areas\Admin\Views\Comments\_Edit.cshtml" />
     <Content Include="Areas\Admin\Views\Comments\_Reply.cshtml" />
     <Content Include="Areas\Admin\Views\ContactUs\Index.cshtml" />
@@ -3486,9 +3479,11 @@
     <Content Include="Areas\Company\Views\Hotspot\Access.cshtml" />
     <Content Include="Areas\Company\Views\Router\RouterSetting.cshtml" />
     <Content Include="Areas\Company\Views\Hotspot\Servers.cshtml" />
-    <None Include="Content\fonts\icomoon\icomoon.eot" />
-    <Content Include="Content\fonts\icomoon\icomoon.svg" />
-    <None Include="Content\fonts\icomoon\icomoon.ttf" />
+    <Content Include="Areas\Admin\Views\IndexSection\_Table.cshtml" />
+    <Content Include="Areas\Admin\Views\IndexSection\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\IndexSection\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\IndexSection\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Language\_CreateByXml.cshtml" />
     <Content Include="Content\fonts\IRANSansWeb\IRANSansWeb.eot" />
     <Content Include="Content\fonts\IRANSansWeb\IRANSansWeb.ttf" />
     <Content Include="Content\fonts\IRANSansWeb\IRANSansWeb.woff" />
@@ -3606,6 +3601,8 @@
     <Content Include="Content\PublicUI\plugins\slider.swiper\dist\js\maps\swiper.min.js.map" />
     <Content Include="Content\PublicUI\plugins\styleswitcher\color_schemes\color_scheme.fla" />
     <Content Include="Content\images\logo\faveicon\manifest.json" />
+    <Content Include="Content\fonts\icomoon\icomoon.eot" />
+    <Content Include="Content\fonts\icomoon\icomoon.ttf" />
     <None Include="Properties\PublishProfiles\DNMA.pubxml" />
     <None Include="T4MVC.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
@@ -3765,8 +3762,6 @@
     <Content Include="Views\SharedPublic\_CaptchaPartial.cshtml" />
     <Content Include="Views\SharedPublic\_CaptchaPartial2.cshtml" />
     <Content Include="Views\SharedPublic\_Footer.cshtml" />
-    <Content Include="Views\SharedPublic\_FooterAddress.cshtml" />
-    <Content Include="Views\SharedPublic\_FooterPopularPost.cshtml" />
     <Content Include="Views\SharedPublic\_Header.cshtml" />
     <Content Include="Views\SharedPublic\_HeaderMenu.cshtml" />
     <Content Include="Views\SharedPublic\_Layout.cshtml" />
@@ -3793,6 +3788,7 @@
     <Content Include="Views\Shared\_HeaderPanelCss.cshtml" />
     <Content Include="Views\Shared\_LanagaugeSelector.cshtml" />
     <Content Include="Views\SharedPublic\_Message.cshtml" />
+    <Content Include="Views\Home\_Section.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />

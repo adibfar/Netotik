@@ -145,6 +145,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Abstract\IIndexSectionService.cs" />
     <Compile Include="Abstract\IStatisticsCountryService.cs" />
     <Compile Include="Abstract\IStatisticsService.cs" />
     <Compile Include="Abstract\ICityService.cs" />
@@ -161,7 +162,6 @@
     <Compile Include="Abstract\IProductAttributeValueService.cs" />
     <Compile Include="Abstract\IProductService.cs" />
     <Compile Include="Abstract\IProductAttributeService.cs" />
-    <Compile Include="Abstract\IAdvertiseService.cs" />
     <Compile Include="Abstract\IUserMailer.cs" />
     <Compile Include="Abstract\IBaseService.cs" />
     <Compile Include="Abstract\IPaymentTypeService.cs" />
@@ -169,7 +169,7 @@
     <Compile Include="Abstract\IContentTagService.cs" />
     <Compile Include="Abstract\IMenuService.cs" />
     <Compile Include="Abstract\IContentCommentService.cs" />
-    <Compile Include="Abstract\ILinkService.cs" />
+    <Compile Include="Abstract\ILanguageTranslationService.cs" />
     <Compile Include="Abstract\IFileService.cs" />
     <Compile Include="Abstract\ICategoryService.cs" />
     <Compile Include="Abstract\IStateService.cs" />
@@ -204,11 +204,11 @@
     <Compile Include="Identity\PermissionRecord.cs" />
     <Compile Include="Identity\PermissionService.cs" />
     <Compile Include="Identity\StandardRoles.cs" />
+    <Compile Include="Implement\IndexSectionService.cs" />
     <Compile Include="Implement\StatisticsCountryService.cs" />
     <Compile Include="Implement\StatisticsService.cs" />
     <Compile Include="Implement\LanguageService.cs" />
     <Compile Include="Implement\TicketTagService.cs" />
-    <Compile Include="Implement\AdertiseService.cs" />
     <Compile Include="Implement\MikrotikServices.cs" />
     <Compile Include="Implement\LocaleStringResourceService.cs" />
     <Compile Include="Implement\TicketService.cs" />
@@ -229,7 +229,7 @@
     <Compile Include="Implement\MenuService.cs" />
     <Compile Include="Implement\ContentCommentService.cs" />
     <Compile Include="Implement\ImageGalleryItemService.cs" />
-    <Compile Include="Implement\LinkService.cs" />
+    <Compile Include="Implement\LanguageTranslationService.cs" />
     <Compile Include="Implement\FileService.cs" />
     <Compile Include="Implement\CategoryService.cs" />
     <Compile Include="Implement\StateService.cs" />

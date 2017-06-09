@@ -14,9 +14,9 @@ namespace Netotik.ViewModels.Shop.Discount
     public class DiscountModel
     {
         public int? Id { get; set; }
-        [Required(ErrorMessageResourceType = typeof(Messages), ErrorMessageResourceName = "RequiredError")]
-        [MaxLength(100, ErrorMessageResourceType = typeof(Messages), ErrorMessageResourceName = "MaxLengthError")]
-        [MinLength(3, ErrorMessageResourceType = typeof(Messages), ErrorMessageResourceName = "MinLengthError")]
+        [Required(ErrorMessageResourceType = typeof(Captions), ErrorMessageResourceName = "RequiredError")]
+        [MaxLength(100, ErrorMessageResourceType = typeof(Captions), ErrorMessageResourceName = "MaxLengthError")]
+        [MinLength(3, ErrorMessageResourceType = typeof(Captions), ErrorMessageResourceName = "MinLengthError")]
         [Display(ResourceType = typeof(Captions), Name = "Name")]
         public string Name { get; set; }
 
@@ -25,14 +25,14 @@ namespace Netotik.ViewModels.Shop.Discount
         public string Description { get; set; }
 
         [Display(ResourceType = typeof(Captions), Name = "DiscountType")]
-        [Required(ErrorMessageResourceType = typeof(Messages), ErrorMessageResourceName = "RequiredError")]
+        [Required(ErrorMessageResourceType = typeof(Captions), ErrorMessageResourceName = "RequiredError")]
         public DiscountType DiscountType { get; set; }
 
         [Display(ResourceType = typeof(Captions), Name = "UsePercentage")]
         public bool UsePercentage { get; set; }
 
         [Display(ResourceType = typeof(Captions), Name = "DiscountPercentage")]
-        [Range(1, 100, ErrorMessageResourceType = typeof(Messages), ErrorMessageResourceName = "RangeError")]
+        [Range(1, 100, ErrorMessageResourceType = typeof(Captions), ErrorMessageResourceName = "RangeError")]
         public int? DiscountPercentage { get; set; }
 
         [Display(ResourceType = typeof(Captions), Name = "DiscountAmount")]
@@ -48,7 +48,7 @@ namespace Netotik.ViewModels.Shop.Discount
         [Display(ResourceType = typeof(Captions), Name = "EndDatePublish")]
         public DateTime? EndDate { get; set; }
 
-        [Required(ErrorMessageResourceType = typeof(Messages), ErrorMessageResourceName = "RequiredError")]
+        [Required(ErrorMessageResourceType = typeof(Captions), ErrorMessageResourceName = "RequiredError")]
         [Display(ResourceType = typeof(Captions), Name = "CouponRequire")]
         public bool RequiersCouponCode { get; set; }
 

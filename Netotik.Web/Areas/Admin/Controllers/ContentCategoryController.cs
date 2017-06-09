@@ -28,20 +28,22 @@ using Netotik.Common.DataTables;
 namespace Netotik.Web.Areas.Admin.Controllers
 {
     [Mvc5Authorize(Roles = AssignableToRolePermissions.CanAccessContentCategory)]
-    [BreadCrumb(Title = "لیست موضوعات مطالب", UseDefaultRouteUrl = true, RemoveAllDefaultRouteValues = true,
- Order = 0, GlyphIcon = "icon icon-table")]
+    [BreadCrumb(Title = "SubjectsList", UseDefaultRouteUrl = true, Order = 0, GlyphIcon = "icon-th-large")]
     public partial class ContentCategoryController : BaseController
     {
 
         #region ctor
         private readonly IContentCategoryService _contentCategoryService;
+        private readonly ILanguageService _languagesService;
         private readonly IUnitOfWork _uow;
 
         public ContentCategoryController(
-            IContentCategoryService contentCAtegoryService,
+            IContentCategoryService contentCategoryService,
+            ILanguageService languagesService,
             IUnitOfWork uow)
         {
-            _contentCategoryService = contentCAtegoryService;
+            _languagesService = languagesService;
+            _contentCategoryService = contentCategoryService;
             _uow = uow;
         }
         #endregion
@@ -74,7 +76,8 @@ namespace Netotik.Web.Areas.Admin.Controllers
         #region Create
         public virtual ActionResult Create()
         {
-            LoadCategories();
+            PopulateCategories();
+            PopulateLangauges();
             return PartialView(MVC.Admin.ContentCategory.Views._Create);
         }
 
@@ -82,18 +85,20 @@ namespace Netotik.Web.Areas.Admin.Controllers
         [HttpPost,]
         public virtual async Task<ActionResult> Create(ContentCategoryModel model, ActionType actionType = ActionType.Save)
         {
-            LoadCategories(model.ParentId);
+            PopulateCategories(model.ParentId);
+            PopulateLangauges(model.LanguageId);
 
             if (!ModelState.IsValid)
             {
-                this.MessageError(Messages.MissionFail, Messages.AddError);
+                this.MessageError(Captions.MissionFail, Captions.AddError);
                 return RedirectToAction(MVC.Admin.ContentCategory.Index());
             }
 
             var subject = new ContentCategory()
             {
                 Name = model.Name,
-                ParentId = model.ParentId
+                ParentId = model.ParentId,
+                LanguageId = model.LanguageId
             };
 
             _contentCategoryService.Add(subject);
@@ -105,11 +110,11 @@ namespace Netotik.Web.Areas.Admin.Controllers
             }
             catch
             {
-                this.MessageError(Messages.MissionFail, Messages.AddError);
+                this.MessageError(Captions.MissionFail, Captions.AddError);
                 return View();
             }
 
-            this.MessageSuccess(Messages.MissionSuccess, Messages.AddSuccess);
+            this.MessageSuccess(Captions.MissionSuccess, Captions.AddSuccess);
             return RedirectToAction(MVC.Admin.ContentCategory.Index());
         }
         #endregion
@@ -125,10 +130,10 @@ namespace Netotik.Web.Areas.Admin.Controllers
             {
                 subject.IsDeleted = true;
                 await _uow.SaveChangesAsync();
-                this.MessageSuccess(Messages.MissionSuccess, Messages.RemoveSuccess);
+                this.MessageSuccess(Captions.MissionSuccess, Captions.RemoveSuccess);
                 return RedirectToAction(MVC.Admin.ContentCategory.ActionNames.Index);
             }
-            this.MessageError(Messages.MissionFail, Messages.RemoveError);
+            this.MessageError(Captions.MissionFail, Captions.RemoveError);
             return RedirectToAction(MVC.Admin.ContentCategory.ActionNames.Index);
 
         }
@@ -138,14 +143,16 @@ namespace Netotik.Web.Areas.Admin.Controllers
         {
             var model = _contentCategoryService.SingleOrDefault(id);
             if (model == null) return RedirectToAction(MVC.Admin.ContentCategory.Index());
-            LoadCategories(model.ParentId, model.Id);
+            PopulateCategories(model.ParentId, model.Id);
+            PopulateLangauges(model.LanguageId);
 
             return PartialView(MVC.Admin.ContentCategory.Views._Edit
                 , new ContentCategoryModel
                 {
                     Id = model.Id,
                     Name = model.Name,
-                    ParentId = model.ParentId
+                    ParentId = model.ParentId,
+                    LanguageId = model.LanguageId
                 });
         }
 
@@ -156,16 +163,17 @@ namespace Netotik.Web.Areas.Admin.Controllers
             var cat = _contentCategoryService.SingleOrDefault(model.Id);
             if (cat == null) return RedirectToAction(MVC.Admin.ContentCategory.ActionNames.Index);
 
-            LoadCategories(model.Id, model.ParentId);
+            PopulateCategories(model.Id, model.ParentId);
 
             if (!ModelState.IsValid)
             {
-                this.MessageError(Messages.MissionFail, Messages.InvalidDataError);
+                this.MessageError(Captions.MissionFail, Captions.InvalidDataError);
                 return RedirectToAction(MVC.Admin.ContentCategory.Index());
             }
 
             cat.Name = model.Name;
             cat.ParentId = model.ParentId;
+            cat.LanguageId = model.LanguageId;
             _contentCategoryService.Update(cat);
             try
             {
@@ -173,11 +181,11 @@ namespace Netotik.Web.Areas.Admin.Controllers
             }
             catch
             {
-                this.MessageError(Messages.MissionFail, Messages.UpdateSuccess);
+                this.MessageError(Captions.MissionFail, Captions.UpdateSuccess);
                 return View();
             }
 
-            this.MessageSuccess(Messages.MissionSuccess, Messages.UpdateSuccess);
+            this.MessageSuccess(Captions.MissionSuccess, Captions.UpdateSuccess);
             return RedirectToAction(MVC.Admin.ContentCategory.Index());
         }
 
@@ -187,11 +195,17 @@ namespace Netotik.Web.Areas.Admin.Controllers
 
         #region Private
 
-        private void LoadCategories(int? selectedId = null, int? catId = null)
+        private void PopulateCategories(int? selectedId = null, int? catId = null)
         {
             var list = _contentCategoryService.All().Where(x => !x.IsDeleted).ToList();
             if (catId.HasValue) list = list.Where(x => x.Id != catId.Value).ToList();
             ViewBag.Categories = new SelectList(list, "Id", "Name", selectedId);
+        }
+
+        private void PopulateLangauges(int? selectedId = null)
+        {
+            var list = _languagesService.All().Where(x => x.Published).ToList();
+            ViewBag.Languages = new SelectList(list, "Id", "Name", selectedId);
         }
 
         #endregion

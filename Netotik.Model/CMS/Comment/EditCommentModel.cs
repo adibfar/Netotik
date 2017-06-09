@@ -11,22 +11,23 @@ namespace Netotik.ViewModels.CMS.Comment
     public class EditCommentModel
     {
         public int Id { get; set; }
-        [Display(Name="پیــام")]
-        [Required(ErrorMessage="لطفا پیام را وارد کنید.")]
+
+        [Display(ResourceType = typeof(Captions), Name = "Message")]
+        [Required(ErrorMessageResourceType = typeof(Captions), ErrorMessageResourceName = "RequiredError")]
         public string Text { get; set; }
 
-        [Required(ErrorMessage = "نام خود را وارد کنید")]
-        [MaxLength(100, ErrorMessage = "حدااکثر 100 کاراکتر")]
-        [MinLength(3, ErrorMessage = "حداقل 3 کاراکتر")]
-        [Display(ResourceType = typeof(Captions), Name = "Name")]
+        [Display(ResourceType = typeof(Captions), Name = "Message")]
+        [Required(ErrorMessageResourceType = typeof(Captions), ErrorMessageResourceName = "RequiredError")]
+        [MaxLength(100, ErrorMessageResourceType = typeof(Captions), ErrorMessageResourceName = "MaxLengthError")]
+        [MinLength(3, ErrorMessageResourceType = typeof(Captions), ErrorMessageResourceName = "MinLengthError")]
         public string Name { get; set; }
 
 
-        [Required(ErrorMessage = "ایمیل خود را وارد کنید")]
-        [MaxLength(300, ErrorMessage = "حداکثر 300 کاراکتر")]
+        [Required(ErrorMessageResourceType = typeof(Captions), ErrorMessageResourceName = "RequiredError")]
+        [MaxLength(100, ErrorMessageResourceType = typeof(Captions), ErrorMessageResourceName = "MaxLengthError")]
         [Display(ResourceType = typeof(Captions), Name = "Email")]
         [RegularExpression(@"^([a-zA-Z0-9_\-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([a-zA-Z0-9\-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$",
-                    ErrorMessage = "ایمیل نامعتبر است")]
+                    ErrorMessageResourceType = typeof(Captions), ErrorMessageResourceName = "NotValidError")]
         public string Email { get; set; }
 
     }

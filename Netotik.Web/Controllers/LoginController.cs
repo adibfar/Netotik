@@ -45,7 +45,7 @@ namespace Netotik.Web.Controllers
         }
 
         [AllowAnonymous]
-        [Route("Net/{ResellerCode}")]
+        [Route("{lang}/Net/{ResellerCode}")]
         public virtual async Task<ActionResult> Company(string ReturnUrl, string ResellerCode)
         {
             if (User.Identity.IsAuthenticated && _applicationRoleManager.FindUserPermissions(long.Parse(User.Identity.GetUserId())).Any(x => x == "Company"))
@@ -62,7 +62,7 @@ namespace Netotik.Web.Controllers
         [AllowAnonymous]
         [HttpPost]
         [ValidateAntiForgeryToken]
-        [Route("Net/{ResellerCode}")]
+        [Route("{lang}/Net/{ResellerCode}")]
         public virtual async Task<ActionResult> Company(Netotik.ViewModels.Identity.UserCompany.LoginModel model, string ReturnUrl, string ResellerCode)
         {
             ViewBag.CompanyName = ResellerCode;
@@ -70,7 +70,7 @@ namespace Netotik.Web.Controllers
 
             if (!ModelState.IsValid)
             {
-                ViewBag.Message = "اطلاعات وارد شده صحیح نیست.";
+                ViewBag.Message = Captions.UsernameOrPasswordWrong;
                 return View(model);
             }
 
@@ -80,9 +80,17 @@ namespace Netotik.Web.Controllers
             var loggedinUser = await _applicationUserManager.FindAsync(model.UserName, model.Password);
             if (loggedinUser == null || loggedinUser.IsDeleted)
             {
-                ViewBag.Message = "اطلاعات وارد شده صحیح نیست.";
+                ViewBag.Message = Captions.UsernameOrPasswordWrong;
                 return View(model);
             }
+
+            if (loggedinUser.UserType == Domain.Entity.UserType.UserCompany)
+            {
+                ViewBag.Message = Captions.UsernameOrPasswordWrong;
+                return View(model);
+            }
+
+
             /*
             if (loggedinUser.IsBanned)
             {
@@ -146,26 +154,33 @@ namespace Netotik.Web.Controllers
 
             if (!ModelState.IsValid)
             {
-                ViewBag.Message = "اطلاعات وارد شده صحیح نیست.";
+                ViewBag.Message = Captions.UsernameOrPasswordWrong;
                 return View(model);
             }
 
             var loggedinUser = await _applicationUserManager.FindAsync(model.UserName, model.Password);
             if (loggedinUser == null || loggedinUser.IsDeleted)
             {
-                ViewBag.Message = "اطلاعات وارد شده صحیح نیست.";
+                ViewBag.Message = Captions.UsernameOrPasswordWrong;
+                return View(model);
+            }
+
+
+            if (loggedinUser.UserType == Domain.Entity.UserType.UserReseller)
+            {
+                ViewBag.Message = Captions.UsernameOrPasswordWrong;
                 return View(model);
             }
 
             if (loggedinUser.IsBanned)
             {
-                ViewBag.Message = "حساب کاربری شما مسدود شده است.";
+                ViewBag.Message = Captions.YourAccountIsBlock;
                 return View(model);
             }
 
             if (!loggedinUser.EmailConfirmed)
             {
-                ViewBag.Message = "برای ورود به سایت لازم است حساب خود را فعال کنید.";
+                ViewBag.Message = Captions.ActiveYourAccount;
                 ViewBag.Link = true;
                 return View();
             }
@@ -188,8 +203,8 @@ namespace Netotik.Web.Controllers
                         $"دقیقه دوباره امتحان کنید {_applicationUserManager.DefaultAccountLockoutTimeSpan} حساب شما قفل شد ! لطفا بعد از ");
                     return View(model);
                 case SignInStatus.Failure:
-                    ModelState.AddModelError("UserName", "نام کاربری یا کلمه عبور  صحیح نمی باشد");
-                    ModelState.AddModelError("Password", "نام کاربری یا کلمه عبور  صحیح نمی باشد");
+                    ModelState.AddModelError("UserName", Captions.UsernameOrPasswordWrong);
+                    ModelState.AddModelError("Password", Captions.UsernameOrPasswordWrong);
                     return View(model);
                 default:
                     ModelState.AddModelError("UserName",

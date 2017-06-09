@@ -15,6 +15,7 @@ namespace Netotik.Services.Abstract
 
         Task<ContentCategory> GetSubjectByNameAsync(string name);
         IList<ContentCategoryItem> GetList(RequestListModel model, out long TotalCount, out long ShowCount);
+        IList<ContentCategory> GetAll(int languageId);
 
         IList<ContentCategory> GetbyIds(int[] ids);
 

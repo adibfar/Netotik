@@ -1,5 +1,7 @@
 ﻿@using Netotik.ViewModels.Identity.Security
 @{
+    ViewBag.Title = Captions.Contents;
+
     var Roles = Html.CurrentUserPermissions();
     var CanCreate = Roles.Any(x => x == AssignableToRolePermissions.CanCreateContent);
     var CanEdit = Roles.Any(x => x == AssignableToRolePermissions.CanEditContent);
@@ -15,7 +17,7 @@
                 @if (CanCreate)
                 {
                     <div class="card-header">
-                        <a href="@Url.Action(MVC.Admin.Content.Create())" class="btn btn-social width-150 btn-instagram"><span class="icon-plus font-medium-4"></span> مطلب جدید</a>
+                        <a href="@Url.Action(MVC.Admin.Content.Create())" class="btn btn-social width-150 btn-instagram"><span class="icon-plus font-medium-4"></span> @Captions.NewContent</a>
                     </div>
                 }
 
@@ -63,15 +65,15 @@
                     {
                         "targets": 1,
                         "render": function (data, type, full, meta) {
-                            var result = full.Title + ' ';
+                            var result = '<img src="/Content/images/flags/' + full.FlagLanguage + '" class="thumbnail"> '+full.Title + ' ';
                             if (full.status==0) {
-                                result += '<span class="tag tag-default">منتشر شده</span>';
+                                result += '<span class="tag tag-success">'+'@Captions.Published'+'</span>';
                             }
                             else if (full.status == 1) {
-                                result += '<span class="tag tag-default">در انتظار تایید</span>';
+                                result += '<span class="tag tag-default">'+'@Captions.WaitingForAccept'+'</span>';
                             }
                             else if (full.status == 2) {
-                                result += '<span class="tag tag-default">تایید نشده</span>';
+                                result += '<span class="tag tag-error">'+'@Captions.NotAccept'+'</span>';
                             }
                             return result;
                         }
@@ -88,23 +90,23 @@
                             if (canEdit == 'True' || canDelete == 'True') {
                                 result = '<span class="dropdown">'
                                     + '<button id="btnSearchDrop2" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" class="btn btn-outline-secondary dropdown-toggle dropdown-menu-right">'
-                                    + '<i class="icon-cog3"></i> پردازش</button><span aria-labelledby="btnSearchDrop2" class="dropdown-menu mt-1 dropdown-menu-right">';
+                                    + '<i class="icon-cog3"></i> '+'@Captions.Action'+'</button><span aria-labelledby="btnSearchDrop2" class="dropdown-menu mt-1 dropdown-menu-right">';
                                 if (canEdit == 'True') {
-                                    result += '<a href="/Admin/Content/Edit/' + full.Id + '" class="edit dropdown-item">'
-                                                                    + '<i class="icon-pen3"></i> ویرایش </a>'
+                                    result += '<a href="'+'@Url.Action(MVC.Admin.Content.Edit())'+'/'+ full.Id + '" class="edit dropdown-item">'
+                                                                    + '<i class="icon-pen3"></i> '+'@Captions.Edit'+' </a>'
                                     if ((full.status == 0 || full.status == 1)&& canDontAccept == 'True') {
                                         result += '<a onclick="notAccept(' + full.Id + ');" class="dropdown-item">'
-                                           + '<i class="icon-blocked"></i> عدم تایید</a>';
+                                           + '<i class="icon-blocked"></i> '+'@Captions.DontAccept'+'</a>';
                                     }
                                     if ((full.status == 1 || full.status == 2) && canAccept == 'True') {
                                         result += '<a onclick="accept(' + full.Id + ');" class="dropdown-item">'
-                                            + '<i class="icon-checkmark2"></i> تایید و انتشار</a>';
+                                            + '<i class="icon-checkmark2"></i> '+'@Captions.AcceptPublish'+'</a>';
                                     }
                                 }
 
                                 if (canDelete == 'True') {
                                     result += '<a onclick="remove(' + full.Id + ');" class="dropdown-item">'
-                                      + '<i class="icon-trash4"></i> حذف </a>';
+                                      + '<i class="icon-trash4"></i> '+'@Captions.Remove'+' </a>';
                                 }
                                 result += "</span></span>";
                             }
@@ -120,11 +122,7 @@
                     { "mDataProp": "UserCreator" },
                     { "mDataProp": "LastEdited" },
                     { "no": "no" }
-                ],
-
-                "oLanguage": {
-                    "sUrl": "/Content/js/plugins/tables/datatable/dataTables.persian.txt"
-                }
+                ]
             });
         });
 

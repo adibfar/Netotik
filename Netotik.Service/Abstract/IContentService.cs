@@ -17,9 +17,11 @@ namespace Netotik.Services.Abstract
 
         Task<ContentModel> GetForCreateAsync();
         Task<ContentModel> GetForEditAsync(int Id);
-        IList<Content> GetLastContents(int size);
-        IList<Content> GetLastPopular(int size);
-        IEnumerable<PublicItemContentModel> GetForPublicView(out int total, int page, int count, int? categoryId, int? tagId);
+        IList<Content> GetLastContents(int size,int languageId);
+        IList<Content> GetLastPopular(int size, int languageId);
+
+        IList<Content> GetRss(int size, int languageId);
+        IEnumerable<PublicItemContentModel> GetForPublicView(out int total, int page, int count, int languageId, int? categoryId, int? tagId);
         Task Publish(int id);
         Task UnPublish(int id);
 

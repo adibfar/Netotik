@@ -13,41 +13,41 @@ namespace Netotik.ViewModels.Common.Language
     {
         public int? Id { get; set; }
 
-        [Required(ErrorMessageResourceType = typeof(Messages), ErrorMessageResourceName = "RequiredError")]
-        [MaxLength(100, ErrorMessageResourceType = typeof(Messages), ErrorMessageResourceName = "MaxLengthError")]
+        [Required(ErrorMessageResourceType = typeof(Captions), ErrorMessageResourceName = "RequiredError")]
+        [MaxLength(100, ErrorMessageResourceType = typeof(Captions), ErrorMessageResourceName = "MaxLengthError")]
         [Display(ResourceType = typeof(Captions), Name = "Name")]
         public string Name { get; set; }
 
-        [Required(ErrorMessageResourceType = typeof(Messages), ErrorMessageResourceName = "RequiredError")]
-        [Display(Name = "LanguageCulture")]
+        [Required(ErrorMessageResourceType = typeof(Captions), ErrorMessageResourceName = "RequiredError")]
+        [Display(ResourceType = typeof(Captions), Name = "LanguageCulture")]
         public string LanguageCulture { get; set; }
 
-        [Required(ErrorMessageResourceType = typeof(Messages), ErrorMessageResourceName = "RequiredError")]
-        [MaxLength(100, ErrorMessageResourceType = typeof(Messages), ErrorMessageResourceName = "MaxLengthError")]
-        [Display(Name = "Url Code")]
+        [Required(ErrorMessageResourceType = typeof(Captions), ErrorMessageResourceName = "RequiredError")]
+        [MaxLength(100, ErrorMessageResourceType = typeof(Captions), ErrorMessageResourceName = "MaxLengthError")]
+        [Display(ResourceType = typeof(Captions), Name = "UrlCode")]
         public string UniqueSeoCode { get; set; }
 
-        [Required(ErrorMessageResourceType = typeof(Messages), ErrorMessageResourceName = "RequiredError")]
-        [Display(Name = "پرچم")]
+        [Required(ErrorMessageResourceType = typeof(Captions), ErrorMessageResourceName = "RequiredError")]
+        [Display(ResourceType = typeof(Captions), Name = "Flag")]
         public string FlagImageFileName { get; set; }
 
-        [Required(ErrorMessageResourceType = typeof(Messages), ErrorMessageResourceName = "RequiredError")]
-        [Display(Name = "راست چین؟")]
+        [Required(ErrorMessageResourceType = typeof(Captions), ErrorMessageResourceName = "RequiredError")]
+        [Display(ResourceType = typeof(Captions), Name = "IsRtl")]
         public bool Rtl { get; set; }
 
-        [Required(ErrorMessageResourceType = typeof(Messages), ErrorMessageResourceName = "RequiredError")]
-        [Display(Name = "منتشر شده؟")]
+        [Required(ErrorMessageResourceType = typeof(Captions), ErrorMessageResourceName = "RequiredError")]
+        [Display(ResourceType = typeof(Captions), Name = "IsPublish")]
         public bool Published { get; set; }
 
         [Display(ResourceType = typeof(Captions), Name = "IsDefault")]
-        [Required(ErrorMessageResourceType = typeof(Messages), ErrorMessageResourceName = "RequiredError")]
+        [Required(ErrorMessageResourceType = typeof(Captions), ErrorMessageResourceName = "RequiredError")]
         public bool IsDefault { get; set; }
 
-        [Required(ErrorMessageResourceType = typeof(Messages), ErrorMessageResourceName = "RequiredError")]
-        [Display(ResourceType = typeof(Captions), Name = "Order")]
+        [Required(ErrorMessageResourceType = typeof(Captions), ErrorMessageResourceName = "RequiredError")]
+        [Display(ResourceType = typeof(Captions), Name = "DisplayOrder")]
         public int DisplayOrder { get; set; }
-
-        [Display(Name = "Resource XML")]
+        
+        [Display(ResourceType = typeof(Captions), Name = "XmlResource")]
         public HttpPostedFileBase ResourcesXml { get; set; }
     }
 }

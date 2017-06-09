@@ -24,13 +24,14 @@ using Netotik.ViewModels.Common.Language;
 using System.Xml.Linq;
 using System.IO;
 using System.Globalization;
+using System.Xml;
+using System.Text;
 
 namespace Netotik.Web.Areas.Admin.Controllers
 {
 
     [Mvc5Authorize(Roles = AssignableToRolePermissions.CanAccessState)]
-    [BreadCrumb(Title = "لیست زبان ها", UseDefaultRouteUrl = true, RemoveAllDefaultRouteValues = true,
- Order = 0, GlyphIcon = "icon icon-table")]
+    [BreadCrumb(Title = "LanguagesList", UseDefaultRouteUrl = true, Order = 0, GlyphIcon = "icon-th-large")]
     public partial class LanguageController : BaseController
     {
 
@@ -77,7 +78,6 @@ namespace Netotik.Web.Areas.Admin.Controllers
         public virtual ActionResult Create()
         {
             LoadFlags();
-            LoadCultures();
             return PartialView(MVC.Admin.Language.Views._Create, new LanguageModel { Published = true });
         }
 
@@ -87,13 +87,13 @@ namespace Netotik.Web.Areas.Admin.Controllers
         {
             if (!ModelState.IsValid)
             {
-                this.MessageError(Messages.MissionFail, Messages.InvalidDataError);
+                this.MessageError(Captions.MissionFail, Captions.InvalidDataError);
                 return RedirectToAction(MVC.Admin.Language.Index());
             }
 
             if (model.ResourcesXml == null)
             {
-                this.MessageError(Messages.MissionFail, "فایل xml را وارد کنید");
+                this.MessageError(Captions.MissionFail, "فایل xml را وارد کنید");
                 return RedirectToAction(MVC.Admin.Language.Index());
             }
 
@@ -123,7 +123,7 @@ namespace Netotik.Web.Areas.Admin.Controllers
             }
             catch
             {
-                this.MessageError(Messages.MissionFail, "فایل xml معتبر نیست");
+                this.MessageError(Captions.MissionFail, "فایل xml معتبر نیست");
                 return RedirectToAction(MVC.Admin.Language.Index());
             }
 
@@ -134,15 +134,89 @@ namespace Netotik.Web.Areas.Admin.Controllers
             {
                 await _uow.SaveChangesAsync();
                 Netotik.Web.Infrastructure.Caching.LanguageCache.RemoveLanguageCache(HttpContext);
+
                 ModelState.Clear();
             }
             catch
             {
-                this.MessageError(Messages.MissionFail, Messages.AddError);
+                this.MessageError(Captions.MissionFail, Captions.AddError);
                 return RedirectToAction(MVC.Admin.Language.Index());
             }
 
-            this.MessageSuccess(Messages.MissionSuccess, Messages.AddSuccess);
+            this.MessageSuccess(Captions.MissionSuccess, Captions.AddSuccess);
+            return RedirectToAction(MVC.Admin.Language.Index());
+
+        }
+
+        public virtual ActionResult CreateByXml()
+        {
+            return PartialView(MVC.Admin.Language.Views._CreateByXml);
+        }
+
+
+        [ValidateAntiForgeryToken]
+        [HttpPost]
+        public virtual async Task<ActionResult> CreateByXml(LanguageXmlModel model, ActionType actionType = ActionType.Save)
+        {
+            if (!ModelState.IsValid)
+            {
+                this.MessageError(Captions.MissionFail, Captions.InvalidDataError);
+                return RedirectToAction(MVC.Admin.Language.Index());
+            }
+
+            if (model.ResourcesXml == null)
+            {
+                this.MessageError(Captions.MissionFail, "فایل xml را وارد کنید");
+                return RedirectToAction(MVC.Admin.Language.Index());
+            }
+
+            try
+            {
+                var lang = XDocument.Load(model.ResourcesXml.InputStream).Element("Language");
+
+
+                var entity = new Language()
+                {
+                    Name = lang.Attribute("Name").Value,
+                    LanguageCulture = lang.Attribute("LanguageCulture").Value,
+                    UniqueSeoCode = lang.Attribute("UniqueSeoCode").Value,
+                    FlagImageFileName = lang.Attribute("Image").Value,
+                    DisplayOrder = int.Parse(lang.Attribute("DisplayOrder").Value),
+                    Published = false,
+                    IsDefault = false,
+                    Rtl = lang.Attribute("Rtl").Value == "true" ? true : false
+                };
+
+
+
+                var resources = lang.Elements("LocaleResource")
+                    .Select(e => new Netotik.Domain.Entity.LocaleStringResource
+                    {
+                        Name = e.Attribute("Name").Value,
+                        Value = e.Value,
+                    });
+
+                entity.LocaleStringResources = resources.ToList();
+                _languageService.Add(entity);
+            }
+            catch
+            {
+                this.MessageError(Captions.MissionFail, "فایل xml معتبر نیست");
+                return RedirectToAction(MVC.Admin.Language.Index());
+            }
+
+
+            try
+            {
+                await _uow.SaveChangesAsync();
+            }
+            catch
+            {
+                this.MessageError(Captions.MissionFail, Captions.AddError);
+                return RedirectToAction(MVC.Admin.Language.Index());
+            }
+
+            this.MessageSuccess(Captions.MissionSuccess, Captions.AddSuccess);
             return RedirectToAction(MVC.Admin.Language.Index());
 
         }
@@ -155,10 +229,15 @@ namespace Netotik.Web.Areas.Admin.Controllers
             var lang = _languageService.SingleOrDefault(id);
             if (lang != null && !lang.IsDefault)
             {
+                
+                foreach (var item in lang.LocaleStringResources.ToList())
+                    _uow.MarkAsDeleted<LocaleStringResource>(item);
+
                 _languageService.Remove(lang);
+
                 await _uow.SaveChangesAsync();
                 Netotik.Web.Infrastructure.Caching.LanguageCache.RemoveLanguageCache(HttpContext);
-                this.MessageInformation(Messages.MissionSuccess, Messages.RemoveSuccess);
+                this.MessageInformation(Captions.MissionSuccess, Captions.RemoveSuccess);
             }
 
             return RedirectToAction(MVC.Admin.Language.Index());
@@ -171,7 +250,6 @@ namespace Netotik.Web.Areas.Admin.Controllers
                 return RedirectToAction(MVC.Admin.Language.Index());
 
             LoadFlags(model.FlagImageFileName);
-            LoadCultures(model.LanguageCulture);
 
             return PartialView(MVC.Admin.Language.Views._Edit,
                 new LanguageModel
@@ -192,17 +270,16 @@ namespace Netotik.Web.Areas.Admin.Controllers
         [HttpPost]
         public virtual async Task<ActionResult> Edit(LanguageModel model, ActionType actionType = ActionType.Save)
         {
-            var lang = _languageService.SingleOrDefault(model.Id);
+            var lang = await _languageService.All().Include(c => c.LocaleStringResources).FirstOrDefaultAsync(x => x.Id == model.Id);
             if (lang == null)
                 return RedirectToAction(MVC.Admin.Language.Index());
 
             LoadFlags(model.FlagImageFileName);
-            LoadCultures(model.LanguageCulture);
 
 
             if (!ModelState.IsValid)
             {
-                this.MessageError(Messages.MissionFail, Messages.InvalidDataError);
+                this.MessageError(Captions.MissionFail, Captions.InvalidDataError);
                 return RedirectToAction(MVC.Admin.Language.Index());
             }
 
@@ -225,38 +302,57 @@ namespace Netotik.Web.Areas.Admin.Controllers
                         {
                             Name = e.Attribute("Name").Value,
                             Value = e.Value,
+                            LanguageId = lang.Id
                         });
-                    lang.LocaleStringResources.Clear();
+                    foreach (var item in lang.LocaleStringResources.ToList())
+                        _uow.MarkAsDeleted<LocaleStringResource>(item);
                     lang.LocaleStringResources = resources.ToList();
                 }
-                catch
+                catch (Exception ex)
                 {
-                    this.MessageError(Messages.MissionFail, "فایل xml معتبر نیست");
+                    this.MessageError(Captions.MissionFail, "فایل xml معتبر نیست");
                     return RedirectToAction(MVC.Admin.Language.Index());
                 }
             }
 
             _languageService.Update(lang);
-
             try
             {
                 await _uow.SaveChangesAsync();
-                Netotik.Web.Infrastructure.Caching.LanguageCache.RemoveLanguageCache(HttpContext);
+                Infrastructure.Caching.LanguageCache.RemoveLanguageCache(base.HttpContext);
             }
-            catch
+            catch (Exception ex)
             {
-                this.MessageError(Messages.MissionFail, Messages.UpdateError);
+                this.MessageError(Captions.MissionFail, Captions.UpdateError);
                 return RedirectToAction(MVC.Admin.Language.Index());
             }
 
-            this.MessageSuccess(Messages.MissionSuccess, Messages.UpdateSuccess);
+            this.MessageSuccess(Captions.MissionSuccess, Captions.UpdateSuccess);
             return RedirectToAction(MVC.Admin.Language.Index());
         }
 
         #endregion
 
+        public virtual ActionResult Export(int Id)
+        {
+            var language = _languageService.All().Include(x => x.LocaleStringResources).FirstOrDefault(x => x.Id == Id);
+            if (language == null) return HttpNotFound();
+
+            var items = language.LocaleStringResources.ToList();
+            var xml = new XDocument(new XElement("Language",
+                new XAttribute("Name", language.Name),
+                new XAttribute("Image", language.FlagImageFileName),
+                new XAttribute("DisplayOrder", language.DisplayOrder),
+                new XAttribute("LanguageCulture", language.LanguageCulture),
+                new XAttribute("Rtl", language.Rtl),
+                new XAttribute("UniqueSeoCode", language.UniqueSeoCode),
+                from item in items
+                select new XElement("LocaleResource", new XAttribute("Name", item.Name), item.Value)));
+            return File(Encoding.UTF8.GetBytes(xml.ToString()), "application/force-download", "Language" + language.Name + ".xml");
+        }
 
         #region Resource
+        [BreadCrumb(Title = "Texts", Order = 2, GlyphIcon = "icon-file-word-o")]
         public virtual ActionResult Resources(int Id)
         {
             return View(MVC.Admin.Language.Views.IndexResources);
@@ -291,8 +387,8 @@ namespace Netotik.Web.Areas.Admin.Controllers
                 new ResourceModel
                 {
                     Id = model.Id,
-                    Value = model.Value,
-                    Key = model.Name
+                    Key = model.Name,
+                    Value = model.Value
                 });
         }
 
@@ -306,7 +402,7 @@ namespace Netotik.Web.Areas.Admin.Controllers
 
             if (!ModelState.IsValid)
             {
-                this.MessageError(Messages.MissionFail, Messages.InvalidDataError);
+                this.MessageError(Captions.MissionFail, Captions.InvalidDataError);
                 return RedirectToAction(MVC.Admin.Language.Resources(resource.LanguageId));
             }
 
@@ -316,14 +412,15 @@ namespace Netotik.Web.Areas.Admin.Controllers
             try
             {
                 await _uow.SaveChangesAsync();
+                Infrastructure.Caching.LanguageCache.RemoveLanguageCache(base.HttpContext);
             }
             catch
             {
-                this.MessageError(Messages.MissionFail, Messages.UpdateError);
+                this.MessageError(Captions.MissionFail, Captions.UpdateError);
                 return RedirectToAction(MVC.Admin.Language.Resources(resource.LanguageId));
             }
 
-            this.MessageSuccess(Messages.MissionSuccess, Messages.UpdateSuccess);
+            this.MessageSuccess(Captions.MissionSuccess, Captions.UpdateSuccess);
             return RedirectToAction(MVC.Admin.Language.Resources(resource.LanguageId));
         }
 
@@ -338,16 +435,6 @@ namespace Netotik.Web.Areas.Admin.Controllers
 
             ViewBag.Flags = files
                 .Select(x => new SelectListItem { Value = x, Text = x, Selected = selectedItem == x ? true : false })
-                .ToList();
-        }
-
-        private void LoadCultures(string selectedItem = "")
-        {
-            var list = CultureInfo.GetCultures(CultureTypes.AllCultures)
-                          .Except(CultureInfo.GetCultures(CultureTypes.SpecificCultures));
-
-            ViewBag.Cultures = list
-                .Select(x => new SelectListItem { Value = x.Name, Text = string.Format("{0} - {1}", x.Name, x.EnglishName), Selected = selectedItem == x.Name ? true : false })
                 .ToList();
         }
 

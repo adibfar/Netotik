@@ -83,13 +83,12 @@ namespace Netotik.Web.Controllers
             public readonly string AdminMenu = "AdminMenu";
             public readonly string LastBlog = "LastBlog";
             public readonly string Slider = "Slider";
+            public readonly string Section = "Section";
             public readonly string Footer = "Footer";
             public readonly string LanguageSelector = "LanguageSelector";
             public readonly string HeaderPublicCss = "HeaderPublicCss";
             public readonly string HeaderPanelCss = "HeaderPanelCss";
             public readonly string PanelLanguageSelector = "PanelLanguageSelector";
-            public readonly string FooterAddress = "FooterAddress";
-            public readonly string FooterPopularPost = "FooterPopularPost";
             public readonly string Header = "Header";
             public readonly string HeaderMenu = "HeaderMenu";
             public readonly string RedirectToLocal = "RedirectToLocal";
@@ -103,13 +102,12 @@ namespace Netotik.Web.Controllers
             public const string AdminMenu = "AdminMenu";
             public const string LastBlog = "LastBlog";
             public const string Slider = "Slider";
+            public const string Section = "Section";
             public const string Footer = "Footer";
             public const string LanguageSelector = "LanguageSelector";
             public const string HeaderPublicCss = "HeaderPublicCss";
             public const string HeaderPanelCss = "HeaderPanelCss";
             public const string PanelLanguageSelector = "PanelLanguageSelector";
-            public const string FooterAddress = "FooterAddress";
-            public const string FooterPopularPost = "FooterPopularPost";
             public const string Header = "Header";
             public const string HeaderMenu = "HeaderMenu";
             public const string RedirectToLocal = "RedirectToLocal";
@@ -135,12 +133,14 @@ namespace Netotik.Web.Controllers
             public class _ViewNamesClass
             {
                 public readonly string _LastBlog = "_LastBlog";
+                public readonly string _Section = "_Section";
                 public readonly string _SideBarCategory = "_SideBarCategory";
                 public readonly string _Slider = "_Slider";
                 public readonly string _StaticSlider = "_StaticSlider";
                 public readonly string Index = "Index";
             }
             public readonly string _LastBlog = "~/Views/Home/_LastBlog.cshtml";
+            public readonly string _Section = "~/Views/Home/_Section.cshtml";
             public readonly string _SideBarCategory = "~/Views/Home/_SideBarCategory.cshtml";
             public readonly string _Slider = "~/Views/Home/_Slider.cshtml";
             public readonly string _StaticSlider = "~/Views/Home/_StaticSlider.cshtml";
@@ -209,6 +209,17 @@ namespace Netotik.Web.Controllers
         }
 
         [NonAction]
+        partial void SectionOverride(T4MVC_System_Web_Mvc_PartialViewResult callInfo);
+
+        [NonAction]
+        public override System.Web.Mvc.PartialViewResult Section()
+        {
+            var callInfo = new T4MVC_System_Web_Mvc_PartialViewResult(Area, Name, ActionNames.Section);
+            SectionOverride(callInfo);
+            return callInfo;
+        }
+
+        [NonAction]
         partial void FooterOverride(T4MVC_System_Web_Mvc_PartialViewResult callInfo);
 
         [NonAction]
@@ -260,28 +271,6 @@ namespace Netotik.Web.Controllers
         {
             var callInfo = new T4MVC_System_Web_Mvc_PartialViewResult(Area, Name, ActionNames.PanelLanguageSelector);
             PanelLanguageSelectorOverride(callInfo);
-            return callInfo;
-        }
-
-        [NonAction]
-        partial void FooterAddressOverride(T4MVC_System_Web_Mvc_PartialViewResult callInfo);
-
-        [NonAction]
-        public override System.Web.Mvc.PartialViewResult FooterAddress()
-        {
-            var callInfo = new T4MVC_System_Web_Mvc_PartialViewResult(Area, Name, ActionNames.FooterAddress);
-            FooterAddressOverride(callInfo);
-            return callInfo;
-        }
-
-        [NonAction]
-        partial void FooterPopularPostOverride(T4MVC_System_Web_Mvc_PartialViewResult callInfo);
-
-        [NonAction]
-        public override System.Web.Mvc.PartialViewResult FooterPopularPost()
-        {
-            var callInfo = new T4MVC_System_Web_Mvc_PartialViewResult(Area, Name, ActionNames.FooterPopularPost);
-            FooterPopularPostOverride(callInfo);
             return callInfo;
         }
 

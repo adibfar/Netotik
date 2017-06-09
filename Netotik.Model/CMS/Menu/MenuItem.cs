@@ -15,6 +15,8 @@ namespace Netotik.ViewModels.CMS.Menu
         public string Parent { get; set; }
         public string Icon { get; set; }
         public string Url { get; set; }
-        
+        public string FlagLanguage { get; set; }
+        public int Order { get; set; }
+
     }
 }

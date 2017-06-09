@@ -20,6 +20,8 @@ using Netotik.Common.Extensions;
 using Netotik.Common.Caching;
 using Netotik.Common.Controller;
 using Netotik.Common.DataTables;
+using Netotik.Services.Abstract;
+using Netotik.ViewModels.Identity.UserAdmin;
 
 namespace Netotik.Services.Identity
 {
@@ -33,6 +35,8 @@ namespace Netotik.Services.Identity
         private readonly HttpContextBase _contextBase;
         private readonly IPermissionService _permissionService;
         private readonly IApplicationRoleManager _roleManager;
+        private readonly ILanguageService _languageService;
+        private readonly ILanguageTranslationService _languageTranslationService;
         private readonly IUnitOfWork _unitOfWork;
         private readonly IDbSet<User> _users;
         private readonly IDataProtectionProvider _dataProtectionProvider;
@@ -42,11 +46,13 @@ namespace Netotik.Services.Identity
 
         #region Constructor
 
-        public ApplicationUserManager(IIdentity identity,
+        public ApplicationUserManager(IIdentity identity, ILanguageService languageService, ILanguageTranslationService languageTranslationService,
             HttpContextBase contextBase, IPermissionService permissionService, IUserStore<User, long> userStore, IApplicationRoleManager roleManager, IUnitOfWork unitOfWork,
             IMappingEngine mappingEngine, IDataProtectionProvider dataProtectionProvider)
             : base(userStore)
         {
+            _languageTranslationService = languageTranslationService;
+            _languageService = languageService;
             _permissionService = permissionService;
             AutoCommitEnabled = true;
             _dataProtectionProvider = dataProtectionProvider;
@@ -67,7 +73,21 @@ namespace Netotik.Services.Identity
 
         public ViewModels.Identity.UserAdmin.ProfileModel GetUserAdminProfile()
         {
-            return _mappingEngine.Map<ViewModels.Identity.UserAdmin.ProfileModel>(GetCurrentUser());
+            var profile = _mappingEngine.Map<ViewModels.Identity.UserAdmin.ProfileModel>(GetCurrentUser());
+
+            profile.Items = _languageService
+                .All()
+                .Where(x => x.Published)
+                .Include(x => x.LanguageTranslationes)
+                .ToList()
+                .Select(x => new ProfileLanguageItem
+                {
+                    Language = x,
+                    ShortBio = _languageTranslationService.GetLocalized(GetCurrentUserId().ToString(), x.Id, "User", "ShortBio"),
+                    ShowName = _languageTranslationService.GetLocalized(GetCurrentUserId().ToString(), x.Id, "User", "ShowName")
+                }).ToList();
+
+            return profile;
         }
 
 
@@ -105,10 +125,53 @@ namespace Netotik.Services.Identity
             return selectedUsers;
         }
 
+
         public async Task UpdateUserAdminProfile(ViewModels.Identity.UserAdmin.ProfileModel model)
         {
             var user = _users.Find(GetCurrentUserId());
+            var id = user.Id.ToString();
+            var trans = await _languageTranslationService.All().Where(x => x.EntityId == id).ToListAsync();
             _mappingEngine.Map(model, user);
+
+            
+            
+            for (int a = 0; a < model.LanguageIds.Length; a++)
+            {
+                var showName = trans.FirstOrDefault(x => x.ObjectName == "User" && x.PropertyName == "ShowName" && x.LanguageId == model.LanguageIds[a]);
+                if (showName == null)
+                {
+                    _languageTranslationService.Add(new LanguageTranslation
+                    {
+                        EntityId = id,
+                        LanguageId = model.LanguageIds[a],
+                        ObjectName = "User",
+                        PropertyName = "ShowName",
+                        Value = model.ShowNames[a]
+                    });
+                }
+                else
+                {
+                    showName.Value = model.ShowNames[a];
+                }
+
+                var shortBio = trans.FirstOrDefault(x => x.ObjectName == "User" && x.PropertyName == "ShortBio" && x.LanguageId == model.LanguageIds[a]);
+                if (showName == null)
+                {
+                    _languageTranslationService.Add(new LanguageTranslation
+                    {
+                        EntityId = id,
+                        LanguageId = model.LanguageIds[a],
+                        ObjectName = "User",
+                        PropertyName = "ShortBio",
+                        Value = model.ShowNames[a]
+                    });
+                }
+                else
+                {
+                    showName.Value = model.ShowNames[a];
+                }
+
+            }
             await _unitOfWork.SaveChangesAsync();
         }
         public async Task UpdateUserResellerProfile(ViewModels.Identity.UserReseller.ProfileModel model)
@@ -162,7 +225,7 @@ namespace Netotik.Services.Identity
                 .ToList();
 
         }
-        
+
         public async Task UpdateUserCompanyMikrotikConf(ViewModels.Identity.UserCompany.MikrotikConfModel model)
         {
             var user = _users.Find(model.Id);

@@ -26,8 +26,7 @@ using Netotik.Common.DataTables;
 namespace Netotik.Web.Areas.Admin.Controllers
 {
     [Mvc5Authorize(Roles = AssignableToRolePermissions.CanAccessCity)]
-    [BreadCrumb(Title = "لیست شهرها", UseDefaultRouteUrl = true, RemoveAllDefaultRouteValues = true,
-    Order = 0, GlyphIcon = "icon icon-table")]
+    [BreadCrumb(Title = "CitiesList", UseDefaultRouteUrl = true, Order = 0, GlyphIcon = "icon-th-large")]
     public partial class CityController : BaseController
     {
 
@@ -46,7 +45,6 @@ namespace Netotik.Web.Areas.Admin.Controllers
             _uow = uow;
         }
         #endregion
-
 
         #region Index
         public virtual ActionResult Index()
@@ -71,9 +69,7 @@ namespace Netotik.Web.Areas.Admin.Controllers
         }
         #endregion
 
-
         #region Create
-        [BreadCrumb(Title = "شهر جدید", Order = 1)]
         public virtual ActionResult Create()
         {
             LoadState();
@@ -86,7 +82,7 @@ namespace Netotik.Web.Areas.Admin.Controllers
         {
             if (!ModelState.IsValid)
             {
-                this.MessageError(Messages.MissionFail, Messages.InvalidDataError);
+                this.MessageError(Captions.MissionFail, Captions.InvalidDataError);
                 return RedirectToAction(MVC.Admin.City.Index());
             }
 
@@ -108,11 +104,11 @@ namespace Netotik.Web.Areas.Admin.Controllers
             }
             catch
             {
-                this.MessageError(Messages.MissionFail, Messages.AddError);
+                this.MessageError(Captions.MissionFail, Captions.AddError);
                 return RedirectToAction(MVC.Admin.City.Index());
             }
 
-            this.MessageSuccess(Messages.MissionSuccess, Messages.AddSuccess);
+            this.MessageSuccess(Captions.MissionSuccess, Captions.AddSuccess);
             return RedirectToAction(MVC.Admin.City.Index());
 
         }
@@ -127,7 +123,7 @@ namespace Netotik.Web.Areas.Admin.Controllers
             {
                 city.IsDeleted = true;
                 await _uow.SaveChangesAsync();
-                this.MessageInformation(Messages.MissionSuccess, Messages.RemoveSuccess);
+                this.MessageInformation(Captions.MissionSuccess, Captions.RemoveSuccess);
             }
 
             return RedirectToAction(MVC.Admin.City.Index());
@@ -165,7 +161,7 @@ namespace Netotik.Web.Areas.Admin.Controllers
 
             if (!ModelState.IsValid)
             {
-                this.MessageError(Messages.MissionFail, Messages.InvalidDataError);
+                this.MessageError(Captions.MissionFail, Captions.InvalidDataError);
                 return RedirectToAction(MVC.Admin.City.Index());
             }
 
@@ -183,17 +179,15 @@ namespace Netotik.Web.Areas.Admin.Controllers
             }
             catch
             {
-                this.MessageError(Messages.MissionFail, Messages.UpdateError);
+                this.MessageError(Captions.MissionFail, Captions.UpdateError);
                 return RedirectToAction(MVC.Admin.City.Index());
             }
 
-            this.MessageSuccess(Messages.MissionSuccess, Messages.UpdateSuccess);
+            this.MessageSuccess(Captions.MissionSuccess, Captions.UpdateSuccess);
             return RedirectToAction(MVC.Admin.City.Index());
         }
 
         #endregion
-
-
 
         #region Private
 
@@ -205,9 +199,5 @@ namespace Netotik.Web.Areas.Admin.Controllers
 
 
         #endregion
-
-
-
-
     }
 }

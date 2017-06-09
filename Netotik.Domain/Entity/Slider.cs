@@ -9,6 +9,8 @@ namespace Netotik.Domain.Entity
         public string Url { get; set; }
         public bool IsActive { get; set; }
         public int Order { get; set; }
+        public int LanguageId { get; set; }
+        public Language Language { get; set; }
         public virtual Picture Picture { get; set; }
         public int PictureId { get; set; }
     }

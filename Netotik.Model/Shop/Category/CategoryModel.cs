@@ -16,9 +16,9 @@ namespace Netotik.ViewModels.Shop.Category
         [Display(ResourceType = typeof(Captions), Name = "Parent")]
         public int? ParentId { get; set; }
   
-        [Required(ErrorMessageResourceType = typeof(Messages), ErrorMessageResourceName = "RequiredError")]
-        [MaxLength(200, ErrorMessageResourceType = typeof(Messages), ErrorMessageResourceName = "MaxLengthError")]
-        [MinLength(3, ErrorMessageResourceType = typeof(Messages), ErrorMessageResourceName = "MinLengthError")]
+        [Required(ErrorMessageResourceType = typeof(Captions), ErrorMessageResourceName = "RequiredError")]
+        [MaxLength(200, ErrorMessageResourceType = typeof(Captions), ErrorMessageResourceName = "MaxLengthError")]
+        [MinLength(3, ErrorMessageResourceType = typeof(Captions), ErrorMessageResourceName = "MinLengthError")]
         [Display(ResourceType = typeof(Captions), Name = "Name")]
         [Remote("IsCategoryNameExist", "ShopCategory", AdditionalFields = "Id", HttpMethod = "POST", ErrorMessage = "این نام قبلا در سیستم ثبت شده است.")]
         public string Name { get; set; }
@@ -28,7 +28,7 @@ namespace Netotik.ViewModels.Shop.Category
         public string Description { get; set; }
 
         [Display(ResourceType = typeof(Captions), Name = "MetaKeywords")]
-        [MaxLength(400, ErrorMessageResourceType = typeof(Messages), ErrorMessageResourceName = "MaxLengthError")]
+        [MaxLength(400, ErrorMessageResourceType = typeof(Captions), ErrorMessageResourceName = "MaxLengthError")]
         [UIHint("Multiline")]
         public string MetaKeywords { get; set; }
 
@@ -38,7 +38,7 @@ namespace Netotik.ViewModels.Shop.Category
 
 
         [Display(ResourceType = typeof(Captions), Name = "MetaTitle")]
-        [MaxLength(400, ErrorMessageResourceType = typeof(Messages), ErrorMessageResourceName = "MaxLengthError")]
+        [MaxLength(400, ErrorMessageResourceType = typeof(Captions), ErrorMessageResourceName = "MaxLengthError")]
         [UIHint("Multiline")]
         public string MetaTitle { get; set; }
 

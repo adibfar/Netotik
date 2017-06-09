@@ -11,7 +11,6 @@ using System.Threading.Tasks;
 using System.Data.Entity;
 using PersianDate;
 using Netotik.Common;
-using Netotik.ViewModels.CMS.Advertise;
 using Netotik.Common.DataTables;
 
 namespace Netotik.Services.Implement

@@ -27,7 +27,7 @@
                 <li>
                     <a href="#">
                         <i class="fa fa-comments-o"></i>
-                        <span class="font-lato">@item.CommentCount دیدگاه</span>
+                        <span class="font-lato">@item.CommentCount @Captions.Comment </span>
                     </a>
                 </li>
                 <li>
@@ -44,7 +44,7 @@
             </p>
             <a href="@Url.Action(MVC.Blog.Detail(item.Id))" class="btn btn-reveal btn-default">
                 <i class="fa fa-eye"></i>
-                <span>ادامه مطلب</span>
+                <span>@Captions.ContinueContent</span>
             </a>
         </div>
 

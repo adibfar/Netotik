@@ -17,11 +17,6 @@ namespace Netotik.Domain.EntityConfiguration
                 .HasMaxLength(500);
 
 
-            // Table & Column Mappings
-            this.ToTable("ContentTag");
-            this.Property(t => t.Id).HasColumnName("Id");
-            this.Property(t => t.Name).HasColumnName("Text");
-
             // Relationships
             this.HasMany(t => t.Contents)
                 .WithMany(t => t.ContentTages)
@@ -32,7 +27,10 @@ namespace Netotik.Domain.EntityConfiguration
                         m.MapRightKey("ContentId");
                     });
 
-
+            this.HasRequired(t => t.Language)
+             .WithMany(t => t.ContentTags)
+             .HasForeignKey(d => d.LanguageId)
+             .WillCascadeOnDelete(false);
         }
     }
 }

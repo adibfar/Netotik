@@ -1,3 +1,4 @@
+using Netotik.Resources;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -11,10 +12,10 @@ namespace  Netotik.ViewModels.Identity.Account
 {
     public class ActivationEmailViewModel
     {
-        [Required(ErrorMessage = "وارد کردن ایمیل ضروریست")]
-        [EmailAddress(ErrorMessage = "ایمیل را به شکل صحیح وارد کنید")]
-        [DisplayName("ایمیل")]
-        [StringLength(256, ErrorMessage = "حداکثر طول ایمیل 256 حرف است")]
+        [Display(ResourceType = typeof(Captions), Name = "Email")]
+        [Required(ErrorMessageResourceType = typeof(Captions), ErrorMessageResourceName = "RequiredError")]
+        [EmailAddress(ErrorMessageResourceType = typeof(Captions), ErrorMessageResourceName = "NotValidError")]
+        [MaxLength(200, ErrorMessageResourceType = typeof(Captions), ErrorMessageResourceName = "MaxLengthError")]
         public string Email { get; set; }
     }
 }

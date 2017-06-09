@@ -86,6 +86,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Context\NetotikDBContext.cs" />
+    <Compile Include="Migrations\201705290837036_add-lang.cs" />
+    <Compile Include="Migrations\201705290837036_add-lang.Designer.cs">
+      <DependentUpon>201705290837036_add-lang.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Context\IUnitOfWork.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -110,6 +114,11 @@
       <Project>{6089898b-fe8d-42e2-ab54-0336f372e1d4}</Project>
       <Name>Netotik.ViewModels</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201705290837036_add-lang.resx">
+      <DependentUpon>201705290837036_add-lang.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />

@@ -29,8 +29,7 @@ using Netotik.Common.Controller;
 
 namespace Netotik.Web.Areas.Admin.Controllers
 {
-    [BreadCrumb(Title = "نظرات مقالات", UseDefaultRouteUrl = true, RemoveAllDefaultRouteValues = true,
- Order = 0, GlyphIcon = "icon icon-table")]
+    [BreadCrumb(Title = "CommentsList", UseDefaultRouteUrl = true, Order = 0, GlyphIcon = "icon-comments")]
     public partial class CommentsController : BasePanelController
     {
 
@@ -145,7 +144,7 @@ namespace Netotik.Web.Areas.Admin.Controllers
 
             if (!ModelState.IsValid)
             {
-                this.MessageError(Messages.MissionFail, Messages.InvalidDataError);
+                this.MessageError(Captions.MissionFail, Captions.InvalidDataError);
                 return RedirectToAction(MVC.Admin.Comments.Index());
             }
 
@@ -160,11 +159,11 @@ namespace Netotik.Web.Areas.Admin.Controllers
             }
             catch
             {
-                this.MessageError(Messages.MissionFail, Messages.UpdateSuccess);
+                this.MessageError(Captions.MissionFail, Captions.UpdateSuccess);
                 return RedirectToAction(MVC.Admin.Comments.Index());
             }
 
-            this.MessageSuccess(Messages.MissionSuccess, Messages.UpdateSuccess);
+            this.MessageSuccess(Captions.MissionSuccess, Captions.UpdateSuccess);
             return RedirectToAction(MVC.Admin.Comments.Index());
         }
 
@@ -196,7 +195,7 @@ namespace Netotik.Web.Areas.Admin.Controllers
 
             if (!ModelState.IsValid)
             {
-                this.MessageError(Messages.MissionFail, Messages.InvalidDataError);
+                this.MessageError(Captions.MissionFail, Captions.InvalidDataError);
                 return RedirectToAction(MVC.Admin.Comments.Index());
             }
 
@@ -219,11 +218,11 @@ namespace Netotik.Web.Areas.Admin.Controllers
             }
             catch
             {
-                this.MessageError(Messages.MissionFail, Messages.UpdateError);
+                this.MessageError(Captions.MissionFail, Captions.UpdateError);
                 return RedirectToAction(MVC.Admin.Comments.Index());
             }
 
-            this.MessageSuccess(Messages.MissionSuccess, Messages.UpdateSuccess);
+            this.MessageSuccess(Captions.MissionSuccess, Captions.UpdateSuccess);
             return RedirectToAction(MVC.Admin.Comments.Index());
         }
 

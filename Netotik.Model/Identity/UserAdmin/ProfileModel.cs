@@ -15,61 +15,74 @@ namespace Netotik.ViewModels.Identity.UserAdmin
     public class ProfileModel
     {
 
-        [Required(ErrorMessageResourceType = typeof(Messages), ErrorMessageResourceName = "RequiredError")]
-        [MaxLength(100, ErrorMessageResourceType = typeof(Messages), ErrorMessageResourceName = "MaxLengthError")]
-        [MinLength(2, ErrorMessageResourceType = typeof(Messages), ErrorMessageResourceName = "MinLengthError")]
-        [Display(ResourceType = typeof(Captions), Name = "Name")]
+        [Required(ErrorMessageResourceType = typeof(Captions), ErrorMessageResourceName = "RequiredError")]
+        [MaxLength(100, ErrorMessageResourceType = typeof(Captions), ErrorMessageResourceName = "MaxLengthError")]
+        [MinLength(2, ErrorMessageResourceType = typeof(Captions), ErrorMessageResourceName = "MinLengthError")]
+        [Display(ResourceType = typeof(Captions), Name = "ShowName")]
+        public string ShowName { get; set; }
+
+        [Required(ErrorMessageResourceType = typeof(Captions), ErrorMessageResourceName = "RequiredError")]
+        [MaxLength(100, ErrorMessageResourceType = typeof(Captions), ErrorMessageResourceName = "MaxLengthError")]
+        [MinLength(2, ErrorMessageResourceType = typeof(Captions), ErrorMessageResourceName = "MinLengthError")]
+        [Display(ResourceType = typeof(Captions), Name = "FirstName")]
         public string FirstName { get; set; }
 
-        [Required(ErrorMessageResourceType = typeof(Messages), ErrorMessageResourceName = "RequiredError")]
-        [MaxLength(100, ErrorMessageResourceType = typeof(Messages), ErrorMessageResourceName = "MaxLengthError")]
-        [MinLength(2, ErrorMessageResourceType = typeof(Messages), ErrorMessageResourceName = "MinLengthError")]
+        [Required(ErrorMessageResourceType = typeof(Captions), ErrorMessageResourceName = "RequiredError")]
+        [MaxLength(100, ErrorMessageResourceType = typeof(Captions), ErrorMessageResourceName = "MaxLengthError")]
+        [MinLength(2, ErrorMessageResourceType = typeof(Captions), ErrorMessageResourceName = "MinLengthError")]
         [Display(ResourceType = typeof(Captions), Name = "LastName")]
         public string LastName { get; set; }
 
-        [Required(ErrorMessageResourceType = typeof(Messages), ErrorMessageResourceName = "RequiredError")]
         [Display(ResourceType = typeof(Captions), Name = "MobileNumber")]
-        [RegularExpression(@"^0?9\d{9}$", ErrorMessageResourceType = typeof(Messages), ErrorMessageResourceName = "NotValidError")]
-        [Remote("IsAdminPhoneNumberAvailable", "Remote", AreaReference.UseRoot, AdditionalFields = "Id", HttpMethod = "POST", ErrorMessageResourceType = typeof(Messages), ErrorMessageResourceName = "ExistError")]
+        [RegularExpression(@"^0?9\d{9}$", ErrorMessageResourceType = typeof(Captions), ErrorMessageResourceName = "NotValidError")]
+        [Remote("IsAdminPhoneNumberAvailable", "Remote", AreaReference.UseRoot, AdditionalFields = "Id", HttpMethod = "POST", ErrorMessageResourceType = typeof(Captions), ErrorMessageResourceName = "ExistError")]
         public string PhoneNumber { get; set; }
 
 
-        [Required(ErrorMessageResourceType = typeof(Messages), ErrorMessageResourceName = "RequiredError")]
-        [MaxLength(300, ErrorMessageResourceType = typeof(Messages), ErrorMessageResourceName = "MaxLengthError")]
+        [Required(ErrorMessageResourceType = typeof(Captions), ErrorMessageResourceName = "RequiredError")]
+        [MaxLength(300, ErrorMessageResourceType = typeof(Captions), ErrorMessageResourceName = "MaxLengthError")]
         [Display(ResourceType = typeof(Captions), Name = "Email")]
-        [RegularExpression(@"^([a-zA-Z0-9_\-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([a-zA-Z0-9\-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$",
-            ErrorMessageResourceType = typeof(Messages), ErrorMessageResourceName = "NotValidError")]
-        [Remote("IsAdminEmailAvailable", "Remote", AreaReference.UseRoot, AdditionalFields = "Id", HttpMethod = "POST", ErrorMessageResourceType = typeof(Messages), ErrorMessageResourceName = "ExistError")]
+        [EmailAddress(ErrorMessageResourceType = typeof(Captions), ErrorMessageResourceName = "NotValidError")]
+        [Remote("IsAdminEmailAvailable", "Remote", AreaReference.UseRoot, AdditionalFields = "Id", HttpMethod = "POST", ErrorMessageResourceType = typeof(Captions), ErrorMessageResourceName = "ExistError")]
         public string Email { get; set; }
 
-        [Required(ErrorMessage = "نام کاربری را وارد کنید")]
-        [DisplayName("نام کاربری")]
-        [StringLength(256, ErrorMessage = "نام کاربری نباید کمتر از 5 حرف و بیتشر از 256 حرف باشد", MinimumLength = 5)]
-        [Remote("IsUserNameAvailable", "Remote", AreaReference.UseRoot, AdditionalFields = "Id", ErrorMessage = "این نام کاربری قبلا در سیستم ثبت شده است", HttpMethod = "POST")]
-        [RegularExpression("^[a-zA-Z0-9_]*$", ErrorMessage = "فقط از حروف انگلیسی و اعداد استفاده کنید")]
+        [Required(ErrorMessageResourceType = typeof(Captions), ErrorMessageResourceName = "RequiredError")]
+        [Display(ResourceType = typeof(Captions), Name = "UserName")]
+        [StringLength(50, ErrorMessageResourceType = typeof(Captions), ErrorMessageResourceName = "LengthError", MinimumLength = 6)]
+        [System.Web.Mvc.Remote("IsUserNameAvailable", "Remote", AreaReference.UseRoot, AdditionalFields = "Id", HttpMethod = "POST", ErrorMessageResourceType = typeof(Captions), ErrorMessageResourceName = "ExistError")]
+        [RegularExpression("^[a-zA-Z0-9_]*$", ErrorMessageResourceType = typeof(Captions), ErrorMessageResourceName = "JustEnglishNumeric")]
         public string UserName { get; set; }
 
-        [DisplayName("فیس بوک")]
-        [DataType(DataType.Url,ErrorMessage ="لینک وارد شده نامعتبر است.")]
+        [Display(ResourceType = typeof(Captions), Name = "Facebook")]
+        [Url(ErrorMessageResourceType = typeof(Captions), ErrorMessageResourceName = "NotValidError")]
         public string Facebook { get; set; }
 
-        [DisplayName("لینکداین")]
-        [DataType(DataType.Url, ErrorMessage = "لینک وارد شده نامعتبر است.")]
+        [Display(ResourceType = typeof(Captions), Name = "Linkedin")]
+        [Url(ErrorMessageResourceType = typeof(Captions), ErrorMessageResourceName = "NotValidError")]
         public string LinkedIn { get; set; }
 
-        [DisplayName("توییتر")]
-        [DataType(DataType.Url, ErrorMessage = "لینک وارد شده نامعتبر است.")]
+        [Display(ResourceType = typeof(Captions), Name = "Twitter")]
+        [Url(ErrorMessageResourceType = typeof(Captions), ErrorMessageResourceName = "NotValidError")]
         public string Twitter { get; set; }
 
-        [DisplayName("اینستاگرام")]
-        [DataType(DataType.Url, ErrorMessage = "لینک وارد شده نامعتبر است.")]
+        [Display(ResourceType = typeof(Captions), Name = "Instagram")]
+        [Url(ErrorMessageResourceType = typeof(Captions), ErrorMessageResourceName = "NotValidError")]
         public string Instagram { get; set; }
 
-        [DisplayName("وب سایت")]
-        [DataType(DataType.Url, ErrorMessage = "لینک وارد شده نامعتبر است.")]
+        [Display(ResourceType = typeof(Captions), Name = "Website")]
+        [Url(ErrorMessageResourceType = typeof(Captions), ErrorMessageResourceName = "NotValidError")]
         public string Website { get; set; }
 
-
+        [Display(ResourceType = typeof(Captions), Name = "ShortBio")]
         public string ShortBio { get; set; }
+
+        public IList<ProfileLanguageItem> Items { get; set; }
+
+        public int[] LanguageIds { get; set; }
+
+        public string[] ShowNames { get; set; }
+
+        public string[] ShortBios { get; set; }
+
     }
 }

@@ -10,7 +10,7 @@ namespace Netotik.ViewModels.Mikrotik
         public string id { get; set; }
         public string address { get; set; }
         public string comment { get; set; }
-        [RegularExpression(@"^([0-9A-Fa-f]{2}[:-]){5}([0-9A-Fa-f]{2})$", ErrorMessageResourceType = typeof(Messages), ErrorMessageResourceName = "NotValidError")]
+        [RegularExpression(@"^([0-9A-Fa-f]{2}[:-]){5}([0-9A-Fa-f]{2})$", ErrorMessageResourceType = typeof(Captions), ErrorMessageResourceName = "NotValidError")]
         public string mac_address { get; set; }
         public string server { get; set; }
         public string to_address { get; set; }

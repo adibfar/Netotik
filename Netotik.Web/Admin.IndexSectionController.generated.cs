@@ -25,10 +25,10 @@ using System.Web.Routing;
 using T4MVC;
 namespace Netotik.Web.Areas.Admin.Controllers
 {
-    public partial class AdvertiseController
+    public partial class IndexSectionController
     {
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        protected AdvertiseController(Dummy d) { }
+        protected IndexSectionController(Dummy d) { }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         protected RedirectToRouteResult RedirectToAction(ActionResult result)
@@ -71,10 +71,9 @@ namespace Netotik.Web.Areas.Admin.Controllers
         }
         [NonAction]
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public virtual System.Threading.Tasks.Task<System.Web.Mvc.ActionResult> Edit()
+        public virtual System.Web.Mvc.ActionResult Edit()
         {
-            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Edit);
-            return System.Threading.Tasks.Task.FromResult(callInfo as System.Web.Mvc.ActionResult);
+            return new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Edit);
         }
         [NonAction]
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -84,13 +83,13 @@ namespace Netotik.Web.Areas.Admin.Controllers
         }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public AdvertiseController Actions { get { return MVC.Admin.Advertise; } }
+        public IndexSectionController Actions { get { return MVC.Admin.IndexSection; } }
         [GeneratedCode("T4MVC", "2.0")]
         public readonly string Area = "Admin";
         [GeneratedCode("T4MVC", "2.0")]
-        public readonly string Name = "Advertise";
+        public readonly string Name = "IndexSection";
         [GeneratedCode("T4MVC", "2.0")]
-        public const string NameConst = "Advertise";
+        public const string NameConst = "IndexSection";
         [GeneratedCode("T4MVC", "2.0")]
         static readonly ActionNamesClass s_actions = new ActionNamesClass();
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -171,22 +170,22 @@ namespace Netotik.Web.Areas.Admin.Controllers
             public _ViewNamesClass ViewNames { get { return s_ViewNames; } }
             public class _ViewNamesClass
             {
-                public readonly string _Create = "_Create";
-                public readonly string _Edit = "_Edit";
                 public readonly string _Table = "_Table";
+                public readonly string Create = "Create";
+                public readonly string Edit = "Edit";
                 public readonly string Index = "Index";
             }
-            public readonly string _Create = "~/Areas/Admin/Views/Advertise/_Create.cshtml";
-            public readonly string _Edit = "~/Areas/Admin/Views/Advertise/_Edit.cshtml";
-            public readonly string _Table = "~/Areas/Admin/Views/Advertise/_Table.cshtml";
-            public readonly string Index = "~/Areas/Admin/Views/Advertise/Index.cshtml";
+            public readonly string _Table = "~/Areas/Admin/Views/IndexSection/_Table.cshtml";
+            public readonly string Create = "~/Areas/Admin/Views/IndexSection/Create.cshtml";
+            public readonly string Edit = "~/Areas/Admin/Views/IndexSection/Edit.cshtml";
+            public readonly string Index = "~/Areas/Admin/Views/IndexSection/Index.cshtml";
         }
     }
 
     [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-    public partial class T4MVC_AdvertiseController : Netotik.Web.Areas.Admin.Controllers.AdvertiseController
+    public partial class T4MVC_IndexSectionController : Netotik.Web.Areas.Admin.Controllers.IndexSectionController
     {
-        public T4MVC_AdvertiseController() : base(Dummy.Instance) { }
+        public T4MVC_IndexSectionController() : base(Dummy.Instance) { }
 
         [NonAction]
         partial void IndexOverride(T4MVC_System_Web_Mvc_ActionResult callInfo);
@@ -223,10 +222,10 @@ namespace Netotik.Web.Areas.Admin.Controllers
         }
 
         [NonAction]
-        partial void CreateOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, Netotik.ViewModels.CMS.Advertise.AdvertiseModel model, Netotik.Common.Controller.ActionType actionType);
+        partial void CreateOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, Netotik.ViewModels.CMS.IndexSection.IndexSectionModel model, Netotik.Common.Controller.ActionType actionType);
 
         [NonAction]
-        public override System.Threading.Tasks.Task<System.Web.Mvc.ActionResult> Create(Netotik.ViewModels.CMS.Advertise.AdvertiseModel model, Netotik.Common.Controller.ActionType actionType)
+        public override System.Threading.Tasks.Task<System.Web.Mvc.ActionResult> Create(Netotik.ViewModels.CMS.IndexSection.IndexSectionModel model, Netotik.Common.Controller.ActionType actionType)
         {
             var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Create);
             ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "model", model);
@@ -251,19 +250,19 @@ namespace Netotik.Web.Areas.Admin.Controllers
         partial void EditOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, int id);
 
         [NonAction]
-        public override System.Threading.Tasks.Task<System.Web.Mvc.ActionResult> Edit(int id)
+        public override System.Web.Mvc.ActionResult Edit(int id)
         {
             var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Edit);
             ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "id", id);
             EditOverride(callInfo, id);
-            return System.Threading.Tasks.Task.FromResult(callInfo as System.Web.Mvc.ActionResult);
+            return callInfo;
         }
 
         [NonAction]
-        partial void EditOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, Netotik.ViewModels.CMS.Advertise.AdvertiseModel model, Netotik.Common.Controller.ActionType actionType);
+        partial void EditOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, Netotik.ViewModels.CMS.IndexSection.IndexSectionModel model, Netotik.Common.Controller.ActionType actionType);
 
         [NonAction]
-        public override System.Threading.Tasks.Task<System.Web.Mvc.ActionResult> Edit(Netotik.ViewModels.CMS.Advertise.AdvertiseModel model, Netotik.Common.Controller.ActionType actionType)
+        public override System.Threading.Tasks.Task<System.Web.Mvc.ActionResult> Edit(Netotik.ViewModels.CMS.IndexSection.IndexSectionModel model, Netotik.Common.Controller.ActionType actionType)
         {
             var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Edit);
             ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "model", model);

@@ -56,7 +56,6 @@ namespace T4MVC
     public class AdminClass
     {
         public readonly string Name = "Admin";
-        public Netotik.Web.Areas.Admin.Controllers.AdvertiseController Advertise = new Netotik.Web.Areas.Admin.Controllers.T4MVC_AdvertiseController();
         public Netotik.Web.Areas.Admin.Controllers.CityController City = new Netotik.Web.Areas.Admin.Controllers.T4MVC_CityController();
         public Netotik.Web.Areas.Admin.Controllers.CommentsController Comments = new Netotik.Web.Areas.Admin.Controllers.T4MVC_CommentsController();
         public Netotik.Web.Areas.Admin.Controllers.ConfigurationController Configuration = new Netotik.Web.Areas.Admin.Controllers.T4MVC_ConfigurationController();
@@ -65,6 +64,7 @@ namespace T4MVC
         public Netotik.Web.Areas.Admin.Controllers.ContentController Content = new Netotik.Web.Areas.Admin.Controllers.T4MVC_ContentController();
         public Netotik.Web.Areas.Admin.Controllers.ContentTagController ContentTag = new Netotik.Web.Areas.Admin.Controllers.T4MVC_ContentTagController();
         public Netotik.Web.Areas.Admin.Controllers.HomeController Home = new Netotik.Web.Areas.Admin.Controllers.T4MVC_HomeController();
+        public Netotik.Web.Areas.Admin.Controllers.IndexSectionController IndexSection = new Netotik.Web.Areas.Admin.Controllers.T4MVC_IndexSectionController();
         public Netotik.Web.Areas.Admin.Controllers.LanguageController Language = new Netotik.Web.Areas.Admin.Controllers.T4MVC_LanguageController();
         public Netotik.Web.Areas.Admin.Controllers.MenuController Menu = new Netotik.Web.Areas.Admin.Controllers.T4MVC_MenuController();
         public Netotik.Web.Areas.Admin.Controllers.OrderController Order = new Netotik.Web.Areas.Admin.Controllers.T4MVC_OrderController();
@@ -1367,7 +1367,6 @@ namespace Links
             public const string UrlPath = "~/Content/images";
             public static string Url() { return T4MVCHelpers.ProcessVirtualPath(UrlPath); }
             public static string Url(string fileName) { return T4MVCHelpers.ProcessVirtualPath(UrlPath + "/" + fileName); }
-            public static readonly string _3_jpg = Url("3.jpg");
             [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
             public static class backgrounds {
                 public const string UrlPath = "~/Content/images/backgrounds";
@@ -1427,6 +1426,7 @@ namespace Links
             
             }
         
+            public static readonly string earth_jpg = Url("earth.jpg");
             [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
             public static class flags {
                 public const string UrlPath = "~/Content/images/flags";
@@ -3808,10 +3808,6 @@ namespace Links
                     public static readonly string _9s_gif = Url("9s.gif");
                 }
             
-                public static readonly string logo_footer_dark_png = Url("logo-footer-dark.png");
-                public static readonly string logo_footer_png = Url("logo-footer.png");
-                public static readonly string logo_dark_png = Url("logo_dark.png");
-                public static readonly string logo_light_png = Url("logo_light.png");
                 public static readonly string male_png = Url("male.png");
                 [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
                 public static class misc {
@@ -6565,6 +6561,7 @@ namespace Links
                     public const string UrlPath = "~/Content/Upload/Image/Content";
                     public static string Url() { return T4MVCHelpers.ProcessVirtualPath(UrlPath); }
                     public static string Url(string fileName) { return T4MVCHelpers.ProcessVirtualPath(UrlPath + "/" + fileName); }
+                    public static readonly string background_jpg = Url("background.jpg");
                     public static readonly string Default_png = Url("Default.png");
                 }
             

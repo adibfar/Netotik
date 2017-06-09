@@ -30,18 +30,20 @@ namespace Netotik.Web.Controllers
         private readonly ISettingService _settingService;
         private readonly IContentCategoryService _contentCategoryService;
         private readonly ICategoryService _categoryService;
-        private readonly ILinkService _linkService;
+        private readonly ILanguageTranslationService _linkService;
         private readonly IContentService _contentService;
         private readonly IMenuService _menuService;
         private readonly ISliderService _sliderService;
+        private readonly IIndexSectionService _indexSectionService;
         #endregion
 
         #region Constructor
         public HomeController(
             ISliderService sliderService,
+            IIndexSectionService indexSectionService,
             IApplicationRoleManager applicationRoleManager,
             IAuthenticationManager authenticationManager,
-            ILinkService linkService,
+            ILanguageTranslationService linkService,
             IUserMailer userMailer,
             ISettingService settingService,
             IContentCategoryService contentCategoryService,
@@ -50,6 +52,7 @@ namespace Netotik.Web.Controllers
             IMenuService menuService
             )
         {
+            _indexSectionService = indexSectionService;
             _sliderService = sliderService;
             _applicationRoleManager = applicationRoleManager;
             _authenticationManager = authenticationManager;
@@ -64,8 +67,6 @@ namespace Netotik.Web.Controllers
         #endregion
 
 
-
-        // [ThrottleAttribute(Seconds = 1, Message = "لطفا دوباره امتحان کنید")]
         public virtual ActionResult Index()
         {
             return View();
@@ -95,35 +96,33 @@ namespace Netotik.Web.Controllers
             return View("");
         }
 
-        //[OutputCache(Duration = min10, VaryByParam = "none")]
         public virtual PartialViewResult LastBlog()
         {
-            return PartialView(MVC.Home.Views._LastBlog, _contentService.GetLastContents(6));
+            return PartialView(MVC.Home.Views._LastBlog, _contentService.GetLastContents(12, LanguageCache.GetLanguage(HttpContext).Id));
         }
-
-
 
         //[OutputCache(Duration = hour12, VaryByParam = "none")]
         public virtual PartialViewResult Slider()
         {
-            var list = _sliderService.All().Where(x => x.IsActive)
-                .OrderBy(x => x.Order)
-                .Include(x => x.Picture)
-                .ToList();
-            return PartialView(MVC.Home.Views._Slider, list);
+            return PartialView(MVC.Home.Views._Slider, _sliderService.GetAll(LanguageCache.GetLanguage(HttpContext).Id));
         }
+
+        public virtual PartialViewResult Section()
+        {
+            return PartialView(MVC.Home.Views._Section, _indexSectionService.GetAll(LanguageCache.GetLanguage(HttpContext).Id));
+        }
+
 
         //[OutputCache(Duration = oneDay, VaryByParam = "none")]
         public virtual PartialViewResult Footer()
         {
-            //ViewBag.setting = WebCache.GetSiteConfig(HttpContext, _settingService);
-            return PartialView(MVC.SharedPublic.Views._Footer);
+            return PartialView(MVC.SharedPublic.Views._Footer, _menuService.GetAllFooterMenu(LanguageCache.GetLanguage(this.HttpContext).Id));
         }
 
         //[OutputCache(Duration = _min10, VaryByParam = "none")]
         public virtual PartialViewResult LanguageSelector()
         {
-            return PartialView(MVC.SharedPublic.Views._LanagaugeSelector,LanguageCache.GetLanguages(this.HttpContext));
+            return PartialView(MVC.SharedPublic.Views._LanagaugeSelector, LanguageCache.GetLanguages(this.HttpContext));
         }
 
 
@@ -142,19 +141,7 @@ namespace Netotik.Web.Controllers
             return PartialView(MVC.Shared.Views._LanagaugeSelector, LanguageCache.GetLanguages(this.HttpContext));
         }
 
-        //[OutputCache(Duration = oneDay, VaryByParam = "none")]
-        public virtual PartialViewResult FooterAddress()
-        {
-            return PartialView(MVC.SharedPublic.Views._FooterAddress);//, WebCache.GetSiteConfig(HttpContext, _settingService));
-        }
-
-        //[OutputCache(Duration = oneDay, VaryByParam = "none")]
-        public virtual PartialViewResult FooterPopularPost()
-        {
-            return PartialView(MVC.SharedPublic.Views._FooterPopularPost, _contentService.GetLastPopular(4));
-        }
-
-
+        
         //[OutputCache(Duration = oneDay, VaryByParam = "none")]
         public virtual PartialViewResult Header()
         {
@@ -164,10 +151,7 @@ namespace Netotik.Web.Controllers
         //[OutputCache(Duration = hour12, VaryByParam = "none")]
         public virtual PartialViewResult HeaderMenu()
         {
-            var list = _menuService.All()
-                .Where(x => x.IsActive).Include(x => x.SubMenues).OrderBy(x => x.Order).ToList();
-
-            return PartialView(MVC.SharedPublic.Views._HeaderMenu, list);
+            return PartialView(MVC.SharedPublic.Views._HeaderMenu, _menuService.GetAllHeaderMenu(LanguageCache.GetLanguage(this.HttpContext).Id));
         }
     }
 }

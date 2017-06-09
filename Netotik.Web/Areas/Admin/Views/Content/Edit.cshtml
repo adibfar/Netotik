@@ -1,6 +1,6 @@
 ﻿@model Netotik.ViewModels.CMS.Content.ContentModel
 @{
-    ViewBag.Title = "ویرایش مطلب ";
+    ViewBag.Title = Captions.EditContents;
 }
 <section class="flexbox-container">
     <div class="row">
@@ -22,7 +22,7 @@
                         <div class="row">
                             <div class="col-md-9">
                                 <div class="card-block">
-                                    <h4 class="form-section"><i class="icon-file-text2"></i> محتوا </h4>
+                                    <h4 class="form-section"><i class="icon-file-text2"></i> @Captions.Content </h4>
                                     <div class="row">
                                         <div class="col-md-12">
                                             <div class="form-group">
@@ -68,7 +68,7 @@
                                         </div>
                                     </div>
 
-                                    <h4 class="form-section"><i class="icon-bubbles4"></i> تنظیمات نظرات </h4>
+                                    <h4 class="form-section"><i class="icon-cog"></i> @Captions.Configuration </h4>
                                     <div class="row form-group skin skin-flat">
                                         <div class="col-md-4 col-sm-6 col-xs-12">
                                             <fieldset>
@@ -82,7 +82,28 @@
                                                 @Html.LabelFor(model => model.AllowViewComments)
                                             </fieldset>
                                         </div>
+                                        <div class="col-md-4 col-sm-6 col-xs-12">
+                                            <fieldset>
+                                                @Html.CheckBoxFor(model => model.HasSideBar)
+                                                @Html.LabelFor(model => model.HasSideBar)
+                                            </fieldset>
+                                        </div>
                                     </div>
+                                    <div class="row form-group skin skin-flat">
+                                        <div class="col-md-4 col-sm-6 col-xs-12">
+                                            <fieldset>
+                                                @Html.CheckBoxFor(model => model.DontShowBlog)
+                                                @Html.LabelFor(model => model.DontShowBlog)
+                                            </fieldset>
+                                        </div>
+                                        <div class="col-md-4 col-sm-6 col-xs-12">
+                                            <fieldset>
+                                                @Html.CheckBoxFor(model => model.DontShowImageDetail)
+                                                @Html.LabelFor(model => model.DontShowImageDetail)
+                                            </fieldset>
+                                        </div>
+                                    </div>
+
 
                                     <h4 class="form-section"><i class="icon-google"></i> سئو </h4>
                                     <div class="row">
@@ -124,7 +145,16 @@
                             </div>
                             <div class="col-md-3">
                                 <div class="card-block">
-                                    <h4 class="form-section"><i class="icon-stack"></i> دسته بندی ها </h4>
+                                    <h4 class="form-section"><i class="icon-language"></i>@Captions.Language</h4>
+                                    <div class="row mb-3">
+                                        <div class="col-md-12">
+                                            <div class="form-group">
+                                                @Html.DropDownListFor(model => model.LanguageId, ViewBag.Languages as SelectList, new { @class = "selectize-select" })
+                                                @Html.ValidationMessageFor(model => model.LanguageId,"",htmlAttributes: new { @class = "text-danger" })
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <h4 class="form-section"><i class="icon-stack"></i> @Captions.Subjects </h4>
                                     <div class="row mb-3">
                                         <div class="col-md-12 skin skin-flat">
                                             @if (!Model.ContentCategories.Any())
@@ -159,14 +189,14 @@
                                             }
                                         </div>
                                     </div>
-                                    <h4 class="form-section"><i class="icon-price-tags"></i> برچسب ها </h4>
+                                    <h4 class="form-section"><i class="icon-price-tags"></i> @Captions.Tags </h4>
                                     <div class="row mb-3">
                                         <div class="col-md-12 skin skin-flat">
                                             @Html.DropDownListFor(model => model.TagIds, Model.ContentTages, new { @class = "selectize-select", multiple = "" })
                                         </div>
                                     </div>
 
-                                    <h4 class="form-section"><i class="icon-image2"></i> تصویر </h4>
+                                    <h4 class="form-section"><i class="icon-image2"></i> @Captions.Image </h4>
                                     <div class="row mb-3">
                                         <div class="col-md-12">
 

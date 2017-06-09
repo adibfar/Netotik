@@ -15,5 +15,9 @@ namespace Netotik.Services.Abstract
     public interface IMenuService : IBaseService<Menu>
     {
         IList<MenuItem> GetList(RequestListModel model, out long TotalCount, out long ShowCount);
+
+        IList<Menu> GetAllHeaderMenu(int languageId);
+        IList<Menu> GetAllFooterMenu(int languageId);
+
     }
 }

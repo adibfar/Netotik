@@ -2,9 +2,34 @@
 @using PagedList
 @using PagedList.Mvc
 
+@{
+    var meta = new Netotik.ViewModels.Common.Meta.MetaViewModel()
+    {
+        Title = "Netotik | Blog",
+        Description = "Learning Miktotik and Netwotk Solution with Miktotik Platform",
+        Keywords = "Connect Router Online, Radius System, learn netotik, news netotik, Mikrotik Crm, Netotik System",
+        Conanical = Url.Action(MVC.Blog.Index()),
+        OgTitle = "Netotik | Home",
+        OgUrl = Url.Action(MVC.Blog.Index()),
+        OgDescription = "Learning Miktotik and Netwotk Solution with Miktotik Platform",
+        OgSiteName = "Netotik",
+        OgTags = { "Connect Router Online", "learn netotik", "Radius System", "news netotik", "Netotik System" },
+        OgType = "Summury"
+    };
+    if (Model.CategoryId.HasValue)
+    {
+        meta.OgArticleSection = Model.Category;
+    }
+}
+
+
+@section Meta{
+    @Html.Partial(MVC.SharedPublic.Views._Meta, meta)
+}
+
 <section class="page-header dark page-header-xs">
     <div class="container">
-        <h1>آخرین مطالب</h1>
+        <h1>@Captions.LastContent</h1>
     </div>
 </section>
 
@@ -23,34 +48,29 @@
 
             <!-- RIGHT -->
             <div class="col-md-9 col-sm-9">
-
-               
-             @Html.Partial(MVC.Blog.Views._List,Model)
-
+                @Html.Partial(MVC.Blog.Views._List, Model)
 
                 <div class="text-center">
                     @Html.PagedListPager(new StaticPagedList<Netotik.ViewModels.CMS.Content.PublicItemContentModel>(Model.Contents, Model.Page, Model.Count, Model.Total), pageNumber => Url.Action(MVC.Blog.ActionNames.Index, MVC.Blog.Name, new
-                {
-                    page = pageNumber,
-                    count = Model.Count,
-                    categoryId = Model.CategoryId,
-                    tagId = Model.TagId
+               {
+                   page = pageNumber,
+                   count = Model.Count,
+                   categoryId = Model.CategoryId,
+                   tagId = Model.TagId
 
-                }), new PagedListRenderOptions
-                {
+               }), new PagedListRenderOptions
+               {
 
-                    DisplayLinkToFirstPage = PagedListDisplayMode.Always,
-                    DisplayLinkToLastPage = PagedListDisplayMode.Always,
-                    DisplayLinkToPreviousPage = PagedListDisplayMode.Always,
-                    DisplayLinkToNextPage = PagedListDisplayMode.Always,
-                    MaximumPageNumbersToDisplay = 6
-                })
+                   DisplayLinkToFirstPage = PagedListDisplayMode.Always,
+                   DisplayLinkToLastPage = PagedListDisplayMode.Always,
+                   DisplayLinkToPreviousPage = PagedListDisplayMode.Always,
+                   DisplayLinkToNextPage = PagedListDisplayMode.Always,
+                   MaximumPageNumbersToDisplay = 6
+               })
                 </div>
                 <!-- /PAGINATION -->
             </div>
 
         </div>
-
-
     </div>
 </section>

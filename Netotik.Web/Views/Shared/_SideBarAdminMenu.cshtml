@@ -11,7 +11,7 @@
     var CmsTagMenu = Roles.Any(x => x == AssignableToRolePermissions.CanAccessTag);
     var CmsCommentsMenu = Roles.Any(x => x == AssignableToRolePermissions.CanAccessComment);
     var CmsSliderMenu = Roles.Any(x => x == AssignableToRolePermissions.CanAccessSlider);
-    var CmsAdvertiseMenu = Roles.Any(x => x == AssignableToRolePermissions.CanAccessAdvertise);
+    var CmsIndexSectionMenu = Roles.Any(x => x == AssignableToRolePermissions.CanAccessAdvertise);
     //--------------------------------------------------------------------------
     var ShopMenu = Roles.Any(x => AssignableToRolePermissions.GetAllShopSectionPermision().Any(y => y.Name == x));
 
@@ -57,9 +57,6 @@
     //----------------------------------------
 
     var AdminNetAccMenu = Roles.Any(X => X == AssignableToRolePermissions.CanAccessProduct);
-    //-------------------------------------------------------------------------------
-    var Reseller = Roles.Any(x => x == "Reseller");
-    var Company = Roles.Any(x => x == "Company");
 }
 
 
@@ -72,7 +69,7 @@
             @if (Roles.Any(x => x == AssignableToRolePermissions.CanViewAdminPanel))
             {
                 <li class="nav-item">
-                    <a href="@Url.Action(MVC.Admin.Home.Index())" class="nav-link"><i class="icon-home3"></i><span>داشبورد</span></a>
+                    <a href="@Url.Action(MVC.Admin.Home.Index())" class="nav-link"><i class="icon-home3"></i><span>@Captions.Dashboard</span></a>
                 </li>
             }
 
@@ -80,29 +77,32 @@
             @if (CmsMenu)
             {
                 <li data-menu="dropdown" class="dropdown nav-item">
-                    <a href="#" data-toggle="dropdown" class="dropdown-toggle nav-link"><i class="icon-dashboard2"></i><span>محتوا </span></a>
+                    <a href="#" data-toggle="dropdown" class="dropdown-toggle nav-link"><i class="icon-dashboard2"></i><span>@Captions.Content</span></a>
                     <ul class="dropdown-menu">
                         @if (CmsContentCategoryMenu)
                         {
-                            <li><a href="@Url.Action(MVC.Admin.ContentCategory.Index())" data-toggle="dropdown" class="dropdown-item">مدیرت موضوعات</a></li>}
+                            <li><a href="@Url.Action(MVC.Admin.ContentCategory.Index())" data-toggle="dropdown" class="dropdown-item">@Captions.Subjects</a></li>}
                         @if (CmsContentsMenu)
                         {
-                            <li><a href="@Url.Action(MVC.Admin.Content.Index())" data-toggle="dropdown" class="dropdown-item">مدیرت مطالب</a></li>}
+                            <li><a href="@Url.Action(MVC.Admin.Content.Index())" data-toggle="dropdown" class="dropdown-item">@Captions.Contents</a></li>}
                         @if (CmsTagMenu)
                         {
-                            <li><a href="@Url.Action(MVC.Admin.ContentTag.Index())" data-toggle="dropdown" class="dropdown-item">مدیرت برچسب ها</a></li>}
+                            <li><a href="@Url.Action(MVC.Admin.ContentTag.Index())" data-toggle="dropdown" class="dropdown-item">@Captions.Tags</a></li>}
                         @if (CmsSliderMenu)
                         {
-                            <li><a href="@Url.Action(MVC.Admin.Slider.Index())" data-toggle="dropdown" class="dropdown-item">مدیریت اسلایدر</a></li>}
-                        @if (CmsAdvertiseMenu)
+                            <li><a href="@Url.Action(MVC.Admin.Slider.Index())" data-toggle="dropdown" class="dropdown-item">@Captions.Sliders</a></li>}
+                        @if (ConfigMenuMenu)
                         {
-                            <li><a href="@Url.Action(MVC.Admin.Advertise.Index())" data-toggle="dropdown" class="dropdown-item">مدیریت بنرها</a></li>}
+                            <li><a href="@Url.Action(MVC.Admin.Menu.Index())" data-toggle="dropdown" class="dropdown-item">@Captions.Menues</a></li>}
+                        @if (CmsIndexSectionMenu)
+                        {
+                            <li><a href="@Url.Action(MVC.Admin.IndexSection.Index())" data-toggle="dropdown" class="dropdown-item">@Captions.IndexSections</a></li>}
                         @if (CmsCommentsMenu)
                         {
-                            <li><a href="@Url.Action(MVC.Admin.Comments.Index())" data-toggle="dropdown" class="dropdown-item">مدیریت نظرات</a></li>}
+                            <li><a href="@Url.Action(MVC.Admin.Comments.Index())" data-toggle="dropdown" class="dropdown-item">@Captions.Comments</a></li>}
                         @if (CmsContactUsMenu)
                         {
-                            <li><a href="@Url.Action(MVC.Admin.ContactUs.Index())" data-toggle="dropdown" class="dropdown-item">پیام های تماس با ما</a></li>}
+                            <li><a href="@Url.Action(MVC.Admin.ContactUs.Index())" data-toggle="dropdown" class="dropdown-item">@Captions.ContactUsMessages</a></li>}
                     </ul>
                 </li>
             }
@@ -110,7 +110,7 @@
             @if (ShopMenu)
             {
                 <li data-menu="dropdown" class="dropdown nav-item">
-                    <a href="#" data-toggle="dropdown" class="dropdown-toggle nav-link"><i class="icon-cart4"></i><span>فروشگاه</span></a>
+                    <a href="#" data-toggle="dropdown" class="dropdown-toggle nav-link"><i class="icon-cart4"></i><span>@Captions.Shop</span></a>
                     <ul class="dropdown-menu">
                         @if (ShopProductMenu)
                         {
@@ -141,7 +141,7 @@
             @if (FactorMenu)
             {
                 <li data-menu="dropdown" class="dropdown nav-item">
-                    <a href="#" data-toggle="dropdown" class="dropdown-toggle nav-link"><i class="icon-pie_chart"></i><span>حسابداری</span></a>
+                    <a href="#" data-toggle="dropdown" class="dropdown-toggle nav-link"><i class="icon-pie_chart"></i><span>@Captions.Accounting</span></a>
                     <ul class="dropdown-menu">
                         @if (SuccessOrderMenu)
                         {
@@ -159,7 +159,7 @@
             @if (IssueMenu)
             {
                 <li data-menu="dropdown" class="dropdown nav-item">
-                    <a href="#" data-toggle="dropdown" class="dropdown-toggle nav-link"><i class="icon-bubbles2"></i><span>پشتیبانی</span></a>
+                    <a href="#" data-toggle="dropdown" class="dropdown-toggle nav-link"><i class="icon-bubbles2"></i><span>@Captions.Support</span></a>
                     <ul class="dropdown-menu">
                         @if (IssueListMenu)
                         {
@@ -174,14 +174,14 @@
             @if (UserMenu)
             {
                 <li data-menu="dropdown" class="dropdown nav-item">
-                    <a href="#" data-toggle="dropdown" class="dropdown-toggle nav-link"><i class="icon-security"></i><span>مدیران و مجوزها</span></a>
+                    <a href="#" data-toggle="dropdown" class="dropdown-toggle nav-link"><i class="icon-security"></i><span>@Captions.UsersRoles</span></a>
                     <ul class="dropdown-menu">
                         @if (UserAccountMenu)
                         {
-                            <li><a href="@Url.Action(MVC.Admin.UserAdmin.Index())" data-toggle="dropdown" class="dropdown-item">مدیرت کاربران</a></li>}
+                            <li><a href="@Url.Action(MVC.Admin.UserAdmin.Index())" data-toggle="dropdown" class="dropdown-item">@Captions.Users</a></li>}
                         @if (RoleMenu)
                         {
-                            <li><a href="@Url.Action(MVC.Admin.Role.Index())" data-toggle="dropdown" class="dropdown-item">مدیرت گروه ها</a></li>}
+                            <li><a href="@Url.Action(MVC.Admin.Role.Index())" data-toggle="dropdown" class="dropdown-item">@Captions.Roles</a></li>}
                     </ul>
                 </li>
             }
@@ -189,28 +189,25 @@
             @if (AdminNetAccMenu)
             {
                 <li class="nav-item">
-                    <a href="@Url.Action(MVC.Admin.UserReseller.Index())" class="nav-link"><i class="icon-user-tie"></i><span>نمایندگی ها</span> </a>
+                    <a href="@Url.Action(MVC.Admin.UserReseller.Index())" class="nav-link"><i class="icon-user-tie"></i><span>@Captions.Resellers</span> </a>
                 </li>
             }
 
             @if (ConfigurationMenu)
             {
                 <li data-menu="dropdown" class="dropdown nav-item">
-                    <a href="#" data-toggle="dropdown" class="dropdown-toggle nav-link"><i class="icon-cog"></i><span>تنظیمات</span></a>
+                    <a href="#" data-toggle="dropdown" class="dropdown-toggle nav-link"><i class="icon-cog"></i><span>@Captions.Configuration</span></a>
                     <ul class="dropdown-menu">
                         @if (ConfigPublicMenu)
                         {
-                            <li><a href="@Url.Action(MVC.Admin.Configuration.Index())" data-toggle="dropdown" class="dropdown-item">تنظیمات عمومی</a></li>}
-                        @if (ConfigMenuMenu)
-                        {
-                            <li><a href="@Url.Action(MVC.Admin.Menu.Index())" data-toggle="dropdown" class="dropdown-item">مدیریت منو</a></li>}
+                            <li><a href="@Url.Action(MVC.Admin.Configuration.Index())" data-toggle="dropdown" class="dropdown-item">@Captions.PublicConfig</a></li>}
                         @if (ConfigStateMenu)
                         {
-                            <li><a href="@Url.Action(MVC.Admin.State.Index())" data-toggle="dropdown" class="dropdown-item">مدیریت استان ها</a></li>}
+                            <li><a href="@Url.Action(MVC.Admin.State.Index())" data-toggle="dropdown" class="dropdown-item">@Captions.States</a></li>}
                         @if (ConfigCityMenu)
                         {
-                            <li><a href="@Url.Action(MVC.Admin.City.Index())" data-toggle="dropdown" class="dropdown-item">مدیریت شهر ها</a></li>}
-                        <li><a href="@Url.Action(MVC.Admin.Language.Index())" data-toggle="dropdown" class="dropdown-item">مدیریت زبان ها</a></li>
+                            <li><a href="@Url.Action(MVC.Admin.City.Index())" data-toggle="dropdown" class="dropdown-item">@Captions.Cities</a></li>}
+                        <li><a href="@Url.Action(MVC.Admin.Language.Index())" data-toggle="dropdown" class="dropdown-item">@Captions.Languages</a></li>
                     </ul>
                 </li>
 
@@ -219,10 +216,10 @@
 
 
             <li data-menu="dropdown" class="dropdown nav-item">
-                <a href="#" data-toggle="dropdown" class="dropdown-toggle nav-link"><i class="icon-trending_up"></i><span>آمار بازدید</span></a>
+                <a href="#" data-toggle="dropdown" class="dropdown-toggle nav-link"><i class="icon-trending_up"></i><span>@Captions.ViewStatistics</span></a>
                 <ul class="dropdown-menu">
-                    <li><a href="@Url.Action(MVC.Admin.Statistics.Index())" data-toggle="dropdown" class="dropdown-item">نمایش کلی بازدید</a></li>
-                    <li><a href="@Url.Action(MVC.Admin.Statistics.Table())" data-toggle="dropdown" class="dropdown-item">بازدید بر اساس کشورها</a></li>
+                    <li><a href="@Url.Action(MVC.Admin.Statistics.Index())" data-toggle="dropdown" class="dropdown-item">@Captions.ViewAllStatistics</a></li>
+                    <li><a href="@Url.Action(MVC.Admin.Statistics.Table())" data-toggle="dropdown" class="dropdown-item">@Captions.ViewCountryStatistics</a></li>
                 </ul>
             </li>
 

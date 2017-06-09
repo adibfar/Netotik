@@ -1,5 +1,6 @@
 ﻿@using Netotik.ViewModels.Identity.Security
 @{
+    ViewBag.Title = Captions.Users;
     var Roles = Html.CurrentUserPermissions();
     var CanCreate = Roles.Any(x => x == AssignableToRolePermissions.CanCreateUser);
     var CanEdit = Roles.Any(x => x == AssignableToRolePermissions.CanEditUser);
@@ -13,7 +14,7 @@
                 @if (CanCreate)
                 {
                     <div class="card-header">
-                        <a href="@Url.Action(MVC.Admin.UserAdmin.Create())" class="btn btn-social width-150 btn-instagram"><span class="icon-person-add font-medium-4"></span> کاربر جدید</a>
+                        <a href="@Url.Action(MVC.Admin.UserAdmin.Create())" class="btn btn-social width-150 btn-instagram"><span class="icon-person-add font-medium-4"></span> @Captions.NewUser</a>
                     </div>
                 }
 
@@ -70,7 +71,7 @@
                         "render": function (data, type, full, meta) {
                             var result = full.Email;
                             if (full.IsBanned == true) {
-                                result += ' <div class="tag tag-danger">مسدود</div>'
+                                result += ' <div class="tag tag-danger">'+'@Captions.Disabled'+'</div>'
                             }
                             return result;
                         }
@@ -84,22 +85,22 @@
                              if (canEdit == 'True' || canDelete == 'True') {
                                  result = '<span class="dropdown">'
                                      + '<button id="btnSearchDrop2" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" class="btn btn-outline-secondary dropdown-toggle dropdown-menu-right">'
-                                     + '<i class="icon-cog3"></i> پردازش</button><span aria-labelledby="btnSearchDrop2" class="dropdown-menu mt-1 dropdown-menu-right">';
+                                     + '<i class="icon-cog3"></i> '+'@Captions.Action'+'</button><span aria-labelledby="btnSearchDrop2" class="dropdown-menu mt-1 dropdown-menu-right">';
                                  if (canEdit == 'True') {
-                                     result += '<a href="/Admin/UserAdmin/Edit/' + full.Id + '" class="edit dropdown-item">'
-                                                                     + '<i class="icon-pen3"></i> ویرایش </a>'
+                                     result += '<a href="'+'@Url.Action(MVC.Admin.UserAdmin.Edit())'+'/'+ full.Id + '" class="edit dropdown-item">'
+                                                                     + '<i class="icon-pen3"></i> '+'@Captions.Edit'+' </a>'
                                      if (full.IsBanned == false) {
                                          result += '<a onclick="banne(' + full.Id + ');" class="dropdown-item">'
-                                            + '<i class="icon-blocked"></i> مسدود کردن</a>';
+                                            + '<i class="icon-blocked"></i> '+'@Captions.Disable'+'</a>';
                                      } else {
                                          result += '<a onclick="active(' + full.Id + ');" class="dropdown-item">'
-                                            + '<i class="icon-checkmark2"></i> فعال کردن</a>';
+                                            + '<i class="icon-checkmark2"></i> '+'@Captions.Enable'+'</a>';
                                      }
                                  }
 
                                  if (canDelete == 'True') {
                                      result += '<a onclick="remove(' + full.Id + ');" class="dropdown-item">'
-                                       + '<i class="icon-trash4"></i> حذف </a>';
+                                       + '<i class="icon-trash4"></i> '+'@Captions.Remove'+' </a>';
                                  }
                                  result += "</span></span>";
                              }
@@ -116,11 +117,7 @@
                     { "mDataProp": "PhoneNumber" },
                     { "mDataProp": "LastLoginDate" },
                     { "no": "no" }
-                ],
-
-                "oLanguage": {
-                    "sUrl": "/Content/js/plugins/tables/datatable/dataTables.persian.txt"
-                }
+                ]
             });
         });
 

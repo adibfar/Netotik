@@ -61,7 +61,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CMS\Advertise\AdvertiseItem.cs" />
+    <Compile Include="CMS\IndexSection\IndexSectionItem.cs" />
+    <Compile Include="CMS\IndexSection\IndexSectionModel.cs" />
     <Compile Include="CMS\Comment\ReplyCommentModel.cs" />
     <Compile Include="CMS\Comment\EditCommentModel.cs" />
     <Compile Include="CMS\Comment\CommentItem.cs" />
@@ -73,6 +74,7 @@
     <Compile Include="Common\ContactUs\MessageItem.cs" />
     <Compile Include="Common\Error\ErrorInfo.cs" />
     <Compile Include="Common\Language\LanguageItem.cs" />
+    <Compile Include="Common\Language\LanguageXmlModel.cs" />
     <Compile Include="Common\Language\ResourceModel.cs" />
     <Compile Include="Common\Language\LanguageModel.cs" />
     <Compile Include="Common\Meta\MetaViewModel.cs" />
@@ -83,13 +85,13 @@
     <Compile Include="Identity\Account\ExternalLoginConfirmationViewModel.cs" />
     <Compile Include="Identity\Account\ExternalLoginListViewModel.cs" />
     <Compile Include="Identity\Account\ForgotPasswordViewModel.cs" />
+    <Compile Include="Identity\UserAdmin\ProfileLanguageItem.cs" />
     <Compile Include="Identity\UserCompany\CompanyList.cs" />
     <Compile Include="Identity\UserCompany\MikrotikConfModel.cs" />
     <Compile Include="Identity\UserReseller\ProfileModel.cs" />
     <Compile Include="Identity\UserReseller\RegisterViewModel.cs" />
     <Compile Include="Identity\Account\ResetPasswordEmail.cs" />
     <Compile Include="Identity\Account\ResetPasswordViewModel.cs" />
-    <Compile Include="Identity\Account\SetPasswordViewModel.cs" />
     <Compile Include="Identity\UserCompany\CompanyAddModel.cs" />
     <Compile Include="Identity\UserCompany\CompanyEditModel.cs" />
     <Compile Include="Identity\UserReseller\UserItem.cs" />
@@ -120,7 +122,6 @@
     <Compile Include="Mikrotik\Usermanager\UserModel.cs" />
     <Compile Include="Mikrotik\Usermanager\UserRegisterModel.cs" />
     <Compile Include="Mikrotik\Usermanager\UserSessionModel.cs" />
-    <Compile Include="CMS\Comment\AddCommentProduct.cs" />
     <Compile Include="CMS\Comment\AddCommentModel.cs" />
     <Compile Include="Common\ContactUs\MessageModel.cs" />
     <Compile Include="CMS\ContentTag\ContentTagModel.cs" />
@@ -144,7 +145,6 @@
     <Compile Include="Shop\Order\TableOrderModel.cs" />
     <Compile Include="Common\Language\ResourceItem.cs" />
     <Compile Include="Identity\Security\AssignableToRolePermissions.cs" />
-    <Compile Include="CMS\Link\LinkModel.cs" />
     <Compile Include="Shop\ShopPublic\OrderDetail.cs" />
     <Compile Include="Shop\ShopPublic\ShippingListModel.cs" />
     <Compile Include="Shop\ShopPublic\PaymentTypeListModel.cs" />
@@ -175,7 +175,6 @@
     <Compile Include="Shop\Category\TableCategoryModel.cs" />
     <Compile Include="Shop\ProductAdmin\ProductModel.cs" />
     <Compile Include="Shop\ProductAdmin\TableProductModel.cs" />
-    <Compile Include="CMS\Advertise\AdvertiseModel.cs" />
     <Compile Include="CMS\Slider\SliderModel.cs" />
     <Compile Include="Common\State\StateModel.cs" />
     <Compile Include="Common\State\StateItem.cs" />

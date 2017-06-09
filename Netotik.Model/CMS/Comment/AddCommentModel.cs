@@ -10,31 +10,29 @@ namespace Netotik.ViewModels.CMS.Comment
 {
     public class AddCommentModel
     {
-        [Required(ErrorMessage = "*")]
+        [Required(ErrorMessageResourceType = typeof(Captions), ErrorMessageResourceName = "RequiredError")]
         public int ContentId { get; set; }
         public int? CommentId { get; set; }
         public int? UserId { get; set; }
-        [Display(Name="پیــام")]
-        [Required(ErrorMessage="لطفا پیام خود را وارد کنید.")]
+
+        [Display(ResourceType = typeof(Captions), Name = "Message")]
+        [Required(ErrorMessageResourceType = typeof(Captions), ErrorMessageResourceName = "RequiredError")]
         public string Text { get; set; }
 
-        [Required(ErrorMessage = "نام را وارد کنید")]
-        [MaxLength(100, ErrorMessage = "حدااکثر 100 کاراکتر")]
-        [MinLength(3, ErrorMessage = "حداقل 3 کاراکتر")]
+        [Required(ErrorMessageResourceType = typeof(Captions), ErrorMessageResourceName = "RequiredError")]
+        [MaxLength(100, ErrorMessageResourceType = typeof(Captions), ErrorMessageResourceName = "MaxLengthError")]
+        [MinLength(3, ErrorMessageResourceType = typeof(Captions), ErrorMessageResourceName = "MinLengthError")]
         [Display(ResourceType = typeof(Captions), Name = "Name")]
         public string Name { get; set; }
 
-        [Required(ErrorMessage = "ایمیل را وارد کنید")]
-        [MaxLength(300, ErrorMessage = "حداکثر 300 کاراکتر")]
+        [Required(ErrorMessageResourceType = typeof(Captions), ErrorMessageResourceName = "RequiredError")]
+        [MaxLength(300, ErrorMessageResourceType = typeof(Captions), ErrorMessageResourceName = "MaxLengthError")]
         [Display(ResourceType = typeof(Captions), Name = "Email")]
-        [RegularExpression(@"^([a-zA-Z0-9_\-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([a-zA-Z0-9\-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$",
-                    ErrorMessage = "ایمیل نامعتبر است")]
+        [EmailAddress(ErrorMessageResourceType = typeof(Captions), ErrorMessageResourceName = "NotValidError")]
         public string Email { get; set; }
 
 
-        [MaxLength(300, ErrorMessage = "حدااکثر 300 کاراکتر")]
+        [MaxLength(300, ErrorMessageResourceType = typeof(Captions), ErrorMessageResourceName = "MaxLengthError")]
         public string WebSite { get; set; }
-
-
     }
 }

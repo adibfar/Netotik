@@ -58,6 +58,13 @@ namespace Netotik.Web.Controllers
 
         [NonAction]
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public virtual System.Threading.Tasks.Task<System.Web.Mvc.ActionResult> IndexFirst()
+        {
+            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.IndexFirst);
+            return System.Threading.Tasks.Task.FromResult(callInfo as System.Web.Mvc.ActionResult);
+        }
+        [NonAction]
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public virtual System.Threading.Tasks.Task<System.Web.Mvc.ActionResult> Index()
         {
             var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Index);
@@ -99,6 +106,7 @@ namespace Netotik.Web.Controllers
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public class ActionNamesClass
         {
+            public readonly string IndexFirst = "IndexFirst";
             public readonly string Index = "Index";
             public readonly string Detail = "Detail";
             public readonly string AddComment = "AddComment";
@@ -111,6 +119,7 @@ namespace Netotik.Web.Controllers
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public class ActionNameConstants
         {
+            public const string IndexFirst = "IndexFirst";
             public const string Index = "Index";
             public const string Detail = "Detail";
             public const string AddComment = "AddComment";
@@ -121,6 +130,17 @@ namespace Netotik.Web.Controllers
         }
 
 
+        static readonly ActionParamsClass_IndexFirst s_params_IndexFirst = new ActionParamsClass_IndexFirst();
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public ActionParamsClass_IndexFirst IndexFirstParams { get { return s_params_IndexFirst; } }
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public class ActionParamsClass_IndexFirst
+        {
+            public readonly string categoryId = "categoryId";
+            public readonly string tagId = "tagId";
+            public readonly string page = "page";
+            public readonly string count = "count";
+        }
         static readonly ActionParamsClass_Index s_params_Index = new ActionParamsClass_Index();
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public ActionParamsClass_Index IndexParams { get { return s_params_Index; } }
@@ -194,6 +214,21 @@ namespace Netotik.Web.Controllers
     public partial class T4MVC_BlogController : Netotik.Web.Controllers.BlogController
     {
         public T4MVC_BlogController() : base(Dummy.Instance) { }
+
+        [NonAction]
+        partial void IndexFirstOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, int? categoryId, int? tagId, int page, int count);
+
+        [NonAction]
+        public override System.Threading.Tasks.Task<System.Web.Mvc.ActionResult> IndexFirst(int? categoryId, int? tagId, int page, int count)
+        {
+            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.IndexFirst);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "categoryId", categoryId);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "tagId", tagId);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "page", page);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "count", count);
+            IndexFirstOverride(callInfo, categoryId, tagId, page, count);
+            return System.Threading.Tasks.Task.FromResult(callInfo as System.Web.Mvc.ActionResult);
+        }
 
         [NonAction]
         partial void IndexOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, int? categoryId, int? tagId, int page, int count);

@@ -72,17 +72,17 @@ namespace Netotik.Data.Context
         public DbSet<ContentCategory> ContentCategories { get; set; }
         public DbSet<ContentTag> ContentTags { get; set; }
         public DbSet<InboxContactUsMessage> InboxMessages { get; set; }
-        public DbSet<Link> Linkes { get; set; }
         public DbSet<LocaleStringResource> LocaleStringResources { get; set; }
         public DbSet<Language> Languages { get; set; }
+        public DbSet<LanguageTranslation> LanguageTranslationes { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
+            modelBuilder.Configurations.Add(new LanguageTranslationMap());
             modelBuilder.Configurations.Add(new UserResellerMap());
             modelBuilder.Configurations.Add(new UserCompanyMap());
             modelBuilder.Configurations.Add(new UserAdminMap());
             modelBuilder.Configurations.Add(new UserMap());
-            modelBuilder.Configurations.Add(new LinkMap());
             modelBuilder.Configurations.Add(new AddressMap());
             modelBuilder.Configurations.Add(new AddressCityMap());
             modelBuilder.Configurations.Add(new StateMap());
@@ -111,7 +111,7 @@ namespace Netotik.Data.Context
             modelBuilder.Configurations.Add(new ContentCategoryMap());
             modelBuilder.Configurations.Add(new ContentTagMap());
             modelBuilder.Configurations.Add(new InboxMessageMap());
-
+            modelBuilder.Configurations.Add(new LocaleStringResourceMap());
 
 
             modelBuilder.Entity<UserRole>()
