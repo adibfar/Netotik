@@ -1,0 +1,9 @@
+﻿@model List<Netotik.Domain.Entity.IndexSection>
+@{
+    Layout = null;
+}
+
+@foreach (var item in Model)
+{
+    @Html.Raw(item.Html)
+}

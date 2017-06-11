@@ -1,0 +1,47 @@
+﻿@model Netotik.ViewModels.Common.Language.LanguageXmlModel
+@{
+    Layout = null;
+}
+<!-- Modal -->
+<div class="modal fade text-xs-left" id="CreateByXml" tabindex="-1" role="dialog" aria-labelledby="myModalLabel20" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title" id="myModalLabel20">Import Xml</h4>
+            </div>
+            @using (Html.BeginForm(MVC.Admin.Language.ActionNames.CreateByXml, MVC.Admin.Language.Name, FormMethod.Post, htmlAttributes: new { @class = "form-horizontal", enctype = "multipart/form-data", id = "CreateXmlForm" }))
+            {
+                @Html.AntiForgeryToken()
+                <div class="modal-body">
+
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                @Html.LabelFor(m => m.ResourcesXml)
+                                <div class="position-relative">
+                                    @Html.TextBoxFor(model => model.ResourcesXml, new { @class = "form-control", type = "file" })
+                                    @Html.ValidationMessageFor(model => model.ResourcesXml, "", htmlAttributes: new { @class = "text-danger" })
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">
+                        <i class="icon-cross2"></i>
+                        @Captions.Close
+                    </button>
+                    <button name="actionType" value="@Netotik.Common.Controller.ActionType.Save" type="button" class="btn btn-outline-success" onclick="AjaxForm.Post(this, 'CreateXmlForm')" data-loading-text="در حال ارسال اطلاعات">
+                        <i class="icon-check2"></i>
+                        @Captions.Save
+                    </button>
+                </div>
+            }
+        </div>
+    </div>
+</div>
