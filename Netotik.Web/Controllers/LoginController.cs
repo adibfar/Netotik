@@ -84,7 +84,7 @@ namespace Netotik.Web.Controllers
                 return View(model);
             }
 
-            if (loggedinUser.UserType == Domain.Entity.UserType.UserCompany)
+            if (loggedinUser.UserType != Domain.Entity.UserType.UserCompany)
             {
                 ViewBag.Message = Captions.UsernameOrPasswordWrong;
                 return View(model);
@@ -166,7 +166,7 @@ namespace Netotik.Web.Controllers
             }
 
 
-            if (loggedinUser.UserType == Domain.Entity.UserType.UserReseller)
+            if (loggedinUser.UserType != Domain.Entity.UserType.UserReseller)
             {
                 ViewBag.Message = Captions.UsernameOrPasswordWrong;
                 return View(model);
