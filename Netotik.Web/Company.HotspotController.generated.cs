@@ -117,6 +117,8 @@ namespace Netotik.Web.Areas.Company.Controllers
             public readonly string AddIpWalledGarden = "AddIpWalledGarden";
             public readonly string AddIpBindings = "AddIpBindings";
             public readonly string Servers = "Servers";
+            public readonly string Active = "Active";
+            public readonly string Users = "Users";
             public readonly string Access = "Access";
             public readonly string IpBindigsRemove = "IpBindigsRemove";
             public readonly string IpWalledGardenRemove = "IpWalledGardenRemove";
@@ -134,6 +136,8 @@ namespace Netotik.Web.Areas.Company.Controllers
             public const string AddIpWalledGarden = "AddIpWalledGarden";
             public const string AddIpBindings = "AddIpBindings";
             public const string Servers = "Servers";
+            public const string Active = "Active";
+            public const string Users = "Users";
             public const string Access = "Access";
             public const string IpBindigsRemove = "IpBindigsRemove";
             public const string IpWalledGardenRemove = "IpWalledGardenRemove";
@@ -213,12 +217,16 @@ namespace Netotik.Web.Areas.Company.Controllers
             public class _ViewNamesClass
             {
                 public readonly string Access = "Access";
+                public readonly string Active = "Active";
                 public readonly string Servers = "Servers";
                 public readonly string Template = "Template";
+                public readonly string Users = "Users";
             }
             public readonly string Access = "~/Areas/Company/Views/Hotspot/Access.cshtml";
+            public readonly string Active = "~/Areas/Company/Views/Hotspot/Active.cshtml";
             public readonly string Servers = "~/Areas/Company/Views/Hotspot/Servers.cshtml";
             public readonly string Template = "~/Areas/Company/Views/Hotspot/Template.cshtml";
+            public readonly string Users = "~/Areas/Company/Views/Hotspot/Users.cshtml";
         }
     }
 
@@ -257,6 +265,28 @@ namespace Netotik.Web.Areas.Company.Controllers
         {
             var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Servers);
             ServersOverride(callInfo);
+            return callInfo;
+        }
+
+        [NonAction]
+        partial void ActiveOverride(T4MVC_System_Web_Mvc_ActionResult callInfo);
+
+        [NonAction]
+        public override System.Web.Mvc.ActionResult Active()
+        {
+            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Active);
+            ActiveOverride(callInfo);
+            return callInfo;
+        }
+
+        [NonAction]
+        partial void UsersOverride(T4MVC_System_Web_Mvc_ActionResult callInfo);
+
+        [NonAction]
+        public override System.Web.Mvc.ActionResult Users()
+        {
+            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Users);
+            UsersOverride(callInfo);
             return callInfo;
         }
 

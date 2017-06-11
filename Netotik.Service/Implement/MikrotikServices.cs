@@ -194,6 +194,12 @@ namespace Netotik.Services.Implement
             mikrotik.MK(ip, port);
             if (!mikrotik.Login(user, pass)) mikrotik.Close();
             //-----------------------------------------------
+            //--------------------------------------------------------------
+            //mikrotik.Send("/interface/wireless/spectral-scan");
+            //mikrotik.Send("=number=wlan1");
+            //mikrotik.Send("=duration=5s",true);
+            //var test =  mikrotik.Read();
+            //--------------------------------------------------------------
             mikrotik.Send("/tool/user-manager/user/print", true);
 
             var usermodel = new List<Usermanager_UserModel>();
@@ -239,7 +245,7 @@ namespace Netotik.Services.Implement
             }
             return usermodel;
         }
-        public List<Usermanager_UserModel> Usermanager_GetUser(string ip, int port, string user, string pass,string id)
+        public List<Usermanager_UserModel> Usermanager_GetUser(string ip, int port, string user, string pass, string id)
         {
             var mikrotik = new MikrotikAPI();
             mikrotik.MK(ip, port);
@@ -310,7 +316,7 @@ namespace Netotik.Services.Implement
             //-----------------------------------------------
             mikrotik.Send("/tool/user-manager/user/enable");
             mikrotik.Send(String.Format("=.id={0}", id), true);
-            
+
         }
         public void Usermanager_RemoveUser(string ip, int port, string user, string pass, string id)
         {
@@ -389,7 +395,7 @@ namespace Netotik.Services.Implement
 
             temp = String.Format("=email={0}", usermanuser.email);
             if (usermanuser.email != "")
-                if(usermanuser.email != null)
+                if (usermanuser.email != null)
                     mikrotik.Send(temp);
             temp = String.Format("=first-name={0}", usermanuser.first_name);
             if (usermanuser.first_name != "")
@@ -631,7 +637,7 @@ namespace Netotik.Services.Implement
             }
             return false;
         }
-#endregion
+        #endregion
 
         #region Router
         public Router_WirelessModel GetWirelessDetails(string r_Host, int r_Port, string r_User, string r_Password, string id)
@@ -1024,7 +1030,7 @@ namespace Netotik.Services.Implement
 
                 }
             }
-            if(Hotspot_IpBindings==null)
+            if (Hotspot_IpBindings == null)
             {
                 Hotspot_IpBindings.Add(new Hotspot_IPBindingsModel()
                 {
@@ -1079,7 +1085,7 @@ namespace Netotik.Services.Implement
 
                 }
             }
-            if(Hotspot_IpWalledGarden==null)
+            if (Hotspot_IpWalledGarden == null)
             {
                 Hotspot_IpWalledGarden.Add(new Hotspot_IPWalledGardenModel()
                 {
@@ -1136,7 +1142,7 @@ namespace Netotik.Services.Implement
 
                 }
             }
-            if(Hotspot_WalledGarden == null)
+            if (Hotspot_WalledGarden == null)
             {
                 Hotspot_WalledGarden.Add(new Hotspot_WalledGardenModel()
                 {
@@ -1283,7 +1289,7 @@ namespace Netotik.Services.Implement
         #endregion
 
         #region Other
-        public bool ResetUsermanager(string ip, int port, string user, string pass, bool users, bool logs, bool session, bool history, bool packages,bool db)
+        public bool ResetUsermanager(string ip, int port, string user, string pass, bool users, bool logs, bool session, bool history, bool packages, bool db)
         {
             var mikrotik = new MikrotikAPI();
             mikrotik.MK(ip, port);
@@ -1293,7 +1299,7 @@ namespace Netotik.Services.Implement
             mikrotik.Send("/tool/user-manager/database/save");
             temp = ConvertDate.ToFa(DateTime.Now, "yyyy-MM-dd").ToString() + ")(" + ConvertDate.ToFa(DateTime.Now, "T").ToString();
             temp = String.Format("=name=Netotik.({0}).UsermanagerReset", temp);
-            mikrotik.Send(temp,true);
+            mikrotik.Send(temp, true);
             mikrotik.Send("/tool/user-manager/database/save-logs");
             temp = ConvertDate.ToFa(DateTime.Now, "yyyy-MM-dd").ToString() + ")(" + ConvertDate.ToFa(DateTime.Now, "T").ToString();
             temp = String.Format("=name=Netotik.({0}).UsermanagerResetLog", temp);
@@ -1345,7 +1351,7 @@ namespace Netotik.Services.Implement
                     }
                     count = Int32.Parse(ColumnList.Any(x => x.Key == "ret") ? (ColumnList.FirstOrDefault(x => x.Key == "ret").Value) : "");
                 }
-                for (int i = 0;i<count;i++)
+                for (int i = 0; i < count; i++)
                 {
                     mikrotik.Send("/tool/user-manager/profile/remove");
                     temp = String.Format("=numbers={0}", i);
@@ -1508,11 +1514,11 @@ namespace Netotik.Services.Implement
             mikrotik.Send("/system/logging/action/add");
             mikrotik.Send("=name=NetotikLog");
             mikrotik.Send("=memory-lines=1");
-            mikrotik.Send("=target=memory",true);
+            mikrotik.Send("=target=memory", true);
             mikrotik.Read();
             mikrotik.Send("/system/logging/print", true);
             var LoggingList = mikrotik.Read();
-            foreach(var item in LoggingList)
+            foreach (var item in LoggingList)
             {
                 if (item != "!done")
                 {
@@ -1547,12 +1553,12 @@ namespace Netotik.Services.Implement
                 }
             }
             mikrotik.Send("/system/logging/action/remove");
-            mikrotik.Send("=name=NetotikLog",true);
+            mikrotik.Send("=name=NetotikLog", true);
 
             return true;
 
         }
-        public bool ResetRouter(string ip, int port, string user, string pass,bool keepusers,bool nosettings)
+        public bool ResetRouter(string ip, int port, string user, string pass, bool keepusers, bool nosettings)
         {
             var mikrotik = new MikrotikAPI();
             mikrotik.MK(ip, port);
@@ -1563,7 +1569,7 @@ namespace Netotik.Services.Implement
             temp = ConvertDate.ToFa(DateTime.Now, "yyyy-MM-dd").ToString() + ")(" + ConvertDate.ToFa(DateTime.Now, "T").ToString();
             temp = String.Format("=name=Netotik.({0}).RouterReset", temp);
             mikrotik.Send(temp);
-            mikrotik.Send("dont-encrypt=yes",true);
+            mikrotik.Send("dont-encrypt=yes", true);
             mikrotik.Send("/system/reset-configuration");
             if (true)
                 mikrotik.Send("keep-users=yes");
@@ -1582,7 +1588,7 @@ namespace Netotik.Services.Implement
             //-----------------------------------------------
             var temp = "";
             mikrotik.Send("/system/backup/save");
-            temp = ConvertDate.ToFa(DateTime.Now, "yyyy-MM-dd").ToString() + ")("+ ConvertDate.ToFa(DateTime.Now, "T").ToString();
+            temp = ConvertDate.ToFa(DateTime.Now, "yyyy-MM-dd").ToString() + ")(" + ConvertDate.ToFa(DateTime.Now, "T").ToString();
             temp = String.Format("=name=Netotik.({0}).Router", temp);
             mikrotik.Send(temp);
             mikrotik.Send("dont-encrypt=yes", true);
@@ -1599,7 +1605,7 @@ namespace Netotik.Services.Implement
             mikrotik.Send("/tool/user-manager/database/save");
             temp = ConvertDate.ToFa(DateTime.Now, "yyyy-MM-dd").ToString() + ")(" + ConvertDate.ToFa(DateTime.Now, "T").ToString();
             temp = String.Format("=name=Netotik.({0}).Usermanager", temp);
-            mikrotik.Send(temp,true);
+            mikrotik.Send(temp, true);
 
             mikrotik.Send("/tool/user-manager/database/save-logs");
             temp = ConvertDate.ToFa(DateTime.Now, "yyyy-MM-dd").ToString() + ")(" + ConvertDate.ToFa(DateTime.Now, "T").ToString();
@@ -1615,9 +1621,9 @@ namespace Netotik.Services.Implement
             mikrotik.MK(ip, port);
             if (!mikrotik.Login(user, pass)) mikrotik.Close();
             //-----------------------------------------------
-            
+
             mikrotik.Send("/system/reboot");
-            mikrotik.Send("yes",true);
+            mikrotik.Send("yes", true);
             return true;
 
         }
@@ -1650,7 +1656,7 @@ namespace Netotik.Services.Implement
             var temp = "";
             mikrotik.Send("/system/backup/load");
             temp = String.Format("=name={0}", FileName);
-            mikrotik.Send(temp,true);
+            mikrotik.Send(temp, true);
         }
         public List<Router_FileModel> GetBackupRouterList(string r_Host, int r_Port, string r_User, string r_Password)
         {
@@ -1671,7 +1677,7 @@ namespace Netotik.Services.Implement
                     {
                         ColumnList.Add(cols[i], cols[i + 1]);
                     }
-                    if ((ColumnList.Any(x => x.Key == "type") ? (ColumnList.FirstOrDefault(x => x.Key == "type").Value) : "")== "backup")
+                    if ((ColumnList.Any(x => x.Key == "type") ? (ColumnList.FirstOrDefault(x => x.Key == "type").Value) : "") == "backup")
                     {
                         Router_File.Add(new Router_FileModel()
                         {
@@ -1901,7 +1907,136 @@ namespace Netotik.Services.Implement
             }
             return Hotspot_Servers;
         }
+        public List<Hotspot_UsersModel> Hotspot_UsersList(string r_Host, int r_Port, string r_User, string r_Password)
+        {
+            var mikrotik = new MikrotikAPI();
+            mikrotik.MK(r_Host, r_Port);
+            if (!mikrotik.Login(r_User, r_Password)) mikrotik.Close();
+            //-----------------------------------------------
+            mikrotik.Send("/ip/hotspot/user/print", true);
+            var Hotspot_Users = new List<Hotspot_UsersModel>();
+            foreach (var item in mikrotik.Read())
+            {
+                if (item != "!done")
+                {
+                    var cols = item.Split('=');
+                    var ColumnList = new Dictionary<string, string>();
+                    for (int i = 1; i < cols.Count(); i += 2)
+                    {
+                        ColumnList.Add(cols[i], cols[i + 1]);
+                    }
 
+                    Hotspot_Users.Add(new Hotspot_UsersModel()
+                    {
+                        id = ColumnList.Any(x => x.Key == ".id") ? (ColumnList.FirstOrDefault(x => x.Key == ".id").Value) : "",
+                        address = ColumnList.Any(x => x.Key == "address") ? (ColumnList.FirstOrDefault(x => x.Key == "address").Value) : "",
+                        bytes_in = ColumnList.Any(x => x.Key == "bytes-in") ? (ColumnList.FirstOrDefault(x => x.Key == "bytes-in").Value) : "",
+                        disabled = ColumnList.Any(x => x.Key == "disabled") ? (ColumnList.FirstOrDefault(x => x.Key == "disabled").Value) : "",
+                        bytes_out = ColumnList.Any(x => x.Key == "bytes-out") ? (ColumnList.FirstOrDefault(x => x.Key == "bytes-out").Value) : "",
+                        email = ColumnList.Any(x => x.Key == "email") ? (ColumnList.FirstOrDefault(x => x.Key == "email").Value) : "",
+                        limit_bytes_in = ColumnList.Any(x => x.Key == "limit-bytes-in") ? (ColumnList.FirstOrDefault(x => x.Key == "limit-bytes-in").Value) : "",
+                        limit_bytes_out = ColumnList.Any(x => x.Key == "limit-bytes-out") ? (ColumnList.FirstOrDefault(x => x.Key == "limit-bytes-out").Value) : "",
+                        limit_bytes_total = ColumnList.Any(x => x.Key == "limit-bytes-total") ? (ColumnList.FirstOrDefault(x => x.Key == "limit-bytes-total").Value) : "",
+                        limit_uptime = ColumnList.Any(x => x.Key == "limit-uptime") ? (ColumnList.FirstOrDefault(x => x.Key == "limit-uptime").Value) : "",
+                        packets_in = ColumnList.Any(x => x.Key == "packets-in") ? (ColumnList.FirstOrDefault(x => x.Key == "packets-in").Value) : "",
+                        packets_out = ColumnList.Any(x => x.Key == "packets-out") ? (ColumnList.FirstOrDefault(x => x.Key == "packets-out").Value) : "",
+                        name = ColumnList.Any(x => x.Key == "name") ? (ColumnList.FirstOrDefault(x => x.Key == "name").Value) : "",
+                        profile = ColumnList.Any(x => x.Key == "profile") ? (ColumnList.FirstOrDefault(x => x.Key == "profile").Value) : "",
+                        password = ColumnList.Any(x => x.Key == "password") ? (ColumnList.FirstOrDefault(x => x.Key == "password").Value) : "",
+                        routes = ColumnList.Any(x => x.Key == "routes") ? (ColumnList.FirstOrDefault(x => x.Key == "routes").Value) : "",
+                        uptime = ColumnList.Any(x => x.Key == "uptime") ? (ColumnList.FirstOrDefault(x => x.Key == "uptime").Value) : "",
+                    });
+
+                }
+            }
+            return Hotspot_Users;
+        }
+        public List<Hotspot_ActiveModel> Hotspot_ActiveList(string r_Host, int r_Port, string r_User, string r_Password)
+        {
+            var mikrotik = new MikrotikAPI();
+            mikrotik.MK(r_Host, r_Port);
+            if (!mikrotik.Login(r_User, r_Password)) mikrotik.Close();
+            //-----------------------------------------------
+            mikrotik.Send("/ip/hotspot/active/print", true);
+            var Hotspot_Active = new List<Hotspot_ActiveModel>();
+            foreach (var item in mikrotik.Read())
+            {
+                if (item != "!done")
+                {
+                    var cols = item.Split('=');
+                    var ColumnList = new Dictionary<string, string>();
+                    for (int i = 1; i < cols.Count(); i += 2)
+                    {
+                        ColumnList.Add(cols[i], cols[i + 1]);
+                    }
+
+                    Hotspot_Active.Add(new Hotspot_ActiveModel()
+                    {
+                        id = ColumnList.Any(x => x.Key == ".id") ? (ColumnList.FirstOrDefault(x => x.Key == ".id").Value) : "",
+                        address = ColumnList.Any(x => x.Key == "address") ? (ColumnList.FirstOrDefault(x => x.Key == "address").Value) : "",
+                        Flags = "Active",
+                        disabled = ColumnList.Any(x => x.Key == "disabled") ? (ColumnList.FirstOrDefault(x => x.Key == "disabled").Value) : "",
+                        limit_bytes_in = ColumnList.Any(x => x.Key == "limit-bytes-in") ? (ColumnList.FirstOrDefault(x => x.Key == "limit-bytes-in").Value) : "",
+                        limit_bytes_out = ColumnList.Any(x => x.Key == "limit-bytes-out") ? (ColumnList.FirstOrDefault(x => x.Key == "limit-bytes-out").Value) : "",
+                        keepalive_timeout = ColumnList.Any(x => x.Key == "keepalive-timeout") ? (ColumnList.FirstOrDefault(x => x.Key == "keepalive-timeout").Value) : "",
+                        limit_bytes_total = ColumnList.Any(x => x.Key == "limit-bytes-total") ? (ColumnList.FirstOrDefault(x => x.Key == "limit-bytes-total").Value) : "",
+                        login_by = ColumnList.Any(x => x.Key == "login-by") ? (ColumnList.FirstOrDefault(x => x.Key == "login-by").Value) : "",
+                        mac_address = ColumnList.Any(x => x.Key == "mac-address") ? (ColumnList.FirstOrDefault(x => x.Key == "mac-address").Value) : "",
+                        server = ColumnList.Any(x => x.Key == "server") ? (ColumnList.FirstOrDefault(x => x.Key == "server").Value) : "",
+                        session_time_left = ColumnList.Any(x => x.Key == "session-time-left") ? (ColumnList.FirstOrDefault(x => x.Key == "session-time-left").Value) : "",
+                        to_address = ColumnList.Any(x => x.Key == "to-address") ? (ColumnList.FirstOrDefault(x => x.Key == "to-address").Value) : "",
+                        uptime = ColumnList.Any(x => x.Key == "uptime") ? (ColumnList.FirstOrDefault(x => x.Key == "uptime").Value) : "",
+                        radius = ColumnList.Any(x => x.Key == "radius") ? (ColumnList.FirstOrDefault(x => x.Key == "radius").Value) : "",
+                        user = ColumnList.Any(x => x.Key == "user") ? (ColumnList.FirstOrDefault(x => x.Key == "user").Value) : "",
+                    });
+
+                }
+            }
+            mikrotik.Send("/ip/hotspot/host/print", true);
+            foreach (var item in mikrotik.Read())
+            {
+                if (item != "!done")
+                {
+                    var cols = item.Split('=');
+                    var ColumnList = new Dictionary<string, string>();
+                    for (int i = 1; i < cols.Count(); i += 2)
+                    {
+                        ColumnList.Add(cols[i], cols[i + 1]);
+                    }
+                    bool flag = false;
+                    foreach (var tempdata in Hotspot_Active)
+                    {
+                        if (tempdata.mac_address == (ColumnList.Any(x => x.Key == "mac-address") ? (ColumnList.FirstOrDefault(x => x.Key == "mac-address").Value) : ""))
+                        {
+                            flag = true;
+                        }
+                    }
+                    if (!flag)
+                    {
+                        Hotspot_Active.Add(new Hotspot_ActiveModel()
+                        {
+                            id = ColumnList.Any(x => x.Key == ".id") ? (ColumnList.FirstOrDefault(x => x.Key == ".id").Value) : "",
+                            address = ColumnList.Any(x => x.Key == "address") ? (ColumnList.FirstOrDefault(x => x.Key == "address").Value) : "",
+                            Flags = "Host",
+                            disabled = ColumnList.Any(x => x.Key == "disabled") ? (ColumnList.FirstOrDefault(x => x.Key == "disabled").Value) : "",
+                            limit_bytes_in = ColumnList.Any(x => x.Key == "limit-bytes-in") ? (ColumnList.FirstOrDefault(x => x.Key == "limit-bytes-in").Value) : "",
+                            limit_bytes_out = ColumnList.Any(x => x.Key == "limit-bytes-out") ? (ColumnList.FirstOrDefault(x => x.Key == "limit-bytes-out").Value) : "",
+                            keepalive_timeout = ColumnList.Any(x => x.Key == "keepalive-timeout") ? (ColumnList.FirstOrDefault(x => x.Key == "keepalive-timeout").Value) : "",
+                            limit_bytes_total = ColumnList.Any(x => x.Key == "limit-bytes-total") ? (ColumnList.FirstOrDefault(x => x.Key == "limit-bytes-total").Value) : "",
+                            login_by = ColumnList.Any(x => x.Key == "login-by") ? (ColumnList.FirstOrDefault(x => x.Key == "login-by").Value) : "",
+                            mac_address = ColumnList.Any(x => x.Key == "mac-address") ? (ColumnList.FirstOrDefault(x => x.Key == "mac-address").Value) : "",
+                            server = ColumnList.Any(x => x.Key == "server") ? (ColumnList.FirstOrDefault(x => x.Key == "server").Value) : "",
+                            session_time_left = ColumnList.Any(x => x.Key == "session-time-left") ? (ColumnList.FirstOrDefault(x => x.Key == "session-time-left").Value) : "",
+                            to_address = ColumnList.Any(x => x.Key == "to-address") ? (ColumnList.FirstOrDefault(x => x.Key == "to-address").Value) : "",
+                            uptime = ColumnList.Any(x => x.Key == "uptime") ? (ColumnList.FirstOrDefault(x => x.Key == "uptime").Value) : "",
+                        });
+                    }
+
+                }
+            }
+
+            return Hotspot_Active;
+        }
         public void Hotspot_IpBindingsAdd(string r_Host, int r_Port, string r_User, string r_Password, Hotspot_IPBindingsModel model)
         {
             var mikrotik = new MikrotikAPI();
@@ -1912,7 +2047,7 @@ namespace Netotik.Services.Implement
             string temp = String.Format("=address={0}", model.address);
             if (model.address != "")
                 mikrotik.Send(temp);
-            
+
             temp = String.Format("=mac-address={0}", model.mac_address);
             if (model.mac_address != "")
                 mikrotik.Send(temp);
@@ -1922,7 +2057,7 @@ namespace Netotik.Services.Implement
             temp = String.Format("=type={0}", model.type);
             if (model.type != "")
                 mikrotik.Send(temp);
-            mikrotik.Send("=disabled=no",true);
+            mikrotik.Send("=disabled=no", true);
             var resualt = mikrotik.Read();
         }
 
@@ -1951,7 +2086,7 @@ namespace Netotik.Services.Implement
             if (model.dst_port != "")
                 mikrotik.Send(temp);
             temp = String.Format("=protocol={0}", model.protocol);
-            if (model.protocol != "" )
+            if (model.protocol != "")
                 mikrotik.Send(temp);
             /*
             temp = String.Format("=src-address={0}", model.src_address);
@@ -1960,6 +2095,93 @@ namespace Netotik.Services.Implement
                 */
             mikrotik.Send("=disabled=no", true);
             var resualt = mikrotik.Read();
+        }
+        public void Router_NatAdd(string ip, int port, string user, string pass, Router_NatModel model)
+        {
+            var mikrotik = new MikrotikAPI();
+            mikrotik.MK(ip, port);
+            if (!mikrotik.Login(user, pass)) mikrotik.Close();
+            //-----------------------------------------------
+            mikrotik.Send("/ip/firewall/nat/add");
+            mikrotik.Send("=action=dst-nat");
+            mikrotik.Send("=chain=dstnat");
+            string temp = String.Format("=to-addresses={0}", model.to_ipaddress);
+            if (model.to_ipaddress != null)
+                if (model.to_ipaddress != "")
+                    mikrotik.Send(temp);
+            temp = String.Format("=protocol={0}", model.protocol);
+            if (model.protocol != null)
+                if (model.protocol != "")
+                    mikrotik.Send(temp);
+            if (model.protocol == "" || model.protocol == "all" || model.protocol==null)
+                if (model.dst_port != null)
+                    if (model.dst_port != "")
+                        mikrotik.Send("=protocol=tcp");
+            temp = String.Format("=to-ports={0}", model.to_ports);
+            if (model.to_ports != null)
+                if (model.to_ports != "")
+                    mikrotik.Send(temp);
+
+            temp = String.Format("=dst-address={0}", model.dst_ipaddress);
+            if (model.dst_ipaddress != null)
+                if (model.dst_ipaddress != "")
+                    mikrotik.Send(temp);
+            temp = String.Format("=in-interface={0}", model.input_interface);
+            if (model.input_interface != null)
+                if (model.input_interface != "")
+                    mikrotik.Send(temp);
+            temp = String.Format("=dst-port={0}", model.dst_port);
+            if (model.dst_port != null)
+                if (model.dst_port != "")
+                    mikrotik.Send(temp);
+            temp = String.Format("=place-before={0}", model.position);
+            if (model.position != null)
+                if (model.position != "")
+                    if (model.position != "Last")
+                        mikrotik.Send(temp);
+
+
+            temp = String.Format("=comment={0}.NetotikNat", model.comment);
+            mikrotik.Send(temp, true);
+            var Nattemp = mikrotik.Read();
+
+        }
+        public List<Router_NatModel> Router_NatList(string r_Host, int r_Port, string r_User, string r_Password)
+        {
+            var mikrotik = new MikrotikAPI();
+            mikrotik.MK(r_Host, r_Port);
+            if (!mikrotik.Login(r_User, r_Password)) mikrotik.Close();
+            //-----------------------------------------------
+            mikrotik.Send("/ip/firewall/nat/print", true);
+            var Hotspot_Nat = new List<Router_NatModel>();
+            foreach (var item in mikrotik.Read())
+            {
+                if (item != "!done")
+                {
+                    var cols = item.Split('=');
+                    var ColumnList = new Dictionary<string, string>();
+                    for (int i = 1; i < cols.Count(); i += 2)
+                    {
+                        ColumnList.Add(cols[i], cols[i + 1]);
+                    }
+                    if ((ColumnList.Any(x => x.Key == "comment") ? (ColumnList.FirstOrDefault(x => x.Key == "comment").Value) : "").Contains("NetotikNat"))
+                    {
+                        Hotspot_Nat.Add(new Router_NatModel()
+                        {
+                            id = ColumnList.Any(x => x.Key == ".id") ? (ColumnList.FirstOrDefault(x => x.Key == ".id").Value) : "",
+                            comment = ColumnList.Any(x => x.Key == "comment") ? (ColumnList.FirstOrDefault(x => x.Key == "comment").Value) : "",
+                            dst_ipaddress = ColumnList.Any(x => x.Key == "dst-address") ? (ColumnList.FirstOrDefault(x => x.Key == "dst-address").Value) : "",
+                            dst_port = ColumnList.Any(x => x.Key == "dst-port") ? (ColumnList.FirstOrDefault(x => x.Key == "dst-port").Value) : "",
+                            to_ipaddress = ColumnList.Any(x => x.Key == "to-addresses") ? (ColumnList.FirstOrDefault(x => x.Key == "to-addresses").Value) : "",
+                            to_ports = ColumnList.Any(x => x.Key == "to-ports") ? (ColumnList.FirstOrDefault(x => x.Key == "to-ports").Value) : "",
+                            protocol = ColumnList.Any(x => x.Key == "protocol") ? (ColumnList.FirstOrDefault(x => x.Key == "protocol").Value) : "",
+                        });
+                    }
+
+                }
+            }
+
+            return Hotspot_Nat;
         }
         #endregion
 

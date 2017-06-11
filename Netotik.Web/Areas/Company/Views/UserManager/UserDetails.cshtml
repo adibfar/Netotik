@@ -224,8 +224,8 @@
                                                 <tr>
                                                     <td></td>
                                                     <td>@item.user</td>
-                                                    <td>@item.from_time</td>
-                                                    <td>@item.till_time</td>
+                                                    <td data-toggle="tooltip" data-original-title="<b>@item.from_timeT</b>" data-html="true">@item.from_time</td>
+                                                    <td data-toggle="tooltip" data-original-title="<b>@item.till_timeT</b>" data-html="true">@item.till_time</td>
                                                     <td>@item.uptime.Replace("s", "ثانیه").Replace("h", "ساعت").Replace("m", "دقیقه").Replace("d", "روز")</td>
                                                     <td>@((ulong.Parse(item.download) / 1048576))</td>
                                                     <td>@(ulong.Parse(item.upload) / 1048576)</td>
@@ -379,7 +379,7 @@
                                 <div class="col-md-4">
                                     <div class="form-group has-icon-left">
                                         @Html.LabelFor(m => m.last_seen)
-                                        <div class="position-relative has-icon-left">
+                                        <div class="position-relative has-icon-left" data-toggle="tooltip" data-original-title="<b>@Model.last_seenT</b>" data-html="true">
                                             @Html.TextBoxFor(m => m.last_seen, new { @class = "form-control" })
                                             <div class="form-control-position">
                                                 <i class="icon-ios-timer"></i>
@@ -409,7 +409,6 @@
     <script type="text/javascript">
         $(function () {
             var table = $('#grid').dataTable({
-                "order": [[1, 'asc']],
                 "iDisplayLength": 10,
                 "bProcessing": true,
                 "bStateSave": true,
@@ -422,9 +421,7 @@
                 },
                 dom: 'C<"clear">lfrtip',
                 columnDefs: [{
-                    visible: !1,
-                    targets: [7, 10, 11, 12, 13,14,15],
-                    buttonText: "ویرایش جدول",
+                    buttonText: "ویرایش جدول"
                 }],
                 colVis: {
                     restore: "پیشفرض",
@@ -436,8 +433,8 @@
         $(window).on("load", function() {
             Morris.Donut({
                 element: 'morris-donut-chart',
-                data: [{ label: "مصرف شده", value: @((ulong.Parse(Model.download_used)/ 1048576).ToString("#.##")) },
-                    { label: "باقیمانده", value: @((ulong.Parse(ViewBag.download_remain)/ 1048576).ToString("#.##")) }],
+                data: [{ label: "مصرف شده", value: @((ulong.Parse(Model.download_used)/ 1048576)) },
+                    { label: "باقیمانده", value: @((ulong.Parse(ViewBag.download_remain)/ 1048576)) }],
                 resize: !0,
                 colors: ['#ff5733', '#54cdb4']
             })

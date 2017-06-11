@@ -28,6 +28,7 @@ using Microsoft.AspNet.Identity;
 
 namespace Netotik.Web.Areas.Company.Controllers
 {
+    [Mvc5Authorize(Roles = "Company")]
     [BreadCrumb(Title = "کاربر", UseDefaultRouteUrl = true, RemoveAllDefaultRouteValues = true,
  Order = 0, GlyphIcon = "icon icon-table")]
     public partial class HomeController : BasePanelController
@@ -52,22 +53,22 @@ namespace Netotik.Web.Areas.Company.Controllers
         #endregion
 
         #region Index
-        [Mvc5Authorize(Roles = "Company")]
+        
         public virtual ActionResult Index()
         {
             return View();
         }
-        [Mvc5Authorize(Roles = "Company")]
+        
         public virtual ActionResult MyProfile()
         {
             return View();
         }
-        [Mvc5Authorize(Roles = "Company")]
+        
         public virtual ActionResult ProfileData()
         {
             return PartialView(MVC.Company.Home.Views._ProfileData, _applicationUserManager.GetUserCompanyProfile(UserLogined.Id));
         }
-        [Mvc5Authorize(Roles = "Company")]
+        
         [ValidateAntiForgeryToken]
         [HttpPost]
         public virtual async Task<ActionResult> changeImageProfile(HttpPostedFileBase image)
@@ -97,7 +98,7 @@ namespace Netotik.Web.Areas.Company.Controllers
             this.MessageInformation(Messages.MissionSuccess, Messages.UpdateSuccess);
             return RedirectToAction(MVC.Company.Home.MyProfile());
         }
-        [Mvc5Authorize(Roles = "Company")]
+        
         [ValidateAntiForgeryToken]
         [HttpPost]
         public virtual async Task<ActionResult> UpdateProfile(ProfileModel model)
@@ -124,12 +125,12 @@ namespace Netotik.Web.Areas.Company.Controllers
             await _applicationUserManager.UpdateUserCompanyProfile(model);
             return RedirectToAction(MVC.Company.Home.ActionNames.MyProfile);
         }
-        [Mvc5Authorize(Roles = "Company")]
+        
         public virtual ActionResult MikrotikConf()
         {
             return View(_applicationUserManager.GetUserCompanyMikrotikConf(UserLogined.Id));
         }
-        [Mvc5Authorize(Roles = "Company")]
+        
         [ValidateAntiForgeryToken]
         [HttpPost]
         public virtual async Task<ActionResult> MikrotikConf(MikrotikConfModel model)
@@ -158,7 +159,7 @@ namespace Netotik.Web.Areas.Company.Controllers
 
         #region Detail
 
-        [Mvc5Authorize(Roles = "Company")]
+        
         public virtual ActionResult Detail(int id)
         {
             //var user = _applicationUserManager.SingleOrDefault(id);
@@ -175,7 +176,7 @@ namespace Netotik.Web.Areas.Company.Controllers
         #endregion
 
         #region Edit
-        [Mvc5Authorize(Roles = "Company")]
+        
         [BreadCrumb(Title = "ویرایش", Order = 1)]
         public virtual ActionResult Edit(int id)
         {
@@ -209,7 +210,7 @@ namespace Netotik.Web.Areas.Company.Controllers
 
         }
 
-        [Mvc5Authorize(Roles = "Company")]
+        
         [ValidateAntiForgeryToken]
         [HttpPost]
         public virtual ActionResult Edit(CompanyEditModel model, ActionType actionType)
@@ -271,12 +272,12 @@ namespace Netotik.Web.Areas.Company.Controllers
         }
 
 
-        [Mvc5Authorize(Roles = "Company")]
+        
         public virtual ActionResult ChangePassword()
         {
             return View();
         }
-        [Mvc5Authorize(Roles = "Company")]
+        
         [HttpPost]
         public virtual async Task<ActionResult> ChangePassword(ChangePasswordModel model)
         {

@@ -14,6 +14,7 @@ using System.Collections.Generic;
 
 namespace Netotik.Web.Areas.Company.Controllers
 {
+    [Mvc5Authorize(Roles = "Company")]
     [BreadCrumb(Title = "یوزرمنیجر", UseDefaultRouteUrl = true, RemoveAllDefaultRouteValues = true,
  Order = 0, GlyphIcon = "icon icon-table")]
     public partial class UserManagerController : BasePanelController
@@ -39,7 +40,7 @@ namespace Netotik.Web.Areas.Company.Controllers
 
 
         #region Usermanager
-        [Mvc5Authorize(Roles = "Company")]
+        
         [HttpPost]
         [ValidateInput(false)]
         public virtual ActionResult ResetCounter(string user, string id)
@@ -59,7 +60,7 @@ namespace Netotik.Web.Areas.Company.Controllers
             //--------------------------------
             return RedirectToAction(MVC.Company.UserManager.UserList());
         }
-        [Mvc5Authorize(Roles = "Company")]
+        
         [HttpPost]
         [ValidateInput(false)]
         public virtual ActionResult CloseSession(string user, string id)
@@ -69,7 +70,7 @@ namespace Netotik.Web.Areas.Company.Controllers
             //--------------------------------
             return RedirectToAction(MVC.Company.UserManager.UserList());
         }
-        [Mvc5Authorize(Roles = "Company")]
+        
         public virtual ActionResult PackageCreate()
         {
             
@@ -95,7 +96,7 @@ namespace Netotik.Web.Areas.Company.Controllers
             ViewBag.ProfileLimition = _mikrotikServices.Usermanager_GetAllProfileLimition(UserLogined.UserCompany.R_Host, UserLogined.UserCompany.R_Port, UserLogined.UserCompany.R_User, UserLogined.UserCompany.R_Password);
             return View();
         }
-        [Mvc5Authorize(Roles = "Company")]
+        
         [ValidateAntiForgeryToken]
         [HttpPost]
         public virtual ActionResult PackageCreate(Netotik.ViewModels.Mikrotik.Usermanager_ProfileLimitionCreateModel model, ActionType actionType)
@@ -316,7 +317,7 @@ namespace Netotik.Web.Areas.Company.Controllers
                 return RedirectToAction(MVC.Company.UserManager.PackageList());
             }
         }
-        [Mvc5Authorize(Roles = "Company")]
+        
         public virtual ActionResult UserList()
         {
             
@@ -348,7 +349,22 @@ namespace Netotik.Web.Areas.Company.Controllers
                     if (item.upload_used == "0" || item.upload_used == "")
                         item.upload_used = "0";
                     item.download_used = (ulong.Parse(item.download_used) / 1048576).ToString();
-                    item.last_seen = item.last_seen.Replace("never", " بدون اتصال ");
+                    if (item.last_seen == "never")
+                    {
+                        item.last_seen = item.last_seen.Replace("never", " بدون اتصال ");
+                        item.last_seenT = item.last_seen.Replace("never", " بدون اتصال ");
+                    }
+                    else
+                    {
+                        var last_seenT = item.last_seen.Split(' ');
+                        var last_seen = item.last_seen.Split(' ');
+                        last_seen[0] = Infrastructure.EnglishConvertDate.ConvertToFa(last_seen[0], "d");
+                        item.last_seen = last_seen[0] + " " + last_seen[1];
+
+                        
+                        last_seenT[0] = Infrastructure.EnglishConvertDate.ConvertToFa(last_seenT[0], "D");
+                        item.last_seenT = last_seenT[0] + " " + last_seenT[1];
+                    }
                     item.shared_users = item.shared_users.Replace("unlimited", " بدون محدودیت ");
                     item.upload_used = (ulong.Parse(item.upload_used)/ 1048576).ToString();
                     item.uptime_used= item.uptime_used.Replace("d", " روز ").Replace("w", " هفته ").Replace("h", " ساعت ").Replace("m", " دقیقه ").Replace("s", " ثانیه ").Replace("never", " بدون اتصال ");
@@ -366,7 +382,7 @@ namespace Netotik.Web.Areas.Company.Controllers
             ViewBag.test = mikrotik.Read();*/
             return View();
         }
-        [Mvc5Authorize(Roles = "Company")]
+        
         [ValidateInput(false)]
         [HttpPost]
         public virtual ActionResult Userdisable(string id)
@@ -392,7 +408,7 @@ namespace Netotik.Web.Areas.Company.Controllers
             _mikrotikServices.Usermanager_DisableUser(UserLogined.UserCompany.R_Host, UserLogined.UserCompany.R_Port, UserLogined.UserCompany.R_User, UserLogined.UserCompany.R_Password, id);
             return RedirectToAction(MVC.Company.UserManager.ActionNames.UserList);
         }
-        [Mvc5Authorize(Roles = "Company")]
+        
         [ValidateInput(false)]
         [HttpPost]
         public virtual ActionResult Userremove(string id)
@@ -418,7 +434,7 @@ namespace Netotik.Web.Areas.Company.Controllers
             _mikrotikServices.Usermanager_RemoveUser(UserLogined.UserCompany.R_Host, UserLogined.UserCompany.R_Port, UserLogined.UserCompany.R_User, UserLogined.UserCompany.R_Password, id);
             return RedirectToAction(MVC.Company.UserManager.ActionNames.UserList);
         }
-        [Mvc5Authorize(Roles = "Company")]
+        
         [ValidateInput(false)]
         [HttpPost]
         public virtual ActionResult ProfileRemove(string id)
@@ -444,7 +460,7 @@ namespace Netotik.Web.Areas.Company.Controllers
             _mikrotikServices.Usermanager_RemoveProfile(UserLogined.UserCompany.R_Host, UserLogined.UserCompany.R_Port, UserLogined.UserCompany.R_User, UserLogined.UserCompany.R_Password, id);
             return RedirectToAction(MVC.Company.UserManager.ActionNames.PackageList);
         }
-        [Mvc5Authorize(Roles = "Company")]
+        
         [ValidateInput(false)]
         [HttpPost]
         public virtual ActionResult Userenable(string id)
@@ -470,7 +486,7 @@ namespace Netotik.Web.Areas.Company.Controllers
             _mikrotikServices.Usermanager_EnableUser(UserLogined.UserCompany.R_Host, UserLogined.UserCompany.R_Port, UserLogined.UserCompany.R_User, UserLogined.UserCompany.R_Password, id);
             return RedirectToAction(MVC.Company.UserManager.ActionNames.UserList);
         }
-        [Mvc5Authorize(Roles = "Company")]
+        
         [ValidateInput(false)]
         [HttpPost]
         public virtual ActionResult PackageDetails(string id)
@@ -530,7 +546,7 @@ namespace Netotik.Web.Areas.Company.Controllers
                     resualtmodel.UsermanLimition.uptime_limit = resualtmodel.UsermanLimition.uptime_limit.Replace("d", " روز ").Replace("w", " هفته ").Replace("h", " ساعت ").Replace("m", " دقیقه ").Replace("s", " ثانیه ");
             return View(resualtmodel);
         }
-        [Mvc5Authorize(Roles = "Company")]
+        
         [ValidateInput(false)]
         [HttpPost]
         public virtual ActionResult UserDetails(string id)
@@ -565,6 +581,16 @@ namespace Netotik.Web.Areas.Company.Controllers
                     var UserProfileLimition = new Usermanager_ProfileLimitionModel();
                     var UserLimition = new Usermanager_LimitionModel();
                     var UserSession = new List<Usermanager_UserSessionModel>();
+                    foreach(var SessionItem in session)
+                    {
+                        var from_time = SessionItem.from_time;
+                        var till_time = SessionItem.till_time;
+                        SessionItem.from_time = Infrastructure.EnglishConvertDate.ConvertToFa(SessionItem.from_time.Split(' ')[0], "d") + " " + SessionItem.from_time.Split(' ')[1];
+                        SessionItem.till_time = Infrastructure.EnglishConvertDate.ConvertToFa(SessionItem.till_time.Split(' ')[0], "d") + " " + SessionItem.till_time.Split(' ')[1];
+                        SessionItem.from_timeT = Infrastructure.EnglishConvertDate.ConvertToFa(from_time.Split(' ')[0], "D") + " " + from_time.Split(' ')[1];
+                        SessionItem.till_timeT = Infrastructure.EnglishConvertDate.ConvertToFa(till_time.Split(' ')[0], "D") + " " + till_time.Split(' ')[1];
+                        UserSession.Add(SessionItem);
+                    }
                     ViewBag.session = UserSession;
                     if (profile != null)
                         foreach (var item0 in profile)
@@ -614,7 +640,21 @@ namespace Netotik.Web.Areas.Company.Controllers
                     if (item.uptime_used != null)
                         item.uptime_used = item.uptime_used.Replace("d", " روز ").Replace("w", " هفته ").Replace("h", " ساعت ").Replace("m", " دقیقه ").Replace("s", " ثانیه ").Replace("never", " بدون اتصال ");
                     if (item.last_seen != null)
-                        item.last_seen = item.last_seen.Replace("never", " بدون اتصال ");
+                        if (item.last_seen == "never")
+                        {
+                            item.last_seen = item.last_seen.Replace("never", " بدون اتصال ");
+                            item.last_seenT = item.last_seen.Replace("never", " بدون اتصال ");
+                        }
+                        else
+                        {
+                            var last_seenT = item.last_seen.Split(' ');
+                            var last_seen = item.last_seen.Split(' ');
+                            last_seen[0] = Infrastructure.EnglishConvertDate.ConvertToFa(last_seen[0], "d");
+                            item.last_seen = last_seen[0] + " " + last_seen[1];
+
+                            last_seenT[0] = Infrastructure.EnglishConvertDate.ConvertToFa(last_seenT[0], "D");
+                            item.last_seenT = last_seenT[0] + " " + last_seenT[1];
+                        }
                     if (item.disabled != null)
                         item.disabled = item.disabled.Replace("false", "فعال").Replace("true", "غیره فعال");
                     if (item.download_used == "")
@@ -625,7 +665,7 @@ namespace Netotik.Web.Areas.Company.Controllers
                 }
             return View();
         }
-        [Mvc5Authorize(Roles = "Company")]
+        
         public virtual ActionResult UserCreate()
         {
             
@@ -650,7 +690,7 @@ namespace Netotik.Web.Areas.Company.Controllers
             //            ViewBag.Customers = _mikrotikServices.GetAllCustomers(UserLogined.UserCompany.R_Host, UserLogined.UserCompany.R_Port, UserLogined.UserCompany.R_User, UserLogined.UserCompany.R_Password);
             return View();
         }
-        [Mvc5Authorize(Roles = "Company")]
+        
         [ValidateAntiForgeryToken]
         [HttpPost]
         public virtual ActionResult UserCreate(Netotik.ViewModels.Mikrotik.Usermanager_UserRegisterModel model, ActionType actionType)
@@ -705,7 +745,7 @@ namespace Netotik.Web.Areas.Company.Controllers
                 return RedirectToAction(MVC.Company.UserManager.UserList());
             }
         }
-        [Mvc5Authorize(Roles = "Company")]
+        
         public virtual ActionResult PackageList()
         {
             
@@ -740,22 +780,22 @@ namespace Netotik.Web.Areas.Company.Controllers
             }
             return View();
         }
-        [Mvc5Authorize(Roles = "Company")]
+        
         public virtual ActionResult Report()
         {
             return View();
         }
-        [Mvc5Authorize(Roles = "Company")]
+        
         public virtual ActionResult Hotspot_Temp()
         {
             return View();
         }
-        [Mvc5Authorize(Roles = "Company")]
+        
         public virtual ActionResult Register()
         {
             return View();
         }
-        [Mvc5Authorize(Roles = "Company")]
+        
         [HttpPost]
         [ValidateInput(false)]
         public virtual ActionResult UserEdit(string id)
@@ -805,7 +845,7 @@ namespace Netotik.Web.Areas.Company.Controllers
             //            ViewBag.Customers = _mikrotikServices.GetAllCustomers(UserLogined.UserCompany.R_Host, UserLogined.UserCompany.R_Port, UserLogined.UserCompany.R_User, UserLogined.UserCompany.R_Password);
             return View();
         }
-        [Mvc5Authorize(Roles = "Company")]
+        
         [ValidateAntiForgeryToken]
         [HttpPost]
         public virtual ActionResult UserEdit_Save(Netotik.ViewModels.Mikrotik.Usermanager_UserEditModel model, ActionType actionType)

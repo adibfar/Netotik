@@ -28,15 +28,16 @@
                     <li><a href="@Url.Action(MVC.Company.Router.Interfaces())" data-toggle="dropdown" class="dropdown-item">InterFaces</a></li>
                     <li><a href="@Url.Action(MVC.Company.Router.Wireless())" data-toggle="dropdown" class="dropdown-item">Wireless</a></li>
                     <li><a href="@Url.Action(MVC.Company.Router.RouterSetting())" data-toggle="dropdown" class="dropdown-item">عملیات ها</a></li>
+                    <li><a href="#" data-toggle="dropdown" class="dropdown-item">Nat</a></li>
                 </ul>
             </li>
             <li data-menu="dropdown" class="dropdown nav-item">
                 <a href="#" data-toggle="dropdown" class="dropdown-toggle nav-link"><i class="icon-wifi"></i><span>هات اسپات</span></a>
                 <ul class="dropdown-menu">
-                    <li><a href="#" data-toggle="dropdown" class="dropdown-item">قالب های لاگین هات اسپات</a></li>
-                    <li><a href="#" data-toggle="dropdown" class="dropdown-item">متصل ها</a></li>
-                    <li><a href="#" data-toggle="dropdown" class="dropdown-item">سرور ها</a></li>
-                    <li><a href="#" data-toggle="dropdown" class="dropdown-item">کاربران</a></li>
+                    <li><a href="@Url.Action(MVC.Company.Hotspot.Template())" data-toggle="dropdown" class="dropdown-item">قالب های لاگین هات اسپات</a></li>
+                    <li><a href="@Url.Action(MVC.Company.Hotspot.Active())" data-toggle="dropdown" class="dropdown-item">متصل ها</a></li>
+                    <li><a href="@Url.Action(MVC.Company.Hotspot.Servers())" data-toggle="dropdown" class="dropdown-item">سرور ها</a></li>
+                    <li><a href="@Url.Action(MVC.Company.Hotspot.Users())" data-toggle="dropdown" class="dropdown-item">کاربران</a></li>
                     <li><a href="@Url.Action(MVC.Company.Hotspot.Access())" data-toggle="dropdown" class="dropdown-item">دسترسی</a></li>
                 </ul>
             </li>

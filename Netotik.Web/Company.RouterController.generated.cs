@@ -106,6 +106,24 @@ namespace Netotik.Web.Areas.Company.Controllers
         }
         [NonAction]
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public virtual System.Web.Mvc.ActionResult NatRemove()
+        {
+            return new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.NatRemove);
+        }
+        [NonAction]
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public virtual System.Web.Mvc.ActionResult NatEnable()
+        {
+            return new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.NatEnable);
+        }
+        [NonAction]
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public virtual System.Web.Mvc.ActionResult NatDisable()
+        {
+            return new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.NatDisable);
+        }
+        [NonAction]
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public virtual System.Web.Mvc.ActionResult RedirectToLocal()
         {
             return new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.RedirectToLocal);
@@ -147,6 +165,10 @@ namespace Netotik.Web.Areas.Company.Controllers
             public readonly string RemoveLogs = "RemoveLogs";
             public readonly string BackupUsermanager = "BackupUsermanager";
             public readonly string BackupRouter = "BackupRouter";
+            public readonly string Nat = "Nat";
+            public readonly string NatRemove = "NatRemove";
+            public readonly string NatEnable = "NatEnable";
+            public readonly string NatDisable = "NatDisable";
             public readonly string RedirectToLocal = "RedirectToLocal";
         }
 
@@ -174,6 +196,10 @@ namespace Netotik.Web.Areas.Company.Controllers
             public const string RemoveLogs = "RemoveLogs";
             public const string BackupUsermanager = "BackupUsermanager";
             public const string BackupRouter = "BackupRouter";
+            public const string Nat = "Nat";
+            public const string NatRemove = "NatRemove";
+            public const string NatEnable = "NatEnable";
+            public const string NatDisable = "NatDisable";
             public const string RedirectToLocal = "RedirectToLocal";
         }
 
@@ -242,6 +268,38 @@ namespace Netotik.Web.Areas.Company.Controllers
         {
             public readonly string id = "id";
         }
+        static readonly ActionParamsClass_Nat s_params_Nat = new ActionParamsClass_Nat();
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public ActionParamsClass_Nat NatParams { get { return s_params_Nat; } }
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public class ActionParamsClass_Nat
+        {
+            public readonly string model = "model";
+        }
+        static readonly ActionParamsClass_NatRemove s_params_NatRemove = new ActionParamsClass_NatRemove();
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public ActionParamsClass_NatRemove NatRemoveParams { get { return s_params_NatRemove; } }
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public class ActionParamsClass_NatRemove
+        {
+            public readonly string id = "id";
+        }
+        static readonly ActionParamsClass_NatEnable s_params_NatEnable = new ActionParamsClass_NatEnable();
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public ActionParamsClass_NatEnable NatEnableParams { get { return s_params_NatEnable; } }
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public class ActionParamsClass_NatEnable
+        {
+            public readonly string id = "id";
+        }
+        static readonly ActionParamsClass_NatDisable s_params_NatDisable = new ActionParamsClass_NatDisable();
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public ActionParamsClass_NatDisable NatDisableParams { get { return s_params_NatDisable; } }
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public class ActionParamsClass_NatDisable
+        {
+            public readonly string id = "id";
+        }
         static readonly ActionParamsClass_RedirectToLocal s_params_RedirectToLocal = new ActionParamsClass_RedirectToLocal();
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public ActionParamsClass_RedirectToLocal RedirectToLocalParams { get { return s_params_RedirectToLocal; } }
@@ -264,6 +322,7 @@ namespace Netotik.Web.Areas.Company.Controllers
                 public readonly string Info = "Info";
                 public readonly string InterfaceDetails = "InterfaceDetails";
                 public readonly string Interfaces = "Interfaces";
+                public readonly string Nat = "Nat";
                 public readonly string PPP = "PPP";
                 public readonly string RouterSetting = "RouterSetting";
                 public readonly string Wireless = "Wireless";
@@ -273,6 +332,7 @@ namespace Netotik.Web.Areas.Company.Controllers
             public readonly string Info = "~/Areas/Company/Views/Router/Info.cshtml";
             public readonly string InterfaceDetails = "~/Areas/Company/Views/Router/InterfaceDetails.cshtml";
             public readonly string Interfaces = "~/Areas/Company/Views/Router/Interfaces.cshtml";
+            public readonly string Nat = "~/Areas/Company/Views/Router/Nat.cshtml";
             public readonly string PPP = "~/Areas/Company/Views/Router/PPP.cshtml";
             public readonly string RouterSetting = "~/Areas/Company/Views/Router/RouterSetting.cshtml";
             public readonly string Wireless = "~/Areas/Company/Views/Router/Wireless.cshtml";
@@ -521,6 +581,65 @@ namespace Netotik.Web.Areas.Company.Controllers
         {
             var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.BackupRouter);
             BackupRouterOverride(callInfo);
+            return callInfo;
+        }
+
+        [NonAction]
+        partial void NatOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, Netotik.ViewModels.Mikrotik.Router_NatModel model);
+
+        [NonAction]
+        public override System.Web.Mvc.ActionResult Nat(Netotik.ViewModels.Mikrotik.Router_NatModel model)
+        {
+            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Nat);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "model", model);
+            NatOverride(callInfo, model);
+            return callInfo;
+        }
+
+        [NonAction]
+        partial void NatOverride(T4MVC_System_Web_Mvc_ActionResult callInfo);
+
+        [NonAction]
+        public override System.Web.Mvc.ActionResult Nat()
+        {
+            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Nat);
+            NatOverride(callInfo);
+            return callInfo;
+        }
+
+        [NonAction]
+        partial void NatRemoveOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, string id);
+
+        [NonAction]
+        public override System.Web.Mvc.ActionResult NatRemove(string id)
+        {
+            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.NatRemove);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "id", id);
+            NatRemoveOverride(callInfo, id);
+            return callInfo;
+        }
+
+        [NonAction]
+        partial void NatEnableOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, string id);
+
+        [NonAction]
+        public override System.Web.Mvc.ActionResult NatEnable(string id)
+        {
+            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.NatEnable);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "id", id);
+            NatEnableOverride(callInfo, id);
+            return callInfo;
+        }
+
+        [NonAction]
+        partial void NatDisableOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, string id);
+
+        [NonAction]
+        public override System.Web.Mvc.ActionResult NatDisable(string id)
+        {
+            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.NatDisable);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "id", id);
+            NatDisableOverride(callInfo, id);
             return callInfo;
         }
 

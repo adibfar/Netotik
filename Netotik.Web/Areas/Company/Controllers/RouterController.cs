@@ -24,6 +24,7 @@ using System.Collections.Generic;
 
 namespace Netotik.Web.Areas.Company.Controllers
 {
+    [Mvc5Authorize(Roles = "Company")]
     [BreadCrumb(Title = "روتر", UseDefaultRouteUrl = true, RemoveAllDefaultRouteValues = true,
  Order = 0, GlyphIcon = "icon icon-table")]
     public partial class RouterController : BasePanelController
@@ -49,7 +50,7 @@ namespace Netotik.Web.Areas.Company.Controllers
 
 
         #region Router
-        [Mvc5Authorize(Roles = "Company")]
+        
         public virtual ActionResult Info()
         {
             
@@ -102,10 +103,11 @@ namespace Netotik.Web.Areas.Company.Controllers
             Router_Info.Update_status = Router_PackageUpdate.FirstOrDefault().Update_status;
             //------------------------------------------
             var Router_Clock = _mikrotikServices.Router_Clock(UserLogined.UserCompany.R_Host, UserLogined.UserCompany.R_Port, UserLogined.UserCompany.R_User, UserLogined.UserCompany.R_Password);
+            ViewBag.Router_date = Infrastructure.EnglishConvertDate.ConvertToFa(Router_Clock.FirstOrDefault().Router_date, "D");
             Router_Info.Router_date = Infrastructure.EnglishConvertDate.ConvertToFa(Router_Clock.FirstOrDefault().Router_date, "d");
             ViewBag.Server_Date = PersianDate.ConvertDate.ToFa(DateTime.Now,"d");
+            ViewBag.Server_DateT = PersianDate.ConvertDate.ToFa(DateTime.Now, "D");
             //PersianDate.ConvertDate.ToFa();
-            Infrastructure.EnglishConvertDate.ConvertToFa(Router_Clock.FirstOrDefault().Router_date, "d");
             Router_Info.Router_time = Router_Clock.FirstOrDefault().Router_time;
             //------------------------------------------
             var Router_Routerboard = _mikrotikServices.Router_Routerboard(UserLogined.UserCompany.R_Host, UserLogined.UserCompany.R_Port, UserLogined.UserCompany.R_User, UserLogined.UserCompany.R_Password);
@@ -169,7 +171,7 @@ namespace Netotik.Web.Areas.Company.Controllers
             }
             return RedirectToAction(MVC.Company.Router.ActionNames.Info);
         }
-        [Mvc5Authorize(Roles = "Company")]
+        
         public virtual ActionResult PPP()
         {
             
@@ -189,7 +191,7 @@ namespace Netotik.Web.Areas.Company.Controllers
             ViewBag.model = _mikrotikServices.Interface(UserLogined.UserCompany.R_Host, UserLogined.UserCompany.R_Port, UserLogined.UserCompany.R_User, UserLogined.UserCompany.R_Password);
             return View();
         }
-        [Mvc5Authorize(Roles = "Company")]
+        
         public virtual ActionResult Interfaces()
         {
             
@@ -209,7 +211,7 @@ namespace Netotik.Web.Areas.Company.Controllers
             ViewBag.model = _mikrotikServices.Interface(UserLogined.UserCompany.R_Host, UserLogined.UserCompany.R_Port, UserLogined.UserCompany.R_User, UserLogined.UserCompany.R_Password);
             return View();
         }
-        [Mvc5Authorize(Roles = "Company")]
+        
         public virtual ActionResult Wireless()
         {
             
@@ -229,7 +231,7 @@ namespace Netotik.Web.Areas.Company.Controllers
             ViewBag.model = _mikrotikServices.Interface(UserLogined.UserCompany.R_Host, UserLogined.UserCompany.R_Port, UserLogined.UserCompany.R_User, UserLogined.UserCompany.R_Password);
             return View();
         }
-        [Mvc5Authorize(Roles = "Company")]
+        
         public virtual ActionResult WirelessDetails(string id)
         {
             
@@ -249,7 +251,7 @@ namespace Netotik.Web.Areas.Company.Controllers
             var Wireless = _mikrotikServices.GetWirelessDetails(UserLogined.UserCompany.R_Host, UserLogined.UserCompany.R_Port, UserLogined.UserCompany.R_User, UserLogined.UserCompany.R_Password, id);
             return View(Wireless);
         }
-        [Mvc5Authorize(Roles = "Company")]
+        
         public virtual ActionResult InterfaceDisable(string id)
         {
             
@@ -269,7 +271,7 @@ namespace Netotik.Web.Areas.Company.Controllers
             _mikrotikServices.Router_InterfaceDisable(UserLogined.UserCompany.R_Host, UserLogined.UserCompany.R_Port, UserLogined.UserCompany.R_User, UserLogined.UserCompany.R_Password, id);
             return RedirectToAction(MVC.Company.Router.ActionNames.Interfaces);
         }
-        [Mvc5Authorize(Roles = "Company")]
+        
         public virtual ActionResult WirelessEnable(string id)
         {
             
@@ -289,7 +291,7 @@ namespace Netotik.Web.Areas.Company.Controllers
             _mikrotikServices.Router_InterfaceEnable(UserLogined.UserCompany.R_Host, UserLogined.UserCompany.R_Port, UserLogined.UserCompany.R_User, UserLogined.UserCompany.R_Password, id);
             return RedirectToAction(MVC.Company.Router.ActionNames.Wireless);
         }
-        [Mvc5Authorize(Roles = "Company")]
+        
         public virtual ActionResult WirelessDisable(string id)
         {
             
@@ -309,7 +311,7 @@ namespace Netotik.Web.Areas.Company.Controllers
             _mikrotikServices.Router_InterfaceDisable(UserLogined.UserCompany.R_Host, UserLogined.UserCompany.R_Port, UserLogined.UserCompany.R_User, UserLogined.UserCompany.R_Password, id);
             return RedirectToAction(MVC.Company.Router.ActionNames.Wireless);
         }
-        [Mvc5Authorize(Roles = "Company")]
+        
         public virtual ActionResult InterfaceEnable(string id)
         {
             
@@ -329,7 +331,7 @@ namespace Netotik.Web.Areas.Company.Controllers
             _mikrotikServices.Router_InterfaceEnable(UserLogined.UserCompany.R_Host, UserLogined.UserCompany.R_Port, UserLogined.UserCompany.R_User, UserLogined.UserCompany.R_Password, id);
             return RedirectToAction(MVC.Company.Router.ActionNames.Interfaces);
         }
-        [Mvc5Authorize(Roles = "Company")]
+        
         public virtual ActionResult InterfaceDetails(string id)
         {
             //-------------------------------
@@ -349,7 +351,7 @@ namespace Netotik.Web.Areas.Company.Controllers
             return View(Ethernet);
         }
         #endregion
-        [Mvc5Authorize(Roles = "Company")]
+        
         public virtual ActionResult RouterSetting()
         {
             ViewBag.ReturnURL = "/Fa/Company/Router/RouterSetting";
@@ -619,6 +621,104 @@ namespace Netotik.Web.Areas.Company.Controllers
             _mikrotikServices.BackupRouter(UserLogined.UserCompany.R_Host, UserLogined.UserCompany.R_Port, UserLogined.UserCompany.R_User, UserLogined.UserCompany.R_Password);
             this.MessageSuccess("Backup", "بک آپ گیری با موفقیت انجام شد.");
             return RedirectToAction(MVC.Company.Router.ActionNames.RouterSetting);
+        }
+        [HttpPost]
+        public virtual ActionResult Nat(Router_NatModel model)
+        {
+
+            //-------------------------------
+
+            if (!_mikrotikServices.IP_Port_Check(UserLogined.UserCompany.R_Host, UserLogined.UserCompany.R_Port, UserLogined.UserCompany.R_User, UserLogined.UserCompany.R_Password))
+            {
+                this.MessageError("خطا", "آدرس IP یا Port دستگاه اشتباه وارد شده است یا دستگاه شما از طریق سرور قابل دسترس نمی باشد.لطفا آدرس IP ویا Port دستگاه را تصحیح کنید.");
+                return RedirectToAction(MVC.Company.Home.ActionNames.MikrotikConf, MVC.Company.Home.Name, new { area = MVC.Company.Name });
+            }
+            if (!_mikrotikServices.User_Pass_Check(UserLogined.UserCompany.R_Host, UserLogined.UserCompany.R_Port, UserLogined.UserCompany.R_User, UserLogined.UserCompany.R_Password))
+            {
+                this.MessageError("خطا", "نام کاربری یا رمز عبور صحیح وارد نشده است.لطفا نام کاربری یا رمز عبور را تصحیح کنید.");
+                return RedirectToAction(MVC.Company.Home.ActionNames.MikrotikConf, MVC.Company.Home.Name, new { area = MVC.Company.Name });
+            }
+            //-------------------------------
+            
+            _mikrotikServices.Router_NatAdd(UserLogined.UserCompany.R_Host, UserLogined.UserCompany.R_Port, UserLogined.UserCompany.R_User, UserLogined.UserCompany.R_Password,model);
+            return RedirectToAction(MVC.Company.Router.ActionNames.Nat);
+        }
+        public virtual ActionResult Nat()
+        {
+
+            //-------------------------------
+
+            if (!_mikrotikServices.IP_Port_Check(UserLogined.UserCompany.R_Host, UserLogined.UserCompany.R_Port, UserLogined.UserCompany.R_User, UserLogined.UserCompany.R_Password))
+            {
+                this.MessageError("خطا", "آدرس IP یا Port دستگاه اشتباه وارد شده است یا دستگاه شما از طریق سرور قابل دسترس نمی باشد.لطفا آدرس IP ویا Port دستگاه را تصحیح کنید.");
+                return RedirectToAction(MVC.Company.Home.ActionNames.MikrotikConf, MVC.Company.Home.Name, new { area = MVC.Company.Name });
+            }
+            if (!_mikrotikServices.User_Pass_Check(UserLogined.UserCompany.R_Host, UserLogined.UserCompany.R_Port, UserLogined.UserCompany.R_User, UserLogined.UserCompany.R_Password))
+            {
+                this.MessageError("خطا", "نام کاربری یا رمز عبور صحیح وارد نشده است.لطفا نام کاربری یا رمز عبور را تصحیح کنید.");
+                return RedirectToAction(MVC.Company.Home.ActionNames.MikrotikConf, MVC.Company.Home.Name, new { area = MVC.Company.Name });
+            }
+            //-------------------------------
+
+            ViewBag.NatList = _mikrotikServices.Router_NatList(UserLogined.UserCompany.R_Host, UserLogined.UserCompany.R_Port, UserLogined.UserCompany.R_User, UserLogined.UserCompany.R_Password);
+            return View();
+        }
+        [HttpPost]
+        public virtual ActionResult NatRemove(string id)
+        {
+
+            //-------------------------------
+
+            if (!_mikrotikServices.IP_Port_Check(UserLogined.UserCompany.R_Host, UserLogined.UserCompany.R_Port, UserLogined.UserCompany.R_User, UserLogined.UserCompany.R_Password))
+            {
+                this.MessageError("خطا", "آدرس IP یا Port دستگاه اشتباه وارد شده است یا دستگاه شما از طریق سرور قابل دسترس نمی باشد.لطفا آدرس IP ویا Port دستگاه را تصحیح کنید.");
+                return RedirectToAction(MVC.Company.Home.ActionNames.MikrotikConf, MVC.Company.Home.Name, new { area = MVC.Company.Name });
+            }
+            if (!_mikrotikServices.User_Pass_Check(UserLogined.UserCompany.R_Host, UserLogined.UserCompany.R_Port, UserLogined.UserCompany.R_User, UserLogined.UserCompany.R_Password))
+            {
+                this.MessageError("خطا", "نام کاربری یا رمز عبور صحیح وارد نشده است.لطفا نام کاربری یا رمز عبور را تصحیح کنید.");
+                return RedirectToAction(MVC.Company.Home.ActionNames.MikrotikConf, MVC.Company.Home.Name, new { area = MVC.Company.Name });
+            }
+            //-------------------------------
+            return RedirectToAction(MVC.Company.Router.ActionNames.Nat);
+        }
+        [HttpPost]
+        public virtual ActionResult NatEnable(string id)
+        {
+
+            //-------------------------------
+
+            if (!_mikrotikServices.IP_Port_Check(UserLogined.UserCompany.R_Host, UserLogined.UserCompany.R_Port, UserLogined.UserCompany.R_User, UserLogined.UserCompany.R_Password))
+            {
+                this.MessageError("خطا", "آدرس IP یا Port دستگاه اشتباه وارد شده است یا دستگاه شما از طریق سرور قابل دسترس نمی باشد.لطفا آدرس IP ویا Port دستگاه را تصحیح کنید.");
+                return RedirectToAction(MVC.Company.Home.ActionNames.MikrotikConf, MVC.Company.Home.Name, new { area = MVC.Company.Name });
+            }
+            if (!_mikrotikServices.User_Pass_Check(UserLogined.UserCompany.R_Host, UserLogined.UserCompany.R_Port, UserLogined.UserCompany.R_User, UserLogined.UserCompany.R_Password))
+            {
+                this.MessageError("خطا", "نام کاربری یا رمز عبور صحیح وارد نشده است.لطفا نام کاربری یا رمز عبور را تصحیح کنید.");
+                return RedirectToAction(MVC.Company.Home.ActionNames.MikrotikConf, MVC.Company.Home.Name, new { area = MVC.Company.Name });
+            }
+            //-------------------------------
+            return RedirectToAction(MVC.Company.Router.ActionNames.Nat);
+        }
+        [HttpPost]
+        public virtual ActionResult NatDisable(string id)
+        {
+
+            //-------------------------------
+
+            if (!_mikrotikServices.IP_Port_Check(UserLogined.UserCompany.R_Host, UserLogined.UserCompany.R_Port, UserLogined.UserCompany.R_User, UserLogined.UserCompany.R_Password))
+            {
+                this.MessageError("خطا", "آدرس IP یا Port دستگاه اشتباه وارد شده است یا دستگاه شما از طریق سرور قابل دسترس نمی باشد.لطفا آدرس IP ویا Port دستگاه را تصحیح کنید.");
+                return RedirectToAction(MVC.Company.Home.ActionNames.MikrotikConf, MVC.Company.Home.Name, new { area = MVC.Company.Name });
+            }
+            if (!_mikrotikServices.User_Pass_Check(UserLogined.UserCompany.R_Host, UserLogined.UserCompany.R_Port, UserLogined.UserCompany.R_User, UserLogined.UserCompany.R_Password))
+            {
+                this.MessageError("خطا", "نام کاربری یا رمز عبور صحیح وارد نشده است.لطفا نام کاربری یا رمز عبور را تصحیح کنید.");
+                return RedirectToAction(MVC.Company.Home.ActionNames.MikrotikConf, MVC.Company.Home.Name, new { area = MVC.Company.Name });
+            }
+            //-------------------------------
+            return RedirectToAction(MVC.Company.Router.ActionNames.Nat);
         }
     }
 }

@@ -28,7 +28,7 @@ namespace Netotik.ViewModels.Identity.UserReseller
         [MaxLength(100, ErrorMessageResourceType = typeof(Messages), ErrorMessageResourceName = "MaxLengthError")]
         [MinLength(6, ErrorMessageResourceType = typeof(Messages), ErrorMessageResourceName = "MinLengthError")]
         [Display(Name = "نام شرکت")]
-        [RegularExpression(@"^[a-zA-Z1-9]+$", ErrorMessage = "انگلیسی وارد کنید")]
+        [RegularExpression(@"(^[a-zA-Z0-9_]*$)", ErrorMessage = "مقدار وارد شده معتبر نمی باشد")]
         [System.Web.Mvc.Remote("IsResellerCodeAvailable", "Remote", System.Web.Mvc.AreaReference.UseRoot, HttpMethod = "POST", ErrorMessageResourceType = typeof(Messages), ErrorMessageResourceName = "ExistError")]
         public string ResellerCode { get; set; }
 
@@ -69,7 +69,7 @@ namespace Netotik.ViewModels.Identity.UserReseller
         [DisplayName("نام کاربری")]
         [StringLength(256, ErrorMessage = "نام کاربری نباید کمتر از 5 حرف و بیتشر از 256 حرف باشد", MinimumLength = 5)]
         [Remote("IsUserNameAvailable", "Remote", System.Web.Mvc.AreaReference.UseRoot, ErrorMessage = "این نام کاربری قبلا در سیستم ثبت شده است", HttpMethod = "POST")]
-        [RegularExpression("^[a-zA-Z0-9_]*$", ErrorMessage = "فقط از حروف انگلیسی و اعداد استفاده کنید")]
+        [RegularExpression(@"(^[a-zA-Z0-9_]*$)", ErrorMessage = "مقدار وارد شده معتبر نمی باشد")]
         public string UserName { get; set; }
 
         [Display(ResourceType = typeof(Captions), Name = "ImageProfile")]

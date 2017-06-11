@@ -1,0 +1,235 @@
+﻿@model Netotik.ViewModels.Mikrotik.Router_NatModel
+@{
+    ViewBag.Title = "فوروارد کردن";
+    int Counter = 1;
+}
+<div class="row">
+
+    <div class="col-md-12">
+        <div class="card">
+            <div class="card-header">
+                <h4 class="card-title">دسترسی کاربر(ان)</h4>
+                <a class="heading-elements-toggle"><i class="icon-ellipsis font-medium-3"></i></a>
+                <div class="heading-elements">
+                    <ul class="list-inline mb-0">
+                        <li><a data-action="collapse"><i class="icon-minus4"></i></a></li>
+                        <li><a data-action="reload"><i class="icon-reload"></i></a></li>
+                        <li><a data-action="expand"><i class="icon-expand2"></i></a></li>
+                        <li><a data-action="close"><i class="icon-cross2"></i></a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="card-body collapse in">
+                <div class="card-block">
+                    <div class="form-body">
+                        <div class="col-xs-12">
+                            <div class="row">
+                                <div class="col-md-12">
+                                </div>
+                            </div>
+                            <table class="table table-striped table-bordered table-hover zero-configuration dataex-colvis-restore" id="grid" style="width:auto;">
+                                <thead>
+                                    <tr>
+                                        <th>#</th>
+                                        <th data-toggle="true">به آدرس</th>
+                                        <th>به پورت</th>
+                                        <th>انتقال به آدرس</th>
+                                        <th>انتقال به پورت</th>
+                                        <th>پروتکل</th>
+                                        <th>Comments</th>
+                                        <th>Disable</th>
+                                        <th>Remove</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var item in ViewBag.NatList)
+                                    {
+                                        <tr>
+                                            <td>@(Counter++)</td>
+                                            <td>@item.dst_ipaddress</td>
+                                            <td>@item.dst_port</td>
+                                            <td>@item.to_ipaddress</td>
+                                            <td>@item.to_ports</td>
+                                            <td>@item.protocol</td>
+                                            <td>@item.comment</td>
+                                            <td>
+                                                @if (item.disabled)
+                                                {
+                                                    <a onclick="NatDisable('@item.id');" class="dropdown-item">
+                                                        <i class="icon-lock danger"></i> غیره فعال کردن
+                                                    </a>
+                                                }
+                                                else
+                                                {
+                                                    <a onclick="NatEnable('@item.id');" class="dropdown-item">
+                                                        <i class="icon-unlock primary"></i> فعال کردن
+                                                    </a>
+                                                }
+                                            </td>
+                                            <td>
+                                                <a onclick="NatRemove('@item.id');" class="dropdown-item">
+                                                    <i class="icon-trash4 danger"></i> حذف
+                                                </a>
+                                            </td>
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                            <div class="col-md-12">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <div class="card-block">
+                                            @using (Html.BeginForm(MVC.Company.Router.ActionNames.Nat, MVC.Company.Router.Name, FormMethod.Post,
+                                            htmlAttributes: new { @class = "form cmxform form-horizontal tasi-form", enctype = "multipart/form-data", id = "form" }))
+                                            {
+                                                <h4 class="form-section"><i class="icon-plus"></i>اضافه کردن</h4>
+                                                <div class="col-md-3">
+                                                    <div class="form-group has-feedback has-icon-left">
+                                                        @Html.LabelFor(m => m.dst_ipaddress)
+                                                        <div class="position-relative has-icon-left">
+                                                            @Html.TextBoxFor(m => m.dst_ipaddress, new { @class = "form-control" })
+                                                            <div class="form-control-position">
+                                                                <i class="icon-head"></i>
+                                                            </div>
+                                                            @Html.ValidationMessageFor(model => model.dst_ipaddress, "", htmlAttributes: new { @class = "text-danger" })
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-3">
+                                                    <div class="form-group has-feedback has-icon-left">
+                                                        @Html.LabelFor(m => m.dst_port)
+                                                        <div class="position-relative has-icon-left">
+                                                            @Html.TextBoxFor(m => m.dst_port, new { @class = "form-control" })
+                                                            <div class="form-control-position">
+                                                                <i class="icon-head"></i>
+                                                            </div>
+                                                            @Html.ValidationMessageFor(model => model.dst_port, "", htmlAttributes: new { @class = "text-danger" })
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-3">
+                                                    <div class="form-group has-feedback has-icon-left">
+                                                        @Html.LabelFor(m => m.to_ipaddress)
+                                                        <div class="position-relative has-icon-left">
+                                                            @Html.TextBoxFor(m => m.to_ipaddress, new { @class = "form-control" })
+                                                            <div class="form-control-position">
+                                                                <i class="icon-head"></i>
+                                                            </div>
+                                                            @Html.ValidationMessageFor(model => model.to_ipaddress, "", htmlAttributes: new { @class = "text-danger" })
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-3">
+                                                    <div class="form-group has-feedback has-icon-left">
+                                                        @Html.LabelFor(m => m.to_ports)
+                                                        <div class="position-relative has-icon-left">
+                                                            @Html.TextBoxFor(m => m.to_ports, new { @class = "form-control" })
+                                                            <div class="form-control-position">
+                                                                <i class="icon-head"></i>
+                                                            </div>
+                                                            @Html.ValidationMessageFor(model => model.to_ports, "", htmlAttributes: new { @class = "text-danger" })
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-3">
+                                                    <div class="form-group has-feedback has-icon-left">
+                                                        @Html.LabelFor(m => m.protocol)
+                                                        <div class="position-relative has-icon-left">
+                                                            @Html.TextBoxFor(m => m.protocol, new { @class = "form-control" })
+                                                            <div class="form-control-position">
+                                                                <i class="icon-head"></i>
+                                                            </div>
+                                                            @Html.ValidationMessageFor(model => model.protocol, "", htmlAttributes: new { @class = "text-danger" })
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-3">
+                                                    <div class="form-group has-feedback has-icon-left">
+                                                        @Html.LabelFor(m => m.comment)
+                                                        <div class="position-relative has-icon-left">
+                                                            @Html.TextBoxFor(m => m.comment, new { @class = "form-control" })
+                                                            <div class="form-control-position">
+                                                                <i class="icon-head"></i>
+                                                            </div>
+                                                            @Html.ValidationMessageFor(model => model.comment, "", htmlAttributes: new { @class = "text-danger" })
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <div class="form-group">
+                                                        <label class="font-noraml">Type</label>
+                                                        <select name="Type" data-placeholder="Types" class="selectize-select" style="min-width:350px;" tabindex="2">
+                                                            <option value="blocked">بستن</option>
+                                                            <option value="bypassed">عدم نمایش لاگین</option>
+                                                            <option value="regular">خارج کردن بر اساس آدرس</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-1" style="direction:ltr; padding-top:15px;">
+                                                    <button type="submit" class="btn btn-outline-primary">
+                                                        <i class="icon-plus"></i> Add
+                                                    </button>
+                                                </div>
+                                            }
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+</div>
+@section ScriptUp{
+    <link rel="stylesheet" type="text/css" href="~/Content/css/plugins/tables/extensions/dataTables.colVis.css">
+}
+@section DownScript{
+    <script src="~/Content/js/plugins/tables/datatable/dataTables.colVis.js" type="text/javascript"></script>
+    <script type="text/javascript">
+        $(function () {
+            var table = $('#grid').dataTable({
+                "order": [[1, 'asc']],
+                "iDisplayLength": 10,
+                "bProcessing": true,
+                "bStateSave": true,
+                "bFilter": true,
+                "scrollX": true,
+                "bAutoWidth": true,
+                "aoColumnDefs": [{ "bSortable": false, "aTargets": [-1] }],
+                "aLengthMenu": [[10, 25, 50, 100], [10, 25, 50, 100]],
+                "oLanguage": {
+                    "sUrl": "/Content/js/plugins/tables/datatable/dataTables.persian.txt"
+                },
+                dom: 'C<"clear">lfrtip',
+                columnDefs: [{
+                    buttonText: "ویرایش جدول"
+                }],
+                colVis: {
+                    restore: "پیشفرض",
+                    showAll: "نمایش همه",
+                    showNone: "پنهان سازی"
+                }
+            });
+        });
+
+
+        function NatRemove(id) {
+            PostData("@Url.Action(MVC.Company.Router.NatRemove())", { id: id });
+        }
+
+        function NatDisable(id) {
+            PostData("@Url.Action(MVC.Company.Router.NatDisable())", { id: id });
+        }
+
+        function NatEnable(id) {
+            PostData("@Url.Action(MVC.Company.Router.NatEnable())", { id: id });
+        }
+    </script>
+}

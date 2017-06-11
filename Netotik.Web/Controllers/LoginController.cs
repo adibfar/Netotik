@@ -62,7 +62,7 @@ namespace Netotik.Web.Controllers
         [AllowAnonymous]
         [HttpPost]
         [ValidateAntiForgeryToken]
-        [Route("Net/{ResellerCode}")]
+        [Route("{lang}/Net/{ResellerCode}")]
         public virtual async Task<ActionResult> Company(Netotik.ViewModels.Identity.UserCompany.LoginModel model, string ReturnUrl, string ResellerCode)
         {
             ViewBag.CompanyName = ResellerCode;

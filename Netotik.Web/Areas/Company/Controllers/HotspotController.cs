@@ -10,9 +10,11 @@ using Netotik.Services.Identity;
 using Netotik.Data;
 using Netotik.Common.Filters;
 using Netotik.Common.Controller;
+using System.Collections.Generic;
 
 namespace Netotik.Web.Areas.Company.Controllers
 {
+    [Mvc5Authorize(Roles = "Company")]
     [BreadCrumb(Title = "هات اسپات", UseDefaultRouteUrl = true, RemoveAllDefaultRouteValues = true,
  Order = 0, GlyphIcon = "icon icon-table")]
     public partial class HotspotController : BasePanelController
@@ -36,7 +38,7 @@ namespace Netotik.Web.Areas.Company.Controllers
         }
         #endregion
 
-        [Mvc5Authorize(Roles = "Company")]
+        
         [HttpPost]
         public virtual ActionResult AddIpWalledGarden()
         {
@@ -80,7 +82,7 @@ namespace Netotik.Web.Areas.Company.Controllers
             return RedirectToAction(MVC.Company.Hotspot.ActionNames.Access);
         }
 
-        [Mvc5Authorize(Roles = "Company")]
+        
         [HttpPost]
         public virtual ActionResult AddIpBindings()
         {
@@ -120,7 +122,7 @@ namespace Netotik.Web.Areas.Company.Controllers
             this.MessageSuccess("تایید", "دستگاه مورد نظر به لیست اضافه شد.");
             return RedirectToAction(MVC.Company.Hotspot.ActionNames.Access);
         }
-        [Mvc5Authorize(Roles = "Company")]
+        
         public virtual ActionResult Servers()
         {
 
@@ -141,7 +143,90 @@ namespace Netotik.Web.Areas.Company.Controllers
             
             return View();
         }
-        [Mvc5Authorize(Roles = "Company")]
+        
+        public virtual ActionResult Active()
+        {
+
+            //-------------------------------
+
+            if (!_mikrotikServices.IP_Port_Check(UserLogined.UserCompany.R_Host, UserLogined.UserCompany.R_Port, UserLogined.UserCompany.R_User, UserLogined.UserCompany.R_Password))
+            {
+                this.MessageError("خطا", "آدرس IP یا Port دستگاه اشتباه وارد شده است یا دستگاه شما از طریق سرور قابل دسترس نمی باشد.لطفا آدرس IP ویا Port دستگاه را تصحیح کنید.");
+                return RedirectToAction(MVC.Company.Home.ActionNames.MikrotikConf, MVC.Company.Home.Name, new { area = MVC.Company.Name });
+            }
+            if (!_mikrotikServices.User_Pass_Check(UserLogined.UserCompany.R_Host, UserLogined.UserCompany.R_Port, UserLogined.UserCompany.R_User, UserLogined.UserCompany.R_Password))
+            {
+                this.MessageError("خطا", "نام کاربری یا رمز عبور صحیح وارد نشده است.لطفا نام کاربری یا رمز عبور را تصحیح کنید.");
+                return RedirectToAction(MVC.Company.Home.ActionNames.MikrotikConf, MVC.Company.Home.Name, new { area = MVC.Company.Name });
+            }
+            //-------------------------------
+            var ActiveList = _mikrotikServices.Hotspot_ActiveList(UserLogined.UserCompany.R_Host, UserLogined.UserCompany.R_Port, UserLogined.UserCompany.R_User, UserLogined.UserCompany.R_Password);
+            var Active = new List<Hotspot_ActiveModel>();
+            foreach (var item in ActiveList)
+            {
+                item.Flags = item.Flags.Replace("Active","A").Replace("Host","");
+                item.radius = item.radius.Replace("true", "R").Replace("flase","");
+                item.uptime = item.uptime.Replace("d", " روز ").Replace("w", " هفته ").Replace("h", " ساعت ").Replace("m", " دقیقه ").Replace("s", " ثانیه ").Replace("never", " بدون اتصال ");
+                item.session_time_left = item.session_time_left.Replace("d", " روز ").Replace("w", " هفته ").Replace("h", " ساعت ").Replace("m", " دقیقه ").Replace("s", " ثانیه ").Replace("never", " بدون اتصال ");
+                item.keepalive_timeout = item.keepalive_timeout.Replace("d", " روز ").Replace("w", " هفته ").Replace("h", " ساعت ").Replace("m", " دقیقه ").Replace("s", " ثانیه ").Replace("never", " بدون اتصال ");
+                if (item.limit_bytes_in != null)
+                    if (item.limit_bytes_in != "")
+                        item.limit_bytes_in = (ulong.Parse(item.limit_bytes_in) / 1048576).ToString();
+                if (item.limit_bytes_out != null)
+                    if (item.limit_bytes_out != "")
+                        item.limit_bytes_out = (ulong.Parse(item.limit_bytes_out) / 1048576).ToString();
+                if (item.limit_bytes_total != null)
+                    if (item.limit_bytes_total != "")
+                        item.limit_bytes_total = (ulong.Parse(item.limit_bytes_total) / 1048576).ToString();
+                Active.Add(item);
+            }
+            ViewBag.servers = Active;
+            return View();
+        }
+        
+        public virtual ActionResult Users()
+        {
+
+            //-------------------------------
+
+            if (!_mikrotikServices.IP_Port_Check(UserLogined.UserCompany.R_Host, UserLogined.UserCompany.R_Port, UserLogined.UserCompany.R_User, UserLogined.UserCompany.R_Password))
+            {
+                this.MessageError("خطا", "آدرس IP یا Port دستگاه اشتباه وارد شده است یا دستگاه شما از طریق سرور قابل دسترس نمی باشد.لطفا آدرس IP ویا Port دستگاه را تصحیح کنید.");
+                return RedirectToAction(MVC.Company.Home.ActionNames.MikrotikConf, MVC.Company.Home.Name, new { area = MVC.Company.Name });
+            }
+            if (!_mikrotikServices.User_Pass_Check(UserLogined.UserCompany.R_Host, UserLogined.UserCompany.R_Port, UserLogined.UserCompany.R_User, UserLogined.UserCompany.R_Password))
+            {
+                this.MessageError("خطا", "نام کاربری یا رمز عبور صحیح وارد نشده است.لطفا نام کاربری یا رمز عبور را تصحیح کنید.");
+                return RedirectToAction(MVC.Company.Home.ActionNames.MikrotikConf, MVC.Company.Home.Name, new { area = MVC.Company.Name });
+            }
+            //-------------------------------
+            var UsersList = _mikrotikServices.Hotspot_UsersList(UserLogined.UserCompany.R_Host, UserLogined.UserCompany.R_Port, UserLogined.UserCompany.R_User, UserLogined.UserCompany.R_Password);
+            var Users = new List<Hotspot_UsersModel>();
+            foreach(var item in UsersList)
+            {
+                item.uptime = item.uptime.Replace("d", " روز ").Replace("w", " هفته ").Replace("h", " ساعت ").Replace("m", " دقیقه ").Replace("s", " ثانیه ").Replace("never", " بدون اتصال ");
+                item.limit_uptime = item.limit_uptime.Replace("d", " روز ").Replace("w", " هفته ").Replace("h", " ساعت ").Replace("m", " دقیقه ").Replace("s", " ثانیه ").Replace("never", " بدون اتصال ");
+                if(item.limit_bytes_in != null)
+                    if (item.limit_bytes_in != "")
+                        item.limit_bytes_in = (ulong.Parse(item.limit_bytes_in) / 1048576).ToString();
+                if (item.limit_bytes_out != null)
+                    if (item.limit_bytes_out != "")
+                        item.limit_bytes_out = (ulong.Parse(item.limit_bytes_out) / 1048576).ToString();
+                if (item.limit_bytes_total != null)
+                    if (item.limit_bytes_total != "")
+                        item.limit_bytes_total = (ulong.Parse(item.limit_bytes_total) / 1048576).ToString();
+                if (item.bytes_in != null)
+                    if (item.bytes_in != "")
+                        item.bytes_in = (ulong.Parse(item.bytes_in) / 1048576).ToString();
+                if (item.bytes_out != null)
+                    if (item.bytes_out != "")
+                        item.bytes_out = (ulong.Parse(item.bytes_out) / 1048576).ToString();
+                Users.Add(item);
+            }
+            ViewBag.servers = Users;
+            return View();
+        }
+        
         public virtual ActionResult Access()
         {
 
@@ -165,7 +250,7 @@ namespace Netotik.Web.Areas.Company.Controllers
             return View();
         }
 
-        [Mvc5Authorize(Roles = "Company")]
+        
         [ValidateInput(false)]
         public virtual ActionResult IpBindigsRemove(string id)
         {
@@ -186,7 +271,7 @@ namespace Netotik.Web.Areas.Company.Controllers
             return RedirectToAction(MVC.Company.Hotspot.ActionNames.Access);
         }
 
-        [Mvc5Authorize(Roles = "Company")]
+        
         [ValidateInput(false)]
         public virtual ActionResult IpWalledGardenRemove(string id)
         {
@@ -207,7 +292,7 @@ namespace Netotik.Web.Areas.Company.Controllers
             return RedirectToAction(MVC.Company.Hotspot.ActionNames.Access);
         }
 
-        [Mvc5Authorize(Roles = "Company")]
+        
         [ValidateInput(false)]
         public virtual ActionResult IpBindigsEnable(string id)
         {
@@ -227,7 +312,7 @@ namespace Netotik.Web.Areas.Company.Controllers
             _mikrotikServices.Hotspot_IpBindingsEnable(UserLogined.UserCompany.R_Host, UserLogined.UserCompany.R_Port, UserLogined.UserCompany.R_User, UserLogined.UserCompany.R_Password, id);
             return RedirectToAction(MVC.Company.Hotspot.ActionNames.Access);
         }
-        [Mvc5Authorize(Roles = "Company")]
+        
         [ValidateInput(false)]
         public virtual ActionResult IpBindigsDisable(string id)
         {
@@ -247,7 +332,7 @@ namespace Netotik.Web.Areas.Company.Controllers
             _mikrotikServices.Hotspot_IpBindingsDisable(UserLogined.UserCompany.R_Host, UserLogined.UserCompany.R_Port, UserLogined.UserCompany.R_User, UserLogined.UserCompany.R_Password, id);
             return RedirectToAction(MVC.Company.Hotspot.ActionNames.Access);
         }
-        [Mvc5Authorize(Roles = "Company")]
+        
         [ValidateInput(false)]
         public virtual ActionResult IpWalledGardenEnable(string id)
         {
@@ -267,7 +352,7 @@ namespace Netotik.Web.Areas.Company.Controllers
             _mikrotikServices.Hotspot_IpWalledGardenEnable(UserLogined.UserCompany.R_Host, UserLogined.UserCompany.R_Port, UserLogined.UserCompany.R_User, UserLogined.UserCompany.R_Password, id);
             return RedirectToAction(MVC.Company.Hotspot.ActionNames.Access);
         }
-        [Mvc5Authorize(Roles = "Company")]
+        
         [ValidateInput(false)]
         public virtual ActionResult IpWalledGardenDisable(string id)
         {
@@ -287,7 +372,7 @@ namespace Netotik.Web.Areas.Company.Controllers
             _mikrotikServices.Hotspot_IpWalledGardenDisable(UserLogined.UserCompany.R_Host, UserLogined.UserCompany.R_Port, UserLogined.UserCompany.R_User, UserLogined.UserCompany.R_Password, id);
             return RedirectToAction(MVC.Company.Hotspot.ActionNames.Access);
         }
-        [Mvc5Authorize(Roles = "Company")]
+        
         public virtual ActionResult Template()
         {
 

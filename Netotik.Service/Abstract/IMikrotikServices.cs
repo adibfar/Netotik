@@ -56,6 +56,8 @@ namespace Netotik.Services.Abstract
         List<Router_FileModel> GetBackupRouterList(string r_Host, int r_Port, string r_User, string r_Password);
         List<Router_FileModel> GetBackupUsermanagerList(string r_Host, int r_Port, string r_User, string r_Password);
         List<Hotspot_ServerModel> Hotspot_ServersList(string r_Host, int r_Port, string r_User, string r_Password);
+        List<Hotspot_UsersModel> Hotspot_UsersList(string r_Host, int r_Port, string r_User, string r_Password);
+        List<Hotspot_ActiveModel> Hotspot_ActiveList(string r_Host, int r_Port, string r_User, string r_Password);
         void RestoreRouter(string r_Host, int r_Port, string r_User, string r_Password, string FileName);
         void RestoreUsermanager(string r_Host, int r_Port, string r_User, string r_Password, string FileName);
 
@@ -66,5 +68,8 @@ namespace Netotik.Services.Abstract
         void Hotspot_IpWalledGardenRemove(string ip, int port, string user, string pass, string id);
         void Hotspot_IpWalledGardenEnable(string ip, int port, string user, string pass, string id);
         void Hotspot_IpWalledGardenDisable(string ip, int port, string user, string pass, string id);
+
+        void Router_NatAdd(string ip, int port, string user, string pass, Router_NatModel model);
+        List<Router_NatModel> Router_NatList(string r_Host, int r_Port, string r_User, string r_Password);
     }
 }

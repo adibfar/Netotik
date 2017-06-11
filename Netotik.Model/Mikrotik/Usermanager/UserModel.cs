@@ -21,6 +21,8 @@ namespace Netotik.ViewModels.Mikrotik
         public string wireless_enc_algo { get; set; }
         [Display(Name = "آخرین اتصال")]
         public string last_seen { get; set; }
+        [Display(Name = "آخرین اتصال")]
+        public string last_seenT { get; set; }
         [Display(Name = "فعال")]
         public string active { get; set; }
         public string incomplete { get; set; }

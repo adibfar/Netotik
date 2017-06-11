@@ -24,6 +24,10 @@ namespace Netotik.ViewModels.Mikrotik
         [Display(Name = "از(زمان)")]
         public string from_time { get; set; }
         [Display(Name = "تا (زمان)")]
+        public string till_timeT { get; set; }
+        [Display(Name = "از(زمان)")]
+        public string from_timeT { get; set; }
+        [Display(Name = "تا (زمان)")]
         public string till_time { get; set; }
         [Display(Name = "نحوه قطع شدن")]
         public string terminate_cause { get; set; }

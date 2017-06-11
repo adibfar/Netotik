@@ -25,7 +25,7 @@ namespace Netotik.ViewModels.Identity.UserReseller
         [MaxLength(100, ErrorMessageResourceType = typeof(Messages), ErrorMessageResourceName = "MaxLengthError")]
         [MinLength(6, ErrorMessageResourceType = typeof(Messages), ErrorMessageResourceName = "MinLengthError")]
         [Display(Name = "نام شرکت")]
-        [RegularExpression(@"^[a-zA-Z1-9]+$", ErrorMessage = "انگلیسی وارد کنید")]
+        [RegularExpression(@"(^[a-zA-Z0-9_]*$)", ErrorMessage = "مقدار وارد شده معتبر نمی باشد")]
         [System.Web.Mvc.Remote("IsResellerCodeAvailable", "Remote", System.Web.Mvc.AreaReference.UseRoot, AdditionalFields = "Id", HttpMethod = "POST", ErrorMessageResourceType = typeof(Messages), ErrorMessageResourceName = "ExistError")]
         public string ResellerCode { get; set; }
 

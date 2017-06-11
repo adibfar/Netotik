@@ -3486,6 +3486,9 @@
     <Content Include="Areas\Company\Views\Hotspot\Access.cshtml" />
     <Content Include="Areas\Company\Views\Router\RouterSetting.cshtml" />
     <Content Include="Areas\Company\Views\Hotspot\Servers.cshtml" />
+    <Content Include="Areas\Company\Views\Hotspot\Users.cshtml" />
+    <Content Include="Areas\Company\Views\Hotspot\Active.cshtml" />
+    <Content Include="Areas\Company\Views\Router\Nat.cshtml" />
     <None Include="Content\fonts\icomoon\icomoon.eot" />
     <Content Include="Content\fonts\icomoon\icomoon.svg" />
     <None Include="Content\fonts\icomoon\icomoon.ttf" />
