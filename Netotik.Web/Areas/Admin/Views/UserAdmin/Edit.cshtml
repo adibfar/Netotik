@@ -1,6 +1,6 @@
 ﻿@model Netotik.ViewModels.Identity.UserAdmin.AdminEditModel
 @{
-    ViewBag.Title = " ویرایش کاربر";
+    ViewBag.Title = Captions.EditUser;
     var roles = ViewBag.Roles as List<SelectListItem>;
 }
 <section class="flexbox-container">
@@ -87,6 +87,20 @@
                                             </div>
                                         </div>
                                     </div>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group has-feedback has-icon-left">
+                                                @Html.LabelFor(m => m.ShowName)
+                                                <div class="position-relative has-icon-left">
+                                                    @Html.PasswordFor(m => m.ShowName, new { @class = "form-control" })
+                                                    <div class="form-control-position">
+                                                        <i class="icon-key2"></i>
+                                                    </div>
+                                                    @Html.ValidationMessageFor(model => model.ShowName, "", htmlAttributes: new { @class = "text-danger" })
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                             <div class="col-md-3">
@@ -115,7 +129,7 @@
                                         </div>
                                     </div>
 
-                                    <h4 class="form-section"><i class="icon-camera5"></i> تصویر پروفایل</h4>
+                                    <h4 class="form-section"><i class="icon-camera5"></i> @Captions.ImageProfile</h4>
                                     <div class="row mb-3">
                                         <div class="col-md-12">
 

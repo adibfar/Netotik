@@ -21,9 +21,28 @@ namespace Netotik.Services.Implement
         {
 
         }
+
+        public IList<Menu> GetAllFooterMenu(int languageId)
+        {
+            return dbSet
+                   .Where(x => x.IsActive && x.MenuLocation == MenuLocation.Header && x.LanguageId == languageId)
+                   .Include(x => x.SubMenues)
+                   .OrderBy(x => x.Order)
+                   .ToList();
+        }
+
+        public IList<Menu> GetAllHeaderMenu(int languageId)
+        {
+            return dbSet
+                   .Where(x => x.IsActive && x.MenuLocation != MenuLocation.Header && x.LanguageId == languageId)
+                   .Include(x => x.SubMenues)
+                   .OrderBy(x => x.Order)
+                   .ToList();
+        }
+
         public IList<MenuItem> GetList(RequestListModel model, out long TotalCount, out long ShowCount)
         {
-            IQueryable<Menu> all = dbSet.AsQueryable();
+            IQueryable<Menu> all = dbSet.Include(x => x.Language).AsQueryable();
             TotalCount = all.LongCount();
 
             // Apply Filtering
@@ -48,7 +67,9 @@ namespace Netotik.Services.Implement
                     Id = x.Id,
                     Icon = x.Icon,
                     IsActive = x.IsActive,
+                    Order = x.Order,
                     Parent = x.ParentId.HasValue ? x.Parent.Text : "",
+                    FlagLanguage = x.Language.FlagImageFileName,
                     Url = x.Url,
                     RowNumber = model.iDisplayStart + index + 1
                 }).ToList();

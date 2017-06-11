@@ -1,4 +1,6 @@
-﻿
+﻿@{ 
+    ViewBag.Title = Captions.EditLanguage;
+}
 <section id="configuration">
     <div class="col-xs-12">
         <div class="card">
@@ -27,7 +29,7 @@
                 "bFilter": true,
                 "aLengthMenu": [[10, 25, 50, 100], [10, 25, 50, 100]],
                 "bAutoWidth": false,
-                "sAjaxSource": "/admin/language/getresourcelist/@ViewContext.RouteData.Values["Id"]",
+                "sAjaxSource":  '@(Url.Action(MVC.Admin.Language.GetResourceList())+"/"+ViewContext.RouteData.Values["Id"])',
                 "fnServerData": function (sSource, aoData, fnCallback) {
                     $.ajax({
                         "dataType": 'json',
@@ -43,12 +45,8 @@
                      {
                          "targets": -1,
                          "render": function (data, type, full, meta) {
-                             return '<span class="dropdown">'
-                                 + '<button id="btnSearchDrop2" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" class="btn btn-outline-secondary dropdown-toggle dropdown-menu-right">'
-                                 + '<i class="icon-cog3"></i> پردازش</button>'
-                                 + '<span aria-labelledby="btnSearchDrop2" class="dropdown-menu mt-1 dropdown-menu-right">'
-                                 + '<a onclick="edit(' + full.Id + ');" class="edit dropdown-item">'
-                                 + '<i class="icon-pen3"></i> ویرایش </a>'
+                             return '<a onclick="edit(' + full.Id + ');" class="btn btn-outline-blue-grey btn-square">'
+                                 + '<i class="icon-pen3"></i> '+'@Captions.Edit'+' </a>'
                          }
                      }
                 ]

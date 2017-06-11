@@ -1,3 +1,4 @@
+using Netotik.Resources;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.Web.Mvc;
@@ -6,24 +7,25 @@ namespace Netotik.ViewModels.Identity.Account
 {
     public class ResetPasswordViewModel
     {
-        [Required(ErrorMessage = "لطفا ایمیل خود را وارد کنید")]
-        [EmailAddress(ErrorMessage = "لطفا ایمیل را به شکل صحیح وارد کنید")]
-        [DisplayName("ایمیل")]
-        [StringLength(256, ErrorMessage = "حداکثر طول ایمیل 256 حرف است")]
+        [Required(ErrorMessageResourceType = typeof(Captions), ErrorMessageResourceName = "RequiredError")]
+        [MaxLength(300, ErrorMessageResourceType = typeof(Captions), ErrorMessageResourceName = "MaxLengthError")]
+        [Display(ResourceType = typeof(Captions), Name = "Email")]
+        [EmailAddress(ErrorMessageResourceType = typeof(Captions), ErrorMessageResourceName = "NotValidError")]
         public string Email { get; set; }
 
-        [Required(ErrorMessage = "لطفا کلمه عبور را وارد کنید")]
-        [StringLength(50, ErrorMessage = "کلمه عبور نباید کمتر از 5 حرف و بیتشر از 50 حرف باشد", MinimumLength = 5)]
+        [Required(ErrorMessageResourceType = typeof(Captions), ErrorMessageResourceName = "RequiredError")]
+        [StringLength(50, ErrorMessageResourceType = typeof(Captions), ErrorMessageResourceName = "LengthError", MinimumLength = 6)]
         [DataType(DataType.Password)]
-        [DisplayName("کلمه عبور")]
-        [Remote("CheckPassword", "Remote", AreaReference.UseRoot, ErrorMessage = "این کلمه عبور به راحتی قابل تشخیص است", HttpMethod = "POST")]
+        [Display(ResourceType = typeof(Captions), Name = "Password")]
+        [Remote("CheckPassword", "Remote", AreaReference.UseRoot, ErrorMessageResourceType = typeof(Captions), ErrorMessageResourceName = "PasswordEasy", HttpMethod = "POST")]
         public string Password { get; set; }
 
-        [Required(ErrorMessage = "لطفا کلمه عبور را وارد کنید")]
+        [Required(ErrorMessageResourceType = typeof(Captions), ErrorMessageResourceName = "RequiredError")]
         [DataType(DataType.Password)]
-        [DisplayName("تکرار کلمه عبور")]
-        [System.ComponentModel.DataAnnotations.Compare("Password", ErrorMessage = "کلمات عبور وارد شده مطابقت ندارند")]
+        [Display(ResourceType = typeof(Captions), Name = "ConfirmPassword")]
+        [System.ComponentModel.DataAnnotations.Compare("Password", ErrorMessageResourceType = typeof(Captions), ErrorMessageResourceName = "ConfirmPasswordNotValid")]
         public string ConfirmPassword { get; set; }
+
         public string Code { get; set; }
     }
 }

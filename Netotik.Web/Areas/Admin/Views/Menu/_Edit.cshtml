@@ -10,13 +10,22 @@
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
-                <h4 class="modal-title" id="myModalLabel20">ویرایش منو</h4>
+                <h4 class="modal-title" id="myModalLabel20">@Captions.EditMenu</h4>
             </div>
             @using (Html.BeginForm(MVC.Admin.Menu.ActionNames.Edit, MVC.Admin.Menu.Name, FormMethod.Post, htmlAttributes: new { @class = "form-horizontal", id = "EditForm" }))
             {
                 @Html.HiddenFor(model => model.Id)
                 @Html.AntiForgeryToken()
                 <div class="modal-body">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                @Html.LabelFor(m => m.LanguageId)
+                                @Html.DropDownListFor(model => model.LanguageId, ViewBag.Languages as SelectList, new { @class = "selectize-select" })
+                                @Html.ValidationMessageFor(model => model.LanguageId, "", htmlAttributes: new { @class = "text-danger" })
+                            </div>
+                        </div>
+                    </div>
 
                     <div class="row">
                         <div class="col-md-12">
@@ -24,6 +33,16 @@
                                 @Html.LabelFor(m => m.ParentId)
                                 @Html.DropDownListFor(model => model.ParentId, ViewBag.Menues as SelectList, new { @class = "selectize-select" })
                                 @Html.ValidationMessageFor(model => model.ParentId, "", htmlAttributes: new { @class = "text-danger" })
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                @Html.LabelFor(m => m.MenuLocation)
+                                @Html.EnumDropDownListFor(model => model.MenuLocation, new { @class = "selectize-select" })
+                                @Html.ValidationMessageFor(model => model.MenuLocation, "", htmlAttributes: new { @class = "text-danger" })
                             </div>
                         </div>
                     </div>
@@ -47,11 +66,18 @@
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-md-12">
+                        <div class="col-md-6">
                             <div class="form-group">
                                 @Html.LabelFor(m => m.Icon)
                                 @Html.TextBoxFor(m => m.Icon, new { @class = "form-control", dir = "ltr" })
                                 @Html.ValidationMessageFor(model => model.Icon, "", htmlAttributes: new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                @Html.LabelFor(m => m.Order)
+                                @Html.TextBoxFor(m => m.Order, new { @class = "form-control"})
+                                @Html.ValidationMessageFor(model => model.Order, "", htmlAttributes: new { @class = "text-danger" })
                             </div>
                         </div>
                     </div>
@@ -67,11 +93,11 @@
                 <div class="modal-footer">
                     <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">
                         <i class="icon-cross2"></i>
-                        بستن
+                        @Captions.Close
                     </button>
-                    <button name="actionType" value="@Netotik.Common.Controller.ActionType.Save" type="button" class="btn btn-outline-success" onclick="AjaxForm.Post(this, 'EditForm')" data-loading-text="در حال ارسال اطلاعات">
+                    <button name="actionType" value="@Netotik.Common.Controller.ActionType.Save" type="button" class="btn btn-outline-success" onclick="AjaxForm.Post(this, 'EditForm')" data-loading-text="@Captions.SendingData">
                         <i class="icon-check2"></i>
-                        @Netotik.Resources.Captions.Save
+                        @Captions.Save
                     </button>
                 </div>
             }

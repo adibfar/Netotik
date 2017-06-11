@@ -72,8 +72,7 @@ namespace Netotik.Services.Implement
                 {
                     Name = e.Attribute("Name").Value,
                     Value = e.Value,
-                });
-
+                }).ToList();
                 var lang = new Language()
                 {
                     Name = langName,
@@ -82,7 +81,7 @@ namespace Netotik.Services.Implement
                     LanguageCulture = xml.Attribute("LanguageCulture").Value,
                     UniqueSeoCode = xml.Attribute("UniqueSeoCode").Value,
                     Rtl = xml.Attribute("Rtl").Value == "true" ? true : false,
-                    IsDefault = xml.Attribute("IsDefault").Value == "true" ? true : false,
+                    IsDefault = true,
                     Published = true,
                     LocaleStringResources = list.ToList()
                 };

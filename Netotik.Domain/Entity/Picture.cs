@@ -29,7 +29,6 @@ namespace Netotik.Domain.Entity
         public virtual ICollection<Product> Products { get; set; }
         public virtual ICollection<Product> BgProducts { get; set; }
         public virtual ICollection<Slider> Sliders { get; set; }
-        public virtual ICollection<Advertise> Advertises { get; set; }
         public virtual ICollection<Category> categories { get; set; }
         public virtual ICollection<Manufacturer> manufacturers { get; set; }
         public virtual ICollection<PaymentType> PaymentTypes { get; set; }

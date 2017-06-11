@@ -15,7 +15,7 @@
     <li>
         <a href="#comments">
             <i class="fa fa-comments-o"></i>
-            <span class="font-lato">@Model.CommentCount دیدگاه</span>
+            <span class="font-lato">@Model.CommentCount @Captions.Comment</span>
         </a>
     </li>
     <li>
@@ -38,7 +38,7 @@
     }
 </ul>
 
-@if (Model.PictureId.HasValue)
+@if (Model.PictureId.HasValue && !Model.DontShowImageDetail)
 {
     <figure class="margin-bottom-20">
         <img class="img-responsive" src="@Url.Content(Path.Combine(Netotik.Common.Controller.FilePathes._imagesContentPath, Model.PictureId.HasValue ? Model.Picture.FileName : "Default.png"))" alt="@Model.Title" />

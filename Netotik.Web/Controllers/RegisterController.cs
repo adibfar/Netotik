@@ -60,7 +60,6 @@ namespace Netotik.Web.Controllers
         [AllowAnonymous]
         [HttpPost]
         [ValidateAntiForgeryToken]
-        [CaptchaVerify("تصویر امنیتی را درست وارد کنید")]
         public virtual ActionResult Company(Netotik.ViewModels.Identity.UserCompany.LoginModel model, string ReturnUrl, string CompanyName, int fromPage = 0)
         {
             return View();
@@ -79,7 +78,6 @@ namespace Netotik.Web.Controllers
         [AllowAnonymous]
         // [CheckReferrer]
         [ValidateAntiForgeryToken]
-        //[CaptchaVerify("تصویر امنیتی را درست وارد کنید")]
         public virtual async Task<ActionResult> Reseller(RegisterViewModel model)
         {
             #region Validation
@@ -119,11 +117,11 @@ namespace Netotik.Web.Controllers
 
             _userMailer.ConfirmAccount(new EmailViewModel
             {
-                Message = "با سلام کاربر گرامی.برای فعال سازی حساب خود لازم است بر روی لینک مقابل کلیک کنید",
+                Message =Captions.ActivationMailMessage,
                 To = email,
                 Url = callbackUrl,
-                UrlText = "فعال سازی",
-                Subject = "فعال سازی اکانت کاربری",
+                UrlText = Captions.ActivationMailSubject,
+                Subject = Captions.ActivationMailSubject,
                 ViewName = MVC.UserMailer.Views.ViewNames.ConfirmAccount
             }).Send();
 

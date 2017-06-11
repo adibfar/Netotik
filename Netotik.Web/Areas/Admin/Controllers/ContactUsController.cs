@@ -27,8 +27,7 @@ using Netotik.Common.DataTables;
 namespace Netotik.Web.Areas.Admin.Controllers
 {
     [Mvc5Authorize(Roles = AssignableToRolePermissions.CanAccessContactUs)]
-    [BreadCrumb(Title = "پیام های تماس باما", UseDefaultRouteUrl = true, RemoveAllDefaultRouteValues = true,
- Order = 0, GlyphIcon = "icon icon-table")]
+    [BreadCrumb(Title = "MessagesList", UseDefaultRouteUrl = true, Order = 0, GlyphIcon = "icon-inbox")]
     public partial class ContactUsController : BaseController
     {
 

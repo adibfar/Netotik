@@ -22,5 +22,14 @@ namespace Netotik.Services.Implement
 
         }
 
+
+        public IList<Slider> GetAll(int languageId)
+        {
+            return dbSet
+                .Where(x => x.LanguageId == languageId && x.IsActive)
+                .OrderBy(x => x.Order)
+                .Include(x => x.Picture)
+                .ToList();
+        }
     }
 }

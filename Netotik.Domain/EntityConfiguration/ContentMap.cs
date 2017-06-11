@@ -44,6 +44,11 @@ namespace Netotik.Domain.EntityConfiguration
                .HasForeignKey(d => d.EditedUserId)
                .WillCascadeOnDelete(false);
 
+            this.HasRequired(t => t.Language)
+             .WithMany(t => t.Contents)
+             .HasForeignKey(d => d.LanguageId)
+             .WillCascadeOnDelete(false);
+
 
         }
     }

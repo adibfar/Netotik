@@ -20,5 +20,6 @@ namespace Netotik.ViewModels.CMS.Content
         public int ViewCount { get; set; }
         public int CommentCount { get; set; }
         public string ImageFileName { get; set; }
+        public string FlagLanguage { get; set; }
     }
 }

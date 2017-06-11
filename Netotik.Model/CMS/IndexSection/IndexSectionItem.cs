@@ -7,13 +7,14 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Web;
 
-namespace Netotik.ViewModels.CMS.Advertise
+namespace Netotik.ViewModels.CMS.IndexSection
 {
-    public class AdvertiseItem
+    public class IndexSectionItem
     {
         public int? Id { get; set; }
         public long RowNumber { get; set; }
-        public string Url { get; set; }
+        public string Title { get; set; }
+        public string FlagLanguage { get; set; }
         public int Order { get; set; }
     }
 }

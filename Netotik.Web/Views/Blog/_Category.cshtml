@@ -6,10 +6,10 @@
 
 <div class="side-nav-head">
     <button class="fa fa-bars"></button>
-    <h4>دسته بندی</h4>
+    <h4>@Captions.Subject</h4>
 </div>
 <ul class="list-group list-group-bordered list-group-noicon uppercase">
-    <li class="list-group-item"><a href="@Url.Action(MVC.Blog.ActionNames.Index, MVC.Blog.Name, new { categoryId = 0, tagId = "",page=1 })">جدیدترین ها</a></li>
+    <li class="list-group-item"><a href="@Url.Action(MVC.Blog.IndexFirst())">@Captions.Newest</a></li>
     @foreach (var item in Model)
     {
         <li class="list-group-item">

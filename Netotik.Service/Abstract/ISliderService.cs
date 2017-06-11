@@ -9,5 +9,7 @@ namespace Netotik.Services.Abstract
 {
     public interface ISliderService : IBaseService<Slider>
     {
+
+        IList<Slider> GetAll(int languageId);
     }
 }

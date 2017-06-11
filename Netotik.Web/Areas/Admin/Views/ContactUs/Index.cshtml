@@ -1,4 +1,7 @@
-﻿<section id="configuration">
+﻿@{ 
+    ViewBag.Title = Captions.ContactUsMessages;
+}
+<section id="configuration">
     <div class="row">
         <div class="col-xs-12">
             <div class="card">
@@ -47,10 +50,10 @@
                          "render": function (data, type, full, meta) {
                              var result = '<span class="dropdown">'
                                      + '<button id="btnSearchDrop2" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" class="btn btn-outline-secondary dropdown-toggle dropdown-menu-right">'
-                                     + '<i class="icon-cog3"></i> پردازش</button><span aria-labelledby="btnSearchDrop2" class="dropdown-menu mt-1 dropdown-menu-right">';
+                                     + '<i class="icon-cog3"></i> '+'@Captions.Action'+'</button><span aria-labelledby="btnSearchDrop2" class="dropdown-menu mt-1 dropdown-menu-right">';
 
                                      result += '<a onclick="show(' + full.Id + ');" class="dropdown-item">'
-                                         + '<i class="icon-eye3"></i> نمایش پیام </a>';
+                                         + '<i class="icon-eye3"></i> '+'@Captions.ShowMessage'+' </a>';
 
                                  result += "</span></span>";
                              return result;
@@ -65,11 +68,7 @@
                     { "mDataProp": "Email" },
                     { "mDataProp": "PhoneNumber" },
                     { "no": "no" }
-                ],
-
-                "oLanguage": {
-                    "sUrl": "/Content/js/plugins/tables/datatable/dataTables.persian.txt"
-                }
+                ]
             });
         });
 

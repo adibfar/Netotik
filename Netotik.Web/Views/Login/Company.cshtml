@@ -15,12 +15,12 @@
                         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                             <span aria-hidden="true">×</span>
                         </button>
-                        <strong>ناموفق!</strong> @ViewBag.Message
+                        <strong>@Captions.MissionFail</strong> @ViewBag.Message
                     </div>
                     if (ViewBag.Link != null)
                     {
                         <div class="card-block">
-                            <a class="btn btn-outline-primary btn-block" href="@Url.Action(MVC.Account.ReceiveActivatorEmail())"><i class="icon-checkmark2"></i> فعال سازی حساب کاربری</a>
+                            <a class="btn btn-outline-primary btn-block" href="@Url.Action(MVC.Account.ReceiveActivatorEmail())"><i class="icon-checkmark2"></i> @Captions.ActivationAccount </a>
                         </div>
                         <div class="ui-separator">
 
@@ -33,13 +33,13 @@
                     {
                         @Html.AntiForgeryToken()
                         <div class="form-group has-feedback has-icon-left">
-                            @Html.TextBoxFor(m => m.UserName, new { @class = "form-control", placeholder = "نام کاربری" })
+                            @Html.TextBoxFor(m => m.UserName, new { @class = "form-control", placeholder = Captions.UserName })
                             <div class="form-control-position">
                                 <i class="icon-head"></i>
                             </div>
                         </div>
                         <div class="form-group has-feedback has-icon-left">
-                            @Html.PasswordFor(m => m.Password, new { @class = "form-control", placeholder = "گذرواژه" })
+                            @Html.PasswordFor(m => m.Password, new { @class = "form-control", placeholder = Captions.Password })
                             <div class="form-control-position">
                                 <i class="icon-key3"></i>
                             </div>
@@ -48,12 +48,12 @@
                             <div class="col-md-6 col-xs-12 text-xs-center">
                                 <fieldset>
                                     @Html.CheckBoxFor(m => m.RememberMe, new { @class = "chk-remember" })
-                                    @Html.Label("", "مرا بخاطر بسپار", new { @class = "control-label" })
+                                    @Html.LabelFor(m=>m.RememberMe, new { @class = "control-label" })
                                 </fieldset>
                             </div>
-                            <div class="col-md-6 col-xs-12 float-sm-left text-xs-center"><a href="@Url.Action(MVC.Account.ForgotPassword())" class="card-link">فراموش کرده اید؟</a></div>
+                            <div class="col-md-6 col-xs-12 float-sm-left text-xs-center"><a href="@Url.Action(MVC.Account.ForgotPassword())" class="card-link"> @Captions.ForgetIt</a></div>
                         </fieldset>
-                        <button type="submit" class="btn btn-outline-primary btn-block"><i class="icon-unlock2"></i> ورود</button>
+                        <button type="submit" class="btn btn-outline-primary btn-block"><i class="icon-unlock2"></i> @Captions.Login</button>
                     }
                 </div>
             </div>

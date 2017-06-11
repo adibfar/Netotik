@@ -28,8 +28,7 @@ using Netotik.Common.Controller;
 namespace Netotik.Web.Areas.Admin.Controllers
 {
     [Mvc5Authorize(Roles = AssignableToRolePermissions.CanAccessManufactur)]
-    [BreadCrumb(Title = "لیست برند ها", UseDefaultRouteUrl = true, RemoveAllDefaultRouteValues = true,
- Order = 0, GlyphIcon = "icon icon-table")]
+    [BreadCrumb(Title = "لیست برند ها", UseDefaultRouteUrl = true, Order = 0, GlyphIcon = "icon icon-table")]
     public partial class ShopManuFacturerController : BaseController
     {
 
@@ -84,7 +83,7 @@ namespace Netotik.Web.Areas.Admin.Controllers
 
             if (!ModelState.IsValid)
             {
-                this.MessageError(Messages.MissionFail, Messages.InvalidDataError);
+                this.MessageError(Captions.MissionFail, Captions.InvalidDataError);
                 return View(model);
             }
 
@@ -131,11 +130,11 @@ namespace Netotik.Web.Areas.Admin.Controllers
             }
             catch
             {
-                this.MessageError(Messages.MissionFail, Messages.AddError);
+                this.MessageError(Captions.MissionFail, Captions.AddError);
                 return View();
             }
 
-            this.MessageError(Messages.MissionSuccess, Messages.AddSuccess);
+            this.MessageError(Captions.MissionSuccess, Captions.AddSuccess);
             return RedirectToAction(MVC.Admin.ShopManuFacturer.Index());
 
         }
@@ -216,7 +215,7 @@ namespace Netotik.Web.Areas.Admin.Controllers
 
             if (!ModelState.IsValid)
             {
-                this.MessageError(Messages.MissionFail, Messages.InvalidDataError);
+                this.MessageError(Captions.MissionFail, Captions.InvalidDataError);
                 return View();
             }
             #region Update
@@ -263,11 +262,11 @@ namespace Netotik.Web.Areas.Admin.Controllers
             }
             catch
             {
-                this.MessageError(Messages.MissionFail, Messages.UpdateError);
+                this.MessageError(Captions.MissionFail, Captions.UpdateError);
                 return View();
             }
 
-            this.MessageError(Messages.MissionSuccess, Messages.UpdateSuccess);
+            this.MessageError(Captions.MissionSuccess, Captions.UpdateSuccess);
             return RedirectToAction(MVC.Admin.ShopManuFacturer.Index());
         }
 

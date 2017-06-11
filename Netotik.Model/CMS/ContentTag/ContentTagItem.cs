@@ -13,6 +13,7 @@ namespace Netotik.ViewModels.CMS.ContentTag
     {
         public int Id { get; set; }
         public string Name { get; set; }
+        public string FlagLanguage { get; set; }
         public int RowNumber { get; set; }
     }
 }

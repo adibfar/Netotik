@@ -46,7 +46,6 @@
   <ItemGroup>
     <Compile Include="Abstract\BaseResourceProvider.cs" />
     <Compile Include="Abstract\IResourceProvider.cs" />
-    <Compile Include="Messages.cs" />
     <Compile Include="Captions.cs" />
     <Compile Include="Concrete\DbResourceProvider.cs" />
     <Compile Include="Concrete\XmlResourceProvider.cs" />

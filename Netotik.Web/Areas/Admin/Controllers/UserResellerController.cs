@@ -31,8 +31,7 @@ using System.Net;
 
 namespace Netotik.Web.Areas.Admin.Controllers
 {
-    [BreadCrumb(Title = "لیست نمایندگان", UseDefaultRouteUrl = true, RemoveAllDefaultRouteValues = true,
- Order = 0, GlyphIcon = "icon icon-table")]
+    [BreadCrumb(Title = "ResellersList", UseDefaultRouteUrl = true, Order = 0, GlyphIcon = "icon-users3")]
     public partial class UserResellerController : BasePanelController
     {
 
@@ -86,9 +85,10 @@ namespace Netotik.Web.Areas.Admin.Controllers
         #region Create
 
         [Mvc5Authorize(Roles = AssignableToRolePermissions.CanCreateUser)]
-        [BreadCrumb(Title = "نماینده جدید", Order = 1)]
+        [BreadCrumb(Title = "NewReseller", GlyphIcon = "icon-plus", Order = 1)]
         public virtual ActionResult Create()
         {
+            ModelState.Clear();
             return View();
         }
 
@@ -110,7 +110,7 @@ namespace Netotik.Web.Areas.Admin.Controllers
 
             if (!ModelState.IsValid)
             {
-                this.MessageError(Messages.MissionFail, Messages.InvalidDataError);
+                this.MessageError(Captions.MissionFail, Captions.InvalidDataError);
                 return View(model);
             }
 
@@ -131,7 +131,7 @@ namespace Netotik.Web.Areas.Admin.Controllers
             }
             #endregion
 
-            this.MessageSuccess(Messages.MissionSuccess, Messages.AddSuccess);
+            this.MessageSuccess(Captions.MissionSuccess, Captions.AddSuccess);
             return RedirectToAction(MVC.Admin.UserReseller.Index());
 
         }
@@ -174,7 +174,7 @@ namespace Netotik.Web.Areas.Admin.Controllers
         }
 
         [Mvc5Authorize(Roles = AssignableToRolePermissions.CanEditUser)]
-        [BreadCrumb(Title = "ویرایش", Order = 1)]
+        [BreadCrumb(Title = "EditReseller", GlyphIcon = "icon-edit", Order = 1)]
         public virtual async Task<ActionResult> Edit(long? id)
         {
             if (id == null) return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -236,11 +236,11 @@ namespace Netotik.Web.Areas.Admin.Controllers
                 if (model.Picture != null)
                     DeleteFile(Server.MapPath(Path.Combine(FilePathes._imagesUserAvatarsPath, model.Picture.FileName)));
 
-                this.MessageError(Messages.MissionFail, Messages.UpdateError);
+                this.MessageError(Captions.MissionFail, Captions.UpdateError);
                 return View(model);
             }
 
-            this.MessageSuccess(Messages.MissionSuccess, Messages.UpdateSuccess);
+            this.MessageSuccess(Captions.MissionSuccess, Captions.UpdateSuccess);
             return RedirectToAction(MVC.Admin.UserReseller.Index());
         }
 

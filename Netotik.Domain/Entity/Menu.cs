@@ -1,5 +1,7 @@
+﻿using Netotik.Resources;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace Netotik.Domain.Entity
 {
@@ -18,7 +20,18 @@ namespace Netotik.Domain.Entity
         public string Description { get; set; }
         public bool IsActive { get; set; }
         public int Order { get; set; }
+        public MenuLocation MenuLocation { get; set; }
+        public int LanguageId { get; set; }
+        public Language Language { get; set; }
         public virtual ICollection<Menu> SubMenues { get; set; }
         public virtual Menu Parent { get; set; }
+    }
+
+    public enum MenuLocation : short
+    {
+        [Display(ResourceType =typeof(Captions),Name ="Header")]
+        Header = 0,
+        [Display(ResourceType = typeof(Captions), Name = "Footer")]
+        Footer,
     }
 }

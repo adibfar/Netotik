@@ -7,7 +7,8 @@ using System.Threading.Tasks;
 
 namespace Netotik.Services.Abstract
 {
-    public interface ILinkService : IBaseService<Link>
+    public interface ILanguageTranslationService : IBaseService<LanguageTranslation>
     {
+        string GetLocalized(string entityId, int languageId, string objectName, string PropertyName);
     }
 }

@@ -101,7 +101,7 @@ namespace Netotik.Web.Areas.Reseller.Controllers
 
             if (!ModelState.IsValid)
             {
-                this.MessageError(Messages.MissionFail, Messages.InvalidDataError);
+                this.MessageError(Captions.MissionFail, Captions.InvalidDataError);
                 return View(model);
             }
             model.UserResellerId = UserLogined.UserReseller.Id;
@@ -271,11 +271,11 @@ namespace Netotik.Web.Areas.Reseller.Controllers
             //        }
             //        catch (DbEntityValidationException ex)
             //        {
-            //            this.MessageError(Messages.MissionFail, Messages.AddError);
+            //            this.MessageError(Captions.MissionFail, Captions.AddError);
             //        }
             //        catch (Exception ex)
             //        {
-            //            this.MessageError(Messages.MissionFail, Messages.AddError);
+            //            this.MessageError(Captions.MissionFail, Captions.AddError);
             //        }
             //    }
             //    SetResultMessage(result);
@@ -286,7 +286,7 @@ namespace Netotik.Web.Areas.Reseller.Controllers
             //}
             //else
             //{
-            //    this.MessageError(Messages.MissionFail, Messages.InvalidDataError);
+            //    this.MessageError(Captions.MissionFail, Captions.InvalidDataError);
             //    return View();
             //}
 
@@ -312,7 +312,7 @@ namespace Netotik.Web.Areas.Reseller.Controllers
         {
             //if (!ModelState.IsValid)
             //{
-            //    this.MessageError(Messages.MissionFail, Messages.InvalidDataError);
+            //    this.MessageError(Captions.MissionFail, Captions.InvalidDataError);
             //}
             //else
             //{
@@ -325,7 +325,7 @@ namespace Netotik.Web.Areas.Reseller.Controllers
             //        }
             //        catch (Exception ex)
             //        {
-            //            this.MessageError(Messages.MissionFail, Messages.UpdateError);
+            //            this.MessageError(Captions.MissionFail, Captions.UpdateError);
             //        }
             //    }
             //    SetResultMessage(result);

@@ -12,17 +12,22 @@ namespace Netotik.ViewModels.CMS.Slider
     public class SliderModel
     {
         public int? Id { get; set; }
-        [Display(Name = "متن لینک")]
+
+        [Required(ErrorMessageResourceType = typeof(Captions), ErrorMessageResourceName = "RequiredError")]
+        [Display(ResourceType = typeof(Captions), Name = "Language")]
+        public int LanguageId { get; set; }
+
+        [Display(ResourceType = typeof(Captions), Name = "Url")]
         public string Url { get; set; }
-        [Display(ResourceType = typeof(Captions),Name="Order")]
-        [Required(ErrorMessageResourceType = typeof(Messages), ErrorMessageResourceName = "RequiredError")]
+        [Display(ResourceType = typeof(Captions),Name="DisplayOrder")]
+        [Required(ErrorMessageResourceType = typeof(Captions), ErrorMessageResourceName = "RequiredError")]
         public int Order { get; set; }
 
         [Display(ResourceType = typeof(Captions), Name = "Image")]
         public HttpPostedFileBase Image { get; set; }
 
         [Display(ResourceType = typeof(Captions), Name = "Active")]
-        [Required(ErrorMessageResourceType = typeof(Messages), ErrorMessageResourceName = "RequiredError")]
+        [Required(ErrorMessageResourceType = typeof(Captions), ErrorMessageResourceName = "RequiredError")]
         public bool IsActive { get; set; }
 
     }

@@ -5,7 +5,7 @@
     ViewBag.Description = (string.IsNullOrWhiteSpace(Model.MetaDescription) ? Model.BodyOverview : Model.MetaDescription);
 }
 
-<section class="page-header page-header-md parallax parallax-3" style="background-image:url('/Content/Upload/Image/Content/@Model.Picture.FileName')">
+<section class="page-header page-header-md parallax parallax-3" style="background-image:url('/Content/Upload/Image/Content/@(Model.PictureId.HasValue?Model.Picture.FileName:"Background.jpg")')">
     <div class="overlay dark-5"></div>
     <div class="container">
     </div>
@@ -17,13 +17,13 @@
 
         <div class="row">
 
-            <!-- LEFT -->
-            <div class="col-md-3 col-sm-3">
-                @Html.Partial(MVC.Blog.Views._SideBar)
-            </div>
-
-            <!-- RIGHT -->
-            <div class="col-md-9 col-sm-9">
+            @if (Model.HasSideBar)
+            {
+                <div class="col-md-3 col-sm-3">
+                    @Html.Partial(MVC.Blog.Views._SideBar)
+                </div>
+            }
+            <div class="@(Model.HasSideBar?"col-md-9 col-sm-9":"col-md-12 col-sm-12")">
 
                 @Html.Partial(MVC.Blog.Views._Post)
 
@@ -37,12 +37,12 @@
 
 
 @*@if (Model.AllowViewComments)
-{
-    @Html.Partial(MVC.Blog.Views._Comments, Model.ContentComments)
-}
-@if (Model.AllowComments)
-{
-    @Html.Partial(MVC.Blog.Views._AddComment, new SmartyShop.Model.Comment.AddCommentModel() { ContentId = Model.Id })
-}*@
+    {
+        @Html.Partial(MVC.Blog.Views._Comments, Model.ContentComments)
+    }
+    @if (Model.AllowComments)
+    {
+        @Html.Partial(MVC.Blog.Views._AddComment, new SmartyShop.Model.Comment.AddCommentModel() { ContentId = Model.Id })
+    }*@
 
 

@@ -15,6 +15,8 @@ namespace Netotik.Domain.Entity
         public int Id { get; set; }
         public string Name { get; set; }
         public bool IsDeleted { get; set; }
+        public int LanguageId { get; set; }
+        public Language Language { get; set; }
         public ContentCategory Parent { get; set; }
         public int? ParentId { get; set; }
         public ICollection<ContentCategory> SubCategories { get; set; }

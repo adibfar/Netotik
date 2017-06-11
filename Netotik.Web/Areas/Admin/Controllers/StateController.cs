@@ -29,8 +29,7 @@ namespace Netotik.Web.Areas.Admin.Controllers
 {
 
     [Mvc5Authorize(Roles = AssignableToRolePermissions.CanAccessState)]
-    [BreadCrumb(Title = "لیست استان ها", UseDefaultRouteUrl = true, RemoveAllDefaultRouteValues = true,
- Order = 0, GlyphIcon = "icon icon-table")]
+    [BreadCrumb(Title = "StatesList", UseDefaultRouteUrl = true, Order = 0, GlyphIcon = "icon-th-large")]
     public partial class StateController : BaseController
     {
 
@@ -92,7 +91,7 @@ namespace Netotik.Web.Areas.Admin.Controllers
             var a = actionType;
             if (!ModelState.IsValid)
             {
-                this.MessageError(Messages.MissionFail, Messages.InvalidDataError);
+                this.MessageError(Captions.MissionFail, Captions.InvalidDataError);
                 return RedirectToAction(MVC.Admin.State.Index());
             }
             var state = new State()
@@ -110,11 +109,11 @@ namespace Netotik.Web.Areas.Admin.Controllers
             }
             catch
             {
-                this.MessageError(Messages.MissionFail, Messages.AddError);
+                this.MessageError(Captions.MissionFail, Captions.AddError);
                 return RedirectToAction(MVC.Admin.State.Index());
             }
 
-            this.MessageSuccess(Messages.MissionSuccess, Messages.AddSuccess);
+            this.MessageSuccess(Captions.MissionSuccess, Captions.AddSuccess);
             return RedirectToAction(MVC.Admin.State.Index());
         }
         #endregion
@@ -129,7 +128,7 @@ namespace Netotik.Web.Areas.Admin.Controllers
             {
                 state.IsDeleted = true;
                 await _uow.SaveChangesAsync();
-                this.MessageInformation(Messages.MissionSuccess, Messages.RemoveSuccess);
+                this.MessageInformation(Captions.MissionSuccess, Captions.RemoveSuccess);
             }
 
             return RedirectToAction(MVC.Admin.State.Index());
@@ -162,7 +161,7 @@ namespace Netotik.Web.Areas.Admin.Controllers
 
             if (!ModelState.IsValid)
             {
-                this.MessageError(Messages.MissionFail, Messages.InvalidDataError);
+                this.MessageError(Captions.MissionFail, Captions.InvalidDataError);
                 return RedirectToAction(MVC.Admin.State.Index());
             }
 
@@ -178,11 +177,11 @@ namespace Netotik.Web.Areas.Admin.Controllers
             }
             catch
             {
-                this.MessageError(Messages.MissionFail, Messages.UpdateError);
+                this.MessageError(Captions.MissionFail, Captions.UpdateError);
                 return RedirectToAction(MVC.Admin.State.Index());
             }
 
-            this.MessageSuccess(Messages.MissionSuccess, Messages.UpdateSuccess);
+            this.MessageSuccess(Captions.MissionSuccess, Captions.UpdateSuccess);
             return RedirectToAction(MVC.Admin.State.Index());
         }
 

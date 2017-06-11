@@ -27,8 +27,7 @@ using Netotik.Common.Controller;
 
 namespace Netotik.Web.Areas.Admin.Controllers
 {
-    [BreadCrumb(Title = "لیست تخفیف ها", UseDefaultRouteUrl = true, RemoveAllDefaultRouteValues = true,
- Order = 0, GlyphIcon = "icon icon-table")]
+    [BreadCrumb(Title = "لیست تخفیف ها", UseDefaultRouteUrl = true, Order = 0, GlyphIcon = "icon icon-table")]
     public partial class ShopDiscountController : BaseController
     {
 
@@ -82,27 +81,27 @@ namespace Netotik.Web.Areas.Admin.Controllers
         {
             if (!ModelState.IsValid)
             {
-                this.MessageError(Messages.MissionFail, Messages.InvalidDataError);
+                this.MessageError(Captions.MissionFail, Captions.InvalidDataError);
                 return View();
             }
 
             if (model.UsePercentage && model.DiscountPercentage == null)
             {
                 ModelState.AddModelError("DiscountPercentage", "درصد تخفیف را وارد کنید");
-                this.MessageError(Messages.MissionFail, Messages.InvalidDataError);
+                this.MessageError(Captions.MissionFail, Captions.InvalidDataError);
                 return View(model);
             }
             else if (!model.UsePercentage && model.DiscountAmount == null)
             {
                 ModelState.AddModelError("DiscountAmount", "میزان تخفیف را وارد کنید");
-                this.MessageError(Messages.MissionFail, Messages.InvalidDataError);
+                this.MessageError(Captions.MissionFail, Captions.InvalidDataError);
                 return View(model);
             }
 
             if (model.RequiersCouponCode && string.IsNullOrWhiteSpace(model.CouponCode))
             {
                 ModelState.AddModelError("CouponCode", "کد کوپن را وارد کنید");
-                this.MessageError(Messages.MissionFail, Messages.InvalidDataError);
+                this.MessageError(Captions.MissionFail, Captions.InvalidDataError);
                 return View(model);
             }
 
@@ -134,12 +133,12 @@ namespace Netotik.Web.Areas.Admin.Controllers
             }
             catch
             {
-                this.MessageError(Messages.MissionFail, Messages.AddError);
+                this.MessageError(Captions.MissionFail, Captions.AddError);
                 return View();
             }
 
 
-            this.MessageSuccess(Messages.MissionSuccess, Messages.AddSuccess);
+            this.MessageSuccess(Captions.MissionSuccess, Captions.AddSuccess);
             return RedirectToAction(MVC.Admin.ShopDiscount.Index());
 
         }
@@ -223,26 +222,26 @@ namespace Netotik.Web.Areas.Admin.Controllers
             if (model.UsePercentage && model.DiscountPercentage == null)
             {
                 ModelState.AddModelError("DiscountPercentage", "درصد تخفیف را وارد کنید");
-                this.MessageError(Messages.MissionFail, Messages.InvalidDataError);
+                this.MessageError(Captions.MissionFail, Captions.InvalidDataError);
                 return View(model);
             }
             else if (!model.UsePercentage && model.DiscountAmount == null)
             {
                 ModelState.AddModelError("DiscountAmount", "میزان تخفیف را وارد کنید");
-                this.MessageError(Messages.MissionFail, Messages.InvalidDataError);
+                this.MessageError(Captions.MissionFail, Captions.InvalidDataError);
                 return View(model);
             }
             if (model.RequiersCouponCode && string.IsNullOrWhiteSpace(model.CouponCode))
             {
                 ModelState.AddModelError("CouponCode", "کد کوپن را وارد کنید");
-                this.MessageError(Messages.MissionFail, Messages.InvalidDataError);
+                this.MessageError(Captions.MissionFail, Captions.InvalidDataError);
                 return View(model);
             }
 
 
             if (!ModelState.IsValid)
             {
-                this.MessageError(Messages.MissionFail, Messages.InvalidDataError);
+                this.MessageError(Captions.MissionFail, Captions.InvalidDataError);
                 return View();
             }
             #region Update
@@ -270,12 +269,12 @@ namespace Netotik.Web.Areas.Admin.Controllers
             }
             catch
             {
-                this.MessageError(Messages.MissionFail, Messages.UpdateError);
+                this.MessageError(Captions.MissionFail, Captions.UpdateError);
                 return View();
             }
 
 
-            this.MessageSuccess(Messages.MissionSuccess, Messages.UpdateSuccess);
+            this.MessageSuccess(Captions.MissionSuccess, Captions.UpdateSuccess);
             return RedirectToAction(MVC.Admin.ShopDiscount.Index());
         }
 

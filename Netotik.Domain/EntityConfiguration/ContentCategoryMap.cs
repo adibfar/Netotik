@@ -20,6 +20,12 @@ namespace Netotik.Domain.EntityConfiguration
                 .WithMany(t => t.SubCategories)
                 .HasForeignKey(d => d.ParentId);
 
+            this.HasRequired(t => t.Language)
+             .WithMany(t => t.ContentCategories)
+             .HasForeignKey(d => d.LanguageId)
+             .WillCascadeOnDelete(false);
+
+
         }
     }
 }

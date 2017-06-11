@@ -27,8 +27,7 @@ using Netotik.Common.Controller;
 
 namespace Netotik.Web.Areas.Admin.Controllers
 {
-    [BreadCrumb(Title = "لیست مشخصات محصول", UseDefaultRouteUrl = true, RemoveAllDefaultRouteValues = true,
- Order = 0, GlyphIcon = "icon icon-table")]
+    [BreadCrumb(Title = "لیست مشخصات محصول", UseDefaultRouteUrl = true,Order = 0, GlyphIcon = "icon icon-table")]
     public partial class ShopProductAttributeController : BaseController
     {
 
@@ -84,7 +83,7 @@ namespace Netotik.Web.Areas.Admin.Controllers
             await LoadCategories(model.CategoryId);
             if (!ModelState.IsValid)
             {
-                this.MessageError(Messages.MissionFail, Messages.InvalidDataError);
+                this.MessageError(Captions.MissionFail, Captions.InvalidDataError);
                 return View();
             }
 
@@ -106,11 +105,11 @@ namespace Netotik.Web.Areas.Admin.Controllers
             }
             catch
             {
-                this.MessageError(Messages.MissionFail, Messages.AddError);
+                this.MessageError(Captions.MissionFail, Captions.AddError);
                 return View();
             }
 
-            this.MessageSuccess(Messages.MissionFail, Messages.AddSuccess);
+            this.MessageSuccess(Captions.MissionFail, Captions.AddSuccess);
             return RedirectToAction(MVC.Admin.ShopProductAttribute.Index());
 
         }
@@ -182,7 +181,7 @@ namespace Netotik.Web.Areas.Admin.Controllers
 
             if (!ModelState.IsValid)
             {
-                this.MessageError(Messages.MissionFail, Messages.InvalidDataError);
+                this.MessageError(Captions.MissionFail, Captions.InvalidDataError);
                 return View();
             }
 
@@ -198,11 +197,11 @@ namespace Netotik.Web.Areas.Admin.Controllers
             }
             catch
             {
-                this.MessageError(Messages.MissionFail, Messages.UpdateError);
+                this.MessageError(Captions.MissionFail, Captions.UpdateError);
                 return View();
             }
 
-            this.MessageSuccess(Messages.MissionFail, Messages.UpdateSuccess);
+            this.MessageSuccess(Captions.MissionFail, Captions.UpdateSuccess);
             return RedirectToAction(MVC.Admin.ShopProductAttribute.Index());
         }
 

@@ -21,32 +21,6 @@ namespace Netotik.Web.Infrastructure
 
         }
 
-        protected override void Initialize(RequestContext requestContext)
-        {
-            var languages = LanguageCache.GetLanguages(requestContext.HttpContext);
-
-            if (requestContext.RouteData.Values["lang"] != null && requestContext.RouteData.Values["lang"] as string != "null")
-            {
-                var lang = (string)requestContext.RouteData.Values["lang"];
-                string culture = languages.FirstOrDefault(x => x.IsDefault).LanguageCulture;
-                requestContext.RouteData.Values["lang"] = languages.FirstOrDefault(x => x.IsDefault).UniqueSeoCode;
-                if (lang != null)
-                {
-                    var language = languages.FirstOrDefault(x => x.Published && x.UniqueSeoCode == lang);
-                    if (language != null)
-                    {
-                        culture = language.LanguageCulture;
-                        requestContext.RouteData.Values["lang"] = language.UniqueSeoCode;
-                    }
-                }
-
-                Thread.CurrentThread.CurrentCulture = Thread.CurrentThread.CurrentUICulture = new CultureInfo(culture);
-            }
-            base.Initialize(requestContext);
-        }
-
-
-
 
         [ChildActionOnly]
         public virtual ActionResult RedirectToLocal(string returnUrl)

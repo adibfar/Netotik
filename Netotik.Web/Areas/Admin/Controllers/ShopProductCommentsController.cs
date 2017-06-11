@@ -25,8 +25,7 @@ using Netotik.ViewModels.Identity.Security;
 
 namespace Netotik.Web.Areas.Admin.Controllers
 {
-       [BreadCrumb(Title = "لیست نظرات محصولات", UseDefaultRouteUrl = true, RemoveAllDefaultRouteValues = true,
-    Order = 0, GlyphIcon = "icon icon-table")]
+       [BreadCrumb(Title = "لیست نظرات محصولات", UseDefaultRouteUrl = true,Order = 0, GlyphIcon = "icon icon-table")]
     public partial class ShopProductCommentsController : BaseController
     {
 

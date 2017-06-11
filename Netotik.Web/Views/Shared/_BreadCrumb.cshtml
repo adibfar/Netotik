@@ -1,7 +1,7 @@
 ﻿@using DNTBreadCrumb
 @{
-    var homeUrl = Url.Action("Index", "Home");
-    const string homePage = "داشبورد";
+    var homeUrl = Url.Action("Index", "Home", new { lang = ViewContext.RouteData.Values["lang"].ToString() });
+    string homePage = Captions.Dashboard;
 
     var breadCrumbs = this.Context.Items[BreadCrumbExtentions.CurrentBreadCrumbKey] as List<BreadCrumb>;
     var currentFullUrl = this.Request.Url.ToString();
@@ -14,7 +14,7 @@
 
 @if (breadCrumbs != null && breadCrumbs.Any())
 {
-    
+
     <div class="content-header col-md-12 col-xs-12">
         <div class="row breadcrumbs-top">
             <div class="breadcrumb-wrapper col-xs-12">
@@ -51,7 +51,7 @@
                                 {
                                     <span class="@node.GlyphIcon"></span>
                                 }
-                                @node.Title
+                                @Captions.GetName(node.Title)
                             </li>
                         }
                         else
@@ -62,7 +62,7 @@
                                     {
                                         <i class="@node.GlyphIcon"></i>
                                     }
-                                    @node.Title
+                                    @Captions.GetName(node.Title)
                                 </a>
                             </li>
                         }

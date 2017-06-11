@@ -26,7 +26,7 @@ namespace Netotik.Services.Implement
 
         public IList<ContentTagItem> GetList(RequestListModel model, out long TotalCount, out long ShowCount)
         {
-            IQueryable<ContentTag> all = dbSet.AsQueryable();
+            IQueryable<ContentTag> all = dbSet.Include(x=>x.Language).AsQueryable();
             TotalCount = all.LongCount();
 
             // Apply Filtering
@@ -48,6 +48,7 @@ namespace Netotik.Services.Implement
                 {
                     Name = x.Name,
                     Id = x.Id,
+                    FlagLanguage = x.Language.FlagImageFileName,
                     RowNumber = model.iDisplayStart + index + 1
                 })
                 .ToList();
@@ -81,6 +82,18 @@ namespace Netotik.Services.Implement
                 }
             }
             return list;
+        }
+
+        public IList<ContentTag> GetByLanguageId(int id)
+        {
+            return dbSet.AsNoTracking().Where(x => x.LanguageId == id).ToList();
+        }
+
+        public IList<ContentTag> GetAll(int languageId)
+        {
+            return dbSet
+                .Where(x => x.LanguageId == languageId)
+                .ToList();
         }
     }
 }

@@ -10,7 +10,7 @@ namespace Netotik.Resources.Resources.Abstract
     public abstract class BaseResourceProvider: IResourceProvider
     {
         // Cache list of resources
-        private static Dictionary<string, ResourceEntry> resources = null;
+        public static Dictionary<string, ResourceEntry> resources = null;
         private static object lockResources = new object();
 
         public BaseResourceProvider() {
@@ -58,9 +58,10 @@ namespace Netotik.Resources.Resources.Abstract
                 }
 
             }
-            catch
+            catch(Exception ex)
             {
-                return name+" not found..";
+                var s = ex;
+                return "{"+name+"}";
             }
             return ReadResource(name, culture).Value;
 

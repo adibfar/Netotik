@@ -13,6 +13,7 @@ namespace Netotik.ViewModels.CMS.ContentCategory
         public int Id { get; set; }
         public long RowNumber { get; set; }
         public string Name { get; set; }
+        public string FlagLanguage { get; set; }
         public string Parent { get; set; }
 
     }

@@ -10,12 +10,22 @@
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
-                <h4 class="modal-title" id="myModalLabel20">اسلاید جدید</h4>
+                <h4 class="modal-title" id="myModalLabel20">@Captions.NewSlider</h4>
             </div>
             @using (Html.BeginForm(MVC.Admin.Slider.ActionNames.Create, MVC.Admin.Slider.Name, FormMethod.Post, htmlAttributes: new { @class = "form-horizontal", enctype = "multipart/form-data", id = "form" }))
             {
                 @Html.AntiForgeryToken()
                 <div class="modal-body">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                @Html.LabelFor(m => m.LanguageId)
+                                @Html.DropDownListFor(model => model.LanguageId, ViewBag.Languages as SelectList, new { @class = "selectize-select" })
+                                @Html.ValidationMessageFor(model => model.LanguageId, "", htmlAttributes: new { @class = "text-danger" })
+                            </div>
+                        </div>
+                    </div>
+
                     <div class="row">
                         <div class="col-md-12">
                             <div class="form-group has-feedback has-icon-left">
@@ -59,11 +69,11 @@
                 <div class="modal-footer">
                     <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">
                         <i class="icon-cross2"></i>
-                        بستن
+                        @Captions.Close
                     </button>
-                    <button name="actionType" value="@Netotik.Common.Controller.ActionType.Save" type="submit" class="btn btn-outline-success" onclick="AjaxForm.Post(this, 'form')" data-loading-text="در حال ارسال اطلاعات">
+                    <button name="actionType" value="@Netotik.Common.Controller.ActionType.Save" type="submit" class="btn btn-outline-success" onclick="AjaxForm.Post(this, 'form')" data-loading-text="@Captions.SendingData">
                         <i class="icon-check2"></i>
-                        @Netotik.Resources.Captions.Save
+                        @Captions.Save
                     </button>
                 </div>
             }

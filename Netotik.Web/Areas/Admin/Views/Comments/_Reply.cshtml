@@ -10,7 +10,7 @@
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
-                <h4 class="modal-title" id="myModalLabel20">پاسخ به دیدگاه</h4>
+                <h4 class="modal-title" id="myModalLabel20">@Captions.ReplyComment</h4>
             </div>
             @using (Html.BeginForm(MVC.Admin.Comments.ActionNames.Reply, MVC.Admin.Comments.Name, FormMethod.Post, htmlAttributes: new { @class = "form-horizontal", id = "ReplyForm" }))
             {
@@ -18,7 +18,7 @@
                 @Html.HiddenFor(model => model.CommentId)
                 @Html.AntiForgeryToken()
                 <div class="modal-body">
-                    <h4 class="form-section"><i class="icon-file-text2"></i> دیدگاه</h4>
+                    <h4 class="form-section"><i class="icon-file-text2"></i> @Captions.Comment</h4>
                     <div class="row">
                         <div class="col-md-3">@Html.LabelFor(model=>model.CommentName)</div>
                         <div class="col-md-9"> @Model.CommentName </div>
@@ -33,7 +33,7 @@
                         <div class="col-md-3">@Html.LabelFor(model => model.CommentText)</div>
                         <div class="col-md-9"> @Model.CommentText </div>
                     </div>
-                    <h4 class="form-section"><i class="icon-file-text2"></i> پاسخ به دیدگاه</h4>
+                    <h4 class="form-section"><i class="icon-file-text2"></i> @Captions.ReplyComment</h4>
                     <div class="row">
                         <div class="col-md-12">
                             <div class="form-group has-feedback has-icon-left">
@@ -81,11 +81,11 @@
                 <div class="modal-footer">
                     <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">
                         <i class="icon-cross2"></i>
-                        بستن
+                        @Captions.Close
                     </button>
                     <button name="actionType" value="@Netotik.Common.Controller.ActionType.Save" type="button" class="btn btn-outline-success" onclick="AjaxForm.Post(this, 'ReplyForm')" data-loading-text="در حال ارسال اطلاعات">
                         <i class="icon-check2"></i>
-                        @Netotik.Resources.Captions.Save
+                        @Captions.Save
                     </button>
                 </div>
             }

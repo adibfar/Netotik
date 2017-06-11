@@ -16,6 +16,7 @@ namespace Netotik.ViewModels.CMS.Slider
         public string Url { get; set; }
         public int Order { get; set; }
         public String ImageFileName { get; set; }
+        public string FlagLanguage { get; set; }
         public bool IsActive { get; set; }
 
     }

@@ -30,8 +30,7 @@ using System.Net;
 
 namespace Netotik.Web.Areas.Admin.Controllers
 {
-    [BreadCrumb(Title = "لیست کاربران", UseDefaultRouteUrl = true, RemoveAllDefaultRouteValues = true,
- Order = 0, GlyphIcon = "icon icon-table")]
+    [BreadCrumb(Title = "UsersList", UseDefaultRouteUrl = true,Order = 0, GlyphIcon = "icon-users2")]
     public partial class UserAdminController : BasePanelController
     {
 
@@ -85,7 +84,7 @@ namespace Netotik.Web.Areas.Admin.Controllers
         #region Create
 
         [Mvc5Authorize(Roles = AssignableToRolePermissions.CanCreateUser)]
-        [BreadCrumb(Title = "کاربر جدید", Order = 1)]
+        [BreadCrumb(Title = "NewUser", GlyphIcon = "icon-plus", Order = 1)]
         public virtual async Task<ActionResult> Create()
         {
             await PopulateRoles();
@@ -111,12 +110,12 @@ namespace Netotik.Web.Areas.Admin.Controllers
             if (!ModelState.IsValid)
             {
                 await PopulateRoles(model.RoleIds);
-                this.MessageError(Messages.MissionFail, Messages.InvalidDataError);
+                this.MessageError(Captions.MissionFail, Captions.InvalidDataError);
                 return View(model);
             }
             if (model.RoleIds == null || model.RoleIds.Length < 1)
             {
-                this.MessageError(Messages.MissionFail, "لطفا برای  کاربر مورد نظر ، گروه کاربری تعیین کنید");
+                this.MessageError(Captions.MissionFail, "لطفا برای  کاربر مورد نظر ، گروه کاربری تعیین کنید");
                 await PopulateRoles(model.RoleIds);
                 return View(model);
             }
@@ -138,7 +137,7 @@ namespace Netotik.Web.Areas.Admin.Controllers
             }
             #endregion
 
-            this.MessageSuccess(Messages.MissionSuccess, Messages.AddSuccess);
+            this.MessageSuccess(Captions.MissionSuccess, Captions.AddSuccess);
             return RedirectToAction(MVC.Admin.UserAdmin.Index());
 
         }
@@ -147,6 +146,7 @@ namespace Netotik.Web.Areas.Admin.Controllers
         #endregion
 
 
+        
         #region Edit
         [Mvc5Authorize(Roles = AssignableToRolePermissions.CanEditUser)]
         [HttpPost]
@@ -182,7 +182,7 @@ namespace Netotik.Web.Areas.Admin.Controllers
 
 
         [Mvc5Authorize(Roles = AssignableToRolePermissions.CanDeleteUser)]
-        [BreadCrumb(Title = "ویرایش", Order = 1)]
+        [BreadCrumb(Title = "EditUser", GlyphIcon = "icon-edit2", Order = 1)]
         public virtual async Task<ActionResult> Edit(long? id)
         {
             if (id == null) return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -246,12 +246,12 @@ namespace Netotik.Web.Areas.Admin.Controllers
                 if (model.Picture != null)
                     DeleteFile(Server.MapPath(Path.Combine(FilePathes._imagesUserAvatarsPath, model.Picture.FileName)));
 
-                this.MessageError(Messages.MissionFail, "لطفا برای کاربر مورد نظر ، گروه کاربری تعیین کنید");
+                this.MessageError(Captions.MissionFail, "لطفا برای کاربر مورد نظر ، گروه کاربری تعیین کنید");
                 await PopulateRoles();
                 return View(model);
             }
 
-            this.MessageSuccess(Messages.MissionSuccess, Messages.UpdateSuccess);
+            this.MessageSuccess(Captions.MissionSuccess, Captions.UpdateSuccess);
             return RedirectToAction(MVC.Admin.UserAdmin.Index());
         }
 

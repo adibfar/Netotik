@@ -16,8 +16,8 @@
 
             <!-- Logo -->
             <a class="logo @(language.Rtl?"pull-right": "")" href="@Url.Action(MVC.Home.Index())">
-                <img src="~/Content/images/logo/NetotikLogo.png" />
-                <img src="~/Content/images/logo/NetotikLogo.png" />
+                <img src="~/Content/images/logo/NetotikLogo.png" alt="@Captions.Netotik" />
+                <img src="~/Content/images/logo/NetotikLogo.png" alt="@Captions.Netotik" />
             </a>
 
             <div class="navbar-collapse nav-main-collapse collapse">
@@ -27,7 +27,7 @@
                             <a href="@Url.Action(MVC.Home.Index())">
                                 <span class="topMain-icon">
                                     <i class="fa fa-home"></i>
-                                    خــــانه
+                                    @Captions.HomeMenu
                                 </span>
                             </a>
                         </li>
@@ -38,7 +38,7 @@
                                 <li class="dropdown">
                                     <a class="dropdown-toggle" href="#">
                                         <span class="topMain-icon">
-                                            <i class="fa fa-@One.Description"></i>
+                                            <i class="@One.Icon"></i>
                                             @One.Text
                                         </span>
                                     </a>
@@ -50,7 +50,7 @@
                                                 <li class="dropdown">
                                                     <a href="@two.Url">
                                                         <span class="topMain-icon">
-                                                            <i class="fa fa-@two.Description "></i>
+                                                            <i class="@two.Icon "></i>
                                                             @two.Text
                                                         </span>
                                                     </a>
@@ -61,7 +61,7 @@
                                                             <li class="dropdown-toggle">
                                                                 <a href="@three.Url">
                                                                     <span class="topMain-icon">
-                                                                        <i class="fa fa-@three.Description"></i>
+                                                                        <i class="@three.Icon"></i>
                                                                         @three.Text
                                                                     </span>
                                                                 </a>
@@ -75,7 +75,7 @@
                                                 <li>
                                                     <a href="@two.Url">
                                                         <span class="topMain-icon">
-                                                            <i class="fa fa-@two.Description"></i>
+                                                            <i class="@two.Icon"></i>
                                                             @two.Text
                                                         </span>
                                                     </a>
@@ -90,7 +90,7 @@
                                 <li>
                                     <a href="@One.Url">
                                         <span class="topMain-icon">
-                                            <i class="fa fa-@One.Description"></i>
+                                            <i class="@One.Icon"></i>
                                             @One.Text
                                         </span>
                                     </a>

@@ -10,7 +10,7 @@
     <div id="comments" class="comments">
 
         <h4 class="page-header margin-bottom-60 size-20">
-            <i class="fa fa-comments-o"></i> تعداد <span>@Model.Count(x => x.Status == CommentStatus.Accepted)</span> دیدگاه برای مطلب ارسال شده است.
+            <i class="fa fa-comments-o"></i> @string.Format(Captions.CountCommentSended,Model.Count(x => x.Status == CommentStatus.Accepted))
         </h4>
 
         @foreach (var item in Model.Where(x => x.Status == CommentStatus.Accepted && !x.CommentId.HasValue).OrderByDescending(x => x.CreateDate))

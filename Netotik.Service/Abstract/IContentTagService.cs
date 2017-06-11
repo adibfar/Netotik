@@ -16,9 +16,12 @@ namespace Netotik.Services.Abstract
         Task<ContentTag> SingleOrDefaultAsync(int primaryKey);
 
         IList<ContentTagItem> GetList(RequestListModel model, out long TotalCount, out long ShowCount);
+        IList<ContentTag> GetAll(int languageId);
 
         Task<bool> IsExistByName(string name,int? id);
 
         IList<ContentTag> GetTagesbyIdsAsync(int[] ids);
+
+        IList<ContentTag> GetByLanguageId(int id);
     }
 }

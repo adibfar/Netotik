@@ -30,7 +30,7 @@ namespace Netotik.Services.Implement
 
         public IList<ContentCategoryItem> GetList(RequestListModel model, out long TotalCount, out long ShowCount)
         {
-            IQueryable<ContentCategory> all = dbSet.Where(x => !x.IsDeleted).Include(x => x.Parent).AsQueryable();
+            IQueryable<ContentCategory> all = dbSet.Where(x => !x.IsDeleted).Include(x => x.Parent).Include(x => x.Language).AsQueryable();
             TotalCount = all.LongCount();
 
             // Apply Filtering
@@ -53,6 +53,7 @@ namespace Netotik.Services.Implement
                 {
                     Id = x.Id,
                     Name = x.Name,
+                    FlagLanguage = x.Language.FlagImageFileName,
                     Parent = x.ParentId.HasValue ? x.Parent.Name : "",
                     RowNumber = model.iDisplayStart + index + 1
                 })
@@ -111,6 +112,11 @@ namespace Netotik.Services.Implement
             return await dbSet.SingleOrDefaultAsync(x => x.Id == primaryKey && !x.IsDeleted);
         }
 
-
+        public IList<ContentCategory> GetAll(int languageId)
+        {
+            return dbSet
+                .Where(x => !x.IsDeleted && x.LanguageId == languageId)
+                .ToList();
+        }
     }
 }

@@ -14,24 +14,30 @@ namespace Netotik.Web.Infrastructure.Caching
 {
     public class LanguageCache
     {
-        public const string Key = "LanguageConfig";
+        public const string KeyLanguages = "LanguagesConfig";
 
         public static IList<Language> GetLanguages(HttpContextBase httpContext)
         {
-            var siteConfig = httpContext.CacheRead<List<Language>>(Key);
+            var languages = httpContext.CacheRead<List<Language>>(KeyLanguages);
 
-            if (siteConfig == null)
+            if (languages == null)
             {
                 var languageService = ProjectObjectFactory.Container.GetInstance<ILanguageService>();
-                siteConfig = languageService.All().Where(x => x.Published).OrderBy(x => x.DisplayOrder).ToList();
-                httpContext.CacheInsert(Key, siteConfig, 360);
+                languages = languageService.All().Where(x => x.Published).OrderBy(x => x.DisplayOrder).ToList();
+                httpContext.CacheInsert(KeyLanguages, languages, 360);
             }
-            return siteConfig;
+            return languages;
+        }
+
+        public static Language GetLanguage(HttpContextBase httpContext)
+        {
+            var language = GetLanguages(httpContext).FirstOrDefault(x => x.UniqueSeoCode==httpContext.Request.RequestContext.RouteData.Values["lang"].ToString());
+            return language;
         }
 
         public static void RemoveLanguageCache(HttpContextBase httpContext)
         {
-            httpContext.InvalidateCache(Key);
+            httpContext.InvalidateCache(KeyLanguages);
         }
     }
 }

@@ -14,9 +14,9 @@
                 if (user.UserType == Netotik.Domain.Entity.UserType.UserAdmin)
                 {
                     <li>
-
                         <a href="@Url.Action(MVC.Admin.Home.Index())">
-                            پنل مدیریت
+                            <i class="fa fa-desktop"></i>
+                            @Captions.AdminPanel
                         </a>
                     </li>
                 }
@@ -24,7 +24,8 @@
                 {
                     <li>
                         <a href="@Url.Action(MVC.Reseller.Home.Index())">
-                            پنل نمایندگی
+                            <i class="fa fa-desktop"></i>
+                            @Captions.ResellerPanel
                         </a>
                     </li>
                 }
@@ -32,10 +33,26 @@
                 {
                     <li>
                         <a href="@Url.Action(MVC.Company.Home.Index())">
-                            پنل کاربری
+                            <i class="fa fa-desktop"></i>
+                            @Captions.CompanyPanel
                         </a>
                     </li>
                 }
+                <li>
+                    <a href="@Url.Action(MVC.Account.LogOff())">
+                        <i class="fa fa-power-off"></i>
+                        @Captions.Logout
+                    </a>
+                </li>
+            }
+            else
+            {
+                <li>
+                    <a href="@Url.Action(MVC.Login.Reseller())">
+                        <i class="fa fa-laptop"></i>
+                        @Captions.ResellerLogin
+                    </a>
+                </li>
             }
         </ul>
 

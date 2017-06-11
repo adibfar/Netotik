@@ -42,8 +42,6 @@ namespace T4MVC
                 public readonly string _CaptchaPartial = "_CaptchaPartial";
                 public readonly string _CaptchaPartial2 = "_CaptchaPartial2";
                 public readonly string _Footer = "_Footer";
-                public readonly string _FooterAddress = "_FooterAddress";
-                public readonly string _FooterPopularPost = "_FooterPopularPost";
                 public readonly string _Header = "_Header";
                 public readonly string _HeaderMenu = "_HeaderMenu";
                 public readonly string _HeaderPublicCss = "_HeaderPublicCss";
@@ -56,8 +54,6 @@ namespace T4MVC
             public readonly string _CaptchaPartial = "~/Views/SharedPublic/_CaptchaPartial.cshtml";
             public readonly string _CaptchaPartial2 = "~/Views/SharedPublic/_CaptchaPartial2.cshtml";
             public readonly string _Footer = "~/Views/SharedPublic/_Footer.cshtml";
-            public readonly string _FooterAddress = "~/Views/SharedPublic/_FooterAddress.cshtml";
-            public readonly string _FooterPopularPost = "~/Views/SharedPublic/_FooterPopularPost.cshtml";
             public readonly string _Header = "~/Views/SharedPublic/_Header.cshtml";
             public readonly string _HeaderMenu = "~/Views/SharedPublic/_HeaderMenu.cshtml";
             public readonly string _HeaderPublicCss = "~/Views/SharedPublic/_HeaderPublicCss.cshtml";

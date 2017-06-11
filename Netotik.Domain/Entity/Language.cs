@@ -11,6 +11,13 @@ namespace Netotik.Domain.Entity
         public Language()
         {
             this.LocaleStringResources = new List<LocaleStringResource>();
+            this.ContentCategories = new List<ContentCategory>();
+            this.Contents = new List<Content>();
+            this.ContentTags = new List<ContentTag>();
+            this.Sliders = new List<Slider>();
+            this.Menus = new List<Menu>();
+            this.Sections = new List<IndexSection>();
+            this.LanguageTranslationes = new List<LanguageTranslation>();
         }
         public int Id { get; set; }
         /// <summary>
@@ -52,6 +59,13 @@ namespace Netotik.Domain.Entity
         /// Gets or sets the display order
         /// </summary>
         public int DisplayOrder { get; set; }
-        public ICollection<LocaleStringResource> LocaleStringResources { get; set; }
+        public virtual ICollection<LocaleStringResource> LocaleStringResources { get; set; }
+        public virtual ICollection<ContentCategory> ContentCategories { get; set; }
+        public virtual ICollection<Content> Contents { get; set; }
+        public virtual ICollection<Menu> Menus { get; set; }
+        public virtual ICollection<Slider> Sliders { get; set; }
+        public virtual ICollection<LanguageTranslation> LanguageTranslationes { get; set; }
+        public virtual ICollection<IndexSection> Sections { get; set; }
+        public virtual ICollection<ContentTag> ContentTags { get; set; }
     }
 }

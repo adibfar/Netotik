@@ -7,7 +7,7 @@
 
 <h4 id="addComment" class="page-header size-25 margin-bottom-60">
     <i class="fa fa-commenting-o"></i>
-    ارسال <span>دیدگاه</span>
+    @Captions.Send <span>@Captions.Comment</span>
 </h4>
 
 @using (Html.BeginForm(MVC.Blog.ActionNames.AddComment, MVC.Blog.Name, FormMethod.Post))
@@ -45,11 +45,11 @@
         </div>
     </div>
 
-        <div class="row">
-            <div class="col-md-12">
-                <button class="btn btn-3d btn-lg btn-reveal btn-black" type="submit">
-                    <i class="fa fa-paper-plane-o"></i>
-                    <span>ارسال</span>
+    <div class="row">
+        <div class="col-md-12">
+            <button class="btn btn-3d btn-lg btn-reveal btn-black" type="submit">
+                <i class="fa fa-paper-plane-o"></i>
+                <span>@Captions.Send</span>
                 </button>
             </div>
         </div>

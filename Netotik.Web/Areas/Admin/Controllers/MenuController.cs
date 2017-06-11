@@ -18,7 +18,6 @@ using System.Web.UI;
 using System.Threading.Tasks;
 using Netotik.Web;
 using System.Data.Entity.Validation;
-
 using DNTBreadCrumb;
 using Netotik.ViewModels.Identity.Security;
 using Netotik.ViewModels.CMS.Menu;
@@ -29,19 +28,22 @@ using Netotik.Common.Extensions;
 namespace Netotik.Web.Areas.Admin.Controllers
 {
     [Mvc5Authorize(Roles = AssignableToRolePermissions.CanAccessMenu)]
-    [BreadCrumb(Title = "لیست منو ها", UseDefaultRouteUrl = true, RemoveAllDefaultRouteValues = true,
- Order = 0, GlyphIcon = "icon icon-table")]
+    [BreadCrumb(Title = "MenuesList", UseDefaultRouteUrl = true, RemoveAllDefaultRouteValues = true,
+ Order = 0, GlyphIcon = "icon-th-large")]
     public partial class MenuController : BaseController
     {
 
         #region ctor
+        private readonly ILanguageService _languageService;
         private readonly IMenuService _menuService;
         private readonly IUnitOfWork _uow;
 
         public MenuController(
+            ILanguageService languageService,
             IMenuService menuService,
             IUnitOfWork uow)
         {
+            _languageService = languageService;
             _menuService = menuService;
             _uow = uow;
         }
@@ -74,8 +76,9 @@ namespace Netotik.Web.Areas.Admin.Controllers
 
         public virtual ActionResult Create()
         {
+            PopulateLangauges();
             PopulateParents();
-            return View(MVC.Admin.Menu.Views._Create, new MenuModel() { Order = 0 });
+            return View(MVC.Admin.Menu.Views._Create, new MenuModel() { Order = 0, MenuLocation = MenuLocation.Header });
         }
 
         [ValidateAntiForgeryToken]
@@ -86,7 +89,7 @@ namespace Netotik.Web.Areas.Admin.Controllers
 
             if (!ModelState.IsValid)
             {
-                this.MessageError(Messages.MissionFail, Messages.InvalidDataError);
+                this.MessageError(Captions.MissionFail, Captions.InvalidDataError);
                 return RedirectToAction(MVC.Admin.Menu.Index());
             }
 
@@ -97,8 +100,10 @@ namespace Netotik.Web.Areas.Admin.Controllers
                 ParentId = model.ParentId,
                 IsActive = model.IsActive,
                 Icon = model.Icon,
+                LanguageId = model.LanguageId,
                 Description = model.Description,
-                Order = model.Order
+                Order = model.Order,
+                MenuLocation = model.MenuLocation
             };
 
             _menuService.Add(menu);
@@ -109,13 +114,13 @@ namespace Netotik.Web.Areas.Admin.Controllers
                 await _uow.SaveChangesAsync();
                 ModelState.Clear();
             }
-            catch 
+            catch
             {
-                this.MessageError(Messages.MissionFail, Messages.AddError);
+                this.MessageError(Captions.MissionFail, Captions.AddError);
                 return RedirectToAction(MVC.Admin.Menu.Index());
             }
 
-            this.MessageSuccess(Messages.MissionSuccess, Messages.AddSuccess);
+            this.MessageSuccess(Captions.MissionSuccess, Captions.AddSuccess);
             return RedirectToAction(MVC.Admin.Menu.Index());
         }
         #endregion
@@ -129,7 +134,7 @@ namespace Netotik.Web.Areas.Admin.Controllers
             {
                 _menuService.Remove(menu);
                 await _uow.SaveChangesAsync();
-                this.MessageInformation(Messages.MissionSuccess, Messages.RemoveSuccess);
+                this.MessageInformation(Captions.MissionSuccess, Captions.RemoveSuccess);
             }
             return RedirectToAction(MVC.Admin.Menu.Index());
         }
@@ -140,6 +145,7 @@ namespace Netotik.Web.Areas.Admin.Controllers
             if (model == null) return RedirectToAction(MVC.Admin.Menu.Index());
 
             PopulateParents(model.ParentId, model.Id);
+            PopulateLangauges(model.LanguageId);
             return PartialView(MVC.Admin.Menu.Views._Edit, new MenuModel
             {
                 Id = model.Id,
@@ -147,8 +153,11 @@ namespace Netotik.Web.Areas.Admin.Controllers
                 Url = model.Url,
                 Order = model.Order,
                 Icon = model.Icon,
+                LanguageId = model.LanguageId,
+                ParentId = model.ParentId,
                 Description = model.Description,
-                IsActive = model.IsActive
+                IsActive = model.IsActive,
+                MenuLocation = model.MenuLocation
             });
         }
 
@@ -165,7 +174,7 @@ namespace Netotik.Web.Areas.Admin.Controllers
 
             if (!ModelState.IsValid)
             {
-                this.MessageError(Messages.MissionFail, Messages.InvalidDataError);
+                this.MessageError(Captions.MissionFail, Captions.InvalidDataError);
                 return RedirectToAction(MVC.Admin.Menu.Index());
             }
 
@@ -173,8 +182,10 @@ namespace Netotik.Web.Areas.Admin.Controllers
             menu.IsActive = model.IsActive;
             menu.Url = model.Url;
             menu.ParentId = model.ParentId;
+            menu.LanguageId = model.LanguageId;
             menu.Order = model.Order;
             menu.Icon = model.Icon;
+            menu.MenuLocation = model.MenuLocation;
 
             _menuService.Update(menu);
 
@@ -184,11 +195,11 @@ namespace Netotik.Web.Areas.Admin.Controllers
             }
             catch
             {
-                this.MessageError(Messages.MissionFail, Messages.UpdateError);
+                this.MessageError(Captions.MissionFail, Captions.UpdateError);
                 return RedirectToAction(MVC.Admin.Menu.Index());
             }
 
-            this.MessageSuccess(Messages.MissionSuccess, Messages.UpdateSuccess);
+            this.MessageSuccess(Captions.MissionSuccess, Captions.UpdateSuccess);
             return RedirectToAction(MVC.Admin.Menu.Index());
         }
 
@@ -199,9 +210,16 @@ namespace Netotik.Web.Areas.Admin.Controllers
         {
             var list = _menuService.All().ToList().Where(x => x.Id != menuId)
                 .Select(x => new Menu { Text = MenuExtension.GetName(x.Parent, x.Text), Id = x.Id }).ToList();
-
             ViewBag.Menues = new SelectList(list, "Id", "Text", selectedId);
         }
+
+
+        private void PopulateLangauges(int? selectedId = null)
+        {
+            var list = _languageService.All().Where(x => x.Published).ToList();
+            ViewBag.Languages = new SelectList(list, "Id", "Name", selectedId);
+        }
+
         #endregion
     }
 }

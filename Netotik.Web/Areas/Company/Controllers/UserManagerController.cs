@@ -104,7 +104,7 @@ namespace Netotik.Web.Areas.Company.Controllers
             
             if (!ModelState.IsValid)
             {
-                //SetResultMessage(false, MessageColor.Danger, Messages.InvalidDataError, Messages.MissionFail);
+                //SetResultMessage(false, MessageColor.Danger, Captions.InvalidDataError, Captions.MissionFail);
                 return View();
             }
             else
@@ -306,7 +306,7 @@ namespace Netotik.Web.Areas.Company.Controllers
                 //-------------------------------
                 if (_mikrotikServices.Usermanager_IsProfileExist(UserLogined.UserCompany.R_Host, UserLogined.UserCompany.R_Port, UserLogined.UserCompany.R_User, UserLogined.UserCompany.R_Password, UsermanProfile))
                 {
-                    //SetResultMessage(false, MessageColor.Danger, Messages.InvalidDataError, Messages.MissionFail);
+                    //SetResultMessage(false, MessageColor.Danger, Captions.InvalidDataError, Captions.MissionFail);
                     return RedirectToAction(MVC.Company.UserManager.PackageCreate());
                 }
                 else
@@ -716,7 +716,7 @@ namespace Netotik.Web.Areas.Company.Controllers
             model.customer = UserLogined.UserCompany.Userman_Customer;
             if (!ModelState.IsValid)
             {
-                //SetResultMessage(false, MessageColor.Danger, Messages.InvalidDataError, Messages.MissionFail);
+                //SetResultMessage(false, MessageColor.Danger, Captions.InvalidDataError, Captions.MissionFail);
                 return RedirectToAction(MVC.Company.UserManager.UserCreate());
             }
             else
@@ -736,7 +736,7 @@ namespace Netotik.Web.Areas.Company.Controllers
                 };
                 if (_mikrotikServices.Usermanager_IsUserExist(UserLogined.UserCompany.R_Host, UserLogined.UserCompany.R_Port, UserLogined.UserCompany.R_User, UserLogined.UserCompany.R_Password, Usermanuser.username))
                 {
-                    //SetResultMessage(false, MessageColor.Danger, Messages.InvalidDataError, Messages.MissionFail);
+                    //SetResultMessage(false, MessageColor.Danger, Captions.InvalidDataError, Captions.MissionFail);
                 }
                 else
                 {
@@ -870,7 +870,7 @@ namespace Netotik.Web.Areas.Company.Controllers
             //-------------------------------
             if (!ModelState.IsValid)
             {
-                //SetResultMessage(false, MessageColor.Danger, Messages.InvalidDataError, Messages.MissionFail);
+                //SetResultMessage(false, MessageColor.Danger, Captions.InvalidDataError, Captions.MissionFail);
                 return View();
             }
             else

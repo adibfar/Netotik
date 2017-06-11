@@ -1,8 +1,11 @@
-﻿<section id="configuration">
+﻿@{ 
+    ViewBag.Title = Captions.States;
+}
+<section id="configuration">
     <div class="col-xs-12">
         <div class="card">
             <div class="card-header">
-                <button type="button" class="btn btn-social width-150 btn-instagram" data-toggle="modal" data-target="#Create"><span class="icon-plus font-medium-4"></span> استان جدید</button>
+                <button type="button" class="btn btn-social width-150 btn-instagram" data-toggle="modal" data-target="#Create"><span class="icon-plus font-medium-4"></span> @Captions.NewState</button>
                 @Html.Action(MVC.Admin.State.Create())
             </div>
 
@@ -50,10 +53,10 @@
                         "render": function (data, type, full, meta) {
                             var result = full.Name;
                             if (full.IsActive==false) {
-                                result+=' <div class="tag tag-danger">غیر فعال</div> '
+                                result+=' <div class="tag tag-danger">'+'@Captions.Disabled'+'</div> '
                             }
                             if (full.IsDefault == true) {
-                                result += ' <div class="tag tag-success">پیش فرض</div> '
+                                result += ' <div class="tag tag-success">'+'@Captions.Default'+'</div> '
                             }
                             return result;
                         }
@@ -63,12 +66,12 @@
                         "render": function (data, type, full, meta) {
                             return '<span class="dropdown">'
                                 + '<button id="btnSearchDrop2" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" class="btn btn-outline-secondary dropdown-toggle dropdown-menu-right">'
-                                + '<i class="icon-cog3"></i> پردازش</button>'
+                                + '<i class="icon-cog3"></i> '+'@Captions.Action'+'</button>'
                                 + '<span aria-labelledby="btnSearchDrop2" class="dropdown-menu mt-1 dropdown-menu-right">'
                                 + '<a onclick="edit(' + full.Id + ');" class="edit dropdown-item">'
-                                + '<i class="icon-pen3"></i> ویرایش </a>'
+                                + '<i class="icon-pen3"></i> '+'@Captions.Edit'+' </a>'
                                 + '<a onclick="remove(' + full.Id + ');" class="dropdown-item">'
-                                + '<i class="icon-trash4"></i> حذف </a>';
+                                + '<i class="icon-trash4"></i> '+'@Captions.Remove'+' </a>';
 
                         }
                     }
@@ -78,11 +81,7 @@
                     { "mDataProp": "RowNumber" },
                     { "mDataProp": "Name" },
                     { "no": "no" }
-                ],
-
-                "oLanguage": {
-                    "sUrl": "/Content/js/plugins/tables/datatable/dataTables.persian.txt"
-                }
+                ]
             });
 
         });

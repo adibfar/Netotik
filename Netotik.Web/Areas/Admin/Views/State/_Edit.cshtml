@@ -10,7 +10,7 @@
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
-                <h4 class="modal-title" id="myModalLabel20">ویرایش استان</h4>
+                <h4 class="modal-title" id="myModalLabel20">@Captions.EditState</h4>
             </div>
             @using (Html.BeginForm(MVC.Admin.State.ActionNames.Edit, MVC.Admin.State.Name, FormMethod.Post, htmlAttributes: new { @class = "form-horizontal", id = "form" }))
             {
@@ -50,11 +50,11 @@
                 <div class="modal-footer">
                     <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">
                         <i class="icon-cross2"></i>
-                        بستن
+                        @Captions.Close
                     </button>
-                    <button name="actionType" value="@Netotik.Common.Controller.ActionType.Save" type="submit" class="btn btn-outline-success" onclick="AjaxForm.Post(this, 'form')" data-loading-text="در حال ارسال اطلاعات">
+                    <button name="actionType" value="@Netotik.Common.Controller.ActionType.Save" type="submit" class="btn btn-outline-success" onclick="AjaxForm.Post(this, 'form')" data-loading-text="@Captions.SendingData">
                         <i class="icon-check2"></i>
-                        @Netotik.Resources.Captions.Save
+                        @Captions.Save
                     </button>
                 </div>
             }

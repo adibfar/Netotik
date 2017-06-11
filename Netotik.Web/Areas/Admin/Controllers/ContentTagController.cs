@@ -29,20 +29,22 @@ namespace Netotik.Web.Areas.Admin.Controllers
 {
 
     [Mvc5Authorize(Roles = AssignableToRolePermissions.CanAccessTag)]
-    [BreadCrumb(Title = "لیست برچسب ها", UseDefaultRouteUrl = true, RemoveAllDefaultRouteValues = true,
- Order = 0, GlyphIcon = "icon icon-table")]
+    [BreadCrumb(Title = "TagsList", UseDefaultRouteUrl = true, Order = 0, GlyphIcon = "icon-th-large")]
     public partial class ContentTagController : BaseController
     {
 
 
         #region ctor
+        private readonly ILanguageService _languageService;
         private readonly IContentTagService _contentTagService;
         private readonly IUnitOfWork _uow;
 
         public ContentTagController(
-            IContentTagService contentTagService,
+            ILanguageService languageService,
+        IContentTagService contentTagService,
             IUnitOfWork uow)
         {
+            _languageService = languageService;
             _contentTagService = contentTagService;
             _uow = uow;
         }
@@ -80,6 +82,7 @@ namespace Netotik.Web.Areas.Admin.Controllers
         [HttpGet]
         public virtual ActionResult Create()
         {
+            PopulateLangauges();
             return PartialView(MVC.Admin.ContentTag.Views._Create);
         }
 
@@ -89,15 +92,14 @@ namespace Netotik.Web.Areas.Admin.Controllers
         [HttpPost]
         public virtual async Task<ActionResult> Create(ContentTagModel model, ActionType actionType = ActionType.Save)
         {
-
-            var a = actionType;
             if (!ModelState.IsValid)
             {
-                this.MessageError(Messages.MissionFail, Messages.InvalidDataError);
+                this.MessageError(Captions.MissionFail, Captions.InvalidDataError);
                 return RedirectToAction(MVC.Admin.ContentTag.Index());
             }
             var tag = new ContentTag()
             {
+                LanguageId = model.LanguageId,
                 Name = model.Name,
             };
 
@@ -109,11 +111,11 @@ namespace Netotik.Web.Areas.Admin.Controllers
             }
             catch
             {
-                this.MessageError(Messages.MissionFail, Messages.AddError);
+                this.MessageError(Captions.MissionFail, Captions.AddError);
                 return RedirectToAction(MVC.Admin.ContentTag.Index());
             }
 
-            this.MessageSuccess(Messages.MissionSuccess, Messages.AddSuccess);
+            this.MessageSuccess(Captions.MissionSuccess, Captions.AddSuccess);
             return RedirectToAction(MVC.Admin.ContentTag.Index());
         }
         #endregion
@@ -128,7 +130,7 @@ namespace Netotik.Web.Areas.Admin.Controllers
             {
                 _contentTagService.Remove(tag);
                 await _uow.SaveChangesAsync();
-                this.MessageInformation(Messages.MissionSuccess, Messages.RemoveSuccess);
+                this.MessageInformation(Captions.MissionSuccess, Captions.RemoveSuccess);
             }
 
             return RedirectToAction(MVC.Admin.ContentTag.Index());
@@ -140,11 +142,13 @@ namespace Netotik.Web.Areas.Admin.Controllers
             if (model == null)
                 return RedirectToAction(MVC.Admin.ContentTag.Index());
 
+            PopulateLangauges(model.LanguageId);
             return PartialView(MVC.Admin.ContentTag.Views._Edit,
                 new ContentTagModel
                 {
                     Id = model.Id,
-                    Name = model.Name
+                    Name = model.Name,
+                    LanguageId = model.LanguageId
                 });
         }
 
@@ -159,11 +163,12 @@ namespace Netotik.Web.Areas.Admin.Controllers
 
             if (!ModelState.IsValid)
             {
-                this.MessageError(Messages.MissionFail, Messages.InvalidDataError);
+                this.MessageError(Captions.MissionFail, Captions.InvalidDataError);
                 return RedirectToAction(MVC.Admin.ContentTag.Index());
             }
 
             tag.Name = model.Name;
+            tag.LanguageId = model.LanguageId;
 
             _contentTagService.Update(tag);
 
@@ -174,11 +179,11 @@ namespace Netotik.Web.Areas.Admin.Controllers
             }
             catch
             {
-                this.MessageError(Messages.MissionFail, Messages.UpdateError);
+                this.MessageError(Captions.MissionFail, Captions.UpdateError);
                 return RedirectToAction(MVC.Admin.ContentTag.Index());
             }
 
-            this.MessageSuccess(Messages.MissionSuccess, Messages.UpdateSuccess);
+            this.MessageSuccess(Captions.MissionSuccess, Captions.UpdateSuccess);
             return RedirectToAction(MVC.Admin.ContentTag.Index());
         }
 
@@ -186,7 +191,7 @@ namespace Netotik.Web.Areas.Admin.Controllers
 
 
 
-        #region private
+        #region remote
 
         [HttpPost]
         [AllowAnonymous]
@@ -197,6 +202,12 @@ namespace Netotik.Web.Areas.Admin.Controllers
         }
         #endregion
 
+
+        private void PopulateLangauges(int? selectedId = null)
+        {
+            var list = _languageService.All().Where(x => x.Published).ToList();
+            ViewBag.Languages = new SelectList(list, "Id", "Name", selectedId);
+        }
 
 
     }

@@ -92,6 +92,12 @@ namespace Netotik.Web.Areas.Admin.Controllers
         }
         [NonAction]
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public virtual System.Web.Mvc.ActionResult FillTag()
+        {
+            return new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.FillTag);
+        }
+        [NonAction]
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public virtual System.Web.Mvc.ActionResult RedirectToLocal()
         {
             return new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.RedirectToLocal);
@@ -119,6 +125,7 @@ namespace Netotik.Web.Areas.Admin.Controllers
             public readonly string Accept = "Accept";
             public readonly string NotAccept = "NotAccept";
             public readonly string Edit = "Edit";
+            public readonly string FillTag = "FillTag";
             public readonly string RedirectToLocal = "RedirectToLocal";
         }
 
@@ -132,6 +139,7 @@ namespace Netotik.Web.Areas.Admin.Controllers
             public const string Accept = "Accept";
             public const string NotAccept = "NotAccept";
             public const string Edit = "Edit";
+            public const string FillTag = "FillTag";
             public const string RedirectToLocal = "RedirectToLocal";
         }
 
@@ -186,6 +194,14 @@ namespace Netotik.Web.Areas.Admin.Controllers
             public readonly string id = "id";
             public readonly string model = "model";
             public readonly string actionType = "actionType";
+        }
+        static readonly ActionParamsClass_FillTag s_params_FillTag = new ActionParamsClass_FillTag();
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public ActionParamsClass_FillTag FillTagParams { get { return s_params_FillTag; } }
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public class ActionParamsClass_FillTag
+        {
+            public readonly string languageId = "languageId";
         }
         static readonly ActionParamsClass_RedirectToLocal s_params_RedirectToLocal = new ActionParamsClass_RedirectToLocal();
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -328,6 +344,18 @@ namespace Netotik.Web.Areas.Admin.Controllers
             ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "actionType", actionType);
             EditOverride(callInfo, model, actionType);
             return System.Threading.Tasks.Task.FromResult(callInfo as System.Web.Mvc.ActionResult);
+        }
+
+        [NonAction]
+        partial void FillTagOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, int? languageId);
+
+        [NonAction]
+        public override System.Web.Mvc.ActionResult FillTag(int? languageId)
+        {
+            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.FillTag);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "languageId", languageId);
+            FillTagOverride(callInfo, languageId);
+            return callInfo;
         }
 
         [NonAction]
