@@ -3603,6 +3603,7 @@
     <Content Include="Content\images\logo\faveicon\manifest.json" />
     <Content Include="Content\fonts\icomoon\icomoon.eot" />
     <Content Include="Content\fonts\icomoon\icomoon.ttf" />
+    <Content Include="Areas\Company\Views\Router\Nat.cshtml" />
     <None Include="Properties\PublishProfiles\DNMA.pubxml" />
     <None Include="T4MVC.tt">
       <Generator>TextTemplatingFileGenerator</Generator>

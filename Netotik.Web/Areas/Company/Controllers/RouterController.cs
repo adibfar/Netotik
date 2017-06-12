@@ -680,6 +680,7 @@ namespace Netotik.Web.Areas.Company.Controllers
                 return RedirectToAction(MVC.Company.Home.ActionNames.MikrotikConf, MVC.Company.Home.Name, new { area = MVC.Company.Name });
             }
             //-------------------------------
+            _mikrotikServices.Router_NatRemove(UserLogined.UserCompany.R_Host, UserLogined.UserCompany.R_Port, UserLogined.UserCompany.R_User, UserLogined.UserCompany.R_Password,id);
             return RedirectToAction(MVC.Company.Router.ActionNames.Nat);
         }
         [HttpPost]
@@ -699,6 +700,7 @@ namespace Netotik.Web.Areas.Company.Controllers
                 return RedirectToAction(MVC.Company.Home.ActionNames.MikrotikConf, MVC.Company.Home.Name, new { area = MVC.Company.Name });
             }
             //-------------------------------
+            _mikrotikServices.Router_NatEnable(UserLogined.UserCompany.R_Host, UserLogined.UserCompany.R_Port, UserLogined.UserCompany.R_User, UserLogined.UserCompany.R_Password, id);
             return RedirectToAction(MVC.Company.Router.ActionNames.Nat);
         }
         [HttpPost]
@@ -718,6 +720,7 @@ namespace Netotik.Web.Areas.Company.Controllers
                 return RedirectToAction(MVC.Company.Home.ActionNames.MikrotikConf, MVC.Company.Home.Name, new { area = MVC.Company.Name });
             }
             //-------------------------------
+            _mikrotikServices.Router_NatDisable(UserLogined.UserCompany.R_Host, UserLogined.UserCompany.R_Port, UserLogined.UserCompany.R_User, UserLogined.UserCompany.R_Password, id);
             return RedirectToAction(MVC.Company.Router.ActionNames.Nat);
         }
     }

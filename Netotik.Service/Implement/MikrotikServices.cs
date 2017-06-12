@@ -2183,6 +2183,39 @@ namespace Netotik.Services.Implement
 
             return Hotspot_Nat;
         }
+
+        public void Router_NatDisable(string ip, int port, string user, string pass, string id)
+        {
+            var mikrotik = new MikrotikAPI();
+            mikrotik.MK(ip, port);
+            if (!mikrotik.Login(user, pass)) mikrotik.Close();
+            //-----------------------------------------------
+            mikrotik.Send("/ip/firewall/nat/disable");
+            string temp = String.Format("=.id={0}", id);
+            mikrotik.Send(temp, true);
+        }
+
+        public void Router_NatEnable(string ip, int port, string user, string pass, string id)
+        {
+            var mikrotik = new MikrotikAPI();
+            mikrotik.MK(ip, port);
+            if (!mikrotik.Login(user, pass)) mikrotik.Close();
+            //-----------------------------------------------
+            mikrotik.Send("/ip/firewall/nat/enable");
+            string temp = String.Format("=.id={0}", id);
+            mikrotik.Send(temp, true);
+        }
+
+        public void Router_NatRemove(string ip, int port, string user, string pass, string id)
+        {
+            var mikrotik = new MikrotikAPI();
+            mikrotik.MK(ip, port);
+            if (!mikrotik.Login(user, pass)) mikrotik.Close();
+            //-----------------------------------------------
+            mikrotik.Send("/ip/firewall/nat/remove");
+            string temp = String.Format("=.id={0}", id);
+            mikrotik.Send(temp, true);
+        }
         #endregion
 
     }

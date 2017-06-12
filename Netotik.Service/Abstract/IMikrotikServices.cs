@@ -71,5 +71,9 @@ namespace Netotik.Services.Abstract
 
         void Router_NatAdd(string ip, int port, string user, string pass, Router_NatModel model);
         List<Router_NatModel> Router_NatList(string r_Host, int r_Port, string r_User, string r_Password);
+        void Router_NatDisable(string ip, int port, string user, string pass, string id);
+        void Router_NatEnable(string ip, int port, string user, string pass, string id);
+        void Router_NatRemove(string ip, int port, string user, string pass, string id);
+
     }
 }
