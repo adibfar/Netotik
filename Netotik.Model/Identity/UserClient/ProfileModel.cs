@@ -1,9 +1,9 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.Web.Mvc;
 
-namespace Netotik.ViewModels.Mikrotik
+namespace Netotik.ViewModels.Identity.UserClient
 {
-    public class Usermanager_ProfileModel
+    public class ProfileModel
     {
         [AllowHtml]
         public string id { get; set; }

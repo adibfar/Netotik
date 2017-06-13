@@ -1,8 +1,8 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace Netotik.ViewModels.Mikrotik
+namespace Netotik.ViewModels.Identity.UserClient
 {
-    public class Usermanager_ProfileLimitionCreateModel
+    public class ProfileLimitionCreateModel
     {
         public string Profile_id { get; set; }
         [Display(Name = "نام پروفایل")]

@@ -33,16 +33,19 @@ namespace Netotik.Web.Controllers
     public partial class RegisterController : BaseController
     {
         private readonly IApplicationUserManager _applicationUserManager;
+        private readonly IMikrotikServices _mikrotikServices;
         private readonly IUserMailer _userMailer;
         private readonly IUnitOfWork _uow;
         private readonly IMenuService _menuService;
 
         public RegisterController(
+            IMikrotikServices mikrotikservices,
             IApplicationUserManager applicationUserManager,
             IUserMailer userMailer,
             IMenuService menuService,
             IUnitOfWork uow)
         {
+            _mikrotikServices = mikrotikservices;
             _userMailer = userMailer;
             _applicationUserManager = applicationUserManager;
             _uow = uow;
@@ -73,6 +76,61 @@ namespace Netotik.Web.Controllers
             return View();
         }
 
+        [AllowAnonymous]
+        [HttpPost]
+        [Route("{lang}/userman/{CompanyCode}")]
+        public virtual async Task<ActionResult> Client(Netotik.ViewModels.Identity.UserClient.UserRegisterModel model, string ReturnUrl, string CompanyCode)
+        {
+
+            var company = await _applicationUserManager.FindByCompanyCodeAsync(CompanyCode);
+            if (company == null) return HttpNotFound();
+            var User = _applicationUserManager.FindUserById(company.Id);
+            model.customer = User.UserCompany.Userman_Customer;
+            var Usermanuser = new Netotik.ViewModels.Identity.UserClient.UserRegisterModel()
+            {
+                username = model.username,
+                email = model.email,
+                phone = model.phone,
+                first_name = model.first_name,
+                last_name = model.last_name,
+                password = model.password,
+                comment = model.comment,
+                customer = model.customer,
+                location = model.location,
+                profile = Request.Form["profile"].ToString()
+            };
+            if (!ModelState.IsValid)
+            {
+                ViewBag.Message = "خطا";
+                return RedirectToAction(MVC.Register.ActionNames.Client);
+            }
+            if (_mikrotikServices.Usermanager_IsUserExist(User.UserCompany.R_Host, User.UserCompany.R_Port, User.UserCompany.R_User, User.UserCompany.R_Password, Usermanuser.username))
+            {
+                //SetResultMessage(false, MessageColor.Danger, Captions.InvalidDataError, Captions.MissionFail);
+            }
+            else
+            {
+                _mikrotikServices.Usermanager_UserCreate(User.UserCompany.R_Host, User.UserCompany.R_Port, User.UserCompany.R_User, User.UserCompany.R_Password, Usermanuser);
+            }
+
+            ViewBag.CompanyName = CompanyCode;
+            ViewBag.ReturnUrl = ReturnUrl;
+            return RedirectToAction(MVC.Register.ActionNames.Client);
+        }
+
+        [AllowAnonymous]
+        [Route("{lang}/userman/{CompanyCode}")]
+        public virtual async Task<ActionResult> Client(string ReturnUrl, string CompanyCode)
+        {
+
+            var company = await _applicationUserManager.FindByCompanyCodeAsync(CompanyCode);
+            if (company == null) return HttpNotFound();
+            var User = _applicationUserManager.FindUserById(company.Id);
+            ViewBag.profiles = _mikrotikServices.Usermanager_GetAllProfile(User.UserCompany.R_Host, User.UserCompany.R_Port, User.UserCompany.R_User, User.UserCompany.R_Password);
+            ViewBag.CompanyName = CompanyCode;
+            ViewBag.ReturnUrl = ReturnUrl;
+            return View();
+        }
 
         [HttpPost]
         [AllowAnonymous]

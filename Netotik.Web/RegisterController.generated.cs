@@ -70,6 +70,13 @@ namespace Netotik.Web.Controllers
         }
         [NonAction]
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public virtual System.Threading.Tasks.Task<System.Web.Mvc.ActionResult> Client()
+        {
+            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Client);
+            return System.Threading.Tasks.Task.FromResult(callInfo as System.Web.Mvc.ActionResult);
+        }
+        [NonAction]
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public virtual System.Web.Mvc.ActionResult RedirectToLocal()
         {
             return new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.RedirectToLocal);
@@ -92,6 +99,7 @@ namespace Netotik.Web.Controllers
         {
             public readonly string Company = "Company";
             public readonly string Reseller = "Reseller";
+            public readonly string Client = "Client";
             public readonly string RedirectToLocal = "RedirectToLocal";
         }
 
@@ -100,6 +108,7 @@ namespace Netotik.Web.Controllers
         {
             public const string Company = "Company";
             public const string Reseller = "Reseller";
+            public const string Client = "Client";
             public const string RedirectToLocal = "RedirectToLocal";
         }
 
@@ -124,6 +133,16 @@ namespace Netotik.Web.Controllers
             public readonly string ReturnUrl = "ReturnUrl";
             public readonly string model = "model";
         }
+        static readonly ActionParamsClass_Client s_params_Client = new ActionParamsClass_Client();
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public ActionParamsClass_Client ClientParams { get { return s_params_Client; } }
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public class ActionParamsClass_Client
+        {
+            public readonly string model = "model";
+            public readonly string ReturnUrl = "ReturnUrl";
+            public readonly string CompanyCode = "CompanyCode";
+        }
         static readonly ActionParamsClass_RedirectToLocal s_params_RedirectToLocal = new ActionParamsClass_RedirectToLocal();
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public ActionParamsClass_RedirectToLocal RedirectToLocalParams { get { return s_params_RedirectToLocal; } }
@@ -142,8 +161,10 @@ namespace Netotik.Web.Controllers
             public _ViewNamesClass ViewNames { get { return s_ViewNames; } }
             public class _ViewNamesClass
             {
+                public readonly string Client = "Client";
                 public readonly string Reseller = "Reseller";
             }
+            public readonly string Client = "~/Views/Register/Client.cshtml";
             public readonly string Reseller = "~/Views/Register/Reseller.cshtml";
         }
     }
@@ -191,6 +212,33 @@ namespace Netotik.Web.Controllers
             ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "ReturnUrl", ReturnUrl);
             ResellerOverride(callInfo, ReturnUrl);
             return callInfo;
+        }
+
+        [NonAction]
+        partial void ClientOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, Netotik.ViewModels.Identity.UserClient.UserRegisterModel model, string ReturnUrl, string CompanyCode);
+
+        [NonAction]
+        public override System.Threading.Tasks.Task<System.Web.Mvc.ActionResult> Client(Netotik.ViewModels.Identity.UserClient.UserRegisterModel model, string ReturnUrl, string CompanyCode)
+        {
+            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Client);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "model", model);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "ReturnUrl", ReturnUrl);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "CompanyCode", CompanyCode);
+            ClientOverride(callInfo, model, ReturnUrl, CompanyCode);
+            return System.Threading.Tasks.Task.FromResult(callInfo as System.Web.Mvc.ActionResult);
+        }
+
+        [NonAction]
+        partial void ClientOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, string ReturnUrl, string CompanyCode);
+
+        [NonAction]
+        public override System.Threading.Tasks.Task<System.Web.Mvc.ActionResult> Client(string ReturnUrl, string CompanyCode)
+        {
+            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Client);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "ReturnUrl", ReturnUrl);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "CompanyCode", CompanyCode);
+            ClientOverride(callInfo, ReturnUrl, CompanyCode);
+            return System.Threading.Tasks.Task.FromResult(callInfo as System.Web.Mvc.ActionResult);
         }
 
         [NonAction]

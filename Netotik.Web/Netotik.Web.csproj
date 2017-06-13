@@ -3790,6 +3790,7 @@
     <Content Include="Views\Shared\_LanagaugeSelector.cshtml" />
     <Content Include="Views\SharedPublic\_Message.cshtml" />
     <Content Include="Views\Home\_Section.cshtml" />
+    <Content Include="Views\Register\Client.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />

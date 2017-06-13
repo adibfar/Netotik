@@ -39,7 +39,7 @@ namespace Netotik.ViewModels.Identity.UserCompany
         [System.Web.Mvc.Remote("IsCompanyEmailAvailable", "Remote", System.Web.Mvc.AreaReference.UseRoot, AdditionalFields = "Id,Reseller_Id", HttpMethod = "POST", ErrorMessageResourceType = typeof(Captions), ErrorMessageResourceName = "ExistError")]
         public string Email { get; set; }
 
-        [RegularExpression(@"^[a-zA-Z1-9]+$", ErrorMessageResourceType = typeof(Captions), ErrorMessageResourceName = "JustEnglishNumeric")]
+        [RegularExpression(@"(^[a-zA-Z0-9:.-_]*$)", ErrorMessageResourceType = typeof(Captions), ErrorMessageResourceName = "JustEnglishNumeric")]
         [Display(ResourceType = typeof(Captions), Name = "UserName")]
         public string CompanyName { get; set; }
 
@@ -87,7 +87,7 @@ namespace Netotik.ViewModels.Identity.UserCompany
         [MaxLength(100, ErrorMessageResourceType = typeof(Captions), ErrorMessageResourceName = "MaxLengthError")]
         [MinLength(3, ErrorMessageResourceType = typeof(Captions), ErrorMessageResourceName = "MinLengthError")]
         [Display(ResourceType = typeof(Captions), Name = "UsermanCustomer")]
-        [RegularExpression(@"^0?9\d{9}$", ErrorMessageResourceType = typeof(Captions), ErrorMessageResourceName = "NotValidError")]
+        [RegularExpression(@"(^$)|(^[a-zA-Z0-9:.-_]*$)", ErrorMessageResourceType = typeof(Captions), ErrorMessageResourceName = "NotValidError")]
         public string Userman_Customer { get; set; }
 
         /*

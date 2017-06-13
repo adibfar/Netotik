@@ -659,7 +659,7 @@ namespace Netotik.Web.Areas.Company.Controllers
                 return RedirectToAction(MVC.Company.Home.ActionNames.MikrotikConf, MVC.Company.Home.Name, new { area = MVC.Company.Name });
             }
             //-------------------------------
-
+            ViewBag.Interfaces = _mikrotikServices.Interface(UserLogined.UserCompany.R_Host, UserLogined.UserCompany.R_Port, UserLogined.UserCompany.R_User, UserLogined.UserCompany.R_Password);
             ViewBag.NatList = _mikrotikServices.Router_NatList(UserLogined.UserCompany.R_Host, UserLogined.UserCompany.R_Port, UserLogined.UserCompany.R_User, UserLogined.UserCompany.R_Password);
             return View();
         }

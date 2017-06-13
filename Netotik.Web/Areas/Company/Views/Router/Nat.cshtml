@@ -4,11 +4,10 @@
     int Counter = 1;
 }
 <div class="row">
-
     <div class="col-md-12">
         <div class="card">
             <div class="card-header">
-                <h4 class="card-title">دسترسی کاربر(ان)</h4>
+                <h4 class="card-title">Nat</h4>
                 <a class="heading-elements-toggle"><i class="icon-ellipsis font-medium-3"></i></a>
                 <div class="heading-elements">
                     <ul class="list-inline mb-0">
@@ -31,14 +30,12 @@
                                 <thead>
                                     <tr>
                                         <th>#</th>
-                                        <th data-toggle="true">به آدرس</th>
-                                        <th>به پورت</th>
-                                        <th>انتقال به آدرس</th>
-                                        <th>انتقال به پورت</th>
+                                        <td>درگاه ورودی</td>
+                                        <th>به آدرس : پورت</th>
+                                        <th>انتقال به آدرس : پورت</th>
                                         <th>پروتکل</th>
                                         <th>Comments</th>
-                                        <th>Disable</th>
-                                        <th>Remove</th>
+                                        <th></th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -46,30 +43,32 @@
                                     {
                                         <tr>
                                             <td>@(Counter++)</td>
-                                            <td>@item.dst_ipaddress</td>
-                                            <td>@item.dst_port</td>
-                                            <td>@item.to_ipaddress</td>
-                                            <td>@item.to_ports</td>
+                                            <td>@item.input_interface</td>
+                                            <td>@item.dst_ipaddress:@item.dst_port</td>
+                                            <td>@item.to_ipaddress:@item.to_ports</td>
                                             <td>@item.protocol</td>
                                             <td>@item.comment</td>
                                             <td>
-                                                @if (item.disabled)
-                                                {
-                                                    <a onclick="NatDisable('@item.id');" class="dropdown-item">
-                                                        <i class="icon-lock danger"></i> غیره فعال کردن
-                                                    </a>
-                                                }
-                                                else
-                                                {
-                                                    <a onclick="NatEnable('@item.id');" class="dropdown-item">
-                                                        <i class="icon-unlock primary"></i> فعال کردن
-                                                    </a>
-                                                }
-                                            </td>
-                                            <td>
-                                                <a onclick="NatRemove('@item.id');" class="dropdown-item">
-                                                    <i class="icon-trash4 danger"></i> حذف
-                                                </a>
+                                                <span class="dropdown">
+                                                    <button id="btnSearchDrop2" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" class="btn btn-outline-secondary dropdown-toggle dropdown-menu-right"><i class="icon-cog3"></i> پردازش</button>
+                                                    <span aria-labelledby="btnSearchDrop2" class="dropdown-menu mt-1 dropdown-menu-right">
+                                                        <a onclick="NatRemove('@item.id');" class="dropdown-item">
+                                                            <i class="icon-trash4 danger"></i> حذف
+                                                        </a>
+                                                        @if (!item.disabled)
+                                                        {
+                                                            <a onclick="NatDisable('@item.id');" class="dropdown-item">
+                                                                <i class="icon-lock danger"></i> غیره فعال کردن
+                                                            </a>
+                                                        }
+                                                        else
+                                                        {
+                                                            <a onclick="NatEnable('@item.id');" class="dropdown-item">
+                                                                <i class="icon-unlock primary"></i> فعال کردن
+                                                            </a>
+                                                        }
+                                                    </span>
+                                                </span>
                                             </td>
                                         </tr>
                                     }
@@ -80,28 +79,48 @@
                                     <div class="card-body">
                                         <div class="card-block">
                                             @using (Html.BeginForm(MVC.Company.Router.ActionNames.Nat, MVC.Company.Router.Name, FormMethod.Post,
-                                            htmlAttributes: new { @class = "form cmxform form-horizontal tasi-form", enctype = "multipart/form-data", id = "form" }))
+htmlAttributes: new { @class = "form cmxform form-horizontal tasi-form", enctype = "multipart/form-data", id = "form" }))
                                             {
                                                 <h4 class="form-section"><i class="icon-plus"></i>اضافه کردن</h4>
+                                                <div class="col-md-2">
+                                                    <div class="form-group">
+                                                        @Html.LabelFor(m => m.input_interface)
+                                                        <select name="input_interface" data-placeholder="input_interface" class="selectize-select" style="min-width:350px;" tabindex="2">
+                                                            <option value="all">All</option>
+                                                            <option value="all-ethernet">all-ethernet</option>
+                                                            <option value="all-ppp">all-ppp</option>
+                                                            <option value="all-vlan">all-vlan</option>
+                                                            <option value="all-wireless">all-wireless</option>
+                                                            @foreach (var item in ViewBag.Interfaces)
+                                                            {
+                                                                if (item.type != "ether" && item.type != "wlan")
+                                                                {
+                                                                    <option value="@item.name">@item.name</option>
+                                                                }
+                                                                else
+                                                                {
+                                                                    <option value="@item.default_name">@item.default_name</option>
+                                                                }
+                                                            }
+                                                        </select>
+                                                    </div>
+                                                </div>
                                                 <div class="col-md-3">
                                                     <div class="form-group has-feedback has-icon-left">
                                                         @Html.LabelFor(m => m.dst_ipaddress)
                                                         <div class="position-relative has-icon-left">
                                                             @Html.TextBoxFor(m => m.dst_ipaddress, new { @class = "form-control" })
-                                                            <div class="form-control-position">
-                                                                <i class="icon-head"></i>
-                                                            </div>
                                                             @Html.ValidationMessageFor(model => model.dst_ipaddress, "", htmlAttributes: new { @class = "text-danger" })
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <div class="col-md-3">
+                                                <div class="col-md-2">
                                                     <div class="form-group has-feedback has-icon-left">
                                                         @Html.LabelFor(m => m.dst_port)
                                                         <div class="position-relative has-icon-left">
                                                             @Html.TextBoxFor(m => m.dst_port, new { @class = "form-control" })
                                                             <div class="form-control-position">
-                                                                <i class="icon-head"></i>
+                                                                :
                                                             </div>
                                                             @Html.ValidationMessageFor(model => model.dst_port, "", htmlAttributes: new { @class = "text-danger" })
                                                         </div>
@@ -112,57 +131,42 @@
                                                         @Html.LabelFor(m => m.to_ipaddress)
                                                         <div class="position-relative has-icon-left">
                                                             @Html.TextBoxFor(m => m.to_ipaddress, new { @class = "form-control" })
-                                                            <div class="form-control-position">
-                                                                <i class="icon-head"></i>
-                                                            </div>
                                                             @Html.ValidationMessageFor(model => model.to_ipaddress, "", htmlAttributes: new { @class = "text-danger" })
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <div class="col-md-3">
+                                                <div class="col-md-2">
                                                     <div class="form-group has-feedback has-icon-left">
                                                         @Html.LabelFor(m => m.to_ports)
                                                         <div class="position-relative has-icon-left">
                                                             @Html.TextBoxFor(m => m.to_ports, new { @class = "form-control" })
                                                             <div class="form-control-position">
-                                                                <i class="icon-head"></i>
+                                                                :
                                                             </div>
                                                             @Html.ValidationMessageFor(model => model.to_ports, "", htmlAttributes: new { @class = "text-danger" })
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <div class="col-md-3">
-                                                    <div class="form-group has-feedback has-icon-left">
+                                                <div class="col-md-2">
+                                                    <div class="form-group">
                                                         @Html.LabelFor(m => m.protocol)
-                                                        <div class="position-relative has-icon-left">
-                                                            @Html.TextBoxFor(m => m.protocol, new { @class = "form-control" })
-                                                            <div class="form-control-position">
-                                                                <i class="icon-head"></i>
-                                                            </div>
-                                                            @Html.ValidationMessageFor(model => model.protocol, "", htmlAttributes: new { @class = "text-danger" })
-                                                        </div>
+                                                        <select name="protocol" data-placeholder="protocol" class="selectize-select" style="min-width:350px;" tabindex="2">
+                                                            <option value="all">all</option>
+                                                            <option value="tcp">tcp</option>
+                                                            <option value="udp">udp</option>
+                                                        </select>
                                                     </div>
                                                 </div>
-                                                <div class="col-md-3">
+                                                <div class="col-md-4">
                                                     <div class="form-group has-feedback has-icon-left">
                                                         @Html.LabelFor(m => m.comment)
                                                         <div class="position-relative has-icon-left">
                                                             @Html.TextBoxFor(m => m.comment, new { @class = "form-control" })
                                                             <div class="form-control-position">
-                                                                <i class="icon-head"></i>
+                                                                <i class="icon-comment"></i>
                                                             </div>
                                                             @Html.ValidationMessageFor(model => model.comment, "", htmlAttributes: new { @class = "text-danger" })
                                                         </div>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-4">
-                                                    <div class="form-group">
-                                                        <label class="font-noraml">Type</label>
-                                                        <select name="Type" data-placeholder="Types" class="selectize-select" style="min-width:350px;" tabindex="2">
-                                                            <option value="blocked">بستن</option>
-                                                            <option value="bypassed">عدم نمایش لاگین</option>
-                                                            <option value="regular">خارج کردن بر اساس آدرس</option>
-                                                        </select>
                                                     </div>
                                                 </div>
                                                 <div class="col-md-1" style="direction:ltr; padding-top:15px;">
@@ -181,8 +185,6 @@
             </div>
         </div>
     </div>
-
-
 
 
 

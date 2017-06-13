@@ -75,14 +75,14 @@ namespace Netotik.ViewModels.Identity.UserCompany
         [MaxLength(100, ErrorMessageResourceType = typeof(Captions), ErrorMessageResourceName = "MaxLengthError")]
         [MinLength(3, ErrorMessageResourceType = typeof(Captions), ErrorMessageResourceName = "MinLengthError")]
         [Display(ResourceType = typeof(Captions), Name = "UsermanCustomer")]
-        [RegularExpression(@"^0?9\d{9}$", ErrorMessageResourceType = typeof(Captions), ErrorMessageResourceName = "NotValidError")]
+        [RegularExpression(@"(^$)|(^[a-zA-Z0-9:.-_]*$)", ErrorMessageResourceType = typeof(Captions), ErrorMessageResourceName = "NotValidError")]
         public string Userman_Customer { get; set; }
 
         [Required(ErrorMessageResourceType = typeof(Captions), ErrorMessageResourceName = "RequiredError")]
         [Display(ResourceType = typeof(Captions), Name = "UserName")]
         [StringLength(256, MinimumLength = 5,ErrorMessageResourceType =typeof(Captions),ErrorMessageResourceName ="LengthError")]
         [System.Web.Mvc.Remote("IsUserNameAvailable", "Remote", System.Web.Mvc.AreaReference.UseRoot, ErrorMessageResourceType =typeof(Captions),ErrorMessageResourceName = "ExistError", HttpMethod = "POST")]
-        [RegularExpression(@"^[a-zA-Z1-9]+$", ErrorMessageResourceType = typeof(Captions), ErrorMessageResourceName = "JustEnglishNumeric")]
+        [RegularExpression(@"(^[a-zA-Z0-9:.-_]*$)", ErrorMessageResourceType = typeof(Captions), ErrorMessageResourceName = "JustEnglishNumeric")]
         public string UserName { get; set; }
 
         [DataType(DataType.Password)]
@@ -103,7 +103,7 @@ namespace Netotik.ViewModels.Identity.UserCompany
         [MaxLength(100, ErrorMessageResourceType = typeof(Captions), ErrorMessageResourceName = "MaxLengthError")]
         [MinLength(6, ErrorMessageResourceType = typeof(Captions), ErrorMessageResourceName = "MinLengthError")]
         [Display(Name = "نام شرکت")]
-        [RegularExpression(@"^[a-zA-Z1-9]+$", ErrorMessage = "انگلیسی وارد کنید")]
+        [RegularExpression(@"(^[a-zA-Z0-9:.-_]*$)", ErrorMessage = "انگلیسی وارد کنید")]
         [System.Web.Mvc.Remote("IsCompanyCodeAvailable", "Remote", System.Web.Mvc.AreaReference.UseRoot, AdditionalFields = "Id", HttpMethod = "POST", ErrorMessageResourceType = typeof(Captions), ErrorMessageResourceName = "ExistError")]
         public string CompanyCode { get; set; }
 
