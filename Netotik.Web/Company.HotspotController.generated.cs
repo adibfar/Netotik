@@ -217,12 +217,16 @@ namespace Netotik.Web.Areas.Company.Controllers
             public class _ViewNamesClass
             {
                 public readonly string Access = "Access";
+                public readonly string Active = "Active";
                 public readonly string Servers = "Servers";
                 public readonly string Template = "Template";
+                public readonly string Users = "Users";
             }
             public readonly string Access = "~/Areas/Company/Views/Hotspot/Access.cshtml";
+            public readonly string Active = "~/Areas/Company/Views/Hotspot/Active.cshtml";
             public readonly string Servers = "~/Areas/Company/Views/Hotspot/Servers.cshtml";
             public readonly string Template = "~/Areas/Company/Views/Hotspot/Template.cshtml";
+            public readonly string Users = "~/Areas/Company/Views/Hotspot/Users.cshtml";
         }
     }
 
