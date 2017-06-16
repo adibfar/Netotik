@@ -58,6 +58,12 @@ namespace Netotik.Web.Areas.Client.Controllers
 
         [NonAction]
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public virtual System.Web.Mvc.ActionResult UserEdit_Save()
+        {
+            return new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.UserEdit_Save);
+        }
+        [NonAction]
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public virtual System.Web.Mvc.ActionResult RedirectToLocal()
         {
             return new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.RedirectToLocal);
@@ -79,6 +85,9 @@ namespace Netotik.Web.Areas.Client.Controllers
         public class ActionNamesClass
         {
             public readonly string Index = "Index";
+            public readonly string ChangePassword = "ChangePassword";
+            public readonly string Edit = "Edit";
+            public readonly string UserEdit_Save = "UserEdit_Save";
             public readonly string RedirectToLocal = "RedirectToLocal";
         }
 
@@ -86,10 +95,30 @@ namespace Netotik.Web.Areas.Client.Controllers
         public class ActionNameConstants
         {
             public const string Index = "Index";
+            public const string ChangePassword = "ChangePassword";
+            public const string Edit = "Edit";
+            public const string UserEdit_Save = "UserEdit_Save";
             public const string RedirectToLocal = "RedirectToLocal";
         }
 
 
+        static readonly ActionParamsClass_ChangePassword s_params_ChangePassword = new ActionParamsClass_ChangePassword();
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public ActionParamsClass_ChangePassword ChangePasswordParams { get { return s_params_ChangePassword; } }
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public class ActionParamsClass_ChangePassword
+        {
+            public readonly string model = "model";
+        }
+        static readonly ActionParamsClass_UserEdit_Save s_params_UserEdit_Save = new ActionParamsClass_UserEdit_Save();
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public ActionParamsClass_UserEdit_Save UserEdit_SaveParams { get { return s_params_UserEdit_Save; } }
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public class ActionParamsClass_UserEdit_Save
+        {
+            public readonly string model = "model";
+            public readonly string actionType = "actionType";
+        }
         static readonly ActionParamsClass_RedirectToLocal s_params_RedirectToLocal = new ActionParamsClass_RedirectToLocal();
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public ActionParamsClass_RedirectToLocal RedirectToLocalParams { get { return s_params_RedirectToLocal; } }
@@ -109,10 +138,18 @@ namespace Netotik.Web.Areas.Client.Controllers
             public class _ViewNamesClass
             {
                 public readonly string ChangePassword = "ChangePassword";
+                public readonly string Charts = "Charts";
+                public readonly string Details = "Details";
+                public readonly string Edit = "Edit";
                 public readonly string Index = "Index";
+                public readonly string Session = "Session";
             }
             public readonly string ChangePassword = "~/Areas/Client/Views/Home/ChangePassword.cshtml";
+            public readonly string Charts = "~/Areas/Client/Views/Home/Charts.cshtml";
+            public readonly string Details = "~/Areas/Client/Views/Home/Details.cshtml";
+            public readonly string Edit = "~/Areas/Client/Views/Home/Edit.cshtml";
             public readonly string Index = "~/Areas/Client/Views/Home/Index.cshtml";
+            public readonly string Session = "~/Areas/Client/Views/Home/Session.cshtml";
         }
     }
 
@@ -129,6 +166,53 @@ namespace Netotik.Web.Areas.Client.Controllers
         {
             var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Index);
             IndexOverride(callInfo);
+            return callInfo;
+        }
+
+        [NonAction]
+        partial void ChangePasswordOverride(T4MVC_System_Web_Mvc_ActionResult callInfo);
+
+        [NonAction]
+        public override System.Web.Mvc.ActionResult ChangePassword()
+        {
+            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.ChangePassword);
+            ChangePasswordOverride(callInfo);
+            return callInfo;
+        }
+
+        [NonAction]
+        partial void ChangePasswordOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, Netotik.ViewModels.Identity.UserClient.ChangePasswordModel model);
+
+        [NonAction]
+        public override System.Web.Mvc.ActionResult ChangePassword(Netotik.ViewModels.Identity.UserClient.ChangePasswordModel model)
+        {
+            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.ChangePassword);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "model", model);
+            ChangePasswordOverride(callInfo, model);
+            return callInfo;
+        }
+
+        [NonAction]
+        partial void EditOverride(T4MVC_System_Web_Mvc_ActionResult callInfo);
+
+        [NonAction]
+        public override System.Web.Mvc.ActionResult Edit()
+        {
+            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Edit);
+            EditOverride(callInfo);
+            return callInfo;
+        }
+
+        [NonAction]
+        partial void UserEdit_SaveOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, Netotik.ViewModels.Identity.UserClient.UserEditModel model, Netotik.Common.Controller.ActionType actionType);
+
+        [NonAction]
+        public override System.Web.Mvc.ActionResult UserEdit_Save(Netotik.ViewModels.Identity.UserClient.UserEditModel model, Netotik.Common.Controller.ActionType actionType)
+        {
+            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.UserEdit_Save);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "model", model);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "actionType", actionType);
+            UserEdit_SaveOverride(callInfo, model, actionType);
             return callInfo;
         }
 

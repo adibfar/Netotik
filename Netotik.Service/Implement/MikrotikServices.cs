@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Netotik.ViewModels.Mikrotik;
 using PersianDate;
+using Netotik.ViewModels.Identity.UserClient;
 
 namespace Netotik.Services.Implement
 {
@@ -2217,6 +2218,26 @@ namespace Netotik.Services.Implement
             mikrotik.Send("/ip/firewall/nat/remove");
             string temp = String.Format("=.id={0}", id);
             mikrotik.Send(temp, true);
+        }
+
+        public void Usermanager_UserChangePassword(string ip, int port, string user, string pass, ChangePasswordModel model, string id)
+        {
+            if(Usermanager_IsUserExist(ip,port,user,pass,id))
+            {
+                var UsermanagerUser = Usermanager_GetUser(ip, port, user, pass, id);
+                if (UsermanagerUser.FirstOrDefault().password == model.OldPassword && model.Password == model.ConfirmPassword && UsermanagerUser.FirstOrDefault().disabled == "false")
+                {
+                    var mikrotik = new MikrotikAPI();
+                    mikrotik.MK(ip, port);
+                    if (!mikrotik.Login(user, pass)) mikrotik.Close();
+                    //-----------------------------------------------
+                    mikrotik.Send("/tool/user-manager/user/set");
+                    string temp = String.Format("=.id={0}", id);
+                    mikrotik.Send(temp);
+                    temp = String.Format("=password={0}", model.Password);
+                    mikrotik.Send(temp, true);
+                }
+            }
         }
         #endregion
 

@@ -284,7 +284,7 @@ namespace Netotik.Web.Areas.Company.Controllers
             if (!ModelState.IsValid)
             {
                 this.MessageError(Captions.MissionFail, Captions.InvalidDataError);
-                return RedirectToAction(MVC.Reseller.Home.ActionNames.ChangePassword);
+                return RedirectToAction(MVC.Company.Home.ActionNames.ChangePassword);
             }
             var temp = await _applicationUserManager.ChangePasswordAsync(User.Identity.GetUserId<long>(), model.OldPassword, model.Password);
             if (temp.Succeeded)

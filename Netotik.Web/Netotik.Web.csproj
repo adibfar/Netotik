@@ -3611,6 +3611,9 @@
     <Content Include="Areas\Company\Views\Hotspot\Users.cshtml" />
     <Content Include="Areas\Client\Views\Home\ChangePassword.cshtml" />
     <Content Include="Areas\Client\Views\Home\Index.cshtml" />
+    <Content Include="Areas\Client\Views\Home\Edit.cshtml" />
+    <Content Include="Areas\Client\Views\Home\Details.cshtml" />
+    <Content Include="Areas\Client\Views\Home\Charts.cshtml" />
     <None Include="Properties\PublishProfiles\DNMA.pubxml" />
     <None Include="T4MVC.tt">
       <Generator>TextTemplatingFileGenerator</Generator>

@@ -86,6 +86,7 @@
     <Compile Include="Identity\Account\ExternalLoginListViewModel.cs" />
     <Compile Include="Identity\Account\ForgotPasswordViewModel.cs" />
     <Compile Include="Identity\UserAdmin\ProfileLanguageItem.cs" />
+    <Compile Include="Identity\UserClient\ChangePasswordModel.cs" />
     <Compile Include="Identity\UserClient\CustomerModel.cs" />
     <Compile Include="Identity\UserClient\LimitionModel.cs" />
     <Compile Include="Identity\UserClient\ProfileLimitationModel.cs" />

@@ -786,10 +786,6 @@ namespace Netotik.Web.Areas.Company.Controllers
             return View();
         }
         
-        public virtual ActionResult Hotspot_Temp()
-        {
-            return View();
-        }
         
         public virtual ActionResult Register()
         {

@@ -151,7 +151,6 @@ namespace Netotik.Web.Areas.Company.Controllers
             public readonly string UserCreate = "UserCreate";
             public readonly string PackageList = "PackageList";
             public readonly string Report = "Report";
-            public readonly string Hotspot_Temp = "Hotspot_Temp";
             public readonly string Register = "Register";
             public readonly string UserEdit = "UserEdit";
             public readonly string UserEdit_Save = "UserEdit_Save";
@@ -174,7 +173,6 @@ namespace Netotik.Web.Areas.Company.Controllers
             public const string UserCreate = "UserCreate";
             public const string PackageList = "PackageList";
             public const string Report = "Report";
-            public const string Hotspot_Temp = "Hotspot_Temp";
             public const string Register = "Register";
             public const string UserEdit = "UserEdit";
             public const string UserEdit_Save = "UserEdit_Save";
@@ -506,17 +504,6 @@ namespace Netotik.Web.Areas.Company.Controllers
         {
             var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Report);
             ReportOverride(callInfo);
-            return callInfo;
-        }
-
-        [NonAction]
-        partial void Hotspot_TempOverride(T4MVC_System_Web_Mvc_ActionResult callInfo);
-
-        [NonAction]
-        public override System.Web.Mvc.ActionResult Hotspot_Temp()
-        {
-            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Hotspot_Temp);
-            Hotspot_TempOverride(callInfo);
             return callInfo;
         }
 
