@@ -11,8 +11,13 @@ namespace Netotik.ViewModels.Common.Setting
     public class GeneralSettingModel
     {
         #region General
-        [Display(ResourceType = typeof(Captions), Name = "SiteName")]
-        public string SiteName { get; set; }
+        [Display(ResourceType = typeof(Captions), Name = "HomePageTitle")]
+        public string HomePageTitle { get; set; }
+        [Display(ResourceType = typeof(Captions), Name = "HomePageDescription")]
+        public string HomePageDescription { get; set; }
+        [Display(ResourceType = typeof(Captions), Name = "HomePageKeywords")]
+        public string HomePageKeywords { get; set; }
+
         #endregion
 
         #region Company Info
@@ -24,21 +29,21 @@ namespace Netotik.ViewModels.Common.Setting
         public string CompanyTel1 { get; set; }
         [Display(ResourceType = typeof(Captions), Name = "Tel")]
         public string CompanyTel2 { get; set; }
-        [Display(ResourceType = typeof(Captions), Name = "Email2")]
+        [Display(ResourceType = typeof(Captions), Name = "Email")]
         public string CompanyEmail1 { get; set; }
-        [Display(ResourceType = typeof(Captions), Name = "Email2")]
+        [Display(ResourceType = typeof(Captions), Name = "Email")]
         public string CompanyEmail2 { get; set; }
         #endregion
 
         #region Social Networks
 
-        [Display(Name = "فیس بوک")]
+        [Display(ResourceType = typeof(Captions), Name = "Facebook")]
         public string Facebook { get; set; }
-        [Display(Name = "توییتر")]
+        [Display(ResourceType = typeof(Captions), Name = "Twitter")]
         public string Twitter { get; set; }
-        [Display(Name = "اینستاگرام")]
+        [Display(ResourceType = typeof(Captions), Name = "Instagram")]
         public string Instagram { get; set; }
-        [Display(Name = "گوگل پلاس")]
+        [Display(Name = "GooglePlus")]
         public string GooglePlus { get; set; }
 
         #endregion

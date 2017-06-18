@@ -15,23 +15,8 @@
     //--------------------------------------------------------------------------
     var ShopMenu = Roles.Any(x => AssignableToRolePermissions.GetAllShopSectionPermision().Any(y => y.Name == x));
 
-    var ShopCategoryMenu = Roles.Any(x => x == AssignableToRolePermissions.CanAccessProductCategory);
-    var ShopdeliveryDateMenu = Roles.Any(x => x == AssignableToRolePermissions.CanAccessDeliveryDate);
-    var ShopDiscountMenu = Roles.Any(x => x == AssignableToRolePermissions.CanAccessDiscount);
-    var ShopManufacturerMenu = Roles.Any(x => x == AssignableToRolePermissions.CanAccessManufactur);
     var ShopPaymentTypeMenu = Roles.Any(x => x == AssignableToRolePermissions.CanAccessPaymentType);
-    var ShopProductMenu = Roles.Any(x => x == AssignableToRolePermissions.CanAccessProduct);
-    var ShopProductAttributeMenu = Roles.Any(x => x == AssignableToRolePermissions.CanAccessProductAttribute);
-    var ShopProductCommentsMenu = Roles.Any(x => x == AssignableToRolePermissions.CanAccessProductComment);
-    var ShopShippingMethodMenu = Roles.Any(x => x == AssignableToRolePermissions.CanAccessShopShippingByMethod);
-    var ShopTaxMenu = Roles.Any(x => x == AssignableToRolePermissions.CanAccessTag);
     //--------------------------------------------------------------------------
-
-    var FactorMenu = Roles.Any(x => AssignableToRolePermissions.GetAllFactorPermision().Any(y => y.Name == x));
-
-    var SuccessOrderMenu = Roles.Any(x => x == AssignableToRolePermissions.CanAccessSuccessOrder);
-    var FailOrderMenu = Roles.Any(x => x == AssignableToRolePermissions.CanAccessFailOrder);
-    //-------------------------------------------------------------------------------
 
     var UserMenu = Roles.Any(x => AssignableToRolePermissions.GetAllUserPermision().Any(y => y.Name == x));
 
@@ -56,7 +41,7 @@
     var ConfigCityMenu = Roles.Any(x => x == AssignableToRolePermissions.CanAccessCity);
     //----------------------------------------
 
-    var AdminNetAccMenu = Roles.Any(X => X == AssignableToRolePermissions.CanAccessProduct);
+    var AdminNetAccMenu = true;
 }
 
 
@@ -112,49 +97,12 @@
                 <li data-menu="dropdown" class="dropdown nav-item">
                     <a href="#" data-toggle="dropdown" class="dropdown-toggle nav-link"><i class="icon-cart4"></i><span>@Captions.Shop</span></a>
                     <ul class="dropdown-menu">
-                        @if (ShopProductMenu)
-                        {
-                            <li><a href="@Url.Action(MVC.Admin.ShopProduct.Index())" data-toggle="dropdown" class="dropdown-item">محصولات</a></li>}
-                        @if (ShopProductCommentsMenu)
-                        {
-                            <li><a href="@Url.Action(MVC.Admin.ShopProductComments.Index())" data-toggle="dropdown" class="dropdown-item">نظرات</a></li>}
-                        @if (ShopManufacturerMenu)
-                        {
-                            <li><a href="@Url.Action(MVC.Admin.ShopManuFacturer.Index())" data-toggle="dropdown" class="dropdown-item">برند ها</a></li>}
-                        @if (ShopCategoryMenu)
-                        {
-                            <li><a href="@Url.Action(MVC.Admin.ShopCategory.Index())" data-toggle="dropdown" class="dropdown-item">دسته بندی ها</a></li>}
-                        @if (ShopDiscountMenu)
-                        {
-                            <li><a href="@Url.Action(MVC.Admin.ShopDiscount.Index())" data-toggle="dropdown" class="dropdown-item">تخفیف ها</a></li>}
                         @if (ShopPaymentTypeMenu)
                         {
                             <li><a href="@Url.Action(MVC.Admin.ShopPaymentType.Index())" data-toggle="dropdown" class="dropdown-item">درگاه های پرداخت</a></li>}
-                        @if (ShopProductAttributeMenu)
-                        {
-                            <li><a href="@Url.Action(MVC.Admin.ShopProductAttribute.Index())" data-toggle="dropdown" class="dropdown-item">مشخصات محصولات</a></li>}
-
                     </ul>
                 </li>
             }
-
-            @if (FactorMenu)
-            {
-                <li data-menu="dropdown" class="dropdown nav-item">
-                    <a href="#" data-toggle="dropdown" class="dropdown-toggle nav-link"><i class="icon-pie_chart"></i><span>@Captions.Accounting</span></a>
-                    <ul class="dropdown-menu">
-                        @if (SuccessOrderMenu)
-                        {
-                            <li><a href="@Url.Action(MVC.Admin.Order.Index())" data-toggle="dropdown" class="dropdown-item">فاکتورهای پرداخت شده</a></li>
-                        }
-                        @if (FailOrderMenu)
-                        {
-                            <li><a href="@Url.Action(MVC.Admin.OrderNotPayment.Index())" data-toggle="dropdown" class="dropdown-item">فاکتورها پرداخت نشده</a></li>
-                        }
-                    </ul>
-                </li>
-            }
-
 
             @if (IssueMenu)
             {

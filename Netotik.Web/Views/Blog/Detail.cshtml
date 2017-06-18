@@ -1,8 +1,25 @@
 ﻿@model Netotik.Domain.Entity.Content
+
 @{
-    ViewBag.Title = (string.IsNullOrWhiteSpace(Model.MetaTitle) ? Model.Title : Model.MetaTitle);
-    ViewBag.Keywords = (string.IsNullOrWhiteSpace(Model.MetaKeywords) ? Model.BodyOverview : Model.MetaKeywords);
-    ViewBag.Description = (string.IsNullOrWhiteSpace(Model.MetaDescription) ? Model.BodyOverview : Model.MetaDescription);
+    var meta = new Netotik.ViewModels.Common.Meta.MetaViewModel()
+    {
+        Title = string.Format("{0} | {1}", (string.IsNullOrWhiteSpace(Model.MetaTitle) ? Model.Title : Model.MetaTitle), Captions.Netotik),
+        Description = (string.IsNullOrWhiteSpace(Model.MetaDescription) ? Model.BodyOverview : Model.MetaDescription),
+        Keywords = (string.IsNullOrWhiteSpace(Model.MetaKeywords) ? Model.BodyOverview : Model.MetaKeywords),
+        OgTitle = string.Format("{0} | {1}", (string.IsNullOrWhiteSpace(Model.MetaTitle) ? Model.Title : Model.MetaTitle), Captions.Netotik),
+        OgUrl = Url.Action(MVC.Blog.Detail(Model.Id)),
+        Conanical = Url.Action(MVC.Blog.Detail(Model.Id)),
+        OgImage = Url.Content(Path.Combine(Netotik.Common.Controller.FilePathes._imagesContentPath, Model.PictureId.HasValue ? Model.Picture.FileName : "Default.png")),
+        OgDescription = (Model.MetaDescription),
+        OgSiteName = Captions.Netotik,
+        OgTags = Model.ContentTages.Select(x => x.Name).ToArray(),
+        OgType = "article"
+    };
+}
+
+
+@section Meta{
+    @Html.Partial(MVC.SharedPublic.Views._Meta, meta)
 }
 
 <section class="page-header page-header-md parallax parallax-3" style="background-image:url('/Content/Upload/Image/Content/@(Model.PictureId.HasValue?Model.Picture.FileName:"Background.jpg")')">
@@ -31,18 +48,3 @@
         </div>
     </div>
 </section>
-
-
-
-
-
-@*@if (Model.AllowViewComments)
-    {
-        @Html.Partial(MVC.Blog.Views._Comments, Model.ContentComments)
-    }
-    @if (Model.AllowComments)
-    {
-        @Html.Partial(MVC.Blog.Views._AddComment, new SmartyShop.Model.Comment.AddCommentModel() { ContentId = Model.Id })
-    }*@
-
-

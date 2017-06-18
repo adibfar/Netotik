@@ -7,7 +7,6 @@ namespace Netotik.Domain.Entity
     {
         public Address()
         {
-            this.Orders = new List<Order>();
         }
 
         public int Id { get; set; }
@@ -21,7 +20,6 @@ namespace Netotik.Domain.Entity
         public string HomeNumber { get; set; }
         public System.DateTime CreateDate { get; set; }
         public virtual City AddressCity { get; set; }
-        public virtual ICollection<Order> Orders { get; set; }
         public virtual User User { get; set; }
     }
 }

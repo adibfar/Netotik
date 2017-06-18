@@ -16,13 +16,7 @@ namespace Netotik.Domain.EntityConfiguration
                 .IsRequired()
                 .IsFixedLength()
                 .HasMaxLength(10);
-
-            // Table & Column Mappings
-            this.ToTable("AddressCity");
-            this.Property(t => t.Id).HasColumnName("Id");
-            this.Property(t => t.StateId).HasColumnName("AddressStateId");
-            this.Property(t => t.Name).HasColumnName("Name");
-            this.Property(t => t.IsDefault).HasColumnName("IsDefault");
+            
 
             // Relationships
             this.HasRequired(t => t.State)

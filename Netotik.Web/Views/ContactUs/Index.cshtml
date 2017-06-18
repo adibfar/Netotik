@@ -2,11 +2,32 @@
 @model Netotik.ViewModels.Common.ContactUs.MessageModel
 
 
-<section class="page-header page-header-md parallax parallax-3" style="background-image:url('../../Content/PublicUI/images/backgrounds/blue.jpg')">
+@{
+    var meta = new Netotik.ViewModels.Common.Meta.MetaViewModel()
+    {
+        Title = string.Format("{0} | {1}", Captions.Netotik, Captions.ContactUs),
+        Description = "",
+        Keywords = "",
+        Conanical = Url.Action(MVC.ContactUs.Index()),
+        OgTitle = string.Format("{0} | {1}", Captions.Netotik, Captions.ContactUs),
+        OgUrl = Url.Action(MVC.ContactUs.Index()),
+        OgDescription = "",
+        OgSiteName = Captions.Netotik,
+        OgType = "artical"
+    };
+}
+
+
+@section Meta{
+    @Html.Partial(MVC.SharedPublic.Views._Meta, meta)
+}
+
+
+
+<section class="page-header page-header-md parallax parallax-3" style="background-image:url('../../Content/PublicUI/images/backgrounds/grey-noise-min.jpg')">
     <div class="overlay dark-5"><!-- dark overlay [1 to 9 opacity] --></div>
     <div class="container">
         <h1>@Captions.ContactUs</h1>
-        <span class="font-lato size-18 weight-300">مشاوران ما بهترین پیشنهادات را به شما می دهند</span>
     </div>
 </section>
 
@@ -14,30 +35,30 @@
 <!-- -->
 <section>
     <div class="container">
-        
+
         <div class="row">
 
             <!-- FORM -->
             <div class="col-md-9 col-sm-9">
 
                 @*@if (result != null)
-                {
-                    if (result.Color == MessageColor.Success)
                     {
-                        <div class="alert alert-success margin-bottom-30">
-                            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-                            <strong> با تشکر </strong> پیام شما با موفقیت ارسال شد.
-                        </div>
-                    }
+                        if (result.Color == MessageColor.Success)
+                        {
+                            <div class="alert alert-success margin-bottom-30">
+                                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                                <strong> با تشکر </strong> پیام شما با موفقیت ارسال شد.
+                            </div>
+                        }
 
-                    if (result.Color == MessageColor.Danger)
-                    {
-                        <div class="alert alert-danger margin-bottom-30">
-                            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-                            متاسفانه خطایی رخ داده است، لطفا تماس بگیرید.
-                        </div>
-                    }
-                }*@
+                        if (result.Color == MessageColor.Danger)
+                        {
+                            <div class="alert alert-danger margin-bottom-30">
+                                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                                متاسفانه خطایی رخ داده است، لطفا تماس بگیرید.
+                            </div>
+                        }
+                    }*@
 
                 @using (Html.BeginForm(MVC.ContactUs.ActionNames.Index, MVC.ContactUs.Name, FormMethod.Post))
                 {
@@ -89,6 +110,11 @@
             <!-- /FORM -->
             <!-- INFO -->
             <div class="col-md-3 col-sm-3">
+
+                <div id="map" class="height-400"></div>
+
+                <hr />
+
                 @Html.Partial(MVC.ContactUs.Views._SideBar, (Netotik.ViewModels.Common.Setting.GeneralSettingModel)ViewBag.siteConfig)
             </div>
         </div>
@@ -96,3 +122,29 @@
     </div>
 </section>
 
+
+@section Down{
+
+
+    <script type="text/javascript" src="//maps.google.com/maps/api/js?sensor=true&key=AIzaSyBjdvVkL28fpE2K0JIoG_D_yQ_x_AaJsp4"></script>
+    <script type="text/javascript" src="~/Content/PublicUI/plugins/gmaps.js"></script>
+    <script type="text/javascript">
+
+        jQuery(document).ready(function () {
+            var map2 = new GMaps({
+                div: '#map',
+                lat: 29.752746,
+                lng: 52.684599,
+                scrollwheel: false
+            });
+
+            var marker = map2.addMarker({
+                lat: 29.752746,
+                lng: 52.684599,
+                title: 'Pars Pinova, Inc.'
+            });
+
+        });
+
+    </script>
+}

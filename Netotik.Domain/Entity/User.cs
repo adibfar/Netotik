@@ -14,10 +14,6 @@ namespace Netotik.Domain.Entity
             this.ContentsCreated = new List<Content>();
             this.ContentsEdited = new List<Content>();
             this.ContentComments = new List<ContentComment>();
-            this.Orders = new List<Order>();
-            this.OrderPayments = new List<OrderPayment>();
-            this.ReturnRequests = new List<ReturnRequest>();
-            this.ProductComments = new List<ProductComment>();
             this.Addresses = new List<Address>();
             this.Roles = new List<UserRole>();
         }
@@ -40,11 +36,7 @@ namespace Netotik.Domain.Entity
         public virtual ICollection<Ticket> IssuesCreated { get; set; }
         public virtual ICollection<Ticket> IssueUsers { get; set; }
         public virtual ICollection<ContentComment> ContentComments { get; set; }
-        public virtual ICollection<ProductComment> ProductComments { get; set; }
-        public virtual ICollection<Order> Orders { get; set; }
-        public virtual ICollection<OrderPayment> OrderPayments { get; set; }
         public virtual Picture Picture { get; set; }
-        public virtual ICollection<ReturnRequest> ReturnRequests { get; set; }
         public virtual UserAdmin UserAdmin { get; set; }
         public virtual UserReseller UserReseller { get; set; }
         public virtual UserCompany UserCompany { get; set; }

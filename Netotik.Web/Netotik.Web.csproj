@@ -344,34 +344,10 @@
     <Compile Include="Admin.MenuController.generated.cs">
       <DependentUpon>T4MVC.tt</DependentUpon>
     </Compile>
-    <Compile Include="Admin.OrderController.generated.cs">
-      <DependentUpon>T4MVC.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Admin.OrderNotPaymentController.generated.cs">
-      <DependentUpon>T4MVC.tt</DependentUpon>
-    </Compile>
     <Compile Include="Admin.RoleController.generated.cs">
       <DependentUpon>T4MVC.tt</DependentUpon>
     </Compile>
-    <Compile Include="Admin.ShopCategoryController.generated.cs">
-      <DependentUpon>T4MVC.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Admin.ShopDiscountController.generated.cs">
-      <DependentUpon>T4MVC.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Admin.ShopManuFacturerController.generated.cs">
-      <DependentUpon>T4MVC.tt</DependentUpon>
-    </Compile>
     <Compile Include="Admin.ShopPaymentTypeController.generated.cs">
-      <DependentUpon>T4MVC.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Admin.ShopProductAttributeController.generated.cs">
-      <DependentUpon>T4MVC.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Admin.ShopProductCommentsController.generated.cs">
-      <DependentUpon>T4MVC.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Admin.ShopProductController.generated.cs">
       <DependentUpon>T4MVC.tt</DependentUpon>
     </Compile>
     <Compile Include="Admin.SliderController.generated.cs">
@@ -408,12 +384,6 @@
     <Compile Include="Areas\Admin\Controllers\LanguageController.cs" />
     <Compile Include="Areas\Admin\Controllers\TicketTagController.cs" />
     <Compile Include="Areas\Admin\Controllers\TicketController.cs" />
-    <Compile Include="Areas\Admin\Controllers\OrderNotPaymentController.cs" />
-    <Compile Include="Areas\Admin\Controllers\OrderController.cs" />
-    <Compile Include="Areas\Admin\Controllers\ShopProductCommentsController.cs" />
-    <Compile Include="Areas\Admin\Controllers\ShopDiscountController.cs" />
-    <Compile Include="Areas\Admin\Controllers\ShopProductController.cs" />
-    <Compile Include="Areas\Admin\Controllers\ShopCategoryController.cs" />
     <Compile Include="Areas\Admin\Controllers\CityController.cs" />
     <Compile Include="Areas\Admin\Controllers\Configuration.cs" />
     <Compile Include="Areas\Admin\Controllers\StateController.cs" />
@@ -423,8 +393,6 @@
     <Compile Include="Areas\Admin\Controllers\MenuController.cs" />
     <Compile Include="Areas\Admin\Controllers\CommentsController.cs" />
     <Compile Include="Areas\Admin\Controllers\ShopPaymentTypeController.cs" />
-    <Compile Include="Areas\Admin\Controllers\ShopManuFacturerController.cs" />
-    <Compile Include="Areas\Admin\Controllers\ShopProductAttributeController.cs" />
     <Compile Include="Areas\Admin\Controllers\SliderController.cs" />
     <Compile Include="Areas\Admin\Controllers\ContentController.cs" />
     <Compile Include="Areas\Admin\Controllers\ContentCategoryController.cs" />
@@ -470,6 +438,7 @@
     </Compile>
     <Compile Include="Infrastructure\Caching\LanguageCache.cs" />
     <Compile Include="Infrastructure\EnglishConvertDate.cs" />
+    <Compile Include="Infrastructure\HtmlSettingExtension.cs" />
     <Compile Include="Infrastructure\HtmlCurrentLanguageExtension.cs" />
     <Compile Include="Infrastructure\HtmlCurrentUserExtension.cs" />
     <Compile Include="HomeController.generated.cs">
@@ -3624,12 +3593,6 @@
     <Content Include="Areas\Admin\Views\Content\Create.cshtml" />
     <Content Include="Areas\Admin\Views\Content\Edit.cshtml" />
     <Content Include="Areas\Admin\Views\Content\Index.cshtml" />
-    <Content Include="Areas\Admin\Views\ShopCategory\_Table.cshtml" />
-    <Content Include="Areas\Admin\Views\ShopCategory\Create.cshtml" />
-    <Content Include="Areas\Admin\Views\ShopCategory\CreateOrEdit.cshtml" />
-    <Content Include="Areas\Admin\Views\ShopCategory\Detail.cshtml" />
-    <Content Include="Areas\Admin\Views\ShopCategory\Edit.cshtml" />
-    <Content Include="Areas\Admin\Views\ShopCategory\Index.cshtml" />
     <Content Include="Areas\Admin\Views\State\_Table.cshtml" />
     <Content Include="Areas\Admin\Views\State\_Create.cshtml" />
     <Content Include="Areas\Admin\Views\State\_Edit.cshtml" />
@@ -3638,51 +3601,14 @@
     <Content Include="Areas\Admin\Views\City\_Create.cshtml" />
     <Content Include="Areas\Admin\Views\City\_Edit.cshtml" />
     <Content Include="Areas\Admin\Views\City\Index.cshtml" />
-    <Content Include="Areas\Admin\Views\ShopManufacturer\_Table.cshtml" />
-    <Content Include="Areas\Admin\Views\ShopManufacturer\Create.cshtml" />
-    <Content Include="Areas\Admin\Views\ShopManufacturer\CreateOrEdit.cshtml" />
-    <Content Include="Areas\Admin\Views\ShopManufacturer\Detail.cshtml" />
-    <Content Include="Areas\Admin\Views\ShopManufacturer\Edit.cshtml" />
-    <Content Include="Areas\Admin\Views\ShopManufacturer\Index.cshtml" />
     <Content Include="Areas\Admin\Views\ShopPaymentType\_Table.cshtml" />
     <Content Include="Areas\Admin\Views\ShopPaymentType\Create.cshtml" />
     <Content Include="Areas\Admin\Views\ShopPaymentType\CreateOrEdit.cshtml" />
     <Content Include="Areas\Admin\Views\ShopPaymentType\Detail.cshtml" />
     <Content Include="Areas\Admin\Views\ShopPaymentType\Edit.cshtml" />
     <Content Include="Areas\Admin\Views\ShopPaymentType\Index.cshtml" />
-    <Content Include="Areas\Admin\Views\ShopProductAttribute\_Table.cshtml" />
-    <Content Include="Areas\Admin\Views\ShopProductAttribute\Create.cshtml" />
-    <Content Include="Areas\Admin\Views\ShopProductAttribute\CreateOrEdit.cshtml" />
-    <Content Include="Areas\Admin\Views\ShopProductAttribute\Edit.cshtml" />
-    <Content Include="Areas\Admin\Views\ShopProductAttribute\Index.cshtml" />
-    <Content Include="Areas\Admin\Views\ShopProduct\_Table.cshtml" />
-    <Content Include="Areas\Admin\Views\ShopProduct\Create.cshtml" />
-    <Content Include="Areas\Admin\Views\ShopProduct\CreateOrEdit.cshtml" />
-    <Content Include="Areas\Admin\Views\ShopProduct\Detail.cshtml" />
-    <Content Include="Areas\Admin\Views\ShopProduct\Edit.cshtml" />
-    <Content Include="Areas\Admin\Views\ShopProduct\Index.cshtml" />
-    <Content Include="Areas\Admin\Views\ShopProduct\_ListPartial.cshtml" />
-    <Content Include="Areas\Admin\Views\ShopProduct\_PicturePartial.cshtml" />
-    <Content Include="Areas\Admin\Views\ShopProduct\AddPictureToFolder.cshtml" />
-    <Content Include="Areas\Admin\Views\ShopProduct\Pictures.cshtml" />
-    <Content Include="Areas\Admin\Views\ShopDiscount\_Table.cshtml" />
-    <Content Include="Areas\Admin\Views\ShopDiscount\Create.cshtml" />
-    <Content Include="Areas\Admin\Views\ShopDiscount\CreateOrEdit.cshtml" />
-    <Content Include="Areas\Admin\Views\ShopDiscount\Detail.cshtml" />
-    <Content Include="Areas\Admin\Views\ShopDiscount\Edit.cshtml" />
-    <Content Include="Areas\Admin\Views\ShopDiscount\Index.cshtml" />
-    <Content Include="Areas\Admin\Views\ShopProduct\ProductAttribute.cshtml" />
-    <Content Include="Areas\Admin\Views\ShopProductComments\_Table.cshtml" />
-    <Content Include="Areas\Admin\Views\ShopProductComments\Detail.cshtml" />
-    <Content Include="Areas\Admin\Views\ShopProductComments\Index.cshtml" />
     <Content Include="Areas\Admin\Views\Home\ChangePassword.cshtml" />
     <Content Include="Areas\Admin\Views\Home\MyProfile.cshtml" />
-    <Content Include="Areas\Admin\Views\Order\_Table.cshtml" />
-    <Content Include="Areas\Admin\Views\Order\Detail.cshtml" />
-    <Content Include="Areas\Admin\Views\Order\Index.cshtml" />
-    <Content Include="Areas\Admin\Views\OrderNotPayment\_Table.cshtml" />
-    <Content Include="Areas\Admin\Views\OrderNotPayment\Detail.cshtml" />
-    <Content Include="Areas\Admin\Views\OrderNotPayment\Index.cshtml" />
     <Content Include="Areas\Admin\Views\Ticket\_Table.cshtml" />
     <Content Include="Areas\Admin\Views\Ticket\Create.cshtml" />
     <Content Include="Areas\Admin\Views\Ticket\CreateOrEdit.cshtml" />

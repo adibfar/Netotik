@@ -19,7 +19,9 @@
         {
             #region Site Setting
             context.Settings.AddOrUpdate(op => new { op.Name },
-                 new Setting { Name = "SiteName", Value = "" },
+                 new Setting { Name = "HomePageTitle", Value = "" },
+                 new Setting { Name = "HomePageDescription", Value = "" },
+                 new Setting { Name = "HomePageKeywords", Value = "" },
 
                 new Setting { Name = "Facebook", Value = "" },
                 new Setting { Name = "Twitter", Value = "" },

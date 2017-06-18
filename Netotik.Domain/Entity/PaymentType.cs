@@ -7,7 +7,6 @@ namespace Netotik.Domain.Entity
     {
         public PaymentType()
         {
-            this.OrderPayments = new List<OrderPayment>();
         }
 
         public int Id { get; set; }
@@ -23,6 +22,5 @@ namespace Netotik.Domain.Entity
         public System.DateTime CreateDate { get; set; }
         public System.DateTime EditDate { get; set; }
         public virtual Picture Picture{ get; set; }
-        public virtual ICollection<OrderPayment> OrderPayments { get; set; }
     }
 }

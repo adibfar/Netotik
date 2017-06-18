@@ -47,26 +47,13 @@ namespace Netotik.Data.Context
         public DbSet<Address> Addresses { get; set; }
         public DbSet<City> AddressCities { get; set; }
         public DbSet<State> AddressStates { get; set; }
-        public DbSet<Category> Categories { get; set; }
         public DbSet<Content> Contents { get; set; }
         public DbSet<ContentComment> ContentComments { get; set; }
-        public DbSet<Discount> Discounts { get; set; }
-        public DbSet<DiscountRequirement> DiscountRequirements { get; set; }
-        public DbSet<DiscountUsageHistory> DiscountUsageHistories { get; set; }
         public DbSet<ImageGalleryItem> ImageGalleryItems { get; set; }
-        public DbSet<Manufacturer> Manufacturers { get; set; }
         public DbSet<Menu> Menus { get; set; }
-        public DbSet<Order> Orders { get; set; }
-        public DbSet<OrderItem> OrderItems { get; set; }
-        public DbSet<OrderPayment> OrderPayments { get; set; }
         public DbSet<PaymentType> PaymentTypes { get; set; }
         public DbSet<Picture> Pictures { get; set; }
         public DbSet<File> Files { get; set; }
-        public DbSet<ProductAttribute> ProductAttributes { get; set; }
-        public DbSet<ProductAttributeValue> ProductAttributeValues { get; set; }
-        public DbSet<Product> Products { get; set; }
-        public DbSet<ProductComment> ProductComments { get; set; }
-        public DbSet<ReturnRequest> ReturnRequests { get; set; }
         public DbSet<Permisson> Permissons { get; set; }
         public DbSet<Setting> Settings { get; set; }
         public DbSet<ContentCategory> ContentCategories { get; set; }
@@ -86,26 +73,12 @@ namespace Netotik.Data.Context
             modelBuilder.Configurations.Add(new AddressMap());
             modelBuilder.Configurations.Add(new AddressCityMap());
             modelBuilder.Configurations.Add(new StateMap());
-            modelBuilder.Configurations.Add(new CategoryMap());
             modelBuilder.Configurations.Add(new ContentMap());
             modelBuilder.Configurations.Add(new ContentCommentMap());
-            modelBuilder.Configurations.Add(new DiscountMap());
-            modelBuilder.Configurations.Add(new DiscountRequirementMap());
-            modelBuilder.Configurations.Add(new DiscountUsageHistoryMap());
-            modelBuilder.Configurations.Add(new ImageGalleryItemMap());
-            modelBuilder.Configurations.Add(new ManufacturerMap());
             modelBuilder.Configurations.Add(new MenuMap());
-            modelBuilder.Configurations.Add(new OrderMap());
-            modelBuilder.Configurations.Add(new OrderItemMap());
-            modelBuilder.Configurations.Add(new OrderPaymentMap());
             modelBuilder.Configurations.Add(new PaymentTypeMap());
             modelBuilder.Configurations.Add(new PictureMap());
             modelBuilder.Configurations.Add(new FileMap());
-            modelBuilder.Configurations.Add(new ProductMap());
-            modelBuilder.Configurations.Add(new ProductCommentMap());
-            modelBuilder.Configurations.Add(new ProductAttributeMap());
-            modelBuilder.Configurations.Add(new ProductAttributeValueMap());
-            modelBuilder.Configurations.Add(new ReturnRequestMap());
             modelBuilder.Configurations.Add(new PermissonMap());
             modelBuilder.Configurations.Add(new SettingMap());
             modelBuilder.Configurations.Add(new ContentCategoryMap());
