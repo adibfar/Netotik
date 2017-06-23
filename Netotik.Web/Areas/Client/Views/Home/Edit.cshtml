@@ -6,44 +6,16 @@
 <section class="flexbox-container">
     <div class="row">
         <div class="col-md-12">
-            @using (Html.BeginForm(MVC.Company.UserManager.ActionNames.UserEdit_Save, MVC.Company.UserManager.Name, FormMethod.Post,
+            @using (Html.BeginForm(MVC.Client.Home.ActionNames.UserEdit_Save, MVC.Client.Home.Name, FormMethod.Post,
                                                                     htmlAttributes: new { @class = "form cmxform form-horizontal tasi-form", enctype = "multipart/form-data", id = "form" }))
             {
                 @Html.AntiForgeryToken()
                 <div class="card">
                     <div class="card-header">
-                        <a value="بازگشت" class="btn btn-social btn-instagram" href="@Url.Action(MVC.Company.UserManager.UserList())">
+                        <a value="بازگشت" class="btn btn-social btn-instagram" href="@Url.Action(MVC.Client.Home.Index())">
                             <span class="icon-reply font-medium-4"></span>
                             بازگشت
                         </a>
-                        <a value="قطع اتصال" class="btn btn-social btn-instagram" href="#" onclick="UserCloseSession('@Model.id','@Model.username');">
-                            <span class="icon-blocked font-medium-4"></span>
-                            قطع اتصال
-                        </a>
-                        <a value="ریست کردن" class="btn btn-social btn-instagram" href="#" onclick="UserResetCounter('@Model.id','@Model.username');">
-                            <span class="icon-refresh font-medium-4"></span>
-                            ریست کردن
-                        </a>
-                        <a value="چاپ گزارش" class="btn btn-social btn-instagram" href="#">
-                            <span class="icon-printer2 font-medium-4"></span>
-                            چاپ گزارش
-                        </a>
-                        <a value="حذف" class="btn btn-social btn-instagram" href="#" onclick="Userremove('@Model.id');">
-                            <span class="icon-remove font-medium-4"></span>
-                            حذف
-                        </a>
-                        @if (Model.disabled == "false")
-                        {
-                            <a onclick="Userdisable('@Model.id');" class="btn btn-social btn-instagram" value="فعال" href="#">
-                                <span class="icon-eye-blocked font-medium-4"></span> غیره فعال
-                            </a>
-                        }
-                        else
-                        {
-                            <a href="#" onclick="Userenable('@Model.id');" class="btn btn-social btn-instagram" value="فعال">
-                                <span class="icon-eye font-medium-4"></span> فعال
-                            </a>
-                        }
                         <a value="ساخت کارت" class="btn btn-social btn-instagram" href="#">
                             <span class="icon-card font-medium-4"></span>
                             ساخت کارت
@@ -117,30 +89,6 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-md-4">
-                                    <div class="form-group has-feedback has-icon-left">
-                                        @Html.LabelFor(m => m.password)
-                                        <div class="position-relative has-icon-left">
-                                            @Html.TextBoxFor(m => m.password, new { @class = "form-control" })
-                                            <div class="form-control-position">
-                                                <i class="icon-key2"></i>
-                                            </div>
-                                            @Html.ValidationMessageFor(model => model.password, "", htmlAttributes: new { @class = "text-danger" })
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-4">
-                                    <label class="font-noraml">انتخاب تعرفه</label>
-                                    <select id="profile" name="profile" data-placeholder="انتخاب تعرفه" class="selectize-select" style="min-width:350px;" tabindex="2">
-                                        @foreach (var item in ViewBag.profiles)
-                                        {
-                                            <option value="@item.name">@item.name</option>
-                                        }
-                                    </select>
-                                </div>
-                                
-                               
-
                                 <div class="col-md-6">
                                     <div class="form-group has-feedback has-icon-left">
                                         @Html.LabelFor(m => m.location)
@@ -173,31 +121,3 @@
         </div>
     </div>
 </section>
-
-
-@section DownScript{
-    <script type="text/javascript">
-
-
-        function Userremove(id) {
-            PostData("@Url.Action(MVC.Company.UserManager.Userremove())", { id: id });
-        }
-
-        function Userdisable(id) {
-            PostData("@Url.Action(MVC.Company.UserManager.Userdisable())", { id: id });
-        }
-
-        function Userenable(id) {
-            PostData("@Url.Action(MVC.Company.UserManager.Userenable())", { id: id });
-        }
-
-        function UserResetCounter(id,name) {
-            PostData("@Url.Action(MVC.Company.UserManager.ResetCounter())", { id: id, user: name});
-        }
-
-        function UserCloseSession(id , name) {
-            PostData("@Url.Action(MVC.Company.UserManager.CloseSession())", { id: id ,user: name});
-        }
-
-    </script>
-}

@@ -4,38 +4,14 @@
         <div class="col-md-12">
             <div class="card">
                 <div class="card-header">
-                    <a value="بازگشت" class="btn btn-social btn-instagram" href="@Url.Action(MVC.Company.UserManager.UserList())">
+                    <a value="بازگشت" class="btn btn-social btn-instagram" href="@Url.Action(MVC.Client.Home.Index())">
                         <span class="icon-reply font-medium-4"></span>
                         بازگشت
-                    </a>
-                    <a value="قطع اتصال" class="btn btn-social btn-instagram" href="#" onclick="UserCloseSession('@Model.id','@Model.username');">
-                        <span class="icon-blocked font-medium-4"></span>
-                        قطع اتصال
-                    </a>
-                    <a value="ریست کردن" class="btn btn-social btn-instagram" href="#" onclick="UserResetCounter('@Model.id','@Model.username');">
-                        <span class="icon-refresh font-medium-4"></span>
-                        ریست کردن
                     </a>
                     <a value="چاپ گزارش" class="btn btn-social btn-instagram" href="#">
                         <span class="icon-printer2 font-medium-4"></span>
                         چاپ گزارش
                     </a>
-                    <a value="حذف" class="btn btn-social btn-instagram" href="#" onclick="Userremove('@Model.id');">
-                        <span class="icon-remove font-medium-4"></span>
-                        حذف
-                    </a>
-                    @if (Model.disabled == "فعال")
-                    {
-                        <a onclick="Userdisable('@Model.id');" class="btn btn-social btn-instagram" value="فعال" href="#">
-                            <span class="icon-eye-blocked font-medium-4"></span> غیره فعال
-                        </a>
-                    }
-                    else
-                    {
-                        <a href="#" onclick="Userenable('@Model.id');" class="btn btn-social btn-instagram" value="فعال">
-                            <span class="icon-eye font-medium-4"></span> فعال
-                        </a>
-                    }
                     <a value="ساخت کارت" class="btn btn-social btn-instagram" href="#">
                         <span class="icon-card font-medium-4"></span>
                         ساخت کارت
@@ -523,26 +499,6 @@
             }
         }
 
-
-        function Userremove(id) {
-            PostData("@Url.Action(MVC.Company.UserManager.Userremove())", { id: id });
-        }
-
-        function Userdisable(id) {
-            PostData("@Url.Action(MVC.Company.UserManager.Userdisable())", { id: id });
-        }
-
-        function Userenable(id) {
-            PostData("@Url.Action(MVC.Company.UserManager.Userenable())", { id: id });
-        }
-
-        function UserResetCounter(id,name) {
-            PostData("@Url.Action(MVC.Company.UserManager.ResetCounter())", { id: id, user: name});
-        }
-
-        function UserCloseSession(id , name) {
-            PostData("@Url.Action(MVC.Company.UserManager.CloseSession())", { id: id ,user: name});
-        }
 
     </script>
 }

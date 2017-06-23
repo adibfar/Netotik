@@ -176,6 +176,7 @@ namespace Netotik.Services.Identity
         /// <param name="Code"/>
         /// <returns/>
         Task<User> FindByResellerCodeAsync(string Code);
+        Task<User> FindByCompanyCodeAsync(string Code);
 
         /// <summary>
         /// Find a user by user name

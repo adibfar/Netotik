@@ -29,12 +29,12 @@ public static partial class MVC
 {
     static readonly AdminClass s_Admin = new AdminClass();
     public static AdminClass Admin { get { return s_Admin; } }
+    static readonly ClientClass s_Client = new ClientClass();
+    public static ClientClass Client { get { return s_Client; } }
     static readonly CompanyClass s_Company = new CompanyClass();
     public static CompanyClass Company { get { return s_Company; } }
     static readonly ResellerClass s_Reseller = new ResellerClass();
     public static ResellerClass Reseller { get { return s_Reseller; } }
-    static readonly UserClass s_User = new UserClass();
-    public static UserClass User { get { return s_User; } }
     public static Netotik.Web.Controllers.AccountController Account = new Netotik.Web.Controllers.T4MVC_AccountController();
     public static Netotik.Web.Controllers.BlogController Blog = new Netotik.Web.Controllers.T4MVC_BlogController();
     public static Netotik.Web.Controllers.ContactUsController ContactUs = new Netotik.Web.Controllers.T4MVC_ContactUsController();
@@ -78,6 +78,12 @@ namespace T4MVC
         public Netotik.Web.Areas.Admin.Controllers.UserResellerController UserReseller = new Netotik.Web.Areas.Admin.Controllers.T4MVC_UserResellerController();
     }
     [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+    public class ClientClass
+    {
+        public readonly string Name = "Client";
+        public Netotik.Web.Areas.Client.Controllers.HomeController Home = new Netotik.Web.Areas.Client.Controllers.T4MVC_HomeController();
+    }
+    [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
     public class CompanyClass
     {
         public readonly string Name = "Company";
@@ -92,11 +98,6 @@ namespace T4MVC
         public readonly string Name = "Reseller";
         public Netotik.Web.Areas.Reseller.Controllers.CompanyController Company = new Netotik.Web.Areas.Reseller.Controllers.T4MVC_CompanyController();
         public Netotik.Web.Areas.Reseller.Controllers.HomeController Home = new Netotik.Web.Areas.Reseller.Controllers.T4MVC_HomeController();
-    }
-    [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-    public class UserClass
-    {
-        public readonly string Name = "User";
     }
 }
 

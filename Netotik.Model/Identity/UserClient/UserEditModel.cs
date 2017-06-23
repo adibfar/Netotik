@@ -1,14 +1,17 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.Web.Mvc;
 
-namespace Netotik.ViewModels.Mikrotik
+namespace Netotik.ViewModels.Identity.UserClient
 {
-    public class Usermanager_UserRegisterModel
+    public class UserEditModel
     {
+        [AllowHtml]
+        public string id { get; set; }
+        [RegularExpression(@"(^$)|(^[a-zA-Z0-9: .-_]*$)", ErrorMessage = "مقدار وارد شده معتبر نمی باشد")]
         [Display(Name = "ایجاد کننده")]
-        [RegularExpression(@"(^$)|(^[a-zA-Z0-9: .-_]*$)", ErrorMessage = "مقدار وارد شده معتبر نمی باشد")]
         public string customer { get; set; }
-        [Display(Name = "نام کاربری")]
         [RegularExpression(@"(^$)|(^[a-zA-Z0-9: .-_]*$)", ErrorMessage = "مقدار وارد شده معتبر نمی باشد")]
+        [Display(Name = "نام کاربری")]
         public string username { get; set; }
         [Display(Name = "گذرواژه")]
         public string password { get; set; }
@@ -21,11 +24,11 @@ namespace Netotik.ViewModels.Mikrotik
         public string disabled { get; set; }
 
         public string caller_id { get; set; }
+        [RegularExpression(@"(^$)|(^[a-zA-Z0-9: .-_]*$)", ErrorMessage = "مقدار وارد شده معتبر نمی باشد")]
         [Display(Name = "نام")]
-        [RegularExpression(@"(^$)|(^[a-zA-Z0-9: .-_]*$)", ErrorMessage = "مقدار وارد شده معتبر نمی باشد")]
         public string first_name { get; set; }
-        [Display(Name = "نام خانوادگی")]
         [RegularExpression(@"(^$)|(^[a-zA-Z0-9: .-_]*$)", ErrorMessage = "مقدار وارد شده معتبر نمی باشد")]
+        [Display(Name = "نام خانوادگی")]
         public string last_name { get; set; }
         [Display(Name = "شماره تماس")]
         public string phone { get; set; }
@@ -39,7 +42,6 @@ namespace Netotik.ViewModels.Mikrotik
         [RegularExpression(@"(^$)|(^[a-zA-Z0-9: .-_]*$)", ErrorMessage = "مقدار وارد شده معتبر نمی باشد")]
         public string comment { get; set; }
         [Display(Name = "نام تعرفه")]
-        [RegularExpression(@"(^$)|(^[a-zA-Z0-9: .-_]*$)", ErrorMessage = "مقدار وارد شده معتبر نمی باشد")]
         public string profile { get; set; }
 
     }

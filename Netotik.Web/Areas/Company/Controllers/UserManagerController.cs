@@ -99,7 +99,7 @@ namespace Netotik.Web.Areas.Company.Controllers
         
         [ValidateAntiForgeryToken]
         [HttpPost]
-        public virtual ActionResult PackageCreate(Netotik.ViewModels.Mikrotik.Usermanager_ProfileLimitionCreateModel model, ActionType actionType)
+        public virtual ActionResult PackageCreate(Netotik.ViewModels.Identity.UserClient.ProfileLimitionCreateModel model, ActionType actionType)
         {
             
             if (!ModelState.IsValid)
@@ -259,7 +259,7 @@ namespace Netotik.Web.Areas.Company.Controllers
                     }
                 model.limition_rate_limit_tx = uploadrate;
                 //-------------------------
-                var UsermanProfile = new Netotik.ViewModels.Mikrotik.Usermanager_ProfileLimitionCreateModel()
+                var UsermanProfile = new Netotik.ViewModels.Identity.UserClient.ProfileLimitionCreateModel()
                 {
                     limition_address_list = model.limition_address_list,
                     limition_download_limit = model.limition_download_limit,
@@ -341,7 +341,7 @@ namespace Netotik.Web.Areas.Company.Controllers
             if (_mikrotikServices.Usermanager_IsInstall(UserLogined.UserCompany.R_Host, UserLogined.UserCompany.R_Port, UserLogined.UserCompany.R_User, UserLogined.UserCompany.R_Password))
             {
                 var userlist = _mikrotikServices.Usermanager_GetAllUsers(UserLogined.UserCompany.R_Host, UserLogined.UserCompany.R_Port, UserLogined.UserCompany.R_User, UserLogined.UserCompany.R_Password);
-                var UserListModel = new List<Usermanager_UserModel>();
+                var UserListModel = new List<Netotik.ViewModels.Identity.UserClient.UserModel>();
                 foreach (var item in userlist)
                 {
                     if (item.download_used == "0" || item.download_used == "")
@@ -514,7 +514,7 @@ namespace Netotik.Web.Areas.Company.Controllers
             var profileLimition = _mikrotikServices.Usermanager_GetAllProfileLimition(UserLogined.UserCompany.R_Host, UserLogined.UserCompany.R_Port, UserLogined.UserCompany.R_User, UserLogined.UserCompany.R_Password);
             if (profile == null || Limition == null || profileLimition == null)
                 return RedirectToAction(MVC.Company.UserManager.ActionNames.PackageList);
-            var resualtmodel = new Netotik.ViewModels.Mikrotik.Usermanager_ProfileLimitionView();
+            var resualtmodel = new Netotik.ViewModels.Identity.UserClient.ProfileLimitionView();
             foreach (var item in profile)
                 if (item.id == id)
                     resualtmodel.UsermanProfile = item;
@@ -577,10 +577,10 @@ namespace Netotik.Web.Areas.Company.Controllers
                     var profile = _mikrotikServices.Usermanager_GetAllProfile(UserLogined.UserCompany.R_Host, UserLogined.UserCompany.R_Port, UserLogined.UserCompany.R_User, UserLogined.UserCompany.R_Password);
                     var Limition = _mikrotikServices.Usermanager_GetAllLimition(UserLogined.UserCompany.R_Host, UserLogined.UserCompany.R_Port, UserLogined.UserCompany.R_User, UserLogined.UserCompany.R_Password);
                     var profileLimition = _mikrotikServices.Usermanager_GetAllProfileLimition(UserLogined.UserCompany.R_Host, UserLogined.UserCompany.R_Port, UserLogined.UserCompany.R_User, UserLogined.UserCompany.R_Password);
-                    var UserProfile = new Usermanager_ProfileModel();
-                    var UserProfileLimition = new Usermanager_ProfileLimitionModel();
-                    var UserLimition = new Usermanager_LimitionModel();
-                    var UserSession = new List<Usermanager_UserSessionModel>();
+                    var UserProfile = new Netotik.ViewModels.Identity.UserClient.ProfileModel();
+                    var UserProfileLimition = new Netotik.ViewModels.Identity.UserClient.ProfileLimitionModel();
+                    var UserLimition = new Netotik.ViewModels.Identity.UserClient.LimitionModel();
+                    var UserSession = new List<Netotik.ViewModels.Identity.UserClient.UserSessionModel>();
                     foreach(var SessionItem in session)
                     {
                         var from_time = SessionItem.from_time;
@@ -693,7 +693,7 @@ namespace Netotik.Web.Areas.Company.Controllers
         
         [ValidateAntiForgeryToken]
         [HttpPost]
-        public virtual ActionResult UserCreate(Netotik.ViewModels.Mikrotik.Usermanager_UserRegisterModel model, ActionType actionType)
+        public virtual ActionResult UserCreate(Netotik.ViewModels.Identity.UserClient.UserRegisterModel model, ActionType actionType)
         {
             
             //-------------------------------
@@ -721,7 +721,7 @@ namespace Netotik.Web.Areas.Company.Controllers
             }
             else
             {
-                var Usermanuser = new Netotik.ViewModels.Mikrotik.Usermanager_UserRegisterModel()
+                var Usermanuser = new Netotik.ViewModels.Identity.UserClient.UserRegisterModel()
                 {
                     username = model.username,
                     email = model.email,
@@ -769,7 +769,7 @@ namespace Netotik.Web.Areas.Company.Controllers
             if (_mikrotikServices.Usermanager_IsInstall(UserLogined.UserCompany.R_Host, UserLogined.UserCompany.R_Port, UserLogined.UserCompany.R_User, UserLogined.UserCompany.R_Password))
             {
                 var Profiles = _mikrotikServices.Usermanager_GetAllProfile(UserLogined.UserCompany.R_Host, UserLogined.UserCompany.R_Port, UserLogined.UserCompany.R_User, UserLogined.UserCompany.R_Password);
-                var RouterProfiles = new List<Usermanager_ProfileModel>();
+                var RouterProfiles = new List<Netotik.ViewModels.Identity.UserClient.ProfileModel>();
                 foreach(var item in Profiles)
                 {
                     item.starts_at = item.starts_at.Replace("logon", " زمان اولین اتصال ").Replace("now", " زمان انتساب پکیج ");
@@ -786,10 +786,6 @@ namespace Netotik.Web.Areas.Company.Controllers
             return View();
         }
         
-        public virtual ActionResult Hotspot_Temp()
-        {
-            return View();
-        }
         
         public virtual ActionResult Register()
         {
@@ -823,7 +819,7 @@ namespace Netotik.Web.Areas.Company.Controllers
             foreach (var item in model)
                 if (item.id == id)
                 {
-                    var editModel = new Netotik.ViewModels.Mikrotik.Usermanager_UserEditModel
+                    var editModel = new Netotik.ViewModels.Identity.UserClient.UserEditModel
                     {
                         id = item.id,
                         first_name = item.first_name,
@@ -848,7 +844,7 @@ namespace Netotik.Web.Areas.Company.Controllers
         
         [ValidateAntiForgeryToken]
         [HttpPost]
-        public virtual ActionResult UserEdit_Save(Netotik.ViewModels.Mikrotik.Usermanager_UserEditModel model, ActionType actionType)
+        public virtual ActionResult UserEdit_Save(Netotik.ViewModels.Identity.UserClient.UserEditModel model, ActionType actionType)
         {
             
             //-------------------------------

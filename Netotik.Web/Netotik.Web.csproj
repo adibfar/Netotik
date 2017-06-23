@@ -302,10 +302,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Areas\Client\Models\" />
     <Folder Include="Areas\Company\Models\" />
     <Folder Include="Areas\Reseller\Models\" />
-    <Folder Include="Areas\User\Controllers\" />
-    <Folder Include="Areas\User\Models\" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AccountController.generated.cs">
@@ -401,6 +400,7 @@
     </Compile>
     <Compile Include="Areas\Admin\Controllers\UserResellerController.cs" />
     <Compile Include="Areas\Admin\Controllers\UserAdminController.cs" />
+    <Compile Include="Areas\Client\Controllers\HomeController.cs" />
     <Compile Include="Areas\Company\CompanyAreaRegistration.cs" />
     <Compile Include="Areas\Company\Controllers\RouterController.cs" />
     <Compile Include="Areas\Company\Controllers\HotspotController.cs" />
@@ -409,8 +409,11 @@
     <Compile Include="Areas\Reseller\Controllers\CompanyController.cs" />
     <Compile Include="Areas\Company\Controllers\HomeController.cs" />
     <Compile Include="Areas\Reseller\Controllers\HomeController.cs" />
-    <Compile Include="Areas\User\UserAreaRegistration.cs" />
+    <Compile Include="Areas\Client\ClientAreaRegistration.cs" />
     <Compile Include="BlogController.generated.cs">
+      <DependentUpon>T4MVC.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Client.HomeController.generated.cs">
       <DependentUpon>T4MVC.tt</DependentUpon>
     </Compile>
     <Compile Include="Company.HomeController.generated.cs">
@@ -3355,10 +3358,10 @@
     <Content Include="Areas\Company\Views\Home\MyProfile.cshtml" />
     <Content Include="Areas\Company\Views\Home\ChangePassword.cshtml" />
     <Content Include="Areas\Company\Views\web.config" />
-    <Content Include="Areas\User\Views\web.config" />
+    <Content Include="Areas\Client\Views\web.config" />
     <Content Include="Areas\Company\Views\_ViewStart.cshtml" />
     <Content Include="Areas\Reseller\Views\_ViewStart.cshtml" />
-    <Content Include="Areas\User\Views\_ViewStart.cshtml" />
+    <Content Include="Areas\Client\Views\_ViewStart.cshtml" />
     <Content Include="Areas\Company\Views\UserManager\_Table.cshtml" />
     <Content Include="Areas\Company\Views\UserManager\PackageList.cshtml" />
     <Content Include="Areas\Company\Views\UserManager\PackageDetails.cshtml" />
@@ -3572,6 +3575,14 @@
     <Content Include="Content\images\logo\faveicon\manifest.json" />
     <Content Include="Content\fonts\icomoon\icomoon.eot" />
     <Content Include="Content\fonts\icomoon\icomoon.ttf" />
+    <Content Include="Areas\Company\Views\Router\Nat.cshtml" />
+    <Content Include="Areas\Company\Views\Hotspot\Active.cshtml" />
+    <Content Include="Areas\Company\Views\Hotspot\Users.cshtml" />
+    <Content Include="Areas\Client\Views\Home\ChangePassword.cshtml" />
+    <Content Include="Areas\Client\Views\Home\Index.cshtml" />
+    <Content Include="Areas\Client\Views\Home\Edit.cshtml" />
+    <Content Include="Areas\Client\Views\Home\Details.cshtml" />
+    <Content Include="Areas\Client\Views\Home\Charts.cshtml" />
     <None Include="Properties\PublishProfiles\DNMA.pubxml" />
     <None Include="T4MVC.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
@@ -3715,6 +3726,7 @@
     <Content Include="Views\Shared\_LanagaugeSelector.cshtml" />
     <Content Include="Views\SharedPublic\_Message.cshtml" />
     <Content Include="Views\Home\_Section.cshtml" />
+    <Content Include="Views\Register\Client.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />

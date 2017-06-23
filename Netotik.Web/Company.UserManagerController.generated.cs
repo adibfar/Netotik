@@ -151,7 +151,6 @@ namespace Netotik.Web.Areas.Company.Controllers
             public readonly string UserCreate = "UserCreate";
             public readonly string PackageList = "PackageList";
             public readonly string Report = "Report";
-            public readonly string Hotspot_Temp = "Hotspot_Temp";
             public readonly string Register = "Register";
             public readonly string UserEdit = "UserEdit";
             public readonly string UserEdit_Save = "UserEdit_Save";
@@ -174,7 +173,6 @@ namespace Netotik.Web.Areas.Company.Controllers
             public const string UserCreate = "UserCreate";
             public const string PackageList = "PackageList";
             public const string Report = "Report";
-            public const string Hotspot_Temp = "Hotspot_Temp";
             public const string Register = "Register";
             public const string UserEdit = "UserEdit";
             public const string UserEdit_Save = "UserEdit_Save";
@@ -368,10 +366,10 @@ namespace Netotik.Web.Areas.Company.Controllers
         }
 
         [NonAction]
-        partial void PackageCreateOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, Netotik.ViewModels.Mikrotik.Usermanager_ProfileLimitionCreateModel model, Netotik.Common.Controller.ActionType actionType);
+        partial void PackageCreateOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, Netotik.ViewModels.Identity.UserClient.ProfileLimitionCreateModel model, Netotik.Common.Controller.ActionType actionType);
 
         [NonAction]
-        public override System.Web.Mvc.ActionResult PackageCreate(Netotik.ViewModels.Mikrotik.Usermanager_ProfileLimitionCreateModel model, Netotik.Common.Controller.ActionType actionType)
+        public override System.Web.Mvc.ActionResult PackageCreate(Netotik.ViewModels.Identity.UserClient.ProfileLimitionCreateModel model, Netotik.Common.Controller.ActionType actionType)
         {
             var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.PackageCreate);
             ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "model", model);
@@ -475,10 +473,10 @@ namespace Netotik.Web.Areas.Company.Controllers
         }
 
         [NonAction]
-        partial void UserCreateOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, Netotik.ViewModels.Mikrotik.Usermanager_UserRegisterModel model, Netotik.Common.Controller.ActionType actionType);
+        partial void UserCreateOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, Netotik.ViewModels.Identity.UserClient.UserRegisterModel model, Netotik.Common.Controller.ActionType actionType);
 
         [NonAction]
-        public override System.Web.Mvc.ActionResult UserCreate(Netotik.ViewModels.Mikrotik.Usermanager_UserRegisterModel model, Netotik.Common.Controller.ActionType actionType)
+        public override System.Web.Mvc.ActionResult UserCreate(Netotik.ViewModels.Identity.UserClient.UserRegisterModel model, Netotik.Common.Controller.ActionType actionType)
         {
             var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.UserCreate);
             ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "model", model);
@@ -510,17 +508,6 @@ namespace Netotik.Web.Areas.Company.Controllers
         }
 
         [NonAction]
-        partial void Hotspot_TempOverride(T4MVC_System_Web_Mvc_ActionResult callInfo);
-
-        [NonAction]
-        public override System.Web.Mvc.ActionResult Hotspot_Temp()
-        {
-            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Hotspot_Temp);
-            Hotspot_TempOverride(callInfo);
-            return callInfo;
-        }
-
-        [NonAction]
         partial void RegisterOverride(T4MVC_System_Web_Mvc_ActionResult callInfo);
 
         [NonAction]
@@ -544,10 +531,10 @@ namespace Netotik.Web.Areas.Company.Controllers
         }
 
         [NonAction]
-        partial void UserEdit_SaveOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, Netotik.ViewModels.Mikrotik.Usermanager_UserEditModel model, Netotik.Common.Controller.ActionType actionType);
+        partial void UserEdit_SaveOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, Netotik.ViewModels.Identity.UserClient.UserEditModel model, Netotik.Common.Controller.ActionType actionType);
 
         [NonAction]
-        public override System.Web.Mvc.ActionResult UserEdit_Save(Netotik.ViewModels.Mikrotik.Usermanager_UserEditModel model, Netotik.Common.Controller.ActionType actionType)
+        public override System.Web.Mvc.ActionResult UserEdit_Save(Netotik.ViewModels.Identity.UserClient.UserEditModel model, Netotik.Common.Controller.ActionType actionType)
         {
             var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.UserEdit_Save);
             ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "model", model);

@@ -7,22 +7,22 @@ namespace Netotik.Services.Abstract
     public interface IMikrotikServices
     {
         string GetRouterName(string ip, int port, string user, string pass);
-        List<Usermanager_UserModel> Usermanager_GetAllUsers(string ip, int port, string user, string pass);
-        List<Usermanager_UserModel> Usermanager_GetUser(string ip, int port, string user, string pass,string id);
+        List<Netotik.ViewModels.Identity.UserClient.UserModel> Usermanager_GetAllUsers(string ip, int port, string user, string pass);
+        List<Netotik.ViewModels.Identity.UserClient.UserModel> Usermanager_GetUser(string ip, int port, string user, string pass,string id);
         void Usermanager_DisableUser(string ip, int port, string user, string pass, string UsermanUser);
-        List<Usermanager_UserSessionModel> Usermanager_UserSession(string ip, int port, string user, string pass, string UsermanUser);
+        List<Netotik.ViewModels.Identity.UserClient.UserSessionModel> Usermanager_UserSession(string ip, int port, string user, string pass, string UsermanUser);
         void Usermanager_RemoveUser(string ip, int port, string user, string pass, string UsermanUser);
         void Usermanager_RemoveProfile(string ip, int port, string user, string pass, string UsermanProfile);
         void Usermanager_EnableUser(string ip, int port, string user, string pass, string UsermanUser);
         Boolean Usermanager_IsInstall(string ip, int port, string user, string pass);
         Boolean Usermanager_IsUserExist(string ip, int port, string user, string pass, string username);
-        List<Usermanager_ProfileModel> Usermanager_GetAllProfile(string ip, int port, string user, string pass);
-        List<Usermanager_CustomerModel> Usermanager_GetAllCustomers(string ip, int port, string user, string pass);
-        List<Usermanager_ProfileLimitionModel> Usermanager_GetAllProfileLimition(string ip, int port, string user, string pass);
-        List<Usermanager_LimitionModel> Usermanager_GetAllLimition(string ip, int port, string user, string pass);
-        void Usermanager_UserCreate(string ip, int port, string user, string pass, Usermanager_UserRegisterModel usermanuser);
-        void Usermanager_ProfileCreate(string ip, int port, string user, string pass, Usermanager_ProfileLimitionCreateModel usermanProfile);
-        bool Usermanager_IsProfileExist(string ip, int port, string user, string pass, Usermanager_ProfileLimitionCreateModel usermanProfile);
+        List<Netotik.ViewModels.Identity.UserClient.ProfileModel> Usermanager_GetAllProfile(string ip, int port, string user, string pass);
+        List<Netotik.ViewModels.Identity.UserClient.CustomerModel> Usermanager_GetAllCustomers(string ip, int port, string user, string pass);
+        List<Netotik.ViewModels.Identity.UserClient.ProfileLimitionModel> Usermanager_GetAllProfileLimition(string ip, int port, string user, string pass);
+        List<Netotik.ViewModels.Identity.UserClient.LimitionModel> Usermanager_GetAllLimition(string ip, int port, string user, string pass);
+        void Usermanager_UserCreate(string ip, int port, string user, string pass, Netotik.ViewModels.Identity.UserClient.UserRegisterModel usermanuser);
+        void Usermanager_ProfileCreate(string ip, int port, string user, string pass, Netotik.ViewModels.Identity.UserClient.ProfileLimitionCreateModel usermanProfile);
+        bool Usermanager_IsProfileExist(string ip, int port, string user, string pass, Netotik.ViewModels.Identity.UserClient.ProfileLimitionCreateModel usermanProfile);
         List<Router_InterfaceModel> Interface(string ip, int port, string user, string pass);
         bool IP_Port_Check(string ip, int port, string user, string pass);
         bool RebootRouter(string ip, int port, string user, string pass);
@@ -35,7 +35,7 @@ namespace Netotik.Services.Abstract
         void Usermanager_ResetCounter(string r_Host, int r_Port, string r_User, string r_Password, string user);
         void Router_Info_Update(string ip, int port, string user, string pass);
         string EnableAndGetCloud(string ip, int port, string user, string pass);
-        void Usermanager_UserEdit(string ip, int port, string user, string pass, Usermanager_UserEditModel model);
+        void Usermanager_UserEdit(string ip, int port, string user, string pass, Netotik.ViewModels.Identity.UserClient.UserEditModel model);
         void Hotspot_IpWalledGardenAdd(string r_Host, int r_Port, string r_User, string r_Password, Hotspot_IPWalledGardenModel temp);
         void Hotspot_IpBindingsAdd(string r_Host, int r_Port, string r_User, string r_Password, Hotspot_IPBindingsModel temp);
         bool CheckMeliCode(string PersonCode, int? id);
@@ -71,5 +71,11 @@ namespace Netotik.Services.Abstract
 
         void Router_NatAdd(string ip, int port, string user, string pass, Router_NatModel model);
         List<Router_NatModel> Router_NatList(string r_Host, int r_Port, string r_User, string r_Password);
+        void Router_NatDisable(string ip, int port, string user, string pass, string id);
+        void Router_NatEnable(string ip, int port, string user, string pass, string id);
+        void Router_NatRemove(string ip, int port, string user, string pass, string id);
+
+        void Usermanager_UserChangePassword(string ip, int port, string user, string pass, Netotik.ViewModels.Identity.UserClient.ChangePasswordModel model,string id);
+
     }
 }

@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Netotik.ViewModels.Mikrotik;
 using PersianDate;
+using Netotik.ViewModels.Identity.UserClient;
 
 namespace Netotik.Services.Implement
 {
@@ -31,7 +32,7 @@ namespace Netotik.Services.Implement
             string temp = String.Format("=.id={0}", user);
             mikrotik.Send(temp, true);
         }
-        public List<Usermanager_ProfileModel> Usermanager_GetAllProfile(string ip, int port, string user, string pass)
+        public List<Netotik.ViewModels.Identity.UserClient.ProfileModel> Usermanager_GetAllProfile(string ip, int port, string user, string pass)
         {
             var mikrotik = new MikrotikAPI();
             mikrotik.MK(ip, port);
@@ -39,7 +40,7 @@ namespace Netotik.Services.Implement
             //-----------------------------------------------
             mikrotik.Send("/tool/user-manager/profile/print", true);
 
-            var profilemodel = new List<Usermanager_ProfileModel>();
+            var profilemodel = new List<Netotik.ViewModels.Identity.UserClient.ProfileModel>();
             foreach (var item in mikrotik.Read())
             {
                 if (item != "!done")
@@ -51,7 +52,7 @@ namespace Netotik.Services.Implement
                         ColumnList.Add(cols[i], cols[i + 1]);
                     }
 
-                    profilemodel.Add(new Usermanager_ProfileModel()
+                    profilemodel.Add(new Netotik.ViewModels.Identity.UserClient.ProfileModel()
                     {
                         id = ColumnList.Any(x => x.Key == ".id") ? (ColumnList.FirstOrDefault(x => x.Key == ".id").Value) : "",
                         name = ColumnList.Any(x => x.Key == "name") ? (ColumnList.FirstOrDefault(x => x.Key == "name").Value) : "",
@@ -67,7 +68,7 @@ namespace Netotik.Services.Implement
 
             return profilemodel;
         }
-        public List<Usermanager_CustomerModel> Usermanager_GetAllCustomers(string ip, int port, string user, string pass)
+        public List<Netotik.ViewModels.Identity.UserClient.CustomerModel> Usermanager_GetAllCustomers(string ip, int port, string user, string pass)
         {
             var mikrotik = new MikrotikAPI();
             mikrotik.MK(ip, port);
@@ -75,7 +76,7 @@ namespace Netotik.Services.Implement
             //-----------------------------------------------
             mikrotik.Send("/tool/user-manager/customer/print", true);
 
-            var customermodel = new List<Usermanager_CustomerModel>();
+            var customermodel = new List<Netotik.ViewModels.Identity.UserClient.CustomerModel>();
             foreach (var item in mikrotik.Read())
             {
                 if (item != "!done")
@@ -87,7 +88,7 @@ namespace Netotik.Services.Implement
                         ColumnList.Add(cols[i], cols[i + 1]);
                     }
 
-                    customermodel.Add(new Usermanager_CustomerModel()
+                    customermodel.Add(new Netotik.ViewModels.Identity.UserClient.CustomerModel()
                     {
                         id = ColumnList.Any(x => x.Key == ".id") ? (ColumnList.FirstOrDefault(x => x.Key == ".id").Value) : "",
                         login = ColumnList.Any(x => x.Key == "login") ? (ColumnList.FirstOrDefault(x => x.Key == "login").Value) : "",
@@ -96,7 +97,7 @@ namespace Netotik.Services.Implement
             }
             return customermodel;
         }
-        public List<Usermanager_ProfileLimitionModel> Usermanager_GetAllProfileLimition(string ip, int port, string user, string pass)
+        public List<Netotik.ViewModels.Identity.UserClient.ProfileLimitionModel> Usermanager_GetAllProfileLimition(string ip, int port, string user, string pass)
         {
             var mikrotik = new MikrotikAPI();
             mikrotik.MK(ip, port);
@@ -104,7 +105,7 @@ namespace Netotik.Services.Implement
             //-----------------------------------------------
             mikrotik.Send("/tool/user-manager/profile/profile-limitation/print", true);
 
-            var profilemodel = new List<Usermanager_ProfileLimitionModel>();
+            var profilemodel = new List<Netotik.ViewModels.Identity.UserClient.ProfileLimitionModel>();
             foreach (var item in mikrotik.Read())
             {
                 if (item != "!done")
@@ -116,7 +117,7 @@ namespace Netotik.Services.Implement
                         ColumnList.Add(cols[i], cols[i + 1]);
                     }
 
-                    profilemodel.Add(new Usermanager_ProfileLimitionModel()
+                    profilemodel.Add(new Netotik.ViewModels.Identity.UserClient.ProfileLimitionModel()
                     {
                         id = ColumnList.Any(x => x.Key == ".id") ? (ColumnList.FirstOrDefault(x => x.Key == ".id").Value) : "",
                         profile = ColumnList.Any(x => x.Key == "profile") ? (ColumnList.FirstOrDefault(x => x.Key == "profile").Value) : "",
@@ -129,7 +130,7 @@ namespace Netotik.Services.Implement
             }
             return profilemodel;
         }
-        public List<Usermanager_LimitionModel> Usermanager_GetAllLimition(string ip, int port, string user, string pass)
+        public List<Netotik.ViewModels.Identity.UserClient.LimitionModel> Usermanager_GetAllLimition(string ip, int port, string user, string pass)
         {
             var mikrotik = new MikrotikAPI();
             mikrotik.MK(ip, port);
@@ -137,7 +138,7 @@ namespace Netotik.Services.Implement
             //-----------------------------------------------
             mikrotik.Send("/tool/user-manager/profile/limitation/print", true);
 
-            var profilemodel = new List<Usermanager_LimitionModel>();
+            var profilemodel = new List<Netotik.ViewModels.Identity.UserClient.LimitionModel>();
             foreach (var item in mikrotik.Read())
             {
                 if (item != "!done")
@@ -149,7 +150,7 @@ namespace Netotik.Services.Implement
                         ColumnList.Add(cols[i], cols[i + 1]);
                     }
 
-                    profilemodel.Add(new Usermanager_LimitionModel()
+                    profilemodel.Add(new Netotik.ViewModels.Identity.UserClient.LimitionModel()
                     {
                         id = ColumnList.Any(x => x.Key == ".id") ? (ColumnList.FirstOrDefault(x => x.Key == ".id").Value) : "",
                         address_list = ColumnList.Any(x => x.Key == "address-list") ? (ColumnList.FirstOrDefault(x => x.Key == "address-list").Value) : "",
@@ -188,7 +189,7 @@ namespace Netotik.Services.Implement
 
             return false;
         }
-        public List<Usermanager_UserModel> Usermanager_GetAllUsers(string ip, int port, string user, string pass)
+        public List<Netotik.ViewModels.Identity.UserClient.UserModel> Usermanager_GetAllUsers(string ip, int port, string user, string pass)
         {
             var mikrotik = new MikrotikAPI();
             mikrotik.MK(ip, port);
@@ -202,7 +203,7 @@ namespace Netotik.Services.Implement
             //--------------------------------------------------------------
             mikrotik.Send("/tool/user-manager/user/print", true);
 
-            var usermodel = new List<Usermanager_UserModel>();
+            var usermodel = new List<Netotik.ViewModels.Identity.UserClient.UserModel>();
             foreach (var item in mikrotik.Read())
             {
                 if (item != "!done")
@@ -214,7 +215,7 @@ namespace Netotik.Services.Implement
                         ColumnList.Add(cols[i], cols[i + 1]);
                     }
 
-                    usermodel.Add(new Usermanager_UserModel()
+                    usermodel.Add(new Netotik.ViewModels.Identity.UserClient.UserModel()
                     {
                         id = ColumnList.Any(x => x.Key == ".id") ? (ColumnList.FirstOrDefault(x => x.Key == ".id").Value) : "",
                         customer = ColumnList.Any(x => x.Key == "customer") ? (ColumnList.FirstOrDefault(x => x.Key == "customer").Value) : "",
@@ -245,7 +246,7 @@ namespace Netotik.Services.Implement
             }
             return usermodel;
         }
-        public List<Usermanager_UserModel> Usermanager_GetUser(string ip, int port, string user, string pass, string id)
+        public List<Netotik.ViewModels.Identity.UserClient.UserModel> Usermanager_GetUser(string ip, int port, string user, string pass, string id)
         {
             var mikrotik = new MikrotikAPI();
             mikrotik.MK(ip, port);
@@ -255,7 +256,7 @@ namespace Netotik.Services.Implement
             string temp = String.Format("?=.id={0}", id);
             mikrotik.Send(temp, true);
 
-            var usermodel = new List<Usermanager_UserModel>();
+            var usermodel = new List<Netotik.ViewModels.Identity.UserClient.UserModel>();
             foreach (var item in mikrotik.Read())
             {
                 if (item != "!done")
@@ -267,7 +268,7 @@ namespace Netotik.Services.Implement
                         ColumnList.Add(cols[i], cols[i + 1]);
                     }
 
-                    usermodel.Add(new Usermanager_UserModel()
+                    usermodel.Add(new Netotik.ViewModels.Identity.UserClient.UserModel()
                     {
                         id = ColumnList.Any(x => x.Key == ".id") ? (ColumnList.FirstOrDefault(x => x.Key == ".id").Value) : "",
                         customer = ColumnList.Any(x => x.Key == "customer") ? (ColumnList.FirstOrDefault(x => x.Key == "customer").Value) : "",
@@ -376,7 +377,7 @@ namespace Netotik.Services.Implement
             }
             return false;
         }
-        public void Usermanager_UserCreate(string ip, int port, string user, string pass, Usermanager_UserRegisterModel usermanuser)
+        public void Usermanager_UserCreate(string ip, int port, string user, string pass, Netotik.ViewModels.Identity.UserClient.UserRegisterModel usermanuser)
         {
             var mikrotik = new MikrotikAPI();
             mikrotik.MK(ip, port);
@@ -421,7 +422,7 @@ namespace Netotik.Services.Implement
             temp = String.Format("=profile={0}", usermanuser.profile);
             mikrotik.Send(temp, true);
         }
-        public void Usermanager_UserEdit(string ip, int port, string user, string pass, Usermanager_UserEditModel model)
+        public void Usermanager_UserEdit(string ip, int port, string user, string pass, Netotik.ViewModels.Identity.UserClient.UserEditModel model)
         {
             var mikrotik = new MikrotikAPI();
             mikrotik.MK(ip, port);
@@ -461,7 +462,7 @@ namespace Netotik.Services.Implement
                 var temp55 = mikrotik.Read();
             }
         }
-        public List<Usermanager_UserSessionModel> Usermanager_UserSession(string ip, int port, string user, string pass, string UsermanUser)
+        public List<Netotik.ViewModels.Identity.UserClient.UserSessionModel> Usermanager_UserSession(string ip, int port, string user, string pass, string UsermanUser)
         {
             var mikrotik = new MikrotikAPI();
             mikrotik.MK(ip, port);
@@ -472,7 +473,7 @@ namespace Netotik.Services.Implement
             string temp = String.Format("?=user={0}", UsermanUser);
             mikrotik.Send(temp, true);
 
-            var usersessionmodel = new List<Usermanager_UserSessionModel>();
+            var usersessionmodel = new List<Netotik.ViewModels.Identity.UserClient.UserSessionModel>();
             foreach (var item in mikrotik.Read())
             {
                 if (item != "!done")
@@ -483,7 +484,7 @@ namespace Netotik.Services.Implement
                     {
                         ColumnList.Add(cols[i], cols[i + 1]);
                     }
-                    usersessionmodel.Add(new Usermanager_UserSessionModel()
+                    usersessionmodel.Add(new Netotik.ViewModels.Identity.UserClient.UserSessionModel()
                     {
                         id = ColumnList.Any(x => x.Key == ".id") ? (ColumnList.FirstOrDefault(x => x.Key == ".id").Value) : "",
                         customer = ColumnList.Any(x => x.Key == "customer") ? (ColumnList.FirstOrDefault(x => x.Key == "customer").Value) : "",
@@ -507,7 +508,7 @@ namespace Netotik.Services.Implement
 
                 }
             }
-            var usersessionmodelresualt = new List<Usermanager_UserSessionModel>();
+            var usersessionmodelresualt = new List<Netotik.ViewModels.Identity.UserClient.UserSessionModel>();
             foreach (var item in usersessionmodel)
             {
                 if (item.user == UsermanUser)
@@ -517,7 +518,7 @@ namespace Netotik.Services.Implement
             }
             return usersessionmodelresualt;
         }
-        public void Usermanager_ProfileCreate(string ip, int port, string user, string pass, Usermanager_ProfileLimitionCreateModel usermanProfile)
+        public void Usermanager_ProfileCreate(string ip, int port, string user, string pass, Netotik.ViewModels.Identity.UserClient.ProfileLimitionCreateModel usermanProfile)
         {
             var mikrotik = new MikrotikAPI();
             mikrotik.MK(ip, port);
@@ -625,7 +626,7 @@ namespace Netotik.Services.Implement
             mikrotik.Send(temp, true);
             var temp63 = mikrotik.Read();
         }
-        public bool Usermanager_IsProfileExist(string ip, int port, string user, string pass, Usermanager_ProfileLimitionCreateModel usermanProfile)
+        public bool Usermanager_IsProfileExist(string ip, int port, string user, string pass, Netotik.ViewModels.Identity.UserClient.ProfileLimitionCreateModel usermanProfile)
         {
             var mikrotik = new MikrotikAPI();
             mikrotik.MK(ip, port);
@@ -2111,7 +2112,7 @@ namespace Netotik.Services.Implement
                     mikrotik.Send(temp);
             temp = String.Format("=protocol={0}", model.protocol);
             if (model.protocol != null)
-                if (model.protocol != "")
+                if (model.protocol != "" && model.protocol != "all")
                     mikrotik.Send(temp);
             if (model.protocol == "" || model.protocol == "all" || model.protocol==null)
                 if (model.dst_port != null)
@@ -2128,7 +2129,7 @@ namespace Netotik.Services.Implement
                     mikrotik.Send(temp);
             temp = String.Format("=in-interface={0}", model.input_interface);
             if (model.input_interface != null)
-                if (model.input_interface != "")
+                if (model.input_interface != "" && model.input_interface != "all")
                     mikrotik.Send(temp);
             temp = String.Format("=dst-port={0}", model.dst_port);
             if (model.dst_port != null)
@@ -2175,6 +2176,8 @@ namespace Netotik.Services.Implement
                             to_ipaddress = ColumnList.Any(x => x.Key == "to-addresses") ? (ColumnList.FirstOrDefault(x => x.Key == "to-addresses").Value) : "",
                             to_ports = ColumnList.Any(x => x.Key == "to-ports") ? (ColumnList.FirstOrDefault(x => x.Key == "to-ports").Value) : "",
                             protocol = ColumnList.Any(x => x.Key == "protocol") ? (ColumnList.FirstOrDefault(x => x.Key == "protocol").Value) : "",
+                            disabled = (ColumnList.Any(x => x.Key == "disabled") ? (ColumnList.FirstOrDefault(x => x.Key == "disabled").Value) : "")=="true" ? true : false,
+                            input_interface = ColumnList.Any(x => x.Key == "in-interface") ? (ColumnList.FirstOrDefault(x => x.Key == "in-interface").Value) : "",
                         });
                     }
 
@@ -2182,6 +2185,59 @@ namespace Netotik.Services.Implement
             }
 
             return Hotspot_Nat;
+        }
+
+        public void Router_NatDisable(string ip, int port, string user, string pass, string id)
+        {
+            var mikrotik = new MikrotikAPI();
+            mikrotik.MK(ip, port);
+            if (!mikrotik.Login(user, pass)) mikrotik.Close();
+            //-----------------------------------------------
+            mikrotik.Send("/ip/firewall/nat/disable");
+            string temp = String.Format("=.id={0}", id);
+            mikrotik.Send(temp, true);
+        }
+
+        public void Router_NatEnable(string ip, int port, string user, string pass, string id)
+        {
+            var mikrotik = new MikrotikAPI();
+            mikrotik.MK(ip, port);
+            if (!mikrotik.Login(user, pass)) mikrotik.Close();
+            //-----------------------------------------------
+            mikrotik.Send("/ip/firewall/nat/enable");
+            string temp = String.Format("=.id={0}", id);
+            mikrotik.Send(temp, true);
+        }
+
+        public void Router_NatRemove(string ip, int port, string user, string pass, string id)
+        {
+            var mikrotik = new MikrotikAPI();
+            mikrotik.MK(ip, port);
+            if (!mikrotik.Login(user, pass)) mikrotik.Close();
+            //-----------------------------------------------
+            mikrotik.Send("/ip/firewall/nat/remove");
+            string temp = String.Format("=.id={0}", id);
+            mikrotik.Send(temp, true);
+        }
+
+        public void Usermanager_UserChangePassword(string ip, int port, string user, string pass, ChangePasswordModel model, string id)
+        {
+            if(Usermanager_IsUserExist(ip,port,user,pass,id))
+            {
+                var UsermanagerUser = Usermanager_GetUser(ip, port, user, pass, id);
+                if (UsermanagerUser.FirstOrDefault().password == model.OldPassword && model.Password == model.ConfirmPassword && UsermanagerUser.FirstOrDefault().disabled == "false")
+                {
+                    var mikrotik = new MikrotikAPI();
+                    mikrotik.MK(ip, port);
+                    if (!mikrotik.Login(user, pass)) mikrotik.Close();
+                    //-----------------------------------------------
+                    mikrotik.Send("/tool/user-manager/user/set");
+                    string temp = String.Format("=.id={0}", id);
+                    mikrotik.Send(temp);
+                    temp = String.Format("=password={0}", model.Password);
+                    mikrotik.Send(temp, true);
+                }
+            }
         }
         #endregion
 
