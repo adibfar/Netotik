@@ -88,6 +88,7 @@ namespace Netotik.Web.Areas.Client.Controllers
             public readonly string ChangePassword = "ChangePassword";
             public readonly string Edit = "Edit";
             public readonly string UserEdit_Save = "UserEdit_Save";
+            public readonly string Details = "Details";
             public readonly string RedirectToLocal = "RedirectToLocal";
         }
 
@@ -98,6 +99,7 @@ namespace Netotik.Web.Areas.Client.Controllers
             public const string ChangePassword = "ChangePassword";
             public const string Edit = "Edit";
             public const string UserEdit_Save = "UserEdit_Save";
+            public const string Details = "Details";
             public const string RedirectToLocal = "RedirectToLocal";
         }
 
@@ -142,14 +144,12 @@ namespace Netotik.Web.Areas.Client.Controllers
                 public readonly string Details = "Details";
                 public readonly string Edit = "Edit";
                 public readonly string Index = "Index";
-                public readonly string Session = "Session";
             }
             public readonly string ChangePassword = "~/Areas/Client/Views/Home/ChangePassword.cshtml";
             public readonly string Charts = "~/Areas/Client/Views/Home/Charts.cshtml";
             public readonly string Details = "~/Areas/Client/Views/Home/Details.cshtml";
             public readonly string Edit = "~/Areas/Client/Views/Home/Edit.cshtml";
             public readonly string Index = "~/Areas/Client/Views/Home/Index.cshtml";
-            public readonly string Session = "~/Areas/Client/Views/Home/Session.cshtml";
         }
     }
 
@@ -213,6 +213,17 @@ namespace Netotik.Web.Areas.Client.Controllers
             ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "model", model);
             ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "actionType", actionType);
             UserEdit_SaveOverride(callInfo, model, actionType);
+            return callInfo;
+        }
+
+        [NonAction]
+        partial void DetailsOverride(T4MVC_System_Web_Mvc_ActionResult callInfo);
+
+        [NonAction]
+        public override System.Web.Mvc.ActionResult Details()
+        {
+            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Details);
+            DetailsOverride(callInfo);
             return callInfo;
         }
 

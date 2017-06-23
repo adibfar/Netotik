@@ -52,6 +52,6 @@ namespace Netotik.Domain.Entity
         UserAdmin = 0,
         UserReseller = 1,
         UserCompany = 2,
-        UserNet = 3
+        Client = 3
     }
 }

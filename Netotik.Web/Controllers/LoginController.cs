@@ -18,6 +18,7 @@ using Netotik.Common;
 using CaptchaMvc.Attributes;
 using System.Data.Entity;
 using Microsoft.AspNet.Identity.Owin;
+using System.Collections.Generic;
 //Test Comment
 namespace Netotik.Web.Controllers
 {
@@ -27,22 +28,26 @@ namespace Netotik.Web.Controllers
         private readonly IApplicationSignInManager _applicationSignInManager;
         private readonly IApplicationUserManager _applicationUserManager;
         private readonly IApplicationRoleManager _applicationRoleManager;
+        private readonly IMikrotikServices _mikrotikServices;
         private readonly IUnitOfWork _uow;
         private readonly IMenuService _menuService;
 
         public LoginController(
+            IMikrotikServices mikrotikServices,
             IApplicationRoleManager applicationRoleManager,
             IApplicationSignInManager applicationSignInManager,
             IApplicationUserManager applicationUserManager,
             IMenuService menuService,
             IUnitOfWork uow)
         {
+            _mikrotikServices = mikrotikServices;
             _applicationRoleManager = applicationRoleManager;
             _applicationSignInManager = applicationSignInManager;
             _applicationUserManager = applicationUserManager;
             _uow = uow;
             _menuService = menuService;
         }
+
 
         [AllowAnonymous]
         [Route("{lang}/Net/{ResellerCode}")]
@@ -53,7 +58,7 @@ namespace Netotik.Web.Controllers
 
             var reseller = await _applicationUserManager.FindByResellerCodeAsync(ResellerCode);
             if (reseller == null) return HttpNotFound();
-            
+
             ViewBag.CompanyName = ResellerCode;
             ViewBag.ReturnUrl = ReturnUrl;
             return View();
@@ -212,6 +217,94 @@ namespace Netotik.Web.Controllers
                        );
                     return View(model);
             }
+        }
+
+
+
+        [AllowAnonymous]
+        [Route("{lang}/Net/{CompanyCode}")]
+        public virtual async Task<ActionResult> Client(string ReturnUrl, string CompanyCode)
+        {
+            if (User.Identity.IsAuthenticated && _applicationRoleManager.FindUserPermissions(long.Parse(User.Identity.GetUserId())).Any(x => x == "Client"))
+                return RedirectToAction(MVC.Client.Home.Index());
+
+            var reseller = await _applicationUserManager.FindByResellerCodeAsync(CompanyCode);
+            if (reseller == null) return HttpNotFound();
+
+            ViewBag.CompanyName = CompanyCode;
+            ViewBag.ReturnUrl = ReturnUrl;
+            return View();
+        }
+
+        [AllowAnonymous]
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        [Route("{lang}/Net/{CompanyCode}")]
+        public virtual async Task<ActionResult> Client(Netotik.ViewModels.Identity.UserCompany.LoginModel model, string ReturnUrl, string CompanyCode)
+        {
+            ViewBag.CompanyName = CompanyCode;
+            ViewBag.ReturnUrl = ReturnUrl;
+
+            if (!ModelState.IsValid)
+            {
+                ViewBag.Message = Captions.UsernameOrPasswordWrong;
+                return View(model);
+            }
+
+            var company = await _applicationUserManager.FindByCompanyCodeAsync(CompanyCode);
+            if (company == null) return HttpNotFound();
+
+            if (!_mikrotikServices.IP_Port_Check(company.UserCompany.R_Host, company.UserCompany.R_Port, company.UserCompany.R_User, company.UserCompany.R_Password))
+            {
+                ViewBag.Message = "لطفا با مدیرشبکه تماس بگیرید.خطای عدم دسترسی یا IP ویا Port";
+                return RedirectToAction(MVC.Client.Home.ActionNames.Index, MVC.Client.Home.Name, new { area = MVC.Client.Name });
+            }
+            if (!_mikrotikServices.User_Pass_Check(company.UserCompany.R_Host, company.UserCompany.R_Port, company.UserCompany.R_User, company.UserCompany.R_Password))
+            {
+                ViewBag.Message = "لطفا با مدیرشبکه تماس بگیرید.خطای نام کاربری و رمز عبور";
+                return RedirectToAction(MVC.Client.Home.ActionNames.Index, MVC.Client.Home.Name, new { area = MVC.Client.Name });
+            }
+            if (!_mikrotikServices.Usermanager_IsInstall(company.UserCompany.R_Host, company.UserCompany.R_Port, company.UserCompany.R_User, company.UserCompany.R_Password))
+            {
+                ViewBag.Message = "لطفا با مدیرشبکه تماس بگیرید.خطای یوزرمنیجر";
+                return RedirectToAction(MVC.Client.Home.ActionNames.Index, MVC.Client.Home.Name, new { area = MVC.Client.Name });
+            }
+
+            var clientUsers = _mikrotikServices.Usermanager_GetUser(company.UserCompany.R_Host, company.UserCompany.R_Port, company.UserCompany.R_User, company.UserCompany.R_Password, model.UserName);
+            var user = clientUsers.FirstOrDefault(x => x.username == model.UserName && x.password == model.Password);
+
+            if (user == null)
+            {
+                ViewBag.Message = Captions.UsernameOrPasswordWrong;
+                return View(model);
+            }
+
+            var loginedUser = new User()
+            {
+                Id = long.Parse(user.id),
+                UserName = user.username,
+                Email = user.email,
+                UserType = UserType.Client,
+                UserCompany = new UserCompany()
+                {
+                    Address = company.UserCompany.Address,
+                    cloud = company.UserCompany.cloud,
+                    CompanyCode = company.UserCompany.CompanyCode,
+                    Expire_Date = company.UserCompany.Expire_Date,
+                    Id = company.UserCompany.Id,
+                    NationalCode = company.UserCompany.NationalCode,
+                    PostalCode = company.UserCompany.PostalCode,
+                    R_Host = company.UserCompany.R_Host,
+                    R_Password = company.UserCompany.R_Password,
+                    R_Port = company.UserCompany.R_Port,
+                    R_User = company.UserCompany.R_User,
+                    Userman_Customer = company.UserCompany.Userman_Customer,
+                }
+            };
+
+            await _applicationSignInManager.SignInAsync(loginedUser, false, false);
+
+            return RedirectToAction(MVC.Client.Home.Index());
         }
     }
 }

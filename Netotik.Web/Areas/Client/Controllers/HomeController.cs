@@ -144,25 +144,25 @@ namespace Netotik.Web.Areas.Client.Controllers
                 return RedirectToAction(MVC.Client.Home.ActionNames.Index, MVC.Client.Home.Name, new { area = MVC.Client.Name });
             }
             //-------------------------------
-            var model = _mikrotikServices.Usermanager_GetUser(UserLogined.UserCompany.R_Host, UserLogined.UserCompany.R_Port, UserLogined.UserCompany.R_User, UserLogined.UserCompany.R_Password,"");
+            var model = _mikrotikServices.Usermanager_GetUser(UserLogined.UserCompany.R_Host, UserLogined.UserCompany.R_Port, UserLogined.UserCompany.R_User, UserLogined.UserCompany.R_Password, "");
             foreach (var item in model)
-                //if (item.id == UserLogined.Id)
+            //if (item.id == UserLogined.Id)
+            {
+                var editModel = new Netotik.ViewModels.Identity.UserClient.UserEditModel
                 {
-                    var editModel = new Netotik.ViewModels.Identity.UserClient.UserEditModel
-                    {
-                        id = item.id,
-                        first_name = item.first_name,
-                        comment = item.comment,
-                        email = item.email,
-                        last_name = item.last_name,
-                        location = item.location,
-                        phone = item.phone,
-                        profile = item.actual_profile,
-                        shared_users = item.shared_users,
-                        username = item.username
-                    };
-                    return View(editModel);
-                }
+                    id = item.id,
+                    first_name = item.first_name,
+                    comment = item.comment,
+                    email = item.email,
+                    last_name = item.last_name,
+                    location = item.location,
+                    phone = item.phone,
+                    profile = item.actual_profile,
+                    shared_users = item.shared_users,
+                    username = item.username
+                };
+                return View(editModel);
+            }
             //            ViewBag.Customers = _mikrotikServices.GetAllCustomers(UserLogined.UserCompany.R_Host, UserLogined.UserCompany.R_Port, UserLogined.UserCompany.R_User, UserLogined.UserCompany.R_Password);
             return View();
         }
@@ -196,7 +196,7 @@ namespace Netotik.Web.Areas.Client.Controllers
             }
             else
             {
-                var UsermanagerUser = _mikrotikServices.Usermanager_GetUser((UserLogined.UserCompany.R_Host, UserLogined.UserCompany.R_Port, UserLogined.UserCompany.R_User, UserLogined.UserCompany.R_Password, UserLogined.Id);
+                var UsermanagerUser = new List<UserModel>();//_mikrotikServices.Usermanager_GetUser((UserLogined.UserCompany.R_Host, UserLogined.UserCompany.R_Port, UserLogined.UserCompany.R_User, UserLogined.UserCompany.R_Password, UserLogined.Id);
                 model.customer = UserLogined.UserCompany.Userman_Customer;
                 model.profile = "";
                 model.password = UsermanagerUser.FirstOrDefault().password;
@@ -226,9 +226,9 @@ namespace Netotik.Web.Areas.Client.Controllers
                 return RedirectToAction(MVC.Client.Home.ActionNames.Index, MVC.Client.Home.Name, new { area = MVC.Client.Name });
             }
             //-------------------------------
-            var users = _mikrotikServices.Usermanager_GetUser(UserLogined.UserCompany.R_Host, UserLogined.UserCompany.R_Port, UserLogined.UserCompany.R_User, UserLogined.UserCompany.R_Password, id);
+            var users = new List<UserModel>();//_mikrotikServices.Usermanager_GetUser(UserLogined.UserCompany.R_Host, UserLogined.UserCompany.R_Port, UserLogined.UserCompany.R_User, UserLogined.UserCompany.R_Password, id);
             foreach (var item in users)
-                if (item.id == id)
+                if (item.id == "0") // *********************************** check it
                 {
                     var session = _mikrotikServices.Usermanager_UserSession(UserLogined.UserCompany.R_Host, UserLogined.UserCompany.R_Port, UserLogined.UserCompany.R_User, UserLogined.UserCompany.R_Password, item.username);
                     var profile = _mikrotikServices.Usermanager_GetAllProfile(UserLogined.UserCompany.R_Host, UserLogined.UserCompany.R_Port, UserLogined.UserCompany.R_User, UserLogined.UserCompany.R_Password);

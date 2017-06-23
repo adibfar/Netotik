@@ -89,6 +89,7 @@
     <Compile Include="Identity\UserClient\ChangePasswordModel.cs" />
     <Compile Include="Identity\UserClient\CustomerModel.cs" />
     <Compile Include="Identity\UserClient\LimitionModel.cs" />
+    <Compile Include="Identity\UserClient\LoginModel.cs" />
     <Compile Include="Identity\UserClient\ProfileLimitationModel.cs" />
     <Compile Include="Identity\UserClient\ProfileLimitonCreateModel.cs" />
     <Compile Include="Identity\UserClient\ProfileLimitonView.cs" />
