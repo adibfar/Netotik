@@ -28,7 +28,7 @@ using Microsoft.AspNet.Identity;
 
 namespace Netotik.Web.Areas.Client.Controllers
 {
-    //[Mvc5Authorize(Roles = "Client")]
+    [Mvc5Authorize(Roles = "Client")]
     [BreadCrumb(Title = "کاربر", UseDefaultRouteUrl = true, RemoveAllDefaultRouteValues = true,
  Order = 0, GlyphIcon = "icon icon-table")]
     public partial class HomeController : BasePanelController

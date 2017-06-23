@@ -222,7 +222,7 @@ namespace Netotik.Web.Controllers
 
 
         [AllowAnonymous]
-        [Route("{lang}/Net/{CompanyCode}")]
+        [Route("{lang}/Client/{CompanyCode}")]
         public virtual async Task<ActionResult> Client(string ReturnUrl, string CompanyCode)
         {
             if (User.Identity.IsAuthenticated && _applicationRoleManager.FindUserPermissions(long.Parse(User.Identity.GetUserId())).Any(x => x == "Client"))
@@ -239,7 +239,7 @@ namespace Netotik.Web.Controllers
         [AllowAnonymous]
         [HttpPost]
         [ValidateAntiForgeryToken]
-        [Route("{lang}/Net/{CompanyCode}")]
+        [Route("{lang}/Client/{CompanyCode}")]
         public virtual async Task<ActionResult> Client(Netotik.ViewModels.Identity.UserCompany.LoginModel model, string ReturnUrl, string CompanyCode)
         {
             ViewBag.CompanyName = CompanyCode;
