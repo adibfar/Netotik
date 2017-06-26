@@ -155,111 +155,14 @@ namespace Netotik.ViewModels.Identity.Security
         #endregion
 
 
-
-        #region ProductCategory
-        public const string CanAccessProductCategory = "87";
-        public static readonly PermissionModel CanAccessProductCategoryPermission = new PermissionModel { Name = CanAccessProductCategory, Description = "دسترسی به بخش دسته محصولی", Section = SectionPermisson.ProductCategory };
-        #endregion
-
-        #region DeliveryDate
-        public const string CanAccessDeliveryDate = "91";
-        public static readonly PermissionModel CanAccessDeliveryDatePermission = new PermissionModel { Name = CanAccessDeliveryDate, Description = "دسترسی به بخش مدت زمان های تحویل", Section = SectionPermisson.DeliveryDate };
-        #endregion
-
-        #region Discount
-        public const string CanCreateDiscount = "92";
-        public const string CanEditDiscount = "93";
-        public const string CanDeleteDiscount = "94";
-        public const string CanAccessDiscount = "95";
-        public static readonly PermissionModel CanEditDiscountPermission = new PermissionModel { Name = CanCreateDiscount, Description = "ایجاد تخفیف", Section = SectionPermisson.Discount };
-        public static readonly PermissionModel CanCreateDiscountPermission = new PermissionModel { Name = CanEditDiscount, Description = "ویرایش تخفیف", Section = SectionPermisson.Discount };
-        public static readonly PermissionModel CanDeleteDicountPermission = new PermissionModel { Name = CanDeleteDiscount, Description = "حذف تخفیف", Section = SectionPermisson.Discount };
-        public static readonly PermissionModel CanAccessDiscountPermission = new PermissionModel { Name = CanAccessDiscount, Description = "دسترسی به بخش تخفیف ها", Section = SectionPermisson.Discount };
-        #endregion
-
-        #region Manufacturer
-        public const string CanAccessManufactur = "99";
-        public static readonly PermissionModel CanAccessManufacturPermission = new PermissionModel { Name = CanAccessManufactur, Description = "دسترسی به بخش برندها", Section = SectionPermisson.Manufactur };
-        #endregion
-
         #region PaymentType
         public const string CanAccessPaymentType = "103";
         public static readonly PermissionModel CanAccessPaymentTypePermission = new PermissionModel { Name = CanAccessPaymentType, Description = "ایجاد درگاههای پرداخت", Section = SectionPermisson.PaymentType };
         #endregion
 
-        #region ProductAttribute
-        public const string CanCreateProductAttribute = "104";
-        public const string CanEditProductAttribute = "105";
-        public const string CanDeleteProductAttribute = "106";
-        public const string CanAccessProductAttribute = "107";
-        public static readonly PermissionModel CanEditProductAttributePermission = new PermissionModel { Name = CanCreateProductAttribute, Description = "ایجاد مشخصات محصول", Section = SectionPermisson.ProductAttribute };
-        public static readonly PermissionModel CanCreateProductAttributePermission = new PermissionModel { Name = CanEditProductAttribute, Description = "ویرایش مشخصات محصول", Section = SectionPermisson.ProductAttribute };
-        public static readonly PermissionModel CanDeleteProductAttributePermission = new PermissionModel { Name = CanDeleteProductAttribute, Description = "حذف مشخصات محصول", Section = SectionPermisson.ProductAttribute };
-        public static readonly PermissionModel CanAccessProductAttributePermission = new PermissionModel { Name = CanAccessProductAttribute, Description = "دسترسی به بخش مشخصات محصول", Section = SectionPermisson.ProductAttribute };
-        #endregion
-
-        #region ProductComments
-        public const string CanDeleteProductComment = "108";
-        public const string CanAcceptProductComment = "109";
-        public const string CanDontAcceptProductComment = "110";
-        public const string CanAccessProductComment = "111";
-        public static readonly PermissionModel CanAccessProductCommentPermission = new PermissionModel { Name = CanAccessProductComment, Description = " دسترسی به بخش نظرات ارسالی محصول", Section = SectionPermisson.ProductComments };
-        public static readonly PermissionModel CanDeleteProductCommentPermission = new PermissionModel { Name = CanDeleteProductComment, Description = "حذف نظرات ارسالی محصول", Section = SectionPermisson.ProductComments };
-        public static readonly PermissionModel CanAcceptProductCommentPermission = new PermissionModel { Name = CanAcceptProductComment, Description = "تایید نظرات ارسالی محصول", Section = SectionPermisson.ProductComments };
-        public static readonly PermissionModel CanDontAcceptProductCommentPermission = new PermissionModel { Name = CanDontAcceptProductComment, Description = "عدم تایید نظرات ارسالی محصول", Section = SectionPermisson.ProductComments };
-        #endregion
-
-
-
-        #region ShopShippingByWeight
-        public const string CanAccessShopShippingByWeight = "115";
-        public static readonly PermissionModel CanAccessShopShippingByWeightPermission = new PermissionModel { Name = CanAccessShopShippingByWeight, Description = "ایجاد شرایط روش های ارسال", Section = SectionPermisson.ShopShippingByWeight };
-        #endregion
-
-        #region ShopShippingByMethod
-        public const string CanAccessShopShippingByMethod = "119";
-        public static readonly PermissionModel CanAccessShopShippingByMethodPermission = new PermissionModel { Name = CanAccessShopShippingByMethod, Description = "دسترسی به بخش شرایط روش های ارسال", Section = SectionPermisson.ShopShippingByMethod };
-        #endregion
-
-        #region Tax
-        public const string CanAccessTax = "123";
-        public static readonly PermissionModel CanAccessTaxPermission = new PermissionModel { Name = CanAccessTax, Description = "دسترسی به بخش مالیات", Section = SectionPermisson.Tax };
-        #endregion
-
-        #region Product
-        public const string CanCreateProduct = "128";
-        public const string CanEditProduct = "129";
-        public const string CanDeleteProduct = "130";
-        public const string CanAcceptProduct = "131";
-        public const string CanDontAcceptProduct = "132";
-        public const string CanAccessProduct = "133";
-        public const string CanManagePictureProduct = "134";
-        public const string CanManageAttributeProduct = "135";
-        public static readonly PermissionModel CanAccessProductPermission = new PermissionModel { Name = CanAccessProduct, Description = "دسترسی به بخش محصولات", Section = SectionPermisson.Product };
-        public static readonly PermissionModel CanCreateProductPermission = new PermissionModel { Name = CanCreateProduct, Description = "ایجاد محصول", Section = SectionPermisson.Product };
-        public static readonly PermissionModel CanEditProductPermission = new PermissionModel { Name = CanEditProduct, Description = "ویرایش محصول", Section = SectionPermisson.Product };
-        public static readonly PermissionModel CanDeleteProductPermission = new PermissionModel { Name = CanDeleteProduct, Description = "حذف محصول", Section = SectionPermisson.Product };
-        public static readonly PermissionModel CanAcceptProductPermission = new PermissionModel { Name = CanAcceptProduct, Description = "تایید محصول", Section = SectionPermisson.Product };
-        public static readonly PermissionModel CanDontAcceptProductPermission = new PermissionModel { Name = CanDontAcceptProduct, Description = "عدم تایید محصول", Section = SectionPermisson.Product };
-        public static readonly PermissionModel CanManagePictureProductPermission = new PermissionModel { Name = CanManagePictureProduct, Description = "مدیریت و تغییر تصاویر محصولات", Section = SectionPermisson.Product };
-        public static readonly PermissionModel CanManageAttributeProductPermission = new PermissionModel { Name = CanManageAttributeProduct, Description = "مدیریت و تغییر مشخصات محصول", Section = SectionPermisson.Product };
-        #endregion
-
-
         #region Advertise
         public const string CanAccessAdvertise = "136";
         public static readonly PermissionModel CanAccessAdvertisePermission = new PermissionModel { Name = CanAccessAdvertise, Description = "مدیریت بنرها", Section = SectionPermisson.Configuration };
-        #endregion
-
-
-        #region SuccessOrder
-        public const string CanAccessSuccessOrder = "137";
-        public static readonly PermissionModel CanAccessSuccessOrderPermission = new PermissionModel { Name = CanAccessSuccessOrder, Description = "مدیریت فاکتورهای پرداخت شده", Section = SectionPermisson.Factor };
-        #endregion
-
-        #region FailOrder
-        public const string CanAccessFailOrder = "138";
-        public static readonly PermissionModel CanAccessFailORderPermission = new PermissionModel { Name = CanAccessFailOrder, Description = "مدیریت فاکتورهای پرداخت نشده", Section = SectionPermisson.Factor };
         #endregion
 
         #region Ticket
@@ -341,47 +244,8 @@ namespace Netotik.ViewModels.Identity.Security
 
                 CanAccessCityPermission,
 
-                CanAccessProductCategoryPermission,
-
-                CanAccessDeliveryDatePermission,
-                
-                CanAccessDiscountPermission,
-                CanCreateDiscountPermission,
-                CanEditDiscountPermission,
-                CanDeleteDicountPermission,
-
-                CanAccessManufacturPermission,
-                
                 CanAccessPaymentTypePermission,
                 
-                CanAccessProductAttributePermission,
-                CanCreateProductAttributePermission,
-                CanEditProductAttributePermission,
-                CanDeleteProductAttributePermission,
-
-                CanAccessProductCommentPermission,
-                CanDeleteProductCommentPermission,
-                CanAcceptProductCommentPermission,
-                CanDontAcceptProductCommentPermission,
-
-                CanAccessProductPermission,
-                CanCreateProductPermission,
-                CanEditProductPermission,
-                CanDeleteProductPermission,
-                CanManagePictureProductPermission,
-                CanManageAttributeProductPermission,
-                CanAcceptProductPermission,
-                CanDontAcceptProductPermission,
-
-                CanAccessShopShippingByMethodPermission,
-
-                CanAccessShopShippingByWeightPermission,
-
-                CanAccessTaxPermission,
-
-                CanAccessSuccessOrderPermission,
-                CanAccessFailORderPermission,
-
                 CanAccessTicketTagPermission,
 
                 CanAccessTicketPermission,
@@ -441,46 +305,7 @@ namespace Netotik.ViewModels.Identity.Security
 
                 CanAccessCity,
 
-                CanAccessProductCategory,
-
-                CanAccessDeliveryDate,
-
-                CanAccessDiscount,
-                CanCreateDiscount,
-                CanEditDiscount,
-                CanDeleteDiscount,
-
-                CanAccessManufactur,
-
                 CanAccessPaymentType,
-
-                CanAccessProductAttribute,
-                CanCreateProductAttribute,
-                CanEditProductAttribute,
-                CanDeleteProductAttribute,
-
-                CanAccessProductComment,
-                CanDeleteProductComment,
-                CanAcceptProductComment,
-                CanDontAcceptProductComment,
-
-                CanAccessProduct,
-                CanCreateProduct,
-                CanEditProduct,
-                CanDeleteProduct,
-                CanManagePictureProduct,
-                CanManageAttributeProduct,
-                CanAcceptProduct,
-                CanDontAcceptProduct,
-
-                CanAccessShopShippingByMethod,
-
-                CanAccessShopShippingByWeight,
-
-                CanAccessTax,
-
-                CanAccessSuccessOrder,
-                CanAccessFailOrder,
 
                 CanAccessTicketTag,
 
@@ -544,17 +369,7 @@ namespace Netotik.ViewModels.Identity.Security
 
 
 
-
-        public static IEnumerable<PermissionModel> GetAllFactorPermision()
-        {
-            return new List<PermissionModel>
-            {
-                CanAccessSuccessOrderPermission,
-                CanAccessFailORderPermission
-            };
-        }
-
-
+        
 
         public static IEnumerable<PermissionModel> GetAllCmsSectionPermision()
         {
@@ -582,25 +397,8 @@ namespace Netotik.ViewModels.Identity.Security
         {
             return new List<PermissionModel>
             {
-                CanAccessProductCategoryPermission,
-
-                CanAccessDeliveryDatePermission,
-
-                CanAccessDiscountPermission,
-
-                CanAccessManufacturPermission,
 
                 CanAccessPaymentTypePermission,
-
-                CanAccessProductPermission,
-
-                CanAccessProductAttributePermission,
-
-                CanAccessProductCommentPermission,
-
-                CanAccessShopShippingByMethodPermission,
-
-                CanAccessTaxPermission,
             };
         }
         #endregion

@@ -73,7 +73,9 @@
   <LocaleResource Name="PriceProduct">قیمت محصول</LocaleResource>
   <LocaleResource Name="QuantityWareHouse">تعداد در انبار</LocaleResource>
   <LocaleResource Name="SelectFile">انتخاب تصویر</LocaleResource>
-  <LocaleResource Name="SiteName">Site Name</LocaleResource>
+  <LocaleResource Name="HomePageTitle">Site Name</LocaleResource>
+  <LocaleResource Name="HomePageDescription">Meta Description HomePage </LocaleResource>
+  <LocaleResource Name="HomePageKeywords">Meta Keywords HomePage</LocaleResource>
   <LocaleResource Name="SiteUrl">آدرس سایت</LocaleResource>
   <LocaleResource Name="SmsNumber">شماره خط پیامکی</LocaleResource>
   <LocaleResource Name="SmsPassword">گذرواژه پیامکی</LocaleResource>

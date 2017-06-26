@@ -6,6 +6,7 @@ using Netotik.ViewModels.Common.Setting;
 using Netotik.Common.Caching;
 using System.Collections.Generic;
 using Netotik.Services.Identity;
+using Netotik.IocConfig;
 
 namespace Netotik.Web.Infrastructure.Caching
 {
@@ -15,6 +16,20 @@ namespace Netotik.Web.Infrastructure.Caching
 
         public static GeneralSettingModel GetSiteConfig(HttpContextBase httpContext, ISettingService optionService)
         {
+            var siteConfig = httpContext.CacheRead<GeneralSettingModel>(SiteConfigKey);
+
+            if (siteConfig == null)
+            {
+                siteConfig = optionService.GetAll();
+                httpContext.CacheInsert(SiteConfigKey, siteConfig, 360);
+            }
+            return siteConfig;
+        }
+
+
+        public static GeneralSettingModel GetSiteConfig(HttpContextBase httpContext)
+        {
+            var optionService= ProjectObjectFactory.Container.GetInstance<ISettingService>();
             var siteConfig = httpContext.CacheRead<GeneralSettingModel>(SiteConfigKey);
 
             if (siteConfig == null)

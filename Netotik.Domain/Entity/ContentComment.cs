@@ -24,4 +24,11 @@ namespace Netotik.Domain.Entity
         public virtual ContentComment Comment { get; set; }
         public virtual ICollection<ContentComment> Comments { get; set; }
     }
+    public enum CommentStatus : short
+    {
+        Accepted = 0,
+        WaitForAccept = 1,
+        NotAccept = 2,
+        Deleted = 3
+    }
 }

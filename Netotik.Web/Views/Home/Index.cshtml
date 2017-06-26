@@ -1,15 +1,16 @@
 ﻿@{
+    var setting = Html.Setting(ViewContext.HttpContext);
     var meta = new Netotik.ViewModels.Common.Meta.MetaViewModel()
     {
-        Title = Captions.Netotik,
-        Description = Captions.NetotikDescribtion,
-        Keywords = "Connect Router Online, Radius System, Mikrotik Crm, Netotik System",
-        Conanical = Url.Action(MVC.Home.Index()),
+        Title = string.Format("{0} | {1}", Captions.Netotik, setting.HomePageTitle),
+        Description = setting.HomePageDescription,
+        Keywords = setting.HomePageKeywords,
+        OgType="website",
         OgTitle = string.Format("{0} | {1}", Captions.Netotik, Captions.HomeMenu),
         OgUrl = Url.Action(MVC.Home.Index()),
-        OgDescription = "Online Mikrotik System Control",
+        OgDescription = setting.HomePageDescription,
         OgSiteName = Captions.Netotik,
-        OgTags = { "Connect Router Online", "Radius System", "Netotik System" }
+        OgTags = setting.HomePageKeywords.Split(',')
     };
 }
 
@@ -30,23 +31,3 @@ else
 @Html.Action(MVC.Home.ActionNames.Section)
 
 @Html.Action(MVC.Home.ActionNames.LastBlog)
-
-
-@*<div class="callout alert alert-default noborder noradius nomargin">
-
-    <div class="text-center">
-
-        <h3>متخصصین ما بهترین راهکار را به شما پیشنهاد میدهند</h3>
-        <p class="font-lato size-20">
-            برای اطلاعات بیشتر و نحوه استفاده از سامانه نتوتیک می توانید با متخصصان ما مشورت کنید.
-        </p>
-
-        <a href="#purchase" rel="nofollow" target="_blank" class="btn btn-success btn-lg margin-top-30">
-            <i class="et-envelope"></i>
-            درخواست مشاوره رایگان
-        </a>
-
-    </div>
-
-</div>*@
-

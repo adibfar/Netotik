@@ -29,7 +29,6 @@ namespace Netotik.Web.Controllers
         private readonly IUserMailer _userMailer;
         private readonly ISettingService _settingService;
         private readonly IContentCategoryService _contentCategoryService;
-        private readonly ICategoryService _categoryService;
         private readonly ILanguageTranslationService _linkService;
         private readonly IContentService _contentService;
         private readonly IMenuService _menuService;
@@ -47,7 +46,6 @@ namespace Netotik.Web.Controllers
             IUserMailer userMailer,
             ISettingService settingService,
             IContentCategoryService contentCategoryService,
-            ICategoryService categoryService,
             IContentService contentService,
             IMenuService menuService
             )
@@ -59,7 +57,6 @@ namespace Netotik.Web.Controllers
             _userMailer = userMailer;
             _settingService = settingService;
             _contentCategoryService = contentCategoryService;
-            _categoryService = categoryService;
             _linkService = linkService;
             _menuService = menuService;
             _contentService = contentService;

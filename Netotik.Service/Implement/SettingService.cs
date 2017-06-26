@@ -27,7 +27,9 @@ namespace Netotik.Services.Implement
 
             GeneralSettingModel model = new GeneralSettingModel();
 
-            model.SiteName = list.FirstOrDefault(x => x.Name == "SiteName").Value;
+            model.HomePageTitle = list.FirstOrDefault(x => x.Name == "HomePageTitle").Value;
+            model.HomePageDescription = list.FirstOrDefault(x => x.Name == "HomePageDescription").Value;
+            model.HomePageKeywords = list.FirstOrDefault(x => x.Name == "HomePageKeywords").Value;
 
             model.Facebook = list.FirstOrDefault(x => x.Name == "Facebook").Value;
             model.Twitter = list.FirstOrDefault(x => x.Name == "Twitter").Value;
@@ -49,7 +51,10 @@ namespace Netotik.Services.Implement
         {
             var list = dbSet.ToList();
 
-            list.First(x => x.Name.Equals("SiteName")).Value = model.SiteName;
+            list.First(x => x.Name.Equals("HomePageTitle")).Value = model.HomePageTitle;
+            list.First(x => x.Name.Equals("HomePageDescription")).Value = model.HomePageDescription;
+            list.First(x => x.Name.Equals("HomePageKeywords")).Value = model.HomePageKeywords;
+
             list.First(x => x.Name.Equals("Facebook")).Value = model.Facebook;
             list.First(x => x.Name.Equals("Twitter")).Value = model.Twitter;
             list.First(x => x.Name.Equals("Instagram")).Value = model.Instagram;

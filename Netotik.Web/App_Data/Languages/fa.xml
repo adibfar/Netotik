@@ -210,9 +210,9 @@
   <LocaleResource Name="SelectFile">
     <Value>انتخاب تصویر</Value>
   </LocaleResource>
-  <LocaleResource Name="SiteName">
-    <Value>عنوان وب سایت</Value>
-  </LocaleResource>
+  <LocaleResource Name="HomePageTitle"><Value>عنوان وب سایت</Value></LocaleResource>
+  <LocaleResource Name="HomePageDescription">توضیحات متا صفحه اصلی</LocaleResource>
+  <LocaleResource Name="HomePageKeywords">کلمات متا صفحه اصلی</LocaleResource>
   <LocaleResource Name="SiteUrl">
     <Value>آدرس سایت</Value>
   </LocaleResource>

@@ -5,16 +5,16 @@
 @{
     var meta = new Netotik.ViewModels.Common.Meta.MetaViewModel()
     {
-        Title = "Netotik | Blog",
+        Title = string.Format("{0} | {1}", Captions.Netotik, Captions.Blog),
         Description = "Learning Miktotik and Netwotk Solution with Miktotik Platform",
         Keywords = "Connect Router Online, Radius System, learn netotik, news netotik, Mikrotik Crm, Netotik System",
         Conanical = Url.Action(MVC.Blog.Index()),
-        OgTitle = "Netotik | Home",
+        OgTitle = string.Format("{0} | {1}", Captions.Netotik, Captions.Blog),
         OgUrl = Url.Action(MVC.Blog.Index()),
         OgDescription = "Learning Miktotik and Netwotk Solution with Miktotik Platform",
-        OgSiteName = "Netotik",
+        OgSiteName = Captions.Netotik,
         OgTags = { "Connect Router Online", "learn netotik", "Radius System", "news netotik", "Netotik System" },
-        OgType = "Summury"
+        OgType = "object"
     };
     if (Model.CategoryId.HasValue)
     {

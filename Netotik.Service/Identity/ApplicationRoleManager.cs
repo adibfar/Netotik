@@ -115,7 +115,7 @@ namespace Netotik.Services.Identity
 
             if (user.UserType == UserType.UserCompany) return new List<string> { "Company" };
             else if (user.UserType == UserType.UserReseller) return new List<string> { "Reseller" };
-            else if (user.UserType == UserType.UserNet) return new List<string> { "UserNet" };
+            else if (user.UserType == UserType.Client) return new List<string> { "Client" };
 
             var userRolesQuery = from role in Roles
                                  from users in role.Users

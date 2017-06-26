@@ -684,14 +684,29 @@ namespace Netotik.Resources
         }
 
 
-        public static string SiteName
+        public static string HomePageTitle
         {
             get
             {
-                return resourceProvider.GetResource("SiteName", CultureInfo.CurrentUICulture.Name) as string;
+                return resourceProvider.GetResource("HomePageTitle", CultureInfo.CurrentUICulture.Name) as string;
             }
         }
 
+        public static string HomePageDescription
+        {
+            get
+            {
+                return resourceProvider.GetResource("HomePageDescription", CultureInfo.CurrentUICulture.Name) as string;
+            }
+        }
+
+        public static string HomePageKeywords
+        {
+            get
+            {
+                return resourceProvider.GetResource("HomePageKeywords", CultureInfo.CurrentUICulture.Name) as string;
+            }
+        }
 
         public static string SiteUrl
         {
