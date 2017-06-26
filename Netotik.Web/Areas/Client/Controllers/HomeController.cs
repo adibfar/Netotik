@@ -68,6 +68,98 @@ namespace Netotik.Web.Areas.Client.Controllers
             {
                 this.MessageError("خطا", "لطفا با مدیرشبکه تماس بگیرید.خطای یوزرمنیجر");
             }
+            var users = _mikrotikServices.Usermanager_GetUser(UserLogined.UserCompany.R_Host, UserLogined.UserCompany.R_Port, UserLogined.UserCompany.R_User, UserLogined.UserCompany.R_Password, id);
+            foreach (var item in users)
+                if (item.id == id)
+                {
+                    var session = _mikrotikServices.Usermanager_UserSession(UserLogined.UserCompany.R_Host, UserLogined.UserCompany.R_Port, UserLogined.UserCompany.R_User, UserLogined.UserCompany.R_Password, item.username);
+                    var profile = _mikrotikServices.Usermanager_GetAllProfile(UserLogined.UserCompany.R_Host, UserLogined.UserCompany.R_Port, UserLogined.UserCompany.R_User, UserLogined.UserCompany.R_Password);
+                    var Limition = _mikrotikServices.Usermanager_GetAllLimition(UserLogined.UserCompany.R_Host, UserLogined.UserCompany.R_Port, UserLogined.UserCompany.R_User, UserLogined.UserCompany.R_Password);
+                    var profileLimition = _mikrotikServices.Usermanager_GetAllProfileLimition(UserLogined.UserCompany.R_Host, UserLogined.UserCompany.R_Port, UserLogined.UserCompany.R_User, UserLogined.UserCompany.R_Password);
+                    var UserProfile = new Netotik.ViewModels.Identity.UserClient.ProfileModel();
+                    var UserProfileLimition = new Netotik.ViewModels.Identity.UserClient.ProfileLimitionModel();
+                    var UserLimition = new Netotik.ViewModels.Identity.UserClient.LimitionModel();
+                    var UserSession = new List<Netotik.ViewModels.Identity.UserClient.UserSessionModel>();
+
+
+                    foreach (var SessionItem in session)
+                    {
+                        var from_time = SessionItem.from_time;
+                        var till_time = SessionItem.till_time;
+                        SessionItem.from_time = Infrastructure.EnglishConvertDate.ConvertToFa(SessionItem.from_time.Split(' ')[0], "d") + " " + SessionItem.from_time.Split(' ')[1];
+                        SessionItem.till_time = Infrastructure.EnglishConvertDate.ConvertToFa(SessionItem.till_time.Split(' ')[0], "d") + " " + SessionItem.till_time.Split(' ')[1];
+                        SessionItem.from_timeT = Infrastructure.EnglishConvertDate.ConvertToFa(from_time.Split(' ')[0], "D") + " " + from_time.Split(' ')[1];
+                        SessionItem.till_timeT = Infrastructure.EnglishConvertDate.ConvertToFa(till_time.Split(' ')[0], "D") + " " + till_time.Split(' ')[1];
+                        UserSession.Add(SessionItem);
+                    }
+                    ViewBag.session = UserSession;
+
+
+                    if (profile != null)
+                        foreach (var item0 in profile)
+                            if (item0.name == item.actual_profile)
+                                UserProfile = item0;
+
+                    if (UserProfile != null)
+                        foreach (var item2 in profileLimition)
+                            if (item2.profile == UserProfile.name)
+                            {
+                                UserProfileLimition = item2;
+                                if (Limition != null)
+                                    foreach (var item3 in Limition)
+                                        if (UserProfileLimition.limitation == item3.name)
+                                            UserLimition = item3;
+                            }
+                    UserLimition.download_limit = UserLimition.download_limit == null || UserLimition.download_limit == "" ? "0" : UserLimition.download_limit;
+                    UserLimition.upload_limit = UserLimition.upload_limit == null || UserLimition.upload_limit == "" ? "0" : UserLimition.upload_limit;
+                    UserLimition.transfer_limit = UserLimition.transfer_limit == null || UserLimition.transfer_limit == "" ? "0" : UserLimition.transfer_limit;
+                    item.download_used = item.download_used == null || item.download_used == "" ? "0" : item.download_used;
+                    item.upload_used = item.upload_used == null || item.upload_used == "" ? "0" : item.upload_used;
+
+                    ViewBag.TransferLimit = ulong.Parse(UserLimition.transfer_limit) + ulong.Parse(UserLimition.upload_limit) + ulong.Parse(UserLimition.download_limit);
+                    UserLimition.rate_limit_rx = UserLimition.rate_limit_rx == null ? "0" : UserLimition.rate_limit_rx;
+                    UserLimition.rate_limit_tx = UserLimition.rate_limit_tx == null ? "0" : UserLimition.rate_limit_tx;
+
+                    ViewBag.TransferRemain = ulong.Parse(UserLimition.transfer_limit) - (ulong.Parse(item.download_used) + ulong.Parse(item.upload_used));
+
+                    ViewBag.TransferUsed = (ulong.Parse(item.download_used) + ulong.Parse(item.upload_used));
+
+                    if (UserLimition.uptime_limit != null)
+                        ViewBag.uptime_limit = UserLimition.uptime_limit.Replace("d", " روز ").Replace("w", " هفته ").Replace("h", " ساعت ").Replace("m", " دقیقه ").Replace("s", " ثانیه ");
+                    if (UserProfile.validity != null)
+                        ViewBag.validity = UserProfile.validity.Replace("d", " روز ").Replace("w", " هفته ").Replace("h", " ساعت ").Replace("m", " دقیقه ").Replace("s", " ثانیه ");
+                    if (item.shared_users != null)
+                        item.shared_users = item.shared_users.Replace("unlimited", " بدون محدودیت ");
+                    ViewBag.price = UserProfile.price;
+                    if (UserProfileLimition.from_time != null)
+                        ViewBag.from_time = UserProfileLimition.from_time.Replace("d", " روز ").Replace("s", " ثانیه ").Replace("m", " دقیقه ").Replace("h", " ساعت ");
+                    if (UserProfileLimition.till_time != null)
+                        ViewBag.till_time = UserProfileLimition.till_time.Replace("d", " روز ").Replace("s", " ثانیه ").Replace("m", " دقیقه ").Replace("h", " ساعت ");
+                    if (UserProfileLimition.weekdays != null)
+                        ViewBag.weekdays = UserProfileLimition.weekdays.Replace("friday", " جمعه ").Replace("thursday", " پنجشنبه ").Replace("wednesday", " چهارشنبه ").Replace("tuesday", " سه شنبه ").Replace("monday", " دوشنبه ").Replace("sunday", " یکشنبه ").Replace("saturday", "شنبه ");
+                    if (item.uptime_used != null)
+                        item.uptime_used = item.uptime_used.Replace("d", " روز ").Replace("w", " هفته ").Replace("h", " ساعت ").Replace("m", " دقیقه ").Replace("s", " ثانیه ").Replace("never", " بدون اتصال ");
+                    if (item.last_seen != null)
+                        if (item.last_seen == "never")
+                        {
+                            item.last_seen = item.last_seen.Replace("never", " بدون اتصال ");
+                            item.last_seenT = item.last_seen.Replace("never", " بدون اتصال ");
+                        }
+                        else
+                        {
+                            var last_seenT = item.last_seen.Split(' ');
+                            var last_seen = item.last_seen.Split(' ');
+                            last_seen[0] = Infrastructure.EnglishConvertDate.ConvertToFa(last_seen[0], "d");
+                            item.last_seen = last_seen[0] + " " + last_seen[1];
+
+                            last_seenT[0] = Infrastructure.EnglishConvertDate.ConvertToFa(last_seenT[0], "D");
+                            item.last_seenT = last_seenT[0] + " " + last_seenT[1];
+                        }
+                    if (item.disabled != null)
+                        item.disabled = item.disabled.Replace("false", "فعال").Replace("true", "غیره فعال");
+
+                    return View(item);
+                }
             return View();
         }
 
@@ -320,6 +412,92 @@ namespace Netotik.Web.Areas.Client.Controllers
                         ViewBag.download_remain = "0";
                     return View(item);
                 }
+            return View();
+        }
+
+        [ValidateAntiForgeryToken]
+        [HttpPost]
+        public virtual ActionResult BuyPackage(Netotik.ViewModels.Identity.UserClient.UserEditModel model, ActionType actionType)
+        {
+
+            //-------------------------------
+            if (!_mikrotikServices.IP_Port_Check(UserLogined.UserCompany.R_Host, UserLogined.UserCompany.R_Port, UserLogined.UserCompany.R_User, UserLogined.UserCompany.R_Password))
+            {
+                this.MessageError("خطا", "لطفا با مدیرشبکه تماس بگیرید.خطای عدم دسترسی یا IP ویا Port");
+                return RedirectToAction(MVC.Client.Home.ActionNames.Index, MVC.Client.Home.Name, new { area = MVC.Client.Name });
+            }
+            if (!_mikrotikServices.User_Pass_Check(UserLogined.UserCompany.R_Host, UserLogined.UserCompany.R_Port, UserLogined.UserCompany.R_User, UserLogined.UserCompany.R_Password))
+            {
+                this.MessageError("خطا", "لطفا با مدیرشبکه تماس بگیرید.خطای نام کاربری و رمز عبور");
+                return RedirectToAction(MVC.Client.Home.ActionNames.Index, MVC.Client.Home.Name, new { area = MVC.Client.Name });
+            }
+            if (!_mikrotikServices.Usermanager_IsInstall(UserLogined.UserCompany.R_Host, UserLogined.UserCompany.R_Port, UserLogined.UserCompany.R_User, UserLogined.UserCompany.R_Password))
+            {
+                this.MessageError("خطا", "لطفا با مدیرشبکه تماس بگیرید.خطای یوزرمنیجر");
+                return RedirectToAction(MVC.Client.Home.ActionNames.Index, MVC.Client.Home.Name, new { area = MVC.Client.Name });
+            }
+            //-------------------------------
+            if (!ModelState.IsValid)
+            {
+                //SetResultMessage(false, MessageColor.Danger, Captions.InvalidDataError, Captions.MissionFail);
+                return View();
+            }
+            else
+            {
+                var UsermanagerUser = _mikrotikServices.Usermanager_GetUser((UserLogined.UserCompany.R_Host, UserLogined.UserCompany.R_Port, UserLogined.UserCompany.R_User, UserLogined.UserCompany.R_Password, UserLogined.Id);
+                model.customer = UserLogined.UserCompany.Userman_Customer;
+                model.password = UsermanagerUser.FirstOrDefault().password;
+                model.location = UsermanagerUser.FirstOrDefault().location;
+                model.comment = UsermanagerUser.FirstOrDefault().comment;
+                model.email = UsermanagerUser.FirstOrDefault().email;
+                model.first_name = UsermanagerUser.FirstOrDefault().first_name;
+                model.last_name = UsermanagerUser.FirstOrDefault().last_name;
+                model.phone = UsermanagerUser.FirstOrDefault().phone;
+                _mikrotikServices.Usermanager_UserEdit(UserLogined.UserCompany.R_Host, UserLogined.UserCompany.R_Port, UserLogined.UserCompany.R_User, UserLogined.UserCompany.R_Password, model);
+
+                return RedirectToAction(MVC.Client.Home.Index());
+            }
+        }
+        public virtual ActionResult BuyPackage()
+        {
+
+            //-------------------------------
+            if (!_mikrotikServices.IP_Port_Check(UserLogined.UserCompany.R_Host, UserLogined.UserCompany.R_Port, UserLogined.UserCompany.R_User, UserLogined.UserCompany.R_Password))
+            {
+                this.MessageError("خطا", "لطفا با مدیرشبکه تماس بگیرید.خطای عدم دسترسی یا IP ویا Port");
+                return RedirectToAction(MVC.Client.Home.ActionNames.Index, MVC.Client.Home.Name, new { area = MVC.Client.Name });
+            }
+            if (!_mikrotikServices.User_Pass_Check(UserLogined.UserCompany.R_Host, UserLogined.UserCompany.R_Port, UserLogined.UserCompany.R_User, UserLogined.UserCompany.R_Password))
+            {
+                this.MessageError("خطا", "لطفا با مدیرشبکه تماس بگیرید.خطای نام کاربری و رمز عبور");
+                return RedirectToAction(MVC.Client.Home.ActionNames.Index, MVC.Client.Home.Name, new { area = MVC.Client.Name });
+            }
+            if (!_mikrotikServices.Usermanager_IsInstall(UserLogined.UserCompany.R_Host, UserLogined.UserCompany.R_Port, UserLogined.UserCompany.R_User, UserLogined.UserCompany.R_Password))
+            {
+                this.MessageError("خطا", "لطفا با مدیرشبکه تماس بگیرید.خطای یوزرمنیجر");
+                return RedirectToAction(MVC.Client.Home.ActionNames.Index, MVC.Client.Home.Name, new { area = MVC.Client.Name });
+            }
+            //-------------------------------
+            var model = _mikrotikServices.Usermanager_GetUser(UserLogined.UserCompany.R_Host, UserLogined.UserCompany.R_Port, UserLogined.UserCompany.R_User, UserLogined.UserCompany.R_Password, "");
+            foreach (var item in model)
+            //if (item.id == UserLogined.Id)
+            {
+                var editModel = new Netotik.ViewModels.Identity.UserClient.UserEditModel
+                {
+                    id = item.id,
+                    first_name = item.first_name,
+                    comment = item.comment,
+                    email = item.email,
+                    last_name = item.last_name,
+                    location = item.location,
+                    phone = item.phone,
+                    profile = item.actual_profile,
+                    shared_users = item.shared_users,
+                    username = item.username
+                };
+                return View(editModel);
+            }
+            //            ViewBag.Customers = _mikrotikServices.GetAllCustomers(UserLogined.UserCompany.R_Host, UserLogined.UserCompany.R_Port, UserLogined.UserCompany.R_User, UserLogined.UserCompany.R_Password);
             return View();
         }
 

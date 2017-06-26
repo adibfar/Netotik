@@ -88,6 +88,8 @@ namespace Netotik.Web.Areas.Client.Controllers
             public readonly string ChangePassword = "ChangePassword";
             public readonly string Edit = "Edit";
             public readonly string UserEdit_Save = "UserEdit_Save";
+            public readonly string Details = "Details";
+            public readonly string BuyPackage = "BuyPackage";
             public readonly string RedirectToLocal = "RedirectToLocal";
         }
 
@@ -98,6 +100,8 @@ namespace Netotik.Web.Areas.Client.Controllers
             public const string ChangePassword = "ChangePassword";
             public const string Edit = "Edit";
             public const string UserEdit_Save = "UserEdit_Save";
+            public const string Details = "Details";
+            public const string BuyPackage = "BuyPackage";
             public const string RedirectToLocal = "RedirectToLocal";
         }
 
@@ -115,6 +119,15 @@ namespace Netotik.Web.Areas.Client.Controllers
         public ActionParamsClass_UserEdit_Save UserEdit_SaveParams { get { return s_params_UserEdit_Save; } }
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public class ActionParamsClass_UserEdit_Save
+        {
+            public readonly string model = "model";
+            public readonly string actionType = "actionType";
+        }
+        static readonly ActionParamsClass_BuyPackage s_params_BuyPackage = new ActionParamsClass_BuyPackage();
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public ActionParamsClass_BuyPackage BuyPackageParams { get { return s_params_BuyPackage; } }
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public class ActionParamsClass_BuyPackage
         {
             public readonly string model = "model";
             public readonly string actionType = "actionType";
@@ -137,19 +150,19 @@ namespace Netotik.Web.Areas.Client.Controllers
             public _ViewNamesClass ViewNames { get { return s_ViewNames; } }
             public class _ViewNamesClass
             {
+                public readonly string BuyPackage = "BuyPackage";
                 public readonly string ChangePassword = "ChangePassword";
                 public readonly string Charts = "Charts";
                 public readonly string Details = "Details";
                 public readonly string Edit = "Edit";
                 public readonly string Index = "Index";
-                public readonly string Session = "Session";
             }
+            public readonly string BuyPackage = "~/Areas/Client/Views/Home/BuyPackage.cshtml";
             public readonly string ChangePassword = "~/Areas/Client/Views/Home/ChangePassword.cshtml";
             public readonly string Charts = "~/Areas/Client/Views/Home/Charts.cshtml";
             public readonly string Details = "~/Areas/Client/Views/Home/Details.cshtml";
             public readonly string Edit = "~/Areas/Client/Views/Home/Edit.cshtml";
             public readonly string Index = "~/Areas/Client/Views/Home/Index.cshtml";
-            public readonly string Session = "~/Areas/Client/Views/Home/Session.cshtml";
         }
     }
 
@@ -213,6 +226,41 @@ namespace Netotik.Web.Areas.Client.Controllers
             ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "model", model);
             ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "actionType", actionType);
             UserEdit_SaveOverride(callInfo, model, actionType);
+            return callInfo;
+        }
+
+        [NonAction]
+        partial void DetailsOverride(T4MVC_System_Web_Mvc_ActionResult callInfo);
+
+        [NonAction]
+        public override System.Web.Mvc.ActionResult Details()
+        {
+            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Details);
+            DetailsOverride(callInfo);
+            return callInfo;
+        }
+
+        [NonAction]
+        partial void BuyPackageOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, Netotik.ViewModels.Identity.UserClient.UserEditModel model, Netotik.Common.Controller.ActionType actionType);
+
+        [NonAction]
+        public override System.Web.Mvc.ActionResult BuyPackage(Netotik.ViewModels.Identity.UserClient.UserEditModel model, Netotik.Common.Controller.ActionType actionType)
+        {
+            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.BuyPackage);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "model", model);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "actionType", actionType);
+            BuyPackageOverride(callInfo, model, actionType);
+            return callInfo;
+        }
+
+        [NonAction]
+        partial void BuyPackageOverride(T4MVC_System_Web_Mvc_ActionResult callInfo);
+
+        [NonAction]
+        public override System.Web.Mvc.ActionResult BuyPackage()
+        {
+            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.BuyPackage);
+            BuyPackageOverride(callInfo);
             return callInfo;
         }
 

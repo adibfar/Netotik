@@ -253,7 +253,15 @@ namespace Netotik.Services.Implement
             if (!mikrotik.Login(user, pass)) mikrotik.Close();
             //-----------------------------------------------
             mikrotik.Send("/tool/user-manager/user/print");
-            string temp = String.Format("?=.id={0}", id);
+            string temp = "";
+            if (id.Contains("*"))
+            {
+                temp = String.Format("?=.id={0}", id);
+            }
+            else
+            {
+                temp = String.Format("?=username={0}", id);
+            }
             mikrotik.Send(temp, true);
 
             var usermodel = new List<Netotik.ViewModels.Identity.UserClient.UserModel>();

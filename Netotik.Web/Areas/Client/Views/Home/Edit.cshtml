@@ -12,6 +12,10 @@
                 @Html.AntiForgeryToken()
                 <div class="card">
                     <div class="card-header">
+                        <button name="actionType" value="@Netotik.Common.Controller.ActionType.Save" class="btn btn-social width-100 btn-instagram" onclick="AjaxForm.Post(this, 'form')" data-loading-text="در حال ارسال اطلاعات">
+                            <span class="icon-checkmark2 font-medium-4"></span>
+                            @Netotik.Resources.Captions.Save
+                        </button>
                         <a value="بازگشت" class="btn btn-social btn-instagram" href="@Url.Action(MVC.Client.Home.Index())">
                             <span class="icon-reply font-medium-4"></span>
                             بازگشت
