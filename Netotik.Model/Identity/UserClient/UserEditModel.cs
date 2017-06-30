@@ -43,6 +43,8 @@ namespace Netotik.ViewModels.Identity.UserClient
         public string comment { get; set; }
         [Display(Name = "نام تعرفه")]
         public string profile { get; set; }
+        public string registration_date { get; set; }
+        public string reg_key { get; set; }
 
     }
 }

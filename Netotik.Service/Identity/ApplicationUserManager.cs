@@ -133,8 +133,8 @@ namespace Netotik.Services.Identity
             var trans = await _languageTranslationService.All().Where(x => x.EntityId == id).ToListAsync();
             _mappingEngine.Map(model, user);
 
-            
-            
+
+
             for (int a = 0; a < model.LanguageIds.Length; a++)
             {
                 var showName = trans.FirstOrDefault(x => x.ObjectName == "User" && x.PropertyName == "ShowName" && x.LanguageId == model.LanguageIds[a]);
@@ -346,9 +346,35 @@ namespace Netotik.Services.Identity
                 var result = await this.CreateAsync(newUser, systemAdminPassword);
                 this.SetLockoutEnabled(newUser.Id, false);
             }
-            var userRoles = _roleManager.FindUserRoles(newUser.Id);
-            if (userRoles.Any(a => a == StandardRoles.SuperAdministrators)) return;
-            this.AddToRole(newUser.Id, StandardRoles.SuperAdministrators);
+
+            const string ClientName = "client";
+            const string ClientEmail = "client@netotik.com";
+            const string ClientPassword = "client";
+            var ClientUser = this.FindByName(ClientName);
+            if (ClientUser == null)
+            {
+                ClientUser = new User
+                {
+                    FirstName = ClientName,
+                    LastName = ClientName,
+                    UserName = ClientName.ToLower(),
+                    EmailConfirmed = true,
+                    PhoneNumberConfirmed = true,
+                    LockoutEnabled = false,
+                    AccessFailedCount = 0,
+                    TwoFactorEnabled = false,
+                    Email = ClientEmail,
+                    CreateDate = now,
+                    EditDate = now,
+                    IsDeleted = false,
+                    IsBanned = false,
+                    UserType = UserType.Client
+                };
+                var ClientResult = await this.CreateAsync(ClientUser, ClientPassword);
+                this.SetLockoutEnabled(ClientUser.Id, false);
+
+            }
+
         }
 
         #endregion

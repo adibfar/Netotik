@@ -41,7 +41,6 @@ namespace Netotik.Domain.Entity
         public virtual UserReseller UserReseller { get; set; }
         public virtual UserCompany UserCompany { get; set; }
         public List<Address> Addresses { get; set; }
-
         public virtual ICollection<UserRole> Roles { get; set; }
         public virtual ICollection<UserClaim> Claims { get; set; }
         public virtual ICollection<UserLogin> Logins { get; set; }

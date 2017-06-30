@@ -53,5 +53,7 @@ namespace Netotik.ViewModels.Identity.UserClient
         [RegularExpression(@"(^$)|(^[a-zA-Z0-9: .-_]*$)", ErrorMessage = "مقدار وارد شده معتبر نمی باشد")]
         public string profile { get; set; }
         public string NationalCode { get; set; }
+        public string registration_date { get; set; }
+        public string reg_key { get; set; }
     }
 }

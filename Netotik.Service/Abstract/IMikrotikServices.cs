@@ -76,6 +76,7 @@ namespace Netotik.Services.Abstract
         void Router_NatRemove(string ip, int port, string user, string pass, string id);
 
         void Usermanager_UserChangePassword(string ip, int port, string user, string pass, Netotik.ViewModels.Identity.UserClient.ChangePasswordModel model,string id);
-
+        void Usermanager_UserRegKey(string ip, int port, string user, string pass, string UsermanUser , string RegKey);
+        void Usermanager_UserRegDayte(string ip, int port, string user, string pass, string UsermanUser , string RegDate);
     }
 }

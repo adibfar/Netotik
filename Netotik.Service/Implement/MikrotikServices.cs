@@ -240,7 +240,9 @@ namespace Netotik.Services.Implement
                         comment = ColumnList.Any(x => x.Key == "comment") ? (ColumnList.FirstOrDefault(x => x.Key == "comment").Value) : "",
                         uptime_used = ColumnList.Any(x => x.Key == "uptime-used") ? (ColumnList.FirstOrDefault(x => x.Key == "uptime-used").Value) : "",
                         download_used = ColumnList.Any(x => x.Key == "download-used") ? (ColumnList.FirstOrDefault(x => x.Key == "download-used").Value) : "",
-                        upload_used = ColumnList.Any(x => x.Key == "upload-used") ? (ColumnList.FirstOrDefault(x => x.Key == "upload-used").Value) : ""
+                        upload_used = ColumnList.Any(x => x.Key == "upload-used") ? (ColumnList.FirstOrDefault(x => x.Key == "upload-used").Value) : "",
+                        registration_date = ColumnList.Any(x => x.Key == "registration-date") ? (ColumnList.FirstOrDefault(x => x.Key == "registration-date").Value) : "",
+                        reg_key = ColumnList.Any(x => x.Key == "reg-key") ? (ColumnList.FirstOrDefault(x => x.Key == "reg-key").Value) : "",
                     });
                 }
             }
@@ -281,6 +283,8 @@ namespace Netotik.Services.Implement
                         id = ColumnList.Any(x => x.Key == ".id") ? (ColumnList.FirstOrDefault(x => x.Key == ".id").Value) : "",
                         customer = ColumnList.Any(x => x.Key == "customer") ? (ColumnList.FirstOrDefault(x => x.Key == "customer").Value) : "",
                         actual_profile = ColumnList.Any(x => x.Key == "actual-profile") ? (ColumnList.FirstOrDefault(x => x.Key == "actual-profile").Value) : "",
+                        registration_date = ColumnList.Any(x => x.Key == "registration-date") ? (ColumnList.FirstOrDefault(x => x.Key == "registration-date").Value) : "",
+                        reg_key = ColumnList.Any(x => x.Key == "reg-key") ? (ColumnList.FirstOrDefault(x => x.Key == "reg-key").Value) : "",
                         username = ColumnList.Any(x => x.Key == "username") ? (ColumnList.FirstOrDefault(x => x.Key == "username").Value) : "",
                         password = ColumnList.Any(x => x.Key == "password") ? (ColumnList.FirstOrDefault(x => x.Key == "password").Value) : "",
                         caller_id = ColumnList.Any(x => x.Key == "caller-id") ? (ColumnList.FirstOrDefault(x => x.Key == "caller-id").Value) : "",
@@ -379,9 +383,9 @@ namespace Netotik.Services.Implement
             mikrotik.MK(ip, port);
             if (!mikrotik.Login(user, pass)) mikrotik.Close();
             //-------------------------------------------------
-            foreach (var item in Usermanager_GetAllUsers(ip, port, user, pass))
+            foreach (var item in Usermanager_GetUser(ip, port, user, pass,username))
             {
-                if (item.username == username) return true;
+                if (item.username == username || item.id == username) return true;
             }
             return false;
         }
@@ -420,9 +424,10 @@ namespace Netotik.Services.Implement
                 mikrotik.Send(temp);
             temp = String.Format("=username={0}", usermanuser.username);
             mikrotik.Send(temp, true);
-            foreach (var item in Usermanager_GetAllUsers(ip, port, user, pass))
+            foreach (var item in Usermanager_GetUser(ip, port, user, pass,usermanuser.username))
                 if (item.username == usermanuser.username)
                     temp = String.Format("=.id={0}", item.id);
+            Usermanager_UserRegKey(ip, port, user, pass, usermanuser.username, PersianDate.ConvertDate.ToFa(DateTime.Now,"G"));
             mikrotik.Send("/tool/user-manager/user/create-and-activate-profile");
             mikrotik.Send(temp);
             temp = String.Format("=customer={0}", usermanuser.customer);
@@ -432,6 +437,7 @@ namespace Netotik.Services.Implement
         }
         public void Usermanager_UserEdit(string ip, int port, string user, string pass, Netotik.ViewModels.Identity.UserClient.UserEditModel model)
         {
+
             var mikrotik = new MikrotikAPI();
             mikrotik.MK(ip, port);
             if (!mikrotik.Login(user, pass)) mikrotik.Close();
@@ -460,6 +466,7 @@ namespace Netotik.Services.Implement
             var temp96 = mikrotik.Read();
             if (model.profile != "")
             {
+                Usermanager_UserRegKey(ip, port, user, pass, model.username, PersianDate.ConvertDate.ToFa(DateTime.Now, "G"));
                 mikrotik.Send("/tool/user-manager/user/create-and-activate-profile");
                 temp = String.Format("=.id={0}", model.username);
                 mikrotik.Send(temp);
@@ -2244,8 +2251,55 @@ namespace Netotik.Services.Implement
                     mikrotik.Send(temp);
                     temp = String.Format("=password={0}", model.Password);
                     mikrotik.Send(temp, true);
+                    var temp2 = mikrotik.Read();
                 }
             }
+        }
+
+        public void Usermanager_UserRegKey(string ip, int port, string user, string pass, string UsermanUser, string RegKey)
+        {
+            var mikrotik = new MikrotikAPI();
+            mikrotik.MK(ip, port);
+            if (!mikrotik.Login(user, pass)) mikrotik.Close();
+            //-----------------------------------------------
+            mikrotik.Send("/tool/user-manager/user/set");
+            string temp = "";
+            if (UsermanUser.Contains("*"))
+            {
+                temp = String.Format("=.id={0}", UsermanUser);
+            }
+            else
+            {
+                temp = String.Format("=.id={0}", UsermanUser);
+                // temp = String.Format("=username={0}", UsermanUser);
+            }
+            mikrotik.Send(temp);
+            temp = String.Format("=reg-key={0}", RegKey);
+            mikrotik.Send(temp, true);
+            var temp2 = mikrotik.Read();
+            
+        }
+
+        public void Usermanager_UserRegDayte(string ip, int port, string user, string pass, string UsermanUser, string RegDate)
+        {
+            var mikrotik = new MikrotikAPI();
+            mikrotik.MK(ip, port);
+            if (!mikrotik.Login(user, pass)) mikrotik.Close();
+            //-----------------------------------------------
+            mikrotik.Send("/tool/user-manager/user/set");
+            string temp = "";
+            if (UsermanUser.Contains("*"))
+            {
+                temp = String.Format("?=.id={0}", UsermanUser);
+            }
+            else
+            {
+                temp = String.Format("?=username={0}", UsermanUser);
+            }
+            mikrotik.Send(temp);
+            temp = String.Format("=registration-date={0}", RegDate);
+            mikrotik.Send(temp, true);
+            var temp2 = mikrotik.Read();
         }
         #endregion
 
