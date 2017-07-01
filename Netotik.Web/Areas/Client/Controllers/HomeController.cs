@@ -222,6 +222,7 @@ namespace Netotik.Web.Areas.Client.Controllers
                     days = ValidSec / 86400;                    
                     ViewBag.RemianTime = (item.reg_key == null || item.reg_key == "") ? "غیره قبل دسترس" : PersianDate.ConvertDate.ToFa(PersianDate.ConvertDate.ToEn(item.reg_key).AddDays(Int32.Parse(days.ToString())),"d").ToString();
                     if (ValidSec == 0) ViewBag.RemianTime = "بدون محدودیت زمانی";
+                    if (UserProfile.starts_at == "logon" && (item.reg_key == null || item.reg_key == "")) ViewBag.StartTime += " تقریبی ";
                     //-------------***-----------
 
                     if (item.uptime_used != null)
@@ -608,5 +609,101 @@ namespace Netotik.Web.Areas.Client.Controllers
             return View();
         }
 
+
+        public virtual ActionResult Charts()
+        {
+
+            //-------------------------------
+            if (!_mikrotikServices.IP_Port_Check("192.168.2.1", 8728, "ehsan6830", "1234"))
+            {
+                this.MessageError("خطا", "لطفا با مدیرشبکه تماس بگیرید.خطای عدم دسترسی یا IP ویا Port");
+                return RedirectToAction(MVC.Client.Home.ActionNames.Index, MVC.Client.Home.Name, new { area = MVC.Client.Name });
+            }
+            if (!_mikrotikServices.User_Pass_Check("192.168.2.1", 8728, "ehsan6830", "1234"))
+            {
+                this.MessageError("خطا", "لطفا با مدیرشبکه تماس بگیرید.خطای نام کاربری و رمز عبور");
+                return RedirectToAction(MVC.Client.Home.ActionNames.Index, MVC.Client.Home.Name, new { area = MVC.Client.Name });
+            }
+            if (!_mikrotikServices.Usermanager_IsInstall("192.168.2.1", 8728, "ehsan6830", "1234"))
+            {
+                this.MessageError("خطا", "لطفا با مدیرشبکه تماس بگیرید.خطای یوزرمنیجر");
+                return RedirectToAction(MVC.Client.Home.ActionNames.Index, MVC.Client.Home.Name, new { area = MVC.Client.Name });
+            }
+            //-------------------------------
+            var session = _mikrotikServices.Usermanager_UserSession("192.168.2.1", 8728, "ehsan6830", "1234", "ehsanm");
+            var UserSession = new List<Netotik.ViewModels.Identity.UserClient.UserSessionModel>();
+            Dictionary<DateTime, ulong> DownloadMonth = new Dictionary<DateTime, ulong>();
+            Dictionary<DateTime, ulong> UploadMonth = new Dictionary<DateTime, ulong>();
+            //-------------Year
+            Dictionary<string, ulong> DownloadYear = new Dictionary<string, ulong>();
+            Dictionary<string, ulong> UploadYear = new Dictionary<string, ulong>();
+            //-------------30Session
+            Dictionary<string, ulong> Download30Session = new Dictionary<string, ulong>();
+            Dictionary<string, ulong> Upload30Session = new Dictionary<string, ulong>();
+
+            int Counter = 0;
+            foreach (var SessionItem in session)
+            {
+                Counter++;
+                var from_time = SessionItem.from_time;
+                var till_time = SessionItem.till_time;
+                SessionItem.from_time = Infrastructure.EnglishConvertDate.ConvertToFa(SessionItem.from_time.Split(' ')[0], "d") + " " + SessionItem.from_time.Split(' ')[1];
+                SessionItem.till_time = Infrastructure.EnglishConvertDate.ConvertToFa(SessionItem.till_time.Split(' ')[0], "d") + " " + SessionItem.till_time.Split(' ')[1];
+                SessionItem.from_timeT = Infrastructure.EnglishConvertDate.ConvertToFa(from_time.Split(' ')[0], "D") + " " + from_time.Split(' ')[1];
+                SessionItem.till_timeT = Infrastructure.EnglishConvertDate.ConvertToFa(till_time.Split(' ')[0], "D") + " " + till_time.Split(' ')[1];
+                UserSession.Add(SessionItem);
+
+                if (PersianDate.ConvertDate.ToEn(SessionItem.from_time.Split(' ')[0]).AddDays(30) >= DateTime.Now)
+                {
+                    if (DownloadMonth.ContainsKey(PersianDate.ConvertDate.ToEn(SessionItem.from_time.Split(' ')[0])))
+                        DownloadMonth[PersianDate.ConvertDate.ToEn(SessionItem.from_time.Split(' ')[0])] += (ulong.Parse(SessionItem.download) / 1048576);
+                    else
+                        DownloadMonth.Add(PersianDate.ConvertDate.ToEn(SessionItem.from_time.Split(' ')[0]), (ulong.Parse(SessionItem.download) / 1048576));
+                    //---------------
+                    if (UploadMonth.ContainsKey(PersianDate.ConvertDate.ToEn(SessionItem.from_time.Split(' ')[0])))
+                        UploadMonth[PersianDate.ConvertDate.ToEn(SessionItem.from_time.Split(' ')[0])] += (ulong.Parse(SessionItem.upload) / 1048576);
+                    else
+                        UploadMonth.Add(PersianDate.ConvertDate.ToEn(SessionItem.from_time.Split(' ')[0]), (ulong.Parse(SessionItem.upload) / 1048576));
+                }
+
+                //--------------Year
+                if (PersianDate.ConvertDate.ToEn(SessionItem.from_time.Split(' ')[0]).AddDays(365) >= DateTime.Now)
+                {
+                    if (DownloadYear.ContainsKey(SessionItem.from_time.Split(' ')[0].Split('/')[1].ToString()))
+                        DownloadYear[SessionItem.from_time.Split(' ')[0].Split('/')[1].ToString()] += (ulong.Parse(SessionItem.download) / 1048576);
+                    else
+                        DownloadYear.Add(SessionItem.from_time.Split(' ')[0].Split('/')[1].ToString(), (ulong.Parse(SessionItem.download) / 1048576));
+                    //---------------
+                    if (UploadYear.ContainsKey(SessionItem.from_time.Split(' ')[0].Split('/')[1].ToString()))
+                        UploadYear[SessionItem.from_time.Split(' ')[0].Split('/')[1].ToString()] += (ulong.Parse(SessionItem.upload) / 1048576);
+                    else
+                        UploadYear.Add(SessionItem.from_time.Split(' ')[0].Split('/')[1].ToString(), (ulong.Parse(SessionItem.upload) / 1048576));
+                }
+
+                //-----------30
+
+                if ((session.Count()-Counter)<=30)
+                {
+                    if (Download30Session.ContainsKey('"'+SessionItem.from_time.ToString()+'"'))
+                        Download30Session['"' + SessionItem.from_time.ToString() + '"'] += (ulong.Parse(SessionItem.download) / 1048576);
+                    else
+                        Download30Session.Add('"' + SessionItem.from_time.ToString() + '"', (ulong.Parse(SessionItem.download) / 1048576));
+                    //---------------
+                    if (Upload30Session.ContainsKey('"' + SessionItem.from_time.ToString() + '"'))
+                        Upload30Session['"' + SessionItem.from_time.ToString() + '"'] += (ulong.Parse(SessionItem.upload) / 1048576);
+                    else
+                        Upload30Session.Add('"' + SessionItem.from_time.ToString() + '"', (ulong.Parse(SessionItem.upload) / 1048576));
+                }
+            }
+            
+            
+            ViewBag.DownloadMonth = DownloadMonth;
+            ViewBag.UploadMonth = UploadMonth;
+            ViewBag.DownloadYear = DownloadYear;
+            ViewBag.UploadYear = UploadYear;
+            ViewBag.Download30Session = Download30Session;
+            ViewBag.Upload30Session = Upload30Session;
+            return View();
+        }
     }
 }
