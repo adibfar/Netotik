@@ -113,6 +113,7 @@
     <Compile Include="Extensions\YeKe.cs" />
     <Compile Include="Extensions\YeKeInterceptor.cs" />
     <Compile Include="Filters\AjaxOnlyAttribute.cs" />
+    <Compile Include="Filters\ClientAuthorizeAttribute.cs" />
     <Compile Include="Filters\Mcv5AuthorizeAttribute.cs" />
     <Compile Include="Filters\ThrottleAttribute.cs" />
     <Compile Include="Helpers\MvcHtmlHelperExtentions.cs" />

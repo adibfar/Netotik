@@ -28,7 +28,7 @@ using Microsoft.AspNet.Identity;
 
 namespace Netotik.Web.Areas.Client.Controllers
 {
-    //[Mvc5Authorize(Roles = "Client")]
+    [ClientAuthorize()]
     [BreadCrumb(Title = "کاربر", UseDefaultRouteUrl = true, RemoveAllDefaultRouteValues = true,
  Order = 0, GlyphIcon = "icon icon-table")]
     public partial class HomeController : BaseController
@@ -45,6 +45,7 @@ namespace Netotik.Web.Areas.Client.Controllers
             IApplicationUserManager applicationUserManager,
             IUnitOfWork uow)
         {
+            var loginedUser = Session["Client"] as User;
             _mikrotikServices = mikrotikServices;
             _pictureService = pictureservice;
             _applicationUserManager = applicationUserManager;

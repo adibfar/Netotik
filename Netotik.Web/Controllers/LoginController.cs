@@ -285,16 +285,11 @@ namespace Netotik.Web.Controllers
                 Id = 4,
                 UserName = user.id,
                 Email = user.email,
-                UserType = UserType.Client,
                 UserCompany = new UserCompany()
                 {
-                    Address = company.UserCompany.Address,
-                    cloud = company.UserCompany.cloud,
                     CompanyCode = company.UserCompany.CompanyCode,
                     Expire_Date = company.UserCompany.Expire_Date,
                     Id = company.UserCompany.Id,
-                    NationalCode = company.UserCompany.NationalCode,
-                    PostalCode = company.UserCompany.PostalCode,
                     R_Host = company.UserCompany.R_Host,
                     R_Password = company.UserCompany.R_Password,
                     R_Port = company.UserCompany.R_Port,
@@ -303,12 +298,7 @@ namespace Netotik.Web.Controllers
                 }
             };
 
-            Session["id"] = user.id;
-            Session["R_Host"] = company.UserCompany.R_Host;
-            Session["R_Password"] = company.UserCompany.R_Password;
-            Session["R_Port"] = company.UserCompany.R_Port;
-            Session["R_User"] = company.UserCompany.R_User;
-            await _applicationSignInManager.SignInAsync(loginedUser, false, false);
+            Session["Client"] = loginedUser;
 
             return RedirectToAction(MVC.Client.Home.Index());
         }
