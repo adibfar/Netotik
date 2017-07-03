@@ -1,6 +1,6 @@
 ﻿@model Netotik.ViewModels.Identity.UserClient.UserEditModel
 @{
-    ViewBag.Title = " کاربر ویرایش ";
+    ViewBag.Title = @Netotik.Resources.Captions.EditUser;
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 <section class="flexbox-container">
@@ -16,17 +16,17 @@
                             <span class="icon-checkmark2 font-medium-4"></span>
                             @Netotik.Resources.Captions.Save
                         </button>
-                        <a value="بازگشت" class="btn btn-social btn-instagram" href="@Url.Action(MVC.Client.Home.Index())">
+                        <a value="@Netotik.Resources.Captions.Back" class="btn btn-social btn-instagram" href="@Url.Action(MVC.Client.Home.Index())">
                             <span class="icon-reply font-medium-4"></span>
-                            بازگشت
+                            @Netotik.Resources.Captions.Back
                         </a>
-                        <a value="ساخت کارت" class="btn btn-social btn-instagram" href="#">
+                        <a value="@Netotik.Resources.Captions.MakeCard" class="btn btn-social btn-instagram" href="#">
                             <span class="icon-card font-medium-4"></span>
-                            ساخت کارت
+                            @Netotik.Resources.Captions.MakeCard
                         </a>
                         <div class="col-md-12">
                             @Html.ValidationSummary(false, "", htmlAttributes: new { @class = "text-danger" })
-                            <span class="text-danger">توجه کنید تمامی مقادیر را انگلیسی تکمیل کنید.</span>
+                            <span class="text-danger">@Netotik.Resources.Captions.JustEnglish</span>
                         </div>
                     </div>
                     @Html.HiddenFor(model=>model.id)

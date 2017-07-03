@@ -1,6 +1,6 @@
 ﻿@model Netotik.ViewModels.Identity.UserClient.UserModel
 @{
-    ViewBag.Title = "داشتبورد";
+    ViewBag.Title = Netotik.Resources.Captions.Dashboard;
     Layout = "~/Views/Shared/_Layout.cshtml";
     string temp = "";
 }
@@ -11,12 +11,12 @@
                     <div class="card-block">
                         <div class="media">
                             <div class="media-body text-xs-left">
-                                <a style="margin-bottom:5px; margin-top:5px;" href="@Url.Action(MVC.Client.Home.Edit())" class="btn btn-float btn-float-lg btn-pink"><i class="icon-user-check"></i><span>ویرایش </span></a>
-                                <a style="margin-bottom:5px; margin-top:5px;" href="@Url.Action(MVC.Client.Home.ChangePassword())" class="btn btn-float btn-float-lg btn-pink"><i class="icon-key22"></i><span>تغییر گذرواژه</span></a>
-                                <a style="margin-bottom:5px; margin-top:5px;" href="@Url.Action(MVC.Client.Home.BuyPackage())" class="btn btn-float btn-float-lg btn-pink"><i class="icon-bag"></i><span>تغییر تعرفه</span></a>
-                                <a style="margin-bottom:5px; margin-top:5px;" href="#" class="btn btn-float btn-float-lg btn-pink"><i class="icon-office"></i><span>درباره</span></a>
-                                <a style="margin-bottom:5px; margin-top:5px;" href="#" class="btn btn-float btn-float-lg btn-pink"><i class="icon-food"></i><span>منوی غذا</span></a>
-                                <a style="margin-bottom:5px; margin-top:5px;" href="@Url.Action(MVC.Client.Home.Details())" class="btn btn-float btn-float-lg btn-pink"><i class="icon-line-chart"></i><span>جزئیات</span></a>
+                                <a style="margin-bottom:5px; margin-top:5px;" href="@Url.Action(MVC.Client.Home.Edit())" class="btn btn-float btn-float-lg btn-pink"><i class="icon-user-check"></i><span>@Netotik.Resources.Captions.Edit </span></a>
+                                <a style="margin-bottom:5px; margin-top:5px;" href="@Url.Action(MVC.Client.Home.ChangePassword())" class="btn btn-float btn-float-lg btn-pink"><i class="icon-key22"></i><span>@Netotik.Resources.Captions.ChangePassword</span></a>
+                                <a style="margin-bottom:5px; margin-top:5px;" href="@Url.Action(MVC.Client.Home.BuyPackage())" class="btn btn-float btn-float-lg btn-pink"><i class="icon-bag"></i><span>@Netotik.Resources.Captions.ChangePackage</span></a>
+                                <a style="margin-bottom:5px; margin-top:5px;" href="#" class="btn btn-float btn-float-lg btn-pink"><i class="icon-office"></i><span>@Netotik.Resources.Captions.About</span></a>
+                                <a style="margin-bottom:5px; margin-top:5px;" href="#" class="btn btn-float btn-float-lg btn-pink"><i class="icon-food"></i><span>@Netotik.Resources.Captions.FoodMenu</span></a>
+                                <a style="margin-bottom:5px; margin-top:5px;" href="@Url.Action(MVC.Client.Home.Details())" class="btn btn-float btn-float-lg btn-pink"><i class="icon-line-chart"></i><span>@Netotik.Resources.Captions.Details</span></a>
                             </div>
                         </div>
                     </div>
@@ -29,9 +29,9 @@
                     <div class="card-block">
                         <div class="media">
                             <div class="media-body white text-xs-left">
-                                <h3>اعتبار زمانی</h3>
-                                <span>تا تاریخ:@ViewBag.RemianTime</span><br/>
-                                <span>اتصال:@ViewBag.RemianUpTime</span>
+                                <h3>@Netotik.Resources.Captions.TimeValidity</h3>
+                                <span>@Netotik.Resources.Captions.TillDate:@ViewBag.RemianTime</span><br/>
+                                <span>@Netotik.Resources.Captions.Online:@ViewBag.RemianUpTime</span>
                             </div>
                             <div class="media-right media-middle">
                                 <i class="icon-ios-time white font-large-2 float-xs-right"></i>
@@ -48,9 +48,9 @@
                     <div class="card-block">
                         <div class="media">
                             <div class="media-body white text-xs-left">
-                                <h3>نام تعرفه</h3>
+                                <h3>@Netotik.Resources.Captions.PackageName</h3>
                                 <span>@Html.DisplayTextFor(m=>m.actual_profile)</span><br/>
-                                <span class="small_text">انتساب:@(ViewBag.StartTime)</span>
+                                <span class="small_text">@Netotik.Resources.Captions.Enrollment:@(ViewBag.StartTime)</span>
                             </div>
                             <div class="media-right media-middle">
                                 <i class="icon-bag white font-large-2 float-xs-right"></i>
@@ -68,7 +68,7 @@
             <div class="card-body">
                 <div class="card-block text-xs-center">
                     <div class="card-header mb-1">
-                        <span class="deep-orange darken-1">کل </span>
+                        <span class="deep-orange darken-1">@Netotik.Resources.Captions.All</span>
                         <h3 class="font-large-1 grey darken-1 text-bold-200">@(ulong.Parse(ViewBag.TransferLimit.ToString()) / 1048576) MB</h3>
                     </div>
                     <div class="card-body">
@@ -80,11 +80,11 @@
                         <ul class="list-inline clearfix mt-2 mb-0">
                             <li class="border-right-grey border-right-lighten-2 pr-2">
                                 <h2 class="grey darken-1 text-bold-400">@(ulong.Parse(ViewBag.TransferUsed.ToString()) / 1048576) MB</h2>
-                                <span class="deep-orange">استفاده شده</span>
+                                <span class="deep-orange">@Netotik.Resources.Captions.Used</span>
                             </li>
                             <li class="pl-2">
                                 <h2 class="grey darken-1 text-bold-400">@(ulong.Parse(ViewBag.TransferRemain.ToString()) / 1048576) MB</h2>
-                                <span class="danger">باقیمانده</span>
+                                <span class="danger">@Netotik.Resources.Captions.Remain</span>
                             </li>
                         </ul>
                     </div>
@@ -102,10 +102,10 @@
             </div>
             <div class="card-footer">
                 <div class="chart-title mb-1 text-xs-center">
-                    <span class="text-muted">آخرین اتصالات</span>
+                    <span class="text-muted">@Netotik.Resources.Captions.ConnectionHistory</span>
                 </div>
                 <div class="chart-stats text-xs-center">
-                    <a href="#" class="btn btn-sm btn-primary mr-1">جزئیات مصرف <i class="icon-stats-bars"></i></a> <span class="text-muted">نمودار یک ماه و یک سال اخیر</span>
+                    <a href="#" class="btn btn-sm btn-primary mr-1">@Netotik.Resources.Captions.ConnectionDetails<i class="icon-stats-bars"></i></a> <span class="text-muted">@Netotik.Resources.Captions.ChartOfMonthAndYear</span>
                 </div>
             </div>
         </div>
@@ -161,13 +161,13 @@
                     },
                     title: {
                         display: !0,
-                        text: "مصرف 7 روز آخر"
+                        text: "@Netotik.Resources.Captions.ChartOf7LastDays"
                     }
                 },
                 c = {
-                    labels: ["1روزقبل", "2روزقبل", "3روزقبل", "4روزقبل", "5روزقبل", "6روزقبل", "7روزقبل"],
+                    labels: ["@Netotik.Resources.Captions.OneDayAgo", "@Netotik.Resources.Captions.TwoDayAgo", "@Netotik.Resources.Captions.ThreeDayAgo", "@Netotik.Resources.Captions.FourDayAgo", "@Netotik.Resources.Captions.FiveDayAgo", "@Netotik.Resources.Captions.SixDayAgo", "@Netotik.Resources.Captions.SevenDayAgo"],
                     datasets: [{
-                        label: "دانلود MB",
+                        label: "@Netotik.Resources.Captions.Download MB",
                         data: [
                             @foreach(var downloadvalue in ViewBag.DownloadChartValues.Values)
                         {
@@ -179,7 +179,7 @@
                         hoverBackgroundColor: "rgba(103,58,183,.9)",
                         borderColor: "transparent"
                     }, {
-                        label: "آپلود MB",
+                        label: "@Netotik.Resources.Captions.Upload MB",
                         data: [
                             @foreach(var uploadvalue in ViewBag.UploadChartValues.Values)
         {

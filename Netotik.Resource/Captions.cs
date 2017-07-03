@@ -2646,5 +2646,328 @@ namespace Netotik.Resources
             }
         }
 
+
+
+        //<!--======================Fields Ehsan EM===========================-->
+        public static string ChangePackage
+        {
+            get
+            {
+                return resourceProvider.GetResource("ChangePackage", CultureInfo.CurrentUICulture.Name) as string;
+            }
+        }
+        public static string About
+        {
+            get
+            {
+                return resourceProvider.GetResource("About", CultureInfo.CurrentUICulture.Name) as string;
+            }
+        }
+        
+                    public static string FoodMenu
+        {
+            get
+            {
+                return resourceProvider.GetResource("FoodMenu", CultureInfo.CurrentUICulture.Name) as string;
+            }
+        }
+
+        public static string Details
+        {
+            get
+            {
+                return resourceProvider.GetResource("Details", CultureInfo.CurrentUICulture.Name) as string;
+            }
+        }
+        public static string TimeValidity
+        {
+            get
+            {
+                return resourceProvider.GetResource("TimeValidity", CultureInfo.CurrentUICulture.Name) as string;
+            }
+        }
+        public static string TillDate
+        {
+            get
+            {
+                return resourceProvider.GetResource("TillDate", CultureInfo.CurrentUICulture.Name) as string;
+            }
+        }
+        public static string Online
+        {
+            get
+            {
+                return resourceProvider.GetResource("Online", CultureInfo.CurrentUICulture.Name) as string;
+            }
+        }
+        public static string PackageName
+        {
+            get
+            {
+                return resourceProvider.GetResource("PackageName", CultureInfo.CurrentUICulture.Name) as string;
+            }
+        }
+        public static string Enrollment
+        {
+            get
+            {
+                return resourceProvider.GetResource("Enrollment", CultureInfo.CurrentUICulture.Name) as string;
+            }
+        }
+        public static string All
+        {
+            get
+            {
+                return resourceProvider.GetResource("All", CultureInfo.CurrentUICulture.Name) as string;
+            }
+        }
+        public static string Remain
+        {
+            get
+            {
+                return resourceProvider.GetResource("Remain", CultureInfo.CurrentUICulture.Name) as string;
+            }
+        }
+        public static string Used
+        {
+            get
+            {
+                return resourceProvider.GetResource("Used", CultureInfo.CurrentUICulture.Name) as string;
+            }
+        }
+        public static string ConnectionHistory
+        {
+            get
+            {
+                return resourceProvider.GetResource("ConnectionHistory", CultureInfo.CurrentUICulture.Name) as string;
+            }
+        }
+        public static string ConnectionDetails
+        {
+            get
+            {
+                return resourceProvider.GetResource("ConnectionDetails", CultureInfo.CurrentUICulture.Name) as string;
+            }
+        }
+        public static string ChartOfMonthAndYear
+        {
+            get
+            {
+                return resourceProvider.GetResource("ChartOfMonthAndYear", CultureInfo.CurrentUICulture.Name) as string;
+            }
+        }
+        public static string ChartOf7LastDays
+        {
+            get
+            {
+                return resourceProvider.GetResource("ChartOf7LastDays", CultureInfo.CurrentUICulture.Name) as string;
+            }
+        }
+        public static string OneDayAgo
+        {
+            get
+            {
+                return resourceProvider.GetResource("OneDayAgo", CultureInfo.CurrentUICulture.Name) as string;
+            }
+        }
+        public static string TwoDayAgo
+        {
+            get
+            {
+                return resourceProvider.GetResource("TwoDayAgo", CultureInfo.CurrentUICulture.Name) as string;
+            }
+        }
+        public static string ThreeDayAgo
+        {
+            get
+            {
+                return resourceProvider.GetResource("ThreeDayAgo", CultureInfo.CurrentUICulture.Name) as string;
+            }
+        }
+        public static string FourDayAgo
+        {
+            get
+            {
+                return resourceProvider.GetResource("FourDayAgo", CultureInfo.CurrentUICulture.Name) as string;
+            }
+        }
+        public static string FiveDayAgo
+        {
+            get
+            {
+                return resourceProvider.GetResource("FiveDayAgo", CultureInfo.CurrentUICulture.Name) as string;
+            }
+        }
+        public static string SixDayAgo
+        {
+            get
+            {
+                return resourceProvider.GetResource("SixDayAgo", CultureInfo.CurrentUICulture.Name) as string;
+            }
+        }
+        public static string SevenDayAgo
+        {
+            get
+            {
+                return resourceProvider.GetResource("SevenDayAgo", CultureInfo.CurrentUICulture.Name) as string;
+            }
+        }
+        public static string Download
+        {
+            get
+            {
+                return resourceProvider.GetResource("Download", CultureInfo.CurrentUICulture.Name) as string;
+            }
+        }
+        public static string Upload
+        {
+            get
+            {
+                return resourceProvider.GetResource("Upload", CultureInfo.CurrentUICulture.Name) as string;
+            }
+        }
+
+        public static string JustEnglish
+        {
+            get
+            {
+                return resourceProvider.GetResource("JustEnglish", CultureInfo.CurrentUICulture.Name) as string;
+            }
+        }
+        public static string MakeCard
+        {
+            get
+            {
+                return resourceProvider.GetResource("MakeCard", CultureInfo.CurrentUICulture.Name) as string;
+            }
+        }
+
+        public static string SelectPackage
+        {
+            get
+            {
+                return resourceProvider.GetResource("SelectPackage", CultureInfo.CurrentUICulture.Name) as string;
+            }
+        }
+        public static string BuyPackage
+        {
+            get
+            {
+                return resourceProvider.GetResource("BuyPackage", CultureInfo.CurrentUICulture.Name) as string;
+            }
+        }
+        public static string Charts
+        {
+            get
+            {
+                return resourceProvider.GetResource("Charts", CultureInfo.CurrentUICulture.Name) as string;
+            }
+        }
+        public static string ChartOf30LastDays
+        {
+            get
+            {
+                return resourceProvider.GetResource("ChartOf30LastDays", CultureInfo.CurrentUICulture.Name) as string;
+            }
+        }
+        public static string ChartOf365LastDays
+        {
+            get
+            {
+                return resourceProvider.GetResource("ChartOf365LastDays", CultureInfo.CurrentUICulture.Name) as string;
+            }
+        }
+        public static string ChartOf30LastSession
+        {
+            get
+            {
+                return resourceProvider.GetResource("ChartOf30LastSession", CultureInfo.CurrentUICulture.Name) as string;
+            }
+        }
+        public static string Properties
+        {
+            get
+            {
+                return resourceProvider.GetResource("Properties", CultureInfo.CurrentUICulture.Name) as string;
+            }
+        }
+        public static string Connections
+        {
+            get
+            {
+                return resourceProvider.GetResource("Connections", CultureInfo.CurrentUICulture.Name) as string;
+            }
+        }
+        public static string Time
+        {
+            get
+            {
+                return resourceProvider.GetResource("Time", CultureInfo.CurrentUICulture.Name) as string;
+            }
+        }
+        public static string Traffic
+        {
+            get
+            {
+                return resourceProvider.GetResource("Traffic", CultureInfo.CurrentUICulture.Name) as string;
+            }
+        }
+        public static string PrintReport
+        {
+            get
+            {
+                return resourceProvider.GetResource("PrintReport", CultureInfo.CurrentUICulture.Name) as string;
+            }
+        }
+
+
+        public static string Secend
+        {
+            get
+            {
+                return resourceProvider.GetResource("Secend", CultureInfo.CurrentUICulture.Name) as string;
+            }
+        }
+        public static string Minute
+        {
+            get
+            {
+                return resourceProvider.GetResource("Minute", CultureInfo.CurrentUICulture.Name) as string;
+            }
+        }
+        public static string Hour
+        {
+            get
+            {
+                return resourceProvider.GetResource("Hour", CultureInfo.CurrentUICulture.Name) as string;
+            }
+        }
+        public static string Day
+        {
+            get
+            {
+                return resourceProvider.GetResource("Day", CultureInfo.CurrentUICulture.Name) as string;
+            }
+        }
+        public static string Week
+        {
+            get
+            {
+                return resourceProvider.GetResource("Week", CultureInfo.CurrentUICulture.Name) as string;
+            }
+        }
+        public static string Month
+        {
+            get
+            {
+                return resourceProvider.GetResource("Month", CultureInfo.CurrentUICulture.Name) as string;
+            }
+        }
+        //<!--======================Messages Ehsan EM===========================-->
+
+
+
+
+
     }
 }
