@@ -847,7 +847,6 @@
   <LocaleResource Name="Month">
     <Value>ماه</Value>
   </LocaleResource>
-
   <LocaleResource Name="DownloadTrafficLimit">
     <Value>محدودیت حجم دانلود</Value>
   </LocaleResource>
@@ -865,6 +864,12 @@
   </LocaleResource>
   <LocaleResource Name="UploadSpeedLimit">
     <Value>محدودیت سرعت آپلود</Value>
+  </LocaleResource>
+  <LocaleResource Name="ShowAll">
+    <Value>نمایش همه</Value>
+  </LocaleResource>
+  <LocaleResource Name="Hide">
+    <Value>پنهان سازی</Value>
   </LocaleResource>
   <!--======================Messages Ehsan EM===========================-->
   <LocaleResource Name="JustEnglish">

@@ -2963,6 +2963,49 @@ namespace Netotik.Resources
                 return resourceProvider.GetResource("Month", CultureInfo.CurrentUICulture.Name) as string;
             }
         }
+        public static string UploadSpeedLimit
+        {
+            get
+            {
+                return resourceProvider.GetResource("UploadSpeedLimit", CultureInfo.CurrentUICulture.Name) as string;
+            }
+        }
+        public static string DownloadSpeedLimit
+        {
+            get
+            {
+                return resourceProvider.GetResource("DownloadSpeedLimit", CultureInfo.CurrentUICulture.Name) as string;
+            }
+        }
+        public static string TrafficRemain
+        {
+            get
+            {
+                return resourceProvider.GetResource("TrafficRemain", CultureInfo.CurrentUICulture.Name) as string;
+            }
+        }
+        public static string DownloadUploadTrafficLimit
+        {
+            get
+            {
+                return resourceProvider.GetResource("DownloadUploadTrafficLimit", CultureInfo.CurrentUICulture.Name) as string;
+            }
+        }
+        public static string UploadTrafficLimit
+        {
+            get
+            {
+                return resourceProvider.GetResource("UploadTrafficLimit", CultureInfo.CurrentUICulture.Name) as string;
+            }
+        }
+        public static string DownloadTrafficLimit
+        {
+            get
+            {
+                return resourceProvider.GetResource("DownloadTrafficLimit", CultureInfo.CurrentUICulture.Name) as string;
+            }
+        }
+
         //<!--======================Messages Ehsan EM===========================-->
 
 

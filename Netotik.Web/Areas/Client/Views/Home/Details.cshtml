@@ -247,7 +247,7 @@
                                         </div>
                                     </div>
                                     <div class="col-md-4">
-                                        <label>حجم باقیمانده</label>
+                                        <label>@Netotik.Resources.Captions.TrafficRemain</label>
                                         <div class="input-group">
                                             <input type="text" class="form-control m-b" style="height:45px !important;" placeholder="0" name="downloaduploadremain" id="downloaduploadremain" value="@ViewBag.download_remain" />
                                             <div class="input-group-addon">
@@ -260,7 +260,7 @@
                                         </div>
                                     </div>
                                     <div class="col-md-4">
-                                        <label>محدودیت حجم دانلود</label>
+                                        <label>@Netotik.Resources.Captions.DownloadTrafficLimit</label>
                                         <div class="input-group">
                                             <input type="text" class="form-control m-b" style="height:45px !important;" placeholder="0" name="downloadlimit" id="downloadlimit" value="@ViewBag.download_limit"  />
                                             <div class="input-group-addon">
@@ -273,7 +273,7 @@
                                         </div>
                                     </div>
                                     <div class="col-md-4">
-                                        <label>محدودیت حجم آپلود</label>
+                                        <label>@Netotik.Resources.Captions.UploadTrafficLimit</label>
                                         <div class="input-group">
                                             <input type="text" class="form-control m-b" style="height:45px !important;" placeholder="0" name="uploadlimit" id="uploadlimit" value="@ViewBag.upload_limit"  />
                                             <div class="input-group-addon">
@@ -286,7 +286,7 @@
                                         </div>
                                     </div>
                                     <div class="col-md-4">
-                                        <label>محدودیت حجم دانلود+آپلود</label>
+                                        <label>@Netotik.Resources.Captions.DownloadUploadTrafficLimit</label>
                                         <div class="input-group">
                                             <input type="text" class="form-control m-b" style="height:45px !important;" placeholder="0" name="downloaduploadlimit" id="downloaduploadlimit" value="@ViewBag.transfer_limit" />
                                             <div class="input-group-addon">
@@ -299,7 +299,7 @@
                                         </div>
                                     </div>
                                     <div class="col-md-3">
-                                        <label>محدودیت سرعت دانلود</label>
+                                        <label>@Netotik.Resources.Captions.DownloadSpeedLimit</label>
                                         <div class="input-group ">
                                             <input type="text" value="@ViewBag.rate_limit_tx"  class="form-control m-b" style="height:45px !important;" placeholder="0" name="uploadrate" id="uploadrate" />
                                             <div class="input-group-addon">
@@ -313,7 +313,7 @@
                                         </div>
                                     </div>
                                 <div class="col-md-3">
-                                    <label>محدودیت سرعت آپلود</label>
+                                    <label>@Netotik.Resources.Captions.UploadSpeedLimit</label>
                                     <div class="input-group">
                                         <input type="text" value="@ViewBag.rate_limit_rx" class="form-control m-b" style="height:45px !important;" placeholder="0" name="downloadrate" id="downloadrate" />
                                         <div class="input-group-addon">
@@ -400,7 +400,7 @@
                     buttonText: "ویرایش جدول"
                 }],
                 colVis: {
-                    restore: "پیشفرض",
+                    restore: "@Netotik.Resources.Captions.Default",
                     showAll: "نمایش همه",
                     showNone: "پنهان سازی"
                 }
@@ -409,8 +409,8 @@
         $(window).on("load", function() {
             Morris.Donut({
                 element: 'morris-donut-chart',
-                data: [{ label: "مصرف شده", value: @((ulong.Parse(Model.download_used)/ 1048576)) },
-                    { label: "باقیمانده", value: @((ulong.Parse(ViewBag.download_remain)/ 1048576)) }],
+                data: [{ label: "@Netotik.Resources.Captions.Used", value: @((ulong.Parse(Model.download_used)/ 1048576)) },
+                    { label: "@Netotik.Resources.Captions.Remain", value: @((ulong.Parse(ViewBag.download_remain)/ 1048576)) }],
                 resize: !0,
                 colors: ['#ff5733', '#54cdb4']
             })
