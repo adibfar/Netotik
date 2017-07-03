@@ -54,7 +54,7 @@ namespace Netotik.Web
            .SeedDatabase();
 
             ProjectObjectFactory.Container.GetInstance<IApplicationUserManager>()
-               .SeedDatabase();
+            .SeedDatabase();
 
 
 
