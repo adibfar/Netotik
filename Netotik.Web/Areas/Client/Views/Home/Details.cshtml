@@ -4,33 +4,33 @@
         <div class="col-md-12">
             <div class="card">
                 <div class="card-header">
-                    <a value="بازگشت" class="btn btn-social btn-instagram" href="@Url.Action(MVC.Client.Home.Index())">
+                    <a value="@Netotik.Resources.Captions.Back" class="btn btn-social btn-instagram" href="@Url.Action(MVC.Client.Home.Index())">
                         <span class="icon-reply font-medium-4"></span>
-                        بازگشت
+                        @Netotik.Resources.Captions.Back
                     </a>
-                    <a value="چاپ گزارش" class="btn btn-social btn-instagram" href="#">
+                    <a value="@Netotik.Resources.Captions.PrintReport" class="btn btn-social btn-instagram" href="#">
                         <span class="icon-printer2 font-medium-4"></span>
-                        چاپ گزارش
+                        @Netotik.Resources.Captions.PrintReport
                     </a>
-                    <a value="ساخت کارت" class="btn btn-social btn-instagram" href="#">
+                    <a value="@Netotik.Resources.Captions.MakeCard" class="btn btn-social btn-instagram" href="#">
                         <span class="icon-card font-medium-4"></span>
-                        ساخت کارت
+                        @Netotik.Resources.Captions.MakeCard
                     </a>
                 </div>
                 <div class="card-body">
                     <div class="card-block">
                         <ul class="nav nav-tabs nav-underline nav-justified">
                             <li class="nav-item">
-                                <a class="nav-link active" id="activeIcon12-tab1" data-toggle="tab" href="#property" aria-controls="activeIcon12" aria-expanded="true"><i class="icon-file-text"></i> مشخصات</a>
+                                <a class="nav-link active" id="activeIcon12-tab1" data-toggle="tab" href="#property" aria-controls="activeIcon12" aria-expanded="true"><i class="icon-file-text"></i>@Netotik.Resources.Captions.Properties</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" id="linkIconOpt11-tab1" data-toggle="tab" href="#Router" aria-controls="linkIconOpt11"><i class="icon-connection"></i>  اتصالات</a>
+                                <a class="nav-link" id="linkIconOpt11-tab1" data-toggle="tab" href="#Router" aria-controls="linkIconOpt11"><i class="icon-connection"></i>@Netotik.Resources.Captions.Connections</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" id="linkIcon12-tab1" data-toggle="tab" href="#traffic" aria-controls="linkIcon12" aria-expanded="false"><i class="icon-data"></i>  حجم</a>
+                                <a class="nav-link" id="linkIcon12-tab1" data-toggle="tab" href="#traffic" aria-controls="linkIcon12" aria-expanded="false"><i class="icon-data"></i>@Netotik.Resources.Captions.Traffic</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" id="linkIcon12-tab1" data-toggle="tab" href="#time" aria-controls="linkIcon12" aria-expanded="false"><i class="icon-ios-time"></i>  زمان</a>
+                                <a class="nav-link" id="linkIcon12-tab1" data-toggle="tab" href="#time" aria-controls="linkIcon12" aria-expanded="false"><i class="icon-ios-time"></i>@Netotik.Resources.Captions.Time</a>
                             </li>
                         </ul>
                         <div class="tab-content px-1 pt-1" style="min-height:260px!important">
@@ -202,7 +202,7 @@
                                                     <td>@item.user</td>
                                                     <td data-toggle="tooltip" data-original-title="<b>@item.from_timeT</b>" data-html="true">@item.from_time</td>
                                                     <td data-toggle="tooltip" data-original-title="<b>@item.till_timeT</b>" data-html="true">@item.till_time</td>
-                                                    <td>@item.uptime.Replace("s", "ثانیه").Replace("h", "ساعت").Replace("m", "دقیقه").Replace("d", "روز")</td>
+                                                    <td>@item.uptime.Replace("w", Netotik.Resources.Captions.Week).Replace("s", Netotik.Resources.Captions.Secend).Replace("h", Netotik.Resources.Captions.Hour).Replace("m", Netotik.Resources.Captions.Minute).Replace("d", Netotik.Resources.Captions.Day)</td>
                                                     <td>@((ulong.Parse(item.download) / 1048576))</td>
                                                     <td>@(ulong.Parse(item.upload) / 1048576)</td>
                                                     <td>@item.nas_port</td>

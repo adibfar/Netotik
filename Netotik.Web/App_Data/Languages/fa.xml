@@ -1,11 +1,23 @@
 ﻿<Language Name="Persian" Image="ir.png" DisplayOrder="1" LanguageCulture = "fa-ir" Rtl = "true" UniqueSeoCode = "fa" >
 
-  <LocaleResource Name="Save"><Value>ذخیره</Value></LocaleResource>
-  <LocaleResource Name="SaveEdit"><Value>ذخیره و ادامه ویرایش</Value></LocaleResource>
-  <LocaleResource Name="Close"><Value>بستن</Value></LocaleResource>
-  <LocaleResource Name="Back"><Value>بازگشت</Value></LocaleResource>
-  <LocaleResource Name="Name"><Value>نام</Value></LocaleResource>
-  <LocaleResource Name="FirstName"><Value>نام</Value></LocaleResource>
+  <LocaleResource Name="Save">
+    <Value>ذخیره</Value>
+  </LocaleResource>
+  <LocaleResource Name="SaveEdit">
+    <Value>ذخیره و ادامه ویرایش</Value>
+  </LocaleResource>
+  <LocaleResource Name="Close">
+    <Value>بستن</Value>
+  </LocaleResource>
+  <LocaleResource Name="Back">
+    <Value>بازگشت</Value>
+  </LocaleResource>
+  <LocaleResource Name="Name">
+    <Value>نام</Value>
+  </LocaleResource>
+  <LocaleResource Name="FirstName">
+    <Value>نام</Value>
+  </LocaleResource>
   <LocaleResource Name="LastName">
     <Value>نام خانوادگی</Value>
   </LocaleResource>
@@ -210,7 +222,9 @@
   <LocaleResource Name="SelectFile">
     <Value>انتخاب تصویر</Value>
   </LocaleResource>
-  <LocaleResource Name="HomePageTitle"><Value>عنوان وب سایت</Value></LocaleResource>
+  <LocaleResource Name="HomePageTitle">
+    <Value>عنوان وب سایت</Value>
+  </LocaleResource>
   <LocaleResource Name="HomePageDescription">توضیحات متا صفحه اصلی</LocaleResource>
   <LocaleResource Name="HomePageKeywords">کلمات متا صفحه اصلی</LocaleResource>
   <LocaleResource Name="SiteUrl">
@@ -717,7 +731,161 @@
   <LocaleResource Name="ShowName">
     <Value>نام نمایشی</Value>
   </LocaleResource>
-  
+
+  <!--======================Fields Ehsan EM===========================-->
+  <LocaleResource Name="ChangePackage">
+    <Value>تغییرتعرفه</Value>
+  </LocaleResource>
+  <LocaleResource Name="About">
+    <Value>درباره</Value>
+  </LocaleResource>
+  <LocaleResource Name="FoodMenu">
+    <Value>منوی غذا</Value>
+  </LocaleResource>
+  <LocaleResource Name="Details">
+    <Value>جزئیات</Value>
+  </LocaleResource>
+  <LocaleResource Name="TimeValidity">
+    <Value>اعتبار زمانی</Value>
+  </LocaleResource>
+  <LocaleResource Name="TillDate">
+    <Value>تا تاریخ</Value>
+  </LocaleResource>
+  <LocaleResource Name="Online">
+    <Value>متصل</Value>
+  </LocaleResource>
+  <LocaleResource Name="PackageName">
+    <Value>نام تعرفه</Value>
+  </LocaleResource>
+  <LocaleResource Name="Enrollment">
+    <Value>انتساب</Value>
+  </LocaleResource>
+  <LocaleResource Name="All">
+    <Value>کل</Value>
+  </LocaleResource>
+  <LocaleResource Name="Used">
+    <Value>استفاده شده</Value>
+  </LocaleResource>
+  <LocaleResource Name="Remain">
+    <Value>باقیمانده</Value>
+  </LocaleResource>
+  <LocaleResource Name="ConnectionHistory">
+    <Value>آخرین اتصالات</Value>
+  </LocaleResource>
+  <LocaleResource Name="ConnectionDetails">
+    <Value>جزئیات اتصالات</Value>
+  </LocaleResource>
+  <LocaleResource Name="OneDayAgo">
+    <Value>روز گذشته</Value>
+  </LocaleResource>
+  <LocaleResource Name="TwoDayAgo">
+    <Value>2روز گذشته</Value>
+  </LocaleResource>
+  <LocaleResource Name="ThreeDayAgo">
+    <Value>3روز گذشته</Value>
+  </LocaleResource>
+  <LocaleResource Name="FourDayAgo">
+    <Value>4روز گذشته</Value>
+  </LocaleResource>
+  <LocaleResource Name="FiveDayAgo">
+    <Value>5روز گذشته</Value>
+  </LocaleResource>
+  <LocaleResource Name="SixDayAgo">
+    <Value>6روز گذشته</Value>
+  </LocaleResource>
+  <LocaleResource Name="SevenDayAgo">
+    <Value>7روز گذشته</Value>
+  </LocaleResource>
+  <LocaleResource Name="Download">
+    <Value>دانلود</Value>
+  </LocaleResource>
+  <LocaleResource Name="Upload">
+    <Value>آپلود</Value>
+  </LocaleResource>
+  <LocaleResource Name="MakeCard">
+    <Value>ساخت کارت</Value>
+  </LocaleResource>
+  <LocaleResource Name="BuyPackage">
+    <Value>خرید تعرفه</Value>
+  </LocaleResource>
+  <LocaleResource Name="SelectPackage">
+    <Value>انتخاب تعرفه</Value>
+  </LocaleResource>
+  <LocaleResource Name="Charts">
+    <Value>نمودارها</Value>
+  </LocaleResource>
+  <LocaleResource Name="Properties">
+    <Value>مشخصات</Value>
+  </LocaleResource>
+  <LocaleResource Name="Connections">
+    <Value>اتصالات</Value>
+  </LocaleResource>
+  <LocaleResource Name="Time">
+    <Value>زمان</Value>
+  </LocaleResource>
+  <LocaleResource Name="Traffic">
+    <Value>حجم</Value>
+  </LocaleResource>
+  <LocaleResource Name="PrintReport">
+    <Value>چاپ گذارش</Value>
+  </LocaleResource>
+  <LocaleResource Name="Secend">
+    <Value>ثانیه</Value>
+  </LocaleResource>
+  <LocaleResource Name="Minute">
+    <Value>دقیقه</Value>
+  </LocaleResource>
+  <LocaleResource Name="Hour">
+    <Value>ساعت</Value>
+  </LocaleResource>
+  <LocaleResource Name="Day">
+    <Value>روز</Value>
+  </LocaleResource>
+  <LocaleResource Name="Week">
+    <Value>هفته</Value>
+  </LocaleResource>
+  <LocaleResource Name="Month">
+    <Value>ماه</Value>
+  </LocaleResource>
+
+  <LocaleResource Name="DownloadTrafficLimit">
+    <Value>محدودیت حجم دانلود</Value>
+  </LocaleResource>
+  <LocaleResource Name="UploadTrafficLimit">
+    <Value>محدودیت حجم آپلود</Value>
+  </LocaleResource>
+  <LocaleResource Name="DownloadUploadTrafficLimit">
+    <Value>محدودیت حجم دانلود و آپلود</Value>
+  </LocaleResource>
+  <LocaleResource Name="TrafficRemain">
+    <Value>حجم باقیمانده</Value>
+  </LocaleResource>
+  <LocaleResource Name="DownloadSpeedLimit">
+    <Value>محدودیت سرعت دانلود</Value>
+  </LocaleResource>
+  <LocaleResource Name="UploadSpeedLimit">
+    <Value>محدودیت سرعت آپلود</Value>
+  </LocaleResource>
+  <!--======================Messages Ehsan EM===========================-->
+  <LocaleResource Name="JustEnglish">
+    <Value>تمامی مقادیر را انگلیسی تکمیل کنید.</Value>
+  </LocaleResource>
+  <LocaleResource Name="ChartOfMonthAndYear">
+    <Value>نمودار یک ماه و یک سال اخیر</Value>
+  </LocaleResource>
+  <LocaleResource Name="ChartOf7LastDays">
+    <Value>نمودار 7 روز گذشته</Value>
+  </LocaleResource>
+  <LocaleResource Name="ChartOf30LastDays">
+    <Value>نمودار یک ماه گذشته</Value>
+  </LocaleResource>
+  <LocaleResource Name="ChartOf365LastDays">
+    <Value>نمودار یک سال گذشته</Value>
+  </LocaleResource>
+  <LocaleResource Name="ChartOf30LastSession">
+    <Value>نمودار 30 اتصال آخر</Value>
+  </LocaleResource>
+
   <!--======================Messages===========================-->
 
   <LocaleResource Name="AddError">
