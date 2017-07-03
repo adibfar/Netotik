@@ -3583,6 +3583,7 @@
     <Content Include="Areas\Client\Views\Home\Edit.cshtml" />
     <Content Include="Areas\Client\Views\Home\Details.cshtml" />
     <Content Include="Areas\Client\Views\Home\Charts.cshtml" />
+    <Content Include="Areas\Client\Views\Home\BuyPackage.cshtml" />
     <None Include="Properties\PublishProfiles\DNMA.pubxml" />
     <None Include="T4MVC.tt">
       <Generator>TextTemplatingFileGenerator</Generator>

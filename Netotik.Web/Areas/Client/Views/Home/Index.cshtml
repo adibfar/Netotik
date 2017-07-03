@@ -1,4 +1,203 @@
-﻿@{
+﻿@model Netotik.ViewModels.Identity.UserClient.UserModel
+@{
     ViewBag.Title = "داشتبورد";
     Layout = "~/Views/Shared/_Layout.cshtml";
+    string temp = "";
+}
+    <div class="row">
+        <div class="col-xl-6">
+            <div class="card">
+                <div class="card-body">
+                    <div class="card-block">
+                        <div class="media">
+                            <div class="media-body text-xs-left">
+                                <a style="margin-bottom:5px; margin-top:5px;" href="@Url.Action(MVC.Client.Home.Edit())" class="btn btn-float btn-float-lg btn-pink"><i class="icon-user-check"></i><span>ویرایش </span></a>
+                                <a style="margin-bottom:5px; margin-top:5px;" href="@Url.Action(MVC.Client.Home.ChangePassword())" class="btn btn-float btn-float-lg btn-pink"><i class="icon-key22"></i><span>تغییر گذرواژه</span></a>
+                                <a style="margin-bottom:5px; margin-top:5px;" href="@Url.Action(MVC.Client.Home.BuyPackage())" class="btn btn-float btn-float-lg btn-pink"><i class="icon-bag"></i><span>تغییر تعرفه</span></a>
+                                <a style="margin-bottom:5px; margin-top:5px;" href="#" class="btn btn-float btn-float-lg btn-pink"><i class="icon-office"></i><span>درباره</span></a>
+                                <a style="margin-bottom:5px; margin-top:5px;" href="#" class="btn btn-float btn-float-lg btn-pink"><i class="icon-food"></i><span>منوی غذا</span></a>
+                                <a style="margin-bottom:5px; margin-top:5px;" href="@Url.Action(MVC.Client.Home.Details())" class="btn btn-float btn-float-lg btn-pink"><i class="icon-line-chart"></i><span>جزئیات</span></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-3">
+            <div class="card bg-deep-orange">
+                <div class="card-body">
+                    <div class="card-block">
+                        <div class="media">
+                            <div class="media-body white text-xs-left">
+                                <h3>اعتبار زمانی</h3>
+                                <span>تا تاریخ:@ViewBag.RemianTime</span><br/>
+                                <span>اتصال:@ViewBag.RemianUpTime</span>
+                            </div>
+                            <div class="media-right media-middle">
+                                <i class="icon-ios-time white font-large-2 float-xs-right"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-xl-3">
+            <div class="card bg-green">
+                <div class="card-body">
+                    <div class="card-block">
+                        <div class="media">
+                            <div class="media-body white text-xs-left">
+                                <h3>نام تعرفه</h3>
+                                <span>@Html.DisplayTextFor(m=>m.actual_profile)</span><br/>
+                                <span class="small_text">انتساب:@(ViewBag.StartTime)</span>
+                            </div>
+                            <div class="media-right media-middle">
+                                <i class="icon-bag white font-large-2 float-xs-right"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+    </div>
+<div class="row">
+    <div class="col-xl-4">
+        <div class="card">
+            <div class="card-body">
+                <div class="card-block text-xs-center">
+                    <div class="card-header mb-1">
+                        <span class="deep-orange darken-1">کل </span>
+                        <h3 class="font-large-1 grey darken-1 text-bold-200">@(ulong.Parse(ViewBag.TransferLimit.ToString()) / 1048576) MB</h3>
+                    </div>
+                    <div class="card-body">
+                        <div class="text-xs-center">
+                            <input type="text" value="@(((ulong.Parse(ViewBag.TransferRemain.ToString()) / 1048576)*100)/(ulong.Parse(ViewBag.TransferLimit.ToString()) / 1048576))" class="knob angle-offset-arc" data-angleOffset="-125" data-angleArc="250" data-rotation="anticlockwise" data-fgColor="#008000" data-readOnly="true">
+                        </div>
+
+
+                        <ul class="list-inline clearfix mt-2 mb-0">
+                            <li class="border-right-grey border-right-lighten-2 pr-2">
+                                <h2 class="grey darken-1 text-bold-400">@(ulong.Parse(ViewBag.TransferUsed.ToString()) / 1048576) MB</h2>
+                                <span class="deep-orange">استفاده شده</span>
+                            </li>
+                            <li class="pl-2">
+                                <h2 class="grey darken-1 text-bold-400">@(ulong.Parse(ViewBag.TransferRemain.ToString()) / 1048576) MB</h2>
+                                <span class="danger">باقیمانده</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-xl-8">
+        <div class="card">
+            <div class="card-body">
+                <div class="card-block sales-growth-chart">
+                    <canvas id="column-chart" height="300"></canvas>
+                </div>
+            </div>
+            <div class="card-footer">
+                <div class="chart-title mb-1 text-xs-center">
+                    <span class="text-muted">آخرین اتصالات</span>
+                </div>
+                <div class="chart-stats text-xs-center">
+                    <a href="#" class="btn btn-sm btn-primary mr-1">جزئیات مصرف <i class="icon-stats-bars"></i></a> <span class="text-muted">نمودار یک ماه و یک سال اخیر</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</div>
+@section DownScript{
+    <script src="~/Content/js/plugins/charts/chart.min.js" type="text/javascript"></script>
+
+    <script src="~/Content/js/plugins/extensions/jquery.knob.min.js" type="text/javascript"></script>
+    <script src="~/Content/js/components/extensions/knob.js" type="text/javascript"></script>
+
+
+    <script type="text/javascript">
+        $(window).on("load", function () {
+            var a = $("#column-chart"),
+                b = {
+                    elements: {
+                        rectangle: {
+                            borderWidth: 2,
+                            borderColor: "rgb(0, 255, 0)",
+                            borderSkipped: "bottom"
+                        }
+                    },
+                    responsive: !0,
+                    maintainAspectRatio: !1,
+                    responsiveAnimationDuration: 500,
+                    legend: {
+                        position: "top"
+                    },
+                    scales: {
+                        xAxes: [{
+                            display: !0,
+                            gridLines: {
+                                color: "#f3f3f3",
+                                drawTicks: !1
+                            },
+                            scaleLabel: {
+                                display: !0
+                            }
+                        }],
+                        yAxes: [{
+                            display: !0,
+                            gridLines: {
+                                color: "#f3f3f3",
+                                drawTicks: !1
+                            },
+                            scaleLabel: {
+                                display: !0
+                            }
+                        }]
+                    },
+                    title: {
+                        display: !0,
+                        text: "مصرف 7 روز آخر"
+                    }
+                },
+                c = {
+                    labels: ["1روزقبل", "2روزقبل", "3روزقبل", "4روزقبل", "5روزقبل", "6روزقبل", "7روزقبل"],
+                    datasets: [{
+                        label: "دانلود MB",
+                        data: [
+                            @foreach(var downloadvalue in ViewBag.DownloadChartValues.Values)
+                        {
+                            temp = downloadvalue.ToString() + " , ";
+                            @(temp)
+                        }
+                        ],
+                        backgroundColor: "#673AB7",
+                        hoverBackgroundColor: "rgba(103,58,183,.9)",
+                        borderColor: "transparent"
+                    }, {
+                        label: "آپلود MB",
+                        data: [
+                            @foreach(var uploadvalue in ViewBag.UploadChartValues.Values)
+        {
+            temp = uploadvalue.ToString() + " , ";
+                            @(temp)
+        }
+                        ],
+                        backgroundColor: "#E91E63",
+                        hoverBackgroundColor: "rgba(233,30,99,.9)",
+                        borderColor: "transparent"
+                    }]
+                },
+                d = {
+                    type: "bar",
+                    options: b,
+                    data: c
+                };
+            new Chart(a, d)
+        });
+    </script>
 }

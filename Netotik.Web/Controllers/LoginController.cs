@@ -222,13 +222,13 @@ namespace Netotik.Web.Controllers
 
 
         [AllowAnonymous]
-        [Route("{lang}/Client/{CompanyCode}")]
+        [Route("{lang}/User/{CompanyCode}")]
         public virtual async Task<ActionResult> Client(string ReturnUrl, string CompanyCode)
         {
             if (User.Identity.IsAuthenticated && _applicationRoleManager.FindUserPermissions(long.Parse(User.Identity.GetUserId())).Any(x => x == "Client"))
                 return RedirectToAction(MVC.Client.Home.Index());
 
-            var reseller = await _applicationUserManager.FindByResellerCodeAsync(CompanyCode);
+            var reseller = await _applicationUserManager.FindByCompanyCodeAsync(CompanyCode);
             if (reseller == null) return HttpNotFound();
 
             ViewBag.CompanyName = CompanyCode;
@@ -239,8 +239,8 @@ namespace Netotik.Web.Controllers
         [AllowAnonymous]
         [HttpPost]
         [ValidateAntiForgeryToken]
-        [Route("{lang}/Client/{CompanyCode}")]
-        public virtual async Task<ActionResult> Client(Netotik.ViewModels.Identity.UserCompany.LoginModel model, string ReturnUrl, string CompanyCode)
+        [Route("{lang}/User/{CompanyCode}")]
+        public virtual async Task<ActionResult> Client(Netotik.ViewModels.Identity.UserClient.LoginModel model, string ReturnUrl, string CompanyCode)
         {
             ViewBag.CompanyName = CompanyCode;
             ViewBag.ReturnUrl = ReturnUrl;
@@ -279,10 +279,11 @@ namespace Netotik.Web.Controllers
                 return View(model);
             }
 
+
             var loginedUser = new User()
             {
-                Id = long.Parse(user.id),
-                UserName = user.username,
+                Id = 4,
+                UserName = user.id,
                 Email = user.email,
                 UserType = UserType.Client,
                 UserCompany = new UserCompany()
@@ -302,6 +303,11 @@ namespace Netotik.Web.Controllers
                 }
             };
 
+            Session["id"] = user.id;
+            Session["R_Host"] = company.UserCompany.R_Host;
+            Session["R_Password"] = company.UserCompany.R_Password;
+            Session["R_Port"] = company.UserCompany.R_Port;
+            Session["R_User"] = company.UserCompany.R_User;
             await _applicationSignInManager.SignInAsync(loginedUser, false, false);
 
             return RedirectToAction(MVC.Client.Home.Index());

@@ -31,7 +31,7 @@ namespace Netotik.Web
             FilterProviders.Providers.Add(ProjectObjectFactory.Container.GetInstance<StructureMapFilterProvider>());
 
             //Database.SetInitializer<ApplicationDbContext>(null);
-            //Database.SetInitializer<NetotikDBContext>(new MigrateDatabaseToLatestVersion<NetotikDBContext, Configuration>());
+            Database.SetInitializer<NetotikDBContext>(new MigrateDatabaseToLatestVersion<NetotikDBContext, Configuration>());
             //           ProjectObjectFactory.Container.GetInstance<IUnitOfWork>().ForceDatabaseInitialize();
 
             var defaultJsonFactory = ValueProviderFactories.Factories

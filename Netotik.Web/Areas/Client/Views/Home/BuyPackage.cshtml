@@ -1,0 +1,45 @@
+﻿@model Netotik.ViewModels.Identity.UserClient.UserEditModel
+@{
+    ViewBag.Title = " خرید بسته ";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<section class="flexbox-container">
+    <div class="row">
+        <div class="col-md-12">
+            @using (Html.BeginForm(MVC.Client.Home.ActionNames.BuyPackage, MVC.Client.Home.Name, FormMethod.Post,
+                                                                    htmlAttributes: new { @class = "form cmxform form-horizontal tasi-form", enctype = "multipart/form-data", id = "form" }))
+            {
+                @Html.AntiForgeryToken()
+                <div class="card">
+                    <div class="card-header">
+                        <a value="بازگشت" class="btn btn-social btn-instagram" href="@Url.Action(MVC.Client.Home.Index())">
+                            <span class="icon-reply font-medium-4"></span>
+                            بازگشت
+                        </a>
+                        <button name="actionType" value="@Netotik.Common.Controller.ActionType.Save" class="btn btn-social width-100 btn-instagram" onclick="AjaxForm.Post(this, 'form')" data-loading-text="در حال ارسال اطلاعات">
+                            <span class="icon-checkmark2 font-medium-4"></span>
+                            @Netotik.Resources.Captions.Save
+                        </button>
+                    </div>
+                    @Html.HiddenFor(model=>model.id)
+                    <div class="card-body">
+                        <div class="card-block">
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <label class="font-noraml">انتخاب تعرفه</label>
+                                    <select id="profile" name="profile" data-placeholder="انتخاب تعرفه" class="selectize-select" style="min-width:350px;" tabindex="2">
+                                        @foreach (var item in ViewBag.profiles)
+                                        {
+                                            <option value="@item.name">@item.name</option>
+                                        }
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</section>
+
