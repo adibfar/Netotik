@@ -4,64 +4,64 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
     string temp = "";
 }
-    <div class="row">
-        <div class="col-xl-6">
-            <div class="card">
-                <div class="card-body">
-                    <div class="card-block">
-                        <div class="media">
-                            <div class="media-body text-xs-left">
-                                <a style="margin-bottom:5px; margin-top:5px;" href="@Url.Action(MVC.Client.Home.Edit())" class="btn btn-float btn-float-lg btn-pink"><i class="icon-user-check"></i><span>@Netotik.Resources.Captions.Edit </span></a>
-                                <a style="margin-bottom:5px; margin-top:5px;" href="@Url.Action(MVC.Client.Home.ChangePassword())" class="btn btn-float btn-float-lg btn-pink"><i class="icon-key22"></i><span>@Netotik.Resources.Captions.ChangePassword</span></a>
-                                <a style="margin-bottom:5px; margin-top:5px;" href="@Url.Action(MVC.Client.Home.BuyPackage())" class="btn btn-float btn-float-lg btn-pink"><i class="icon-bag"></i><span>@Netotik.Resources.Captions.ChangePackage</span></a>
-                                <a style="margin-bottom:5px; margin-top:5px;" href="#" class="btn btn-float btn-float-lg btn-pink"><i class="icon-office"></i><span>@Netotik.Resources.Captions.About</span></a>
-                                <a style="margin-bottom:5px; margin-top:5px;" href="#" class="btn btn-float btn-float-lg btn-pink"><i class="icon-food"></i><span>@Netotik.Resources.Captions.FoodMenu</span></a>
-                                <a style="margin-bottom:5px; margin-top:5px;" href="@Url.Action(MVC.Client.Home.Details())" class="btn btn-float btn-float-lg btn-pink"><i class="icon-line-chart"></i><span>@Netotik.Resources.Captions.Details</span></a>
-                            </div>
+<div class="row">
+    <div class="col-xl-6">
+        <div class="card">
+            <div class="card-body">
+                <div class="card-block">
+                    <div class="media">
+                        <div class="media-body text-xs-left">
+                            <a style="margin-bottom:5px; margin-top:5px;" href="@Url.Action(MVC.Client.Home.Edit())" class="btn btn-float btn-float-lg btn-pink"><i class="icon-user-check"></i><span>@Netotik.Resources.Captions.Edit </span></a>
+                            <a style="margin-bottom:5px; margin-top:5px;" href="@Url.Action(MVC.Client.Home.ChangePassword())" class="btn btn-float btn-float-lg btn-pink"><i class="icon-key22"></i><span>@Netotik.Resources.Captions.ChangePassword</span></a>
+                            <a style="margin-bottom:5px; margin-top:5px;" href="@Url.Action(MVC.Client.Home.BuyPackage())" class="btn btn-float btn-float-lg btn-pink"><i class="icon-bag"></i><span>@Netotik.Resources.Captions.ChangePackage</span></a>
+                            <a style="margin-bottom:5px; margin-top:5px;" href="#" class="btn btn-float btn-float-lg btn-pink"><i class="icon-office"></i><span>@Netotik.Resources.Captions.About</span></a>
+                            <a style="margin-bottom:5px; margin-top:5px;" href="#" class="btn btn-float btn-float-lg btn-pink"><i class="icon-food"></i><span>@Netotik.Resources.Captions.FoodMenu</span></a>
+                            <a style="margin-bottom:5px; margin-top:5px;" href="@Url.Action(MVC.Client.Home.Details())" class="btn btn-float btn-float-lg btn-pink"><i class="icon-line-chart"></i><span>@Netotik.Resources.Captions.Details</span></a>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="col-xl-3">
-            <div class="card bg-deep-orange">
-                <div class="card-body">
-                    <div class="card-block">
-                        <div class="media">
-                            <div class="media-body white text-xs-left">
-                                <h3>@Netotik.Resources.Captions.TimeValidity</h3>
-                                <span>@Netotik.Resources.Captions.TillDate:@ViewBag.RemianTime</span><br/>
-                                <span>@Netotik.Resources.Captions.Online:@ViewBag.RemianUpTime</span>
-                            </div>
-                            <div class="media-right media-middle">
-                                <i class="icon-ios-time white font-large-2 float-xs-right"></i>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="col-xl-3">
-            <div class="card bg-green">
-                <div class="card-body">
-                    <div class="card-block">
-                        <div class="media">
-                            <div class="media-body white text-xs-left">
-                                <h3>@Netotik.Resources.Captions.PackageName</h3>
-                                <span>@Html.DisplayTextFor(m=>m.actual_profile)</span><br/>
-                                <span class="small_text">@Netotik.Resources.Captions.Enrollment:@(ViewBag.StartTime)</span>
-                            </div>
-                            <div class="media-right media-middle">
-                                <i class="icon-bag white font-large-2 float-xs-right"></i>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        
     </div>
+    <div class="col-xl-3">
+        <div class="card bg-deep-orange">
+            <div class="card-body">
+                <div class="card-block">
+                    <div class="media">
+                        <div class="media-body white text-xs-left">
+                            <h3>@Netotik.Resources.Captions.TimeValidity</h3>
+                            <span>@Netotik.Resources.Captions.TillDate:@ViewBag.RemianTime</span><br />
+                            <span>@Netotik.Resources.Captions.Online:@ViewBag.RemianUpTime</span>
+                        </div>
+                        <div class="media-right media-middle">
+                            <i class="icon-ios-time white font-large-2 float-xs-right"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-xl-3">
+        <div class="card bg-green">
+            <div class="card-body">
+                <div class="card-block">
+                    <div class="media">
+                        <div class="media-body white text-xs-left">
+                            <h3>@Netotik.Resources.Captions.PackageName</h3>
+                            <span>@Html.DisplayTextFor(m => m.actual_profile)</span><br />
+                            <span class="small_text">@Netotik.Resources.Captions.Enrollment:@(ViewBag.StartTime)</span>
+                        </div>
+                        <div class="media-right media-middle">
+                            <i class="icon-bag white font-large-2 float-xs-right"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
 <div class="row">
     <div class="col-xl-4">
         <div class="card">
@@ -69,21 +69,49 @@
                 <div class="card-block text-xs-center">
                     <div class="card-header mb-1">
                         <span class="deep-orange darken-1">@Netotik.Resources.Captions.All</span>
-                        <h3 class="font-large-1 grey darken-1 text-bold-200">@(ulong.Parse(ViewBag.TransferLimit.ToString()) / 1048576) MB</h3>
+                        @if (ulong.Parse(ViewBag.TransferLimit.ToString()) < 0)
+                        {
+                            <h3 class="font-large-1 grey darken-1 text-bold-200">@(ulong.Parse(ViewBag.TransferLimit.ToString()) / 1048576) MB</h3>
+                        }
+                        else
+                        {
+                            <h3 class="font-large-1 grey darken-1 text-bold-200">0 MB</h3>
+                        }
                     </div>
                     <div class="card-body">
                         <div class="text-xs-center">
-                            <input type="text" value="@(((ulong.Parse(ViewBag.TransferRemain.ToString()) / 1048576)*100)/(ulong.Parse(ViewBag.TransferLimit.ToString()) / 1048576))" class="knob angle-offset-arc" data-angleOffset="-125" data-angleArc="250" data-rotation="anticlockwise" data-fgColor="#008000" data-readOnly="true">
+                            @if (ulong.Parse(ViewBag.TransferRemain.ToString()) < 0 || ulong.Parse(ViewBag.TransferLimit.ToString()) < 0)
+                            {
+                                <input type="text" value="@(((ulong.Parse(ViewBag.TransferRemain.ToString())) * 100) / (ulong.Parse(ViewBag.TransferLimit.ToString())))" class="knob angle-offset-arc" data-angleOffset="-125" data-angleArc="250" data-rotation="anticlockwise" data-fgColor="#008000" data-readOnly="true">
+                            }
+                            else
+                            {
+                                <input type="text" value="0" class="knob angle-offset-arc" data-angleOffset="-125" data-angleArc="250" data-rotation="anticlockwise" data-fgColor="#008000" data-readOnly="true">
+                            }
                         </div>
 
 
                         <ul class="list-inline clearfix mt-2 mb-0">
                             <li class="border-right-grey border-right-lighten-2 pr-2">
-                                <h2 class="grey darken-1 text-bold-400">@(ulong.Parse(ViewBag.TransferUsed.ToString()) / 1048576) MB</h2>
+                                @if (ulong.Parse(ViewBag.TransferUsed.ToString()) < 0)
+                                {
+                                    <h2 class="grey darken-1 text-bold-400">@(ulong.Parse(ViewBag.TransferUsed.ToString()) / 1048576) MB</h2>
+                                }
+                                else
+                                {
+                                    <h2 class="grey darken-1 text-bold-400">0 MB</h2>
+                                }
                                 <span class="deep-orange">@Netotik.Resources.Captions.Used</span>
                             </li>
                             <li class="pl-2">
-                                <h2 class="grey darken-1 text-bold-400">@(ulong.Parse(ViewBag.TransferRemain.ToString()) / 1048576) MB</h2>
+                                @if (ulong.Parse(ViewBag.TransferRemain.ToString()) < 0)
+                                {
+                                    <h2 class="grey darken-1 text-bold-400">@(ulong.Parse(ViewBag.TransferRemain.ToString()) / 1048576) MB</h2>
+                                }
+                                else
+                                {
+                                    <h2 class="grey darken-1 text-bold-400">0 MB</h2>
+                                }
                                 <span class="danger">@Netotik.Resources.Captions.Remain</span>
                             </li>
                         </ul>

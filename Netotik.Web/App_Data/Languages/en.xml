@@ -300,11 +300,211 @@
 
 
   <!--======================Fields Ehsan EM===========================-->
-
-
-
+  <LocaleResource Name="ChangePackage">
+    <Value>Change Package</Value>
+  </LocaleResource>
+  <LocaleResource Name="About">
+    <Value>About</Value>
+  </LocaleResource>
+  <LocaleResource Name="FoodMenu">
+    <Value>Food Menu</Value>
+  </LocaleResource>
+  <LocaleResource Name="Details">
+    <Value>Details</Value>
+  </LocaleResource>
+  <LocaleResource Name="TimeValidity">
+    <Value>Time Validity</Value>
+  </LocaleResource>
+  <LocaleResource Name="TillDate">
+    <Value>Till Date</Value>
+  </LocaleResource>
+  <LocaleResource Name="Online">
+    <Value>Online</Value>
+  </LocaleResource>
+  <LocaleResource Name="PackageName">
+    <Value>Package Name</Value>
+  </LocaleResource>
+  <LocaleResource Name="Enrollment">
+    <Value>Enrollment</Value>
+  </LocaleResource>
+  <LocaleResource Name="All">
+    <Value>All</Value>
+  </LocaleResource>
+  <LocaleResource Name="Used">
+    <Value>Used</Value>
+  </LocaleResource>
+  <LocaleResource Name="Remain">
+    <Value>Remain</Value>
+  </LocaleResource>
+  <LocaleResource Name="ConnectionHistory">
+    <Value>Connection History</Value>
+  </LocaleResource>
+  <LocaleResource Name="ConnectionDetails">
+    <Value>Connection Details</Value>
+  </LocaleResource>
+  <LocaleResource Name="OneDayAgo">
+    <Value>Yesterday</Value>
+  </LocaleResource>
+  <LocaleResource Name="TwoDayAgo">
+    <Value>Two Days Ago</Value>
+  </LocaleResource>
+  <LocaleResource Name="ThreeDayAgo">
+    <Value>Three Days Ago</Value>
+  </LocaleResource>
+  <LocaleResource Name="FourDayAgo">
+    <Value>Four Days Ago</Value>
+  </LocaleResource>
+  <LocaleResource Name="FiveDayAgo">
+    <Value>Five Days Ago</Value>
+  </LocaleResource>
+  <LocaleResource Name="SixDayAgo">
+    <Value>Six Days Ago</Value>
+  </LocaleResource>
+  <LocaleResource Name="SevenDayAgo">
+    <Value>Seven Days Ago</Value>
+  </LocaleResource>
+  <LocaleResource Name="Download">
+    <Value>Download</Value>
+  </LocaleResource>
+  <LocaleResource Name="Upload">
+    <Value>Upload</Value>
+  </LocaleResource>
+  <LocaleResource Name="MakeCard">
+    <Value>Make Card</Value>
+  </LocaleResource>
+  <LocaleResource Name="BuyPackage">
+    <Value>Buy Package</Value>
+  </LocaleResource>
+  <LocaleResource Name="SelectPackage">
+    <Value>Select Package</Value>
+  </LocaleResource>
+  <LocaleResource Name="Charts">
+    <Value>Cahrts</Value>
+  </LocaleResource>
+  <LocaleResource Name="Properties">
+    <Value>Properties</Value>
+  </LocaleResource>
+  <LocaleResource Name="Connections">
+    <Value>Connection</Value>
+  </LocaleResource>
+  <LocaleResource Name="Time">
+    <Value>Time</Value>
+  </LocaleResource>
+  <LocaleResource Name="Traffic">
+    <Value>Traffic</Value>
+  </LocaleResource>
+  <LocaleResource Name="PrintReport">
+    <Value>Print Report</Value>
+  </LocaleResource>
+  <LocaleResource Name="Secend">
+    <Value>Secend</Value>
+  </LocaleResource>
+  <LocaleResource Name="Minute">
+    <Value>Minute</Value>
+  </LocaleResource>
+  <LocaleResource Name="Hour">
+    <Value>Hour</Value>
+  </LocaleResource>
+  <LocaleResource Name="Day">
+    <Value>Day</Value>
+  </LocaleResource>
+  <LocaleResource Name="Week">
+    <Value>Week</Value>
+  </LocaleResource>
+  <LocaleResource Name="Month">
+    <Value>Month</Value>
+  </LocaleResource>
+  <LocaleResource Name="DownloadTrafficLimit">
+    <Value>Download Limit</Value>
+  </LocaleResource>
+  <LocaleResource Name="UploadTrafficLimit">
+    <Value>Upload Limit</Value>
+  </LocaleResource>
+  <LocaleResource Name="DownloadUploadTrafficLimit">
+    <Value>Download + Upload Limit</Value>
+  </LocaleResource>
+  <LocaleResource Name="TrafficRemain">
+    <Value>Traffic Remain</Value>
+  </LocaleResource>
+  <LocaleResource Name="DownloadSpeedLimit">
+    <Value>Download Speed</Value>
+  </LocaleResource>
+  <LocaleResource Name="UploadSpeedLimit">
+    <Value>Upload Speed</Value>
+  </LocaleResource>
+  <LocaleResource Name="ShowAll">
+    <Value>Show All</Value>
+  </LocaleResource>
+  <LocaleResource Name="Hide">
+    <Value>Hide</Value>
+  </LocaleResource>
+  <LocaleResource Name="EditTable">
+    <Value>Edit Table</Value>
+  </LocaleResource>
+  <LocaleResource Name="Error">
+    <Value>Error</Value>
+  </LocaleResource>
+  <LocaleResource Name="Inaccessible">
+    <Value>Inaccessible</Value>
+  </LocaleResource>
+  <LocaleResource Name="Saturday">
+    <Value>Saturday</Value>
+  </LocaleResource>
+  <LocaleResource Name="Sunday">
+    <Value>Sunday</Value>
+  </LocaleResource>
+  <LocaleResource Name="Monday">
+    <Value>Monday</Value>
+  </LocaleResource>
+  <LocaleResource Name="Tuesday">
+    <Value>Tuesday</Value>
+  </LocaleResource>
+  <LocaleResource Name="Wednesday">
+    <Value>Wednesday</Value>
+  </LocaleResource>
+  <LocaleResource Name="Thursday">
+    <Value>Thursday</Value>
+  </LocaleResource>
+  <LocaleResource Name="Friday">
+    <Value>Friday</Value>
+  </LocaleResource>
+  <LocaleResource Name="NoConnection">
+    <Value>No Connection</Value>
+  </LocaleResource>
+  <LocaleResource Name="Unlimited">
+    <Value>Unlimited</Value>
+  </LocaleResource>
+  <LocaleResource Name="Approximate">
+    <Value>Approximate</Value>
+  </LocaleResource>
   <!--======================Messages Ehsan EM===========================-->
-
+  <LocaleResource Name="JustEnglish">
+    <Value>Just Fill Field with English Character</Value>
+  </LocaleResource>
+  <LocaleResource Name="ChartOfMonthAndYear">
+    <Value>Chart Of Last Month and Year</Value>
+  </LocaleResource>
+  <LocaleResource Name="ChartOf7LastDays">
+    <Value>Chart Of Last 7 Days</Value>
+  </LocaleResource>
+  <LocaleResource Name="ChartOf30LastDays">
+    <Value>Chart Of Last 30 Days</Value>
+  </LocaleResource>
+  <LocaleResource Name="ChartOf365LastDays">
+    <Value>Chart Of Last Year</Value>
+  </LocaleResource>
+  <LocaleResource Name="ChartOf30LastSession">
+    <Value>Chart Of Last 30 Session</Value>
+  </LocaleResource>
+  <LocaleResource Name="IPPORTClientError">
+    <Value>IP Or Port Error</Value>
+  </LocaleResource>
+  <LocaleResource Name="UserPasswordClientError">
+    <Value>Router User Or Password Error</Value>
+  </LocaleResource>
+  <LocaleResource Name="UsermanagerClientError">
+    <Value>Router UserManager Error</Value>
+  </LocaleResource>
 
 
 

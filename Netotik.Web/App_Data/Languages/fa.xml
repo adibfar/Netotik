@@ -874,40 +874,40 @@
   <LocaleResource Name="EditTable">
     <Value>ویرایش جدول</Value>
   </LocaleResource>
-    <LocaleResource Name="Error">
+  <LocaleResource Name="Error">
     <Value>خطا</Value>
   </LocaleResource>
-      <LocaleResource Name="Inaccessible">
+  <LocaleResource Name="Inaccessible">
     <Value>غیرفابل دسترس</Value>
   </LocaleResource>
-        <LocaleResource Name="Saturday">
+  <LocaleResource Name="Saturday">
     <Value>شنبه</Value>
   </LocaleResource>
-          <LocaleResource Name="Sunday">
+  <LocaleResource Name="Sunday">
     <Value>یک شنبه</Value>
   </LocaleResource>
-          <LocaleResource Name="Monday">
+  <LocaleResource Name="Monday">
     <Value>دوشنبه</Value>
   </LocaleResource>
-          <LocaleResource Name="Tuesday">
+  <LocaleResource Name="Tuesday">
     <Value>سه شنبه</Value>
   </LocaleResource>
-          <LocaleResource Name="Wednesday">
+  <LocaleResource Name="Wednesday">
     <Value>چهارشنبه</Value>
   </LocaleResource>
-          <LocaleResource Name="Thursday">
+  <LocaleResource Name="Thursday">
     <Value>پنج شنبه</Value>
   </LocaleResource>
-          <LocaleResource Name="Friday">
+  <LocaleResource Name="Friday">
     <Value>جمعه</Value>
   </LocaleResource>
-            <LocaleResource Name="NoConnection">
+  <LocaleResource Name="NoConnection">
     <Value>بدون اتصال</Value>
   </LocaleResource>
-              <LocaleResource Name="Unlimited">
+  <LocaleResource Name="Unlimited">
     <Value>نامحدود</Value>
   </LocaleResource>
-                <LocaleResource Name="Approximate">
+  <LocaleResource Name="Approximate">
     <Value>تقریبی</Value>
   </LocaleResource>
   <!--======================Messages Ehsan EM===========================-->
@@ -932,10 +932,10 @@
   <LocaleResource Name="IPPORTClientError">
     <Value>لطفا با مدیرشبکه تماس بگیرید.خطای عدم دسترسی یا IP ویا Port</Value>
   </LocaleResource>
-    <LocaleResource Name="UserPasswordClientError">
+  <LocaleResource Name="UserPasswordClientError">
     <Value>لطفا با مدیرشبکه تماس بگیرید.خطای نام کاربری و رمز عبور</Value>
   </LocaleResource>
-      <LocaleResource Name="UsermanagerClientError">
+  <LocaleResource Name="UsermanagerClientError">
     <Value>لطفا با مدیرشبکه تماس بگیرید.خطای یوزرمنیجر</Value>
   </LocaleResource>
   <!--======================Messages===========================-->
