@@ -3005,7 +3005,133 @@ namespace Netotik.Resources
                 return resourceProvider.GetResource("DownloadTrafficLimit", CultureInfo.CurrentUICulture.Name) as string;
             }
         }
+        public static string ShowAll
+        {
+            get
+            {
+                return resourceProvider.GetResource("ShowAll", CultureInfo.CurrentUICulture.Name) as string;
+            }
+        }
+        public static string Hide
+        {
+            get
+            {
+                return resourceProvider.GetResource("Hide", CultureInfo.CurrentUICulture.Name) as string;
+            }
+        }
+        public static string EditTable
+        {
+            get
+            {
+                return resourceProvider.GetResource("EditTable", CultureInfo.CurrentUICulture.Name) as string;
+            }
+        }
+        public static string Error
+        {
+            get
+            {
+                return resourceProvider.GetResource("Error", CultureInfo.CurrentUICulture.Name) as string;
+            }
+        }
+        public static string IPPORTClientError
+        {
+            get
+            {
+                return resourceProvider.GetResource("IPPORTClientError", CultureInfo.CurrentUICulture.Name) as string;
+            }
+        }
+        public static string UserPasswordClientError
+        {
+            get
+            {
+                return resourceProvider.GetResource("UserPasswordClientError", CultureInfo.CurrentUICulture.Name) as string;
+            }
+        }
+        public static string UsermanagerClientError
+        {
+            get
+            {
+                return resourceProvider.GetResource("UsermanagerClientError", CultureInfo.CurrentUICulture.Name) as string;
+            }
+        }
+        public static string Inaccessible
+        {
+            get
+            {
+                return resourceProvider.GetResource("Inaccessible", CultureInfo.CurrentUICulture.Name) as string;
+            }
+        }
 
+        public static string Saturday
+        {
+            get
+            {
+                return resourceProvider.GetResource("Saturday", CultureInfo.CurrentUICulture.Name) as string;
+            }
+        }
+        public static string Sunday
+        {
+            get
+            {
+                return resourceProvider.GetResource("Sunday", CultureInfo.CurrentUICulture.Name) as string;
+            }
+        }
+        public static string Monday
+        {
+            get
+            {
+                return resourceProvider.GetResource("Monday", CultureInfo.CurrentUICulture.Name) as string;
+            }
+        }
+        public static string Tuesday
+        {
+            get
+            {
+                return resourceProvider.GetResource("Tuesday", CultureInfo.CurrentUICulture.Name) as string;
+            }
+        }
+        public static string Wednesday
+        {
+            get
+            {
+                return resourceProvider.GetResource("Wednesday", CultureInfo.CurrentUICulture.Name) as string;
+            }
+        }
+        public static string Thursday
+        {
+            get
+            {
+                return resourceProvider.GetResource("Thursday", CultureInfo.CurrentUICulture.Name) as string;
+            }
+        }
+        public static string Friday
+        {
+            get
+            {
+                return resourceProvider.GetResource("Friday", CultureInfo.CurrentUICulture.Name) as string;
+            }
+        }
+        public static string NoConnection
+        {
+            get
+            {
+                return resourceProvider.GetResource("NoConnection", CultureInfo.CurrentUICulture.Name) as string;
+            }
+        }
+        public static string Unlimited
+        {
+            get
+            {
+                return resourceProvider.GetResource("Unlimited", CultureInfo.CurrentUICulture.Name) as string;
+            }
+        }
+        public static string Approximate
+        {
+            get
+            {
+                return resourceProvider.GetResource("Approximate", CultureInfo.CurrentUICulture.Name) as string;
+            }
+        }
         //<!--======================Messages Ehsan EM===========================-->
 
 

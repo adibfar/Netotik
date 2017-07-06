@@ -45,7 +45,6 @@ namespace Netotik.Web.Areas.Client.Controllers
             IApplicationUserManager applicationUserManager,
             IUnitOfWork uow)
         {
-            var loginedUser = Session["Client"] as User;
             _mikrotikServices = mikrotikServices;
             _pictureService = pictureservice;
             _applicationUserManager = applicationUserManager;
@@ -54,30 +53,30 @@ namespace Netotik.Web.Areas.Client.Controllers
         #endregion
 
         #region Index
-
         public virtual ActionResult Index()
         {
+            var loginedUser = Session["Client"] as User;
 
-            if (!_mikrotikServices.IP_Port_Check("192.168.2.1", 8728, "ehsan6830", "1234"))
+            if (!_mikrotikServices.IP_Port_Check(loginedUser.UserCompany.R_Host, loginedUser.UserCompany.R_Port, loginedUser.UserCompany.R_User, loginedUser.UserCompany.R_Password))
             {
-                this.MessageError("خطا", "لطفا با مدیرشبکه تماس بگیرید.خطای عدم دسترسی یا IP ویا Port");
+                this.MessageError(Captions.Error,Captions.IPPORTClientError);
             }
-            if (!_mikrotikServices.User_Pass_Check("192.168.2.1", 8728, "ehsan6830", "1234"))
+            if (!_mikrotikServices.User_Pass_Check(loginedUser.UserCompany.R_Host, loginedUser.UserCompany.R_Port, loginedUser.UserCompany.R_User, loginedUser.UserCompany.R_Password))
             {
-                this.MessageError("خطا", "لطفا با مدیرشبکه تماس بگیرید.خطای نام کاربری و رمز عبور");
+                this.MessageError(Captions.Error, Captions.UserPasswordClientError);
             }
-            if (!_mikrotikServices.Usermanager_IsInstall("192.168.2.1", 8728, "ehsan6830", "1234"))
+            if (!_mikrotikServices.Usermanager_IsInstall(loginedUser.UserCompany.R_Host, loginedUser.UserCompany.R_Port, loginedUser.UserCompany.R_User, loginedUser.UserCompany.R_Password))
             {
-                this.MessageError("خطا", "لطفا با مدیرشبکه تماس بگیرید.خطای یوزرمنیجر");
+                this.MessageError(Captions.Error, Captions.UsermanagerClientError);
             }
-            var users = _mikrotikServices.Usermanager_GetUser("192.168.2.1", 8728, "ehsan6830", "1234", "*8");
+            var users = _mikrotikServices.Usermanager_GetUser(loginedUser.UserCompany.R_Host, loginedUser.UserCompany.R_Port, loginedUser.UserCompany.R_User, loginedUser.UserCompany.R_Password, loginedUser.UserName);
             foreach (var item in users)
-                if (item.id == "*8")
+                if (item.id == loginedUser.UserName)
                 {
-                    var session = _mikrotikServices.Usermanager_UserSession("192.168.2.1", 8728, "ehsan6830", "1234", item.username);
-                    var profile = _mikrotikServices.Usermanager_GetAllProfile("192.168.2.1", 8728, "ehsan6830", "1234");
-                    var Limition = _mikrotikServices.Usermanager_GetAllLimition("192.168.2.1", 8728, "ehsan6830", "1234");
-                    var profileLimition = _mikrotikServices.Usermanager_GetAllProfileLimition("192.168.2.1", 8728, "ehsan6830", "1234");
+                    var session = _mikrotikServices.Usermanager_UserSession(loginedUser.UserCompany.R_Host, loginedUser.UserCompany.R_Port, loginedUser.UserCompany.R_User, loginedUser.UserCompany.R_Password, item.username);
+                    var profile = _mikrotikServices.Usermanager_GetAllProfile(loginedUser.UserCompany.R_Host, loginedUser.UserCompany.R_Port, loginedUser.UserCompany.R_User, loginedUser.UserCompany.R_Password);
+                    var Limition = _mikrotikServices.Usermanager_GetAllLimition(loginedUser.UserCompany.R_Host, loginedUser.UserCompany.R_Port, loginedUser.UserCompany.R_User, loginedUser.UserCompany.R_Password);
+                    var profileLimition = _mikrotikServices.Usermanager_GetAllProfileLimition(loginedUser.UserCompany.R_Host, loginedUser.UserCompany.R_Port, loginedUser.UserCompany.R_User, loginedUser.UserCompany.R_Password);
                     var UserProfile = new Netotik.ViewModels.Identity.UserClient.ProfileModel();
                     var UserProfileLimition = new Netotik.ViewModels.Identity.UserClient.ProfileLimitionModel();
                     var UserLimition = new Netotik.ViewModels.Identity.UserClient.LimitionModel();
@@ -212,42 +211,42 @@ namespace Netotik.Web.Areas.Client.Controllers
                     mins = (((resultt % 604800) % 86400) % 3600) / 60;
                     secs = ((((resultt % 604800) % 86400) % 3600) % 60);
                     //****
-                    ViewBag.RemianUpTime += weeks != 0 ? weeks + "هفته " : "";
-                    ViewBag.RemianUpTime += days != 0 ? days + "روز " : "";
-                    ViewBag.RemianUpTime += hours != 0 ? hours + "ساعت " : "";
-                    ViewBag.RemianUpTime += mins != 0 ? mins + "دقیقه " : "";
+                    ViewBag.RemianUpTime += weeks != 0 ? weeks + Captions.Week : "";
+                    ViewBag.RemianUpTime += days != 0 ? days + Captions.Day : "";
+                    ViewBag.RemianUpTime += hours != 0 ? hours + Captions.Hour : "";
+                    ViewBag.RemianUpTime += mins != 0 ? mins + Captions.Minute : "";
                     if (ViewBag.RemianUpTime == null || ViewBag.RemianUpTime == "")
-                        ViewBag.RemianUpTime = "بدون محدودیت آنلاین بودن";
+                        ViewBag.RemianUpTime = Captions.Inaccessible;
                     //--------------------------------------------------------------------
-                    ViewBag.StartTime = (item.reg_key == null || item.reg_key == "") ? "غیره قبل دسترس": item.reg_key;
+                    ViewBag.StartTime = (item.reg_key == null || item.reg_key == "") ? Captions.Inaccessible : item.reg_key;
                     days = ValidSec / 86400;                    
-                    ViewBag.RemianTime = (item.reg_key == null || item.reg_key == "") ? "غیره قبل دسترس" : PersianDate.ConvertDate.ToFa(PersianDate.ConvertDate.ToEn(item.reg_key).AddDays(Int32.Parse(days.ToString())),"d").ToString();
-                    if (ValidSec == 0) ViewBag.RemianTime = "بدون محدودیت زمانی";
-                    if (UserProfile.starts_at == "logon" && (item.reg_key == null || item.reg_key == "")) ViewBag.StartTime += " تقریبی ";
+                    ViewBag.RemianTime = (item.reg_key == null || item.reg_key == "") ? Captions.Inaccessible : PersianDate.ConvertDate.ToFa(PersianDate.ConvertDate.ToEn(item.reg_key).AddDays(Int32.Parse(days.ToString())),"d").ToString();
+                    if (ValidSec == 0) ViewBag.RemianTime = Captions.Unlimited;
+                    if (UserProfile.starts_at == "logon" && (item.reg_key == null || item.reg_key == "")) ViewBag.StartTime += Captions.Approximate;
                     //-------------***-----------
 
                     if (item.uptime_used != null)
-                        item.uptime_used = item.uptime_used.Replace("d", " روز ").Replace("w", " هفته ").Replace("h", " ساعت ").Replace("m", " دقیقه ").Replace("s", " ثانیه ").Replace("never", " بدون اتصال ");
+                        item.uptime_used = item.uptime_used.Replace("d", Captions.Day).Replace("w", Captions.Week).Replace("h", Captions.Hour).Replace("m", Captions.Minute).Replace("s", Captions.Secend).Replace("never", Captions.NoConnection);
                     if (UserLimition.uptime_limit != null)
-                        ViewBag.uptime_limit = UserLimition.uptime_limit.Replace("d", " روز ").Replace("w", " هفته ").Replace("h", " ساعت ").Replace("m", " دقیقه ").Replace("s", " ثانیه ");
+                        ViewBag.uptime_limit = UserLimition.uptime_limit.Replace("d", Captions.Day).Replace("w", Captions.Week).Replace("h", Captions.Hour).Replace("m", Captions.Minute).Replace("s", Captions.Secend);
                     if (UserProfile.validity != null)
-                        ViewBag.validity = UserProfile.validity.Replace("d", " روز ").Replace("w", " هفته ").Replace("h", " ساعت ").Replace("m", " دقیقه ").Replace("s", " ثانیه ");
+                        ViewBag.validity = UserProfile.validity.Replace("d",Captions.Day).Replace("w", Captions.Week).Replace("h", Captions.Hour).Replace("m", Captions.Minute).Replace("s", Captions.Secend);
 
                     if (item.shared_users != null)
-                        item.shared_users = item.shared_users.Replace("unlimited", " بدون محدودیت ");
+                        item.shared_users = item.shared_users.Replace("unlimited", Captions.Unlimited);
                     ViewBag.price = UserProfile.price;
                     if (UserProfileLimition.from_time != null)
-                        ViewBag.from_time = UserProfileLimition.from_time.Replace("d", " روز ").Replace("s", " ثانیه ").Replace("m", " دقیقه ").Replace("h", " ساعت ");
+                        ViewBag.from_time = UserProfileLimition.from_time.Replace("d", Captions.Day).Replace("s", Captions.Secend).Replace("m", Captions.Minute).Replace("h", Captions.Hour);
                     if (UserProfileLimition.till_time != null)
-                        ViewBag.till_time = UserProfileLimition.till_time.Replace("d", " روز ").Replace("s", " ثانیه ").Replace("m", " دقیقه ").Replace("h", " ساعت ");
+                        ViewBag.till_time = UserProfileLimition.till_time.Replace("d", Captions.Day).Replace("s", Captions.Secend).Replace("m", Captions.Minute).Replace("h", Captions.Hour);
                     if (UserProfileLimition.weekdays != null)
-                        ViewBag.weekdays = UserProfileLimition.weekdays.Replace("friday", " جمعه ").Replace("thursday", " پنجشنبه ").Replace("wednesday", " چهارشنبه ").Replace("tuesday", " سه شنبه ").Replace("monday", " دوشنبه ").Replace("sunday", " یکشنبه ").Replace("saturday", "شنبه ");
+                        ViewBag.weekdays = UserProfileLimition.weekdays.Replace("friday",Captions.Friday).Replace("thursday", Captions.Thursday).Replace("wednesday", Captions.Wednesday).Replace("tuesday", Captions.Tuesday).Replace("monday", Captions.Monday).Replace("sunday", Captions.Sunday).Replace("saturday", Captions.Saturday);
 
                     if (item.last_seen != null)
                         if (item.last_seen == "never")
                         {
-                            item.last_seen = item.last_seen.Replace("never", " بدون اتصال ");
-                            item.last_seenT = item.last_seen.Replace("never", " بدون اتصال ");
+                            item.last_seen = item.last_seen.Replace("never", Captions.NoConnection);
+                            item.last_seenT = item.last_seen.Replace("never",Captions.NoConnection);
                         }
                         else
                         {
@@ -260,29 +259,29 @@ namespace Netotik.Web.Areas.Client.Controllers
                             item.last_seenT = last_seenT[0] + " " + last_seenT[1];
                         }
                     if (item.disabled != null)
-                        item.disabled = item.disabled.Replace("false", "فعال").Replace("true", "غیره فعال");
+                        item.disabled = item.disabled.Replace("false", Captions.Enable).Replace("true", Captions.Disable);
 
                     return View(item);
                 }
             return View();
         }
-
         #endregion
         public virtual ActionResult ChangePassword()
         {
-            if (!_mikrotikServices.IP_Port_Check("192.168.2.1", 8728, "ehsan6830", "1234"))
+            var loginedUser = Session["Client"] as User;
+            if (!_mikrotikServices.IP_Port_Check(loginedUser.UserCompany.R_Host, loginedUser.UserCompany.R_Port, loginedUser.UserCompany.R_User, loginedUser.UserCompany.R_Password))
             {
-                this.MessageError("خطا", "لطفا با مدیرشبکه تماس بگیرید.خطای عدم دسترسی یا IP ویا Port");
+                this.MessageError(Captions.Error, Captions.IPPORTClientError);
                 return RedirectToAction(MVC.Client.Home.ActionNames.Index, MVC.Client.Home.Name, new { area = MVC.Client.Name });
             }
-            if (!_mikrotikServices.User_Pass_Check("192.168.2.1", 8728, "ehsan6830", "1234"))
+            if (!_mikrotikServices.User_Pass_Check(loginedUser.UserCompany.R_Host, loginedUser.UserCompany.R_Port, loginedUser.UserCompany.R_User, loginedUser.UserCompany.R_Password))
             {
-                this.MessageError("خطا", "لطفا با مدیرشبکه تماس بگیرید.خطای نام کاربری و رمز عبور");
+                this.MessageError(Captions.Error, Captions.UserPasswordClientError);
                 return RedirectToAction(MVC.Client.Home.ActionNames.Index, MVC.Client.Home.Name, new { area = MVC.Client.Name });
             }
-            if (!_mikrotikServices.Usermanager_IsInstall("192.168.2.1", 8728, "ehsan6830", "1234"))
+            if (!_mikrotikServices.Usermanager_IsInstall(loginedUser.UserCompany.R_Host, loginedUser.UserCompany.R_Port, loginedUser.UserCompany.R_User, loginedUser.UserCompany.R_Password))
             {
-                this.MessageError("خطا", "لطفا با مدیرشبکه تماس بگیرید.خطای یوزرمنیجر");
+                this.MessageError(Captions.Error, Captions.UsermanagerClientError);
                 return RedirectToAction(MVC.Client.Home.ActionNames.Index, MVC.Client.Home.Name, new { area = MVC.Client.Name });
             }
             return View();
@@ -290,19 +289,20 @@ namespace Netotik.Web.Areas.Client.Controllers
         [HttpPost]
         public virtual ActionResult ChangePassword(ChangePasswordModel model)
         {
-            if (!_mikrotikServices.IP_Port_Check("192.168.2.1", 8728, "ehsan6830", "1234"))
+            var loginedUser = Session["Client"] as User;
+            if (!_mikrotikServices.IP_Port_Check(loginedUser.UserCompany.R_Host, loginedUser.UserCompany.R_Port, loginedUser.UserCompany.R_User, loginedUser.UserCompany.R_Password))
             {
-                this.MessageError("خطا", "لطفا با مدیرشبکه تماس بگیرید.خطای عدم دسترسی یا IP ویا Port");
+                this.MessageError(Captions.Error, Captions.IPPORTClientError);
                 return RedirectToAction(MVC.Client.Home.ActionNames.Index, MVC.Client.Home.Name, new { area = MVC.Client.Name });
             }
-            if (!_mikrotikServices.User_Pass_Check("192.168.2.1", 8728, "ehsan6830", "1234"))
+            if (!_mikrotikServices.User_Pass_Check(loginedUser.UserCompany.R_Host, loginedUser.UserCompany.R_Port, loginedUser.UserCompany.R_User, loginedUser.UserCompany.R_Password))
             {
-                this.MessageError("خطا", "لطفا با مدیرشبکه تماس بگیرید.خطای نام کاربری و رمز عبور");
+                this.MessageError(Captions.Error, Captions.UserPasswordClientError);
                 return RedirectToAction(MVC.Client.Home.ActionNames.Index, MVC.Client.Home.Name, new { area = MVC.Client.Name });
             }
-            if (!_mikrotikServices.Usermanager_IsInstall("192.168.2.1", 8728, "ehsan6830", "1234"))
+            if (!_mikrotikServices.Usermanager_IsInstall(loginedUser.UserCompany.R_Host, loginedUser.UserCompany.R_Port, loginedUser.UserCompany.R_User, loginedUser.UserCompany.R_Password))
             {
-                this.MessageError("خطا", "لطفا با مدیرشبکه تماس بگیرید.خطای یوزرمنیجر");
+                this.MessageError(Captions.Error, Captions.UsermanagerClientError);
                 return RedirectToAction(MVC.Client.Home.ActionNames.Index, MVC.Client.Home.Name, new { area = MVC.Client.Name });
             }
             if (!ModelState.IsValid)
@@ -316,33 +316,32 @@ namespace Netotik.Web.Areas.Client.Controllers
             //else
             //    this.MessageError(Captions.MissionFail, Captions.UpdateError);
 
-            _mikrotikServices.Usermanager_UserChangePassword("192.168.2.1", 8728, "ehsan6830", "1234", model, "*8");
+            _mikrotikServices.Usermanager_UserChangePassword(loginedUser.UserCompany.R_Host, loginedUser.UserCompany.R_Port, loginedUser.UserCompany.R_User, loginedUser.UserCompany.R_Password, model, loginedUser.UserName);
             return View();
         }
-
         public virtual ActionResult Edit()
         {
-
+            var loginedUser = Session["Client"] as User;
             //-------------------------------
-            if (!_mikrotikServices.IP_Port_Check("192.168.2.1", 8728, "ehsan6830", "1234"))
+            if (!_mikrotikServices.IP_Port_Check(loginedUser.UserCompany.R_Host, loginedUser.UserCompany.R_Port, loginedUser.UserCompany.R_User, loginedUser.UserCompany.R_Password))
             {
-                this.MessageError("خطا", "لطفا با مدیرشبکه تماس بگیرید.خطای عدم دسترسی یا IP ویا Port");
+                this.MessageError(Captions.Error, Captions.IPPORTClientError);
                 return RedirectToAction(MVC.Client.Home.ActionNames.Index, MVC.Client.Home.Name, new { area = MVC.Client.Name });
             }
-            if (!_mikrotikServices.User_Pass_Check("192.168.2.1", 8728, "ehsan6830", "1234"))
+            if (!_mikrotikServices.User_Pass_Check(loginedUser.UserCompany.R_Host, loginedUser.UserCompany.R_Port, loginedUser.UserCompany.R_User, loginedUser.UserCompany.R_Password))
             {
-                this.MessageError("خطا", "لطفا با مدیرشبکه تماس بگیرید.خطای نام کاربری و رمز عبور");
+                this.MessageError(Captions.Error, Captions.UserPasswordClientError);
                 return RedirectToAction(MVC.Client.Home.ActionNames.Index, MVC.Client.Home.Name, new { area = MVC.Client.Name });
             }
-            if (!_mikrotikServices.Usermanager_IsInstall("192.168.2.1", 8728, "ehsan6830", "1234"))
+            if (!_mikrotikServices.Usermanager_IsInstall(loginedUser.UserCompany.R_Host, loginedUser.UserCompany.R_Port, loginedUser.UserCompany.R_User, loginedUser.UserCompany.R_Password))
             {
-                this.MessageError("خطا", "لطفا با مدیرشبکه تماس بگیرید.خطای یوزرمنیجر");
+                this.MessageError(Captions.Error, Captions.UsermanagerClientError);
                 return RedirectToAction(MVC.Client.Home.ActionNames.Index, MVC.Client.Home.Name, new { area = MVC.Client.Name });
             }
             //-------------------------------
-            var model = _mikrotikServices.Usermanager_GetUser("192.168.2.1", 8728, "ehsan6830", "1234", "*8");
+            var model = _mikrotikServices.Usermanager_GetUser(loginedUser.UserCompany.R_Host, loginedUser.UserCompany.R_Port, loginedUser.UserCompany.R_User, loginedUser.UserCompany.R_Password, loginedUser.UserName);
             foreach (var item in model)
-                if (item.id == "*8")
+                if (item.id == loginedUser.UserName)
                 {
                     var editModel = new Netotik.ViewModels.Identity.UserClient.UserEditModel
                     {
@@ -359,29 +358,28 @@ namespace Netotik.Web.Areas.Client.Controllers
                     };
                     return View(editModel);
                 }
-            //            ViewBag.Customers = _mikrotikServices.GetAllCustomers("192.168.2.1", 8728, "ehsan6830", "1234");
+            //            ViewBag.Customers = _mikrotikServices.GetAllCustomers(loginedUser.UserCompany.R_Host, loginedUser.UserCompany.R_Port, loginedUser.UserCompany.R_User, loginedUser.UserCompany.R_Password);
             return View();
         }
-
         [ValidateAntiForgeryToken]
         [HttpPost]
         public virtual ActionResult UserEdit_Save(Netotik.ViewModels.Identity.UserClient.UserEditModel model, ActionType actionType)
         {
-
+            var loginedUser = Session["Client"] as User;
             //-------------------------------
-            if (!_mikrotikServices.IP_Port_Check("192.168.2.1", 8728, "ehsan6830", "1234"))
+            if (!_mikrotikServices.IP_Port_Check(loginedUser.UserCompany.R_Host, loginedUser.UserCompany.R_Port, loginedUser.UserCompany.R_User, loginedUser.UserCompany.R_Password))
             {
-                this.MessageError("خطا", "لطفا با مدیرشبکه تماس بگیرید.خطای عدم دسترسی یا IP ویا Port");
+                this.MessageError(Captions.Error, Captions.IPPORTClientError);
                 return RedirectToAction(MVC.Client.Home.ActionNames.Index, MVC.Client.Home.Name, new { area = MVC.Client.Name });
             }
-            if (!_mikrotikServices.User_Pass_Check("192.168.2.1", 8728, "ehsan6830", "1234"))
+            if (!_mikrotikServices.User_Pass_Check(loginedUser.UserCompany.R_Host, loginedUser.UserCompany.R_Port, loginedUser.UserCompany.R_User, loginedUser.UserCompany.R_Password))
             {
-                this.MessageError("خطا", "لطفا با مدیرشبکه تماس بگیرید.خطای نام کاربری و رمز عبور");
+                this.MessageError(Captions.Error, Captions.UserPasswordClientError);
                 return RedirectToAction(MVC.Client.Home.ActionNames.Index, MVC.Client.Home.Name, new { area = MVC.Client.Name });
             }
-            if (!_mikrotikServices.Usermanager_IsInstall("192.168.2.1", 8728, "ehsan6830", "1234"))
+            if (!_mikrotikServices.Usermanager_IsInstall(loginedUser.UserCompany.R_Host, loginedUser.UserCompany.R_Port, loginedUser.UserCompany.R_User, loginedUser.UserCompany.R_Password))
             {
-                this.MessageError("خطا", "لطفا با مدیرشبکه تماس بگیرید.خطای یوزرمنیجر");
+                this.MessageError(Captions.Error, Captions.UsermanagerClientError);
                 return RedirectToAction(MVC.Client.Home.ActionNames.Index, MVC.Client.Home.Name, new { area = MVC.Client.Name });
             }
             //-------------------------------
@@ -392,44 +390,43 @@ namespace Netotik.Web.Areas.Client.Controllers
             }
             else
             {
-                var UsermanagerUser = _mikrotikServices.Usermanager_GetUser("192.168.2.1", 8728, "ehsan6830", "1234", "*8");
-                model.customer = "admin";
+                var UsermanagerUser = _mikrotikServices.Usermanager_GetUser(loginedUser.UserCompany.R_Host, loginedUser.UserCompany.R_Port, loginedUser.UserCompany.R_User, loginedUser.UserCompany.R_Password, loginedUser.UserName);
+                model.customer = loginedUser.UserCompany.Userman_Customer;
                 model.profile = "";
                 model.password = UsermanagerUser.FirstOrDefault().password;
-                _mikrotikServices.Usermanager_UserEdit("192.168.2.1", 8728, "ehsan6830", "1234", model);
+                _mikrotikServices.Usermanager_UserEdit(loginedUser.UserCompany.R_Host, loginedUser.UserCompany.R_Port, loginedUser.UserCompany.R_User, loginedUser.UserCompany.R_Password, model);
 
                 return RedirectToAction(MVC.Client.Home.Index());
             }
         }
-
         public virtual ActionResult Details()
         {
-
+            var loginedUser = Session["Client"] as User;
             //-------------------------------
-            if (!_mikrotikServices.IP_Port_Check("192.168.2.1", 8728, "ehsan6830", "1234"))
+            if (!_mikrotikServices.IP_Port_Check(loginedUser.UserCompany.R_Host, loginedUser.UserCompany.R_Port, loginedUser.UserCompany.R_User, loginedUser.UserCompany.R_Password))
             {
-                this.MessageError("خطا", "لطفا با مدیرشبکه تماس بگیرید.خطای عدم دسترسی یا IP ویا Port");
+                this.MessageError(Captions.Error, Captions.IPPORTClientError);
                 return RedirectToAction(MVC.Client.Home.ActionNames.Index, MVC.Client.Home.Name, new { area = MVC.Client.Name });
             }
-            if (!_mikrotikServices.User_Pass_Check("192.168.2.1", 8728, "ehsan6830", "1234"))
+            if (!_mikrotikServices.User_Pass_Check(loginedUser.UserCompany.R_Host, loginedUser.UserCompany.R_Port, loginedUser.UserCompany.R_User, loginedUser.UserCompany.R_Password))
             {
-                this.MessageError("خطا", "لطفا با مدیرشبکه تماس بگیرید.خطای نام کاربری و رمز عبور");
+                this.MessageError(Captions.Error, Captions.UserPasswordClientError);
                 return RedirectToAction(MVC.Client.Home.ActionNames.Index, MVC.Client.Home.Name, new { area = MVC.Client.Name });
             }
-            if (!_mikrotikServices.Usermanager_IsInstall("192.168.2.1", 8728, "ehsan6830", "1234"))
+            if (!_mikrotikServices.Usermanager_IsInstall(loginedUser.UserCompany.R_Host, loginedUser.UserCompany.R_Port, loginedUser.UserCompany.R_User, loginedUser.UserCompany.R_Password))
             {
-                this.MessageError("خطا", "لطفا با مدیرشبکه تماس بگیرید.خطای یوزرمنیجر");
+                this.MessageError(Captions.Error, Captions.UsermanagerClientError);
                 return RedirectToAction(MVC.Client.Home.ActionNames.Index, MVC.Client.Home.Name, new { area = MVC.Client.Name });
             }
             //-------------------------------
-            var users = _mikrotikServices.Usermanager_GetUser("192.168.2.1", 8728, "ehsan6830", "1234", "*8");
+            var users = _mikrotikServices.Usermanager_GetUser(loginedUser.UserCompany.R_Host, loginedUser.UserCompany.R_Port, loginedUser.UserCompany.R_User, loginedUser.UserCompany.R_Password, loginedUser.UserName);
             foreach (var item in users)
-                if (item.id == "*8")
+                if (item.id == loginedUser.UserName)
                 {
-                    var session = _mikrotikServices.Usermanager_UserSession("192.168.2.1", 8728, "ehsan6830", "1234", item.username);
-                    var profile = _mikrotikServices.Usermanager_GetAllProfile("192.168.2.1", 8728, "ehsan6830", "1234");
-                    var Limition = _mikrotikServices.Usermanager_GetAllLimition("192.168.2.1", 8728, "ehsan6830", "1234");
-                    var profileLimition = _mikrotikServices.Usermanager_GetAllProfileLimition("192.168.2.1", 8728, "ehsan6830", "1234");
+                    var session = _mikrotikServices.Usermanager_UserSession(loginedUser.UserCompany.R_Host, loginedUser.UserCompany.R_Port, loginedUser.UserCompany.R_User, loginedUser.UserCompany.R_Password, item.username);
+                    var profile = _mikrotikServices.Usermanager_GetAllProfile(loginedUser.UserCompany.R_Host, loginedUser.UserCompany.R_Port, loginedUser.UserCompany.R_User, loginedUser.UserCompany.R_Password);
+                    var Limition = _mikrotikServices.Usermanager_GetAllLimition(loginedUser.UserCompany.R_Host, loginedUser.UserCompany.R_Port, loginedUser.UserCompany.R_User, loginedUser.UserCompany.R_Password);
+                    var profileLimition = _mikrotikServices.Usermanager_GetAllProfileLimition(loginedUser.UserCompany.R_Host, loginedUser.UserCompany.R_Port, loginedUser.UserCompany.R_User, loginedUser.UserCompany.R_Password);
                     var UserProfile = new Netotik.ViewModels.Identity.UserClient.ProfileModel();
                     var UserProfileLimition = new Netotik.ViewModels.Identity.UserClient.ProfileLimitionModel();
                     var UserLimition = new Netotik.ViewModels.Identity.UserClient.LimitionModel();
@@ -478,25 +475,25 @@ namespace Netotik.Web.Areas.Client.Controllers
                     if (UserLimition.upload_limit != "" && item.upload_used != "")
                         ViewBag.upload_remain = (ulong.Parse(UserLimition.upload_limit) - ulong.Parse(item.upload_used)).ToString();
                     if (UserLimition.uptime_limit != null)
-                        ViewBag.uptime_limit = UserLimition.uptime_limit.Replace("d", " روز ").Replace("w", " هفته ").Replace("h", " ساعت ").Replace("m", " دقیقه ").Replace("s", " ثانیه ");
+                        ViewBag.uptime_limit = UserLimition.uptime_limit.Replace("d", Captions.Day).Replace("w", Captions.Week).Replace("h", Captions.Hour).Replace("m", Captions.Minute).Replace("s", Captions.Secend);
                     if (UserProfile.validity != null)
-                        ViewBag.validity = UserProfile.validity.Replace("d", " روز ").Replace("w", " هفته ").Replace("h", " ساعت ").Replace("m", " دقیقه ").Replace("s", " ثانیه ");
+                        ViewBag.validity = UserProfile.validity.Replace("d", Captions.Day).Replace("w", Captions.Week).Replace("h", Captions.Hour).Replace("m", Captions.Minute).Replace("s", Captions.Secend);
                     if (item.shared_users != null)
-                        item.shared_users = item.shared_users.Replace("unlimited", " بدون محدودیت ");
+                        item.shared_users = item.shared_users.Replace("unlimited", Captions.Unlimited);
                     ViewBag.price = UserProfile.price;
                     if (UserProfileLimition.from_time != null)
-                        ViewBag.from_time = UserProfileLimition.from_time.Replace("d", " روز ").Replace("s", " ثانیه ").Replace("m", " دقیقه ").Replace("h", " ساعت ");
+                        ViewBag.from_time = UserProfileLimition.from_time.Replace("d", Captions.Day).Replace("s", Captions.Secend).Replace("m", Captions.Minute).Replace("h", Captions.Hour);
                     if (UserProfileLimition.till_time != null)
-                        ViewBag.till_time = UserProfileLimition.till_time.Replace("d", " روز ").Replace("s", " ثانیه ").Replace("m", " دقیقه ").Replace("h", " ساعت ");
+                        ViewBag.till_time = UserProfileLimition.till_time.Replace("d", Captions.Day).Replace("s", Captions.Secend).Replace("m", Captions.Minute).Replace("h", Captions.Hour);
                     if (UserProfileLimition.weekdays != null)
-                        ViewBag.weekdays = UserProfileLimition.weekdays.Replace("friday", " جمعه ").Replace("thursday", " پنجشنبه ").Replace("wednesday", " چهارشنبه ").Replace("tuesday", " سه شنبه ").Replace("monday", " دوشنبه ").Replace("sunday", " یکشنبه ").Replace("saturday", "شنبه ");
+                        ViewBag.weekdays = UserProfileLimition.weekdays.Replace("friday",Captions.Friday).Replace("thursday", Captions.Thursday).Replace("wednesday", Captions.Wednesday).Replace("tuesday", Captions.Tuesday).Replace("monday", Captions.Monday).Replace("sunday", Captions.Sunday).Replace("saturday", Captions.Saturday);
                     if (item.uptime_used != null)
-                        item.uptime_used = item.uptime_used.Replace("d", " روز ").Replace("w", " هفته ").Replace("h", " ساعت ").Replace("m", " دقیقه ").Replace("s", " ثانیه ").Replace("never", " بدون اتصال ");
+                        item.uptime_used = item.uptime_used.Replace("d", Captions.Day).Replace("w",Captions.Week).Replace("h", Captions.Hour).Replace("m", Captions.Minute).Replace("s", Captions.Secend).Replace("never",Captions.NoConnection);
                     if (item.last_seen != null)
                         if (item.last_seen == "never")
                         {
-                            item.last_seen = item.last_seen.Replace("never", " بدون اتصال ");
-                            item.last_seenT = item.last_seen.Replace("never", " بدون اتصال ");
+                            item.last_seen = item.last_seen.Replace("never", Captions.NoConnection);
+                            item.last_seenT = item.last_seen.Replace("never", Captions.NoConnection);
                         }
                         else
                         {
@@ -509,7 +506,7 @@ namespace Netotik.Web.Areas.Client.Controllers
                             item.last_seenT = last_seenT[0] + " " + last_seenT[1];
                         }
                     if (item.disabled != null)
-                        item.disabled = item.disabled.Replace("false", "فعال").Replace("true", "غیره فعال");
+                        item.disabled = item.disabled.Replace("false", Captions.Enable).Replace("true", Captions.Disable);
                     if (item.download_used == "")
                         item.download_used = "0";
                     if (ViewBag.download_remain == null || ViewBag.download_remain == "")
@@ -518,30 +515,29 @@ namespace Netotik.Web.Areas.Client.Controllers
                 }
             return View();
         }
-
         [ValidateAntiForgeryToken]
         [HttpPost]
         public virtual ActionResult BuyPackage(Netotik.ViewModels.Identity.UserClient.UserEditModel model, ActionType actionType)
         {
-
+            var loginedUser = Session["Client"] as User;
             //-------------------------------
-            if (!_mikrotikServices.IP_Port_Check("192.168.2.1", 8728, "ehsan6830", "1234"))
+            if (!_mikrotikServices.IP_Port_Check(loginedUser.UserCompany.R_Host, loginedUser.UserCompany.R_Port, loginedUser.UserCompany.R_User, loginedUser.UserCompany.R_Password))
             {
-                this.MessageError("خطا", "لطفا با مدیرشبکه تماس بگیرید.خطای عدم دسترسی یا IP ویا Port");
+                this.MessageError(Captions.Error, Captions.IPPORTClientError);
                 return RedirectToAction(MVC.Client.Home.ActionNames.Index, MVC.Client.Home.Name, new { area = MVC.Client.Name });
             }
-            if (!_mikrotikServices.User_Pass_Check("192.168.2.1", 8728, "ehsan6830", "1234"))
+            if (!_mikrotikServices.User_Pass_Check(loginedUser.UserCompany.R_Host, loginedUser.UserCompany.R_Port, loginedUser.UserCompany.R_User, loginedUser.UserCompany.R_Password))
             {
-                this.MessageError("خطا", "لطفا با مدیرشبکه تماس بگیرید.خطای نام کاربری و رمز عبور");
+                this.MessageError(Captions.Error, Captions.UserPasswordClientError);
                 return RedirectToAction(MVC.Client.Home.ActionNames.Index, MVC.Client.Home.Name, new { area = MVC.Client.Name });
             }
-            if (!_mikrotikServices.Usermanager_IsInstall("192.168.2.1", 8728, "ehsan6830", "1234"))
+            if (!_mikrotikServices.Usermanager_IsInstall(loginedUser.UserCompany.R_Host, loginedUser.UserCompany.R_Port, loginedUser.UserCompany.R_User, loginedUser.UserCompany.R_Password))
             {
-                this.MessageError("خطا", "لطفا با مدیرشبکه تماس بگیرید.خطای یوزرمنیجر");
+                this.MessageError(Captions.Error, Captions.UsermanagerClientError);
                 return RedirectToAction(MVC.Client.Home.ActionNames.Index, MVC.Client.Home.Name, new { area = MVC.Client.Name });
             }
             //-------------------------------
-            ViewBag.profiles = _mikrotikServices.Usermanager_GetAllProfile("192.168.2.1", 8728, "ehsan6830", "1234");
+            ViewBag.profiles = _mikrotikServices.Usermanager_GetAllProfile(loginedUser.UserCompany.R_Host, loginedUser.UserCompany.R_Port, loginedUser.UserCompany.R_User, loginedUser.UserCompany.R_Password);
             if (!ModelState.IsValid)
             {
                 //SetResultMessage(false, MessageColor.Danger, Captions.InvalidDataError, Captions.MissionFail);
@@ -549,8 +545,8 @@ namespace Netotik.Web.Areas.Client.Controllers
             }
             else
             {
-                var UsermanagerUser = _mikrotikServices.Usermanager_GetUser("192.168.2.1", 8728, "ehsan6830", "1234", "*8");
-                model.customer = "admin";
+                var UsermanagerUser = _mikrotikServices.Usermanager_GetUser(loginedUser.UserCompany.R_Host, loginedUser.UserCompany.R_Port, loginedUser.UserCompany.R_User, loginedUser.UserCompany.R_Password, loginedUser.UserName);
+                model.customer = loginedUser.UserCompany.Userman_Customer;
                 model.id = UsermanagerUser.FirstOrDefault().id;
                 model.username = UsermanagerUser.FirstOrDefault().username;
                 model.shared_users = UsermanagerUser.FirstOrDefault().shared_users;
@@ -561,35 +557,35 @@ namespace Netotik.Web.Areas.Client.Controllers
                 model.first_name = UsermanagerUser.FirstOrDefault().first_name;
                 model.last_name = UsermanagerUser.FirstOrDefault().last_name;
                 model.phone = UsermanagerUser.FirstOrDefault().phone;
-                _mikrotikServices.Usermanager_UserEdit("192.168.2.1", 8728, "ehsan6830", "1234", model);
+                _mikrotikServices.Usermanager_UserEdit(loginedUser.UserCompany.R_Host, loginedUser.UserCompany.R_Port, loginedUser.UserCompany.R_User, loginedUser.UserCompany.R_Password, model);
 
                 return RedirectToAction(MVC.Client.Home.Index());
             }
         }
         public virtual ActionResult BuyPackage()
         {
-
+            var loginedUser = Session["Client"] as User;
             //-------------------------------
-            if (!_mikrotikServices.IP_Port_Check("192.168.2.1", 8728, "ehsan6830", "1234"))
+            if (!_mikrotikServices.IP_Port_Check(loginedUser.UserCompany.R_Host, loginedUser.UserCompany.R_Port, loginedUser.UserCompany.R_User, loginedUser.UserCompany.R_Password))
             {
-                this.MessageError("خطا", "لطفا با مدیرشبکه تماس بگیرید.خطای عدم دسترسی یا IP ویا Port");
+                this.MessageError(Captions.Error, Captions.IPPORTClientError);
                 return RedirectToAction(MVC.Client.Home.ActionNames.Index, MVC.Client.Home.Name, new { area = MVC.Client.Name });
             }
-            if (!_mikrotikServices.User_Pass_Check("192.168.2.1", 8728, "ehsan6830", "1234"))
+            if (!_mikrotikServices.User_Pass_Check(loginedUser.UserCompany.R_Host, loginedUser.UserCompany.R_Port, loginedUser.UserCompany.R_User, loginedUser.UserCompany.R_Password))
             {
-                this.MessageError("خطا", "لطفا با مدیرشبکه تماس بگیرید.خطای نام کاربری و رمز عبور");
+                this.MessageError(Captions.Error, Captions.UserPasswordClientError);
                 return RedirectToAction(MVC.Client.Home.ActionNames.Index, MVC.Client.Home.Name, new { area = MVC.Client.Name });
             }
-            if (!_mikrotikServices.Usermanager_IsInstall("192.168.2.1", 8728, "ehsan6830", "1234"))
+            if (!_mikrotikServices.Usermanager_IsInstall(loginedUser.UserCompany.R_Host, loginedUser.UserCompany.R_Port, loginedUser.UserCompany.R_User, loginedUser.UserCompany.R_Password))
             {
-                this.MessageError("خطا", "لطفا با مدیرشبکه تماس بگیرید.خطای یوزرمنیجر");
+                this.MessageError(Captions.Error, Captions.UsermanagerClientError);
                 return RedirectToAction(MVC.Client.Home.ActionNames.Index, MVC.Client.Home.Name, new { area = MVC.Client.Name });
             }
             //-------------------------------
-            ViewBag.profiles = _mikrotikServices.Usermanager_GetAllProfile("192.168.2.1", 8728, "ehsan6830", "1234");
-            var model = _mikrotikServices.Usermanager_GetUser("192.168.2.1", 8728, "ehsan6830", "1234", "");
+            ViewBag.profiles = _mikrotikServices.Usermanager_GetAllProfile(loginedUser.UserCompany.R_Host, loginedUser.UserCompany.R_Port, loginedUser.UserCompany.R_User, loginedUser.UserCompany.R_Password);
+            var model = _mikrotikServices.Usermanager_GetUser(loginedUser.UserCompany.R_Host, loginedUser.UserCompany.R_Port, loginedUser.UserCompany.R_User, loginedUser.UserCompany.R_Password, loginedUser.UserName);
             foreach (var item in model)
-                if (item.id == "*8")
+                if (item.id == loginedUser.UserName)
                 {
                     var editModel = new Netotik.ViewModels.Identity.UserClient.UserEditModel
                     {
@@ -606,32 +602,31 @@ namespace Netotik.Web.Areas.Client.Controllers
                     };
                     return View(editModel);
                 }
-            //            ViewBag.Customers = _mikrotikServices.GetAllCustomers("192.168.2.1", 8728, "ehsan6830", "1234");
+            //            ViewBag.Customers = _mikrotikServices.GetAllCustomers(loginedUser.UserCompany.R_Host, loginedUser.UserCompany.R_Port, loginedUser.UserCompany.R_User, loginedUser.UserCompany.R_Password);
             return View();
         }
-
-
         public virtual ActionResult Charts()
         {
-
+            var loginedUser = Session["Client"] as User;
             //-------------------------------
-            if (!_mikrotikServices.IP_Port_Check("192.168.2.1", 8728, "ehsan6830", "1234"))
+            if (!_mikrotikServices.IP_Port_Check(loginedUser.UserCompany.R_Host, loginedUser.UserCompany.R_Port, loginedUser.UserCompany.R_User, loginedUser.UserCompany.R_Password))
             {
-                this.MessageError("خطا", "لطفا با مدیرشبکه تماس بگیرید.خطای عدم دسترسی یا IP ویا Port");
+                this.MessageError(Captions.Error, Captions.IPPORTClientError);
                 return RedirectToAction(MVC.Client.Home.ActionNames.Index, MVC.Client.Home.Name, new { area = MVC.Client.Name });
             }
-            if (!_mikrotikServices.User_Pass_Check("192.168.2.1", 8728, "ehsan6830", "1234"))
+            if (!_mikrotikServices.User_Pass_Check(loginedUser.UserCompany.R_Host, loginedUser.UserCompany.R_Port, loginedUser.UserCompany.R_User, loginedUser.UserCompany.R_Password))
             {
-                this.MessageError("خطا", "لطفا با مدیرشبکه تماس بگیرید.خطای نام کاربری و رمز عبور");
+                this.MessageError(Captions.Error, Captions.UserPasswordClientError);
                 return RedirectToAction(MVC.Client.Home.ActionNames.Index, MVC.Client.Home.Name, new { area = MVC.Client.Name });
             }
-            if (!_mikrotikServices.Usermanager_IsInstall("192.168.2.1", 8728, "ehsan6830", "1234"))
+            if (!_mikrotikServices.Usermanager_IsInstall(loginedUser.UserCompany.R_Host, loginedUser.UserCompany.R_Port, loginedUser.UserCompany.R_User, loginedUser.UserCompany.R_Password))
             {
-                this.MessageError("خطا", "لطفا با مدیرشبکه تماس بگیرید.خطای یوزرمنیجر");
+                this.MessageError(Captions.Error, Captions.UsermanagerClientError);
                 return RedirectToAction(MVC.Client.Home.ActionNames.Index, MVC.Client.Home.Name, new { area = MVC.Client.Name });
             }
             //-------------------------------
-            var session = _mikrotikServices.Usermanager_UserSession("192.168.2.1", 8728, "ehsan6830", "1234", "ehsanm");
+            var usermanagerUser = _mikrotikServices.Usermanager_GetUser(loginedUser.UserCompany.R_Host, loginedUser.UserCompany.R_Port, loginedUser.UserCompany.R_User, loginedUser.UserCompany.R_Password, loginedUser.UserName);
+            var session = _mikrotikServices.Usermanager_UserSession(loginedUser.UserCompany.R_Host, loginedUser.UserCompany.R_Port, loginedUser.UserCompany.R_User, loginedUser.UserCompany.R_Password, usermanagerUser.FirstOrDefault().username);
             var UserSession = new List<Netotik.ViewModels.Identity.UserClient.UserSessionModel>();
             Dictionary<DateTime, ulong> DownloadMonth = new Dictionary<DateTime, ulong>();
             Dictionary<DateTime, ulong> UploadMonth = new Dictionary<DateTime, ulong>();

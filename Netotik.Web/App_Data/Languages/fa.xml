@@ -871,6 +871,45 @@
   <LocaleResource Name="Hide">
     <Value>پنهان سازی</Value>
   </LocaleResource>
+  <LocaleResource Name="EditTable">
+    <Value>ویرایش جدول</Value>
+  </LocaleResource>
+    <LocaleResource Name="Error">
+    <Value>خطا</Value>
+  </LocaleResource>
+      <LocaleResource Name="Inaccessible">
+    <Value>غیرفابل دسترس</Value>
+  </LocaleResource>
+        <LocaleResource Name="Saturday">
+    <Value>شنبه</Value>
+  </LocaleResource>
+          <LocaleResource Name="Sunday">
+    <Value>یک شنبه</Value>
+  </LocaleResource>
+          <LocaleResource Name="Monday">
+    <Value>دوشنبه</Value>
+  </LocaleResource>
+          <LocaleResource Name="Tuesday">
+    <Value>سه شنبه</Value>
+  </LocaleResource>
+          <LocaleResource Name="Wednesday">
+    <Value>چهارشنبه</Value>
+  </LocaleResource>
+          <LocaleResource Name="Thursday">
+    <Value>پنج شنبه</Value>
+  </LocaleResource>
+          <LocaleResource Name="Friday">
+    <Value>جمعه</Value>
+  </LocaleResource>
+            <LocaleResource Name="NoConnection">
+    <Value>بدون اتصال</Value>
+  </LocaleResource>
+              <LocaleResource Name="Unlimited">
+    <Value>نامحدود</Value>
+  </LocaleResource>
+                <LocaleResource Name="Approximate">
+    <Value>تقریبی</Value>
+  </LocaleResource>
   <!--======================Messages Ehsan EM===========================-->
   <LocaleResource Name="JustEnglish">
     <Value>تمامی مقادیر را انگلیسی تکمیل کنید.</Value>
@@ -890,7 +929,15 @@
   <LocaleResource Name="ChartOf30LastSession">
     <Value>نمودار 30 اتصال آخر</Value>
   </LocaleResource>
-
+  <LocaleResource Name="IPPORTClientError">
+    <Value>لطفا با مدیرشبکه تماس بگیرید.خطای عدم دسترسی یا IP ویا Port</Value>
+  </LocaleResource>
+    <LocaleResource Name="UserPasswordClientError">
+    <Value>لطفا با مدیرشبکه تماس بگیرید.خطای نام کاربری و رمز عبور</Value>
+  </LocaleResource>
+      <LocaleResource Name="UsermanagerClientError">
+    <Value>لطفا با مدیرشبکه تماس بگیرید.خطای یوزرمنیجر</Value>
+  </LocaleResource>
   <!--======================Messages===========================-->
 
   <LocaleResource Name="AddError">

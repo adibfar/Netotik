@@ -257,17 +257,17 @@ namespace Netotik.Web.Controllers
             if (!_mikrotikServices.IP_Port_Check(company.UserCompany.R_Host, company.UserCompany.R_Port, company.UserCompany.R_User, company.UserCompany.R_Password))
             {
                 ViewBag.Message = "لطفا با مدیرشبکه تماس بگیرید.خطای عدم دسترسی یا IP ویا Port";
-                return RedirectToAction(MVC.Client.Home.ActionNames.Index, MVC.Client.Home.Name, new { area = MVC.Client.Name });
+                return View();
             }
             if (!_mikrotikServices.User_Pass_Check(company.UserCompany.R_Host, company.UserCompany.R_Port, company.UserCompany.R_User, company.UserCompany.R_Password))
             {
                 ViewBag.Message = "لطفا با مدیرشبکه تماس بگیرید.خطای نام کاربری و رمز عبور";
-                return RedirectToAction(MVC.Client.Home.ActionNames.Index, MVC.Client.Home.Name, new { area = MVC.Client.Name });
+                return View();
             }
             if (!_mikrotikServices.Usermanager_IsInstall(company.UserCompany.R_Host, company.UserCompany.R_Port, company.UserCompany.R_User, company.UserCompany.R_Password))
             {
                 ViewBag.Message = "لطفا با مدیرشبکه تماس بگیرید.خطای یوزرمنیجر";
-                return RedirectToAction(MVC.Client.Home.ActionNames.Index, MVC.Client.Home.Name, new { area = MVC.Client.Name });
+                return View();
             }
 
             var clientUsers = _mikrotikServices.Usermanager_GetUser(company.UserCompany.R_Host, company.UserCompany.R_Port, company.UserCompany.R_User, company.UserCompany.R_Password, model.UserName);
