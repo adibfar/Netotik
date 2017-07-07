@@ -90,6 +90,7 @@ namespace Netotik.Web.Areas.Client.Controllers
             public readonly string UserEdit_Save = "UserEdit_Save";
             public readonly string Details = "Details";
             public readonly string BuyPackage = "BuyPackage";
+            public readonly string Charts = "Charts";
             public readonly string RedirectToLocal = "RedirectToLocal";
         }
 
@@ -102,6 +103,7 @@ namespace Netotik.Web.Areas.Client.Controllers
             public const string UserEdit_Save = "UserEdit_Save";
             public const string Details = "Details";
             public const string BuyPackage = "BuyPackage";
+            public const string Charts = "Charts";
             public const string RedirectToLocal = "RedirectToLocal";
         }
 
@@ -261,6 +263,17 @@ namespace Netotik.Web.Areas.Client.Controllers
         {
             var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.BuyPackage);
             BuyPackageOverride(callInfo);
+            return callInfo;
+        }
+
+        [NonAction]
+        partial void ChartsOverride(T4MVC_System_Web_Mvc_ActionResult callInfo);
+
+        [NonAction]
+        public override System.Web.Mvc.ActionResult Charts()
+        {
+            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Charts);
+            ChartsOverride(callInfo);
             return callInfo;
         }
 

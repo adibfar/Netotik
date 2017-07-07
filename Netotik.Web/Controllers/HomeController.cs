@@ -90,6 +90,10 @@ namespace Netotik.Web.Controllers
             {
                 return PartialView(MVC.Shared.Views._SideBarCompanyMenu, menues);
             }
+            else if (Session["Client"] != null)
+            {
+                return PartialView(MVC.Shared.Views._SideBarClientMenu);
+            }
             return View("");
         }
 
@@ -138,7 +142,7 @@ namespace Netotik.Web.Controllers
             return PartialView(MVC.Shared.Views._LanagaugeSelector, LanguageCache.GetLanguages(this.HttpContext));
         }
 
-        
+
         //[OutputCache(Duration = oneDay, VaryByParam = "none")]
         public virtual PartialViewResult Header()
         {

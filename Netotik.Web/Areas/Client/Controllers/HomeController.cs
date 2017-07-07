@@ -59,7 +59,7 @@ namespace Netotik.Web.Areas.Client.Controllers
 
             if (!_mikrotikServices.IP_Port_Check(loginedUser.UserCompany.R_Host, loginedUser.UserCompany.R_Port, loginedUser.UserCompany.R_User, loginedUser.UserCompany.R_Password))
             {
-                this.MessageError(Captions.Error,Captions.IPPORTClientError);
+                this.MessageError(Captions.Error, Captions.IPPORTClientError);
             }
             if (!_mikrotikServices.User_Pass_Check(loginedUser.UserCompany.R_Host, loginedUser.UserCompany.R_Port, loginedUser.UserCompany.R_User, loginedUser.UserCompany.R_Password))
             {
@@ -204,7 +204,7 @@ namespace Netotik.Web.Areas.Client.Controllers
                     //ViewBag.RemianTime += mins != 0 ? mins + "دقیقه " : "";
 
                     ulong resultt = 0;
-                    resultt = (UpTimeLimSec > UpTimeSec)? UpTimeLimSec - UpTimeSec:0;
+                    resultt = (UpTimeLimSec > UpTimeSec) ? UpTimeLimSec - UpTimeSec : 0;
                     weeks = resultt / 604800;
                     days = (resultt % 604800) / 86400;
                     hours = ((resultt % 604800) % 86400) / 3600;
@@ -219,8 +219,8 @@ namespace Netotik.Web.Areas.Client.Controllers
                         ViewBag.RemianUpTime = Captions.Inaccessible;
                     //--------------------------------------------------------------------
                     ViewBag.StartTime = (item.reg_key == null || item.reg_key == "") ? Captions.Inaccessible : item.reg_key;
-                    days = ValidSec / 86400;                    
-                    ViewBag.RemianTime = (item.reg_key == null || item.reg_key == "") ? Captions.Inaccessible : PersianDate.ConvertDate.ToFa(PersianDate.ConvertDate.ToEn(item.reg_key).AddDays(Int32.Parse(days.ToString())),"d").ToString();
+                    days = ValidSec / 86400;
+                    ViewBag.RemianTime = (item.reg_key == null || item.reg_key == "") ? Captions.Inaccessible : PersianDate.ConvertDate.ToFa(PersianDate.ConvertDate.ToEn(item.reg_key).AddDays(Int32.Parse(days.ToString())), "d").ToString();
                     if (ValidSec == 0) ViewBag.RemianTime = Captions.Unlimited;
                     if (UserProfile.starts_at == "logon" && (item.reg_key == null || item.reg_key == "")) ViewBag.StartTime += Captions.Approximate;
                     //-------------***-----------
@@ -230,7 +230,7 @@ namespace Netotik.Web.Areas.Client.Controllers
                     if (UserLimition.uptime_limit != null)
                         ViewBag.uptime_limit = UserLimition.uptime_limit.Replace("d", Captions.Day).Replace("w", Captions.Week).Replace("h", Captions.Hour).Replace("m", Captions.Minute).Replace("s", Captions.Secend);
                     if (UserProfile.validity != null)
-                        ViewBag.validity = UserProfile.validity.Replace("d",Captions.Day).Replace("w", Captions.Week).Replace("h", Captions.Hour).Replace("m", Captions.Minute).Replace("s", Captions.Secend);
+                        ViewBag.validity = UserProfile.validity.Replace("d", Captions.Day).Replace("w", Captions.Week).Replace("h", Captions.Hour).Replace("m", Captions.Minute).Replace("s", Captions.Secend);
 
                     if (item.shared_users != null)
                         item.shared_users = item.shared_users.Replace("unlimited", Captions.Unlimited);
@@ -240,13 +240,13 @@ namespace Netotik.Web.Areas.Client.Controllers
                     if (UserProfileLimition.till_time != null)
                         ViewBag.till_time = UserProfileLimition.till_time.Replace("d", Captions.Day).Replace("s", Captions.Secend).Replace("m", Captions.Minute).Replace("h", Captions.Hour);
                     if (UserProfileLimition.weekdays != null)
-                        ViewBag.weekdays = UserProfileLimition.weekdays.Replace("friday",Captions.Friday).Replace("thursday", Captions.Thursday).Replace("wednesday", Captions.Wednesday).Replace("tuesday", Captions.Tuesday).Replace("monday", Captions.Monday).Replace("sunday", Captions.Sunday).Replace("saturday", Captions.Saturday);
+                        ViewBag.weekdays = UserProfileLimition.weekdays.Replace("friday", Captions.Friday).Replace("thursday", Captions.Thursday).Replace("wednesday", Captions.Wednesday).Replace("tuesday", Captions.Tuesday).Replace("monday", Captions.Monday).Replace("sunday", Captions.Sunday).Replace("saturday", Captions.Saturday);
 
                     if (item.last_seen != null)
                         if (item.last_seen == "never")
                         {
                             item.last_seen = item.last_seen.Replace("never", Captions.NoConnection);
-                            item.last_seenT = item.last_seen.Replace("never",Captions.NoConnection);
+                            item.last_seenT = item.last_seen.Replace("never", Captions.NoConnection);
                         }
                         else
                         {
@@ -486,9 +486,9 @@ namespace Netotik.Web.Areas.Client.Controllers
                     if (UserProfileLimition.till_time != null)
                         ViewBag.till_time = UserProfileLimition.till_time.Replace("d", Captions.Day).Replace("s", Captions.Secend).Replace("m", Captions.Minute).Replace("h", Captions.Hour);
                     if (UserProfileLimition.weekdays != null)
-                        ViewBag.weekdays = UserProfileLimition.weekdays.Replace("friday",Captions.Friday).Replace("thursday", Captions.Thursday).Replace("wednesday", Captions.Wednesday).Replace("tuesday", Captions.Tuesday).Replace("monday", Captions.Monday).Replace("sunday", Captions.Sunday).Replace("saturday", Captions.Saturday);
+                        ViewBag.weekdays = UserProfileLimition.weekdays.Replace("friday", Captions.Friday).Replace("thursday", Captions.Thursday).Replace("wednesday", Captions.Wednesday).Replace("tuesday", Captions.Tuesday).Replace("monday", Captions.Monday).Replace("sunday", Captions.Sunday).Replace("saturday", Captions.Saturday);
                     if (item.uptime_used != null)
-                        item.uptime_used = item.uptime_used.Replace("d", Captions.Day).Replace("w",Captions.Week).Replace("h", Captions.Hour).Replace("m", Captions.Minute).Replace("s", Captions.Secend).Replace("never",Captions.NoConnection);
+                        item.uptime_used = item.uptime_used.Replace("d", Captions.Day).Replace("w", Captions.Week).Replace("h", Captions.Hour).Replace("m", Captions.Minute).Replace("s", Captions.Secend).Replace("never", Captions.NoConnection);
                     if (item.last_seen != null)
                         if (item.last_seen == "never")
                         {
@@ -678,9 +678,9 @@ namespace Netotik.Web.Areas.Client.Controllers
 
                 //-----------30
 
-                if ((session.Count()-Counter)<=30)
+                if ((session.Count() - Counter) <= 30)
                 {
-                    if (Download30Session.ContainsKey('"'+SessionItem.from_time.ToString()+'"'))
+                    if (Download30Session.ContainsKey('"' + SessionItem.from_time.ToString() + '"'))
                         Download30Session['"' + SessionItem.from_time.ToString() + '"'] += (ulong.Parse(SessionItem.download) / 1048576);
                     else
                         Download30Session.Add('"' + SessionItem.from_time.ToString() + '"', (ulong.Parse(SessionItem.download) / 1048576));
@@ -691,8 +691,8 @@ namespace Netotik.Web.Areas.Client.Controllers
                         Upload30Session.Add('"' + SessionItem.from_time.ToString() + '"', (ulong.Parse(SessionItem.upload) / 1048576));
                 }
             }
-            
-            
+
+
             ViewBag.DownloadMonth = DownloadMonth;
             ViewBag.UploadMonth = UploadMonth;
             ViewBag.DownloadYear = DownloadYear;
@@ -700,6 +700,15 @@ namespace Netotik.Web.Areas.Client.Controllers
             ViewBag.Download30Session = Download30Session;
             ViewBag.Upload30Session = Upload30Session;
             return View();
+        }
+
+
+
+        public ActionResult LogOff()
+        {
+            Session.Clear();
+            Session.Abandon();
+            return RedirectToAction(MVC.Home.Index());
         }
     }
 }

@@ -67,17 +67,25 @@
                                         <i class="icon-head"></i> @Captions.Profile
                                     </a>
                                 }
-                                <a href="#" class="dropdown-item">
-                                    My Inbox <i class="icon-mail6"></i>
-                                </a>
-                                <a href="#" class="dropdown-item">
-                                    Task <i class="icon-clipboard2"></i>
-                                </a><a href="navbar-brand-center.html#" class="dropdown-item">
-                                    Calender <i class="icon-calendar5"></i>
-                                </a>
                                 <div class="dropdown-divider"></div>
                                 <a href="@Url.Action(MVC.Account.LogOff())" class="dropdown-item">
-                                    Logout <i class="icon-power3"></i>
+                                    @Captions.Logout <i class="icon-power3"></i>
+                                </a>
+                            </div>
+                        </li>
+                    }
+                    else if (Session["Client"] != null)
+                    {
+                        var user = Session["Client"] as Netotik.Domain.Entity.User;
+                        <li class="dropdown dropdown-user nav-item">
+                            <a href="#" data-toggle="dropdown" class="dropdown-toggle nav-link dropdown-user-link"><span class="avatar avatar-online"><img src="@Url.Content(Path.Combine(Netotik.Common.Controller.FilePathes._imagesUserAvatarsPath,user.PictureId.HasValue?user.Picture.FileName:"Default.png"))?h=100&w=100" alt="avatar"></span><span class="user-name">@user.FirstName @user.LastName </span></a>
+                            <div class="dropdown-menu dropdown-menu-right">
+                                <a href="@Url.Action(MVC.Client.Home.Edit())" cla class="dropdown-item">
+                                    <i class="icon-head"></i> @Captions.Profile
+                                </a>
+                                <div class="dropdown-divider"></div>
+                                <a href="@Url.Action(MVC.Client.Home.LogOff())" class="dropdown-item">
+                                @Captions.Logout <i class="icon-power3"></i>
                                 </a>
                             </div>
                         </li>

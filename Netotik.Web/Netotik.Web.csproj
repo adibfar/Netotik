@@ -3729,6 +3729,7 @@
     <Content Include="Views\Home\_Section.cshtml" />
     <Content Include="Views\Register\Client.cshtml" />
     <Content Include="Views\Login\Client.cshtml" />
+    <Content Include="Views\Shared\_SideBarClientMenu.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
