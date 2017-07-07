@@ -69,7 +69,7 @@
                 <div class="card-block text-xs-center">
                     <div class="card-header mb-1">
                         <span class="deep-orange darken-1">@Netotik.Resources.Captions.All</span>
-                        @if (ulong.Parse(ViewBag.TransferLimit.ToString()) < 0)
+                        @if (ulong.Parse(ViewBag.TransferLimit.ToString()) > 0)
                         {
                             <h3 class="font-large-1 grey darken-1 text-bold-200">@(ulong.Parse(ViewBag.TransferLimit.ToString()) / 1048576) MB</h3>
                         }
@@ -80,7 +80,7 @@
                     </div>
                     <div class="card-body">
                         <div class="text-xs-center">
-                            @if (ulong.Parse(ViewBag.TransferRemain.ToString()) < 0 || ulong.Parse(ViewBag.TransferLimit.ToString()) < 0)
+                            @if (ulong.Parse(ViewBag.TransferRemain.ToString()) > 0 || ulong.Parse(ViewBag.TransferLimit.ToString()) < 0)
                             {
                                 <input type="text" value="@(((ulong.Parse(ViewBag.TransferRemain.ToString())) * 100) / (ulong.Parse(ViewBag.TransferLimit.ToString())))" class="knob angle-offset-arc" data-angleOffset="-125" data-angleArc="250" data-rotation="anticlockwise" data-fgColor="#008000" data-readOnly="true">
                             }
@@ -93,7 +93,7 @@
 
                         <ul class="list-inline clearfix mt-2 mb-0">
                             <li class="border-right-grey border-right-lighten-2 pr-2">
-                                @if (ulong.Parse(ViewBag.TransferUsed.ToString()) < 0)
+                                @if (ulong.Parse(ViewBag.TransferUsed.ToString()) > 0)
                                 {
                                     <h2 class="grey darken-1 text-bold-400">@(ulong.Parse(ViewBag.TransferUsed.ToString()) / 1048576) MB</h2>
                                 }
@@ -104,7 +104,7 @@
                                 <span class="deep-orange">@Netotik.Resources.Captions.Used</span>
                             </li>
                             <li class="pl-2">
-                                @if (ulong.Parse(ViewBag.TransferRemain.ToString()) < 0)
+                                @if (ulong.Parse(ViewBag.TransferRemain.ToString()) > 0)
                                 {
                                     <h2 class="grey darken-1 text-bold-400">@(ulong.Parse(ViewBag.TransferRemain.ToString()) / 1048576) MB</h2>
                                 }

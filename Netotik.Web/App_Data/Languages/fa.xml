@@ -910,6 +910,12 @@
   <LocaleResource Name="Approximate">
     <Value>تقریبی</Value>
   </LocaleResource>
+    <LocaleResource Name="Information">
+    <Value>اطلاعات</Value>
+  </LocaleResource>
+      <LocaleResource Name="User">
+    <Value>کاربر</Value>
+  </LocaleResource>
   <!--======================Messages Ehsan EM===========================-->
   <LocaleResource Name="JustEnglish">
     <Value>تمامی مقادیر را انگلیسی تکمیل کنید.</Value>

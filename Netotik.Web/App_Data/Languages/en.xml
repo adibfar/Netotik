@@ -506,7 +506,12 @@
     <Value>Router UserManager Error</Value>
   </LocaleResource>
 
-
+  <LocaleResource Name="Information">
+    <Value>Information</Value>
+  </LocaleResource>
+  <LocaleResource Name="User">
+    <Value>User</Value>
+  </LocaleResource>
 
 
 </Language>

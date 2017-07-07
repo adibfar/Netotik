@@ -704,10 +704,11 @@ namespace Netotik.Web.Areas.Client.Controllers
 
 
 
-        public ActionResult LogOff()
+        public virtual ActionResult LogOff()
         {
-            Session.Clear();
-            Session.Abandon();
+            //Session.Clear();
+            //Session.Abandon();
+            //Session["Client"] = null;
             return RedirectToAction(MVC.Home.Index());
         }
     }

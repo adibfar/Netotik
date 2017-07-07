@@ -3132,6 +3132,20 @@ namespace Netotik.Resources
                 return resourceProvider.GetResource("Approximate", CultureInfo.CurrentUICulture.Name) as string;
             }
         }
+        public static string Information
+        {
+            get
+            {
+                return resourceProvider.GetResource("Information", CultureInfo.CurrentUICulture.Name) as string;
+            }
+        }
+        public static string User
+        {
+            get
+            {
+                return resourceProvider.GetResource("User", CultureInfo.CurrentUICulture.Name) as string;
+            }
+        }
         //<!--======================Messages Ehsan EM===========================-->
 
 

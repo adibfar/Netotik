@@ -91,6 +91,7 @@ namespace Netotik.Web.Areas.Client.Controllers
             public readonly string Details = "Details";
             public readonly string BuyPackage = "BuyPackage";
             public readonly string Charts = "Charts";
+            public readonly string LogOff = "LogOff";
             public readonly string RedirectToLocal = "RedirectToLocal";
         }
 
@@ -104,6 +105,7 @@ namespace Netotik.Web.Areas.Client.Controllers
             public const string Details = "Details";
             public const string BuyPackage = "BuyPackage";
             public const string Charts = "Charts";
+            public const string LogOff = "LogOff";
             public const string RedirectToLocal = "RedirectToLocal";
         }
 
@@ -274,6 +276,17 @@ namespace Netotik.Web.Areas.Client.Controllers
         {
             var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Charts);
             ChartsOverride(callInfo);
+            return callInfo;
+        }
+
+        [NonAction]
+        partial void LogOffOverride(T4MVC_System_Web_Mvc_ActionResult callInfo);
+
+        [NonAction]
+        public override System.Web.Mvc.ActionResult LogOff()
+        {
+            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.LogOff);
+            LogOffOverride(callInfo);
             return callInfo;
         }
 
