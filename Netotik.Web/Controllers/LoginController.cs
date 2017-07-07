@@ -228,8 +228,24 @@ namespace Netotik.Web.Controllers
             if (User.Identity.IsAuthenticated && _applicationRoleManager.FindUserPermissions(long.Parse(User.Identity.GetUserId())).Any(x => x == "Client"))
                 return RedirectToAction(MVC.Client.Home.Index());
 
-            var reseller = await _applicationUserManager.FindByCompanyCodeAsync(CompanyCode);
-            if (reseller == null) return HttpNotFound();
+            var company = await _applicationUserManager.FindByCompanyCodeAsync(CompanyCode);
+            if (company == null) return HttpNotFound();
+
+            if (!_mikrotikServices.IP_Port_Check(company.UserCompany.R_Host, company.UserCompany.R_Port, company.UserCompany.R_User, company.UserCompany.R_Password))
+            {
+                ViewBag.Message = Captions.IPPORTClientError;
+                return View();
+            }
+            if (!_mikrotikServices.User_Pass_Check(company.UserCompany.R_Host, company.UserCompany.R_Port, company.UserCompany.R_User, company.UserCompany.R_Password))
+            {
+                ViewBag.Message = Captions.UserPasswordClientError;
+                return View();
+            }
+            if (!_mikrotikServices.Usermanager_IsInstall(company.UserCompany.R_Host, company.UserCompany.R_Port, company.UserCompany.R_User, company.UserCompany.R_Password))
+            {
+                ViewBag.Message = Captions.UsermanagerClientError;
+                return View();
+            }
 
             ViewBag.CompanyName = CompanyCode;
             ViewBag.ReturnUrl = ReturnUrl;
@@ -256,17 +272,17 @@ namespace Netotik.Web.Controllers
 
             if (!_mikrotikServices.IP_Port_Check(company.UserCompany.R_Host, company.UserCompany.R_Port, company.UserCompany.R_User, company.UserCompany.R_Password))
             {
-                ViewBag.Message = "لطفا با مدیرشبکه تماس بگیرید.خطای عدم دسترسی یا IP ویا Port";
+                ViewBag.Message = Captions.IPPORTClientError;
                 return View();
             }
             if (!_mikrotikServices.User_Pass_Check(company.UserCompany.R_Host, company.UserCompany.R_Port, company.UserCompany.R_User, company.UserCompany.R_Password))
             {
-                ViewBag.Message = "لطفا با مدیرشبکه تماس بگیرید.خطای نام کاربری و رمز عبور";
+                ViewBag.Message = Captions.UserPasswordClientError;
                 return View();
             }
             if (!_mikrotikServices.Usermanager_IsInstall(company.UserCompany.R_Host, company.UserCompany.R_Port, company.UserCompany.R_User, company.UserCompany.R_Password))
             {
-                ViewBag.Message = "لطفا با مدیرشبکه تماس بگیرید.خطای یوزرمنیجر";
+                ViewBag.Message = Captions.UsermanagerClientError;
                 return View();
             }
 
