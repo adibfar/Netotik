@@ -266,6 +266,7 @@ namespace Netotik.Web.Areas.Client.Controllers
             return View();
         }
         #endregion
+
         public virtual ActionResult ChangePassword()
         {
             var loginedUser = Session["Client"] as User;
@@ -706,9 +707,7 @@ namespace Netotik.Web.Areas.Client.Controllers
 
         public virtual ActionResult LogOff()
         {
-            //Session.Clear();
-            //Session.Abandon();
-            //Session["Client"] = null;
+            Session.Abandon();
             return RedirectToAction(MVC.Home.Index());
         }
     }

@@ -22,6 +22,8 @@ using Netotik.Common.Controller;
 using Netotik.Common.DataTables;
 using Netotik.Services.Abstract;
 using Netotik.ViewModels.Identity.UserAdmin;
+using Netotik.Common.Security.RijndaelEncryption;
+using System.Xml.Linq;
 
 namespace Netotik.Services.Identity
 {
@@ -34,6 +36,7 @@ namespace Netotik.Services.Identity
         private User _user;
         private readonly HttpContextBase _contextBase;
         private readonly IPermissionService _permissionService;
+        private readonly IPermissionClientService _permissionClientService;
         private readonly IApplicationRoleManager _roleManager;
         private readonly ILanguageService _languageService;
         private readonly ILanguageTranslationService _languageTranslationService;
@@ -46,11 +49,12 @@ namespace Netotik.Services.Identity
 
         #region Constructor
 
-        public ApplicationUserManager(IIdentity identity, ILanguageService languageService, ILanguageTranslationService languageTranslationService,
+        public ApplicationUserManager(IIdentity identity, IPermissionClientService permissionClientService, ILanguageService languageService, ILanguageTranslationService languageTranslationService,
             HttpContextBase contextBase, IPermissionService permissionService, IUserStore<User, long> userStore, IApplicationRoleManager roleManager, IUnitOfWork unitOfWork,
             IMappingEngine mappingEngine, IDataProtectionProvider dataProtectionProvider)
             : base(userStore)
         {
+            _permissionClientService = permissionClientService;
             _languageTranslationService = languageTranslationService;
             _languageService = languageService;
             _permissionService = permissionService;
@@ -184,6 +188,14 @@ namespace Netotik.Services.Identity
         {
             var user = _users.Find(model.Id);
             _mappingEngine.Map(model, user);
+
+            var XmlClientPermissions = "";
+            if (model.ClientPermissionNames == null || model.ClientPermissionNames.Length < 1)
+                XmlClientPermissions = _permissionClientService.GetPermissionsAsXml("null").ToString();
+            else XmlClientPermissions = _permissionClientService.GetPermissionsAsXml(model.ClientPermissionNames).ToString();
+
+            user.UserCompany.ClientPermissions = XmlClientPermissions;
+
             await _unitOfWork.SaveChangesAsync();
         }
         public IList<ViewModels.Identity.UserAdmin.UserItem> GetListUserAdmins(RequestListModel model, out long TotalCount, out long ShowCount)
@@ -574,11 +586,19 @@ namespace Netotik.Services.Identity
         public async Task<long> AddCompany(ViewModels.Identity.UserCompany.Register viewModel)
         {
             var user = _mappingEngine.Map<User>(viewModel);
+
+
+            var XmlClientPermissions = "";
+            if (viewModel.ClientPermissionNames == null || viewModel.ClientPermissionNames.Length < 1)
+                XmlClientPermissions = _permissionClientService.GetPermissionsAsXml("null").ToString();
+            else XmlClientPermissions = _permissionClientService.GetPermissionsAsXml(viewModel.ClientPermissionNames).ToString();
+
+            user.UserCompany.ClientPermissions = XmlClientPermissions;
             user.UserType = UserType.UserCompany;
 
             await CreateAsync(user, viewModel.Password);
-
             return user.Id;
+
 
         }
         #endregion
@@ -911,5 +931,14 @@ namespace Netotik.Services.Identity
                 return false;
             }
         }
+
+
+        public IList<string> FindClientPermissions(long userId)
+        {
+            var user = _users.Where(x => x.Id == userId).Include(x => x.UserCompany).FirstOrDefault();
+            return _permissionClientService.GetPermissionsAsList(XElement.Parse(user.UserCompany.ClientPermissions)).ToList();
+        }
+
+
     }
 }

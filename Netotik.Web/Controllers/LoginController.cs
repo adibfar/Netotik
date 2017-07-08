@@ -298,9 +298,10 @@ namespace Netotik.Web.Controllers
 
             var loginedUser = new User()
             {
-                Id = 4,
+                Id = company.Id,
                 UserName = user.id,
                 Email = user.email,
+                UserType = UserType.Client,
                 UserCompany = new UserCompany()
                 {
                     CompanyCode = company.UserCompany.CompanyCode,
@@ -311,6 +312,7 @@ namespace Netotik.Web.Controllers
                     R_Port = company.UserCompany.R_Port,
                     R_User = company.UserCompany.R_User,
                     Userman_Customer = company.UserCompany.Userman_Customer,
+                    ClientPermissions=company.UserCompany.ClientPermissions
                 }
             };
 

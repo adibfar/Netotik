@@ -191,8 +191,10 @@
     <Compile Include="Identity\IApplicationUserManager.cs" />
     <Compile Include="Identity\ICustomRoleStore.cs" />
     <Compile Include="Identity\ICustomUserStore.cs" />
+    <Compile Include="Identity\IPermissionClientService.cs" />
     <Compile Include="Identity\IPermissionService.cs" />
     <Compile Include="Identity\PermissionRecord.cs" />
+    <Compile Include="Identity\PermissionClientService.cs" />
     <Compile Include="Identity\PermissionService.cs" />
     <Compile Include="Identity\StandardRoles.cs" />
     <Compile Include="Implement\IndexSectionService.cs" />

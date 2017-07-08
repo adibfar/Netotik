@@ -90,5 +90,6 @@ namespace Netotik.ViewModels.Identity.UserCompany
         [Display(ResourceType = typeof(Captions), Name = "UsermanCustomer")]
         [RegularExpression(@"(^$)|(^[a-zA-Z0-9:.-_]*$)", ErrorMessageResourceType = typeof(Captions), ErrorMessageResourceName = "NotValidError")]
         public string Userman_Customer { get; set; }
+        
     }
 }

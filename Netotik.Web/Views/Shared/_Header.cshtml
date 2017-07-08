@@ -11,12 +11,12 @@
             <div id="navbar-mobile" class="collapse navbar-toggleable-sm">
                 <ul class="nav navbar-nav">
 
-                    @if (User.Identity.IsAuthenticated)
-                    {
-                        <li class="dropdown dropdown-language nav-item">
-                            @Html.Action(MVC.Home.PanelLanguageSelector())
-                        </li>
-                    }
+                    <li class="dropdown dropdown-language nav-item">
+
+                        @Html.Action(MVC.Home.PanelLanguageSelector())
+
+                    </li>
+
 
 
                     @if (User.Identity.IsAuthenticated)
@@ -85,7 +85,7 @@
                                 </a>
                                 <div class="dropdown-divider"></div>
                                 <a href="@Url.Action(MVC.Client.Home.LogOff())" class="dropdown-item">
-                                @Captions.Logout <i class="icon-power3"></i>
+                                    @Captions.Logout <i class="icon-power3"></i>
                                 </a>
                             </div>
                         </li>

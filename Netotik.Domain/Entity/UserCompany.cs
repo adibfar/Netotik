@@ -7,10 +7,13 @@ namespace Netotik.Domain.Entity
 {
     public partial class UserCompany
     {
+        public UserCompany()
+        {
+        }
         public long Id { get; set; }
 
         public string Expire_Date { get; set; }
-        
+
         [Display(Name = "نام شرکت")]
         public string CompanyCode { get; set; }
         [Display(Name = "کد ملی")]
@@ -37,5 +40,7 @@ namespace Netotik.Domain.Entity
         [Display(Name = "Userman Customer")]
         public string Userman_Customer { get; set; }
         public virtual User User { get; set; }
+
+        public string ClientPermissions { get; set; }
     }
 }

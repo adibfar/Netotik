@@ -62,5 +62,8 @@ namespace Netotik.ViewModels.Identity.UserCompany
 
         [Display(ResourceType = typeof(Captions), Name = "ImageProfile")]
         public System.Web.HttpPostedFileBase ImageAvatar { get; set; }
+
+
+        public string[] ClientPermissionNames { get; set; }
     }
 }

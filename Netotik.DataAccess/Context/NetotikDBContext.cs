@@ -54,7 +54,6 @@ namespace Netotik.Data.Context
         public DbSet<PaymentType> PaymentTypes { get; set; }
         public DbSet<Picture> Pictures { get; set; }
         public DbSet<File> Files { get; set; }
-        public DbSet<Permisson> Permissons { get; set; }
         public DbSet<Setting> Settings { get; set; }
         public DbSet<ContentCategory> ContentCategories { get; set; }
         public DbSet<ContentTag> ContentTags { get; set; }
@@ -79,7 +78,6 @@ namespace Netotik.Data.Context
             modelBuilder.Configurations.Add(new PaymentTypeMap());
             modelBuilder.Configurations.Add(new PictureMap());
             modelBuilder.Configurations.Add(new FileMap());
-            modelBuilder.Configurations.Add(new PermissonMap());
             modelBuilder.Configurations.Add(new SettingMap());
             modelBuilder.Configurations.Add(new ContentCategoryMap());
             modelBuilder.Configurations.Add(new ContentTagMap());

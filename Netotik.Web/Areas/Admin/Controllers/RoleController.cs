@@ -88,14 +88,12 @@ namespace Netotik.Web.Areas.Admin.Controllers
             if (!ModelState.IsValid)
             {
                 this.MessageError(Captions.MissionFail, Captions.InvalidDataError);
-                PopulatePermissions(viewModel.PermissionNames);
-                return View(viewModel);
+                return RedirectToAction(MVC.Admin.Role.Index());
             }
             if (!await _roleManager.AddRole(viewModel))
             {
                 this.MessageError(Captions.MissionFail, Captions.SelectRole);
-                PopulatePermissions();
-                return View(viewModel);
+                return RedirectToAction(MVC.Admin.Role.Index());
             }
 
             await _unitOfWork.SaveChangesAsync();
@@ -197,7 +195,6 @@ namespace Netotik.Web.Areas.Admin.Controllers
 
             ViewBag.Permissions = permissions;
         }
-
         #endregion
     }
 }
