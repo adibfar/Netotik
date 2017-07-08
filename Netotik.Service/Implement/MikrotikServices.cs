@@ -533,6 +533,64 @@ namespace Netotik.Services.Implement
             }
             return usersessionmodelresualt;
         }
+        public List<Netotik.ViewModels.Identity.UserClient.PaymentModel> Usermanager_Payment(string ip, int port, string user, string pass, string UsermanUser)
+        {
+            var mikrotik = new MikrotikAPI();
+            mikrotik.MK(ip, port);
+            if (!mikrotik.Login(user, pass)) mikrotik.Close();
+            //-----------------------------------------------
+            mikrotik.Send("/tool/user-manager/payment/print");
+            string temp = "";
+            if(UsermanUser.Contains("*"))
+            {
+                temp = String.Format("?=.id={0}", UsermanUser);
+            }
+            else
+            {
+                temp = String.Format("?=user={0}", UsermanUser);
+            }
+            
+            mikrotik.Send(temp, true);
+
+            var PaymentModel = new List<Netotik.ViewModels.Identity.UserClient.PaymentModel>();
+            foreach (var item in mikrotik.Read())
+            {
+                if (item != "!done")
+                {
+                    var cols = item.Split('=');
+                    var ColumnList = new Dictionary<string, string>();
+                    for (int i = 1; i < cols.Count(); i += 2)
+                    {
+                        ColumnList.Add(cols[i], cols[i + 1]);
+                    }
+                    PaymentModel.Add(new Netotik.ViewModels.Identity.UserClient.PaymentModel()
+                    {
+                        id = ColumnList.Any(x => x.Key == ".id") ? (ColumnList.FirstOrDefault(x => x.Key == ".id").Value) : "",
+                        customer = ColumnList.Any(x => x.Key == "customer") ? (ColumnList.FirstOrDefault(x => x.Key == "customer").Value) : "",
+                        user = ColumnList.Any(x => x.Key == "user") ? (ColumnList.FirstOrDefault(x => x.Key == "user").Value) : "",
+                        currency = ColumnList.Any(x => x.Key == "currency") ? (ColumnList.FirstOrDefault(x => x.Key == "currency").Value) : "",
+                        method = ColumnList.Any(x => x.Key == "method") ? (ColumnList.FirstOrDefault(x => x.Key == "method").Value) : "",
+                        price = ColumnList.Any(x => x.Key == "price") ? (ColumnList.FirstOrDefault(x => x.Key == "price").Value) : "",
+                        result_code = ColumnList.Any(x => x.Key == "result-code") ? (ColumnList.FirstOrDefault(x => x.Key == "result-code").Value) : "",
+                        result_msg = ColumnList.Any(x => x.Key == "result-msg") ? (ColumnList.FirstOrDefault(x => x.Key == "result-msg").Value) : "",
+                        trans_end = ColumnList.Any(x => x.Key == "trans-end") ? (ColumnList.FirstOrDefault(x => x.Key == "trans-end").Value) : "",
+                        trans_start = ColumnList.Any(x => x.Key == "trans-start") ? (ColumnList.FirstOrDefault(x => x.Key == "trans-start").Value) : "",
+                        trans_status = ColumnList.Any(x => x.Key == "trans-status") ? (ColumnList.FirstOrDefault(x => x.Key == "trans-status").Value) : ""
+                    });
+
+                }
+            }
+            var PaymentModelResualt = new List<Netotik.ViewModels.Identity.UserClient.PaymentModel>();
+            foreach (var item in PaymentModel)
+            {
+                    if (item.user == UsermanUser)
+                    {
+                    PaymentModelResualt.Add(item);
+                    }
+                
+            }
+            return PaymentModelResualt;
+        }
         public void Usermanager_ProfileCreate(string ip, int port, string user, string pass, Netotik.ViewModels.Identity.UserClient.ProfileLimitionCreateModel usermanProfile)
         {
             var mikrotik = new MikrotikAPI();
