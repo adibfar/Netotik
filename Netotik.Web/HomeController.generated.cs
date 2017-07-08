@@ -81,6 +81,7 @@ namespace Netotik.Web.Controllers
             public readonly string Index = "Index";
             public readonly string AdminHeader = "AdminHeader";
             public readonly string AdminMenu = "AdminMenu";
+            public readonly string ClientMenu = "ClientMenu";
             public readonly string LastBlog = "LastBlog";
             public readonly string Slider = "Slider";
             public readonly string Section = "Section";
@@ -100,6 +101,7 @@ namespace Netotik.Web.Controllers
             public const string Index = "Index";
             public const string AdminHeader = "AdminHeader";
             public const string AdminMenu = "AdminMenu";
+            public const string ClientMenu = "ClientMenu";
             public const string LastBlog = "LastBlog";
             public const string Slider = "Slider";
             public const string Section = "Section";
@@ -183,6 +185,17 @@ namespace Netotik.Web.Controllers
         {
             var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.AdminMenu);
             AdminMenuOverride(callInfo);
+            return callInfo;
+        }
+
+        [NonAction]
+        partial void ClientMenuOverride(T4MVC_System_Web_Mvc_ActionResult callInfo);
+
+        [NonAction]
+        public override System.Web.Mvc.ActionResult ClientMenu()
+        {
+            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.ClientMenu);
+            ClientMenuOverride(callInfo);
             return callInfo;
         }
 

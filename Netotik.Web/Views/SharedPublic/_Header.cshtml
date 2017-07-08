@@ -1,7 +1,13 @@
 ﻿@using Netotik.Common.Controller
+@using Netotik.Domain.Entity
+
 @{
     var IsIr = CultureHelper.GetDefaultCulture() == CultureHelper.GetCurrentCulture() ? true : false;
     var user = Html.CurrentUser();
+    if (Session["Client"] != null)
+    {
+        user = Session["Client"] as User;
+    }
 }
 <!-- Top Bar -->
 <div id="topBar">
@@ -11,7 +17,7 @@
         <ul class="top-links list-inline">
             @if (user != null)
             {
-                if (user.UserType == Netotik.Domain.Entity.UserType.UserAdmin)
+                if (user.UserType == UserType.UserAdmin)
                 {
                     <li>
                         <a href="@Url.Action(MVC.Admin.Home.Index())">
@@ -20,7 +26,7 @@
                         </a>
                     </li>
                 }
-                if (user.UserType == Netotik.Domain.Entity.UserType.UserReseller)
+                else if (user.UserType == UserType.UserReseller)
                 {
                     <li>
                         <a href="@Url.Action(MVC.Reseller.Home.Index())">
@@ -29,7 +35,7 @@
                         </a>
                     </li>
                 }
-                if (user.UserType == Netotik.Domain.Entity.UserType.UserCompany)
+                else if (user.UserType == UserType.UserCompany)
                 {
                     <li>
                         <a href="@Url.Action(MVC.Company.Home.Index())">
@@ -38,12 +44,34 @@
                         </a>
                     </li>
                 }
-                <li>
-                    <a href="@Url.Action(MVC.Account.LogOff())">
-                        <i class="fa fa-power-off"></i>
-                        @Captions.Logout
-                    </a>
-                </li>
+                else if (user.UserType == UserType.Client)
+                {
+                    <li>
+                        <a href="@Url.Action(MVC.Client.Home.Index())">
+                            <i class="fa fa-desktop"></i>
+                            @Captions.UserPanel
+                        </a>
+                    </li>
+                }
+
+                if (user.UserType == UserType.Client)
+                {
+                    <li>
+                        <a href="@Url.Action(MVC.Client.Home.LogOff())">
+                            <i class="fa fa-power-off"></i>
+                            @Captions.Logout
+                        </a>
+                    </li>
+                }
+                else
+                {
+                    <li>
+                        <a href="@Url.Action(MVC.Account.LogOff())">
+                            <i class="fa fa-power-off"></i>
+                            @Captions.Logout
+                        </a>
+                    </li>
+                }
             }
             else
             {

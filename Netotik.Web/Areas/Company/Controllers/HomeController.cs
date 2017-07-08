@@ -25,6 +25,8 @@ using Netotik.ViewModels.Identity.UserCompany;
 using Netotik.Services.Identity;
 using Netotik.Common.Controller;
 using Microsoft.AspNet.Identity;
+using Netotik.ViewModels.Identity.Security;
+using WebGrease.Css.Extensions;
 
 namespace Netotik.Web.Areas.Company.Controllers
 {
@@ -66,7 +68,10 @@ namespace Netotik.Web.Areas.Company.Controllers
         
         public virtual ActionResult ProfileData()
         {
-            return PartialView(MVC.Company.Home.Views._ProfileData, _applicationUserManager.GetUserCompanyProfile(UserLogined.Id));
+            var company = _applicationUserManager.GetUserCompanyProfile(UserLogined.Id);
+            PopulatePermissions(_applicationUserManager.FindClientPermissions(company.Id).ToArray());
+
+            return PartialView(MVC.Company.Home.Views._ProfileData, company);
         }
         
         [ValidateAntiForgeryToken]
@@ -103,6 +108,7 @@ namespace Netotik.Web.Areas.Company.Controllers
         [HttpPost]
         public virtual async Task<ActionResult> UpdateProfile(ProfileModel model)
         {
+            PopulatePermissions(model.ClientPermissionNames);
             #region Validation
             if (_applicationUserManager.CheckCompanyEmailExist(model.Email, User.Identity.GetUserId<long>()))
                 ModelState.AddModelError("Email", "این ایمیل قبلا در سیستم ثبت شده است");
@@ -121,6 +127,7 @@ namespace Netotik.Web.Areas.Company.Controllers
                 model.EmailConfirmed = false;
             model.Id = UserLogined.Id;
             model.UserResellerId = UserLogined.UserCompany.UserResellerId;
+
             this.MessageInformation(Captions.MissionSuccess, Captions.UpdateSuccess);
             await _applicationUserManager.UpdateUserCompanyProfile(model);
             return RedirectToAction(MVC.Company.Home.ActionNames.MyProfile);
@@ -297,6 +304,19 @@ namespace Netotik.Web.Areas.Company.Controllers
         #endregion
 
 
+
+        [NonAction]
+        private void PopulatePermissions(params string[] selectedpermissions)
+        {
+            var permissions = AssignablePermissionToClient.GetAsSelectListItems();
+
+            if (selectedpermissions != null)
+            {
+                permissions.ForEach(a => a.Selected = selectedpermissions.Any(s => s == a.Value));
+            }
+
+            ViewBag.ClientPermissions = permissions;
+        }
 
     }
 }

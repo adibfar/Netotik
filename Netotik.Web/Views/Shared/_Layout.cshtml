@@ -51,6 +51,11 @@
         @Html.Action(MVC.Home.AdminMenu())
     }
 
+    @if (Session["Client"] != null)
+    {
+        @Html.Action(MVC.Home.ClientMenu())
+    }
+
     <div class="robust-content content container-fluid">
         <div class="content-wrapper">
             <div class="content-header">
@@ -65,7 +70,7 @@
     </div>
 
 
-    <footer class="footer footer-dark navbar-fixed-bottom navbar-hide-on-scroll">
+    <footer class="footer footer-dark navbar-fixed-bottom navbar-hide-on-scroll hidden-sm hidden-xs">
         <p class="clearfix text-muted text-sm-center mb-0 px-2">
             <span class="float-md-right d-xs-block d-md-inline-block">
                 Copyright  &copy; 2017 <a href="https://Dnma.ir" target="_blank" class="text-bold-800 grey darken-2">DNMA Groups </a>, All rights reserved
@@ -99,5 +104,6 @@
 
         </script>
     }
+
 </body>
 </html>

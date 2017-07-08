@@ -93,7 +93,6 @@
     <Compile Include="EntityConfiguration\MenuMap.cs" />
     <Compile Include="EntityConfiguration\PaymentTypeMap.cs" />
     <Compile Include="EntityConfiguration\PictureMap.cs" />
-    <Compile Include="EntityConfiguration\PermissonMap.cs" />
     <Compile Include="EntityConfiguration\SettingMap.cs" />
     <Compile Include="EntityConfiguration\ContentCategoryMap.cs" />
     <Compile Include="EntityConfiguration\UserMap.cs" />
@@ -111,7 +110,6 @@
     <Compile Include="Entity\UserRole.cs" />
     <Compile Include="Entity\PaymentType.cs" />
     <Compile Include="Entity\Picture.cs" />
-    <Compile Include="Entity\Permisson.cs" />
     <Compile Include="Entity\Setting.cs" />
     <Compile Include="Entity\ContentCategory.cs" />
     <Compile Include="Entity\User.cs" />

@@ -630,7 +630,9 @@ namespace Netotik.Services.Identity
         User GetCurrentUser();
         Task<User> GetCurrentUserAsync();
         long GetCurrentUserId();
-        
+
+        IList<string> FindClientPermissions(long userId);
+
         IList<User> GetbyIds(long[] ids);
         
     }

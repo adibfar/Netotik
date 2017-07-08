@@ -9,6 +9,7 @@ using Netotik.Common.Controller;
 using System.Web;
 using Netotik.Web.Infrastructure;
 using Netotik.Web.Infrastructure.Caching;
+using Netotik.Common.Filters;
 
 namespace Netotik.Web.Controllers
 {
@@ -26,6 +27,7 @@ namespace Netotik.Web.Controllers
 
         private readonly IAuthenticationManager _authenticationManager;
         private readonly IApplicationRoleManager _applicationRoleManager;
+        private readonly IApplicationUserManager _applicationUserManager;
         private readonly IUserMailer _userMailer;
         private readonly ISettingService _settingService;
         private readonly IContentCategoryService _contentCategoryService;
@@ -38,6 +40,7 @@ namespace Netotik.Web.Controllers
 
         #region Constructor
         public HomeController(
+            IApplicationUserManager applicationUserManager,
             ISliderService sliderService,
             IIndexSectionService indexSectionService,
             IApplicationRoleManager applicationRoleManager,
@@ -50,6 +53,7 @@ namespace Netotik.Web.Controllers
             IMenuService menuService
             )
         {
+            _applicationUserManager = applicationUserManager;
             _indexSectionService = indexSectionService;
             _sliderService = sliderService;
             _applicationRoleManager = applicationRoleManager;
@@ -77,25 +81,30 @@ namespace Netotik.Web.Controllers
         [Authorize]
         public virtual ActionResult AdminMenu()
         {
-            var menues = _menuService.All().Where(x => x.IsActive).Include(x => x.SubMenues).ToList();
+            
             if (User.IsInRole(Netotik.ViewModels.Identity.Security.AssignableToRolePermissions.CanViewAdminPanel))
             {
+                var menues = _menuService.All().Where(x => x.IsActive).Include(x => x.SubMenues).ToList();
                 return PartialView(MVC.Shared.Views._SideBarAdminMenu, menues);
             }
             else if (User.IsInRole("Reseller"))
             {
-                return PartialView(MVC.Shared.Views._SideBarResellerMenu, menues);
+                return PartialView(MVC.Shared.Views._SideBarResellerMenu);
             }
             else if (User.IsInRole("Company"))
             {
-                return PartialView(MVC.Shared.Views._SideBarCompanyMenu, menues);
-            }
-            else if (Session["Client"] != null)
-            {
-                return PartialView(MVC.Shared.Views._SideBarClientMenu);
+                return PartialView(MVC.Shared.Views._SideBarCompanyMenu);
             }
             return View("");
         }
+
+        [ClientAuthorize()]
+        public virtual ActionResult ClientMenu()
+        {
+            var clientPermissions = _applicationUserManager.FindClientPermissions((Session["Client"] as Domain.Entity.User).Id);
+            return PartialView(MVC.Shared.Views._SideBarClientMenu, clientPermissions);
+        }
+
 
         public virtual PartialViewResult LastBlog()
         {

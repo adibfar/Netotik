@@ -1,6 +1,8 @@
 ﻿@model Netotik.ViewModels.Identity.UserClient.UserEditModel
 @{
-    ViewBag.Title = @Netotik.Resources.Captions.EditUser;
+    ViewBag.Title = Netotik.Resources.Captions.EditUser;
+    var clientPermissions = ViewBag.ClientPermissions as List<SelectListItem>;
+
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 <section class="flexbox-container">
@@ -116,6 +118,15 @@
                                             @Html.ValidationMessageFor(model => model.comment, "", htmlAttributes: new { @class = "text-danger" })
                                         </div>
                                     </div>
+                                </div>
+                                <div class="col-md-12">
+                                    @foreach (var item in clientPermissions)
+                                    {
+                                        <div class="col-md-4">
+                                            <input type="checkbox" name="PermissionNames" value="#@item.Value">
+                                            @Html.Label("ClientPermissionNames", item.Text)
+                                        </div>
+                                    }
                                 </div>
                             </div>
                         </div>

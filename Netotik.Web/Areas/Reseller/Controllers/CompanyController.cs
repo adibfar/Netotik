@@ -28,6 +28,8 @@ using Microsoft.AspNet.Identity;
 using Netotik.Services.Implement;
 using Mvc.Mailer;
 using Netotik.ViewModels.Identity.Account;
+using Netotik.ViewModels.Identity.Security;
+using WebGrease.Css.Extensions;
 
 namespace Netotik.Web.Areas.Reseller.Controllers
 {
@@ -63,7 +65,7 @@ namespace Netotik.Web.Areas.Reseller.Controllers
         #region Index
         [Mvc5Authorize(Roles = "Reseller")]
         public virtual ActionResult Index()
-        {       
+        {
             var model = _applicationUserManager.GetListUserCompany(UserLogined.UserReseller.Id);
             return View(model);
 
@@ -80,7 +82,7 @@ namespace Netotik.Web.Areas.Reseller.Controllers
         [BreadCrumb(Title = "کاربر جدید", Order = 1)]
         public virtual ActionResult Create()
         {
-            IUserMailer mailer = new UserMailer();
+            PopulateClientPermissions();
             return View();
         }
 
@@ -90,6 +92,8 @@ namespace Netotik.Web.Areas.Reseller.Controllers
         [HttpPost]
         public virtual async Task<ActionResult> Create(Register model)
         {
+            PopulateClientPermissions(model.ClientPermissionNames);
+
             if (_applicationUserManager.CheckResellerEmailExist(model.Email, null))
                 ModelState.AddModelError("Email", "این ایمیل قبلا در سیستم ثبت شده است");
 
@@ -109,6 +113,7 @@ namespace Netotik.Web.Areas.Reseller.Controllers
             {
                 model.R_Host = _mikrotikServices.EnableAndGetCloud(model.R_Host, model.R_Port, model.R_User, model.R_Password);
             }
+            
             var userId = await _applicationUserManager.AddCompany(model);
 
             await SendConfirmationEmail(model.Email, userId);
@@ -119,7 +124,8 @@ namespace Netotik.Web.Areas.Reseller.Controllers
 
             ModelState.Clear();
 
-            if (!_mikrotikServices.IP_Port_Check(model.R_Host,model.R_Port,model.R_User,model.R_Password)) {
+            if (!_mikrotikServices.IP_Port_Check(model.R_Host, model.R_Port, model.R_User, model.R_Password))
+            {
                 this.MessageWarning("اتصال به روتر انجام نشد.", "پس از فعال سازی اکانت وارد پنل شده و آدرس روتر و پورت روتر را بررسی کنید یا از طریق ویرایش نسبت به اصلاح اقدام کنید.");
                 if (!_mikrotikServices.User_Pass_Check(model.R_Host, model.R_Port, model.R_User, model.R_Password))
                 {
@@ -383,6 +389,22 @@ namespace Netotik.Web.Areas.Reseller.Controllers
             }).Send();
 
         }
+
+
+
+        [NonAction]
+        private void PopulateClientPermissions(params string[] selectedpermissions)
+        {
+            var permissions = AssignablePermissionToClient.GetAsSelectListItems();
+
+            if (selectedpermissions != null)
+            {
+                permissions.ForEach(
+                    a => a.Selected = selectedpermissions.Any(s => s == a.Value));
+            }
+            ViewBag.ClientPermissions = permissions;
+        }
+
 
     }
 }

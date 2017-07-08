@@ -1,4 +1,11 @@
-﻿<div role="navigation" data-menu="menu-wrapper" class="header-navbar navbar navbar-horizontal navbar-light navbar-shadow navbar-without-dd-arrow navbar-fixed">
+﻿@using Netotik.ViewModels.Identity.Security
+@model IList<string>
+@{
+    var CanShowFood = Model.Any(x => x == AssignablePermissionToClient.FoodMenu);
+}
+
+
+<div role="navigation" data-menu="menu-wrapper" class="header-navbar navbar navbar-horizontal navbar-light navbar-shadow navbar-without-dd-arrow navbar-fixed">
     <!-- Horizontal menu content-->
     <div data-menu="menu-container" class="navbar-container main-menu-content">
         <!-- include includes/mixins-->
@@ -8,27 +15,27 @@
                 <a href="@Url.Action(MVC.Client.Home.Index())" class="nav-link"><i class="icon-home3"></i><span>@Captions.Dashboard</span></a>
             </li>
             <li data-menu="dropdown" class="dropdown nav-item">
-                <a href="#" data-toggle="dropdown" class="dropdown-toggle nav-link"><i class="icon-users2"></i><span>@Captions.User</span></a>
+                <a href="#" data-toggle="dropdown" class="dropdown-toggle nav-link"><i class="icon-user-check"></i><span>@Captions.User</span></a>
                 <ul class="dropdown-menu">
                     <li><a href="@Url.Action(MVC.Client.Home.Edit())" data-toggle="dropdown" class="dropdown-item">@Captions.Edit</a></li>
                     <li><a href="@Url.Action(MVC.Client.Home.ChangePassword())" data-toggle="dropdown" class="dropdown-item">@Captions.ChangePassword</a></li>
                 </ul>
             </li>
             <li data-menu="dropdown" class="dropdown nav-item">
-                <a href="#" data-toggle="dropdown" class="dropdown-toggle nav-link"><i class="icon-users2"></i><span>@Captions.Information</span></a>
+                <a href="#" data-toggle="dropdown" class="dropdown-toggle nav-link"><i class="icon-document"></i><span>@Captions.Information</span></a>
                 <ul class="dropdown-menu">
                     <li><a href="@Url.Action(MVC.Client.Home.Details())" data-toggle="dropdown" class="dropdown-item">@Captions.Details</a></li>
                     <li><a href="@Url.Action(MVC.Client.Home.Charts())" data-toggle="dropdown" class="dropdown-item">@Captions.Charts</a></li>
                 </ul>
             </li>
             <li class="nav-item">
-                <a href="@Url.Action(MVC.Client.Home.BuyPackage())" class="nav-link"><i class="icon-home3"></i><span>@Captions.BuyPackage</span></a>
+                <a href="@Url.Action(MVC.Client.Home.BuyPackage())" class="nav-link"><i class="icon-bag"></i><span>@Captions.BuyPackage</span></a>
             </li>
             <li class="nav-item">
-                <a href="#" class="nav-link"><i class="icon-home3"></i><span>@Captions.About</span></a>
+                <a href="#" class="nav-link"><i class="icon-office"></i><span>@Captions.About</span></a>
             </li>
             <li class="nav-item">
-                <a href="#" class="nav-link"><i class="icon-home3"></i><span>@Captions.FoodMenu</span></a>
+                <a href="#" class="nav-link"><i class="icon-food"></i><span>@Captions.FoodMenu</span></a>
             </li>
         </ul>
     </div>
