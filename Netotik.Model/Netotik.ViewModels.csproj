@@ -108,8 +108,6 @@
     <Compile Include="Identity\UserReseller\RegisterViewModel.cs" />
     <Compile Include="Identity\Account\ResetPasswordEmail.cs" />
     <Compile Include="Identity\Account\ResetPasswordViewModel.cs" />
-    <Compile Include="Identity\UserCompany\CompanyAddModel.cs" />
-    <Compile Include="Identity\UserCompany\CompanyEditModel.cs" />
     <Compile Include="Identity\UserReseller\UserItem.cs" />
     <Compile Include="Mikrotik\Hotspot\IpWalledGardenModel.cs" />
     <Compile Include="Mikrotik\Hotspot\ActiveModel.cs" />
@@ -144,9 +142,7 @@
     <Compile Include="Identity\UserCompany\LoginModel.cs" />
     <Compile Include="Identity\UserCompany\ProfileModel.cs" />
     <Compile Include="Identity\UserCompany\ChangePasswordModel.cs" />
-    <Compile Include="Identity\UserCompany\ProfileEditModel.cs" />
     <Compile Include="Identity\UserCompany\Register.cs" />
-    <Compile Include="Identity\UserCompany\TableCompanyModel.cs" />
     <Compile Include="Identity\UserReseller\ResellerEditModel.cs" />
     <Compile Include="CMS\Menu\MenuModel.cs" />
     <Compile Include="Common\Language\ResourceItem.cs" />
