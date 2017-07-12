@@ -25,6 +25,7 @@ using Netotik.ViewModels.Identity.UserClient;
 using Netotik.Services.Identity;
 using Netotik.Common.Controller;
 using Microsoft.AspNet.Identity;
+using Netotik.ViewModels.Identity.Security;
 
 namespace Netotik.Web.Areas.Client.Controllers
 {
@@ -56,6 +57,10 @@ namespace Netotik.Web.Areas.Client.Controllers
         public virtual ActionResult Index()
         {
             var loginedUser = Session["Client"] as User;
+
+             var Permissions = _applicationUserManager.FindClientPermissions(loginedUser.Id);
+            ViewBag.ClientPermissions = Permissions;
+            
 
             if (!_mikrotikServices.IP_Port_Check(loginedUser.UserCompany.R_Host, loginedUser.UserCompany.R_Port, loginedUser.UserCompany.R_User, loginedUser.UserCompany.R_Password))
             {
@@ -269,7 +274,16 @@ namespace Netotik.Web.Areas.Client.Controllers
 
         public virtual ActionResult ChangePassword()
         {
+
             var loginedUser = Session["Client"] as User;
+
+            var Permissions = _applicationUserManager.FindClientPermissions(loginedUser.Id);
+            ViewBag.ClientPermissions = Permissions;
+            if (Permissions.Any(x => x == AssignablePermissionToClient.ChangePassword))
+            {
+                return RedirectToAction(MVC.Client.Home.ActionNames.Index, MVC.Client.Home.Name, new { area = MVC.Client.Name });
+            }
+
             if (!_mikrotikServices.IP_Port_Check(loginedUser.UserCompany.R_Host, loginedUser.UserCompany.R_Port, loginedUser.UserCompany.R_User, loginedUser.UserCompany.R_Password))
             {
                 this.MessageError(Captions.Error, Captions.IPPORTClientError);
@@ -291,6 +305,12 @@ namespace Netotik.Web.Areas.Client.Controllers
         public virtual ActionResult ChangePassword(ChangePasswordModel model)
         {
             var loginedUser = Session["Client"] as User;
+            var Permissions = _applicationUserManager.FindClientPermissions(loginedUser.Id);
+            ViewBag.ClientPermissions = Permissions;
+            if (Permissions.Any(x => x == AssignablePermissionToClient.ChangePassword))
+            {
+                return RedirectToAction(MVC.Client.Home.ActionNames.Index, MVC.Client.Home.Name, new { area = MVC.Client.Name });
+            }
             if (!_mikrotikServices.IP_Port_Check(loginedUser.UserCompany.R_Host, loginedUser.UserCompany.R_Port, loginedUser.UserCompany.R_User, loginedUser.UserCompany.R_Password))
             {
                 this.MessageError(Captions.Error, Captions.IPPORTClientError);
@@ -323,6 +343,13 @@ namespace Netotik.Web.Areas.Client.Controllers
         public virtual ActionResult Edit()
         {
             var loginedUser = Session["Client"] as User;
+
+            var Permissions = _applicationUserManager.FindClientPermissions(loginedUser.Id);
+            ViewBag.ClientPermissions = Permissions;
+            if (Permissions.Any(x => x == AssignablePermissionToClient.Edit))
+            {
+                return RedirectToAction(MVC.Client.Home.ActionNames.Index, MVC.Client.Home.Name, new { area = MVC.Client.Name });
+            }
             //-------------------------------
             if (!_mikrotikServices.IP_Port_Check(loginedUser.UserCompany.R_Host, loginedUser.UserCompany.R_Port, loginedUser.UserCompany.R_User, loginedUser.UserCompany.R_Password))
             {
@@ -367,6 +394,12 @@ namespace Netotik.Web.Areas.Client.Controllers
         public virtual ActionResult UserEdit_Save(Netotik.ViewModels.Identity.UserClient.UserEditModel model, ActionType actionType)
         {
             var loginedUser = Session["Client"] as User;
+            var Permissions = _applicationUserManager.FindClientPermissions(loginedUser.Id);
+            ViewBag.ClientPermissions = Permissions;
+            if (Permissions.Any(x => x == AssignablePermissionToClient.Edit))
+            {
+                return RedirectToAction(MVC.Client.Home.ActionNames.Index, MVC.Client.Home.Name, new { area = MVC.Client.Name });
+            }
             //-------------------------------
             if (!_mikrotikServices.IP_Port_Check(loginedUser.UserCompany.R_Host, loginedUser.UserCompany.R_Port, loginedUser.UserCompany.R_User, loginedUser.UserCompany.R_Password))
             {
@@ -403,6 +436,12 @@ namespace Netotik.Web.Areas.Client.Controllers
         public virtual ActionResult Details()
         {
             var loginedUser = Session["Client"] as User;
+            var Permissions = _applicationUserManager.FindClientPermissions(loginedUser.Id);
+            ViewBag.ClientPermissions = Permissions;
+            if (Permissions.Any(x => x == AssignablePermissionToClient.Details))
+            {
+                return RedirectToAction(MVC.Client.Home.ActionNames.Index, MVC.Client.Home.Name, new { area = MVC.Client.Name });
+            }
             //-------------------------------
             if (!_mikrotikServices.IP_Port_Check(loginedUser.UserCompany.R_Host, loginedUser.UserCompany.R_Port, loginedUser.UserCompany.R_User, loginedUser.UserCompany.R_Password))
             {
@@ -521,6 +560,12 @@ namespace Netotik.Web.Areas.Client.Controllers
         public virtual ActionResult BuyPackage(Netotik.ViewModels.Identity.UserClient.UserEditModel model, ActionType actionType)
         {
             var loginedUser = Session["Client"] as User;
+            var Permissions = _applicationUserManager.FindClientPermissions(loginedUser.Id);
+            ViewBag.ClientPermissions = Permissions;
+            if (Permissions.Any(x => x == AssignablePermissionToClient.BuyPackage))
+            {
+                return RedirectToAction(MVC.Client.Home.ActionNames.Index, MVC.Client.Home.Name, new { area = MVC.Client.Name });
+            }
             //-------------------------------
             if (!_mikrotikServices.IP_Port_Check(loginedUser.UserCompany.R_Host, loginedUser.UserCompany.R_Port, loginedUser.UserCompany.R_User, loginedUser.UserCompany.R_Password))
             {
@@ -566,6 +611,12 @@ namespace Netotik.Web.Areas.Client.Controllers
         public virtual ActionResult BuyPackage()
         {
             var loginedUser = Session["Client"] as User;
+            var Permissions = _applicationUserManager.FindClientPermissions(loginedUser.Id);
+            ViewBag.ClientPermissions = Permissions;
+            if (Permissions.Any(x => x == AssignablePermissionToClient.BuyPackage))
+            {
+                return RedirectToAction(MVC.Client.Home.ActionNames.Index, MVC.Client.Home.Name, new { area = MVC.Client.Name });
+            }
             //-------------------------------
             if (!_mikrotikServices.IP_Port_Check(loginedUser.UserCompany.R_Host, loginedUser.UserCompany.R_Port, loginedUser.UserCompany.R_User, loginedUser.UserCompany.R_Password))
             {
@@ -609,6 +660,12 @@ namespace Netotik.Web.Areas.Client.Controllers
         public virtual ActionResult Charts()
         {
             var loginedUser = Session["Client"] as User;
+            var Permissions = _applicationUserManager.FindClientPermissions(loginedUser.Id);
+            ViewBag.ClientPermissions = Permissions;
+            if (Permissions.Any(x => x == AssignablePermissionToClient.Charts))
+            {
+                return RedirectToAction(MVC.Client.Home.ActionNames.Index, MVC.Client.Home.Name, new { area = MVC.Client.Name });
+            }
             //-------------------------------
             if (!_mikrotikServices.IP_Port_Check(loginedUser.UserCompany.R_Host, loginedUser.UserCompany.R_Port, loginedUser.UserCompany.R_User, loginedUser.UserCompany.R_Password))
             {

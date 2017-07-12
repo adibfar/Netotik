@@ -55,16 +55,35 @@ namespace Netotik.ViewModels.Identity.Security
 
 
         public const string FoodMenu = "0";
-        public const string HotelMenu = "1";
-        public const string ChangePassMenu = "2";
-        public const string PackageMenu = "3";
-        public const string XYZMenu = "4";
+        public const string BuyPackage = "1";
+        public const string ChangePassword = "2";
+        public const string Edit = "3";
+        public const string Charts = "4";
+        public const string Details = "5";
+        public const string TrafficDetails = "6";
+        public const string TimeDetails = "7";
+        public const string ConnectionDetails = "8";
+        public const string PeropertiseDetails = "9";
+        public const string About = "10";
+        public const string PackageName = "11";
+        public const string PackageTime = "12";
+        public const string ClientArea = "13";
+
 
         public static readonly ClientPermissionModel FoodMenuPermission = new ClientPermissionModel { Name = FoodMenu, Description = "منو غدا" };
-        public static readonly ClientPermissionModel HotelMenuPermission = new ClientPermissionModel { Name = HotelMenu, Description = "منو هتل" };
-        public static readonly ClientPermissionModel ChangePassPermission = new ClientPermissionModel { Name = ChangePassMenu, Description = "منو تغییر گذار واژه" };
-        public static readonly ClientPermissionModel PackageMenuPermission = new ClientPermissionModel { Name = PackageMenu, Description = "منو تعرفه ها" };
-        public static readonly ClientPermissionModel XYZMenuPermission = new ClientPermissionModel { Name = XYZMenu, Description = "توضیح مثال" };
+        public static readonly ClientPermissionModel BuyPackagePermission = new ClientPermissionModel { Name = BuyPackage, Description = "خرید تعرفه" };
+        public static readonly ClientPermissionModel ChangePasswordPermission = new ClientPermissionModel { Name = ChangePassword, Description = "منو تغییر گذار واژه" };
+        public static readonly ClientPermissionModel EditPermission = new ClientPermissionModel { Name = Edit, Description = "ویرایش اطلاعات" };
+        public static readonly ClientPermissionModel ChartsPermission = new ClientPermissionModel { Name = Charts, Description = "نمودارها" };
+        public static readonly ClientPermissionModel DetailsPermission = new ClientPermissionModel { Name = Details, Description = "منوی جزئیات" };
+        public static readonly ClientPermissionModel TrafficDetailsPermission = new ClientPermissionModel { Name = TrafficDetails, Description = "جزئیات ترافیک" };
+        public static readonly ClientPermissionModel TimeDetailsPermission = new ClientPermissionModel { Name = TimeDetails, Description = "جزئیات زمان" };
+        public static readonly ClientPermissionModel ConnectionDetailsPermission = new ClientPermissionModel { Name = ConnectionDetails, Description = "جزئیات اتصالات" };
+        public static readonly ClientPermissionModel PeropertiseDetailsPermission = new ClientPermissionModel { Name = PeropertiseDetails, Description = "جزئیات کاربر" };
+        public static readonly ClientPermissionModel AboutPermission = new ClientPermissionModel { Name = About, Description = "منوی درباره ما" };
+        public static readonly ClientPermissionModel PackageNamePermission = new ClientPermissionModel { Name = PackageName, Description = "داشبورد نام تعرفه" };
+        public static readonly ClientPermissionModel PackageTimePermission = new ClientPermissionModel { Name = PackageTime, Description = "داشبورد زمان" };
+        public static readonly ClientPermissionModel ClientPermission = new ClientPermissionModel { Name = ClientArea, Description = "پنل کاربری" };
 
         #endregion
 
@@ -79,10 +98,19 @@ namespace Netotik.ViewModels.Identity.Security
             return new List<ClientPermissionModel>
             {
                 FoodMenuPermission,
-                HotelMenuPermission,
-                ChangePassPermission,
-                PackageMenuPermission,
-                XYZMenuPermission
+                ClientPermission,
+                BuyPackagePermission,
+                ChangePasswordPermission,
+                EditPermission,
+                ChartsPermission,
+                DetailsPermission,
+                TrafficDetailsPermission,
+                TimeDetailsPermission,
+                ConnectionDetailsPermission,
+                PeropertiseDetailsPermission,
+                AboutPermission,
+                PackageNamePermission,
+                PackageTimePermission
             };
         }
 
@@ -93,10 +121,19 @@ namespace Netotik.ViewModels.Identity.Security
             return new List<String>
             {
                 FoodMenu,
-                HotelMenu,
-                ChangePassMenu,
-                PackageMenu,
-                XYZMenu
+                ClientArea,
+                BuyPackage,
+                ChangePassword,
+                Edit,
+                Charts,
+                Details,
+                TrafficDetails,
+                TimeDetails,
+                ConnectionDetails,
+                PeropertiseDetails,
+                About,
+                PackageName,
+                PackageTime
             };
         }
         #endregion

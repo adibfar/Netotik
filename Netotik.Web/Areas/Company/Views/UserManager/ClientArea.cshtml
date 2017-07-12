@@ -1,0 +1,34 @@
+﻿@model Netotik.ViewModels.Identity.UserCompany.ProfileModel
+@{
+    var clientPermissions = ViewBag.ClientPermissions as List<SelectListItem>;
+    Layout = null;
+}
+
+@using (Html.BeginForm(MVC.Company.UserManager.ActionNames.ClientArea, MVC.Company.Home.Name, FormMethod.Post,
+                                 htmlAttributes: new { @class = "form-horizontal", enctype = "multipart/form-data", id = "form" }))
+{
+    @Html.AntiForgeryToken()
+    <div class="card">
+        <div class="card-header">
+            <button name="actionType" value="@Netotik.Common.Controller.ActionType.Save" class="btn btn-social width-100 btn-instagram" onclick="AjaxForm.Post(this, 'form')" data-loading-text="در حال ارسال اطلاعات">
+                <span class="icon-checkmark2 font-medium-4"></span>
+                @Netotik.Resources.Captions.Save
+            </button>
+        </div>
+        <div class="card-body">
+            <div class="card-block">
+                <div class="row">
+                    <div class="row skin skin-flat">
+                        @foreach (var item in clientPermissions)
+                        {
+                            <div class="col-md-4">
+                                <input type="checkbox" name="ClientPermissionNames"  @(item.Selected ? "checked" : "") value="@item.Value">
+                                @Html.Label("ClientPermissionNames", item.Text)
+                            </div>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}

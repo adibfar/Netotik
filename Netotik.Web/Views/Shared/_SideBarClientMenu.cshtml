@@ -1,7 +1,13 @@
 ﻿@using Netotik.ViewModels.Identity.Security
 @model IList<string>
 @{
-    var CanShowFood = Model.Any(x => x == AssignablePermissionToClient.FoodMenu);
+    var CanShowFoodMenu = Model.Any(x => x == AssignablePermissionToClient.FoodMenu);
+    var CanShowAbout = Model.Any(x => x == AssignablePermissionToClient.About);
+    var CanShowBuyPackage = Model.Any(x => x == AssignablePermissionToClient.BuyPackage);
+    var CanShowChangePassword = Model.Any(x => x == AssignablePermissionToClient.ChangePassword);
+    var CanShowCharts = Model.Any(x => x == AssignablePermissionToClient.Charts);
+    var CanShowDetails = Model.Any(x => x == AssignablePermissionToClient.Details);
+    var CanShowEdit = Model.Any(x => x == AssignablePermissionToClient.Edit);
 }
 
 
@@ -14,29 +20,56 @@
             <li class="nav-item">
                 <a href="@Url.Action(MVC.Client.Home.Index())" class="nav-link"><i class="icon-home3"></i><span>@Captions.Dashboard</span></a>
             </li>
+            @if (CanShowEdit || CanShowChangePassword)
+            {
             <li data-menu="dropdown" class="dropdown nav-item">
                 <a href="#" data-toggle="dropdown" class="dropdown-toggle nav-link"><i class="icon-user-check"></i><span>@Captions.User</span></a>
                 <ul class="dropdown-menu">
+                    @if (CanShowEdit)
+                    {
                     <li><a href="@Url.Action(MVC.Client.Home.Edit())" data-toggle="dropdown" class="dropdown-item">@Captions.Edit</a></li>
+                    }
+                    @if (CanShowChangePassword)
+                    {
                     <li><a href="@Url.Action(MVC.Client.Home.ChangePassword())" data-toggle="dropdown" class="dropdown-item">@Captions.ChangePassword</a></li>
+                    }
                 </ul>
             </li>
+            }
+            @if (CanShowDetails || CanShowCharts)
+            {
             <li data-menu="dropdown" class="dropdown nav-item">
                 <a href="#" data-toggle="dropdown" class="dropdown-toggle nav-link"><i class="icon-document"></i><span>@Captions.Information</span></a>
                 <ul class="dropdown-menu">
+                    @if (CanShowDetails)
+                    {
                     <li><a href="@Url.Action(MVC.Client.Home.Details())" data-toggle="dropdown" class="dropdown-item">@Captions.Details</a></li>
+                    }
+                    @if (CanShowCharts)
+                    {
                     <li><a href="@Url.Action(MVC.Client.Home.Charts())" data-toggle="dropdown" class="dropdown-item">@Captions.Charts</a></li>
+                    }
                 </ul>
             </li>
+            }
+            @if (CanShowBuyPackage)
+            {
             <li class="nav-item">
                 <a href="@Url.Action(MVC.Client.Home.BuyPackage())" class="nav-link"><i class="icon-bag"></i><span>@Captions.BuyPackage</span></a>
             </li>
+            }
+            @if (CanShowAbout)
+            {
             <li class="nav-item">
                 <a href="#" class="nav-link"><i class="icon-office"></i><span>@Captions.About</span></a>
             </li>
+            }
+            @if (CanShowFoodMenu)
+            {
             <li class="nav-item">
                 <a href="#" class="nav-link"><i class="icon-food"></i><span>@Captions.FoodMenu</span></a>
             </li>
+            }
         </ul>
     </div>
     <!-- /horizontal menu content-->

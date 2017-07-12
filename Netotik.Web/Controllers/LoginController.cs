@@ -19,6 +19,7 @@ using CaptchaMvc.Attributes;
 using System.Data.Entity;
 using Microsoft.AspNet.Identity.Owin;
 using System.Collections.Generic;
+using Netotik.ViewModels.Identity.Security;
 //Test Comment
 namespace Netotik.Web.Controllers
 {
@@ -231,21 +232,9 @@ namespace Netotik.Web.Controllers
             var company = await _applicationUserManager.FindByCompanyCodeAsync(CompanyCode);
             if (company == null) return HttpNotFound();
 
-            if (!_mikrotikServices.IP_Port_Check(company.UserCompany.R_Host, company.UserCompany.R_Port, company.UserCompany.R_User, company.UserCompany.R_Password))
-            {
-                ViewBag.Message = Captions.IPPORTClientError;
-                return View();
-            }
-            if (!_mikrotikServices.User_Pass_Check(company.UserCompany.R_Host, company.UserCompany.R_Port, company.UserCompany.R_User, company.UserCompany.R_Password))
-            {
-                ViewBag.Message = Captions.UserPasswordClientError;
-                return View();
-            }
-            if (!_mikrotikServices.Usermanager_IsInstall(company.UserCompany.R_Host, company.UserCompany.R_Port, company.UserCompany.R_User, company.UserCompany.R_Password))
-            {
-                ViewBag.Message = Captions.UsermanagerClientError;
-                return View();
-            }
+            var Permissions = _applicationUserManager.FindClientPermissions(company.Id);
+            var CanShowPanel = Permissions.Any(x => x == AssignablePermissionToClient.ClientArea);
+            if (CanShowPanel) return HttpNotFound();
 
             ViewBag.CompanyName = CompanyCode;
             ViewBag.ReturnUrl = ReturnUrl;
@@ -269,6 +258,9 @@ namespace Netotik.Web.Controllers
 
             var company = await _applicationUserManager.FindByCompanyCodeAsync(CompanyCode);
             if (company == null) return HttpNotFound();
+            var Permissions = _applicationUserManager.FindClientPermissions(company.Id);
+            var CanShowPanel = Permissions.Any(x => x == AssignablePermissionToClient.ClientArea);
+            if (CanShowPanel) return HttpNotFound();
 
             if (!_mikrotikServices.IP_Port_Check(company.UserCompany.R_Host, company.UserCompany.R_Port, company.UserCompany.R_User, company.UserCompany.R_Password))
             {

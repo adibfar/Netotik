@@ -1,8 +1,24 @@
 ﻿@model Netotik.ViewModels.Identity.UserClient.UserModel
+@using Netotik.ViewModels.Identity.Security
 @{
     ViewBag.Title = Netotik.Resources.Captions.Dashboard;
     Layout = "~/Views/Shared/_Layout.cshtml";
     string temp = "";
+
+    var permissions = ViewBag.ClientPermissions as List<string>;
+
+    var CanShowFoodMenu = permissions.Any(x => x == AssignablePermissionToClient.FoodMenu);
+    var CanShowAbout = permissions.Any(x => x == AssignablePermissionToClient.About);
+    var CanShowBuyPackage = permissions.Any(x => x == AssignablePermissionToClient.BuyPackage);
+    var CanShowChangePassword = permissions.Any(x => x == AssignablePermissionToClient.ChangePassword);
+    var CanShowCharts = permissions.Any(x => x == AssignablePermissionToClient.Charts);
+    var CanShowDetails = permissions.Any(x => x == AssignablePermissionToClient.Details);
+    var CanShowEdit = permissions.Any(x => x == AssignablePermissionToClient.Edit);
+    var CanShowConnectionDetails = permissions.Any(x => x == AssignablePermissionToClient.ConnectionDetails);
+    var CanShowPackageName = permissions.Any(x => x == AssignablePermissionToClient.PackageName);
+    var CanShowPackageTime = permissions.Any(x => x == AssignablePermissionToClient.PackageTime);
+    var CanShowTrafficDetails = permissions.Any(x => x == AssignablePermissionToClient.TrafficDetails);
+
 }
 <div class="row">
     <div class="col-xl-6">
@@ -11,12 +27,18 @@
                 <div class="card-block">
                     <div class="media">
                         <div class="media-body text-xs-left">
-                            <a style="margin-bottom:5px; margin-top:5px;" href="@Url.Action(MVC.Client.Home.Edit())" class="btn btn-float btn-float-lg btn-pink"><i class="icon-user-check"></i><span>@Netotik.Resources.Captions.Edit </span></a>
-                            <a style="margin-bottom:5px; margin-top:5px;" href="@Url.Action(MVC.Client.Home.ChangePassword())" class="btn btn-float btn-float-lg btn-pink"><i class="icon-key22"></i><span>@Netotik.Resources.Captions.ChangePassword</span></a>
-                            <a style="margin-bottom:5px; margin-top:5px;" href="@Url.Action(MVC.Client.Home.BuyPackage())" class="btn btn-float btn-float-lg btn-pink"><i class="icon-bag"></i><span>@Netotik.Resources.Captions.ChangePackage</span></a>
-                            <a style="margin-bottom:5px; margin-top:5px;" href="#" class="btn btn-float btn-float-lg btn-pink"><i class="icon-office"></i><span>@Netotik.Resources.Captions.About</span></a>
-                            <a style="margin-bottom:5px; margin-top:5px;" href="#" class="btn btn-float btn-float-lg btn-pink"><i class="icon-food"></i><span>@Netotik.Resources.Captions.FoodMenu</span></a>
-                            <a style="margin-bottom:5px; margin-top:5px;" href="@Url.Action(MVC.Client.Home.Details())" class="btn btn-float btn-float-lg btn-pink"><i class="icon-line-chart"></i><span>@Netotik.Resources.Captions.Details</span></a>
+                            @if (CanShowEdit) {
+                            <a style="margin-bottom:5px; margin-top:5px;" href="@Url.Action(MVC.Client.Home.Edit())" class="btn btn-float btn-float-lg btn-pink"><i class="icon-user-check"></i><span>@Netotik.Resources.Captions.Edit </span></a>}
+                            @if (CanShowChangePassword)
+                            {<a style="margin-bottom:5px; margin-top:5px;" href="@Url.Action(MVC.Client.Home.ChangePassword())" class="btn btn-float btn-float-lg btn-pink"><i class="icon-key22"></i><span>@Netotik.Resources.Captions.ChangePassword</span></a>}
+                            @if (CanShowBuyPackage)
+                            {<a style="margin-bottom:5px; margin-top:5px;" href="@Url.Action(MVC.Client.Home.BuyPackage())" class="btn btn-float btn-float-lg btn-pink"><i class="icon-bag"></i><span>@Netotik.Resources.Captions.ChangePackage</span></a>}
+                            @if (CanShowAbout)
+                            {<a style="margin-bottom:5px; margin-top:5px;" href="#" class="btn btn-float btn-float-lg btn-pink"><i class="icon-office"></i><span>@Netotik.Resources.Captions.About</span></a>}
+                            @if (CanShowFoodMenu)
+                            {<a style="margin-bottom:5px; margin-top:5px;" href="#" class="btn btn-float btn-float-lg btn-pink"><i class="icon-food"></i><span>@Netotik.Resources.Captions.FoodMenu</span></a>}
+                            @if (CanShowDetails)
+                            {<a style="margin-bottom:5px; margin-top:5px;" href="@Url.Action(MVC.Client.Home.Details())" class="btn btn-float btn-float-lg btn-pink"><i class="icon-line-chart"></i><span>@Netotik.Resources.Captions.Details</span></a>}
 
                         </div>
                     </div>
@@ -24,6 +46,8 @@
             </div>
         </div>
     </div>
+    @if (CanShowPackageTime)
+    {
     <div class="col-xl-3">
         <div class="card bg-deep-orange">
             <div class="card-body">
@@ -42,7 +66,9 @@
             </div>
         </div>
     </div>
-
+    }
+    @if (CanShowPackageName)
+    {
     <div class="col-xl-3">
         <div class="card bg-green">
             <div class="card-body">
@@ -61,9 +87,11 @@
             </div>
         </div>
     </div>
-
+    }
 </div>
 <div class="row">
+    @if (CanShowTrafficDetails)
+    {
     <div class="col-xl-4">
         <div class="card">
             <div class="card-body">
@@ -121,7 +149,9 @@
             </div>
         </div>
     </div>
-
+    }
+    @if (CanShowCharts)
+    {
     <div class="col-xl-8">
         <div class="card">
             <div class="card-body">
@@ -139,7 +169,7 @@
             </div>
         </div>
     </div>
-
+    }
 
 </div>
 @section DownScript{
@@ -148,7 +178,8 @@
     <script src="~/Content/js/plugins/extensions/jquery.knob.min.js" type="text/javascript"></script>
     <script src="~/Content/js/components/extensions/knob.js" type="text/javascript"></script>
 
-
+    @if (CanShowCharts)
+    {
     <script type="text/javascript">
         $(window).on("load", function () {
             var a = $("#column-chart"),
@@ -198,11 +229,11 @@
                     datasets: [{
                         label: "@Netotik.Resources.Captions.Download MB",
                         data: [
-                            @foreach(var downloadvalue in ViewBag.DownloadChartValues.Values)
-                        {
-                            temp = downloadvalue.ToString() + " , ";
+                            @foreach (var downloadvalue in ViewBag.DownloadChartValues.Values)
+                            {
+                                temp = downloadvalue.ToString() + " , ";
                             @(temp)
-                        }
+                            }
                         ],
                         backgroundColor: "#673AB7",
                         hoverBackgroundColor: "rgba(103,58,183,.9)",
@@ -210,11 +241,11 @@
                     }, {
                         label: "@Netotik.Resources.Captions.Upload MB",
                         data: [
-                            @foreach(var uploadvalue in ViewBag.UploadChartValues.Values)
-        {
-            temp = uploadvalue.ToString() + " , ";
+                            @foreach (var uploadvalue in ViewBag.UploadChartValues.Values)
+                            {
+                                temp = uploadvalue.ToString() + " , ";
                             @(temp)
-        }
+                            }
                         ],
                         backgroundColor: "#E91E63",
                         hoverBackgroundColor: "rgba(233,30,99,.9)",
@@ -229,4 +260,5 @@
             new Chart(a, d)
         });
     </script>
-}
+        }
+    }

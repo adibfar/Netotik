@@ -11,6 +11,9 @@ using Netotik.Data;
 using Netotik.Common.Filters;
 using Netotik.Common.Controller;
 using System.Collections.Generic;
+using Netotik.ViewModels.Identity.Security;
+using Microsoft.AspNet.Identity;
+using WebGrease.Css.Extensions;
 
 namespace Netotik.Web.Areas.Company.Controllers
 {
@@ -886,6 +889,56 @@ namespace Netotik.Web.Areas.Company.Controllers
             }
         }
         #endregion
+
+        [NonAction]
+        private void PopulatePermissions(params string[] selectedpermissions)
+        {
+            var permissions = AssignablePermissionToClient.GetAsSelectListItems();
+
+            if (selectedpermissions != null)
+            {
+                permissions.ForEach(a => a.Selected = selectedpermissions.Any(s => s == a.Value));
+            }
+
+            ViewBag.ClientPermissions = permissions;
+        }
+        public virtual ActionResult ClientArea()
+        {
+            var company = _applicationUserManager.GetUserCompanyProfile(UserLogined.Id);
+            PopulatePermissions(_applicationUserManager.FindClientPermissions(company.Id).ToArray());
+            return View();
+        }
+       
+        [HttpPost]
+        public virtual ActionResult ClientArea(ViewModels.Identity.UserCompany.ProfileModel model)
+        {
+            PopulatePermissions(model.ClientPermissionNames);
+            #region Validation
+            if (_applicationUserManager.CheckCompanyEmailExist(model.Email, User.Identity.GetUserId<long>()))
+                ModelState.AddModelError("Email", "این ایمیل قبلا در سیستم ثبت شده است");
+
+            if (_applicationUserManager.CheckCompanyPhoneNumberExist(model.PhoneNumber, User.Identity.GetUserId<long>(), model.UserResellerId))
+                ModelState.AddModelError("PhoneNumber", "این شماره موبایل قبلا در سیستم ثبت شده است");
+
+            if (!ModelState.IsValid)
+            {
+                this.MessageError(Captions.MissionFail, Captions.InvalidDataError);
+                //return View(MVC.Reseller.Home.Views._ProfileData, model);
+                return RedirectToAction(MVC.Company.Home.ActionNames.MyProfile);
+            }
+            #endregion
+            if (model.Email != UserLogined.Email)
+                model.EmailConfirmed = false;
+            model.Id = UserLogined.Id;
+            model.UserResellerId = UserLogined.UserCompany.UserResellerId;
+
+            this.MessageInformation(Captions.MissionSuccess, Captions.UpdateSuccess);
+            _applicationUserManager.UpdateUserCompanyProfile(model);
+            return RedirectToAction(MVC.Company.UserManager.ActionNames.ClientArea);
+        }
+
+
+
 
     }
 }

@@ -154,6 +154,7 @@ namespace Netotik.Web.Areas.Company.Controllers
             public readonly string Register = "Register";
             public readonly string UserEdit = "UserEdit";
             public readonly string UserEdit_Save = "UserEdit_Save";
+            public readonly string ClientArea = "ClientArea";
             public readonly string RedirectToLocal = "RedirectToLocal";
         }
 
@@ -176,6 +177,7 @@ namespace Netotik.Web.Areas.Company.Controllers
             public const string Register = "Register";
             public const string UserEdit = "UserEdit";
             public const string UserEdit_Save = "UserEdit_Save";
+            public const string ClientArea = "ClientArea";
             public const string RedirectToLocal = "RedirectToLocal";
         }
 
@@ -281,6 +283,14 @@ namespace Netotik.Web.Areas.Company.Controllers
             public readonly string model = "model";
             public readonly string actionType = "actionType";
         }
+        static readonly ActionParamsClass_ClientArea s_params_ClientArea = new ActionParamsClass_ClientArea();
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public ActionParamsClass_ClientArea ClientAreaParams { get { return s_params_ClientArea; } }
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public class ActionParamsClass_ClientArea
+        {
+            public readonly string model = "model";
+        }
         static readonly ActionParamsClass_RedirectToLocal s_params_RedirectToLocal = new ActionParamsClass_RedirectToLocal();
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public ActionParamsClass_RedirectToLocal RedirectToLocalParams { get { return s_params_RedirectToLocal; } }
@@ -300,6 +310,7 @@ namespace Netotik.Web.Areas.Company.Controllers
             public class _ViewNamesClass
             {
                 public readonly string _Table = "_Table";
+                public readonly string ClientArea = "ClientArea";
                 public readonly string PackageCreate = "PackageCreate";
                 public readonly string PackageDetails = "PackageDetails";
                 public readonly string PackageList = "PackageList";
@@ -311,6 +322,7 @@ namespace Netotik.Web.Areas.Company.Controllers
                 public readonly string UserList = "UserList";
             }
             public readonly string _Table = "~/Areas/Company/Views/UserManager/_Table.cshtml";
+            public readonly string ClientArea = "~/Areas/Company/Views/UserManager/ClientArea.cshtml";
             public readonly string PackageCreate = "~/Areas/Company/Views/UserManager/PackageCreate.cshtml";
             public readonly string PackageDetails = "~/Areas/Company/Views/UserManager/PackageDetails.cshtml";
             public readonly string PackageList = "~/Areas/Company/Views/UserManager/PackageList.cshtml";
@@ -540,6 +552,29 @@ namespace Netotik.Web.Areas.Company.Controllers
             ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "model", model);
             ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "actionType", actionType);
             UserEdit_SaveOverride(callInfo, model, actionType);
+            return callInfo;
+        }
+
+        [NonAction]
+        partial void ClientAreaOverride(T4MVC_System_Web_Mvc_ActionResult callInfo);
+
+        [NonAction]
+        public override System.Web.Mvc.ActionResult ClientArea()
+        {
+            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.ClientArea);
+            ClientAreaOverride(callInfo);
+            return callInfo;
+        }
+
+        [NonAction]
+        partial void ClientAreaOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, Netotik.ViewModels.Identity.UserCompany.ProfileModel model);
+
+        [NonAction]
+        public override System.Web.Mvc.ActionResult ClientArea(Netotik.ViewModels.Identity.UserCompany.ProfileModel model)
+        {
+            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.ClientArea);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "model", model);
+            ClientAreaOverride(callInfo, model);
             return callInfo;
         }
 
