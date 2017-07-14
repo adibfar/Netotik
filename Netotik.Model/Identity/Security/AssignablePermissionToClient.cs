@@ -81,8 +81,8 @@ namespace Netotik.ViewModels.Identity.Security
         public static readonly ClientPermissionModel ConnectionDetailsPermission = new ClientPermissionModel { Name = ConnectionDetails, Description = "جزئیات اتصالات" };
         public static readonly ClientPermissionModel PeropertiseDetailsPermission = new ClientPermissionModel { Name = PeropertiseDetails, Description = "جزئیات کاربر" };
         public static readonly ClientPermissionModel AboutPermission = new ClientPermissionModel { Name = About, Description = "منوی درباره ما" };
-        public static readonly ClientPermissionModel PackageNamePermission = new ClientPermissionModel { Name = PackageName, Description = "داشبورد نام تعرفه" };
-        public static readonly ClientPermissionModel PackageTimePermission = new ClientPermissionModel { Name = PackageTime, Description = "داشبورد زمان" };
+        public static readonly ClientPermissionModel PackageNamePermission = new ClientPermissionModel { Name = PackageName, Description = "داشبورد ویجت نام تعرفه" };
+        public static readonly ClientPermissionModel PackageTimePermission = new ClientPermissionModel { Name = PackageTime, Description = "داشبورد ویجت زمان" };
         public static readonly ClientPermissionModel ClientPermission = new ClientPermissionModel { Name = ClientArea, Description = "پنل کاربری" };
 
         #endregion
@@ -97,8 +97,8 @@ namespace Netotik.ViewModels.Identity.Security
         {
             return new List<ClientPermissionModel>
             {
-                FoodMenuPermission,
                 ClientPermission,
+                FoodMenuPermission,
                 BuyPackagePermission,
                 ChangePasswordPermission,
                 EditPermission,
@@ -120,8 +120,8 @@ namespace Netotik.ViewModels.Identity.Security
         {
             return new List<String>
             {
-                FoodMenu,
                 ClientArea,
+                FoodMenu,
                 BuyPackage,
                 ChangePassword,
                 Edit,

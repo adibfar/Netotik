@@ -513,5 +513,30 @@
     <Value>User</Value>
   </LocaleResource>
 
+  <LocaleResource Name="RouterInformation">
+    <Value>Router Information</Value>
+  </LocaleResource>
+  <LocaleResource Name="ClientPanelPermission">
+    <Value>Client Panel Permission</Value>
+  </LocaleResource>
+  <LocaleResource Name="FirstNameAndLastName">
+    <Value>Full Name</Value>
+  </LocaleResource>
+    <LocaleResource Name="UserLoginLink">
+    <Value>Users Login Link</Value>
+  </LocaleResource>
+  <LocaleResource Name="UserLoginMessage">
+    <Value>
+      کاربران شما برای ورود به پنل خودشان باید حتما از صفحه لاگین شما جهت ورود استفاده کنند.آدرس این صفحه در زیر نوشته شده
+      و به صورت لینک می باشد.
+      لینک زیر را به کاربران خود بدهید.
+      در آینده در این صفحه اختصاصی ،شما می توانید تبلیغات خود را بگذارید که کاربران شما در هر بار ورود آنها را ببینند.
+    </Value>
+  </LocaleResource>
+  <LocaleResource Name="CreateSuccsessGoToEmail">
+    <Value>
+      حساب کاربری شما با موفقیت ایجاد شد. برای فعال سازی حساب خود به ایمیل خود مراجعه کنید
+    </Value>
+  </LocaleResource>
 
 </Language>

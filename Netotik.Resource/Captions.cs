@@ -3146,6 +3146,49 @@ namespace Netotik.Resources
                 return resourceProvider.GetResource("User", CultureInfo.CurrentUICulture.Name) as string;
             }
         }
+        public static string RouterInformation
+        {
+            get
+            {
+                return resourceProvider.GetResource("RouterInformation", CultureInfo.CurrentUICulture.Name) as string;
+            }
+        }
+        public static string ClientPanelPermission
+        {
+            get
+            {
+                return resourceProvider.GetResource("ClientPanelPermission", CultureInfo.CurrentUICulture.Name) as string;
+            }
+        }
+        public static string UserLoginLink
+        {
+            get
+            {
+                return resourceProvider.GetResource("UserLoginLink", CultureInfo.CurrentUICulture.Name) as string;
+            }
+        }
+        public static string UserLoginMessage
+        {
+            get
+            {
+                return resourceProvider.GetResource("UserLoginMessage", CultureInfo.CurrentUICulture.Name) as string;
+            }
+        }
+        public static string FirstNameAndLastName
+        {
+            get
+            {
+                return resourceProvider.GetResource("FirstNameAndLastName", CultureInfo.CurrentUICulture.Name) as string;
+            }
+        }
+        public static string CreateSuccsessGoToEmail
+        {
+            get
+            {
+                return resourceProvider.GetResource("CreateSuccsessGoToEmail", CultureInfo.CurrentUICulture.Name) as string;
+            }
+        }
+
         //<!--======================Messages Ehsan EM===========================-->
 
 

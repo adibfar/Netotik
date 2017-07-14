@@ -1,7 +1,7 @@
 ﻿@model Netotik.ViewModels.Identity.UserCompany.Register
 @{
     var clientPermissions = ViewBag.ClientPermissions as List<SelectListItem>;
-    ViewBag.Title = " کاربر جدید ";
+    ViewBag.Title = Netotik.Resources.Captions.NewUser;
 }
 <section class="flexbox-container">
     <div class="row">
@@ -21,16 +21,16 @@
                         <div class="card-block">
                             <ul class="nav nav-tabs nav-underline nav-justified">
                                 <li class="nav-item">
-                                    <a class="nav-link active" id="activeIcon12-tab1" data-toggle="tab" href="#property" aria-controls="activeIcon12" aria-expanded="true"><i class="icon-file-text"></i> مشخصات</a>
+                                    <a class="nav-link active" id="activeIcon12-tab1" data-toggle="tab" href="#property" aria-controls="activeIcon12" aria-expanded="true"><i class="icon-file-text"></i>@Netotik.Resources.Captions.Properties</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" id="linkIconOpt11-tab1" data-toggle="tab" href="#Router" aria-controls="linkIconOpt11"><i class="icon-server"></i> اطلاعات روتر</a>
+                                    <a class="nav-link" id="linkIconOpt11-tab1" data-toggle="tab" href="#Router" aria-controls="linkIconOpt11"><i class="icon-server"></i>@Netotik.Resources.Captions.RouterInformation</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" id="linkIcon12-tab1" data-toggle="tab" href="#image" aria-controls="linkIcon12" aria-expanded="false"><i class="icon-camera5"></i> تصویر پروفایل</a>
+                                    <a class="nav-link" id="linkIcon12-tab1" data-toggle="tab" href="#image" aria-controls="linkIcon12" aria-expanded="false"><i class="icon-camera5"></i>@Netotik.Resources.Captions.ImageProfile</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" id="linkIcon12-tab1" data-toggle="tab" href="#ClientPermission" aria-controls="linkIcon12" aria-expanded="false"><i class="icon-lock2"></i> مجوزه های کلاینت</a>
+                                    <a class="nav-link" id="linkIcon12-tab1" data-toggle="tab" href="#ClientPermission" aria-controls="linkIcon12" aria-expanded="false"><i class="icon-lock2"></i>@Netotik.Resources.Captions.ClientPanelPermission</a>
                                 </li>
                             </ul>
                             <div class="tab-content px-1 pt-1" style="min-height:260px!important">

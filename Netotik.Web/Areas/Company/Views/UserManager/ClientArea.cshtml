@@ -1,7 +1,6 @@
 ﻿@model Netotik.ViewModels.Identity.UserCompany.ProfileModel
 @{
     var clientPermissions = ViewBag.ClientPermissions as List<SelectListItem>;
-    Layout = null;
 }
 
 @using (Html.BeginForm(MVC.Company.UserManager.ActionNames.ClientArea, MVC.Company.Home.Name, FormMethod.Post,

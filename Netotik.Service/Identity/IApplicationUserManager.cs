@@ -350,6 +350,7 @@ namespace Netotik.Services.Identity
 
         Task<ViewModels.Identity.UserAdmin.AdminEditModel> GetUserAdminByIdAsync(long id);
         Task<ViewModels.Identity.UserReseller.ResellerEditModel> GetUserResellerByIdAsync(long id);
+        Task<ViewModels.Identity.UserCompany.CompanyEditModel> GetUserCompanyByIdAsync(long id);
 
         /// <summary>
         /// Returns true if the user is in the specified role
@@ -590,6 +591,7 @@ namespace Netotik.Services.Identity
         void SeedDatabase();
         Task<bool> EditUser(ViewModels.Identity.UserAdmin.AdminEditModel viewModel);
         Task<bool> EditReseller(ViewModels.Identity.UserReseller.ResellerEditModel viewModel);
+        Task<bool> EditCompany(ViewModels.Identity.UserCompany.CompanyEditModel viewModel);
 
         void SetRolesToUser(User user, IEnumerable<Role> roles);
 

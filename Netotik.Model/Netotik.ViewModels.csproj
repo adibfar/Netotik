@@ -104,6 +104,7 @@
     <Compile Include="Identity\UserClient\UserSessionModel.cs" />
     <Compile Include="Identity\UserCompany\CompanyList.cs" />
     <Compile Include="Identity\UserCompany\MikrotikConfModel.cs" />
+    <Compile Include="Identity\UserCompany\CompanyEditModel.cs" />
     <Compile Include="Identity\UserReseller\ProfileModel.cs" />
     <Compile Include="Identity\UserReseller\RegisterViewModel.cs" />
     <Compile Include="Identity\Account\ResetPasswordEmail.cs" />

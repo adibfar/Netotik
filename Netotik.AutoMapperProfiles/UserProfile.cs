@@ -118,6 +118,16 @@ namespace Netotik.AutoMapperProfiles
               .ForMember(d => d.CompanyCode, m => m.MapFrom(t => t.UserCompany.CompanyCode))
               .IgnoreAllNonExisting();
 
+            CreateMap<User, ViewModels.Identity.UserCompany.CompanyEditModel>()
+              .ForMember(d => d.NationalCode, m => m.MapFrom(t => t.UserCompany.NationalCode))
+              .ForMember(d => d.CompanyCode, m => m.MapFrom(t => t.UserCompany.CompanyCode))
+              .ForMember(d => d.R_User, m => m.MapFrom(t => t.UserCompany.R_User))
+              .ForMember(d => d.R_Port, m => m.MapFrom(t => t.UserCompany.R_Port))
+              .ForMember(d => d.R_Password, m => m.MapFrom(t => t.UserCompany.R_Password))
+              .ForMember(d => d.R_Host, m => m.MapFrom(t => t.UserCompany.R_Host))
+              .ForMember(d => d.Userman_Customer, m => m.MapFrom(t => t.UserCompany.Userman_Customer))
+              .IgnoreAllNonExisting();
+
             CreateMap<User, ViewModels.Identity.UserCompany.MikrotikConfModel>()
               .ForMember(d => d.R_Host, m => m.MapFrom(t => t.UserCompany.R_Host))
               .ForMember(d => d.R_Password, m => m.MapFrom(t => t.UserCompany.R_Password))
@@ -182,6 +192,18 @@ namespace Netotik.AutoMapperProfiles
                 .ForMember(d => d.IsBanned, m => m.UseValue(false))
                 .ForMember(d => d.PhoneNumberConfirmed, m => m.UseValue(false))
                 .ForMember(d => d.TwoFactorEnabled, m => m.UseValue(false))
+                .ForMember(d => d.UserName, m => m.MapFrom(s => s.UserName.ToLower()))
+                .ForMember(d => d.UserCompany, opt => opt.MapFrom(s => s))
+                .ForMember(d => d.Roles, m => m.Ignore())
+                .ForMember(d => d.Claims, m => m.Ignore())
+                .ForMember(d => d.Logins, m => m.Ignore())
+                .IgnoreAllNonExisting();
+
+            CreateMap<ViewModels.Identity.UserCompany.CompanyEditModel, UserCompany>()
+             .IgnoreAllNonExisting();
+
+            CreateMap<ViewModels.Identity.UserCompany.CompanyEditModel, User>()
+                .ForMember(d => d.EditDate, m => m.UseValue(DateTime.Now))
                 .ForMember(d => d.UserName, m => m.MapFrom(s => s.UserName.ToLower()))
                 .ForMember(d => d.UserCompany, opt => opt.MapFrom(s => s))
                 .ForMember(d => d.Roles, m => m.Ignore())

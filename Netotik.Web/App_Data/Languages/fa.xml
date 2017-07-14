@@ -21,6 +21,9 @@
   <LocaleResource Name="LastName">
     <Value>نام خانوادگی</Value>
   </LocaleResource>
+  <LocaleResource Name="FirstNameAndLastName">
+    <Value>نام و نام خانوادگی</Value>
+  </LocaleResource>
   <LocaleResource Name="UserName">
     <Value>نام کاربری</Value>
   </LocaleResource>
@@ -916,6 +919,24 @@
       <LocaleResource Name="User">
     <Value>کاربر</Value>
   </LocaleResource>
+  <LocaleResource Name="RouterInformation">
+    <Value>اطلاعات روتر</Value>
+  </LocaleResource>
+  <LocaleResource Name="ClientPanelPermission">
+    <Value>مجوز های پنل کاربر</Value>
+  </LocaleResource>
+
+  <LocaleResource Name="UserLoginLink">
+    <Value>لینک لاگین کاربران</Value>
+  </LocaleResource>
+  <LocaleResource Name="UserLoginMessage">
+    <Value>
+      کاربران شما برای ورود به پنل خودشان باید حتما از صفحه لاگین شما جهت ورود استفاده کنند.آدرس این صفحه در زیر نوشته شده
+      و به صورت لینک می باشد.
+      لینک زیر را به کاربران خود بدهید.
+      در آینده در این صفحه اختصاصی ،شما می توانید تبلیغات خود را بگذارید که کاربران شما در هر بار ورود آنها را ببینند.
+    </Value>
+  </LocaleResource>
   <!--======================Messages Ehsan EM===========================-->
   <LocaleResource Name="JustEnglish">
     <Value>تمامی مقادیر را انگلیسی تکمیل کنید.</Value>
@@ -943,6 +964,19 @@
   </LocaleResource>
   <LocaleResource Name="UsermanagerClientError">
     <Value>لطفا با مدیرشبکه تماس بگیرید.خطای یوزرمنیجر</Value>
+  </LocaleResource>
+  <LocaleResource Name="UsermanagerClientError">
+    <Value>لطفا با مدیرشبکه تماس بگیرید.خطای یوزرمنیجر</Value>
+  </LocaleResource>
+  <LocaleResource Name="CreateSuccsessGoToEmail">
+    <Value>
+      حساب کاربری شما با موفقیت ایجاد شد. برای فعال سازی حساب خود به ایمیل خود مراجعه کنید
+    </Value>
+  </LocaleResource>
+  <LocaleResource Name="ActivationEmail">
+    <Value>
+      با سلام کاربر گرامی.برای فعال سازی حساب خود لازم است بر روی لینک مقابل کلیک کنید
+    </Value>
   </LocaleResource>
   <!--======================Messages===========================-->
 

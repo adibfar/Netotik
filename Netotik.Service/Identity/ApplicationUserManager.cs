@@ -480,6 +480,13 @@ namespace Netotik.Services.Identity
             return _mappingEngine.Map<ViewModels.Identity.UserReseller.ResellerEditModel>(userWithRoles);
         }
 
+        public async Task<ViewModels.Identity.UserCompany.CompanyEditModel> GetUserCompanyByIdAsync(long id)
+        {
+            var userWithRoles = await
+                 _users.AsNoTracking().FirstOrDefaultAsync(a => a.Id == id);
+
+            return _mappingEngine.Map<ViewModels.Identity.UserCompany.CompanyEditModel>(userWithRoles);
+        }
         #endregion
 
         #region EditUser
@@ -539,6 +546,38 @@ namespace Netotik.Services.Identity
             //{
             //    user.EmailConfirmed = false;
             //}
+
+            //user.Picture = viewModel.Picture;
+            //_unitOfWork.Update(user, a => a.AssociatedCollection(u => u.Roles));
+
+
+
+            //if (passwordModify || emailModify)
+            if (passwordModify)
+                this.UpdateSecurityStamp(user.Id);
+            //else
+            //    await _unitOfWork.SaveAllChangesAsync();
+
+            await _unitOfWork.SaveChangesAsync();
+            return await Task.FromResult(true);
+        }
+        public async Task<bool> EditCompany(ViewModels.Identity.UserCompany.CompanyEditModel viewModel)
+        {
+            var passwordModify = false;
+
+            var user = _users.Find(viewModel.Id);
+            //_unitOfWork.MarkAsDetached(user);
+
+            _mappingEngine.Map(viewModel, user);
+            if (viewModel.Picture != null)
+                user.Picture = viewModel.Picture;
+
+            var emailModify = viewModel.Email != user.Email;
+
+            if (emailModify)
+            {
+                user.EmailConfirmed = false;
+            }
 
             //user.Picture = viewModel.Picture;
             //_unitOfWork.Update(user, a => a.AssociatedCollection(u => u.Roles));

@@ -1,13 +1,13 @@
 ﻿@model IList<Netotik.ViewModels.Identity.UserCompany.CompanyList>
 @{
-    ViewBag.Title = "مدیریت کاربر ها";
+    ViewBag.Title = Netotik.Resources.Captions.UsersList;
 }
 <section id="configuration">
     <div class="row">
         <div class="col-xs-12">
             <div class="card">
                 <div class="card-header">
-                    <a href="@Url.Action(MVC.Reseller.Company.Create())" class="btn btn-social width-150 btn-instagram"><span class="icon-person-add font-medium-4"></span> کاربر جدید</a>
+                    <a href="@Url.Action(MVC.Reseller.Company.Create())" class="btn btn-social width-150 btn-instagram"><span class="icon-person-add font-medium-4"></span>@Netotik.Resources.Captions.NewUser</a>
                 </div>
 
                 <div class="card-body collapse in">

@@ -72,18 +72,6 @@ namespace Netotik.Web.Areas.Company.Controllers
         }
         [NonAction]
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public virtual System.Web.Mvc.ActionResult Detail()
-        {
-            return new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Detail);
-        }
-        [NonAction]
-        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public virtual System.Web.Mvc.ActionResult Edit()
-        {
-            return new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Edit);
-        }
-        [NonAction]
-        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public virtual System.Web.Mvc.ActionResult RedirectToLocal()
         {
             return new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.RedirectToLocal);
@@ -110,8 +98,6 @@ namespace Netotik.Web.Areas.Company.Controllers
             public readonly string changeImageProfile = "changeImageProfile";
             public readonly string UpdateProfile = "UpdateProfile";
             public readonly string MikrotikConf = "MikrotikConf";
-            public readonly string Detail = "Detail";
-            public readonly string Edit = "Edit";
             public readonly string ChangePassword = "ChangePassword";
             public readonly string RedirectToLocal = "RedirectToLocal";
         }
@@ -125,8 +111,6 @@ namespace Netotik.Web.Areas.Company.Controllers
             public const string changeImageProfile = "changeImageProfile";
             public const string UpdateProfile = "UpdateProfile";
             public const string MikrotikConf = "MikrotikConf";
-            public const string Detail = "Detail";
-            public const string Edit = "Edit";
             public const string ChangePassword = "ChangePassword";
             public const string RedirectToLocal = "RedirectToLocal";
         }
@@ -155,24 +139,6 @@ namespace Netotik.Web.Areas.Company.Controllers
         public class ActionParamsClass_MikrotikConf
         {
             public readonly string model = "model";
-        }
-        static readonly ActionParamsClass_Detail s_params_Detail = new ActionParamsClass_Detail();
-        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public ActionParamsClass_Detail DetailParams { get { return s_params_Detail; } }
-        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public class ActionParamsClass_Detail
-        {
-            public readonly string id = "id";
-        }
-        static readonly ActionParamsClass_Edit s_params_Edit = new ActionParamsClass_Edit();
-        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public ActionParamsClass_Edit EditParams { get { return s_params_Edit; } }
-        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public class ActionParamsClass_Edit
-        {
-            public readonly string id = "id";
-            public readonly string model = "model";
-            public readonly string actionType = "actionType";
         }
         static readonly ActionParamsClass_ChangePassword s_params_ChangePassword = new ActionParamsClass_ChangePassword();
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -299,43 +265,6 @@ namespace Netotik.Web.Areas.Company.Controllers
             ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "model", model);
             MikrotikConfOverride(callInfo, model);
             return System.Threading.Tasks.Task.FromResult(callInfo as System.Web.Mvc.ActionResult);
-        }
-
-        [NonAction]
-        partial void DetailOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, int id);
-
-        [NonAction]
-        public override System.Web.Mvc.ActionResult Detail(int id)
-        {
-            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Detail);
-            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "id", id);
-            DetailOverride(callInfo, id);
-            return callInfo;
-        }
-
-        [NonAction]
-        partial void EditOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, int id);
-
-        [NonAction]
-        public override System.Web.Mvc.ActionResult Edit(int id)
-        {
-            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Edit);
-            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "id", id);
-            EditOverride(callInfo, id);
-            return callInfo;
-        }
-
-        [NonAction]
-        partial void EditOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, Netotik.ViewModels.Identity.UserCompany.CompanyEditModel model, Netotik.Common.Controller.ActionType actionType);
-
-        [NonAction]
-        public override System.Web.Mvc.ActionResult Edit(Netotik.ViewModels.Identity.UserCompany.CompanyEditModel model, Netotik.Common.Controller.ActionType actionType)
-        {
-            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Edit);
-            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "model", model);
-            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "actionType", actionType);
-            EditOverride(callInfo, model, actionType);
-            return callInfo;
         }
 
         [NonAction]

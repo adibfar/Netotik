@@ -3,12 +3,12 @@
     <thead>
         <tr>
             <th>#</th>
-            <th>نام و نام خانوادگی</th>
-            <th>آدرس ایمیل</th>
-            <th>نام کاربری</th>
-            <th>نام کمپانی</th>
-            <th>شماره تماس</th>
-            <th>وضعیت</th>
+            <th>@Netotik.Resources.Captions.FirstNameAndLastName</th>
+            <th>@Netotik.Resources.Captions.Email</th>
+            <th>@Netotik.Resources.Captions.UserName</th>
+            <th>@Netotik.Resources.Captions.CompanyName</th>
+            <th>@Netotik.Resources.Captions.MobileNumber</th>
+            <th>@Netotik.Resources.Captions.Active</th>
             <th></th>
         </tr>
     </thead>
@@ -35,26 +35,27 @@
                 <td>@item.PhoneNumber</td>
                 @if (!item.IsBanned)
                 {
-                <td>فعال</td>
+                <td>@Netotik.Resources.Captions.Enabled</td>
                 }
                 else
                 {
-                <td>غیرفعال</td>
+                <td>@Netotik.Resources.Captions.Disabled</td>
                 }
                 <td>
                     <span class="dropdown">
                         <button id="btnSearchDrop2" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" class="btn btn-outline-secondary dropdown-toggle dropdown-menu-right"><i class="icon-cog3"></i> پردازش</button>
                         <span aria-labelledby="btnSearchDrop2" class="dropdown-menu mt-1 dropdown-menu-right">
-                            <a href="#" class="dropdown-item"><i class="icon-pen3 primary"></i> ویرایش </a>
-                            <a href="#" class="dropdown-item"><i class="icon-trash4 danger"></i> حذف </a>
+                            <a href="@Url.Action(MVC.Reseller.Company.ActionNames.Edit, new { id = item.Id })" class="dropdown-item"><i class="icon-pen3 primary"></i>@Netotik.Resources.Captions.Edit</a>
+                            <a href="@Url.Action(MVC.Reseller.Company.ActionNames.ChangePassword, new { id = item.Id })" class="dropdown-item"><i class="icon-key2 primary"></i>@Netotik.Resources.Captions.ChangePassword</a>
+                            <a href="@Url.Action(MVC.Reseller.Company.ActionNames.Remove, new { id = item.Id })" class="dropdown-item"><i class="icon-trash4 danger"></i>@Netotik.Resources.Captions.Remove</a>
                             
                             @if (!item.IsBanned)
                             {
-                                <a href="@Url.Action(MVC.Reseller.Company.ActionNames.Disable, new { id = item.Id })" class="dropdown-item"><i class="icon-stop-circle-o warning"></i> غیرفعال </a>
+                                <a href="@Url.Action(MVC.Reseller.Company.ActionNames.Disable, new { id = item.Id })" class="dropdown-item"><i class="icon-stop-circle-o warning"></i>@Netotik.Resources.Captions.Disable</a>
                             }
                             else
                             {
-                                <a href="@Url.Action(MVC.Reseller.Company.ActionNames.Enable, new { id = item.Id })" class="dropdown-item"><i class="icon-play-circle-o primary"></i> فعال </a>
+                                <a href="@Url.Action(MVC.Reseller.Company.ActionNames.Enable, new { id = item.Id })" class="dropdown-item"><i class="icon-play-circle-o primary"></i>@Netotik.Resources.Captions.Enable</a>
                             }
                         </span>
                     </span>
