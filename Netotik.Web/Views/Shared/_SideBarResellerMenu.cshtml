@@ -5,23 +5,23 @@
         <ul id="main-menu-navigation" data-menu="menu-navigation" class="nav navbar-nav">
 
             <li class="nav-item">
-                <a href="@Url.Action(MVC.Reseller.Home.Index())" class="nav-link"><i class="icon-home3"></i><span>داشبورد</span></a>
+                <a href="@Url.Action(MVC.Reseller.Home.Index())" class="nav-link"><i class="icon-home3"></i><span>@Netotik.Resources.Captions.Dashboard</span></a>
             </li>
 
             <li data-menu="dropdown" class="dropdown nav-item">
-                <a href="#" data-toggle="dropdown" class="dropdown-toggle nav-link"><i class="icon-users2"></i><span>کاربران</span></a>
+                <a href="#" data-toggle="dropdown" class="dropdown-toggle nav-link"><i class="icon-users2"></i><span>@Netotik.Resources.Captions.Users</span></a>
                 <ul class="dropdown-menu">
-                    <li><a href="@Url.Action(MVC.Reseller.Company.Index())" data-toggle="dropdown" class="dropdown-item">لیست کاربران</a></li>
-                    <li><a href="@Url.Action(MVC.Reseller.Company.Create())" data-toggle="dropdown" class="dropdown-item">افزودن</a></li>
-                    <li><a href="@Url.Action(MVC.Reseller.Company.CompanyLoginURL())" data-toggle="dropdown" class="dropdown-item">صفحه لاگین کاربران</a></li>
+                    <li><a href="@Url.Action(MVC.Reseller.Company.Index())" data-toggle="dropdown" class="dropdown-item">@Netotik.Resources.Captions.UsersList</a></li>
+                    <li><a href="@Url.Action(MVC.Reseller.Company.Create())" data-toggle="dropdown" class="dropdown-item">@Netotik.Resources.Captions.NewUser</a></li>
+                    <li><a href="@Url.Action(MVC.Reseller.Company.CompanyLoginURL())" data-toggle="dropdown" class="dropdown-item">@Netotik.Resources.Captions.UserLoginLink</a></li>
                 </ul>
             </li>
 
             <li data-menu="dropdown" class="dropdown nav-item">
-                <a href="#" data-toggle="dropdown" class="dropdown-toggle nav-link"><i class="icon-cog"></i><span>تنظیمات</span></a>
+                <a href="#" data-toggle="dropdown" class="dropdown-toggle nav-link"><i class="icon-cog"></i><span>@Netotik.Resources.Captions.Configuration</span></a>
                 <ul class="dropdown-menu">
-                    <li><a href="@Url.Action(MVC.Reseller.Home.MyProfile())" data-toggle="dropdown" class="dropdown-item">پروفایل</a></li>
-                    <li><a href="@Url.Action(MVC.Reseller.Home.ChangePassword())" data-toggle="dropdown" class="dropdown-item">تغییر گذرواژه</a></li>
+                    <li><a href="@Url.Action(MVC.Reseller.Home.MyProfile())" data-toggle="dropdown" class="dropdown-item">@Netotik.Resources.Captions.Profile</a></li>
+                    <li><a href="@Url.Action(MVC.Reseller.Home.ChangePassword())" data-toggle="dropdown" class="dropdown-item">@Netotik.Resources.Captions.ChangePassword</a></li>
                 </ul>
             </li>
         </ul>

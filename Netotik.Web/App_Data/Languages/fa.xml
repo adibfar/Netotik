@@ -965,17 +965,9 @@
   <LocaleResource Name="UsermanagerClientError">
     <Value>لطفا با مدیرشبکه تماس بگیرید.خطای یوزرمنیجر</Value>
   </LocaleResource>
-  <LocaleResource Name="UsermanagerClientError">
-    <Value>لطفا با مدیرشبکه تماس بگیرید.خطای یوزرمنیجر</Value>
-  </LocaleResource>
   <LocaleResource Name="CreateSuccsessGoToEmail">
     <Value>
       حساب کاربری شما با موفقیت ایجاد شد. برای فعال سازی حساب خود به ایمیل خود مراجعه کنید
-    </Value>
-  </LocaleResource>
-  <LocaleResource Name="ActivationEmail">
-    <Value>
-      با سلام کاربر گرامی.برای فعال سازی حساب خود لازم است بر روی لینک مقابل کلیک کنید
     </Value>
   </LocaleResource>
   <!--======================Messages===========================-->
