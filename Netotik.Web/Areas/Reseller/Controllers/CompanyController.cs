@@ -196,15 +196,7 @@ namespace Netotik.Web.Areas.Reseller.Controllers
         [HttpPost]
         public virtual async Task<ActionResult> Edit(CompanyEditModel model)
         {
-            #region Validation
-            if (_userManager.CheckResellerPhoneNumberExist(model.PhoneNumber, model.Id))
-                ModelState.AddModelError("PhoneNumber", "این شماره موبایل قبلا در سیستم ثبت شده است");
-            if (_userManager.CheckUserNameExist(model.UserName, model.Id))
-                ModelState.AddModelError("UserName", "این نام کاربری قبلا در سیستم ثبت شده است");
-            if (_userManager.CheckResellerEmailExist(model.Email, model.Id))
-                ModelState.AddModelError("Email", "این ایمیل قبلا در سیستم ثبت شده است");
-            #endregion
-
+            PopulateClientPermissions(model.ClientPermissionNames);
 
             if (!ModelState.IsValid)
             {
@@ -257,7 +249,6 @@ namespace Netotik.Web.Areas.Reseller.Controllers
                     }
                 }
             }
-            PopulateClientPermissions(model.ClientPermissionNames);
 
             if (!await _userManager.EditCompany(model))
             {

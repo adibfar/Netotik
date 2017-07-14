@@ -913,6 +913,7 @@ namespace Netotik.Web.Areas.Company.Controllers
         public virtual ActionResult ClientArea(ViewModels.Identity.UserCompany.ProfileModel model)
         {
             PopulatePermissions(model.ClientPermissionNames);
+
             this.MessageInformation(Captions.MissionSuccess, Captions.UpdateSuccess);
             _applicationUserManager.UpdateUserCompanyProfile(model);
             return RedirectToAction(MVC.Company.UserManager.ActionNames.ClientArea);

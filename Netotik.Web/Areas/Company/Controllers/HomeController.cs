@@ -157,7 +157,7 @@ namespace Netotik.Web.Areas.Company.Controllers
             }
             model.Id = UserLogined.Id;
             if (model.cloud == true)
-                model.R_Host = _mikrotikServices.EnableAndGetCloud(UserLogined.UserCompany.R_Host, UserLogined.UserCompany.R_Port, UserLogined.UserCompany.R_User, UserLogined.UserCompany.R_Password);
+                model.R_Host = _mikrotikServices.EnableAndGetCloud(model.R_Host, model.R_Port, model.R_User, model.R_Password);
             this.MessageInformation(Captions.MissionSuccess, Captions.UpdateSuccess);
             await _applicationUserManager.UpdateUserCompanyMikrotikConf(model);
             return RedirectToAction(MVC.Company.Home.ActionNames.MikrotikConf, MVC.Company.Home.Name, new { area = MVC.Company.Name });

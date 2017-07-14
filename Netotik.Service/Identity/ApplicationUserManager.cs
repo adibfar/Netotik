@@ -123,7 +123,7 @@ namespace Netotik.Services.Identity
                                                 NationalCode = x.UserCompany.NationalCode,
                                                 PhoneNumber = x.PhoneNumber,
                                                 UserName = x.UserName,
-                                                //ImageAvatar = x.PictureId.HasValue ? x.Picture.FileName : "Default.png",
+                                                ImageAvatar = x.PictureId.HasValue ? x.Picture.FileName : "Default.png",
                                             }).ToList();
 
             return selectedUsers;
@@ -540,12 +540,12 @@ namespace Netotik.Services.Identity
             if (viewModel.Picture != null)
                 user.Picture = viewModel.Picture;
 
-            //var emailModify = viewModel.Email != user.Email;
+            var emailModify = viewModel.Email != user.Email;
 
-            //if (emailModify)
-            //{
-            //    user.EmailConfirmed = false;
-            //}
+            if (emailModify)
+            {
+                user.EmailConfirmed = false;
+            }
 
             //user.Picture = viewModel.Picture;
             //_unitOfWork.Update(user, a => a.AssociatedCollection(u => u.Roles));
@@ -582,7 +582,12 @@ namespace Netotik.Services.Identity
             //user.Picture = viewModel.Picture;
             //_unitOfWork.Update(user, a => a.AssociatedCollection(u => u.Roles));
 
+            var XmlClientPermissions = "";
+            if (viewModel.ClientPermissionNames == null || viewModel.ClientPermissionNames.Length < 1)
+                XmlClientPermissions = _permissionClientService.GetPermissionsAsXml("null").ToString();
+            else XmlClientPermissions = _permissionClientService.GetPermissionsAsXml(viewModel.ClientPermissionNames).ToString();
 
+            user.UserCompany.ClientPermissions = XmlClientPermissions;
 
             //if (passwordModify || emailModify)
             if (passwordModify)
@@ -634,7 +639,7 @@ namespace Netotik.Services.Identity
 
             user.UserCompany.ClientPermissions = XmlClientPermissions;
             user.UserType = UserType.UserCompany;
-
+            user.EmailConfirmed = false;
             await CreateAsync(user, viewModel.Password);
             return user.Id;
 

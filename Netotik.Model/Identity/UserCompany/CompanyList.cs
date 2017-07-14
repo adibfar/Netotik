@@ -61,6 +61,6 @@ namespace Netotik.ViewModels.Identity.UserCompany
         public string CompanyCode { get; set; }
 
         [Display(ResourceType = typeof(Captions), Name = "ImageProfile")]
-        public System.Web.HttpPostedFileBase ImageAvatar { get; set; }
+        public string ImageAvatar { get; set; }
     }
 }

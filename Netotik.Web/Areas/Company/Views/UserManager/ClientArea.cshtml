@@ -3,7 +3,7 @@
     var clientPermissions = ViewBag.ClientPermissions as List<SelectListItem>;
 }
 
-@using (Html.BeginForm(MVC.Company.UserManager.ActionNames.ClientArea, MVC.Company.Home.Name, FormMethod.Post,
+@using (Html.BeginForm(MVC.Company.UserManager.ActionNames.ClientArea, MVC.Company.UserManager.Name, FormMethod.Post,
                                  htmlAttributes: new { @class = "form-horizontal", enctype = "multipart/form-data", id = "form" }))
 {
     @Html.AntiForgeryToken()
