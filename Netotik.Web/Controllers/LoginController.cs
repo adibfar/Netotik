@@ -60,6 +60,7 @@ namespace Netotik.Web.Controllers
             var reseller = await _applicationUserManager.FindByResellerCodeAsync(ResellerCode);
             if (reseller == null) return HttpNotFound();
 
+            ViewBag.user = _applicationUserManager.FindUserById(reseller.Id);
             ViewBag.CompanyName = ResellerCode;
             ViewBag.ReturnUrl = ReturnUrl;
             return View();
@@ -71,6 +72,9 @@ namespace Netotik.Web.Controllers
         [Route("{lang}/Net/{ResellerCode}")]
         public virtual async Task<ActionResult> Company(Netotik.ViewModels.Identity.UserCompany.LoginModel model, string ReturnUrl, string ResellerCode)
         {
+            var reseller = await _applicationUserManager.FindByResellerCodeAsync(ResellerCode);
+            if (reseller == null) return HttpNotFound();
+            ViewBag.user = _applicationUserManager.FindUserById(reseller.Id);
             ViewBag.CompanyName = ResellerCode;
             ViewBag.ReturnUrl = ReturnUrl;
 
@@ -79,9 +83,6 @@ namespace Netotik.Web.Controllers
                 ViewBag.Message = Captions.UsernameOrPasswordWrong;
                 return View(model);
             }
-
-            var reseller = await _applicationUserManager.FindByResellerCodeAsync(ResellerCode);
-            if (reseller == null) return HttpNotFound();
 
             var loggedinUser = await _applicationUserManager.FindAsync(model.UserName, model.Password);
             if (loggedinUser == null || loggedinUser.IsDeleted)
@@ -231,6 +232,8 @@ namespace Netotik.Web.Controllers
 
             var company = await _applicationUserManager.FindByCompanyCodeAsync(CompanyCode);
             if (company == null) return HttpNotFound();
+            ViewBag.user = _applicationUserManager.FindUserById(company.Id);
+
 
             var Permissions = _applicationUserManager.FindClientPermissions(company.Id);
             var CanShowPanel = Permissions.Any(x => x == AssignablePermissionToClient.ClientArea);
@@ -249,15 +252,15 @@ namespace Netotik.Web.Controllers
         {
             ViewBag.CompanyName = CompanyCode;
             ViewBag.ReturnUrl = ReturnUrl;
+            var company = await _applicationUserManager.FindByCompanyCodeAsync(CompanyCode);
+            if (company == null) return HttpNotFound();
+            ViewBag.user = _applicationUserManager.FindUserById(company.Id);
 
             if (!ModelState.IsValid)
             {
                 ViewBag.Message = Captions.UsernameOrPasswordWrong;
                 return View(model);
             }
-
-            var company = await _applicationUserManager.FindByCompanyCodeAsync(CompanyCode);
-            if (company == null) return HttpNotFound();
             var Permissions = _applicationUserManager.FindClientPermissions(company.Id);
             var CanShowPanel = Permissions.Any(x => x == AssignablePermissionToClient.ClientArea);
             if (CanShowPanel) return HttpNotFound();

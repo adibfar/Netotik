@@ -3,12 +3,25 @@
 @using Netotik.ViewModels.Identity.UserCompany
 @model LoginModel
 @{
+    ViewBag.Title = ViewBag.CompanyName +Captions.LoginToUserAccount;
     Layout = MVC.Shared.Views._Layout;
 }
 <section class="flexbox-container">
     <div class="col-md-4 offset-md-4 col-xs-10 offset-xs-1 box-shadow-3 p-0">
         <div class="card border-grey border-lighten-3 m-0">
             <div class="card-body collapse in">
+                <center>
+                    <div class="card-body">
+                        <div class="card-profile-image" style="margin-top:5px !important;">
+                            <img src="@Url.Content(Path.Combine(Netotik.Common.Controller.FilePathes._imagesUserAvatarsPath, ViewBag.user.PictureId!=null ? ViewBag.user.Picture.FileName : "Default.png"))?h=100" alt="@ViewBag.CompanyName">
+                        </div>
+                        <div class="profile-card-with-cover-content text-xs-center">
+                            <div class="profile-details mt-2">
+                                <h4 class="card-title">@ViewBag.CompanyName</h4>
+                            </div>
+                        </div>
+                    </div>
+                </center>
                 @if (ViewBag.Message != null)
                 {
                     <div class="alert alert-icon-left alert-danger alert-dismissible fade in mb-2" role="alert">

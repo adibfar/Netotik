@@ -34,7 +34,7 @@ using System.Net;
 
 namespace Netotik.Web.Areas.Reseller.Controllers
 {
-    [BreadCrumb(Title = "لیست کاربران شرکت ها", UseDefaultRouteUrl = true, RemoveAllDefaultRouteValues = true,
+    [BreadCrumb(Title = "UsersList", UseDefaultRouteUrl = true, RemoveAllDefaultRouteValues = true,
  Order = 0, GlyphIcon = "icon icon-table")]
     public partial class CompanyController : BasePanelController
     {
@@ -80,7 +80,7 @@ namespace Netotik.Web.Areas.Reseller.Controllers
         #endregion
 
         [Mvc5Authorize(Roles = "Reseller")]
-        [BreadCrumb(Title = "کاربر جدید", Order = 1)]
+        [BreadCrumb(Title = "NewUser", Order = 1)]
         public virtual ActionResult Create()
         {
             PopulateClientPermissions();
@@ -95,6 +95,7 @@ namespace Netotik.Web.Areas.Reseller.Controllers
         }
 
         [Mvc5Authorize(Roles = "Reseller")]
+        [BreadCrumb(Title = "NewUser", Order = 1)]
         [ValidateAntiForgeryToken]
         [HttpPost]
         public virtual async Task<ActionResult> Create(Register model)
@@ -173,7 +174,7 @@ namespace Netotik.Web.Areas.Reseller.Controllers
 
         #region Edit
         [Mvc5Authorize(Roles = "Reseller")]
-        [BreadCrumb(Title = "ویرایش", Order = 1)]
+        [BreadCrumb(Title = "EditUser", Order = 1)]
         public virtual async Task<ActionResult> Edit(long? id)
         {
             if (id == null) return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -191,7 +192,7 @@ namespace Netotik.Web.Areas.Reseller.Controllers
         }
 
         [Mvc5Authorize(Roles = "Reseller")]
-        [BreadCrumb(Title = "ویرایش", Order = 1)]
+        [BreadCrumb(Title = "EditUser", Order = 1)]
         [ValidateAntiForgeryToken]
         [HttpPost]
         public virtual async Task<ActionResult> Edit(CompanyEditModel model)

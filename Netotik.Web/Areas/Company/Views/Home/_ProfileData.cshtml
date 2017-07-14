@@ -96,17 +96,6 @@
                     </div>
                     
                 </div>
-                <div class="row">
-                    <div class="row skin skin-flat">
-                        @foreach (var item in clientPermissions)
-                        {
-                            <div class="col-md-4">
-                                <input type="checkbox" name="ClientPermissionNames"  @(item.Selected ? "checked" : "") value="@item.Value">
-                                @Html.Label("ClientPermissionNames", item.Text)
-                            </div>
-                        }
-                    </div>
-                </div>
             </div>
         </div>
     </div>
