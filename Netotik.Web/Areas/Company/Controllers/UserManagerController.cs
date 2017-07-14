@@ -18,7 +18,7 @@ using WebGrease.Css.Extensions;
 namespace Netotik.Web.Areas.Company.Controllers
 {
     [Mvc5Authorize(Roles = "Company")]
-    [BreadCrumb(Title = "یوزرمنیجر", UseDefaultRouteUrl = true, RemoveAllDefaultRouteValues = true,
+    [BreadCrumb(Title = "UserManager", UseDefaultRouteUrl = true, RemoveAllDefaultRouteValues = true,
  Order = 0, GlyphIcon = "icon icon-table")]
     public partial class UserManagerController : BasePanelController
     {
@@ -43,19 +43,19 @@ namespace Netotik.Web.Areas.Company.Controllers
 
 
         #region Usermanager
-        
+
         [HttpPost]
         [ValidateInput(false)]
         public virtual ActionResult ResetCounter(string user, string id)
         {
             if (!_mikrotikServices.IP_Port_Check(UserLogined.UserCompany.R_Host, UserLogined.UserCompany.R_Port, UserLogined.UserCompany.R_User, UserLogined.UserCompany.R_Password))
             {
-                this.MessageError("خطا", "آدرس IP یا Port دستگاه اشتباه وارد شده است یا دستگاه شما از طریق سرور قابل دسترس نمی باشد.لطفا آدرس IP ویا Port دستگاه را تصحیح کنید.");
+                this.MessageError(Captions.Error, Captions.IPPORTClientError);
                 return RedirectToAction(MVC.Company.Home.ActionNames.MikrotikConf, MVC.Company.Home.Name, new { area = MVC.Company.Name });
             }
             if (!_mikrotikServices.User_Pass_Check(UserLogined.UserCompany.R_Host, UserLogined.UserCompany.R_Port, UserLogined.UserCompany.R_User, UserLogined.UserCompany.R_Password))
             {
-                this.MessageError("خطا", "نام کاربری یا رمز عبور صحیح وارد نشده است.لطفا نام کاربری یا رمز عبور را تصحیح کنید.");
+                this.MessageError(Captions.Error, Captions.UserPasswordClientError);
                 return RedirectToAction(MVC.Company.Home.ActionNames.MikrotikConf, MVC.Company.Home.Name, new { area = MVC.Company.Name });
             }
             //-------------------------------
@@ -63,7 +63,7 @@ namespace Netotik.Web.Areas.Company.Controllers
             //--------------------------------
             return RedirectToAction(MVC.Company.UserManager.UserList());
         }
-        
+
         [HttpPost]
         [ValidateInput(false)]
         public virtual ActionResult CloseSession(string user, string id)
@@ -73,24 +73,24 @@ namespace Netotik.Web.Areas.Company.Controllers
             //--------------------------------
             return RedirectToAction(MVC.Company.UserManager.UserList());
         }
-        
+
         public virtual ActionResult PackageCreate()
         {
-            
+
             //-------------------------------
             if (!_mikrotikServices.IP_Port_Check(UserLogined.UserCompany.R_Host, UserLogined.UserCompany.R_Port, UserLogined.UserCompany.R_User, UserLogined.UserCompany.R_Password))
             {
-                this.MessageError("خطا", "آدرس IP یا Port دستگاه اشتباه وارد شده است یا دستگاه شما از طریق سرور قابل دسترس نمی باشد.لطفا آدرس IP ویا Port دستگاه را تصحیح کنید.");
+                this.MessageError(Captions.Error, Captions.IPPORTClientError);
                 return RedirectToAction(MVC.Company.Home.ActionNames.MikrotikConf, MVC.Company.Home.Name, new { area = MVC.Company.Name });
             }
             if (!_mikrotikServices.User_Pass_Check(UserLogined.UserCompany.R_Host, UserLogined.UserCompany.R_Port, UserLogined.UserCompany.R_User, UserLogined.UserCompany.R_Password))
             {
-                this.MessageError("خطا", "نام کاربری یا رمز عبور صحیح وارد نشده است.لطفا نام کاربری یا رمز عبور را تصحیح کنید.");
+                this.MessageError(Captions.Error, Captions.UserPasswordClientError);
                 return RedirectToAction(MVC.Company.Home.ActionNames.MikrotikConf, MVC.Company.Home.Name, new { area = MVC.Company.Name });
             }
             if (!_mikrotikServices.Usermanager_IsInstall(UserLogined.UserCompany.R_Host, UserLogined.UserCompany.R_Port, UserLogined.UserCompany.R_User, UserLogined.UserCompany.R_Password))
             {
-                this.MessageError("خطا", "UserManager نصب نمی باشد.لطفا پس از نصب دوباره امتحان کنید.");
+                this.MessageError(Captions.Error, Captions.UsermanagerClientError);
                 return RedirectToAction(MVC.Company.Home.ActionNames.Index);
             }
             //-------------------------------
@@ -99,12 +99,12 @@ namespace Netotik.Web.Areas.Company.Controllers
             ViewBag.ProfileLimition = _mikrotikServices.Usermanager_GetAllProfileLimition(UserLogined.UserCompany.R_Host, UserLogined.UserCompany.R_Port, UserLogined.UserCompany.R_User, UserLogined.UserCompany.R_Password);
             return View();
         }
-        
+
         [ValidateAntiForgeryToken]
         [HttpPost]
         public virtual ActionResult PackageCreate(Netotik.ViewModels.Identity.UserClient.ProfileLimitionCreateModel model, ActionType actionType)
         {
-            
+
             if (!ModelState.IsValid)
             {
                 //SetResultMessage(false, MessageColor.Danger, Captions.InvalidDataError, Captions.MissionFail);
@@ -293,17 +293,17 @@ namespace Netotik.Web.Areas.Company.Controllers
                 //-------------------------------
                 if (!_mikrotikServices.IP_Port_Check(UserLogined.UserCompany.R_Host, UserLogined.UserCompany.R_Port, UserLogined.UserCompany.R_User, UserLogined.UserCompany.R_Password))
                 {
-                    this.MessageError("خطا", "آدرس IP یا Port دستگاه اشتباه وارد شده است یا دستگاه شما از طریق سرور قابل دسترس نمی باشد.لطفا آدرس IP ویا Port دستگاه را تصحیح کنید.");
+                    this.MessageError(Captions.Error, Captions.IPPORTClientError);
                     return RedirectToAction(MVC.Company.Home.ActionNames.MikrotikConf, MVC.Company.Home.Name, new { area = MVC.Company.Name });
                 }
                 if (!_mikrotikServices.User_Pass_Check(UserLogined.UserCompany.R_Host, UserLogined.UserCompany.R_Port, UserLogined.UserCompany.R_User, UserLogined.UserCompany.R_Password))
                 {
-                    this.MessageError("خطا", "نام کاربری یا رمز عبور صحیح وارد نشده است.لطفا نام کاربری یا رمز عبور را تصحیح کنید.");
+                    this.MessageError(Captions.Error, Captions.UserPasswordClientError);
                     return RedirectToAction(MVC.Company.Home.ActionNames.MikrotikConf, MVC.Company.Home.Name, new { area = MVC.Company.Name });
                 }
                 if (!_mikrotikServices.Usermanager_IsInstall(UserLogined.UserCompany.R_Host, UserLogined.UserCompany.R_Port, UserLogined.UserCompany.R_User, UserLogined.UserCompany.R_Password))
                 {
-                    this.MessageError("خطا", "UserManager نصب نمی باشد.لطفا پس از نصب دوباره امتحان کنید.");
+                    this.MessageError(Captions.Error, Captions.UsermanagerClientError);
                     return RedirectToAction(MVC.Company.Home.ActionNames.Index);
                 }
                 //-------------------------------
@@ -320,24 +320,24 @@ namespace Netotik.Web.Areas.Company.Controllers
                 return RedirectToAction(MVC.Company.UserManager.PackageList());
             }
         }
-        
+
         public virtual ActionResult UserList()
         {
-            
+
             //-------------------------------
             if (!_mikrotikServices.IP_Port_Check(UserLogined.UserCompany.R_Host, UserLogined.UserCompany.R_Port, UserLogined.UserCompany.R_User, UserLogined.UserCompany.R_Password))
             {
-                this.MessageError("خطا", "آدرس IP یا Port دستگاه اشتباه وارد شده است یا دستگاه شما از طریق سرور قابل دسترس نمی باشد.لطفا آدرس IP ویا Port دستگاه را تصحیح کنید.");
+                this.MessageError(Captions.Error, Captions.IPPORTClientError);
                 return RedirectToAction(MVC.Company.Home.ActionNames.MikrotikConf, MVC.Company.Home.Name, new { area = MVC.Company.Name });
             }
             if (!_mikrotikServices.User_Pass_Check(UserLogined.UserCompany.R_Host, UserLogined.UserCompany.R_Port, UserLogined.UserCompany.R_User, UserLogined.UserCompany.R_Password))
             {
-                this.MessageError("خطا", "نام کاربری یا رمز عبور صحیح وارد نشده است.لطفا نام کاربری یا رمز عبور را تصحیح کنید.");
+                this.MessageError(Captions.Error, Captions.UserPasswordClientError);
                 return RedirectToAction(MVC.Company.Home.ActionNames.MikrotikConf, MVC.Company.Home.Name, new { area = MVC.Company.Name });
             }
             if (!_mikrotikServices.Usermanager_IsInstall(UserLogined.UserCompany.R_Host, UserLogined.UserCompany.R_Port, UserLogined.UserCompany.R_User, UserLogined.UserCompany.R_Password))
             {
-                this.MessageError("خطا", "UserManager نصب نمی باشد.لطفا پس از نصب دوباره امتحان کنید.");
+                this.MessageError(Captions.Error, Captions.UsermanagerClientError);
                 return RedirectToAction(MVC.Company.Home.ActionNames.Index);
             }
             //-------------------------------
@@ -354,8 +354,8 @@ namespace Netotik.Web.Areas.Company.Controllers
                     item.download_used = (ulong.Parse(item.download_used) / 1048576).ToString();
                     if (item.last_seen == "never")
                     {
-                        item.last_seen = item.last_seen.Replace("never", " بدون اتصال ");
-                        item.last_seenT = item.last_seen.Replace("never", " بدون اتصال ");
+                        item.last_seen = item.last_seen.Replace("never", Captions.NoConnection);
+                        item.last_seenT = item.last_seen.Replace("never", Captions.NoConnection);
                     }
                     else
                     {
@@ -364,18 +364,18 @@ namespace Netotik.Web.Areas.Company.Controllers
                         last_seen[0] = Infrastructure.EnglishConvertDate.ConvertToFa(last_seen[0], "d");
                         item.last_seen = last_seen[0] + " " + last_seen[1];
 
-                        
+
                         last_seenT[0] = Infrastructure.EnglishConvertDate.ConvertToFa(last_seenT[0], "D");
                         item.last_seenT = last_seenT[0] + " " + last_seenT[1];
                     }
-                    item.shared_users = item.shared_users.Replace("unlimited", " بدون محدودیت ");
-                    item.upload_used = (ulong.Parse(item.upload_used)/ 1048576).ToString();
-                    item.uptime_used= item.uptime_used.Replace("d", " روز ").Replace("w", " هفته ").Replace("h", " ساعت ").Replace("m", " دقیقه ").Replace("s", " ثانیه ").Replace("never", " بدون اتصال ");
+                    item.shared_users = item.shared_users.Replace("unlimited", Captions.Unlimited);
+                    item.upload_used = (ulong.Parse(item.upload_used) / 1048576).ToString();
+                    item.uptime_used = item.uptime_used.Replace("d", Captions.Day).Replace("w", Captions.Week).Replace("h", Captions.Hour).Replace("m", Captions.Minute).Replace("s", Captions.Secend).Replace("never", Captions.NoConnection);
                     UserListModel.Add(item);
                 }
                 ViewBag.userlist = UserListModel;
             }
-                  
+
             /*
             var mikrotik = new MikrotikAPI();
             mikrotik.MK("192.168.216.128", 8728);
@@ -385,130 +385,130 @@ namespace Netotik.Web.Areas.Company.Controllers
             ViewBag.test = mikrotik.Read();*/
             return View();
         }
-        
+
         [ValidateInput(false)]
         [HttpPost]
         public virtual ActionResult Userdisable(string id)
         {
-            
+
             //-------------------------------
             if (!_mikrotikServices.IP_Port_Check(UserLogined.UserCompany.R_Host, UserLogined.UserCompany.R_Port, UserLogined.UserCompany.R_User, UserLogined.UserCompany.R_Password))
             {
-                this.MessageError("خطا", "آدرس IP یا Port دستگاه اشتباه وارد شده است یا دستگاه شما از طریق سرور قابل دسترس نمی باشد.لطفا آدرس IP ویا Port دستگاه را تصحیح کنید.");
+                this.MessageError(Captions.Error, Captions.IPPORTClientError);
                 return RedirectToAction(MVC.Company.Home.ActionNames.MikrotikConf, MVC.Company.Home.Name, new { area = MVC.Company.Name });
             }
             if (!_mikrotikServices.User_Pass_Check(UserLogined.UserCompany.R_Host, UserLogined.UserCompany.R_Port, UserLogined.UserCompany.R_User, UserLogined.UserCompany.R_Password))
             {
-                this.MessageError("خطا", "نام کاربری یا رمز عبور صحیح وارد نشده است.لطفا نام کاربری یا رمز عبور را تصحیح کنید.");
+                this.MessageError(Captions.Error, Captions.UserPasswordClientError);
                 return RedirectToAction(MVC.Company.Home.ActionNames.MikrotikConf, MVC.Company.Home.Name, new { area = MVC.Company.Name });
             }
             if (!_mikrotikServices.Usermanager_IsInstall(UserLogined.UserCompany.R_Host, UserLogined.UserCompany.R_Port, UserLogined.UserCompany.R_User, UserLogined.UserCompany.R_Password))
             {
-                this.MessageError("خطا", "UserManager نصب نمی باشد.لطفا پس از نصب دوباره امتحان کنید.");
+                this.MessageError(Captions.Error, Captions.UsermanagerClientError);
                 return RedirectToAction(MVC.Company.Home.ActionNames.Index);
             }
             //-------------------------------
             _mikrotikServices.Usermanager_DisableUser(UserLogined.UserCompany.R_Host, UserLogined.UserCompany.R_Port, UserLogined.UserCompany.R_User, UserLogined.UserCompany.R_Password, id);
             return RedirectToAction(MVC.Company.UserManager.ActionNames.UserList);
         }
-        
+
         [ValidateInput(false)]
         [HttpPost]
         public virtual ActionResult Userremove(string id)
         {
-            
+
             //-------------------------------
             if (!_mikrotikServices.IP_Port_Check(UserLogined.UserCompany.R_Host, UserLogined.UserCompany.R_Port, UserLogined.UserCompany.R_User, UserLogined.UserCompany.R_Password))
             {
-                this.MessageError("خطا", "آدرس IP یا Port دستگاه اشتباه وارد شده است یا دستگاه شما از طریق سرور قابل دسترس نمی باشد.لطفا آدرس IP ویا Port دستگاه را تصحیح کنید.");
+                this.MessageError(Captions.Error, Captions.IPPORTClientError);
                 return RedirectToAction(MVC.Company.Home.ActionNames.MikrotikConf, MVC.Company.Home.Name, new { area = MVC.Company.Name });
             }
             if (!_mikrotikServices.User_Pass_Check(UserLogined.UserCompany.R_Host, UserLogined.UserCompany.R_Port, UserLogined.UserCompany.R_User, UserLogined.UserCompany.R_Password))
             {
-                this.MessageError("خطا", "نام کاربری یا رمز عبور صحیح وارد نشده است.لطفا نام کاربری یا رمز عبور را تصحیح کنید.");
+                this.MessageError(Captions.Error, Captions.UserPasswordClientError);
                 return RedirectToAction(MVC.Company.Home.ActionNames.MikrotikConf, MVC.Company.Home.Name, new { area = MVC.Company.Name });
             }
             if (!_mikrotikServices.Usermanager_IsInstall(UserLogined.UserCompany.R_Host, UserLogined.UserCompany.R_Port, UserLogined.UserCompany.R_User, UserLogined.UserCompany.R_Password))
             {
-                this.MessageError("خطا", "UserManager نصب نمی باشد.لطفا پس از نصب دوباره امتحان کنید.");
+                this.MessageError(Captions.Error, Captions.UsermanagerClientError);
                 return RedirectToAction(MVC.Company.Home.ActionNames.Index);
             }
             //-------------------------------
             _mikrotikServices.Usermanager_RemoveUser(UserLogined.UserCompany.R_Host, UserLogined.UserCompany.R_Port, UserLogined.UserCompany.R_User, UserLogined.UserCompany.R_Password, id);
             return RedirectToAction(MVC.Company.UserManager.ActionNames.UserList);
         }
-        
+
         [ValidateInput(false)]
         [HttpPost]
         public virtual ActionResult ProfileRemove(string id)
         {
-            
+
             //-------------------------------
             if (!_mikrotikServices.IP_Port_Check(UserLogined.UserCompany.R_Host, UserLogined.UserCompany.R_Port, UserLogined.UserCompany.R_User, UserLogined.UserCompany.R_Password))
             {
-                this.MessageError("خطا", "آدرس IP یا Port دستگاه اشتباه وارد شده است یا دستگاه شما از طریق سرور قابل دسترس نمی باشد.لطفا آدرس IP ویا Port دستگاه را تصحیح کنید.");
+                this.MessageError(Captions.Error, Captions.IPPORTClientError);
                 return RedirectToAction(MVC.Company.Home.ActionNames.MikrotikConf, MVC.Company.Home.Name, new { area = MVC.Company.Name });
             }
             if (!_mikrotikServices.User_Pass_Check(UserLogined.UserCompany.R_Host, UserLogined.UserCompany.R_Port, UserLogined.UserCompany.R_User, UserLogined.UserCompany.R_Password))
             {
-                this.MessageError("خطا", "نام کاربری یا رمز عبور صحیح وارد نشده است.لطفا نام کاربری یا رمز عبور را تصحیح کنید.");
+                this.MessageError(Captions.Error, Captions.UserPasswordClientError);
                 return RedirectToAction(MVC.Company.Home.ActionNames.MikrotikConf, MVC.Company.Home.Name, new { area = MVC.Company.Name });
             }
             if (!_mikrotikServices.Usermanager_IsInstall(UserLogined.UserCompany.R_Host, UserLogined.UserCompany.R_Port, UserLogined.UserCompany.R_User, UserLogined.UserCompany.R_Password))
             {
-                this.MessageError("خطا", "UserManager نصب نمی باشد.لطفا پس از نصب دوباره امتحان کنید.");
+                this.MessageError(Captions.Error, Captions.UsermanagerClientError);
                 return RedirectToAction(MVC.Company.Home.ActionNames.Index);
             }
             //-------------------------------
             _mikrotikServices.Usermanager_RemoveProfile(UserLogined.UserCompany.R_Host, UserLogined.UserCompany.R_Port, UserLogined.UserCompany.R_User, UserLogined.UserCompany.R_Password, id);
             return RedirectToAction(MVC.Company.UserManager.ActionNames.PackageList);
         }
-        
+
         [ValidateInput(false)]
         [HttpPost]
         public virtual ActionResult Userenable(string id)
         {
-            
+
             //-------------------------------
             if (!_mikrotikServices.IP_Port_Check(UserLogined.UserCompany.R_Host, UserLogined.UserCompany.R_Port, UserLogined.UserCompany.R_User, UserLogined.UserCompany.R_Password))
             {
-                this.MessageError("خطا", "آدرس IP یا Port دستگاه اشتباه وارد شده است یا دستگاه شما از طریق سرور قابل دسترس نمی باشد.لطفا آدرس IP ویا Port دستگاه را تصحیح کنید.");
+                this.MessageError(Captions.Error, Captions.IPPORTClientError);
                 return RedirectToAction(MVC.Company.Home.ActionNames.MikrotikConf, MVC.Company.Home.Name, new { area = MVC.Company.Name });
             }
             if (!_mikrotikServices.User_Pass_Check(UserLogined.UserCompany.R_Host, UserLogined.UserCompany.R_Port, UserLogined.UserCompany.R_User, UserLogined.UserCompany.R_Password))
             {
-                this.MessageError("خطا", "نام کاربری یا رمز عبور صحیح وارد نشده است.لطفا نام کاربری یا رمز عبور را تصحیح کنید.");
+                this.MessageError(Captions.Error, Captions.UserPasswordClientError);
                 return RedirectToAction(MVC.Company.Home.ActionNames.MikrotikConf, MVC.Company.Home.Name, new { area = MVC.Company.Name });
             }
             if (!_mikrotikServices.Usermanager_IsInstall(UserLogined.UserCompany.R_Host, UserLogined.UserCompany.R_Port, UserLogined.UserCompany.R_User, UserLogined.UserCompany.R_Password))
             {
-                this.MessageError("خطا", "UserManager نصب نمی باشد.لطفا پس از نصب دوباره امتحان کنید.");
+                this.MessageError(Captions.Error, Captions.UsermanagerClientError);
                 return RedirectToAction(MVC.Company.Home.ActionNames.Index);
             }
             //-------------------------------
             _mikrotikServices.Usermanager_EnableUser(UserLogined.UserCompany.R_Host, UserLogined.UserCompany.R_Port, UserLogined.UserCompany.R_User, UserLogined.UserCompany.R_Password, id);
             return RedirectToAction(MVC.Company.UserManager.ActionNames.UserList);
         }
-        
+
         [ValidateInput(false)]
         [HttpPost]
         public virtual ActionResult PackageDetails(string id)
         {
-            
+
             //-------------------------------
             if (!_mikrotikServices.IP_Port_Check(UserLogined.UserCompany.R_Host, UserLogined.UserCompany.R_Port, UserLogined.UserCompany.R_User, UserLogined.UserCompany.R_Password))
             {
-                this.MessageError("خطا", "آدرس IP یا Port دستگاه اشتباه وارد شده است یا دستگاه شما از طریق سرور قابل دسترس نمی باشد.لطفا آدرس IP ویا Port دستگاه را تصحیح کنید.");
+                this.MessageError(Captions.Error, Captions.IPPORTClientError);
                 return RedirectToAction(MVC.Company.Home.ActionNames.MikrotikConf, MVC.Company.Home.Name, new { area = MVC.Company.Name });
             }
             if (!_mikrotikServices.User_Pass_Check(UserLogined.UserCompany.R_Host, UserLogined.UserCompany.R_Port, UserLogined.UserCompany.R_User, UserLogined.UserCompany.R_Password))
             {
-                this.MessageError("خطا", "نام کاربری یا رمز عبور صحیح وارد نشده است.لطفا نام کاربری یا رمز عبور را تصحیح کنید.");
+                this.MessageError(Captions.Error, Captions.UserPasswordClientError);
                 return RedirectToAction(MVC.Company.Home.ActionNames.MikrotikConf, MVC.Company.Home.Name, new { area = MVC.Company.Name });
             }
             if (!_mikrotikServices.Usermanager_IsInstall(UserLogined.UserCompany.R_Host, UserLogined.UserCompany.R_Port, UserLogined.UserCompany.R_User, UserLogined.UserCompany.R_Password))
             {
-                this.MessageError("خطا", "UserManager نصب نمی باشد.لطفا پس از نصب دوباره امتحان کنید.");
+                this.MessageError(Captions.Error, Captions.UsermanagerClientError);
                 return RedirectToAction(MVC.Company.Home.ActionNames.Index);
             }
             //-------------------------------
@@ -530,49 +530,49 @@ namespace Netotik.Web.Areas.Company.Controllers
                             resualtmodel.UsermanLimition = item3;
                 }
             if (resualtmodel.UsermanProfile.validity != null)
-                resualtmodel.UsermanProfile.validity = resualtmodel.UsermanProfile.validity.Replace("d", " روز ").Replace("w", " هفته ").Replace("h", " ساعت ").Replace("m", " دقیقه ").Replace("s", " ثانیه ");
+                resualtmodel.UsermanProfile.validity = resualtmodel.UsermanProfile.validity.Replace("d", Captions.Day).Replace("w", Captions.Week).Replace("h", Captions.Hour).Replace("m", Captions.Minute).Replace("s", Captions.Secend);
             if (resualtmodel.UsermanProfile.starts_at != null)
                 resualtmodel.UsermanProfile.starts_at = resualtmodel.UsermanProfile.starts_at.Replace("logon", " زمان اولین اتصال ").Replace("now", " زمان انتساب پکیج ");
             if (resualtmodel.UsermanProfile.override_shared_users != null)
-                resualtmodel.UsermanProfile.override_shared_users = resualtmodel.UsermanProfile.override_shared_users.Replace("unlimited", " بدون محدودیت ");
+                resualtmodel.UsermanProfile.override_shared_users = resualtmodel.UsermanProfile.override_shared_users.Replace("unlimited", Captions.Unlimited);
             if (resualtmodel.UsermanProfileLimition != null)
             {
                 if (resualtmodel.UsermanProfileLimition.from_time != null)
-                    resualtmodel.UsermanProfileLimition.from_time = resualtmodel.UsermanProfileLimition.from_time.Replace("d", " روز ").Replace("s", " ثانیه ").Replace("m", " دقیقه ").Replace("h", " ساعت ");
+                    resualtmodel.UsermanProfileLimition.from_time = resualtmodel.UsermanProfileLimition.from_time.Replace("d", Captions.Day).Replace("s", Captions.Secend).Replace("m", Captions.Minute).Replace("h", Captions.Hour);
                 if (resualtmodel.UsermanProfileLimition.till_time != null)
-                    resualtmodel.UsermanProfileLimition.till_time = resualtmodel.UsermanProfileLimition.till_time.Replace("d", " روز ").Replace("s", " ثانیه ").Replace("m", " دقیقه ").Replace("h", " ساعت ");
+                    resualtmodel.UsermanProfileLimition.till_time = resualtmodel.UsermanProfileLimition.till_time.Replace("d", Captions.Day).Replace("s", Captions.Secend).Replace("m", Captions.Minute).Replace("h", Captions.Hour);
                 if (resualtmodel.UsermanProfileLimition.weekdays != null)
-                    resualtmodel.UsermanProfileLimition.weekdays = resualtmodel.UsermanProfileLimition.weekdays.Replace("friday", " جمعه ").Replace("thursday", " پنجشنبه ").Replace("wednesday", " چهارشنبه ").Replace("tuesday", " سه شنبه ").Replace("monday", " دوشنبه ").Replace("sunday", " یکشنبه ").Replace("saturday", "شنبه ");
+                    resualtmodel.UsermanProfileLimition.weekdays = resualtmodel.UsermanProfileLimition.weekdays.Replace("friday", Captions.Friday).Replace("thursday", Captions.Thursday).Replace("wednesday", Captions.Wednesday).Replace("tuesday", Captions.Tuesday).Replace("monday", Captions.Monday).Replace("sunday", Captions.Sunday).Replace("saturday", Captions.Saturday);
             }
             if (resualtmodel.UsermanLimition != null)
                 if (resualtmodel.UsermanLimition.uptime_limit != null)
-                    resualtmodel.UsermanLimition.uptime_limit = resualtmodel.UsermanLimition.uptime_limit.Replace("d", " روز ").Replace("w", " هفته ").Replace("h", " ساعت ").Replace("m", " دقیقه ").Replace("s", " ثانیه ");
+                    resualtmodel.UsermanLimition.uptime_limit = resualtmodel.UsermanLimition.uptime_limit.Replace("d", Captions.Day).Replace("w", Captions.Week).Replace("h", Captions.Hour).Replace("m", Captions.Minute).Replace("s", Captions.Secend);
             return View(resualtmodel);
         }
-        
+
         [ValidateInput(false)]
         [HttpPost]
         public virtual ActionResult UserDetails(string id)
         {
-            
+
             //-------------------------------
             if (!_mikrotikServices.IP_Port_Check(UserLogined.UserCompany.R_Host, UserLogined.UserCompany.R_Port, UserLogined.UserCompany.R_User, UserLogined.UserCompany.R_Password))
             {
-                this.MessageError("خطا", "آدرس IP یا Port دستگاه اشتباه وارد شده است یا دستگاه شما از طریق سرور قابل دسترس نمی باشد.لطفا آدرس IP ویا Port دستگاه را تصحیح کنید.");
+                this.MessageError(Captions.Error, Captions.IPPORTClientError);
                 return RedirectToAction(MVC.Company.Home.ActionNames.MikrotikConf, MVC.Company.Home.Name, new { area = MVC.Company.Name });
             }
             if (!_mikrotikServices.User_Pass_Check(UserLogined.UserCompany.R_Host, UserLogined.UserCompany.R_Port, UserLogined.UserCompany.R_User, UserLogined.UserCompany.R_Password))
             {
-                this.MessageError("خطا", "نام کاربری یا رمز عبور صحیح وارد نشده است.لطفا نام کاربری یا رمز عبور را تصحیح کنید.");
+                this.MessageError(Captions.Error, Captions.UserPasswordClientError);
                 return RedirectToAction(MVC.Company.Home.ActionNames.MikrotikConf, MVC.Company.Home.Name, new { area = MVC.Company.Name });
             }
             if (!_mikrotikServices.Usermanager_IsInstall(UserLogined.UserCompany.R_Host, UserLogined.UserCompany.R_Port, UserLogined.UserCompany.R_User, UserLogined.UserCompany.R_Password))
             {
-                this.MessageError("خطا", "UserManager نصب نمی باشد.لطفا پس از نصب دوباره امتحان کنید.");
+                this.MessageError(Captions.Error, Captions.UsermanagerClientError);
                 return RedirectToAction(MVC.Company.Home.ActionNames.Index);
             }
             //-------------------------------
-            var users = _mikrotikServices.Usermanager_GetUser(UserLogined.UserCompany.R_Host, UserLogined.UserCompany.R_Port, UserLogined.UserCompany.R_User, UserLogined.UserCompany.R_Password,id);
+            var users = _mikrotikServices.Usermanager_GetUser(UserLogined.UserCompany.R_Host, UserLogined.UserCompany.R_Port, UserLogined.UserCompany.R_User, UserLogined.UserCompany.R_Password, id);
             foreach (var item in users)
                 if (item.id == id)
                 {
@@ -584,7 +584,7 @@ namespace Netotik.Web.Areas.Company.Controllers
                     var UserProfileLimition = new Netotik.ViewModels.Identity.UserClient.ProfileLimitionModel();
                     var UserLimition = new Netotik.ViewModels.Identity.UserClient.LimitionModel();
                     var UserSession = new List<Netotik.ViewModels.Identity.UserClient.UserSessionModel>();
-                    foreach(var SessionItem in session)
+                    foreach (var SessionItem in session)
                     {
                         var from_time = SessionItem.from_time;
                         var till_time = SessionItem.till_time;
@@ -628,25 +628,25 @@ namespace Netotik.Web.Areas.Company.Controllers
                     if (UserLimition.upload_limit != "" && item.upload_used != "")
                         ViewBag.upload_remain = (ulong.Parse(UserLimition.upload_limit) - ulong.Parse(item.upload_used)).ToString();
                     if (UserLimition.uptime_limit != null)
-                        ViewBag.uptime_limit = UserLimition.uptime_limit.Replace("d", " روز ").Replace("w", " هفته ").Replace("h", " ساعت ").Replace("m", " دقیقه ").Replace("s", " ثانیه ");
+                        ViewBag.uptime_limit = UserLimition.uptime_limit.Replace("d", Captions.Day).Replace("w", Captions.Week).Replace("h", Captions.Hour).Replace("m", Captions.Minute).Replace("s", Captions.Secend);
                     if (UserProfile.validity != null)
-                        ViewBag.validity = UserProfile.validity.Replace("d", " روز ").Replace("w", " هفته ").Replace("h", " ساعت ").Replace("m", " دقیقه ").Replace("s", " ثانیه ");
+                        ViewBag.validity = UserProfile.validity.Replace("d", Captions.Day).Replace("w", Captions.Week).Replace("h", Captions.Hour).Replace("m", Captions.Minute).Replace("s", Captions.Secend);
                     if (item.shared_users != null)
-                        item.shared_users = item.shared_users.Replace("unlimited", " بدون محدودیت ");
+                        item.shared_users = item.shared_users.Replace("unlimited", Captions.Unlimited);
                     ViewBag.price = UserProfile.price;
                     if (UserProfileLimition.from_time != null)
-                        ViewBag.from_time = UserProfileLimition.from_time.Replace("d", " روز ").Replace("s", " ثانیه ").Replace("m", " دقیقه ").Replace("h", " ساعت ");
+                        ViewBag.from_time = UserProfileLimition.from_time.Replace("d", Captions.Day).Replace("s", Captions.Secend).Replace("m", Captions.Minute).Replace("h", Captions.Hour);
                     if (UserProfileLimition.till_time != null)
-                        ViewBag.till_time = UserProfileLimition.till_time.Replace("d", " روز ").Replace("s", " ثانیه ").Replace("m", " دقیقه ").Replace("h", " ساعت ");
+                        ViewBag.till_time = UserProfileLimition.till_time.Replace("d", Captions.Day).Replace("s", Captions.Secend).Replace("m", Captions.Minute).Replace("h", Captions.Hour);
                     if (UserProfileLimition.weekdays != null)
-                        ViewBag.weekdays = UserProfileLimition.weekdays.Replace("friday", " جمعه ").Replace("thursday", " پنجشنبه ").Replace("wednesday", " چهارشنبه ").Replace("tuesday", " سه شنبه ").Replace("monday", " دوشنبه ").Replace("sunday", " یکشنبه ").Replace("saturday", "شنبه ");
+                        ViewBag.weekdays = UserProfileLimition.weekdays.Replace("friday", Captions.Friday).Replace("thursday", Captions.Thursday).Replace("wednesday", Captions.Wednesday).Replace("tuesday", Captions.Tuesday).Replace("monday", Captions.Monday).Replace("sunday",Captions.Sunday).Replace("saturday", Captions.Saturday);
                     if (item.uptime_used != null)
-                        item.uptime_used = item.uptime_used.Replace("d", " روز ").Replace("w", " هفته ").Replace("h", " ساعت ").Replace("m", " دقیقه ").Replace("s", " ثانیه ").Replace("never", " بدون اتصال ");
+                        item.uptime_used = item.uptime_used.Replace("d", Captions.Day).Replace("w", Captions.Week).Replace("h", Captions.Hour).Replace("m", Captions.Minute).Replace("s", Captions.Secend).Replace("never", Captions.NoConnection);
                     if (item.last_seen != null)
                         if (item.last_seen == "never")
                         {
-                            item.last_seen = item.last_seen.Replace("never", " بدون اتصال ");
-                            item.last_seenT = item.last_seen.Replace("never", " بدون اتصال ");
+                            item.last_seen = item.last_seen.Replace("never", Captions.NoConnection);
+                            item.last_seenT = item.last_seen.Replace("never", Captions.NoConnection);
                         }
                         else
                         {
@@ -659,7 +659,7 @@ namespace Netotik.Web.Areas.Company.Controllers
                             item.last_seenT = last_seenT[0] + " " + last_seenT[1];
                         }
                     if (item.disabled != null)
-                        item.disabled = item.disabled.Replace("false", "فعال").Replace("true", "غیره فعال");
+                        item.disabled = item.disabled.Replace("false", Captions.Enabled).Replace("true", Captions.Disabled);
                     if (item.download_used == "")
                         item.download_used = "0";
                     if (ViewBag.download_remain == null || ViewBag.download_remain == "")
@@ -668,24 +668,24 @@ namespace Netotik.Web.Areas.Company.Controllers
                 }
             return View();
         }
-        
+
         public virtual ActionResult UserCreate()
         {
-            
+
             //-------------------------------
             if (!_mikrotikServices.IP_Port_Check(UserLogined.UserCompany.R_Host, UserLogined.UserCompany.R_Port, UserLogined.UserCompany.R_User, UserLogined.UserCompany.R_Password))
             {
-                this.MessageError("خطا", "آدرس IP یا Port دستگاه اشتباه وارد شده است یا دستگاه شما از طریق سرور قابل دسترس نمی باشد.لطفا آدرس IP ویا Port دستگاه را تصحیح کنید.");
+                this.MessageError(Captions.Error, Captions.IPPORTClientError);
                 return RedirectToAction(MVC.Company.Home.ActionNames.MikrotikConf, MVC.Company.Home.Name, new { area = MVC.Company.Name });
             }
             if (!_mikrotikServices.User_Pass_Check(UserLogined.UserCompany.R_Host, UserLogined.UserCompany.R_Port, UserLogined.UserCompany.R_User, UserLogined.UserCompany.R_Password))
             {
-                this.MessageError("خطا", "نام کاربری یا رمز عبور صحیح وارد نشده است.لطفا نام کاربری یا رمز عبور را تصحیح کنید.");
+                this.MessageError(Captions.Error, Captions.UserPasswordClientError);
                 return RedirectToAction(MVC.Company.Home.ActionNames.MikrotikConf, MVC.Company.Home.Name, new { area = MVC.Company.Name });
             }
             if (!_mikrotikServices.Usermanager_IsInstall(UserLogined.UserCompany.R_Host, UserLogined.UserCompany.R_Port, UserLogined.UserCompany.R_User, UserLogined.UserCompany.R_Password))
             {
-                this.MessageError("خطا", "UserManager نصب نمی باشد.لطفا پس از نصب دوباره امتحان کنید.");
+                this.MessageError(Captions.Error, Captions.UsermanagerClientError);
                 return RedirectToAction(MVC.Company.Home.ActionNames.Index);
             }
             //-------------------------------
@@ -693,26 +693,26 @@ namespace Netotik.Web.Areas.Company.Controllers
             //            ViewBag.Customers = _mikrotikServices.GetAllCustomers(UserLogined.UserCompany.R_Host, UserLogined.UserCompany.R_Port, UserLogined.UserCompany.R_User, UserLogined.UserCompany.R_Password);
             return View();
         }
-        
+
         [ValidateAntiForgeryToken]
         [HttpPost]
         public virtual ActionResult UserCreate(Netotik.ViewModels.Identity.UserClient.UserRegisterModel model, ActionType actionType)
         {
-            
+
             //-------------------------------
             if (!_mikrotikServices.IP_Port_Check(UserLogined.UserCompany.R_Host, UserLogined.UserCompany.R_Port, UserLogined.UserCompany.R_User, UserLogined.UserCompany.R_Password))
             {
-                this.MessageError("خطا", "آدرس IP یا Port دستگاه اشتباه وارد شده است یا دستگاه شما از طریق سرور قابل دسترس نمی باشد.لطفا آدرس IP ویا Port دستگاه را تصحیح کنید.");
+                this.MessageError(Captions.Error, Captions.IPPORTClientError);
                 return RedirectToAction(MVC.Company.Home.ActionNames.MikrotikConf, MVC.Company.Home.Name, new { area = MVC.Company.Name });
             }
             if (!_mikrotikServices.User_Pass_Check(UserLogined.UserCompany.R_Host, UserLogined.UserCompany.R_Port, UserLogined.UserCompany.R_User, UserLogined.UserCompany.R_Password))
             {
-                this.MessageError("خطا", "نام کاربری یا رمز عبور صحیح وارد نشده است.لطفا نام کاربری یا رمز عبور را تصحیح کنید.");
+                this.MessageError(Captions.Error, Captions.UserPasswordClientError);
                 return RedirectToAction(MVC.Company.Home.ActionNames.MikrotikConf, MVC.Company.Home.Name, new { area = MVC.Company.Name });
             }
             if (!_mikrotikServices.Usermanager_IsInstall(UserLogined.UserCompany.R_Host, UserLogined.UserCompany.R_Port, UserLogined.UserCompany.R_User, UserLogined.UserCompany.R_Password))
             {
-                this.MessageError("خطا", "UserManager نصب نمی باشد.لطفا پس از نصب دوباره امتحان کنید.");
+                this.MessageError(Captions.Error, Captions.UsermanagerClientError);
                 return RedirectToAction(MVC.Company.Home.ActionNames.Index);
             }
             //-------------------------------
@@ -748,24 +748,24 @@ namespace Netotik.Web.Areas.Company.Controllers
                 return RedirectToAction(MVC.Company.UserManager.UserList());
             }
         }
-        
+
         public virtual ActionResult PackageList()
         {
-            
+
             //-------------------------------
             if (!_mikrotikServices.IP_Port_Check(UserLogined.UserCompany.R_Host, UserLogined.UserCompany.R_Port, UserLogined.UserCompany.R_User, UserLogined.UserCompany.R_Password))
             {
-                this.MessageError("خطا", "آدرس IP یا Port دستگاه اشتباه وارد شده است یا دستگاه شما از طریق سرور قابل دسترس نمی باشد.لطفا آدرس IP ویا Port دستگاه را تصحیح کنید.");
+                this.MessageError(Captions.Error, Captions.IPPORTClientError);
                 return RedirectToAction(MVC.Company.Home.ActionNames.MikrotikConf, MVC.Company.Home.Name, new { area = MVC.Company.Name });
             }
             if (!_mikrotikServices.User_Pass_Check(UserLogined.UserCompany.R_Host, UserLogined.UserCompany.R_Port, UserLogined.UserCompany.R_User, UserLogined.UserCompany.R_Password))
             {
-                this.MessageError("خطا", "نام کاربری یا رمز عبور صحیح وارد نشده است.لطفا نام کاربری یا رمز عبور را تصحیح کنید.");
+                this.MessageError(Captions.Error, Captions.UserPasswordClientError);
                 return RedirectToAction(MVC.Company.Home.ActionNames.MikrotikConf, MVC.Company.Home.Name, new { area = MVC.Company.Name });
             }
             if (!_mikrotikServices.Usermanager_IsInstall(UserLogined.UserCompany.R_Host, UserLogined.UserCompany.R_Port, UserLogined.UserCompany.R_User, UserLogined.UserCompany.R_Password))
             {
-                this.MessageError("خطا", "UserManager نصب نمی باشد.لطفا پس از نصب دوباره امتحان کنید.");
+                this.MessageError(Captions.Error, Captions.UsermanagerClientError);
                 return RedirectToAction(MVC.Company.Home.ActionNames.Index);
             }
             //-------------------------------
@@ -773,47 +773,47 @@ namespace Netotik.Web.Areas.Company.Controllers
             {
                 var Profiles = _mikrotikServices.Usermanager_GetAllProfile(UserLogined.UserCompany.R_Host, UserLogined.UserCompany.R_Port, UserLogined.UserCompany.R_User, UserLogined.UserCompany.R_Password);
                 var RouterProfiles = new List<Netotik.ViewModels.Identity.UserClient.ProfileModel>();
-                foreach(var item in Profiles)
+                foreach (var item in Profiles)
                 {
                     item.starts_at = item.starts_at.Replace("logon", " زمان اولین اتصال ").Replace("now", " زمان انتساب پکیج ");
-                    item.validity = item.validity.Replace("d", " روز ").Replace("w", " هفته ").Replace("h", " ساعت ").Replace("m", " دقیقه ").Replace("s", " ثانیه "); ;
+                    item.validity = item.validity.Replace("d", Captions.Day).Replace("w", Captions.Week).Replace("h", Captions.Hour).Replace("m", Captions.Minute).Replace("s", Captions.Secend); ;
                     RouterProfiles.Add(item);
                 }
                 ViewBag.userlist = RouterProfiles;
             }
             return View();
         }
-        
+
         public virtual ActionResult Report()
         {
             return View();
         }
-        
-        
+
+
         public virtual ActionResult Register()
         {
             return View();
         }
-        
+
         [HttpPost]
         [ValidateInput(false)]
         public virtual ActionResult UserEdit(string id)
         {
-            
+
             //-------------------------------
             if (!_mikrotikServices.IP_Port_Check(UserLogined.UserCompany.R_Host, UserLogined.UserCompany.R_Port, UserLogined.UserCompany.R_User, UserLogined.UserCompany.R_Password))
             {
-                this.MessageError("خطا", "آدرس IP یا Port دستگاه اشتباه وارد شده است یا دستگاه شما از طریق سرور قابل دسترس نمی باشد.لطفا آدرس IP ویا Port دستگاه را تصحیح کنید.");
+                this.MessageError(Captions.Error, Captions.IPPORTClientError);
                 return RedirectToAction(MVC.Company.Home.ActionNames.MikrotikConf, MVC.Company.Home.Name, new { area = MVC.Company.Name });
             }
             if (!_mikrotikServices.User_Pass_Check(UserLogined.UserCompany.R_Host, UserLogined.UserCompany.R_Port, UserLogined.UserCompany.R_User, UserLogined.UserCompany.R_Password))
             {
-                this.MessageError("خطا", "نام کاربری یا رمز عبور صحیح وارد نشده است.لطفا نام کاربری یا رمز عبور را تصحیح کنید.");
+                this.MessageError(Captions.Error, Captions.UserPasswordClientError);
                 return RedirectToAction(MVC.Company.Home.ActionNames.MikrotikConf, MVC.Company.Home.Name, new { area = MVC.Company.Name });
             }
             if (!_mikrotikServices.Usermanager_IsInstall(UserLogined.UserCompany.R_Host, UserLogined.UserCompany.R_Port, UserLogined.UserCompany.R_User, UserLogined.UserCompany.R_Password))
             {
-                this.MessageError("خطا", "UserManager نصب نمی باشد.لطفا پس از نصب دوباره امتحان کنید.");
+                this.MessageError(Captions.Error, Captions.UsermanagerClientError);
                 return RedirectToAction(MVC.Company.Home.ActionNames.Index);
             }
             //-------------------------------
@@ -844,26 +844,26 @@ namespace Netotik.Web.Areas.Company.Controllers
             //            ViewBag.Customers = _mikrotikServices.GetAllCustomers(UserLogined.UserCompany.R_Host, UserLogined.UserCompany.R_Port, UserLogined.UserCompany.R_User, UserLogined.UserCompany.R_Password);
             return View();
         }
-        
+
         [ValidateAntiForgeryToken]
         [HttpPost]
         public virtual ActionResult UserEdit_Save(Netotik.ViewModels.Identity.UserClient.UserEditModel model, ActionType actionType)
         {
-            
+
             //-------------------------------
             if (!_mikrotikServices.IP_Port_Check(UserLogined.UserCompany.R_Host, UserLogined.UserCompany.R_Port, UserLogined.UserCompany.R_User, UserLogined.UserCompany.R_Password))
             {
-                this.MessageError("خطا", "آدرس IP یا Port دستگاه اشتباه وارد شده است یا دستگاه شما از طریق سرور قابل دسترس نمی باشد.لطفا آدرس IP ویا Port دستگاه را تصحیح کنید.");
+                this.MessageError(Captions.Error, Captions.IPPORTClientError);
                 return RedirectToAction(MVC.Company.Home.ActionNames.MikrotikConf, MVC.Company.Home.Name, new { area = MVC.Company.Name });
             }
             if (!_mikrotikServices.User_Pass_Check(UserLogined.UserCompany.R_Host, UserLogined.UserCompany.R_Port, UserLogined.UserCompany.R_User, UserLogined.UserCompany.R_Password))
             {
-                this.MessageError("خطا", "نام کاربری یا رمز عبور صحیح وارد نشده است.لطفا نام کاربری یا رمز عبور را تصحیح کنید.");
+                this.MessageError(Captions.Error, Captions.UserPasswordClientError);
                 return RedirectToAction(MVC.Company.Home.ActionNames.MikrotikConf, MVC.Company.Home.Name, new { area = MVC.Company.Name });
             }
             if (!_mikrotikServices.Usermanager_IsInstall(UserLogined.UserCompany.R_Host, UserLogined.UserCompany.R_Port, UserLogined.UserCompany.R_User, UserLogined.UserCompany.R_Password))
             {
-                this.MessageError("خطا", "UserManager نصب نمی باشد.لطفا پس از نصب دوباره امتحان کنید.");
+                this.MessageError(Captions.Error, Captions.UsermanagerClientError);
                 return RedirectToAction(MVC.Company.Home.ActionNames.Index);
             }
             //-------------------------------
@@ -904,11 +904,11 @@ namespace Netotik.Web.Areas.Company.Controllers
         }
         public virtual ActionResult ClientArea()
         {
-            
+
             PopulatePermissions(_applicationUserManager.FindClientPermissions(UserLogined.Id).ToArray());
             return View();
         }
-       
+
         [HttpPost]
         public virtual ActionResult ClientArea(ViewModels.Identity.UserCompany.ProfileModel model)
         {

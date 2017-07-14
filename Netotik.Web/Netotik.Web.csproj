@@ -3362,7 +3362,6 @@
     <Content Include="Areas\Company\Views\_ViewStart.cshtml" />
     <Content Include="Areas\Reseller\Views\_ViewStart.cshtml" />
     <Content Include="Areas\Client\Views\_ViewStart.cshtml" />
-    <Content Include="Areas\Company\Views\UserManager\_Table.cshtml" />
     <Content Include="Areas\Company\Views\UserManager\PackageList.cshtml" />
     <Content Include="Areas\Company\Views\UserManager\PackageDetails.cshtml" />
     <Content Include="Areas\Company\Views\UserManager\Register.cshtml" />

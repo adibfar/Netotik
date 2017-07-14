@@ -913,10 +913,10 @@
   <LocaleResource Name="Approximate">
     <Value>تقریبی</Value>
   </LocaleResource>
-    <LocaleResource Name="Information">
+  <LocaleResource Name="Information">
     <Value>اطلاعات</Value>
   </LocaleResource>
-      <LocaleResource Name="User">
+  <LocaleResource Name="User">
     <Value>کاربر</Value>
   </LocaleResource>
   <LocaleResource Name="RouterInformation">
@@ -925,7 +925,9 @@
   <LocaleResource Name="ClientPanelPermission">
     <Value>مجوز های پنل کاربر</Value>
   </LocaleResource>
-
+  <LocaleResource Name="MikrotikConfig">
+    <Value>تنظیمات میکروتیک</Value>
+  </LocaleResource>
   <LocaleResource Name="UserLoginLink">
     <Value>لینک لاگین کاربران</Value>
   </LocaleResource>
@@ -1124,5 +1126,14 @@
   </LocaleResource>
   <LocaleResource Name="ActiveYourAccount">
     <Value>برای ورود به سایت لازم است حساب خود را فعال کنید.</Value>
+  </LocaleResource>
+  <LocaleResource Name="Attention">
+    <Value>توجه</Value>
+  </LocaleResource>
+  <LocaleResource Name="RouterPasswordEmptyInformation">
+    <Value>پسورد روتر خالی نمی تواند باشد.ما پسورد قبلی که در سیستم گذاشته اید را تغییر ندادیم.</Value>
+  </LocaleResource>
+  <LocaleResource Name="UserManager">
+    <Value>یوزرمنیجر</Value>
   </LocaleResource>
 </Language>

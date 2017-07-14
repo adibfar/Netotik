@@ -19,20 +19,20 @@
 
                         <div class="col-md-12">
                             @Html.ValidationSummary(false, "", htmlAttributes: new { @class = "text-danger" })
-                            <span class="text-danger">توجه کنید تمامی مقادیر را انگلیسی تکمیل کنید.</span>
+                            <span class="text-danger">@Netotik.Resources.Captions.JustEnglish</span>
                         </div>
                     </div>
                     <div class="card-body">
                         <div class="card-block">
                             <ul class="nav nav-tabs nav-underline nav-justified">
                                 <li class="nav-item">
-                                    <a class="nav-link active" id="activeIcon12-tab1" data-toggle="tab" href="#profile" aria-controls="activeIcon12" aria-expanded="true"><i class="icon-file-text"></i>مشخصات</a>
+                                    <a class="nav-link active" id="activeIcon12-tab1" data-toggle="tab" href="#profile" aria-controls="activeIcon12" aria-expanded="true"><i class="icon-file-text"></i>@Netotik.Resources.Captions.Properties</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" id="linkIconOpt11-tab1" data-toggle="tab" href="#time" aria-controls="linkIconOpt11"><i class="icon-ios-time"></i>زمان</a>
+                                    <a class="nav-link" id="linkIconOpt11-tab1" data-toggle="tab" href="#time" aria-controls="linkIconOpt11"><i class="icon-ios-time"></i>@Netotik.Resources.Captions.Time</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" id="linkIcon12-tab1" data-toggle="tab" href="#traffic" aria-controls="linkIcon12" aria-expanded="false"><i class="icon-data"></i>حجم و سرعت</a>
+                                    <a class="nav-link" id="linkIcon12-tab1" data-toggle="tab" href="#traffic" aria-controls="linkIcon12" aria-expanded="false"><i class="icon-data"></i>@Netotik.Resources.Captions.Traffic</a>
                                 </li>
                             </ul>
 
@@ -88,7 +88,7 @@
                                                     <option value="8">8</option>
                                                     <option value="9">9</option>
                                                     <option value="10">10</option>
-                                                    <option value="-1">نامحدود</option>
+                                                    <option value="-1">@Netotik.Resources.Captions.Unlimited</option>
                                                 </select>
                                             </div>
                                         </div>
@@ -132,32 +132,32 @@
                                             <div class="input-group">
                                                 <label>روزهای هفته مجاز</label>
                                                 <select data-placeholder="روزهای هفته" class="selectize-multiple selectize-select" multiple id="weekdays" name="weekdays">
-                                                    <option selected value="1">شنبه</option>
-                                                    <option selected value="2">یکشنبه</option>
-                                                    <option selected value="3">دوشنبه</option>
-                                                    <option selected value="4">سه شنبه</option>
-                                                    <option selected value="5">چهارشنبه</option>
-                                                    <option selected value="6">پنجشنبه</option>
-                                                    <option selected value="7">جمعه</option>
+                                                    <option selected value="1">@Netotik.Resources.Captions.Saturday</option>
+                                                    <option selected value="2">@Netotik.Resources.Captions.Sunday</option>
+                                                    <option selected value="3">@Netotik.Resources.Captions.Monday</option>
+                                                    <option selected value="4">@Netotik.Resources.Captions.Tuesday</option>
+                                                    <option selected value="5">@Netotik.Resources.Captions.Wednesday</option>
+                                                    <option selected value="6">@Netotik.Resources.Captions.Thursday</option>
+                                                    <option selected value="7">@Netotik.Resources.Captions.Friday</option>
                                                 </select>
                                             </div>
                                         </div>
                                         <div class="col-md-10">
                                             <label>محدودیت زمان اتصالات (برای نامحدود شدن همه مقادیر را 0 قرار دهید)</label><br />
                                             <div class="col-md-3">
-                                                <label>دقیقه</label>
+                                                <label>@Netotik.Resources.Captions.Minute</label>
                                                 <input type="text" value="0" class="dial m-l" data-fgColor="#1AB394" data-width="70" data-height="70" data-max="59" id="onlinemin" name="onlinemin" />
                                             </div>
                                             <div class="col-md-3">
-                                                <label>ساعت</label>
+                                                <label>@Netotik.Resources.Captions.Hour</label>
                                                 <input type="text" value="0" class="dial m-l" data-fgColor="#1AB394" data-width="70" data-height="70" data-max="23" id="onlinehour" name="onlinehour" />
                                             </div>
                                             <div class="col-md-3">
-                                                <label>روز</label>
+                                                <label>@Netotik.Resources.Captions.Day</label>
                                                 <input type="text" value="0" class="dial m-l" data-fgColor="#1AB394" data-width="70" data-height="70" data-max="29" id="onlineday" name="onlineday" />
                                             </div>
                                             <div class="col-md-3">
-                                                <label>ماه</label>
+                                                <label>@Netotik.Resources.Captions.Month</label>
                                                 <input type="text" value="0" class="dial m-l" data-fgColor="#1AB394" data-width="70" data-height="70" data-max="99" id="onlinemon" name="onlinemon" />
                                             </div>
                                         </div>
@@ -165,19 +165,19 @@
                                         <div class="col-md-10">
                                             <label>محدودیت اعتبار اکانت (برای نامحدود شدن همه مقادیر را 0 قرار دهید)</label><br />
                                             <div class="col-md-3">
-                                                <label>دقیقه</label>
+                                                <label>@Netotik.Resources.Captions.Minute</label>
                                                 <input type="text" value="0" class="dial m-l" data-fgColor="#2AB394" data-width="70" data-height="70" data-max="59" id="onlineusermin" name="onlineusermin" />
                                             </div>
                                             <div class="col-md-3">
-                                                <label>ساعت</label>
+                                                <label>@Netotik.Resources.Captions.Hour</label>
                                                 <input type="text" value="0" class="dial m-l" data-fgColor="#2AB394" data-width="70" data-height="70" data-max="23" id="onlineuserhour" name="onlineuserhour" />
                                             </div>
                                             <div class="col-md-3">
-                                                <label>روز</label>
+                                                <label>@Netotik.Resources.Captions.Day</label>
                                                 <input type="text" value="0" class="dial m-l" data-fgColor="#2AB394" data-width="70" data-height="70" data-max="29" id="onlineuserday" name="onlineuserday" />
                                             </div>
                                             <div class="col-md-3">
-                                                <label>ماه</label>
+                                                <label>@Netotik.Resources.Captions.Month</label>
                                                 <input value="0" class="dial m-l" data-fgColor="#2AB394" data-width="70" data-height="70" data-max="99" id="onlineusermon" name="onlineusermon" />
                                             </div>
                                         </div>
@@ -188,7 +188,7 @@
                                         <div class="col-md-4">
                                             <label>محدودیت حجم دانلود</label>
                                             <div class="input-group">
-                                                <input type="text" class="form-control m-b" style="height:45px !important;" placeholder="0" name="downloadlimit" id="downloadlimit" />
+                                                <input type="text" disabled class="form-control m-b" style="height:45px !important;" placeholder="0" name="downloadlimit-Disabled" id="downloadlimit-Disabled" />
                                                 <div class="input-group-addon">
                                                     <select name="downloadlimitB" id="downloadlimitB">
                                                         <option value="1">MB</option>
@@ -200,7 +200,7 @@
                                         <div class="col-md-4">
                                             <label>محدودیت حجم آپلود</label>
                                             <div class="input-group">
-                                                <input type="text" class="form-control m-b" style="height:45px !important;" placeholder="0" name="uploadlimit" id="uploadlimit" />
+                                                <input type="text" disabled class="form-control m-b" style="height:45px !important;" placeholder="0" name="uploadlimit-Disabled" id="uploadlimit-Disabled" />
                                                 <div class="input-group-addon">
                                                     <select name="uploadlimitB" id="uploadlimitB">
                                                         <option value="1">MB</option>

@@ -5,7 +5,7 @@
 }
 
 @using (Html.BeginForm(MVC.Company.Home.ActionNames.UpdateProfile, MVC.Company.Home.Name, FormMethod.Post,
-                                 htmlAttributes: new { @class = "form-horizontal", enctype = "multipart/form-data", id = "form" }))
+                                             htmlAttributes: new { @class = "form-horizontal", enctype = "multipart/form-data", id = "form" }))
 {
     @Html.AntiForgeryToken()
     <div class="card">
@@ -94,7 +94,7 @@
                             </div>
                         </div>
                     </div>
-                    
+
                 </div>
             </div>
         </div>

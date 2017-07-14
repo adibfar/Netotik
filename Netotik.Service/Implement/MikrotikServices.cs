@@ -1337,7 +1337,7 @@ namespace Netotik.Services.Implement
 
                     Router_Resource.Add(new Router_ResourceModel()
                     {
-                        Uptime = ColumnList.Any(x => x.Key == "uptime") ? (ColumnList.FirstOrDefault(x => x.Key == "uptime").Value.Replace("d", "روز").Replace("w", "هفته").Replace("h", ":").Replace("m", ":").Replace("s", "")) : "",
+                        Uptime = ColumnList.Any(x => x.Key == "uptime") ? (ColumnList.FirstOrDefault(x => x.Key == "uptime").Value) : "",
                         Version = ColumnList.Any(x => x.Key == "version") ? (ColumnList.FirstOrDefault(x => x.Key == "version").Value) : "",
                         Build_time = ColumnList.Any(x => x.Key == "build-time") ? (ColumnList.FirstOrDefault(x => x.Key == "build-time").Value) : "",
                         Free_memory = ColumnList.Any(x => x.Key == "free-memory") ? (ColumnList.FirstOrDefault(x => x.Key == "free-memory").Value) : "",

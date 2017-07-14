@@ -31,7 +31,7 @@ using WebGrease.Css.Extensions;
 namespace Netotik.Web.Areas.Company.Controllers
 {
     [Mvc5Authorize(Roles = "Company")]
-    [BreadCrumb(Title = "کاربر", UseDefaultRouteUrl = true, RemoveAllDefaultRouteValues = true,
+    [BreadCrumb(Title = "User", UseDefaultRouteUrl = true, RemoveAllDefaultRouteValues = true,
  Order = 0, GlyphIcon = "icon icon-table")]
     public partial class HomeController : BasePanelController
     {
@@ -55,17 +55,17 @@ namespace Netotik.Web.Areas.Company.Controllers
         #endregion
 
         #region Index
-        
+
         public virtual ActionResult Index()
         {
             return View();
         }
-        
+
         public virtual ActionResult MyProfile()
         {
             return View();
         }
-        
+
         public virtual ActionResult ProfileData()
         {
             var company = _applicationUserManager.GetUserCompanyProfile(UserLogined.Id);
@@ -73,7 +73,7 @@ namespace Netotik.Web.Areas.Company.Controllers
 
             return PartialView(MVC.Company.Home.Views._ProfileData, company);
         }
-        
+
         [ValidateAntiForgeryToken]
         [HttpPost]
         public virtual async Task<ActionResult> changeImageProfile(HttpPostedFileBase image)
@@ -103,19 +103,13 @@ namespace Netotik.Web.Areas.Company.Controllers
             this.MessageInformation(Captions.MissionSuccess, Captions.UpdateSuccess);
             return RedirectToAction(MVC.Company.Home.MyProfile());
         }
-        
+
         [ValidateAntiForgeryToken]
         [HttpPost]
         public virtual async Task<ActionResult> UpdateProfile(ProfileModel model)
         {
             PopulatePermissions(model.ClientPermissionNames);
             #region Validation
-            if (_applicationUserManager.CheckCompanyEmailExist(model.Email, User.Identity.GetUserId<long>()))
-                ModelState.AddModelError("Email", "این ایمیل قبلا در سیستم ثبت شده است");
-
-            if (_applicationUserManager.CheckCompanyPhoneNumberExist(model.PhoneNumber, User.Identity.GetUserId<long>(),model.UserResellerId))
-                ModelState.AddModelError("PhoneNumber", "این شماره موبایل قبلا در سیستم ثبت شده است");
-
             if (!ModelState.IsValid)
             {
                 this.MessageError(Captions.MissionFail, Captions.InvalidDataError);
@@ -132,12 +126,12 @@ namespace Netotik.Web.Areas.Company.Controllers
             await _applicationUserManager.UpdateUserCompanyProfile(model);
             return RedirectToAction(MVC.Company.Home.ActionNames.MyProfile);
         }
-        
+
         public virtual ActionResult MikrotikConf()
         {
             return View(_applicationUserManager.GetUserCompanyMikrotikConf(UserLogined.Id));
         }
-        
+
         [ValidateAntiForgeryToken]
         [HttpPost]
         public virtual async Task<ActionResult> MikrotikConf(MikrotikConfModel model)
@@ -153,7 +147,7 @@ namespace Netotik.Web.Areas.Company.Controllers
             if (model.R_Password == "" || model.R_Password == null)
             {
                 model.R_Password = UserLogined.UserCompany.R_Password;
-                this.MessageInformation("توجه:", "پسورد روتر خالی نمی تواند باشد.ما پسورد قبلی که در سیستم گذاشته اید را تغییر ندادیم.");
+                this.MessageInformation(Captions.Attention, Captions.RouterPasswordEmptyInformation);
             }
             model.Id = UserLogined.Id;
             if (model.cloud == true)
@@ -166,12 +160,12 @@ namespace Netotik.Web.Areas.Company.Controllers
 
 
         #region Edit
-        
+
         public virtual ActionResult ChangePassword()
         {
             return View();
         }
-        
+
         [HttpPost]
         public virtual async Task<ActionResult> ChangePassword(ChangePasswordModel model)
         {

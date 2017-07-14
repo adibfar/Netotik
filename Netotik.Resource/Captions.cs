@@ -2443,8 +2443,8 @@ namespace Netotik.Resources
                 return resourceProvider.GetResource("SelectRoles", CultureInfo.CurrentUICulture.Name) as string;
             }
         }
-        
-            public static string ResellerLogin
+
+        public static string ResellerLogin
         {
             get
             {
@@ -2663,8 +2663,8 @@ namespace Netotik.Resources
                 return resourceProvider.GetResource("About", CultureInfo.CurrentUICulture.Name) as string;
             }
         }
-        
-                    public static string FoodMenu
+
+        public static string FoodMenu
         {
             get
             {
@@ -3186,6 +3186,34 @@ namespace Netotik.Resources
             get
             {
                 return resourceProvider.GetResource("CreateSuccsessGoToEmail", CultureInfo.CurrentUICulture.Name) as string;
+            }
+        }
+        public static string MikrotikConfig
+        {
+            get
+            {
+                return resourceProvider.GetResource("MikrotikConfig", CultureInfo.CurrentUICulture.Name) as string;
+            }
+        }
+        public static string Attention
+        {
+            get
+            {
+                return resourceProvider.GetResource("Attention", CultureInfo.CurrentUICulture.Name) as string;
+            }
+        }
+        public static string RouterPasswordEmptyInformation
+        {
+            get
+            {
+                return resourceProvider.GetResource("RouterPasswordEmptyInformation", CultureInfo.CurrentUICulture.Name) as string;
+            }
+        }
+        public static string UserManager
+        {
+            get
+            {
+                return resourceProvider.GetResource("UserManager", CultureInfo.CurrentUICulture.Name) as string;
             }
         }
 

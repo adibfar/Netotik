@@ -522,7 +522,7 @@
   <LocaleResource Name="FirstNameAndLastName">
     <Value>Full Name</Value>
   </LocaleResource>
-    <LocaleResource Name="UserLoginLink">
+  <LocaleResource Name="UserLoginLink">
     <Value>Users Login Link</Value>
   </LocaleResource>
   <LocaleResource Name="UserLoginMessage">
@@ -538,5 +538,16 @@
       حساب کاربری شما با موفقیت ایجاد شد. برای فعال سازی حساب خود به ایمیل خود مراجعه کنید
     </Value>
   </LocaleResource>
-
+  <LocaleResource Name="MikrotikConfig">
+    <Value>Mikrotik Configuration</Value>
+  </LocaleResource>
+  <LocaleResource Name="Attention">
+    <Value>Attention</Value>
+  </LocaleResource>
+  <LocaleResource Name="RouterPasswordEmptyInformation">
+    <Value>پسورد روتر خالی نمی تواند باشد.ما پسورد قبلی که در سیستم گذاشته اید را تغییر ندادیم.</Value>
+  </LocaleResource>
+  <LocaleResource Name="UserManager">
+    <Value>UserManager</Value>
+  </LocaleResource>
 </Language>
