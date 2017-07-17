@@ -1,6 +1,7 @@
 ﻿@model Netotik.ViewModels.Identity.UserClient.UserEditModel
+    @using Netotik.Resources;
 @{
-    ViewBag.Title = " کاربر ویرایش ";
+    ViewBag.Title = Captions.SelectPackage;
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 <section class="flexbox-container">
@@ -16,45 +17,45 @@
                             <span class="icon-checkmark2 font-medium-4"></span>
                             @Netotik.Resources.Captions.Save
                         </button>
-                        <a value="بازگشت" class="btn btn-social btn-instagram" href="@Url.Action(MVC.Company.UserManager.UserList())">
+                        <a value="@Captions.Back" class="btn btn-social btn-instagram" href="@Url.Action(MVC.Company.UserManager.UserList())">
                             <span class="icon-reply font-medium-4"></span>
-                            بازگشت
+                            @Captions.Back
                         </a>
-                        <a value="قطع اتصال" class="btn btn-social btn-instagram" href="#" onclick="UserCloseSession('@Model.id','@Model.username');">
+                        <a value="@Captions.TerminateConnection" class="btn btn-social btn-instagram" href="#" onclick="UserCloseSession('@Model.id','@Model.username');">
                             <span class="icon-blocked font-medium-4"></span>
-                            قطع اتصال
+                            @Captions.TerminateConnection
                         </a>
-                        <a value="ریست کردن" class="btn btn-social btn-instagram" href="#" onclick="UserResetCounter('@Model.id','@Model.username');">
+                        <a value="@Captions.Reset" class="btn btn-social btn-instagram" href="#" onclick="UserResetCounter('@Model.id','@Model.username');">
                             <span class="icon-refresh font-medium-4"></span>
-                            ریست کردن
+                            @Captions.Reset
                         </a>
-                        <a value="چاپ گزارش" class="btn btn-social btn-instagram" href="#">
+                        <a value="@Captions.PrintReport" class="btn btn-social btn-instagram" href="#">
                             <span class="icon-printer2 font-medium-4"></span>
-                            چاپ گزارش
+                            @Captions.PrintReport
                         </a>
-                        <a value="حذف" class="btn btn-social btn-instagram" href="#" onclick="Userremove('@Model.id');">
+                        <a value="@Captions.Remove" class="btn btn-social btn-instagram" href="#" onclick="Userremove('@Model.id');">
                             <span class="icon-remove font-medium-4"></span>
-                            حذف
+                            @Captions.Remove
                         </a>
                         @if (Model.disabled == "false")
                         {
-                            <a onclick="Userdisable('@Model.id');" class="btn btn-social btn-instagram" value="فعال" href="#">
-                                <span class="icon-eye-blocked font-medium-4"></span> غیره فعال
+                            <a onclick="Userdisable('@Model.id');" class="btn btn-social btn-instagram" value="@Captions.Disabled" href="#">
+                                <span class="icon-eye-blocked font-medium-4"></span> @Captions.Disabled
                             </a>
                         }
                         else
                         {
-                            <a href="#" onclick="Userenable('@Model.id');" class="btn btn-social btn-instagram" value="فعال">
-                                <span class="icon-eye font-medium-4"></span> فعال
+                            <a href="#" onclick="Userenable('@Model.id');" class="btn btn-social btn-instagram" value="@Captions.Enabled">
+                                <span class="icon-eye font-medium-4"></span> @Captions.Enabled
                             </a>
                         }
-                        <a value="ساخت کارت" class="btn btn-social btn-instagram" href="#">
+                        <a value="@Captions.MakeCard" class="btn btn-social btn-instagram" href="#">
                             <span class="icon-card font-medium-4"></span>
-                            ساخت کارت
+                            @Captions.MakeCard
                         </a>
                         <div class="col-md-12">
                             @Html.ValidationSummary(false, "", htmlAttributes: new { @class = "text-danger" })
-                            <span class="text-danger">توجه کنید تمامی مقادیر را انگلیسی تکمیل کنید.</span>
+                            <span class="text-danger">@Captions.JustEnglish</span>
                         </div>
                     </div>
                     @Html.HiddenFor(model=>model.id)
@@ -134,8 +135,8 @@
                                     </div>
                                 </div>
                                 <div class="col-md-4">
-                                    <label class="font-noraml">انتخاب تعرفه</label>
-                                    <select id="profile" name="profile" data-placeholder="انتخاب تعرفه" class="selectize-select" style="min-width:350px;" tabindex="2">
+                                    <label class="font-noraml">@Captions.SelectPackage</label>
+                                    <select id="profile" name="profile" data-placeholder="@Captions.SelectPackage" class="selectize-select" style="min-width:350px;" tabindex="2">
                                         @foreach (var item in ViewBag.profiles)
                                         {
                                             <option value="@item.name">@item.name</option>

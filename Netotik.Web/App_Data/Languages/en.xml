@@ -550,4 +550,70 @@
   <LocaleResource Name="UserManager">
     <Value>UserManager</Value>
   </LocaleResource>
+  <LocaleResource Name="PackageList">
+    <Value>Package List</Value>
+  </LocaleResource>
+  <LocaleResource Name="NewPackage">
+    <Value>New Package</Value>
+  </LocaleResource>
+  <LocaleResource Name="Actions">
+    <Value>Actions</Value>
+  </LocaleResource>
+  <LocaleResource Name="Hotspot">
+    <Value>Hotspot</Value>
+  </LocaleResource>
+  <LocaleResource Name="Access">
+    <Value>Access</Value>
+  </LocaleResource>
+  <LocaleResource Name="Price">
+    <Value>Price</Value>
+  </LocaleResource>
+  <LocaleResource Name="Toman">
+    <Value>تومان</Value>
+  </LocaleResource>
+  <LocaleResource Name="SharedUsers">
+    <Value>Shared Users</Value>
+  </LocaleResource>
+  <LocaleResource Name="StartAt">
+    <Value> شروع محاسبه</Value>
+  </LocaleResource>
+  <LocaleResource Name="FirstConnection">
+    <Value>First Connection</Value>
+  </LocaleResource>
+  <LocaleResource Name="PackageBind">
+    <Value>Package Bind</Value>
+  </LocaleResource>
+  <LocaleResource Name="FromTime">
+    <Value>From Time</Value>
+  </LocaleResource>
+  <LocaleResource Name="TillTime">
+    <Value>Till Time</Value>
+  </LocaleResource>
+  <LocaleResource Name="WeekDays">
+    <Value>Week Days</Value>
+  </LocaleResource>
+  <LocaleResource Name="ConnectionOnlineTime">
+    <Value>Connection Online Time</Value>
+  </LocaleResource>
+  <LocaleResource Name="AccountValidity">
+    <Value>Account Validity</Value>
+  </LocaleResource>
+  <LocaleResource Name="ZeroToUnlimited">
+    <Value>To Unlimit , Set 0</Value>
+  </LocaleResource>
+  <LocaleResource Name="TerminateConnection">
+    <Value>Terminate Connection</Value>
+  </LocaleResource>
+  <LocaleResource Name="Reset">
+    <Value>Reset</Value>
+  </LocaleResource>
+  <LocaleResource Name="PrintList">
+    <Value>Print List</Value>
+  </LocaleResource>
+  <LocaleResource Name="NewMultiUser">
+    <Value>New Multi User</Value>
+  </LocaleResource>
+  <LocaleResource Name="LastConnection">
+    <Value>Last Connection</Value>
+  </LocaleResource>
 </Language>

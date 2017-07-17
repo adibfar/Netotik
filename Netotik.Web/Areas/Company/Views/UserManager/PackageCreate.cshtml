@@ -1,6 +1,6 @@
 ﻿@model Netotik.ViewModels.Identity.UserClient.ProfileLimitionCreateModel
 @{
-    ViewBag.Title = " پکیج جدید ";
+    ViewBag.Title = Netotik.Resources.Captions.NewPackage;
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 <section class="flexbox-container">
@@ -68,7 +68,7 @@
                                             <div class="form-group">
                                                 @Html.LabelFor(m => m.profile_price)
                                                 <div class="position-relative">
-                                                    <div class="input-group m-b"><span class="input-group-addon">قیمت</span>@Html.TextBoxFor(model => model.profile_price, new { @class = "form-control" }) <span class="input-group-addon">تومان</span></div>
+                                                    <div class="input-group m-b"><span class="input-group-addon">@Netotik.Resources.Captions.Price</span>@Html.TextBoxFor(model => model.profile_price, new { @class = "form-control" }) <span class="input-group-addon">@Netotik.Resources.Captions.Toman</span></div>
                                                     @Html.ValidationMessageFor(model => model.profile_price, "", htmlAttributes: new { @class = "text-danger" })
                                                 </div>
                                             </div>
@@ -76,7 +76,7 @@
 
                                         <div class="col-md-4">
                                             <div class="input-group m-b">
-                                                <span class="input-group-addon">تعداد کاربران آنلاین همزمان</span>
+                                                <span class="input-group-addon">@Netotik.Resources.Captions.SharedUsers</span>
                                                 <select class="form-control m-b" name="onlineusers" id="onlineusers">
                                                     <option value="1">1</option>
                                                     <option value="2">2</option>
@@ -95,10 +95,10 @@
 
                                         <div class="col-md-4">
                                             <div class="input-group m-b">
-                                                <span class="input-group-addon">زمان شروع محاسبه</span>
+                                                <span class="input-group-addon">@Netotik.Resources.Captions.StartAt</span>
                                                 <select class="form-control m-b" name="startat" id="startat">
-                                                    <option value="logon">از زمان اولین اتصال</option>
-                                                    <option value="now">از زمان انتساب پکیج</option>
+                                                    <option value="logon">@Netotik.Resources.Captions.FirstConnection</option>
+                                                    <option value="now">@Netotik.Resources.Captions.PackageBind</option>
                                                 </select>
                                             </div>
                                         </div>
@@ -108,7 +108,7 @@
                                     <div class="row">
                                         <div class="col-md-4">
                                             <div class="input-group m-b">
-                                                <span class="input-group-addon">زمان مجاز اتصال از</span>
+                                                <span class="input-group-addon">@Netotik.Resources.Captions.FromTime</span>
                                                 <div class="input-group clockpicker" data-autoclose="true">
                                                     <input type="text" class="form-control input-lg time" value="00:00" id="fromtime" name="fromtime">
                                                     <span class="input-group-addon">
@@ -119,7 +119,7 @@
                                         </div>
                                         <div class="col-md-4">
                                             <div class="input-group m-b">
-                                                <span class="input-group-addon">زمان مجاز اتصال تا</span>
+                                                <span class="input-group-addon">@Netotik.Resources.Captions.TillTime</span>
                                                 <div class="input-group clockpicker" data-autoclose="true">
                                                     <input type="text" class="form-control input-lg time" value="23:59" id="tilltime" name="tilltime">
                                                     <span class="input-group-addon">
@@ -130,8 +130,8 @@
                                         </div>
                                         <div class="col-md-8">
                                             <div class="input-group">
-                                                <label>روزهای هفته مجاز</label>
-                                                <select data-placeholder="روزهای هفته" class="selectize-multiple selectize-select" multiple id="weekdays" name="weekdays">
+                                                <label>@Netotik.Resources.Captions.WeekDays</label>
+                                                <select data-placeholder="@Netotik.Resources.Captions.WeekDays" class="selectize-multiple selectize-select" multiple id="weekdays" name="weekdays">
                                                     <option selected value="1">@Netotik.Resources.Captions.Saturday</option>
                                                     <option selected value="2">@Netotik.Resources.Captions.Sunday</option>
                                                     <option selected value="3">@Netotik.Resources.Captions.Monday</option>
@@ -143,7 +143,7 @@
                                             </div>
                                         </div>
                                         <div class="col-md-10">
-                                            <label>محدودیت زمان اتصالات (برای نامحدود شدن همه مقادیر را 0 قرار دهید)</label><br />
+                                            <label>@Netotik.Resources.Captions.ConnectionOnlineTime (@Netotik.Resources.Captions.ZeroToUnlimited)</label><br />
                                             <div class="col-md-3">
                                                 <label>@Netotik.Resources.Captions.Minute</label>
                                                 <input type="text" value="0" class="dial m-l" data-fgColor="#1AB394" data-width="70" data-height="70" data-max="59" id="onlinemin" name="onlinemin" />
@@ -163,7 +163,7 @@
                                         </div>
                                         <br /><br /><br /><br />
                                         <div class="col-md-10">
-                                            <label>محدودیت اعتبار اکانت (برای نامحدود شدن همه مقادیر را 0 قرار دهید)</label><br />
+                                            <label>@Netotik.Resources.Captions.AccountValidity (@Netotik.Resources.Captions.ZeroToUnlimited)</label><br />
                                             <div class="col-md-3">
                                                 <label>@Netotik.Resources.Captions.Minute</label>
                                                 <input type="text" value="0" class="dial m-l" data-fgColor="#2AB394" data-width="70" data-height="70" data-max="59" id="onlineusermin" name="onlineusermin" />
@@ -186,7 +186,7 @@
                                 <div class="tab-pane form-horizontal" id="traffic">
                                     <div class="row">
                                         <div class="col-md-4">
-                                            <label>محدودیت حجم دانلود</label>
+                                            <label>@Netotik.Resources.Captions.DownloadTrafficLimit</label>
                                             <div class="input-group">
                                                 <input type="text" disabled class="form-control m-b" style="height:45px !important;" placeholder="0" name="downloadlimit-Disabled" id="downloadlimit-Disabled" />
                                                 <div class="input-group-addon">
@@ -198,7 +198,7 @@
                                             </div>
                                         </div>
                                         <div class="col-md-4">
-                                            <label>محدودیت حجم آپلود</label>
+                                            <label>@Netotik.Resources.Captions.UploadTrafficLimit</label>
                                             <div class="input-group">
                                                 <input type="text" disabled class="form-control m-b" style="height:45px !important;" placeholder="0" name="uploadlimit-Disabled" id="uploadlimit-Disabled" />
                                                 <div class="input-group-addon">
@@ -210,7 +210,7 @@
                                             </div>
                                         </div>
                                         <div class="col-md-4">
-                                            <label>محدودیت حجم دانلود+آپلود</label>
+                                            <label>@Netotik.Resources.Captions.DownloadUploadTrafficLimit</label>
                                             <div class="input-group">
                                                 <input type="text" class="form-control m-b" style="height:45px !important;" placeholder="0" name="downloaduploadlimit" id="downloaduploadlimit" />
                                                 <div class="input-group-addon">
@@ -223,7 +223,7 @@
                                         </div>
                                         
                                         <div class="col-md-4">
-                                            <label>محدودیت سرعت دانلود</label>
+                                            <label>@Netotik.Resources.Captions.DownloadSpeedLimit</label>
                                             <div class="input-group">
                                                 <input type="text" class="form-control m-b" style="height:45px !important;" placeholder="0" name="uploadrate" id="uploadrate" />
                                                 <div class="input-group-addon">
@@ -237,7 +237,7 @@
                                             </div>
                                         </div>
                                         <div class="col-md-4">
-                                            <label>محدودیت سرعت آپلود</label>
+                                            <label>@Netotik.Resources.Captions.UploadSpeedLimit</label>
                                             <div class="input-group">
                                                 <input type="text" class="form-control m-b" style="height:45px !important;" placeholder="0" name="downloadrate" id="downloadrate" />
                                                 <div class="input-group-addon">

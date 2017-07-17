@@ -1,5 +1,6 @@
-﻿@{
-    ViewBag.Title = "لیست کاربران";
+﻿@using Netotik.Resources;
+@{
+    ViewBag.Title = Captions.UsersList;
     Layout = "~/Views/Shared/_Layout.cshtml";
     var counter = 1;
 }
@@ -8,21 +9,21 @@
         <div class="col-xs-12">
             <div class="card">
                 <div class="card-header">
-                    <a value="افزودن کاربر" class="btn btn-social btn-instagram" href="@Url.Action(MVC.Company.UserManager.UserCreate())">
+                    <a value="@Captions.NewUser" class="btn btn-social btn-instagram" href="@Url.Action(MVC.Company.UserManager.UserCreate())">
                         <span class="icon-user-plus font-medium-4"></span>
-                        افزودن کاربر
+                        @Captions.NewUser
                     </a>
-                    <a value="کاربر گروهی" class="btn btn-social btn-instagram" href="@Url.Action(MVC.Company.UserManager.ResetCounter())">
+                    <a value="@Captions.NewMultiUser" class="btn btn-social btn-instagram" href="@Url.Action(MVC.Company.UserManager.ResetCounter())">
                         <span class="icon-users font-medium-4"></span>
-                        کاربر گروهی
+                        @Captions.NewMultiUser
                     </a>
-                    <a value="چاپ لیست" class="btn btn-social btn-instagram" href="@Url.Action(MVC.Company.UserManager.ResetCounter())">
+                    <a value="@Captions.PrintList" class="btn btn-social btn-instagram" href="@Url.Action(MVC.Company.UserManager.ResetCounter())">
                         <span class="icon-print font-medium-4"></span>
-                        چاپ لیست
+                        @Captions.PrintList
                     </a>
-                    <a value="ساخت کارت" class="btn btn-social btn-instagram" href="@Url.Action(MVC.Company.UserManager.ResetCounter())">
+                    <a value="@Captions.UsersList" class="btn btn-social btn-instagram" href="@Url.Action(MVC.Company.UserManager.ResetCounter())">
                         <span class="icon-card font-medium-4"></span>
-                        ساخت کارت
+                        @Captions.UsersList
                     </a>
                 </div>
                 <div class="card-body collapse in">
@@ -31,20 +32,17 @@
                             <thead>
                                 <tr>
                                     <th>#</th>
-                                    <th>نام کاربری</th>
-                                    <th>تعرفه فعال</th>
-                                    <th>زمان اتصال</th>
-                                    <th>دانلود</th>
-                                    <th>آپلود</th>
-                                    <th>آخرین اتصال</th>
-                                    <th>نام</th>
-                                    <th>نام خانوادگی</th>
-                                    <th>شماره تماس</th>
-                                    <th>آدرس</th>
-                                    <th>آدرس ایمیل</th>
-                                    <th>توضیحات</th>
-                                    <th>IP</th>
-                                    <th>وضعیت</th>
+                                    <th>@Captions.UserName</th>
+                                    <th>@Captions.PackageName</th>
+                                    <th>@Captions.ConnectionOnlineTime</th>
+                                    <th>@Captions.Download</th>
+                                    <th>@Captions.Upload</th>
+                                    <th>@Captions.LastConnection</th>
+                                    <th>@Captions.FirstName</th>
+                                    <th>@Captions.LastName</th>
+                                    <th>@Captions.MobileNumber</th>
+                                    <th>@Captions.Email</th>
+                                    <th>@Captions.Active</th>
                                     <th width="10%"></th>
                                 </tr>
                             </thead>
@@ -70,43 +68,40 @@
                                         <td>@item.first_name</td>
                                         <td>@item.last_name</td>
                                         <td>@item.phone</td>
-                                        <td>@item.location</td>
                                         <td>@item.email</td>
-                                        <td>@item.comment</td>
-                                        <td>@item.ip_address</td>
                                         <td>
                                             @if (item.disabled == "false")
                                             {
-                                                <span class="label label-success">فعال</span>
+                                                <span class="label label-success">@Captions.Enabled</span>
                                             }
                                             else
                                             {
-                                                <span class="label label-danger">غیره فعال</span>
+                                                <span class="label label-danger">@Captions.Disabled</span>
                                             }
                                         </td>
                                         <td>
                                             <span class="dropdown">
-                                                <button id="btnSearchDrop2" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" class="btn btn-outline-secondary dropdown-toggle dropdown-menu-right"><i class="icon-cog3"></i> پردازش</button>
+                                                <button id="btnSearchDrop2" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" class="btn btn-outline-secondary dropdown-toggle dropdown-menu-right"><i class="icon-cog3"></i>@Captions.Action</button>
                                                 <span aria-labelledby="btnSearchDrop2" class="dropdown-menu mt-1 dropdown-menu-right">
                                                     <a onclick="UserEdit('@item.id');" class="dropdown-item">
-                                                        <i class="icon-pen3 primary"></i> ویرایش
+                                                        <i class="icon-pen3 primary"></i> @Captions.Edit
                                                     </a>
                                                     <a onclick="UserDetails('@item.id');" class="dropdown-item">
-                                                        <i class="fa fa-book"></i> جزئیات
+                                                        <i class="fa fa-book"></i> @Captions.Details
                                                     </a>
                                                     <a onclick="Userremove('@item.id');" class="dropdown-item">
-                                                        <i class="icon-trash4 danger"></i> حذف
+                                                        <i class="icon-trash4 danger"></i> @Captions.Remove
                                                     </a>
                                                     @if (item.disabled == "false")
                                                     {
                                                         <a onclick="Userdisable('@item.id');"  class="dropdown-item">
-                                                            <i class="icon-lock danger"></i> غیره فعال
+                                                            <i class="icon-lock danger"></i> @Captions.Disable
                                                         </a>
                                                     }
                                                     else
                                                     {
                                                         <a onclick="Userenable('@item.id');"  class="dropdown-item">
-                                                            <i class="icon-unlock primary"></i> فعال
+                                                            <i class="icon-unlock primary"></i> @Captions.Enable
                                                         </a>
                                                     }
                                                 </span>
@@ -146,12 +141,12 @@
                 columnDefs: [{
                     visible: !1,
                     targets: [6, 7, 8, 9, 10, 11, 12, 13],
-                    buttonText: "ویرایش جدول",
+                    buttonText: "@Captions.EditTable",
                 }],
                 colVis: {
-                    restore: "پیشفرض",
-                    showAll: "نمایش همه",
-                    showNone: "پنهان سازی"
+                    restore: "@Captions.Default",
+                    showAll: "@Captions.ShowAll",
+                    showNone: "@Captions.Hide"
                 }
             });
         });

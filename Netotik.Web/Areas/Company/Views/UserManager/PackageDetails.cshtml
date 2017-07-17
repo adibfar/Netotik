@@ -1,18 +1,18 @@
 ﻿@model Netotik.ViewModels.Identity.UserClient.ProfileLimitionView
-
+@using Netotik.Resources;
 
 <section class="flexbox-container">
     <div class="row">
         <div class="col-md-12">
             <div class="card">
                 <div class="card-header">
-                    <a value="بازگشت" class="btn btn-social btn-instagram" href="@Url.Action(MVC.Company.UserManager.PackageList())">
+                    <a value="@Captions.Back" class="btn btn-social btn-instagram" href="@Url.Action(MVC.Company.UserManager.PackageList())">
                         <span class="icon-reply font-medium-4"></span>
-                        بازگشت
+                        @Captions.Back
                     </a>
-                    <a value="حذف" class="btn btn-social btn-instagram" onclick="ProfileRemove('@Model.UsermanProfile.id');" href="#">
+                    <a value="@Captions.Remove" class="btn btn-social btn-instagram" onclick="ProfileRemove('@Model.UsermanProfile.id');" href="#">
                         <span class="icon-remove font-medium-4"></span>
-                        حذف
+                        @Captions.Remove
                     </a>
                 </div>
                 <div class="card-body">
@@ -59,20 +59,20 @@
                                         <div class="form-group">
                                             @Html.LabelFor(m => m.UsermanProfile.price)
                                             <div class="position-relative">
-                                                <div class="input-group m-b"><span class="input-group-addon">قیمت</span>@Html.TextBoxFor(model => model.UsermanProfile.price, new { @class = "form-control", @readonly = "yes" }) <span class="input-group-addon">تومان</span></div>
+                                                <div class="input-group m-b"><span class="input-group-addon">@Captions.Price</span>@Html.TextBoxFor(model => model.UsermanProfile.price, new { @class = "form-control", @readonly = "yes" }) <span class="input-group-addon">@Captions.Toman</span></div>
                                                 @Html.ValidationMessageFor(model => model.UsermanProfile.price, "", htmlAttributes: new { @class = "text-danger" })
                                             </div>
                                         </div>
                                     </div>
                                     <div class="col-md-4">
                                         <div class="input-group m-b">
-                                            <span class="input-group-addon">تعداد کاربران آنلاین همزمان</span>
+                                            <span class="input-group-addon">@Captions.SharedUsers</span>
                                             @Html.TextBoxFor(model => model.UsermanProfile.override_shared_users, new { @class = "form-control", @readonly = "yes" })
                                         </div>
                                     </div>
                                     <div class="col-md-4">
                                         <div class="input-group m-b">
-                                            <span class="input-group-addon">زمان شروع محاسبه</span>
+                                            <span class="input-group-addon">@Captions.StartAt</span>
                                             @Html.TextBoxFor(model => model.UsermanProfile.starts_at, new { @class = "form-control", @readonly = "yes" })
                                         </div>
                                     </div>

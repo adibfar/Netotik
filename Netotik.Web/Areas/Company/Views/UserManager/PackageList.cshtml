@@ -1,5 +1,5 @@
 ﻿@{
-    ViewBag.Title = "لیست پکیج های یوزمنیجر";
+    ViewBag.Title = Netotik.Resources.Captions.PackageList;
     Layout = "~/Views/Shared/_Layout.cshtml";
     var counter = 1;
 }
@@ -8,9 +8,9 @@
         <div class="col-xs-12">
             <div class="card">
                 <div class="card-header">
-                    <a value="افزودن بسته" class="btn btn-social btn-instagram" href="@Url.Action(MVC.Company.UserManager.PackageCreate())">
+                    <a value="@Netotik.Resources.Captions.NewPackage" class="btn btn-social btn-instagram" href="@Url.Action(MVC.Company.UserManager.PackageCreate())">
                         <span class="icon-plus4 font-medium-4"></span>
-                        افزودن بسته
+                        @Netotik.Resources.Captions.NewPackage
                     </a>
                     <a value="چاپ لیست" class="btn btn-social btn-instagram" href="@Url.Action(MVC.Company.UserManager.ResetCounter())">
                         <span class="icon-print font-medium-4"></span>
@@ -23,10 +23,9 @@
                             <thead>
                                 <tr>
                                     <th>#</th>
-                                    <th >نام پکیج</th>
-                                    <th>قیمت</th>
-                                    <th>اعتبار زمانی</th>
-                                    <th>نام گروه</th>
+                                    <th >@Netotik.Resources.Captions.PackageName</th>
+                                    <th>@Netotik.Resources.Captions.Price</th>
+                                    <th>@Netotik.Resources.Captions.TimeValidity</th>
                                     <th width="10%"></th>
                                 </tr>
                             </thead>
@@ -38,16 +37,15 @@
                                         <td>@item.name</td>
                                         <td>@item.price</td>
                                         <td>@item.validity</td>
-                                        <td>@item.name_for_users</td>
                                         <td>
                                             <span class="dropdown">
-                                                <button id="btnSearchDrop2" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" class="btn btn-outline-secondary dropdown-toggle dropdown-menu-right"><i class="icon-cog3"></i> پردازش</button>
+                                                <button id="btnSearchDrop2" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" class="btn btn-outline-secondary dropdown-toggle dropdown-menu-right"><i class="icon-cog3"></i> @Netotik.Resources.Captions.Action</button>
                                                 <span aria-labelledby="btnSearchDrop2" class="dropdown-menu mt-1 dropdown-menu-right">
                                                     <a onclick="PackageDetails('@item.id');" class="dropdown-item">
-                                                        <i class="fa fa-book"></i> جزئیات
+                                                        <i class="fa fa-book"></i> @Netotik.Resources.Captions.Details
                                                     </a>
                                                     <a onclick="ProfileRemove('@item.id');" class="dropdown-item">
-                                                        <i class="icon-trash4 danger"></i> حذف
+                                                        <i class="icon-trash4 danger"></i> @Netotik.Resources.Captions.Remove
                                                     </a>
                                                 </span>
                                             </span>

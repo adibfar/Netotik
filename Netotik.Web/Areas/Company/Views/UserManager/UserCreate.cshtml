@@ -1,6 +1,7 @@
 ﻿@model Netotik.ViewModels.Identity.UserClient.UserRegisterModel
+    @using Netotik.Resources;
 @{
-    ViewBag.Title = " کاربر جدید ";
+    ViewBag.Title = Captions.NewUser;
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 <section class="flexbox-container">
@@ -19,7 +20,7 @@
 
                         <div class="col-md-12">
                             @Html.ValidationSummary(false, "", htmlAttributes: new { @class = "text-danger" })
-                            <span class="text-danger">توجه کنید تمامی مقادیر را انگلیسی تکمیل کنید.</span>
+                            <span class="text-danger">@Captions.JustEnglish</span>
                         </div>
                     </div>
                     <div class="card-body">
@@ -98,8 +99,8 @@
                                     </div>
                                 </div>
                                 <div class="col-md-4">
-                                    <label class="font-noraml">انتخاب تعرفه</label>
-                                    <select id="profile" name="profile" data-placeholder="انتخاب تعرفه" class="selectize-select" style="min-width:350px;" tabindex="2">
+                                    <label class="font-noraml">@Captions.SelectPackage</label>
+                                    <select id="profile" name="profile" data-placeholder="@Captions.SelectPackage" class="selectize-select" style="min-width:350px;" tabindex="2">
                                         @foreach (var item in ViewBag.profiles)
                                         {
                                             <option value="@item.name">@item.name</option>

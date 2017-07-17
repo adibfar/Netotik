@@ -3216,7 +3216,160 @@ namespace Netotik.Resources
                 return resourceProvider.GetResource("UserManager", CultureInfo.CurrentUICulture.Name) as string;
             }
         }
-
+        public static string PackageList
+        {
+            get
+            {
+                return resourceProvider.GetResource("PackageList", CultureInfo.CurrentUICulture.Name) as string;
+            }
+        }
+        public static string NewPackage
+        {
+            get
+            {
+                return resourceProvider.GetResource("NewPackage", CultureInfo.CurrentUICulture.Name) as string;
+            }
+        }
+        public static string Actions
+        {
+            get
+            {
+                return resourceProvider.GetResource("Actions", CultureInfo.CurrentUICulture.Name) as string;
+            }
+        }
+        public static string Hotspot
+        {
+            get
+            {
+                return resourceProvider.GetResource("Hotspot", CultureInfo.CurrentUICulture.Name) as string;
+            }
+        }
+        public static string Access
+        {
+            get
+            {
+                return resourceProvider.GetResource("Access", CultureInfo.CurrentUICulture.Name) as string;
+            }
+        }
+        public static string Price
+        {
+            get
+            {
+                return resourceProvider.GetResource("Price", CultureInfo.CurrentUICulture.Name) as string;
+            }
+        }
+        public static string Toman
+        {
+            get
+            {
+                return resourceProvider.GetResource("Toman", CultureInfo.CurrentUICulture.Name) as string;
+            }
+        }
+        public static string SharedUsers
+        {
+            get
+            {
+                return resourceProvider.GetResource("SharedUsers", CultureInfo.CurrentUICulture.Name) as string;
+            }
+        }
+        public static string StartAt
+        {
+            get
+            {
+                return resourceProvider.GetResource("StartAt", CultureInfo.CurrentUICulture.Name) as string;
+            }
+        }
+        public static string FirstConnection
+        {
+            get
+            {
+                return resourceProvider.GetResource("FirstConnection", CultureInfo.CurrentUICulture.Name) as string;
+            }
+        }
+        public static string PackageBind
+        {
+            get
+            {
+                return resourceProvider.GetResource("PackageBind", CultureInfo.CurrentUICulture.Name) as string;
+            }
+        }
+        public static string FromTime
+        {
+            get
+            {
+                return resourceProvider.GetResource("FromTime", CultureInfo.CurrentUICulture.Name) as string;
+            }
+        }
+        public static string TillTime
+        {
+            get
+            {
+                return resourceProvider.GetResource("TillTime", CultureInfo.CurrentUICulture.Name) as string;
+            }
+        }
+        public static string WeekDays
+        {
+            get
+            {
+                return resourceProvider.GetResource("WeekDays", CultureInfo.CurrentUICulture.Name) as string;
+            }
+        }
+        public static string ConnectionOnlineTime
+        {
+            get
+            {
+                return resourceProvider.GetResource("ConnectionOnlineTime", CultureInfo.CurrentUICulture.Name) as string;
+            }
+        }
+        public static string AccountValidity
+        {
+            get
+            {
+                return resourceProvider.GetResource("AccountValidity", CultureInfo.CurrentUICulture.Name) as string;
+            }
+        }
+        public static string ZeroToUnlimited
+        {
+            get
+            {
+                return resourceProvider.GetResource("ZeroToUnlimited", CultureInfo.CurrentUICulture.Name) as string;
+            }
+        }
+        public static string TerminateConnection
+        {
+            get
+            {
+                return resourceProvider.GetResource("TerminateConnection", CultureInfo.CurrentUICulture.Name) as string;
+            }
+        }
+        public static string Reset
+        {
+            get
+            {
+                return resourceProvider.GetResource("Reset", CultureInfo.CurrentUICulture.Name) as string;
+            }
+        }
+        public static string PrintList
+        {
+            get
+            {
+                return resourceProvider.GetResource("PrintList", CultureInfo.CurrentUICulture.Name) as string;
+            }
+        }
+        public static string NewMultiUser
+        {
+            get
+            {
+                return resourceProvider.GetResource("NewMultiUser", CultureInfo.CurrentUICulture.Name) as string;
+            }
+        }
+        public static string LastConnection
+        {
+            get
+            {
+                return resourceProvider.GetResource("LastConnection", CultureInfo.CurrentUICulture.Name) as string;
+            }
+        }
         //<!--======================Messages Ehsan EM===========================-->
 
 

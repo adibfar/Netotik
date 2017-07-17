@@ -5,16 +5,16 @@
         <ul id="main-menu-navigation" data-menu="menu-navigation" class="nav navbar-nav">
 
             <li class="nav-item">
-                <a href="@Url.Action(MVC.Company.Home.Index())" class="nav-link"><i class="icon-home3"></i><span>داشبورد</span></a>
+                <a href="@Url.Action(MVC.Company.Home.Index())" class="nav-link"><i class="icon-home3"></i><span>@Captions.Dashboard</span></a>
             </li>
 
             <li data-menu="dropdown" class="dropdown nav-item">
-                <a href="index.html" data-toggle="dropdown" class="dropdown-toggle nav-link"><i class="icon-users2"></i><span>یوزرمنیجر</span> </a>
+                <a href="index.html" data-toggle="dropdown" class="dropdown-toggle nav-link"><i class="icon-users2"></i><span>@Captions.UserManager</span> </a>
                 <ul class="dropdown-menu">
-                    <li><a href="@Url.Action(MVC.Company.UserManager.UserList())" data-toggle="dropdown" class="dropdown-item">لیست کاربران</a></li>
-                    <li><a href="@Url.Action(MVC.Company.UserManager.UserCreate())" data-toggle="dropdown" class="dropdown-item">افزودن کاربر</a></li>
-                    <li><a href="@Url.Action(MVC.Company.UserManager.PackageList())" data-toggle="dropdown" class="dropdown-item">لیست بسته ها</a></li>
-                    <li><a href="@Url.Action(MVC.Company.UserManager.PackageCreate())" data-toggle="dropdown" class="dropdown-item">افزودن بسته</a></li>
+                    <li><a href="@Url.Action(MVC.Company.UserManager.UserList())" data-toggle="dropdown" class="dropdown-item">@Captions.UsersList</a></li>
+                    <li><a href="@Url.Action(MVC.Company.UserManager.UserCreate())" data-toggle="dropdown" class="dropdown-item">@Captions.NewUser</a></li>
+                    <li><a href="@Url.Action(MVC.Company.UserManager.PackageList())" data-toggle="dropdown" class="dropdown-item">@Captions.PackageList</a></li>
+                    <li><a href="@Url.Action(MVC.Company.UserManager.PackageCreate())" data-toggle="dropdown" class="dropdown-item">@Captions.NewPackage</a></li>
                     @if (false)
                     {<li><a href="@Url.Action(MVC.Company.UserManager.Report())" data-toggle="dropdown" class="dropdown-item">گزارش ها</a></li>
                     <li><a href="@Url.Action(MVC.Company.UserManager.Register())" data-toggle="dropdown" class="dropdown-item">ثبت نام</a></li>
@@ -26,8 +26,8 @@
             <li data-menu="dropdown" class="dropdown nav-item">
                 <a href="#" data-toggle="dropdown" class="dropdown-toggle nav-link"><i class="icon-drive"></i><span>روتر</span></a>
                 <ul class="dropdown-menu">
-                    <li><a href="@Url.Action(MVC.Company.Router.Info())" data-toggle="dropdown" class="dropdown-item">اطلاعات روتر</a></li>
-                    <li><a href="@Url.Action(MVC.Company.Router.RouterSetting())" data-toggle="dropdown" class="dropdown-item">عملیات ها</a></li>
+                    <li><a href="@Url.Action(MVC.Company.Router.Info())" data-toggle="dropdown" class="dropdown-item">@Captions.RouterInformation</a></li>
+                    <li><a href="@Url.Action(MVC.Company.Router.RouterSetting())" data-toggle="dropdown" class="dropdown-item">@Captions.Actions</a></li>
                     @if (false)
                     {
                     <li><a href="@Url.Action(MVC.Company.Router.PPP())" data-toggle="dropdown" class="dropdown-item">PPP & Other </a></li>
@@ -38,10 +38,10 @@
                 </ul>
             </li>
             <li data-menu="dropdown" class="dropdown nav-item">
-                <a href="#" data-toggle="dropdown" class="dropdown-toggle nav-link"><i class="icon-wifi"></i><span>هات اسپات</span></a>
+                <a href="#" data-toggle="dropdown" class="dropdown-toggle nav-link"><i class="icon-wifi"></i><span>@Captions.Hotspot</span></a>
                 <ul class="dropdown-menu">
-                    <li><a href="@Url.Action(MVC.Company.Hotspot.Access())" data-toggle="dropdown" class="dropdown-item">دسترسی</a></li>
-                    <li><a href="@Url.Action(MVC.Company.Hotspot.Active())" data-toggle="dropdown" class="dropdown-item">متصل ها</a></li>
+                    <li><a href="@Url.Action(MVC.Company.Hotspot.Access())" data-toggle="dropdown" class="dropdown-item">@Captions.Access</a></li>
+                    <li><a href="@Url.Action(MVC.Company.Hotspot.Active())" data-toggle="dropdown" class="dropdown-item">@Captions.Online</a></li>
                     @if (false)
                     {
                     <li><a href="@Url.Action(MVC.Company.Hotspot.Template())" data-toggle="dropdown" class="dropdown-item">قالب های لاگین هات اسپات</a></li>
@@ -63,11 +63,11 @@
             </li>
             }
             <li data-menu="dropdown" class="dropdown nav-item">
-                <a href="#" data-toggle="dropdown" class="dropdown-toggle nav-link"><i class="icon-cog"></i><span>تنظیمات</span></a>
+                <a href="#" data-toggle="dropdown" class="dropdown-toggle nav-link"><i class="icon-cog"></i><span>@Captions.Configuration</span></a>
                 <ul class="dropdown-menu">
-                    <li><a href="@Url.Action(MVC.Company.Home.MyProfile())" data-toggle="dropdown" class="dropdown-item">پروفایل</a></li>
-                    <li><a href="@Url.Action(MVC.Company.Home.MikrotikConf())" data-toggle="dropdown" class="dropdown-item">تنظیمات میکروتیک</a></li>
-                    <li><a href="@Url.Action(MVC.Company.Home.ChangePassword())" data-toggle="dropdown" class="dropdown-item">تغییر گذرواژه</a></li>
+                    <li><a href="@Url.Action(MVC.Company.Home.MyProfile())" data-toggle="dropdown" class="dropdown-item">@Captions.Profile</a></li>
+                    <li><a href="@Url.Action(MVC.Company.Home.MikrotikConf())" data-toggle="dropdown" class="dropdown-item">@Captions.MikrotikConfig</a></li>
+                    <li><a href="@Url.Action(MVC.Company.Home.ChangePassword())" data-toggle="dropdown" class="dropdown-item">@Captions.ChangePassword</a></li>
                     @if (false)
                     {
                     <li><a href="@Url.Action(MVC.Company.Home.MyProfile())" data-toggle="dropdown" class="dropdown-item">مالی</a></li>

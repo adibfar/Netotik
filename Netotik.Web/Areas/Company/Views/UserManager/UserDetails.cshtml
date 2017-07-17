@@ -1,60 +1,61 @@
 ﻿@model Netotik.ViewModels.Identity.UserClient.UserModel
+    @using Netotik.Resources;
 <section class="flexbox-container">
     <div class="row">
         <div class="col-md-12">
             <div class="card">
                 <div class="card-header">
-                    <a value="بازگشت" class="btn btn-social btn-instagram" href="@Url.Action(MVC.Company.UserManager.UserList())">
+                    <a value="@Captions.Back" class="btn btn-social btn-instagram" href="@Url.Action(MVC.Company.UserManager.UserList())">
                         <span class="icon-reply font-medium-4"></span>
-                        بازگشت
+                        @Captions.Back
                     </a>
-                    <a value="قطع اتصال" class="btn btn-social btn-instagram" href="#" onclick="UserCloseSession('@Model.id','@Model.username');">
+                    <a value="@Captions.TerminateConnection" class="btn btn-social btn-instagram" href="#" onclick="UserCloseSession('@Model.id','@Model.username');">
                         <span class="icon-blocked font-medium-4"></span>
-                        قطع اتصال
+                        @Captions.TerminateConnection
                     </a>
-                    <a value="ریست کردن" class="btn btn-social btn-instagram" href="#" onclick="UserResetCounter('@Model.id','@Model.username');">
+                    <a value="@Captions.Reset" class="btn btn-social btn-instagram" href="#" onclick="UserResetCounter('@Model.id','@Model.username');">
                         <span class="icon-refresh font-medium-4"></span>
-                        ریست کردن
+                        @Captions.Reset
                     </a>
-                    <a value="چاپ گزارش" class="btn btn-social btn-instagram" href="#">
+                    <a value="@Captions.PrintReport" class="btn btn-social btn-instagram" href="#">
                         <span class="icon-printer2 font-medium-4"></span>
-                        چاپ گزارش
+                        @Captions.PrintReport
                     </a>
-                    <a value="حذف" class="btn btn-social btn-instagram" href="#" onclick="Userremove('@Model.id');">
+                    <a value="@Captions.Remove" class="btn btn-social btn-instagram" href="#" onclick="Userremove('@Model.id');">
                         <span class="icon-remove font-medium-4"></span>
-                        حذف
+                        @Captions.Remove
                     </a>
-                    @if (Model.disabled == "فعال")
+                    @if (Model.disabled == "false")
                     {
-                        <a onclick="Userdisable('@Model.id');" class="btn btn-social btn-instagram" value="فعال" href="#">
-                            <span class="icon-eye-blocked font-medium-4"></span> غیره فعال
+                        <a onclick="Userdisable('@Model.id');" class="btn btn-social btn-instagram" value="@Captions.Disable" href="#">
+                            <span class="icon-eye-blocked font-medium-4"></span> @Captions.Disable
                         </a>
                     }
                     else
                     {
-                        <a href="#" onclick="Userenable('@Model.id');" class="btn btn-social btn-instagram" value="فعال">
-                            <span class="icon-eye font-medium-4"></span> فعال
+                        <a href="#" onclick="Userenable('@Model.id');" class="btn btn-social btn-instagram" value="@Captions.Enable">
+                            <span class="icon-eye font-medium-4"></span> @Captions.Enable
                         </a>
                     }
-                    <a value="ساخت کارت" class="btn btn-social btn-instagram" href="#">
+                    <a value="@Captions.MakeCard" class="btn btn-social btn-instagram" href="#">
                         <span class="icon-card font-medium-4"></span>
-                        ساخت کارت
+                        @Captions.MakeCard
                     </a>
                 </div>
                 <div class="card-body">
                     <div class="card-block">
                         <ul class="nav nav-tabs nav-underline nav-justified">
                             <li class="nav-item">
-                                <a class="nav-link active" id="activeIcon12-tab1" data-toggle="tab" href="#property" aria-controls="activeIcon12" aria-expanded="true"><i class="icon-file-text"></i> مشخصات</a>
+                                <a class="nav-link active" id="activeIcon12-tab1" data-toggle="tab" href="#property" aria-controls="activeIcon12" aria-expanded="true"><i class="icon-file-text"></i>@Captions.Properties</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" id="linkIconOpt11-tab1" data-toggle="tab" href="#Router" aria-controls="linkIconOpt11"><i class="icon-connection"></i>  اتصالات</a>
+                                <a class="nav-link" id="linkIconOpt11-tab1" data-toggle="tab" href="#Router" aria-controls="linkIconOpt11"><i class="icon-connection"></i>@Captions.Connections</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" id="linkIcon12-tab1" data-toggle="tab" href="#traffic" aria-controls="linkIcon12" aria-expanded="false"><i class="icon-data"></i>  حجم</a>
+                                <a class="nav-link" id="linkIcon12-tab1" data-toggle="tab" href="#traffic" aria-controls="linkIcon12" aria-expanded="false"><i class="icon-data"></i>@Captions.Traffic</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" id="linkIcon12-tab1" data-toggle="tab" href="#time" aria-controls="linkIcon12" aria-expanded="false"><i class="icon-ios-time"></i>  زمان</a>
+                                <a class="nav-link" id="linkIcon12-tab1" data-toggle="tab" href="#time" aria-controls="linkIcon12" aria-expanded="false"><i class="icon-ios-time"></i>@Captions.Time</a>
                             </li>
                         </ul>
                         <div class="tab-content px-1 pt-1" style="min-height:260px!important">
@@ -200,12 +201,12 @@
                                         <thead>
                                             <tr>
                                                 <td>#</td>
-                                                <th>نام کاربری</th>
-                                                <th>زمان اتصال از</th>
-                                                <th>تا</th>
-                                                <th>مدت زمان اتصال</th>
-                                                <th>دانلود(MB)</th>
-                                                <th>آپلود(MB)</th>
+                                                <th>@Captions.UserName</th>
+                                                <th>@Captions.FromTime</th>
+                                                <th>@Captions.TillTime</th>
+                                                <th>@Captions.ConnectionOnlineTime</th>
+                                                <th>@Captions.Download (MB)</th>
+                                                <th>@Captions.Upload (MB)</th>
                                                 <th>Nas Port</th>
                                                 <th>Nas Port Type</th>
                                                 <th>Nas Port ID</th>
@@ -226,7 +227,7 @@
                                                     <td>@item.user</td>
                                                     <td data-toggle="tooltip" data-original-title="<b>@item.from_timeT</b>" data-html="true">@item.from_time</td>
                                                     <td data-toggle="tooltip" data-original-title="<b>@item.till_timeT</b>" data-html="true">@item.till_time</td>
-                                                    <td>@item.uptime.Replace("s", "ثانیه").Replace("h", "ساعت").Replace("m", "دقیقه").Replace("d", "روز")</td>
+                                                    <td>@item.uptime.Replace("s", Captions.Secend).Replace("h", Captions.Hour).Replace("m", Captions.Minute).Replace("d",Captions.Day)</td>
                                                     <td>@((ulong.Parse(item.download) / 1048576))</td>
                                                     <td>@(ulong.Parse(item.upload) / 1048576)</td>
                                                     <td>@item.nas_port</td>
@@ -271,7 +272,7 @@
                                         </div>
                                     </div>
                                     <div class="col-md-4">
-                                        <label>حجم باقیمانده</label>
+                                        <label>@Captions.TrafficRemain</label>
                                         <div class="input-group">
                                             <input type="text" class="form-control m-b" style="height:45px !important;" placeholder="0" name="downloaduploadremain" id="downloaduploadremain" value="@ViewBag.download_remain" />
                                             <div class="input-group-addon">
@@ -284,7 +285,7 @@
                                         </div>
                                     </div>
                                     <div class="col-md-4">
-                                        <label>محدودیت حجم دانلود</label>
+                                        <label>@Captions.DownloadTrafficLimit</label>
                                         <div class="input-group">
                                             <input type="text" class="form-control m-b" style="height:45px !important;" placeholder="0" name="downloadlimit" id="downloadlimit" value="@ViewBag.download_limit"  />
                                             <div class="input-group-addon">
@@ -297,7 +298,7 @@
                                         </div>
                                     </div>
                                     <div class="col-md-4">
-                                        <label>محدودیت حجم آپلود</label>
+                                        <label>@Captions.UploadTrafficLimit</label>
                                         <div class="input-group">
                                             <input type="text" class="form-control m-b" style="height:45px !important;" placeholder="0" name="uploadlimit" id="uploadlimit" value="@ViewBag.upload_limit"  />
                                             <div class="input-group-addon">
@@ -310,7 +311,7 @@
                                         </div>
                                     </div>
                                     <div class="col-md-4">
-                                        <label>محدودیت حجم دانلود+آپلود</label>
+                                        <label>@Captions.DownloadUploadTrafficLimit</label>
                                         <div class="input-group">
                                             <input type="text" class="form-control m-b" style="height:45px !important;" placeholder="0" name="downloaduploadlimit" id="downloaduploadlimit" value="@ViewBag.transfer_limit" />
                                             <div class="input-group-addon">
@@ -323,7 +324,7 @@
                                         </div>
                                     </div>
                                     <div class="col-md-3">
-                                        <label>محدودیت سرعت دانلود</label>
+                                        <label>@Captions.DownloadSpeedLimit</label>
                                         <div class="input-group ">
                                             <input type="text" value="@ViewBag.rate_limit_tx"  class="form-control m-b" style="height:45px !important;" placeholder="0" name="uploadrate" id="uploadrate" />
                                             <div class="input-group-addon">
@@ -337,7 +338,7 @@
                                         </div>
                                     </div>
                                 <div class="col-md-3">
-                                    <label>محدودیت سرعت آپلود</label>
+                                    <label>@Captions.UploadSpeedLimit</label>
                                     <div class="input-group">
                                         <input type="text" value="@ViewBag.rate_limit_rx" class="form-control m-b" style="height:45px !important;" placeholder="0" name="downloadrate" id="downloadrate" />
                                         <div class="input-group-addon">
@@ -421,20 +422,20 @@
                 },
                 dom: 'C<"clear">lfrtip',
                 columnDefs: [{
-                    buttonText: "ویرایش جدول"
+                    buttonText: "@Captions.EditTable"
                 }],
                 colVis: {
-                    restore: "پیشفرض",
-                    showAll: "نمایش همه",
-                    showNone: "پنهان سازی"
+                    restore: "@Captions.Default",
+                    showAll: "@Captions.ShowAll",
+                    showNone: "@Captions.Hide"
                 }
             });
         });
         $(window).on("load", function() {
             Morris.Donut({
                 element: 'morris-donut-chart',
-                data: [{ label: "مصرف شده", value: @((ulong.Parse(Model.download_used)/ 1048576)) },
-                    { label: "باقیمانده", value: @((ulong.Parse(ViewBag.download_remain)/ 1048576)) }],
+                data: [{ label: "@Captions.Used", value: @((ulong.Parse(Model.download_used)/ 1048576)) },
+                    { label: "@Captions.Remain", value: @((ulong.Parse(ViewBag.download_remain)/ 1048576)) }],
                 resize: !0,
                 colors: ['#ff5733', '#54cdb4']
             })

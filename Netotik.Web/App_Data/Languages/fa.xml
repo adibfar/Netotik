@@ -684,7 +684,7 @@
     <Value>غیر فعال کردن</Value>
   </LocaleResource>
   <LocaleResource Name="Action">
-    <Value>پردازش</Value>
+    <Value>عملیات</Value>
   </LocaleResource>
   <LocaleResource Name="Texts">
     <Value>رشته ها</Value>
@@ -1135,5 +1135,71 @@
   </LocaleResource>
   <LocaleResource Name="UserManager">
     <Value>یوزرمنیجر</Value>
+  </LocaleResource>
+  <LocaleResource Name="PackageList">
+    <Value>لیست تعرفه</Value>
+  </LocaleResource>
+  <LocaleResource Name="NewPackage">
+    <Value>تعرفه جدید</Value>
+  </LocaleResource>
+  <LocaleResource Name="Actions">
+    <Value>عملیات ها</Value>
+  </LocaleResource>
+<LocaleResource Name="Hotspot">
+    <Value>هات اسپات</Value>
+  </LocaleResource>
+<LocaleResource Name="Access">
+    <Value>دسترسی</Value>
+  </LocaleResource>
+<LocaleResource Name="Price">
+    <Value>قیمت</Value>
+  </LocaleResource>
+<LocaleResource Name="Toman">
+    <Value>تومان</Value>
+  </LocaleResource>
+<LocaleResource Name="SharedUsers">
+    <Value>کاربران آنلاین همزمان</Value>
+  </LocaleResource>
+<LocaleResource Name="StartAt">
+    <Value> شروع محاسبه</Value>
+  </LocaleResource>
+<LocaleResource Name="FirstConnection">
+    <Value>اولین اتصال</Value>
+  </LocaleResource>
+<LocaleResource Name="PackageBind">
+    <Value>انتساب تعرفه</Value>
+  </LocaleResource>
+<LocaleResource Name="FromTime">
+    <Value>از ساعت</Value>
+  </LocaleResource>
+<LocaleResource Name="TillTime">
+    <Value>تا ساعت</Value>
+  </LocaleResource>
+  <LocaleResource Name="WeekDays">
+    <Value>روزهای هفته</Value>
+  </LocaleResource>
+  <LocaleResource Name="ConnectionOnlineTime">
+    <Value>محدودیت زمان اتصال</Value>
+  </LocaleResource>
+  <LocaleResource Name="AccountValidity">
+    <Value>اعتبار اکانت</Value>
+  </LocaleResource>
+  <LocaleResource Name="ZeroToUnlimited">
+    <Value>برای نامحدود شدن ، تمامی مقادیر را 0 قرار دهید</Value>
+  </LocaleResource>
+  <LocaleResource Name="TerminateConnection">
+    <Value>قطع اتصال</Value>
+  </LocaleResource>
+  <LocaleResource Name="Reset">
+    <Value>ریست کردن</Value>
+  </LocaleResource>
+  <LocaleResource Name="PrintList">
+    <Value>چاپ لیست</Value>
+  </LocaleResource>
+  <LocaleResource Name="NewMultiUser">
+    <Value>کاربر گروهی</Value>
+  </LocaleResource>
+  <LocaleResource Name="LastConnection">
+    <Value>آخرین اتصال</Value>
   </LocaleResource>
 </Language>
