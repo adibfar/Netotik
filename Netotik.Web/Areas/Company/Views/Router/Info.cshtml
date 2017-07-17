@@ -1,6 +1,7 @@
 ﻿@model Netotik.ViewModels.Mikrotik.Router_InfoModel
+@using Netotik.Resources;
 @{
-    ViewBag.Title = "مشخصات روتر";
+    ViewBag.Title = Captions.RouterInformation;
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 <div class="row">
@@ -11,10 +12,10 @@
                     <div class="row">
                         <div class="col-xl-3 col-lg-6 col-md-12 border-right-grey border-right-lighten-3 clearfix">
                             <div class="float-xs-left pl-2">
-                                <span class="grey darken-1 block">مدل روتر</span>
+                                <span class="grey darken-1 block">@Captions.RouterModel</span>
                                 <span class="font-large-2 line-height-1 text-bold-300">
                                     @if (Model.Router_model == "")
-                                    { <span>روتر نمی باشد</span> }
+                                    { <span>@Captions.NotDetect</span> }
                                     else
                                     { @Html.DisplayTextFor(model => model.Router_model) }
                                 </span>
@@ -25,7 +26,7 @@
                         </div>
                         <div class="col-xl-3 col-lg-6 col-md-12 border-right-grey border-right-lighten-3 clearfix">
                             <div class="float-xs-left pl-2">
-                                <span class="grey darken-1 block">نام دستگاه</span>
+                                <span class="grey darken-1 block">@Captions.DeviceName</span>
                                 <span class="font-large-2 line-height-1 text-bold-300">@Html.DisplayTextFor(model => model.RouterName)</span>
                             </div>
                             <div class="float-xs-left mt-2">
@@ -34,16 +35,16 @@
                         </div>
                         <div class="col-xl-3 col-lg-6 col-md-12 border-right-grey border-right-lighten-3 clearfix">
                             <div class="float-xs-left pl-2">
-                                <span class="grey darken-1 block">ورژن لایسنس</span>
+                                <span class="grey darken-1 block">@Captions.LicenseVersion</span>
                                 <span class="font-large-1 line-height-1 text-bold-300">@Html.DisplayTextFor(model => model.nlevel)</span>
                             </div>
                             <div class="float-xs-left mt-2">
-                                <span class="grey darken-2 block"><a href="https://wiki.mikrotik.com/wiki/Manual:License">اطلاعات بیشتر</a></span>
+                                <span class="grey darken-2 block"><a href="https://wiki.mikrotik.com/wiki/Manual:License" target="_blank">@Captions.MoreInfo</a></span>
                             </div>
                         </div>
                         <div class="col-xl-3 col-lg-6 col-md-12 clearfix">
                             <div class="float-xs-left pl-2">
-                                <span class="grey darken-1 block">سریال نرم افزاری</span>
+                                <span class="grey darken-1 block">@Captions.SoftwareSerial</span>
                                 <span class="font-large-1 line-height-1 text-bold-300">@Html.DisplayTextFor(model => model.Software_id)</span>
                             </div>
                             <div class="float-xs-left mt-2">
@@ -64,29 +65,29 @@
                     <div class="row">
                         <div class="col-xl-3 col-lg-6 col-md-12 border-right-grey border-right-lighten-3 clearfix">
                             <div class="float-xs-left pl-2">
-                                <span class="grey darken-1 block">ساعت روتر</span>
+                                <span class="grey darken-1 block">@Captions.RouterTime</span>
                                 <span class="font-large-1 line-height-1 text-bold-300">@Html.DisplayTextFor(model => model.Router_time)</span>
                             </div>
                         </div>
                         <div class="col-xl-3 col-lg-6 col-md-12 border-right-grey border-right-lighten-3 clearfix" >
                             <div class="float-xs-left pl-2" >
-                                <span class="grey darken-1 block">تاریخ روتر</span>
+                                <span class="grey darken-1 block">@Captions.RouterDate</span>
                                 <span class="font-large-1 line-height-1 text-bold-300" data-toggle="tooltip" data-original-title="<b>@ViewBag.Router_date</b>" data-html="true">@Html.DisplayTextFor(model => model.Router_date)</span>
                             </div>
                             <div class="float-xs-left mt-2">
                                 @if (Model.Router_date == ViewBag.Server_Date)
                                 {
-                                    <span class="grey darken-1 block">تاریخ سرور و روتر یکی می باشد.</span>
+                                    <span class="grey darken-1 block">@Captions.RouterAndServerDateEqual</span>
                                 }
                                 else
                                 {
-                                    <span class="grey darken-1 block" data-toggle="tooltip" data-original-title="<b>@ViewBag.Router_dateT</b>" data-html="true">تاریخ سرور @ViewBag.Server_Date</span>
+                                    <span class="grey darken-1 block" data-toggle="tooltip" data-original-title="<b>@ViewBag.Router_dateT</b>" data-html="true">@Captions.ServerDate @ViewBag.Server_Date</span>
                                 }
                             </div>
                         </div>
                         <div class="col-xl-3 col-lg-6 col-md-12 border-right-grey border-right-lighten-3 clearfix">
                             <div class="float-xs-left pl-2">
-                                <span class="grey darken-1 block">UP Time</span>
+                                <span class="grey darken-1 block">@Captions.UpTime</span>
                                 <span class="line-height-1 text-bold-300">@Html.DisplayTextFor(model => model.Uptime)</span>
                             </div>
                             <div class="float-xs-left mt-2">
@@ -95,7 +96,7 @@
                         </div>
                         <div class="col-xl-3 col-lg-6 col-md-12 clearfix">
                             <div class="float-xs-left pl-2">
-                                <span class="grey darken-1 block">ورژن سیستم عامل</span>
+                                <span class="grey darken-1 block">@Captions.RouterOSVersion</span>
                                 <span class="font-large-1 line-height-1 text-bold-300">@Html.DisplayTextFor(model => model.Version)</span>
                             </div>
                             <div class="float-xs-left mt-2">
@@ -104,7 +105,7 @@
                                     {
                                         <span class="fa fa-toggle-up">
                                             <a href="@Url.Action(MVC.Company.Router.ActionNames.UpdateRouter)">
-                                                بروزرسانی به
+                                                @Captions.UpdateTo
                                                 @Model.Latest_version
                                             </a>
                                         </span>
@@ -112,7 +113,7 @@
                                     else
                                     {
                                         <span class="fa fa-check">
-                                            بروزرسانی ها نصب می باشد  <a href="@Url.Action(MVC.Company.Router.ActionNames.UpdateRouterCheck)">  چک کردن  </a>
+                                            @Captions.UpdateIsInstall <a href="@Url.Action(MVC.Company.Router.ActionNames.UpdateRouterCheck)">@Captions.CheckIt</a>
                                         </span>
                                     }
                                 </span>
@@ -143,11 +144,11 @@
                                 <ul class="list-inline clearfix mt-1 mb-0">
                                     <li class="border-right-grey border-right-lighten-2 pr-2">
                                         <h2 class="grey darken-1 text-bold-400">@ViewBag.UsedMemory MB</h2>
-                                        <span class="danger">استفاده شده</span>
+                                        <span class="danger">@Captions.Used</span>
                                     </li>
                                     <li class="pl-2">
                                         <h2 class="grey darken-1 text-bold-400">@Html.DisplayTextFor(model => model.Free_memory) MB</h2>
-                                        <span class="success">آزاد</span>
+                                        <span class="success">@Captions.Free</span>
                                     </li>
                                 </ul>
                             </div>
@@ -164,11 +165,11 @@
                                 <ul class="list-inline clearfix mt-1 mb-0">
                                     <li class="pl-2">
                                         <h2 class="grey darken-1 text-bold-400">@Html.DisplayTextFor(model => model.Cpu)</h2>
-                                        <span class="success">ساختار</span>
+                                        <span class="success">@Captions.Structure</span>
                                     </li>
                                     <li class="pl-2">
                                         <h2 class="grey darken-1 text-bold-400">@Html.DisplayTextFor(model => model.Cpu_count)</h2>
-                                        <span class="success">تعداد هسته</span>
+                                        <span class="success">@Captions.CoreCount</span>
                                     </li>
                                 </ul>
                             </div>
@@ -185,11 +186,11 @@
                                 <ul class="list-inline clearfix mt-1 mb-0">
                                     <li class="border-right-grey border-right-lighten-2 pr-2">
                                         <h2 class="grey darken-1 text-bold-400">@ViewBag.UsedHDD MB</h2>
-                                        <span class="danger">استفاده شده</span>
+                                        <span class="danger">@Captions.Used</span>
                                     </li>
                                     <li class="pl-2">
                                         <h2 class="grey darken-1 text-bold-400">@Html.DisplayTextFor(model => model.Free_hdd_space)MB</h2>
-                                        <span class="success">آزاد</span>
+                                        <span class="success">@Captions.Free</span>
                                     </li>
                                 </ul>
                             </div>

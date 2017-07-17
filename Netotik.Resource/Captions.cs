@@ -3370,9 +3370,134 @@ namespace Netotik.Resources
                 return resourceProvider.GetResource("LastConnection", CultureInfo.CurrentUICulture.Name) as string;
             }
         }
+        public static string RouterModel
+        {
+            get
+            {
+                return resourceProvider.GetResource("RouterModel", CultureInfo.CurrentUICulture.Name) as string;
+            }
+        }
+        public static string NotDetect
+        {
+            get
+            {
+                return resourceProvider.GetResource("NotDetect", CultureInfo.CurrentUICulture.Name) as string;
+            }
+        }
+        public static string DeviceName
+        {
+            get
+            {
+                return resourceProvider.GetResource("DeviceName", CultureInfo.CurrentUICulture.Name) as string;
+            }
+        }
+        public static string LicenseVersion
+        {
+            get
+            {
+                return resourceProvider.GetResource("LicenseVersion", CultureInfo.CurrentUICulture.Name) as string;
+            }
+        }
+        public static string MoreInfo
+        {
+            get
+            {
+                return resourceProvider.GetResource("MoreInfo", CultureInfo.CurrentUICulture.Name) as string;
+            }
+        }
+        public static string SoftwareSerial
+        {
+            get
+            {
+                return resourceProvider.GetResource("SoftwareSerial", CultureInfo.CurrentUICulture.Name) as string;
+            }
+        }
+        public static string RouterTime
+        {
+            get
+            {
+                return resourceProvider.GetResource("RouterTime", CultureInfo.CurrentUICulture.Name) as string;
+            }
+        }
+        public static string RouterDate
+        {
+            get
+            {
+                return resourceProvider.GetResource("RouterDate", CultureInfo.CurrentUICulture.Name) as string;
+            }
+        }
+        public static string RouterAndServerDateEqual
+        {
+            get
+            {
+                return resourceProvider.GetResource("RouterAndServerDateEqual", CultureInfo.CurrentUICulture.Name) as string;
+            }
+        }
+        public static string ServerDate
+        {
+            get
+            {
+                return resourceProvider.GetResource("ServerDate", CultureInfo.CurrentUICulture.Name) as string;
+            }
+        }
+        public static string CoreCount
+        {
+            get
+            {
+                return resourceProvider.GetResource("CoreCount", CultureInfo.CurrentUICulture.Name) as string;
+            }
+        }
+        public static string Free
+        {
+            get
+            {
+                return resourceProvider.GetResource("Free", CultureInfo.CurrentUICulture.Name) as string;
+            }
+        }
+        public static string CheckIt
+        {
+            get
+            {
+                return resourceProvider.GetResource("CheckIt", CultureInfo.CurrentUICulture.Name) as string;
+            }
+        }
+        public static string UpdateIsInstall
+        {
+            get
+            {
+                return resourceProvider.GetResource("UpdateIsInstall", CultureInfo.CurrentUICulture.Name) as string;
+            }
+        }
+        public static string UpdateTo
+        {
+            get
+            {
+                return resourceProvider.GetResource("UpdateTo", CultureInfo.CurrentUICulture.Name) as string;
+            }
+        }
+        public static string RouterOSVersion
+        {
+            get
+            {
+                return resourceProvider.GetResource("RouterOSVersion", CultureInfo.CurrentUICulture.Name) as string;
+            }
+        }
+        public static string UpTime
+        {
+            get
+            {
+                return resourceProvider.GetResource("UpTime", CultureInfo.CurrentUICulture.Name) as string;
+            }
+        }
+        public static string Structure
+        {
+            get
+            {
+                return resourceProvider.GetResource("Structure", CultureInfo.CurrentUICulture.Name) as string;
+            }
+        }
         //<!--======================Messages Ehsan EM===========================-->
-
-
+      
 
 
 

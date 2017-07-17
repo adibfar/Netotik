@@ -1202,4 +1202,59 @@
   <LocaleResource Name="LastConnection">
     <Value>آخرین اتصال</Value>
   </LocaleResource>
+  //-----------------------------
+  <LocaleResource Name="RouterModel">
+    <Value>مدل روتر</Value>
+  </LocaleResource>
+  <LocaleResource Name="NotDetect">
+    <Value>غیره قابل تشخیص</Value>
+  </LocaleResource>
+  <LocaleResource Name="DeviceName">
+    <Value>نام دستگاه</Value>
+  </LocaleResource>
+  <LocaleResource Name="LicenseVersion">
+    <Value>ورژن لایسنس</Value>
+  </LocaleResource>
+  <LocaleResource Name="MoreInfo">
+    <Value>اطلاعات بیشتر</Value>
+  </LocaleResource>
+  <LocaleResource Name="SoftwareSerial">
+    <Value>سریال نرم افزاری</Value>
+  </LocaleResource>
+  <LocaleResource Name="RouterTime">
+    <Value>ساعت روتر</Value>
+  </LocaleResource>
+  <LocaleResource Name="RouterDate">
+    <Value>تاریخ روتر</Value>
+  </LocaleResource>
+  <LocaleResource Name="RouterAndServerDateEqual">
+    <Value>تاریخ سرور و روتر یکی می باشد.</Value>
+  </LocaleResource>
+  <LocaleResource Name="ServerDate">
+    <Value>تاریخ سرور</Value>
+  </LocaleResource>
+  <LocaleResource Name="UpTime">
+    <Value>روشن بودن</Value>
+  </LocaleResource>
+  <LocaleResource Name="RouterOSVersion">
+    <Value>ورژن سیستم عامل روتر</Value>
+  </LocaleResource>
+  <LocaleResource Name="UpdateTo">
+    <Value>بروزرسانی به</Value>
+  </LocaleResource>
+  <LocaleResource Name="UpdateIsInstall">
+    <Value>بروزرسانی ها نصب می باشد.</Value>
+  </LocaleResource>
+  <LocaleResource Name="CheckIt">
+    <Value>چک کردن</Value>
+  </LocaleResource>
+  <LocaleResource Name="Free">
+    <Value>آزاد</Value>
+  </LocaleResource>
+  <LocaleResource Name="CoreCount">
+    <Value>تعداد هسته</Value>
+  </LocaleResource>
+  <LocaleResource Name="Structure">
+    <Value>ساختار</Value>
+  </LocaleResource>
 </Language>

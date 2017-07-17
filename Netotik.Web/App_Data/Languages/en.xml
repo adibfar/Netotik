@@ -616,4 +616,59 @@
   <LocaleResource Name="LastConnection">
     <Value>Last Connection</Value>
   </LocaleResource>
+
+  <LocaleResource Name="RouterModel">
+    <Value>Router Model</Value>
+  </LocaleResource>
+  <LocaleResource Name="NotDetect">
+    <Value>Not Detect</Value>
+  </LocaleResource>
+  <LocaleResource Name="DeviceName">
+    <Value>Device Name</Value>
+  </LocaleResource>
+  <LocaleResource Name="LicenseVersion">
+    <Value>License Level</Value>
+  </LocaleResource>
+  <LocaleResource Name="MoreInfo">
+    <Value>More Info</Value>
+  </LocaleResource>
+  <LocaleResource Name="SoftwareSerial">
+    <Value>Software Code</Value>
+  </LocaleResource>
+  <LocaleResource Name="RouterTime">
+    <Value>Router Time</Value>
+  </LocaleResource>
+  <LocaleResource Name="RouterDate">
+    <Value>Router Date</Value>
+  </LocaleResource>
+  <LocaleResource Name="RouterAndServerDateEqual">
+    <Value>Router And Server Date Is Equal</Value>
+  </LocaleResource>
+  <LocaleResource Name="ServerDate">
+    <Value>Server Date</Value>
+  </LocaleResource>
+  <LocaleResource Name="UpTime">
+    <Value>Up Time</Value>
+  </LocaleResource>
+  <LocaleResource Name="RouterOSVersion">
+    <Value>RouterOS Version</Value>
+  </LocaleResource>
+  <LocaleResource Name="UpdateTo">
+    <Value>Update To</Value>
+  </LocaleResource>
+  <LocaleResource Name="UpdateIsInstall">
+    <Value>Update is Install</Value>
+  </LocaleResource>
+  <LocaleResource Name="CheckIt">
+    <Value>Check it</Value>
+  </LocaleResource>
+  <LocaleResource Name="Free">
+    <Value>Free</Value>
+  </LocaleResource>
+  <LocaleResource Name="CoreCount">
+    <Value>Core Count</Value>
+  </LocaleResource>
+  <LocaleResource Name="Structure">
+    <Value>Structure</Value>
+  </LocaleResource>
 </Language>
