@@ -671,4 +671,119 @@
   <LocaleResource Name="Structure">
     <Value>Structure</Value>
   </LocaleResource>
+  <LocaleResource Name="HotspotOnlineUsers">
+    <Value>Hotspot Online Users</Value>
+  </LocaleResource>
+  <LocaleResource Name="UsersAccess">
+    <Value>Users Access</Value>
+  </LocaleResource>
+  <LocaleResource Name="HotspotUserAccessDescription">
+    <Value>
+      در این قسمت با اضافه کردن یک دستگاه می توانید اجازه دهید که آن دستگاه بدون اینکه
+      صفحه ورود هات اسپات برایش باز شود ، اینترنت و دسترسی به شبکه را داشته باشد.
+      جهت اضافه کردن یک دستگاه بهتر است با استفاده از مک آدرس دستگاه توسط فرم زیر آن دستگاه را اضافه کنید.
+    </Value>
+  </LocaleResource>
+  <LocaleResource Name="New">
+    <Value>New</Value>
+  </LocaleResource>
+  <LocaleResource Name="AddressesAccess">
+    <Value>Host Access</Value>
+  </LocaleResource>
+  <LocaleResource Name="HotspotAddressesAccessDescription">
+    <Value>
+      صفحه ورود هات اسپات برایش باز شود ، اینترنت و دسترسی به شبکه را داشته باشد.
+    </Value>
+  </LocaleResource>
+  <LocaleResource Name="Add">
+    <Value>Add</Value>
+  </LocaleResource>
+  <LocaleResource Name="Reboot">
+    <Value>Reboot</Value>
+  </LocaleResource>
+  <LocaleResource Name="MikrotikRebootDesctiption">
+    <Value>توجه: فرایند ریبوت حدود یک دقیقه طول خواهد کشید.</Value>
+  </LocaleResource>
+  <LocaleResource Name="Update">
+    <Value>Update</Value>
+  </LocaleResource>
+  <LocaleResource Name="RemoveLogs">
+    <Value>Remove Logs</Value>
+  </LocaleResource>
+  <LocaleResource Name="MikrotikRemoveLogsDesctiption">
+    <Value>
+      با پاک کردن لاگ ها تمامی لاگ هایی که روتر ذخیره کرده است پاک خواهد شد.
+      این عملیات بدون ریبوت شدن روتر انجام می شود.
+    </Value>
+  </LocaleResource>
+  <LocaleResource Name="MikrotikReset">
+    <Value>Reset Router</Value>
+  </LocaleResource>
+  <LocaleResource Name="MikrotikResetDesctiption">
+    <Value>
+      توجه: ممکن است پس از ریست، سامانه دیگر قادر به اتصال به روتر شما نباشد.لطفا با پشتیبان شبکه خود تماس بگیرید.
+      پس از ریست روتر تمامی تنظیمات و کانفیگ های انجام شده پاک خواهد شد.در صورتی که از طریق سامانه اقدام به ریست کنید،سامانه
+      به صورت خودکار قبل از ریست شدن دستگاه یک بک آپ از تنظیمات شما خواهد گرفت.
+    </Value>
+  </LocaleResource>
+  <LocaleResource Name="DefualtConfiguration">
+    <Value>Default Configuration</Value>
+  </LocaleResource>
+  <LocaleResource Name="MikrotikBackup">
+    <Value>Backup Router</Value>
+  </LocaleResource>
+  <LocaleResource Name="MikrotikBackupDesctiption">
+    <Value>در صورت نیاز به پشتیبان گیری از روتر بر روی دکمه زیر کلیک کنید.</Value>
+  </LocaleResource>
+  <LocaleResource Name="MikrotikRestore">
+    <Value>Restore Router</Value>
+  </LocaleResource>
+  <LocaleResource Name="MikrotikRestoreDesctiption">
+    <Value>
+      بازگردانی روتر ممکن است باعث شود سامانه دیگر قادر به اتصال به روتر نباشد.
+      فقط بک آپ گیری هایی که توسط سامانه گرفته شده است نمایش داده می شود.
+    </Value>
+  </LocaleResource>
+  <LocaleResource Name="SelectBackup">
+    <Value>Select Backup</Value>
+  </LocaleResource>
+  <LocaleResource Name="MikrotikResetUsermanager">
+    <Value>Reset Usermanager</Value>
+  </LocaleResource>
+  <LocaleResource Name="MikrotikResetUsermanagerDesctiption">
+    <Value>
+      توجه: در صورتی که از این قسمت اطلاعی ندارید لطفا با پشتیبان خود تماس بگیرید.
+      این سامانه به صورت خودکار قبل از ریست کردن بک آپ تهیه می کند.
+    </Value>
+  </LocaleResource>
+  <LocaleResource Name="RemoveUsermanagerLogs">
+    <Value>Remove Logs</Value>
+  </LocaleResource>
+  <LocaleResource Name="RemoveUsermanagerUsers">
+    <Value>Remove Users</Value>
+  </LocaleResource>
+  <LocaleResource Name="RemoveUsermanagerPackages">
+    <Value>Remove Packages</Value>
+  </LocaleResource>
+  <LocaleResource Name="RemoveUsermanagerHistory">
+    <Value>Remove History</Value>
+  </LocaleResource>
+  <LocaleResource Name="RemoveUsermanagerSession">
+    <Value>Remove Session</Value>
+  </LocaleResource>
+  <LocaleResource Name="RemoveUsermanagerDB">
+    <Value>Remove Usermanage DB</Value>
+  </LocaleResource>
+  <LocaleResource Name="MikrotikUsermanagerBackup">
+    <Value>Backup Usermanager</Value>
+  </LocaleResource>
+  <LocaleResource Name="MikrotikUsermanagerBackupDesctiption">
+    <Value>برای پشتیبان گیری از یوزرمنیجر لطفا بر روی دکمه زیر کلیک کنید.</Value>
+  </LocaleResource>
+  <LocaleResource Name="MikrotikUsermanagerRestore">
+    <Value>Restore Usermanager</Value>
+  </LocaleResource>
+  <LocaleResource Name="MikrotikUsermanagerRestoreDesctiption">
+    <Value>بازگردانی دیتابیس یوزرمنیجر باعث می شود تمامی لاگ ها و یوزرها به حالت بک آپ مورد نظر بازگردند.</Value>
+  </LocaleResource>
 </Language>

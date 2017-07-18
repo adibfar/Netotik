@@ -1,11 +1,12 @@
-﻿@{
-    ViewBag.Title = "تنظیمات روتر";
+﻿@using Netotik.Resources;
+@{
+    ViewBag.Title = Captions.MikrotikConfig;
 }
 <div class="row">
     <div class="col-md-12">
         <div class="card">
             <div class="card-header">
-                <h4 class="card-title">تنظیمات روتر</h4>
+                <h4 class="card-title">@Captions.MikrotikConfig</h4>
                 <a class="heading-elements-toggle"><i class="icon-ellipsis font-medium-3"></i></a>
                 <div class="heading-elements">
                     <ul class="list-inline mb-0">
@@ -25,11 +26,11 @@
                                     <div class="card-body">
                                         <div class="card-block">
                                             <form>
-                                                <h4 class="form-section"><i class="icon-repeat2"></i>ریبوت</h4>
-                                                توجه: فرایند ریبوت حدود یک دقیقه طول خواهد کشید.
+                                                <h4 class="form-section"><i class="icon-repeat2"></i>@Captions.Reboot</h4>
+                                                @Captions.MikrotikRebootDesctiption
                                                 <div style="direction:ltr;">
                                                     <a href="@Url.Action(MVC.Company.Router.ActionNames.Reboot)" class="btn btn-outline-primary">
-                                                        <i class="icon-repeat2"></i> Reboot
+                                                        <i class="icon-repeat2"></i> @Captions.Reboot
                                                     </a>
                                                 </div>
                                             </form>
@@ -42,11 +43,11 @@
                                     <div class="card-body">
                                         <div class="card-block">
                                             <form>
-                                                <h4 class="form-section"><i class="icon-cloud-download"></i>بروزرسانی</h4>
+                                                <h4 class="form-section"><i class="icon-cloud-download"></i>@Captions.Update</h4>
                                                 @if (ViewBag.Update_status.Contains("New"))
                                                 {
                                                     <p>
-                                                        بروزرسانی به
+                                                        @Captions.UpdateTo
                                                         @ViewBag.Latest_version
                                                     </p>
                                                     <div style="direction:ltr;">
@@ -57,10 +58,10 @@
                                                 }
                                                 else
                                                 {
-                                                    <div class="inline">بروزرسانی ها نصب می باشد</div>
+                                                    <div class="inline">@Captions.UpdateIsInstall</div>
                                                     <div style="direction:ltr;">
                                                         <a href="@Url.Action(MVC.Company.Router.ActionNames.UpdateRouterCheck)" class="btn btn-outline-primary">
-                                                            <span class="icon-cloud-check"></span> Check
+                                                            <span class="icon-cloud-check"></span> @Captions.CheckIt
                                                         </a>
                                                     </div>
                                                 }
@@ -75,12 +76,11 @@
                                     <div class="card-body">
                                         <div class="card-block">
                                             <form>
-                                                <h4 class="form-section"><i class="icon-file-text2"></i>پاک کردن لاگ روتر</h4>
-                                                با پاک کردن لاگ ها تمامی لاگ هایی که روتر ذخیره کرده است پاک خواهد شد.
-                                                این عملیات بدون ریبوت شدن روتر انجام می شود.
+                                                <h4 class="form-section"><i class="icon-file-text2"></i>@Captions.RemoveLogs</h4>
+                                                @Captions.MikrotikRemoveLogsDesctiption
                                                 <div style="direction:ltr;">
                                                     <a href="@Url.Action(MVC.Company.Router.ActionNames.RemoveLogs)" class="btn btn-outline-primary">
-                                                        <i class="icon-file-text2"></i> Remove Logs
+                                                        <i class="icon-file-text2"></i> @Captions.RemoveLogs
                                                     </a>
                                                 </div>
                                             </form>
@@ -99,10 +99,8 @@
                                             htmlAttributes: new { @class = "form-horizontal", enctype = "multipart/form-data", id = "form" }))
                                             {
                                                 @Html.AntiForgeryToken()
-                                                <h4 class="form-section"><i class="icon-android-alert"></i>ریست روتر</h4><div>
-    توجه: ممکن است پس از ریست، سامانه دیگر قادر به اتصال به روتر شما نباشد.لطفا با پشتیبان شبکه خود تماس بگیرید.
-    پس از ریست روتر تمامی تنظیمات و کانفیگ های انجام شده پاک خواهد شد.در صورتی که از طریق سامانه اقدام به ریست کنید،سامانه
-    به صورت خودکار قبل از ریست شدن دستگاه یک بک آپ از تنظیمات شما خواهد گرفت.
+                                                <h4 class="form-section"><i class="icon-android-alert"></i>@Captions.MikrotikReset</h4><div>
+    @Captions.MikrotikResetDesctiption
 </div>
                                                 <div class="col-md-6">
                                                     <br />
@@ -111,14 +109,14 @@
                                                             <input type="checkbox" class="custom-control-input" id="nodefualt" name="nodefualt" />
                                                             <span class="custom-control-indicator"></span>
                                                             <span class="custom-control-description">
-                                                                تنظیمات پیش فرض
+                                                                @Captions.DefualtConfiguration
                                                             </span>
                                                         </label>
                                                     </div>
                                                 </div>
                                                 <div class="col-md-6">
                                                     <div class="form-group has-icon-left">
-                                                        بنویسید "yes"
+                                                        < "yes">
                                                         <div class="position-relative has-icon-left">
                                                             <input name="reset" id="reset" class="form-control" />
                                                             <div class="form-control-position">
@@ -129,7 +127,7 @@
                                                 </div>
                                                 <div style="direction:ltr;">
                                                     <button class="btn btn-outline-primary danger" type="submit">
-                                                        <i class="icon-alert"></i> Reset
+                                                        <i class="icon-alert"></i> @Captions.Reset
                                                     </button>
                                                 </div>
                                             }
@@ -143,8 +141,8 @@
                                     <div class="card-body">
                                         <div class="card-block">
                                             <form>
-                                                <h4 class="form-section"><i class="icon-floppy-disk"></i>پشتیبان گیری از روتر</h4>
-                                                در صورت نیاز به پشتیبان گیری از روتر بر روی دکمه زیر کلیک کنید.
+                                                <h4 class="form-section"><i class="icon-floppy-disk"></i>@Captions.MikrotikBackup</h4>
+                                                @Captions.MikrotikBackupDesctiption
                                                 <div style="direction:ltr;">
                                                     <a href="@Url.Action(MVC.Company.Router.ActionNames.BackupRouter)" class="btn btn-outline-primary">
                                                         <i class="icon-floppy-disk"></i> Backup Router
@@ -163,14 +161,13 @@
                                             htmlAttributes: new { @class = "form-horizontal", enctype = "multipart/form-data", id = "form" }))
                                             {
                                                 @Html.AntiForgeryToken()
-                                                <h4 class="form-section"><i class="icon-reload"></i>بازگردانی روتر</h4>
+                                                <h4 class="form-section"><i class="icon-reload"></i>@Captions.MikrotikRestore</h4>
                                             <div>
-                                                بازگردانی روتر ممکن است باعث شود سامانه دیگر قادر به اتصال به روتر نباشد.
-                                                فقط بک آپ گیری هایی که توسط سامانه گرفته شده است نمایش داده می شود.
+                                                @Captions.MikrotikRestoreDesctiption
                                             </div>
                                                 <div class="col-md-12">
-                                                    <label class="font-noraml">انتخاب بک آپ</label>
-                                                    <select name="RestoreRouter" data-placeholder="انتخاب بک آپ" class="selectize-select" style="min-width:350px;" tabindex="2">
+                                                    <label class="font-noraml">@Captions.SelectBackup</label>
+                                                    <select name="RestoreRouter" data-placeholder="@Captions.SelectBackup" class="selectize-select" style="min-width:350px;" tabindex="2">
                                                         @foreach (var item in ViewBag.RestoreRouter)
                                                         {
                                                             <option value="@item.Name">@item.Name</option>
@@ -179,7 +176,7 @@
                                                 </div>
                                                 <div style="direction:ltr;">
                                                     <button class="btn btn-outline-primary" type="submit">
-                                                        <i class="icon-reload"></i> Restore Router
+                                                        <i class="icon-reload"></i> @Captions.MikrotikRestore
                                                     </button>
                                                 </div>
                                             }
@@ -197,10 +194,9 @@
                                             htmlAttributes: new { @class = "form-horizontal", enctype = "multipart/form-data", id = "form" }))
                                             {
                                                 @Html.AntiForgeryToken()
-                                                <h4 class="form-section"><i class="icon-android-alert"></i>ریست یوزرمنیجر</h4>
+                                                <h4 class="form-section"><i class="icon-android-alert"></i>@Captions.MikrotikResetUsermanager</h4>
                                             <div>
-                                                توجه: در صورتی که از این قسمت اطلاعی ندارید لطفا با پشتیبان خود تماس بگیرید.
-                                                این سامانه به صورت خودکار قبل از ریست کردن بک آپ تهیه می کند.
+                                                @Captions.MikrotikResetUsermanagerDesctiption
                                             </div>
                                                 <br />
                                                 <br /><br />
@@ -211,7 +207,7 @@
                                                             <input type="checkbox" class="custom-control-input" name="logs" />
                                                             <span class="custom-control-indicator"></span>
                                                             <span class="custom-control-description">
-                                                                پاک کردن لاگ ها
+                                                                @Captions.RemoveUsermanagerLogs
                                                             </span>
                                                         </label>
                                                     </div>
@@ -223,7 +219,7 @@
                                                             <input type="checkbox" class="custom-control-input" name="users" />
                                                             <span class="custom-control-indicator"></span>
                                                             <span class="custom-control-description">
-                                                                پاک کردن یوزرها
+                                                                @Captions.RemoveUsermanagerUsers
                                                             </span>
                                                         </label>
                                                     </div>
@@ -235,7 +231,7 @@
                                                         <input type="checkbox" class="custom-control-input" name="history" />
                                                         <span class="custom-control-indicator"></span>
                                                         <span class="custom-control-description">
-                                                            پاک کردن پکیج ها
+                                                            @Captions.RemoveUsermanagerPackages
                                                         </span>
                                                     </label>
                                                 </div>
@@ -247,7 +243,7 @@
                                                         <input type="checkbox" class="custom-control-input" name="history" />
                                                         <span class="custom-control-indicator"></span>
                                                         <span class="custom-control-description">
-                                                            پاک کردن تاریخچه
+                                                            @Captions.RemoveUsermanagerHistory
                                                         </span>
                                                     </label>
                                                 </div>
@@ -259,7 +255,7 @@
                                                             <input type="checkbox" class="custom-control-input" name="session" />
                                                             <span class="custom-control-indicator"></span>
                                                             <span class="custom-control-description">
-                                                                پاک کردن سشن ها
+                                                                @Captions.RemoveUsermanagerSession
                                                             </span>
                                                         </label>
                                                     </div>
@@ -271,14 +267,14 @@
                                                             <input type="checkbox" class="custom-control-input" name="db" />
                                                             <span class="custom-control-indicator"></span>
                                                             <span class="custom-control-description">
-                                                                پاک کردن کل دیتابیس(بجز لاگ)
+                                                                @Captions.RemoveUsermanagerDB
                                                             </span>
                                                         </label>
                                                     </div>
                                                 </div>
                                                 <div class="col-md-6">
                                                     <div class="form-group has-icon-left">
-                                                        بنویسید "yes"
+                                                        < "yes" >
                                                         <div class="position-relative has-icon-left">
                                                             <input name="reset" id="reset" class="form-control" />
                                                             <div class="form-control-position">
@@ -289,7 +285,7 @@
                                                 </div>
                                                 <div style="direction:ltr;">
                                                     <button class="btn btn-outline-primary danger" type="submit">
-                                                        <i class="icon-alert"></i> Reset
+                                                        <i class="icon-alert"></i> @Captions.Reset
                                                     </button>
                                                 </div>
                                             }
@@ -302,11 +298,11 @@
                                     <div class="card-body">
                                         <div class="card-block">
                                             <form>
-                                                <h4 class="form-section"><i class="icon-floppy-disk"></i>پشتیبان گیری از یوزرمنیجر</h4>
-                                                برای پشتیبان گیری از یوزرمنیجر لطفا بر روی دکمه زیر کلیک کنید.
+                                                <h4 class="form-section"><i class="icon-floppy-disk"></i>@Captions.MikrotikUsermanagerBackup</h4>
+                                                @Captions.MikrotikUsermanagerBackupDesctiption
                                                 <div style="direction:ltr;">
                                                     <a href="@Url.Action(MVC.Company.Router.ActionNames.BackupUsermanager)" class="btn btn-outline-primary">
-                                                        <i class="icon-floppy-disk"></i> Backup UserManager
+                                                        <i class="icon-floppy-disk"></i> @Captions.MikrotikUsermanagerBackup
                                                     </a>
                                                 </div>
                                             </form>
@@ -322,11 +318,11 @@
                                             htmlAttributes: new { @class = "form-horizontal", enctype = "multipart/form-data", id = "form" }))
                                             {
                                                 @Html.AntiForgeryToken()
-                                                <h4 class="form-section"><i class="icon-reload"></i>بازگردانی یوزرمنیجر</h4>
-                                            <div>بازگردانی دیتابیس یوزرمنیجر باعث می شود تمامی لاگ ها و یوزرها به حالت بک آپ مورد نظر بازگردند.</div>
+                                                <h4 class="form-section"><i class="icon-reload"></i>@Captions.MikrotikUsermanagerRestore</h4>
+                                            <div>@Captions.MikrotikUsermanagerRestoreDesctiption</div>
                                                 <div class="col-md-12">
-                                                    <label class="font-noraml">انتخاب بک آپ</label>
-                                                    <select name="RestoreUsermanager" data-placeholder="انتخاب بک آپ" class="selectize-select" style="min-width:350px;" tabindex="2">
+                                                    <label class="font-noraml">@Captions.SelectBackup</label>
+                                                    <select name="RestoreUsermanager" data-placeholder="@Captions.SelectBackup" class="selectize-select" style="min-width:350px;" tabindex="2">
                                                         @foreach (var item in ViewBag.RestoreUsermanager)
                                                         {
                                                             <option value="@item.Name">@item.Name</option>
@@ -335,7 +331,7 @@
                                                 </div>
                                                 <div style="direction:ltr;">
                                                     <button class="btn btn-outline-primary" type="submit">
-                                                        <i class="icon-reload"></i> Restore UserManager
+                                                        <i class="icon-reload"></i> @Captions.MikrotikUsermanagerRestore
                                                     </button>
                                                 </div>
                                             }

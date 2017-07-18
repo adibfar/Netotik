@@ -3496,8 +3496,232 @@ namespace Netotik.Resources
                 return resourceProvider.GetResource("Structure", CultureInfo.CurrentUICulture.Name) as string;
             }
         }
+        public static string HotspotOnlineUsers
+        {
+            get
+            {
+                return resourceProvider.GetResource("HotspotOnlineUsers", CultureInfo.CurrentUICulture.Name) as string;
+            }
+        }
+        public static string UsersAccess
+        {
+            get
+            {
+                return resourceProvider.GetResource("UsersAccess", CultureInfo.CurrentUICulture.Name) as string;
+            }
+        }
+        public static string HotspotUserAccessDescription
+        {
+            get
+            {
+                return resourceProvider.GetResource("HotspotUserAccessDescription", CultureInfo.CurrentUICulture.Name) as string;
+            }
+        }
+        public static string New
+        {
+            get
+            {
+                return resourceProvider.GetResource("New", CultureInfo.CurrentUICulture.Name) as string;
+            }
+        }
+        public static string AddressesAccess
+        {
+            get
+            {
+                return resourceProvider.GetResource("AddressesAccess", CultureInfo.CurrentUICulture.Name) as string;
+            }
+        }
+        public static string HotspotAddressesAccessDescription
+        {
+            get
+            {
+                return resourceProvider.GetResource("HotspotAddressesAccessDescription", CultureInfo.CurrentUICulture.Name) as string;
+            }
+        }
+        public static string Add
+        {
+            get
+            {
+                return resourceProvider.GetResource("Add", CultureInfo.CurrentUICulture.Name) as string;
+            }
+        }
+        public static string Reboot
+        {
+            get
+            {
+                return resourceProvider.GetResource("Reboot", CultureInfo.CurrentUICulture.Name) as string;
+            }
+        }
+        public static string MikrotikRebootDesctiption
+        {
+            get
+            {
+                return resourceProvider.GetResource("MikrotikRebootDesctiption", CultureInfo.CurrentUICulture.Name) as string;
+            }
+        }
+        public static string Update
+        {
+            get
+            {
+                return resourceProvider.GetResource("Update", CultureInfo.CurrentUICulture.Name) as string;
+            }
+        }
+        public static string RemoveLogs
+        {
+            get
+            {
+                return resourceProvider.GetResource("RemoveLogs", CultureInfo.CurrentUICulture.Name) as string;
+            }
+        }
+        public static string MikrotikRemoveLogsDesctiption
+        {
+            get
+            {
+                return resourceProvider.GetResource("MikrotikRemoveLogsDesctiption", CultureInfo.CurrentUICulture.Name) as string;
+            }
+        }
+        public static string MikrotikReset
+        {
+            get
+            {
+                return resourceProvider.GetResource("MikrotikReset", CultureInfo.CurrentUICulture.Name) as string;
+            }
+        }
+        public static string MikrotikResetDesctiption
+        {
+            get
+            {
+                return resourceProvider.GetResource("MikrotikResetDesctiption", CultureInfo.CurrentUICulture.Name) as string;
+            }
+        }
+        public static string DefualtConfiguration
+        {
+            get
+            {
+                return resourceProvider.GetResource("DefualtConfiguration", CultureInfo.CurrentUICulture.Name) as string;
+            }
+        }
+        public static string MikrotikBackup
+        {
+            get
+            {
+                return resourceProvider.GetResource("MikrotikBackup", CultureInfo.CurrentUICulture.Name) as string;
+            }
+        }
+        public static string MikrotikBackupDesctiption
+        {
+            get
+            {
+                return resourceProvider.GetResource("MikrotikBackupDesctiption", CultureInfo.CurrentUICulture.Name) as string;
+            }
+        }
+        public static string MikrotikRestore
+        {
+            get
+            {
+                return resourceProvider.GetResource("MikrotikRestore", CultureInfo.CurrentUICulture.Name) as string;
+            }
+        }
+        public static string MikrotikRestoreDesctiption
+        {
+            get
+            {
+                return resourceProvider.GetResource("MikrotikRestoreDesctiption", CultureInfo.CurrentUICulture.Name) as string;
+            }
+        }
+        public static string SelectBackup
+        {
+            get
+            {
+                return resourceProvider.GetResource("SelectBackup", CultureInfo.CurrentUICulture.Name) as string;
+            }
+        }
+        public static string MikrotikResetUsermanagerDesctiption
+        {
+            get
+            {
+                return resourceProvider.GetResource("MikrotikResetUsermanagerDesctiption", CultureInfo.CurrentUICulture.Name) as string;
+            }
+        }
+        public static string MikrotikResetUsermanager
+        {
+            get
+            {
+                return resourceProvider.GetResource("MikrotikResetUsermanager", CultureInfo.CurrentUICulture.Name) as string;
+            }
+        }
+        public static string RemoveUsermanagerDB
+        {
+            get
+            {
+                return resourceProvider.GetResource("RemoveUsermanagerDB", CultureInfo.CurrentUICulture.Name) as string;
+            }
+        }
+        public static string RemoveUsermanagerSession
+        {
+            get
+            {
+                return resourceProvider.GetResource("RemoveUsermanagerSession", CultureInfo.CurrentUICulture.Name) as string;
+            }
+        }
+        public static string RemoveUsermanagerHistory
+        {
+            get
+            {
+                return resourceProvider.GetResource("RemoveUsermanagerHistory", CultureInfo.CurrentUICulture.Name) as string;
+            }
+        }
+        public static string RemoveUsermanagerPackages
+        {
+            get
+            {
+                return resourceProvider.GetResource("RemoveUsermanagerPackages", CultureInfo.CurrentUICulture.Name) as string;
+            }
+        }
+        public static string RemoveUsermanagerUsers
+        {
+            get
+            {
+                return resourceProvider.GetResource("RemoveUsermanagerUsers", CultureInfo.CurrentUICulture.Name) as string;
+            }
+        }
+        public static string RemoveUsermanagerLogs
+        {
+            get
+            {
+                return resourceProvider.GetResource("RemoveUsermanagerLogs", CultureInfo.CurrentUICulture.Name) as string;
+            }
+        }
+        public static string MikrotikUsermanagerBackup
+        {
+            get
+            {
+                return resourceProvider.GetResource("MikrotikUsermanagerBackup", CultureInfo.CurrentUICulture.Name) as string;
+            }
+        }
+        public static string MikrotikUsermanagerBackupDesctiption
+        {
+            get
+            {
+                return resourceProvider.GetResource("MikrotikUsermanagerBackupDesctiption", CultureInfo.CurrentUICulture.Name) as string;
+            }
+        }
+        public static string MikrotikUsermanagerRestore
+        {
+            get
+            {
+                return resourceProvider.GetResource("MikrotikUsermanagerRestore", CultureInfo.CurrentUICulture.Name) as string;
+            }
+        }
+        public static string MikrotikUsermanagerRestoreDesctiption
+        {
+            get
+            {
+                return resourceProvider.GetResource("MikrotikUsermanagerRestoreDesctiption", CultureInfo.CurrentUICulture.Name) as string;
+            }
+        }
         //<!--======================Messages Ehsan EM===========================-->
-      
+
 
 
 

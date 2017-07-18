@@ -1,5 +1,6 @@
-﻿@{
-    ViewBag.Title = "دسترسی ها";
+﻿@using Netotik.Resources;
+@{
+    ViewBag.Title = Captions.Access;
     int IPBindingsCounter = 1;
     int IPWalledGardenCounter = 1;
 }
@@ -7,7 +8,7 @@
     <div class="col-md-12">
         <div class="card">
             <div class="card-header">
-                <h4 class="card-title">دسترسی کاربر(ان)</h4>
+                <h4 class="card-title">@Captions.UsersAccess</h4>
                 <a class="heading-elements-toggle"><i class="icon-ellipsis font-medium-3"></i></a>
                 <div class="heading-elements">
                     <ul class="list-inline mb-0">
@@ -24,9 +25,7 @@
                         <div class="col-xs-12">
                             <div class="row">
                                 <div class="col-md-12">
-                                    در این قسمت با اضافه کردن یک دستگاه می توانید اجازه دهید که آن دستگاه بدون اینکه
-                                    صفحه ورود هات اسپات برایش باز شود ، اینترنت و دسترسی به شبکه را داشته باشد.
-                                    جهت اضافه کردن یک دستگاه بهتر است با استفاده از مک آدرس دستگاه توسط فرم زیر آن دستگاه را اضافه کنید.
+                                    @Captions.HotspotUserAccessDescription
                                 </div>
 
                             </div>
@@ -39,7 +38,6 @@
                                         <th>Server</th>
                                         <th>Type</th>
                                         <th>Hits</th>
-                                        <th>Comments</th>
                                         <th>Disable</th>
                                         <th>Remove</th>
                                     </tr>
@@ -54,24 +52,23 @@
                                             <td>@item.server</td>
                                             <td>@item.type</td>
                                             <td>@item.hits</td>
-                                            <td>@item.comment</td>
                                             <td>
                                                 @if (item.disabled == "false")
                                                 {
                                                     <a onclick="IpBindigsDisable('@item.id');" class="dropdown-item">
-                                                        <i class="icon-lock danger"></i> غیره فعال کردن
+                                                        <i class="icon-lock danger"></i> @Captions.Disable
                                                     </a>
                                                 }
                                                 else
                                                 {
                                                     <a onclick="IpBindigsEnable('@item.id');" class="dropdown-item">
-                                                        <i class="icon-unlock primary"></i> فعال کردن
+                                                        <i class="icon-unlock primary"></i> @Captions.Enable
                                                     </a>
                                                 }
                                             </td>
                                             <td>
                                                 <a onclick="IpBindigsRemove('@item.id');" class="dropdown-item">
-                                                    <i class="icon-trash4 danger"></i> حذف
+                                                    <i class="icon-trash4 danger"></i> @Captions.Remove
                                                 </a>
                                             </td>
                                         </tr>
@@ -85,7 +82,7 @@
                                             @using (Html.BeginForm(MVC.Company.Hotspot.ActionNames.AddIpBindings, MVC.Company.Hotspot.Name, FormMethod.Post,
     htmlAttributes: new { @class = "form cmxform form-horizontal tasi-form", enctype = "multipart/form-data", id = "form" }))
                                             {
-                                                <h4 class="form-section"><i class="icon-plus"></i>اضافه کردن</h4>
+                                                <h4 class="form-section"><i class="icon-plus"></i>@Captions.New</h4>
                                                 <div class="col-md-4">
                                                     <div class="form-group">
                                                         Mac
@@ -126,23 +123,15 @@
                                                     <div class="form-group">
                                                         <label class="font-noraml">Type</label>
                                                         <select name="Type" data-placeholder="Types" class="selectize-select" style="min-width:350px;" tabindex="2">
-                                                            <option value="blocked">بستن</option>
-                                                            <option value="bypassed">عدم نمایش لاگین</option>
-                                                            <option value="regular">خارج کردن بر اساس آدرس</option>
+                                                            <option value="blocked">Drop</option>
+                                                            <option value="bypassed">Allow</option>
+                                                            <option value="regular">Nat Out By NAT IP</option>
                                                         </select>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-3">
-                                                    <div class="form-group">
-                                                        Comment
-                                                        <div class="position-relative">
-                                                            <input class="form-control" name="Comment" />
-                                                        </div>
                                                     </div>
                                                 </div>
                                                 <div class="col-md-1" style="direction:ltr; padding-top:15px;">
                                                     <button type="submit" class="btn btn-outline-primary">
-                                                        <i class="icon-plus"></i> Add
+                                                        <i class="icon-plus"></i> @Captions.Add
                                                     </button>
                                                 </div>
                                             }
@@ -168,7 +157,7 @@
     <div class="col-md-12">
         <div class="card">
             <div class="card-header">
-                <h4 class="card-title">دسترسی آدرس(ها)</h4>
+                <h4 class="card-title">@Captions.AddressesAccess</h4>
                 <a class="heading-elements-toggle"><i class="icon-ellipsis font-medium-3"></i></a>
                 <div class="heading-elements">
                     <ul class="list-inline mb-0">
@@ -185,7 +174,7 @@
                         <div class="col-xs-12">
                             <div class="row">
                                 <div class="col-md-12">
-                                    با این روش می توانید دسترسی یک سایت را برای همه کاربران یا کاربر(ان) خاصی باز کنید.
+                                    @Captions.HotspotAddressesAccessDescription
                                 </div>
 
                             </div>
@@ -199,7 +188,6 @@
                                         <th>Server</th>
                                         <th>Action</th>
                                         <th>Hits</th>
-                                        <th>Comments</th>
                                         <th>Disable</th>
                                         <th>Remove</th>
                                     </tr>
@@ -222,24 +210,23 @@
                                             <td>@item.server</td>
                                             <td>@item.action</td>
                                             <td>@item.hits</td>
-                                            <td>@item.comment</td>
                                             <td>
                                                 @if (item.disabled == "false")
                                                 {
                                                     <a onclick="IpWalledGardenDisable('@item.id');" class="dropdown-item">
-                                                        <i class="icon-lock danger"></i> غیره فعال کردن
+                                                        <i class="icon-lock danger"></i> @Captions.Disable
                                                     </a>
                                                 }
                                                 else
                                                 {
                                                     <a onclick="IpWalledGardenEnable('@item.id');" class="dropdown-item">
-                                                        <i class="icon-unlock primary"></i> فعال کردن
+                                                        <i class="icon-unlock primary"></i> @Captions.Enable
                                                     </a>
                                                 }
                                             </td>
                                             <td>
                                                 <a onclick="IpWalledGardenRemove('@item.id');" class="dropdown-item">
-                                                    <i class="icon-trash4 danger"></i> حذف
+                                                    <i class="icon-trash4 danger"></i> @Captions.Remove
                                                 </a>
                                             </td>
                                         </tr>
@@ -253,7 +240,7 @@
                                             @using (Html.BeginForm(MVC.Company.Hotspot.ActionNames.AddIpWalledGarden, MVC.Company.Hotspot.Name, FormMethod.Post,
                                     htmlAttributes: new { @class = "form cmxform form-horizontal tasi-form", enctype = "multipart/form-data", id = "form" }))
                                             {
-                                                <h4 class="form-section"><i class="icon-plus"></i>اضافه کردن</h4>
+                                                <h4 class="form-section"><i class="icon-plus"></i>@Captions.New</h4>
                                                 <div class="col-md-4">
                                                     <div class="form-group">
                                                         Dst Host
@@ -301,22 +288,14 @@
                                                     <div class="form-group">
                                                         <label class="font-noraml">Action</label>
                                                         <select name="Action" data-placeholder="Action" class="selectize-select" style="min-width:350px;" tabindex="2">
-                                                            <option value="drop">بلاک کردن</option>
-                                                            <option value="accept">قبول کردن</option>
+                                                            <option value="drop">Block</option>
+                                                            <option value="accept">Allow</option>
                                                         </select>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-3">
-                                                    <div class="form-group">
-                                                        Comment
-                                                        <div class="position-relative">
-                                                            <input class="form-control" name="Comment" />
-                                                        </div>
                                                     </div>
                                                 </div>
                                                 <div class="col-md-1" style="direction:ltr; padding-top:15px;">
                                                     <button type="submit" class="btn btn-outline-primary">
-                                                        <i class="icon-plus"></i> Add
+                                                        <i class="icon-plus"></i> @Captions.Add
                                                     </button>
                                                 </div>
                                             }
@@ -353,12 +332,12 @@
                 },
                 dom: 'C<"clear">lfrtip',
                 columnDefs: [{
-                    buttonText: "ویرایش جدول"
+                    buttonText: "@Captions.EditTable"
                 }],
                 colVis: {
-                    restore: "پیشفرض",
-                    showAll: "نمایش همه",
-                    showNone: "پنهان سازی"
+                    restore: "@Captions.Default",
+                    showAll: "@Captions.ShowAll",
+                    showNone: "@Captions.Hide"
                 }
             });
         });
@@ -381,12 +360,12 @@
                 },
                 dom: 'C<"clear">lfrtip',
                 columnDefs: [{
-                    buttonText: "ویرایش جدول"
+                    buttonText: "@Captions.EditTable"
                 }],
                 colVis: {
-                    restore: "پیشفرض",
-                    showAll: "نمایش همه",
-                    showNone: "پنهان سازی"
+                    restore: "@Captions.Default",
+                    showAll: "@Captions.ShowAll",
+                    showNone: "@Captions.Hide"
                 }
             });
         });
