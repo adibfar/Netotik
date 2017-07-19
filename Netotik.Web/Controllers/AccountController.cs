@@ -140,7 +140,25 @@ namespace Netotik.Web.Controllers
 
             var result = await _userManager.ConfirmEmailAsync(userId.Value, code);
             if (result.Succeeded)
+            {
+                string LoginURL = "";
+                var user = _userManager.FindUserById(userId.Value);
+                if (user.UserType == Domain.Entity.UserType.UserAdmin)
+                {
+                    LoginURL = Url.Action(MVC.Account.Login());
+                }
+                if (user.UserType == Domain.Entity.UserType.UserCompany)
+                {
+                    var ResellerCompanyName = _userManager.FindUserById(user.UserCompany.UserResellerId);
+                    LoginURL = Url.Action(MVC.Login.Company("",ResellerCompanyName.UserReseller.ResellerCode));
+                }
+                if (user.UserType == Domain.Entity.UserType.UserReseller)
+                {
+                    LoginURL = Url.Action(MVC.Login.Reseller());
+                }
+                ViewBag.LoginPage = LoginURL;
                 return View();
+            }
             this.MessageWarning(Captions.MissionFail, Captions.ActivationError);
             return RedirectToAction(MVC.Account.ReceiveActivatorEmail());
         }

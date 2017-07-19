@@ -25,7 +25,7 @@ using System.Collections.Generic;
 namespace Netotik.Web.Areas.Company.Controllers
 {
     [Mvc5Authorize(Roles = "Company")]
-    [BreadCrumb(Title = "روتر", UseDefaultRouteUrl = true, RemoveAllDefaultRouteValues = true,
+    [BreadCrumb(Title = "Router", UseDefaultRouteUrl = true, RemoveAllDefaultRouteValues = true,
  Order = 0, GlyphIcon = "icon icon-table")]
     public partial class RouterController : BasePanelController
     {
@@ -50,10 +50,10 @@ namespace Netotik.Web.Areas.Company.Controllers
 
 
         #region Router
-        
+
         public virtual ActionResult Info()
         {
-            
+
             //-------------------------------
 
             if (!_mikrotikServices.IP_Port_Check(UserLogined.UserCompany.R_Host, UserLogined.UserCompany.R_Port, UserLogined.UserCompany.R_User, UserLogined.UserCompany.R_Password))
@@ -105,7 +105,7 @@ namespace Netotik.Web.Areas.Company.Controllers
             var Router_Clock = _mikrotikServices.Router_Clock(UserLogined.UserCompany.R_Host, UserLogined.UserCompany.R_Port, UserLogined.UserCompany.R_User, UserLogined.UserCompany.R_Password);
             ViewBag.Router_date = Infrastructure.EnglishConvertDate.ConvertToFa(Router_Clock.FirstOrDefault().Router_date, "D");
             Router_Info.Router_date = Infrastructure.EnglishConvertDate.ConvertToFa(Router_Clock.FirstOrDefault().Router_date, "d");
-            ViewBag.Server_Date = PersianDate.ConvertDate.ToFa(DateTime.Now,"d");
+            ViewBag.Server_Date = PersianDate.ConvertDate.ToFa(DateTime.Now, "d");
             ViewBag.Server_DateT = PersianDate.ConvertDate.ToFa(DateTime.Now, "D");
             //PersianDate.ConvertDate.ToFa();
             Router_Info.Router_time = Router_Clock.FirstOrDefault().Router_time;
@@ -123,7 +123,7 @@ namespace Netotik.Web.Areas.Company.Controllers
         }
         public virtual ActionResult UpdateRouter(string ReturnURL)
         {
-            
+
             //-------------------------------
 
             if (!_mikrotikServices.IP_Port_Check(UserLogined.UserCompany.R_Host, UserLogined.UserCompany.R_Port, UserLogined.UserCompany.R_User, UserLogined.UserCompany.R_Password))
@@ -138,7 +138,7 @@ namespace Netotik.Web.Areas.Company.Controllers
             }
             //-------------------------------
             _mikrotikServices.Router_Info_Update(UserLogined.UserCompany.R_Host, UserLogined.UserCompany.R_Port, UserLogined.UserCompany.R_User, UserLogined.UserCompany.R_Password);
-            this.MessageInformation(Captions.Attention, "بروزرسانی آغاز شد.لطفا به مدت 2الی5دقیقه منتظر بمانید تا روتر بروزرسانی ها را دریافت و نصب نماید.هنگام نصب نیاز به ریبوت روتر می باشد که به صورت خودکار انجام می شود.");
+            this.MessageInformation(Captions.Attention, Captions.MikrotikUpdateStartMessage);
             if (Url.IsLocalUrl(ReturnURL))
             {
                 return Redirect(ReturnURL);
@@ -147,7 +147,7 @@ namespace Netotik.Web.Areas.Company.Controllers
         }
         public virtual ActionResult UpdateRouterCheck(string ReturnURL)
         {
-            
+
             //-------------------------------
 
             if (!_mikrotikServices.IP_Port_Check(UserLogined.UserCompany.R_Host, UserLogined.UserCompany.R_Port, UserLogined.UserCompany.R_User, UserLogined.UserCompany.R_Password))
@@ -171,10 +171,10 @@ namespace Netotik.Web.Areas.Company.Controllers
             }
             return RedirectToAction(MVC.Company.Router.ActionNames.Info);
         }
-        
+
         public virtual ActionResult PPP()
         {
-            
+
             //-------------------------------
 
             if (!_mikrotikServices.IP_Port_Check(UserLogined.UserCompany.R_Host, UserLogined.UserCompany.R_Port, UserLogined.UserCompany.R_User, UserLogined.UserCompany.R_Password))
@@ -191,10 +191,10 @@ namespace Netotik.Web.Areas.Company.Controllers
             ViewBag.model = _mikrotikServices.Interface(UserLogined.UserCompany.R_Host, UserLogined.UserCompany.R_Port, UserLogined.UserCompany.R_User, UserLogined.UserCompany.R_Password);
             return View();
         }
-        
+
         public virtual ActionResult Interfaces()
         {
-            
+
             //-------------------------------
 
             if (!_mikrotikServices.IP_Port_Check(UserLogined.UserCompany.R_Host, UserLogined.UserCompany.R_Port, UserLogined.UserCompany.R_User, UserLogined.UserCompany.R_Password))
@@ -211,10 +211,10 @@ namespace Netotik.Web.Areas.Company.Controllers
             ViewBag.model = _mikrotikServices.Interface(UserLogined.UserCompany.R_Host, UserLogined.UserCompany.R_Port, UserLogined.UserCompany.R_User, UserLogined.UserCompany.R_Password);
             return View();
         }
-        
+
         public virtual ActionResult Wireless()
         {
-            
+
             //-------------------------------
 
             if (!_mikrotikServices.IP_Port_Check(UserLogined.UserCompany.R_Host, UserLogined.UserCompany.R_Port, UserLogined.UserCompany.R_User, UserLogined.UserCompany.R_Password))
@@ -231,10 +231,10 @@ namespace Netotik.Web.Areas.Company.Controllers
             ViewBag.model = _mikrotikServices.Interface(UserLogined.UserCompany.R_Host, UserLogined.UserCompany.R_Port, UserLogined.UserCompany.R_User, UserLogined.UserCompany.R_Password);
             return View();
         }
-        
+
         public virtual ActionResult WirelessDetails(string id)
         {
-            
+
             //-------------------------------
 
             if (!_mikrotikServices.IP_Port_Check(UserLogined.UserCompany.R_Host, UserLogined.UserCompany.R_Port, UserLogined.UserCompany.R_User, UserLogined.UserCompany.R_Password))
@@ -251,10 +251,10 @@ namespace Netotik.Web.Areas.Company.Controllers
             var Wireless = _mikrotikServices.GetWirelessDetails(UserLogined.UserCompany.R_Host, UserLogined.UserCompany.R_Port, UserLogined.UserCompany.R_User, UserLogined.UserCompany.R_Password, id);
             return View(Wireless);
         }
-        
+
         public virtual ActionResult InterfaceDisable(string id)
         {
-            
+
             //-------------------------------
 
             if (!_mikrotikServices.IP_Port_Check(UserLogined.UserCompany.R_Host, UserLogined.UserCompany.R_Port, UserLogined.UserCompany.R_User, UserLogined.UserCompany.R_Password))
@@ -271,10 +271,10 @@ namespace Netotik.Web.Areas.Company.Controllers
             _mikrotikServices.Router_InterfaceDisable(UserLogined.UserCompany.R_Host, UserLogined.UserCompany.R_Port, UserLogined.UserCompany.R_User, UserLogined.UserCompany.R_Password, id);
             return RedirectToAction(MVC.Company.Router.ActionNames.Interfaces);
         }
-        
+
         public virtual ActionResult WirelessEnable(string id)
         {
-            
+
             //-------------------------------
 
             if (!_mikrotikServices.IP_Port_Check(UserLogined.UserCompany.R_Host, UserLogined.UserCompany.R_Port, UserLogined.UserCompany.R_User, UserLogined.UserCompany.R_Password))
@@ -291,10 +291,10 @@ namespace Netotik.Web.Areas.Company.Controllers
             _mikrotikServices.Router_InterfaceEnable(UserLogined.UserCompany.R_Host, UserLogined.UserCompany.R_Port, UserLogined.UserCompany.R_User, UserLogined.UserCompany.R_Password, id);
             return RedirectToAction(MVC.Company.Router.ActionNames.Wireless);
         }
-        
+
         public virtual ActionResult WirelessDisable(string id)
         {
-            
+
             //-------------------------------
 
             if (!_mikrotikServices.IP_Port_Check(UserLogined.UserCompany.R_Host, UserLogined.UserCompany.R_Port, UserLogined.UserCompany.R_User, UserLogined.UserCompany.R_Password))
@@ -311,10 +311,10 @@ namespace Netotik.Web.Areas.Company.Controllers
             _mikrotikServices.Router_InterfaceDisable(UserLogined.UserCompany.R_Host, UserLogined.UserCompany.R_Port, UserLogined.UserCompany.R_User, UserLogined.UserCompany.R_Password, id);
             return RedirectToAction(MVC.Company.Router.ActionNames.Wireless);
         }
-        
+
         public virtual ActionResult InterfaceEnable(string id)
         {
-            
+
             //-------------------------------
 
             if (!_mikrotikServices.IP_Port_Check(UserLogined.UserCompany.R_Host, UserLogined.UserCompany.R_Port, UserLogined.UserCompany.R_User, UserLogined.UserCompany.R_Password))
@@ -331,7 +331,7 @@ namespace Netotik.Web.Areas.Company.Controllers
             _mikrotikServices.Router_InterfaceEnable(UserLogined.UserCompany.R_Host, UserLogined.UserCompany.R_Port, UserLogined.UserCompany.R_User, UserLogined.UserCompany.R_Password, id);
             return RedirectToAction(MVC.Company.Router.ActionNames.Interfaces);
         }
-        
+
         public virtual ActionResult InterfaceDetails(string id)
         {
             //-------------------------------
@@ -351,7 +351,7 @@ namespace Netotik.Web.Areas.Company.Controllers
             return View(Ethernet);
         }
         #endregion
-        
+
         public virtual ActionResult RouterSetting()
         {
             ViewBag.ReturnURL = "/Fa/Company/Router/RouterSetting";
@@ -374,10 +374,10 @@ namespace Netotik.Web.Areas.Company.Controllers
                 filelist = new List<Router_FileModel>();
                 filelist.Add(new Router_FileModel()
                 {
-                    Name = "هیچ موردی پیدا نشد",
+                    Name = Captions.NothingFound,
                     CreateTime = "",
                     Size = "",
-                    Type =""
+                    Type = ""
                 });
             }
             ViewBag.RestoreRouter = filelist;
@@ -388,7 +388,7 @@ namespace Netotik.Web.Areas.Company.Controllers
                 fileUlist = new List<Router_FileModel>();
                 fileUlist.Add(new Router_FileModel()
                 {
-                    Name = "هیچ موردی پیدا نشد",
+                    Name = Captions.NothingFound,
                     CreateTime = "",
                     Size = "",
                     Type = ""
@@ -421,7 +421,7 @@ namespace Netotik.Web.Areas.Company.Controllers
             }
             //-------------------------------
             _mikrotikServices.RebootRouter(UserLogined.UserCompany.R_Host, UserLogined.UserCompany.R_Port, UserLogined.UserCompany.R_User, UserLogined.UserCompany.R_Password);
-            this.MessageSuccess("ریبوت","روتر در حال راه اندازی مجدد می باشد.لطفا یک دقیقه منتظر بمانید.");
+            this.MessageSuccess(Captions.Reboot, Captions.MikrotikRebootMessage);
             return RedirectToAction(MVC.Company.Router.ActionNames.RouterSetting);
         }
         [HttpPost]
@@ -442,18 +442,18 @@ namespace Netotik.Web.Areas.Company.Controllers
             }
 
             //-------------------------------
-            if (Request.Form["reset"]!=null)
-            if (Request.Form["reset"].ToString() == "yes")
-            {
-                bool nosetting = false;
-                if (Request.Form["nodefualt"] !=null) { nosetting = true; }
-                _mikrotikServices.ResetRouter(UserLogined.UserCompany.R_Host, UserLogined.UserCompany.R_Port, UserLogined.UserCompany.R_User, UserLogined.UserCompany.R_Password, true, nosetting);
-                this.MessageSuccess("Reset", "روتر در حال ریست شدن است.ممکن است سامانه دیگر قادر به اتصال به روتر نباشد.با پشتیبان خود تماس بگیرید.");
-            }
-            else
-            {
-                this.MessageWarning("Reset", "متن مورد نظر را به درستی وارد کنید.");
-            }
+            if (Request.Form["reset"] != null)
+                if (Request.Form["reset"].ToString() == "yes")
+                {
+                    bool nosetting = false;
+                    if (Request.Form["nodefualt"] != null) { nosetting = true; }
+                    _mikrotikServices.ResetRouter(UserLogined.UserCompany.R_Host, UserLogined.UserCompany.R_Port, UserLogined.UserCompany.R_User, UserLogined.UserCompany.R_Password, true, nosetting);
+                    this.MessageSuccess(Captions.MikrotikReset, Captions.MikrotikResetMessage);
+                }
+                else
+                {
+                    this.MessageInformation(Captions.Error, Captions.MikrotikResetUsermanagerMessage);
+                }
             return RedirectToAction(MVC.Company.Router.ActionNames.RouterSetting);
         }
         [HttpPost]
@@ -477,11 +477,11 @@ namespace Netotik.Web.Areas.Company.Controllers
             if (true)
             {
                 _mikrotikServices.RestoreUsermanager(UserLogined.UserCompany.R_Host, UserLogined.UserCompany.R_Port, UserLogined.UserCompany.R_User, UserLogined.UserCompany.R_Password, Request.Form["RestoreUsermanager"].ToString());
-                this.MessageSuccess("Restore Usermanager", "بک آپ مورد نظر درحال بازگردانی می باشد.");
+                this.MessageSuccess(Captions.MikrotikUsermanagerRestore, Captions.MikrotikRestoreUsermanagerMessage);
             }
             else
             {
-                this.MessageSuccess("Restore Usermanager", "متن مورد نظر را به درستی وارد کنید.");
+                this.MessageInformation(Captions.Error, Captions.ValidateError);
             }
             return RedirectToAction(MVC.Company.Router.ActionNames.RouterSetting);
         }
@@ -503,8 +503,8 @@ namespace Netotik.Web.Areas.Company.Controllers
             }
 
             //-------------------------------
-                _mikrotikServices.RestoreRouter(UserLogined.UserCompany.R_Host, UserLogined.UserCompany.R_Port, UserLogined.UserCompany.R_User, UserLogined.UserCompany.R_Password,Request.Form["RestoreRouter"].ToString());
-                this.MessageSuccess("Restore", "بک آپ مورد نظر در حال بازگردانی می باشد.ممکن است سامانه دیگر قادر به اتصال به روتر نباشد.لطفا در صورت بروز هرگونه مسئله با ریسلر خود تماس بگیرید.");
+            _mikrotikServices.RestoreRouter(UserLogined.UserCompany.R_Host, UserLogined.UserCompany.R_Port, UserLogined.UserCompany.R_User, UserLogined.UserCompany.R_Password, Request.Form["RestoreRouter"].ToString());
+            this.MessageSuccess(Captions.MikrotikRestore, Captions.MikrotikRestoreMessage);
             return RedirectToAction(MVC.Company.Router.ActionNames.RouterSetting);
         }
         public virtual ActionResult ResetUsermanager()
@@ -522,40 +522,40 @@ namespace Netotik.Web.Areas.Company.Controllers
                 this.MessageError(Captions.Error, Captions.UserPasswordClientError);
                 return RedirectToAction(MVC.Company.Home.ActionNames.MikrotikConf, MVC.Company.Home.Name, new { area = MVC.Company.Name });
             }
-            if(Request.Form["reset"] !=null)
-            if (Request.Form["reset"].ToString() == "yes")
-            {
-                bool logs = true; bool users = true; bool packages = true; bool history = true; bool session = true; bool db = true;
-                if (Request.Form["logs"] == null)
-                    logs = false;
-                if (Request.Form["users"] == null)
-                    users = false;
-                if (Request.Form["packages"] == null)
-                    packages = false;
-                if (Request.Form["history"] == null)
-                    history = false;
-                if (Request.Form["logs"] == null)
-                    session = false;
-                if (Request.Form["logs"] == null)
-                    db = false;
-                //-------------------------------
-                if (logs==false && false == users && false == packages && false == history && false== session &&db == false)
+            if (Request.Form["reset"] != null)
+                if (Request.Form["reset"].ToString() == "yes")
                 {
-                    this.MessageInformation("انتخاب مقادیر", "هیچ مقداری انتخاب نشده است.");
+                    bool logs = true; bool users = true; bool packages = true; bool history = true; bool session = true; bool db = true;
+                    if (Request.Form["logs"] == null)
+                        logs = false;
+                    if (Request.Form["users"] == null)
+                        users = false;
+                    if (Request.Form["packages"] == null)
+                        packages = false;
+                    if (Request.Form["history"] == null)
+                        history = false;
+                    if (Request.Form["logs"] == null)
+                        session = false;
+                    if (Request.Form["logs"] == null)
+                        db = false;
+                    //-------------------------------
+                    if (logs == false && false == users && false == packages && false == history && false == session && db == false)
+                    {
+                        this.MessageInformation(Captions.Error, Captions.ValidateError);
+                    }
+                    else
+                    {
+                        _mikrotikServices.ResetUsermanager(UserLogined.UserCompany.R_Host, UserLogined.UserCompany.R_Port, UserLogined.UserCompany.R_User, UserLogined.UserCompany.R_Password, users, logs, session, history, packages, db);
+                        this.MessageSuccess(Captions.MikrotikResetUsermanager, Captions.MikrotikResetUsermanagerMessage);
+                    }
                 }
                 else
                 {
-                    _mikrotikServices.ResetUsermanager(UserLogined.UserCompany.R_Host, UserLogined.UserCompany.R_Port, UserLogined.UserCompany.R_User, UserLogined.UserCompany.R_Password,users,logs,session,history,packages,db );
-                    this.MessageSuccess("Reset Usermanager", "یوزرمنیجر با تنظیمات انتخابی ریست شد.بک آپ کلی از یوزرمنیجر به صورت خودکار گرفته شد.");
-                }
-                }
-                else
-                {
-                    this.MessageInformation("مقدار تایید", "مقدار تاییدیه به درستی پر نشده است..");
+                    this.MessageInformation(Captions.Error,Captions.ValidateError);
                 }
             else
             {
-                this.MessageInformation("مقدار تایید", "مقدار تاییدیه به درستی پر نشده است..");
+                this.MessageInformation(Captions.Error, Captions.ValidateError);
             }
             return RedirectToAction(MVC.Company.Router.ActionNames.RouterSetting);
         }
@@ -577,7 +577,7 @@ namespace Netotik.Web.Areas.Company.Controllers
 
             //-------------------------------
             _mikrotikServices.RemoveLogs(UserLogined.UserCompany.R_Host, UserLogined.UserCompany.R_Port, UserLogined.UserCompany.R_User, UserLogined.UserCompany.R_Password);
-            this.MessageSuccess("Logs", "لاگ ها پاک شدند.این عملیات غیره قابل برگشت می باشد.");
+            this.MessageSuccess(Captions.RemoveLogs, Captions.MikrotikRemoveLogsMessage);
             return RedirectToAction(MVC.Company.Router.ActionNames.RouterSetting);
         }
         public virtual ActionResult BackupUsermanager()
@@ -598,7 +598,7 @@ namespace Netotik.Web.Areas.Company.Controllers
 
             //-------------------------------
             _mikrotikServices.BackupUsermanager(UserLogined.UserCompany.R_Host, UserLogined.UserCompany.R_Port, UserLogined.UserCompany.R_User, UserLogined.UserCompany.R_Password);
-            this.MessageSuccess("Backup Usermanager", "از دیتابیس یوزرمنیجر و دیتابیس لاگ یوزرمنیجر به درستی بک آپ گرفته شد.");
+            this.MessageSuccess(Captions.MikrotikUsermanagerBackup, Captions.MikrotikUsermanagerBackupMessage);
             return RedirectToAction(MVC.Company.Router.ActionNames.RouterSetting);
         }
         public virtual ActionResult BackupRouter()
@@ -619,7 +619,7 @@ namespace Netotik.Web.Areas.Company.Controllers
 
             //-------------------------------
             _mikrotikServices.BackupRouter(UserLogined.UserCompany.R_Host, UserLogined.UserCompany.R_Port, UserLogined.UserCompany.R_User, UserLogined.UserCompany.R_Password);
-            this.MessageSuccess("Backup", "بک آپ گیری با موفقیت انجام شد.");
+            this.MessageSuccess(Captions.MikrotikBackup, Captions.MikrotikBackupMessage);
             return RedirectToAction(MVC.Company.Router.ActionNames.RouterSetting);
         }
         [HttpPost]
@@ -639,8 +639,8 @@ namespace Netotik.Web.Areas.Company.Controllers
                 return RedirectToAction(MVC.Company.Home.ActionNames.MikrotikConf, MVC.Company.Home.Name, new { area = MVC.Company.Name });
             }
             //-------------------------------
-            
-            _mikrotikServices.Router_NatAdd(UserLogined.UserCompany.R_Host, UserLogined.UserCompany.R_Port, UserLogined.UserCompany.R_User, UserLogined.UserCompany.R_Password,model);
+
+            _mikrotikServices.Router_NatAdd(UserLogined.UserCompany.R_Host, UserLogined.UserCompany.R_Port, UserLogined.UserCompany.R_User, UserLogined.UserCompany.R_Password, model);
             return RedirectToAction(MVC.Company.Router.ActionNames.Nat);
         }
         public virtual ActionResult Nat()
@@ -680,7 +680,7 @@ namespace Netotik.Web.Areas.Company.Controllers
                 return RedirectToAction(MVC.Company.Home.ActionNames.MikrotikConf, MVC.Company.Home.Name, new { area = MVC.Company.Name });
             }
             //-------------------------------
-            _mikrotikServices.Router_NatRemove(UserLogined.UserCompany.R_Host, UserLogined.UserCompany.R_Port, UserLogined.UserCompany.R_User, UserLogined.UserCompany.R_Password,id);
+            _mikrotikServices.Router_NatRemove(UserLogined.UserCompany.R_Host, UserLogined.UserCompany.R_Port, UserLogined.UserCompany.R_User, UserLogined.UserCompany.R_Password, id);
             return RedirectToAction(MVC.Company.Router.ActionNames.Nat);
         }
         [HttpPost]

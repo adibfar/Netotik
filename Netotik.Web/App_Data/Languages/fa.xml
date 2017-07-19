@@ -351,7 +351,7 @@
     <Value>Userman Customer</Value>
   </LocaleResource>
   <LocaleResource Name="IsCloudActive">
-    <Value>فعال سازی کلود"</Value>
+    <Value>فعال سازی کلود</Value>
   </LocaleResource>
   <LocaleResource Name="Dashboard">
     <Value>داشبورد</Value>
@@ -1361,5 +1361,50 @@
   </LocaleResource>
   <LocaleResource Name="MikrotikUsermanagerRestoreDesctiption">
     <Value>بازگردانی دیتابیس یوزرمنیجر باعث می شود تمامی لاگ ها و یوزرها به حالت بک آپ مورد نظر بازگردند.</Value>
+  </LocaleResource>
+  <LocaleResource Name="LeaveBlankAllPort">
+    <Value>80 Or 443 Or ... (خالی گذاشت=همه پورت ها)</Value>
+  </LocaleResource>
+  <LocaleResource Name="HotspotAddressesAccessAdd">
+    <Value>آدرس مورد نظر آزاد شد.</Value>
+  </LocaleResource>
+  <LocaleResource Name="HotspotUserAccessAdd">
+    <Value>دستگاه مورد نظر به لیست اضافه شد.</Value>
+  </LocaleResource>
+  <LocaleResource Name="Router">
+    <Value>روتر</Value>
+  </LocaleResource>
+    <LocaleResource Name="NothingFound">
+    <Value>موردی پیدا نشد</Value>
+  </LocaleResource>
+  <LocaleResource Name="MikrotikBackupMessage">
+    <Value>بک آپ گیری با موفقیت انجام شد.</Value>
+  </LocaleResource>
+  <LocaleResource Name="MikrotikUsermanagerBackupMessage">
+    <Value>از دیتابیس یوزرمنیجر و دیتابیس لاگ یوزرمنیجر به درستی بک آپ گرفته شد.</Value>
+  </LocaleResource>
+  <LocaleResource Name="MikrotikRemoveLogsMessage">
+    <Value>لاگ ها پاک شدند.این عملیات غیره قابل برگشت می باشد.</Value>
+  </LocaleResource>
+  <LocaleResource Name="MikrotikResetUsermanagerMessage">
+    <Value>یوزرمنیجر با تنظیمات انتخابی ریست شد.بک آپ کلی از یوزرمنیجر به صورت خودکار گرفته شد.</Value>
+  </LocaleResource>
+  <LocaleResource Name="ValidateError">
+    <Value>مقدار به درستی پر نشده است.</Value>
+  </LocaleResource>
+  <LocaleResource Name="MikrotikUpdateStartMessage">
+    <Value>بروزرسانی آغاز شد.لطفا به مدت 2الی5دقیقه منتظر بمانید تا روتر بروزرسانی ها را دریافت و نصب نماید.هنگام نصب نیاز به ریبوت روتر می باشد که به صورت خودکار انجام می شود.</Value>
+  </LocaleResource>
+  <LocaleResource Name="MikrotikRebootMessage">
+    <Value>روتر در حال راه اندازی مجدد می باشد.لطفا یک دقیقه منتظر بمانید.</Value>
+  </LocaleResource>
+  <LocaleResource Name="MikrotikResetMessage">
+    <Value>روتر در حال ریست شدن است.ممکن است سامانه دیگر قادر به اتصال به روتر نباشد.با پشتیبان خود تماس بگیرید.</Value>
+  </LocaleResource>
+  <LocaleResource Name="MikrotikRestoreUsermanagerMessage">
+    <Value>بک آپ مورد نظر درحال بازگردانی می باشد.</Value>
+  </LocaleResource>
+  <LocaleResource Name="MikrotikRestoreMessage">
+    <Value>بک آپ مورد نظر در حال بازگردانی می باشد.ممکن است سامانه دیگر قادر به اتصال به روتر نباشد.لطفا در صورت بروز هرگونه مسئله با ریسلر خود تماس بگیرید.</Value>
   </LocaleResource>
 </Language>

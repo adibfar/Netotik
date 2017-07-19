@@ -3720,6 +3720,111 @@ namespace Netotik.Resources
                 return resourceProvider.GetResource("MikrotikUsermanagerRestoreDesctiption", CultureInfo.CurrentUICulture.Name) as string;
             }
         }
+        public static string LeaveBlankAllPort
+        {
+            get
+            {
+                return resourceProvider.GetResource("LeaveBlankAllPort", CultureInfo.CurrentUICulture.Name) as string;
+            }
+        }
+        public static string HotspotAddressesAccessAdd
+        {
+            get
+            {
+                return resourceProvider.GetResource("HotspotAddressesAccessAdd", CultureInfo.CurrentUICulture.Name) as string;
+            }
+        }
+        public static string HotspotUserAccessAdd
+        {
+            get
+            {
+                return resourceProvider.GetResource("HotspotUserAccessAdd", CultureInfo.CurrentUICulture.Name) as string;
+            }
+        }
+        public static string Router
+        {
+            get
+            {
+                return resourceProvider.GetResource("Router", CultureInfo.CurrentUICulture.Name) as string;
+            }
+        }
+        public static string NothingFound
+        {
+            get
+            {
+                return resourceProvider.GetResource("NothingFound", CultureInfo.CurrentUICulture.Name) as string;
+            }
+        }
+        public static string MikrotikBackupMessage
+        {
+            get
+            {
+                return resourceProvider.GetResource("MikrotikBackupMessage", CultureInfo.CurrentUICulture.Name) as string;
+            }
+        }
+        public static string MikrotikUsermanagerBackupMessage
+        {
+            get
+            {
+                return resourceProvider.GetResource("MikrotikUsermanagerBackupMessage", CultureInfo.CurrentUICulture.Name) as string;
+            }
+        }
+        public static string MikrotikRemoveLogsMessage
+        {
+            get
+            {
+                return resourceProvider.GetResource("MikrotikRemoveLogsMessage", CultureInfo.CurrentUICulture.Name) as string;
+            }
+        }
+        public static string MikrotikResetUsermanagerMessage
+        {
+            get
+            {
+                return resourceProvider.GetResource("MikrotikResetUsermanagerMessage", CultureInfo.CurrentUICulture.Name) as string;
+            }
+        }
+        public static string ValidateError
+        {
+            get
+            {
+                return resourceProvider.GetResource("ValidateError", CultureInfo.CurrentUICulture.Name) as string;
+            }
+        }
+        public static string MikrotikUpdateStartMessage
+        {
+            get
+            {
+                return resourceProvider.GetResource("MikrotikUpdateStartMessage", CultureInfo.CurrentUICulture.Name) as string;
+            }
+        }
+        public static string MikrotikRebootMessage
+        {
+            get
+            {
+                return resourceProvider.GetResource("MikrotikRebootMessage", CultureInfo.CurrentUICulture.Name) as string;
+            }
+        }
+        public static string MikrotikResetMessage
+        {
+            get
+            {
+                return resourceProvider.GetResource("MikrotikResetMessage", CultureInfo.CurrentUICulture.Name) as string;
+            }
+        }
+        public static string MikrotikRestoreUsermanagerMessage
+        {
+            get
+            {
+                return resourceProvider.GetResource("MikrotikRestoreUsermanagerMessage", CultureInfo.CurrentUICulture.Name) as string;
+            }
+        }
+        public static string MikrotikRestoreMessage
+        {
+            get
+            {
+                return resourceProvider.GetResource("MikrotikRestoreMessage", CultureInfo.CurrentUICulture.Name) as string;
+            }
+        }
         //<!--======================Messages Ehsan EM===========================-->
 
 
