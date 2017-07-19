@@ -63,7 +63,7 @@ namespace Netotik.Web.Areas.Company.Controllers
             {
                 Request.Form["Portocol"] = "";
             }
-            if (Request.Form["Comment"] == null) Request.Form["Comment"] = "";
+            //if (Request.Form["Comment"] == null) Request.Form["Comment"] = "";
             if (Request.Form["Server"] == null) Request.Form["Server"] = "";
             if (Request.Form["Action"] == null) Request.Form["Action"] = "";
             Hotspot_IPWalledGardenModel temp = new Hotspot_IPWalledGardenModel()
@@ -71,7 +71,7 @@ namespace Netotik.Web.Areas.Company.Controllers
                 dst_host = Request.Form["DstHost"].ToString(),
                 dst_port = Request.Form["DstPort"].ToString(),
                 protocol = Request.Form["Portocol"].ToString(),
-                comment = Request.Form["Comment"].ToString(),
+                //comment = Request.Form["Comment"].ToString(),
                 disabled = "no",
                 server = Request.Form["Server"].ToString(),
                 action = Request.Form["Action"].ToString(),
@@ -104,7 +104,7 @@ namespace Netotik.Web.Areas.Company.Controllers
             if (Request.Form["IpAddress"] == null) Request.Form["IpAddress"] = "";
             if (Request.Form["MacAddress"]== null) Request.Form["MacAddress"] = "";
             if (Request.Form["NatIpAddress"] == null) Request.Form["NatIpAddress"] = "";
-            if (Request.Form["Comment"] == null) Request.Form["Comment"] = "";
+           // if (Request.Form["Comment"] == null) Request.Form["Comment"] = "";
             if (Request.Form["Server"] == null) Request.Form["Server"] = "";
             if (Request.Form["Type"] == null) Request.Form["Type"] = "";
             Hotspot_IPBindingsModel temp = new Hotspot_IPBindingsModel()
@@ -112,7 +112,7 @@ namespace Netotik.Web.Areas.Company.Controllers
                 address = Request.Form["IpAddress"].ToString(),
                 mac_address = Request.Form["MacAddress"].ToString(),
                 to_address = Request.Form["NatIpAddress"].ToString(),
-                comment = Request.Form["Comment"].ToString(),
+               // comment = Request.Form["Comment"].ToString(),
                 disabled = "no",
                 server = Request.Form["Server"].ToString(),
                 type = Request.Form["Type"].ToString(),

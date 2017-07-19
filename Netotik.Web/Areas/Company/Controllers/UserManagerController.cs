@@ -186,7 +186,7 @@ namespace Netotik.Web.Areas.Company.Controllers
                 model.profile_validity = valid;
                 //--------
                 string downloadlimit = null;
-                if (Request.Form["downloadlimit"].ToString() != "")
+                /*if (Request.Form["downloadlimit"].ToString() != "")
                     switch (Request.Form["downloadlimitB"].ToString())
                     {
                         case "1":
@@ -196,9 +196,11 @@ namespace Netotik.Web.Areas.Company.Controllers
                             downloadlimit = (ulong.Parse(Request.Form["downloadlimit"]) * 1073741824).ToString();
                             break;
                     }
+                    */
                 model.limition_download_limit = downloadlimit;
                 //-------------------------
                 string uploadlimit = null;
+                /*
                 if (Request.Form["uploadlimit"].ToString() != "")
                     switch (Request.Form["uploadlimitB"].ToString())
                     {
@@ -209,6 +211,7 @@ namespace Netotik.Web.Areas.Company.Controllers
                             downloadlimit = (ulong.Parse(Request.Form["uploadlimit"]) * 1073741824).ToString();
                             break;
                     }
+                    */
                 model.limition_upload_limit = uploadlimit;
                 //-------------------------
                 string downloaduploadlimit = null;
