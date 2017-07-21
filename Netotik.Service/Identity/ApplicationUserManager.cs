@@ -827,10 +827,10 @@ namespace Netotik.Services.Identity
             //return _users.FirstOrDefaultAsync(x => !x.IsDeleted && x.IsBanned && x.EmailConfirmed && x.UserType == UserType.UserReseller && x.UserReseller.ResellerCode == Code);
             return _users.FirstOrDefaultAsync(x => !x.IsDeleted && x.UserType == UserType.UserReseller && x.UserReseller.ResellerCode == Code);
         }
-        public Task<User> FindByCompanyCodeAsync(string Code)
+        public async Task<User> FindByCompanyCodeAsync(string Code)
         {
             //return _users.FirstOrDefaultAsync(x => !x.IsDeleted && x.IsBanned && x.EmailConfirmed && x.UserType == UserType.UserReseller && x.UserReseller.ResellerCode == Code);
-            return _users.FirstOrDefaultAsync(x => !x.IsDeleted && x.UserType == UserType.UserCompany && x.UserCompany.CompanyCode == Code);
+            return await _users.FirstOrDefaultAsync(x => !x.IsDeleted && x.UserType == UserType.UserCompany && x.UserCompany.CompanyCode == Code);
         }
         #endregion
 

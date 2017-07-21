@@ -3825,6 +3825,13 @@ namespace Netotik.Resources
                 return resourceProvider.GetResource("MikrotikRestoreMessage", CultureInfo.CurrentUICulture.Name) as string;
             }
         }
+        public static string OnlineTime
+        {
+            get
+            {
+                return resourceProvider.GetResource("OnlineTime", CultureInfo.CurrentUICulture.Name) as string;
+            }
+        }
         //<!--======================Messages Ehsan EM===========================-->
 
 

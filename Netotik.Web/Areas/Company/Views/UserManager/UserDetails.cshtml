@@ -17,10 +17,6 @@
                         <span class="icon-refresh font-medium-4"></span>
                         @Captions.Reset
                     </a>
-                    <a value="@Captions.PrintReport" class="btn btn-social btn-instagram" href="#">
-                        <span class="icon-printer2 font-medium-4"></span>
-                        @Captions.PrintReport
-                    </a>
                     <a value="@Captions.Remove" class="btn btn-social btn-instagram" href="#" onclick="Userremove('@Model.id');">
                         <span class="icon-remove font-medium-4"></span>
                         @Captions.Remove
@@ -197,7 +193,7 @@
                                 </div>
                             </div>
                             <div class="tab-pane fade" id="Router" role="tabpanel" aria-labelledby="linkIcon12-tab1" aria-expanded="false">
-                                    <table class="table table-striped table-bordered table-hover zero-configuration dataex-colvis-restore" id="grid">
+                                    <table class="table table-striped table-bordered table-hover" id="grid">
                                         <thead>
                                             <tr>
                                                 <td>#</td>
@@ -400,35 +396,34 @@
 
 
 @section ScriptUp{
-    <link rel="stylesheet" type="text/css" href="~/Content/css/plugins/tables/extensions/dataTables.colVis.css">
+    <link rel="stylesheet" type="text/css" href="~/Content/css/plugins/tables/extensions/buttons.dataTables.min.css">
 <link href="~/Content/css/plugins/charts/morris.css" rel="stylesheet">
 }
 @section DownScript{
-    <script src="~/Content/js/plugins/tables/datatable/dataTables.colVis.js" type="text/javascript"></script>
+    <script src="~/Content/js/plugins/tables/datatable/dataTables.buttons.min.js" type="text/javascript"></script>
+<script src="~/Content/js/plugins/tables/jszip.min.js" type="text/javascript"></script>
+<script src="~/Content/js/plugins/tables/pdfmake.min.js" type="text/javascript"></script>
+<script src="~/Content/js/plugins/tables/vfs_fonts.js" type="text/javascript"></script>
+<script src="~/Content/js/plugins/tables/buttons.html5.min.js" type="text/javascript"></script>
+
 <script src="~/Content/js/plugins/charts/morris.min.js" type="text/javascript"></script>
 <script src="~/Content/js/plugins/charts/raphael-min.js" type="text/javascript"></script>
     <script type="text/javascript">
         $(function () {
             var table = $('#grid').dataTable({
-                "iDisplayLength": 10,
+               "iDisplayLength": 10,
                 "bProcessing": true,
                 "bStateSave": true,
                 "bFilter": true,
-                "scrollX": true,
                 "bAutoWidth": true,
-                "aLengthMenu": [[10, 25, 50, 100], [10, 25, 50, 100]],
-                "oLanguage": {
-                    "sUrl": "/Content/js/plugins/tables/datatable/dataTables.persian.txt"
-                },
-                dom: 'C<"clear">lfrtip',
-                columnDefs: [{
-                    buttonText: "@Captions.EditTable"
-                }],
-                colVis: {
-                    restore: "@Captions.Default",
-                    showAll: "@Captions.ShowAll",
-                    showNone: "@Captions.Hide"
-                }
+                dom: 'Bfrtip',
+                lengthMenu: [
+                             [10, 25, 50, -1],
+                             ['10', '25', '50', 'All']
+                ],
+                buttons: [
+                    'copy', 'excel', 'pdf', 'pageLength', 'colvis'
+                ]
             });
         });
         $(window).on("load", function() {

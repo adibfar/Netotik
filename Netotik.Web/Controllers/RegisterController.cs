@@ -27,6 +27,7 @@ using Netotik.Services.Identity;
 using Netotik.Services.Implement;
 using Mvc.Mailer;
 using Netotik.ViewModels.Identity.Account;
+using Netotik.Common.Controller;
 //Test Comment
 namespace Netotik.Web.Controllers
 {
@@ -81,7 +82,24 @@ namespace Netotik.Web.Controllers
         [Route("{lang}/userman/{CompanyCode}")]
         public virtual async Task<ActionResult> Client(Netotik.ViewModels.Identity.UserClient.UserRegisterModel model, string ReturnUrl, string CompanyCode)
         {
-
+            var UserByCompanyName = await _applicationUserManager.FindByCompanyCodeAsync(CompanyCode);
+            var UserLogined = _applicationUserManager.FindUserById(UserByCompanyName.Id);
+            if (!_mikrotikServices.IP_Port_Check(UserLogined.UserCompany.R_Host, UserLogined.UserCompany.R_Port, UserLogined.UserCompany.R_User, UserLogined.UserCompany.R_Password))
+            {
+                this.MessageError(Captions.Error, Captions.IPPORTClientError);
+                return RedirectToAction(MVC.Company.Home.ActionNames.MikrotikConf, MVC.Company.Home.Name, new { area = MVC.Company.Name });
+            }
+            if (!_mikrotikServices.User_Pass_Check(UserLogined.UserCompany.R_Host, UserLogined.UserCompany.R_Port, UserLogined.UserCompany.R_User, UserLogined.UserCompany.R_Password))
+            {
+                this.MessageError(Captions.Error, Captions.UserPasswordClientError);
+                return RedirectToAction(MVC.Company.Home.ActionNames.MikrotikConf, MVC.Company.Home.Name, new { area = MVC.Company.Name });
+            }
+            if (!_mikrotikServices.Usermanager_IsInstall(UserLogined.UserCompany.R_Host, UserLogined.UserCompany.R_Port, UserLogined.UserCompany.R_User, UserLogined.UserCompany.R_Password))
+            {
+                this.MessageError(Captions.Error, Captions.UsermanagerClientError);
+                return RedirectToAction(MVC.Company.Home.ActionNames.Index);
+            }
+            //----------------------------
             var company = await _applicationUserManager.FindByCompanyCodeAsync(CompanyCode);
             if (company == null) return HttpNotFound();
             var User = _applicationUserManager.FindUserById(company.Id);
@@ -122,6 +140,23 @@ namespace Netotik.Web.Controllers
         [Route("{lang}/userman/{CompanyCode}")]
         public virtual async Task<ActionResult> Client(string ReturnUrl, string CompanyCode)
         {
+            var CompanyCodeToid = await _applicationUserManager.FindByCompanyCodeAsync(CompanyCode);
+            var UserLogined = _applicationUserManager.FindUserById(CompanyCodeToid.Id);
+            if (!_mikrotikServices.IP_Port_Check(UserLogined.UserCompany.R_Host, UserLogined.UserCompany.R_Port, UserLogined.UserCompany.R_User, UserLogined.UserCompany.R_Password))
+            {
+                this.MessageError(Captions.Error, Captions.IPPORTClientError);
+                return RedirectToAction(MVC.Company.Home.ActionNames.MikrotikConf, MVC.Company.Home.Name, new { area = MVC.Company.Name });
+            }
+            if (!_mikrotikServices.User_Pass_Check(UserLogined.UserCompany.R_Host, UserLogined.UserCompany.R_Port, UserLogined.UserCompany.R_User, UserLogined.UserCompany.R_Password))
+            {
+                this.MessageError(Captions.Error, Captions.UserPasswordClientError);
+                return RedirectToAction(MVC.Company.Home.ActionNames.MikrotikConf, MVC.Company.Home.Name, new { area = MVC.Company.Name });
+            }
+            if (!_mikrotikServices.Usermanager_IsInstall(UserLogined.UserCompany.R_Host, UserLogined.UserCompany.R_Port, UserLogined.UserCompany.R_User, UserLogined.UserCompany.R_Password))
+            {
+                this.MessageError(Captions.Error, Captions.UsermanagerClientError);
+                return RedirectToAction(MVC.Company.Home.ActionNames.Index);
+            }
 
             var company = await _applicationUserManager.FindByCompanyCodeAsync(CompanyCode);
             if (company == null) return HttpNotFound();

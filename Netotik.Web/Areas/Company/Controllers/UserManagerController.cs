@@ -795,6 +795,7 @@ namespace Netotik.Web.Areas.Company.Controllers
 
         public virtual ActionResult Register()
         {
+            ViewBag.ResellerCode = UserLogined.UserCompany.CompanyCode;
             return View();
         }
 

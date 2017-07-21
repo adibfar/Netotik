@@ -12,13 +12,11 @@
                 <a href="index.html" data-toggle="dropdown" class="dropdown-toggle nav-link"><i class="icon-users2"></i><span>@Captions.UserManager</span> </a>
                 <ul class="dropdown-menu">
                     <li><a href="@Url.Action(MVC.Company.UserManager.UserList())" data-toggle="dropdown" class="dropdown-item">@Captions.UsersList</a></li>
-                    <li><a href="@Url.Action(MVC.Company.UserManager.UserCreate())" data-toggle="dropdown" class="dropdown-item">@Captions.NewUser</a></li>
                     <li><a href="@Url.Action(MVC.Company.UserManager.PackageList())" data-toggle="dropdown" class="dropdown-item">@Captions.PackageList</a></li>
-                    <li><a href="@Url.Action(MVC.Company.UserManager.PackageCreate())" data-toggle="dropdown" class="dropdown-item">@Captions.NewPackage</a></li>
-                    @if (false)
+                    <li><a href="@Url.Action(MVC.Company.UserManager.Register())" data-toggle="dropdown" class="dropdown-item">@Captions.Register</a></li>
+                    @if (false)//----------------------------------------------------------------------------------------------------------------------------------
                     {<li><a href="@Url.Action(MVC.Company.UserManager.Report())" data-toggle="dropdown" class="dropdown-item">گزارش ها</a></li>
-                    <li><a href="@Url.Action(MVC.Company.UserManager.Register())" data-toggle="dropdown" class="dropdown-item">ثبت نام</a></li>
-                    <li><a href="@Url.Action(MVC.Company.UserManager.ClientArea())" data-toggle="dropdown" class="dropdown-item">پنل کاربری</a></li>
+                    <li><a href="@Url.Action(MVC.Company.UserManager.ClientArea())" data-toggle="dropdown" class="dropdown-item">@Captions.UserPanel</a></li>
                     }
                 </ul>
             </li>

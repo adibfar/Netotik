@@ -19,22 +19,31 @@
         </div>
     </div>
 </section>
-
+@section ScriptUp{
+    <link rel="stylesheet" type="text/css" href="~/Content/css/plugins/tables/extensions/buttons.dataTables.min.css">
+}
 @section DownScript{
-
+<script src="~/Content/js/plugins/tables/datatable/dataTables.buttons.min.js" type="text/javascript"></script>
+<script src="~/Content/js/plugins/tables/jszip.min.js" type="text/javascript"></script>
+<script src="~/Content/js/plugins/tables/pdfmake.min.js" type="text/javascript"></script>
+<script src="~/Content/js/plugins/tables/vfs_fonts.js" type="text/javascript"></script>
+<script src="~/Content/js/plugins/tables/buttons.html5.min.js" type="text/javascript"></script>
     <script type="text/javascript">
         $(function () {
             var table = $('#grid').dataTable({
-                "order": [[1, 'asc']],
                 "iDisplayLength": 10,
                 "bProcessing": true,
                 "bStateSave": true,
                 "bFilter": true,
-                "aLengthMenu": [[10, 25, 50, 100], [10, 25, 50, 100]],
                 "bAutoWidth": true,
-                "oLanguage": {
-                    "sUrl": "/Content/js/plugins/tables/datatable/dataTables.persian.txt"
-                }
+                dom: 'Bfrtip',
+                lengthMenu: [
+                             [10, 25, 50, -1],
+                             ['10', '25', '50', 'All']
+                ],
+                buttons: [
+                    'copy', 'excel', 'pdf', 'pageLength'
+                ]
             });
         });
     </script>

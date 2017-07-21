@@ -796,7 +796,7 @@
     <Value>دستگاه مورد نظر به لیست اضافه شد.</Value>
   </LocaleResource>
   <LocaleResource Name="Router">
-    <Value>روتر</Value>
+    <Value>Router</Value>
   </LocaleResource>
   <LocaleResource Name="NothingFound">
     <Value>موردی پیدا نشد</Value>
@@ -830,5 +830,8 @@
   </LocaleResource>
   <LocaleResource Name="MikrotikRestoreMessage">
     <Value>بک آپ مورد نظر در حال بازگردانی می باشد.ممکن است سامانه دیگر قادر به اتصال به روتر نباشد.لطفا در صورت بروز هرگونه مسئله با ریسلر خود تماس بگیرید.</Value>
+  </LocaleResource>
+  <LocaleResource Name="OnlineTime">
+    <Value>زمان متصل بودن</Value>
   </LocaleResource>
 </Language>
