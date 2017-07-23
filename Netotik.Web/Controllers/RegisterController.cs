@@ -52,7 +52,7 @@ namespace Netotik.Web.Controllers
             _uow = uow;
             _menuService = menuService;
         }
-
+        [Route("{lang}/router/reg/{CompanyCode}")]
         [AllowAnonymous]
         public virtual ActionResult Company(string ReturnUrl, string CompanyName)
         {
@@ -63,13 +63,14 @@ namespace Netotik.Web.Controllers
 
         [AllowAnonymous]
         [HttpPost]
+        [Route("{lang}/router/reg/{CompanyCode}")]
         [ValidateAntiForgeryToken]
         public virtual ActionResult Company(Netotik.ViewModels.Identity.UserCompany.LoginModel model, string ReturnUrl, string CompanyName, int fromPage = 0)
         {
             return View();
         }
 
-
+        [Route("{lang}/reg/reseller")]
         [AllowAnonymous]
         public virtual ActionResult Reseller(string ReturnUrl)
         {
@@ -79,7 +80,7 @@ namespace Netotik.Web.Controllers
 
         [AllowAnonymous]
         [HttpPost]
-        [Route("{lang}/userman/{CompanyCode}")]
+        [Route("{lang}/userman/reg/{CompanyCode}")]
         public virtual async Task<ActionResult> Client(Netotik.ViewModels.Identity.UserClient.UserRegisterModel model, string ReturnUrl, string CompanyCode)
         {
             var UserByCompanyName = await _applicationUserManager.FindByCompanyCodeAsync(CompanyCode);
@@ -137,7 +138,7 @@ namespace Netotik.Web.Controllers
         }
 
         [AllowAnonymous]
-        [Route("{lang}/userman/{CompanyCode}")]
+        [Route("{lang}/userman/reg/{CompanyCode}")]
         public virtual async Task<ActionResult> Client(string ReturnUrl, string CompanyCode)
         {
             var CompanyCodeToid = await _applicationUserManager.FindByCompanyCodeAsync(CompanyCode);
@@ -170,6 +171,7 @@ namespace Netotik.Web.Controllers
         [HttpPost]
         [AllowAnonymous]
         // [CheckReferrer]
+        [Route("{lang}/reg/reseller")]
         [ValidateAntiForgeryToken]
         public virtual async Task<ActionResult> Reseller(RegisterViewModel model)
         {

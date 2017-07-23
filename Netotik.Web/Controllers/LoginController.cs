@@ -51,7 +51,7 @@ namespace Netotik.Web.Controllers
 
 
         [AllowAnonymous]
-        [Route("{lang}/Net/{ResellerCode}")]
+        [Route("{lang}/router/{ResellerCode}")]
         public virtual async Task<ActionResult> Company(string ReturnUrl, string ResellerCode)
         {
             if (User.Identity.IsAuthenticated && _applicationRoleManager.FindUserPermissions(long.Parse(User.Identity.GetUserId())).Any(x => x == "Company"))
@@ -69,7 +69,7 @@ namespace Netotik.Web.Controllers
         [AllowAnonymous]
         [HttpPost]
         [ValidateAntiForgeryToken]
-        [Route("{lang}/Net/{ResellerCode}")]
+        [Route("{lang}/router/{ResellerCode}")]
         public virtual async Task<ActionResult> Company(Netotik.ViewModels.Identity.UserCompany.LoginModel model, string ReturnUrl, string ResellerCode)
         {
             var reseller = await _applicationUserManager.FindByResellerCodeAsync(ResellerCode);
@@ -142,7 +142,7 @@ namespace Netotik.Web.Controllers
 
         }
 
-
+        [Route("{lang}/login/reseller")]
         [AllowAnonymous]
         public virtual ActionResult Reseller(string ReturnUrl)
         {
@@ -154,6 +154,7 @@ namespace Netotik.Web.Controllers
         }
 
         [AllowAnonymous]
+        [Route("{lang}/login/reseller")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public virtual async Task<ActionResult> Reseller(ViewModels.Identity.UserReseller.LoginModel model, string ReturnUrl, int fromPage = 0)
@@ -224,7 +225,7 @@ namespace Netotik.Web.Controllers
 
 
         [AllowAnonymous]
-        [Route("{lang}/User/{CompanyCode}")]
+        [Route("{lang}/userman/{CompanyCode}")]
         public virtual async Task<ActionResult> Client(string ReturnUrl, string CompanyCode)
         {
             if (User.Identity.IsAuthenticated && _applicationRoleManager.FindUserPermissions(long.Parse(User.Identity.GetUserId())).Any(x => x == "Client"))
@@ -247,7 +248,7 @@ namespace Netotik.Web.Controllers
         [AllowAnonymous]
         [HttpPost]
         [ValidateAntiForgeryToken]
-        [Route("{lang}/User/{CompanyCode}")]
+        [Route("{lang}/userman/{CompanyCode}")]
         public virtual async Task<ActionResult> Client(Netotik.ViewModels.Identity.UserClient.LoginModel model, string ReturnUrl, string CompanyCode)
         {
             ViewBag.CompanyName = CompanyCode;

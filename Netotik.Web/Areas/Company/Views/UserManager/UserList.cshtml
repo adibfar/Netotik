@@ -123,18 +123,39 @@
     <script src="~/Content/js/plugins/tables/pdfmake.min.js" type="text/javascript"></script>
     <script src="~/Content/js/plugins/tables/vfs_fonts.js" type="text/javascript"></script>
     <script src="~/Content/js/plugins/tables/buttons.html5.min.js" type="text/javascript"></script>
-<script src="~/Content/js/plugins/tables/buttons.colVis.min.js" type="text/javascript"></script>
+    <script src="~/Content/js/plugins/tables/buttons.colVis.min.js" type="text/javascript"></script>
 
 
 
-     <script type="text/javascript">
+    <script type="text/javascript">
         $(function () {
             var table = $('#grid').dataTable({
                 "iDisplayLength": 10,
                 "bProcessing": true,
                 "bStateSave": true,
                 "bFilter": true,
-                "bAutoWidth": true,
+                "columnDefs": [
+                {
+                "targets": [7],
+                "visible": false
+                },
+                {
+                    "targets": [6],
+                    "visible": false
+                },
+                {
+                    "targets": [8],
+                    "visible": false
+                },
+                {
+                    "targets": [9],
+                    "visible": false
+                },
+                {
+                    "targets": [10],
+                    "visible": false
+                }
+                ],
                 dom: 'Bfrtip',
                 lengthMenu: [
                              [10, 25, 50, -1],

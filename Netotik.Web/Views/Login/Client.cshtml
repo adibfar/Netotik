@@ -1,60 +1,108 @@
 ﻿@using CaptchaMvc.HtmlHelpers
 @using Netotik.Common.Helpers
 @using Netotik.ViewModels.Identity.UserClient
-    @model LoginModel
-    @{
-        ViewBag.Title = ViewBag.CompanyName + Captions.LoginToUserAccount;
-        Layout = MVC.Shared.Views._Layout;
-    }
-    <section class="flexbox-container">
-        <div class="col-md-4 offset-md-4 col-xs-10 offset-xs-1 box-shadow-3 p-0">
-            <div class="card border-grey border-lighten-3 m-0">
-                <div class="card-body collapse in">
-                    <center>
-                        <div class="card-body">
-                            <div class="card-profile-image" style="margin-top:5px !important;">
-                                <img src="@Url.Content(Path.Combine(Netotik.Common.Controller.FilePathes._imagesUserAvatarsPath, ViewBag.user.PictureId!=null ? ViewBag.user.Picture.FileName : "Default.png"))?h=100" alt="@ViewBag.CompanyName">
-                            </div>
-                            <div class="profile-card-with-cover-content text-xs-center">
-                                <div class="profile-details mt-2">
-                                    <h4 class="card-title">@ViewBag.CompanyName</h4>
-                                </div>
-                            </div>
-                        </div>
-                    </center>
-                    @if (ViewBag.Message != null)
-                    {
-                        <div class="alert alert-icon-left alert-danger alert-dismissible fade in mb-2" role="alert">
-                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                <span aria-hidden="true">×</span>
-                            </button>
-                            <strong>@Captions.MissionFail</strong> @ViewBag.Message
-                        </div>
+@model LoginModel
+@{
+    ViewBag.Title = ViewBag.CompanyName + Captions.LoginToUserAccount;
+    Layout = null;
+}
+<!DOCTYPE html>
+<html lang="fa">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
 
-                    }
-                    <div class="card-block">
-                        @using (Html.BeginForm(MVC.Login.ActionNames.Client, MVC.Login.Name, new { ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form", id = "loginForm", autocomplete = "off" }))
-                        {
-                            @Html.AntiForgeryToken()
-                            <div class="form-group has-feedback has-icon-left">
-                                @Html.TextBoxFor(m => m.UserName, new { @class = "form-control", placeholder = Captions.UserName })
-                                <div class="form-control-position">
-                                    <i class="icon-head"></i>
+    <title>
+        @Captions.Netotik | @ViewBag.Title
+    </title>
+
+    <link rel="apple-touch-icon" sizes="57x57" href="~/Content/Images/Logo/faveicon/apple-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="~/Content/Images/Logo/faveicon/apple-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="~/Content/Images/Logo/faveicon/apple-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="~/Content/Images/Logo/faveicon/apple-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="~/Content/Images/Logo/faveicon/apple-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="~/Content/Images/Logo/faveicon/apple-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="~/Content/Images/Logo/faveicon/apple-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="~/Content/Images/Logo/faveicon/apple-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="~/Content/Images/Logo/faveicon/apple-icon-180x180.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="~/Content/Images/Logo/faveicon/android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="~/Content/Images/Logo/faveicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="~/Content/Images/Logo/faveicon/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="~/Content/Images/Logo/faveicon/favicon-16x16.png">
+    <link rel="manifest" href="~/Content/Images/Logo/faveicon/manifest.json">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-TileImage" content="~/Content/Images/Logo/faveicon/ms-icon-144x144.png">
+    <meta name="theme-color" content="#ffffff">
+
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-touch-fullscreen" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+
+    <link rel="stylesheet" href="~/Content/css/rtl/vendors.min.css" />
+    <link rel="stylesheet" type="text/css" href="~/Content/fonts/icomoon.css">
+    <link rel="stylesheet" href="~/Content/css/rtl/app.min.css" />
+</head>
+<body data-open="hover" data-menu="horizontal-top-icon-menu" data-col="1-column" class="horizontal-layout horizontal-top-icon-menu 1-column bg-full-screen-image blank-page blank-page" style="background: url(../../Content/images/backgrounds/bg-2.jpg) center center no-repeat fixed;
+    background-size: cover;">
+    <div class="robust-content content container-fluid">
+        <div class="content-wrapper">
+            <div class="content-header row">
+            </div>
+            <div class="content-body">
+                <section class="flexbox-container">
+                    <div class="col-md-4 offset-md-4 col-xs-10 offset-xs-1 box-shadow-3 p-0">
+                        <div class="card border-grey border-lighten-3 px-1 py-1 m-0">
+                            <div class="card-header no-border">
+                                <div class="card-title text-xs-center">
+                                    <img src="@Url.Content(Path.Combine(Netotik.Common.Controller.FilePathes._imagesUserAvatarsPath, ViewBag.user.PictureId!=null ? ViewBag.user.Picture.FileName : "Default.png"))?h=100" alt="@ViewBag.CompanyName">
+                                </div>
+                                <h6 class="card-subtitle line-on-side text-muted text-xs-center font-small-3 pt-2"><span>@ViewBag.CompanyName</span></h6>
+                            </div>
+                            <div class="card-body collapse in">
+                                <div class="card-block">
+                                    @using (Html.BeginForm(MVC.Login.ActionNames.Client, MVC.Login.Name, new { ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form", id = "loginForm", autocomplete = "off" }))
+                                    {
+                                        @Html.AntiForgeryToken()
+                                        <fieldset class="form-group has-feedback has-icon-left">
+                                            @Html.TextBoxFor(m => m.UserName, new { @class = "form-control", placeholder = Captions.UserName })
+                                            <div class="form-control-position">
+                                                <i class="icon-head"></i>
+                                            </div>
+                                        </fieldset>
+                                        <fieldset class="form-group has-feedback has-icon-left">
+                                            @Html.PasswordFor(m => m.Password, new { @class = "form-control", placeholder = Captions.Password })
+                                            <div class="form-control-position">
+                                                <i class="icon-key3"></i>
+                                            </div>
+                                        </fieldset>
+                                        <!--<fieldset class="form-group row">
+                                            <div class="col-md-6 col-xs-12 text-xs-center">
+                                                <fieldset>
+                                                    <input type="checkbox" id="remember-me" class="chk-remember">
+                                                    <label for="remember-me"> Remember Me</label>
+                                                </fieldset>
+                                            </div>
+                                            <div class="col-md-6 col-xs-12 float-sm-left text-xs-center"><a href="recover-password.html" class="card-link">Forgot Password?</a></div>
+                                        </fieldset>-->
+                                        <button type="submit" class="btn btn-outline-primary btn-block"><i class="icon-unlock2"></i>@Captions.Login</button>
+                                    }
+                                    @if (ViewBag.Message != null)
+                                    {
+                                        <div class="alert alert-icon-left alert-danger alert-dismissible fade in mb-2" role="alert">
+                                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                                <span aria-hidden="true">×</span>
+                                            </button>
+                                            <strong>@Captions.MissionFail</strong> @ViewBag.Message
+                                        </div>
+                                    }
                                 </div>
                             </div>
-                            <div class="form-group has-feedback has-icon-left">
-                                @Html.PasswordFor(m => m.Password, new { @class = "form-control", placeholder = Captions.Password })
-                                <div class="form-control-position">
-                                    <i class="icon-key3"></i>
-                                </div>
-                            </div>
-                            <fieldset class="form-group row">
-                                <div class="col-md-6 col-xs-12 float-sm-left text-xs-center"><a href="@Url.Action(MVC.Account.ForgotPassword())" class="card-link"> @Captions.ForgetIt</a></div>
-                            </fieldset>
-                            <button type="submit" class="btn btn-outline-primary btn-block"><i class="icon-unlock2"></i> @Captions.Login</button>
-                        }
+                        </div>
                     </div>
-                </div>
+                </section>
             </div>
         </div>
-    </section>
+    </div>
+</body>
+</html>
