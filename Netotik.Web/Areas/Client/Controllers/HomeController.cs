@@ -279,7 +279,7 @@ namespace Netotik.Web.Areas.Client.Controllers
 
             var Permissions = _applicationUserManager.FindClientPermissions(loginedUser.Id);
             ViewBag.ClientPermissions = Permissions;
-            if (Permissions.Any(x => x == AssignablePermissionToClient.ChangePassword))
+            if (!Permissions.Any(x => x == AssignablePermissionToClient.ChangePassword))
             {
                 return RedirectToAction(MVC.Client.Home.ActionNames.Index, MVC.Client.Home.Name, new { area = MVC.Client.Name });
             }
@@ -307,7 +307,7 @@ namespace Netotik.Web.Areas.Client.Controllers
             var loginedUser = Session["Client"] as User;
             var Permissions = _applicationUserManager.FindClientPermissions(loginedUser.Id);
             ViewBag.ClientPermissions = Permissions;
-            if (Permissions.Any(x => x == AssignablePermissionToClient.ChangePassword))
+            if (!Permissions.Any(x => x == AssignablePermissionToClient.ChangePassword))
             {
                 return RedirectToAction(MVC.Client.Home.ActionNames.Index, MVC.Client.Home.Name, new { area = MVC.Client.Name });
             }
@@ -346,7 +346,7 @@ namespace Netotik.Web.Areas.Client.Controllers
 
             var Permissions = _applicationUserManager.FindClientPermissions(loginedUser.Id);
             ViewBag.ClientPermissions = Permissions;
-            if (Permissions.Any(x => x == AssignablePermissionToClient.Edit))
+            if (!Permissions.Any(x => x == AssignablePermissionToClient.Edit))
             {
                 return RedirectToAction(MVC.Client.Home.ActionNames.Index, MVC.Client.Home.Name, new { area = MVC.Client.Name });
             }
@@ -396,7 +396,7 @@ namespace Netotik.Web.Areas.Client.Controllers
             var loginedUser = Session["Client"] as User;
             var Permissions = _applicationUserManager.FindClientPermissions(loginedUser.Id);
             ViewBag.ClientPermissions = Permissions;
-            if (Permissions.Any(x => x == AssignablePermissionToClient.Edit))
+            if (!Permissions.Any(x => x == AssignablePermissionToClient.Edit))
             {
                 return RedirectToAction(MVC.Client.Home.ActionNames.Index, MVC.Client.Home.Name, new { area = MVC.Client.Name });
             }
@@ -438,7 +438,7 @@ namespace Netotik.Web.Areas.Client.Controllers
             var loginedUser = Session["Client"] as User;
             var Permissions = _applicationUserManager.FindClientPermissions(loginedUser.Id);
             ViewBag.ClientPermissions = Permissions;
-            if (Permissions.Any(x => x == AssignablePermissionToClient.Details))
+            if (!Permissions.Any(x => x == AssignablePermissionToClient.Details))
             {
                 return RedirectToAction(MVC.Client.Home.ActionNames.Index, MVC.Client.Home.Name, new { area = MVC.Client.Name });
             }
@@ -562,7 +562,7 @@ namespace Netotik.Web.Areas.Client.Controllers
             var loginedUser = Session["Client"] as User;
             var Permissions = _applicationUserManager.FindClientPermissions(loginedUser.Id);
             ViewBag.ClientPermissions = Permissions;
-            if (Permissions.Any(x => x == AssignablePermissionToClient.BuyPackage))
+            if (!Permissions.Any(x => x == AssignablePermissionToClient.BuyPackage))
             {
                 return RedirectToAction(MVC.Client.Home.ActionNames.Index, MVC.Client.Home.Name, new { area = MVC.Client.Name });
             }
@@ -613,7 +613,7 @@ namespace Netotik.Web.Areas.Client.Controllers
             var loginedUser = Session["Client"] as User;
             var Permissions = _applicationUserManager.FindClientPermissions(loginedUser.Id);
             ViewBag.ClientPermissions = Permissions;
-            if (Permissions.Any(x => x == AssignablePermissionToClient.BuyPackage))
+            if (!Permissions.Any(x => x == AssignablePermissionToClient.BuyPackage))
             {
                 return RedirectToAction(MVC.Client.Home.ActionNames.Index, MVC.Client.Home.Name, new { area = MVC.Client.Name });
             }
@@ -662,7 +662,7 @@ namespace Netotik.Web.Areas.Client.Controllers
             var loginedUser = Session["Client"] as User;
             var Permissions = _applicationUserManager.FindClientPermissions(loginedUser.Id);
             ViewBag.ClientPermissions = Permissions;
-            if (Permissions.Any(x => x == AssignablePermissionToClient.Charts))
+            if (!Permissions.Any(x => x == AssignablePermissionToClient.Charts))
             {
                 return RedirectToAction(MVC.Client.Home.ActionNames.Index, MVC.Client.Home.Name, new { area = MVC.Client.Name });
             }
