@@ -187,12 +187,27 @@ namespace Netotik.Services.Identity
         public async Task UpdateUserCompanyProfile(ViewModels.Identity.UserCompany.ProfileModel model)
         {
             var user = _users.Find(model.Id);
+            //_unitOfWork.MarkAsDetached(user);
+
             _mappingEngine.Map(model, user);
+
+            var emailModify = model.Email != user.Email;
+
+            if (emailModify)
+            {
+                user.EmailConfirmed = false;
+            }
+
+            //user.Picture = viewModel.Picture;
+            //_unitOfWork.Update(user, a => a.AssociatedCollection(u => u.Roles));
 
             var XmlClientPermissions = "";
             if (model.ClientPermissionNames == null || model.ClientPermissionNames.Length < 1)
                 XmlClientPermissions = _permissionClientService.GetPermissionsAsXml("null").ToString();
             else XmlClientPermissions = _permissionClientService.GetPermissionsAsXml(model.ClientPermissionNames).ToString();
+
+            user.UserCompany.ClientPermissions = XmlClientPermissions;
+
 
             user.UserCompany.ClientPermissions = XmlClientPermissions;
 

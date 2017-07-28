@@ -238,7 +238,7 @@ namespace Netotik.Web.Controllers
 
             var Permissions = _applicationUserManager.FindClientPermissions(company.Id);
             var CanShowPanel = Permissions.Any(x => x == AssignablePermissionToClient.ClientArea);
-            if (CanShowPanel) return HttpNotFound();
+            if (!CanShowPanel) return HttpNotFound();
 
             ViewBag.CompanyName = CompanyCode;
             ViewBag.ReturnUrl = ReturnUrl;
