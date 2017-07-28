@@ -834,4 +834,43 @@
   <LocaleResource Name="OnlineTime">
     <Value>زمان متصل بودن</Value>
   </LocaleResource>
+  <LocaleResource Name="Reports">
+    <Value>گزارشات</Value>
+  </LocaleResource>
+  <LocaleResource Name="MaxTrafficUsage">
+    <Value>بیشترین مصرف ترافیک</Value>
+  </LocaleResource>
+  <LocaleResource Name="MaxTrafficUsageDescription">
+    <Value>نمودار و لیست افرادی که بیشترین مصرف را داشته اند</Value>
+  </LocaleResource>
+  <LocaleResource Name="MinTrafficUsage">
+    <Value>کمترین مصرف ترافیک</Value>
+  </LocaleResource>
+  <LocaleResource Name="MinTrafficUsageDescription">
+    <Value>نمودار و لیست افرادی که کمترین مصرف را داشته اند</Value>
+  </LocaleResource>
+  <LocaleResource Name="MaxTimeConnected">
+    <Value>بیشترین زمان اتصال</Value>
+  </LocaleResource>
+  <LocaleResource Name="MaxTimeConnectedDescription">
+    <Value>نمودار و لیست افرادی که بیشترین زمان اتصال را داشته اند</Value>
+  </LocaleResource>
+  <LocaleResource Name="UsermanagerTrafficUsage">
+    <Value>نمودار مصرف مجموعه</Value>
+  </LocaleResource>
+  <LocaleResource Name="UsermanagerTrafficUsageDescription">
+    <Value>مصرف کلی مجموعه که توسط یوزرمنیجر محاسبه شده است</Value>
+  </LocaleResource>
+  <LocaleResource Name="Logs">
+    <Value>لاگ ها</Value>
+  </LocaleResource>
+  <LocaleResource Name="UsermanagerLogsMessage">
+    <Value>گزارشی از لاگ های موجود در یوزرمنیجر</Value>
+  </LocaleResource>
+  <LocaleResource Name="ReportOfSessions">
+    <Value>گزارش اتصالات</Value>
+  </LocaleResource>
+  <LocaleResource Name="ReportOfSessionsDescription">
+    <Value>گزارش دقیق از اتصالات کاربران</Value>
+  </LocaleResource>
 </Language>

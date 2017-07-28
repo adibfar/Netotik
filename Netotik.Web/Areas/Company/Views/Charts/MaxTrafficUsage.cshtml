@@ -1,0 +1,757 @@
+﻿@{
+    ViewBag.Title = Netotik.Resources.Captions.Charts;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    String temp = "";
+}
+<div class="col-xl-12">
+    <div class="card">
+        <div class="card-body">
+            <div class="card-block sales-growth-chart">
+                <canvas id="DownloadSessions" height="300"></canvas>
+            </div>
+        </div>
+        <div class="card-footer">
+            <div class="chart-title mb-1 text-xs-center">
+                <span class="text-muted">10کاربری که بیشترین دانلود را نسبت به اتصالاتشان داشته اند</span>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="col-xl-12">
+    <div class="card">
+        <div class="card-body">
+            <div class="card-block sales-growth-chart">
+                <canvas id="DownloadSessions7" height="300"></canvas>
+            </div>
+        </div>
+        <div class="card-footer">
+            <div class="chart-title mb-1 text-xs-center">
+                <span class="text-muted">10کاربری که بیشترین دانلود را نسبت به اتصالاتشان در7روز گذشته داشته اند</span>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="col-xl-12">
+    <div class="card">
+        <div class="card-body">
+            <div class="card-block sales-growth-chart">
+                <canvas id="DownloadSessions30" height="300"></canvas>
+            </div>
+        </div>
+        <div class="card-footer">
+            <div class="chart-title mb-1 text-xs-center">
+                <span class="text-muted">10کاربری که بیشترین دانلود را نسبت به اتصالاتشان در30روز گذشته داشته اند</span>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="col-xl-12">
+    <div class="card">
+        <div class="card-body">
+            <div class="card-block sales-growth-chart">
+                <canvas id="DownloadUsers" height="300"></canvas>
+            </div>
+        </div>
+        <div class="card-footer">
+            <div class="chart-title mb-1 text-xs-center">
+                <span class="text-muted">10کاربری که بیشترین دانلود را نسبت به تعرفه انتخابی داشته اند.</span>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<div class="col-xl-12">
+    <div class="card">
+        <div class="card-body">
+            <div class="card-block sales-growth-chart">
+                <canvas id="UploadSessions" height="300"></canvas>
+            </div>
+        </div>
+        <div class="card-footer">
+            <div class="chart-title mb-1 text-xs-center">
+                <span class="text-muted">10کاربری که بیشترین آپلود را نسبت به اتصالاتشان داشته اند</span>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="col-xl-12">
+    <div class="card">
+        <div class="card-body">
+            <div class="card-block sales-growth-chart">
+                <canvas id="UploadSessions7" height="300"></canvas>
+            </div>
+        </div>
+        <div class="card-footer">
+            <div class="chart-title mb-1 text-xs-center">
+                <span class="text-muted">10کاربری که بیشترین آپلود را نسبت به اتصالاتشان در7روز گذشته داشته اند</span>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="col-xl-12">
+    <div class="card">
+        <div class="card-body">
+            <div class="card-block sales-growth-chart">
+                <canvas id="UploadSessions30" height="300"></canvas>
+            </div>
+        </div>
+        <div class="card-footer">
+            <div class="chart-title mb-1 text-xs-center">
+                <span class="text-muted">10کاربری که بیشترین آپلود را نسبت به اتصالاتشان در30روز گذشته داشته اند</span>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="col-xl-12">
+    <div class="card">
+        <div class="card-body">
+            <div class="card-block sales-growth-chart">
+                <canvas id="UploadUsers" height="300"></canvas>
+            </div>
+        </div>
+        <div class="card-footer">
+            <div class="chart-title mb-1 text-xs-center">
+                <span class="text-muted">10کاربری که بیشترین آپلود را نسبت به تعرفه انتخابی داشته اند.</span>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@section DownScript{
+    <script src="~/Content/js/plugins/charts/chart.min.js" type="text/javascript"></script>
+
+    <script src="~/Content/js/plugins/extensions/jquery.knob.min.js" type="text/javascript"></script>
+    <script src="~/Content/js/components/extensions/knob.js" type="text/javascript"></script>
+
+
+    <script type="text/javascript">
+        $(window).on("load", function () {
+            var a = $("#DownloadSessions"),
+                b = {
+                    elements: {
+                        rectangle: {
+                            borderWidth: 2,
+                            borderColor: "rgb(0, 255, 0)",
+                            borderSkipped: "bottom"
+                        }
+                    },
+                    responsive: !0,
+                    maintainAspectRatio: !1,
+                    responsiveAnimationDuration: 500,
+                    legend: {
+                        position: "top"
+                    },
+                    scales: {
+                        xAxes: [{
+                            display: !0,
+                            gridLines: {
+                                color: "#f3f3f3",
+                                drawTicks: !1
+                            },
+                            scaleLabel: {
+                                display: !0
+                            }
+                        }],
+                        yAxes: [{
+                            display: !0,
+                            gridLines: {
+                                color: "#f3f3f3",
+                                drawTicks: !1
+                            },
+                            scaleLabel: {
+                                display: !0
+                            }
+                        }]
+                    },
+                    title: {
+                        display: !0,
+                        text: "نمودار 10 کاربر"
+                    }
+                },
+                c = {
+                    labels: [
+                         @foreach(var item in ViewBag.UserListDownloadBySessions)
+                         {
+                             @Html.Raw('"')
+                            @(item.Key.ToString())
+                             @Html.Raw('"')
+                             @(" , ")
+                        }
+                    ],
+                    datasets: [{
+                        label: "@Netotik.Resources.Captions.Download MB",
+                        data: [
+                            @foreach(var item in ViewBag.UserListDownloadBySessions)
+                            {
+                                temp = item.Value.ToString() + " , ";
+                                @(temp)
+                            }
+                        ],
+                        backgroundColor: "#673AB7",
+                        hoverBackgroundColor: "rgba(103,58,183,.9)",
+                        borderColor: "transparent"
+                    }]
+                },
+                d = {
+                    type: "bar",
+                    options: b,
+                    data: c
+                };
+            new Chart(a, d)
+        });
+
+
+
+        $(window).on("load", function () {
+            var a = $("#DownloadSessions7"),
+                b = {
+                    elements: {
+                        rectangle: {
+                            borderWidth: 2,
+                            borderColor: "rgb(0, 255, 0)",
+                            borderSkipped: "bottom"
+                        }
+                    },
+                    responsive: !0,
+                    maintainAspectRatio: !1,
+                    responsiveAnimationDuration: 500,
+                    legend: {
+                        position: "top"
+                    },
+                    scales: {
+                        xAxes: [{
+                            display: !0,
+                            gridLines: {
+                                color: "#f3f3f3",
+                                drawTicks: !1
+                            },
+                            scaleLabel: {
+                                display: !0
+                            }
+                        }],
+                        yAxes: [{
+                            display: !0,
+                            gridLines: {
+                                color: "#f3f3f3",
+                                drawTicks: !1
+                            },
+                            scaleLabel: {
+                                display: !0
+                            }
+                        }]
+                    },
+                    title: {
+                        display: !0,
+                        text: "نمودار 10 کاربر"
+                    }
+                },
+                c = {
+                    labels: [
+                         @foreach(var item in ViewBag.UserListDownloadBySessions7)
+            {
+                @Html.Raw('"')
+                            @(item.Key.ToString())
+                             @Html.Raw('"')
+                             @(" , ")
+            }
+                    ],
+                    datasets: [{
+                        label: "@Netotik.Resources.Captions.Download MB",
+                        data: [
+                            @foreach(var item in ViewBag.UserListDownloadBySessions7)
+                            {
+                                temp = item.Value.ToString() + " , ";
+                            @(temp)
+        }
+                        ],
+                        backgroundColor: "#673AB7",
+                        hoverBackgroundColor: "rgba(103,58,183,.9)",
+                        borderColor: "transparent"
+                    }]
+                },
+        d = {
+            type: "bar",
+            options: b,
+            data: c
+        };
+            new Chart(a, d)
+        });
+
+
+        $(window).on("load", function () {
+            var a = $("#DownloadSessions30"),
+                b = {
+                    elements: {
+                        rectangle: {
+                            borderWidth: 2,
+                            borderColor: "rgb(0, 255, 0)",
+                            borderSkipped: "bottom"
+                        }
+                    },
+                    responsive: !0,
+                    maintainAspectRatio: !1,
+                    responsiveAnimationDuration: 500,
+                    legend: {
+                        position: "top"
+                    },
+                    scales: {
+                        xAxes: [{
+                            display: !0,
+                            gridLines: {
+                                color: "#f3f3f3",
+                                drawTicks: !1
+                            },
+                            scaleLabel: {
+                                display: !0
+                            }
+                        }],
+                        yAxes: [{
+                            display: !0,
+                            gridLines: {
+                                color: "#f3f3f3",
+                                drawTicks: !1
+                            },
+                            scaleLabel: {
+                                display: !0
+                            }
+                        }]
+                    },
+                    title: {
+                        display: !0,
+                        text: "نمودار 10 کاربر"
+                    }
+                },
+                c = {
+                    labels: [
+                         @foreach(var item in ViewBag.UserListDownloadBySessions30)
+            {
+                @Html.Raw('"')
+                            @(item.Key.ToString())
+                             @Html.Raw('"')
+                             @(" , ")
+            }
+                    ],
+                    datasets: [{
+                        label: "@Netotik.Resources.Captions.Download MB",
+                        data: [
+                            @foreach(var item in ViewBag.UserListDownloadBySessions30)
+                            {
+                                temp = item.Value.ToString() + " , ";
+                            @(temp)
+        }
+                        ],
+                        backgroundColor: "#673AB7",
+                        hoverBackgroundColor: "rgba(103,58,183,.9)",
+                        borderColor: "transparent"
+                    }]
+                },
+        d = {
+            type: "bar",
+            options: b,
+            data: c
+        };
+            new Chart(a, d)
+        });
+
+        $(window).on("load", function () {
+            var a = $("#DownloadUsers"),
+                b = {
+                    elements: {
+                        rectangle: {
+                            borderWidth: 2,
+                            borderColor: "rgb(0, 255, 0)",
+                            borderSkipped: "bottom"
+                        }
+                    },
+                    responsive: !0,
+                    maintainAspectRatio: !1,
+                    responsiveAnimationDuration: 500,
+                    legend: {
+                        position: "top"
+                    },
+                    scales: {
+                        xAxes: [{
+                            display: !0,
+                            gridLines: {
+                                color: "#f3f3f3",
+                                drawTicks: !1
+                            },
+                            scaleLabel: {
+                                display: !0
+                            }
+                        }],
+                        yAxes: [{
+                            display: !0,
+                            gridLines: {
+                                color: "#f3f3f3",
+                                drawTicks: !1
+                            },
+                            scaleLabel: {
+                                display: !0
+                            }
+                        }]
+                    },
+                    title: {
+                        display: !0,
+                        text: "نمودار 10 کاربر"
+                    }
+                },
+                c = {
+                    labels: [
+                         @foreach(var item in ViewBag.UserListDownloadByUsers)
+            {
+                @Html.Raw('"')
+                            @(item.Key.ToString())
+                             @Html.Raw('"')
+                             @(" , ")
+            }
+                    ],
+                    datasets: [{
+                        label: "@Netotik.Resources.Captions.Download MB",
+                        data: [
+                            @foreach(var item in ViewBag.UserListDownloadByUsers)
+                            {
+                                temp = item.Value.ToString() + " , ";
+                            @(temp)
+        }
+                        ],
+                        backgroundColor: "#673AB7",
+                        hoverBackgroundColor: "rgba(103,58,183,.9)",
+                        borderColor: "transparent"
+                    }]
+                },
+        d = {
+            type: "bar",
+            options: b,
+            data: c
+        };
+            new Chart(a, d)
+        });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        $(window).on("load", function () {
+            var a = $("#UploadSessions"),
+                b = {
+                    elements: {
+                        rectangle: {
+                            borderWidth: 2,
+                            borderColor: "rgb(0, 255, 0)",
+                            borderSkipped: "bottom"
+                        }
+                    },
+                    responsive: !0,
+                    maintainAspectRatio: !1,
+                    responsiveAnimationDuration: 500,
+                    legend: {
+                        position: "top"
+                    },
+                    scales: {
+                        xAxes: [{
+                            display: !0,
+                            gridLines: {
+                                color: "#f3f3f3",
+                                drawTicks: !1
+                            },
+                            scaleLabel: {
+                                display: !0
+                            }
+                        }],
+                        yAxes: [{
+                            display: !0,
+                            gridLines: {
+                                color: "#f3f3f3",
+                                drawTicks: !1
+                            },
+                            scaleLabel: {
+                                display: !0
+                            }
+                        }]
+                    },
+                    title: {
+                        display: !0,
+                        text: "نمودار 10 کاربر"
+                    }
+                },
+                c = {
+                    labels: [
+                         @foreach(var item in ViewBag.UserListUploadBySessions)
+            {
+                @Html.Raw('"')
+                            @(item.Key.ToString())
+                             @Html.Raw('"')
+                             @(" , ")
+            }
+                    ],
+                    datasets: [{
+                        label: "@Netotik.Resources.Captions.Upload MB",
+                        data: [
+                            @foreach(var item in ViewBag.UserListUploadBySessions)
+                            {
+                                temp = item.Value.ToString() + " , ";
+                           @(temp)
+        }
+                        ],
+                        backgroundColor: "#673AB7",
+                        hoverBackgroundColor: "rgba(103,58,183,.9)",
+                        borderColor: "transparent"
+                    }]
+                },
+        d = {
+            type: "bar",
+            options: b,
+            data: c
+        };
+            new Chart(a, d)
+        });
+
+
+
+        $(window).on("load", function () {
+            var a = $("#UploadSessions7"),
+                b = {
+                    elements: {
+                        rectangle: {
+                            borderWidth: 2,
+                            borderColor: "rgb(0, 255, 0)",
+                            borderSkipped: "bottom"
+                        }
+                    },
+                    responsive: !0,
+                    maintainAspectRatio: !1,
+                    responsiveAnimationDuration: 500,
+                    legend: {
+                        position: "top"
+                    },
+                    scales: {
+                        xAxes: [{
+                            display: !0,
+                            gridLines: {
+                                color: "#f3f3f3",
+                                drawTicks: !1
+                            },
+                            scaleLabel: {
+                                display: !0
+                            }
+                        }],
+                        yAxes: [{
+                            display: !0,
+                            gridLines: {
+                                color: "#f3f3f3",
+                                drawTicks: !1
+                            },
+                            scaleLabel: {
+                                display: !0
+                            }
+                        }]
+                    },
+                    title: {
+                        display: !0,
+                        text: "نمودار 10 کاربر"
+                    }
+                },
+                c = {
+                    labels: [
+                         @foreach(var item in ViewBag.UserListUploadBySessions7)
+            {
+                @Html.Raw('"')
+                            @(item.Key.ToString())
+                             @Html.Raw('"')
+                             @(" , ")
+            }
+                    ],
+                    datasets: [{
+                        label: "@Netotik.Resources.Captions.Upload MB",
+                        data: [
+                            @foreach(var item in ViewBag.UserListUploadBySessions7)
+                            {
+                                temp = item.Value.ToString() + " , ";
+                            @(temp)
+        }
+                        ],
+                        backgroundColor: "#673AB7",
+                        hoverBackgroundColor: "rgba(103,58,183,.9)",
+                        borderColor: "transparent"
+                    }]
+                },
+        d = {
+            type: "bar",
+            options: b,
+            data: c
+        };
+            new Chart(a, d)
+        });
+
+
+        $(window).on("load", function () {
+            var a = $("#UploadSessions30"),
+                b = {
+                    elements: {
+                        rectangle: {
+                            borderWidth: 2,
+                            borderColor: "rgb(0, 255, 0)",
+                            borderSkipped: "bottom"
+                        }
+                    },
+                    responsive: !0,
+                    maintainAspectRatio: !1,
+                    responsiveAnimationDuration: 500,
+                    legend: {
+                        position: "top"
+                    },
+                    scales: {
+                        xAxes: [{
+                            display: !0,
+                            gridLines: {
+                                color: "#f3f3f3",
+                                drawTicks: !1
+                            },
+                            scaleLabel: {
+                                display: !0
+                            }
+                        }],
+                        yAxes: [{
+                            display: !0,
+                            gridLines: {
+                                color: "#f3f3f3",
+                                drawTicks: !1
+                            },
+                            scaleLabel: {
+                                display: !0
+                            }
+                        }]
+                    },
+                    title: {
+                        display: !0,
+                        text: "نمودار 10 کاربر"
+                    }
+                },
+                c = {
+                    labels: [
+                         @foreach(var item in ViewBag.UserListUploadBySessions30)
+            {
+                @Html.Raw('"')
+                            @(item.Key.ToString())
+                             @Html.Raw('"')
+                             @(" , ")
+            }
+                    ],
+                    datasets: [{
+                        label: "@Netotik.Resources.Captions.Upload MB",
+                        data: [
+                            @foreach(var item in ViewBag.UserListUploadBySessions30)
+                            {
+                                temp = item.Value.ToString() + " , ";
+                            @(temp)
+        }
+                        ],
+                        backgroundColor: "#673AB7",
+                        hoverBackgroundColor: "rgba(103,58,183,.9)",
+                        borderColor: "transparent"
+                    }]
+                },
+        d = {
+            type: "bar",
+            options: b,
+            data: c
+        };
+            new Chart(a, d)
+        });
+
+        $(window).on("load", function () {
+            var a = $("#UploadUsers"),
+                b = {
+                    elements: {
+                        rectangle: {
+                            borderWidth: 2,
+                            borderColor: "rgb(0, 255, 0)",
+                            borderSkipped: "bottom"
+                        }
+                    },
+                    responsive: !0,
+                    maintainAspectRatio: !1,
+                    responsiveAnimationDuration: 500,
+                    legend: {
+                        position: "top"
+                    },
+                    scales: {
+                        xAxes: [{
+                            display: !0,
+                            gridLines: {
+                                color: "#f3f3f3",
+                                drawTicks: !1
+                            },
+                            scaleLabel: {
+                                display: !0
+                            }
+                        }],
+                        yAxes: [{
+                            display: !0,
+                            gridLines: {
+                                color: "#f3f3f3",
+                                drawTicks: !1
+                            },
+                            scaleLabel: {
+                                display: !0
+                            }
+                        }]
+                    },
+                    title: {
+                        display: !0,
+                        text: "نمودار 10 کاربر"
+                    }
+                },
+                c = {
+                    labels: [
+                         @foreach(var item in ViewBag.UserListUploadByUsers)
+            {
+                @Html.Raw('"')
+                            @(item.Key.ToString())
+                             @Html.Raw('"')
+                             @(" , ")
+            }
+                    ],
+                    datasets: [{
+                        label: "@Netotik.Resources.Captions.Upload MB",
+                        data: [
+                            @foreach(var item in ViewBag.UserListUploadByUsers)
+                            {
+                                temp = item.Value.ToString() + " , ";
+                            @(temp)
+        }
+                        ],
+                        backgroundColor: "#673AB7",
+                        hoverBackgroundColor: "rgba(103,58,183,.9)",
+                        borderColor: "transparent"
+                    }]
+                },
+        d = {
+            type: "bar",
+            options: b,
+            data: c
+        };
+            new Chart(a, d)
+        });
+    </script>
+}

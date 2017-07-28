@@ -3832,6 +3832,98 @@ namespace Netotik.Resources
                 return resourceProvider.GetResource("OnlineTime", CultureInfo.CurrentUICulture.Name) as string;
             }
         }
+        public static string Reports
+        {
+            get
+            {
+                return resourceProvider.GetResource("Reports", CultureInfo.CurrentUICulture.Name) as string;
+            }
+        }
+        public static string UsermanagerTrafficUsageDescription
+        {
+            get
+            {
+                return resourceProvider.GetResource("UsermanagerTrafficUsageDescription", CultureInfo.CurrentUICulture.Name) as string;
+            }
+        }
+        public static string UsermanagerTrafficUsage
+        {
+            get
+            {
+                return resourceProvider.GetResource("UsermanagerTrafficUsage", CultureInfo.CurrentUICulture.Name) as string;
+            }
+        }
+        public static string MaxTimeConnectedDescription
+        {
+            get
+            {
+                return resourceProvider.GetResource("MaxTimeConnectedDescription", CultureInfo.CurrentUICulture.Name) as string;
+            }
+        }
+        public static string MaxTimeConnected
+        {
+            get
+            {
+                return resourceProvider.GetResource("MaxTimeConnected", CultureInfo.CurrentUICulture.Name) as string;
+            }
+        }
+        public static string MinTrafficUsageDescription
+        {
+            get
+            {
+                return resourceProvider.GetResource("MinTrafficUsageDescription", CultureInfo.CurrentUICulture.Name) as string;
+            }
+        }
+        public static string MinTrafficUsage
+        {
+            get
+            {
+                return resourceProvider.GetResource("MinTrafficUsage", CultureInfo.CurrentUICulture.Name) as string;
+            }
+        }
+        public static string MaxTrafficUsageDescription
+        {
+            get
+            {
+                return resourceProvider.GetResource("MaxTrafficUsageDescription", CultureInfo.CurrentUICulture.Name) as string;
+            }
+        }
+        public static string MaxTrafficUsage
+        {
+            get
+            {
+                return resourceProvider.GetResource("MaxTrafficUsage", CultureInfo.CurrentUICulture.Name) as string;
+            }
+        }
+        public static string Logs
+        {
+            get
+            {
+                return resourceProvider.GetResource("Logs", CultureInfo.CurrentUICulture.Name) as string;
+            }
+        }
+        public static string UsermanagerLogsMessage
+        {
+            get
+            {
+                return resourceProvider.GetResource("UsermanagerLogsMessage", CultureInfo.CurrentUICulture.Name) as string;
+            }
+        }
+        public static string ReportOfSessions
+        {
+            get
+            {
+                return resourceProvider.GetResource("ReportOfSessions", CultureInfo.CurrentUICulture.Name) as string;
+            }
+        }
+        public static string ReportOfSessionsDescription
+        {
+            get
+            {
+                return resourceProvider.GetResource("ReportOfSessionsDescription", CultureInfo.CurrentUICulture.Name) as string;
+            }
+        }
+
         //<!--======================Messages Ehsan EM===========================-->
 
 

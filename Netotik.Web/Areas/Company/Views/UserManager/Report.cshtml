@@ -1,4 +1,115 @@
-﻿@{
-    ViewBag.Title = "گزارشات";
+﻿@using Netotik.Resources;
+@{
+    ViewBag.Title = Captions.Reports;
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+<div calss="row">
+    <div class="col-xl-6">
+        <div class="card overflow-hidden">
+            <div class="card-body">
+                <div class="media">
+                    <div class="media-left bg-cyan p-2 media-middle">
+                        <i class="icon-trending_up font-large-2 white"></i>
+                    </div>
+                    <div class="media-body p-2">
+                        <h4>@Captions.MaxTrafficUsage</h4>
+                        <span>@Captions.MaxTrafficUsageDescription</span>
+                    </div>
+                    <div class="media-right p-2 media-middle">
+                        <a href="@Url.Action(MVC.Company.Charts.MaxTrafficUsage())" class="btn btn-icon bg-cyan btn-round mr-1">@Captions.Details</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-xl-6">
+        <div class="card overflow-hidden">
+            <div class="card-body">
+                <div class="media">
+                    <div class="media-left bg-cyan p-2 media-middle">
+                        <i class="icon-trending_down font-large-2 white"></i>
+                    </div>
+                    <div class="media-body p-2">
+                        <h4>@Captions.MinTrafficUsage</h4>
+                        <span>@Captions.MinTrafficUsageDescription</span>
+                    </div>
+                    <div class="media-right p-2 media-middle">
+                        <a href="@Url.Action(MVC.Company.Charts.MinTrafficUsage())" class="btn btn-icon bg-cyan btn-round mr-1">@Captions.Details</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-xl-6">
+        <div class="card overflow-hidden">
+            <div class="card-body">
+                <div class="media">
+                    <div class="media-left bg-teal p-2 media-middle">
+                        <i class="icon-meter font-large-2 white"></i>
+                    </div>
+                    <div class="media-body p-2">
+                        <h4>@Captions.MaxTimeConnected</h4>
+                        <span>@Captions.MaxTimeConnectedDescription</span>
+                    </div>
+                    <div class="media-right p-2 media-middle">
+                        <a href="#" class="btn btn-icon bg-teal btn-round mr-1">@Captions.Details</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-xl-6">
+        <div class="card overflow-hidden">
+            <div class="card-body">
+                <div class="media">
+                    <div class="media-left bg-teal p-2 media-middle">
+                        <i class="icon-diagram font-large-2 white"></i>
+                    </div>
+                    <div class="media-body p-2">
+                        <h4>@Captions.UsermanagerTrafficUsage</h4>
+                        <span>@Captions.UsermanagerTrafficUsageDescription</span>
+                    </div>
+                    <div class="media-right p-2 media-middle">
+                        <a href="@Url.Action(MVC.Company.Charts.UsermanagerUsage())" class="btn btn-icon bg-teal btn-round mr-1">@Captions.Details</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-xl-6">
+        <div class="card overflow-hidden">
+            <div class="card-body">
+                <div class="media">
+                    <div class="media-left bg-orange p-2 media-middle">
+                        <i class="icon-file-text font-large-2 white"></i>
+                    </div>
+                    <div class="media-body p-2">
+                        <h4>@Captions.Logs</h4>
+                        <span>@Captions.UsermanagerLogsMessage</span>
+                    </div>
+                    <div class="media-right p-2 media-middle">
+                        <a href="@Url.Action(MVC.Company.Charts.Logs())" class="btn btn-icon bg-orange btn-round mr-1">@Captions.Details</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-xl-6">
+        <div class="card overflow-hidden">
+            <div class="card-body">
+                <div class="media">
+                    <div class="media-left bg-orange p-2 media-middle">
+                        <i class="icon-sphere font-large-2 white"></i>
+                    </div>
+                    <div class="media-body p-2">
+                        <h4>@Captions.ReportOfSessions</h4>
+                        <span>@Captions.ReportOfSessionsDescription</span>
+                    </div>
+                    <div class="media-right p-2 media-middle">
+                        <a href="@Url.Action(MVC.Company.Charts.Sessions())" class="btn btn-icon bg-orange btn-round mr-1">@Captions.Details</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

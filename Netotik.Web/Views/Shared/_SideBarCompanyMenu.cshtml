@@ -14,15 +14,13 @@
                     <li><a href="@Url.Action(MVC.Company.UserManager.UserList())" data-toggle="dropdown" class="dropdown-item">@Captions.UsersList</a></li>
                     <li><a href="@Url.Action(MVC.Company.UserManager.PackageList())" data-toggle="dropdown" class="dropdown-item">@Captions.PackageList</a></li>
                     <li><a href="@Url.Action(MVC.Company.UserManager.Register())" data-toggle="dropdown" class="dropdown-item">@Captions.Register</a></li>
-                    @if (false)//----------------------------------------------------------------------------------------------------------------------------------
-                    {<li><a href="@Url.Action(MVC.Company.UserManager.Report())" data-toggle="dropdown" class="dropdown-item">گزارش ها</a></li>
+                    <li><a href="@Url.Action(MVC.Company.UserManager.Report())" data-toggle="dropdown" class="dropdown-item">@Captions.Reports</a></li>
                     <li><a href="@Url.Action(MVC.Company.UserManager.ClientArea())" data-toggle="dropdown" class="dropdown-item">@Captions.UserPanel</a></li>
-                    }
                 </ul>
             </li>
 
             <li data-menu="dropdown" class="dropdown nav-item">
-                <a href="#" data-toggle="dropdown" class="dropdown-toggle nav-link"><i class="icon-drive"></i><span>روتر</span></a>
+                <a href="#" data-toggle="dropdown" class="dropdown-toggle nav-link"><i class="icon-drive"></i><span>@Captions.Router</span></a>
                 <ul class="dropdown-menu">
                     <li><a href="@Url.Action(MVC.Company.Router.Info())" data-toggle="dropdown" class="dropdown-item">@Captions.RouterInformation</a></li>
                     <li><a href="@Url.Action(MVC.Company.Router.RouterSetting())" data-toggle="dropdown" class="dropdown-item">@Captions.Actions</a></li>

@@ -402,6 +402,7 @@
     <Compile Include="Areas\Admin\Controllers\UserAdminController.cs" />
     <Compile Include="Areas\Client\Controllers\HomeController.cs" />
     <Compile Include="Areas\Company\CompanyAreaRegistration.cs" />
+    <Compile Include="Areas\Company\Controllers\ChartsController.cs" />
     <Compile Include="Areas\Company\Controllers\RouterController.cs" />
     <Compile Include="Areas\Company\Controllers\HotspotController.cs" />
     <Compile Include="Areas\Company\Controllers\UserManagerController.cs" />
@@ -414,6 +415,9 @@
       <DependentUpon>T4MVC.tt</DependentUpon>
     </Compile>
     <Compile Include="Client.HomeController.generated.cs">
+      <DependentUpon>T4MVC.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Company.ChartsController.generated.cs">
       <DependentUpon>T4MVC.tt</DependentUpon>
     </Compile>
     <Compile Include="Company.HomeController.generated.cs">
@@ -509,7 +513,9 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="App_Data\Languages\en.xml" />
+    <Content Include="App_Data\Languages\en.xml">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="App_Data\Languages\fa.xml">
       <SubType>Designer</SubType>
     </Content>
@@ -3584,6 +3590,12 @@
     <Content Include="Areas\Client\Views\Home\Charts.cshtml" />
     <Content Include="Areas\Client\Views\Home\BuyPackage.cshtml" />
     <Content Include="Areas\Company\Views\UserManager\ClientArea.cshtml" />
+    <Content Include="Areas\Company\Views\Charts\MaxTrafficUsage.cshtml" />
+    <Content Include="Areas\Company\Views\Charts\MinTrafficUsage.cshtml" />
+    <Content Include="Areas\Company\Views\Charts\MaxTimeUsage.cshtml" />
+    <Content Include="Areas\Company\Views\Charts\UsermanagerUsage.cshtml" />
+    <Content Include="Areas\Company\Views\Charts\Sessions.cshtml" />
+    <Content Include="Areas\Company\Views\Charts\Logs.cshtml" />
     <None Include="Properties\PublishProfiles\DNMA.pubxml" />
     <None Include="T4MVC.tt">
       <Generator>TextTemplatingFileGenerator</Generator>

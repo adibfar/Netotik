@@ -148,6 +148,7 @@
     <Compile Include="CMS\Menu\MenuModel.cs" />
     <Compile Include="Common\Language\ResourceItem.cs" />
     <Compile Include="Identity\Security\AssignableToRolePermissions.cs" />
+    <Compile Include="Mikrotik\Usermanager\LogModel.cs" />
     <Compile Include="Shop\PeymentType\PeymentTypeModel.cs" />
     <Compile Include="Shop\PeymentType\TableManufacturerModel.cs" />
     <Compile Include="CMS\Slider\SliderModel.cs" />

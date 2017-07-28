@@ -2,32 +2,58 @@
 @{
     var clientPermissions = ViewBag.ClientPermissions as List<SelectListItem>;
 }
-
-@using (Html.BeginForm(MVC.Company.UserManager.ActionNames.ClientArea, MVC.Company.UserManager.Name, FormMethod.Post,
-                                 htmlAttributes: new { @class = "form-horizontal", enctype = "multipart/form-data", id = "form" }))
-{
-    @Html.AntiForgeryToken()
-    <div class="card">
-        <div class="card-header">
-            <button name="actionType" value="@Netotik.Common.Controller.ActionType.Save" class="btn btn-social width-100 btn-instagram" onclick="AjaxForm.Post(this, 'form')" data-loading-text="در حال ارسال اطلاعات">
-                <span class="icon-checkmark2 font-medium-4"></span>
-                @Netotik.Resources.Captions.Save
-            </button>
-        </div>
-        <div class="card-body">
-            <div class="card-block">
-                <div class="row">
-                    <div class="row skin skin-flat">
-                        @foreach (var item in clientPermissions)
-                        {
-                            <div class="col-md-4">
-                                <input type="checkbox" name="ClientPermissionNames"  @(item.Selected ? "checked" : "") value="@item.Value">
-                                @Html.Label("ClientPermissionNames", item.Text)
-                            </div>
-                        }
-                    </div>
+<div class="row">
+    <div class="col-md-12 col-sm-12">
+        <div class="card box-shadow-0 border-success">
+            <div class="card-header card-head-inverse bg-success">
+                <h4 class="card-title">@Netotik.Resources.Captions.UserLoginLink</h4>
+                <a class="heading-elements-toggle"><i class="icon-ellipsis font-medium-3"></i></a>
+                <div class="heading-elements">
+                    <ul class="list-inline mb-0">
+                        <li><a data-action="collapse"><i class="icon-minus4"></i></a></li>
+                        <li><a data-action="reload"><i class="icon-reload"></i></a></li>
+                        <li><a data-action="close"><i class="icon-cross2"></i></a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="card-body collapse in">
+                <div class="card-block">
+                    <p>
+                        @Netotik.Resources.Captions.UserLoginMessage
+                    </p>
+                    <a href="https://netotik.com/fa/userman/@ViewBag.CompanyCode" class="btn btn-float-lg btn-outline-pink btn-social" style="width:100%;"><i class="icon-world" style="padding-top:7px;"></i><span>https://netotik.com/fa/userman/@ViewBag.CompanyCode</span></a>
                 </div>
             </div>
         </div>
     </div>
-}
+</div>
+<div class="row">
+    @using (Html.BeginForm(MVC.Company.UserManager.ActionNames.ClientArea, MVC.Company.UserManager.Name, FormMethod.Post,
+                                                 htmlAttributes: new { @class = "form-horizontal", enctype = "multipart/form-data", id = "form" }))
+    {
+        @Html.AntiForgeryToken()
+        <div class="card">
+            <div class="card-header">
+                <button name="actionType" value="@Netotik.Common.Controller.ActionType.Save" class="btn btn-social width-100 btn-instagram" onclick="AjaxForm.Post(this, 'form')" data-loading-text="در حال ارسال اطلاعات">
+                    <span class="icon-checkmark2 font-medium-4"></span>
+                    @Netotik.Resources.Captions.Save
+                </button>
+            </div>
+            <div class="card-body">
+                <div class="card-block">
+                    <div class="row">
+                        <div class="row skin skin-flat">
+                            @foreach (var item in clientPermissions)
+                            {
+                                <div class="col-md-4">
+                                    <input type="checkbox" name="ClientPermissionNames" @(item.Selected ? "checked" : "") value="@item.Value">
+                                    @Html.Label("ClientPermissionNames", item.Text)
+                                </div>
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+</div>

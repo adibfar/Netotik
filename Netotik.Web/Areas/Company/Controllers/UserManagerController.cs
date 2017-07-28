@@ -908,7 +908,7 @@ namespace Netotik.Web.Areas.Company.Controllers
         }
         public virtual ActionResult ClientArea()
         {
-
+            ViewBag.CompanyCode = UserLogined.UserCompany.CompanyCode;
             PopulatePermissions(_applicationUserManager.FindClientPermissions(UserLogined.Id).ToArray());
             return View();
         }
@@ -922,9 +922,6 @@ namespace Netotik.Web.Areas.Company.Controllers
             _applicationUserManager.UpdateUserCompanyProfile(model);
             return RedirectToAction(MVC.Company.UserManager.ActionNames.ClientArea);
         }
-
-
-
 
     }
 }

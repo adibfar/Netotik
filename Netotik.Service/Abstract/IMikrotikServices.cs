@@ -11,6 +11,7 @@ namespace Netotik.Services.Abstract
         List<Netotik.ViewModels.Identity.UserClient.UserModel> Usermanager_GetUser(string ip, int port, string user, string pass,string id);
         void Usermanager_DisableUser(string ip, int port, string user, string pass, string UsermanUser);
         List<Netotik.ViewModels.Identity.UserClient.UserSessionModel> Usermanager_UserSession(string ip, int port, string user, string pass, string UsermanUser);
+        List<Netotik.ViewModels.Identity.UserClient.UserSessionModel> Usermanager_GetAllUsersSessions(string ip, int port, string user, string pass);
         List<Netotik.ViewModels.Identity.UserClient.PaymentModel> Usermanager_Payment(string ip, int port, string user, string pass, string UsermanUser);
         void Usermanager_RemoveUser(string ip, int port, string user, string pass, string UsermanUser);
         void Usermanager_RemoveProfile(string ip, int port, string user, string pass, string UsermanProfile);
@@ -79,5 +80,6 @@ namespace Netotik.Services.Abstract
         void Usermanager_UserChangePassword(string ip, int port, string user, string pass, Netotik.ViewModels.Identity.UserClient.ChangePasswordModel model,string id);
         void Usermanager_UserRegKey(string ip, int port, string user, string pass, string UsermanUser , string RegKey);
         void Usermanager_UserRegDayte(string ip, int port, string user, string pass, string UsermanUser , string RegDate);
+        List<Usermanager_LogModel> Usermanager_GetAllLogs(string r_Host, int r_Port, string r_User, string r_Password);
     }
 }

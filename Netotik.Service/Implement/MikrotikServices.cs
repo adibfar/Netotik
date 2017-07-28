@@ -383,7 +383,7 @@ namespace Netotik.Services.Implement
             mikrotik.MK(ip, port);
             if (!mikrotik.Login(user, pass)) mikrotik.Close();
             //-------------------------------------------------
-            foreach (var item in Usermanager_GetUser(ip, port, user, pass,username))
+            foreach (var item in Usermanager_GetUser(ip, port, user, pass, username))
             {
                 if (item.username == username || item.id == username) return true;
             }
@@ -424,10 +424,10 @@ namespace Netotik.Services.Implement
                 mikrotik.Send(temp);
             temp = String.Format("=username={0}", usermanuser.username);
             mikrotik.Send(temp, true);
-            foreach (var item in Usermanager_GetUser(ip, port, user, pass,usermanuser.username))
+            foreach (var item in Usermanager_GetUser(ip, port, user, pass, usermanuser.username))
                 if (item.username == usermanuser.username)
                     temp = String.Format("=.id={0}", item.id);
-            Usermanager_UserRegKey(ip, port, user, pass, usermanuser.username, PersianDate.ConvertDate.ToFa(DateTime.Now,"G"));
+            Usermanager_UserRegKey(ip, port, user, pass, usermanuser.username, PersianDate.ConvertDate.ToFa(DateTime.Now, "G"));
             mikrotik.Send("/tool/user-manager/user/create-and-activate-profile");
             mikrotik.Send(temp);
             temp = String.Format("=customer={0}", usermanuser.customer);
@@ -533,6 +533,51 @@ namespace Netotik.Services.Implement
             }
             return usersessionmodelresualt;
         }
+        public List<Netotik.ViewModels.Identity.UserClient.UserSessionModel> Usermanager_GetAllUsersSessions(string ip, int port, string user, string pass)
+        {
+            var mikrotik = new MikrotikAPI();
+            mikrotik.MK(ip, port);
+            if (!mikrotik.Login(user, pass)) mikrotik.Close();
+            //-----------------------------------------------
+            mikrotik.Send("/tool/user-manager/session/print",true);
+
+            var usersessionmodel = new List<Netotik.ViewModels.Identity.UserClient.UserSessionModel>();
+            foreach (var item in mikrotik.Read())
+            {
+                if (item != "!done")
+                {
+                    var cols = item.Split('=');
+                    var ColumnList = new Dictionary<string, string>();
+                    for (int i = 1; i < cols.Count(); i += 2)
+                    {
+                        ColumnList.Add(cols[i], cols[i + 1]);
+                    }
+                    usersessionmodel.Add(new Netotik.ViewModels.Identity.UserClient.UserSessionModel()
+                    {
+                        id = ColumnList.Any(x => x.Key == ".id") ? (ColumnList.FirstOrDefault(x => x.Key == ".id").Value) : "",
+                        customer = ColumnList.Any(x => x.Key == "customer") ? (ColumnList.FirstOrDefault(x => x.Key == "customer").Value) : "",
+                        user = ColumnList.Any(x => x.Key == "user") ? (ColumnList.FirstOrDefault(x => x.Key == "user").Value) : "",
+                        acct_session_id = ColumnList.Any(x => x.Key == "acct-session-id") ? (ColumnList.FirstOrDefault(x => x.Key == "acct-session-id").Value) : "",
+                        calling_station_id = ColumnList.Any(x => x.Key == "calling-station-id") ? (ColumnList.FirstOrDefault(x => x.Key == "calling-station-id").Value) : "",
+                        download = ColumnList.Any(x => x.Key == "download") ? (ColumnList.FirstOrDefault(x => x.Key == "download").Value) : "",
+                        from_time = ColumnList.Any(x => x.Key == "from-time") ? (ColumnList.FirstOrDefault(x => x.Key == "from-time").Value) : "",
+                        host_ip = ColumnList.Any(x => x.Key == "host-ip") ? (ColumnList.FirstOrDefault(x => x.Key == "host-ip").Value) : "",
+                        nas_port = ColumnList.Any(x => x.Key == "nas-port") ? (ColumnList.FirstOrDefault(x => x.Key == "nas-port").Value) : "",
+                        nas_port_id = ColumnList.Any(x => x.Key == "nas-port-id") ? (ColumnList.FirstOrDefault(x => x.Key == "nas-port-id").Value) : "",
+                        nas_port_type = ColumnList.Any(x => x.Key == "nas-port-type") ? (ColumnList.FirstOrDefault(x => x.Key == "nas-port-type").Value) : "",
+                        status = ColumnList.Any(x => x.Key == "status") ? (ColumnList.FirstOrDefault(x => x.Key == "status").Value) : "",
+                        terminate_cause = ColumnList.Any(x => x.Key == "terminate-cause") ? (ColumnList.FirstOrDefault(x => x.Key == "terminate-cause").Value) : "",
+                        till_time = ColumnList.Any(x => x.Key == "till-time") ? (ColumnList.FirstOrDefault(x => x.Key == "till-time").Value) : "",
+                        upload = ColumnList.Any(x => x.Key == "upload") ? (ColumnList.FirstOrDefault(x => x.Key == "upload").Value) : "",
+                        uptime = ColumnList.Any(x => x.Key == "uptime") ? (ColumnList.FirstOrDefault(x => x.Key == "uptime").Value) : "",
+                        user_ip = ColumnList.Any(x => x.Key == "user-ip") ? (ColumnList.FirstOrDefault(x => x.Key == "user-ip").Value) : "",
+                        active = ColumnList.Any(x => x.Key == "active") ? (ColumnList.FirstOrDefault(x => x.Key == "active").Value) : ""
+                    });
+
+                }
+            }
+            return usersessionmodel;
+        }
         public List<Netotik.ViewModels.Identity.UserClient.PaymentModel> Usermanager_Payment(string ip, int port, string user, string pass, string UsermanUser)
         {
             var mikrotik = new MikrotikAPI();
@@ -541,7 +586,7 @@ namespace Netotik.Services.Implement
             //-----------------------------------------------
             mikrotik.Send("/tool/user-manager/payment/print");
             string temp = "";
-            if(UsermanUser.Contains("*"))
+            if (UsermanUser.Contains("*"))
             {
                 temp = String.Format("?=.id={0}", UsermanUser);
             }
@@ -549,7 +594,7 @@ namespace Netotik.Services.Implement
             {
                 temp = String.Format("?=user={0}", UsermanUser);
             }
-            
+
             mikrotik.Send(temp, true);
 
             var PaymentModel = new List<Netotik.ViewModels.Identity.UserClient.PaymentModel>();
@@ -583,11 +628,11 @@ namespace Netotik.Services.Implement
             var PaymentModelResualt = new List<Netotik.ViewModels.Identity.UserClient.PaymentModel>();
             foreach (var item in PaymentModel)
             {
-                    if (item.user == UsermanUser)
-                    {
+                if (item.user == UsermanUser)
+                {
                     PaymentModelResualt.Add(item);
-                    }
-                
+                }
+
             }
             return PaymentModelResualt;
         }
@@ -2187,7 +2232,7 @@ namespace Netotik.Services.Implement
             if (model.protocol != null)
                 if (model.protocol != "" && model.protocol != "all")
                     mikrotik.Send(temp);
-            if (model.protocol == "" || model.protocol == "all" || model.protocol==null)
+            if (model.protocol == "" || model.protocol == "all" || model.protocol == null)
                 if (model.dst_port != null)
                     if (model.dst_port != "")
                         mikrotik.Send("=protocol=tcp");
@@ -2249,7 +2294,7 @@ namespace Netotik.Services.Implement
                             to_ipaddress = ColumnList.Any(x => x.Key == "to-addresses") ? (ColumnList.FirstOrDefault(x => x.Key == "to-addresses").Value) : "",
                             to_ports = ColumnList.Any(x => x.Key == "to-ports") ? (ColumnList.FirstOrDefault(x => x.Key == "to-ports").Value) : "",
                             protocol = ColumnList.Any(x => x.Key == "protocol") ? (ColumnList.FirstOrDefault(x => x.Key == "protocol").Value) : "",
-                            disabled = (ColumnList.Any(x => x.Key == "disabled") ? (ColumnList.FirstOrDefault(x => x.Key == "disabled").Value) : "")=="true" ? true : false,
+                            disabled = (ColumnList.Any(x => x.Key == "disabled") ? (ColumnList.FirstOrDefault(x => x.Key == "disabled").Value) : "") == "true" ? true : false,
                             input_interface = ColumnList.Any(x => x.Key == "in-interface") ? (ColumnList.FirstOrDefault(x => x.Key == "in-interface").Value) : "",
                         });
                     }
@@ -2295,7 +2340,7 @@ namespace Netotik.Services.Implement
 
         public void Usermanager_UserChangePassword(string ip, int port, string user, string pass, ChangePasswordModel model, string id)
         {
-            if(Usermanager_IsUserExist(ip,port,user,pass,id))
+            if (Usermanager_IsUserExist(ip, port, user, pass, id))
             {
                 var UsermanagerUser = Usermanager_GetUser(ip, port, user, pass, id);
                 if (UsermanagerUser.FirstOrDefault().password == model.OldPassword && model.Password == model.ConfirmPassword && UsermanagerUser.FirstOrDefault().disabled == "false")
@@ -2335,7 +2380,7 @@ namespace Netotik.Services.Implement
             temp = String.Format("=reg-key={0}", RegKey);
             mikrotik.Send(temp, true);
             var temp2 = mikrotik.Read();
-            
+
         }
 
         public void Usermanager_UserRegDayte(string ip, int port, string user, string pass, string UsermanUser, string RegDate)
@@ -2360,6 +2405,46 @@ namespace Netotik.Services.Implement
             var temp2 = mikrotik.Read();
         }
         #endregion
+
+        public List<Usermanager_LogModel> Usermanager_GetAllLogs(string r_Host, int r_Port, string r_User, string r_Password)
+        {
+            var mikrotik = new MikrotikAPI();
+            mikrotik.MK(r_Host, r_Port);
+            if (!mikrotik.Login(r_User, r_Password)) mikrotik.Close();
+            //-----------------------------------------------
+            mikrotik.Send("/tool/user-manager/log/print", true);
+            var Usermanager_Logs = new List<Usermanager_LogModel>();
+            foreach (var item in mikrotik.Read())
+            {
+                if (item != "!done")
+                {
+                    var cols = item.Split('=');
+                    var ColumnList = new Dictionary<string, string>();
+                    for (int i = 1; i < cols.Count(); i += 2)
+                    {
+                        ColumnList.Add(cols[i], cols[i + 1]);
+                    }
+                    Usermanager_Logs.Add(new Usermanager_LogModel()
+                    {
+                        id = ColumnList.Any(x => x.Key == ".id") ? (ColumnList.FirstOrDefault(x => x.Key == ".id").Value) : "",
+                        calling_station_id = ColumnList.Any(x => x.Key == "calling-station-id") ? (ColumnList.FirstOrDefault(x => x.Key == "calling-station-id").Value) : "",
+                        customer = ColumnList.Any(x => x.Key == "customer") ? (ColumnList.FirstOrDefault(x => x.Key == "customer").Value) : "",
+                        description = ColumnList.Any(x => x.Key == "description") ? (ColumnList.FirstOrDefault(x => x.Key == "description").Value) : "",
+                        host_ip = ColumnList.Any(x => x.Key == "host-ip") ? (ColumnList.FirstOrDefault(x => x.Key == "host-ip").Value) : "",
+                        nas_port = ColumnList.Any(x => x.Key == "nas-port") ? (ColumnList.FirstOrDefault(x => x.Key == "nas-port").Value) : "",
+                        nas_port_id = ColumnList.Any(x => x.Key == "nas-port-id") ? (ColumnList.FirstOrDefault(x => x.Key == "nas-port-id").Value) : "",
+                        nas_port_type = (ColumnList.Any(x => x.Key == "nas-port-type") ? (ColumnList.FirstOrDefault(x => x.Key == "nas-port-type").Value) : ""),
+                        status = ColumnList.Any(x => x.Key == "status") ? (ColumnList.FirstOrDefault(x => x.Key == "status").Value) : "",
+                        time = ColumnList.Any(x => x.Key == "time") ? (ColumnList.FirstOrDefault(x => x.Key == "time").Value) : "",
+                        user_ip = ColumnList.Any(x => x.Key == "user-ip") ? (ColumnList.FirstOrDefault(x => x.Key == "user-ip").Value) : "",
+                        user_orig = ColumnList.Any(x => x.Key == "user-orig") ? (ColumnList.FirstOrDefault(x => x.Key == "user-orig").Value) : "",
+                    });
+
+                }
+            }
+
+            return Usermanager_Logs;
+        }
 
     }
 }

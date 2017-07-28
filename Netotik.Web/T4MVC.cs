@@ -87,6 +87,7 @@ namespace T4MVC
     public class CompanyClass
     {
         public readonly string Name = "Company";
+        public Netotik.Web.Areas.Company.Controllers.ChartsController Charts = new Netotik.Web.Areas.Company.Controllers.T4MVC_ChartsController();
         public Netotik.Web.Areas.Company.Controllers.HomeController Home = new Netotik.Web.Areas.Company.Controllers.T4MVC_HomeController();
         public Netotik.Web.Areas.Company.Controllers.HotspotController Hotspot = new Netotik.Web.Areas.Company.Controllers.T4MVC_HotspotController();
         public Netotik.Web.Areas.Company.Controllers.RouterController Router = new Netotik.Web.Areas.Company.Controllers.T4MVC_RouterController();

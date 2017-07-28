@@ -264,7 +264,7 @@ namespace Netotik.Web.Controllers
             }
             var Permissions = _applicationUserManager.FindClientPermissions(company.Id);
             var CanShowPanel = Permissions.Any(x => x == AssignablePermissionToClient.ClientArea);
-            if (CanShowPanel) return HttpNotFound();
+            if (!CanShowPanel) return HttpNotFound();
 
             if (!_mikrotikServices.IP_Port_Check(company.UserCompany.R_Host, company.UserCompany.R_Port, company.UserCompany.R_User, company.UserCompany.R_Password))
             {
