@@ -98,7 +98,7 @@ namespace Netotik.Web.Controllers
             }
 
 
-            /*
+            
             if (loggedinUser.IsBanned)
             {
                 ViewBag.Message = "حساب کاربری شما مسدود شده است.";
@@ -111,7 +111,7 @@ namespace Netotik.Web.Controllers
                 ViewBag.Link = true;
                 return View();
             }
-            */
+            
             if (loggedinUser != null)
             {
                 await _applicationUserManager.UpdateSecurityStampAsync(loggedinUser.Id);

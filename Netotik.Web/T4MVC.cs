@@ -777,6 +777,48 @@ namespace Links
         }
     
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public static class Email {
+            public const string UrlPath = "~/Content/Email";
+            public static string Url() { return T4MVCHelpers.ProcessVirtualPath(UrlPath); }
+            public static string Url(string fileName) { return T4MVCHelpers.ProcessVirtualPath(UrlPath + "/" + fileName); }
+            [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+            public static class Images {
+                public const string UrlPath = "~/Content/Email/Images";
+                public static string Url() { return T4MVCHelpers.ProcessVirtualPath(UrlPath); }
+                public static string Url(string fileName) { return T4MVCHelpers.ProcessVirtualPath(UrlPath + "/" + fileName); }
+                public static readonly string arrow1_png = Url("arrow1.png");
+                public static readonly string arrow2_png = Url("arrow2.png");
+                public static readonly string check_png = Url("check.png");
+                public static readonly string comment_17x13_png = Url("comment-17x13.png");
+                public static readonly string diamond_png = Url("diamond.png");
+                public static readonly string heart_17x14_png = Url("heart-17x14.png");
+                public static readonly string icon_facebook_gray_png = Url("icon-facebook-gray.png");
+                public static readonly string icon_facebook_png = Url("icon-facebook.png");
+                public static readonly string icon_googleplus_gray_png = Url("icon-googleplus-gray.png");
+                public static readonly string icon_googleplus_png = Url("icon-googleplus.png");
+                public static readonly string icon_instagram_gray_png = Url("icon-instagram-gray.png");
+                public static readonly string icon_instagram_png = Url("icon-instagram.png");
+                public static readonly string icon_linkedIn_gray_png = Url("icon-linkedIn-gray.png");
+                public static readonly string icon_linkedIn_png = Url("icon-linkedIn.png");
+                public static readonly string icon_pinterest_gray_png = Url("icon-pinterest-gray.png");
+                public static readonly string icon_pinterest_png = Url("icon-pinterest.png");
+                public static readonly string icon_rss_gray_png = Url("icon-rss-gray.png");
+                public static readonly string icon_rss_png = Url("icon-rss.png");
+                public static readonly string icon_twitter_gray_png = Url("icon-twitter-gray.png");
+                public static readonly string icon_twitter_png = Url("icon-twitter.png");
+                public static readonly string icon_vimeo_gray_png = Url("icon-vimeo-gray.png");
+                public static readonly string icon_vimeo_png = Url("icon-vimeo.png");
+                public static readonly string layout11_image1_64x64_png = Url("layout11-image1_64x64.png");
+                public static readonly string layout11_image2_64x64_png = Url("layout11-image2_64x64.png");
+                public static readonly string layout11_image3_64x64_png = Url("layout11-image3_64x64.png");
+                public static readonly string megaphone_png = Url("megaphone.png");
+                public static readonly string plus_png = Url("plus.png");
+                public static readonly string space_png = Url("space.png");
+            }
+        
+        }
+    
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public static class fonts {
             public const string UrlPath = "~/Content/fonts";
             public static string Url() { return T4MVCHelpers.ProcessVirtualPath(UrlPath); }
@@ -7016,6 +7058,18 @@ namespace Links
                         public const string app_min_css = "~/Content/css/Rtl/app.min.css";
                         public const string my_style_css = "~/Content/css/Rtl/my-style.css";
                         public const string vendors_min_css = "~/Content/css/Rtl/vendors.min.css";
+                    }
+                }
+                public static class Assets
+                {
+                }
+            }
+            public static partial class Email 
+            {
+                public static partial class Images 
+                {
+                    public static class Assets
+                    {
                     }
                 }
                 public static class Assets

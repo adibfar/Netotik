@@ -181,6 +181,12 @@ namespace Netotik.Services.Identity
         public async Task UpdateUserResellerProfile(ViewModels.Identity.UserReseller.ProfileModel model)
         {
             var user = _users.Find(GetCurrentUserId());
+            var emailModify = model.Email != user.Email;
+
+            if (emailModify)
+            {
+                user.EmailConfirmed = false;
+            }
             _mappingEngine.Map(model, user);
             await _unitOfWork.SaveChangesAsync();
         }
