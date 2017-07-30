@@ -108,9 +108,10 @@ namespace Netotik.Web.Controllers
         [OutputCache(Location = OutputCacheLocation.None, NoStore = true, Duration = 0, VaryByParam = "*")]
         public virtual JsonResult IsResellerNationalCodeAvailable(string nationalCode, long? Id)
         {
+            /*
             if (_applicationUserManager.CheckResellerNationalCodeExist(nationalCode, Id))
                 return Json(false);
-
+                */
             if (!_applicationUserManager.IsNationalCodeValid(nationalCode))
                 return Json(false);
 
@@ -124,9 +125,10 @@ namespace Netotik.Web.Controllers
         [OutputCache(Location = OutputCacheLocation.None, NoStore = true, Duration = 0, VaryByParam = "*")]
         public virtual JsonResult IsCompanyNationalCodeAvailable(string nationalCode, long? Id, long? Resellerid)
         {
+            /*
             if (_applicationUserManager.CheckCompanyNationalCodeExist(nationalCode, Id, Resellerid))
                 return Json(false);
-
+                */
             if (!_applicationUserManager.IsNationalCodeValid(nationalCode))
                 return Json(false);
 

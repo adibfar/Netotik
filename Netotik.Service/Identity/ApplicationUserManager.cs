@@ -679,23 +679,35 @@ namespace Netotik.Services.Identity
 
 
         public bool CheckResellerEmailExist(string email, long? id)
-        {
+        {/*
             return id == null
                ? _users.Any(a => a.Email.ToLower() == email.ToLower() && !a.IsDeleted && a.UserType == UserType.UserReseller)
                : _users.Any(a => a.Email.ToLower() == email.ToLower() && !a.IsDeleted && a.Id != id.Value && a.UserType == UserType.UserReseller);
+            */
+            return id == null
+               ? _users.Any(a => a.Email.ToLower() == email.ToLower() && !a.IsDeleted)
+               : _users.Any(a => a.Email.ToLower() == email.ToLower() && !a.IsDeleted && a.Id != id.Value);
         }
 
         public bool CheckAdminEmailExist(string email, long? id)
-        {
+        {/*
             return id == null
                ? _users.Any(a => a.Email.ToLower() == email.ToLower() && !a.IsDeleted && a.UserType == UserType.UserAdmin)
                : _users.Any(a => a.Email.ToLower() == email.ToLower() && !a.IsDeleted && a.UserType == UserType.UserAdmin && a.Id != id.Value);
+            */
+            return id == null
+               ? _users.Any(a => a.Email.ToLower() == email.ToLower() && !a.IsDeleted )
+               : _users.Any(a => a.Email.ToLower() == email.ToLower() && !a.IsDeleted && a.Id != id.Value);
         }
         public bool CheckCompanyEmailExist(string email, long? id)
-        {
+        {/*
             return id == null
                ? _users.Any(a => a.Email.ToLower() == email.ToLower() && a.UserType == UserType.UserCompany && !a.IsDeleted)
                : _users.Any(a => a.Email.ToLower() == email.ToLower() && !a.IsDeleted && a.UserType == UserType.UserCompany && a.Id != id.Value);
+            */
+            return id == null
+               ? _users.Any(a => a.Email.ToLower() == email.ToLower() && !a.IsDeleted)
+               : _users.Any(a => a.Email.ToLower() == email.ToLower() && !a.IsDeleted && a.Id != id.Value);
         }
         public bool CheckResellerNationalCodeExist(string nCode, long? id)
         {
