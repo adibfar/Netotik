@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Netotik.Resources;
+using System.ComponentModel.DataAnnotations;
 using System.Web.Mvc;
 
 namespace Netotik.ViewModels.Identity.UserClient
@@ -8,10 +9,10 @@ namespace Netotik.ViewModels.Identity.UserClient
         [AllowHtml]
         public string id { get; set; }
         [Display(Name = "نام")]
-        [RegularExpression(@"(^$)|(^[a-zA-Z0-9: .-_]*$)", ErrorMessage = "مقدار وارد شده معتبر نمی باشد")]
+        [RegularExpression(@"(^$)|(^[a-zA-Z0-9: .-_]*$)", ErrorMessageResourceType = typeof(Captions), ErrorMessageResourceName = "NotValidError")]
         public string name { get; set; }
         [Display(Name = "ایجاد کننده")]
-        [RegularExpression(@"(^[a-zA-Z0-9:.-_]*$)", ErrorMessage = "مقدار وارد شده معتبر نمی باشد")]
+        [RegularExpression(@"(^[a-zA-Z0-9:.-_]*$)", ErrorMessageResourceType = typeof(Captions), ErrorMessageResourceName = "NotValidError")]
         public string owner { get; set; }
         [Display(Name = "محدودیت دانلود")]
         public string download_limit { get; set; }

@@ -15,20 +15,16 @@ namespace Netotik.ViewModels.Identity.UserCompany
     {
         public long Id { get; set; }
 
-        [MaxLength(100, ErrorMessageResourceType = typeof(Captions), ErrorMessageResourceName = "MaxLengthError")]
-        [MinLength(5, ErrorMessageResourceType = typeof(Captions), ErrorMessageResourceName = "MinLengthError")]
+        [RegularExpression(@"(^$)|(^[a-zA-Z0-9:.-_]{5,30}$)", ErrorMessageResourceType = typeof(Captions), ErrorMessageResourceName = "NotValidError")]
         [Display(ResourceType = typeof(Captions), Name = "RouterAddress")]
         public string R_Host { get; set; }
 
-        [MaxLength(100, ErrorMessageResourceType = typeof(Captions), ErrorMessageResourceName = "MaxLengthError")]
-        [MinLength(3, ErrorMessageResourceType = typeof(Captions), ErrorMessageResourceName = "MinLengthError")]
+        [RegularExpression(@"(^$)|(^[a-zA-Z0-9:.-_]{5,30}$)", ErrorMessageResourceType = typeof(Captions), ErrorMessageResourceName = "NotValidError")]
         [Display(ResourceType = typeof(Captions), Name = "RouterUsername")]
         public string R_User { get; set; }
 
         [DataType(DataType.Password)]
-        [Required(ErrorMessageResourceType = typeof(Captions), ErrorMessageResourceName = "RequiredError")]
-        [MaxLength(100, ErrorMessageResourceType = typeof(Captions), ErrorMessageResourceName = "MaxLengthError")]
-        [MinLength(4, ErrorMessageResourceType = typeof(Captions), ErrorMessageResourceName = "MinLengthError")]
+        [RegularExpression(@"(^$)|(^.{5,40}$)", ErrorMessageResourceType = typeof(Captions), ErrorMessageResourceName = "NotValidError")]
         [Display(ResourceType = typeof(Captions), Name = "RouterPassword")]
         public string R_Password { get; set; }
 
@@ -39,10 +35,8 @@ namespace Netotik.ViewModels.Identity.UserCompany
         [Display(ResourceType = typeof(Captions), Name = "IsCloudActive")]
         public bool cloud { get; set; }
 
-        [MaxLength(100, ErrorMessageResourceType = typeof(Captions), ErrorMessageResourceName = "MaxLengthError")]
-        [MinLength(3, ErrorMessageResourceType = typeof(Captions), ErrorMessageResourceName = "MinLengthError")]
         [Display(ResourceType = typeof(Captions), Name = "UsermanCustomer")]
-        [RegularExpression(@"(^$)|(^[a-zA-Z0-9:.-_]*$)", ErrorMessageResourceType = typeof(Captions), ErrorMessageResourceName = "NotValidError")]
+        [RegularExpression(@"(^$)|(^[a-zA-Z0-9:.-_]{4,30}$)", ErrorMessageResourceType = typeof(Captions), ErrorMessageResourceName = "NotValidError")]
         public string Userman_Customer { get; set; }
     }
 }

@@ -14,13 +14,10 @@ namespace Netotik.ViewModels.Identity.UserClient
 
         [DataType(DataType.Password)]
         [Required(ErrorMessageResourceType = typeof(Captions), ErrorMessageResourceName = "RequiredError")]
-        [MaxLength(100, ErrorMessageResourceType = typeof(Captions), ErrorMessageResourceName = "MaxLengthError")]
-        [MinLength(6, ErrorMessageResourceType = typeof(Captions), ErrorMessageResourceName = "MinLengthError")]
         [Display(ResourceType = typeof(Captions), Name = "Password")]
         public string password { get; set; }
         [DataType(DataType.Password)]
-        [Required(ErrorMessageResourceType = typeof(Captions), ErrorMessageResourceName = "RequiredError")]
-        //[Compare("password", ErrorMessageResourceType = typeof(Captions), ErrorMessageResourceName = "ConfirmPasswordNotValid")]
+        [Compare("password", ErrorMessageResourceType = typeof(Captions), ErrorMessageResourceName = "ConfirmPasswordNotValid")]
         [Display(ResourceType = typeof(Captions), Name = "ConfirmPassword")]
         public string ConfirmPassword { get; set; }
         public string shared_users { get; set; }
