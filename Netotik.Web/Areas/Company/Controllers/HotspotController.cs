@@ -180,6 +180,10 @@ namespace Netotik.Web.Areas.Company.Controllers
                         item.limit_bytes_total = (ulong.Parse(item.limit_bytes_total) / 1048576).ToString();
                 Active.Add(item);
             }
+            if(Active == null)
+            {
+                Active.Add(new Hotspot_ActiveModel { mac_address = "No One Is Online", address="مورد یافت نشد"});
+            }
             ViewBag.servers = Active;
             return View();
         }

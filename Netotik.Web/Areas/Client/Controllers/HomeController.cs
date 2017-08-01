@@ -58,9 +58,9 @@ namespace Netotik.Web.Areas.Client.Controllers
         {
             var loginedUser = Session["Client"] as User;
 
-             var Permissions = _applicationUserManager.FindClientPermissions(loginedUser.Id);
+            var Permissions = _applicationUserManager.FindClientPermissions(loginedUser.Id);
             ViewBag.ClientPermissions = Permissions;
-            
+
 
             if (!_mikrotikServices.IP_Port_Check(loginedUser.UserCompany.R_Host, loginedUser.UserCompany.R_Port, loginedUser.UserCompany.R_User, loginedUser.UserCompany.R_Password))
             {
@@ -132,17 +132,18 @@ namespace Netotik.Web.Areas.Client.Controllers
                                         if (UserProfileLimition.limitation == item3.name)
                                             UserLimition = item3;
                             }
-                    UserLimition.download_limit = UserLimition.download_limit == null || UserLimition.download_limit == "" ? "0" : UserLimition.download_limit;
-                    UserLimition.upload_limit = UserLimition.upload_limit == null || UserLimition.upload_limit == "" ? "0" : UserLimition.upload_limit;
-                    UserLimition.transfer_limit = UserLimition.transfer_limit == null || UserLimition.transfer_limit == "" ? "0" : UserLimition.transfer_limit;
-                    item.download_used = item.download_used == null || item.download_used == "" ? "0" : item.download_used;
-                    item.upload_used = item.upload_used == null || item.upload_used == "" ? "0" : item.upload_used;
+                    ulong out_temp;
+                    UserLimition.download_limit = UserLimition.download_limit == null || UserLimition.download_limit == "" || !ulong.TryParse(UserLimition.download_limit, out out_temp) ? "0" : UserLimition.download_limit;
+                    UserLimition.upload_limit = UserLimition.upload_limit == null || UserLimition.upload_limit == "" || !ulong.TryParse(UserLimition.upload_limit, out out_temp) ? "0" : UserLimition.upload_limit;
+                    UserLimition.transfer_limit = UserLimition.transfer_limit == null || UserLimition.transfer_limit == "" || !ulong.TryParse(UserLimition.transfer_limit, out out_temp) ? "0" : UserLimition.transfer_limit;
+                    item.download_used = item.download_used == null || item.download_used == "" || !ulong.TryParse(item.download_used, out out_temp) ? "0" : item.download_used;
+                    item.upload_used = item.upload_used == null || item.upload_used == "" || !ulong.TryParse(item.upload_used, out out_temp) ? "0" : item.upload_used;
 
                     ViewBag.TransferLimit = ulong.Parse(UserLimition.transfer_limit) + ulong.Parse(UserLimition.upload_limit) + ulong.Parse(UserLimition.download_limit);
                     UserLimition.rate_limit_rx = UserLimition.rate_limit_rx == null ? "0" : UserLimition.rate_limit_rx;
                     UserLimition.rate_limit_tx = UserLimition.rate_limit_tx == null ? "0" : UserLimition.rate_limit_tx;
 
-                    ViewBag.TransferRemain = ulong.Parse(UserLimition.transfer_limit) - (ulong.Parse(item.download_used) + ulong.Parse(item.upload_used));
+                    ViewBag.TransferRemain = ulong.Parse(UserLimition.transfer_limit) == 0 ? 0 : ulong.Parse(UserLimition.transfer_limit) - (ulong.Parse(item.download_used) + ulong.Parse(item.upload_used));
 
                     ViewBag.TransferUsed = (ulong.Parse(item.download_used) + ulong.Parse(item.upload_used));
 
@@ -504,7 +505,8 @@ namespace Netotik.Web.Areas.Client.Controllers
                     ViewBag.rate_limit_rx = UserLimition.rate_limit_rx;
                     ViewBag.rate_limit_tx = UserLimition.rate_limit_tx;
                     decimal Downloadlimit = 0;
-                    if (UserLimition.transfer_limit == null) UserLimition.transfer_limit = "0";
+                    ulong out_temp;
+                    if (UserLimition.transfer_limit == null || !ulong.TryParse(UserLimition.transfer_limit, out out_temp)) UserLimition.transfer_limit = "0";
                     if (UserLimition.transfer_limit != "0") Downloadlimit += ulong.Parse(UserLimition.transfer_limit);
                     if (UserLimition.upload_limit == null) UserLimition.upload_limit = "0";
                     if (UserLimition.upload_limit != "0") Downloadlimit += ulong.Parse(UserLimition.upload_limit);
@@ -738,15 +740,15 @@ namespace Netotik.Web.Areas.Client.Controllers
 
                 if ((session.Count() - Counter) <= 30)
                 {
-                    if (Download30Session.ContainsKey('"' + SessionItem.from_time.ToString() + '"'))
-                        Download30Session['"' + SessionItem.from_time.ToString() + '"'] += (ulong.Parse(SessionItem.download) / 1048576);
+                    if (Download30Session.ContainsKey(SessionItem.from_time.ToString()))
+                        Download30Session[SessionItem.from_time.ToString()] += (ulong.Parse(SessionItem.download) / 1048576);
                     else
-                        Download30Session.Add('"' + SessionItem.from_time.ToString() + '"', (ulong.Parse(SessionItem.download) / 1048576));
+                        Download30Session.Add(SessionItem.from_time.ToString(), (ulong.Parse(SessionItem.download) / 1048576));
                     //---------------
-                    if (Upload30Session.ContainsKey('"' + SessionItem.from_time.ToString() + '"'))
-                        Upload30Session['"' + SessionItem.from_time.ToString() + '"'] += (ulong.Parse(SessionItem.upload) / 1048576);
+                    if (Upload30Session.ContainsKey(SessionItem.from_time.ToString()))
+                        Upload30Session[SessionItem.from_time.ToString()] += (ulong.Parse(SessionItem.upload) / 1048576);
                     else
-                        Upload30Session.Add('"' + SessionItem.from_time.ToString() + '"', (ulong.Parse(SessionItem.upload) / 1048576));
+                        Upload30Session.Add(SessionItem.from_time.ToString(), (ulong.Parse(SessionItem.upload) / 1048576));
                 }
             }
 

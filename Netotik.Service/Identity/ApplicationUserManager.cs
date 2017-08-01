@@ -214,9 +214,6 @@ namespace Netotik.Services.Identity
 
             user.UserCompany.ClientPermissions = XmlClientPermissions;
 
-
-            user.UserCompany.ClientPermissions = XmlClientPermissions;
-
             await _unitOfWork.SaveChangesAsync();
         }
         public IList<ViewModels.Identity.UserAdmin.UserItem> GetListUserAdmins(RequestListModel model, out long TotalCount, out long ShowCount)

@@ -742,7 +742,7 @@ namespace Netotik.Web.Areas.Company.Controllers
                 };
                 if (_mikrotikServices.Usermanager_IsUserExist(UserLogined.UserCompany.R_Host, UserLogined.UserCompany.R_Port, UserLogined.UserCompany.R_User, UserLogined.UserCompany.R_Password, Usermanuser.username))
                 {
-                    //SetResultMessage(false, MessageColor.Danger, Captions.InvalidDataError, Captions.MissionFail);
+                    this.MessageError(Captions.Error, Captions.ExistError);
                 }
                 else
                 {
@@ -917,7 +917,7 @@ namespace Netotik.Web.Areas.Company.Controllers
         public virtual ActionResult ClientArea(ViewModels.Identity.UserCompany.ProfileModel model)
         {
             PopulatePermissions(model.ClientPermissionNames);
-
+            
             this.MessageInformation(Captions.MissionSuccess, Captions.UpdateSuccess);
             _applicationUserManager.UpdateUserCompanyProfile(model);
             return RedirectToAction(MVC.Company.UserManager.ActionNames.ClientArea);

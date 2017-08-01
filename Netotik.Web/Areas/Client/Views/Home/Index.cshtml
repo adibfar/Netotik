@@ -55,8 +55,8 @@
                     <div class="media">
                         <div class="media-body white text-xs-left">
                             <h3>@Netotik.Resources.Captions.TimeValidity</h3>
-                            <span>@Netotik.Resources.Captions.TillDate:@ViewBag.RemianTime</span><br />
-                            <span>@Netotik.Resources.Captions.Online:@ViewBag.RemianUpTime</span>
+                            <span>@Netotik.Resources.Captions.TillDate : @ViewBag.RemianTime</span><br />
+                            <span>@Netotik.Resources.Captions.Online : @ViewBag.RemianUpTime</span>
                         </div>
                         <div class="media-right media-middle">
                             <i class="icon-ios-time white font-large-2 float-xs-right"></i>
@@ -77,7 +77,7 @@
                         <div class="media-body white text-xs-left">
                             <h3>@Netotik.Resources.Captions.PackageName</h3>
                             <span>@Html.DisplayTextFor(m => m.actual_profile)</span><br />
-                            <span class="small_text">@Netotik.Resources.Captions.Enrollment:@(ViewBag.StartTime)</span>
+                            <span class="small_text">@Netotik.Resources.Captions.Enrollment : @(ViewBag.StartTime)</span>
                         </div>
                         <div class="media-right media-middle">
                             <i class="icon-bag white font-large-2 float-xs-right"></i>
@@ -109,9 +109,16 @@
                     </div>
                     <div class="card-body">
                         <div class="text-xs-center">
-                            @if (ulong.Parse(ViewBag.TransferRemain.ToString()) > 0 || ulong.Parse(ViewBag.TransferLimit.ToString()) < 0)
+                            @if (ulong.Parse(ViewBag.TransferLimit.ToString()) > 0)
                             {
+                                if (ulong.Parse(ViewBag.TransferRemain.ToString()) > 0)
+                                {
                                 <input type="text" value="@(((ulong.Parse(ViewBag.TransferRemain.ToString())) * 100) / (ulong.Parse(ViewBag.TransferLimit.ToString())))" class="knob angle-offset-arc" data-angleOffset="-125" data-angleArc="250" data-rotation="anticlockwise" data-fgColor="#008000" data-readOnly="true">
+                                }
+                                else
+                                {
+                                    <input type="text" value="0" class="knob angle-offset-arc" data-angleOffset="-125" data-angleArc="250" data-rotation="anticlockwise" data-fgColor="#008000" data-readOnly="true">
+                                }
                             }
                             else
                             {

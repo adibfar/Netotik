@@ -270,8 +270,10 @@
                     labels: [
                          @foreach(var downloadvalue in ViewBag.Download30Session.Keys)
             {
-                temp = downloadvalue.ToString() + " , ";
-                @(temp)
+                             @Html.Raw('"')
+                            @(downloadvalue.ToString())
+                             @Html.Raw('"')
+                             @(" , ")
             }
 
                        ],

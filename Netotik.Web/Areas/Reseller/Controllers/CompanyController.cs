@@ -204,9 +204,15 @@ namespace Netotik.Web.Areas.Reseller.Controllers
                 return View(model);
             }
 
+
             var dbUser = _userManager.FindUserById(model.Id);
             if (dbUser == null) return HttpNotFound();
 
+            if (model.R_Password == "" || model.R_Password == null)
+            {
+                model.R_Password = dbUser.UserCompany.R_Password;
+                this.MessageInformation(Captions.Attention, Captions.RouterPasswordEmptyInformation);
+            }
 
             #region Add Avatar Image
             if (model.ImageAvatar != null && model.ImageAvatar.ContentLength > 0)

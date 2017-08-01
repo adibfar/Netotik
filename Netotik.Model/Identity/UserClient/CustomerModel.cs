@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Netotik.Resources;
+using System.ComponentModel.DataAnnotations;
 using System.Web.Mvc;
 
 namespace Netotik.ViewModels.Identity.UserClient

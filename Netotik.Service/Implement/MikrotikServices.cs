@@ -6,6 +6,7 @@ using System.Linq;
 using Netotik.ViewModels.Mikrotik;
 using PersianDate;
 using Netotik.ViewModels.Identity.UserClient;
+using System.Text.RegularExpressions;
 
 namespace Netotik.Services.Implement
 {
@@ -424,16 +425,16 @@ namespace Netotik.Services.Implement
                 mikrotik.Send(temp);
             temp = String.Format("=username={0}", usermanuser.username);
             mikrotik.Send(temp, true);
-            foreach (var item in Usermanager_GetUser(ip, port, user, pass, usermanuser.username))
-                if (item.username == usermanuser.username)
-                    temp = String.Format("=.id={0}", item.id);
-            Usermanager_UserRegKey(ip, port, user, pass, usermanuser.username, PersianDate.ConvertDate.ToFa(DateTime.Now, "G"));
+            mikrotik.Read();
+            //Usermanager_UserRegKey(ip, port, user, pass, usermanuser.username, PersianDate.ConvertDate.ToFa(DateTime.Now, "G"));
             mikrotik.Send("/tool/user-manager/user/create-and-activate-profile");
+            temp = String.Format("=.id={0}", usermanuser.username);
             mikrotik.Send(temp);
             temp = String.Format("=customer={0}", usermanuser.customer);
             mikrotik.Send(temp);
             temp = String.Format("=profile={0}", usermanuser.profile);
             mikrotik.Send(temp, true);
+            var temp55 = mikrotik.Read();
         }
         public void Usermanager_UserEdit(string ip, int port, string user, string pass, Netotik.ViewModels.Identity.UserClient.UserEditModel model)
         {
@@ -466,7 +467,7 @@ namespace Netotik.Services.Implement
             var temp96 = mikrotik.Read();
             if (model.profile != "")
             {
-                Usermanager_UserRegKey(ip, port, user, pass, model.username, PersianDate.ConvertDate.ToFa(DateTime.Now, "G"));
+               // Usermanager_UserRegKey(ip, port, user, pass, model.username, PersianDate.ConvertDate.ToFa(DateTime.Now, "G"));
                 mikrotik.Send("/tool/user-manager/user/create-and-activate-profile");
                 temp = String.Format("=.id={0}", model.username);
                 mikrotik.Send(temp);
@@ -2192,7 +2193,17 @@ namespace Netotik.Services.Implement
             if (model.dst_address != "")
                 mikrotik.Send(temp);
                 */
-            string temp = String.Format("=dst-host={0}", model.dst_host);
+            string temp = "";
+            string pat = @"^(([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\.){3}([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])$";//IP Address Patten
+            Regex r = new Regex(pat, RegexOptions.IgnoreCase);
+            if (r.IsMatch(model.dst_host))
+            {
+                temp = String.Format("=dst-address={0}", model.dst_host);
+            }
+            else
+            {
+               temp = String.Format("=dst-host={0}", model.dst_host);
+            }
             if (model.dst_host != "")
                 mikrotik.Send(temp);
             temp = String.Format("=server={0}", model.server);
@@ -2212,7 +2223,7 @@ namespace Netotik.Services.Implement
             if (model.src_address != "")
                 mikrotik.Send(temp);
                 */
-            mikrotik.Send("=disabled=no", true);
+                mikrotik.Send("=disabled=no", true);
             var resualt = mikrotik.Read();
         }
         public void Router_NatAdd(string ip, int port, string user, string pass, Router_NatModel model)

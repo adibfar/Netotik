@@ -17,7 +17,7 @@ namespace Netotik.ViewModels.Identity.UserClient
         [Display(ResourceType = typeof(Captions), Name = "Password")]
         public string password { get; set; }
         [DataType(DataType.Password)]
-        [Compare("password", ErrorMessageResourceType = typeof(Captions), ErrorMessageResourceName = "ConfirmPasswordNotValid")]
+        //[Compare("password", ErrorMessageResourceType = typeof(Captions), ErrorMessageResourceName = "ConfirmPasswordNotValid")]
         [Display(ResourceType = typeof(Captions), Name = "ConfirmPassword")]
         public string ConfirmPassword { get; set; }
         public string shared_users { get; set; }
@@ -47,7 +47,6 @@ namespace Netotik.ViewModels.Identity.UserClient
         [RegularExpression(@"(^$)|(^[a-zA-Z0-9: .-_]*$)", ErrorMessage = "مقدار وارد شده معتبر نمی باشد")]
         public string comment { get; set; }
         [Display(Name = "نام تعرفه")]
-        [RegularExpression(@"(^$)|(^[a-zA-Z0-9: .-_]*$)", ErrorMessage = "مقدار وارد شده معتبر نمی باشد")]
         public string profile { get; set; }
         public string NationalCode { get; set; }
         public string registration_date { get; set; }
