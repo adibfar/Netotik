@@ -512,8 +512,12 @@ namespace Netotik.Web.Areas.Client.Controllers
                     if (UserLimition.upload_limit != "0") Downloadlimit += ulong.Parse(UserLimition.upload_limit);
                     if (UserLimition.download_limit == null) UserLimition.download_limit = "0";
                     if (UserLimition.download_limit != "0") Downloadlimit += ulong.Parse(UserLimition.download_limit);
-                    if (UserLimition.download_limit != "" && item.download_used != "")
+                    if (UserLimition.download_limit != "" && item.download_used != "" && Downloadlimit >0)
                         ViewBag.download_remain = (Downloadlimit - ulong.Parse(item.download_used)).ToString();
+                    else
+                    {
+                        ViewBag.download_remain = 0;
+                    }
                     if (UserLimition.upload_limit != "" && item.upload_used != "")
                         ViewBag.upload_remain = (ulong.Parse(UserLimition.upload_limit) - ulong.Parse(item.upload_used)).ToString();
                     if (UserLimition.uptime_limit != null)
