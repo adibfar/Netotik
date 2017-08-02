@@ -555,7 +555,7 @@ namespace Netotik.Web.Areas.Client.Controllers
                         item.disabled = item.disabled.Replace("false", Captions.Enable).Replace("true", Captions.Disable);
                     if (item.download_used == "")
                         item.download_used = "0";
-                    if (ViewBag.download_remain == null || ViewBag.download_remain == "")
+                    if (ViewBag.download_remain == null || ViewBag.download_remain.ToString() == "")
                         ViewBag.download_remain = "0";
                     return View(item);
                 }

@@ -425,8 +425,8 @@
         $(window).on("load", function() {
             Morris.Donut({
                 element: 'morris-donut-chart',
-                data: [{ label: "@Netotik.Resources.Captions.Used", value: @(ViewBag.download_used==null|| ViewBag.download_used==""?1: ulong.Parse(ViewBag.download_used) < 1048576 ? 1 : (ulong.Parse(Model.download_used)/ 1048576)) },
-                    { label: "@Netotik.Resources.Captions.Remain", value: @(ViewBag.download_remain == null || ViewBag.download_remain == "" ? 1 : ulong.Parse(ViewBag.download_remain)<1048576?1:(ulong.Parse(ViewBag.download_remain)/ 1048576)) }],
+                data: [{ label: "@Netotik.Resources.Captions.Used", value: @(ViewBag.download_used==null?1: ulong.Parse(ViewBag.download_used.ToString()) < 1048576 ? 1 : (ulong.Parse(Model.download_used.ToString()) / 1048576)) },
+                    { label: "@Netotik.Resources.Captions.Remain", value: @(ViewBag.download_remain == null ? 1 : ulong.Parse(ViewBag.download_remain.ToString())<1048576?1:(ulong.Parse(ViewBag.download_remain.ToString()) / 1048576)) }],
                 resize: !0,
                 colors: ['#ff5733', '#54cdb4']
             })

@@ -60,7 +60,7 @@ namespace Netotik.Services.Implement
                         name_for_users = ColumnList.Any(x => x.Key == "name-for-users") ? (ColumnList.FirstOrDefault(x => x.Key == "name-for-users").Value) : "",
                         override_shared_users = ColumnList.Any(x => x.Key == "override-shared-users") ? (ColumnList.FirstOrDefault(x => x.Key == "override-shared-users").Value) : "",
                         owner = ColumnList.Any(x => x.Key == "owner") ? (ColumnList.FirstOrDefault(x => x.Key == "owner").Value) : "",
-                        price = ColumnList.Any(x => x.Key == "price") ? (ColumnList.FirstOrDefault(x => x.Key == "price").Value) : "",
+                        price = ColumnList.Any(x => x.Key == "price") ? (ColumnList.FirstOrDefault(x => x.Key == "price").Value) == "1" ? "0" : (ColumnList.FirstOrDefault(x => x.Key == "price").Value) : "",
                         starts_at = ColumnList.Any(x => x.Key == "starts-at") ? (ColumnList.FirstOrDefault(x => x.Key == "starts-at").Value) : "",
                         validity = ColumnList.Any(x => x.Key == "validity") ? (ColumnList.FirstOrDefault(x => x.Key == "validity").Value) : "",
                     });
@@ -616,7 +616,7 @@ namespace Netotik.Services.Implement
                         user = ColumnList.Any(x => x.Key == "user") ? (ColumnList.FirstOrDefault(x => x.Key == "user").Value) : "",
                         currency = ColumnList.Any(x => x.Key == "currency") ? (ColumnList.FirstOrDefault(x => x.Key == "currency").Value) : "",
                         method = ColumnList.Any(x => x.Key == "method") ? (ColumnList.FirstOrDefault(x => x.Key == "method").Value) : "",
-                        price = ColumnList.Any(x => x.Key == "price") ? (ColumnList.FirstOrDefault(x => x.Key == "price").Value) : "",
+                        price = ColumnList.Any(x => x.Key == "price") ? (ColumnList.FirstOrDefault(x => x.Key == "price").Value)=="1"?"0": (ColumnList.FirstOrDefault(x => x.Key == "price").Value) : "",
                         result_code = ColumnList.Any(x => x.Key == "result-code") ? (ColumnList.FirstOrDefault(x => x.Key == "result-code").Value) : "",
                         result_msg = ColumnList.Any(x => x.Key == "result-msg") ? (ColumnList.FirstOrDefault(x => x.Key == "result-msg").Value) : "",
                         trans_end = ColumnList.Any(x => x.Key == "trans-end") ? (ColumnList.FirstOrDefault(x => x.Key == "trans-end").Value) : "",
@@ -646,7 +646,7 @@ namespace Netotik.Services.Implement
             mikrotik.Send("/tool/user-manager/profile/add");
             string temp = String.Format("=price={0}", usermanProfile.profile_price);
             if (usermanProfile.profile_price == null || usermanProfile.profile_price == "")
-                temp = String.Format("=price={0}", "0");
+                temp = String.Format("=price={0}", "1");
             mikrotik.Send(temp);
             temp = String.Format("=validity={0}", usermanProfile.profile_validity);
             if (usermanProfile.profile_validity != null && usermanProfile.profile_validity != "")
