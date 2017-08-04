@@ -140,14 +140,14 @@ namespace Netotik.Web.Areas.Company.Controllers
             }
 
 
-            ViewBag.UserListDownloadBySessions = UserListDownloadBySessions.OrderBy(pair => pair.Value).Take(10);
-            ViewBag.UserListDownloadBySessions7 = UserListDownloadBySessions7.OrderBy(pair => pair.Value).Take(10);
-            ViewBag.UserListDownloadBySessions30 = UserListDownloadBySessions30.OrderBy(pair => pair.Value).Take(10);
-            ViewBag.UserListUploadBySessions = UserListUploadBySessions.OrderBy(pair => pair.Value).Take(10);
-            ViewBag.UserListUploadBySessions7 = UserListUploadBySessions7.OrderBy(pair => pair.Value).Take(10);
-            ViewBag.UserListUploadBySessions30 = UserListUploadBySessions30.OrderBy(pair => pair.Value).Take(10);
-            ViewBag.UserListDownloadByUsers = UserListDownloadByUsers.OrderBy(pair => pair.Value).Take(10);
-            ViewBag.UserListUploadByUsers = UserListUploadByUsers.OrderBy(pair => pair.Value).Take(10);
+            ViewBag.UserListDownloadBySessions = UserListDownloadBySessions.OrderByDescending(pair => pair.Value).Take(10);
+            ViewBag.UserListDownloadBySessions7 = UserListDownloadBySessions7.OrderByDescending(pair => pair.Value).Take(10);
+            ViewBag.UserListDownloadBySessions30 = UserListDownloadBySessions30.OrderByDescending(pair => pair.Value).Take(10);
+            ViewBag.UserListUploadBySessions = UserListUploadBySessions.OrderByDescending(pair => pair.Value).Take(10);
+            ViewBag.UserListUploadBySessions7 = UserListUploadBySessions7.OrderByDescending(pair => pair.Value).Take(10);
+            ViewBag.UserListUploadBySessions30 = UserListUploadBySessions30.OrderByDescending(pair => pair.Value).Take(10);
+            ViewBag.UserListDownloadByUsers = UserListDownloadByUsers.OrderByDescending(pair => pair.Value).Take(10);
+            ViewBag.UserListUploadByUsers = UserListUploadByUsers.OrderByDescending(pair => pair.Value).Take(10);
             return View();
         }
         public virtual ActionResult MinTrafficUsage()
@@ -227,14 +227,14 @@ namespace Netotik.Web.Areas.Company.Controllers
                 UserListUploadByUsers.Add(item.username==null|item.username==""?"-UserError-":item.username, item.upload_used == null || item.upload_used == "" ? 0 : ulong.Parse(item.upload_used) / 1048576);
             }
 
-            ViewBag.UserListDownloadBySessions = UserListDownloadBySessions.OrderByDescending(pair => pair.Value).Take(10);
-            ViewBag.UserListDownloadBySessions7 = UserListDownloadBySessions7.OrderByDescending(pair => pair.Value).Take(10);
-            ViewBag.UserListDownloadBySessions30 = UserListDownloadBySessions30.OrderByDescending(pair => pair.Value).Take(10);
-            ViewBag.UserListUploadBySessions = UserListUploadBySessions.OrderByDescending(pair => pair.Value).Take(10);
-            ViewBag.UserListUploadBySessions7 = UserListUploadBySessions7.OrderByDescending(pair => pair.Value).Take(10);
-            ViewBag.UserListUploadBySessions30 = UserListUploadBySessions30.OrderByDescending(pair => pair.Value).Take(10);
-            ViewBag.UserListDownloadByUsers = UserListDownloadByUsers.OrderByDescending(pair => pair.Value).Take(10);
-            ViewBag.UserListUploadByUsers = UserListUploadByUsers.OrderByDescending(pair => pair.Value).Take(10);
+            ViewBag.UserListDownloadBySessions = UserListDownloadBySessions.OrderBy(pair => pair.Value).Take(10);
+            ViewBag.UserListDownloadBySessions7 = UserListDownloadBySessions7.OrderBy(pair => pair.Value).Take(10);
+            ViewBag.UserListDownloadBySessions30 = UserListDownloadBySessions30.OrderBy(pair => pair.Value).Take(10);
+            ViewBag.UserListUploadBySessions = UserListUploadBySessions.OrderBy(pair => pair.Value).Take(10);
+            ViewBag.UserListUploadBySessions7 = UserListUploadBySessions7.OrderBy(pair => pair.Value).Take(10);
+            ViewBag.UserListUploadBySessions30 = UserListUploadBySessions30.OrderBy(pair => pair.Value).Take(10);
+            ViewBag.UserListDownloadByUsers = UserListDownloadByUsers.OrderBy(pair => pair.Value).Take(10);
+            ViewBag.UserListUploadByUsers = UserListUploadByUsers.OrderBy(pair => pair.Value).Take(10);
 
             return View();
         }

@@ -332,6 +332,21 @@ namespace Netotik.Services.Implement
             mikrotik.Send(String.Format("=.id={0}", id), true);
 
         }
+        
+            public void Usermanager_ResetUserProfiles(string ip, int port, string user, string pass, string id)
+        {
+            var mikrotik = new MikrotikAPI();
+            mikrotik.MK(ip, port);
+            if (!mikrotik.Login(user, pass)) mikrotik.Close();
+            //-----------------------------------------------
+            mikrotik.Send("/tool/user-manager/user/clear-profiles");
+            string temp = String.Format("=username={0}", id);
+            if (id.Contains('*'))
+            {
+                temp = String.Format("=.id={0}", id);
+            }
+            mikrotik.Send(temp, true);
+        }
         public void Usermanager_RemoveUser(string ip, int port, string user, string pass, string id)
         {
             var mikrotik = new MikrotikAPI();
@@ -467,6 +482,7 @@ namespace Netotik.Services.Implement
             var temp96 = mikrotik.Read();
             if (model.profile != "")
             {
+                Usermanager_ResetUserProfiles(ip, port, user, pass, model.id);
                // Usermanager_UserRegKey(ip, port, user, pass, model.username, PersianDate.ConvertDate.ToFa(DateTime.Now, "G"));
                 mikrotik.Send("/tool/user-manager/user/create-and-activate-profile");
                 temp = String.Format("=.id={0}", model.username);
@@ -645,8 +661,8 @@ namespace Netotik.Services.Implement
             //-------------------------------------------------
             mikrotik.Send("/tool/user-manager/profile/add");
             string temp = String.Format("=price={0}", usermanProfile.profile_price);
-            if (usermanProfile.profile_price == null || usermanProfile.profile_price == "")
-                temp = String.Format("=price={0}", "1");
+            if (usermanProfile.profile_price == null || usermanProfile.profile_price == "" || usermanProfile.profile_price=="0")
+                temp = "=price=1";
             mikrotik.Send(temp);
             temp = String.Format("=validity={0}", usermanProfile.profile_validity);
             if (usermanProfile.profile_validity != null && usermanProfile.profile_validity != "")

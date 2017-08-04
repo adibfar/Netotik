@@ -14,6 +14,7 @@ namespace Netotik.Services.Abstract
         List<Netotik.ViewModels.Identity.UserClient.UserSessionModel> Usermanager_GetAllUsersSessions(string ip, int port, string user, string pass);
         List<Netotik.ViewModels.Identity.UserClient.PaymentModel> Usermanager_Payment(string ip, int port, string user, string pass, string UsermanUser);
         void Usermanager_RemoveUser(string ip, int port, string user, string pass, string UsermanUser);
+        void Usermanager_ResetUserProfiles(string ip, int port, string user, string pass, string UsermanUser);
         void Usermanager_RemoveProfile(string ip, int port, string user, string pass, string UsermanProfile);
         void Usermanager_EnableUser(string ip, int port, string user, string pass, string UsermanUser);
         Boolean Usermanager_IsInstall(string ip, int port, string user, string pass);

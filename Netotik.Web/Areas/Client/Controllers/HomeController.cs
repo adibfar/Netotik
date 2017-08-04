@@ -224,11 +224,13 @@ namespace Netotik.Web.Areas.Client.Controllers
                     if (ViewBag.RemianUpTime == null || ViewBag.RemianUpTime == "")
                         ViewBag.RemianUpTime = Captions.Inaccessible;
                     //--------------------------------------------------------------------
-                    ViewBag.StartTime = (item.reg_key == null || item.reg_key == "") ? Captions.Inaccessible : item.reg_key;
+                    var time = _mikrotikServices.Usermanager_Payment(loginedUser.UserCompany.R_Host, loginedUser.UserCompany.R_Port, loginedUser.UserCompany.R_User, loginedUser.UserCompany.R_Password, item.username);
+                    var LastTime = time.LastOrDefault();
+                    ViewBag.StartTime = (LastTime.trans_end == null || LastTime.trans_end == "") ? Captions.Inaccessible : LastTime.trans_end;
                     days = ValidSec / 86400;
-                    ViewBag.RemianTime = (item.reg_key == null || item.reg_key == "") ? Captions.Inaccessible : PersianDate.ConvertDate.ToFa(PersianDate.ConvertDate.ToEn(item.reg_key).AddDays(Int32.Parse(days.ToString())), "d").ToString();
+                    ViewBag.RemianTime = (LastTime.trans_end == null || LastTime.trans_end == "") ? Captions.Inaccessible : PersianDate.ConvertDate.ToFa(PersianDate.ConvertDate.ToEn(Infrastructure.EnglishConvertDate.ConvertToFa(LastTime.trans_end.Split(' ')[0], "D") + " " + LastTime.trans_end.Split(' ')[1]).AddDays(Int32.Parse(days.ToString())), "d").ToString();
                     if (ValidSec == 0) ViewBag.RemianTime = Captions.Unlimited;
-                    if (UserProfile.starts_at == "logon" && (item.reg_key == null || item.reg_key == "")) ViewBag.StartTime += Captions.Approximate;
+                    if (UserProfile.starts_at == "logon" && (LastTime.trans_end == null || LastTime.trans_end == "")) ViewBag.StartTime += " "+ Captions.Approximate;
                     //-------------***-----------
 
                     if (item.uptime_used != null)
