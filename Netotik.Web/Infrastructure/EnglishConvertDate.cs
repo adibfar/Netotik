@@ -17,6 +17,10 @@ namespace Netotik.Web.Infrastructure
             int day = int.Parse(parts[1]);
             int year = int.Parse(parts[2]);
             var date = new DateTime(year, month, day);
+            if (format == "")
+            {
+                return PersianDate.ConvertDate.ToFa(date);
+            }
             return PersianDate.ConvertDate.ToFa(date,format);
         }
 
