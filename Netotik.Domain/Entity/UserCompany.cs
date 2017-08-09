@@ -42,5 +42,6 @@ namespace Netotik.Domain.Entity
         public virtual User User { get; set; }
 
         public string ClientPermissions { get; set; }
+        public string CompanyPermissions { get; set; }
     }
 }

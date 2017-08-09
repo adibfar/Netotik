@@ -37,6 +37,7 @@ namespace Netotik.Services.Identity
         private readonly HttpContextBase _contextBase;
         private readonly IPermissionService _permissionService;
         private readonly IPermissionClientService _permissionClientService;
+        private readonly IPermissionCompanyService _permissionCompanyService;
         private readonly IApplicationRoleManager _roleManager;
         private readonly ILanguageService _languageService;
         private readonly ILanguageTranslationService _languageTranslationService;
@@ -49,11 +50,13 @@ namespace Netotik.Services.Identity
 
         #region Constructor
 
-        public ApplicationUserManager(IIdentity identity, IPermissionClientService permissionClientService, ILanguageService languageService, ILanguageTranslationService languageTranslationService,
+        public ApplicationUserManager(IIdentity identity, IPermissionCompanyService permissionCompanyService,
+            IPermissionClientService permissionClientService, ILanguageService languageService, ILanguageTranslationService languageTranslationService,
             HttpContextBase contextBase, IPermissionService permissionService, IUserStore<User, long> userStore, IApplicationRoleManager roleManager, IUnitOfWork unitOfWork,
             IMappingEngine mappingEngine, IDataProtectionProvider dataProtectionProvider)
             : base(userStore)
         {
+            _permissionCompanyService = permissionCompanyService;
             _permissionClientService = permissionClientService;
             _languageTranslationService = languageTranslationService;
             _languageService = languageService;
@@ -213,6 +216,15 @@ namespace Netotik.Services.Identity
             else XmlClientPermissions = _permissionClientService.GetPermissionsAsXml(model.ClientPermissionNames).ToString();
 
             user.UserCompany.ClientPermissions = XmlClientPermissions;
+
+
+
+            var XmlCompanyPermissions = "";
+            if (model.CompanyPermissionNames == null || model.CompanyPermissionNames.Length < 1)
+                XmlCompanyPermissions = _permissionCompanyService.GetPermissionsAsXml("null").ToString();
+            else XmlClientPermissions = _permissionCompanyService.GetPermissionsAsXml(model.CompanyPermissionNames).ToString();
+
+            user.UserCompany.CompanyPermissions= XmlCompanyPermissions;
 
             await _unitOfWork.SaveChangesAsync();
         }
@@ -606,6 +618,13 @@ namespace Netotik.Services.Identity
             else XmlClientPermissions = _permissionClientService.GetPermissionsAsXml(viewModel.ClientPermissionNames).ToString();
 
             user.UserCompany.ClientPermissions = XmlClientPermissions;
+
+            var XmlCompanyPermissions = "";
+            if (viewModel.CompanyPermissionNames == null || viewModel.CompanyPermissionNames.Length < 1)
+                XmlCompanyPermissions = _permissionCompanyService.GetPermissionsAsXml("null").ToString();
+            else XmlCompanyPermissions = _permissionCompanyService.GetPermissionsAsXml(viewModel.CompanyPermissionNames).ToString();
+
+            user.UserCompany.CompanyPermissions = XmlCompanyPermissions;
 
             //if (passwordModify || emailModify)
             if (passwordModify)
@@ -1011,6 +1030,13 @@ namespace Netotik.Services.Identity
         {
             var user = _users.Where(x => x.Id == userId).Include(x => x.UserCompany).FirstOrDefault();
             return _permissionClientService.GetPermissionsAsList(XElement.Parse(user.UserCompany.ClientPermissions)).ToList();
+        }
+
+
+        public IList<string> FindCompanyPermissions(long userId)
+        {
+            var user = _users.Where(x => x.Id == userId).Include(x => x.UserCompany).FirstOrDefault();
+            return _permissionCompanyService.GetPermissionsAsList(XElement.Parse(user.UserCompany.CompanyPermissions)).ToList();
         }
 
 

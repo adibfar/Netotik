@@ -634,6 +634,7 @@ namespace Netotik.Services.Identity
         long GetCurrentUserId();
 
         IList<string> FindClientPermissions(long userId);
+        IList<string> FindCompanyPermissions(long userId);
 
         IList<User> GetbyIds(long[] ids);
         
