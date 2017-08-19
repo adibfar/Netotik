@@ -71,6 +71,7 @@
     <Compile Include="EntityConfiguration\UserResellerMap.cs" />
     <Compile Include="EntityConfiguration\UserCompanyMap.cs" />
     <Compile Include="Entity\Address.cs" />
+    <Compile Include="Entity\TelegramBotData.cs" />
     <Compile Include="Entity\IndexSection.cs" />
     <Compile Include="Entity\City.cs" />
     <Compile Include="Entity\Language.cs" />
