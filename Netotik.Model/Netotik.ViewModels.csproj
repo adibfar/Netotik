@@ -85,7 +85,9 @@
     <Compile Include="Identity\Account\ExternalLoginConfirmationViewModel.cs" />
     <Compile Include="Identity\Account\ExternalLoginListViewModel.cs" />
     <Compile Include="Identity\Account\ForgotPasswordViewModel.cs" />
+    <Compile Include="Identity\Permission\CompanyPermissionModel.cs" />
     <Compile Include="Identity\Permission\ClientPermissionModel.cs" />
+    <Compile Include="Identity\Security\AssignablePermissionToCompany.cs" />
     <Compile Include="Identity\Security\AssignablePermissionToClient.cs" />
     <Compile Include="Identity\UserAdmin\ProfileLanguageItem.cs" />
     <Compile Include="Identity\UserClient\ChangePasswordModel.cs" />

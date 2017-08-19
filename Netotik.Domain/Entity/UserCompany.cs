@@ -40,9 +40,11 @@ namespace Netotik.Domain.Entity
         [Display(Name = "Userman Customer")]
         public string Userman_Customer { get; set; }
         public virtual User User { get; set; }
+        public virtual UserCompanyTelegram UserCompanyTelegram { get; set; }
 
         public string ClientPermissions { get; set; }
 
         public string TelegramBotToken { get; set; }
+        public string CompanyPermissions { get; set; }
     }
 }

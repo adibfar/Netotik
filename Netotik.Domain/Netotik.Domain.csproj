@@ -68,6 +68,7 @@
     <Compile Include="EntityConfiguration\FileMap.cs" />
     <Compile Include="EntityConfiguration\SliderMap.cs" />
     <Compile Include="EntityConfiguration\InboxMessageMap.cs" />
+    <Compile Include="EntityConfiguration\UserCompanyTelegramMap.cs" />
     <Compile Include="EntityConfiguration\UserResellerMap.cs" />
     <Compile Include="EntityConfiguration\UserCompanyMap.cs" />
     <Compile Include="Entity\Address.cs" />
@@ -104,6 +105,7 @@
     <Compile Include="Entity\Slider.cs" />
     <Compile Include="Entity\Menu.cs" />
     <Compile Include="Entity\ContentTag.cs" />
+    <Compile Include="Entity\UserCompanyTelegram.cs" />
     <Compile Include="Entity\UserCompany.cs" />
     <Compile Include="Entity\UserReseller.cs" />
     <Compile Include="Entity\UserClaim.cs" />
