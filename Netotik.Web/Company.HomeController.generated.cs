@@ -134,6 +134,14 @@ namespace Netotik.Web.Areas.Company.Controllers
         {
             public readonly string model = "model";
         }
+        static readonly ActionParamsClass_TelegramBot s_params_TelegramBot = new ActionParamsClass_TelegramBot();
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public ActionParamsClass_TelegramBot TelegramBotParams { get { return s_params_TelegramBot; } }
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public class ActionParamsClass_TelegramBot
+        {
+            public readonly string model = "model";
+        }
         static readonly ActionParamsClass_MikrotikConf s_params_MikrotikConf = new ActionParamsClass_MikrotikConf();
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public ActionParamsClass_MikrotikConf MikrotikConfParams { get { return s_params_MikrotikConf; } }
@@ -268,6 +276,18 @@ namespace Netotik.Web.Areas.Company.Controllers
             var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.TelegramBot);
             TelegramBotOverride(callInfo);
             return callInfo;
+        }
+
+        [NonAction]
+        partial void TelegramBotOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, Netotik.ViewModels.Identity.UserCompany.TelegramBotModel model);
+
+        [NonAction]
+        public override System.Threading.Tasks.Task<System.Web.Mvc.ActionResult> TelegramBot(Netotik.ViewModels.Identity.UserCompany.TelegramBotModel model)
+        {
+            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.TelegramBot);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "model", model);
+            TelegramBotOverride(callInfo, model);
+            return System.Threading.Tasks.Task.FromResult(callInfo as System.Web.Mvc.ActionResult);
         }
 
         [NonAction]

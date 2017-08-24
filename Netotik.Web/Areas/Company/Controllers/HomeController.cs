@@ -135,7 +135,7 @@ namespace Netotik.Web.Areas.Company.Controllers
         }
         public virtual ActionResult TelegramBot()
         {
-            return View(_applicationUserManager.GetUserCompanyMikrotikConf(UserLogined.Id));
+            return View(_applicationUserManager.GetUserCompanyTelegramBot(UserLogined.Id));
         }
         [ValidateAntiForgeryToken]
         [HttpPost]
