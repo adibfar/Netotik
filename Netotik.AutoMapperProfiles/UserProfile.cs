@@ -212,7 +212,7 @@ namespace Netotik.AutoMapperProfiles
                 .IgnoreAllNonExisting();
 
             CreateMap<User, ViewModels.Identity.UserCompany.TelegramBotModel>()
-                .ForMember(d => d.TelegramBotToken, m => m.MapFrom(t => t.UserCompany.UserCompanyTelegram))
+                .ForMember(d => d, m => m.MapFrom(t => t.UserCompany.UserCompanyTelegram))
                 .IgnoreAllNonExisting();
 
             CreateMap<ViewModels.Identity.UserCompany.TelegramBotModel, User>()
