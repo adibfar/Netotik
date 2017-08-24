@@ -199,6 +199,7 @@ namespace Netotik.AutoMapperProfiles
                 .ForMember(d => d.Logins, m => m.Ignore())
                 .IgnoreAllNonExisting();
 
+
             CreateMap<ViewModels.Identity.UserCompany.CompanyEditModel, UserCompany>()
              .IgnoreAllNonExisting();
 
@@ -212,16 +213,28 @@ namespace Netotik.AutoMapperProfiles
                 .IgnoreAllNonExisting();
 
             CreateMap<User, ViewModels.Identity.UserCompany.TelegramBotModel>()
-                .ForMember(d => d, m => m.MapFrom(t => t.UserCompany.UserCompanyTelegram))
-                .IgnoreAllNonExisting();
+                .ForMember(d => d.TelegramBotToken, m => m.MapFrom(t => t.UserCompany.UserCompanyTelegram.TelegramBotToken))
+                .ForMember(d => d.ContactUsNumber, m => m.MapFrom(t => t.UserCompany.UserCompanyTelegram.ContactUsNumber))
+                .ForMember(d => d.ContactUsMessage, m => m.MapFrom(t => t.UserCompany.UserCompanyTelegram.ContactUsMessage))
+                .ForMember(d => d.ContactUsLastName, m => m.MapFrom(t => t.UserCompany.UserCompanyTelegram.ContactUsLastName))
+                .ForMember(d => d.ContactUsFirstName, m => m.MapFrom(t => t.UserCompany.UserCompanyTelegram.ContactUsFirstName))
+                .ForMember(d => d.AboutMessage, m => m.MapFrom(t => t.UserCompany.UserCompanyTelegram.AboutMessage))
+                .IgnoreAllNonExisting();//Read From DB
 
+
+            CreateMap<ViewModels.Identity.UserCompany.TelegramBotModel, UserCompanyTelegram>()
+                .IgnoreAllNonExisting();//Write To DB
+            CreateMap<ViewModels.Identity.UserCompany.TelegramBotModel, UserCompany>()
+                .ForMember(d => d.UserCompanyTelegram, opt => opt.MapFrom(s => s))
+                .IgnoreAllNonExisting();//Write To DB
             CreateMap<ViewModels.Identity.UserCompany.TelegramBotModel, User>()
-           .ForMember(d => d.EditDate, m => m.UseValue(DateTime.Now))
-           .ForMember(d => d.Roles, m => m.Ignore())
-           .ForMember(d => d.Claims, m => m.Ignore())
-           .ForMember(d => d.Logins, m => m.Ignore())
-           .ForMember(d => d.UserCompany, opt => opt.MapFrom(s => s))
-           .IgnoreAllNonExisting();
+                .ForMember(d => d.EditDate, m => m.UseValue(DateTime.Now))
+                .ForMember(d => d.UserCompany, opt => opt.MapFrom(s => s))
+                .ForMember(d => d.Roles, m => m.Ignore())
+                .ForMember(d => d.Claims, m => m.Ignore())
+                .ForMember(d => d.Logins, m => m.Ignore())
+                .IgnoreAllNonExisting();//Write To DB
+
         }
 
         public override string ProfileName
