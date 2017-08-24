@@ -3649,6 +3649,7 @@
     <Content Include="Areas\Company\Views\Charts\UsermanagerUsage.cshtml" />
     <Content Include="Areas\Company\Views\Charts\Sessions.cshtml" />
     <Content Include="Areas\Company\Views\Charts\Logs.cshtml" />
+    <Content Include="Areas\Company\Views\Home\TelegramBot.cshtml" />
     <None Include="Properties\PublishProfiles\DNMA.pubxml" />
     <None Include="T4MVC.tt">
       <Generator>TextTemplatingFileGenerator</Generator>

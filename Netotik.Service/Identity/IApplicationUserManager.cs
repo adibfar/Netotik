@@ -17,6 +17,7 @@ namespace Netotik.Services.Identity
         ViewModels.Identity.UserCompany.ProfileModel GetUserCompanyProfile(long id);
 
         ViewModels.Identity.UserCompany.MikrotikConfModel GetUserCompanyMikrotikConf(long id);
+        ViewModels.Identity.UserCompany.TelegramBotModel GetUserCompanyTelegramBot(long id);
 
         Task UpdateUserAdminProfile(ViewModels.Identity.UserAdmin.ProfileModel model);
         Task UpdateUserResellerProfile(ViewModels.Identity.UserReseller.ProfileModel model);
@@ -24,6 +25,7 @@ namespace Netotik.Services.Identity
         IList<ViewModels.Identity.UserAdmin.UserItem> GetListUserAdmins(RequestListModel model, out long TotalCount, out long ShowCount);
         IList<ViewModels.Identity.UserReseller.UserItem> GetListUserResellers(RequestListModel model, out long TotalCount, out long ShowCount);
         Task UpdateUserCompanyMikrotikConf(ViewModels.Identity.UserCompany.MikrotikConfModel model);
+        Task UpdateUserCompanyTelegramBot(ViewModels.Identity.UserCompany.TelegramBotModel model);
 
         IList<ViewModels.Identity.UserCompany.CompanyList> GetListUserCompany(long id);
 

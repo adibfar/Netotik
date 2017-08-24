@@ -98,6 +98,7 @@ namespace Netotik.Web.Areas.Company.Controllers
             public readonly string changeImageProfile = "changeImageProfile";
             public readonly string UpdateProfile = "UpdateProfile";
             public readonly string MikrotikConf = "MikrotikConf";
+            public readonly string TelegramBot = "TelegramBot";
             public readonly string ChangePassword = "ChangePassword";
             public readonly string RedirectToLocal = "RedirectToLocal";
         }
@@ -111,6 +112,7 @@ namespace Netotik.Web.Areas.Company.Controllers
             public const string changeImageProfile = "changeImageProfile";
             public const string UpdateProfile = "UpdateProfile";
             public const string MikrotikConf = "MikrotikConf";
+            public const string TelegramBot = "TelegramBot";
             public const string ChangePassword = "ChangePassword";
             public const string RedirectToLocal = "RedirectToLocal";
         }
@@ -172,6 +174,7 @@ namespace Netotik.Web.Areas.Company.Controllers
                 public readonly string Index = "Index";
                 public readonly string MikrotikConf = "MikrotikConf";
                 public readonly string MyProfile = "MyProfile";
+                public readonly string TelegramBot = "TelegramBot";
             }
             public readonly string _ImageProfile = "~/Areas/Company/Views/Home/_ImageProfile.cshtml";
             public readonly string _ProfileData = "~/Areas/Company/Views/Home/_ProfileData.cshtml";
@@ -179,6 +182,7 @@ namespace Netotik.Web.Areas.Company.Controllers
             public readonly string Index = "~/Areas/Company/Views/Home/Index.cshtml";
             public readonly string MikrotikConf = "~/Areas/Company/Views/Home/MikrotikConf.cshtml";
             public readonly string MyProfile = "~/Areas/Company/Views/Home/MyProfile.cshtml";
+            public readonly string TelegramBot = "~/Areas/Company/Views/Home/TelegramBot.cshtml";
         }
     }
 
@@ -252,6 +256,17 @@ namespace Netotik.Web.Areas.Company.Controllers
         {
             var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.MikrotikConf);
             MikrotikConfOverride(callInfo);
+            return callInfo;
+        }
+
+        [NonAction]
+        partial void TelegramBotOverride(T4MVC_System_Web_Mvc_ActionResult callInfo);
+
+        [NonAction]
+        public override System.Web.Mvc.ActionResult TelegramBot()
+        {
+            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.TelegramBot);
+            TelegramBotOverride(callInfo);
             return callInfo;
         }
 

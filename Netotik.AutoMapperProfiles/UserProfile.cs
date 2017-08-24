@@ -109,7 +109,7 @@ namespace Netotik.AutoMapperProfiles
                 .IgnoreAllNonExisting();
 
             CreateMap<User, ViewModels.Identity.UserReseller.ProfileModel>()
-                .ForMember(d => d.NationalCode, m => m.MapFrom(t=>t.UserReseller.NationalCode))
+                .ForMember(d => d.NationalCode, m => m.MapFrom(t => t.UserReseller.NationalCode))
                 .ForMember(d => d.ResellerCode, m => m.MapFrom(t => t.UserReseller.ResellerCode))
                 .IgnoreAllNonExisting();
 
@@ -211,7 +211,17 @@ namespace Netotik.AutoMapperProfiles
                 .ForMember(d => d.Logins, m => m.Ignore())
                 .IgnoreAllNonExisting();
 
+            CreateMap<User, ViewModels.Identity.UserCompany.TelegramBotModel>()
+                .ForMember(d => d.TelegramBotToken, m => m.MapFrom(t => t.UserCompany.UserCompanyTelegram))
+                .IgnoreAllNonExisting();
 
+            CreateMap<ViewModels.Identity.UserCompany.TelegramBotModel, User>()
+           .ForMember(d => d.EditDate, m => m.UseValue(DateTime.Now))
+           .ForMember(d => d.Roles, m => m.Ignore())
+           .ForMember(d => d.Claims, m => m.Ignore())
+           .ForMember(d => d.Logins, m => m.Ignore())
+           .ForMember(d => d.UserCompany, opt => opt.MapFrom(s => s))
+           .IgnoreAllNonExisting();
         }
 
         public override string ProfileName

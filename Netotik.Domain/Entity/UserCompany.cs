@@ -43,8 +43,6 @@ namespace Netotik.Domain.Entity
         public virtual UserCompanyTelegram UserCompanyTelegram { get; set; }
 
         public string ClientPermissions { get; set; }
-
-        public string TelegramBotToken { get; set; }
         public string CompanyPermissions { get; set; }
     }
 }

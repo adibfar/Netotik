@@ -27,6 +27,7 @@ using Netotik.Common.Controller;
 using Microsoft.AspNet.Identity;
 using Netotik.ViewModels.Identity.Security;
 using WebGrease.Css.Extensions;
+using Telegram.Bot;
 
 namespace Netotik.Web.Areas.Company.Controllers
 {
@@ -132,7 +133,35 @@ namespace Netotik.Web.Areas.Company.Controllers
         {
             return View(_applicationUserManager.GetUserCompanyMikrotikConf(UserLogined.Id));
         }
-
+        public virtual ActionResult TelegramBot()
+        {
+            return View(_applicationUserManager.GetUserCompanyMikrotikConf(UserLogined.Id));
+        }
+        [ValidateAntiForgeryToken]
+        [HttpPost]
+        public virtual async Task<ActionResult> TelegramBot(ViewModels.Identity.UserCompany.TelegramBotModel model)
+        {
+            #region Validation
+            if (!ModelState.IsValid)
+            {
+                this.MessageError(Captions.MissionFail, Captions.InvalidDataError);
+                //return View(MVC.Reseller.Home.Views._ProfileData, model);
+                return RedirectToAction(MVC.Company.Home.ActionNames.TelegramBot, MVC.Company.Home.Name, new { area = MVC.Company.Name });
+            }
+            #endregion
+            if (model.TelegramBotToken != "" || model.TelegramBotToken != null)
+            {
+                TelegramBotClient Api = new TelegramBotClient(model.TelegramBotToken);
+                //بروز کردن وب هوک ربات مربوطه
+                string APIUrl = string.Format("https://netotik.com:443/api/telegrambot/company/{0}", UserLogined.UserCompany.CompanyCode);
+                Api.SetWebhookAsync(APIUrl).Wait();
+            }
+            model.Id = UserLogined.Id;
+            
+            this.MessageInformation(Captions.MissionSuccess, Captions.UpdateSuccess);
+            await _applicationUserManager.UpdateUserCompanyTelegramBot(model);
+            return RedirectToAction(MVC.Company.Home.ActionNames.TelegramBot, MVC.Company.Home.Name, new { area = MVC.Company.Name });
+        }
         [ValidateAntiForgeryToken]
         [HttpPost]
         public virtual async Task<ActionResult> MikrotikConf(MikrotikConfModel model)

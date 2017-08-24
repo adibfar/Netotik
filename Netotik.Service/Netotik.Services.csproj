@@ -145,6 +145,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Abstract\ITelegramBotDataService.cs" />
     <Compile Include="Abstract\IIndexSectionService.cs" />
     <Compile Include="Abstract\IStatisticsCountryService.cs" />
     <Compile Include="Abstract\IStatisticsService.cs" />
@@ -199,6 +200,7 @@
     <Compile Include="Identity\PermissionClientService.cs" />
     <Compile Include="Identity\PermissionService.cs" />
     <Compile Include="Identity\StandardRoles.cs" />
+    <Compile Include="Implement\TelegramBotDataService.cs" />
     <Compile Include="Implement\IndexSectionService.cs" />
     <Compile Include="Implement\StatisticsCountryService.cs" />
     <Compile Include="Implement\StatisticsService.cs" />
