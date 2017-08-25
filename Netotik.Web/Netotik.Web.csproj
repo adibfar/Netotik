@@ -464,6 +464,7 @@
     <Compile Include="Controllers\RemoteController.cs" />
     <Compile Include="Controllers\SitemapController.cs" />
     <Compile Include="Controllers\RssController.cs" />
+    <Compile Include="Controllers\TestController.cs" />
     <Compile Include="Controllers\TelegramBotController.cs" />
     <Compile Include="ErrorController.generated.cs">
       <DependentUpon>T4MVC.tt</DependentUpon>

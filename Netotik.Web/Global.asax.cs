@@ -18,6 +18,7 @@ using System.Globalization;
 using System.Threading;
 using Netotik.Common.Binders;
 using System.Text.RegularExpressions;
+using System.Web.Http;
 
 namespace Netotik.Web
 {
@@ -37,7 +38,7 @@ namespace Netotik.Web
 
             AreaRegistration.RegisterAllAreas();
 
-
+            GlobalConfiguration.Configure(WebApiConfig.Register);
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
