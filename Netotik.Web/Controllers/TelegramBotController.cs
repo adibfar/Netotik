@@ -36,7 +36,8 @@ namespace Netotik.Web.Controllers
             _telegramBotDataService = telegramBotDataService;
             _uow = uow;
         }
-        [Route(@"api/telegrambot/company/{CompanyCode}")]
+
+        [Route(@"telegrambot/client/{CompanyCode}")]
         public async Task<OkResult> Client(string CompanyCode, [FromBody]Update update)
         {
             #region Detect Company
