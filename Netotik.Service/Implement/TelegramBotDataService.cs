@@ -26,9 +26,9 @@ namespace Netotik.Services.Implement
         public IList<TelegramBotData> GetList(long CompanyId,long ChatID)
         {
             return dbSet.AsQueryable().Where(
-                x=>x.CompanyId == CompanyId 
-                && x.ChatID==ChatID 
-                && DateTime.Compare(x.MessageDate.AddMinutes(20),DateTime.Now)>0
+                x => x.CompanyId == CompanyId
+                && x.ChatID == ChatID
+                && DateTime.Compare(x.MessageDate.AddMinutes(20), DateTime.Now) > 0
                 ).ToList();
         }
 

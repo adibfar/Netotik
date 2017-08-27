@@ -479,10 +479,10 @@ namespace Netotik.Web.Areas.Company.Controllers
                 _mikrotikServices.RestoreUsermanager(UserLogined.UserCompany.R_Host, UserLogined.UserCompany.R_Port, UserLogined.UserCompany.R_User, UserLogined.UserCompany.R_Password, Request.Form["RestoreUsermanager"].ToString());
                 this.MessageSuccess(Captions.MikrotikUsermanagerRestore, Captions.MikrotikRestoreUsermanagerMessage);
             }
-            else
-            {
-                this.MessageInformation(Captions.Error, Captions.ValidateError);
-            }
+           // else
+           // {
+           //     this.MessageInformation(Captions.Error, Captions.ValidateError);
+           // }
             return RedirectToAction(MVC.Company.Router.ActionNames.RouterSetting);
         }
         [HttpPost]

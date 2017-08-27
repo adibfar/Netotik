@@ -44,6 +44,7 @@ namespace Netotik.Data.Context
         public DbSet<UserReseller> UserReselleres { get; set; }
         public DbSet<UserCompany> UserCompanies { get; set; }
         public DbSet<UserCompanyTelegram> UserCompanyTelegrams { get; set; }
+        public DbSet<TelegramBotData> TelegramBotData { get; set; }
         public DbSet<UserAdmin> UserAdmines { get; set; }
         public DbSet<Address> Addresses { get; set; }
         public DbSet<City> AddressCities { get; set; }
@@ -69,6 +70,7 @@ namespace Netotik.Data.Context
             modelBuilder.Configurations.Add(new UserResellerMap());
             modelBuilder.Configurations.Add(new UserCompanyMap());
             modelBuilder.Configurations.Add(new UserCompanyTelegramMap());
+            modelBuilder.Configurations.Add(new TelegramBotDataMap());
             modelBuilder.Configurations.Add(new UserAdminMap());
             modelBuilder.Configurations.Add(new UserMap());
             modelBuilder.Configurations.Add(new AddressMap());
