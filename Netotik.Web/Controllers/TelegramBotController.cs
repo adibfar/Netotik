@@ -15,29 +15,26 @@ using Netotik.Services.Identity;
 using Netotik.Services.Abstract;
 using Netotik.Data;
 using Netotik.Domain.Entity;
+using Netotik.IocConfig;
 
 namespace Netotik.Web.Controllers
 {
     public class TelegramBotController : ApiController
     {
-        private readonly IApplicationUserManager _applicationUserManager;
-        private readonly IMikrotikServices _mikrotikServices;
-        private readonly ITelegramBotDataService _telegramBotDataService;
-        private readonly IUnitOfWork _uow;
+        private IApplicationUserManager _applicationUserManager;
+        private IMikrotikServices _mikrotikServices;
+        private ITelegramBotDataService _telegramBotDataService;
+        private IUnitOfWork _uow;
+        
 
-        public TelegramBotController(
-            IMikrotikServices mikrotikServices,
-            IApplicationUserManager applicationUserManager,
-            ITelegramBotDataService telegramBotDataService,
-            IUnitOfWork uow)
+        [HttpGet]
+        public string test()
         {
-            _mikrotikServices = mikrotikServices;
-            _applicationUserManager = applicationUserManager;
-            _telegramBotDataService = telegramBotDataService;
-            _uow = uow;
+            _uow = ProjectObjectFactory.Container.GetInstance<IUnitOfWork>();
+            return "okk";
         }
 
-        [Route(@"telegrambot/client/{CompanyCode}")]
+        [Route(@"api/telegrambot/company/{CompanyCode}")]
         public async Task<OkResult> Client(string CompanyCode, [FromBody]Update update)
         {
             #region Detect Company
