@@ -103,7 +103,7 @@ namespace Netotik.Web.Controllers
                         await Api.SendTextMessageAsync(message.Chat.Id, text: "نام کاربری خود را وارد کنید 👱", replyMarkup: markup);//باید زمان فیلد زمان پیام بروز شود
                     else
                     {
-                        TelegramBotData UsernameUpdate = new TelegramBotData() { ChatID = Username.ChatID, CompanyId = Username.CompanyId, Message = Username.Message, MessageType = Username.MessageType, MessageDate = DateTime.Now, Id = Username.Id };
+                        TelegramBotData UsernameUpdate = new TelegramBotData() { ChatId = Username.ChatId, CompanyId = Username.CompanyId, Message = Username.Message, MessageType = Username.MessageType, MessageDate = DateTime.Now, Id = Username.Id };
                         _telegramBotDataService.Update(UsernameUpdate);
 
                         var Password = TelegramBotDataTable.Where(x => x.MessageType == "Password").LastOrDefault();
@@ -111,7 +111,7 @@ namespace Netotik.Web.Controllers
                             await Api.SendTextMessageAsync(message.Chat.Id, text: "گذرواژه خود را وارد کنید 🔐", replyMarkup: markup);//باید زمان فیلد زمان پیام بروز شود
                         else
                         {
-                            TelegramBotData PasswordUpdate = new TelegramBotData() { ChatID = Password.ChatID, CompanyId = Password.CompanyId, Message = Password.Message, MessageType = Password.MessageType, MessageDate = DateTime.Now, Id = Password.Id };
+                            TelegramBotData PasswordUpdate = new TelegramBotData() { ChatId = Password.ChatId, CompanyId = Password.CompanyId, Message = Password.Message, MessageType = Password.MessageType, MessageDate = DateTime.Now, Id = Password.Id };
                             _telegramBotDataService.Update(PasswordUpdate);
                         }
                     }
@@ -294,13 +294,13 @@ namespace Netotik.Web.Controllers
                                 }
                                 else
                                 {
-                                    _telegramBotDataService.Add(new TelegramBotData { ChatID = message.Chat.Id, CompanyId = user.Id, Message = "", MessageDate = DateTime.Now, MessageType = "WrongUserPass" });
+                                    _telegramBotDataService.Add(new TelegramBotData { ChatId = message.Chat.Id, CompanyId = user.Id, Message = "", MessageDate = DateTime.Now, MessageType = "WrongUserPass" });
                                     var keyboard = new ReplyKeyboardMarkup(new[] { new[] { new KeyboardButton("منوی اصلی") } }, resizeKeyboard: true);
                                     await Api.SendTextMessageAsync(message.Chat.Id, "نام کاربری یا رمز عبور اشتباه می باشد.", replyMarkup: keyboard);
                                 }
                             else
                             {
-                                _telegramBotDataService.Add(new TelegramBotData { ChatID = message.Chat.Id, CompanyId = user.Id, Message = "", MessageDate = DateTime.Now, MessageType = "WrongUserPass" });
+                                _telegramBotDataService.Add(new TelegramBotData { ChatId = message.Chat.Id, CompanyId = user.Id, Message = "", MessageDate = DateTime.Now, MessageType = "WrongUserPass" });
                                 var keyboard = new ReplyKeyboardMarkup(new[] { new[] { new KeyboardButton("منوی اصلی") } }, resizeKeyboard: true);
                                 await Api.SendTextMessageAsync(message.Chat.Id, "نام کاربری یا رمز عبور اشتباه می باشد.", replyMarkup: keyboard);
                             }
@@ -350,13 +350,13 @@ namespace Netotik.Web.Controllers
                                 }
                                 else
                                 {
-                                    _telegramBotDataService.Add(new TelegramBotData { ChatID = message.Chat.Id, CompanyId = user.Id, Message = "", MessageDate = DateTime.Now, MessageType = "WrongUserPass" });
+                                    _telegramBotDataService.Add(new TelegramBotData { ChatId = message.Chat.Id, CompanyId = user.Id, Message = "", MessageDate = DateTime.Now, MessageType = "WrongUserPass" });
                                     var keyboard = new ReplyKeyboardMarkup(new[] { new[] { new KeyboardButton("منوی اصلی") } }, resizeKeyboard: true);
                                     await Api.SendTextMessageAsync(message.Chat.Id, "نام کاربری یا رمز عبور اشتباه می باشد.", replyMarkup: keyboard);
                                 }
                             else
                             {
-                                _telegramBotDataService.Add(new TelegramBotData { ChatID = message.Chat.Id, CompanyId = user.Id, Message = "", MessageDate = DateTime.Now, MessageType = "WrongUserPass" });
+                                _telegramBotDataService.Add(new TelegramBotData { ChatId = message.Chat.Id, CompanyId = user.Id, Message = "", MessageDate = DateTime.Now, MessageType = "WrongUserPass" });
                                 var keyboard = new ReplyKeyboardMarkup(new[] { new[] { new KeyboardButton("منوی اصلی") } }, resizeKeyboard: true);
                                 await Api.SendTextMessageAsync(message.Chat.Id, "نام کاربری یا رمز عبور اشتباه می باشد.", replyMarkup: keyboard);
                             }
@@ -408,13 +408,13 @@ namespace Netotik.Web.Controllers
                                 }
                                 else
                                 {
-                                    _telegramBotDataService.Add(new TelegramBotData { ChatID = message.Chat.Id, CompanyId = user.Id, Message = "", MessageDate = DateTime.Now, MessageType = "WrongUserPass" });
+                                    _telegramBotDataService.Add(new TelegramBotData { ChatId = message.Chat.Id, CompanyId = user.Id, Message = "", MessageDate = DateTime.Now, MessageType = "WrongUserPass" });
                                     var keyboard = new ReplyKeyboardMarkup(new[] { new[] { new KeyboardButton("منوی اصلی") } }, resizeKeyboard: true);
                                     await Api.SendTextMessageAsync(message.Chat.Id, "نام کاربری یا رمز عبور اشتباه می باشد.", replyMarkup: keyboard);
                                 }
                             else
                             {
-                                _telegramBotDataService.Add(new TelegramBotData { ChatID = message.Chat.Id, CompanyId = user.Id, Message = "", MessageDate = DateTime.Now, MessageType = "WrongUserPass" });
+                                _telegramBotDataService.Add(new TelegramBotData { ChatId = message.Chat.Id, CompanyId = user.Id, Message = "", MessageDate = DateTime.Now, MessageType = "WrongUserPass" });
                                 var keyboard = new ReplyKeyboardMarkup(new[] { new[] { new KeyboardButton("منوی اصلی") } }, resizeKeyboard: true);
                                 await Api.SendTextMessageAsync(message.Chat.Id, "نام کاربری یا رمز عبور اشتباه می باشد.", replyMarkup: keyboard);
                             }
@@ -436,7 +436,7 @@ namespace Netotik.Web.Controllers
                     var Password = TelegramBotDataTable.Where(x => x.MessageType == "Password").LastOrDefault();
                     _telegramBotDataService.Remove(Username);
                     _telegramBotDataService.Remove(Password);
-                    _telegramBotDataService.Add(new TelegramBotData { ChatID = message.Chat.Id, CompanyId = user.Id, Message = "", MessageDate = DateTime.Now, MessageType = "Exit" });
+                    _telegramBotDataService.Add(new TelegramBotData { ChatId = message.Chat.Id, CompanyId = user.Id, Message = "", MessageDate = DateTime.Now, MessageType = "Exit" });
                     var keyboard = new ReplyKeyboardMarkup(new[] { new[] { new KeyboardButton("منوی اصلی") } }, resizeKeyboard: true);
                     await Api.SendTextMessageAsync(message.Chat.Id, "خروج موفقیت آمیر بود.", replyMarkup: keyboard);
                 }
@@ -495,13 +495,13 @@ namespace Netotik.Web.Controllers
                                 #region Error Response
                                 else
                                 {
-                                    _telegramBotDataService.Add(new TelegramBotData { ChatID = message.Chat.Id, CompanyId = user.Id, Message = "", MessageDate = DateTime.Now, MessageType = "WrongUserPass" });
+                                    _telegramBotDataService.Add(new TelegramBotData { ChatId = message.Chat.Id, CompanyId = user.Id, Message = "", MessageDate = DateTime.Now, MessageType = "WrongUserPass" });
                                     var keyboard = new ReplyKeyboardMarkup(new[] { new[] { new KeyboardButton("منوی اصلی") } }, resizeKeyboard: true);
                                     await Api.SendTextMessageAsync(message.Chat.Id, "نام کاربری یا رمز عبور اشتباه می باشد.", replyMarkup: keyboard);
                                 }
                             else
                             {
-                                _telegramBotDataService.Add(new TelegramBotData { ChatID = message.Chat.Id, CompanyId = user.Id, Message = "", MessageDate = DateTime.Now, MessageType = "WrongUserPass" });
+                                _telegramBotDataService.Add(new TelegramBotData { ChatId = message.Chat.Id, CompanyId = user.Id, Message = "", MessageDate = DateTime.Now, MessageType = "WrongUserPass" });
                                 var keyboard = new ReplyKeyboardMarkup(new[] { new[] { new KeyboardButton("منوی اصلی") } }, resizeKeyboard: true);
                                 await Api.SendTextMessageAsync(message.Chat.Id, "نام کاربری یا رمز عبور اشتباه می باشد.", replyMarkup: keyboard);
                             }

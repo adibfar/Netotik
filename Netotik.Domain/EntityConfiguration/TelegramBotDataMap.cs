@@ -11,10 +11,6 @@ namespace Netotik.Domain.EntityConfiguration
             // Primary Key
             this.HasKey(t => t.Id);
 
-            // Properties
-            this.Property(t => t.Id)
-                .HasDatabaseGeneratedOption(DatabaseGeneratedOption.None);
-
         }
     }
 }
