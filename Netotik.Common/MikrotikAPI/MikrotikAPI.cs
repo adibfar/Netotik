@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.IO;
 using System.Net.Sockets;
+using System.Threading.Tasks;
 
 namespace Netotik.Common.MikrotikAPI
 {
@@ -18,6 +19,15 @@ namespace Netotik.Common.MikrotikAPI
             con.Connect(ip, port);
             connection = (Stream)con.GetStream();
         }
+
+
+        public async Task MKAsync(string ip, int port)
+        {
+            con = new TcpClient();
+            await con.ConnectAsync(ip, port);
+            connection = (Stream)con.GetStream();
+        }
+
         public void Close()
         {
             connection.Close();
@@ -39,6 +49,22 @@ namespace Netotik.Common.MikrotikAPI
                 return false;
             }
         }
+        public async Task<bool> LoginAsync(string username, string password)
+        {
+            await SendAsync("/login", true);
+            string hash = Read()[0].Split(new string[] { "ret=" }, StringSplitOptions.None)[1];
+            await SendAsync("/login");
+            await SendAsync("=name=" + username);
+            await SendAsync("=response=00" + EncodePassword(password, hash), true);
+            if (Read()[0] == "!done")
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
         public void Send(string co)
         {
             byte[] bajty = Encoding.ASCII.GetBytes(co.ToCharArray());
@@ -47,12 +73,28 @@ namespace Netotik.Common.MikrotikAPI
             connection.Write(velikost, 0, velikost.Length);
             connection.Write(bajty, 0, bajty.Length);
         }
+        public async Task SendAsync(string co)
+        {
+            byte[] bajty = Encoding.ASCII.GetBytes(co.ToCharArray());
+            byte[] velikost = EncodeLength(bajty.Length);
+
+            await connection.WriteAsync(velikost, 0, velikost.Length);
+            await connection.WriteAsync(bajty, 0, bajty.Length);
+        }
         public void Send(string co, bool endsentence)
         {
             byte[] bajty = Encoding.ASCII.GetBytes(co.ToCharArray());
             byte[] velikost = EncodeLength(bajty.Length);
             connection.Write(velikost, 0, velikost.Length);
             connection.Write(bajty, 0, bajty.Length);
+            connection.WriteByte(0);
+        }
+        public async Task SendAsync(string co, bool endsentence)
+        {
+            byte[] bajty = Encoding.ASCII.GetBytes(co.ToCharArray());
+            byte[] velikost = EncodeLength(bajty.Length);
+            await connection.WriteAsync(velikost, 0, velikost.Length);
+            await connection.WriteAsync(bajty, 0, bajty.Length);
             connection.WriteByte(0);
         }
         public List<string> Read()

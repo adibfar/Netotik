@@ -27,7 +27,7 @@ namespace Netotik.Services.Implement
         {
             return dbSet.AsQueryable().Where(
                 x => x.CompanyId == CompanyId
-                && x.ChatId == ChatId).ToList().Where(x => DateTime.Compare(x.MessageDate.AddMinutes(20), DateTime.Now) > 0).ToList();
+                && x.ChatId == ChatId).ToList().Where(x => DateTime.Compare(x.MessageDate.AddMinutes(5), DateTime.Now) > 0).ToList();
         }
 
 

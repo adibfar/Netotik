@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using Netotik.ViewModels.Mikrotik;
+using System.Threading.Tasks;
 
 namespace Netotik.Services.Abstract
 {
@@ -9,6 +10,7 @@ namespace Netotik.Services.Abstract
         string GetRouterName(string ip, int port, string user, string pass);
         List<Netotik.ViewModels.Identity.UserClient.UserModel> Usermanager_GetAllUsers(string ip, int port, string user, string pass);
         List<Netotik.ViewModels.Identity.UserClient.UserModel> Usermanager_GetUser(string ip, int port, string user, string pass,string id);
+        Task<List<Netotik.ViewModels.Identity.UserClient.UserModel>> Usermanager_GetUserAsync(string ip, int port, string user, string pass, string id);
         void Usermanager_DisableUser(string ip, int port, string user, string pass, string UsermanUser);
         List<Netotik.ViewModels.Identity.UserClient.UserSessionModel> Usermanager_UserSession(string ip, int port, string user, string pass, string UsermanUser);
         List<Netotik.ViewModels.Identity.UserClient.UserSessionModel> Usermanager_GetAllUsersSessions(string ip, int port, string user, string pass);
@@ -28,6 +30,7 @@ namespace Netotik.Services.Abstract
         bool Usermanager_IsProfileExist(string ip, int port, string user, string pass, Netotik.ViewModels.Identity.UserClient.ProfileLimitionCreateModel usermanProfile);
         List<Router_InterfaceModel> Interface(string ip, int port, string user, string pass);
         bool IP_Port_Check(string ip, int port, string user, string pass);
+        Task<bool> IP_Port_CheckAsync(string ip, int port, string user, string pass);
         bool RebootRouter(string ip, int port, string user, string pass);
         bool ResetRouter(string ip, int port, string user, string pass, bool keepusers, bool nosettings);
         bool BackupRouter(string ip, int port, string user, string pass);
@@ -35,6 +38,7 @@ namespace Netotik.Services.Abstract
         bool RemoveLogs(string ip, int port, string user, string pass);
         bool ResetUsermanager(string ip, int port, string user, string pass, bool users, bool logs,bool session,bool history,bool packages,bool db);
         bool User_Pass_Check(string ip, int port, string user, string pass);
+        Task<bool> User_Pass_CheckAsync(string ip, int port, string user, string pass);
         void Usermanager_ResetCounter(string r_Host, int r_Port, string r_User, string r_Password, string user);
         void Router_Info_Update(string ip, int port, string user, string pass);
         string EnableAndGetCloud(string ip, int port, string user, string pass);

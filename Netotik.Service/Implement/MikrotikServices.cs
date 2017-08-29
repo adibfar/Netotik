@@ -7,6 +7,7 @@ using Netotik.ViewModels.Mikrotik;
 using PersianDate;
 using Netotik.ViewModels.Identity.UserClient;
 using System.Text.RegularExpressions;
+using System.Threading.Tasks;
 
 namespace Netotik.Services.Implement
 {
@@ -266,6 +267,69 @@ namespace Netotik.Services.Implement
                 temp = String.Format("?=username={0}", id);
             }
             mikrotik.Send(temp, true);
+
+            var usermodel = new List<Netotik.ViewModels.Identity.UserClient.UserModel>();
+            foreach (var item in mikrotik.Read())
+            {
+                if (item != "!done")
+                {
+                    var cols = item.Split('=');
+                    var ColumnList = new Dictionary<string, string>();
+                    for (int i = 1; i < cols.Count(); i += 2)
+                    {
+                        ColumnList.Add(cols[i], cols[i + 1]);
+                    }
+
+                    usermodel.Add(new Netotik.ViewModels.Identity.UserClient.UserModel()
+                    {
+                        id = ColumnList.Any(x => x.Key == ".id") ? (ColumnList.FirstOrDefault(x => x.Key == ".id").Value) : "",
+                        customer = ColumnList.Any(x => x.Key == "customer") ? (ColumnList.FirstOrDefault(x => x.Key == "customer").Value) : "",
+                        actual_profile = ColumnList.Any(x => x.Key == "actual-profile") ? (ColumnList.FirstOrDefault(x => x.Key == "actual-profile").Value) : "",
+                        registration_date = ColumnList.Any(x => x.Key == "registration-date") ? (ColumnList.FirstOrDefault(x => x.Key == "registration-date").Value) : "",
+                        reg_key = ColumnList.Any(x => x.Key == "reg-key") ? (ColumnList.FirstOrDefault(x => x.Key == "reg-key").Value) : "",
+                        username = ColumnList.Any(x => x.Key == "username") ? (ColumnList.FirstOrDefault(x => x.Key == "username").Value) : "",
+                        password = ColumnList.Any(x => x.Key == "password") ? (ColumnList.FirstOrDefault(x => x.Key == "password").Value) : "",
+                        caller_id = ColumnList.Any(x => x.Key == "caller-id") ? (ColumnList.FirstOrDefault(x => x.Key == "caller-id").Value) : "",
+                        first_name = ColumnList.Any(x => x.Key == "first-name") ? (ColumnList.FirstOrDefault(x => x.Key == "first-name").Value) : "",
+                        last_name = ColumnList.Any(x => x.Key == "last-name") ? (ColumnList.FirstOrDefault(x => x.Key == "last-name").Value) : "",
+                        phone = ColumnList.Any(x => x.Key == "phone") ? (ColumnList.FirstOrDefault(x => x.Key == "phone").Value) : "",
+                        location = ColumnList.Any(x => x.Key == "location") ? (ColumnList.FirstOrDefault(x => x.Key == "location").Value) : "",
+                        email = ColumnList.Any(x => x.Key == "email") ? (ColumnList.FirstOrDefault(x => x.Key == "email").Value) : "",
+                        ip_address = ColumnList.Any(x => x.Key == "ip-address") ? (ColumnList.FirstOrDefault(x => x.Key == "ip-address").Value) : "",
+                        shared_users = ColumnList.Any(x => x.Key == "shared-users") ? (ColumnList.FirstOrDefault(x => x.Key == "shared-users").Value) : "",
+                        wireless_psk = ColumnList.Any(x => x.Key == "wireless-psk") ? (ColumnList.FirstOrDefault(x => x.Key == "wireless-psk").Value) : "",
+                        wireless_enc_key = ColumnList.Any(x => x.Key == "wireless-enc-key") ? (ColumnList.FirstOrDefault(x => x.Key == "wireless-enc-key").Value) : "",
+                        wireless_enc_algo = ColumnList.Any(x => x.Key == "wireless-enc-algo") ? (ColumnList.FirstOrDefault(x => x.Key == "wireless-enc-algo").Value) : "",
+                        last_seen = ColumnList.Any(x => x.Key == "last-seen") ? (ColumnList.FirstOrDefault(x => x.Key == "last-seen").Value) : "",
+                        active = ColumnList.Any(x => x.Key == "active") ? (ColumnList.FirstOrDefault(x => x.Key == "active").Value) : "",
+                        incomplete = ColumnList.Any(x => x.Key == "incomplete") ? (ColumnList.FirstOrDefault(x => x.Key == "incomplete").Value) : "",
+                        disabled = ColumnList.Any(x => x.Key == "disabled") ? (ColumnList.FirstOrDefault(x => x.Key == "disabled").Value) : "",
+                        comment = ColumnList.Any(x => x.Key == "comment") ? (ColumnList.FirstOrDefault(x => x.Key == "comment").Value) : "",
+                        uptime_used = ColumnList.Any(x => x.Key == "uptime-used") ? (ColumnList.FirstOrDefault(x => x.Key == "uptime-used").Value) : "",
+                        download_used = ColumnList.Any(x => x.Key == "download-used") ? (ColumnList.FirstOrDefault(x => x.Key == "download-used").Value) : "",
+                        upload_used = ColumnList.Any(x => x.Key == "upload-used") ? (ColumnList.FirstOrDefault(x => x.Key == "upload-used").Value) : ""
+                    });
+                }
+            }
+            return usermodel;
+        }
+        public async Task<List<Netotik.ViewModels.Identity.UserClient.UserModel>> Usermanager_GetUserAsync(string ip, int port, string user, string pass, string id)
+        {
+            var mikrotik = new MikrotikAPI();
+            await mikrotik.MKAsync(ip, port);
+            if (! await mikrotik.LoginAsync(user, pass)) mikrotik.Close();
+            //-----------------------------------------------
+            await mikrotik.SendAsync("/tool/user-manager/user/print");
+            string temp = "";
+            if (id.Contains("*"))
+            {
+                temp = String.Format("?=.id={0}", id);
+            }
+            else
+            {
+                temp = String.Format("?=username={0}", id);
+            }
+            await mikrotik.SendAsync(temp, true);
 
             var usermodel = new List<Netotik.ViewModels.Identity.UserClient.UserModel>();
             foreach (var item in mikrotik.Read())
@@ -1872,6 +1936,16 @@ namespace Netotik.Services.Implement
             }
             catch { return false; }
         }
+        public async Task<bool> IP_Port_CheckAsync(string ip, int port, string user, string pass)
+        {
+            var mikrotik = new MikrotikAPI();
+            try
+            {
+                await mikrotik.MKAsync(ip, port);
+                return true;
+            }
+            catch { return false; }
+        }
         public bool User_Pass_Check(string ip, int port, string user, string pass)
         {
             var mikrotik = new MikrotikAPI();
@@ -1879,6 +1953,22 @@ namespace Netotik.Services.Implement
             try
             {
                 if (!mikrotik.Login(user, pass))
+                {
+                    mikrotik.Close();
+                    return false;
+                }
+                return true;
+            }
+            catch { return false; }
+
+        }
+        public async Task<bool> User_Pass_CheckAsync(string ip, int port, string user, string pass)
+        {
+            var mikrotik = new MikrotikAPI();
+            await mikrotik.MKAsync(ip, port);
+            try
+            {
+                if (!await mikrotik.LoginAsync(user, pass))
                 {
                     mikrotik.Close();
                     return false;
