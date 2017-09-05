@@ -150,7 +150,7 @@ namespace Netotik.Web.Controllers
                 if (user.UserType == Domain.Entity.UserType.UserCompany)
                 {
                     var ResellerCompanyName = _userManager.FindUserById(user.UserCompany.UserResellerId);
-                    LoginURL = Url.Action(MVC.Login.Company("",ResellerCompanyName.UserReseller.ResellerCode));
+                    LoginURL = Url.Action(MVC.Login.Company("", ResellerCompanyName.UserReseller.ResellerCode));
                 }
                 if (user.UserType == Domain.Entity.UserType.UserReseller)
                 {
@@ -268,7 +268,12 @@ namespace Netotik.Web.Controllers
             if (result.Succeeded)
             {
                 await _applicationSignInManager.SignInAsync(user, false, false);
-                return RedirectToAction(MVC.Account.ResetPasswordConfirmation());
+                if (user.UserType == Domain.Entity.UserType.UserReseller)
+                    return RedirectToAction(MVC.Account.ResetPasswordConfirmation(user));
+                if (user.UserType == Domain.Entity.UserType.UserCompany)
+                    return RedirectToAction(MVC.Account.ResetPasswordConfirmation(user));
+                if (user.UserType == Domain.Entity.UserType.UserAdmin)
+                    return RedirectToAction(MVC.Account.ResetPasswordConfirmation(user));
             }
             //this.AddErrors(result);
             this.MessageError(Captions.MissionFail, ModelState.GetListOfErrors());
@@ -276,8 +281,18 @@ namespace Netotik.Web.Controllers
         }
 
         [AllowAnonymous]
-        public virtual ActionResult ResetPasswordConfirmation()
+        public virtual ActionResult ResetPasswordConfirmation(Domain.Entity.User User)
         {
+            if (User.UserType == Domain.Entity.UserType.UserAdmin)
+                ViewBag.UserType = "Admin";
+            if (User.UserType == Domain.Entity.UserType.UserReseller)
+                ViewBag.UserType = "Resller";
+            if (User.UserType == Domain.Entity.UserType.UserCompany)
+            { 
+                ViewBag.UserType = "Company";
+                var Reseller = _applicationUserManager.FindUserById(User.UserCompany.UserResellerId);
+                ViewBag.ResellerId = Reseller.UserReseller.ResellerCode;
+            }
             return View();
         }
         #endregion

@@ -250,6 +250,130 @@ namespace Netotik.Services.Implement
             }
             return usermodel;
         }
+        public long Usermanager_GetUsersCount(string ip, int port, string user, string pass)
+        {
+            var mikrotik = new MikrotikAPI();
+            mikrotik.MK(ip, port);
+            if (!mikrotik.Login(user, pass)) mikrotik.Close();
+            //-----------------------------------------------
+            //--------------------------------------------------------------
+            //mikrotik.Send("/interface/wireless/spectral-scan");
+            //mikrotik.Send("=number=wlan1");
+            //mikrotik.Send("=duration=5s",true);
+            //var test =  mikrotik.Read();
+            //--------------------------------------------------------------
+            mikrotik.Send("/tool/user-manager/user/print");
+            mikrotik.Send("=count-only=", true);
+            var temp = mikrotik.Read();
+            long Count;
+            try
+            {
+                Count = long.Parse(temp[0].ToString().Split('=')[2]);
+            }
+            catch
+            {
+                Count = 0;
+            }
+            return Count;
+        }
+        public long Usermanager_GetPackagesCount(string ip, int port, string user, string pass)
+        {
+            var mikrotik = new MikrotikAPI();
+            mikrotik.MK(ip, port);
+            if (!mikrotik.Login(user, pass)) mikrotik.Close();
+            //-----------------------------------------------
+            //--------------------------------------------------------------
+            //mikrotik.Send("/interface/wireless/spectral-scan");
+            //mikrotik.Send("=number=wlan1");
+            //mikrotik.Send("=duration=5s",true);
+            //var test =  mikrotik.Read();
+            //--------------------------------------------------------------
+            mikrotik.Send("/tool/user-manager/profile/print");
+            mikrotik.Send("=count-only=", true);
+            long Count;
+            try
+            {
+                Count = long.Parse(mikrotik.Read()[0].ToString().Split('=')[2]);
+            }
+            catch
+            {
+                Count = 0;
+            }
+            return Count;
+        }
+        public long Usermanager_GetActiveSessionsCount(string ip, int port, string user, string pass)
+        {
+            var mikrotik = new MikrotikAPI();
+            mikrotik.MK(ip, port);
+            if (!mikrotik.Login(user, pass)) mikrotik.Close();
+            //-----------------------------------------------
+            //--------------------------------------------------------------
+            //mikrotik.Send("/interface/wireless/spectral-scan");
+            //mikrotik.Send("=number=wlan1");
+            //mikrotik.Send("=duration=5s",true);
+            //var test =  mikrotik.Read();
+            //--------------------------------------------------------------
+            mikrotik.Send("/tool/user-manager/session/print");
+            mikrotik.Send("=count-only=");
+            mikrotik.Send("?=active=yes",true);
+            long Count;
+            try
+            {
+                Count = long.Parse(mikrotik.Read()[0].ToString().Split('=')[2]);
+            }
+            catch
+            {
+                Count = 0;
+            }
+            return Count;
+        }
+        public List<Netotik.ViewModels.Identity.UserClient.UserSessionModel> Usermanager_GetActiveSessions(string ip, int port, string user, string pass)
+        {
+            var mikrotik = new MikrotikAPI();
+            mikrotik.MK(ip, port);
+            if (!mikrotik.Login(user, pass)) mikrotik.Close();
+            //-----------------------------------------------
+            mikrotik.Send("/tool/user-manager/session/print");
+            mikrotik.Send("?=active=yes", true);
+
+            var usersessionmodel = new List<Netotik.ViewModels.Identity.UserClient.UserSessionModel>();
+            foreach (var item in mikrotik.Read())
+            {
+                if (item != "!done")
+                {
+                    var cols = item.Split('=');
+                    var ColumnList = new Dictionary<string, string>();
+                    for (int i = 1; i < cols.Count(); i += 2)
+                    {
+                        ColumnList.Add(cols[i], cols[i + 1]);
+                    }
+                    usersessionmodel.Add(new Netotik.ViewModels.Identity.UserClient.UserSessionModel()
+                    {
+                        id = ColumnList.Any(x => x.Key == ".id") ? (ColumnList.FirstOrDefault(x => x.Key == ".id").Value) : "",
+                        customer = ColumnList.Any(x => x.Key == "customer") ? (ColumnList.FirstOrDefault(x => x.Key == "customer").Value) : "",
+                        user = ColumnList.Any(x => x.Key == "user") ? (ColumnList.FirstOrDefault(x => x.Key == "user").Value) : "",
+                        acct_session_id = ColumnList.Any(x => x.Key == "acct-session-id") ? (ColumnList.FirstOrDefault(x => x.Key == "acct-session-id").Value) : "",
+                        calling_station_id = ColumnList.Any(x => x.Key == "calling-station-id") ? (ColumnList.FirstOrDefault(x => x.Key == "calling-station-id").Value) : "",
+                        download = ColumnList.Any(x => x.Key == "download") ? (ColumnList.FirstOrDefault(x => x.Key == "download").Value) : "",
+                        from_time = ColumnList.Any(x => x.Key == "from-time") ? (ColumnList.FirstOrDefault(x => x.Key == "from-time").Value) : "",
+                        host_ip = ColumnList.Any(x => x.Key == "host-ip") ? (ColumnList.FirstOrDefault(x => x.Key == "host-ip").Value) : "",
+                        nas_port = ColumnList.Any(x => x.Key == "nas-port") ? (ColumnList.FirstOrDefault(x => x.Key == "nas-port").Value) : "",
+                        nas_port_id = ColumnList.Any(x => x.Key == "nas-port-id") ? (ColumnList.FirstOrDefault(x => x.Key == "nas-port-id").Value) : "",
+                        nas_port_type = ColumnList.Any(x => x.Key == "nas-port-type") ? (ColumnList.FirstOrDefault(x => x.Key == "nas-port-type").Value) : "",
+                        status = ColumnList.Any(x => x.Key == "status") ? (ColumnList.FirstOrDefault(x => x.Key == "status").Value) : "",
+                        terminate_cause = ColumnList.Any(x => x.Key == "terminate-cause") ? (ColumnList.FirstOrDefault(x => x.Key == "terminate-cause").Value) : "",
+                        till_time = ColumnList.Any(x => x.Key == "till-time") ? (ColumnList.FirstOrDefault(x => x.Key == "till-time").Value) : "",
+                        upload = ColumnList.Any(x => x.Key == "upload") ? (ColumnList.FirstOrDefault(x => x.Key == "upload").Value) : "",
+                        uptime = ColumnList.Any(x => x.Key == "uptime") ? (ColumnList.FirstOrDefault(x => x.Key == "uptime").Value) : "",
+                        user_ip = ColumnList.Any(x => x.Key == "user-ip") ? (ColumnList.FirstOrDefault(x => x.Key == "user-ip").Value) : "",
+                        active = ColumnList.Any(x => x.Key == "active") ? (ColumnList.FirstOrDefault(x => x.Key == "active").Value) : ""
+                    });
+
+                }
+            }
+            return usersessionmodel;
+        }
+
         public List<Netotik.ViewModels.Identity.UserClient.UserModel> Usermanager_GetUser(string ip, int port, string user, string pass, string id)
         {
             var mikrotik = new MikrotikAPI();
@@ -665,18 +789,27 @@ namespace Netotik.Services.Implement
             mikrotik.MK(ip, port);
             if (!mikrotik.Login(user, pass)) mikrotik.Close();
             //-----------------------------------------------
-            mikrotik.Send("/tool/user-manager/payment/print");
+            
             string temp = "";
+
             if (UsermanUser.Contains("*"))
             {
+                mikrotik.Send("/tool/user-manager/payment/print");
                 temp = String.Format("?=.id={0}", UsermanUser);
+                mikrotik.Send(temp, true);
+            }
+            else if(UsermanUser == "")
+            {
+                mikrotik.Send("/tool/user-manager/payment/print",true);
             }
             else
             {
+                mikrotik.Send("/tool/user-manager/payment/print");
                 temp = String.Format("?=user={0}", UsermanUser);
+                mikrotik.Send(temp, true);
             }
 
-            mikrotik.Send(temp, true);
+            
 
             var PaymentModel = new List<Netotik.ViewModels.Identity.UserClient.PaymentModel>();
             foreach (var item in mikrotik.Read())
@@ -706,6 +839,8 @@ namespace Netotik.Services.Implement
 
                 }
             }
+            if (UsermanUser == "")
+                return PaymentModel;
             var PaymentModelResualt = new List<Netotik.ViewModels.Identity.UserClient.PaymentModel>();
             foreach (var item in PaymentModel)
             {

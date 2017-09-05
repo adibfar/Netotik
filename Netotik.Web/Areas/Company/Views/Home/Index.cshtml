@@ -1,4 +1,191 @@
-﻿@{
+﻿@using Netotik.Web.Infrastructure;
+@{
     ViewBag.Title = Netotik.Resources.Captions.Dashboard;
-    Layout = "~/Views/Shared/_Layout.cshtml";
+    String temp = "";
+}
+<div class="row">
+    <div class="col-xl-3 col-xs-12">
+        <div class="card">
+            <div class="card-body">
+                <div class="card-block">
+                    <div class="media">
+                        <div class="media-body text-xs-left">
+                            <h3 class="teal">@ViewBag.UsersCount</h3>
+                            <span><a href="@Url.Action(MVC.Company.UserManager.UserList())">تعداد کاربران</a></span>
+                        </div>
+                        <div class="media-right media-middle">
+                            <i class="icon-user1 teal font-large-2 float-xs-right"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-xl-3 col-xs-12">
+        <div class="card">
+            <div class="card-body">
+                <div class="card-block">
+                    <div class="media">
+                        <div class="media-body text-xs-left">
+                            <h3 class="teal">@ViewBag.PackageCount</h3>
+                            <span><a href="@Url.Action(MVC.Company.UserManager.PackageList())">تعداد تعرفه ها</a></span>
+                        </div>
+                        <div class="media-right media-middle">
+                            <i class="icon-cart teal font-large-2 float-xs-right"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-xl-3 col-xs-12">
+        <div class="card">
+            <div class="card-body">
+                <div class="card-block">
+                    <div class="media">
+                        <div class="media-body text-xs-left">
+                            <h3 class="teal">@ViewBag.ActiveSessionsCount</h3>
+                            <span><a href="@Url.Action(MVC.Company.UserManager.Online())">کاربران متصل</a></span>
+                        </div>
+                        <div class="media-right media-middle">
+                            <i class="icon-world teal font-large-2 float-xs-right"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-xl-3 col-xs-12">
+        <div class="card">
+            <div class="card-body">
+                <div class="card-block">
+                    <div class="media">
+                        <div class="media-body text-xs-left">
+                            <h3 class="teal">@EnglishConvertDate.ConvertToFa(ViewBag.Clock.Router_date,"D")</h3>
+                            <span>@ViewBag.Clock.Router_time</span>
+                        </div>
+                        <div class="media-right media-middle">
+                            <i class="icon-clock-o teal font-large-2 float-xs-right"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+<div class="row">
+    <div class="col-xl-12">
+        <div class="card">
+            <div class="card-body">
+                <div class="card-block sales-growth-chart">
+                    <canvas id="line-chart" height="300"></canvas>
+                </div>
+            </div>
+            <div class="card-footer">
+                <div class="chart-title mb-1 text-xs-center">
+                    <span class="text-muted">Last 10 Profile Usage</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section DownScript{
+    <script src="~/Content/js/plugins/charts/chart.min.js" type="text/javascript"></script>
+
+    <script src="~/Content/js/plugins/extensions/jquery.knob.min.js" type="text/javascript"></script>
+    <script src="~/Content/js/components/extensions/knob.js" type="text/javascript"></script>
+
+
+    <script type="text/javascript">
+        $(window).on("load", function () {
+            var a = $("#line-chart"),
+                b = {
+                    responsive: !0,
+                    maintainAspectRatio: !1,
+                    legend: {
+                        position: "bottom"
+                    },
+                    hover: {
+                        mode: "label"
+                    },
+                    scales: {
+                        xAxes: [{
+                            display: !0,
+                            gridLines: {
+                                color: "#f3f3f3",
+                                drawTicks: !1
+                            },
+                            scaleLabel: {
+                                display: !0,
+                                labelString: "نام کاربری"
+                            }
+                        }],
+                        yAxes: [{
+                            display: !0,
+                            gridLines: {
+                                color: "#f3f3f3",
+                                drawTicks: !1
+                            },
+                            scaleLabel: {
+                                display: !0,
+                                labelString: "قیمت"
+                            }
+                        }]
+                    },
+                    title: {
+                        display: !0,
+                        text: "آخرین تغییرات تعرفه ها"
+                    }
+                },
+                c = {
+                    labels: [
+                         @foreach(var Payment in ViewBag.Payments)
+            {
+                             @Html.Raw('[')
+                              @Html.Raw('"')
+                            @(Payment.user.ToString())
+                             @Html.Raw('"')
+                             @Html.Raw(',')
+                             @Html.Raw('"')
+                             @(EnglishConvertDate.ConvertToFa(Payment.trans_end.ToString().Split(' ')[0], "d")+" " + Payment.trans_end.ToString().Split(' ')[1])
+                             @Html.Raw('"')
+                             @Html.Raw(']')
+                             @(" , ")
+            }
+
+                    ],
+                    datasets: [{
+                        label: "قیمت تعرفه",
+                        data: [
+                             @foreach(var Payment in ViewBag.Payments)
+            {
+                temp = Payment.price.ToString().Remove(Payment.price.Length -2, 2) + " , ";
+                @(temp)
+            }
+
+                        ],
+                        lineTension: 0,
+                        fill: !1,
+                        borderColor: "#FF5722",
+                        pointBorderColor: "#FF5722",
+                        pointBackgroundColor: "#FFF",
+                        pointBorderWidth: 2,
+                        pointHoverBorderWidth: 2,
+                        pointRadius: 4
+                    }]
+                },
+                d = {
+                    type: "line",
+                    options: b,
+                    data: c
+                };
+            new Chart(a, d)
+        });
+
+
+
+
+    </script>
 }

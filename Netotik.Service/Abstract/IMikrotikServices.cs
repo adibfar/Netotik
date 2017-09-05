@@ -9,6 +9,10 @@ namespace Netotik.Services.Abstract
     {
         string GetRouterName(string ip, int port, string user, string pass);
         List<Netotik.ViewModels.Identity.UserClient.UserModel> Usermanager_GetAllUsers(string ip, int port, string user, string pass);
+        long Usermanager_GetUsersCount(string ip, int port, string user, string pass);
+        long Usermanager_GetPackagesCount(string ip, int port, string user, string pass);
+        long Usermanager_GetActiveSessionsCount(string ip, int port, string user, string pass);
+        List<Netotik.ViewModels.Identity.UserClient.UserSessionModel> Usermanager_GetActiveSessions(string r_Host, int r_Port, string r_User, string r_Password);
         List<Netotik.ViewModels.Identity.UserClient.UserModel> Usermanager_GetUser(string ip, int port, string user, string pass,string id);
         Task<List<Netotik.ViewModels.Identity.UserClient.UserModel>> Usermanager_GetUserAsync(string ip, int port, string user, string pass, string id);
         void Usermanager_DisableUser(string ip, int port, string user, string pass, string UsermanUser);

@@ -78,6 +78,12 @@ namespace Netotik.Web.Controllers
         }
         [NonAction]
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public virtual System.Web.Mvc.ActionResult ResetPasswordConfirmation()
+        {
+            return new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.ResetPasswordConfirmation);
+        }
+        [NonAction]
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public virtual System.Web.Mvc.ActionResult RedirectToLocal()
         {
             return new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.RedirectToLocal);
@@ -159,6 +165,14 @@ namespace Netotik.Web.Controllers
             public readonly string userId = "userId";
             public readonly string code = "code";
             public readonly string model = "model";
+        }
+        static readonly ActionParamsClass_ResetPasswordConfirmation s_params_ResetPasswordConfirmation = new ActionParamsClass_ResetPasswordConfirmation();
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public ActionParamsClass_ResetPasswordConfirmation ResetPasswordConfirmationParams { get { return s_params_ResetPasswordConfirmation; } }
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public class ActionParamsClass_ResetPasswordConfirmation
+        {
+            public readonly string User = "User";
         }
         static readonly ActionParamsClass_ReceiveActivatorEmail s_params_ReceiveActivatorEmail = new ActionParamsClass_ReceiveActivatorEmail();
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -318,13 +332,14 @@ namespace Netotik.Web.Controllers
         }
 
         [NonAction]
-        partial void ResetPasswordConfirmationOverride(T4MVC_System_Web_Mvc_ActionResult callInfo);
+        partial void ResetPasswordConfirmationOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, Netotik.Domain.Entity.User User);
 
         [NonAction]
-        public override System.Web.Mvc.ActionResult ResetPasswordConfirmation()
+        public override System.Web.Mvc.ActionResult ResetPasswordConfirmation(Netotik.Domain.Entity.User User)
         {
             var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.ResetPasswordConfirmation);
-            ResetPasswordConfirmationOverride(callInfo);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "User", User);
+            ResetPasswordConfirmationOverride(callInfo, User);
             return callInfo;
         }
 

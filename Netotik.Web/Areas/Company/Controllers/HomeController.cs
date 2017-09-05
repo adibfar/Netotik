@@ -59,6 +59,25 @@ namespace Netotik.Web.Areas.Company.Controllers
 
         public virtual ActionResult Index()
         {
+            if (!_mikrotikServices.IP_Port_Check(UserLogined.UserCompany.R_Host, UserLogined.UserCompany.R_Port, UserLogined.UserCompany.R_User, UserLogined.UserCompany.R_Password))
+            {
+                this.MessageError(Captions.Error, Captions.IPPORTClientError);
+                return RedirectToAction(MVC.Company.Home.ActionNames.MikrotikConf, MVC.Company.Home.Name, new { area = MVC.Company.Name });
+            }
+            if (!_mikrotikServices.User_Pass_Check(UserLogined.UserCompany.R_Host, UserLogined.UserCompany.R_Port, UserLogined.UserCompany.R_User, UserLogined.UserCompany.R_Password))
+            {
+                this.MessageError(Captions.Error, Captions.UserPasswordClientError);
+                return RedirectToAction(MVC.Company.Home.ActionNames.MikrotikConf, MVC.Company.Home.Name, new { area = MVC.Company.Name });
+            }
+            if (!_mikrotikServices.Usermanager_IsInstall(UserLogined.UserCompany.R_Host, UserLogined.UserCompany.R_Port, UserLogined.UserCompany.R_User, UserLogined.UserCompany.R_Password))
+            {
+                this.MessageError(Captions.Error, Captions.UsermanagerClientError);
+            }
+            ViewBag.UsersCount = _mikrotikServices.Usermanager_GetUsersCount(UserLogined.UserCompany.R_Host, UserLogined.UserCompany.R_Port, UserLogined.UserCompany.R_User, UserLogined.UserCompany.R_Password).ToString();
+            ViewBag.PackageCount = _mikrotikServices.Usermanager_GetPackagesCount(UserLogined.UserCompany.R_Host, UserLogined.UserCompany.R_Port, UserLogined.UserCompany.R_User, UserLogined.UserCompany.R_Password).ToString();
+            ViewBag.ActiveSessionsCount= _mikrotikServices.Usermanager_GetActiveSessionsCount(UserLogined.UserCompany.R_Host, UserLogined.UserCompany.R_Port, UserLogined.UserCompany.R_User, UserLogined.UserCompany.R_Password).ToString();
+            ViewBag.Payments = _mikrotikServices.Usermanager_Payment(UserLogined.UserCompany.R_Host, UserLogined.UserCompany.R_Port, UserLogined.UserCompany.R_User, UserLogined.UserCompany.R_Password,"").OrderByDescending(x=>x.trans_end).Take(10);
+            ViewBag.Clock = _mikrotikServices.Router_Clock(UserLogined.UserCompany.R_Host, UserLogined.UserCompany.R_Port, UserLogined.UserCompany.R_User, UserLogined.UserCompany.R_Password).FirstOrDefault();
             return View();
         }
 
