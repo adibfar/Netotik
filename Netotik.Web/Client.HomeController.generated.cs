@@ -133,8 +133,7 @@ namespace Netotik.Web.Areas.Client.Controllers
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public class ActionParamsClass_BuyPackage
         {
-            public readonly string model = "model";
-            public readonly string actionType = "actionType";
+            public readonly string pname = "pname";
         }
         static readonly ActionParamsClass_RedirectToLocal s_params_RedirectToLocal = new ActionParamsClass_RedirectToLocal();
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -245,15 +244,14 @@ namespace Netotik.Web.Areas.Client.Controllers
         }
 
         [NonAction]
-        partial void BuyPackageOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, Netotik.ViewModels.Identity.UserClient.UserEditModel model, Netotik.Common.Controller.ActionType actionType);
+        partial void BuyPackageOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, string pname);
 
         [NonAction]
-        public override System.Web.Mvc.ActionResult BuyPackage(Netotik.ViewModels.Identity.UserClient.UserEditModel model, Netotik.Common.Controller.ActionType actionType)
+        public override System.Web.Mvc.ActionResult BuyPackage(string pname)
         {
             var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.BuyPackage);
-            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "model", model);
-            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "actionType", actionType);
-            BuyPackageOverride(callInfo, model, actionType);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "pname", pname);
+            BuyPackageOverride(callInfo, pname);
             return callInfo;
         }
 

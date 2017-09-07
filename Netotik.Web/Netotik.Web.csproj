@@ -309,8 +309,8 @@
       <HintPath>..\packages\T4MVCExtensions.4.0.0\lib\net45\T4MVCExtensions.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Telegram.Bot, Version=10.4.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Telegram.Bot.10.4.0\lib\net45\Telegram.Bot.dll</HintPath>
+    <Reference Include="Telegram.Bot, Version=13.2.2.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Telegram.Bot.13.2.2-rc\lib\netstandard1.1\Telegram.Bot.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="UAParser, Version=2.1.0.0, Culture=neutral, PublicKeyToken=f7377bf021646069, processorArchitecture=MSIL">
@@ -548,6 +548,7 @@
     </Content>
     <Content Include="Content\css\Ltr\app.min.css" />
     <Content Include="Content\css\Ltr\vendors.min.css" />
+    <Content Include="Content\css\Rtl\ClientBuyPackage.css" />
     <Content Include="Content\css\Rtl\my-style.css" />
     <Content Include="Content\Email\Images\arrow1.png" />
     <Content Include="Content\Email\Images\arrow2.png" />

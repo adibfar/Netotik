@@ -311,8 +311,8 @@ namespace Netotik.Web.Areas.Company.Controllers
             public _ViewNamesClass ViewNames { get { return s_ViewNames; } }
             public class _ViewNamesClass
             {
-                public readonly string Active = "Active";
                 public readonly string ClientArea = "ClientArea";
+                public readonly string Online = "Online";
                 public readonly string PackageCreate = "PackageCreate";
                 public readonly string PackageDetails = "PackageDetails";
                 public readonly string PackageList = "PackageList";
@@ -323,8 +323,8 @@ namespace Netotik.Web.Areas.Company.Controllers
                 public readonly string UserEdit = "UserEdit";
                 public readonly string UserList = "UserList";
             }
-            public readonly string Active = "~/Areas/Company/Views/UserManager/Active.cshtml";
             public readonly string ClientArea = "~/Areas/Company/Views/UserManager/ClientArea.cshtml";
+            public readonly string Online = "~/Areas/Company/Views/UserManager/Online.cshtml";
             public readonly string PackageCreate = "~/Areas/Company/Views/UserManager/PackageCreate.cshtml";
             public readonly string PackageDetails = "~/Areas/Company/Views/UserManager/PackageDetails.cshtml";
             public readonly string PackageList = "~/Areas/Company/Views/UserManager/PackageList.cshtml";

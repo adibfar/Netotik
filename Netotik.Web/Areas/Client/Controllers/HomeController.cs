@@ -226,11 +226,11 @@ namespace Netotik.Web.Areas.Client.Controllers
                     //--------------------------------------------------------------------
                     var time = _mikrotikServices.Usermanager_Payment(loginedUser.UserCompany.R_Host, loginedUser.UserCompany.R_Port, loginedUser.UserCompany.R_User, loginedUser.UserCompany.R_Password, item.username);
                     var LastTime = time.LastOrDefault();
-                    ViewBag.StartTime = (LastTime.trans_end == null || LastTime.trans_end == "") ? Captions.Inaccessible : Infrastructure.EnglishConvertDate.ConvertToFa(LastTime.trans_end.Split(' ')[0], "")+" " + LastTime.trans_end.Split(' ')[1];
+                    ViewBag.StartTime = (LastTime.trans_end == null || LastTime.trans_end == "") ? Captions.Inaccessible : Infrastructure.EnglishConvertDate.ConvertToFa(LastTime.trans_end.Split(' ')[0], "") + " " + LastTime.trans_end.Split(' ')[1];
                     days = ValidSec / 86400;
-                    ViewBag.RemianTime = (LastTime.trans_end == null || LastTime.trans_end == "") ? Captions.Inaccessible : PersianDate.ConvertDate.ToFa(PersianDate.ConvertDate.ToEn(Infrastructure.EnglishConvertDate.ConvertToFa(LastTime.trans_end.Split(' ')[0],"")).AddDays(Int32.Parse(days.ToString())), "d").ToString();
+                    ViewBag.RemianTime = (LastTime.trans_end == null || LastTime.trans_end == "") ? Captions.Inaccessible : PersianDate.ConvertDate.ToFa(PersianDate.ConvertDate.ToEn(Infrastructure.EnglishConvertDate.ConvertToFa(LastTime.trans_end.Split(' ')[0], "")).AddDays(Int32.Parse(days.ToString())), "d").ToString();
                     if (ValidSec == 0) ViewBag.RemianTime = Captions.Unlimited;
-                    if (UserProfile.starts_at == "logon" && (LastTime.trans_end == null || LastTime.trans_end == "")) ViewBag.StartTime += " "+ Captions.Approximate;
+                    if (UserProfile.starts_at == "logon" && (LastTime.trans_end == null || LastTime.trans_end == "")) ViewBag.StartTime += " " + Captions.Approximate;
                     //-------------***-----------
 
                     if (item.uptime_used != null)
@@ -514,7 +514,7 @@ namespace Netotik.Web.Areas.Client.Controllers
                     if (UserLimition.upload_limit != "0") Downloadlimit += ulong.Parse(UserLimition.upload_limit);
                     if (UserLimition.download_limit == null) UserLimition.download_limit = "0";
                     if (UserLimition.download_limit != "0") Downloadlimit += ulong.Parse(UserLimition.download_limit);
-                    if (UserLimition.download_limit != "" && item.download_used != "" && Downloadlimit >0)
+                    if (UserLimition.download_limit != "" && item.download_used != "" && Downloadlimit > 0)
                         ViewBag.download_remain = (Downloadlimit - ulong.Parse(item.download_used)).ToString();
                     else
                     {
@@ -563,9 +563,10 @@ namespace Netotik.Web.Areas.Client.Controllers
                 }
             return View();
         }
-        [ValidateAntiForgeryToken]
+
+
         [HttpPost]
-        public virtual ActionResult BuyPackage(Netotik.ViewModels.Identity.UserClient.UserEditModel model, ActionType actionType)
+        public virtual ActionResult BuyPackage(string pname)
         {
             var loginedUser = Session["Client"] as User;
             var Permissions = _applicationUserManager.FindClientPermissions(loginedUser.Id);
@@ -592,29 +593,24 @@ namespace Netotik.Web.Areas.Client.Controllers
             }
             //-------------------------------
             ViewBag.profiles = _mikrotikServices.Usermanager_GetAllProfile(loginedUser.UserCompany.R_Host, loginedUser.UserCompany.R_Port, loginedUser.UserCompany.R_User, loginedUser.UserCompany.R_Password);
-            if (!ModelState.IsValid)
-            {
-                //SetResultMessage(false, MessageColor.Danger, Captions.InvalidDataError, Captions.MissionFail);
-                return View();
-            }
-            else
-            {
-                var UsermanagerUser = _mikrotikServices.Usermanager_GetUser(loginedUser.UserCompany.R_Host, loginedUser.UserCompany.R_Port, loginedUser.UserCompany.R_User, loginedUser.UserCompany.R_Password, loginedUser.UserName);
-                model.customer = loginedUser.UserCompany.Userman_Customer;
-                model.id = UsermanagerUser.FirstOrDefault().id;
-                model.username = UsermanagerUser.FirstOrDefault().username;
-                model.shared_users = UsermanagerUser.FirstOrDefault().shared_users;
-                model.password = UsermanagerUser.FirstOrDefault().password;
-                model.location = UsermanagerUser.FirstOrDefault().location;
-                model.comment = UsermanagerUser.FirstOrDefault().comment;
-                model.email = UsermanagerUser.FirstOrDefault().email;
-                model.first_name = UsermanagerUser.FirstOrDefault().first_name;
-                model.last_name = UsermanagerUser.FirstOrDefault().last_name;
-                model.phone = UsermanagerUser.FirstOrDefault().phone;
-                _mikrotikServices.Usermanager_UserEdit(loginedUser.UserCompany.R_Host, loginedUser.UserCompany.R_Port, loginedUser.UserCompany.R_User, loginedUser.UserCompany.R_Password, model);
+            ViewBag.limitions = _mikrotikServices.Usermanager_GetAllLimition(loginedUser.UserCompany.R_Host, loginedUser.UserCompany.R_Port, loginedUser.UserCompany.R_User, loginedUser.UserCompany.R_Password);
+            var model = new UserEditModel();
+            var UsermanagerUser = _mikrotikServices.Usermanager_GetUser(loginedUser.UserCompany.R_Host, loginedUser.UserCompany.R_Port, loginedUser.UserCompany.R_User, loginedUser.UserCompany.R_Password, loginedUser.UserName);
+            model.customer = loginedUser.UserCompany.Userman_Customer;
+            model.id = UsermanagerUser.FirstOrDefault().id;
+            model.username = UsermanagerUser.FirstOrDefault().username;
+            model.shared_users = UsermanagerUser.FirstOrDefault().shared_users;
+            model.password = UsermanagerUser.FirstOrDefault().password;
+            model.location = UsermanagerUser.FirstOrDefault().location;
+            model.comment = UsermanagerUser.FirstOrDefault().comment;
+            model.email = UsermanagerUser.FirstOrDefault().email;
+            model.first_name = UsermanagerUser.FirstOrDefault().first_name;
+            model.last_name = UsermanagerUser.FirstOrDefault().last_name;
+            model.phone = UsermanagerUser.FirstOrDefault().phone;
+            model.profile = pname;
+            _mikrotikServices.Usermanager_UserEdit(loginedUser.UserCompany.R_Host, loginedUser.UserCompany.R_Port, loginedUser.UserCompany.R_User, loginedUser.UserCompany.R_Password, model);
 
-                return RedirectToAction(MVC.Client.Home.Index());
-            }
+            return RedirectToAction(MVC.Client.Home.Index());
         }
         public virtual ActionResult BuyPackage()
         {
@@ -643,26 +639,7 @@ namespace Netotik.Web.Areas.Client.Controllers
             }
             //-------------------------------
             ViewBag.profiles = _mikrotikServices.Usermanager_GetAllProfile(loginedUser.UserCompany.R_Host, loginedUser.UserCompany.R_Port, loginedUser.UserCompany.R_User, loginedUser.UserCompany.R_Password);
-            var model = _mikrotikServices.Usermanager_GetUser(loginedUser.UserCompany.R_Host, loginedUser.UserCompany.R_Port, loginedUser.UserCompany.R_User, loginedUser.UserCompany.R_Password, loginedUser.UserName);
-            foreach (var item in model)
-                if (item.id == loginedUser.UserName)
-                {
-                    var editModel = new Netotik.ViewModels.Identity.UserClient.UserEditModel
-                    {
-                        id = item.id,
-                        first_name = item.first_name,
-                        comment = item.comment,
-                        email = item.email,
-                        last_name = item.last_name,
-                        location = item.location,
-                        phone = item.phone,
-                        profile = item.actual_profile,
-                        shared_users = item.shared_users,
-                        username = item.username
-                    };
-                    return View(editModel);
-                }
-            //            ViewBag.Customers = _mikrotikServices.GetAllCustomers(loginedUser.UserCompany.R_Host, loginedUser.UserCompany.R_Port, loginedUser.UserCompany.R_User, loginedUser.UserCompany.R_Password);
+            ViewBag.limitions = _mikrotikServices.Usermanager_GetAllLimition(loginedUser.UserCompany.R_Host, loginedUser.UserCompany.R_Port, loginedUser.UserCompany.R_User, loginedUser.UserCompany.R_Password);
             return View();
         }
         public virtual ActionResult Charts()

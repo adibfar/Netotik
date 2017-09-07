@@ -55,6 +55,18 @@ namespace Netotik.Web.Controllers
                 ForceReply markup = new ForceReply();
                 markup.Force = true;
                 var message = update.Message;
+                var MessageId = await Api.SendTextMessageAsync(message.Chat.Id, "لطفا تا دریافت پاسخ شکیبا باشید.🌹");
+                try
+                {
+                    using (StreamWriter _testData = new StreamWriter(HostingEnvironment.MapPath("~/TelegramBotErrors2.txt"), true))
+                    {
+                        _testData.WriteLine(update.CallbackQuery.Id + " \t "); // Write the file.
+                    }
+                }
+                catch { }
+
+
+
                 await Api.SendChatActionAsync(message.Chat.Id, ChatAction.Typing);
                 var TelegramBotDataTable = _telegramBotDataService.GetList(user.Id, message.Chat.Id).ToList();
                 bool ReplyMessageFlag = false;
@@ -611,6 +623,26 @@ namespace Netotik.Web.Controllers
                 #region MainMenu
                 else if (message.Text == "منوی اصلی")
                 {
+
+                //    var keyboard2 = new InlineKeyboardMarkup(new[]
+                //   {
+                //    new [] // first row
+                //    {
+                //        new Telegram.Bot.Types.InlineKeyboardButtons.InlineKeyboardCallbackButton("درباره ما 📄","1"),
+                //        new Telegram.Bot.Types.InlineKeyboardButtons.InlineKeyboardCallbackButton("ارتباط با ما 📞","2"),
+                //    },
+                //    new [] // last row
+                //    {
+                //        new Telegram.Bot.Types.InlineKeyboardButtons.InlineKeyboardCallbackButton("ورود کاربران 👱","3"),
+                //        new Telegram.Bot.Types.InlineKeyboardButtons.InlineKeyboardCallbackButton("ورود مدیر 👷","4"),
+                //    }
+                //});
+                //    await Api.SendTextMessageAsync(message.Chat.Id, "به ربات تلگرامی " + CompanyCode + " خوش آمدید.لطفا یکی از گزینه ها را انتخاب کنید.",
+                //        replyMarkup: keyboard2);
+
+
+
+
                     var keyboard = new ReplyKeyboardMarkup(new[]
                    {
                     new [] // first row
@@ -650,6 +682,7 @@ namespace Netotik.Web.Controllers
                 }
 
                 #endregion
+                await Api.DeleteMessageAsync(message.Chat.Id,MessageId.MessageId);
             }
             catch (Exception ex)
             {
