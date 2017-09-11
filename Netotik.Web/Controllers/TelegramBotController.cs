@@ -265,7 +265,7 @@ namespace Netotik.Web.Controllers
                                             {
                                                 if (Profilelimition.limitation == Profile.name)
                                                 {
-                                                    if (Profile.validity == null || Profile.validity == "" || Profile.validity== "0s")
+                                                    if (Profile.validity == null || Profile.validity == "" || Profile.validity == "0s")
                                                     {
 
                                                         Validity = "🕐 اعتبار اکانت شما به صورت نامحدود می باشد.";
@@ -620,25 +620,32 @@ namespace Netotik.Web.Controllers
 
                 #endregion
 
+                #region AdminMenu
+                else if (message.Text == "ورود مدیر 👷")
+                {
+
+                    await Api.SendTextMessageAsync(message.Chat.Id, "این قسمت هنوز پیاده سازی نشده است.");
+                }
+                #endregion
                 #region MainMenu
                 else if (message.Text == "منوی اصلی")
                 {
 
-                //    var keyboard2 = new InlineKeyboardMarkup(new[]
-                //   {
-                //    new [] // first row
-                //    {
-                //        new Telegram.Bot.Types.InlineKeyboardButtons.InlineKeyboardCallbackButton("درباره ما 📄","1"),
-                //        new Telegram.Bot.Types.InlineKeyboardButtons.InlineKeyboardCallbackButton("ارتباط با ما 📞","2"),
-                //    },
-                //    new [] // last row
-                //    {
-                //        new Telegram.Bot.Types.InlineKeyboardButtons.InlineKeyboardCallbackButton("ورود کاربران 👱","3"),
-                //        new Telegram.Bot.Types.InlineKeyboardButtons.InlineKeyboardCallbackButton("ورود مدیر 👷","4"),
-                //    }
-                //});
-                //    await Api.SendTextMessageAsync(message.Chat.Id, "به ربات تلگرامی " + CompanyCode + " خوش آمدید.لطفا یکی از گزینه ها را انتخاب کنید.",
-                //        replyMarkup: keyboard2);
+                    //    var keyboard2 = new InlineKeyboardMarkup(new[]
+                    //   {
+                    //    new [] // first row
+                    //    {
+                    //        new Telegram.Bot.Types.InlineKeyboardButtons.InlineKeyboardCallbackButton("درباره ما 📄","1"),
+                    //        new Telegram.Bot.Types.InlineKeyboardButtons.InlineKeyboardCallbackButton("ارتباط با ما 📞","2"),
+                    //    },
+                    //    new [] // last row
+                    //    {
+                    //        new Telegram.Bot.Types.InlineKeyboardButtons.InlineKeyboardCallbackButton("ورود کاربران 👱","3"),
+                    //        new Telegram.Bot.Types.InlineKeyboardButtons.InlineKeyboardCallbackButton("ورود مدیر 👷","4"),
+                    //    }
+                    //});
+                    //    await Api.SendTextMessageAsync(message.Chat.Id, "به ربات تلگرامی " + CompanyCode + " خوش آمدید.لطفا یکی از گزینه ها را انتخاب کنید.",
+                    //        replyMarkup: keyboard2);
 
 
 
@@ -682,7 +689,7 @@ namespace Netotik.Web.Controllers
                 }
 
                 #endregion
-                await Api.DeleteMessageAsync(message.Chat.Id,MessageId.MessageId);
+                await Api.DeleteMessageAsync(message.Chat.Id, MessageId.MessageId);
             }
             catch (Exception ex)
             {
