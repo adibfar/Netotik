@@ -869,4 +869,13 @@
   <LocaleResource Name="ReportOfSessionsDescription">
     <Value>Report of Sessions of all Users of usermanager</Value>
   </LocaleResource>
+  <LocaleResource Name="UsersCount">
+    <Value>Users Count</Value>
+  </LocaleResource>
+  <LocaleResource Name="PackageCount">
+    <Value>Packages Count</Value>
+  </LocaleResource>
+  <LocaleResource Name="LastPackageChanges">
+    <Value>Last Package Changes</Value>
+  </LocaleResource>
 </Language>

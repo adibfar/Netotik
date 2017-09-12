@@ -111,10 +111,10 @@
                                 </div>
                                 <div class="col-md-6">
                                     
-                                    <select id="profile" name="profile" data-placeholder="انتخاب تعرفه" class="selectize-select" style="min-width:350px;" tabindex="2">
+                                    <select id="profile" name="profile" data-placeholder="@Captions.SelectPackage" class="selectize-select" style="min-width:350px;" tabindex="2">
                                         @foreach (var item in ViewBag.profiles)
                                         {
-                                            <option value="@item.name">@item.name | قیمت:@item.price</option>
+                                            <option value="@item.name">@item.name | @Captions.Price:@item.price</option>
                                         }
                                     </select>
                                 </div>

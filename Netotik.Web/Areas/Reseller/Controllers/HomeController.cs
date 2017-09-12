@@ -85,10 +85,10 @@ namespace Netotik.Web.Areas.Reseller.Controllers
         {
             #region Validation
             if (_applicationUserManager.CheckResellerEmailExist(model.Email, User.Identity.GetUserId<long>()))
-                ModelState.AddModelError("Email", "این ایمیل قبلا در سیستم ثبت شده است");
+                ModelState.AddModelError("Email", Captions.ExistError);
 
             if (_applicationUserManager.CheckResellerPhoneNumberExist(model.PhoneNumber, User.Identity.GetUserId<long>()))
-                ModelState.AddModelError("PhoneNumber", "این شماره موبایل قبلا در سیستم ثبت شده است");
+                ModelState.AddModelError("PhoneNumber", Captions.ExistError);
 
             if (!ModelState.IsValid)
             {

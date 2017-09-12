@@ -19,7 +19,7 @@
                                             <h2>@item.name</h2>
                                         </div>
                                         <div class="plan-price">
-                                            <b>@(item.price == "0" ? "رایگان" : item.price)</b> تومان
+                                            <b>@(item.price == "0" ? Captions.Free : item.price)</b> @Captions.Toman
                                         </div>
                                         <div class="plan-details">
                                             <div>
@@ -43,12 +43,12 @@
                                                     {
                                                         if (limit.name == item.name)
                                                         {
-                                                            @(limit.rate_limit_rx.ToString() == "" ? "بدون محدودیت" : limit.rate_limit_rx.ToString() + "Mb")
+                                                            @(limit.rate_limit_rx.ToString() == "" ? Captions.Unlimited : (ulong.Parse(limit.rate_limit_rx.ToString())/ 1048576) + "Mb")
                                                             <b>/</b>
-                                                                        @(limit.rate_limit_tx.ToString() == "" ? "بدون محدودیت" : limit.rate_limit_tx.ToString() + "Mb")
+                                                                        @(limit.rate_limit_tx.ToString() == "" ? Captions.Unlimited : (ulong.Parse(limit.rate_limit_tx.ToString())/1048576) + "Mb")
                                                         }
                                                     }
-                                                </b> سرعت
+                                                </b> @Captions.DownloadSpeedLimit/@Captions.UploadSpeedLimit
                                             </div>
                                             <div>
                                                 <b>@(item.validity.ToString() == "0s" ? Captions.Unlimited : item.validity.ToString().Replace("d", Captions.Day).Replace("w", Captions.Week).Replace("h", Captions.Hour).Replace("m", Captions.Minute).Replace("s", Captions.Secend))</b> اعتبار
@@ -62,11 +62,11 @@
                                                             @(limit.uptime_limit.ToString() == "0s" ? Captions.Unlimited : limit.uptime_limit.ToString().Replace("d", Captions.Day).Replace("w", Captions.Week).Replace("h", Captions.Hour).Replace("m", Captions.Minute).Replace("s", Captions.Secend))
                                                         }
                                                     }
-                                                </b> زمان متصل بودن
+                                                </b> @Captions.OnlineTime
                                             </div>
                                         </div>
                                         <div class="plan-action">
-                                            <a onclick="Buy('@item.name');" class="btn btn-success btn-block btn-large">خرید</a>
+                                            <a onclick="Buy('@item.name');" class="btn btn-success btn-block btn-large">@Captions.BuyPackage</a>
                                         </div>
                                     </div>
                                 </div>
