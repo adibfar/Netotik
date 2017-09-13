@@ -73,10 +73,27 @@ namespace Netotik.Web.Areas.Company.Controllers
             {
                 this.MessageError(Captions.Error, Captions.UsermanagerClientError);
             }
-            ViewBag.UsersCount = _mikrotikServices.Usermanager_GetUsersCount(UserLogined.UserCompany.R_Host, UserLogined.UserCompany.R_Port, UserLogined.UserCompany.R_User, UserLogined.UserCompany.R_Password).ToString();
-            ViewBag.PackageCount = _mikrotikServices.Usermanager_GetPackagesCount(UserLogined.UserCompany.R_Host, UserLogined.UserCompany.R_Port, UserLogined.UserCompany.R_User, UserLogined.UserCompany.R_Password).ToString();
-            ViewBag.ActiveSessionsCount= _mikrotikServices.Usermanager_GetActiveSessionsCount(UserLogined.UserCompany.R_Host, UserLogined.UserCompany.R_Port, UserLogined.UserCompany.R_User, UserLogined.UserCompany.R_Password).ToString();
-            ViewBag.Payments = _mikrotikServices.Usermanager_Payment(UserLogined.UserCompany.R_Host, UserLogined.UserCompany.R_Port, UserLogined.UserCompany.R_User, UserLogined.UserCompany.R_Password,"").OrderByDescending(x=>x.trans_end).Take(10);
+            try
+            {
+                ViewBag.UsersCount = _mikrotikServices.Usermanager_GetUsersCount(UserLogined.UserCompany.R_Host, UserLogined.UserCompany.R_Port, UserLogined.UserCompany.R_User, UserLogined.UserCompany.R_Password).ToString();
+            }
+            catch { ViewBag.UsersCount = "Error"; }
+            try
+            {
+                ViewBag.PackageCount = _mikrotikServices.Usermanager_GetPackagesCount(UserLogined.UserCompany.R_Host, UserLogined.UserCompany.R_Port, UserLogined.UserCompany.R_User, UserLogined.UserCompany.R_Password).ToString();
+            }
+            catch { ViewBag.PackageCount = "Error"; }
+            try
+            {
+                ViewBag.ActiveSessionsCount = _mikrotikServices.Usermanager_GetActiveSessionsCount(UserLogined.UserCompany.R_Host, UserLogined.UserCompany.R_Port, UserLogined.UserCompany.R_User, UserLogined.UserCompany.R_Password).ToString();
+            }
+            catch { ViewBag.ActiveSessionsCount = "Error"; }
+            try
+            {
+                ViewBag.Payments = _mikrotikServices.Usermanager_Payment(UserLogined.UserCompany.R_Host, UserLogined.UserCompany.R_Port, UserLogined.UserCompany.R_User, UserLogined.UserCompany.R_Password, "").OrderByDescending(x => x.trans_end).Take(10);
+            }
+            catch { ViewBag.Payments = "Error"; }
+
             ViewBag.Clock = _mikrotikServices.Router_Clock(UserLogined.UserCompany.R_Host, UserLogined.UserCompany.R_Port, UserLogined.UserCompany.R_User, UserLogined.UserCompany.R_Password).FirstOrDefault();
             return View();
         }

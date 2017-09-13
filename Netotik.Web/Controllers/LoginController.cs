@@ -101,13 +101,13 @@ namespace Netotik.Web.Controllers
             
             if (loggedinUser.IsBanned)
             {
-                ViewBag.Message = "حساب کاربری شما مسدود شده است.";
+                ViewBag.Message = Captions.YourAccountIsBlock;
                 return View(model);
             }
 
             if (!loggedinUser.EmailConfirmed)
             {
-                ViewBag.Message = "برای ورود به سایت لازم است حساب خود را فعال کنید.";
+                ViewBag.Message = Captions.ActiveYourAccount;
                 ViewBag.Link = true;
                 return View();
             }
@@ -130,12 +130,12 @@ namespace Netotik.Web.Controllers
                         $"دقیقه دوباره امتحان کنید {_applicationUserManager.DefaultAccountLockoutTimeSpan} حساب شما قفل شد ! لطفا بعد از ");
                     return View(model);
                 case SignInStatus.Failure:
-                    ModelState.AddModelError("UserName", "نام کاربری یا کلمه عبور  صحیح نمی باشد");
-                    ModelState.AddModelError("Password", "نام کاربری یا کلمه عبور  صحیح نمی باشد");
+                    ModelState.AddModelError("UserName", Captions.UsernameOrPasswordWrong);
+                    ModelState.AddModelError("Password", Captions.UsernameOrPasswordWrong);
                     return View(model);
                 default:
                     ModelState.AddModelError("UserName",
-                        "در این لحظه امکان ورود به  سابت وجود ندارد . مراتب را با مسئولان سایت در میان بگذارید"
+                       Captions.ErrorLogin
                        );
                     return View(model);
             }
@@ -216,7 +216,7 @@ namespace Netotik.Web.Controllers
                     return View(model);
                 default:
                     ModelState.AddModelError("UserName",
-                        "در این لحظه امکان ورود به  سابت وجود ندارد . مراتب را با مسئولان سایت در میان بگذارید"
+                        Captions.ErrorLogin
                        );
                     return View(model);
             }

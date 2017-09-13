@@ -3925,7 +3925,27 @@ namespace Netotik.Resources
         }
 
         //<!--======================Messages Ehsan EM===========================-->
-
+        public static string LastPackageChanges
+        {
+            get
+            {
+                return resourceProvider.GetResource("LastPackageChanges", CultureInfo.CurrentUICulture.Name) as string;
+            }
+        }
+        public static string PackageCount
+        {
+            get
+            {
+                return resourceProvider.GetResource("PackageCount", CultureInfo.CurrentUICulture.Name) as string;
+            }
+        }
+        public static string UsersCount
+        {
+            get
+            {
+                return resourceProvider.GetResource("UsersCount", CultureInfo.CurrentUICulture.Name) as string;
+            }
+        }
 
 
 

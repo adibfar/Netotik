@@ -180,13 +180,13 @@ namespace Netotik.Web.Controllers
         {
             #region Validation
             if (_applicationUserManager.CheckResellerEmailExist(model.Email, null))
-                ModelState.AddModelError("Email", "این ایمیل قبلا در سیستم ثبت شده است");
+                ModelState.AddModelError("Email", Captions.ExistError);
 
             if (_applicationUserManager.CheckUserNameExist(model.UserName, null))
-                ModelState.AddModelError("UserName", "این نام کاربری قبلا در سیستم ثبت شده است");
+                ModelState.AddModelError("UserName", Captions.ExistError);
 
             if (!model.Password.IsSafePasword())
-                ModelState.AddModelError("Password", "این کلمه عبور به راحتی قابل تشخیص است");
+                ModelState.AddModelError("Password", Captions.PasswordEasy);
 
             if (!ModelState.IsValid)
             {
@@ -200,8 +200,7 @@ namespace Netotik.Web.Controllers
             await SendConfirmationEmail(model.Email, userId);
 
 
-            ViewBag.Success = "حساب کاربری شما با موفقیت ایجاد شد. برای فعال سازی " +
-                              "حساب خود به ایمیل خود مراجعه کنید";
+            ViewBag.Success = Captions.CreateSuccsessGoToEmail;
 
             ModelState.Clear();
             return View();

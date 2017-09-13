@@ -29,7 +29,7 @@
   <LocaleResource Name="ConfirmPassword">Confirm Password</LocaleResource>
   <LocaleResource Name="CountLastContent">Last Content Count</LocaleResource>
   <LocaleResource Name="Description">Description</LocaleResource>
-  <LocaleResource Name="DisableBuy">غیر فعال کردن خرید</LocaleResource>
+  <LocaleResource Name="DisableBuy">Disable Buy</LocaleResource>
   <LocaleResource Name="Date">Date</LocaleResource>
   <LocaleResource Name="StartDatePublish">Start Date Publish</LocaleResource>
   <LocaleResource Name="StartTimePublish">Start Time Publish</LocaleResource>
@@ -44,53 +44,53 @@
   <LocaleResource Name="IsDefaultRoleRegisteredUser">Is Default For Register Users</LocaleResource>
   <LocaleResource Name="Text">Text</LocaleResource>
   <LocaleResource Name="ShowInMenu">Show In Menu</LocaleResource>
-  <LocaleResource Name="IsPasKeraye">پس کرایه</LocaleResource>
-  <LocaleResource Name="IsPublish">انتشار یافته؟</LocaleResource>
-  <LocaleResource Name="RememberMe">مرا به خاطر بسپار</LocaleResource>
-  <LocaleResource Name="LastEdit">آخرین ویرایش</LocaleResource>
-  <LocaleResource Name="LastUserEdit">آخرین ویرایش توسط</LocaleResource>
-  <LocaleResource Name="MailServerLogin">نام کاربری حساب ایمیل</LocaleResource>
-  <LocaleResource Name="MailServerPass">گذرواژه حساب ایمیل</LocaleResource>
-  <LocaleResource Name="MailServerPort">پورت سرور ایمیل</LocaleResource>
-  <LocaleResource Name="MailServerUrl">ادرس سرور ایمیل</LocaleResource>
-  <LocaleResource Name="Brand">برند</LocaleResource>
+  <LocaleResource Name="IsPasKeraye">Payment at the place</LocaleResource>
+  <LocaleResource Name="IsPublish">Published?</LocaleResource>
+  <LocaleResource Name="RememberMe">Remember Me</LocaleResource>
+  <LocaleResource Name="LastEdit">Last Edit</LocaleResource>
+  <LocaleResource Name="LastUserEdit">Last Edit With</LocaleResource>
+  <LocaleResource Name="MailServerLogin">Mail Server User</LocaleResource>
+  <LocaleResource Name="MailServerPass">Mail Server Pass</LocaleResource>
+  <LocaleResource Name="MailServerPort">Mail Server Port</LocaleResource>
+  <LocaleResource Name="MailServerUrl">Mail Server Address</LocaleResource>
+  <LocaleResource Name="Brand">Brand</LocaleResource>
   <LocaleResource Name="MessageText">Message Text</LocaleResource>
   <LocaleResource Name="Message">Message</LocaleResource>
-  <LocaleResource Name="MetaDescription">توضیحات متا</LocaleResource>
-  <LocaleResource Name="MetaKeywords">کلمات کلیدی</LocaleResource>
-  <LocaleResource Name="MetaTitle">عنوان متا</LocaleResource>
+  <LocaleResource Name="MetaDescription">Meta Description</LocaleResource>
+  <LocaleResource Name="MetaKeywords">Meta Keywords</LocaleResource>
+  <LocaleResource Name="MetaTitle">Meta Title</LocaleResource>
   <LocaleResource Name="MobileNumber">Mobile Number</LocaleResource>
   <LocaleResource Name="DisplayOrder">Display Order</LocaleResource>
-  <LocaleResource Name="Parent">سرگروه</LocaleResource>
-  <LocaleResource Name="CouponRequire">نیازمند کد کوپن؟</LocaleResource>
-  <LocaleResource Name="CouponCode">کد کوپن</LocaleResource>
-  <LocaleResource Name="MaximumDiscountAmount">حداکثر حجم تخفیف</LocaleResource>
-  <LocaleResource Name="DiscountPercentage">درصد تخفیف</LocaleResource>
-  <LocaleResource Name="UsePercentage">استفاده از درصد برای تخفیف</LocaleResource>
-  <LocaleResource Name="DiscountType">نوع تخفیف</LocaleResource>
-  <LocaleResource Name="MaximumDiscountQuantity">حداکثر تعداد استفاده</LocaleResource>
-  <LocaleResource Name="DiscountAmount"> میزان تخفیف</LocaleResource>
-  <LocaleResource Name="PriceProduct">قیمت محصول</LocaleResource>
-  <LocaleResource Name="QuantityWareHouse">تعداد در انبار</LocaleResource>
-  <LocaleResource Name="SelectFile">انتخاب تصویر</LocaleResource>
+  <LocaleResource Name="Parent">Parent</LocaleResource>
+  <LocaleResource Name="CouponRequire">Coupon Require</LocaleResource>
+  <LocaleResource Name="CouponCode">Coupon Code</LocaleResource>
+  <LocaleResource Name="MaximumDiscountAmount">Maximum Discount Amount</LocaleResource>
+  <LocaleResource Name="DiscountPercentage">Discount Percentage</LocaleResource>
+  <LocaleResource Name="UsePercentage">Use Percentage For Discount</LocaleResource>
+  <LocaleResource Name="DiscountType">Discount Type</LocaleResource>
+  <LocaleResource Name="MaximumDiscountQuantity">Maximum Discount Quantity</LocaleResource>
+  <LocaleResource Name="DiscountAmount">Discount Amount</LocaleResource>
+  <LocaleResource Name="PriceProduct">Product Price</LocaleResource>
+  <LocaleResource Name="QuantityWareHouse">Quantity WareHouse</LocaleResource>
+  <LocaleResource Name="SelectFile">Select File</LocaleResource>
   <LocaleResource Name="HomePageTitle">Site Name</LocaleResource>
   <LocaleResource Name="HomePageDescription">Meta Description HomePage </LocaleResource>
   <LocaleResource Name="HomePageKeywords">Meta Keywords HomePage</LocaleResource>
-  <LocaleResource Name="SiteUrl">آدرس سایت</LocaleResource>
-  <LocaleResource Name="SmsNumber">شماره خط پیامکی</LocaleResource>
-  <LocaleResource Name="SmsPassword">گذرواژه پیامکی</LocaleResource>
-  <LocaleResource Name="SmsUserName">نام کاربری خط پیامک</LocaleResource>
+  <LocaleResource Name="SiteUrl">Site URL</LocaleResource>
+  <LocaleResource Name="SmsNumber">SMS Number</LocaleResource>
+  <LocaleResource Name="SmsPassword">SMS Password</LocaleResource>
+  <LocaleResource Name="SmsUserName">SMS Username</LocaleResource>
   <LocaleResource Name="State">State</LocaleResource>
   <LocaleResource Name="StateName">State Name</LocaleResource>
   <LocaleResource Name="Subject">Category</LocaleResource>
-  <LocaleResource Name="SystemEmail">ایمیل سایت</LocaleResource>
+  <LocaleResource Name="SystemEmail">Site Email</LocaleResource>
   <LocaleResource Name="SystemName">System Name</LocaleResource>
   <LocaleResource Name="Tags">Tags</LocaleResource>
-  <LocaleResource Name="Tax">مالیات</LocaleResource>
-  <LocaleResource Name="TaxExcemt">معاف از مالیات</LocaleResource>
+  <LocaleResource Name="Tax">Tax</LocaleResource>
+  <LocaleResource Name="TaxExcemt">Tax Excemt</LocaleResource>
   <LocaleResource Name="Title">Title</LocaleResource>
   <LocaleResource Name="Url">Url</LocaleResource>
-  <LocaleResource Name="UserCanRegister">فعال بودن ثبت نام کاربران</LocaleResource>
+  <LocaleResource Name="UserCanRegister">Enable User Registration</LocaleResource>
   <LocaleResource Name="Logout">Log out</LocaleResource>
   <LocaleResource Name="Login">Login</LocaleResource>
   <LocaleResource Name="HasSideBar">Show Sidebar?</LocaleResource>
@@ -139,8 +139,8 @@
   <LocaleResource Name="Cities">Cities</LocaleResource>
   <LocaleResource Name="Languages">Language Setting</LocaleResource>
   <LocaleResource Name="ViewStatistics">Statistics</LocaleResource>
-  <LocaleResource Name="ViewAllStatistics">نمایش کلی بازدیدها</LocaleResource>
-  <LocaleResource Name="ViewCountryStatistics">نمایش براساس کشور ها</LocaleResource>
+  <LocaleResource Name="ViewAllStatistics">View All Statistics</LocaleResource>
+  <LocaleResource Name="ViewCountryStatistics">View Statistics By Country</LocaleResource>
   <LocaleResource Name="Send">Send</LocaleResource>
   <LocaleResource Name="SendImage">Send Image</LocaleResource>
   <LocaleResource Name="SendingData">Sending Data..</LocaleResource>
@@ -270,25 +270,25 @@
   <LocaleResource Name="SelectRole">Please select one role for user.</LocaleResource>
   <LocaleResource Name="SettingUpdateError">Your edit submit failed.</LocaleResource>
   <LocaleResource Name="SettingUpdateSuccess">Your Edit Submit Request Sucess.</LocaleResource>
-  <LocaleResource Name="UpdateError">در هنگام ویرایش اطلاعات خطایی رخ داده است.</LocaleResource>
-  <LocaleResource Name="UpdateSettingFail">ویرایش تنظیمات با شکست مواجه شد.</LocaleResource>
-  <LocaleResource Name="UpdateSettingSuccess">تنظیمات سایت با موفقیت ویرایش شد.</LocaleResource>
-  <LocaleResource Name="UpdateSuccess">ویرایش اطلاعات با موفقیت انجام شد.</LocaleResource>
-  <LocaleResource Name="UserIsBanned">حساب کاربری شما مسدود است.</LocaleResource>
+  <LocaleResource Name="UpdateError">Error When Update</LocaleResource>
+  <LocaleResource Name="UpdateSettingFail">Editing Settings Fail</LocaleResource>
+  <LocaleResource Name="UpdateSettingSuccess">Settings Update Success</LocaleResource>
+  <LocaleResource Name="UpdateSuccess">Update Success.</LocaleResource>
+  <LocaleResource Name="UserIsBanned">Your Account is Banned</LocaleResource>
   <LocaleResource Name="UserNameOrEmailReqired">Enter your username or email.</LocaleResource>
-  <LocaleResource Name="JustEnglishNumeric">فقط از حروف انگلیسی و اعداد استفاده کنید</LocaleResource>
-  <LocaleResource Name="ConfirmEmailMessage">با تشکر از عضویت شما در سایت. حساب شما با موفقیت فعال شد. برای ورود به حساب خود کلیک کنید</LocaleResource>
+  <LocaleResource Name="JustEnglishNumeric">English and Numeric Allow</LocaleResource>
+  <LocaleResource Name="ConfirmEmailMessage">Thank You For Register.Please Click Here to Login to your account</LocaleResource>
   <LocaleResource Name="CountCommentSended">{0} comments were registered.</LocaleResource>
-  <LocaleResource Name="RegisterDone">ثبت نام با موفقیت انجام شد.</LocaleResource>
-  <LocaleResource Name="PrivacyMessage">حریم خصوصی و شرایط و قوانین استفاده از سرویس های سایت نتوتیک را مطالعه نموده و با کلیه موارد آن موافقم..</LocaleResource>
+  <LocaleResource Name="RegisterDone">Register Done.</LocaleResource>
+  <LocaleResource Name="PrivacyMessage">Read the privacy, terms and conditions of use of the Netotik site services and agree with all of its terms.</LocaleResource>
   <LocaleResource Name="UsernameOrPasswordWrong">Username or password is wrong.</LocaleResource>
-  <LocaleResource Name="ErrorLogin">در این لحظه امکان ورود به  سابت وجود ندارد . مراتب را با مسئولان سایت در میان بگذارید</LocaleResource>
-  <LocaleResource Name="ActivationError">مشکلی در فعال سازی اکانت شما به وجود آمد</LocaleResource>
-  <LocaleResource Name="ForgetPasswordMailMessage">با سلام کاربر گرامی. برای بازیابی کلمه عبور خود لازم است بر روی لینک مقابل کلیک کنید</LocaleResource>
+  <LocaleResource Name="ErrorLogin">Login To site is banned.Try one minute late.</LocaleResource>
+  <LocaleResource Name="ActivationError">Account Activation Error</LocaleResource>
+  <LocaleResource Name="ForgetPasswordMailMessage">For retrive Your account password , click here</LocaleResource>
   <LocaleResource Name="ForgetPasswordMailSubject">Password recovery</LocaleResource>
   <LocaleResource Name="EmailNotFound">Your Email has not found.</LocaleResource>
-  <LocaleResource Name="YourAccountIsBlock">حساب کاربری شما مسدود شده است.</LocaleResource>
-  <LocaleResource Name="ActivationMailMessage">با سلام کاربر گرامی.برای فعال سازی حساب خود لازم است بر روی لینک مقابل کلیک کنید</LocaleResource>
+  <LocaleResource Name="YourAccountIsBlock">Your Account is blocked.</LocaleResource>
+  <LocaleResource Name="ActivationMailMessage">Hi,For active your account , please click here</LocaleResource>
   <LocaleResource Name="ActivationMailSubject">Activation user account</LocaleResource>
   <LocaleResource Name="CommentRegisterSuccess">Your comments will appear after approval by the administrator on the site.</LocaleResource>
   <LocaleResource Name="CommentRegisterFail">Unfortunately, your message dont send.</LocaleResource>
@@ -527,15 +527,13 @@
   </LocaleResource>
   <LocaleResource Name="UserLoginMessage">
     <Value>
-      کاربران شما برای ورود به پنل خودشان باید حتما از صفحه لاگین شما جهت ورود استفاده کنند.آدرس این صفحه در زیر نوشته شده
-      و به صورت لینک می باشد.
-      لینک زیر را به کاربران خود بدهید.
-      در آینده در این صفحه اختصاصی ،شما می توانید تبلیغات خود را بگذارید که کاربران شما در هر بار ورود آنها را ببینند.
+      Your Users must use this URL to login to there panels.
+      you can show your advertisment in this page.
     </Value>
   </LocaleResource>
   <LocaleResource Name="CreateSuccsessGoToEmail">
     <Value>
-      حساب کاربری شما با موفقیت ایجاد شد. برای فعال سازی حساب خود به ایمیل خود مراجعه کنید
+      Your Account Created success.to active your account check your email address
     </Value>
   </LocaleResource>
   <LocaleResource Name="MikrotikConfig">
@@ -545,7 +543,7 @@
     <Value>Attention</Value>
   </LocaleResource>
   <LocaleResource Name="RouterPasswordEmptyInformation">
-    <Value>پسورد روتر خالی نمی تواند باشد.ما پسورد قبلی که در سیستم گذاشته اید را تغییر ندادیم.</Value>
+    <Value>Router Password can not empty,we do not cahnge your password</Value>
   </LocaleResource>
   <LocaleResource Name="UserManager">
     <Value>UserManager</Value>
@@ -569,13 +567,13 @@
     <Value>Price</Value>
   </LocaleResource>
   <LocaleResource Name="Toman">
-    <Value>تومان</Value>
+    <Value>Toman</Value>
   </LocaleResource>
   <LocaleResource Name="SharedUsers">
     <Value>Shared Users</Value>
   </LocaleResource>
   <LocaleResource Name="StartAt">
-    <Value> شروع محاسبه</Value>
+    <Value>Start At</Value>
   </LocaleResource>
   <LocaleResource Name="FirstConnection">
     <Value>First Connection</Value>
@@ -679,9 +677,7 @@
   </LocaleResource>
   <LocaleResource Name="HotspotUserAccessDescription">
     <Value>
-      در این قسمت با اضافه کردن یک دستگاه می توانید اجازه دهید که آن دستگاه بدون اینکه
-      صفحه ورود هات اسپات برایش باز شود ، اینترنت و دسترسی به شبکه را داشته باشد.
-      جهت اضافه کردن یک دستگاه بهتر است با استفاده از مک آدرس دستگاه توسط فرم زیر آن دستگاه را اضافه کنید.
+      to allow one device for use internet without authentication , add device Mac address or Ip address in blew form.
     </Value>
   </LocaleResource>
   <LocaleResource Name="New">
@@ -692,7 +688,7 @@
   </LocaleResource>
   <LocaleResource Name="HotspotAddressesAccessDescription">
     <Value>
-      صفحه ورود هات اسپات برایش باز شود ، اینترنت و دسترسی به شبکه را داشته باشد.
+      For allow all users to use one site or ip , add that in blew form.
     </Value>
   </LocaleResource>
   <LocaleResource Name="Add">
@@ -702,7 +698,7 @@
     <Value>Reboot</Value>
   </LocaleResource>
   <LocaleResource Name="MikrotikRebootDesctiption">
-    <Value>توجه: فرایند ریبوت حدود یک دقیقه طول خواهد کشید.</Value>
+    <Value>Note: The reboot will take about one minute.</Value>
   </LocaleResource>
   <LocaleResource Name="Update">
     <Value>Update</Value>
@@ -712,8 +708,7 @@
   </LocaleResource>
   <LocaleResource Name="MikrotikRemoveLogsDesctiption">
     <Value>
-      با پاک کردن لاگ ها تمامی لاگ هایی که روتر ذخیره کرده است پاک خواهد شد.
-      این عملیات بدون ریبوت شدن روتر انجام می شود.
+      all Logs in router will removed without any reboot.
     </Value>
   </LocaleResource>
   <LocaleResource Name="MikrotikReset">
@@ -721,9 +716,10 @@
   </LocaleResource>
   <LocaleResource Name="MikrotikResetDesctiption">
     <Value>
-      توجه: ممکن است پس از ریست، سامانه دیگر قادر به اتصال به روتر شما نباشد.لطفا با پشتیبان شبکه خود تماس بگیرید.
-      پس از ریست روتر تمامی تنظیمات و کانفیگ های انجام شده پاک خواهد شد.در صورتی که از طریق سامانه اقدام به ریست کنید،سامانه
-      به صورت خودکار قبل از ریست شدن دستگاه یک بک آپ از تنظیمات شما خواهد گرفت.
+      Note: after reset ,Netotik System can not connect to your router.
+      All Settings will change to defualt.
+      contact to Your network admimistrator.
+      If use this system to reset your router,this system before reset your router ,take backup of router.
     </Value>
   </LocaleResource>
   <LocaleResource Name="DefualtConfiguration">
@@ -733,15 +729,15 @@
     <Value>Backup Router</Value>
   </LocaleResource>
   <LocaleResource Name="MikrotikBackupDesctiption">
-    <Value>در صورت نیاز به پشتیبان گیری از روتر بر روی دکمه زیر کلیک کنید.</Value>
+    <Value>To Backup all Settings of router click...</Value>
   </LocaleResource>
   <LocaleResource Name="MikrotikRestore">
     <Value>Restore Router</Value>
   </LocaleResource>
   <LocaleResource Name="MikrotikRestoreDesctiption">
     <Value>
-      بازگردانی روتر ممکن است باعث شود سامانه دیگر قادر به اتصال به روتر نباشد.
-      فقط بک آپ گیری هایی که توسط سامانه گرفته شده است نمایش داده می شود.
+      if restore your backup , this system Maybe can not access to your router.
+      please contact your  network administrator.
     </Value>
   </LocaleResource>
   <LocaleResource Name="SelectBackup">
@@ -752,8 +748,8 @@
   </LocaleResource>
   <LocaleResource Name="MikrotikResetUsermanagerDesctiption">
     <Value>
-      توجه: در صورتی که از این قسمت اطلاعی ندارید لطفا با پشتیبان خود تماس بگیرید.
-      این سامانه به صورت خودکار قبل از ریست کردن بک آپ تهیه می کند.
+      For Reset Your usermanager system.
+      Befor reset , system will backup all usermanger dbs.
     </Value>
   </LocaleResource>
   <LocaleResource Name="RemoveUsermanagerLogs">
@@ -778,99 +774,108 @@
     <Value>Backup Usermanager</Value>
   </LocaleResource>
   <LocaleResource Name="MikrotikUsermanagerBackupDesctiption">
-    <Value>برای پشتیبان گیری از یوزرمنیجر لطفا بر روی دکمه زیر کلیک کنید.</Value>
+    <Value>To take backup click here.</Value>
   </LocaleResource>
   <LocaleResource Name="MikrotikUsermanagerRestore">
     <Value>Restore Usermanager</Value>
   </LocaleResource>
   <LocaleResource Name="MikrotikUsermanagerRestoreDesctiption">
-    <Value>بازگردانی دیتابیس یوزرمنیجر باعث می شود تمامی لاگ ها و یوزرها به حالت بک آپ مورد نظر بازگردند.</Value>
+    <Value>Restore Usermanger Backup will replace to usermanger logs.</Value>
   </LocaleResource>
   <LocaleResource Name="LeaveBlankAllPort">
-    <Value>80 Or 443 Or ... (خالی گذاشت=همه پورت ها)</Value>
+    <Value>80 Or 443 Or ... (empty=All Ports)</Value>
   </LocaleResource>
   <LocaleResource Name="HotspotAddressesAccessAdd">
-    <Value>آدرس مورد نظر آزاد شد.</Value>
+    <Value>Address relased</Value>
   </LocaleResource>
   <LocaleResource Name="HotspotUserAccessAdd">
-    <Value>دستگاه مورد نظر به لیست اضافه شد.</Value>
+    <Value>Device add success</Value>
   </LocaleResource>
   <LocaleResource Name="Router">
     <Value>Router</Value>
   </LocaleResource>
   <LocaleResource Name="NothingFound">
-    <Value>موردی پیدا نشد</Value>
+    <Value>Nothing Found</Value>
   </LocaleResource>
   <LocaleResource Name="MikrotikBackupMessage">
-    <Value>بک آپ گیری با موفقیت انجام شد.</Value>
+    <Value>Backup success</Value>
   </LocaleResource>
   <LocaleResource Name="MikrotikUsermanagerBackupMessage">
-    <Value>از دیتابیس یوزرمنیجر و دیتابیس لاگ یوزرمنیجر به درستی بک آپ گرفته شد.</Value>
+    <Value>Backup of usermanger Logs and Usermanagers DB success</Value>
   </LocaleResource>
   <LocaleResource Name="MikrotikRemoveLogsMessage">
-    <Value>لاگ ها پاک شدند.این عملیات غیره قابل برگشت می باشد.</Value>
+    <Value>All logs removed.</Value>
   </LocaleResource>
   <LocaleResource Name="MikrotikResetUsermanagerMessage">
-    <Value>یوزرمنیجر با تنظیمات انتخابی ریست شد.بک آپ کلی از یوزرمنیجر به صورت خودکار گرفته شد.</Value>
+    <Value>Usermanager Reset with your choice.auto backup</Value>
   </LocaleResource>
   <LocaleResource Name="ValidateError">
-    <Value>مقدار به درستی پر نشده است.</Value>
+    <Value>Validate Error</Value>
   </LocaleResource>
   <LocaleResource Name="MikrotikUpdateStartMessage">
-    <Value>بروزرسانی آغاز شد.لطفا به مدت 2الی5دقیقه منتظر بمانید تا روتر بروزرسانی ها را دریافت و نصب نماید.هنگام نصب نیاز به ریبوت روتر می باشد که به صورت خودکار انجام می شود.</Value>
+    <Value>Router Update Started.this task take 2-5 minutes.after download updates finished,installation start automaticly.</Value>
   </LocaleResource>
   <LocaleResource Name="MikrotikRebootMessage">
-    <Value>روتر در حال راه اندازی مجدد می باشد.لطفا یک دقیقه منتظر بمانید.</Value>
+    <Value>Roter is rebooting.wait 2 minutes</Value>
   </LocaleResource>
   <LocaleResource Name="MikrotikResetMessage">
-    <Value>روتر در حال ریست شدن است.ممکن است سامانه دیگر قادر به اتصال به روتر نباشد.با پشتیبان خود تماس بگیرید.</Value>
+    <Value>Roter is reseting.this system can not connect to Router.please Contact Your network administrator</Value>
   </LocaleResource>
   <LocaleResource Name="MikrotikRestoreUsermanagerMessage">
-    <Value>بک آپ مورد نظر درحال بازگردانی می باشد.</Value>
+    <Value>Your Backup is restoring.wait 2 minutes.</Value>
   </LocaleResource>
   <LocaleResource Name="MikrotikRestoreMessage">
-    <Value>بک آپ مورد نظر در حال بازگردانی می باشد.ممکن است سامانه دیگر قادر به اتصال به روتر نباشد.لطفا در صورت بروز هرگونه مسئله با ریسلر خود تماس بگیرید.</Value>
+    <Value>Backup Restore is started.this system mayby can not connect to Router.please contact to Your Network Administrator.</Value>
   </LocaleResource>
   <LocaleResource Name="OnlineTime">
-    <Value>زمان متصل بودن</Value>
+    <Value>Online Time</Value>
   </LocaleResource>
   <LocaleResource Name="Reports">
-    <Value>گزارشات</Value>
+    <Value>Reports</Value>
   </LocaleResource>
   <LocaleResource Name="MaxTrafficUsage">
-    <Value>بیشترین مصرف ترافیک</Value>
+    <Value>Maximum Traffic Usage</Value>
   </LocaleResource>
   <LocaleResource Name="MaxTrafficUsageDescription">
-    <Value>نمودار و لیست افرادی که بیشترین مصرف را داشته اند</Value>
+    <Value>report and Charts of Maximum Traffic Usage of Users</Value>
   </LocaleResource>
   <LocaleResource Name="MinTrafficUsage">
-    <Value>کمترین مصرف ترافیک</Value>
+    <Value>Minimum Traffic Usage</Value>
   </LocaleResource>
   <LocaleResource Name="MinTrafficUsageDescription">
-    <Value>نمودار و لیست افرادی که کمترین مصرف را داشته اند</Value>
+    <Value>report and Charts of Minimum Traffic Usage of Users</Value>
   </LocaleResource>
   <LocaleResource Name="MaxTimeConnected">
-    <Value>بیشترین زمان اتصال</Value>
+    <Value>Maxmimum Connected Time</Value>
   </LocaleResource>
   <LocaleResource Name="MaxTimeConnectedDescription">
-    <Value>نمودار و لیست افرادی که بیشترین زمان اتصال را داشته اند</Value>
+    <Value>report and Charts of Maximum Connected Time of Users</Value>
   </LocaleResource>
   <LocaleResource Name="UsermanagerTrafficUsage">
-    <Value>نمودار مصرف مجموعه</Value>
+    <Value>This Router Traffic Usage</Value>
   </LocaleResource>
   <LocaleResource Name="UsermanagerTrafficUsageDescription">
-    <Value>مصرف کلی مجموعه که توسط یوزرمنیجر محاسبه شده است</Value>
+    <Value>Usage of this usermanger</Value>
   </LocaleResource>
   <LocaleResource Name="Logs">
-    <Value>لاگ ها</Value>
+    <Value>Logs</Value>
   </LocaleResource>
   <LocaleResource Name="UsermanagerLogsMessage">
-    <Value>گزارشی از لاگ های موجود در یوزرمنیجر</Value>
+    <Value>Report of Usermanger Logs</Value>
   </LocaleResource>
   <LocaleResource Name="ReportOfSessions">
-    <Value>گزارش اتصالات</Value>
+    <Value>Sessions Logs</Value>
   </LocaleResource>
   <LocaleResource Name="ReportOfSessionsDescription">
-    <Value>گزارش دقیق از اتصالات کاربران</Value>
+    <Value>Report of Sessions of all Users of usermanager</Value>
+  </LocaleResource>
+  <LocaleResource Name="UsersCount">
+    <Value>Users Count</Value>
+  </LocaleResource>
+  <LocaleResource Name="PackageCount">
+    <Value>Packages Count</Value>
+  </LocaleResource>
+  <LocaleResource Name="LastPackageChanges">
+    <Value>Last Package Changes</Value>
   </LocaleResource>
 </Language>
