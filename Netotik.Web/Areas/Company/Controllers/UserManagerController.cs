@@ -21,8 +21,8 @@ using System.Threading.Tasks;
 namespace Netotik.Web.Areas.Company.Controllers
 {
     [Mvc5Authorize(Roles = "Company")]
-    [BreadCrumb(Title = "UserManager", UseDefaultRouteUrl = true, RemoveAllDefaultRouteValues = true,
- Order = 0, GlyphIcon = "icon icon-table")]
+ //   [BreadCrumb(Title = "UserManager", UseDefaultRouteUrl = true, RemoveAllDefaultRouteValues = true,
+ //Order = 0, GlyphIcon = "icon icon-table")]
     public partial class UserManagerController : BasePanelController
     {
         #region ctor
@@ -898,6 +898,7 @@ namespace Netotik.Web.Areas.Company.Controllers
         #endregion
 
 
+        [BreadCrumb(Title = "RegisterSetting", Order = 1)]
         public virtual ActionResult RegisterSetting()
         {
             return PartialView(MVC.Company.UserManager.Views.RegisterSetting, _userManager.GetCompanyRegisterSetting(UserLogined.Id));

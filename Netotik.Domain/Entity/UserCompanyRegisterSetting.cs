@@ -31,14 +31,11 @@ namespace Netotik.Domain.Entity
     }
     public enum FieldType : short
     {
-        //[Display(ResourceType = typeof(Captions), Name = "NoneType")]
-        [Display(Name = "NoneType")]
+        [Display(ResourceType = typeof(Captions), Name = "NoneType")]
         None = 0,
-        //[Display(ResourceType = typeof(Captions), Name = "ShowType")]
-        [Display(Name = "ShowType")]
+        [Display(ResourceType = typeof(Captions), Name = "ShowType")]
         Show = 1,
-        //[Display(ResourceType = typeof(Captions), Name = "Required")]
-        [Display(Name = "RequiredType")]
+        [Display(ResourceType = typeof(Captions), Name = "RequiredType")]
         Required
     }
 

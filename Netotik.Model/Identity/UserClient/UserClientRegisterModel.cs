@@ -11,7 +11,7 @@ namespace Netotik.ViewModels.Identity.UserClient
     public class UserClientRegisterModel
     {
         [Required(ErrorMessageResourceType = typeof(Captions), ErrorMessageResourceName = "RequiredError")]
-        [Display(Name = "Mobile")]
+        [Display(ResourceType = typeof(Captions), Name = "MobileNumber")]
         public string MobileNumber { get; set; }
 
         [Required(ErrorMessageResourceType = typeof(Captions), ErrorMessageResourceName = "RequiredError")]
@@ -19,23 +19,23 @@ namespace Netotik.ViewModels.Identity.UserClient
         public string Email { get; set; }
 
         [Required(ErrorMessageResourceType = typeof(Captions), ErrorMessageResourceName = "RequiredError")]
-        [Display(Name = "Username")]
+        [Display(ResourceType = typeof(Captions), Name = "Username")]
         public string Username { get; set; }
 
         [Required(ErrorMessageResourceType = typeof(Captions), ErrorMessageResourceName = "RequiredError")]
-        [Display(Name = "Age")]
+        [Display(ResourceType = typeof(Captions), Name = "Age")]
         public int? Age { get; set; }
 
         [Required(ErrorMessageResourceType = typeof(Captions), ErrorMessageResourceName = "RequiredError")]
-        [Display(Name = "Password")]
+        [Display(ResourceType = typeof(Captions), Name = "Password")]
         public string Password { get; set; }
 
         [Required(ErrorMessageResourceType = typeof(Captions), ErrorMessageResourceName = "RequiredError")]
-        [Display(Name = "PasswordConfirm")]
+        [Display(ResourceType = typeof(Captions), Name = "PasswordConfirm")]
         public string PasswordConfirm { get; set; }
 
         [Required(ErrorMessageResourceType = typeof(Captions), ErrorMessageResourceName = "RequiredError")]
-        [Display(Name = "BirthDate")]
+        [Display(ResourceType = typeof(Captions), Name = "BirthDate")]
         public DateTime BirthDate { get; set; }
 
         [Required(ErrorMessageResourceType = typeof(Captions), ErrorMessageResourceName = "RequiredError")]
@@ -43,11 +43,11 @@ namespace Netotik.ViewModels.Identity.UserClient
         public string Name { get; set; }
 
         [Required(ErrorMessageResourceType = typeof(Captions), ErrorMessageResourceName = "RequiredError")]
-        [Display(Name = "IsMale")]
+        [Display(ResourceType = typeof(Captions), Name = "IsMale")]
         public bool? IsMale { get; set; }
 
         [Required(ErrorMessageResourceType = typeof(Captions), ErrorMessageResourceName = "RequiredError")]
-        [Display(Name = "NationalCode")]
+        [Display(ResourceType = typeof(Captions), Name = "NationalCode")]
         public string NationalCode { get; set; }
 
     }

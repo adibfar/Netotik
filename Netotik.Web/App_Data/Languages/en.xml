@@ -297,7 +297,33 @@
   <LocaleResource Name="ActiveYourAccount">
     <Value>You must active your account.</Value>
   </LocaleResource>
-
+  <LocaleResource Name="RegisterSetting">
+    <Value>Register Setting</Value>
+  </LocaleResource>
+  <LocaleResource Name="SendEmailUserPass">
+    <Value>Send Email User and Pass</Value>
+  </LocaleResource>
+  <LocaleResource Name="SendSmsUserPass">
+    <Value>Send Sms User and Pass</Value>
+  </LocaleResource>
+  <LocaleResource Name="Age">
+    <Value>Age</Value>
+  </LocaleResource>
+  <LocaleResource Name="BirthDate">
+    <Value>Birth Date</Value>
+  </LocaleResource>
+  <LocaleResource Name="IsMale">
+    <Value>Is Male</Value>
+  </LocaleResource>
+  <LocaleResource Name="ShowType">
+    <Value>Show </Value>
+  </LocaleResource>
+  <LocaleResource Name="NoneType">
+    <Value>Dont Show</Value>
+  </LocaleResource>
+  <LocaleResource Name="RequiredType">
+    <Value>Required</Value>
+  </LocaleResource>
 
   <!--======================Fields Ehsan EM===========================-->
   <LocaleResource Name="ChangePackage">

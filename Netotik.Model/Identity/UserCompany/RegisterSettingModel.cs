@@ -17,17 +17,15 @@ namespace Netotik.ViewModels.Identity.UserCompany
         public long Id { get; set; }
 
         [Required(ErrorMessageResourceType = typeof(Captions), ErrorMessageResourceName = "RequiredError")]
-        //[Display(ResourceType = typeof(Captions), Name = "Mobile")]
-        [Display(Name = "SendEmailUserPass")]
+        [Display(ResourceType = typeof(Captions), Name = "SendEmailUserPass")]
         public bool SendEmailUserPass { get; set; }
 
         [Required(ErrorMessageResourceType = typeof(Captions), ErrorMessageResourceName = "RequiredError")]
-        //[Display(ResourceType = typeof(Captions), Name = "Mobile")]
-        [Display( Name = "SendSmsUserPass")]
+        [Display(ResourceType = typeof(Captions), Name = "SendSmsUserPass")]
         public bool SendSmsUserPass { get; set; }
 
         [Required(ErrorMessageResourceType = typeof(Captions), ErrorMessageResourceName = "RequiredError")]
-        [Display( Name = "Mobile")]
+        [Display(ResourceType = typeof(Captions), Name = "MobileNumber")]
         public FieldType MobileNumber { get; set; }
 
         [Required(ErrorMessageResourceType = typeof(Captions), ErrorMessageResourceName = "RequiredError")]
@@ -35,23 +33,23 @@ namespace Netotik.ViewModels.Identity.UserCompany
         public FieldType Email { get; set; }
 
         [Required(ErrorMessageResourceType = typeof(Captions), ErrorMessageResourceName = "RequiredError")]
-        [Display( Name = "Username")]
+        [Display(ResourceType = typeof(Captions), Name = "UserName")]
         public FieldType Username { get; set; }
 
         [Required(ErrorMessageResourceType = typeof(Captions), ErrorMessageResourceName = "RequiredError")]
-        [Display(Name = "Age")]
+        [Display(ResourceType = typeof(Captions), Name = "Age")]
         public FieldType Age { get; set; }
 
         [Required(ErrorMessageResourceType = typeof(Captions), ErrorMessageResourceName = "RequiredError")]
-        [Display( Name = "Password")]
+        [Display(ResourceType = typeof(Captions), Name = "Password")]
         public FieldType Password { get; set; }
 
         [Required(ErrorMessageResourceType = typeof(Captions), ErrorMessageResourceName = "RequiredError")]
-        [Display(Name = "PasswordConfirm")]
+        [Display(ResourceType = typeof(Captions), Name = "ConfirmPassword")]
         public FieldType PasswordConfirm { get; set; }
 
         [Required(ErrorMessageResourceType = typeof(Captions), ErrorMessageResourceName = "RequiredError")]
-        [Display(Name = "BirthDate")]
+        [Display(ResourceType = typeof(Captions), Name = "BirthDate")]
         public FieldType BirthDate { get; set; }
 
         [Required(ErrorMessageResourceType = typeof(Captions), ErrorMessageResourceName = "RequiredError")]
@@ -59,11 +57,11 @@ namespace Netotik.ViewModels.Identity.UserCompany
         public FieldType Name { get; set; }
 
         [Required(ErrorMessageResourceType = typeof(Captions), ErrorMessageResourceName = "RequiredError")]
-        [Display(Name = "IsMale")]
+        [Display(ResourceType = typeof(Captions), Name = "IsMale")]
         public FieldType IsMale { get; set; }
 
         [Required(ErrorMessageResourceType = typeof(Captions), ErrorMessageResourceName = "RequiredError")]
-        [Display(Name = "NationalCode")]
+        [Display(ResourceType = typeof(Captions), Name = "NationalCode")]
         public FieldType NationalCode { get; set; }
     }
 }

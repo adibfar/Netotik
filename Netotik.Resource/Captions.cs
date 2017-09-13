@@ -3947,7 +3947,75 @@ namespace Netotik.Resources
             }
         }
 
+        public static string RegisterSetting
+        {
+            get
+            {
+                return resourceProvider.GetResource("RegisterSetting", CultureInfo.CurrentUICulture.Name) as string;
+            }
+        }
+        public static string SendEmailUserPass
+        {
+            get
+            {
+                return resourceProvider.GetResource("SendEmailUserPass", CultureInfo.CurrentUICulture.Name) as string;
+            }
+        }
 
+        public static string SendSmsUserPass
+        {
+            get
+            {
+                return resourceProvider.GetResource("SendSmsUserPass", CultureInfo.CurrentUICulture.Name) as string;
+            }
+        }
+
+        public static string Age
+        {
+            get
+            {
+                return resourceProvider.GetResource("Age", CultureInfo.CurrentUICulture.Name) as string;
+            }
+        }
+
+        public static string BirthDate
+        {
+            get
+            {
+                return resourceProvider.GetResource("BirthDate", CultureInfo.CurrentUICulture.Name) as string;
+            }
+        }
+        public static string IsMale
+        {
+            get
+            {
+                return resourceProvider.GetResource("IsMale", CultureInfo.CurrentUICulture.Name) as string;
+            }
+        }
+
+        public static string ShowType
+        {
+            get
+            {
+                return resourceProvider.GetResource("ShowType", CultureInfo.CurrentUICulture.Name) as string;
+            }
+        }
+
+        public static string RequiredType
+        {
+            get
+            {
+                return resourceProvider.GetResource("RequiredType", CultureInfo.CurrentUICulture.Name) as string;
+            }
+        }
+
+        public static string NoneType
+        {
+            get
+            {
+                return resourceProvider.GetResource("NoneType", CultureInfo.CurrentUICulture.Name) as string;
+            }
+        }
 
     }
 }

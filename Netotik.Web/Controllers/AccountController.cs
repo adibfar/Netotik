@@ -115,7 +115,11 @@ namespace Netotik.Web.Controllers
             switch (result)
             {
                 case SignInStatus.Success:
-                    return RedirectToLocal(ReturnUrl);
+                    if (!string.IsNullOrWhiteSpace(ReturnUrl))
+                        return RedirectToLocal(ReturnUrl);
+                    else
+                        return RedirectToAction(MVC.Admin.Home.Index());
+
                 case SignInStatus.LockedOut:
                     ModelState.AddModelError("UserName",
                         $"دقیقه دوباره امتحان کنید {_applicationUserManager.DefaultAccountLockoutTimeSpan} حساب شما قفل شد ! لطفا بعد از");
@@ -288,7 +292,7 @@ namespace Netotik.Web.Controllers
             if (User.UserType == Domain.Entity.UserType.UserReseller)
                 ViewBag.UserType = "Resller";
             if (User.UserType == Domain.Entity.UserType.UserCompany)
-            { 
+            {
                 ViewBag.UserType = "Company";
                 var Reseller = _applicationUserManager.FindUserById(User.UserCompany.UserResellerId);
                 ViewBag.ResellerId = Reseller.UserReseller.ResellerCode;

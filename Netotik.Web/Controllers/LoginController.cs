@@ -124,7 +124,11 @@ namespace Netotik.Web.Controllers
             switch (result)
             {
                 case SignInStatus.Success:
-                    return RedirectToLocal(ReturnUrl);
+                    if (!string.IsNullOrWhiteSpace(ReturnUrl))
+                        return RedirectToLocal(ReturnUrl);
+                    else
+                        return RedirectToAction(MVC.Company.Home.Index());
+
                 case SignInStatus.LockedOut:
                     ModelState.AddModelError("UserName",
                         $"دقیقه دوباره امتحان کنید {_applicationUserManager.DefaultAccountLockoutTimeSpan} حساب شما قفل شد ! لطفا بعد از ");
@@ -205,7 +209,10 @@ namespace Netotik.Web.Controllers
             switch (result)
             {
                 case SignInStatus.Success:
-                    return RedirectToLocal(ReturnUrl);
+                    if (!string.IsNullOrWhiteSpace(ReturnUrl))
+                        return RedirectToLocal(ReturnUrl);
+                    else
+                        return RedirectToAction(MVC.Reseller.Home.Index());
                 case SignInStatus.LockedOut:
                     ModelState.AddModelError("UserName",
                         $"دقیقه دوباره امتحان کنید {_applicationUserManager.DefaultAccountLockoutTimeSpan} حساب شما قفل شد ! لطفا بعد از ");

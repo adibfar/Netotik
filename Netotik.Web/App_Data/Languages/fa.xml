@@ -972,6 +972,33 @@
       حساب کاربری شما با موفقیت ایجاد شد. برای فعال سازی حساب خود به ایمیل خود مراجعه کنید
     </Value>
   </LocaleResource>
+  <LocaleResource Name="RegisterSetting">
+    <Value>تنظیمات ثبت نام</Value>
+  </LocaleResource>
+  <LocaleResource Name="SendEmailUserPass">
+    <Value>ارسال نام کاربری و گذرواژه از طریق ایمیل</Value>
+  </LocaleResource>
+  <LocaleResource Name="SendSmsUserPass">
+    <Value>ارسال نام کاربری و گذرواژه از طریق پیامک</Value>
+  </LocaleResource>
+  <LocaleResource Name="Age">
+    <Value>سن</Value>
+  </LocaleResource>
+  <LocaleResource Name="BirthDate">
+    <Value>تاریخ تولد</Value>
+  </LocaleResource>
+  <LocaleResource Name="IsMale">
+    <Value>جنسیت</Value>
+  </LocaleResource>
+  <LocaleResource Name="ShowType">
+    <Value>نمایش</Value>
+  </LocaleResource>
+  <LocaleResource Name="NoneType">
+    <Value>عدم نمایش</Value>
+  </LocaleResource>
+  <LocaleResource Name="RequiredType">
+    <Value>اجباری</Value>
+  </LocaleResource>
   <!--======================Messages===========================-->
 
   <LocaleResource Name="AddError">
