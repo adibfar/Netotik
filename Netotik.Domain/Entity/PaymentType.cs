@@ -19,8 +19,8 @@ namespace Netotik.Domain.Entity
         public string Password { get; set; }
         public bool IsActive { get; set; }
         public bool IsDefault { get; set; }
+        public bool IsDelete { get; set; }
         public System.DateTime CreateDate { get; set; }
-        public System.DateTime EditDate { get; set; }
         public virtual Picture Picture{ get; set; }
     }
 }

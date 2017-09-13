@@ -154,6 +154,7 @@ namespace Netotik.Web.Areas.Company.Controllers
             public readonly string Register = "Register";
             public readonly string UserEdit = "UserEdit";
             public readonly string UserEdit_Save = "UserEdit_Save";
+            public readonly string RegisterSetting = "RegisterSetting";
             public readonly string ClientArea = "ClientArea";
             public readonly string Online = "Online";
             public readonly string RedirectToLocal = "RedirectToLocal";
@@ -178,6 +179,7 @@ namespace Netotik.Web.Areas.Company.Controllers
             public const string Register = "Register";
             public const string UserEdit = "UserEdit";
             public const string UserEdit_Save = "UserEdit_Save";
+            public const string RegisterSetting = "RegisterSetting";
             public const string ClientArea = "ClientArea";
             public const string Online = "Online";
             public const string RedirectToLocal = "RedirectToLocal";
@@ -285,6 +287,14 @@ namespace Netotik.Web.Areas.Company.Controllers
             public readonly string model = "model";
             public readonly string actionType = "actionType";
         }
+        static readonly ActionParamsClass_RegisterSetting s_params_RegisterSetting = new ActionParamsClass_RegisterSetting();
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public ActionParamsClass_RegisterSetting RegisterSettingParams { get { return s_params_RegisterSetting; } }
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public class ActionParamsClass_RegisterSetting
+        {
+            public readonly string model = "model";
+        }
         static readonly ActionParamsClass_ClientArea s_params_ClientArea = new ActionParamsClass_ClientArea();
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public ActionParamsClass_ClientArea ClientAreaParams { get { return s_params_ClientArea; } }
@@ -311,24 +321,26 @@ namespace Netotik.Web.Areas.Company.Controllers
             public _ViewNamesClass ViewNames { get { return s_ViewNames; } }
             public class _ViewNamesClass
             {
-                public readonly string Active = "Active";
                 public readonly string ClientArea = "ClientArea";
+                public readonly string Online = "Online";
                 public readonly string PackageCreate = "PackageCreate";
                 public readonly string PackageDetails = "PackageDetails";
                 public readonly string PackageList = "PackageList";
                 public readonly string Register = "Register";
+                public readonly string RegisterSetting = "RegisterSetting";
                 public readonly string Report = "Report";
                 public readonly string UserCreate = "UserCreate";
                 public readonly string UserDetails = "UserDetails";
                 public readonly string UserEdit = "UserEdit";
                 public readonly string UserList = "UserList";
             }
-            public readonly string Active = "~/Areas/Company/Views/UserManager/Active.cshtml";
             public readonly string ClientArea = "~/Areas/Company/Views/UserManager/ClientArea.cshtml";
+            public readonly string Online = "~/Areas/Company/Views/UserManager/Online.cshtml";
             public readonly string PackageCreate = "~/Areas/Company/Views/UserManager/PackageCreate.cshtml";
             public readonly string PackageDetails = "~/Areas/Company/Views/UserManager/PackageDetails.cshtml";
             public readonly string PackageList = "~/Areas/Company/Views/UserManager/PackageList.cshtml";
             public readonly string Register = "~/Areas/Company/Views/UserManager/Register.cshtml";
+            public readonly string RegisterSetting = "~/Areas/Company/Views/UserManager/RegisterSetting.cshtml";
             public readonly string Report = "~/Areas/Company/Views/UserManager/Report.cshtml";
             public readonly string UserCreate = "~/Areas/Company/Views/UserManager/UserCreate.cshtml";
             public readonly string UserDetails = "~/Areas/Company/Views/UserManager/UserDetails.cshtml";
@@ -555,6 +567,29 @@ namespace Netotik.Web.Areas.Company.Controllers
             ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "actionType", actionType);
             UserEdit_SaveOverride(callInfo, model, actionType);
             return callInfo;
+        }
+
+        [NonAction]
+        partial void RegisterSettingOverride(T4MVC_System_Web_Mvc_ActionResult callInfo);
+
+        [NonAction]
+        public override System.Web.Mvc.ActionResult RegisterSetting()
+        {
+            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.RegisterSetting);
+            RegisterSettingOverride(callInfo);
+            return callInfo;
+        }
+
+        [NonAction]
+        partial void RegisterSettingOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, Netotik.ViewModels.Identity.UserCompany.RegisterSettingModel model);
+
+        [NonAction]
+        public override System.Threading.Tasks.Task<System.Web.Mvc.ActionResult> RegisterSetting(Netotik.ViewModels.Identity.UserCompany.RegisterSettingModel model)
+        {
+            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.RegisterSetting);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "model", model);
+            RegisterSettingOverride(callInfo, model);
+            return System.Threading.Tasks.Task.FromResult(callInfo as System.Web.Mvc.ActionResult);
         }
 
         [NonAction]

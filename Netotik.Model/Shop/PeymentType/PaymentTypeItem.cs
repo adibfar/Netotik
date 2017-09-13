@@ -8,9 +8,10 @@ using Netotik.Resources;
 
 namespace Netotik.ViewModels.Shop.PaymentType
 {
-    public class TablePaymentTypeModel
+    public class PaymentTypeItem
     {
         public int Id { get; set; }
+        public long RowNumber { get; set; }
         public string Name { get; set; }
         public bool IsActive { get; set; }
         public string GateWayUrl { get; set; }

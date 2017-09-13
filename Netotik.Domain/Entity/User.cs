@@ -16,6 +16,7 @@ namespace Netotik.Domain.Entity
             this.ContentComments = new List<ContentComment>();
             this.Addresses = new List<Address>();
             this.Roles = new List<UserRole>();
+            this.SmsLogs = new List<SmsLog>();
         }
 
         public bool IsBanned { get; set; }
@@ -29,6 +30,7 @@ namespace Netotik.Domain.Entity
         public string LastLoginIpAddress { get; set; }
         public Nullable<int> PictureId { get; set; }
         public UserType UserType { get; set; }
+        public virtual ICollection<SmsLog> SmsLogs { get; set; }
         public virtual ICollection<Content> ContentsEdited { get; set; }
         public virtual ICollection<Content> ContentsCreated { get; set; }
         public virtual ICollection<Ticket> IssuesResponsed { get; set; }

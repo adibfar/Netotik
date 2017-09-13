@@ -92,17 +92,6 @@
                 </li>
             }
 
-            @if (ShopMenu)
-            {
-                <li data-menu="dropdown" class="dropdown nav-item">
-                    <a href="#" data-toggle="dropdown" class="dropdown-toggle nav-link"><i class="icon-cart4"></i><span>@Captions.Shop</span></a>
-                    <ul class="dropdown-menu">
-                        @if (ShopPaymentTypeMenu)
-                        {
-                            <li><a href="@Url.Action(MVC.Admin.ShopPaymentType.Index())" data-toggle="dropdown" class="dropdown-item">درگاه های پرداخت</a></li>}
-                    </ul>
-                </li>
-            }
 
             @if (IssueMenu)
             {
@@ -156,6 +145,11 @@
                         {
                             <li><a href="@Url.Action(MVC.Admin.City.Index())" data-toggle="dropdown" class="dropdown-item">@Captions.Cities</a></li>}
                         <li><a href="@Url.Action(MVC.Admin.Language.Index())" data-toggle="dropdown" class="dropdown-item">@Captions.Languages</a></li>
+
+                        @if (ShopPaymentTypeMenu)
+                        {
+                            <li><a href="@Url.Action(MVC.Admin.PaymentType.Index())" data-toggle="dropdown" class="dropdown-item">درگاه های پرداخت</a></li>
+                        }
                     </ul>
                 </li>
 

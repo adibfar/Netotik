@@ -30,6 +30,11 @@
                                                 <a class="nav-link" id="baseIcon-tab22" data-toggle="tab" aria-controls="tabIcon22" href="#Contact" aria-expanded="false">
                                                 <i class="icon-flag4"></i> اطلاعات تماس</a>
                                             </li>
+                                            <li class="nav-item">
+                                                <a class="nav-link" id="baseIcon-tab22" data-toggle="tab" aria-controls="tabIcon22" href="#Sms" aria-expanded="false">
+                                                    <i class="icon-bell"></i> سیستم پیامک
+                                                </a>
+                                            </li>
                                         </ul>
 
                                         <div class="tab-content px-1 pt-1">
@@ -93,6 +98,24 @@
                                                         <div class="form-group">
                                                             @Html.LabelFor(model => model.CompanyEmail2)
                                                             @Html.TextBoxFor(model => model.CompanyEmail2, new { @class = "form-control" })
+                                                        </div>
+                                                    </div>
+                                                </fieldset>
+                                            </div>
+                                            <div class="tab-pane form-horizontal panel-body" id="Sms">
+                                                <fieldset>
+                                                    <div class="panel-body">
+                                                        <div class="form-group">
+                                                            @*@Html.LabelFor(model => model.SmsNumber)*@
+                                                            @Html.TextBoxFor(model => model.SmsNumber, new { @class = "form-control" })
+                                                        </div>
+                                                        <div class="form-group">
+                                                            @*@Html.LabelFor(model => model.SmsUsername)*@
+                                                            @Html.TextBoxFor(model => model.SmsUsername, new { @class = "form-control" })
+                                                        </div>
+                                                        <div class="form-group">
+                                                            @*@Html.LabelFor(model => model.SmsPassword)*@
+                                                            @Html.TextBoxFor(model => model.SmsPassword, new { @class = "form-control" })
                                                         </div>
                                                     </div>
                                                 </fieldset>

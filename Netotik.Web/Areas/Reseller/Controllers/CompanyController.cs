@@ -142,12 +142,12 @@ namespace Netotik.Web.Areas.Reseller.Controllers
                     }
                 }
             }
-            
-            
+
+
 
             model.UserResellerId = UserLogined.UserReseller.Id;
-            
-            
+
+
             var userId = await _applicationUserManager.AddCompany(model);
 
             await SendConfirmationEmail(model.Email, userId);
@@ -171,6 +171,9 @@ namespace Netotik.Web.Areas.Reseller.Controllers
         }
 
         #endregion
+        
+
+
 
         #region Edit
         [Mvc5Authorize(Roles = "Reseller")]
@@ -295,7 +298,7 @@ namespace Netotik.Web.Areas.Reseller.Controllers
             return View();
         }
 
-        
+
         [Mvc5Authorize(Roles = "Reseller")]
         public virtual async Task<ActionResult> Disable(int id = 0)
         {

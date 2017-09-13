@@ -12,6 +12,7 @@ namespace Netotik.Services.Identity
 
     public interface IApplicationUserManager : IDisposable
     {
+
         ViewModels.Identity.UserAdmin.ProfileModel GetUserAdminProfile();
         ViewModels.Identity.UserReseller.ProfileModel GetUserResellerProfile();
         ViewModels.Identity.UserCompany.ProfileModel GetUserCompanyProfile(long id);
@@ -19,9 +20,12 @@ namespace Netotik.Services.Identity
         ViewModels.Identity.UserCompany.MikrotikConfModel GetUserCompanyMikrotikConf(long id);
         ViewModels.Identity.UserCompany.TelegramBotModel GetUserCompanyTelegramBot(long id);
 
+        ViewModels.Identity.UserCompany.RegisterSettingModel GetCompanyRegisterSetting(long UserId);
+        Task UpdateCompanyRegisterSettingAsync(ViewModels.Identity.UserCompany.RegisterSettingModel model);
         Task UpdateUserAdminProfile(ViewModels.Identity.UserAdmin.ProfileModel model);
         Task UpdateUserResellerProfile(ViewModels.Identity.UserReseller.ProfileModel model);
         Task UpdateUserCompanyProfile(ViewModels.Identity.UserCompany.ProfileModel model);
+        Task UpdateUserClientPermissions(ViewModels.Identity.UserCompany.ProfileModel model);
         IList<ViewModels.Identity.UserAdmin.UserItem> GetListUserAdmins(RequestListModel model, out long TotalCount, out long ShowCount);
         IList<ViewModels.Identity.UserReseller.UserItem> GetListUserResellers(RequestListModel model, out long TotalCount, out long ShowCount);
         Task UpdateUserCompanyMikrotikConf(ViewModels.Identity.UserCompany.MikrotikConfModel model);

@@ -67,8 +67,8 @@ namespace T4MVC
         public Netotik.Web.Areas.Admin.Controllers.IndexSectionController IndexSection = new Netotik.Web.Areas.Admin.Controllers.T4MVC_IndexSectionController();
         public Netotik.Web.Areas.Admin.Controllers.LanguageController Language = new Netotik.Web.Areas.Admin.Controllers.T4MVC_LanguageController();
         public Netotik.Web.Areas.Admin.Controllers.MenuController Menu = new Netotik.Web.Areas.Admin.Controllers.T4MVC_MenuController();
+        public Netotik.Web.Areas.Admin.Controllers.PaymentTypeController PaymentType = new Netotik.Web.Areas.Admin.Controllers.T4MVC_PaymentTypeController();
         public Netotik.Web.Areas.Admin.Controllers.RoleController Role = new Netotik.Web.Areas.Admin.Controllers.T4MVC_RoleController();
-        public Netotik.Web.Areas.Admin.Controllers.ShopPaymentTypeController ShopPaymentType = new Netotik.Web.Areas.Admin.Controllers.T4MVC_ShopPaymentTypeController();
         public Netotik.Web.Areas.Admin.Controllers.SliderController Slider = new Netotik.Web.Areas.Admin.Controllers.T4MVC_SliderController();
         public Netotik.Web.Areas.Admin.Controllers.StateController State = new Netotik.Web.Areas.Admin.Controllers.T4MVC_StateController();
         public Netotik.Web.Areas.Admin.Controllers.StatisticsController Statistics = new Netotik.Web.Areas.Admin.Controllers.T4MVC_StatisticsController();

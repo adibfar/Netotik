@@ -31,6 +31,10 @@ namespace Netotik.Services.Implement
             model.HomePageDescription = list.FirstOrDefault(x => x.Name == "HomePageDescription").Value;
             model.HomePageKeywords = list.FirstOrDefault(x => x.Name == "HomePageKeywords").Value;
 
+            model.SmsPassword = list.FirstOrDefault(x => x.Name == "SmsPassword").Value;
+            model.SmsUsername = list.FirstOrDefault(x => x.Name == "SmsUsername").Value;
+            model.SmsNumber = list.FirstOrDefault(x => x.Name == "SmsNumber").Value;
+
             model.Facebook = list.FirstOrDefault(x => x.Name == "Facebook").Value;
             model.Twitter = list.FirstOrDefault(x => x.Name == "Twitter").Value;
             model.Instagram = list.FirstOrDefault(x => x.Name == "Instagram").Value;
@@ -54,6 +58,10 @@ namespace Netotik.Services.Implement
             list.First(x => x.Name.Equals("HomePageTitle")).Value = model.HomePageTitle;
             list.First(x => x.Name.Equals("HomePageDescription")).Value = model.HomePageDescription;
             list.First(x => x.Name.Equals("HomePageKeywords")).Value = model.HomePageKeywords;
+
+            list.First(x => x.Name.Equals("SmsUsername")).Value = model.SmsUsername;
+            list.First(x => x.Name.Equals("SmsPassword")).Value = model.SmsPassword;
+            list.First(x => x.Name.Equals("SmsNumber")).Value = model.SmsNumber;
 
             list.First(x => x.Name.Equals("Facebook")).Value = model.Facebook;
             list.First(x => x.Name.Equals("Twitter")).Value = model.Twitter;

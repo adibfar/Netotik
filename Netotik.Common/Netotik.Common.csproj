@@ -119,6 +119,9 @@
     <Compile Include="Helpers\MvcHtmlHelperExtentions.cs" />
     <Compile Include="MikrotikAPI\MikrotikAPI.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Scheduler\JobsRunnerTimer.cs" />
+    <Compile Include="Scheduler\ScheduledTasksCoordinator.cs" />
+    <Compile Include="Scheduler\ScheduledTaskTemplate.cs" />
     <Compile Include="Security\ActionKey.cs" />
     <Compile Include="Security\ActionKeyService.cs" />
     <Compile Include="Security\Encryption.cs" />

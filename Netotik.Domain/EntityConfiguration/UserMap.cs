@@ -15,11 +15,11 @@ namespace Netotik.Domain.EntityConfiguration
             this.Property(t => t.UserName)
                 .IsRequired()
                 .HasMaxLength(100)
-                .HasColumnAnnotation("Index", new IndexAnnotation(new IndexAttribute("IX_UserName") { IsUnique = true }));
+                .HasColumnAnnotation("Index", new IndexAnnotation(new IndexAttribute("IX_UserName") { IsUnique = false }));
 
             this.Property(t => t.Email)
                 .IsRequired()
-                .HasColumnAnnotation("Index", new IndexAnnotation(new IndexAttribute("IX_Email") { IsUnique = true }))
+                .HasColumnAnnotation("Index", new IndexAnnotation(new IndexAttribute("IX_Email") { IsUnique = false }))
                 .HasMaxLength(1000);
 
             this.Property(t => t.FirstName)

@@ -1,15 +1,18 @@
 ﻿@using Netotik.Common.Helpers
+@using Netotik.Domain.Entity
 @using Netotik.ViewModels.Identity.UserClient
 
-@model UserRegisterModel
+@model UserClientRegisterModel
 @{
     Layout = MVC.Shared.Views._Layout;
+
+    var setting = ViewBag.RegisterSetting as Netotik.Domain.Entity.UserCompanyRegisterSetting;
 }
 
 <section class="flexbox-container">
     @if (ViewBag.Success != null)
     {
-        <div class="col-md-8 offset-md-2 col-xs-12">
+        <div class="col-md-5 offset-md-2 col-xs-12">
             <div class="alert alert-icon-left alert-success alert-dismissible fade in mb-2" role="alert">
                 <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                     <span aria-hidden="true">×</span>
@@ -21,7 +24,7 @@
     else
     {
 
-        <div class="col-md-6 offset-md-3 col-xs-10 box-shadow-2 p-0">
+        <div class="col-md-3 offset-md-6 col-xs-10 box-shadow-2 p-0">
             <div class="card border-grey border-lighten-3 m-0">
                 <div class="card-body collapse in">
                     @if (ViewBag.Message != null)
@@ -39,117 +42,106 @@
                         {
                             @Html.AntiForgeryToken()
                             <div class="row">
-                                <div class="col-md-4">
-                                    <div class="form-group has-feedback has-icon-left">
-                                        @Html.TextBoxFor(m => m.first_name, new { @class = "form-control", placeholder = Captions.Name })
-                                        <div class="form-control-position">
-                                            <i class="icon-head"></i>
-                                        </div>
-                                        @Html.ValidationMessageFor(model => model.first_name, "", htmlAttributes: new { @class = "text-danger" })
-                                    </div>
-                                </div>
-                                <div class="col-md-4">
-                                    <div class="form-group has-feedback has-icon-left">
-                                        @Html.TextBoxFor(m => m.last_name, new { @class = "form-control", placeholder = Captions.LastName })
-                                        <div class="form-control-position">
-                                            <i class="icon-user"></i>
-                                        </div>
-                                        @Html.ValidationMessageFor(model => model.last_name, "", htmlAttributes: new { @class = "text-danger" })
-                                    </div>
-                                </div>
-                                <div class="col-md-4">
-                                    <div class="form-group has-feedback has-icon-left">
-                                        @Html.TextBoxFor(m => m.phone, new { @class = "form-control", placeholder = Captions.MobileNumber })
-                                        <div class="form-control-position">
-                                            <i class="icon-phone"></i>
-                                        </div>
-                                        @Html.ValidationMessageFor(model => model.phone, "", htmlAttributes: new { @class = "text-danger" })
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-4">
-                                    <div class="form-group has-feedback has-icon-left">
-                                        @Html.TextBoxFor(m => m.NationalCode, new { @class = "form-control", placeholder = Captions.NationalCode })
-                                        <div class="form-control-position">
-                                            <i class="icon-diamonds"></i>
-                                        </div>
-                                        @Html.ValidationMessageFor(model => model.NationalCode, "", htmlAttributes: new { @class = "text-danger" })
-                                    </div>
-                                </div>                         
-                                <div class="col-md-4">
-                                    <div class="form-group has-feedback has-icon-left">
-                                        @Html.TextBoxFor(m => m.email, new { @class = "form-control", placeholder = Captions.Email })
-                                        <div class="form-control-position">
-                                            <i class="icon-mail"></i>
-                                        </div>
-                                        @Html.ValidationMessageFor(model => model.email, "", htmlAttributes: new { @class = "text-danger" })
-                                    </div>
-                                </div>
-                                <div class="col-md-4">
-                                    <div class="form-group has-feedback has-icon-left">
-                                        <div class="position-relative has-icon-left">
-                                            @Html.TextBoxFor(m => m.location, new { @class = "form-control", placeholder = Captions.Location })
+                                @if (setting.Name != FieldType.None)
+                                {
+                                    <div class="col-md-12">
+                                        <div class="form-group has-feedback has-icon-left">
+                                            @Html.TextBoxFor(m => m.Name, new { @class = "form-control", placeholder = Captions.Name })
                                             <div class="form-control-position">
-                                                <i class="icon-location"></i>
+                                                <i class="icon-head"></i>
                                             </div>
-                                            @Html.ValidationMessageFor(model => model.location, "", htmlAttributes: new { @class = "text-danger" })
+                                            @Html.ValidationMessageFor(model => model.Name, "", htmlAttributes: new { @class = "text-danger" })
                                         </div>
                                     </div>
-                                </div>
+                                }
+                                @if (setting.MobileNumber != FieldType.None)
+                                {
+                                    <div class="col-md-12">
+                                        <div class="form-group has-feedback has-icon-left">
+                                            @Html.TextBoxFor(m => m.MobileNumber, new { @class = "form-control", placeholder = Captions.MobileNumber })
+                                            <div class="form-control-position">
+                                                <i class="icon-phone"></i>
+                                            </div>
+                                            @Html.ValidationMessageFor(model => model.MobileNumber, "", htmlAttributes: new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+                                }
+                                @if (setting.Username != FieldType.None)
+                                {
+                                    <div class="col-md-12">
+                                        <div class="form-group has-feedback has-icon-left">
+                                            @Html.TextBoxFor(m => m.Username, new { @class = "form-control", placeholder = Captions.UserName })
+                                            <div class="form-control-position">
+                                                <i class="icon-user"></i>
+                                            </div>
+                                            @Html.ValidationMessageFor(model => model.Username, "", htmlAttributes: new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+                                }
+                                @if (setting.Email != FieldType.None)
+                                {
+                                    <div class="col-md-12">
+                                        <div class="form-group has-feedback has-icon-left">
+                                            @Html.TextBoxFor(m => m.Email, new { @class = "form-control", placeholder = Captions.Email })
+                                            <div class="form-control-position">
+                                                <i class="icon-mail"></i>
+                                            </div>
+                                            @Html.ValidationMessageFor(model => model.Email, "", htmlAttributes: new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+                                }
+                                @if (setting.NationalCode != FieldType.None)
+                                {
+                                    <div class="col-md-12">
+                                        <div class="form-group has-feedback has-icon-left">
+                                            @Html.TextBoxFor(m => m.NationalCode, new { @class = "form-control", placeholder = Captions.NationalCode })
+                                            <div class="form-control-position">
+                                                <i class="icon-diamonds"></i>
+                                            </div>
+                                            @Html.ValidationMessageFor(model => model.NationalCode, "", htmlAttributes: new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+                                }
+                                @if (setting.BirthDate != FieldType.None)
+                                {
+                                    <div class="col-md-12">
+                                        <div class="form-group has-feedback has-icon-left">
+                                            <div class="position-relative has-icon-left">
+                                                @Html.TextBoxFor(m => m.BirthDate, new { @class = "form-control", placeholder = "تاریخ تولد" })
+                                                <div class="form-control-position">
+                                                    <i class="icon-birthday-cake"></i>
+                                                </div>
+                                                @Html.ValidationMessageFor(model => model.BirthDate, "", htmlAttributes: new { @class = "text-danger" })
+                                            </div>
+                                        </div>
+                                    </div>
+                                }
+                                @if (setting.Password != FieldType.None)
+                                {
+                                    <div class="col-md-12">
+                                        <div class="form-group has-feedback has-icon-left">
+                                            @Html.PasswordFor(m => m.Password, new { @class = "form-control", placeholder = Captions.Password })
+                                            <div class="form-control-position">
+                                                <i class="icon-key2"></i>
+                                            </div>
+                                            @Html.ValidationMessageFor(model => model.Password, "", htmlAttributes: new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+                                }
+                                @if (setting.PasswordConfirm != FieldType.None)
+                                {
+                                    <div class="col-md-12">
+                                        <div class="form-group has-feedback has-icon-left">
+                                            @Html.PasswordFor(m => m.PasswordConfirm, new { @class = "form-control", placeholder = Captions.ConfirmPassword })
+                                            <div class="form-control-position">
+                                                <i class="icon-key2"></i>
+                                            </div>
+                                            @Html.ValidationMessageFor(model => model.PasswordConfirm, "", htmlAttributes: new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+                                }
                             </div>
 
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <div class="form-group has-feedback has-icon-left">
-                                        @Html.TextBoxFor(m => m.username, new { @class = "form-control", placeholder = Captions.UserName })
-                                        <div class="form-control-position">
-                                            <i class="icon-head"></i>
-                                        </div>
-                                        @Html.ValidationMessageFor(model => model.username, "", htmlAttributes: new { @class = "text-danger" })
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    
-                                    <select id="profile" name="profile" data-placeholder="انتخاب تعرفه" class="selectize-select" style="min-width:350px;" tabindex="2">
-                                        @foreach (var item in ViewBag.profiles)
-                                        {
-                                            <option value="@item.name">@item.name | قیمت:@item.price</option>
-                                        }
-                                    </select>
-                                </div>
-                                </div>
-                                <div class="row">
-                                <div class="col-md-6">
-                                    <div class="form-group has-feedback has-icon-left">
-                                        @Html.PasswordFor(m => m.password, new { @class = "form-control", placeholder = Captions.Password })
-                                        <div class="form-control-position">
-                                            <i class="icon-key2"></i>
-                                        </div>
-                                        @Html.ValidationMessageFor(model => model.password, "", htmlAttributes: new { @class = "text-danger" })
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="form-group has-feedback has-icon-left">
-                                        @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "form-control", placeholder = Captions.ConfirmPassword })
-                                        <div class="form-control-position">
-                                            <i class="icon-key2"></i>
-                                        </div>
-                                        @Html.ValidationMessageFor(model => model.ConfirmPassword, "", htmlAttributes: new { @class = "text-danger" })
-                                    </div>
-                                </div>
-                            </div>
-                            
-                                
-                            <div class="controls">
-                                <label class="custom-control custom-checkbox">
-                                    <input required="" value="single" name="styled_single_checkbox" class="custom-control-input" aria-invalid="false" type="checkbox">
-                                    <span class="custom-control-indicator"></span>
-                                    <span class="custom-control-description">
-                                        @Captions.PrivacyMessage
-                                    </span>
-                                </label>
-                            </div>
                             <button type="submit" class="btn btn-success btn-block">
                                 <i class="icon-user"></i> @Captions.Register
                             </button>

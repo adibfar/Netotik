@@ -19,6 +19,7 @@ using System.Threading;
 using Netotik.Common.Binders;
 using System.Text.RegularExpressions;
 using System.Web.Http;
+using Netotik.Web.WebTasks;
 
 namespace Netotik.Web
 {
@@ -43,6 +44,8 @@ namespace Netotik.Web
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
             ApplicationStart.Config();
+
+            ScheduledTasksRegistry.Init();
         }
         protected void Application_Error(object sender, EventArgs e)
         {
@@ -79,6 +82,14 @@ namespace Netotik.Web
                 }
 
             }
+        }
+
+
+        protected void Application_End()
+        {
+            ScheduledTasksRegistry.End();
+            //نکته مهم این روش نیاز به سرویس پینگ سایت برای زنده نگه داشتن آن است
+            ScheduledTasksRegistry.WakeUp("https://www.Netotik.com");
         }
 
 

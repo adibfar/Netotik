@@ -40,10 +40,12 @@ namespace Netotik.Data.Context
 
         public DbSet<StatisticCountry> StatisticCountries { get; set; }
         public DbSet<Statistic> Statistics { get; set; }
-
+        public DbSet<SmsLog> SmsLogs { get; set; }
         public DbSet<UserReseller> UserReselleres { get; set; }
         public DbSet<UserCompany> UserCompanies { get; set; }
         public DbSet<UserCompanyTelegram> UserCompanyTelegrams { get; set; }
+        public DbSet<UserCompanyRegisterSetting> UserCompanyRegisterSettings { get; set; }
+        public DbSet<UserCompanyClient> UserCompanyClients { get; set; }
         public DbSet<TelegramBotData> TelegramBotData { get; set; }
         public DbSet<UserAdmin> UserAdmines { get; set; }
         public DbSet<Address> Addresses { get; set; }
@@ -69,8 +71,11 @@ namespace Netotik.Data.Context
             modelBuilder.Configurations.Add(new LanguageTranslationMap());
             modelBuilder.Configurations.Add(new UserResellerMap());
             modelBuilder.Configurations.Add(new UserCompanyMap());
+            modelBuilder.Configurations.Add(new SmsLogMap());
             modelBuilder.Configurations.Add(new UserCompanyTelegramMap());
+            modelBuilder.Configurations.Add(new UserCompanyRegisterSettingMap());
             modelBuilder.Configurations.Add(new TelegramBotDataMap());
+            modelBuilder.Configurations.Add(new UserCompanyClientMap());
             modelBuilder.Configurations.Add(new UserAdminMap());
             modelBuilder.Configurations.Add(new UserMap());
             modelBuilder.Configurations.Add(new AddressMap());

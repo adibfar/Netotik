@@ -24,6 +24,7 @@ using Netotik.Services.Abstract;
 using Netotik.ViewModels.Identity.UserAdmin;
 using Netotik.Common.Security.RijndaelEncryption;
 using System.Xml.Linq;
+using Netotik.ViewModels.Identity.UserCompany;
 
 namespace Netotik.Services.Identity
 {
@@ -137,6 +138,47 @@ namespace Netotik.Services.Identity
         }
 
 
+        ViewModels.Identity.UserCompany.RegisterSettingModel IApplicationUserManager.GetCompanyRegisterSetting(long UserId)
+        {
+            var user = _users.FirstOrDefault(x => x.Id == UserId);
+            var model = new ViewModels.Identity.UserCompany.RegisterSettingModel();
+
+            model.Id = UserId;
+            model.Age = user.UserCompany.UserCompanyRegisterSetting.Age;
+            model.BirthDate = user.UserCompany.UserCompanyRegisterSetting.BirthDate;
+            model.Email = user.UserCompany.UserCompanyRegisterSetting.Email;
+            model.IsMale = user.UserCompany.UserCompanyRegisterSetting.IsMale;
+            model.MobileNumber = user.UserCompany.UserCompanyRegisterSetting.MobileNumber;
+            model.Name = user.UserCompany.UserCompanyRegisterSetting.Name;
+            model.NationalCode = user.UserCompany.UserCompanyRegisterSetting.NationalCode;
+            model.Password = user.UserCompany.UserCompanyRegisterSetting.Password;
+            model.PasswordConfirm = user.UserCompany.UserCompanyRegisterSetting.PasswordConfirm;
+            model.Username = user.UserCompany.UserCompanyRegisterSetting.Username;
+            model.SendEmailUserPass = user.UserCompany.UserCompanyRegisterSetting.SendEmailUserPass;
+            model.SendSmsUserPass = user.UserCompany.UserCompanyRegisterSetting.SendSmsUserPass;
+
+            return model;
+        }
+
+        public async Task UpdateCompanyRegisterSettingAsync(ViewModels.Identity.UserCompany.RegisterSettingModel model)
+        {
+            var user = _users.Find(model.Id);
+            user.UserCompany.UserCompanyRegisterSetting.Age = model.Age;
+            user.UserCompany.UserCompanyRegisterSetting.BirthDate = model.BirthDate;
+            user.UserCompany.UserCompanyRegisterSetting.Email = model.Email;
+            user.UserCompany.UserCompanyRegisterSetting.IsMale = model.IsMale;
+            user.UserCompany.UserCompanyRegisterSetting.MobileNumber = model.MobileNumber;
+            user.UserCompany.UserCompanyRegisterSetting.Name = model.Name;
+            user.UserCompany.UserCompanyRegisterSetting.NationalCode = model.NationalCode;
+            user.UserCompany.UserCompanyRegisterSetting.Password = model.Password;
+            user.UserCompany.UserCompanyRegisterSetting.PasswordConfirm = model.PasswordConfirm;
+            user.UserCompany.UserCompanyRegisterSetting.Username = model.Username;
+            user.UserCompany.UserCompanyRegisterSetting.SendEmailUserPass = model.SendEmailUserPass;
+            user.UserCompany.UserCompanyRegisterSetting.SendSmsUserPass = model.SendSmsUserPass;
+
+            await _unitOfWork.SaveChangesAsync();
+        }
+
         public async Task UpdateUserAdminProfile(ViewModels.Identity.UserAdmin.ProfileModel model)
         {
             var user = _users.Find(GetCurrentUserId());
@@ -197,10 +239,24 @@ namespace Netotik.Services.Identity
             _mappingEngine.Map(model, user);
             await _unitOfWork.SaveChangesAsync();
         }
+
+        public async Task UpdateUserClientPermissions(ViewModels.Identity.UserCompany.ProfileModel model)
+        {
+            var user = _users.Find(model.Id);
+
+            var XmlClientPermissions = "";
+            if (model.ClientPermissionNames == null || model.ClientPermissionNames.Length < 1)
+                XmlClientPermissions = _permissionClientService.GetPermissionsAsXml("null").ToString();
+            else XmlClientPermissions = _permissionClientService.GetPermissionsAsXml(model.ClientPermissionNames).ToString();
+
+            user.UserCompany.ClientPermissions = XmlClientPermissions;
+
+            await _unitOfWork.SaveChangesAsync();
+        }
+
         public async Task UpdateUserCompanyProfile(ViewModels.Identity.UserCompany.ProfileModel model)
         {
             var user = _users.Find(model.Id);
-            //_unitOfWork.MarkAsDetached(user);
 
             _mappingEngine.Map(model, user);
 
@@ -211,24 +267,19 @@ namespace Netotik.Services.Identity
                 user.EmailConfirmed = false;
             }
 
-            //user.Picture = viewModel.Picture;
-            //_unitOfWork.Update(user, a => a.AssociatedCollection(u => u.Roles));
+            //var XmlClientPermissions = "";
+            //if (model.ClientPermissionNames == null || model.ClientPermissionNames.Length < 1)
+            //    XmlClientPermissions = _permissionClientService.GetPermissionsAsXml("null").ToString();
+            //else XmlClientPermissions = _permissionClientService.GetPermissionsAsXml(model.ClientPermissionNames).ToString();
 
-            var XmlClientPermissions = "";
-            if (model.ClientPermissionNames == null || model.ClientPermissionNames.Length < 1)
-                XmlClientPermissions = _permissionClientService.GetPermissionsAsXml("null").ToString();
-            else XmlClientPermissions = _permissionClientService.GetPermissionsAsXml(model.ClientPermissionNames).ToString();
+            //user.UserCompany.ClientPermissions = XmlClientPermissions;
 
-            user.UserCompany.ClientPermissions = XmlClientPermissions;
+            //var XmlCompanyPermissions = "";
+            //if (model.CompanyPermissionNames == null || model.CompanyPermissionNames.Length < 1)
+            //    XmlCompanyPermissions = _permissionCompanyService.GetPermissionsAsXml("null").ToString();
+            //else XmlCompanyPermissions = _permissionCompanyService.GetPermissionsAsXml(model.CompanyPermissionNames).ToString();
 
-
-
-            var XmlCompanyPermissions = "";
-            if (model.CompanyPermissionNames == null || model.CompanyPermissionNames.Length < 1)
-                XmlCompanyPermissions = _permissionCompanyService.GetPermissionsAsXml("null").ToString();
-            else XmlClientPermissions = _permissionCompanyService.GetPermissionsAsXml(model.CompanyPermissionNames).ToString();
-
-            user.UserCompany.CompanyPermissions= XmlCompanyPermissions;
+            //user.UserCompany.CompanyPermissions= XmlCompanyPermissions;
 
             await _unitOfWork.SaveChangesAsync();
         }
@@ -433,7 +484,7 @@ namespace Netotik.Services.Identity
             UserValidator = new CustomUserValidator<User, long>(this)
             {
                 AllowOnlyAlphanumericUserNames = false,
-                RequireUniqueEmail = true
+                RequireUniqueEmail = false,
             };
 
             PasswordValidator = new CustomPasswordValidator
@@ -722,7 +773,7 @@ namespace Netotik.Services.Identity
                : _users.Any(a => a.Email.ToLower() == email.ToLower() && !a.IsDeleted && a.UserType == UserType.UserAdmin && a.Id != id.Value);
             */
             return id == null
-               ? _users.Any(a => a.Email.ToLower() == email.ToLower() && !a.IsDeleted )
+               ? _users.Any(a => a.Email.ToLower() == email.ToLower() && !a.IsDeleted)
                : _users.Any(a => a.Email.ToLower() == email.ToLower() && !a.IsDeleted && a.Id != id.Value);
         }
         public bool CheckCompanyEmailExist(string email, long? id)

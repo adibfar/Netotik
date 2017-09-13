@@ -35,6 +35,18 @@ namespace Netotik.ViewModels.Common.Setting
         public string CompanyEmail2 { get; set; }
         #endregion
 
+        #region Sms Api
+        [Display(ResourceType = typeof(Captions), Name = "SmsNumber")]
+        public string SmsNumber { get; set; }
+
+        [Display(ResourceType = typeof(Captions), Name = "SmsUsername")]
+        public string SmsUsername { get; set; }
+
+        [Display(ResourceType = typeof(Captions), Name = "SmsPassword")]
+        public string SmsPassword { get; set; }
+        #endregion
+
+
         #region Social Networks
 
         [Display(ResourceType = typeof(Captions), Name = "Facebook")]

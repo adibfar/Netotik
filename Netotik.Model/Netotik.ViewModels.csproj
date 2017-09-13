@@ -91,6 +91,7 @@
     <Compile Include="Identity\Security\AssignablePermissionToClient.cs" />
     <Compile Include="Identity\UserAdmin\ProfileLanguageItem.cs" />
     <Compile Include="Identity\UserClient\ChangePasswordModel.cs" />
+    <Compile Include="Identity\UserClient\UserClientRegisterModel.cs" />
     <Compile Include="Identity\UserClient\PaymentModel.cs" />
     <Compile Include="Identity\UserClient\CustomerModel.cs" />
     <Compile Include="Identity\UserClient\LimitionModel.cs" />
@@ -104,6 +105,7 @@
     <Compile Include="Identity\UserClient\UserModel.cs" />
     <Compile Include="Identity\UserClient\UserRegisterModel.cs" />
     <Compile Include="Identity\UserClient\UserSessionModel.cs" />
+    <Compile Include="Identity\UserCompany\RegisterSettingModel.cs" />
     <Compile Include="Identity\UserCompany\CompanyList.cs" />
     <Compile Include="Identity\UserCompany\TelegramBotModel.cs" />
     <Compile Include="Identity\UserCompany\MikrotikConfModel.cs" />
@@ -153,7 +155,7 @@
     <Compile Include="Identity\Security\AssignableToRolePermissions.cs" />
     <Compile Include="Mikrotik\Usermanager\LogModel.cs" />
     <Compile Include="Shop\PeymentType\PeymentTypeModel.cs" />
-    <Compile Include="Shop\PeymentType\TableManufacturerModel.cs" />
+    <Compile Include="Shop\PeymentType\PaymentTypeItem.cs" />
     <Compile Include="CMS\Slider\SliderModel.cs" />
     <Compile Include="Common\State\StateModel.cs" />
     <Compile Include="Common\State\StateItem.cs" />

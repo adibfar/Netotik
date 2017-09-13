@@ -62,6 +62,7 @@
     <Compile Include="EntityConfiguration\LanguageTranslationMap.cs" />
     <Compile Include="EntityConfiguration\IndexSectionMap.cs" />
     <Compile Include="EntityConfiguration\LocaleStringResourceMap.cs" />
+    <Compile Include="EntityConfiguration\SmsLogMap.cs" />
     <Compile Include="EntityConfiguration\TicketTrackMap.cs" />
     <Compile Include="EntityConfiguration\TicketMap.cs" />
     <Compile Include="EntityConfiguration\ContentTagMap.cs" />
@@ -69,6 +70,8 @@
     <Compile Include="EntityConfiguration\SliderMap.cs" />
     <Compile Include="EntityConfiguration\InboxMessageMap.cs" />
     <Compile Include="EntityConfiguration\TelegramBotDataMap.cs" />
+    <Compile Include="EntityConfiguration\UserCompanyClientMap.cs" />
+    <Compile Include="EntityConfiguration\UserCompanyRegisterSettingMap.cs" />
     <Compile Include="EntityConfiguration\UserCompanyTelegramMap.cs" />
     <Compile Include="EntityConfiguration\UserResellerMap.cs" />
     <Compile Include="EntityConfiguration\UserCompanyMap.cs" />
@@ -81,6 +84,7 @@
     <Compile Include="Entity\State.cs" />
     <Compile Include="Entity\Statistic.cs" />
     <Compile Include="Entity\StatisticCountry.cs" />
+    <Compile Include="Entity\SmsLog.cs" />
     <Compile Include="Entity\TicketTag.cs" />
     <Compile Include="Entity\TicketTrack.cs" />
     <Compile Include="Entity\Ticket.cs" />
@@ -106,6 +110,8 @@
     <Compile Include="Entity\Slider.cs" />
     <Compile Include="Entity\Menu.cs" />
     <Compile Include="Entity\ContentTag.cs" />
+    <Compile Include="Entity\UserCompanyRegisterSetting.cs" />
+    <Compile Include="Entity\UserCompanyClient.cs" />
     <Compile Include="Entity\UserCompanyTelegram.cs" />
     <Compile Include="Entity\UserCompany.cs" />
     <Compile Include="Entity\UserReseller.cs" />

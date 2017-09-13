@@ -12,6 +12,7 @@ using System.Data.Entity;
 using PersianDate;
 using Netotik.Common;
 using Netotik.ViewModels.Shop.PaymentType;
+using Netotik.Common.DataTables;
 
 namespace Netotik.Services.Implement
 {
@@ -37,25 +38,37 @@ namespace Netotik.Services.Implement
         }
 
 
-        public IQueryable<TablePaymentTypeModel> GetDataTable(string search)
+        IList<PaymentTypeItem> IPaymentTypeService.GetList(RequestListModel model, out long TotalCount, out long ShowCount)
         {
-            IQueryable<TablePaymentTypeModel> selected = dbSet.Include(x => x.Picture)
-                                            .OrderBy(x => x.Name)
-                                            .Select(x => new TablePaymentTypeModel
-                                            {
-                                                Id = x.Id,
-                                                IsActive = x.IsActive,
-                                                Name = x.Name,
-                                                TerminalId = x.TerminalId,
-                                                GateWayUrl = x.GateWayUrl,
-                                                Description = x.Description,
-                                                imgName = (x.PictureId.HasValue) ? x.Picture.FileName : ""
-                                            }).AsQueryable();
+            IQueryable<PaymentType> all = dbSet.AsQueryable();
 
-            if (!string.IsNullOrWhiteSpace(search))
-                selected = selected.Where(x => x.Name.Contains(search)).AsQueryable();
+            TotalCount = all.LongCount();
 
-            return selected;
+            // Apply Filtering
+            if (!string.IsNullOrEmpty(model.sSearch))
+            {
+                all = all.Where(x => x.Name.Contains(model.sSearch)).AsQueryable();
+            }
+
+
+            // Apply Sorting
+            Func<PaymentType, string> orderingFunction = (x => model.iSortCol_0 == 1 ? x.Name : x.Name);
+            // asc or desc
+            all = model.sSortDir_0 == "asc" ? all.OrderBy(orderingFunction).AsQueryable() : all.OrderByDescending(orderingFunction).AsQueryable();
+
+            ShowCount = all.Count();
+            return all.AsEnumerable().Skip(model.iDisplayStart).Take(model.iDisplayLength).ToList()
+                .Select((x, index) => new PaymentTypeItem
+                {
+                    Id = x.Id,
+                    RowNumber = model.iDisplayStart + index + 1,
+                    Name = x.Name,
+                    imgName = x.PictureId.HasValue ? x.Picture.FileName : "Default.png",
+                    Description = x.Description,
+                    GateWayUrl = x.GateWayUrl,
+                    IsActive = x.IsActive,
+                    TerminalId = x.TerminalId
+                }).ToList();
         }
         public async Task Remove(int id)
         {

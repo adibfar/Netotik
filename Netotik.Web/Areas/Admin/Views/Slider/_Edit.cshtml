@@ -14,6 +14,7 @@
             </div>
             @using (Html.BeginForm(MVC.Admin.Slider.ActionNames.Edit, MVC.Admin.Slider.Name, FormMethod.Post, htmlAttributes: new { @class = "form-horizontal", enctype = "multipart/form-data", id = "form" }))
             {
+                @Html.HiddenFor(model => model.Id)
                 @Html.AntiForgeryToken()
                 <div class="modal-body">
                     <div class="row">

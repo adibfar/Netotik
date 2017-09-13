@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Netotik.ViewModels.Shop.PaymentType;
+using Netotik.Common.DataTables;
 
 namespace Netotik.Services.Abstract
 {
@@ -13,7 +14,7 @@ namespace Netotik.Services.Abstract
         Task<bool> ExistsByNameAsync(string name, int? id);
 
         Task<PaymentType> GetByNameAsync(string name);
-        IQueryable<TablePaymentTypeModel> GetDataTable(string search);
+        IList<PaymentTypeItem> GetList(RequestListModel model, out long TotalCount, out long ShowCount);
 
         Task Remove(int id);
     }

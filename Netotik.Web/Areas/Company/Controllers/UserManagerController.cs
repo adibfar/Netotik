@@ -14,6 +14,9 @@ using System.Collections.Generic;
 using Netotik.ViewModels.Identity.Security;
 using Microsoft.AspNet.Identity;
 using WebGrease.Css.Extensions;
+using System.Net;
+using Netotik.ViewModels.Identity.UserCompany;
+using System.Threading.Tasks;
 
 namespace Netotik.Web.Areas.Company.Controllers
 {
@@ -894,6 +897,32 @@ namespace Netotik.Web.Areas.Company.Controllers
         }
         #endregion
 
+
+        public virtual ActionResult RegisterSetting()
+        {
+            return PartialView(MVC.Company.UserManager.Views.RegisterSetting, _userManager.GetCompanyRegisterSetting(UserLogined.Id));
+        }
+
+
+        [BreadCrumb(Title = "RegisterSetting", Order = 1)]
+        [ValidateAntiForgeryToken]
+        [HttpPost]
+        public virtual async Task<ActionResult> RegisterSetting(RegisterSettingModel model)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View(model);
+            }
+            model.Id = UserLogined.Id;
+
+            await _userManager.UpdateCompanyRegisterSettingAsync(model);
+            this.MessageSuccess(Captions.MissionSuccess, Captions.UpdateSuccess);
+
+            return RedirectToAction(MVC.Company.UserManager.RegisterSetting());
+        }
+
+
+
         [NonAction]
         private void PopulatePermissions(params string[] selectedpermissions)
         {
@@ -917,9 +946,10 @@ namespace Netotik.Web.Areas.Company.Controllers
         public virtual ActionResult ClientArea(ViewModels.Identity.UserCompany.ProfileModel model)
         {
             PopulatePermissions(model.ClientPermissionNames);
-            
+
+            model.Id = UserLogined.Id;
+            _applicationUserManager.UpdateUserClientPermissions(model);
             this.MessageInformation(Captions.MissionSuccess, Captions.UpdateSuccess);
-            _applicationUserManager.UpdateUserCompanyProfile(model);
             return RedirectToAction(MVC.Company.UserManager.ActionNames.ClientArea);
         }
 

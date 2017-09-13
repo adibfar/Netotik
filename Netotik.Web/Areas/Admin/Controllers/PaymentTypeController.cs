@@ -25,19 +25,20 @@ using Netotik.ViewModels;
 using DNTBreadCrumb;
 using Netotik.ViewModels.Identity.Security;
 using Netotik.Common.Controller;
+using Netotik.Common.DataTables;
 
 namespace Netotik.Web.Areas.Admin.Controllers
 {
     [Mvc5Authorize(Roles = AssignableToRolePermissions.CanAccessPaymentType)]
-    [BreadCrumb(Title = "لیست درگاه پرداخت", UseDefaultRouteUrl = true,Order = 0, GlyphIcon = "icon icon-table")]
-    public partial class ShopPaymentTypeController : BaseController
+    [BreadCrumb(Title = "PaymentTypes", UseDefaultRouteUrl = true, Order = 0, GlyphIcon = "icon icon-table")]
+    public partial class PaymentTypeController : BaseController
     {
 
         #region ctor
         private readonly IPaymentTypeService _paymentTypeService;
         private readonly IUnitOfWork _uow;
 
-        public ShopPaymentTypeController(
+        public PaymentTypeController(
             IPaymentTypeService paymentTypeService,
             IUnitOfWork uow)
         {
@@ -48,52 +49,61 @@ namespace Netotik.Web.Areas.Admin.Controllers
 
 
         #region Index
-        public virtual ActionResult Index(string Search, int Page = 1, int PageSize = 10)
+        public virtual ActionResult Index()
         {
-
-            var pageList = _paymentTypeService.GetDataTable(Search)
-                .ToPagedList<TablePaymentTypeModel>(Page, PageSize);
-
-            if (Request.IsAjaxRequest())
-                return View(MVC.Admin.ShopPaymentType.Views._Table, pageList);
-            else
-                return View(MVC.Admin.ShopPaymentType.ActionNames.Index, pageList);
-
+            return View();
         }
+
+        public virtual JsonResult GetList(RequestListModel model)
+        {
+            long totalCount;
+            long showCount;
+
+            var result = _paymentTypeService.GetList(model, out totalCount, out showCount);
+
+            return Json(new
+            {
+                sEcho = model.sEcho,
+                iTotalRecords = totalCount,
+                iTotalDisplayRecords = showCount,
+                aaData = result
+            }, JsonRequestBehavior.AllowGet);
+        }
+
+
         #endregion
 
 
         #region Create
-        [BreadCrumb(Title = "درگاه جدید", Order = 1)]
         public virtual ActionResult Create()
         {
-            return View(new PaymentTypeModel() { IsActive = true });
+            return PartialView(MVC.Admin.PaymentType.Views._Create, new PaymentTypeModel { IsActive = true });
         }
+
 
         [ValidateAntiForgeryToken]
         [HttpPost]
-        public virtual async Task<ActionResult> Create(PaymentTypeModel model, ActionType actionType)
+        public virtual async Task<ActionResult> Create(PaymentTypeModel model, ActionType actionType = ActionType.Save)
         {
             if (!ModelState.IsValid)
             {
                 this.MessageError(Captions.MissionFail, Captions.InvalidDataError);
-                return View();
+                return RedirectToAction(MVC.Admin.PaymentType.Index());
             }
 
-            #region Initial Content
-            var now = DateTime.Now;
-            var type = new PaymentType()
+            #region Initial Slider
+            var paymentType = new Netotik.Domain.Entity.PaymentType()
             {
                 Name = model.Name,
-                CreateDate = now,
-                EditDate = now,
                 Description = model.Description,
-                IsActive = model.IsActive,
+                GateWayUrl = model.GateWayUrl,
                 IsDefault = model.IsDefault,
+                Password = model.Password,
                 TerminalId = model.TerminalId,
                 UserName = model.UserName,
-                Password = model.Password,
-                GateWayUrl = model.GateWayUrl,
+                CreateDate = DateTime.Now,
+                IsActive = model.IsActive,
+                IsDelete = false
             };
 
             #endregion
@@ -109,11 +119,12 @@ namespace Netotik.Web.Areas.Admin.Controllers
                     OrginalName = model.Image.FileName,
                     MimeType = model.Image.ContentType
                 };
-                type.Picture = picture;
+                paymentType.Picture = picture;
             }
             #endregion
 
-            _paymentTypeService.Add(type);
+            _paymentTypeService.Add(paymentType);
+
 
             try
             {
@@ -122,71 +133,50 @@ namespace Netotik.Web.Areas.Admin.Controllers
             catch
             {
                 this.MessageError(Captions.MissionFail, Captions.AddError);
-                return View();
-            }
-            this.MessageError(Captions.MissionSuccess, Captions.AddSuccess);
-            return RedirectToAction(MVC.Admin.ShopPaymentType.Index());
-
-        }
-        #endregion
-
-
-        #region Detail
-
-        [Mvc5Authorize(Roles = AssignableToRolePermissions.CanAccessPaymentType)]
-        public virtual ActionResult Detail(int id)
-        {
-            var man = _paymentTypeService.SingleOrDefault(id);
-            if (man == null) return HttpNotFound();
-            return View(man);
-        }
-
-        #endregion
-
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public virtual async Task<ActionResult> Remove(int id = 0)
-        {
-            var type = _paymentTypeService.SingleOrDefault(id);
-            if (type != null)
-            {
-                _paymentTypeService.Remove(type);
-                await _uow.SaveChangesAsync();
+                return RedirectToAction(MVC.Admin.PaymentType.Index());
             }
 
-            return RedirectToAction(MVC.Admin.ShopPaymentType.Index());
+            this.MessageSuccess(Captions.MissionSuccess, Captions.AddSuccess);
+            return RedirectToAction(MVC.Admin.PaymentType.Index());
         }
-
+        #endregion
 
         #region Edit
-
-        [BreadCrumb(Title = "ویرایش درگاه", Order = 1)]
-        public virtual ActionResult Edit(int id)
+        public virtual async Task<ActionResult> Remove(int id = 0)
         {
+            var type = _paymentTypeService.All().Where(x => x.Id == id).Include(x => x.Picture).FirstOrDefault();
+            if (type != null)
+            {
+                type.IsDelete = true;
+                await _uow.SaveChangesAsync();
+            }
+            return RedirectToAction(MVC.Admin.PaymentType.Index());
+        }
 
-            var model = _paymentTypeService.SingleOrDefault(id);
-            if (model == null) return HttpNotFound();
-
+        [BreadCrumb(Title = "Edit", Order = 1)]
+        public virtual async Task<ActionResult> Edit(int id)
+        {
+            var model = await _paymentTypeService.All().Include(x => x.Picture).FirstOrDefaultAsync(x => x.Id == id);
+            if (model == null) return RedirectToAction(MVC.Admin.PaymentType.ActionNames.Index);
 
             if (model.PictureId.HasValue)
+            {
                 ViewBag.Avatar = Path.Combine(FilePathes._imagesShopPaymentTypePath, model.Picture.FileName);
-
+            }
             var editModel = new PaymentTypeModel
             {
                 Id = model.Id,
-                Name = model.Name,
                 Description = model.Description,
-                IsActive = model.IsActive,
-                IsDefault = model.IsDefault,
-                TerminalId = model.TerminalId,
+                Name = model.Name,
                 Password = model.Password,
+                GateWayUrl = model.GateWayUrl,
+                IsDefault = model.IsDefault,
                 UserName = model.UserName,
-                GateWayUrl = model.GateWayUrl
+                TerminalId = model.TerminalId,
+                IsActive = model.IsActive
             };
 
-
-
-            return View(editModel);
+            return View(MVC.Admin.PaymentType.Views._Edit, editModel);
 
         }
 
@@ -195,45 +185,45 @@ namespace Netotik.Web.Areas.Admin.Controllers
         public virtual async Task<ActionResult> Edit(PaymentTypeModel model, ActionType actionType)
         {
             var type = _paymentTypeService.SingleOrDefault(model.Id);
-            if (type == null) return HttpNotFound();
-
+            if (type == null)
+                return HttpNotFound();
 
 
             if (!ModelState.IsValid)
             {
                 this.MessageError(Captions.MissionFail, Captions.InvalidDataError);
-                return View();
+                return RedirectToAction(MVC.Admin.PaymentType.Index());
             }
+
             #region Update
 
+            type.IsActive = model.IsActive;
             type.Name = model.Name;
-            type.EditDate = DateTime.Now;
+            type.UserName = model.UserName;
             type.Description = model.Description;
             type.GateWayUrl = model.GateWayUrl;
-            type.IsActive = model.IsActive;
-            type.IsDefault = model.IsDefault;
             type.TerminalId = model.TerminalId;
-            type.UserName = model.UserName;
             type.Password = model.Password;
-            #endregion
+            type.IsDelete = model.IsDefault;
 
-
-            #region Add Avatar Image
-            if (model.Image != null && model.Image.ContentLength > 0)
+            if (model.Image != null)
             {
-                var fileName = SaveFile(model.Image, FilePathes._imagesShopPaymentTypePath);
-
-                var picture = new Picture
+                #region Add Content Image
+                if (model.Image != null && model.Image.ContentLength > 0)
                 {
-                    FileName = fileName,
-                    OrginalName = model.Image.FileName,
-                    MimeType = model.Image.ContentType
-                };
-                type.Picture = picture;
+                    var fileName = SaveFile(model.Image, FilePathes._imagesShopPaymentTypePath);
+
+                    var picture = new Picture
+                    {
+                        FileName = fileName,
+                        OrginalName = model.Image.FileName,
+                        MimeType = model.Image.ContentType
+                    };
+                    type.Picture = picture;
+                }
+                #endregion
             }
-
             #endregion
-
 
             _paymentTypeService.Update(type);
 
@@ -244,29 +234,15 @@ namespace Netotik.Web.Areas.Admin.Controllers
             catch
             {
                 this.MessageError(Captions.MissionFail, Captions.UpdateError);
-                return View();
+                return RedirectToAction(MVC.Admin.PaymentType.Index());
             }
 
             this.MessageSuccess(Captions.MissionSuccess, Captions.UpdateSuccess);
-            return RedirectToAction(MVC.Admin.ShopPaymentType.Index());
+            return RedirectToAction(MVC.Admin.PaymentType.Index());
+
         }
-
         #endregion
-
-
-        #region RemoteValidations
-
-
-
-        [HttpPost]
-        [AjaxOnly]
-        [OutputCache(NoStore = true, Duration = 0, VaryByParam = "*")]
-        public virtual async Task<JsonResult> IsNameExist(string name, int? id)
-        {
-            return await _paymentTypeService.ExistsByNameAsync(name, id) ? Json(false) : Json(true);
-        }
-
-        #endregion
+        
 
     }
 }

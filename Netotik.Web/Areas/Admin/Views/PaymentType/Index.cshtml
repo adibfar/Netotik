@@ -1,0 +1,115 @@
+﻿@{
+    ViewBag.Title = "Payments";
+}﻿
+<section id="configuration">
+    <div class="col-xs-12">
+        <div class="card">
+            <div class="card-header">
+                <button type="button" class="btn btn-social width-150 btn-instagram" data-toggle="modal" data-target="#Create"><span class="icon-plus font-medium-4"></span> New Payment Type</button>
+                @Html.Action(MVC.Admin.PaymentType.Create())
+            </div>
+            <div class="card-body collapse in">
+                <div class="card-block card-dashboard">
+                    @Html.Partial(MVC.Admin.PaymentType.Views._Table)
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<div id="edit-container"></div>
+@section DownScript{
+    <script type="text/javascript">
+        $(function () {
+            var table = $('#grid').dataTable({
+                "order": [[1, 'asc']],
+                "iDisplayLength": 100,
+                "bProcessing": true,
+                "bStateSave": true,
+                "bServerSide": true,
+                "bFilter": false,
+                "aLengthMenu": [[10, 25, 50, 100], [10, 25, 50, 100]],
+                "bAutoWidth": false,
+                "sAjaxSource": "@Url.Action(MVC.Admin.PaymentType.GetList())",
+                "fnServerData": function (sSource, aoData, fnCallback) {
+                    $.ajax({
+                        "dataType": 'json',
+                        "type": "POST",
+                        "url": sSource,
+                        "data": aoData,
+                        "success": fnCallback
+                    });
+                },
+
+                "aoColumnDefs": [
+                    { "bSortable": false, "aTargets": [0] },
+                    { "bSortable": false, "aTargets": [-1] },
+                    { "bSortable": false, "aTargets": [2] },
+                    { "bSortable": false, "aTargets": [4] },    
+                    {
+                        "bSortable": false,
+                        "targets": [1],
+                        "render": function (data, type, full, meta) {
+                            var result = '<img src="/Content/Upload/Image/Shop/PaymentType/' + full.imgName + '?w=200" class="thumbnail">';
+                            return result;
+                        }
+                    },
+                    {
+                        "bSortable": false,
+                        "targets": [4],
+                        "render": function (data, type, full, meta) {
+                            var result = '';
+                            if (full.IsActive == false) {
+                                result+=' <div class="tag tag-danger">غیر فعال</div> '
+                            } else {
+                                result += ' <div class="tag tag-success">فعال</div> '
+                            }
+                            return result;
+                        }
+                    },
+                    {
+                        "targets": -1,
+                        "render": function (data, type, full, meta) {
+                            return '<span class="dropdown">'
+                                + '<button id="btnSearchDrop2" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" class="btn btn-outline-secondary dropdown-toggle dropdown-menu-right">'
+                                + '<i class="icon-cog3"></i> '+'@Captions.Action'+'</button>'
+                                + '<span aria-labelledby="btnSearchDrop2" class="dropdown-menu mt-1 dropdown-menu-right">'
+                                + '<a onclick="edit(' + full.Id + ');" class="edit dropdown-item">'
+                                + '<i class="icon-pen3"></i> '+'@Captions.Edit'+' </a>'
+                                + '<a onclick="remove(' + full.Id + ');" class="dropdown-item">'
+                                + '<i class="icon-trash4"></i> '+'@Captions.Remove'+' </a>';
+
+                        }
+                    }
+                ]
+                ,
+                "aoColumns": [
+                    { "mDataProp": "RowNumber" },
+                    { "mDataProp": "imgName" },
+                    { "mDataProp": "Name" },
+                    { "mDataProp": "TerminalId" },
+                    { "mDataProp": "IsActive" },
+                    { "no": "no" }
+                ]
+            });
+
+        });
+
+        function edit(id) {
+            CardBlock('.card');
+            var url = "@Url.Action(MVC.Admin.PaymentType.Edit())";
+            $.get(url + '/' + id, function (data) {
+                $('#edit-container').html(data);
+                $('#Edit').modal('show');
+                CardUnBlock('.card');
+                Icheck();
+                AjaxForm.EnableAjaxFormvalidate('Edit');
+            });
+        };
+
+         function remove(id) {
+            PostData("@Url.Action(MVC.Admin.PaymentType.Remove())", { id: id });
+        }
+
+    </script>
+}
