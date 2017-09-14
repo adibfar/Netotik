@@ -12,7 +12,7 @@
             <a class="tag" href="@Url.Action(MVC.Blog.ActionNames.Index, MVC.Blog.Name, new { tagId = item.Id,categoryId=0,page=1 })">
 
                 <span class="txt">@item.Name</span>
-                <span class="num">@item.Contents.Count</span>
+                <span class="num">@item.Contents.Where(x => x.status == Netotik.Domain.Entity.ContentStatus.Accepted).Count()</span>
             </a>
         }
     </div>

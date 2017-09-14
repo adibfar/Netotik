@@ -14,7 +14,7 @@
     {
         <li class="list-group-item">
             <a href="@Url.Action(MVC.Blog.ActionNames.Index, MVC.Blog.Name, new { categoryId = item.Id, tagId = "",page=1 })">
-                <span class="size-11 text-muted pull-right">(@item.Contents.Count)</span>
+                <span class="size-11 text-muted pull-right">(@item.Contents.Where(x=>x.status==Netotik.Domain.Entity.ContentStatus.Accepted).Count())</span>
                 @item.Name
             </a>
         </li>
