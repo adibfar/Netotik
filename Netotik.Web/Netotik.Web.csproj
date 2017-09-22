@@ -462,6 +462,7 @@
     </Compile>
     <Compile Include="Controllers\BlogController.cs" />
     <Compile Include="Controllers\ContactUsController.cs" />
+    <Compile Include="Controllers\WebsitesLogsController.cs" />
     <Compile Include="Controllers\RemoteController.cs" />
     <Compile Include="Controllers\SitemapController.cs" />
     <Compile Include="Controllers\RssController.cs" />
@@ -538,6 +539,10 @@
     <Compile Include="UserMailerController.generated.cs">
       <DependentUpon>T4MVC.tt</DependentUpon>
     </Compile>
+    <Compile Include="WebsitesLogsController.generated.cs">
+      <DependentUpon>T4MVC.tt</DependentUpon>
+    </Compile>
+    <Compile Include="WebTasks\WebsitesLogsTask.cs" />
     <Compile Include="WebTasks\AccountChargeNotificationsTask.cs" />
     <Compile Include="WebTasks\ScheduledTasksRegistry.cs" />
   </ItemGroup>

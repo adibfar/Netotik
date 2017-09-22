@@ -590,6 +590,8 @@ namespace Netotik.Services.Identity
         Task<bool> HasPhoneNumber(long userId);
         Task RemoveAll();
         Task<List<User>> GetAllUsersAsync();
+        List<User> GetUserCompaniesWebsitesLogsActive();
+        
         bool Any();
         IList<User> GetUsersWithRoleIds(params long[] ids);
         void AddRange(IEnumerable<User> users);

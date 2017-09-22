@@ -94,6 +94,9 @@ namespace Netotik.Web.Areas.Company.Controllers
             }
             catch { ViewBag.Payments = "Error"; }
 
+
+
+
             ViewBag.Clock = _mikrotikServices.Router_Clock(UserLogined.UserCompany.R_Host, UserLogined.UserCompany.R_Port, UserLogined.UserCompany.R_User, UserLogined.UserCompany.R_Password).FirstOrDefault();
             return View();
         }

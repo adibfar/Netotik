@@ -1100,6 +1100,10 @@ namespace Netotik.Services.Identity
             return _permissionCompanyService.GetPermissionsAsList(XElement.Parse(user.UserCompany.CompanyPermissions)).ToList();
         }
 
-
+        public List<User> GetUserCompaniesWebsitesLogsActive()
+        {
+            var users = _users.Where(x => x.UserType == UserType.UserCompany && x.IsDeleted == false).ToList();//شرط فعال بودن گزینه لاگ گیری در دیتابیس
+            return users;
+        }
     }
 }

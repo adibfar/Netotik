@@ -315,7 +315,7 @@ namespace Netotik.Services.Implement
             //--------------------------------------------------------------
             mikrotik.Send("/tool/user-manager/session/print");
             mikrotik.Send("=count-only=");
-            mikrotik.Send("?=active=yes",true);
+            mikrotik.Send("?=active=yes", true);
             long Count;
             try
             {
@@ -441,7 +441,7 @@ namespace Netotik.Services.Implement
         {
             var mikrotik = new MikrotikAPI();
             await mikrotik.MKAsync(ip, port);
-            if (! await mikrotik.LoginAsync(user, pass)) mikrotik.Close();
+            if (!await mikrotik.LoginAsync(user, pass)) mikrotik.Close();
             //-----------------------------------------------
             await mikrotik.SendAsync("/tool/user-manager/user/print");
             string temp = "";
@@ -520,8 +520,8 @@ namespace Netotik.Services.Implement
             mikrotik.Send(String.Format("=.id={0}", id), true);
 
         }
-        
-            public void Usermanager_ResetUserProfiles(string ip, int port, string user, string pass, string id)
+
+        public void Usermanager_ResetUserProfiles(string ip, int port, string user, string pass, string id)
         {
             var mikrotik = new MikrotikAPI();
             mikrotik.MK(ip, port);
@@ -670,8 +670,9 @@ namespace Netotik.Services.Implement
             var temp96 = mikrotik.Read();
             if (model.profile != "")
             {
+                Usermanager_ResetCounter(ip, port, user, pass, model.username);
                 Usermanager_ResetUserProfiles(ip, port, user, pass, model.id);
-               // Usermanager_UserRegKey(ip, port, user, pass, model.username, PersianDate.ConvertDate.ToFa(DateTime.Now, "G"));
+                // Usermanager_UserRegKey(ip, port, user, pass, model.username, PersianDate.ConvertDate.ToFa(DateTime.Now, "G"));
                 mikrotik.Send("/tool/user-manager/user/create-and-activate-profile");
                 temp = String.Format("=.id={0}", model.username);
                 mikrotik.Send(temp);
@@ -744,7 +745,7 @@ namespace Netotik.Services.Implement
             mikrotik.MK(ip, port);
             if (!mikrotik.Login(user, pass)) mikrotik.Close();
             //-----------------------------------------------
-            mikrotik.Send("/tool/user-manager/session/print",true);
+            mikrotik.Send("/tool/user-manager/session/print", true);
 
             var usersessionmodel = new List<Netotik.ViewModels.Identity.UserClient.UserSessionModel>();
             foreach (var item in mikrotik.Read())
@@ -789,7 +790,7 @@ namespace Netotik.Services.Implement
             mikrotik.MK(ip, port);
             if (!mikrotik.Login(user, pass)) mikrotik.Close();
             //-----------------------------------------------
-            
+
             string temp = "";
 
             if (UsermanUser.Contains("*"))
@@ -798,9 +799,9 @@ namespace Netotik.Services.Implement
                 temp = String.Format("?=.id={0}", UsermanUser);
                 mikrotik.Send(temp, true);
             }
-            else if(UsermanUser == "")
+            else if (UsermanUser == "")
             {
-                mikrotik.Send("/tool/user-manager/payment/print",true);
+                mikrotik.Send("/tool/user-manager/payment/print", true);
             }
             else
             {
@@ -809,7 +810,7 @@ namespace Netotik.Services.Implement
                 mikrotik.Send(temp, true);
             }
 
-            
+
 
             var PaymentModel = new List<Netotik.ViewModels.Identity.UserClient.PaymentModel>();
             foreach (var item in mikrotik.Read())
@@ -829,7 +830,7 @@ namespace Netotik.Services.Implement
                         user = ColumnList.Any(x => x.Key == "user") ? (ColumnList.FirstOrDefault(x => x.Key == "user").Value) : "",
                         currency = ColumnList.Any(x => x.Key == "currency") ? (ColumnList.FirstOrDefault(x => x.Key == "currency").Value) : "",
                         method = ColumnList.Any(x => x.Key == "method") ? (ColumnList.FirstOrDefault(x => x.Key == "method").Value) : "",
-                        price = ColumnList.Any(x => x.Key == "price") ? (ColumnList.FirstOrDefault(x => x.Key == "price").Value)=="1"?"0": (ColumnList.FirstOrDefault(x => x.Key == "price").Value) : "",
+                        price = ColumnList.Any(x => x.Key == "price") ? (ColumnList.FirstOrDefault(x => x.Key == "price").Value) == "1" ? "0" : (ColumnList.FirstOrDefault(x => x.Key == "price").Value) : "",
                         result_code = ColumnList.Any(x => x.Key == "result-code") ? (ColumnList.FirstOrDefault(x => x.Key == "result-code").Value) : "",
                         result_msg = ColumnList.Any(x => x.Key == "result-msg") ? (ColumnList.FirstOrDefault(x => x.Key == "result-msg").Value) : "",
                         trans_end = ColumnList.Any(x => x.Key == "trans-end") ? (ColumnList.FirstOrDefault(x => x.Key == "trans-end").Value) : "",
@@ -860,7 +861,7 @@ namespace Netotik.Services.Implement
             //-------------------------------------------------
             mikrotik.Send("/tool/user-manager/profile/add");
             string temp = String.Format("=price={0}", usermanProfile.profile_price);
-            if (usermanProfile.profile_price == null || usermanProfile.profile_price == "" || usermanProfile.profile_price=="0")
+            if (usermanProfile.profile_price == null || usermanProfile.profile_price == "" || usermanProfile.profile_price == "0")
                 temp = "=price=1";
             mikrotik.Send(temp);
             temp = String.Format("=validity={0}", usermanProfile.profile_validity);
@@ -1107,6 +1108,14 @@ namespace Netotik.Services.Implement
             mikrotik.Send(temp, true);
         }
 
+        public void DisableApiLoging(string ip, int port, string user, string pass)
+        {
+            //var mikrotik = new MikrotikAPI();
+            //mikrotik.MK(ip, port);
+            //if (!mikrotik.Login(user, pass)) mikrotik.Close();
+            ////-----------------------------------------------
+            //mikrotik.Send("/system/package/update/install", true);
+        }
         public void Router_Info_Update(string ip, int port, string user, string pass)
         {
             var mikrotik = new MikrotikAPI();
@@ -2443,7 +2452,7 @@ namespace Netotik.Services.Implement
             }
             else
             {
-               temp = String.Format("=dst-host={0}", model.dst_host);
+                temp = String.Format("=dst-host={0}", model.dst_host);
             }
             if (model.dst_host != "")
                 mikrotik.Send(temp);
@@ -2464,7 +2473,7 @@ namespace Netotik.Services.Implement
             if (model.src_address != "")
                 mikrotik.Send(temp);
                 */
-                mikrotik.Send("=disabled=no", true);
+            mikrotik.Send("=disabled=no", true);
             var resualt = mikrotik.Read();
         }
         public void Router_NatAdd(string ip, int port, string user, string pass, Router_NatModel model)
@@ -2698,5 +2707,152 @@ namespace Netotik.Services.Implement
             return Usermanager_Logs;
         }
 
+        public void CopyFileToFtp(string r_Host, int r_Port, string r_User, string r_Password, string FtpIP, string FtpPort, string FtpUser, string FtpPass, string SrcFile, string DstFile)
+        {
+            var mikrotik = new MikrotikAPI();
+            mikrotik.MK(r_Host, r_Port);
+            if (!mikrotik.Login(r_User, r_Password)) mikrotik.Close();
+            //-----------------------------------------------
+            mikrotik.Send("/tool/fetch");
+            mikrotik.Send("=upload=yes");
+            mikrotik.Send("=mode=ftp");
+            string command = string.Format("=address={0}", FtpIP);
+            mikrotik.Send(command);
+            command = string.Format("=port={0}", FtpPort);
+            mikrotik.Send(command);
+            command = string.Format("=dst-path={0}", DstFile);
+            mikrotik.Send(command);
+            command = string.Format("=src-path={0}", SrcFile);
+            mikrotik.Send(command);
+            command = string.Format("=user={0}", FtpUser);
+            mikrotik.Send(command);
+            command = string.Format("=password={0}", FtpPass);
+            mikrotik.Send(command, true);
+            mikrotik.Read();
+        }
+
+        public void RemoveFile(string r_Host, int r_Port, string r_User, string r_Password, string v)
+        {
+            var mikrotik = new MikrotikAPI();
+            mikrotik.MK(r_Host, r_Port);
+            if (!mikrotik.Login(r_User, r_Password)) mikrotik.Close();
+            //-----------------------------------------------
+            mikrotik.Send("/file/remove");
+            string command = string.Format("?number={0}", v);
+            mikrotik.Send(command, true);
+            mikrotik.Read();
+        }
+
+        public bool FileExist(string r_Host, int r_Port, string r_User, string r_Password, string FileName)
+        {
+            var mikrotik = new MikrotikAPI();
+            mikrotik.MK(r_Host, r_Port);
+            if (!mikrotik.Login(r_User, r_Password)) mikrotik.Close();
+            //-----------------------------------------------
+            mikrotik.Send("/file/print");
+            mikrotik.Send("=count-only=");
+            string Command = string.Format("?name={0}", FileName);
+            mikrotik.Send(Command, true);
+            try
+            {
+                long Count = long.Parse(mikrotik.Read()[0].ToString().Split('=')[2]);
+                if (Count > 0)
+                {
+                    return true;
+                }
+            }
+            catch
+            {
+                return false;
+            }
+            return false;
+        }
+        public bool IsIpServiceEnable(string r_Host, int r_Port, string r_User, string r_Password, string ServiceName)
+        {
+            var mikrotik = new MikrotikAPI();
+            mikrotik.MK(r_Host, r_Port);
+            if (!mikrotik.Login(r_User, r_Password)) mikrotik.Close();
+            //-----------------------------------------------
+            mikrotik.Send("/ip/service/print", true);
+            try
+            {
+                foreach (var item in mikrotik.Read())
+                {
+                    if (item != "!done")
+                    {
+                        var cols = item.Split('=');
+                        var ColumnList = new Dictionary<string, string>();
+                        for (int i = 1; i < cols.Count(); i += 2)
+                        {
+                            ColumnList.Add(cols[i], cols[i + 1]);
+                            if ((ColumnList.Any(x => x.Key == "name") ? (ColumnList.FirstOrDefault(x => x.Key == "name").Value) : "") == ServiceName)
+                            {
+                                if ((ColumnList.Any(x => x.Key == "disabled") ? (ColumnList.FirstOrDefault(x => x.Key == "disabled").Value) : "") == "true")
+                                    return true;
+                            }
+                        }
+                    }
+                }
+            }
+            catch
+            {
+                return false;
+            }
+            return false;
+        }
+        public int GetIpServicePortNumber(string r_Host, int r_Port, string r_User, string r_Password, string ServiceName)
+        {
+            var mikrotik = new MikrotikAPI();
+            mikrotik.MK(r_Host, r_Port);
+            if (!mikrotik.Login(r_User, r_Password)) mikrotik.Close();
+            //-----------------------------------------------
+            mikrotik.Send("/ip/service/print", true);
+            try
+            {
+                foreach (var item in mikrotik.Read())
+                {
+                    if (item != "!done")
+                    {
+                        var cols = item.Split('=');
+                        var ColumnList = new Dictionary<string, string>();
+                        for (int i = 1; i < cols.Count(); i += 2)
+                        {
+                            ColumnList.Add(cols[i], cols[i + 1]);
+                            if ((ColumnList.Any(x => x.Key == "name") ? (ColumnList.FirstOrDefault(x => x.Key == "name").Value) : "") == ServiceName)
+                            {
+                                return Int32.Parse((ColumnList.Any(x => x.Key == "port") ? (ColumnList.FirstOrDefault(x => x.Key == "port").Value) : ""));
+                            }
+                        }
+                    }
+                }
+            }
+            catch
+            {
+                return 0;
+            }
+            return 0;
+        }
+        public void EnableIpService(string r_Host, int r_Port, string r_User, string r_Password, string ServiceName)
+        {
+            var mikrotik = new MikrotikAPI();
+            mikrotik.MK(r_Host, r_Port);
+            if (!mikrotik.Login(r_User, r_Password)) mikrotik.Close();
+            //-----------------------------------------------
+            mikrotik.Send("/ip/service/enable");
+            string command = string.Format("?number={0}", ServiceName);
+            mikrotik.Send(command, true);
+            mikrotik.Read();
+        }
+        public void DisableIpService(string r_Host, int r_Port, string r_User, string r_Password, string ServiceName)
+        {
+            var mikrotik = new MikrotikAPI();
+            mikrotik.MK(r_Host, r_Port);
+            if (!mikrotik.Login(r_User, r_Password)) mikrotik.Close();
+            //-----------------------------------------------
+            mikrotik.Send("/ip/service/disable");
+            string command = string.Format("?number={0}", ServiceName);
+            mikrotik.Send(command, true);
+            mikrotik.Read();
+        }
     }
 }

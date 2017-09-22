@@ -25,6 +25,7 @@ namespace Netotik.Domain.Entity
         public string PostalCode { get; set; }
 
         public bool cloud { get; set; }
+        public bool WebsitesLogs { get; set; }
 
         public long SmsCharge { get; set; }
 
