@@ -25,7 +25,7 @@ namespace Netotik.Services.Implement
         public IList<Menu> GetAllFooterMenu(int languageId)
         {
             return dbSet
-                   .Where(x => x.IsActive && x.MenuLocation == MenuLocation.Header && x.LanguageId == languageId)
+                   .Where(x => x.IsActive && x.MenuLocation != MenuLocation.Header && x.LanguageId == languageId)
                    .Include(x => x.SubMenues)
                    .OrderBy(x => x.Order)
                    .ToList();
@@ -34,7 +34,7 @@ namespace Netotik.Services.Implement
         public IList<Menu> GetAllHeaderMenu(int languageId)
         {
             return dbSet
-                   .Where(x => x.IsActive && x.MenuLocation != MenuLocation.Header && x.LanguageId == languageId)
+                   .Where(x => x.IsActive && x.MenuLocation == MenuLocation.Header && x.LanguageId == languageId)
                    .Include(x => x.SubMenues)
                    .OrderBy(x => x.Order)
                    .ToList();
