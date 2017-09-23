@@ -70,6 +70,7 @@
     <Compile Include="EntityConfiguration\SliderMap.cs" />
     <Compile Include="EntityConfiguration\InboxMessageMap.cs" />
     <Compile Include="EntityConfiguration\TelegramBotDataMap.cs" />
+    <Compile Include="EntityConfiguration\UserCompanyLogClientMap.cs" />
     <Compile Include="EntityConfiguration\UserCompanyClientMap.cs" />
     <Compile Include="EntityConfiguration\UserCompanyRegisterSettingMap.cs" />
     <Compile Include="EntityConfiguration\UserCompanyTelegramMap.cs" />
@@ -112,6 +113,7 @@
     <Compile Include="Entity\ContentTag.cs" />
     <Compile Include="Entity\UserCompanyRegisterSetting.cs" />
     <Compile Include="Entity\UserCompanyClient.cs" />
+    <Compile Include="Entity\UserCompanyLogClient.cs" />
     <Compile Include="Entity\UserCompanyTelegram.cs" />
     <Compile Include="Entity\UserCompany.cs" />
     <Compile Include="Entity\UserReseller.cs" />

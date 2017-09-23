@@ -47,20 +47,7 @@
                 ]
             });
         });
-
-
-
-        function registerSetting(id) {
-            CardBlock('.card');
-            var url = "@Url.Action(MVC.Reseller.Company.RegisterSetting())";
-            $.get(url + '/' + id, function (data) {
-                $('#edit-container').html(data);
-                $('#RegisterSetting').modal('show');
-                CardUnBlock('.card');
-                Icheck();
-                AjaxForm.EnableAjaxFormvalidate('RegisterSetting');
-            });
-        };
+        
     </script>
 }
 

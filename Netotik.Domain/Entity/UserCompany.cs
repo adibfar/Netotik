@@ -10,6 +10,7 @@ namespace Netotik.Domain.Entity
         public UserCompany()
         {
             UserCompanyClients = new List<UserCompanyClient>();
+            UserCompanyLogClients = new List<UserCompanyLogClient>();
         }
         public long Id { get; set; }
 
@@ -38,6 +39,7 @@ namespace Netotik.Domain.Entity
         public virtual UserCompanyTelegram UserCompanyTelegram { get; set; }
         public virtual UserCompanyRegisterSetting UserCompanyRegisterSetting { get; set; }
         public virtual ICollection<UserCompanyClient> UserCompanyClients { get; set; }
+        public virtual ICollection<UserCompanyLogClient> UserCompanyLogClients { get; set; }
 
         public string ClientPermissions { get; set; }
         public string CompanyPermissions { get; set; }
