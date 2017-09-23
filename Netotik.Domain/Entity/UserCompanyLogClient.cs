@@ -19,7 +19,7 @@ namespace Netotik.Domain.Entity
         public string DstIp { get; set; }
         public string Method { get; set; }
 
-
+        public string Protocol { get; set; }
         public long UserCompanyId { get; set; }
         public virtual UserCompany UserCompany { get; set; }
     }

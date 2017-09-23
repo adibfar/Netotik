@@ -24,20 +24,20 @@ namespace Netotik.Web.WebTasks
         private readonly IMikrotikServices _mikrotikServices;
         private readonly IUserMailer _userMailer;
         private readonly IUnitOfWork _uow;
-        private readonly IMenuService _menuService;
+        private readonly IUserCompanyLogClientService _usercompanylogclientservice;
 
         public WebsitesLogsTask(
             IMikrotikServices mikrotikservices,
             IApplicationUserManager applicationUserManager,
             IUserMailer userMailer,
-            IMenuService menuService,
+            IUserCompanyLogClientService usercompanylogclientservice,
             IUnitOfWork uow)
         {
             _mikrotikServices = mikrotikservices;
             _userMailer = userMailer;
             _applicationUserManager = applicationUserManager;
             _uow = uow;
-            _menuService = menuService;
+            _usercompanylogclientservice = usercompanylogclientservice;
         }
         /// <summary>
         /// اگر چند جاب در يك زمان مشخص داشتيد، اين خاصيت ترتيب اجراي آن‌ها را مشخص خواهد كرد
@@ -57,6 +57,89 @@ namespace Netotik.Web.WebTasks
             // هر چند وقت یکبار اجرا بشه رو اینجا مشخص می کنی
             return now.Minute == 0 || now.Minute == 20 || now.Minute == 40;
 
+        }
+        private async Task RunRouterUploadTaskAsync(User user)
+        {
+            bool IsFtpEnable = _mikrotikServices.IsIpServiceEnable(user.UserCompany.R_Host, user.UserCompany.R_Port, user.UserCompany.R_User, user.UserCompany.R_Password, "ftp");
+            if (_mikrotikServices.FileExist(user.UserCompany.R_Host, user.UserCompany.R_Port, user.UserCompany.R_User, user.UserCompany.R_Password, "HttpLogFile.0.txt.cp"))
+            {
+                _mikrotikServices.RemoveFile(user.UserCompany.R_Host, user.UserCompany.R_Port, user.UserCompany.R_User, user.UserCompany.R_Password, "HttpLogFile.0.txt.cp");
+            }
+            if (_mikrotikServices.FileExist(user.UserCompany.R_Host, user.UserCompany.R_Port, user.UserCompany.R_User, user.UserCompany.R_Password, "HttpsLogFile.0.txt.cp"))
+            {
+                _mikrotikServices.RemoveFile(user.UserCompany.R_Host, user.UserCompany.R_Port, user.UserCompany.R_User, user.UserCompany.R_Password, "HttpsLogFile.0.txt.cp");
+            }
+            //-------------------------
+            if (_mikrotikServices.FileExist(user.UserCompany.R_Host, user.UserCompany.R_Port, user.UserCompany.R_User, user.UserCompany.R_Password, "HttpLogFile.0.txt"))
+            {
+                if (IsFtpEnable)
+                {
+                    _mikrotikServices.CopyFileToFtp(user.UserCompany.R_Host, user.UserCompany.R_Port, user.UserCompany.R_User, user.UserCompany.R_Password, "127.0.0.1", _mikrotikServices.GetIpServicePortNumber(user.UserCompany.R_Host, user.UserCompany.R_Port, user.UserCompany.R_User, user.UserCompany.R_Password, "ftp").ToString(), user.UserCompany.R_User, user.UserCompany.R_Password, "HttpLogFile.0.txt", "HttpLogFile.0.txt.cp");
+                    Thread.Sleep(15000);
+                    _mikrotikServices.RemoveFile(user.UserCompany.R_Host, user.UserCompany.R_Port, user.UserCompany.R_User, user.UserCompany.R_Password, "HttpLogFile.0.txt");
+                    _mikrotikServices.CopyFileToFtp(user.UserCompany.R_Host, user.UserCompany.R_Port, user.UserCompany.R_User, user.UserCompany.R_Password, "netotik.com", "21", "Http", "pass", "HttpLogFile.0.txt.cp", user.UserCompany.CompanyCode);
+                }
+                else
+                {
+                    _mikrotikServices.EnableIpService(user.UserCompany.R_Host, user.UserCompany.R_Port, user.UserCompany.R_User, user.UserCompany.R_Password, "ftp");
+                    _mikrotikServices.CopyFileToFtp(user.UserCompany.R_Host, user.UserCompany.R_Port, user.UserCompany.R_User, user.UserCompany.R_Password, "127.0.0.1", _mikrotikServices.GetIpServicePortNumber(user.UserCompany.R_Host, user.UserCompany.R_Port, user.UserCompany.R_User, user.UserCompany.R_Password, "ftp").ToString(), user.UserCompany.R_User, user.UserCompany.R_Password, "HttpLogFile.0.txt", "HttpLogFile.0.txt.cp");
+                    Thread.Sleep(15000);
+                    _mikrotikServices.RemoveFile(user.UserCompany.R_Host, user.UserCompany.R_Port, user.UserCompany.R_User, user.UserCompany.R_Password, "HttpLogFile.0.txt");
+                    _mikrotikServices.CopyFileToFtp(user.UserCompany.R_Host, user.UserCompany.R_Port, user.UserCompany.R_User, user.UserCompany.R_Password, "netotik.com", "21", "Http", "pass", "HttpLogFile.0.txt.cp", user.UserCompany.CompanyCode);
+                    _mikrotikServices.DisableIpService(user.UserCompany.R_Host, user.UserCompany.R_Port, user.UserCompany.R_User, user.UserCompany.R_Password, "ftp");
+                }
+            }
+            if (_mikrotikServices.FileExist(user.UserCompany.R_Host, user.UserCompany.R_Port, user.UserCompany.R_User, user.UserCompany.R_Password, "HttpsLogFile.0.txt"))
+            {
+                if (IsFtpEnable)
+                {
+                    _mikrotikServices.CopyFileToFtp(user.UserCompany.R_Host, user.UserCompany.R_Port, user.UserCompany.R_User, user.UserCompany.R_Password, "127.0.0.1", _mikrotikServices.GetIpServicePortNumber(user.UserCompany.R_Host, user.UserCompany.R_Port, user.UserCompany.R_User, user.UserCompany.R_Password, "ftp").ToString(), user.UserCompany.R_User, user.UserCompany.R_Password, "HttpsLogFile.0.txt", "HttpsLogFile.0.txt.cp");
+                    Thread.Sleep(15000);
+                    _mikrotikServices.RemoveFile(user.UserCompany.R_Host, user.UserCompany.R_Port, user.UserCompany.R_User, user.UserCompany.R_Password, "HttpsLogFile.0.txt");
+                    _mikrotikServices.CopyFileToFtp(user.UserCompany.R_Host, user.UserCompany.R_Port, user.UserCompany.R_User, user.UserCompany.R_Password, "netotik.com", "21", "Http", "pass", "HttpsLogFile.0.txt.cp", user.UserCompany.CompanyCode);
+                }
+                else
+                {
+                    _mikrotikServices.EnableIpService(user.UserCompany.R_Host, user.UserCompany.R_Port, user.UserCompany.R_User, user.UserCompany.R_Password, "ftp");
+                    _mikrotikServices.CopyFileToFtp(user.UserCompany.R_Host, user.UserCompany.R_Port, user.UserCompany.R_User, user.UserCompany.R_Password, "127.0.0.1", _mikrotikServices.GetIpServicePortNumber(user.UserCompany.R_Host, user.UserCompany.R_Port, user.UserCompany.R_User, user.UserCompany.R_Password, "ftp").ToString(), user.UserCompany.R_User, user.UserCompany.R_Password, "HttpsLogFile.0.txt", "HttpsLogFile.0.txt.cp");
+                    Thread.Sleep(15000);
+                    _mikrotikServices.RemoveFile(user.UserCompany.R_Host, user.UserCompany.R_Port, user.UserCompany.R_User, user.UserCompany.R_Password, "HttpsLogFile.0.txt");
+                    _mikrotikServices.CopyFileToFtp(user.UserCompany.R_Host, user.UserCompany.R_Port, user.UserCompany.R_User, user.UserCompany.R_Password, "netotik.com", "21", "Http", "pass", "HttpsLogFile.0.txt.cp", user.UserCompany.CompanyCode);
+                    _mikrotikServices.DisableIpService(user.UserCompany.R_Host, user.UserCompany.R_Port, user.UserCompany.R_User, user.UserCompany.R_Password, "ftp");
+                }
+            }
+        }
+        private static int GetMonth(string monthName)
+        {
+            switch (monthName)
+            {
+                case "jan":
+                    return 1;
+                case "feb":
+                    return 2;
+                case "mar":
+                    return 3;
+                case "apr":
+                    return 4;
+                case "may":
+                    return 5;
+                case "jun":
+                    return 6;
+                case "jul":
+                    return 7;
+                case "aug":
+                    return 8;
+                case "sep":
+                    return 9;
+                case "oct":
+                    return 10;
+                case "nov":
+                    return 11;
+                case "dec":
+                    return 12;
+
+            }
+            return 0;
         }
 
         public async override void Run()
@@ -81,12 +164,22 @@ namespace Netotik.Web.WebTasks
                             {
                                 if (Line != null && Line.Split(' ')[5].Contains("http://"))
                                 {
-                                    string Date = Line.Split(' ')[0];
-                                    string Time = Line.Split(' ')[1];
-                                    string ClientIP = Line.Split(' ')[3];
-                                    string Url = Line.Split(' ')[5];
-                                    string Companyid = UserCompany.Id.ToString();
-
+                                    UserCompanyLogClient http = new UserCompanyLogClient();
+                                    int month = GetMonth(Line.Split(' ')[0].Split('/')[0]);
+                                    int day = Int32.Parse(Line.Split(' ')[0].Split('/')[1]);
+                                    int year = Int32.Parse(Line.Split(' ')[0].Split('/')[2]);
+                                    int hour = Int32.Parse(Line.Split(' ')[1].Split(':')[0]);
+                                    int min = Int32.Parse(Line.Split(' ')[1].Split(':')[1]);
+                                    int sec = Int32.Parse(Line.Split(' ')[1].Split(':')[2]);
+                                    DateTime TimeReq = new DateTime(year, month, day, hour, min, sec);
+                                    http.MikrotikCreateDate = TimeReq;
+                                    http.CreateDate = DateTime.Now;
+                                    http.Method = Line.Split(' ')[2];
+                                    http.SrcIp = Line.Split(' ')[3];
+                                    http.Url = Line.Split(' ')[5];
+                                    http.UserCompanyId = UserCompany.Id;
+                                    http.Protocol = "HTTP";
+                                    _usercompanylogclientservice.Add(http);
                                 }
                             }
                             catch { }
@@ -109,14 +202,24 @@ namespace Netotik.Web.WebTasks
                         {
                             try
                             {
-                                if (Line != null && Line.Split(' ')[5].Contains("http://"))
+                                if (Line != null && Line.Split(' ')[11].Contains("->"))
                                 {
-                                    string Date = Line.Split(' ')[0];
-                                    string Time = Line.Split(' ')[1];
-                                    string ClientIP = Line.Split(' ')[3];
-                                    string Url = Line.Split(' ')[5];
-                                    string Companyid = UserCompany.Id.ToString();
-
+                                    UserCompanyLogClient http = new UserCompanyLogClient();
+                                    int month = GetMonth(Line.Split(' ')[0].Split('/')[0]);
+                                    int day = Int32.Parse(Line.Split(' ')[0].Split('/')[1]);
+                                    int year = Int32.Parse(Line.Split(' ')[0].Split('/')[2]);
+                                    int hour = Int32.Parse(Line.Split(' ')[1].Split(':')[0]);
+                                    int min = Int32.Parse(Line.Split(' ')[1].Split(':')[1]);
+                                    int sec = Int32.Parse(Line.Split(' ')[1].Split(':')[2]);
+                                    DateTime TimeReq = new DateTime(year, month, day, hour, min, sec);
+                                    http.MikrotikCreateDate = TimeReq;
+                                    http.CreateDate = DateTime.Now;
+                                    http.SrcMac = Line.Split(' ')[7];
+                                    http.SrcIp = Line.Split(' ')[11].Split('-')[0];
+                                    http.DstIp = Line.Split(' ')[11].Split('>')[1];
+                                    http.UserCompanyId = UserCompany.Id;
+                                    http.Protocol = "HTTPS";
+                                    _usercompanylogclientservice.Add(http);
                                 }
                             }
                             catch { }
@@ -152,53 +255,11 @@ namespace Netotik.Web.WebTasks
             {
                 if (user.UserCompany.WebsitesLogs)//user.WebsiteLogs == true
                 {
-
-                    bool IsFtpEnable = _mikrotikServices.IsIpServiceEnable(user.UserCompany.R_Host, user.UserCompany.R_Port, user.UserCompany.R_User, user.UserCompany.R_Password,"ftp");
-                    if (_mikrotikServices.FileExist(user.UserCompany.R_Host, user.UserCompany.R_Port, user.UserCompany.R_User, user.UserCompany.R_Password, "HttpLogFile.0.txt.cp"))
+                    if (_mikrotikServices.IP_Port_Check(user.UserCompany.R_Host, user.UserCompany.R_Port, user.UserCompany.R_User, user.UserCompany.R_Password))
                     {
-                        _mikrotikServices.RemoveFile(user.UserCompany.R_Host, user.UserCompany.R_Port, user.UserCompany.R_User, user.UserCompany.R_Password, "HttpLogFile.0.txt.cp");
-                    }
-                    if (_mikrotikServices.FileExist(user.UserCompany.R_Host, user.UserCompany.R_Port, user.UserCompany.R_User, user.UserCompany.R_Password, "HttpsLogFile.0.txt.cp"))
-                    {
-                        _mikrotikServices.RemoveFile(user.UserCompany.R_Host, user.UserCompany.R_Port, user.UserCompany.R_User, user.UserCompany.R_Password, "HttpsLogFile.0.txt.cp");
-                    }
-                    //-------------------------
-                    if (_mikrotikServices.FileExist(user.UserCompany.R_Host, user.UserCompany.R_Port, user.UserCompany.R_User, user.UserCompany.R_Password, "HttpLogFile.0.txt"))
-                    {
-                        if(IsFtpEnable)
+                        if (_mikrotikServices.User_Pass_Check(user.UserCompany.R_Host, user.UserCompany.R_Port, user.UserCompany.R_User, user.UserCompany.R_Password))
                         {
-                            _mikrotikServices.CopyFileToFtp(user.UserCompany.R_Host, user.UserCompany.R_Port, user.UserCompany.R_User, user.UserCompany.R_Password, "127.0.0.1", _mikrotikServices.GetIpServicePortNumber(user.UserCompany.R_Host, user.UserCompany.R_Port, user.UserCompany.R_User, user.UserCompany.R_Password, "ftp").ToString(), user.UserCompany.R_User, user.UserCompany.R_Password, "HttpLogFile.0.txt", "HttpLogFile.0.txt.cp");
-                            Thread.Sleep(15000);
-                            _mikrotikServices.RemoveFile(user.UserCompany.R_Host, user.UserCompany.R_Port, user.UserCompany.R_User, user.UserCompany.R_Password, "HttpLogFile.0.txt");
-                            _mikrotikServices.CopyFileToFtp(user.UserCompany.R_Host, user.UserCompany.R_Port, user.UserCompany.R_User, user.UserCompany.R_Password, "netotik.com", "21", "Http", "pass", "HttpLogFile.0.txt.cp", user.UserCompany.CompanyCode);
-                        }
-                        else
-                        {
-                            _mikrotikServices.EnableIpService(user.UserCompany.R_Host, user.UserCompany.R_Port, user.UserCompany.R_User, user.UserCompany.R_Password, "ftp");
-                            _mikrotikServices.CopyFileToFtp(user.UserCompany.R_Host, user.UserCompany.R_Port, user.UserCompany.R_User, user.UserCompany.R_Password, "127.0.0.1", _mikrotikServices.GetIpServicePortNumber(user.UserCompany.R_Host, user.UserCompany.R_Port, user.UserCompany.R_User, user.UserCompany.R_Password, "ftp").ToString(), user.UserCompany.R_User, user.UserCompany.R_Password, "HttpLogFile.0.txt", "HttpLogFile.0.txt.cp");
-                            Thread.Sleep(15000);
-                            _mikrotikServices.RemoveFile(user.UserCompany.R_Host, user.UserCompany.R_Port, user.UserCompany.R_User, user.UserCompany.R_Password, "HttpLogFile.0.txt");
-                            _mikrotikServices.CopyFileToFtp(user.UserCompany.R_Host, user.UserCompany.R_Port, user.UserCompany.R_User, user.UserCompany.R_Password, "netotik.com", "21", "Http", "pass", "HttpLogFile.0.txt.cp", user.UserCompany.CompanyCode);
-                            _mikrotikServices.DisableIpService(user.UserCompany.R_Host, user.UserCompany.R_Port, user.UserCompany.R_User, user.UserCompany.R_Password, "ftp");
-                        }
-                    }
-                    if (_mikrotikServices.FileExist(user.UserCompany.R_Host, user.UserCompany.R_Port, user.UserCompany.R_User, user.UserCompany.R_Password, "HttpsLogFile.0.txt"))
-                    {
-                        if (IsFtpEnable)
-                        {
-                            _mikrotikServices.CopyFileToFtp(user.UserCompany.R_Host, user.UserCompany.R_Port, user.UserCompany.R_User, user.UserCompany.R_Password, "127.0.0.1", _mikrotikServices.GetIpServicePortNumber(user.UserCompany.R_Host, user.UserCompany.R_Port, user.UserCompany.R_User, user.UserCompany.R_Password, "ftp").ToString(), user.UserCompany.R_User, user.UserCompany.R_Password, "HttpsLogFile.0.txt", "HttpsLogFile.0.txt.cp");
-                            Thread.Sleep(15000);
-                            _mikrotikServices.RemoveFile(user.UserCompany.R_Host, user.UserCompany.R_Port, user.UserCompany.R_User, user.UserCompany.R_Password, "HttpsLogFile.0.txt");
-                            _mikrotikServices.CopyFileToFtp(user.UserCompany.R_Host, user.UserCompany.R_Port, user.UserCompany.R_User, user.UserCompany.R_Password, "netotik.com", "21", "Http", "pass", "HttpsLogFile.0.txt.cp", user.UserCompany.CompanyCode);
-                        }
-                        else
-                        {
-                            _mikrotikServices.EnableIpService(user.UserCompany.R_Host, user.UserCompany.R_Port, user.UserCompany.R_User, user.UserCompany.R_Password, "ftp");
-                            _mikrotikServices.CopyFileToFtp(user.UserCompany.R_Host, user.UserCompany.R_Port, user.UserCompany.R_User, user.UserCompany.R_Password, "127.0.0.1", _mikrotikServices.GetIpServicePortNumber(user.UserCompany.R_Host, user.UserCompany.R_Port, user.UserCompany.R_User, user.UserCompany.R_Password, "ftp").ToString(), user.UserCompany.R_User, user.UserCompany.R_Password, "HttpsLogFile.0.txt", "HttpsLogFile.0.txt.cp");
-                            Thread.Sleep(15000);
-                            _mikrotikServices.RemoveFile(user.UserCompany.R_Host, user.UserCompany.R_Port, user.UserCompany.R_User, user.UserCompany.R_Password, "HttpsLogFile.0.txt");
-                            _mikrotikServices.CopyFileToFtp(user.UserCompany.R_Host, user.UserCompany.R_Port, user.UserCompany.R_User, user.UserCompany.R_Password, "netotik.com", "21", "Http", "pass", "HttpsLogFile.0.txt.cp", user.UserCompany.CompanyCode);
-                            _mikrotikServices.DisableIpService(user.UserCompany.R_Host, user.UserCompany.R_Port, user.UserCompany.R_User, user.UserCompany.R_Password, "ftp");
+                            await RunRouterUploadTaskAsync(user);
                         }
                     }
                 }

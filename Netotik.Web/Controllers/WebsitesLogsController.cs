@@ -38,20 +38,20 @@ namespace Netotik.Web.Controllers
         private readonly IMikrotikServices _mikrotikServices;
         private readonly IUserMailer _userMailer;
         private readonly IUnitOfWork _uow;
-        private readonly IMenuService _menuService;
+        private readonly IUserCompanyLogClientService _usercompanylogclientservice;
 
         public WebsitesLogsController(
             IMikrotikServices mikrotikservices,
             IApplicationUserManager applicationUserManager,
             IUserMailer userMailer,
-            IMenuService menuService,
+            IUserCompanyLogClientService usercompanylogclientservice,
             IUnitOfWork uow)
         {
             _mikrotikServices = mikrotikservices;
             _userMailer = userMailer;
             _applicationUserManager = applicationUserManager;
             _uow = uow;
-            _menuService = menuService;
+            _usercompanylogclientservice = usercompanylogclientservice;
         }
 
         [AllowAnonymous]
@@ -82,7 +82,6 @@ namespace Netotik.Web.Controllers
                                     string ClientIP = Line.Split(' ')[3];
                                     string Url = Line.Split(' ')[5];
                                     string Companyid = Company.Id.ToString();
-
                                 }
                             }
                             catch { }
