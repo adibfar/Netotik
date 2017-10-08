@@ -5,12 +5,14 @@ using System.Text;
 using System.IO;
 using System.Net.Sockets;
 using System.Threading.Tasks;
+using System.Net.Security;
 
 namespace Netotik.Common.MikrotikAPI
 {
     public class MikrotikAPI
     {
         Stream connection;
+        SslStream connectionSSL;
         TcpClient con;
 
         public void MK(string ip,int port)
@@ -19,7 +21,15 @@ namespace Netotik.Common.MikrotikAPI
             con.Connect(ip, port);
             connection = (Stream)con.GetStream();
         }
-
+        public void MKSSL(string ip, int port)
+        {
+            con = new TcpClient();
+            con.Connect(ip, port);
+            //var sslStream = new SslStream(con.GetStream(), false,
+            //        new RemoteCertificateValidationCallback(true), null);
+            //sslStream.AuthenticateAsClient(ip/*, cCollection, SslProtocols.Default, true*/);
+            //connectionSSL = sslStream;
+        }
 
         public async Task MKAsync(string ip, int port)
         {

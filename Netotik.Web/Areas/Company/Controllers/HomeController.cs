@@ -40,17 +40,20 @@ namespace Netotik.Web.Areas.Company.Controllers
         private readonly IApplicationUserManager _applicationUserManager;
         private readonly IMikrotikServices _mikrotikServices;
         private readonly IPictureService _pictureService;
+        private readonly ISmsService _smsService;
         private readonly IUnitOfWork _uow;
 
         public HomeController(
             IMikrotikServices mikrotikServices,
             IPictureService pictureservice,
             IApplicationUserManager applicationUserManager,
+            ISmsService smsService,
             IUnitOfWork uow)
         {
             _mikrotikServices = mikrotikServices;
             _pictureService = pictureservice;
             _applicationUserManager = applicationUserManager;
+            _smsService = smsService;
             _uow = uow;
         }
         #endregion
@@ -249,7 +252,11 @@ namespace Netotik.Web.Areas.Company.Controllers
             }
             var temp = await _applicationUserManager.ChangePasswordAsync(User.Identity.GetUserId<long>(), model.OldPassword, model.Password);
             if (temp.Succeeded)
+            {
+                if (UserLogined.UserCompany.SmsCharge > 0 && UserLogined.UserCompany.SmsActive && UserLogined.UserCompany.SmsAdminChangeAdminPassword)
+                    _smsService.SendSms(UserLogined.PhoneNumber, "پسورد پنل نتوتیک شما تغییر کرد.", UserLogined.Id);
                 this.MessageInformation(Captions.MissionSuccess, Captions.UpdateSuccess);
+            }
             else
                 this.MessageError(Captions.MissionFail, Captions.UpdateError);
             return View();
@@ -257,7 +264,53 @@ namespace Netotik.Web.Areas.Company.Controllers
 
         #endregion
 
-
+        public virtual ActionResult Sms()
+        {
+            var Model = new SmsModel();
+            Model = _applicationUserManager.GetUserCompanySmsSettings(UserLogined.Id);
+            return View(Model);
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public virtual async Task<ActionResult> Sms(SmsModel model)
+        {
+            model.Id = UserLogined.Id;
+            if (ModelState.IsValid)
+            {
+                await _applicationUserManager.UpdateUserCompanySmsSettingsAsync(model);
+            }else
+            {
+                this.MessageError(Captions.Error, Captions.ValidateError);
+                return View(_applicationUserManager.GetUserCompanySmsSettings(UserLogined.Id));
+            }
+            return View(model);
+        }
+        [HttpPost]
+        public virtual ActionResult DisableSMS(long id)
+        {
+            if(UserLogined.Id!=id)
+            {
+                this.MessageError(Captions.Error, Captions.InvalidDataError);
+                return RedirectToAction(MVC.Company.Home.ActionNames.Sms, MVC.Company.Home.Name, new { area = MVC.Company.Name });
+            }
+            var user=_applicationUserManager.FindUserById(UserLogined.Id);
+            user.UserCompany.SmsActive = false;
+            _uow.SaveAllChanges();
+            return RedirectToAction(MVC.Company.Home.ActionNames.Sms, MVC.Company.Home.Name, new { area = MVC.Company.Name });
+        }
+        [HttpPost]
+        public virtual ActionResult EnableSMS(long id)
+        {
+            if (UserLogined.Id != id)
+            {
+                this.MessageError(Captions.Error, Captions.InvalidDataError);
+                return RedirectToAction(MVC.Company.Home.ActionNames.Sms, MVC.Company.Home.Name, new { area = MVC.Company.Name });
+            }
+            var user = _applicationUserManager.FindUserById(UserLogined.Id);
+            user.UserCompany.SmsActive = true;
+            _uow.SaveAllChanges();
+            return RedirectToAction(MVC.Company.Home.ActionNames.Sms, MVC.Company.Home.Name, new { area = MVC.Company.Name });
+        }
 
         [NonAction]
         private void PopulatePermissions(params string[] selectedpermissions)

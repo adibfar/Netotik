@@ -25,7 +25,7 @@ namespace Netotik.Domain.Entity
 
 
         public bool SendEmailUserPass { get; set; }
-        public bool SendSmsUserPass { get; set; }
+        
 
         public virtual UserCompany UserCompany { get; set; }
     }

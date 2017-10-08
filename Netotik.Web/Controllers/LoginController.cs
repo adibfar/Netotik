@@ -20,6 +20,7 @@ using System.Data.Entity;
 using Microsoft.AspNet.Identity.Owin;
 using System.Collections.Generic;
 using Netotik.ViewModels.Identity.Security;
+using System;
 //Test Comment
 namespace Netotik.Web.Controllers
 {
@@ -31,6 +32,7 @@ namespace Netotik.Web.Controllers
         private readonly IApplicationRoleManager _applicationRoleManager;
         private readonly IMikrotikServices _mikrotikServices;
         private readonly IUnitOfWork _uow;
+        private readonly ISmsService _smsService;
         private readonly IMenuService _menuService;
 
         public LoginController(
@@ -39,6 +41,7 @@ namespace Netotik.Web.Controllers
             IApplicationSignInManager applicationSignInManager,
             IApplicationUserManager applicationUserManager,
             IMenuService menuService,
+            ISmsService smsService,
             IUnitOfWork uow)
         {
             _mikrotikServices = mikrotikServices;
@@ -46,6 +49,7 @@ namespace Netotik.Web.Controllers
             _applicationSignInManager = applicationSignInManager;
             _applicationUserManager = applicationUserManager;
             _uow = uow;
+            _smsService = smsService;
             _menuService = menuService;
         }
 
@@ -98,7 +102,7 @@ namespace Netotik.Web.Controllers
             }
 
 
-            
+
             if (loggedinUser.IsBanned)
             {
                 ViewBag.Message = Captions.YourAccountIsBlock;
@@ -111,7 +115,7 @@ namespace Netotik.Web.Controllers
                 ViewBag.Link = true;
                 return View();
             }
-            
+
             if (loggedinUser != null)
             {
                 await _applicationUserManager.UpdateSecurityStampAsync(loggedinUser.Id);
@@ -125,9 +129,17 @@ namespace Netotik.Web.Controllers
             {
                 case SignInStatus.Success:
                     if (!string.IsNullOrWhiteSpace(ReturnUrl))
+                    {
+                        if (loggedinUser.UserCompany.SmsActive && loggedinUser.UserCompany.SmsAdminLogins)
+                            _smsService.SendSms(loggedinUser.PhoneNumber, string.Format("کاربر {0} در تاربخ {1} توسط ای پی {2} وارد نتوتیک شد.", loggedinUser.UserName, PersianDate.ConvertDate.ToFa(DateTime.Now, "g"), HttpContext.Request.ServerVariables["REMOTE_ADDR"]), loggedinUser.Id);
                         return RedirectToLocal(ReturnUrl);
+                    }
                     else
+                    {
+                        if (loggedinUser.UserCompany.SmsCharge > 0 && loggedinUser.UserCompany.SmsActive && loggedinUser.UserCompany.SmsAdminLogins)
+                            _smsService.SendSms(loggedinUser.PhoneNumber, string.Format("کاربر {0} در تاربخ {1} توسط ای پی {2} وارد نتوتیک شد.",loggedinUser.UserName,PersianDate.ConvertDate.ToFa(DateTime.Now,"g"), HttpContext.Request.ServerVariables["REMOTE_ADDR"]), loggedinUser.Id);
                         return RedirectToAction(MVC.Company.Home.Index());
+                    }
 
                 case SignInStatus.LockedOut:
                     ModelState.AddModelError("UserName",
@@ -315,7 +327,7 @@ namespace Netotik.Web.Controllers
                     R_Port = company.UserCompany.R_Port,
                     R_User = company.UserCompany.R_User,
                     Userman_Customer = company.UserCompany.Userman_Customer,
-                    ClientPermissions=company.UserCompany.ClientPermissions
+                    ClientPermissions = company.UserCompany.ClientPermissions
                 }
             };
 

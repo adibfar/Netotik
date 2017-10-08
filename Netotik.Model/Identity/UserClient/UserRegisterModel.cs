@@ -51,5 +51,6 @@ namespace Netotik.ViewModels.Identity.UserClient
         public string NationalCode { get; set; }
         public string registration_date { get; set; }
         public string reg_key { get; set; }
+        public bool SendSmsNow { get; set; }
     }
 }

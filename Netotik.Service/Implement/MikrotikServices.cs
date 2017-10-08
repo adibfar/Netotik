@@ -2599,7 +2599,7 @@ namespace Netotik.Services.Implement
             mikrotik.Send(temp, true);
         }
 
-        public void Usermanager_UserChangePassword(string ip, int port, string user, string pass, ChangePasswordModel model, string id)
+        public bool Usermanager_UserChangePassword(string ip, int port, string user, string pass, ChangePasswordModel model, string id)
         {
             if (Usermanager_IsUserExist(ip, port, user, pass, id))
             {
@@ -2616,8 +2616,10 @@ namespace Netotik.Services.Implement
                     temp = String.Format("=password={0}", model.Password);
                     mikrotik.Send(temp, true);
                     var temp2 = mikrotik.Read();
+                    return true;
                 }
             }
+            return false;
         }
 
         public void Usermanager_UserRegKey(string ip, int port, string user, string pass, string UsermanUser, string RegKey)

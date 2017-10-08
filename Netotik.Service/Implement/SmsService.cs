@@ -39,14 +39,13 @@ namespace Netotik.Services.Implement
                 int retval = sms.SendSms(setting.SmsUsername, setting.SmsPassword, new string[] { To }, setting.SmsNumber, Text, false, "", ref rec, ref status);
 
 
-                var smsLog = new SmsLog
+                var smsLog = new SmsLog()
                 {
                     CreateDate = DateTime.Now,
                     From = setting.SmsNumber,
                     MessageText = Text,
                     MobileNumber = To,
-                    ResultId = retval.ToString(),
-                    Result = (ResultSms)rec[0],
+                    Result = (ResultSms)retval,
                     UserId = UserSenderId
                 };
                 dbSet.Add(smsLog);

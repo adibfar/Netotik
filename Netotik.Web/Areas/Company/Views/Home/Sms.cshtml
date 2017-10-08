@@ -1,0 +1,152 @@
+﻿@model Netotik.ViewModels.Identity.UserCompany.SmsModel
+@using Netotik.Resources;
+<section class="flexbox-container">
+    <div class="row">
+        <div class="col-md-12">
+            @using (Html.BeginForm(MVC.Company.Home.ActionNames.Sms, MVC.Company.Home.Name, null, FormMethod.Post, htmlAttributes: new { @class = "cmxform form-horizontal tasi-form", id = "form" }))
+            {
+                @Html.AntiForgeryToken()
+                <div class="card">
+                    <div class="card-header">
+                        <button name="actionType" value="@Netotik.Common.Controller.ActionType.Save" class="btn btn-social width-100 btn-instagram" onclick="AjaxForm.Post(this, 'form')" data-loading-text="در حال ارسال اطلاعات">
+                            <span class="icon-checkmark2 font-medium-4"></span>
+                            @Netotik.Resources.Captions.Save
+                        </button>
+
+                        @if (!Model.SmsActive)
+                        {
+                            <a onclick="EnableSMS('@Model.Id');" class="btn btn-social btn-instagram" value="@Captions.Disable" href="#">
+                                <span class="icon-eye-blocked font-medium-4"></span> @Captions.Disable
+                            </a>
+                        }
+                        else
+                        {
+                            <a href="#" onclick="DisableSMS('@Model.Id');" class="btn btn-social btn-instagram" value="@Captions.Enable">
+                                <span class="icon-eye font-medium-4"></span> @Captions.Enable
+                            </a>
+                        }
+                    </div>
+                    <div class="card-body">
+                        <div class="card-block">
+                            <ul class="nav nav-tabs nav-underline nav-justified">
+                                <li class="nav-item">
+                                    <a class="nav-link active" id="linkIcon12-tab1" data-toggle="tab" href="#Config" aria-controls="linkIcon12" aria-expanded="false"><i class="icon-ios-time"></i>@Captions.Configuration</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" id="linkIcon12-tab1" data-toggle="tab" href="#Registration" aria-controls="linkIcon12" aria-expanded="false"><i class="icon-ios-time"></i>ثبت نام</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" id="linkIcon12-tab1" data-toggle="tab" href="#Info" aria-controls="linkIcon12" aria-expanded="false"><i class="icon-ios-time"></i>اطلاع رسانی</a>
+                                </li>
+                            </ul>
+                            <div class="tab-content px-1 pt-1" style="min-height:260px!important">
+                                <div class="tab-pane fade active in" id="Config" role="tabpanel" aria-labelledby="linkIconOpt11-tab1" aria-expanded="false">
+                                    <div class="col-md-4">
+                                        <div class="form-group has-icon-left">
+                                            @Html.LabelFor(m => m.SmsCharge)
+                                            <div class="position-relative has-icon-left" data-toggle="tooltip" data-original-title="<b>@Model.SmsCharge</b>" data-html="true">
+                                                @Html.TextBoxFor(m => m.SmsCharge, new { @class = "form-control" })
+                                                <div class="form-control-position">
+                                                    <i class="icon-ios-timer"></i>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="tab-pane fade row form-group skin skin-flat" id="Registration" role="tabpanel" aria-labelledby="linkIconOpt11-tab1" aria-expanded="false">
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            @Html.LabelFor(m => m.RegisterWithSms)
+                                            @Html.CheckBoxFor(model => model.RegisterWithSms)
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group has-icon-left">
+                                            @Html.LabelFor(m => m.RegisterWithSmsCode)
+                                            <div class="position-relative has-icon-left" data-toggle="tooltip" data-original-title="<b>@Model.RegisterWithSmsCode</b>" data-html="true">
+                                                @Html.TextBoxFor(m => m.RegisterWithSmsCode, new { @class = "form-control" })
+                                                <div class="form-control-position">
+                                                    <i class="icon-ios-timer"></i>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="tab-pane fade row form-group skin skin-flat" id="Info" role="tabpanel" aria-labelledby="linkIconOpt11-tab1" aria-expanded="false">
+                                    <div class="col-md-3">
+                                        <div class="form-group">
+                                            @Html.LabelFor(m => m.SmsUserhangeUserPassword)
+                                            @Html.CheckBoxFor(model => model.SmsUserhangeUserPassword)
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <div class="form-group">
+                                            @Html.LabelFor(m => m.SmsUserAfterResetCounter)
+                                            @Html.CheckBoxFor(model => model.SmsUserAfterResetCounter)
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <div class="form-group">
+                                            @Html.LabelFor(m => m.SmsUserAfterDelete)
+                                            @Html.CheckBoxFor(model => model.SmsUserAfterDelete)
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <div class="form-group">
+                                            @Html.LabelFor(m => m.SmsUserAfterCreateWithAdmin)
+                                            @Html.CheckBoxFor(model => model.SmsUserAfterCreateWithAdmin)
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <div class="form-group">
+                                            @Html.LabelFor(m => m.SmsUserAfterChangePackage)
+                                            @Html.CheckBoxFor(model => model.SmsUserAfterChangePackage)
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <div class="form-group">
+                                            @Html.LabelFor(m => m.SmsAdminLogins)
+                                            @Html.CheckBoxFor(model => model.SmsAdminLogins)
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <div class="form-group">
+                                            @Html.LabelFor(m => m.SmsAdminChangeUserPassword)
+                                            @Html.CheckBoxFor(model => model.SmsAdminChangeUserPassword)
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <div class="form-group">
+                                            @Html.LabelFor(m => m.SmsAdminChangeAdminPassword)
+                                            @Html.CheckBoxFor(model => model.SmsAdminChangeAdminPassword)
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <div class="form-group">
+                                            @Html.LabelFor(m => m.RegisterFormSms)
+                                            @Html.CheckBoxFor(model => model.RegisterFormSms)
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</section>
+
+
+@section DownScript{
+    <script type="text/javascript">
+        function DisableSMS(id) {
+            PostData("@Url.Action(MVC.Company.Home.DisableSMS())", { id: id });
+        }
+
+        function EnableSMS(id) {
+            PostData("@Url.Action(MVC.Company.Home.EnableSMS())", { id: id });
+        }
+
+    </script>
+    }

@@ -110,7 +110,7 @@
 
 
 
-                                <div class="col-md-6">
+                                <div class="col-md-4">
                                     <div class="form-group has-feedback has-icon-left">
                                         @Html.LabelFor(m => m.location)
                                         <div class="position-relative has-icon-left">
@@ -122,7 +122,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-md-6">
+                                <div class="col-md-4">
                                     <div class="form-group has-feedback has-icon-left">
                                         @Html.LabelFor(m => m.comment)
                                         <div class="position-relative has-icon-left">
@@ -132,6 +132,12 @@
                                             </div>
                                             @Html.ValidationMessageFor(model => model.comment, "", htmlAttributes: new { @class = "text-danger" })
                                         </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group skin skin-flat">
+                                        @Html.LabelFor(model => model.SendSmsNow)
+                                        @Html.CheckBoxFor(model => model.SendSmsNow)
                                     </div>
                                 </div>
                             </div>

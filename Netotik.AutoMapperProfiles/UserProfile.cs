@@ -170,6 +170,17 @@ namespace Netotik.AutoMapperProfiles
                 .ForMember(d => d.UserCompany, opt => opt.MapFrom(s => s))
                 .IgnoreAllNonExisting();
 
+            CreateMap<ViewModels.Identity.UserCompany.SmsModel, UserCompany>()
+    .IgnoreAllNonExisting();
+
+            CreateMap<ViewModels.Identity.UserCompany.SmsModel, User>()
+                .ForMember(d => d.EditDate, m => m.UseValue(DateTime.Now))
+                .ForMember(d => d.Roles, m => m.Ignore())
+                .ForMember(d => d.Claims, m => m.Ignore())
+                .ForMember(d => d.Logins, m => m.Ignore())
+                .ForMember(d => d.UserCompany, opt => opt.MapFrom(s => s))
+                .IgnoreAllNonExisting();
+
             CreateMap<ViewModels.Identity.UserCompany.MikrotikConfModel, UserCompany>()
                 .IgnoreAllNonExisting();
 

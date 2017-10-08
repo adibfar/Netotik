@@ -84,6 +84,7 @@ namespace Netotik.Web.Areas.Company.Controllers
             public readonly string UsermanagerUsage = "UsermanagerUsage";
             public readonly string Sessions = "Sessions";
             public readonly string Logs = "Logs";
+            public readonly string WebSitesLogs = "WebSitesLogs";
             public readonly string RedirectToLocal = "RedirectToLocal";
         }
 
@@ -96,6 +97,7 @@ namespace Netotik.Web.Areas.Company.Controllers
             public const string UsermanagerUsage = "UsermanagerUsage";
             public const string Sessions = "Sessions";
             public const string Logs = "Logs";
+            public const string WebSitesLogs = "WebSitesLogs";
             public const string RedirectToLocal = "RedirectToLocal";
         }
 
@@ -124,6 +126,7 @@ namespace Netotik.Web.Areas.Company.Controllers
                 public readonly string MinTrafficUsage = "MinTrafficUsage";
                 public readonly string Sessions = "Sessions";
                 public readonly string UsermanagerUsage = "UsermanagerUsage";
+                public readonly string WebSitesLogs = "WebSitesLogs";
             }
             public readonly string Logs = "~/Areas/Company/Views/Charts/Logs.cshtml";
             public readonly string MaxTimeUsage = "~/Areas/Company/Views/Charts/MaxTimeUsage.cshtml";
@@ -131,6 +134,7 @@ namespace Netotik.Web.Areas.Company.Controllers
             public readonly string MinTrafficUsage = "~/Areas/Company/Views/Charts/MinTrafficUsage.cshtml";
             public readonly string Sessions = "~/Areas/Company/Views/Charts/Sessions.cshtml";
             public readonly string UsermanagerUsage = "~/Areas/Company/Views/Charts/UsermanagerUsage.cshtml";
+            public readonly string WebSitesLogs = "~/Areas/Company/Views/Charts/WebSitesLogs.cshtml";
         }
     }
 
@@ -202,6 +206,17 @@ namespace Netotik.Web.Areas.Company.Controllers
         {
             var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Logs);
             LogsOverride(callInfo);
+            return callInfo;
+        }
+
+        [NonAction]
+        partial void WebSitesLogsOverride(T4MVC_System_Web_Mvc_ActionResult callInfo);
+
+        [NonAction]
+        public override System.Web.Mvc.ActionResult WebSitesLogs()
+        {
+            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.WebSitesLogs);
+            WebSitesLogsOverride(callInfo);
             return callInfo;
         }
 

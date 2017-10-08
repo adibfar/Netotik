@@ -34,16 +34,19 @@ namespace Netotik.Web.Areas.Company.Controllers
         private readonly IMikrotikServices _mikrotikServices;
         private readonly IPictureService _pictureService;
         private readonly IUnitOfWork _uow;
+        private readonly IUserCompanyLogClientService _usercompanylogclientservice;
 
         public RouterController(
             IMikrotikServices mikrotikServices,
             IPictureService pictureservice,
             IApplicationUserManager applicationUserManager,
+            IUserCompanyLogClientService usercompanylogclientservice,
             IUnitOfWork uow)
         {
             _mikrotikServices = mikrotikServices;
             _pictureService = pictureservice;
             _applicationUserManager = applicationUserManager;
+            _usercompanylogclientservice = usercompanylogclientservice;
             _uow = uow;
         }
         #endregion
@@ -722,6 +725,20 @@ namespace Netotik.Web.Areas.Company.Controllers
             //-------------------------------
             _mikrotikServices.Router_NatDisable(UserLogined.UserCompany.R_Host, UserLogined.UserCompany.R_Port, UserLogined.UserCompany.R_User, UserLogined.UserCompany.R_Password, id);
             return RedirectToAction(MVC.Company.Router.ActionNames.Nat);
+        }
+        public virtual ActionResult WebSitesLogs()
+        {
+
+            //-------------------------------
+
+            if (UserLogined.UserCompany.WebsitesLogs)
+            {
+                this.MessageError(Captions.Error, "شما مجوز لازم را ندارید");
+                return RedirectToAction(MVC.Company.Home.ActionNames.Index, MVC.Company.Home.Name, new { area = MVC.Company.Name });
+            }
+            //-------------------------------
+            ViewBag.Model = _usercompanylogclientservice.GetList(UserLogined.Id);
+            return View();
         }
     }
 }

@@ -11,6 +11,6 @@ namespace Netotik.Services.Abstract
 {
     public interface ISmsService : IBaseService<SmsLog>
     {
-
+        ResultSms SendSms(string To, string Text, long? UserSenderId = null);
     }
 }

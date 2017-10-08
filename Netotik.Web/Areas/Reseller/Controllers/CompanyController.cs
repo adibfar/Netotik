@@ -45,6 +45,7 @@ namespace Netotik.Web.Areas.Reseller.Controllers
         private readonly IApplicationRoleManager _applicationRoleManager;
         private readonly IMikrotikServices _mikrotikServices;
         private readonly IUnitOfWork _uow;
+        private readonly ISmsService _smsService;
 
         public CompanyController(
             IApplicationUserManager applicationUserManager,
@@ -52,6 +53,7 @@ namespace Netotik.Web.Areas.Reseller.Controllers
             IUserMailer userMailer,
             IApplicationRoleManager applicationRoleManager,
             IMikrotikServices mikrotikServices,
+            ISmsService smsService,
             IUnitOfWork uow)
         {
             _pictureService = pictureservice;
@@ -59,6 +61,7 @@ namespace Netotik.Web.Areas.Reseller.Controllers
             _applicationRoleManager = applicationRoleManager;
             _applicationUserManager = applicationUserManager;
             _mikrotikServices = mikrotikServices;
+            _smsService = smsService;
             _uow = uow;
         }
         #endregion
@@ -171,7 +174,7 @@ namespace Netotik.Web.Areas.Reseller.Controllers
         }
 
         #endregion
-        
+
 
 
 
@@ -292,7 +295,12 @@ namespace Netotik.Web.Areas.Reseller.Controllers
             }
             var temp = await _applicationUserManager.ChangePasswordAsync(User.Identity.GetUserId<long>(), model.OldPassword, model.Password);
             if (temp.Succeeded)
+            {
+                var Company = _applicationUserManager.FindUserById(User.Identity.GetUserId<long>());
+                if (Company.UserCompany.SmsCharge > 0 && Company.UserCompany.SmsActive && Company.UserCompany.SmsAdminChangeAdminPassword)
+                    _smsService.SendSms(UserLogined.PhoneNumber, "پسورد پنل نتوتیک شما تغییر کرد.", UserLogined.Id);
                 this.MessageInformation(Captions.MissionSuccess, Captions.UpdateSuccess);
+            }
             else
                 this.MessageError(Captions.MissionFail, Captions.UpdateError);
             return View();

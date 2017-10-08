@@ -14,6 +14,7 @@ using System.Collections.Generic;
 using Netotik.ViewModels.Identity.Security;
 using Microsoft.AspNet.Identity;
 using WebGrease.Css.Extensions;
+using Netotik.ViewModels.Identity.UserClient;
 
 namespace Netotik.Web.Areas.Company.Controllers
 {
@@ -26,17 +27,20 @@ namespace Netotik.Web.Areas.Company.Controllers
         private readonly IApplicationUserManager _applicationUserManager;
         private readonly IMikrotikServices _mikrotikServices;
         private readonly IPictureService _pictureService;
+        private readonly IUserCompanyLogClientService _usercompanylogclientservice;
         private readonly IUnitOfWork _uow;
 
         public ChartsController(
             IMikrotikServices mikrotikServices,
             IPictureService pictureservice,
             IApplicationUserManager applicationUserManager,
+            IUserCompanyLogClientService usercompanylogclientservice,
             IUnitOfWork uow)
         {
             _mikrotikServices = mikrotikServices;
             _pictureService = pictureservice;
             _applicationUserManager = applicationUserManager;
+            _usercompanylogclientservice = usercompanylogclientservice;
             _uow = uow;
         }
         #endregion
@@ -97,46 +101,46 @@ namespace Netotik.Web.Areas.Company.Controllers
             {
                 item.from_time = Infrastructure.EnglishConvertDate.ConvertToFa(item.from_time.Split(' ')[0], "d") + " " + item.from_time.Split(' ')[1];
 
-                if (UserListDownloadBySessions.ContainsKey(item.user==null|item.user==""?"-UserError-":item.user))
-                    UserListDownloadBySessions[item.user==null|item.user==""?"-UserError-":item.user] += item.download == null || item.download == "" ? 0 : (ulong.Parse(item.download) / 1048576);
+                if (UserListDownloadBySessions.ContainsKey(item.user == null | item.user == "" ? "-UserError-" : item.user))
+                    UserListDownloadBySessions[item.user == null | item.user == "" ? "-UserError-" : item.user] += item.download == null || item.download == "" ? 0 : (ulong.Parse(item.download) / 1048576);
                 else
-                    UserListDownloadBySessions.Add(item.user==null|item.user==""?"-UserError-":item.user, item.download == null || item.download == "" ? 0 : (ulong.Parse(item.download) / 1048576));
+                    UserListDownloadBySessions.Add(item.user == null | item.user == "" ? "-UserError-" : item.user, item.download == null || item.download == "" ? 0 : (ulong.Parse(item.download) / 1048576));
                 //---------------
-                if (UserListUploadBySessions.ContainsKey(item.user==null|item.user==""?"-UserError-":item.user))
-                    UserListUploadBySessions[item.user==null|item.user==""?"-UserError-":item.user] += item.upload == null || item.upload == "" ? 0 : (ulong.Parse(item.upload) / 1048576);
+                if (UserListUploadBySessions.ContainsKey(item.user == null | item.user == "" ? "-UserError-" : item.user))
+                    UserListUploadBySessions[item.user == null | item.user == "" ? "-UserError-" : item.user] += item.upload == null || item.upload == "" ? 0 : (ulong.Parse(item.upload) / 1048576);
                 else
-                    UserListUploadBySessions.Add(item.user==null|item.user==""?"-UserError-":item.user, item.upload == null || item.upload == "" ? 0 : (ulong.Parse(item.upload) / 1048576));
+                    UserListUploadBySessions.Add(item.user == null | item.user == "" ? "-UserError-" : item.user, item.upload == null || item.upload == "" ? 0 : (ulong.Parse(item.upload) / 1048576));
 
                 if (PersianDate.ConvertDate.ToEn(item.from_time.Split(' ')[0]).AddDays(7) >= DateTime.Now)
                 {
-                    if (UserListDownloadBySessions7.ContainsKey(item.user==null|item.user==""?"-UserError-":item.user))
-                        UserListDownloadBySessions7[item.user==null|item.user==""?"-UserError-":item.user] += item.download == null || item.download == "" ? 0 : (ulong.Parse(item.download) / 1048576);
+                    if (UserListDownloadBySessions7.ContainsKey(item.user == null | item.user == "" ? "-UserError-" : item.user))
+                        UserListDownloadBySessions7[item.user == null | item.user == "" ? "-UserError-" : item.user] += item.download == null || item.download == "" ? 0 : (ulong.Parse(item.download) / 1048576);
                     else
-                        UserListDownloadBySessions7.Add(item.user==null|item.user==""?"-UserError-":item.user, item.download == null || item.download == "" ? 0 : (ulong.Parse(item.download) / 1048576));
+                        UserListDownloadBySessions7.Add(item.user == null | item.user == "" ? "-UserError-" : item.user, item.download == null || item.download == "" ? 0 : (ulong.Parse(item.download) / 1048576));
                     //---------------
-                    if (UserListUploadBySessions7.ContainsKey(item.user==null|item.user==""?"-UserError-":item.user))
-                        UserListUploadBySessions7[item.user==null|item.user==""?"-UserError-":item.user] += item.upload == null || item.upload == "" ? 0 : (ulong.Parse(item.upload) / 1048576);
+                    if (UserListUploadBySessions7.ContainsKey(item.user == null | item.user == "" ? "-UserError-" : item.user))
+                        UserListUploadBySessions7[item.user == null | item.user == "" ? "-UserError-" : item.user] += item.upload == null || item.upload == "" ? 0 : (ulong.Parse(item.upload) / 1048576);
                     else
-                        UserListUploadBySessions7.Add(item.user==null|item.user==""?"-UserError-":item.user, item.upload == null || item.upload == "" ? 0 : (ulong.Parse(item.upload) / 1048576));
+                        UserListUploadBySessions7.Add(item.user == null | item.user == "" ? "-UserError-" : item.user, item.upload == null || item.upload == "" ? 0 : (ulong.Parse(item.upload) / 1048576));
                 }
                 if (PersianDate.ConvertDate.ToEn(item.from_time.Split(' ')[0]).AddDays(30) >= DateTime.Now)
                 {
-                    if (UserListDownloadBySessions30.ContainsKey(item.user==null|item.user==""?"-UserError-":item.user))
-                        UserListDownloadBySessions30[item.user==null|item.user==""?"-UserError-":item.user] += item.download == null || item.download == "" ? 0 : (ulong.Parse(item.download) / 1048576);
+                    if (UserListDownloadBySessions30.ContainsKey(item.user == null | item.user == "" ? "-UserError-" : item.user))
+                        UserListDownloadBySessions30[item.user == null | item.user == "" ? "-UserError-" : item.user] += item.download == null || item.download == "" ? 0 : (ulong.Parse(item.download) / 1048576);
                     else
-                        UserListDownloadBySessions30.Add(item.user==null|item.user==""?"-UserError-":item.user, item.download == null || item.download == "" ? 0 : (ulong.Parse(item.download) / 1048576));
+                        UserListDownloadBySessions30.Add(item.user == null | item.user == "" ? "-UserError-" : item.user, item.download == null || item.download == "" ? 0 : (ulong.Parse(item.download) / 1048576));
                     //---------------
-                    if (UserListUploadBySessions30.ContainsKey(item.user==null|item.user==""?"-UserError-":item.user))
-                        UserListUploadBySessions30[item.user==null|item.user==""?"-UserError-":item.user] += item.upload == null || item.upload == "" ? 0 : (ulong.Parse(item.upload) / 1048576);
+                    if (UserListUploadBySessions30.ContainsKey(item.user == null | item.user == "" ? "-UserError-" : item.user))
+                        UserListUploadBySessions30[item.user == null | item.user == "" ? "-UserError-" : item.user] += item.upload == null || item.upload == "" ? 0 : (ulong.Parse(item.upload) / 1048576);
                     else
-                        UserListUploadBySessions30.Add(item.user==null|item.user==""?"-UserError-":item.user, item.upload == null || item.upload == "" ? 0 : (ulong.Parse(item.upload) / 1048576));
+                        UserListUploadBySessions30.Add(item.user == null | item.user == "" ? "-UserError-" : item.user, item.upload == null || item.upload == "" ? 0 : (ulong.Parse(item.upload) / 1048576));
                 }
             }
 
             foreach (var item in UsermanagerUsers)
             {
-                UserListDownloadByUsers.Add(item.username==null|item.username==""?"-UserError-":item.username, item.download_used == null || item.download_used == "" ? 0 : ulong.Parse(item.download_used) / 1048576);
-                UserListUploadByUsers.Add(item.username==null|item.username==""?"-UserError-":item.username, item.upload_used == null || item.upload_used == "" ? 0 : ulong.Parse(item.upload_used) / 1048576);
+                UserListDownloadByUsers.Add(item.username == null | item.username == "" ? "-UserError-" : item.username, item.download_used == null || item.download_used == "" ? 0 : ulong.Parse(item.download_used) / 1048576);
+                UserListUploadByUsers.Add(item.username == null | item.username == "" ? "-UserError-" : item.username, item.upload_used == null || item.upload_used == "" ? 0 : ulong.Parse(item.upload_used) / 1048576);
             }
 
 
@@ -185,46 +189,46 @@ namespace Netotik.Web.Areas.Company.Controllers
             {
                 item.from_time = Infrastructure.EnglishConvertDate.ConvertToFa(item.from_time.Split(' ')[0], "d") + " " + item.from_time.Split(' ')[1];
 
-                if (UserListDownloadBySessions.ContainsKey(item.user==null|item.user==""?"-UserError-":item.user))
-                    UserListDownloadBySessions[item.user==null|item.user==""?"-UserError-":item.user==null|item.user==null|item.user==""?"-UserError-":item.user==""?"-UserError-":item.user==null|item.user==""?"-UserError-":item.user] += item.download == null || item.download == "" ? 0 : (ulong.Parse(item.download) / 1048576);
+                if (UserListDownloadBySessions.ContainsKey(item.user == null | item.user == "" ? "-UserError-" : item.user))
+                    UserListDownloadBySessions[item.user == null | item.user == "" ? "-UserError-" : item.user == null | item.user == null | item.user == "" ? "-UserError-" : item.user == "" ? "-UserError-" : item.user == null | item.user == "" ? "-UserError-" : item.user] += item.download == null || item.download == "" ? 0 : (ulong.Parse(item.download) / 1048576);
                 else
-                    UserListDownloadBySessions.Add(item.user==null|item.user==""?"-UserError-":item.user == null | item.user==null|item.user==""?"-UserError-":item.user == "" ? "-UserError-" : item.user==null|item.user==""?"-UserError-":item.user, item.download == null || item.download == "" ? 0 : (ulong.Parse(item.download) / 1048576));
+                    UserListDownloadBySessions.Add(item.user == null | item.user == "" ? "-UserError-" : item.user == null | item.user == null | item.user == "" ? "-UserError-" : item.user == "" ? "-UserError-" : item.user == null | item.user == "" ? "-UserError-" : item.user, item.download == null || item.download == "" ? 0 : (ulong.Parse(item.download) / 1048576));
                 //---------------
-                if (UserListUploadBySessions.ContainsKey(item.user==null|item.user==""?"-UserError-":item.user))
-                    UserListUploadBySessions[item.user==null|item.user==""?"-UserError-":item.user] += item.upload == null || item.upload == "" ? 0 : (ulong.Parse(item.upload) / 1048576);
+                if (UserListUploadBySessions.ContainsKey(item.user == null | item.user == "" ? "-UserError-" : item.user))
+                    UserListUploadBySessions[item.user == null | item.user == "" ? "-UserError-" : item.user] += item.upload == null || item.upload == "" ? 0 : (ulong.Parse(item.upload) / 1048576);
                 else
-                    UserListUploadBySessions.Add(item.user==null|item.user==""?"-UserError-":item.user, item.upload == null || item.upload == "" ? 0 : (ulong.Parse(item.upload) / 1048576));
+                    UserListUploadBySessions.Add(item.user == null | item.user == "" ? "-UserError-" : item.user, item.upload == null || item.upload == "" ? 0 : (ulong.Parse(item.upload) / 1048576));
 
                 if (PersianDate.ConvertDate.ToEn(item.from_time.Split(' ')[0]).AddDays(7) >= DateTime.Now)
                 {
-                    if (UserListDownloadBySessions7.ContainsKey(item.user==null|item.user==""?"-UserError-":item.user))
-                        UserListDownloadBySessions7[item.user==null|item.user==""?"-UserError-":item.user] += item.download == null || item.download == "" ? 0 : (ulong.Parse(item.download) / 1048576);
+                    if (UserListDownloadBySessions7.ContainsKey(item.user == null | item.user == "" ? "-UserError-" : item.user))
+                        UserListDownloadBySessions7[item.user == null | item.user == "" ? "-UserError-" : item.user] += item.download == null || item.download == "" ? 0 : (ulong.Parse(item.download) / 1048576);
                     else
-                        UserListDownloadBySessions7.Add(item.user==null|item.user==""?"-UserError-":item.user, item.download == null || item.download == "" ? 0 : (ulong.Parse(item.download) / 1048576));
+                        UserListDownloadBySessions7.Add(item.user == null | item.user == "" ? "-UserError-" : item.user, item.download == null || item.download == "" ? 0 : (ulong.Parse(item.download) / 1048576));
                     //---------------
-                    if (UserListUploadBySessions7.ContainsKey(item.user==null|item.user==""?"-UserError-":item.user))
-                        UserListUploadBySessions7[item.user==null|item.user==""?"-UserError-":item.user] += item.upload == null || item.upload == "" ? 0 : (ulong.Parse(item.upload) / 1048576);
+                    if (UserListUploadBySessions7.ContainsKey(item.user == null | item.user == "" ? "-UserError-" : item.user))
+                        UserListUploadBySessions7[item.user == null | item.user == "" ? "-UserError-" : item.user] += item.upload == null || item.upload == "" ? 0 : (ulong.Parse(item.upload) / 1048576);
                     else
-                        UserListUploadBySessions7.Add(item.user==null|item.user==""?"-UserError-":item.user, item.upload == null || item.upload == "" ? 0 : (ulong.Parse(item.upload) / 1048576));
+                        UserListUploadBySessions7.Add(item.user == null | item.user == "" ? "-UserError-" : item.user, item.upload == null || item.upload == "" ? 0 : (ulong.Parse(item.upload) / 1048576));
                 }
                 if (PersianDate.ConvertDate.ToEn(item.from_time.Split(' ')[0]).AddDays(30) >= DateTime.Now)
                 {
-                    if (UserListDownloadBySessions30.ContainsKey(item.user==null|item.user==""?"-UserError-":item.user))
-                        UserListDownloadBySessions30[item.user==null|item.user==""?"-UserError-":item.user] += item.download == null || item.download == "" ? 0 : (ulong.Parse(item.download) / 1048576);
+                    if (UserListDownloadBySessions30.ContainsKey(item.user == null | item.user == "" ? "-UserError-" : item.user))
+                        UserListDownloadBySessions30[item.user == null | item.user == "" ? "-UserError-" : item.user] += item.download == null || item.download == "" ? 0 : (ulong.Parse(item.download) / 1048576);
                     else
-                        UserListDownloadBySessions30.Add(item.user==null|item.user==""?"-UserError-":item.user, item.download == null || item.download == "" ? 0 : (ulong.Parse(item.download) / 1048576));
+                        UserListDownloadBySessions30.Add(item.user == null | item.user == "" ? "-UserError-" : item.user, item.download == null || item.download == "" ? 0 : (ulong.Parse(item.download) / 1048576));
                     //---------------
-                    if (UserListUploadBySessions30.ContainsKey(item.user==null|item.user==""?"-UserError-":item.user))
-                        UserListUploadBySessions30[item.user==null|item.user==""?"-UserError-":item.user] += item.upload == null || item.upload == "" ? 0 : (ulong.Parse(item.upload) / 1048576);
+                    if (UserListUploadBySessions30.ContainsKey(item.user == null | item.user == "" ? "-UserError-" : item.user))
+                        UserListUploadBySessions30[item.user == null | item.user == "" ? "-UserError-" : item.user] += item.upload == null || item.upload == "" ? 0 : (ulong.Parse(item.upload) / 1048576);
                     else
-                        UserListUploadBySessions30.Add(item.user==null|item.user==""?"-UserError-":item.user, item.upload == null || item.upload == "" ? 0 : (ulong.Parse(item.upload) / 1048576));
+                        UserListUploadBySessions30.Add(item.user == null | item.user == "" ? "-UserError-" : item.user, item.upload == null || item.upload == "" ? 0 : (ulong.Parse(item.upload) / 1048576));
                 }
             }
 
             foreach (var item in UsermanagerUsers)
             {
-                UserListDownloadByUsers.Add(item.username==null|item.username==""?"-UserError-":item.username, item.download_used == null || item.download_used == "" ? 0 : ulong.Parse(item.download_used) / 1048576);
-                UserListUploadByUsers.Add(item.username==null|item.username==""?"-UserError-":item.username, item.upload_used == null || item.upload_used == "" ? 0 : ulong.Parse(item.upload_used) / 1048576);
+                UserListDownloadByUsers.Add(item.username == null | item.username == "" ? "-UserError-" : item.username, item.download_used == null || item.download_used == "" ? 0 : ulong.Parse(item.download_used) / 1048576);
+                UserListUploadByUsers.Add(item.username == null | item.username == "" ? "-UserError-" : item.username, item.upload_used == null || item.upload_used == "" ? 0 : ulong.Parse(item.upload_used) / 1048576);
             }
 
             ViewBag.UserListDownloadBySessions = UserListDownloadBySessions.OrderBy(pair => pair.Value).Take(10);
@@ -326,7 +330,7 @@ namespace Netotik.Web.Areas.Company.Controllers
                 item.download = item.download == null || item.download == "" ? "" : (ulong.Parse(item.download) / 1048576).ToString();
                 item.upload = item.upload == null || item.upload == "" ? "" : (ulong.Parse(item.upload) / 1048576).ToString();
                 item.uptime = item.uptime.Replace("d", Captions.Day).Replace("w", Captions.Week).Replace("h", Captions.Hour).Replace("m", Captions.Minute).Replace("s", Captions.Secend).Replace("never", Captions.NoConnection);
-                item.user = item.user==null|item.user==""?"-UserError-":item.user == null || item.user==null|item.user==""?"-UserError-":item.user == "" ? "-UserError-" : item.user==null|item.user==""?"-UserError-":item.user;
+                item.user = item.user == null | item.user == "" ? "-UserError-" : item.user == null || item.user == null | item.user == "" ? "-UserError-" : item.user == "" ? "-UserError-" : item.user == null | item.user == "" ? "-UserError-" : item.user;
                 NewSessions.Add(item);
             }
             ViewBag.Model = NewSessions;
@@ -355,5 +359,103 @@ namespace Netotik.Web.Areas.Company.Controllers
             return View();
         }
 
+        public virtual ActionResult WebSitesLogs()
+        {
+
+            //-------------------------------
+
+            if (UserLogined.UserCompany.WebsitesLogs)
+            {
+                this.MessageError(Captions.Error, "شما مجوز لازم را ندارید");
+                return RedirectToAction(MVC.Company.Home.ActionNames.Index, MVC.Company.Home.Name, new { area = MVC.Company.Name });
+            }
+            //-------------------------------
+            var Logs = _usercompanylogclientservice.GetList(UserLogined.Id);
+            var Users = _mikrotikServices.Usermanager_GetAllUsersSessions(UserLogined.UserCompany.R_Host, UserLogined.UserCompany.R_Port, UserLogined.UserCompany.R_User, UserLogined.UserCompany.R_Password);
+            var UsersLogs = new List<UserWebsiteLogsWithSessionsModel>();
+            foreach (var user in Users)
+            {
+                int month = GetMonth(user.from_time.Split(' ')[0].Split('/')[0]);
+                int day = Int32.Parse(user.from_time.Split(' ')[0].Split('/')[1]);
+                int year = Int32.Parse(user.from_time.Split(' ')[0].Split('/')[2]);
+                int hour = Int32.Parse(user.from_time.Split(' ')[1].Split(':')[0]);
+                int min = Int32.Parse(user.from_time.Split(' ')[1].Split(':')[1]);
+                int sec = Int32.Parse(user.from_time.Split(' ')[1].Split(':')[2]);
+                DateTime UserFromTime = new DateTime(year, month, day, hour, min, sec);
+                month = GetMonth(user.till_time.Split(' ')[0].Split('/')[0]);
+                day = Int32.Parse(user.till_time.Split(' ')[0].Split('/')[1]);
+                year = Int32.Parse(user.till_time.Split(' ')[0].Split('/')[2]);
+                hour = Int32.Parse(user.till_time.Split(' ')[1].Split(':')[0]);
+                min = Int32.Parse(user.till_time.Split(' ')[1].Split(':')[1]);
+                sec = Int32.Parse(user.till_time.Split(' ')[1].Split(':')[2]);
+                DateTime UserTillTime = new DateTime(year, month, day, hour, min, sec);
+
+                UsersLogs.AddRange(Logs.Where(x =>
+                x.MikrotikCreateDate < UserTillTime &&
+                x.MikrotikCreateDate > UserFromTime &&
+                x.SrcIp.Split(':')[0] == user.user_ip
+                ).Select(x => new UserWebsiteLogsWithSessionsModel
+                {
+                    acct_session_id = user.acct_session_id,
+                    active = user.active,
+                    calling_station_id = user.calling_station_id,
+                    customer = user.customer,
+                    download = user.download,
+                    DstIp = x.DstIp,
+                    from_time = UserFromTime.ToString(),
+                    till_time = UserTillTime.ToString(),
+                    host_ip = user.host_ip,
+                    Method = x.Method,
+                    MikrotikCreateDate = x.MikrotikCreateDate,
+                    user = user.user,
+                    nas_port = user.nas_port,
+                    nas_port_id = user.nas_port_id,
+                    nas_port_type = user.nas_port_type,
+                    Protocol = x.Protocol,
+                    SrcIp = x.SrcIp,
+                    SrcMac = x.SrcMac,
+                    status = user.status,
+                    terminate_cause = user.terminate_cause,
+                    upload = user.upload,
+                    uptime = user.uptime,
+                    Url = x.Url,
+                    user_ip = user.user_ip
+                }).ToList());
+            }
+
+            return View(UsersLogs);
+        }
+        private static int GetMonth(string monthName)
+        {
+            switch (monthName)
+            {
+                case "jan":
+                    return 1;
+                case "feb":
+                    return 2;
+                case "mar":
+                    return 3;
+                case "apr":
+                    return 4;
+                case "may":
+                    return 5;
+                case "jun":
+                    return 6;
+                case "jul":
+                    return 7;
+                case "aug":
+                    return 8;
+                case "sep":
+                    return 9;
+                case "oct":
+                    return 10;
+                case "nov":
+                    return 11;
+                case "dec":
+                    return 12;
+
+            }
+            return 0;
+        }
     }
 }

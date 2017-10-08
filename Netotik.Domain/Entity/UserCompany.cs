@@ -28,7 +28,21 @@ namespace Netotik.Domain.Entity
         public bool cloud { get; set; }
         public bool WebsitesLogs { get; set; }
 
+
         public long SmsCharge { get; set; }
+        public bool RegisterWithSms { get; set; }
+        public string RegisterWithSmsCode { get; set; }
+        public bool SmsAdminChangeUserPassword { get; set; }
+        public bool SmsUserhangeUserPassword { get; set; }
+        public bool SmsAdminChangeAdminPassword { get; set; }
+        public bool SmsAdminLogins { get; set; }
+        public bool RegisterFormSms { get; set; }
+        public bool SmsUserAfterCreateWithAdmin { get; set; }
+        public bool SmsActive { get; set; }
+        public bool SmsUserAfterResetCounter { get; set; }
+        public bool SmsUserAfterDelete { get; set; }
+        public bool SmsUserAfterChangePackage { get; set; }
+
 
         public long UserResellerId { get; set; }
         public virtual UserReseller UserReseller { get; set; }

@@ -177,5 +177,16 @@ namespace Netotik.Web.Controllers
             return password.IsSafePasword() ? Json(true) : Json(false);
         }
         #endregion
+
+
+        #region SmsCode
+        [HttpPost]
+        [AllowAnonymous]
+        public virtual JsonResult SmsCodeIsValid(string RegisterWithSmsCode)
+        {
+            var check = _applicationUserManager.SmsCodeIsValid(RegisterWithSmsCode);
+            return check ? Json(false) : Json(true);
+        }
+        #endregion
     }
 }

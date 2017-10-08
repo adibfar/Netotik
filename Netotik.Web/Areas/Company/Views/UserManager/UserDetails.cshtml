@@ -1,5 +1,9 @@
 ﻿@model Netotik.ViewModels.Identity.UserClient.UserModel
     @using Netotik.Resources;
+@{ 
+    var counter = 1;
+    var counter2 = 1;
+}
 <section class="flexbox-container">
     <div class="row">
         <div class="col-md-12">
@@ -52,6 +56,9 @@
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" id="linkIcon12-tab1" data-toggle="tab" href="#time" aria-controls="linkIcon12" aria-expanded="false"><i class="icon-ios-time"></i>@Captions.Time</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" id="linkIcon12-tab1" data-toggle="tab" href="#WebsiteLog" aria-controls="linkIcon12" aria-expanded="false"><i class="icon-ios-time"></i>سایت های بازدید شده</a>
                             </li>
                         </ul>
                         <div class="tab-content px-1 pt-1" style="min-height:260px!important">
@@ -219,7 +226,7 @@
                                             @foreach (var item in ViewBag.session)
                                             {
                                                 <tr>
-                                                    <td></td>
+                                                    <td>@(counter++)</td>
                                                     <td>@item.user</td>
                                                     <td data-toggle="tooltip" data-original-title="<b>@item.from_timeT</b>" data-html="true">@item.from_time</td>
                                                     <td data-toggle="tooltip" data-original-title="<b>@item.till_timeT</b>" data-html="true">@item.till_time</td>
@@ -385,6 +392,74 @@
                                     </div>
                                 </div>
                             </div>
+                            
+                            <div class="tab-pane fade" id="WebsiteLog" role="tabpanel" aria-labelledby="linkIconOpt11-tab1" aria-expanded="false">
+                               <table class="table table-striped table-bordered table-hover" id="grid2">
+                                    <thead>
+                                        <tr>
+                                            <th>#</th>
+                                            <th>@Captions.UserName</th>
+                                            <th>MikrotikCreateDate</th>
+                                            <th>Url</th>
+                                            <th>DstIp</th>
+                                            <th>Method</th>
+                                            <th>Protocol</th>
+                                            <th>SrcIp</th>
+                                            <th>SrcMac</th>
+
+
+
+                                            <th>MAC</th>
+                                            <th>Host IP</th>
+                                            <th>User IP</th>
+                                            <th>Customer</th>
+                                            <th>Nas Port</th>
+                                            <th>Nas Port Type</th>
+                                            <th>Nas Port ID</th>
+                                            <th>Acct Session Id</th>
+                                            <th>From Time</th>
+                                            <th>Till Time</th>
+                                            <th>Terminate Cause</th>
+                                            <th>Uptime</th>
+                                            <th>Download</th>
+                                            <th>Upload</th>
+                                            <th>Active</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+
+                                        @foreach (var item in ViewBag.WebsiteLogs)
+            {
+                                            <tr>
+                                                <td>@(counter2++)</td>
+                                                <td>@item.user</td>
+                                                <td>@item.MikrotikCreateDate</td>
+                                                <td>@item.Url</td>
+                                                <td>@item.DstIp</td>
+                                                <td>@item.Method</td>
+                                                <td>@item.Protocol</td>
+                                                <td>@item.SrcIp</td>
+                                                <td>@item.SrcMac</td>
+                                                <td>@item.calling_station_id</td>
+                                                <td>@item.host_ip</td>
+                                                <td>@item.user_ip</td>
+                                                <td>@item.customer</td>
+                                                <td>@item.nas_port</td>
+                                                <td>@item.nas_port_type</td>
+                                                <td>@item.nas_port_id</td>
+                                                <td>@item.acct_session_id</td>
+                                                <td>@item.from_time</td>
+                                                <td>@item.till_time</td>
+                                                <td>@item.terminate_cause</td>
+                                                <td>@item.uptime</td>
+                                                <td>@item.download</td>
+                                                <td>@item.upload</td>
+                                                <td>@item.active</td>
+                                            </tr>
+                                        }
+                                    </tbody>
+                                </table>
+                            </div>
                         </div>
                         
                     </div>
@@ -465,6 +540,59 @@
                     'copy', 'excel', 'pdf', 'pageLength', 'colvis'
                 ]
             });
+            $(document).ready(function () {
+                var table = $('#grid2').dataTable({
+                    "iDisplayLength": 10,
+                    "bProcessing": true,
+                    "bStateSave": true,
+                    "bFilter": true,
+                    "columnDefs": [
+                   {
+                       "targets": [7],
+                       "visible": false
+                   },
+                   {
+                       "targets": [11],
+                       "visible": false
+                   },
+                   {
+                       "targets": [8],
+                       "visible": false
+                   },
+                   {
+                       "targets": [9],
+                       "visible": false
+                   },
+                   {
+                       "targets": [10],
+                       "visible": false
+                   },
+                   {
+                       "targets": [12],
+                       "visible": false
+                   },
+                   {
+                       "targets": [13],
+                       "visible": false
+                   },
+                   {
+                       "targets": [14],
+                       "visible": false
+                   },
+                   {
+                       "targets": [15],
+                       "visible": false
+                   }
+                    ],
+                    dom: 'Bfrtip',
+                    lengthMenu: [
+                                 [10, 25, 50, -1],
+                                 ['10', '25', '50', 'All']
+                    ],
+                    buttons: [
+                        'copy', 'excel', 'pdf', 'pageLength', 'colvis'
+                    ]
+                });
             changeval('downloadlimitB', 'downloadlimit');
             changeval('uploadlimitB', 'uploadlimit');
             changeval('downloaduploadlimitB', 'downloaduploadlimit');

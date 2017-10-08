@@ -130,6 +130,12 @@ namespace Netotik.Web.Controllers
         }
         [NonAction]
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public virtual System.Web.Mvc.JsonResult SmsCodeIsValid()
+        {
+            return new T4MVC_System_Web_Mvc_JsonResult(Area, Name, ActionNames.SmsCodeIsValid);
+        }
+        [NonAction]
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public virtual System.Web.Mvc.ActionResult RedirectToLocal()
         {
             return new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.RedirectToLocal);
@@ -162,6 +168,7 @@ namespace Netotik.Web.Controllers
             public readonly string IsResellerCodeAvailable = "IsResellerCodeAvailable";
             public readonly string IsCompanyCodeAvailable = "IsCompanyCodeAvailable";
             public readonly string CheckPassword = "CheckPassword";
+            public readonly string SmsCodeIsValid = "SmsCodeIsValid";
             public readonly string RedirectToLocal = "RedirectToLocal";
         }
 
@@ -180,6 +187,7 @@ namespace Netotik.Web.Controllers
             public const string IsResellerCodeAvailable = "IsResellerCodeAvailable";
             public const string IsCompanyCodeAvailable = "IsCompanyCodeAvailable";
             public const string CheckPassword = "CheckPassword";
+            public const string SmsCodeIsValid = "SmsCodeIsValid";
             public const string RedirectToLocal = "RedirectToLocal";
         }
 
@@ -293,6 +301,14 @@ namespace Netotik.Web.Controllers
         public class ActionParamsClass_CheckPassword
         {
             public readonly string password = "password";
+        }
+        static readonly ActionParamsClass_SmsCodeIsValid s_params_SmsCodeIsValid = new ActionParamsClass_SmsCodeIsValid();
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public ActionParamsClass_SmsCodeIsValid SmsCodeIsValidParams { get { return s_params_SmsCodeIsValid; } }
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public class ActionParamsClass_SmsCodeIsValid
+        {
+            public readonly string RegisterWithSmsCode = "RegisterWithSmsCode";
         }
         static readonly ActionParamsClass_RedirectToLocal s_params_RedirectToLocal = new ActionParamsClass_RedirectToLocal();
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -476,6 +492,18 @@ namespace Netotik.Web.Controllers
             var callInfo = new T4MVC_System_Web_Mvc_JsonResult(Area, Name, ActionNames.CheckPassword);
             ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "password", password);
             CheckPasswordOverride(callInfo, password);
+            return callInfo;
+        }
+
+        [NonAction]
+        partial void SmsCodeIsValidOverride(T4MVC_System_Web_Mvc_JsonResult callInfo, string RegisterWithSmsCode);
+
+        [NonAction]
+        public override System.Web.Mvc.JsonResult SmsCodeIsValid(string RegisterWithSmsCode)
+        {
+            var callInfo = new T4MVC_System_Web_Mvc_JsonResult(Area, Name, ActionNames.SmsCodeIsValid);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "RegisterWithSmsCode", RegisterWithSmsCode);
+            SmsCodeIsValidOverride(callInfo, RegisterWithSmsCode);
             return callInfo;
         }
 

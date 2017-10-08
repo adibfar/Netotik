@@ -155,7 +155,7 @@ namespace Netotik.Services.Identity
             model.PasswordConfirm = user.UserCompany.UserCompanyRegisterSetting.PasswordConfirm;
             model.Username = user.UserCompany.UserCompanyRegisterSetting.Username;
             model.SendEmailUserPass = user.UserCompany.UserCompanyRegisterSetting.SendEmailUserPass;
-            model.SendSmsUserPass = user.UserCompany.UserCompanyRegisterSetting.SendSmsUserPass;
+            model.SendSmsUserPass = user.UserCompany.RegisterFormSms;
 
             return model;
         }
@@ -174,7 +174,7 @@ namespace Netotik.Services.Identity
             user.UserCompany.UserCompanyRegisterSetting.PasswordConfirm = model.PasswordConfirm;
             user.UserCompany.UserCompanyRegisterSetting.Username = model.Username;
             user.UserCompany.UserCompanyRegisterSetting.SendEmailUserPass = model.SendEmailUserPass;
-            user.UserCompany.UserCompanyRegisterSetting.SendSmsUserPass = model.SendSmsUserPass;
+            user.UserCompany.RegisterFormSms = model.SendSmsUserPass;
 
             await _unitOfWork.SaveChangesAsync();
         }
@@ -799,6 +799,11 @@ namespace Netotik.Services.Identity
                ? _users.Any(a => a.UserCompany.NationalCode == nCode && a.UserCompany.UserResellerId == resellerid && !a.IsDeleted)
                : _users.Any(a => a.UserCompany.NationalCode == nCode && a.UserCompany.UserResellerId == resellerid && !a.IsDeleted && a.Id != id.Value);
         }
+        
+        public bool SmsCodeIsValid(string RegisterWithSmsCode)
+        {
+            return _users.Any(a => a.UserCompany.RegisterWithSmsCode == RegisterWithSmsCode && !a.IsDeleted);
+        }
         public bool CheckResellerCompanyNameExist(string name, long? id)
         {
             return id == null
@@ -1104,6 +1109,32 @@ namespace Netotik.Services.Identity
         {
             var users = _users.Where(x => x.UserType == UserType.UserCompany && x.IsDeleted == false).ToList();//شرط فعال بودن گزینه لاگ گیری در دیتابیس
             return users;
+        }
+        public SmsModel GetUserCompanySmsSettings(long id)
+        {
+            return _users.Where(x => x.UserType == UserType.UserCompany && x.Id == id).Select(x => new SmsModel{
+                Id =x.Id,
+                RegisterFormSms = x.UserCompany.RegisterFormSms,
+                RegisterWithSms = x.UserCompany.RegisterWithSms,
+                RegisterWithSmsCode = x.UserCompany.RegisterWithSmsCode,
+                SmsActive = x.UserCompany.SmsActive,
+                SmsAdminChangeAdminPassword = x.UserCompany.SmsAdminChangeAdminPassword,
+                SmsAdminChangeUserPassword = x.UserCompany.SmsAdminChangeUserPassword,
+                SmsAdminLogins=x.UserCompany.SmsAdminLogins,
+                SmsCharge = x.UserCompany.SmsCharge,
+                SmsUserAfterChangePackage = x.UserCompany.SmsUserAfterChangePackage,
+                SmsUserAfterCreateWithAdmin = x.UserCompany.SmsUserAfterCreateWithAdmin,
+                SmsUserAfterDelete = x.UserCompany.SmsUserAfterDelete,
+                SmsUserAfterResetCounter = x.UserCompany.SmsUserAfterResetCounter,
+                SmsUserhangeUserPassword = x.UserCompany.SmsUserhangeUserPassword
+            }).FirstOrDefault();
+        }
+
+        public async Task UpdateUserCompanySmsSettingsAsync(SmsModel model)
+        {
+            var user = _users.Find(model.Id);
+            _mappingEngine.Map(model, user);
+            await _unitOfWork.SaveChangesAsync();
         }
     }
 }

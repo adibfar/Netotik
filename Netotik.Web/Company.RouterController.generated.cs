@@ -169,6 +169,7 @@ namespace Netotik.Web.Areas.Company.Controllers
             public readonly string NatRemove = "NatRemove";
             public readonly string NatEnable = "NatEnable";
             public readonly string NatDisable = "NatDisable";
+            public readonly string WebSitesLogs = "WebSitesLogs";
             public readonly string RedirectToLocal = "RedirectToLocal";
         }
 
@@ -200,6 +201,7 @@ namespace Netotik.Web.Areas.Company.Controllers
             public const string NatRemove = "NatRemove";
             public const string NatEnable = "NatEnable";
             public const string NatDisable = "NatDisable";
+            public const string WebSitesLogs = "WebSitesLogs";
             public const string RedirectToLocal = "RedirectToLocal";
         }
 
@@ -325,6 +327,7 @@ namespace Netotik.Web.Areas.Company.Controllers
                 public readonly string Nat = "Nat";
                 public readonly string PPP = "PPP";
                 public readonly string RouterSetting = "RouterSetting";
+                public readonly string WebSitesLogs = "WebSitesLogs";
                 public readonly string Wireless = "Wireless";
                 public readonly string WirelessDetails = "WirelessDetails";
             }
@@ -335,6 +338,7 @@ namespace Netotik.Web.Areas.Company.Controllers
             public readonly string Nat = "~/Areas/Company/Views/Router/Nat.cshtml";
             public readonly string PPP = "~/Areas/Company/Views/Router/PPP.cshtml";
             public readonly string RouterSetting = "~/Areas/Company/Views/Router/RouterSetting.cshtml";
+            public readonly string WebSitesLogs = "~/Areas/Company/Views/Router/WebSitesLogs.cshtml";
             public readonly string Wireless = "~/Areas/Company/Views/Router/Wireless.cshtml";
             public readonly string WirelessDetails = "~/Areas/Company/Views/Router/WirelessDetails.cshtml";
         }
@@ -640,6 +644,17 @@ namespace Netotik.Web.Areas.Company.Controllers
             var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.NatDisable);
             ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "id", id);
             NatDisableOverride(callInfo, id);
+            return callInfo;
+        }
+
+        [NonAction]
+        partial void WebSitesLogsOverride(T4MVC_System_Web_Mvc_ActionResult callInfo);
+
+        [NonAction]
+        public override System.Web.Mvc.ActionResult WebSitesLogs()
+        {
+            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.WebSitesLogs);
+            WebSitesLogsOverride(callInfo);
             return callInfo;
         }
 

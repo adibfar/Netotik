@@ -6,6 +6,7 @@ using Microsoft.AspNet.Identity;
 using Microsoft.Owin.Security.Cookies;
 using Netotik.Domain.Entity;
 using Netotik.Common.DataTables;
+using Netotik.ViewModels.Identity.UserCompany;
 
 namespace Netotik.Services.Identity
 {
@@ -330,6 +331,8 @@ namespace Netotik.Services.Identity
         /// <param name="userId">user id</param><param name="roles">list of role names</param>
         /// <returns/>
         Task<IdentityResult> AddToRolesAsync(long userId, params string[] roles);
+        SmsModel GetUserCompanySmsSettings(long id);
+        Task UpdateUserCompanySmsSettingsAsync(SmsModel model);
 
         /// <summary>
         /// Remove user from multiple roles
@@ -613,6 +616,7 @@ namespace Netotik.Services.Identity
         bool CheckResellerNationalCodeExist(string nCode, long? id);
         bool CheckCompanyNationalCodeExist(string nCode, long? id, long? resellerid);
         bool CheckResellerCompanyNameExist(string name, long? id);
+        bool SmsCodeIsValid(string RegisterWithSmsCode);
         bool CheckCompanyCompanyNameExist(string name, long? id, long? resellerid);
         bool CheckGooglePlusIdExist(string googlePlusId, long? id);
         bool CheckFacebookIdExist(string faceBookId, long? id);

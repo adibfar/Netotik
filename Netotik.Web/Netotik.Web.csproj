@@ -462,7 +462,6 @@
     </Compile>
     <Compile Include="Controllers\BlogController.cs" />
     <Compile Include="Controllers\ContactUsController.cs" />
-    <Compile Include="Controllers\WebsitesLogsController.cs" />
     <Compile Include="Controllers\RemoteController.cs" />
     <Compile Include="Controllers\SitemapController.cs" />
     <Compile Include="Controllers\RssController.cs" />
@@ -537,9 +536,6 @@
       <DependentUpon>T4MVC.tt</DependentUpon>
     </Compile>
     <Compile Include="UserMailerController.generated.cs">
-      <DependentUpon>T4MVC.tt</DependentUpon>
-    </Compile>
-    <Compile Include="WebsitesLogsController.generated.cs">
       <DependentUpon>T4MVC.tt</DependentUpon>
     </Compile>
     <Compile Include="WebTasks\WebsitesLogsTask.cs" />
@@ -3666,6 +3662,9 @@
     <Content Include="Areas\Admin\Views\PaymentType\_Table.cshtml" />
     <Content Include="Areas\Admin\Views\PaymentType\Index.cshtml" />
     <Content Include="Areas\Company\Views\UserManager\RegisterSetting.cshtml" />
+    <Content Include="Areas\Company\Views\Router\WebSitesLogs.cshtml" />
+    <Content Include="Areas\Company\Views\Charts\WebSitesLogs.cshtml" />
+    <Content Include="Areas\Company\Views\Home\Sms.cshtml" />
     <None Include="Properties\PublishProfiles\DNMA.pubxml" />
     <None Include="T4MVC.tt">
       <Generator>TextTemplatingFileGenerator</Generator>

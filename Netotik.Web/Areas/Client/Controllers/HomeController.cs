@@ -39,16 +39,19 @@ namespace Netotik.Web.Areas.Client.Controllers
         private readonly IMikrotikServices _mikrotikServices;
         private readonly IPictureService _pictureService;
         private readonly IUnitOfWork _uow;
+        private readonly ISmsService _smsService;
 
         public HomeController(
             IMikrotikServices mikrotikServices,
             IPictureService pictureservice,
             IApplicationUserManager applicationUserManager,
+            ISmsService smsService,
             IUnitOfWork uow)
         {
             _mikrotikServices = mikrotikServices;
             _pictureService = pictureservice;
             _applicationUserManager = applicationUserManager;
+            _smsService = smsService;
             _uow = uow;
         }
         #endregion
@@ -339,8 +342,9 @@ namespace Netotik.Web.Areas.Client.Controllers
             //   this.MessageInformation(Captions.MissionSuccess, Captions.UpdateSuccess);
             //else
             //    this.MessageError(Captions.MissionFail, Captions.UpdateError);
-
-            _mikrotikServices.Usermanager_UserChangePassword(loginedUser.UserCompany.R_Host, loginedUser.UserCompany.R_Port, loginedUser.UserCompany.R_User, loginedUser.UserCompany.R_Password, model, loginedUser.UserName);
+            var User = _mikrotikServices.Usermanager_GetUser(loginedUser.UserCompany.R_Host, loginedUser.UserCompany.R_Port, loginedUser.UserCompany.R_User, loginedUser.UserCompany.R_Password, loginedUser.UserName);
+            if (_mikrotikServices.Usermanager_UserChangePassword(loginedUser.UserCompany.R_Host, loginedUser.UserCompany.R_Port, loginedUser.UserCompany.R_User, loginedUser.UserCompany.R_Password, model, loginedUser.UserName) && loginedUser.UserCompany.SmsCharge > 0 && loginedUser.UserCompany.SmsActive && loginedUser.UserCompany.SmsUserhangeUserPassword && User.FirstOrDefault().phone != null && User.FirstOrDefault().phone != null)
+                _smsService.SendSms(User.FirstOrDefault().phone, "پسورد شما با موفقیت تغییر یافت",loginedUser.UserCompany.Id);
             return View();
         }
         public virtual ActionResult Edit()

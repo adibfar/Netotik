@@ -35,6 +35,7 @@ namespace Netotik.Web.Controllers
         private readonly IContentService _contentService;
         private readonly IMenuService _menuService;
         private readonly ISliderService _sliderService;
+        private readonly ISmsService _smsService;
         private readonly IIndexSectionService _indexSectionService;
         #endregion
 
@@ -47,6 +48,7 @@ namespace Netotik.Web.Controllers
             IAuthenticationManager authenticationManager,
             ILanguageTranslationService linkService,
             IUserMailer userMailer,
+            ISmsService smsService,
             ISettingService settingService,
             IContentCategoryService contentCategoryService,
             IContentService contentService,
@@ -62,6 +64,7 @@ namespace Netotik.Web.Controllers
             _settingService = settingService;
             _contentCategoryService = contentCategoryService;
             _linkService = linkService;
+            _smsService = smsService;
             _menuService = menuService;
             _contentService = contentService;
         }

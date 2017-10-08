@@ -72,6 +72,18 @@ namespace Netotik.Web.Areas.Company.Controllers
         }
         [NonAction]
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public virtual System.Web.Mvc.ActionResult DisableSMS()
+        {
+            return new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.DisableSMS);
+        }
+        [NonAction]
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public virtual System.Web.Mvc.ActionResult EnableSMS()
+        {
+            return new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.EnableSMS);
+        }
+        [NonAction]
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public virtual System.Web.Mvc.ActionResult RedirectToLocal()
         {
             return new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.RedirectToLocal);
@@ -100,6 +112,9 @@ namespace Netotik.Web.Areas.Company.Controllers
             public readonly string MikrotikConf = "MikrotikConf";
             public readonly string TelegramBot = "TelegramBot";
             public readonly string ChangePassword = "ChangePassword";
+            public readonly string Sms = "Sms";
+            public readonly string DisableSMS = "DisableSMS";
+            public readonly string EnableSMS = "EnableSMS";
             public readonly string RedirectToLocal = "RedirectToLocal";
         }
 
@@ -114,6 +129,9 @@ namespace Netotik.Web.Areas.Company.Controllers
             public const string MikrotikConf = "MikrotikConf";
             public const string TelegramBot = "TelegramBot";
             public const string ChangePassword = "ChangePassword";
+            public const string Sms = "Sms";
+            public const string DisableSMS = "DisableSMS";
+            public const string EnableSMS = "EnableSMS";
             public const string RedirectToLocal = "RedirectToLocal";
         }
 
@@ -158,6 +176,30 @@ namespace Netotik.Web.Areas.Company.Controllers
         {
             public readonly string model = "model";
         }
+        static readonly ActionParamsClass_Sms s_params_Sms = new ActionParamsClass_Sms();
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public ActionParamsClass_Sms SmsParams { get { return s_params_Sms; } }
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public class ActionParamsClass_Sms
+        {
+            public readonly string model = "model";
+        }
+        static readonly ActionParamsClass_DisableSMS s_params_DisableSMS = new ActionParamsClass_DisableSMS();
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public ActionParamsClass_DisableSMS DisableSMSParams { get { return s_params_DisableSMS; } }
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public class ActionParamsClass_DisableSMS
+        {
+            public readonly string id = "id";
+        }
+        static readonly ActionParamsClass_EnableSMS s_params_EnableSMS = new ActionParamsClass_EnableSMS();
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public ActionParamsClass_EnableSMS EnableSMSParams { get { return s_params_EnableSMS; } }
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public class ActionParamsClass_EnableSMS
+        {
+            public readonly string id = "id";
+        }
         static readonly ActionParamsClass_RedirectToLocal s_params_RedirectToLocal = new ActionParamsClass_RedirectToLocal();
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public ActionParamsClass_RedirectToLocal RedirectToLocalParams { get { return s_params_RedirectToLocal; } }
@@ -182,6 +224,7 @@ namespace Netotik.Web.Areas.Company.Controllers
                 public readonly string Index = "Index";
                 public readonly string MikrotikConf = "MikrotikConf";
                 public readonly string MyProfile = "MyProfile";
+                public readonly string Sms = "Sms";
                 public readonly string TelegramBot = "TelegramBot";
             }
             public readonly string _ImageProfile = "~/Areas/Company/Views/Home/_ImageProfile.cshtml";
@@ -190,6 +233,7 @@ namespace Netotik.Web.Areas.Company.Controllers
             public readonly string Index = "~/Areas/Company/Views/Home/Index.cshtml";
             public readonly string MikrotikConf = "~/Areas/Company/Views/Home/MikrotikConf.cshtml";
             public readonly string MyProfile = "~/Areas/Company/Views/Home/MyProfile.cshtml";
+            public readonly string Sms = "~/Areas/Company/Views/Home/Sms.cshtml";
             public readonly string TelegramBot = "~/Areas/Company/Views/Home/TelegramBot.cshtml";
         }
     }
@@ -323,6 +367,53 @@ namespace Netotik.Web.Areas.Company.Controllers
             ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "model", model);
             ChangePasswordOverride(callInfo, model);
             return System.Threading.Tasks.Task.FromResult(callInfo as System.Web.Mvc.ActionResult);
+        }
+
+        [NonAction]
+        partial void SmsOverride(T4MVC_System_Web_Mvc_ActionResult callInfo);
+
+        [NonAction]
+        public override System.Web.Mvc.ActionResult Sms()
+        {
+            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Sms);
+            SmsOverride(callInfo);
+            return callInfo;
+        }
+
+        [NonAction]
+        partial void SmsOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, Netotik.ViewModels.Identity.UserCompany.SmsModel model);
+
+        [NonAction]
+        public override System.Threading.Tasks.Task<System.Web.Mvc.ActionResult> Sms(Netotik.ViewModels.Identity.UserCompany.SmsModel model)
+        {
+            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Sms);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "model", model);
+            SmsOverride(callInfo, model);
+            return System.Threading.Tasks.Task.FromResult(callInfo as System.Web.Mvc.ActionResult);
+        }
+
+        [NonAction]
+        partial void DisableSMSOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, long id);
+
+        [NonAction]
+        public override System.Web.Mvc.ActionResult DisableSMS(long id)
+        {
+            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.DisableSMS);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "id", id);
+            DisableSMSOverride(callInfo, id);
+            return callInfo;
+        }
+
+        [NonAction]
+        partial void EnableSMSOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, long id);
+
+        [NonAction]
+        public override System.Web.Mvc.ActionResult EnableSMS(long id)
+        {
+            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.EnableSMS);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "id", id);
+            EnableSMSOverride(callInfo, id);
+            return callInfo;
         }
 
         [NonAction]

@@ -17,29 +17,36 @@ using WebGrease.Css.Extensions;
 using System.Net;
 using Netotik.ViewModels.Identity.UserCompany;
 using System.Threading.Tasks;
+using Netotik.ViewModels.Identity.UserClient;
 
 namespace Netotik.Web.Areas.Company.Controllers
 {
     [Mvc5Authorize(Roles = "Company")]
- //   [BreadCrumb(Title = "UserManager", UseDefaultRouteUrl = true, RemoveAllDefaultRouteValues = true,
- //Order = 0, GlyphIcon = "icon icon-table")]
+    //   [BreadCrumb(Title = "UserManager", UseDefaultRouteUrl = true, RemoveAllDefaultRouteValues = true,
+    //Order = 0, GlyphIcon = "icon icon-table")]
     public partial class UserManagerController : BasePanelController
     {
         #region ctor
         private readonly IApplicationUserManager _applicationUserManager;
         private readonly IMikrotikServices _mikrotikServices;
         private readonly IPictureService _pictureService;
+        private readonly IUserCompanyLogClientService _usercompanylogclientservice;
         private readonly IUnitOfWork _uow;
+        private readonly ISmsService _smsService;
 
         public UserManagerController(
             IMikrotikServices mikrotikServices,
             IPictureService pictureservice,
             IApplicationUserManager applicationUserManager,
+            IUserCompanyLogClientService usercompanylogclientservice,
+            ISmsService smsService,
             IUnitOfWork uow)
         {
             _mikrotikServices = mikrotikServices;
             _pictureService = pictureservice;
             _applicationUserManager = applicationUserManager;
+            _usercompanylogclientservice = usercompanylogclientservice;
+            _smsService = smsService;
             _uow = uow;
         }
         #endregion
@@ -62,7 +69,10 @@ namespace Netotik.Web.Areas.Company.Controllers
                 return RedirectToAction(MVC.Company.Home.ActionNames.MikrotikConf, MVC.Company.Home.Name, new { area = MVC.Company.Name });
             }
             //-------------------------------
+            var Users = _mikrotikServices.Usermanager_GetUser(UserLogined.UserCompany.R_Host, UserLogined.UserCompany.R_Port, UserLogined.UserCompany.R_User, UserLogined.UserCompany.R_Password, user);
             _mikrotikServices.Usermanager_ResetCounter(UserLogined.UserCompany.R_Host, UserLogined.UserCompany.R_Port, UserLogined.UserCompany.R_User, UserLogined.UserCompany.R_Password, user);
+            if (UserLogined.UserCompany.SmsCharge > 0 && UserLogined.UserCompany.SmsActive && UserLogined.UserCompany.SmsUserAfterResetCounter && Users.FirstOrDefault().phone!=null && Users.FirstOrDefault().phone!="")
+                _smsService.SendSms(Users.FirstOrDefault().phone, "اکانت شما ریست شد", UserLogined.Id);
             //--------------------------------
             return RedirectToAction(MVC.Company.UserManager.UserList());
         }
@@ -440,7 +450,10 @@ namespace Netotik.Web.Areas.Company.Controllers
                 return RedirectToAction(MVC.Company.Home.ActionNames.Index);
             }
             //-------------------------------
+            var Users = _mikrotikServices.Usermanager_GetUser(UserLogined.UserCompany.R_Host, UserLogined.UserCompany.R_Port, UserLogined.UserCompany.R_User, UserLogined.UserCompany.R_Password, id);
             _mikrotikServices.Usermanager_RemoveUser(UserLogined.UserCompany.R_Host, UserLogined.UserCompany.R_Port, UserLogined.UserCompany.R_User, UserLogined.UserCompany.R_Password, id);
+            if (UserLogined.UserCompany.SmsCharge > 0 && UserLogined.UserCompany.SmsActive && UserLogined.UserCompany.SmsUserAfterDelete && Users.FirstOrDefault().phone != null && Users.FirstOrDefault().phone != "")
+                _smsService.SendSms(Users.FirstOrDefault().phone, "اکانت شما حذف گردید", UserLogined.Id);
             return RedirectToAction(MVC.Company.UserManager.ActionNames.UserList);
         }
 
@@ -645,7 +658,7 @@ namespace Netotik.Web.Areas.Company.Controllers
                     if (UserProfileLimition.till_time != null)
                         ViewBag.till_time = UserProfileLimition.till_time.Replace("d", Captions.Day).Replace("s", Captions.Secend).Replace("m", Captions.Minute).Replace("h", Captions.Hour);
                     if (UserProfileLimition.weekdays != null)
-                        ViewBag.weekdays = UserProfileLimition.weekdays.Replace("friday", Captions.Friday).Replace("thursday", Captions.Thursday).Replace("wednesday", Captions.Wednesday).Replace("tuesday", Captions.Tuesday).Replace("monday", Captions.Monday).Replace("sunday",Captions.Sunday).Replace("saturday", Captions.Saturday);
+                        ViewBag.weekdays = UserProfileLimition.weekdays.Replace("friday", Captions.Friday).Replace("thursday", Captions.Thursday).Replace("wednesday", Captions.Wednesday).Replace("tuesday", Captions.Tuesday).Replace("monday", Captions.Monday).Replace("sunday", Captions.Sunday).Replace("saturday", Captions.Saturday);
                     if (item.uptime_used != null)
                         item.uptime_used = item.uptime_used.Replace("d", Captions.Day).Replace("w", Captions.Week).Replace("h", Captions.Hour).Replace("m", Captions.Minute).Replace("s", Captions.Secend).Replace("never", Captions.NoConnection);
                     if (item.last_seen != null)
@@ -670,9 +683,98 @@ namespace Netotik.Web.Areas.Company.Controllers
                         item.download_used = "0";
                     if (ViewBag.download_remain == null || ViewBag.download_remain == "")
                         ViewBag.download_remain = "0";
+
+
+
+                    var Logs = _usercompanylogclientservice.GetList(UserLogined.Id);
+                    var UsersLogs = new List<UserWebsiteLogsWithSessionsModel>();
+                    foreach (var user in session)
+                    {
+                        int month = GetMonth(user.from_time.Split(' ')[0].Split('/')[0]);
+                        int day = Int32.Parse(user.from_time.Split(' ')[0].Split('/')[1]);
+                        int year = Int32.Parse(user.from_time.Split(' ')[0].Split('/')[2]);
+                        int hour = Int32.Parse(user.from_time.Split(' ')[1].Split(':')[0]);
+                        int min = Int32.Parse(user.from_time.Split(' ')[1].Split(':')[1]);
+                        int sec = Int32.Parse(user.from_time.Split(' ')[1].Split(':')[2]);
+                        DateTime UserFromTime = new DateTime(year, month, day, hour, min, sec);
+                        month = GetMonth(user.till_time.Split(' ')[0].Split('/')[0]);
+                        day = Int32.Parse(user.till_time.Split(' ')[0].Split('/')[1]);
+                        year = Int32.Parse(user.till_time.Split(' ')[0].Split('/')[2]);
+                        hour = Int32.Parse(user.till_time.Split(' ')[1].Split(':')[0]);
+                        min = Int32.Parse(user.till_time.Split(' ')[1].Split(':')[1]);
+                        sec = Int32.Parse(user.till_time.Split(' ')[1].Split(':')[2]);
+                        DateTime UserTillTime = new DateTime(year, month, day, hour, min, sec);
+
+                        UsersLogs.AddRange(Logs.Where(x =>
+                        x.MikrotikCreateDate < UserTillTime &&
+                        x.MikrotikCreateDate > UserFromTime &&
+                        x.SrcIp.Split(':')[0] == user.user_ip
+                        ).Select(x => new UserWebsiteLogsWithSessionsModel
+                        {
+                            acct_session_id = user.acct_session_id,
+                            active = user.active,
+                            calling_station_id = user.calling_station_id,
+                            customer = user.customer,
+                            download = user.download,
+                            DstIp = x.DstIp,
+                            from_time = UserFromTime.ToString(),
+                            till_time = UserTillTime.ToString(),
+                            host_ip = user.host_ip,
+                            Method = x.Method,
+                            MikrotikCreateDate = x.MikrotikCreateDate,
+                            user = user.user,
+                            nas_port = user.nas_port,
+                            nas_port_id = user.nas_port_id,
+                            nas_port_type = user.nas_port_type,
+                            Protocol = x.Protocol,
+                            SrcIp = x.SrcIp,
+                            SrcMac = x.SrcMac,
+                            status = user.status,
+                            terminate_cause = user.terminate_cause,
+                            upload = user.upload,
+                            uptime = user.uptime,
+                            Url = x.Url,
+                            user_ip = user.user_ip
+                        }).ToList());
+                    }
+
+                    ViewBag.WebsiteLogs = UsersLogs;
+
                     return View(item);
                 }
             return View();
+        }
+        private static int GetMonth(string monthName)
+        {
+            switch (monthName)
+            {
+                case "jan":
+                    return 1;
+                case "feb":
+                    return 2;
+                case "mar":
+                    return 3;
+                case "apr":
+                    return 4;
+                case "may":
+                    return 5;
+                case "jun":
+                    return 6;
+                case "jul":
+                    return 7;
+                case "aug":
+                    return 8;
+                case "sep":
+                    return 9;
+                case "oct":
+                    return 10;
+                case "nov":
+                    return 11;
+                case "dec":
+                    return 12;
+
+            }
+            return 0;
         }
 
         public virtual ActionResult UserCreate()
@@ -750,6 +852,13 @@ namespace Netotik.Web.Areas.Company.Controllers
                 else
                 {
                     _mikrotikServices.Usermanager_UserCreate(UserLogined.UserCompany.R_Host, UserLogined.UserCompany.R_Port, UserLogined.UserCompany.R_User, UserLogined.UserCompany.R_Password, Usermanuser);
+                    if (UserLogined.UserCompany.SmsCharge > 0 && UserLogined.UserCompany.SmsActive && UserLogined.UserCompany.SmsUserAfterCreateWithAdmin)
+                        _smsService.SendSms(model.phone, "پسورد پنل نتوتیک شما تغییر کرد.", UserLogined.Id);
+                    else
+                    {
+                        if (model.SendSmsNow)
+                            _smsService.SendSms(model.phone, "پسورد پنل نتوتیک شما تغییر کرد.", UserLogined.Id);
+                    }
                 }
                 return RedirectToAction(MVC.Company.UserManager.UserList());
             }
@@ -824,7 +933,7 @@ namespace Netotik.Web.Areas.Company.Controllers
                 return RedirectToAction(MVC.Company.Home.ActionNames.Index);
             }
             //-------------------------------
-            var model = _mikrotikServices.Usermanager_GetAllUsers(UserLogined.UserCompany.R_Host, UserLogined.UserCompany.R_Port, UserLogined.UserCompany.R_User, UserLogined.UserCompany.R_Password);
+            var model = _mikrotikServices.Usermanager_GetUser(UserLogined.UserCompany.R_Host, UserLogined.UserCompany.R_Port, UserLogined.UserCompany.R_User, UserLogined.UserCompany.R_Password, id);
             ViewBag.profiles = _mikrotikServices.Usermanager_GetAllProfile(UserLogined.UserCompany.R_Host, UserLogined.UserCompany.R_Port, UserLogined.UserCompany.R_User, UserLogined.UserCompany.R_Password);
             foreach (var item in model)
                 if (item.id == id)
@@ -883,7 +992,7 @@ namespace Netotik.Web.Areas.Company.Controllers
             {
                 model.customer = UserLogined.UserCompany.Userman_Customer;
                 model.profile = Request.Form["profile"].ToString();
-                var model2 = _mikrotikServices.Usermanager_GetAllUsers(UserLogined.UserCompany.R_Host, UserLogined.UserCompany.R_Port, UserLogined.UserCompany.R_User, UserLogined.UserCompany.R_Password);
+                var model2 = _mikrotikServices.Usermanager_GetUser(UserLogined.UserCompany.R_Host, UserLogined.UserCompany.R_Port, UserLogined.UserCompany.R_User, UserLogined.UserCompany.R_Password, model.username);
                 foreach (var item in model2)
                     if (item.id == model.id)
                     {
@@ -891,7 +1000,14 @@ namespace Netotik.Web.Areas.Company.Controllers
                             model.profile = "";
                     }
                 _mikrotikServices.Usermanager_UserEdit(UserLogined.UserCompany.R_Host, UserLogined.UserCompany.R_Port, UserLogined.UserCompany.R_User, UserLogined.UserCompany.R_Password, model);
-
+                if (model.password != model2.FirstOrDefault().password)
+                {
+                    if (UserLogined.UserCompany.SmsCharge > 0 && UserLogined.UserCompany.SmsActive && UserLogined.UserCompany.SmsAdminChangeUserPassword)
+                    {
+                        if (model.phone != null || model.phone != "")
+                            _smsService.SendSms(UserLogined.PhoneNumber, "پسورد پنل نتوتیک شما تغییر کرد.", UserLogined.Id);
+                    }
+                }
                 return RedirectToAction(MVC.Company.UserManager.UserList());
             }
         }

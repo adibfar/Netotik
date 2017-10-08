@@ -104,7 +104,9 @@
     <Compile Include="Identity\UserClient\UserEditModel.cs" />
     <Compile Include="Identity\UserClient\UserModel.cs" />
     <Compile Include="Identity\UserClient\UserRegisterModel.cs" />
+    <Compile Include="Identity\UserClient\UserWebsiteLogsWithSessionsModel.cs" />
     <Compile Include="Identity\UserClient\UserSessionModel.cs" />
+    <Compile Include="Identity\UserCompany\SmsModel.cs" />
     <Compile Include="Identity\UserCompany\RegisterSettingModel.cs" />
     <Compile Include="Identity\UserCompany\CompanyList.cs" />
     <Compile Include="Identity\UserCompany\TelegramBotModel.cs" />
