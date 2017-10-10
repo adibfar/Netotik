@@ -10,6 +10,7 @@ namespace Netotik.Domain.Entity
     {
         public long Id { get; set; }
         public string MessageText { get; set; }
+        public int MessageSize { get; set; }
         public string From { get; set; }
         public string MobileNumber { get; set; }
         public string ResultId { get; set; }

@@ -1,0 +1,1743 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://tempuri.org/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://tempuri.org/">
+      <s:element name="InsertPlan">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="P_PASS" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="P_YEAR" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="P_regn" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="p_plan_num" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="p_addres" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="p_desc" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="p_reqid" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="p_sh_tasisat" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="p_work_type" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="p_defn_id" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="p_actv_type" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="InsertPlanResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="InsertPlanResult" type="s:long" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetBudget">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="P_PASS" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetBudgetResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetBudgetResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetRegion">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="P_PASS" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetRegionResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetRegionResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetPlan">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="P_PASS" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="P_YEAR" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="P_TFZL2" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="PLAN_ID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="PLAN_NUM" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetPlanResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetPlanResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetPriceList">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="P_PASS" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="P_YEAR" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetPriceListResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetPriceListResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Nezarat">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="P_PASS" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="P_WRK_YEAR" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="P_WRK_SEQN" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="P_TYPE" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="P_SRLC_DATE" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="P_ITM" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="P_COUNT" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="NezaratResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="NezaratResult" type="s:long" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Itm_List">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="P_PASS" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="P_YEAR" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Itm_ListResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Itm_ListResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Dedicate">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="P_PASS" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="P_REGN_ID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="P_DATE" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="P_DONATOR" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="P_ADRS" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="P_NOTE" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="P_CODE" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="P_ITM" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="P_COUNT" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="P_PRIC" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="P_PLAN_NUM" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DedicateResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="DedicateResult" type="s:long" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Soorat_Vaziyat">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="P_PASS" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="P_GHARARDAD" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="P_ITEM_CODE" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Soorat_VaziyatResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Soorat_VaziyatResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Peymankar">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="P_PASS" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="P_TAFZIL" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="PeymankarResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="PeymankarResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Motammem_Gharardad">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="P_PASS" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="P_GHARARDAD" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="P_ITEM_CODE" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Motammem_GharardadResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Motammem_GharardadResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Motammem_Dastoorkar">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="P_PASS" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="P_WRK_YEAR" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="P_WRK_SEQN" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="P_ITEM_CODE" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Motammem_DastoorkarResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Motammem_DastoorkarResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Dastoorkar">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="P_PASS" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="P_WRK_YEAR" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="P_WRK_SEQN" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="P_ITEM_CODE" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DastoorkarResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="DastoorkarResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Amval">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="P_PASS" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="P_REGN_CODE" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="P_LABEL" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="AmvalResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="AmvalResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Gharardad">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="P_PASS" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="P_TAFZIL" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="P_SH_GHARARDAD" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GharardadResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GharardadResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Gharardad_Item">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="P_PASS" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="P_SH_GHARARDAD" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Gharardad_ItemResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Gharardad_ItemResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Tasisat">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="P_PASS" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="P_SH_Tasisat" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="TasisatResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="TasisatResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Tasisat_Kala">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="P_PASS" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="P_SH_Tasisat" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Tasisat_KalaResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Tasisat_KalaResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="long" type="s:long" />
+      <s:element name="DataSet" nillable="true">
+        <s:complexType>
+          <s:sequence>
+            <s:element ref="s:schema" />
+            <s:any />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="InsertPlanSoapIn">
+    <wsdl:part name="parameters" element="tns:InsertPlan" />
+  </wsdl:message>
+  <wsdl:message name="InsertPlanSoapOut">
+    <wsdl:part name="parameters" element="tns:InsertPlanResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetBudgetSoapIn">
+    <wsdl:part name="parameters" element="tns:GetBudget" />
+  </wsdl:message>
+  <wsdl:message name="GetBudgetSoapOut">
+    <wsdl:part name="parameters" element="tns:GetBudgetResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetRegionSoapIn">
+    <wsdl:part name="parameters" element="tns:GetRegion" />
+  </wsdl:message>
+  <wsdl:message name="GetRegionSoapOut">
+    <wsdl:part name="parameters" element="tns:GetRegionResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetPlanSoapIn">
+    <wsdl:part name="parameters" element="tns:GetPlan" />
+  </wsdl:message>
+  <wsdl:message name="GetPlanSoapOut">
+    <wsdl:part name="parameters" element="tns:GetPlanResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetPriceListSoapIn">
+    <wsdl:part name="parameters" element="tns:GetPriceList" />
+  </wsdl:message>
+  <wsdl:message name="GetPriceListSoapOut">
+    <wsdl:part name="parameters" element="tns:GetPriceListResponse" />
+  </wsdl:message>
+  <wsdl:message name="NezaratSoapIn">
+    <wsdl:part name="parameters" element="tns:Nezarat" />
+  </wsdl:message>
+  <wsdl:message name="NezaratSoapOut">
+    <wsdl:part name="parameters" element="tns:NezaratResponse" />
+  </wsdl:message>
+  <wsdl:message name="Itm_ListSoapIn">
+    <wsdl:part name="parameters" element="tns:Itm_List" />
+  </wsdl:message>
+  <wsdl:message name="Itm_ListSoapOut">
+    <wsdl:part name="parameters" element="tns:Itm_ListResponse" />
+  </wsdl:message>
+  <wsdl:message name="DedicateSoapIn">
+    <wsdl:part name="parameters" element="tns:Dedicate" />
+  </wsdl:message>
+  <wsdl:message name="DedicateSoapOut">
+    <wsdl:part name="parameters" element="tns:DedicateResponse" />
+  </wsdl:message>
+  <wsdl:message name="Soorat_VaziyatSoapIn">
+    <wsdl:part name="parameters" element="tns:Soorat_Vaziyat" />
+  </wsdl:message>
+  <wsdl:message name="Soorat_VaziyatSoapOut">
+    <wsdl:part name="parameters" element="tns:Soorat_VaziyatResponse" />
+  </wsdl:message>
+  <wsdl:message name="PeymankarSoapIn">
+    <wsdl:part name="parameters" element="tns:Peymankar" />
+  </wsdl:message>
+  <wsdl:message name="PeymankarSoapOut">
+    <wsdl:part name="parameters" element="tns:PeymankarResponse" />
+  </wsdl:message>
+  <wsdl:message name="Motammem_GharardadSoapIn">
+    <wsdl:part name="parameters" element="tns:Motammem_Gharardad" />
+  </wsdl:message>
+  <wsdl:message name="Motammem_GharardadSoapOut">
+    <wsdl:part name="parameters" element="tns:Motammem_GharardadResponse" />
+  </wsdl:message>
+  <wsdl:message name="Motammem_DastoorkarSoapIn">
+    <wsdl:part name="parameters" element="tns:Motammem_Dastoorkar" />
+  </wsdl:message>
+  <wsdl:message name="Motammem_DastoorkarSoapOut">
+    <wsdl:part name="parameters" element="tns:Motammem_DastoorkarResponse" />
+  </wsdl:message>
+  <wsdl:message name="DastoorkarSoapIn">
+    <wsdl:part name="parameters" element="tns:Dastoorkar" />
+  </wsdl:message>
+  <wsdl:message name="DastoorkarSoapOut">
+    <wsdl:part name="parameters" element="tns:DastoorkarResponse" />
+  </wsdl:message>
+  <wsdl:message name="AmvalSoapIn">
+    <wsdl:part name="parameters" element="tns:Amval" />
+  </wsdl:message>
+  <wsdl:message name="AmvalSoapOut">
+    <wsdl:part name="parameters" element="tns:AmvalResponse" />
+  </wsdl:message>
+  <wsdl:message name="GharardadSoapIn">
+    <wsdl:part name="parameters" element="tns:Gharardad" />
+  </wsdl:message>
+  <wsdl:message name="GharardadSoapOut">
+    <wsdl:part name="parameters" element="tns:GharardadResponse" />
+  </wsdl:message>
+  <wsdl:message name="Gharardad_ItemSoapIn">
+    <wsdl:part name="parameters" element="tns:Gharardad_Item" />
+  </wsdl:message>
+  <wsdl:message name="Gharardad_ItemSoapOut">
+    <wsdl:part name="parameters" element="tns:Gharardad_ItemResponse" />
+  </wsdl:message>
+  <wsdl:message name="TasisatSoapIn">
+    <wsdl:part name="parameters" element="tns:Tasisat" />
+  </wsdl:message>
+  <wsdl:message name="TasisatSoapOut">
+    <wsdl:part name="parameters" element="tns:TasisatResponse" />
+  </wsdl:message>
+  <wsdl:message name="Tasisat_KalaSoapIn">
+    <wsdl:part name="parameters" element="tns:Tasisat_Kala" />
+  </wsdl:message>
+  <wsdl:message name="Tasisat_KalaSoapOut">
+    <wsdl:part name="parameters" element="tns:Tasisat_KalaResponse" />
+  </wsdl:message>
+  <wsdl:message name="InsertPlanHttpGetIn">
+    <wsdl:part name="P_PASS" type="s:string" />
+    <wsdl:part name="P_YEAR" type="s:string" />
+    <wsdl:part name="P_regn" type="s:string" />
+    <wsdl:part name="p_plan_num" type="s:string" />
+    <wsdl:part name="p_addres" type="s:string" />
+    <wsdl:part name="p_desc" type="s:string" />
+    <wsdl:part name="p_reqid" type="s:string" />
+    <wsdl:part name="p_sh_tasisat" type="s:string" />
+    <wsdl:part name="p_work_type" type="s:string" />
+    <wsdl:part name="p_defn_id" type="s:string" />
+    <wsdl:part name="p_actv_type" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="InsertPlanHttpGetOut">
+    <wsdl:part name="Body" element="tns:long" />
+  </wsdl:message>
+  <wsdl:message name="GetBudgetHttpGetIn">
+    <wsdl:part name="P_PASS" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetBudgetHttpGetOut">
+    <wsdl:part name="Body" element="tns:DataSet" />
+  </wsdl:message>
+  <wsdl:message name="GetRegionHttpGetIn">
+    <wsdl:part name="P_PASS" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetRegionHttpGetOut">
+    <wsdl:part name="Body" element="tns:DataSet" />
+  </wsdl:message>
+  <wsdl:message name="GetPlanHttpGetIn">
+    <wsdl:part name="P_PASS" type="s:string" />
+    <wsdl:part name="P_YEAR" type="s:string" />
+    <wsdl:part name="P_TFZL2" type="s:string" />
+    <wsdl:part name="PLAN_ID" type="s:string" />
+    <wsdl:part name="PLAN_NUM" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetPlanHttpGetOut">
+    <wsdl:part name="Body" element="tns:DataSet" />
+  </wsdl:message>
+  <wsdl:message name="GetPriceListHttpGetIn">
+    <wsdl:part name="P_PASS" type="s:string" />
+    <wsdl:part name="P_YEAR" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetPriceListHttpGetOut">
+    <wsdl:part name="Body" element="tns:DataSet" />
+  </wsdl:message>
+  <wsdl:message name="NezaratHttpGetIn">
+    <wsdl:part name="P_PASS" type="s:string" />
+    <wsdl:part name="P_WRK_YEAR" type="s:string" />
+    <wsdl:part name="P_WRK_SEQN" type="s:string" />
+    <wsdl:part name="P_TYPE" type="s:string" />
+    <wsdl:part name="P_SRLC_DATE" type="s:string" />
+    <wsdl:part name="P_ITM" type="s:string" />
+    <wsdl:part name="P_COUNT" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="NezaratHttpGetOut">
+    <wsdl:part name="Body" element="tns:long" />
+  </wsdl:message>
+  <wsdl:message name="Itm_ListHttpGetIn">
+    <wsdl:part name="P_PASS" type="s:string" />
+    <wsdl:part name="P_YEAR" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="Itm_ListHttpGetOut">
+    <wsdl:part name="Body" element="tns:DataSet" />
+  </wsdl:message>
+  <wsdl:message name="DedicateHttpGetIn">
+    <wsdl:part name="P_PASS" type="s:string" />
+    <wsdl:part name="P_REGN_ID" type="s:string" />
+    <wsdl:part name="P_DATE" type="s:string" />
+    <wsdl:part name="P_DONATOR" type="s:string" />
+    <wsdl:part name="P_ADRS" type="s:string" />
+    <wsdl:part name="P_NOTE" type="s:string" />
+    <wsdl:part name="P_CODE" type="s:string" />
+    <wsdl:part name="P_ITM" type="s:string" />
+    <wsdl:part name="P_COUNT" type="s:string" />
+    <wsdl:part name="P_PRIC" type="s:string" />
+    <wsdl:part name="P_PLAN_NUM" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="DedicateHttpGetOut">
+    <wsdl:part name="Body" element="tns:long" />
+  </wsdl:message>
+  <wsdl:message name="Soorat_VaziyatHttpGetIn">
+    <wsdl:part name="P_PASS" type="s:string" />
+    <wsdl:part name="P_GHARARDAD" type="s:string" />
+    <wsdl:part name="P_ITEM_CODE" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="Soorat_VaziyatHttpGetOut">
+    <wsdl:part name="Body" element="tns:DataSet" />
+  </wsdl:message>
+  <wsdl:message name="PeymankarHttpGetIn">
+    <wsdl:part name="P_PASS" type="s:string" />
+    <wsdl:part name="P_TAFZIL" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="PeymankarHttpGetOut">
+    <wsdl:part name="Body" element="tns:DataSet" />
+  </wsdl:message>
+  <wsdl:message name="Motammem_GharardadHttpGetIn">
+    <wsdl:part name="P_PASS" type="s:string" />
+    <wsdl:part name="P_GHARARDAD" type="s:string" />
+    <wsdl:part name="P_ITEM_CODE" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="Motammem_GharardadHttpGetOut">
+    <wsdl:part name="Body" element="tns:DataSet" />
+  </wsdl:message>
+  <wsdl:message name="Motammem_DastoorkarHttpGetIn">
+    <wsdl:part name="P_PASS" type="s:string" />
+    <wsdl:part name="P_WRK_YEAR" type="s:string" />
+    <wsdl:part name="P_WRK_SEQN" type="s:string" />
+    <wsdl:part name="P_ITEM_CODE" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="Motammem_DastoorkarHttpGetOut">
+    <wsdl:part name="Body" element="tns:DataSet" />
+  </wsdl:message>
+  <wsdl:message name="DastoorkarHttpGetIn">
+    <wsdl:part name="P_PASS" type="s:string" />
+    <wsdl:part name="P_WRK_YEAR" type="s:string" />
+    <wsdl:part name="P_WRK_SEQN" type="s:string" />
+    <wsdl:part name="P_ITEM_CODE" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="DastoorkarHttpGetOut">
+    <wsdl:part name="Body" element="tns:DataSet" />
+  </wsdl:message>
+  <wsdl:message name="AmvalHttpGetIn">
+    <wsdl:part name="P_PASS" type="s:string" />
+    <wsdl:part name="P_REGN_CODE" type="s:string" />
+    <wsdl:part name="P_LABEL" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="AmvalHttpGetOut">
+    <wsdl:part name="Body" element="tns:DataSet" />
+  </wsdl:message>
+  <wsdl:message name="GharardadHttpGetIn">
+    <wsdl:part name="P_PASS" type="s:string" />
+    <wsdl:part name="P_TAFZIL" type="s:string" />
+    <wsdl:part name="P_SH_GHARARDAD" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GharardadHttpGetOut">
+    <wsdl:part name="Body" element="tns:DataSet" />
+  </wsdl:message>
+  <wsdl:message name="Gharardad_ItemHttpGetIn">
+    <wsdl:part name="P_PASS" type="s:string" />
+    <wsdl:part name="P_SH_GHARARDAD" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="Gharardad_ItemHttpGetOut">
+    <wsdl:part name="Body" element="tns:DataSet" />
+  </wsdl:message>
+  <wsdl:message name="TasisatHttpGetIn">
+    <wsdl:part name="P_PASS" type="s:string" />
+    <wsdl:part name="P_SH_Tasisat" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="TasisatHttpGetOut">
+    <wsdl:part name="Body" element="tns:DataSet" />
+  </wsdl:message>
+  <wsdl:message name="Tasisat_KalaHttpGetIn">
+    <wsdl:part name="P_PASS" type="s:string" />
+    <wsdl:part name="P_SH_Tasisat" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="Tasisat_KalaHttpGetOut">
+    <wsdl:part name="Body" element="tns:DataSet" />
+  </wsdl:message>
+  <wsdl:message name="InsertPlanHttpPostIn">
+    <wsdl:part name="P_PASS" type="s:string" />
+    <wsdl:part name="P_YEAR" type="s:string" />
+    <wsdl:part name="P_regn" type="s:string" />
+    <wsdl:part name="p_plan_num" type="s:string" />
+    <wsdl:part name="p_addres" type="s:string" />
+    <wsdl:part name="p_desc" type="s:string" />
+    <wsdl:part name="p_reqid" type="s:string" />
+    <wsdl:part name="p_sh_tasisat" type="s:string" />
+    <wsdl:part name="p_work_type" type="s:string" />
+    <wsdl:part name="p_defn_id" type="s:string" />
+    <wsdl:part name="p_actv_type" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="InsertPlanHttpPostOut">
+    <wsdl:part name="Body" element="tns:long" />
+  </wsdl:message>
+  <wsdl:message name="GetBudgetHttpPostIn">
+    <wsdl:part name="P_PASS" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetBudgetHttpPostOut">
+    <wsdl:part name="Body" element="tns:DataSet" />
+  </wsdl:message>
+  <wsdl:message name="GetRegionHttpPostIn">
+    <wsdl:part name="P_PASS" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetRegionHttpPostOut">
+    <wsdl:part name="Body" element="tns:DataSet" />
+  </wsdl:message>
+  <wsdl:message name="GetPlanHttpPostIn">
+    <wsdl:part name="P_PASS" type="s:string" />
+    <wsdl:part name="P_YEAR" type="s:string" />
+    <wsdl:part name="P_TFZL2" type="s:string" />
+    <wsdl:part name="PLAN_ID" type="s:string" />
+    <wsdl:part name="PLAN_NUM" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetPlanHttpPostOut">
+    <wsdl:part name="Body" element="tns:DataSet" />
+  </wsdl:message>
+  <wsdl:message name="GetPriceListHttpPostIn">
+    <wsdl:part name="P_PASS" type="s:string" />
+    <wsdl:part name="P_YEAR" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetPriceListHttpPostOut">
+    <wsdl:part name="Body" element="tns:DataSet" />
+  </wsdl:message>
+  <wsdl:message name="NezaratHttpPostIn">
+    <wsdl:part name="P_PASS" type="s:string" />
+    <wsdl:part name="P_WRK_YEAR" type="s:string" />
+    <wsdl:part name="P_WRK_SEQN" type="s:string" />
+    <wsdl:part name="P_TYPE" type="s:string" />
+    <wsdl:part name="P_SRLC_DATE" type="s:string" />
+    <wsdl:part name="P_ITM" type="s:string" />
+    <wsdl:part name="P_COUNT" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="NezaratHttpPostOut">
+    <wsdl:part name="Body" element="tns:long" />
+  </wsdl:message>
+  <wsdl:message name="Itm_ListHttpPostIn">
+    <wsdl:part name="P_PASS" type="s:string" />
+    <wsdl:part name="P_YEAR" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="Itm_ListHttpPostOut">
+    <wsdl:part name="Body" element="tns:DataSet" />
+  </wsdl:message>
+  <wsdl:message name="DedicateHttpPostIn">
+    <wsdl:part name="P_PASS" type="s:string" />
+    <wsdl:part name="P_REGN_ID" type="s:string" />
+    <wsdl:part name="P_DATE" type="s:string" />
+    <wsdl:part name="P_DONATOR" type="s:string" />
+    <wsdl:part name="P_ADRS" type="s:string" />
+    <wsdl:part name="P_NOTE" type="s:string" />
+    <wsdl:part name="P_CODE" type="s:string" />
+    <wsdl:part name="P_ITM" type="s:string" />
+    <wsdl:part name="P_COUNT" type="s:string" />
+    <wsdl:part name="P_PRIC" type="s:string" />
+    <wsdl:part name="P_PLAN_NUM" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="DedicateHttpPostOut">
+    <wsdl:part name="Body" element="tns:long" />
+  </wsdl:message>
+  <wsdl:message name="Soorat_VaziyatHttpPostIn">
+    <wsdl:part name="P_PASS" type="s:string" />
+    <wsdl:part name="P_GHARARDAD" type="s:string" />
+    <wsdl:part name="P_ITEM_CODE" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="Soorat_VaziyatHttpPostOut">
+    <wsdl:part name="Body" element="tns:DataSet" />
+  </wsdl:message>
+  <wsdl:message name="PeymankarHttpPostIn">
+    <wsdl:part name="P_PASS" type="s:string" />
+    <wsdl:part name="P_TAFZIL" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="PeymankarHttpPostOut">
+    <wsdl:part name="Body" element="tns:DataSet" />
+  </wsdl:message>
+  <wsdl:message name="Motammem_GharardadHttpPostIn">
+    <wsdl:part name="P_PASS" type="s:string" />
+    <wsdl:part name="P_GHARARDAD" type="s:string" />
+    <wsdl:part name="P_ITEM_CODE" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="Motammem_GharardadHttpPostOut">
+    <wsdl:part name="Body" element="tns:DataSet" />
+  </wsdl:message>
+  <wsdl:message name="Motammem_DastoorkarHttpPostIn">
+    <wsdl:part name="P_PASS" type="s:string" />
+    <wsdl:part name="P_WRK_YEAR" type="s:string" />
+    <wsdl:part name="P_WRK_SEQN" type="s:string" />
+    <wsdl:part name="P_ITEM_CODE" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="Motammem_DastoorkarHttpPostOut">
+    <wsdl:part name="Body" element="tns:DataSet" />
+  </wsdl:message>
+  <wsdl:message name="DastoorkarHttpPostIn">
+    <wsdl:part name="P_PASS" type="s:string" />
+    <wsdl:part name="P_WRK_YEAR" type="s:string" />
+    <wsdl:part name="P_WRK_SEQN" type="s:string" />
+    <wsdl:part name="P_ITEM_CODE" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="DastoorkarHttpPostOut">
+    <wsdl:part name="Body" element="tns:DataSet" />
+  </wsdl:message>
+  <wsdl:message name="AmvalHttpPostIn">
+    <wsdl:part name="P_PASS" type="s:string" />
+    <wsdl:part name="P_REGN_CODE" type="s:string" />
+    <wsdl:part name="P_LABEL" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="AmvalHttpPostOut">
+    <wsdl:part name="Body" element="tns:DataSet" />
+  </wsdl:message>
+  <wsdl:message name="GharardadHttpPostIn">
+    <wsdl:part name="P_PASS" type="s:string" />
+    <wsdl:part name="P_TAFZIL" type="s:string" />
+    <wsdl:part name="P_SH_GHARARDAD" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GharardadHttpPostOut">
+    <wsdl:part name="Body" element="tns:DataSet" />
+  </wsdl:message>
+  <wsdl:message name="Gharardad_ItemHttpPostIn">
+    <wsdl:part name="P_PASS" type="s:string" />
+    <wsdl:part name="P_SH_GHARARDAD" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="Gharardad_ItemHttpPostOut">
+    <wsdl:part name="Body" element="tns:DataSet" />
+  </wsdl:message>
+  <wsdl:message name="TasisatHttpPostIn">
+    <wsdl:part name="P_PASS" type="s:string" />
+    <wsdl:part name="P_SH_Tasisat" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="TasisatHttpPostOut">
+    <wsdl:part name="Body" element="tns:DataSet" />
+  </wsdl:message>
+  <wsdl:message name="Tasisat_KalaHttpPostIn">
+    <wsdl:part name="P_PASS" type="s:string" />
+    <wsdl:part name="P_SH_Tasisat" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="Tasisat_KalaHttpPostOut">
+    <wsdl:part name="Body" element="tns:DataSet" />
+  </wsdl:message>
+  <wsdl:portType name="Plan_SrvSoap">
+    <wsdl:operation name="InsertPlan">
+      <wsdl:input message="tns:InsertPlanSoapIn" />
+      <wsdl:output message="tns:InsertPlanSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetBudget">
+      <wsdl:input message="tns:GetBudgetSoapIn" />
+      <wsdl:output message="tns:GetBudgetSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetRegion">
+      <wsdl:input message="tns:GetRegionSoapIn" />
+      <wsdl:output message="tns:GetRegionSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetPlan">
+      <wsdl:input message="tns:GetPlanSoapIn" />
+      <wsdl:output message="tns:GetPlanSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetPriceList">
+      <wsdl:input message="tns:GetPriceListSoapIn" />
+      <wsdl:output message="tns:GetPriceListSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Nezarat">
+      <wsdl:input message="tns:NezaratSoapIn" />
+      <wsdl:output message="tns:NezaratSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Itm_List">
+      <wsdl:input message="tns:Itm_ListSoapIn" />
+      <wsdl:output message="tns:Itm_ListSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Dedicate">
+      <wsdl:input message="tns:DedicateSoapIn" />
+      <wsdl:output message="tns:DedicateSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Soorat_Vaziyat">
+      <wsdl:input message="tns:Soorat_VaziyatSoapIn" />
+      <wsdl:output message="tns:Soorat_VaziyatSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Peymankar">
+      <wsdl:input message="tns:PeymankarSoapIn" />
+      <wsdl:output message="tns:PeymankarSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Motammem_Gharardad">
+      <wsdl:input message="tns:Motammem_GharardadSoapIn" />
+      <wsdl:output message="tns:Motammem_GharardadSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Motammem_Dastoorkar">
+      <wsdl:input message="tns:Motammem_DastoorkarSoapIn" />
+      <wsdl:output message="tns:Motammem_DastoorkarSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Dastoorkar">
+      <wsdl:input message="tns:DastoorkarSoapIn" />
+      <wsdl:output message="tns:DastoorkarSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Amval">
+      <wsdl:input message="tns:AmvalSoapIn" />
+      <wsdl:output message="tns:AmvalSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Gharardad">
+      <wsdl:input message="tns:GharardadSoapIn" />
+      <wsdl:output message="tns:GharardadSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Gharardad_Item">
+      <wsdl:input message="tns:Gharardad_ItemSoapIn" />
+      <wsdl:output message="tns:Gharardad_ItemSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Tasisat">
+      <wsdl:input message="tns:TasisatSoapIn" />
+      <wsdl:output message="tns:TasisatSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Tasisat_Kala">
+      <wsdl:input message="tns:Tasisat_KalaSoapIn" />
+      <wsdl:output message="tns:Tasisat_KalaSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="Plan_SrvHttpGet">
+    <wsdl:operation name="InsertPlan">
+      <wsdl:input message="tns:InsertPlanHttpGetIn" />
+      <wsdl:output message="tns:InsertPlanHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetBudget">
+      <wsdl:input message="tns:GetBudgetHttpGetIn" />
+      <wsdl:output message="tns:GetBudgetHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetRegion">
+      <wsdl:input message="tns:GetRegionHttpGetIn" />
+      <wsdl:output message="tns:GetRegionHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetPlan">
+      <wsdl:input message="tns:GetPlanHttpGetIn" />
+      <wsdl:output message="tns:GetPlanHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetPriceList">
+      <wsdl:input message="tns:GetPriceListHttpGetIn" />
+      <wsdl:output message="tns:GetPriceListHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Nezarat">
+      <wsdl:input message="tns:NezaratHttpGetIn" />
+      <wsdl:output message="tns:NezaratHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Itm_List">
+      <wsdl:input message="tns:Itm_ListHttpGetIn" />
+      <wsdl:output message="tns:Itm_ListHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Dedicate">
+      <wsdl:input message="tns:DedicateHttpGetIn" />
+      <wsdl:output message="tns:DedicateHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Soorat_Vaziyat">
+      <wsdl:input message="tns:Soorat_VaziyatHttpGetIn" />
+      <wsdl:output message="tns:Soorat_VaziyatHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Peymankar">
+      <wsdl:input message="tns:PeymankarHttpGetIn" />
+      <wsdl:output message="tns:PeymankarHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Motammem_Gharardad">
+      <wsdl:input message="tns:Motammem_GharardadHttpGetIn" />
+      <wsdl:output message="tns:Motammem_GharardadHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Motammem_Dastoorkar">
+      <wsdl:input message="tns:Motammem_DastoorkarHttpGetIn" />
+      <wsdl:output message="tns:Motammem_DastoorkarHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Dastoorkar">
+      <wsdl:input message="tns:DastoorkarHttpGetIn" />
+      <wsdl:output message="tns:DastoorkarHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Amval">
+      <wsdl:input message="tns:AmvalHttpGetIn" />
+      <wsdl:output message="tns:AmvalHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Gharardad">
+      <wsdl:input message="tns:GharardadHttpGetIn" />
+      <wsdl:output message="tns:GharardadHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Gharardad_Item">
+      <wsdl:input message="tns:Gharardad_ItemHttpGetIn" />
+      <wsdl:output message="tns:Gharardad_ItemHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Tasisat">
+      <wsdl:input message="tns:TasisatHttpGetIn" />
+      <wsdl:output message="tns:TasisatHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Tasisat_Kala">
+      <wsdl:input message="tns:Tasisat_KalaHttpGetIn" />
+      <wsdl:output message="tns:Tasisat_KalaHttpGetOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="Plan_SrvHttpPost">
+    <wsdl:operation name="InsertPlan">
+      <wsdl:input message="tns:InsertPlanHttpPostIn" />
+      <wsdl:output message="tns:InsertPlanHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetBudget">
+      <wsdl:input message="tns:GetBudgetHttpPostIn" />
+      <wsdl:output message="tns:GetBudgetHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetRegion">
+      <wsdl:input message="tns:GetRegionHttpPostIn" />
+      <wsdl:output message="tns:GetRegionHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetPlan">
+      <wsdl:input message="tns:GetPlanHttpPostIn" />
+      <wsdl:output message="tns:GetPlanHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetPriceList">
+      <wsdl:input message="tns:GetPriceListHttpPostIn" />
+      <wsdl:output message="tns:GetPriceListHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Nezarat">
+      <wsdl:input message="tns:NezaratHttpPostIn" />
+      <wsdl:output message="tns:NezaratHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Itm_List">
+      <wsdl:input message="tns:Itm_ListHttpPostIn" />
+      <wsdl:output message="tns:Itm_ListHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Dedicate">
+      <wsdl:input message="tns:DedicateHttpPostIn" />
+      <wsdl:output message="tns:DedicateHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Soorat_Vaziyat">
+      <wsdl:input message="tns:Soorat_VaziyatHttpPostIn" />
+      <wsdl:output message="tns:Soorat_VaziyatHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Peymankar">
+      <wsdl:input message="tns:PeymankarHttpPostIn" />
+      <wsdl:output message="tns:PeymankarHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Motammem_Gharardad">
+      <wsdl:input message="tns:Motammem_GharardadHttpPostIn" />
+      <wsdl:output message="tns:Motammem_GharardadHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Motammem_Dastoorkar">
+      <wsdl:input message="tns:Motammem_DastoorkarHttpPostIn" />
+      <wsdl:output message="tns:Motammem_DastoorkarHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Dastoorkar">
+      <wsdl:input message="tns:DastoorkarHttpPostIn" />
+      <wsdl:output message="tns:DastoorkarHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Amval">
+      <wsdl:input message="tns:AmvalHttpPostIn" />
+      <wsdl:output message="tns:AmvalHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Gharardad">
+      <wsdl:input message="tns:GharardadHttpPostIn" />
+      <wsdl:output message="tns:GharardadHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Gharardad_Item">
+      <wsdl:input message="tns:Gharardad_ItemHttpPostIn" />
+      <wsdl:output message="tns:Gharardad_ItemHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Tasisat">
+      <wsdl:input message="tns:TasisatHttpPostIn" />
+      <wsdl:output message="tns:TasisatHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Tasisat_Kala">
+      <wsdl:input message="tns:Tasisat_KalaHttpPostIn" />
+      <wsdl:output message="tns:Tasisat_KalaHttpPostOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="Plan_SrvSoap" type="tns:Plan_SrvSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="InsertPlan">
+      <soap:operation soapAction="http://tempuri.org/InsertPlan" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetBudget">
+      <soap:operation soapAction="http://tempuri.org/GetBudget" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetRegion">
+      <soap:operation soapAction="http://tempuri.org/GetRegion" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetPlan">
+      <soap:operation soapAction="http://tempuri.org/GetPlan" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetPriceList">
+      <soap:operation soapAction="http://tempuri.org/GetPriceList" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Nezarat">
+      <soap:operation soapAction="http://tempuri.org/Nezarat" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Itm_List">
+      <soap:operation soapAction="http://tempuri.org/Itm_List" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Dedicate">
+      <soap:operation soapAction="http://tempuri.org/Dedicate" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Soorat_Vaziyat">
+      <soap:operation soapAction="http://tempuri.org/Soorat_Vaziyat" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Peymankar">
+      <soap:operation soapAction="http://tempuri.org/Peymankar" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Motammem_Gharardad">
+      <soap:operation soapAction="http://tempuri.org/Motammem_Gharardad" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Motammem_Dastoorkar">
+      <soap:operation soapAction="http://tempuri.org/Motammem_Dastoorkar" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Dastoorkar">
+      <soap:operation soapAction="http://tempuri.org/Dastoorkar" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Amval">
+      <soap:operation soapAction="http://tempuri.org/Amval" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Gharardad">
+      <soap:operation soapAction="http://tempuri.org/Gharardad" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Gharardad_Item">
+      <soap:operation soapAction="http://tempuri.org/Gharardad_Item" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Tasisat">
+      <soap:operation soapAction="http://tempuri.org/Tasisat" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Tasisat_Kala">
+      <soap:operation soapAction="http://tempuri.org/Tasisat_Kala" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="Plan_SrvSoap12" type="tns:Plan_SrvSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="InsertPlan">
+      <soap12:operation soapAction="http://tempuri.org/InsertPlan" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetBudget">
+      <soap12:operation soapAction="http://tempuri.org/GetBudget" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetRegion">
+      <soap12:operation soapAction="http://tempuri.org/GetRegion" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetPlan">
+      <soap12:operation soapAction="http://tempuri.org/GetPlan" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetPriceList">
+      <soap12:operation soapAction="http://tempuri.org/GetPriceList" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Nezarat">
+      <soap12:operation soapAction="http://tempuri.org/Nezarat" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Itm_List">
+      <soap12:operation soapAction="http://tempuri.org/Itm_List" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Dedicate">
+      <soap12:operation soapAction="http://tempuri.org/Dedicate" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Soorat_Vaziyat">
+      <soap12:operation soapAction="http://tempuri.org/Soorat_Vaziyat" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Peymankar">
+      <soap12:operation soapAction="http://tempuri.org/Peymankar" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Motammem_Gharardad">
+      <soap12:operation soapAction="http://tempuri.org/Motammem_Gharardad" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Motammem_Dastoorkar">
+      <soap12:operation soapAction="http://tempuri.org/Motammem_Dastoorkar" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Dastoorkar">
+      <soap12:operation soapAction="http://tempuri.org/Dastoorkar" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Amval">
+      <soap12:operation soapAction="http://tempuri.org/Amval" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Gharardad">
+      <soap12:operation soapAction="http://tempuri.org/Gharardad" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Gharardad_Item">
+      <soap12:operation soapAction="http://tempuri.org/Gharardad_Item" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Tasisat">
+      <soap12:operation soapAction="http://tempuri.org/Tasisat" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Tasisat_Kala">
+      <soap12:operation soapAction="http://tempuri.org/Tasisat_Kala" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="Plan_SrvHttpGet" type="tns:Plan_SrvHttpGet">
+    <http:binding verb="GET" />
+    <wsdl:operation name="InsertPlan">
+      <http:operation location="/InsertPlan" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetBudget">
+      <http:operation location="/GetBudget" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetRegion">
+      <http:operation location="/GetRegion" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetPlan">
+      <http:operation location="/GetPlan" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetPriceList">
+      <http:operation location="/GetPriceList" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Nezarat">
+      <http:operation location="/Nezarat" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Itm_List">
+      <http:operation location="/Itm_List" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Dedicate">
+      <http:operation location="/Dedicate" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Soorat_Vaziyat">
+      <http:operation location="/Soorat_Vaziyat" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Peymankar">
+      <http:operation location="/Peymankar" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Motammem_Gharardad">
+      <http:operation location="/Motammem_Gharardad" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Motammem_Dastoorkar">
+      <http:operation location="/Motammem_Dastoorkar" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Dastoorkar">
+      <http:operation location="/Dastoorkar" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Amval">
+      <http:operation location="/Amval" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Gharardad">
+      <http:operation location="/Gharardad" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Gharardad_Item">
+      <http:operation location="/Gharardad_Item" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Tasisat">
+      <http:operation location="/Tasisat" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Tasisat_Kala">
+      <http:operation location="/Tasisat_Kala" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="Plan_SrvHttpPost" type="tns:Plan_SrvHttpPost">
+    <http:binding verb="POST" />
+    <wsdl:operation name="InsertPlan">
+      <http:operation location="/InsertPlan" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetBudget">
+      <http:operation location="/GetBudget" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetRegion">
+      <http:operation location="/GetRegion" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetPlan">
+      <http:operation location="/GetPlan" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetPriceList">
+      <http:operation location="/GetPriceList" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Nezarat">
+      <http:operation location="/Nezarat" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Itm_List">
+      <http:operation location="/Itm_List" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Dedicate">
+      <http:operation location="/Dedicate" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Soorat_Vaziyat">
+      <http:operation location="/Soorat_Vaziyat" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Peymankar">
+      <http:operation location="/Peymankar" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Motammem_Gharardad">
+      <http:operation location="/Motammem_Gharardad" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Motammem_Dastoorkar">
+      <http:operation location="/Motammem_Dastoorkar" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Dastoorkar">
+      <http:operation location="/Dastoorkar" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Amval">
+      <http:operation location="/Amval" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Gharardad">
+      <http:operation location="/Gharardad" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Gharardad_Item">
+      <http:operation location="/Gharardad_Item" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Tasisat">
+      <http:operation location="/Tasisat" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Tasisat_Kala">
+      <http:operation location="/Tasisat_Kala" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="Plan_Srv">
+    <wsdl:port name="Plan_SrvSoap" binding="tns:Plan_SrvSoap">
+      <soap:address location="http://10.175.21.117/toziwebservice/plan_srv.asmx" />
+    </wsdl:port>
+    <wsdl:port name="Plan_SrvSoap12" binding="tns:Plan_SrvSoap12">
+      <soap12:address location="http://10.175.21.117/toziwebservice/plan_srv.asmx" />
+    </wsdl:port>
+    <wsdl:port name="Plan_SrvHttpGet" binding="tns:Plan_SrvHttpGet">
+      <http:address location="http://10.175.21.117/toziwebservice/plan_srv.asmx" />
+    </wsdl:port>
+    <wsdl:port name="Plan_SrvHttpPost" binding="tns:Plan_SrvHttpPost">
+      <http:address location="http://10.175.21.117/toziwebservice/plan_srv.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

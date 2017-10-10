@@ -19,6 +19,10 @@
         {
             #region Site Setting
             context.Settings.AddOrUpdate(op => new { op.Name },
+                 new Setting { Name = "SmsUsername", Value = "" },
+                 new Setting { Name = "SmsPassword", Value = "" },
+                 new Setting { Name = "SmsNumber", Value = "" },
+
                  new Setting { Name = "HomePageTitle", Value = "" },
                  new Setting { Name = "HomePageDescription", Value = "" },
                  new Setting { Name = "HomePageKeywords", Value = "" },
