@@ -130,14 +130,16 @@ namespace Netotik.Web.Controllers
                 case SignInStatus.Success:
                     if (!string.IsNullOrWhiteSpace(ReturnUrl))
                     {
-                        if (loggedinUser.UserCompany.SmsActive && loggedinUser.UserCompany.SmsAdminLogins)
-                            _smsService.SendSms(loggedinUser.PhoneNumber, string.Format("کاربر {0} در تاربخ {1} توسط ای پی {2} وارد نتوتیک شد.", loggedinUser.UserName, PersianDate.ConvertDate.ToFa(DateTime.Now, "g"), HttpContext.Request.ServerVariables["REMOTE_ADDR"]), loggedinUser.Id);
+                        if (loggedinUser.UserCompany.SmsCharge > 0 && loggedinUser.UserCompany.SmsActive && loggedinUser.UserCompany.SmsAdminLogins)
+                            _smsService.SendSms(loggedinUser.PhoneNumber, string.Format(Captions.SmsCompanyLogins, loggedinUser.UserName, PersianDate.ConvertDate.ToFa(DateTime.Now, "g"), HttpContext.Request.ServerVariables["REMOTE_ADDR"]), loggedinUser.Id);
+                        _uow.SaveAllChanges();
                         return RedirectToLocal(ReturnUrl);
                     }
                     else
                     {
                         if (loggedinUser.UserCompany.SmsCharge > 0 && loggedinUser.UserCompany.SmsActive && loggedinUser.UserCompany.SmsAdminLogins)
-                            _smsService.SendSms(loggedinUser.PhoneNumber, string.Format("کاربر {0} در تاربخ {1} توسط ای پی {2} وارد نتوتیک شد.",loggedinUser.UserName,PersianDate.ConvertDate.ToFa(DateTime.Now,"g"), HttpContext.Request.ServerVariables["REMOTE_ADDR"]), loggedinUser.Id);
+                            _smsService.SendSms(loggedinUser.PhoneNumber, string.Format(Captions.SmsCompanyLogins, loggedinUser.UserName,PersianDate.ConvertDate.ToFa(DateTime.Now,"g"), HttpContext.Request.ServerVariables["REMOTE_ADDR"]), loggedinUser.Id);
+                        _uow.SaveAllChanges();
                         return RedirectToAction(MVC.Company.Home.Index());
                     }
 
@@ -322,6 +324,9 @@ namespace Netotik.Web.Controllers
                     CompanyCode = company.UserCompany.CompanyCode,
                     Expire_Date = company.UserCompany.Expire_Date,
                     Id = company.UserCompany.Id,
+                    SmsActive = company.UserCompany.SmsActive,
+                    SmsUserAfterChangePackage = company.UserCompany.SmsUserAfterChangePackage,
+                    SmsUserhangeUserPassword = company.UserCompany.SmsUserhangeUserPassword,
                     R_Host = company.UserCompany.R_Host,
                     R_Password = company.UserCompany.R_Password,
                     R_Port = company.UserCompany.R_Port,

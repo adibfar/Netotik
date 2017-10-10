@@ -1172,34 +1172,34 @@
   <LocaleResource Name="Actions">
     <Value>عملیات ها</Value>
   </LocaleResource>
-<LocaleResource Name="Hotspot">
+  <LocaleResource Name="Hotspot">
     <Value>هات اسپات</Value>
   </LocaleResource>
-<LocaleResource Name="Access">
+  <LocaleResource Name="Access">
     <Value>دسترسی</Value>
   </LocaleResource>
-<LocaleResource Name="Price">
+  <LocaleResource Name="Price">
     <Value>قیمت</Value>
   </LocaleResource>
-<LocaleResource Name="Toman">
+  <LocaleResource Name="Toman">
     <Value>تومان</Value>
   </LocaleResource>
-<LocaleResource Name="SharedUsers">
+  <LocaleResource Name="SharedUsers">
     <Value>کاربران آنلاین همزمان</Value>
   </LocaleResource>
-<LocaleResource Name="StartAt">
+  <LocaleResource Name="StartAt">
     <Value> شروع محاسبه</Value>
   </LocaleResource>
-<LocaleResource Name="FirstConnection">
+  <LocaleResource Name="FirstConnection">
     <Value>اولین اتصال</Value>
   </LocaleResource>
-<LocaleResource Name="PackageBind">
+  <LocaleResource Name="PackageBind">
     <Value>انتساب تعرفه</Value>
   </LocaleResource>
-<LocaleResource Name="FromTime">
+  <LocaleResource Name="FromTime">
     <Value>از ساعت</Value>
   </LocaleResource>
-<LocaleResource Name="TillTime">
+  <LocaleResource Name="TillTime">
     <Value>تا ساعت</Value>
   </LocaleResource>
   <LocaleResource Name="WeekDays">
@@ -1291,9 +1291,11 @@
     <Value>دسترسی کاربر(ان)</Value>
   </LocaleResource>
   <LocaleResource Name="HotspotUserAccessDescription">
-    <Value>در این قسمت با اضافه کردن یک دستگاه می توانید اجازه دهید که آن دستگاه بدون اینکه
-                                    صفحه ورود هات اسپات برایش باز شود ، اینترنت و دسترسی به شبکه را داشته باشد.
-                                    جهت اضافه کردن یک دستگاه بهتر است با استفاده از مک آدرس دستگاه توسط فرم زیر آن دستگاه را اضافه کنید.</Value>
+    <Value>
+      در این قسمت با اضافه کردن یک دستگاه می توانید اجازه دهید که آن دستگاه بدون اینکه
+      صفحه ورود هات اسپات برایش باز شود ، اینترنت و دسترسی به شبکه را داشته باشد.
+      جهت اضافه کردن یک دستگاه بهتر است با استفاده از مک آدرس دستگاه توسط فرم زیر آن دستگاه را اضافه کنید.
+    </Value>
   </LocaleResource>
   <LocaleResource Name="New">
     <Value>جدید</Value>
@@ -1303,7 +1305,7 @@
   </LocaleResource>
   <LocaleResource Name="HotspotAddressesAccessDescription">
     <Value>
-                                    صفحه ورود هات اسپات برایش باز شود ، اینترنت و دسترسی به شبکه را داشته باشد.
+      صفحه ورود هات اسپات برایش باز شود ، اینترنت و دسترسی به شبکه را داشته باشد.
     </Value>
   </LocaleResource>
   <LocaleResource Name="Add">
@@ -1322,16 +1324,20 @@
     <Value>پاک کردن لاگ ها</Value>
   </LocaleResource>
   <LocaleResource Name="MikrotikRemoveLogsDesctiption">
-    <Value>با پاک کردن لاگ ها تمامی لاگ هایی که روتر ذخیره کرده است پاک خواهد شد.
-                                                این عملیات بدون ریبوت شدن روتر انجام می شود.</Value>
+    <Value>
+      با پاک کردن لاگ ها تمامی لاگ هایی که روتر ذخیره کرده است پاک خواهد شد.
+      این عملیات بدون ریبوت شدن روتر انجام می شود.
+    </Value>
   </LocaleResource>
   <LocaleResource Name="MikrotikReset">
     <Value>ریست روتر</Value>
   </LocaleResource>
   <LocaleResource Name="MikrotikResetDesctiption">
-    <Value>توجه: ممکن است پس از ریست، سامانه دیگر قادر به اتصال به روتر شما نباشد.لطفا با پشتیبان شبکه خود تماس بگیرید.
-    پس از ریست روتر تمامی تنظیمات و کانفیگ های انجام شده پاک خواهد شد.در صورتی که از طریق سامانه اقدام به ریست کنید،سامانه
-    به صورت خودکار قبل از ریست شدن دستگاه یک بک آپ از تنظیمات شما خواهد گرفت.</Value>
+    <Value>
+      توجه: ممکن است پس از ریست، سامانه دیگر قادر به اتصال به روتر شما نباشد.لطفا با پشتیبان شبکه خود تماس بگیرید.
+      پس از ریست روتر تمامی تنظیمات و کانفیگ های انجام شده پاک خواهد شد.در صورتی که از طریق سامانه اقدام به ریست کنید،سامانه
+      به صورت خودکار قبل از ریست شدن دستگاه یک بک آپ از تنظیمات شما خواهد گرفت.
+    </Value>
   </LocaleResource>
   <LocaleResource Name="DefualtConfiguration">
     <Value>تنظیمات پیشفرض</Value>
@@ -1346,8 +1352,10 @@
     <Value>بازگردانی پشتیبان</Value>
   </LocaleResource>
   <LocaleResource Name="MikrotikRestoreDesctiption">
-    <Value>بازگردانی روتر ممکن است باعث شود سامانه دیگر قادر به اتصال به روتر نباشد.
-                                                فقط بک آپ گیری هایی که توسط سامانه گرفته شده است نمایش داده می شود.</Value>
+    <Value>
+      بازگردانی روتر ممکن است باعث شود سامانه دیگر قادر به اتصال به روتر نباشد.
+      فقط بک آپ گیری هایی که توسط سامانه گرفته شده است نمایش داده می شود.
+    </Value>
   </LocaleResource>
   <LocaleResource Name="SelectBackup">
     <Value>انتخاب بک آپ</Value>
@@ -1356,8 +1364,10 @@
     <Value>ریست یوزرمنیجر</Value>
   </LocaleResource>
   <LocaleResource Name="MikrotikResetUsermanagerDesctiption">
-    <Value>توجه: در صورتی که از این قسمت اطلاعی ندارید لطفا با پشتیبان خود تماس بگیرید.
-                                                این سامانه به صورت خودکار قبل از ریست کردن بک آپ تهیه می کند.</Value>
+    <Value>
+      توجه: در صورتی که از این قسمت اطلاعی ندارید لطفا با پشتیبان خود تماس بگیرید.
+      این سامانه به صورت خودکار قبل از ریست کردن بک آپ تهیه می کند.
+    </Value>
   </LocaleResource>
   <LocaleResource Name="RemoveUsermanagerLogs">
     <Value>پاک کردن لاگ ها</Value>
@@ -1377,7 +1387,7 @@
   <LocaleResource Name="RemoveUsermanagerDB">
     <Value>باک کردن دیتابیس یوزرمنیجر بجز لاگ ها</Value>
   </LocaleResource>
-<LocaleResource Name="MikrotikUsermanagerBackup">
+  <LocaleResource Name="MikrotikUsermanagerBackup">
     <Value>پشتیبان گیری از یوزرمنیجر</Value>
   </LocaleResource>
   <LocaleResource Name="MikrotikUsermanagerBackupDesctiption">
@@ -1401,7 +1411,7 @@
   <LocaleResource Name="Router">
     <Value>روتر</Value>
   </LocaleResource>
-    <LocaleResource Name="NothingFound">
+  <LocaleResource Name="NothingFound">
     <Value>موردی پیدا نشد</Value>
   </LocaleResource>
   <LocaleResource Name="MikrotikBackupMessage">
@@ -1484,5 +1494,65 @@
   </LocaleResource>
   <LocaleResource Name="LastPackageChanges">
     <Value>آخرین تغییرات تعرفه ها</Value>
+  </LocaleResource>
+  <LocaleResource Name="SmsCompanyPasswordChange">
+    <Value>کاربر {0} پسورد شما در سامانه نتوتیک تغییر یافت.</Value>
+  </LocaleResource>
+  <LocaleResource Name="SmsCompanyLogins">
+    <Value>کاربر {0} در تاربخ {1} توسط ای پی {2} وارد نتوتیک شد.</Value>
+  </LocaleResource>
+  <LocaleResource Name="SmsUserBuyPackage">
+    <Value>کاربر {0} تعرفه شما تغییر یافت.</Value>
+  </LocaleResource>
+  <LocaleResource Name="SmsUserPasswordChange">
+    <Value>کاربر {0} پسورد شما به {1} تغییر یافت.</Value>
+  </LocaleResource>
+  <LocaleResource Name="SmsUserAccountRemoved">
+    <Value>کاربر {0} اکانت شما حذف گردید.</Value>
+  </LocaleResource>
+  <LocaleResource Name="SmsUserAccountCreated">
+    <Value>اکانت شما با موفقیت ایجاد شد.نام کاربری شما {0} و کلمه عبور شما {1} می باشد.</Value>
+  </LocaleResource>
+  <LocaleResource Name="SmsUserAfterChangePackage">
+    <Value>اطلاع رسانی به کاربر زمان تغییر تعرفه</Value>
+  </LocaleResource>
+  <LocaleResource Name="SmsUserAfterDelete">
+    <Value>اطلاع رسانی به کاربر ، حذف شدن اکانت</Value>
+  </LocaleResource>
+  <LocaleResource Name="SmsUserAfterResetCounter">
+    <Value>اطلاع رسانی کاربر زمان ریست شدن کاربر</Value>
+  </LocaleResource>
+  <LocaleResource Name="SmsYourAccountCounterReset">
+    <Value>کاربر {0} اکانت شما ریست شد.</Value>
+  </LocaleResource>
+  <LocaleResource Name="SmsActive">
+    <Value>فعال سازی سیستم پیامک</Value>
+  </LocaleResource>
+  <LocaleResource Name="SmsUserAfterCreateWithAdmin">
+    <Value>اطلاع رسانی به کاربر زمان ایجاد اکانت</Value>
+  </LocaleResource>
+  <LocaleResource Name="RegisterFormSms">
+    <Value>اطلاع رسانی به کاربر زمان ثبت نام از طریق فرم ثبت نام</Value>
+  </LocaleResource>
+  <LocaleResource Name="SmsAdminLogins">
+    <Value>اطلاع رسانی ورود به پنل مدیریت</Value>
+  </LocaleResource>
+  <LocaleResource Name="SmsAdminChangeAdminPassword">
+    <Value>اطلاع رسانی زمان تغییر گذرواژه پنل مدیریت</Value>
+  </LocaleResource>
+  <LocaleResource Name="SmsUserhangeUserPassword">
+    <Value>اطلاع رسانی تغییر یافتن گذرواژه پنل کاربران</Value>
+  </LocaleResource>
+  <LocaleResource Name="SmsAdminChangeUserPassword">
+    <Value>اطلاع رسانی تغییر یافتن گذرواژه کاربر توسط مدیریت</Value>
+  </LocaleResource>
+  <LocaleResource Name="RegisterWithSmsCode">
+    <Value>متن پیامکی جهت ثبت نام</Value>
+  </LocaleResource>
+  <LocaleResource Name="RegisterWithSms">
+    <Value>ثبت نام از طریق پیامک</Value>
+  </LocaleResource>
+  <LocaleResource Name="SmsCharge">
+    <Value>اعتبار پیامک</Value>
   </LocaleResource>
 </Language>

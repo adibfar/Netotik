@@ -904,4 +904,64 @@
   <LocaleResource Name="LastPackageChanges">
     <Value>Last Package Changes</Value>
   </LocaleResource>
+  <LocaleResource Name="SmsCompanyPasswordChange">
+    <Value>User {0} , Your password changed.Netotik System</Value>
+  </LocaleResource>
+  <LocaleResource Name="SmsCompanyLogins">
+    <Value>User {0} with {1} IP address Logined.Date:{2}</Value>
+  </LocaleResource>
+  <LocaleResource Name="SmsUserBuyPackage">
+    <Value>User {0} , Your Package Changed.</Value>
+  </LocaleResource>
+  <LocaleResource Name="SmsUserPasswordChange">
+    <Value>User {0} , Your Password Changed To {1}</Value>
+  </LocaleResource>
+  <LocaleResource Name="SmsUserAccountRemoved">
+    <Value>User {0} , Your Account Removed</Value>
+  </LocaleResource>
+  <LocaleResource Name="SmsUserAccountCreated">
+    <Value>Your Account Created. Username: {0}  |  Password: {1}</Value>
+  </LocaleResource>
+  <LocaleResource Name="SmsUserAfterChangePackage">
+    <Value>SMS User After Package Change</Value>
+  </LocaleResource>
+  <LocaleResource Name="SmsUserAfterDelete">
+    <Value>SMS User After Account Removed</Value>
+  </LocaleResource>
+  <LocaleResource Name="SmsUserAfterResetCounter">
+    <Value>SMS User After Account Counter Reset</Value>
+  </LocaleResource>
+  <LocaleResource Name="SmsYourAccountCounterReset">
+    <Value>User {0} , Your Account Reset.</Value>
+  </LocaleResource>
+  <LocaleResource Name="SmsActive">
+    <Value>SMS Service</Value>
+  </LocaleResource>
+  <LocaleResource Name="SmsUserAfterCreateWithAdmin">
+    <Value>SMS User After User Create With Admin</Value>
+  </LocaleResource>
+  <LocaleResource Name="RegisterFormSms">
+    <Value>SMS User After Register With Register Form</Value>
+  </LocaleResource>
+  <LocaleResource Name="SmsAdminLogins">
+    <Value>SMS Admin Logins</Value>
+  </LocaleResource>
+  <LocaleResource Name="SmsAdminChangeAdminPassword">
+    <Value>SMS Admin Password Change</Value>
+  </LocaleResource>
+  <LocaleResource Name="SmsUserhangeUserPassword">
+    <Value>SMS Users After Change there Passwords</Value>
+  </LocaleResource>
+  <LocaleResource Name="SmsAdminChangeUserPassword">
+    <Value>SMS User After Change Password With Admin</Value>
+  </LocaleResource>
+  <LocaleResource Name="RegisterWithSmsCode">
+    <Value>Recived Name For Registertion with SMS</Value>
+  </LocaleResource>
+  <LocaleResource Name="RegisterWithSms">
+    <Value>Register With SMS</Value>
+  </LocaleResource>
+  <LocaleResource Name="SmsCharge">
+    <Value>SMS Charge</Value>
+  </LocaleResource>
 </Language>

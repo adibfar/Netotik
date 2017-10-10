@@ -4016,6 +4016,145 @@ namespace Netotik.Resources
                 return resourceProvider.GetResource("NoneType", CultureInfo.CurrentUICulture.Name) as string;
             }
         }
-
+        public static string SmsCompanyPasswordChange
+        {
+            get
+            {
+                return resourceProvider.GetResource("SmsCompanyPasswordChange", CultureInfo.CurrentUICulture.Name) as string;
+            }
+        }
+        public static string SmsCompanyLogins
+        {
+            get
+            {
+                return resourceProvider.GetResource("SmsCompanyLogins", CultureInfo.CurrentUICulture.Name) as string;
+            }
+        }
+        public static string SmsUserBuyPackage
+        {
+            get
+            {
+                return resourceProvider.GetResource("SmsUserBuyPackage", CultureInfo.CurrentUICulture.Name) as string;
+            }
+        }
+        public static string SmsUserPasswordChange
+        {
+            get
+            {
+                return resourceProvider.GetResource("SmsUserPasswordChange", CultureInfo.CurrentUICulture.Name) as string;
+            }
+        }
+        public static string SmsUserAccountRemoved
+        {
+            get
+            {
+                return resourceProvider.GetResource("SmsUserAccountRemoved", CultureInfo.CurrentUICulture.Name) as string;
+            }
+        }
+        public static string SmsUserAccountCreated
+        {
+            get
+            {
+                return resourceProvider.GetResource("SmsUserAccountCreated", CultureInfo.CurrentUICulture.Name) as string;
+            }
+        }
+        public static string SmsCharge
+        {
+            get
+            {
+                return resourceProvider.GetResource("SmsCharge", CultureInfo.CurrentUICulture.Name) as string;
+            }
+        }
+        public static string RegisterWithSms
+        {
+            get
+            {
+                return resourceProvider.GetResource("RegisterWithSms", CultureInfo.CurrentUICulture.Name) as string;
+            }
+        }
+        public static string RegisterWithSmsCode
+        {
+            get
+            {
+                return resourceProvider.GetResource("RegisterWithSmsCode", CultureInfo.CurrentUICulture.Name) as string;
+            }
+        }
+        public static string SmsAdminChangeUserPassword
+        {
+            get
+            {
+                return resourceProvider.GetResource("SmsAdminChangeUserPassword", CultureInfo.CurrentUICulture.Name) as string;
+            }
+        }
+        public static string SmsUserhangeUserPassword
+        {
+            get
+            {
+                return resourceProvider.GetResource("SmsUserhangeUserPassword", CultureInfo.CurrentUICulture.Name) as string;
+            }
+        }
+        public static string SmsAdminChangeAdminPassword
+        {
+            get
+            {
+                return resourceProvider.GetResource("SmsAdminChangeAdminPassword", CultureInfo.CurrentUICulture.Name) as string;
+            }
+        }
+        public static string SmsAdminLogins
+        {
+            get
+            {
+                return resourceProvider.GetResource("SmsAdminLogins", CultureInfo.CurrentUICulture.Name) as string;
+            }
+        }
+        public static string RegisterFormSms
+        {
+            get
+            {
+                return resourceProvider.GetResource("RegisterFormSms", CultureInfo.CurrentUICulture.Name) as string;
+            }
+        }
+        public static string SmsUserAfterCreateWithAdmin
+        {
+            get
+            {
+                return resourceProvider.GetResource("SmsUserAfterCreateWithAdmin", CultureInfo.CurrentUICulture.Name) as string;
+            }
+        }
+        public static string SmsActive
+        {
+            get
+            {
+                return resourceProvider.GetResource("SmsActive", CultureInfo.CurrentUICulture.Name) as string;
+            }
+        }
+        public static string SmsUserAfterResetCounter
+        {
+            get
+            {
+                return resourceProvider.GetResource("SmsUserAfterResetCounter", CultureInfo.CurrentUICulture.Name) as string;
+            }
+        }
+        public static string SmsUserAfterChangePackage
+        {
+            get
+            {
+                return resourceProvider.GetResource("SmsUserAfterChangePackage", CultureInfo.CurrentUICulture.Name) as string;
+            }
+        }
+        public static string SmsUserAfterDelete
+        {
+            get
+            {
+                return resourceProvider.GetResource("SmsUserAfterDelete", CultureInfo.CurrentUICulture.Name) as string;
+            }
+        }
+        public static string SmsYourAccountCounterReset
+        {
+            get
+            {
+                return resourceProvider.GetResource("SmsYourAccountCounterReset", CultureInfo.CurrentUICulture.Name) as string;
+            }
+        }
     }
 }

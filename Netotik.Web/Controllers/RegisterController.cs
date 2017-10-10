@@ -37,6 +37,7 @@ namespace Netotik.Web.Controllers
         private readonly IMikrotikServices _mikrotikServices;
         private readonly IUserMailer _userMailer;
         private readonly IUnitOfWork _uow;
+        private readonly ISmsService _smsService;
         private readonly IMenuService _menuService;
 
         public RegisterController(
@@ -44,12 +45,14 @@ namespace Netotik.Web.Controllers
             IApplicationUserManager applicationUserManager,
             IUserMailer userMailer,
             IMenuService menuService,
+            ISmsService smsService,
             IUnitOfWork uow)
         {
             _mikrotikServices = mikrotikservices;
             _userMailer = userMailer;
             _applicationUserManager = applicationUserManager;
             _uow = uow;
+            _smsService = smsService;
             _menuService = menuService;
         }
         [Route("{lang}/router/reg/{CompanyCode}")]
@@ -163,10 +166,15 @@ namespace Netotik.Web.Controllers
             else
             {
                 _mikrotikServices.Usermanager_UserCreate(User.UserCompany.R_Host, User.UserCompany.R_Port, User.UserCompany.R_User, User.UserCompany.R_Password, Usermanuser);
+                if (User.UserCompany.SmsCharge > 0 && User.UserCompany.SmsActive && User.UserCompany.RegisterFormSms)
+                {
+                    _smsService.SendSms(model.phone, string.Format(Captions.SmsUserBuyPackage,model.username), User.Id);
+                }
             }
 
             ViewBag.CompanyName = CompanyCode;
             ViewBag.ReturnUrl = ReturnUrl;
+            _uow.SaveAllChanges();
             return RedirectToAction(MVC.Register.ActionNames.Client);
         }
 

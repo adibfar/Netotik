@@ -254,11 +254,12 @@ namespace Netotik.Web.Areas.Company.Controllers
             if (temp.Succeeded)
             {
                 if (UserLogined.UserCompany.SmsCharge > 0 && UserLogined.UserCompany.SmsActive && UserLogined.UserCompany.SmsAdminChangeAdminPassword)
-                    _smsService.SendSms(UserLogined.PhoneNumber, "پسورد پنل نتوتیک شما تغییر کرد.", UserLogined.Id);
+                    _smsService.SendSms(UserLogined.PhoneNumber, string.Format(Captions.SmsCompanyPasswordChange,UserLogined.UserName), UserLogined.Id);
                 this.MessageInformation(Captions.MissionSuccess, Captions.UpdateSuccess);
             }
             else
                 this.MessageError(Captions.MissionFail, Captions.UpdateError);
+            _uow.SaveAllChanges();
             return View();
         }
 

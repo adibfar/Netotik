@@ -298,7 +298,7 @@ namespace Netotik.Web.Areas.Reseller.Controllers
             {
                 var Company = _applicationUserManager.FindUserById(User.Identity.GetUserId<long>());
                 if (Company.UserCompany.SmsCharge > 0 && Company.UserCompany.SmsActive && Company.UserCompany.SmsAdminChangeAdminPassword)
-                    _smsService.SendSms(UserLogined.PhoneNumber, "پسورد پنل نتوتیک شما تغییر کرد.", UserLogined.Id);
+                    _smsService.SendSms(UserLogined.PhoneNumber, string.Format(Captions.SmsCompanyPasswordChange,UserLogined.UserName), UserLogined.Id);
                 this.MessageInformation(Captions.MissionSuccess, Captions.UpdateSuccess);
             }
             else

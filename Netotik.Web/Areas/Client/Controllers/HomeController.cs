@@ -344,7 +344,8 @@ namespace Netotik.Web.Areas.Client.Controllers
             //    this.MessageError(Captions.MissionFail, Captions.UpdateError);
             var User = _mikrotikServices.Usermanager_GetUser(loginedUser.UserCompany.R_Host, loginedUser.UserCompany.R_Port, loginedUser.UserCompany.R_User, loginedUser.UserCompany.R_Password, loginedUser.UserName);
             if (_mikrotikServices.Usermanager_UserChangePassword(loginedUser.UserCompany.R_Host, loginedUser.UserCompany.R_Port, loginedUser.UserCompany.R_User, loginedUser.UserCompany.R_Password, model, loginedUser.UserName) && loginedUser.UserCompany.SmsCharge > 0 && loginedUser.UserCompany.SmsActive && loginedUser.UserCompany.SmsUserhangeUserPassword && User.FirstOrDefault().phone != null && User.FirstOrDefault().phone != null)
-                _smsService.SendSms(User.FirstOrDefault().phone, "پسورد شما با موفقیت تغییر یافت",loginedUser.UserCompany.Id);
+                _smsService.SendSms(User.FirstOrDefault().phone, string.Format(Captions.SmsUserPasswordChange,User.FirstOrDefault().username,model.Password),loginedUser.UserCompany.Id);
+            _uow.SaveAllChanges();
             return View();
         }
         public virtual ActionResult Edit()
@@ -613,7 +614,12 @@ namespace Netotik.Web.Areas.Client.Controllers
             model.phone = UsermanagerUser.FirstOrDefault().phone;
             model.profile = pname;
             _mikrotikServices.Usermanager_UserEdit(loginedUser.UserCompany.R_Host, loginedUser.UserCompany.R_Port, loginedUser.UserCompany.R_User, loginedUser.UserCompany.R_Password, model);
-
+            if(model.phone != null && model.phone!= "")
+            if (loginedUser.UserCompany.SmsCharge > 0 && loginedUser.UserCompany.SmsActive && loginedUser.UserCompany.SmsUserAfterChangePackage)
+            {
+                _smsService.SendSms(model.phone, string.Format(Captions.SmsUserBuyPackage,model.username), loginedUser.Id);
+            }
+            _uow.SaveAllChanges();
             return RedirectToAction(MVC.Client.Home.Index());
         }
         public virtual ActionResult BuyPackage()
