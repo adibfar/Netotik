@@ -43,6 +43,10 @@ namespace Netotik.Domain.Entity
         public bool SmsUserAfterDelete { get; set; }
         public bool SmsUserAfterChangePackage { get; set; }
 
+        public string RegisterWithSmsRouterProfile { get; set; }
+        public string RegisterWithSmsMessage { get; set; }
+        public bool SmsIfErrorInSms { get; set; }
+
 
         public long UserResellerId { get; set; }
         public virtual UserReseller UserReseller { get; set; }
@@ -57,5 +61,7 @@ namespace Netotik.Domain.Entity
 
         public string ClientPermissions { get; set; }
         public string CompanyPermissions { get; set; }
+
+        public string ZarinPalMerchantId { get; set; }
     }
 }

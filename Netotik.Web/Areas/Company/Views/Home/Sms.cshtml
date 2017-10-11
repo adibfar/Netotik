@@ -8,6 +8,7 @@
         <div class="col-md-12">
             @using (Html.BeginForm(MVC.Company.Home.ActionNames.Sms, MVC.Company.Home.Name, null, FormMethod.Post, htmlAttributes: new { @class = "cmxform form-horizontal tasi-form", id = "form" }))
             {
+                @Html.HiddenFor(m=>m.Id)
                 @Html.AntiForgeryToken()
                 <div class="card">
                     <div class="card-header">
@@ -61,6 +62,12 @@
                                 <div class="tab-pane fade row form-group skin skin-flat" id="Registration" role="tabpanel" aria-labelledby="linkIconOpt11-tab1" aria-expanded="false">
                                     <div class="col-md-4">
                                         <div class="form-group">
+                                            @Html.LabelFor(m => m.SmsIfErrorInSms)
+                                            @Html.CheckBoxFor(model => model.SmsIfErrorInSms)
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group">
                                             @Html.LabelFor(m => m.RegisterWithSms)
                                             @Html.CheckBoxFor(model => model.RegisterWithSms)
                                         </div>
@@ -76,6 +83,34 @@
                                             </div>
                                         </div>
                                     </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group has-icon-left">
+                                            @Html.LabelFor(m => m.RegisterWithSmsMessage)
+                                            <div class="position-relative has-icon-left" data-toggle="tooltip" data-original-title="<b>@Model.RegisterWithSmsMessage</b>" data-html="true">
+                                                @Html.TextAreaFor(m => m.RegisterWithSmsMessage, new { @class = "form-control" })
+                                                <div class="form-control-position">
+                                                    <i class="icon-ios-timer"></i>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <label class="font-noraml">@Captions.RegisterWithSmsRouterProfile</label>
+                                        <select id="RegisterWithSmsRouterProfile" name="RegisterWithSmsRouterProfile" data-placeholder="@Captions.RegisterWithSmsRouterProfile" class="selectize-select" style="min-width:350px;" tabindex="2">
+                                            @if (ViewBag.profiles != null)
+                                            {
+                                                foreach (var item in ViewBag.profiles)
+                                                {
+                                                <option value="@item.name">@item.name</option>
+                                                }
+                                            }
+                                            else
+                                            {
+                                                <option value="NothingFound">@Captions.NothingFound</option>
+                                            }
+                                        </select>
+                                    </div>
+
                                 </div>
                                 <div class="tab-pane fade row form-group skin skin-flat" id="Info" role="tabpanel" aria-labelledby="linkIconOpt11-tab1" aria-expanded="false">
                                     <div class="col-md-3">

@@ -799,10 +799,12 @@ namespace Netotik.Services.Identity
                ? _users.Any(a => a.UserCompany.NationalCode == nCode && a.UserCompany.UserResellerId == resellerid && !a.IsDeleted)
                : _users.Any(a => a.UserCompany.NationalCode == nCode && a.UserCompany.UserResellerId == resellerid && !a.IsDeleted && a.Id != id.Value);
         }
-        
-        public bool SmsCodeIsValid(string RegisterWithSmsCode)
+
+        public bool SmsCodeIsValid(string RegisterWithSmsCode, long? id)
         {
-            return _users.Any(a => a.UserCompany.RegisterWithSmsCode == RegisterWithSmsCode && !a.IsDeleted);
+            return id == null
+               ? _users.Any(a => a.UserCompany.RegisterWithSmsCode == RegisterWithSmsCode && !a.IsDeleted)
+               : _users.Any(a => a.UserCompany.RegisterWithSmsCode == RegisterWithSmsCode && !a.IsDeleted && a.Id != id.Value);
         }
         public bool CheckResellerCompanyNameExist(string name, long? id)
         {
@@ -1112,21 +1114,25 @@ namespace Netotik.Services.Identity
         }
         public SmsModel GetUserCompanySmsSettings(long id)
         {
-            return _users.Where(x => x.UserType == UserType.UserCompany && x.Id == id).Select(x => new SmsModel{
-                Id =x.Id,
+            return _users.Where(x => x.UserType == UserType.UserCompany && x.Id == id).Select(x => new SmsModel
+            {
+                Id = x.Id,
                 RegisterFormSms = x.UserCompany.RegisterFormSms,
                 RegisterWithSms = x.UserCompany.RegisterWithSms,
                 RegisterWithSmsCode = x.UserCompany.RegisterWithSmsCode,
                 SmsActive = x.UserCompany.SmsActive,
                 SmsAdminChangeAdminPassword = x.UserCompany.SmsAdminChangeAdminPassword,
                 SmsAdminChangeUserPassword = x.UserCompany.SmsAdminChangeUserPassword,
-                SmsAdminLogins=x.UserCompany.SmsAdminLogins,
+                SmsAdminLogins = x.UserCompany.SmsAdminLogins,
                 SmsCharge = x.UserCompany.SmsCharge,
                 SmsUserAfterChangePackage = x.UserCompany.SmsUserAfterChangePackage,
                 SmsUserAfterCreateWithAdmin = x.UserCompany.SmsUserAfterCreateWithAdmin,
                 SmsUserAfterDelete = x.UserCompany.SmsUserAfterDelete,
                 SmsUserAfterResetCounter = x.UserCompany.SmsUserAfterResetCounter,
-                SmsUserhangeUserPassword = x.UserCompany.SmsUserhangeUserPassword
+                SmsUserhangeUserPassword = x.UserCompany.SmsUserhangeUserPassword,
+                RegisterWithSmsMessage = x.UserCompany.RegisterWithSmsMessage,
+                RegisterWithSmsRouterProfile = x.UserCompany.RegisterWithSmsRouterProfile,
+                SmsIfErrorInSms = x.UserCompany.SmsIfErrorInSms
             }).FirstOrDefault();
         }
 
@@ -1135,6 +1141,11 @@ namespace Netotik.Services.Identity
             var user = _users.Find(model.Id);
             _mappingEngine.Map(model, user);
             await _unitOfWork.SaveChangesAsync();
+        }
+        public async Task<User> FindByCompanySMSCodeAsync(string Code)
+        {
+            //return _users.FirstOrDefaultAsync(x => !x.IsDeleted && x.IsBanned && x.EmailConfirmed && x.UserType == UserType.UserReseller && x.UserReseller.ResellerCode == Code);
+            return await _users.FirstOrDefaultAsync(x => !x.IsDeleted && x.UserType == UserType.UserCompany && x.UserCompany.RegisterWithSmsCode == Code);
         }
     }
 }

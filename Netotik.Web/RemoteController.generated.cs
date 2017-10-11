@@ -309,6 +309,7 @@ namespace Netotik.Web.Controllers
         public class ActionParamsClass_SmsCodeIsValid
         {
             public readonly string RegisterWithSmsCode = "RegisterWithSmsCode";
+            public readonly string id = "id";
         }
         static readonly ActionParamsClass_RedirectToLocal s_params_RedirectToLocal = new ActionParamsClass_RedirectToLocal();
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -496,14 +497,15 @@ namespace Netotik.Web.Controllers
         }
 
         [NonAction]
-        partial void SmsCodeIsValidOverride(T4MVC_System_Web_Mvc_JsonResult callInfo, string RegisterWithSmsCode);
+        partial void SmsCodeIsValidOverride(T4MVC_System_Web_Mvc_JsonResult callInfo, string RegisterWithSmsCode, long? id);
 
         [NonAction]
-        public override System.Web.Mvc.JsonResult SmsCodeIsValid(string RegisterWithSmsCode)
+        public override System.Web.Mvc.JsonResult SmsCodeIsValid(string RegisterWithSmsCode, long? id)
         {
             var callInfo = new T4MVC_System_Web_Mvc_JsonResult(Area, Name, ActionNames.SmsCodeIsValid);
             ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "RegisterWithSmsCode", RegisterWithSmsCode);
-            SmsCodeIsValidOverride(callInfo, RegisterWithSmsCode);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "id", id);
+            SmsCodeIsValidOverride(callInfo, RegisterWithSmsCode, id);
             return callInfo;
         }
 

@@ -66,5 +66,7 @@ namespace Netotik.ViewModels.Identity.UserCompany
 
         public string[] ClientPermissionNames { get; set; }
         public string[] CompanyPermissionNames { get; set; }
+
+        public string ZarinPalMerchantId { get; set; }
     }
 }

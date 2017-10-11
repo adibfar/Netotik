@@ -116,6 +116,7 @@ namespace Netotik.AutoMapperProfiles
             CreateMap<User, ViewModels.Identity.UserCompany.ProfileModel>()
               .ForMember(d => d.NationalCode, m => m.MapFrom(t => t.UserCompany.NationalCode))
               .ForMember(d => d.CompanyCode, m => m.MapFrom(t => t.UserCompany.CompanyCode))
+              .ForMember(d => d.ZarinPalMerchantId, m => m.MapFrom(t => t.UserCompany.ZarinPalMerchantId))
               .IgnoreAllNonExisting();
 
             CreateMap<User, ViewModels.Identity.UserCompany.CompanyEditModel>()

@@ -329,6 +329,7 @@
     <Folder Include="Areas\Client\Models\" />
     <Folder Include="Areas\Company\Models\" />
     <Folder Include="Areas\Reseller\Models\" />
+    <Folder Include="Views\FarapayamakGateway\" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AccountController.generated.cs">
@@ -466,12 +467,16 @@
     </Compile>
     <Compile Include="Controllers\BlogController.cs" />
     <Compile Include="Controllers\ContactUsController.cs" />
+    <Compile Include="Controllers\FarapayamakGatewayController.cs" />
     <Compile Include="Controllers\RemoteController.cs" />
     <Compile Include="Controllers\SitemapController.cs" />
     <Compile Include="Controllers\RssController.cs" />
     <Compile Include="Controllers\TestController.cs" />
     <Compile Include="Controllers\TelegramBotController.cs" />
     <Compile Include="ErrorController.generated.cs">
+      <DependentUpon>T4MVC.tt</DependentUpon>
+    </Compile>
+    <Compile Include="FarapayamakGatewayController.generated.cs">
       <DependentUpon>T4MVC.tt</DependentUpon>
     </Compile>
     <Compile Include="Infrastructure\Caching\LanguageCache.cs" />

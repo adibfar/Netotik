@@ -184,6 +184,7 @@ namespace Netotik.Services.Identity
         /// <returns/>
         Task<User> FindByResellerCodeAsync(string Code);
         Task<User> FindByCompanyCodeAsync(string Code);
+        Task<User> FindByCompanySMSCodeAsync(string Code);
 
         /// <summary>
         /// Find a user by user name
@@ -616,7 +617,7 @@ namespace Netotik.Services.Identity
         bool CheckResellerNationalCodeExist(string nCode, long? id);
         bool CheckCompanyNationalCodeExist(string nCode, long? id, long? resellerid);
         bool CheckResellerCompanyNameExist(string name, long? id);
-        bool SmsCodeIsValid(string RegisterWithSmsCode);
+        bool SmsCodeIsValid(string RegisterWithSmsCode,long? id);
         bool CheckCompanyCompanyNameExist(string name, long? id, long? resellerid);
         bool CheckGooglePlusIdExist(string googlePlusId, long? id);
         bool CheckFacebookIdExist(string faceBookId, long? id);

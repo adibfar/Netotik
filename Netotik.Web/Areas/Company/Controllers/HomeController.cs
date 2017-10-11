@@ -259,11 +259,12 @@ namespace Netotik.Web.Areas.Company.Controllers
             if (temp.Succeeded)
             {
                 if (UserLogined.UserCompany.SmsCharge > 0 && UserLogined.UserCompany.SmsActive && UserLogined.UserCompany.SmsAdminChangeAdminPassword)
-                    _smsService.SendSms(UserLogined.PhoneNumber, "پسورد پنل نتوتیک شما تغییر کرد.", UserLogined.Id);
+                    _smsService.SendSms(UserLogined.PhoneNumber, string.Format(Captions.SmsCompanyPasswordChange,UserLogined.UserName), UserLogined.Id);
                 this.MessageInformation(Captions.MissionSuccess, Captions.UpdateSuccess);
             }
             else
                 this.MessageError(Captions.MissionFail, Captions.UpdateError);
+            _uow.SaveAllChanges();
             return View();
         }
 
@@ -273,6 +274,16 @@ namespace Netotik.Web.Areas.Company.Controllers
         {
             var Model = new SmsModel();
             Model = _applicationUserManager.GetUserCompanySmsSettings(UserLogined.Id);
+            if (_mikrotikServices.IP_Port_Check(UserLogined.UserCompany.R_Host, UserLogined.UserCompany.R_Port, UserLogined.UserCompany.R_User, UserLogined.UserCompany.R_Password))
+            {
+                if (_mikrotikServices.User_Pass_Check(UserLogined.UserCompany.R_Host, UserLogined.UserCompany.R_Port, UserLogined.UserCompany.R_User, UserLogined.UserCompany.R_Password))
+                {
+                    ViewBag.profiles = _mikrotikServices.Usermanager_GetAllProfile(UserLogined.UserCompany.R_Host, UserLogined.UserCompany.R_Port, UserLogined.UserCompany.R_User, UserLogined.UserCompany.R_Password);
+                }else
+                    this.MessageError(Captions.Error, Captions.UserPasswordClientError);
+            }else
+                this.MessageError(Captions.Error, Captions.IPPORTClientError);
+
 
             ViewBag.Packages = _smsPackageService.All()
                 .Where(x => x.IsActive)
@@ -292,7 +303,7 @@ namespace Netotik.Web.Areas.Company.Controllers
             else
             {
                 this.MessageError(Captions.Error, Captions.ValidateError);
-                return View(_applicationUserManager.GetUserCompanySmsSettings(UserLogined.Id));
+                return View(model);
             }
             return View(model);
         }

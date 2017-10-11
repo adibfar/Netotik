@@ -71,9 +71,10 @@ namespace Netotik.Web.Areas.Company.Controllers
             //-------------------------------
             var Users = _mikrotikServices.Usermanager_GetUser(UserLogined.UserCompany.R_Host, UserLogined.UserCompany.R_Port, UserLogined.UserCompany.R_User, UserLogined.UserCompany.R_Password, user);
             _mikrotikServices.Usermanager_ResetCounter(UserLogined.UserCompany.R_Host, UserLogined.UserCompany.R_Port, UserLogined.UserCompany.R_User, UserLogined.UserCompany.R_Password, user);
-            if (UserLogined.UserCompany.SmsCharge > 0 && UserLogined.UserCompany.SmsActive && UserLogined.UserCompany.SmsUserAfterResetCounter && Users.FirstOrDefault().phone!=null && Users.FirstOrDefault().phone!="")
-                _smsService.SendSms(Users.FirstOrDefault().phone, "اکانت شما ریست شد", UserLogined.Id);
+            if (UserLogined.UserCompany.SmsCharge > 0 && UserLogined.UserCompany.SmsActive && UserLogined.UserCompany.SmsUserAfterResetCounter && Users.FirstOrDefault().phone != null && Users.FirstOrDefault().phone != "")
+                _smsService.SendSms(Users.FirstOrDefault().phone, string.Format(Captions.SmsYourAccountCounterReset,Users.FirstOrDefault().username), UserLogined.Id);
             //--------------------------------
+            _uow.SaveAllChanges();
             return RedirectToAction(MVC.Company.UserManager.UserList());
         }
 
@@ -453,7 +454,8 @@ namespace Netotik.Web.Areas.Company.Controllers
             var Users = _mikrotikServices.Usermanager_GetUser(UserLogined.UserCompany.R_Host, UserLogined.UserCompany.R_Port, UserLogined.UserCompany.R_User, UserLogined.UserCompany.R_Password, id);
             _mikrotikServices.Usermanager_RemoveUser(UserLogined.UserCompany.R_Host, UserLogined.UserCompany.R_Port, UserLogined.UserCompany.R_User, UserLogined.UserCompany.R_Password, id);
             if (UserLogined.UserCompany.SmsCharge > 0 && UserLogined.UserCompany.SmsActive && UserLogined.UserCompany.SmsUserAfterDelete && Users.FirstOrDefault().phone != null && Users.FirstOrDefault().phone != "")
-                _smsService.SendSms(Users.FirstOrDefault().phone, "اکانت شما حذف گردید", UserLogined.Id);
+                _smsService.SendSms(Users.FirstOrDefault().phone, string.Format(Captions.SmsUserAccountRemoved,Users.FirstOrDefault().username), UserLogined.Id);
+            _uow.SaveAllChanges();
             return RedirectToAction(MVC.Company.UserManager.ActionNames.UserList);
         }
 
@@ -853,13 +855,14 @@ namespace Netotik.Web.Areas.Company.Controllers
                 {
                     _mikrotikServices.Usermanager_UserCreate(UserLogined.UserCompany.R_Host, UserLogined.UserCompany.R_Port, UserLogined.UserCompany.R_User, UserLogined.UserCompany.R_Password, Usermanuser);
                     if (UserLogined.UserCompany.SmsCharge > 0 && UserLogined.UserCompany.SmsActive && UserLogined.UserCompany.SmsUserAfterCreateWithAdmin)
-                        _smsService.SendSms(model.phone, "پسورد پنل نتوتیک شما تغییر کرد.", UserLogined.Id);
+                        _smsService.SendSms(model.phone, string.Format(Captions.SmsUserAccountCreated, model.username,model.password), UserLogined.Id);
                     else
                     {
                         if (model.SendSmsNow)
-                            _smsService.SendSms(model.phone, "پسورد پنل نتوتیک شما تغییر کرد.", UserLogined.Id);
+                            _smsService.SendSms(model.phone, string.Format(Captions.SmsUserAccountCreated, model.username,model.password), UserLogined.Id);
                     }
                 }
+                _uow.SaveAllChanges();
                 return RedirectToAction(MVC.Company.UserManager.UserList());
             }
         }
@@ -998,6 +1001,13 @@ namespace Netotik.Web.Areas.Company.Controllers
                     {
                         if (model.profile == item.actual_profile)
                             model.profile = "";
+                        else
+                        if (model.phone != null && model.phone != "")
+                            if (UserLogined.UserCompany.SmsCharge > 0 && UserLogined.UserCompany.SmsActive && UserLogined.UserCompany.SmsUserAfterChangePackage)
+                            {
+                                _smsService.SendSms(model.phone,string.Format(Captions.SmsUserBuyPackage,model.username), UserLogined.Id);
+                            }
+
                     }
                 _mikrotikServices.Usermanager_UserEdit(UserLogined.UserCompany.R_Host, UserLogined.UserCompany.R_Port, UserLogined.UserCompany.R_User, UserLogined.UserCompany.R_Password, model);
                 if (model.password != model2.FirstOrDefault().password)
@@ -1005,9 +1015,10 @@ namespace Netotik.Web.Areas.Company.Controllers
                     if (UserLogined.UserCompany.SmsCharge > 0 && UserLogined.UserCompany.SmsActive && UserLogined.UserCompany.SmsAdminChangeUserPassword)
                     {
                         if (model.phone != null || model.phone != "")
-                            _smsService.SendSms(UserLogined.PhoneNumber, "پسورد پنل نتوتیک شما تغییر کرد.", UserLogined.Id);
+                            _smsService.SendSms(model.phone, string.Format(Captions.SmsUserPasswordChange,model.username,model.password), UserLogined.Id);
                     }
                 }
+                _uow.SaveAllChanges();
                 return RedirectToAction(MVC.Company.UserManager.UserList());
             }
         }
