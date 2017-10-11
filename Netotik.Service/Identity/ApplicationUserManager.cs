@@ -1136,5 +1136,10 @@ namespace Netotik.Services.Identity
             _mappingEngine.Map(model, user);
             await _unitOfWork.SaveChangesAsync();
         }
+        public async Task<User> FindByCompanySMSCodeAsync(string Code)
+        {
+            //return _users.FirstOrDefaultAsync(x => !x.IsDeleted && x.IsBanned && x.EmailConfirmed && x.UserType == UserType.UserReseller && x.UserReseller.ResellerCode == Code);
+            return await _users.FirstOrDefaultAsync(x => !x.IsDeleted && x.UserType == UserType.UserCompany && x.UserCompany.RegisterWithSmsCode == Code);
+        }
     }
 }

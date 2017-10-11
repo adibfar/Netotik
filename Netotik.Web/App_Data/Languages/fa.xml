@@ -1555,4 +1555,13 @@
   <LocaleResource Name="SmsCharge">
     <Value>اعتبار پیامک</Value>
   </LocaleResource>
+  <LocaleResource Name="SmsIfErrorInSms">
+    <Value>اطلاع رسانی در صورت خطا دادن</Value>
+  </LocaleResource>
+  <LocaleResource Name="RegisterWithSmsMessage">
+    <Value>پیغام ارسالی هنگام ارسال نام کاربری و رمز عبور</Value>
+  </LocaleResource>
+  <LocaleResource Name="RegisterWithSmsRouterProfile">
+    <Value>تعرفه انتخابی برای ثبت نام از طریق پیامک</Value>
+  </LocaleResource>
 </Language>

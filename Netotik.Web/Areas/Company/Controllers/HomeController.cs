@@ -269,6 +269,7 @@ namespace Netotik.Web.Areas.Company.Controllers
         {
             var Model = new SmsModel();
             Model = _applicationUserManager.GetUserCompanySmsSettings(UserLogined.Id);
+            ViewBag.profiles = _mikrotikServices.Usermanager_GetAllProfile(UserLogined.UserCompany.R_Host, UserLogined.UserCompany.R_Port, UserLogined.UserCompany.R_User, UserLogined.UserCompany.R_Password);
             return View(Model);
         }
         [HttpPost]
@@ -282,7 +283,7 @@ namespace Netotik.Web.Areas.Company.Controllers
             }else
             {
                 this.MessageError(Captions.Error, Captions.ValidateError);
-                return View(_applicationUserManager.GetUserCompanySmsSettings(UserLogined.Id));
+                return View(model);
             }
             return View(model);
         }

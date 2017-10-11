@@ -4156,5 +4156,26 @@ namespace Netotik.Resources
                 return resourceProvider.GetResource("SmsYourAccountCounterReset", CultureInfo.CurrentUICulture.Name) as string;
             }
         }
+        public static string SmsIfErrorInSms
+        {
+            get
+            {
+                return resourceProvider.GetResource("SmsIfErrorInSms", CultureInfo.CurrentUICulture.Name) as string;
+            }
+        }
+        public static string RegisterWithSmsMessage
+        {
+            get
+            {
+                return resourceProvider.GetResource("RegisterWithSmsMessage", CultureInfo.CurrentUICulture.Name) as string;
+            }
+        }
+        public static string RegisterWithSmsRouterProfile
+        {
+            get
+            {
+                return resourceProvider.GetResource("RegisterWithSmsRouterProfile", CultureInfo.CurrentUICulture.Name) as string;
+            }
+        }
     }
 }

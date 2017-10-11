@@ -964,4 +964,13 @@
   <LocaleResource Name="SmsCharge">
     <Value>SMS Charge</Value>
   </LocaleResource>
+  <LocaleResource Name="SmsIfErrorInSms">
+    <Value>Sms Me If Error in Register with sms</Value>
+  </LocaleResource>
+  <LocaleResource Name="RegisterWithSmsMessage">
+    <Value>Message Will send with User and Pass</Value>
+  </LocaleResource>
+  <LocaleResource Name="RegisterWithSmsRouterProfile">
+    <Value>Package to select in registertion</Value>
+  </LocaleResource>
 </Language>

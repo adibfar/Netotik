@@ -42,5 +42,11 @@ namespace Netotik.ViewModels.Identity.UserCompany
         public bool SmsUserAfterDelete { get; set; }
         [Display(ResourceType = typeof(Captions), Name = "SmsUserAfterChangePackage")]
         public bool SmsUserAfterChangePackage { get; set; }
+        [Display(ResourceType = typeof(Captions), Name = "RegisterWithSmsRouterProfile")]
+        public string RegisterWithSmsRouterProfile { get; set; }
+        [Display(ResourceType = typeof(Captions), Name = "RegisterWithSmsMessage")]
+        public string RegisterWithSmsMessage { get; set; }
+        [Display(ResourceType = typeof(Captions), Name = "SmsIfErrorInSms")]
+        public bool SmsIfErrorInSms { get; set; }
     }
 }
