@@ -269,7 +269,16 @@ namespace Netotik.Web.Areas.Company.Controllers
         {
             var Model = new SmsModel();
             Model = _applicationUserManager.GetUserCompanySmsSettings(UserLogined.Id);
-            ViewBag.profiles = _mikrotikServices.Usermanager_GetAllProfile(UserLogined.UserCompany.R_Host, UserLogined.UserCompany.R_Port, UserLogined.UserCompany.R_User, UserLogined.UserCompany.R_Password);
+            if (_mikrotikServices.IP_Port_Check(UserLogined.UserCompany.R_Host, UserLogined.UserCompany.R_Port, UserLogined.UserCompany.R_User, UserLogined.UserCompany.R_Password))
+            {
+                if (_mikrotikServices.User_Pass_Check(UserLogined.UserCompany.R_Host, UserLogined.UserCompany.R_Port, UserLogined.UserCompany.R_User, UserLogined.UserCompany.R_Password))
+                {
+                    ViewBag.profiles = _mikrotikServices.Usermanager_GetAllProfile(UserLogined.UserCompany.R_Host, UserLogined.UserCompany.R_Port, UserLogined.UserCompany.R_User, UserLogined.UserCompany.R_Password);
+                }else
+                    this.MessageError(Captions.Error, Captions.UserPasswordClientError);
+            }else
+                this.MessageError(Captions.Error, Captions.IPPORTClientError);
+
             return View(Model);
         }
         [HttpPost]

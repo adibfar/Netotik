@@ -20,7 +20,7 @@ namespace Netotik.ViewModels.Identity.UserCompany
         [Display(ResourceType = typeof(Captions), Name = "RegisterWithSms")]
         public bool RegisterWithSms { get; set; }
         [Display(ResourceType = typeof(Captions), Name = "RegisterWithSmsCode")]
-        [System.Web.Mvc.Remote("SmsCodeIsValid", "Remote", System.Web.Mvc.AreaReference.UseRoot, HttpMethod = "POST", ErrorMessageResourceType = typeof(Captions), ErrorMessageResourceName = "NotValidError")]
+        [System.Web.Mvc.Remote("SmsCodeIsValid", "Remote", System.Web.Mvc.AreaReference.UseRoot, HttpMethod = "POST", AdditionalFields = "Id", ErrorMessageResourceType = typeof(Captions), ErrorMessageResourceName = "NotValidError")]
         public string RegisterWithSmsCode { get; set; }
         [Display(ResourceType = typeof(Captions), Name = "SmsAdminChangeUserPassword")]
         public bool SmsAdminChangeUserPassword { get; set; }

@@ -138,7 +138,7 @@ namespace Netotik.Web.Controllers
                     else
                     {
                         if (loggedinUser.UserCompany.SmsCharge > 0 && loggedinUser.UserCompany.SmsActive && loggedinUser.UserCompany.SmsAdminLogins)
-                            _smsService.SendSms(loggedinUser.PhoneNumber, string.Format(Captions.SmsCompanyLogins, loggedinUser.UserName,PersianDate.ConvertDate.ToFa(DateTime.Now,"g"), HttpContext.Request.ServerVariables["REMOTE_ADDR"]), loggedinUser.Id);
+                            _smsService.SendSms(loggedinUser.PhoneNumber, string.Format(Captions.SmsCompanyLogins, loggedinUser.UserName,PersianDate.ConvertDate.ToFa(DateTime.Now,"g").ToString(), HttpContext.Request.ServerVariables["REMOTE_ADDR"].ToString()), loggedinUser.Id);
                         _uow.SaveAllChanges();
                         return RedirectToAction(MVC.Company.Home.Index());
                     }

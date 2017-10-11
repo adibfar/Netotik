@@ -12,7 +12,7 @@ using System.Web.Mvc;
 
 namespace Netotik.Web.Controllers
 {
-    public class FarapayamakGatewayController : BasePanelController
+    public partial class FarapayamakGatewayController : BasePanelController
     {
         #region ctor
         private readonly IApplicationUserManager _applicationUserManager;
@@ -33,7 +33,7 @@ namespace Netotik.Web.Controllers
         }
         #endregion
         // GET: FarapayamakGateway
-        public async Task<ActionResult> SmsRecive(string fromNum, string to, string text)
+        public virtual async Task<ActionResult> SmsRecive(string fromNum, string to, string text)
         {
             var User = await _applicationUserManager.FindByCompanySMSCodeAsync(text);
             if (User == null)

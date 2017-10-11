@@ -61,5 +61,7 @@ namespace Netotik.Domain.Entity
 
         public string ClientPermissions { get; set; }
         public string CompanyPermissions { get; set; }
+
+        public string ZarinPalMerchantId { get; set; }
     }
 }

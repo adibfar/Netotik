@@ -5,6 +5,7 @@
         <div class="col-md-12">
             @using (Html.BeginForm(MVC.Company.Home.ActionNames.Sms, MVC.Company.Home.Name, null, FormMethod.Post, htmlAttributes: new { @class = "cmxform form-horizontal tasi-form", id = "form" }))
             {
+                @Html.HiddenFor(m=>m.Id)
                 @Html.AntiForgeryToken()
                 <div class="card">
                     <div class="card-header">

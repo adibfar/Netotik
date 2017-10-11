@@ -182,9 +182,9 @@ namespace Netotik.Web.Controllers
         #region SmsCode
         [HttpPost]
         [AllowAnonymous]
-        public virtual JsonResult SmsCodeIsValid(string RegisterWithSmsCode)
+        public virtual JsonResult SmsCodeIsValid(string RegisterWithSmsCode,long? id)
         {
-            var check = _applicationUserManager.SmsCodeIsValid(RegisterWithSmsCode);
+            var check = _applicationUserManager.SmsCodeIsValid(RegisterWithSmsCode,id);
             return check ? Json(false) : Json(true);
         }
         #endregion
