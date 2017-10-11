@@ -16,18 +16,21 @@ namespace Netotik.Web.Areas.Company.Controllers
     {
         #region ctor
         private readonly IApplicationUserManager _applicationUserManager;
+        private readonly IPaymentTypeService _paymentTypeService;
         private readonly ISmsPackageService _smsPackageService;
         private readonly IFactorService _factorService;
         private readonly ISmsService _smsService;
         private readonly IUnitOfWork _uow;
 
         public FactorController(
-            IFactorService factorService,
+            IPaymentTypeService paymentTypeService,
+        IFactorService factorService,
             ISmsPackageService smsPackageService,
             IApplicationUserManager applicationUserManager,
             ISmsService smsService,
             IUnitOfWork uow)
         {
+            _paymentTypeService= paymentTypeService;
             _factorService = factorService;
             _smsPackageService = smsPackageService;
             _applicationUserManager = applicationUserManager;
@@ -48,6 +51,13 @@ namespace Netotik.Web.Areas.Company.Controllers
             var factor = _factorService.SingleOrDefault(Id);
             if (factor == null) return HttpNotFound();
 
+            var paymentType = _paymentTypeService.All().FirstOrDefault();
+            if (paymentType == null)
+            {
+                this.MessageError(Captions.MissionFail, "درگاه پرداختی در سیسیتم ثبت نشده. با مدیریت تماس بگیرید.");
+                return RedirectToAction(MVC.Company.Factor.Index());
+            }
+
 
             if (Request.QueryString["Status"] != "" && Request.QueryString["Status"] != null && Request.QueryString["Authority"] != "" && Request.QueryString["Authority"] != null)
             {
@@ -58,7 +68,7 @@ namespace Netotik.Web.Areas.Company.Controllers
                     System.Net.ServicePointManager.Expect100Continue = false;
                     var zp = new ZarinPalService.PaymentGatewayImplementationServicePortTypeClient();
 
-                    int Status = zp.PaymentVerification(UserLogined.UserCompany.ZarinPalMerchantId, Request.QueryString["Authority"].ToString(), Amount, out RefID);
+                    int Status = zp.PaymentVerification(paymentType.MerchantId, Request.QueryString["Authority"].ToString(), Amount, out RefID);
                     factor.Result = Status.ToString();
 
                     if (Status == 100)

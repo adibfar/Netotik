@@ -322,6 +322,7 @@ namespace Netotik.Web.Areas.Company.Controllers
                 this.MessageError(Captions.MissionFail, "درگاه پرداختی در سیسیتم ثبت نشده. با مدیریت تماس بگیرید.");
                 return RedirectToAction(MVC.Company.Home.Sms());
             }
+
             var package = _smsPackageService.SingleOrDefault(id);
             var factor = new Factor()
             {
