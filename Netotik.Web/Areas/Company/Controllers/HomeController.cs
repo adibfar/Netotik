@@ -301,6 +301,19 @@ namespace Netotik.Web.Areas.Company.Controllers
         public virtual async Task<ActionResult> Sms(SmsModel model)
         {
             model.Id = UserLogined.Id;
+            if (_mikrotikServices.IP_Port_Check(UserLogined.UserCompany.R_Host, UserLogined.UserCompany.R_Port, UserLogined.UserCompany.R_User, UserLogined.UserCompany.R_Password))
+            {
+                if (_mikrotikServices.User_Pass_Check(UserLogined.UserCompany.R_Host, UserLogined.UserCompany.R_Port, UserLogined.UserCompany.R_User, UserLogined.UserCompany.R_Password))
+                {
+                    ViewBag.profiles = _mikrotikServices.Usermanager_GetAllProfile(UserLogined.UserCompany.R_Host, UserLogined.UserCompany.R_Port, UserLogined.UserCompany.R_User, UserLogined.UserCompany.R_Password);
+                }
+                else
+                    this.MessageError(Captions.Error, Captions.UserPasswordClientError);
+            }
+            else
+                this.MessageError(Captions.Error, Captions.IPPORTClientError);
+
+
             if (ModelState.IsValid)
             {
                 await _applicationUserManager.UpdateUserCompanySmsSettingsAsync(model);
