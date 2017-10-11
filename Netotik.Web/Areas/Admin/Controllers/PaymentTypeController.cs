@@ -91,16 +91,14 @@ namespace Netotik.Web.Areas.Admin.Controllers
                 return RedirectToAction(MVC.Admin.PaymentType.Index());
             }
 
-            #region Initial Slider
+            #region Initial PaymentType
             var paymentType = new Netotik.Domain.Entity.PaymentType()
             {
                 Name = model.Name,
                 Description = model.Description,
                 GateWayUrl = model.GateWayUrl,
                 IsDefault = model.IsDefault,
-                Password = model.Password,
-                TerminalId = model.TerminalId,
-                UserName = model.UserName,
+                MerchantId = model.MerchantId,
                 CreateDate = DateTime.Now,
                 IsActive = model.IsActive,
                 IsDelete = false
@@ -168,11 +166,9 @@ namespace Netotik.Web.Areas.Admin.Controllers
                 Id = model.Id,
                 Description = model.Description,
                 Name = model.Name,
-                Password = model.Password,
                 GateWayUrl = model.GateWayUrl,
                 IsDefault = model.IsDefault,
-                UserName = model.UserName,
-                TerminalId = model.TerminalId,
+                MerchantId = model.MerchantId,
                 IsActive = model.IsActive
             };
 
@@ -199,11 +195,9 @@ namespace Netotik.Web.Areas.Admin.Controllers
 
             type.IsActive = model.IsActive;
             type.Name = model.Name;
-            type.UserName = model.UserName;
             type.Description = model.Description;
             type.GateWayUrl = model.GateWayUrl;
-            type.TerminalId = model.TerminalId;
-            type.Password = model.Password;
+            type.MerchantId = model.MerchantId;
             type.IsDelete = model.IsDefault;
 
             if (model.Image != null)

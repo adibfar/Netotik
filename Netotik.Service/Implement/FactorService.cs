@@ -50,7 +50,7 @@ namespace Netotik.Services.Implement
                 {
                     Id = x.Id,
                     RowNumber = model.iDisplayStart + index + 1,
-                    RegisterPay = x.RegisterPay,
+                    RegisterPay = x.PaymentDate,
                     RegisterDate = x.RegisterDate,
                     FactorStatus = x.FactorStatus,
                     FactorType = x.FactorType,

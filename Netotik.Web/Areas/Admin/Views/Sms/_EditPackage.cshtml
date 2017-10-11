@@ -32,7 +32,7 @@
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-md-4">
+                        <div class="col-md-6">
                             <div class="form-group has-feedback has-icon-left">
                                 @Html.LabelFor(m => m.Order)
                                 <div class="position-relative has-icon-left">
@@ -44,7 +44,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-4">
+                        <div class="col-md-6">
                             <div class="form-group has-feedback has-icon-left">
                                 @Html.LabelFor(m => m.SmsCount)
                                 <div class="position-relative has-icon-left">
@@ -56,7 +56,22 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-4">
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group has-feedback has-icon-left">
+                                @Html.LabelFor(m => m.UnitPrice)
+                                <div class="position-relative has-icon-left">
+                                    @Html.TextBoxFor(m => m.UnitPrice, new { @class = "form-control" })
+                                    <div class="form-control-position">
+                                        <i class="icon-location22"></i>
+                                    </div>
+                                    @Html.ValidationMessageFor(model => model.UnitPrice, "", htmlAttributes: new { @class = "text-danger" })
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
                             <div class="form-group has-feedback has-icon-left">
                                 @Html.LabelFor(m => m.Price)
                                 <div class="position-relative has-icon-left">
@@ -69,7 +84,6 @@
                             </div>
                         </div>
                     </div>
-
                     <div class="row form-group skin skin-flat">
                         <div class="col-md-4 col-sm-6 col-xs-12">
                             <fieldset>

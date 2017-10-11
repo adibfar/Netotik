@@ -15,6 +15,7 @@ namespace Netotik.ViewModels.SmsPackage
         public long RowNumber { get; set; }
         public string Name { get; set; }
         public int SmsCount { get; set; }
+        public long UnitPrice { get; set; }
         public long Price { get; set; }
         public int Order { get; set; }
         public bool IsActive { get; set; }

@@ -46,7 +46,6 @@ namespace Netotik.ViewModels.Common.Setting
         public string SmsPassword { get; set; }
         #endregion
 
-
         #region Social Networks
 
         [Display(ResourceType = typeof(Captions), Name = "Facebook")]

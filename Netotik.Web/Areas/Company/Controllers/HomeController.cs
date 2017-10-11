@@ -41,11 +41,13 @@ namespace Netotik.Web.Areas.Company.Controllers
         private readonly IMikrotikServices _mikrotikServices;
         private readonly ISmsPackageService _smsPackageService;
         private readonly IFactorService _factorService;
+        private readonly IPaymentTypeService _paymentTypeService;
         private readonly IPictureService _pictureService;
         private readonly ISmsService _smsService;
         private readonly IUnitOfWork _uow;
 
         public HomeController(
+            IPaymentTypeService paymentTypeService,
             IFactorService factorService,
             ISmsPackageService smsPackageService,
             IMikrotikServices mikrotikServices,
@@ -54,6 +56,7 @@ namespace Netotik.Web.Areas.Company.Controllers
             ISmsService smsService,
             IUnitOfWork uow)
         {
+            _paymentTypeService = paymentTypeService;
             _factorService = factorService;
             _smsPackageService = smsPackageService;
             _mikrotikServices = mikrotikServices;
@@ -259,7 +262,7 @@ namespace Netotik.Web.Areas.Company.Controllers
             if (temp.Succeeded)
             {
                 if (UserLogined.UserCompany.SmsCharge > 0 && UserLogined.UserCompany.SmsActive && UserLogined.UserCompany.SmsAdminChangeAdminPassword)
-                    _smsService.SendSms(UserLogined.PhoneNumber, string.Format(Captions.SmsCompanyPasswordChange,UserLogined.UserName), UserLogined.Id);
+                    _smsService.SendSms(UserLogined.PhoneNumber, string.Format(Captions.SmsCompanyPasswordChange, UserLogined.UserName), UserLogined.Id);
                 this.MessageInformation(Captions.MissionSuccess, Captions.UpdateSuccess);
             }
             else
@@ -279,9 +282,11 @@ namespace Netotik.Web.Areas.Company.Controllers
                 if (_mikrotikServices.User_Pass_Check(UserLogined.UserCompany.R_Host, UserLogined.UserCompany.R_Port, UserLogined.UserCompany.R_User, UserLogined.UserCompany.R_Password))
                 {
                     ViewBag.profiles = _mikrotikServices.Usermanager_GetAllProfile(UserLogined.UserCompany.R_Host, UserLogined.UserCompany.R_Port, UserLogined.UserCompany.R_User, UserLogined.UserCompany.R_Password);
-                }else
+                }
+                else
                     this.MessageError(Captions.Error, Captions.UserPasswordClientError);
-            }else
+            }
+            else
                 this.MessageError(Captions.Error, Captions.IPPORTClientError);
 
 
@@ -324,17 +329,47 @@ namespace Netotik.Web.Areas.Company.Controllers
         [HttpPost]
         public virtual ActionResult BuySmsPackage(int id)
         {
+            var paymentType = _paymentTypeService.All().FirstOrDefault();
+            if (paymentType == null)
+            {
+                this.MessageError(Captions.MissionFail, "درگاه پرداختی در سیسیتم ثبت نشده. با مدیریت تماس بگیرید.");
+                return RedirectToAction(MVC.Company.Home.Sms());
+            }
             var package = _smsPackageService.SingleOrDefault(id);
             var factor = new Factor()
             {
-                RegisterDate=DateTime.Now,
-                FactorStatus=FactorStatus.Unpaid,
-                IpAddress= this.Request.ServerVariables["REMOTE_ADDR"],
-                PaymentPrice=package.Price,
-                UserId=UserLogined.Id,
+                PaymentTypeId = paymentType.Id,
+                RegisterDate = DateTime.Now,
+                FactorStatus = FactorStatus.Unpaid,
+                IpAddress = this.Request.ServerVariables["REMOTE_ADDR"],
+                PaymentPrice = package.Price,
+                UserId = UserLogined.Id,
+                FactorSmsDetail = new FactorSmsDetail()
+                {
+                    SmsCount = package.SmsCount,
+                    TotalPrice = package.Price,
+                    UnitPrice = package.UnitPrice
+                }
             };
             _factorService.Add(factor);
             _uow.SaveAllChanges();
+
+
+            System.Net.ServicePointManager.Expect100Continue = false;
+            var zp = new ZarinPalService.PaymentGatewayImplementationServicePortTypeClient();
+            string Authority;
+
+            int Status = zp.PaymentRequest(paymentType.MerchantId, (int)factor.PaymentPrice, "خرید بسته پیامکی", UserLogined.Email, UserLogined.PhoneNumber, Url.Action(MVC.Company.Factor.Result(factor.Id), protocol: "https"), out Authority);
+
+            if (Status == 100)
+            {
+                Response.Redirect(paymentType.GateWayUrl + Authority);
+                //https://www.zarinpal.com/pg/StartPay/
+            }
+            else
+            {
+                this.MessageError(Captions.MissionFail, "خطا در برقراری ارتباط با درگاه پرداخت. کد وضعیت : " + Status);
+            }
 
             return RedirectToAction(MVC.Company.Home.Sms());
         }

@@ -67,7 +67,7 @@ namespace Netotik.Services.Implement
                     Description = x.Description,
                     GateWayUrl = x.GateWayUrl,
                     IsActive = x.IsActive,
-                    TerminalId = x.TerminalId
+                    MerchantId = x.MerchantId
                 }).ToList();
         }
         public async Task Remove(int id)

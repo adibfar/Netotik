@@ -89,6 +89,7 @@ namespace Netotik.Web.Areas.Admin.Controllers
                 Name = model.Name,
                 SmsCount = model.SmsCount,
                 Price = model.Price,
+                UnitPrice = model.UnitPrice,
                 Order = model.Order,
                 IsActive = model.IsActive
             };
@@ -135,6 +136,7 @@ namespace Netotik.Web.Areas.Admin.Controllers
                 Id = model.Id,
                 Name = model.Name,
                 Price = model.Price,
+                UnitPrice = model.UnitPrice,
                 SmsCount = model.SmsCount,
                 Order = model.Order,
                 IsActive = model.IsActive
@@ -166,6 +168,7 @@ namespace Netotik.Web.Areas.Admin.Controllers
             slider.Name = model.Name;
             slider.SmsCount = model.SmsCount;
             slider.Price = model.Price;
+            slider.UnitPrice = model.UnitPrice;
             #endregion
 
             _smsPackageService.Update(slider);
