@@ -59,6 +59,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="EntityConfiguration\FactorSmsDetailMap.cs" />
+    <Compile Include="EntityConfiguration\FactorMap.cs" />
     <Compile Include="EntityConfiguration\LanguageTranslationMap.cs" />
     <Compile Include="EntityConfiguration\IndexSectionMap.cs" />
     <Compile Include="EntityConfiguration\LocaleStringResourceMap.cs" />
@@ -77,6 +79,9 @@
     <Compile Include="EntityConfiguration\UserResellerMap.cs" />
     <Compile Include="EntityConfiguration\UserCompanyMap.cs" />
     <Compile Include="Entity\Address.cs" />
+    <Compile Include="Entity\Factor.cs" />
+    <Compile Include="Entity\FactorSmsDetail.cs" />
+    <Compile Include="Entity\SmsPackage.cs" />
     <Compile Include="Entity\TelegramBotData.cs" />
     <Compile Include="Entity\IndexSection.cs" />
     <Compile Include="Entity\City.cs" />

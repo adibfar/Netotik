@@ -156,6 +156,8 @@
     <Compile Include="Common\Language\ResourceItem.cs" />
     <Compile Include="Identity\Security\AssignableToRolePermissions.cs" />
     <Compile Include="Mikrotik\Usermanager\LogModel.cs" />
+    <Compile Include="Shop\Factor\FactorUserItem.cs" />
+    <Compile Include="Shop\Factor\FactorAdminItem.cs" />
     <Compile Include="Shop\PeymentType\PeymentTypeModel.cs" />
     <Compile Include="Shop\PeymentType\PaymentTypeItem.cs" />
     <Compile Include="CMS\Slider\SliderModel.cs" />
@@ -178,6 +180,8 @@
     <Compile Include="Identity\UserAdmin\UserItem.cs" />
     <Compile Include="Identity\UserAdmin\UserChangePasswordModel.cs" />
     <Compile Include="Identity\UserAdmin\LoginModel.cs" />
+    <Compile Include="SmsPackage\SmsPackageItem.cs" />
+    <Compile Include="SmsPackage\SmsPackageModel.cs" />
     <Compile Include="Statistics\BrowserTableViewModel.cs" />
     <Compile Include="Statistics\CountryViewModel.cs" />
     <Compile Include="Statistics\CurrentVisitorViewModel.cs" />

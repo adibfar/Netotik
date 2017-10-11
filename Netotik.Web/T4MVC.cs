@@ -70,6 +70,7 @@ namespace T4MVC
         public Netotik.Web.Areas.Admin.Controllers.PaymentTypeController PaymentType = new Netotik.Web.Areas.Admin.Controllers.T4MVC_PaymentTypeController();
         public Netotik.Web.Areas.Admin.Controllers.RoleController Role = new Netotik.Web.Areas.Admin.Controllers.T4MVC_RoleController();
         public Netotik.Web.Areas.Admin.Controllers.SliderController Slider = new Netotik.Web.Areas.Admin.Controllers.T4MVC_SliderController();
+        public Netotik.Web.Areas.Admin.Controllers.SmsController Sms = new Netotik.Web.Areas.Admin.Controllers.T4MVC_SmsController();
         public Netotik.Web.Areas.Admin.Controllers.StateController State = new Netotik.Web.Areas.Admin.Controllers.T4MVC_StateController();
         public Netotik.Web.Areas.Admin.Controllers.StatisticsController Statistics = new Netotik.Web.Areas.Admin.Controllers.T4MVC_StatisticsController();
         public Netotik.Web.Areas.Admin.Controllers.TicketController Ticket = new Netotik.Web.Areas.Admin.Controllers.T4MVC_TicketController();

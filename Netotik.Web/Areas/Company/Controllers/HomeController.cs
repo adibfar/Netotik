@@ -39,17 +39,23 @@ namespace Netotik.Web.Areas.Company.Controllers
         #region ctor
         private readonly IApplicationUserManager _applicationUserManager;
         private readonly IMikrotikServices _mikrotikServices;
+        private readonly ISmsPackageService _smsPackageService;
+        private readonly IFactorService _factorService;
         private readonly IPictureService _pictureService;
         private readonly ISmsService _smsService;
         private readonly IUnitOfWork _uow;
 
         public HomeController(
+            IFactorService factorService,
+            ISmsPackageService smsPackageService,
             IMikrotikServices mikrotikServices,
             IPictureService pictureservice,
             IApplicationUserManager applicationUserManager,
             ISmsService smsService,
             IUnitOfWork uow)
         {
+            _factorService = factorService;
+            _smsPackageService = smsPackageService;
             _mikrotikServices = mikrotikServices;
             _pictureService = pictureservice;
             _applicationUserManager = applicationUserManager;
@@ -151,7 +157,7 @@ namespace Netotik.Web.Areas.Company.Controllers
         [HttpPost]
         public virtual async Task<ActionResult> UpdateProfile(ProfileModel model)
         {
-            
+
             PopulatePermissions(model.ClientPermissionNames);
             #region Validation
             if (!ModelState.IsValid)
@@ -199,7 +205,7 @@ namespace Netotik.Web.Areas.Company.Controllers
                 Api.SetWebhookAsync(APIUrl).Wait();
             }
             model.Id = UserLogined.Id;
-            
+
             this.MessageInformation(Captions.MissionSuccess, Captions.UpdateSuccess);
             await _applicationUserManager.UpdateUserCompanyTelegramBot(model);
             return RedirectToAction(MVC.Company.Home.ActionNames.TelegramBot, MVC.Company.Home.Name, new { area = MVC.Company.Name });
@@ -234,7 +240,6 @@ namespace Netotik.Web.Areas.Company.Controllers
         }
         #endregion
 
-
         #region Edit
 
         public virtual ActionResult ChangePassword()
@@ -268,6 +273,11 @@ namespace Netotik.Web.Areas.Company.Controllers
         {
             var Model = new SmsModel();
             Model = _applicationUserManager.GetUserCompanySmsSettings(UserLogined.Id);
+
+            ViewBag.Packages = _smsPackageService.All()
+                .Where(x => x.IsActive)
+                .OrderByDescending(x => x.Order).ToList();
+
             return View(Model);
         }
         [HttpPost]
@@ -278,22 +288,42 @@ namespace Netotik.Web.Areas.Company.Controllers
             if (ModelState.IsValid)
             {
                 await _applicationUserManager.UpdateUserCompanySmsSettingsAsync(model);
-            }else
+            }
+            else
             {
                 this.MessageError(Captions.Error, Captions.ValidateError);
                 return View(_applicationUserManager.GetUserCompanySmsSettings(UserLogined.Id));
             }
             return View(model);
         }
+
+        [HttpPost]
+        public virtual ActionResult BuySmsPackage(int id)
+        {
+            var package = _smsPackageService.SingleOrDefault(id);
+            var factor = new Factor()
+            {
+                RegisterDate=DateTime.Now,
+                FactorStatus=FactorStatus.Unpaid,
+                IpAddress= this.Request.ServerVariables["REMOTE_ADDR"],
+                PaymentPrice=package.Price,
+                UserId=UserLogined.Id,
+            };
+            _factorService.Add(factor);
+            _uow.SaveAllChanges();
+
+            return RedirectToAction(MVC.Company.Home.Sms());
+        }
+
         [HttpPost]
         public virtual ActionResult DisableSMS(long id)
         {
-            if(UserLogined.Id!=id)
+            if (UserLogined.Id != id)
             {
                 this.MessageError(Captions.Error, Captions.InvalidDataError);
                 return RedirectToAction(MVC.Company.Home.ActionNames.Sms, MVC.Company.Home.Name, new { area = MVC.Company.Name });
             }
-            var user=_applicationUserManager.FindUserById(UserLogined.Id);
+            var user = _applicationUserManager.FindUserById(UserLogined.Id);
             user.UserCompany.SmsActive = false;
             _uow.SaveAllChanges();
             return RedirectToAction(MVC.Company.Home.ActionNames.Sms, MVC.Company.Home.Name, new { area = MVC.Company.Name });

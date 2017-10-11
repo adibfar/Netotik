@@ -158,7 +158,6 @@ namespace Netotik.Web.Areas.Admin.Controllers
             return RedirectToAction(MVC.Admin.Slider.Index());
         }
 
-        [BreadCrumb(Title = "ویرایش اسلاید", Order = 1)]
         public virtual async Task<ActionResult> Edit(int id)
         {
             var model = await _sliderService.All().Include(x => x.Picture).FirstOrDefaultAsync(x => x.Id == id);

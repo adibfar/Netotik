@@ -17,6 +17,7 @@ namespace Netotik.Domain.Entity
             this.Addresses = new List<Address>();
             this.Roles = new List<UserRole>();
             this.SmsLogs = new List<SmsLog>();
+            this.Factores = new List<Factor>();
         }
 
         public bool IsBanned { get; set; }
@@ -46,6 +47,7 @@ namespace Netotik.Domain.Entity
         public virtual ICollection<UserRole> Roles { get; set; }
         public virtual ICollection<UserClaim> Claims { get; set; }
         public virtual ICollection<UserLogin> Logins { get; set; }
+        public virtual ICollection<Factor> Factores { get; set; }
     }
 
     public enum UserType : short

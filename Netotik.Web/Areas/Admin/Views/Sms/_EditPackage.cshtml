@@ -1,0 +1,95 @@
+﻿﻿@model Netotik.ViewModels.SmsPackage.SmsPackageModel
+@{
+    Layout = null;
+}
+<!-- Modal -->
+<div class="modal fade text-xs-left" id="Edit" tabindex="-1" role="dialog" aria-labelledby="myModalLabel20" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title" id="myModalLabel20">@Captions.Edit</h4>
+            </div>
+            @using (Html.BeginForm(MVC.Admin.Sms.ActionNames.Edit, MVC.Admin.Sms.Name, FormMethod.Post, htmlAttributes: new { @class = "form-horizontal", id = "form" }))
+            {
+                @Html.HiddenFor(model => model.Id)
+                @Html.AntiForgeryToken()
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group has-feedback has-icon-left">
+                                @Html.LabelFor(m => m.Name)
+                                <div class="position-relative has-icon-left">
+                                    @Html.TextBoxFor(m => m.Name, new { @class = "form-control" })
+                                    <div class="form-control-position">
+                                        <i class="icon-document"></i>
+                                    </div>
+                                    @Html.ValidationMessageFor(model => model.Name, "", htmlAttributes: new { @class = "text-danger" })
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="form-group has-feedback has-icon-left">
+                                @Html.LabelFor(m => m.Order)
+                                <div class="position-relative has-icon-left">
+                                    @Html.TextBoxFor(m => m.Order, new { @class = "form-control" })
+                                    <div class="form-control-position">
+                                        <i class="icon-location22"></i>
+                                    </div>
+                                    @Html.ValidationMessageFor(model => model.Order, "", htmlAttributes: new { @class = "text-danger" })
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group has-feedback has-icon-left">
+                                @Html.LabelFor(m => m.SmsCount)
+                                <div class="position-relative has-icon-left">
+                                    @Html.TextBoxFor(m => m.SmsCount, new { @class = "form-control" })
+                                    <div class="form-control-position">
+                                        <i class="icon-location22"></i>
+                                    </div>
+                                    @Html.ValidationMessageFor(model => model.SmsCount, "", htmlAttributes: new { @class = "text-danger" })
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group has-feedback has-icon-left">
+                                @Html.LabelFor(m => m.Price)
+                                <div class="position-relative has-icon-left">
+                                    @Html.TextBoxFor(m => m.Price, new { @class = "form-control" })
+                                    <div class="form-control-position">
+                                        <i class="icon-location22"></i>
+                                    </div>
+                                    @Html.ValidationMessageFor(model => model.Price, "", htmlAttributes: new { @class = "text-danger" })
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row form-group skin skin-flat">
+                        <div class="col-md-4 col-sm-6 col-xs-12">
+                            <fieldset>
+                                @Html.CheckBoxFor(model => model.IsActive)
+                                @Html.LabelFor(model => model.IsActive)
+                            </fieldset>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">
+                        <i class="icon-cross2"></i>
+                        @Captions.Close
+                    </button>
+                    <button name="actionType" value="@Netotik.Common.Controller.ActionType.Save" type="submit" class="btn btn-outline-success" onclick="AjaxForm.Post(this, 'form')" data-loading-text="@Captions.SendingData">
+                        <i class="icon-check2"></i>
+                        @Captions.Save
+                    </button>
+                </div>
+            }
+        </div>
+    </div>
+</div>

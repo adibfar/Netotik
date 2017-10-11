@@ -376,6 +376,9 @@
     <Compile Include="Admin.SliderController.generated.cs">
       <DependentUpon>T4MVC.tt</DependentUpon>
     </Compile>
+    <Compile Include="Admin.SmsController.generated.cs">
+      <DependentUpon>T4MVC.tt</DependentUpon>
+    </Compile>
     <Compile Include="Admin.StateController.generated.cs">
       <DependentUpon>T4MVC.tt</DependentUpon>
     </Compile>
@@ -404,6 +407,7 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
     <Compile Include="Areas\Admin\Controllers\IndexSectionController.cs" />
+    <Compile Include="Areas\Admin\Controllers\SliderController.cs" />
     <Compile Include="Areas\Admin\Controllers\StatisticsController.cs" />
     <Compile Include="Areas\Admin\Controllers\LanguageController.cs" />
     <Compile Include="Areas\Admin\Controllers\TicketTagController.cs" />
@@ -417,7 +421,7 @@
     <Compile Include="Areas\Admin\Controllers\MenuController.cs" />
     <Compile Include="Areas\Admin\Controllers\CommentsController.cs" />
     <Compile Include="Areas\Admin\Controllers\PaymentTypeController.cs" />
-    <Compile Include="Areas\Admin\Controllers\SliderController.cs" />
+    <Compile Include="Areas\Admin\Controllers\SmsController.cs" />
     <Compile Include="Areas\Admin\Controllers\ContentController.cs" />
     <Compile Include="Areas\Admin\Controllers\ContentCategoryController.cs" />
     <Compile Include="Areas\Admin\Controllers\RoleController.cs">
@@ -3665,6 +3669,10 @@
     <Content Include="Areas\Company\Views\Router\WebSitesLogs.cshtml" />
     <Content Include="Areas\Company\Views\Charts\WebSitesLogs.cshtml" />
     <Content Include="Areas\Company\Views\Home\Sms.cshtml" />
+    <Content Include="Areas\Admin\Views\Sms\_CreatePackage.cshtml" />
+    <Content Include="Areas\Admin\Views\Sms\_EditPackage.cshtml" />
+    <Content Include="Areas\Admin\Views\Sms\_Table.cshtml" />
+    <Content Include="Areas\Admin\Views\Sms\Index.cshtml" />
     <None Include="Properties\PublishProfiles\DNMA.pubxml" />
     <None Include="T4MVC.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
@@ -3869,7 +3877,7 @@
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>1178</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost:19902</IISUrl>
+          <IISUrl>http://localhost:2018</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>

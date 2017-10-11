@@ -147,6 +147,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Abstract\IFactorService.cs" />
+    <Compile Include="Abstract\ISmsPackageService.cs" />
     <Compile Include="Abstract\ISmsService.cs" />
     <Compile Include="Abstract\IUserCompanyLogClientService.cs" />
     <Compile Include="Abstract\ITelegramBotDataService.cs" />
@@ -204,6 +206,8 @@
     <Compile Include="Identity\PermissionClientService.cs" />
     <Compile Include="Identity\PermissionService.cs" />
     <Compile Include="Identity\StandardRoles.cs" />
+    <Compile Include="Implement\FactorService.cs" />
+    <Compile Include="Implement\SmsPackageService.cs" />
     <Compile Include="Implement\SmsService.cs" />
     <Compile Include="Implement\UserCompanyLogClientService.cs" />
     <Compile Include="Implement\TelegramBotDataService.cs" />

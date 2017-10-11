@@ -16,6 +16,7 @@
     var ShopMenu = Roles.Any(x => AssignableToRolePermissions.GetAllShopSectionPermision().Any(y => y.Name == x));
 
     var ShopPaymentTypeMenu = Roles.Any(x => x == AssignableToRolePermissions.CanAccessPaymentType);
+    var SmsMenu = Roles.Any(x => x == AssignableToRolePermissions.CanAccessSlider);
     //--------------------------------------------------------------------------
 
     var UserMenu = Roles.Any(x => AssignableToRolePermissions.GetAllUserPermision().Any(y => y.Name == x));
@@ -145,6 +146,11 @@
                         {
                             <li><a href="@Url.Action(MVC.Admin.City.Index())" data-toggle="dropdown" class="dropdown-item">@Captions.Cities</a></li>}
                         <li><a href="@Url.Action(MVC.Admin.Language.Index())" data-toggle="dropdown" class="dropdown-item">@Captions.Languages</a></li>
+
+                        @if (SmsMenu)
+                        {
+                            <li><a href="@Url.Action(MVC.Admin.Sms.Index())" data-toggle="dropdown" class="dropdown-item">پنل پیامک</a></li>
+                        }
 
                         @if (ShopPaymentTypeMenu)
                         {

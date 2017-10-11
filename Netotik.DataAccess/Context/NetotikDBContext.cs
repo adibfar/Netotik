@@ -41,6 +41,9 @@ namespace Netotik.Data.Context
         public DbSet<StatisticCountry> StatisticCountries { get; set; }
         public DbSet<Statistic> Statistics { get; set; }
         public DbSet<SmsLog> SmsLogs { get; set; }
+        public DbSet<SmsPackage> SmsPackages { get; set; }
+        public DbSet<Factor> Factors { get; set; }
+        public DbSet<FactorSmsDetail> FactorSmsDetails { get; set; }
         public DbSet<UserReseller> UserReselleres { get; set; }
         public DbSet<UserCompany> UserCompanies { get; set; }
         public DbSet<UserCompanyTelegram> UserCompanyTelegrams { get; set; }
@@ -73,6 +76,8 @@ namespace Netotik.Data.Context
             modelBuilder.Configurations.Add(new UserResellerMap());
             modelBuilder.Configurations.Add(new UserCompanyMap());
             modelBuilder.Configurations.Add(new SmsLogMap());
+            modelBuilder.Configurations.Add(new FactorMap());
+            modelBuilder.Configurations.Add(new FactorSmsDetailMap());
             modelBuilder.Configurations.Add(new UserCompanyTelegramMap());
             modelBuilder.Configurations.Add(new UserCompanyRegisterSettingMap());
             modelBuilder.Configurations.Add(new TelegramBotDataMap());
@@ -289,3 +294,4 @@ namespace Netotik.Data.Context
 
     }
 }
+

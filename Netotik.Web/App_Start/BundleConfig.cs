@@ -40,7 +40,7 @@ namespace Netotik.Web
                                 "~/Content/PublicUI/css/header-5.css",
                                 "~/Content/PublicUI/css/_layout-font-rewrite.css"
                                 ));
-            //).Include("~/Content/PublicUI/css/font-awesome.min.css", new CssRewriteUrlTransform()));
+
 
 
             bundles.Add(new StyleBundle("~/Content/publicrtlcss").Include(
@@ -50,25 +50,25 @@ namespace Netotik.Web
                                 "~/Content/PublicUI/css/_layout-font-rewrite.farsi.css"));
 
 
-            
 
 
-                     bundles.Add(new StyleBundle("~/Content/admincss").Include(
-                                "~/Content/fonts/icomoon.css",
-                                "~/Content/fonts/flag-icon-css/css/flag-icon.min.css",
-                                "~/Content/css/plugins/sliders/slick/slick.css",
-                                "~/Content/css/plugins/extensions/bootstrap-treeview.min.css",
-                                "~/Content/css/plugins/forms/icheck/flat/_all.css",
-                                "~/Content/css/plugins/forms/icheck/custom.css",
-                                "~/Content/css/plugins/extensions/unslider.css",
-                                "~/Content/css/plugins/editors/summernote.css",
-                                "~/Content/css/plugins/forms/selects/selectize.css",
-                                "~/Content/css/plugins/forms/selects/selectize.default.css",
-                                "~/Content/css/plugins/forms/spinner/jquery.bootstrap-touchspin.css",
-                                "~/Content/css/plugins/forms/toggle/bootstrap-switch.min.css",
-                                "~/Content/css/plugins/forms/toggle/switchery.min.css",
-                                "~/Content/css/plugins/tables/datatable/dataTables.bootstrap4.min.css",
-                                "~/Content/css/components/weather-icons/climacons.min.css"));
+
+            bundles.Add(new StyleBundle("~/Content/admincss").Include(
+                       "~/Content/fonts/icomoon.css",
+                       "~/Content/fonts/flag-icon-css/css/flag-icon.min.css",
+                       "~/Content/css/plugins/sliders/slick/slick.css",
+                       "~/Content/css/plugins/extensions/bootstrap-treeview.min.css",
+                       "~/Content/css/plugins/forms/icheck/flat/_all.css",
+                       "~/Content/css/plugins/forms/icheck/custom.css",
+                       "~/Content/css/plugins/extensions/unslider.css",
+                       "~/Content/css/plugins/editors/summernote.css",
+                       "~/Content/css/plugins/forms/selects/selectize.css",
+                       "~/Content/css/plugins/forms/selects/selectize.default.css",
+                       "~/Content/css/plugins/forms/spinner/jquery.bootstrap-touchspin.css",
+                       "~/Content/css/plugins/forms/toggle/bootstrap-switch.min.css",
+                       "~/Content/css/plugins/forms/toggle/switchery.min.css",
+                       "~/Content/css/plugins/tables/datatable/dataTables.bootstrap4.min.css",
+                       "~/Content/css/components/weather-icons/climacons.min.css"));
 
 
 

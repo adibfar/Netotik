@@ -273,11 +273,11 @@ namespace Netotik.Web.Controllers
             {
                 await _applicationSignInManager.SignInAsync(user, false, false);
                 if (user.UserType == Domain.Entity.UserType.UserReseller)
-                    return RedirectToAction(MVC.Account.ResetPasswordConfirmation(user));
+                    return RedirectToAction(MVC.Account.ResetPasswordConfirmation(user.Id));
                 if (user.UserType == Domain.Entity.UserType.UserCompany)
-                    return RedirectToAction(MVC.Account.ResetPasswordConfirmation(user));
+                    return RedirectToAction(MVC.Account.ResetPasswordConfirmation(user.Id));
                 if (user.UserType == Domain.Entity.UserType.UserAdmin)
-                    return RedirectToAction(MVC.Account.ResetPasswordConfirmation(user));
+                    return RedirectToAction(MVC.Account.ResetPasswordConfirmation(user.Id));
             }
             //this.AddErrors(result);
             this.MessageError(Captions.MissionFail, ModelState.GetListOfErrors());
@@ -285,19 +285,10 @@ namespace Netotik.Web.Controllers
         }
 
         [AllowAnonymous]
-        public virtual ActionResult ResetPasswordConfirmation(Domain.Entity.User User)
+        public virtual ActionResult ResetPasswordConfirmation(long id)
         {
-            if (User.UserType == Domain.Entity.UserType.UserAdmin)
-                ViewBag.UserType = "Admin";
-            if (User.UserType == Domain.Entity.UserType.UserReseller)
-                ViewBag.UserType = "Resller";
-            if (User.UserType == Domain.Entity.UserType.UserCompany)
-            {
-                ViewBag.UserType = "Company";
-                var Reseller = _applicationUserManager.FindUserById(User.UserCompany.UserResellerId);
-                ViewBag.ResellerId = Reseller.UserReseller.ResellerCode;
-            }
-            return View();
+            var user = _userManager.FindUserById(id);
+            return View(user);
         }
         #endregion
 
