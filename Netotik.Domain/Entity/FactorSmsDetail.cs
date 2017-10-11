@@ -10,7 +10,7 @@ namespace Netotik.Domain.Entity
     {
         public int Id { get; set; }
         public int SmsCount { get; set; }
-        public int UnitPrice { get; set; }
+        public long UnitPrice { get; set; }
         public long TotalPrice { get; set; }
         public Factor Factor { get; set; }
     }

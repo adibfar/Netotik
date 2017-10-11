@@ -32,6 +32,7 @@ namespace Netotik.Services.Implement
                     IsActive = x.IsActive,
                     Order = x.Order,
                     Price = x.Price,
+                    UnitPrice = x.UnitPrice,
                     SmsCount = x.SmsCount,
                     RowNumber = ++index
                 }).ToList();

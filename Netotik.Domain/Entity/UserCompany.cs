@@ -25,7 +25,7 @@ namespace Netotik.Domain.Entity
         public int R_Port { get; set; }
         public string PostalCode { get; set; }
 
-        public bool cloud { get; set; }
+        public bool Cloud { get; set; }
         public bool WebsitesLogs { get; set; }
 
 

@@ -34,13 +34,13 @@
                         </div>
                         <div class="col-md-6">
                             <div class="form-group has-feedback has-icon-left">
-                                @Html.LabelFor(m => m.TerminalId)
+                                @Html.LabelFor(m => m.MerchantId)
                                 <div class="position-relative has-icon-left">
-                                    @Html.TextBoxFor(m => m.TerminalId, new { @class = "form-control" })
+                                    @Html.TextBoxFor(m => m.MerchantId, new { @class = "form-control" })
                                     <div class="form-control-position">
                                         <i class="icon-location22"></i>
                                     </div>
-                                    @Html.ValidationMessageFor(model => model.TerminalId, "", htmlAttributes: new { @class = "text-danger" })
+                                    @Html.ValidationMessageFor(model => model.MerchantId, "", htmlAttributes: new { @class = "text-danger" })
                                 </div>
                             </div>
                         </div>
@@ -55,32 +55,6 @@
                                         <i class="icon-location22"></i>
                                     </div>
                                     @Html.ValidationMessageFor(model => model.GateWayUrl, "", htmlAttributes: new { @class = "text-danger" })
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-6">
-                            <div class="form-group has-feedback has-icon-left">
-                                @Html.LabelFor(m => m.UserName)
-                                <div class="position-relative has-icon-left">
-                                    @Html.TextBoxFor(m => m.UserName, new { @class = "form-control" })
-                                    <div class="form-control-position">
-                                        <i class="icon-location22"></i>
-                                    </div>
-                                    @Html.ValidationMessageFor(model => model.UserName, "", htmlAttributes: new { @class = "text-danger" })
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="form-group has-feedback has-icon-left">
-                                @Html.LabelFor(m => m.Password)
-                                <div class="position-relative has-icon-left">
-                                    @Html.TextBoxFor(m => m.Password, new { @class = "form-control" })
-                                    <div class="form-control-position">
-                                        <i class="icon-location22"></i>
-                                    </div>
-                                    @Html.ValidationMessageFor(model => model.Password, "", htmlAttributes: new { @class = "text-danger" })
                                 </div>
                             </div>
                         </div>

@@ -15,7 +15,7 @@ namespace Netotik.ViewModels.Shop.PaymentType
         public string Name { get; set; }
         public bool IsActive { get; set; }
         public string GateWayUrl { get; set; }
-        public long TerminalId { get; set; }
+        public string MerchantId { get; set; }
         public string Description { get; set; }
         public string imgName { get; set; }
 

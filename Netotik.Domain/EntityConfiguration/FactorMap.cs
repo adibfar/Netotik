@@ -11,6 +11,10 @@ namespace Netotik.Domain.EntityConfiguration
             // Primary Key
             this.HasKey(t => t.Id);
 
+            this.HasRequired(x => x.PaymentType)
+                .WithMany(x => x.Factores)
+                .HasForeignKey(x => x.PaymentTypeId)
+                .WillCascadeOnDelete(false);
 
             this.HasRequired(x => x.User)
                 .WithMany(x => x.Factores)

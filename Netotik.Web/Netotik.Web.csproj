@@ -242,6 +242,7 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ServiceModel" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -433,6 +434,7 @@
     <Compile Include="Areas\Client\Controllers\HomeController.cs" />
     <Compile Include="Areas\Company\CompanyAreaRegistration.cs" />
     <Compile Include="Areas\Company\Controllers\ChartsController.cs" />
+    <Compile Include="Areas\Company\Controllers\FactorController.cs" />
     <Compile Include="Areas\Company\Controllers\RouterController.cs" />
     <Compile Include="Areas\Company\Controllers\HotspotController.cs" />
     <Compile Include="Areas\Company\Controllers\UserManagerController.cs" />
@@ -448,6 +450,9 @@
       <DependentUpon>T4MVC.tt</DependentUpon>
     </Compile>
     <Compile Include="Company.ChartsController.generated.cs">
+      <DependentUpon>T4MVC.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Company.FactorController.generated.cs">
       <DependentUpon>T4MVC.tt</DependentUpon>
     </Compile>
     <Compile Include="Company.HomeController.generated.cs">
@@ -529,6 +534,11 @@
     </Compile>
     <Compile Include="RssController.generated.cs">
       <DependentUpon>T4MVC.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Service References\ZarinPalService\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
     <Compile Include="SharedController.generated.cs">
       <DependentUpon>T4MVC.tt</DependentUpon>
@@ -3678,7 +3688,27 @@
     <Content Include="Areas\Admin\Views\Sms\_EditPackage.cshtml" />
     <Content Include="Areas\Admin\Views\Sms\_Table.cshtml" />
     <Content Include="Areas\Admin\Views\Sms\Index.cshtml" />
+    <Content Include="Areas\Company\Views\Factor\Index.cshtml" />
     <None Include="Properties\PublishProfiles\DNMA.pubxml" />
+    <Content Include="Service References\ZarinPalService\Netotik.Web.ZarinPalService.GetUnverifiedTransactionsResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\ZarinPalService\Netotik.Web.ZarinPalService.PaymentRequestResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\ZarinPalService\Netotik.Web.ZarinPalService.PaymentRequestWithExtraResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\ZarinPalService\Netotik.Web.ZarinPalService.PaymentVerificationResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\ZarinPalService\Netotik.Web.ZarinPalService.PaymentVerificationWithExtraResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\ZarinPalService\Netotik.Web.ZarinPalService.RefreshAuthorityResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <None Include="Service References\ZarinPalService\PaymentGatewayImplementationService.wsdl" />
     <None Include="T4MVC.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>T4MVC.cs</LastGenOutput>
@@ -3746,6 +3776,12 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\Panel.js" />
     <Content Include="Scripts\Public.js" />
+    <None Include="Service References\ZarinPalService\configuration91.svcinfo" />
+    <None Include="Service References\ZarinPalService\configuration.svcinfo" />
+    <None Include="Service References\ZarinPalService\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -3863,6 +3899,9 @@
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadataStorage Include="Service References\ZarinPalService\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

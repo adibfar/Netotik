@@ -198,7 +198,7 @@
                                         <li class="list-group-item list-group-item-action" style="text-align:center">@item.Price.ToString("##,# "+ Captions.Toman)</li>
                                         <li class="list-group-item list-group-item-action" style="text-align:center"> @item.SmsCount Sms</li>
                                         <li class="list-group-item">
-                                            <a onclick="Buy('@item.Id');" class="btn btn-secondary btn-block btn-square">
+                                            <a onclick="BuyPackage('@item.Id');" class="btn btn-secondary btn-block btn-square">
                                                 <span class="icon-shopping-bag"></span>
                                                 خرید بسته
                                             </a>
@@ -227,8 +227,8 @@
         }
 
 
-        function BuyPlan(id) {
-            PostData("@Url.Action(MVC.Company.Home.EnableSMS())", { id: id });
+        function BuyPackage(id) {
+            PostData("@Url.Action(MVC.Company.Home.BuySmsPackage())", { id: id });
         }
 
     </script>

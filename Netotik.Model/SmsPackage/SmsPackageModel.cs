@@ -31,6 +31,11 @@ namespace Netotik.ViewModels.SmsPackage
         [Required(ErrorMessageResourceType = typeof(Captions), ErrorMessageResourceName = "RequiredError")]
         public long Price { get; set; }
 
+
+        //[Display(ResourceType = typeof(Captions), Name = "UnitPrice")]
+        [Required(ErrorMessageResourceType = typeof(Captions), ErrorMessageResourceName = "RequiredError")]
+        public long UnitPrice { get; set; }
+
         [Display(ResourceType = typeof(Captions), Name = "Active")]
         [Required(ErrorMessageResourceType = typeof(Captions), ErrorMessageResourceName = "RequiredError")]
         public bool IsActive { get; set; }

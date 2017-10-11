@@ -11,6 +11,7 @@ namespace Netotik.Domain.Entity
         public int Id { get; set; }
         public string Name { get; set; }
         public int SmsCount { get; set; }
+        public long UnitPrice { get; set; }
         public int Order { get; set; }
         public long Price { get; set; }
         public bool IsActive { get; set; }

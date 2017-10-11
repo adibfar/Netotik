@@ -72,6 +72,12 @@ namespace Netotik.Web.Areas.Company.Controllers
         }
         [NonAction]
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public virtual System.Web.Mvc.ActionResult BuySmsPackage()
+        {
+            return new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.BuySmsPackage);
+        }
+        [NonAction]
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public virtual System.Web.Mvc.ActionResult DisableSMS()
         {
             return new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.DisableSMS);
@@ -113,6 +119,7 @@ namespace Netotik.Web.Areas.Company.Controllers
             public readonly string TelegramBot = "TelegramBot";
             public readonly string ChangePassword = "ChangePassword";
             public readonly string Sms = "Sms";
+            public readonly string BuySmsPackage = "BuySmsPackage";
             public readonly string DisableSMS = "DisableSMS";
             public readonly string EnableSMS = "EnableSMS";
             public readonly string RedirectToLocal = "RedirectToLocal";
@@ -130,6 +137,7 @@ namespace Netotik.Web.Areas.Company.Controllers
             public const string TelegramBot = "TelegramBot";
             public const string ChangePassword = "ChangePassword";
             public const string Sms = "Sms";
+            public const string BuySmsPackage = "BuySmsPackage";
             public const string DisableSMS = "DisableSMS";
             public const string EnableSMS = "EnableSMS";
             public const string RedirectToLocal = "RedirectToLocal";
@@ -183,6 +191,14 @@ namespace Netotik.Web.Areas.Company.Controllers
         public class ActionParamsClass_Sms
         {
             public readonly string model = "model";
+        }
+        static readonly ActionParamsClass_BuySmsPackage s_params_BuySmsPackage = new ActionParamsClass_BuySmsPackage();
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public ActionParamsClass_BuySmsPackage BuySmsPackageParams { get { return s_params_BuySmsPackage; } }
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public class ActionParamsClass_BuySmsPackage
+        {
+            public readonly string id = "id";
         }
         static readonly ActionParamsClass_DisableSMS s_params_DisableSMS = new ActionParamsClass_DisableSMS();
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -390,6 +406,18 @@ namespace Netotik.Web.Areas.Company.Controllers
             ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "model", model);
             SmsOverride(callInfo, model);
             return System.Threading.Tasks.Task.FromResult(callInfo as System.Web.Mvc.ActionResult);
+        }
+
+        [NonAction]
+        partial void BuySmsPackageOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, int id);
+
+        [NonAction]
+        public override System.Web.Mvc.ActionResult BuySmsPackage(int id)
+        {
+            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.BuySmsPackage);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "id", id);
+            BuySmsPackageOverride(callInfo, id);
+            return callInfo;
         }
 
         [NonAction]
