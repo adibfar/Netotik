@@ -301,6 +301,9 @@ namespace Netotik.Web.Areas.Company.Controllers
         public virtual async Task<ActionResult> Sms(SmsModel model)
         {
             model.Id = UserLogined.Id;
+            ViewBag.Packages = _smsPackageService.All()
+                .Where(x => x.IsActive)
+                .OrderByDescending(x => x.Order).ToList();
             if (_mikrotikServices.IP_Port_Check(UserLogined.UserCompany.R_Host, UserLogined.UserCompany.R_Port, UserLogined.UserCompany.R_User, UserLogined.UserCompany.R_Password))
             {
                 if (_mikrotikServices.User_Pass_Check(UserLogined.UserCompany.R_Host, UserLogined.UserCompany.R_Port, UserLogined.UserCompany.R_User, UserLogined.UserCompany.R_Password))

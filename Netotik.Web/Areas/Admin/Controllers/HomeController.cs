@@ -16,6 +16,10 @@ using Netotik.Common.Controller;
 using Netotik.Domain.Entity;
 using Netotik.Resources;
 using System.Linq;
+using System.Collections.Generic;
+using System;
+using System.Net.Sockets;
+using System.Net;
 
 namespace Netotik.Web.Areas.Admin.Controllers
 {
@@ -26,20 +30,25 @@ namespace Netotik.Web.Areas.Admin.Controllers
         private readonly IApplicationUserManager _applicationUserManager;
         private readonly ILanguageService _languageService;
         private readonly IUnitOfWork _uow;
+        private readonly ISmsLogService _smsLogService;
 
         public HomeController(
             ILanguageService languageService,
             IInboxContactUsMessageService inboxMessageService,
             IApplicationUserManager applicationUserManager,
+            ISmsLogService smsLogService,
             IUnitOfWork uow)
         {
             _languageService = languageService;
             _applicationUserManager = applicationUserManager;
             _inboxMessageService = inboxMessageService;
+            _smsLogService = smsLogService;
             _uow = uow;
         }
         public virtual ActionResult Index()
         {
+            var smsLogs = _smsLogService.GetLastDays(10);
+            
             return View();
         }
 
