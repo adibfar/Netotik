@@ -3863,6 +3863,7 @@
     <Content Include="Views\Register\Client.cshtml" />
     <Content Include="Views\Login\Client.cshtml" />
     <Content Include="Views\Shared\_SideBarClientMenu.cshtml" />
+    <Content Include="Views\UserMailer\Factor.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />

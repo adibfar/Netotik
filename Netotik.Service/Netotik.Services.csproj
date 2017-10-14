@@ -148,6 +148,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Abstract\IFactorService.cs" />
+    <Compile Include="Abstract\ISmsLogService.cs" />
     <Compile Include="Abstract\ISmsPackageService.cs" />
     <Compile Include="Abstract\ISmsService.cs" />
     <Compile Include="Abstract\IUserCompanyLogClientService.cs" />
@@ -207,6 +208,7 @@
     <Compile Include="Identity\PermissionService.cs" />
     <Compile Include="Identity\StandardRoles.cs" />
     <Compile Include="Implement\FactorService.cs" />
+    <Compile Include="Implement\SmsLogService.cs" />
     <Compile Include="Implement\SmsPackageService.cs" />
     <Compile Include="Implement\SmsService.cs" />
     <Compile Include="Implement\UserCompanyLogClientService.cs" />

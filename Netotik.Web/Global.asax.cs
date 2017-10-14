@@ -20,6 +20,10 @@ using Netotik.Common.Binders;
 using System.Text.RegularExpressions;
 using System.Web.Http;
 using Netotik.Web.WebTasks;
+using System.Threading.Tasks;
+using System.Net.Sockets;
+using System.Net.NetworkInformation;
+using System.Text;
 
 namespace Netotik.Web
 {
@@ -46,6 +50,8 @@ namespace Netotik.Web
             ApplicationStart.Config();
 
             ScheduledTasksRegistry.Init();
+
+            UdpListenerClass.ReceiveMessages();
         }
         protected void Application_Error(object sender, EventArgs e)
         {
@@ -91,7 +97,53 @@ namespace Netotik.Web
             //نکته مهم این روش نیاز به سرویس پینگ سایت برای زنده نگه داشتن آن است
             ScheduledTasksRegistry.WakeUp("https://www.Netotik.com");
         }
+    }
+
+    public static class UdpListenerClass
+    {
+
+        public static bool messageReceived = false;
+        public static IPEndPoint e = new IPEndPoint(IPAddress.Any, 516);
+        public static UdpClient u = new UdpClient(e);
+
+        public static UdpState s = new UdpState();
 
 
+        public static async void ReceiveCallback(IAsyncResult ar)
+        {
+            UdpClient u = (UdpClient)((UdpState)(ar.AsyncState)).u;
+            IPEndPoint e = (IPEndPoint)((UdpState)(ar.AsyncState)).e;
+
+            Byte[] receiveBytes = u.EndReceive(ar, ref e);
+            string receiveString = Encoding.UTF8.GetString(receiveBytes);
+
+            await WirteToDB(e.Address.ToString(), receiveString);
+
+            u.BeginReceive(new AsyncCallback(ReceiveCallback), s);
+        }
+
+        public async static Task ReceiveMessages()
+        {
+            s.e = e;
+            s.u = u;
+
+            u.BeginReceive(new AsyncCallback(ReceiveCallback), s);
+
+            // Do some work while we wait for a message. For this example,
+            // we'll just sleep
+        }
+        public class UdpState
+        {
+            public UdpClient ut;
+            public IPEndPoint e;
+            public const int BufferSize = 1024;
+            public byte[] buffer = new byte[BufferSize];
+            public int counter = 0;
+            internal UdpClient u;
+        }
+        public async static Task WirteToDB(string Ip, string message)
+        {
+
+        }
     }
 }
