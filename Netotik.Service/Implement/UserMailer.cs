@@ -40,5 +40,18 @@ namespace Netotik.Services.Implement
                 x.To.Add(confirmAccountEmail.To);
             });
         }
+        public MvcMailMessage Factor(EmailFactorViewModel factor)
+        {
+            ViewData.Model = factor;
+            return Populate(x =>
+            {
+                x.BodyTransferEncoding = System.Net.Mime.TransferEncoding.Base64;
+                x.BodyEncoding = Encoding.UTF8;
+                x.Body = factor.Message;
+                x.Subject = factor.Subject;
+                x.ViewName = factor.ViewName;
+                x.To.Add(factor.To);
+            });
+        }
     }
 }
