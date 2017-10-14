@@ -5,19 +5,21 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Netotik.Resources;
+using Netotik.Domain.Entity;
 
-namespace Netotik.ViewModels.Shop.PaymentType
+namespace Netotik.ViewModels.Shop.Factor
 {
-    public class PaymentTypeItem
+    public class FactorAdminItem
     {
-        public int Id { get; set; }
+        public long Id { get; set; }
         public long RowNumber { get; set; }
-        public string Name { get; set; }
-        public bool IsActive { get; set; }
-        public string GateWayUrl { get; set; }
-        public string MerchantId { get; set; }
-        public string Description { get; set; }
-        public string imgName { get; set; }
+        public string Username { get; set; }
+        public short UserType { get; set; }
+        public short FactorType { get; set; }
+        public short FactorStatus { get; set; }
+        public string PaymentDate { get; set; }
+        public string TransactionId { get; set; }
+        public string PaymentPrice { get; set; }
 
     }
 }

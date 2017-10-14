@@ -64,6 +64,7 @@ namespace T4MVC
         public Netotik.Web.Areas.Admin.Controllers.ContentCategoryController ContentCategory = new Netotik.Web.Areas.Admin.Controllers.T4MVC_ContentCategoryController();
         public Netotik.Web.Areas.Admin.Controllers.ContentController Content = new Netotik.Web.Areas.Admin.Controllers.T4MVC_ContentController();
         public Netotik.Web.Areas.Admin.Controllers.ContentTagController ContentTag = new Netotik.Web.Areas.Admin.Controllers.T4MVC_ContentTagController();
+        public Netotik.Web.Areas.Admin.Controllers.FactorController Factor = new Netotik.Web.Areas.Admin.Controllers.T4MVC_FactorController();
         public Netotik.Web.Areas.Admin.Controllers.HomeController Home = new Netotik.Web.Areas.Admin.Controllers.T4MVC_HomeController();
         public Netotik.Web.Areas.Admin.Controllers.IndexSectionController IndexSection = new Netotik.Web.Areas.Admin.Controllers.T4MVC_IndexSectionController();
         public Netotik.Web.Areas.Admin.Controllers.LanguageController Language = new Netotik.Web.Areas.Admin.Controllers.T4MVC_LanguageController();

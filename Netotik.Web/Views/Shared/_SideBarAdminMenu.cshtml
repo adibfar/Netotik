@@ -31,7 +31,15 @@
 
     var IssueListMenu = Roles.Any(x => x == AssignableToRolePermissions.CanAccessTicket);
     var IssueLabelMenu = Roles.Any(x => x == AssignableToRolePermissions.CanAccessTicketTag);
+
+
     //-------------------------------------------------------------------------------
+
+    var AccountingMenu = Roles.Any(x => AssignableToRolePermissions.GetAllIssuePermision().Any(y => y.Name == x));
+
+    var FactoresListMenu = Roles.Any(x => x == AssignableToRolePermissions.CanAccessTicket);
+    //-------------------------------------------------------------------------------
+
 
     var ConfigurationMenu = Roles.Any(x => AssignableToRolePermissions.GetAllConfigurationPermision().Any(y => y.Name == x));
 
@@ -105,6 +113,18 @@
                         @if (IssueLabelMenu)
                         {
                             <li><a href="@Url.Action(MVC.Admin.TicketTag.Index())" data-toggle="dropdown" class="dropdown-item">برچسب ها</a></li>}
+                    </ul>
+                </li>
+            }
+
+            @if (AccountingMenu)
+            {
+                <li data-menu="dropdown" class="dropdown nav-item">
+                    <a href="#" data-toggle="dropdown" class="dropdown-toggle nav-link"><i class="icon-coin-dollar"></i><span>{Accounting}</span></a>
+                    <ul class="dropdown-menu">
+                        @if (IssueListMenu)
+                        {
+                            <li><a href="@Url.Action(MVC.Admin.Factor.Index())" data-toggle="dropdown" class="dropdown-item">لیست فاکتورها</a></li>}
                     </ul>
                 </li>
             }

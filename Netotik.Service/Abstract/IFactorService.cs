@@ -12,6 +12,7 @@ namespace Netotik.Services.Abstract
     public interface IFactorService : IBaseService<Factor>
     {
         IList<FactorUserItem> GetUserFactorList(RequestListModel model, out long TotalCount, out long ShowCount);
+        IList<FactorAdminItem> GetList(RequestListModel model, out long TotalCount, out long ShowCount);
 
         Task Remove(int id);
     }

@@ -1,4 +1,7 @@
-﻿using Netotik.Common.Controller;
+﻿using DNTBreadCrumb;
+using Netotik.Common.Controller;
+using Netotik.Common.DataTables;
+using Netotik.Common.Filters;
 using Netotik.Data;
 using Netotik.Resources;
 using Netotik.Services.Abstract;
@@ -12,6 +15,9 @@ using System.Web.Mvc;
 
 namespace Netotik.Web.Areas.Company.Controllers
 {
+    [Mvc5Authorize(Roles = "Company")]
+    [BreadCrumb(Title = "FactorList", UseDefaultRouteUrl = true, RemoveAllDefaultRouteValues = true,
+ Order = 0, GlyphIcon = "icon icon-table")]
     public partial class FactorController : BasePanelController
     {
         #region ctor
@@ -44,6 +50,21 @@ namespace Netotik.Web.Areas.Company.Controllers
             return View();
         }
 
+        public virtual JsonResult GetList(RequestListModel model)
+        {
+            long totalCount;
+            long showCount;
+
+            var result = _factorService.GetUserFactorList(model, out totalCount, out showCount);
+
+            return Json(new
+            {
+                sEcho = model.sEcho,
+                iTotalRecords = totalCount,
+                iTotalDisplayRecords = showCount,
+                aaData = result
+            }, JsonRequestBehavior.AllowGet);
+        }
 
 
         public virtual ActionResult Result(long Id)

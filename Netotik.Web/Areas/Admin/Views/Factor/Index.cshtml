@@ -1,0 +1,151 @@
+﻿@{
+    ViewBag.Title = "Factores";
+}
+<section id="configuration">
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="card">
+                <div class="card-body collapse in">
+                    <div class="card-block card-dashboard">
+                        @Html.Partial(MVC.Admin.Factor.Views._Table)
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="chartPrice">
+    @Html.Partial(MVC.Admin.Factor.Views._PriceFactorChart)
+</section>
+
+<section id="chartCount">
+    @Html.Partial(MVC.Admin.Factor.Views._CountFactorChart)
+</section>
+
+
+
+
+@section UpScript{
+    <link rel="stylesheet" type="text/css" href="~/Content/css/plugins/charts/morris.css">
+}
+
+
+
+
+@section DownScript{
+    <script src="~/Content/js/plugins/charts/chart.min.js" type="text/javascript"></script>
+
+    <script type="text/javascript">
+        $(function () {
+            var table = $('#grid').dataTable({
+                "order": [[1, 'asc']],
+                "iDisplayLength": 10,
+                "bProcessing": true,
+                "bStateSave": true,
+                "bServerSide": true,
+                "bFilter": true,
+                "aLengthMenu": [[10, 25, 50, 100], [10, 25, 50, 100]],
+                "bAutoWidth": false,
+                "sAjaxSource": "@Url.Action(MVC.Admin.Factor.GetList())",
+                "fnServerData": function (sSource, aoData, fnCallback) {
+                    $.ajax({
+                        "dataType": 'json',
+                        "type": "POST",
+                        "url": sSource,
+                        "data": aoData,
+                        "success": fnCallback
+                    });
+                },
+
+                "aoColumnDefs": [
+                    { "bSortable": false, "aTargets": [0] },
+                    { "bSortable": false, "aTargets": [-1] },
+                    {
+                        "targets": 5,
+                        "render": function (data, type, full, meta) {
+                            var result = '';
+                            if (full.FactorType==0) {
+                                result += ' <span class="tag tag-default">' + 'بسته پیامکی' + '</span>';
+                            }
+
+                            if (full.FactorStatus==0) {
+                                result += ' <span class="tag tag-success">'+'پرداخت شده'+'</span>';
+                            }
+                            else if (full.status == 1) {
+                                result += ' <span class="tag tag-warning">'+'پرداخت نشده'+'</span>';
+                            }
+                            else if (full.status == 2) {
+                                result += ' <span class="tag tag-error">'+'پرداخت ناموفق'+'</span>';
+                            }
+                            return result;
+                        }
+                    }, {
+                        "targets": -1,
+                        "render": function (data, type, full, meta) {
+                            var result = '';
+                            return result;
+
+                        }
+                    }
+                ]
+                ,
+                "aoColumns": [
+                    { "mDataProp": "RowNumber" },
+                    { "mDataProp": "Username" },
+                    { "mDataProp": "TransactionId" },
+                    { "mDataProp": "PaymentPrice" },
+                    { "mDataProp": "PaymentDate" },
+                    { "mDataProp": "FactorStatus" },
+                    { "no": "no" }
+                ]
+            });
+        });
+        $(window).on("load", function () {
+            CardBlock('#chart');
+            $.get("@Url.Action(MVC.Admin.Factor.GetPriceFactorChartData())", function (data) {
+                    var a = $("#price-chart"),
+                b = {
+                    elements: { rectangle: { borderWidth: 2, borderColor: "rgb(0, 255, 0)", borderSkipped: "bottom" } },
+                    responsive: !0, maintainAspectRatio: !1, responsiveAnimationDuration: 500, legend: { position: "top" },
+                    scales: {
+                        xAxes: [{ display: !0, gridLines: { color: "#f3f3f3", drawTicks: !1 }, scaleLabel: { display: !0 } }],
+                        yAxes: [{ display: !0, gridLines: { color: "#f3f3f3", drawTicks: !1 }, scaleLabel: { display: !0 } }]
+                    }, title: { display: !1, }
+                }, c = {
+                    labels: data.dates,
+                    datasets: [
+                        { label: "فاکتورهای پرداخت شده", data: data.success, backgroundColor: "#3fba82", hoverBackgroundColor: "rgba(103,58,183,.9)", borderColor: "transparent" },
+                        { label: "فاکتورهای پرداخت نشده", data: data.unpaid, backgroundColor: "#f1d987", hoverBackgroundColor: "rgba(233,30,99,.9)", borderColor: "transparent" },
+                        { label: "فاکتورهای با پرداخت ناموفق", data:data.fail, backgroundColor: "#f28787", hoverBackgroundColor: "rgba(233,30,99,.9)", borderColor: "transparent" }]
+                }, d = { type: "line", options: b, data: c }; new Chart(a, d)
+                CardUnBlock('#chartPrice');
+            }, "json");
+
+
+             $.get("@Url.Action(MVC.Admin.Factor.GetCountFactorChartData())", function (data) {
+                    var a = $("#count-chart"),
+                b = {
+                    elements: { rectangle: { borderWidth: 2, borderColor: "rgb(0, 255, 0)", borderSkipped: "bottom" } },
+                    responsive: !0, maintainAspectRatio: !1, responsiveAnimationDuration: 500, legend: { position: "top" },
+                    scales: {
+                        xAxes: [{ display: !0, gridLines: { color: "#f3f3f3", drawTicks: !1 }, scaleLabel: { display: !0 } }],
+                        yAxes: [{ display: !0, gridLines: { color: "#f3f3f3", drawTicks: !1 }, scaleLabel: { display: !0 } }]
+                    }, title: { display: !1, }
+                }, c = {
+                    labels: data.dates,
+                    datasets: [
+                        { label: "فاکتورهای پرداخت شده", data: data.success, backgroundColor: "#3fba82", hoverBackgroundColor: "rgba(103,58,183,.9)", borderColor: "transparent" },
+                        { label: "فاکتورهای پرداخت نشده", data: data.unpaid, backgroundColor: "#f1d987", hoverBackgroundColor: "rgba(233,30,99,.9)", borderColor: "transparent" },
+                        { label: "فاکتورهای با پرداخت ناموفق", data:data.fail, backgroundColor: "#f28787", hoverBackgroundColor: "rgba(233,30,99,.9)", borderColor: "transparent" }]
+                }, d = { type: "line", options: b, data: c }; new Chart(a, d)
+                CardUnBlock('#chartCount');
+            }, "json");
+
+        });
+
+    </script>
+
+
+}
+

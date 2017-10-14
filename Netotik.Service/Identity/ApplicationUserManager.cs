@@ -814,9 +814,12 @@ namespace Netotik.Services.Identity
         }
         public bool CheckCompanyCompanyNameExist(string name, long? id, long? resellerid)
         {
+            //return id == null
+            //   ? _users.Any(a => a.UserCompany.CompanyCode == name.ToLower() && a.UserCompany.UserResellerId == resellerid && !a.IsDeleted)
+            //   : _users.Any(a => a.UserCompany.CompanyCode == name.ToLower() && a.UserCompany.UserResellerId == resellerid && !a.IsDeleted && a.Id != id.Value);
             return id == null
-               ? _users.Any(a => a.UserCompany.CompanyCode == name.ToLower() && a.UserCompany.UserResellerId == resellerid && !a.IsDeleted)
-               : _users.Any(a => a.UserCompany.CompanyCode == name.ToLower() && a.UserCompany.UserResellerId == resellerid && !a.IsDeleted && a.Id != id.Value);
+               ? _users.Any(a => a.UserCompany.CompanyCode == name.ToLower() && !a.IsDeleted)
+               : _users.Any(a => a.UserCompany.CompanyCode == name.ToLower() && !a.IsDeleted && a.Id != id.Value);
         }
 
         public bool CheckGooglePlusIdExist(string googlePlusId, long? id)

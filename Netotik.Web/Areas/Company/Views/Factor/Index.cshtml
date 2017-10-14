@@ -1,7 +1,91 @@
-﻿
-@{
-    ViewBag.Title = "Index";
+﻿@{
+    ViewBag.Title = "Factores";
 }
 
-<h2>Index</h2>
+<section id="configuration">
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="card">
+                <div class="card-body collapse in">
+                    <div class="card-block card-dashboard">
+                        @Html.Partial(MVC.Company.Factor.Views._Table)
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
 
+
+
+
+
+@section DownScript{
+
+    <script type="text/javascript">
+        $(function () {
+            var table = $('#grid').dataTable({
+                "order": [[1, 'asc']],
+                "iDisplayLength": 10,
+                "bProcessing": true,
+                "bStateSave": true,
+                "bServerSide": true,
+                "bFilter": true,
+                "aLengthMenu": [[10, 25, 50, 100], [10, 25, 50, 100]],
+                "bAutoWidth": false,
+                "sAjaxSource": "@Url.Action(MVC.Company.Factor.GetList())",
+                "fnServerData": function (sSource, aoData, fnCallback) {
+                    $.ajax({
+                        "dataType": 'json',
+                        "type": "POST",
+                        "url": sSource,
+                        "data": aoData,
+                        "success": fnCallback
+                    });
+                },
+
+                "aoColumnDefs": [
+                    { "bSortable": false, "aTargets": [0] },
+                    { "bSortable": false, "aTargets": [-1] },
+                    {
+                        "targets": 4,
+                        "render": function (data, type, full, meta) {
+                            var result = '';
+                            if (full.FactorType==0) {
+                                result += ' <span class="tag tag-default">' + 'بسته پیامکی' + '</span>';
+                            }
+
+                            if (full.FactorStatus==0) {
+                                result += ' <span class="tag tag-success">'+'پرداخت شده'+'</span>';
+                            }
+                            else if (full.status == 1) {
+                                result += ' <span class="tag tag-warning">'+'پرداخت نشده'+'</span>';
+                            }
+                            else if (full.status == 2) {
+                                result += ' <span class="tag tag-error">'+'پرداخت ناموفق'+'</span>';
+                            }
+                            return result;
+                        }
+                    }, {
+                        "targets": -1,
+                        "render": function (data, type, full, meta) {
+                            var result = '';
+                            return result;
+
+                        }
+                    }
+                ]
+                ,
+                "aoColumns": [
+                    { "mDataProp": "RowNumber" },
+                    { "mDataProp": "TransactionId" },
+                    { "mDataProp": "PaymentPrice" },
+                    { "mDataProp": "RegisterDate" },
+                    { "mDataProp": "FactorStatus" },
+                    { "no": "no" }
+                ]
+            });
+        });
+
+    </script>
+}

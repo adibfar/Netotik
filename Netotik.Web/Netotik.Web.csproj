@@ -357,6 +357,9 @@
     <Compile Include="Admin.ContentTagController.generated.cs">
       <DependentUpon>T4MVC.tt</DependentUpon>
     </Compile>
+    <Compile Include="Admin.FactorController.generated.cs">
+      <DependentUpon>T4MVC.tt</DependentUpon>
+    </Compile>
     <Compile Include="Admin.HomeController.generated.cs">
       <DependentUpon>T4MVC.tt</DependentUpon>
     </Compile>
@@ -408,6 +411,7 @@
     <Compile Include="App_Start\StructureMapControllerFactory.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
+    <Compile Include="Areas\Admin\Controllers\FactorController.cs" />
     <Compile Include="Areas\Admin\Controllers\IndexSectionController.cs" />
     <Compile Include="Areas\Admin\Controllers\SliderController.cs" />
     <Compile Include="Areas\Admin\Controllers\StatisticsController.cs" />
@@ -3689,6 +3693,11 @@
     <Content Include="Areas\Admin\Views\Sms\_Table.cshtml" />
     <Content Include="Areas\Admin\Views\Sms\Index.cshtml" />
     <Content Include="Areas\Company\Views\Factor\Index.cshtml" />
+    <Content Include="Areas\Company\Views\Factor\_Table.cshtml" />
+    <Content Include="Areas\Admin\Views\Factor\_Table.cshtml" />
+    <Content Include="Areas\Admin\Views\Factor\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Factor\_PriceFactorChart.cshtml" />
+    <Content Include="Areas\Admin\Views\Factor\_CountFactorChart.cshtml" />
     <None Include="Properties\PublishProfiles\DNMA.pubxml" />
     <Content Include="Service References\ZarinPalService\Netotik.Web.ZarinPalService.GetUnverifiedTransactionsResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>

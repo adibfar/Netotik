@@ -21,14 +21,14 @@
 
                         @if (!Model.SmsActive)
                         {
-                            <a onclick="EnableSMS('@Model.Id');" class="btn btn-social btn-instagram" value="@Captions.Disable" href="#">
-                                <span class="icon-eye-blocked font-medium-4"></span> @Captions.Disable
+                            <a onclick="EnableSMS('@Model.Id');" class="btn btn-social btn-instagram" value="@Captions.Enable" href="#">
+                                <span class="icon-eye-blocked font-medium-4"></span> @Captions.Enable
                             </a>
                         }
                         else
                         {
-                            <a href="#" onclick="DisableSMS('@Model.Id');" class="btn btn-social btn-instagram" value="@Captions.Enable">
-                                <span class="icon-eye font-medium-4"></span> @Captions.Enable
+                            <a href="#" onclick="DisableSMS('@Model.Id');" class="btn btn-social btn-instagram" value="@Captions.Disable">
+                                <span class="icon-eye font-medium-4"></span> @Captions.Disable
                             </a>
                         }
                     </div>
@@ -50,8 +50,8 @@
                                     <div class="col-md-4">
                                         <div class="form-group has-icon-left">
                                             @Html.LabelFor(m => m.SmsCharge)
-                                            <div class="position-relative has-icon-left" data-toggle="tooltip" data-original-title="<b>@Model.SmsCharge</b>" data-html="true">
-                                                @Html.TextBoxFor(m => m.SmsCharge, new { @class = "form-control" })
+                                            <div class="position-relative has-icon-left disabled">
+                                                @Html.TextBoxFor(m => m.SmsCharge, new { @class = "form-control disabled" })
                                                 <div class="form-control-position">
                                                     <i class="icon-ios-timer"></i>
                                                 </div>

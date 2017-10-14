@@ -13,14 +13,11 @@ namespace Netotik.ViewModels.Shop.Factor
     {
         public long Id { get; set; }
         public long RowNumber { get; set; }
-        public FactorType FactorType { get; set; }
-        public FactorStatus FactorStatus { get; set; }
-        public DateTime RegisterDate { get; set; }
-        public DateTime? RegisterPay { get; set; }
-        public string GetId { get; set; }
+        public short FactorType { get; set; }
+        public short FactorStatus { get; set; }
+        public string RegisterDate { get; set; }
         public string TransactionId { get; set; }
-        public string IpAddress { get; set; }
-        public long PaymentPrice { get; set; }
+        public string PaymentPrice { get; set; }
 
     }
 }

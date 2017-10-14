@@ -23,7 +23,7 @@ using System.Web.Mvc.Ajax;
 using System.Web.Mvc.Html;
 using System.Web.Routing;
 using T4MVC;
-namespace Netotik.Web.Areas.Company.Controllers
+namespace Netotik.Web.Areas.Admin.Controllers
 {
     public partial class FactorController
     {
@@ -64,21 +64,15 @@ namespace Netotik.Web.Areas.Company.Controllers
         }
         [NonAction]
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public virtual System.Web.Mvc.ActionResult Result()
-        {
-            return new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Result);
-        }
-        [NonAction]
-        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public virtual System.Web.Mvc.ActionResult RedirectToLocal()
         {
             return new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.RedirectToLocal);
         }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public FactorController Actions { get { return MVC.Company.Factor; } }
+        public FactorController Actions { get { return MVC.Admin.Factor; } }
         [GeneratedCode("T4MVC", "2.0")]
-        public readonly string Area = "Company";
+        public readonly string Area = "Admin";
         [GeneratedCode("T4MVC", "2.0")]
         public readonly string Name = "Factor";
         [GeneratedCode("T4MVC", "2.0")]
@@ -92,7 +86,8 @@ namespace Netotik.Web.Areas.Company.Controllers
         {
             public readonly string Index = "Index";
             public readonly string GetList = "GetList";
-            public readonly string Result = "Result";
+            public readonly string GetPriceFactorChartData = "GetPriceFactorChartData";
+            public readonly string GetCountFactorChartData = "GetCountFactorChartData";
             public readonly string RedirectToLocal = "RedirectToLocal";
         }
 
@@ -101,7 +96,8 @@ namespace Netotik.Web.Areas.Company.Controllers
         {
             public const string Index = "Index";
             public const string GetList = "GetList";
-            public const string Result = "Result";
+            public const string GetPriceFactorChartData = "GetPriceFactorChartData";
+            public const string GetCountFactorChartData = "GetCountFactorChartData";
             public const string RedirectToLocal = "RedirectToLocal";
         }
 
@@ -113,14 +109,6 @@ namespace Netotik.Web.Areas.Company.Controllers
         public class ActionParamsClass_GetList
         {
             public readonly string model = "model";
-        }
-        static readonly ActionParamsClass_Result s_params_Result = new ActionParamsClass_Result();
-        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public ActionParamsClass_Result ResultParams { get { return s_params_Result; } }
-        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public class ActionParamsClass_Result
-        {
-            public readonly string Id = "Id";
         }
         static readonly ActionParamsClass_RedirectToLocal s_params_RedirectToLocal = new ActionParamsClass_RedirectToLocal();
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -140,16 +128,20 @@ namespace Netotik.Web.Areas.Company.Controllers
             public _ViewNamesClass ViewNames { get { return s_ViewNames; } }
             public class _ViewNamesClass
             {
+                public readonly string _CountFactorChart = "_CountFactorChart";
+                public readonly string _PriceFactorChart = "_PriceFactorChart";
                 public readonly string _Table = "_Table";
                 public readonly string Index = "Index";
             }
-            public readonly string _Table = "~/Areas/Company/Views/Factor/_Table.cshtml";
-            public readonly string Index = "~/Areas/Company/Views/Factor/Index.cshtml";
+            public readonly string _CountFactorChart = "~/Areas/Admin/Views/Factor/_CountFactorChart.cshtml";
+            public readonly string _PriceFactorChart = "~/Areas/Admin/Views/Factor/_PriceFactorChart.cshtml";
+            public readonly string _Table = "~/Areas/Admin/Views/Factor/_Table.cshtml";
+            public readonly string Index = "~/Areas/Admin/Views/Factor/Index.cshtml";
         }
     }
 
     [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-    public partial class T4MVC_FactorController : Netotik.Web.Areas.Company.Controllers.FactorController
+    public partial class T4MVC_FactorController : Netotik.Web.Areas.Admin.Controllers.FactorController
     {
         public T4MVC_FactorController() : base(Dummy.Instance) { }
 
@@ -177,14 +169,24 @@ namespace Netotik.Web.Areas.Company.Controllers
         }
 
         [NonAction]
-        partial void ResultOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, long Id);
+        partial void GetPriceFactorChartDataOverride(T4MVC_System_Web_Mvc_JsonResult callInfo);
 
         [NonAction]
-        public override System.Web.Mvc.ActionResult Result(long Id)
+        public override System.Web.Mvc.JsonResult GetPriceFactorChartData()
         {
-            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Result);
-            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "Id", Id);
-            ResultOverride(callInfo, Id);
+            var callInfo = new T4MVC_System_Web_Mvc_JsonResult(Area, Name, ActionNames.GetPriceFactorChartData);
+            GetPriceFactorChartDataOverride(callInfo);
+            return callInfo;
+        }
+
+        [NonAction]
+        partial void GetCountFactorChartDataOverride(T4MVC_System_Web_Mvc_JsonResult callInfo);
+
+        [NonAction]
+        public override System.Web.Mvc.JsonResult GetCountFactorChartData()
+        {
+            var callInfo = new T4MVC_System_Web_Mvc_JsonResult(Area, Name, ActionNames.GetCountFactorChartData);
+            GetCountFactorChartDataOverride(callInfo);
             return callInfo;
         }
 
