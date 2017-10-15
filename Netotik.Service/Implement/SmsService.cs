@@ -32,7 +32,11 @@ namespace Netotik.Services.Implement
 
         public long GetCredit()
         {
-            throw new NotImplementedException();
+            using (var sms = new Send())
+            {
+                var setting = _settingService.GetAll();
+                return (long)sms.GetCredit(setting.SmsUsername, setting.SmsPassword);
+            }
         }
 
         public int GetMessageSize(string text)

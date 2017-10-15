@@ -1150,5 +1150,10 @@ namespace Netotik.Services.Identity
             //return _users.FirstOrDefaultAsync(x => !x.IsDeleted && x.IsBanned && x.EmailConfirmed && x.UserType == UserType.UserReseller && x.UserReseller.ResellerCode == Code);
             return await _users.FirstOrDefaultAsync(x => !x.IsDeleted && x.UserType == UserType.UserCompany && x.UserCompany.RegisterWithSmsCode == Code);
         }
+
+        public long GetCompaniesChargre()
+        {
+            return _users.Where(x => !x.IsDeleted && x.UserType == UserType.UserCompany).Sum(x => x.UserCompany.SmsCharge);
+        }
     }
 }

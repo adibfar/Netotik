@@ -47,7 +47,7 @@ namespace Netotik.Web.Areas.Admin.Controllers
         }
         public virtual ActionResult Index()
         {
-            var smsLogs = _smsLogService.GetLastDays(10);
+          
             
             return View();
         }

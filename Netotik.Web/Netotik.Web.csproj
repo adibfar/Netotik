@@ -330,7 +330,6 @@
     <Folder Include="Areas\Client\Models\" />
     <Folder Include="Areas\Company\Models\" />
     <Folder Include="Areas\Reseller\Models\" />
-    <Folder Include="Views\FarapayamakGateway\" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AccountController.generated.cs">
@@ -3698,6 +3697,7 @@
     <Content Include="Areas\Admin\Views\Factor\Index.cshtml" />
     <Content Include="Areas\Admin\Views\Factor\_PriceFactorChart.cshtml" />
     <Content Include="Areas\Admin\Views\Factor\_CountFactorChart.cshtml" />
+    <Content Include="Areas\Admin\Views\Sms\_Chart.cshtml" />
     <None Include="Properties\PublishProfiles\DNMA.pubxml" />
     <Content Include="Service References\ZarinPalService\Netotik.Web.ZarinPalService.GetUnverifiedTransactionsResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>

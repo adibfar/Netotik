@@ -31,9 +31,6 @@ namespace Netotik.Services.Implement
                 }).ToList();
         }
 
-        public IList<SmsLog> GetLastDays(int Days)
-        {
-            return dbSet.Where(x => x.CreateDate.AddDays(Days) > DateTime.Now).ToList();
-        }
+      
     }
 }

@@ -9,6 +9,7 @@ namespace Netotik.Domain.Entity
     public class FactorSmsDetail
     {
         public int Id { get; set; }
+        public string PackageName { get; set; }
         public int SmsCount { get; set; }
         public long UnitPrice { get; set; }
         public long TotalPrice { get; set; }

@@ -58,9 +58,9 @@ namespace Netotik.Web.Controllers
 
         [NonAction]
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public virtual System.Threading.Tasks.Task<System.Web.Mvc.ActionResult> SmsRecive()
+        public virtual System.Threading.Tasks.Task<System.Web.Mvc.ActionResult> SmsReceive()
         {
-            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.SmsRecive);
+            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.SmsReceive);
             return System.Threading.Tasks.Task.FromResult(callInfo as System.Web.Mvc.ActionResult);
         }
         [NonAction]
@@ -85,27 +85,27 @@ namespace Netotik.Web.Controllers
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public class ActionNamesClass
         {
-            public readonly string SmsRecive = "SmsRecive";
+            public readonly string SmsReceive = "SmsReceive";
             public readonly string RedirectToLocal = "RedirectToLocal";
         }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public class ActionNameConstants
         {
-            public const string SmsRecive = "SmsRecive";
+            public const string SmsReceive = "SmsReceive";
             public const string RedirectToLocal = "RedirectToLocal";
         }
 
 
-        static readonly ActionParamsClass_SmsRecive s_params_SmsRecive = new ActionParamsClass_SmsRecive();
+        static readonly ActionParamsClass_SmsReceive s_params_SmsReceive = new ActionParamsClass_SmsReceive();
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public ActionParamsClass_SmsRecive SmsReciveParams { get { return s_params_SmsRecive; } }
+        public ActionParamsClass_SmsReceive SmsReceiveParams { get { return s_params_SmsReceive; } }
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public class ActionParamsClass_SmsRecive
+        public class ActionParamsClass_SmsReceive
         {
             public readonly string fromNum = "fromNum";
-            public readonly string to = "to";
-            public readonly string text = "text";
+            public readonly string toNumber = "toNumber";
+            public readonly string textMessage = "textMessage";
         }
         static readonly ActionParamsClass_RedirectToLocal s_params_RedirectToLocal = new ActionParamsClass_RedirectToLocal();
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -135,16 +135,16 @@ namespace Netotik.Web.Controllers
         public T4MVC_FarapayamakGatewayController() : base(Dummy.Instance) { }
 
         [NonAction]
-        partial void SmsReciveOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, string fromNum, string to, string text);
+        partial void SmsReceiveOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, string fromNum, string toNumber, string textMessage);
 
         [NonAction]
-        public override System.Threading.Tasks.Task<System.Web.Mvc.ActionResult> SmsRecive(string fromNum, string to, string text)
+        public override System.Threading.Tasks.Task<System.Web.Mvc.ActionResult> SmsReceive(string fromNum, string toNumber, string textMessage)
         {
-            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.SmsRecive);
+            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.SmsReceive);
             ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "fromNum", fromNum);
-            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "to", to);
-            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "text", text);
-            SmsReciveOverride(callInfo, fromNum, to, text);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "toNumber", toNumber);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "textMessage", textMessage);
+            SmsReceiveOverride(callInfo, fromNum, toNumber, textMessage);
             return System.Threading.Tasks.Task.FromResult(callInfo as System.Web.Mvc.ActionResult);
         }
 

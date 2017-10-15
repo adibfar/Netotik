@@ -25,18 +25,21 @@ namespace Netotik.Web.Areas.Company.Controllers
         private readonly IPaymentTypeService _paymentTypeService;
         private readonly ISmsPackageService _smsPackageService;
         private readonly IFactorService _factorService;
+        private readonly IUserMailer _userMailer;
         private readonly ISmsService _smsService;
         private readonly IUnitOfWork _uow;
 
         public FactorController(
+            IUserMailer userMailer,
             IPaymentTypeService paymentTypeService,
-        IFactorService factorService,
+            IFactorService factorService,
             ISmsPackageService smsPackageService,
             IApplicationUserManager applicationUserManager,
             ISmsService smsService,
             IUnitOfWork uow)
         {
-            _paymentTypeService= paymentTypeService;
+            _userMailer = userMailer;
+            _paymentTypeService = paymentTypeService;
             _factorService = factorService;
             _smsPackageService = smsPackageService;
             _applicationUserManager = applicationUserManager;
@@ -97,11 +100,25 @@ namespace Netotik.Web.Areas.Company.Controllers
                         factor.FactorStatus = Domain.Entity.FactorStatus.Success;
                         factor.TransactionId = RefID.ToString();
                         factor.PaymentDate = DateTime.Now;
-                        if (factor.FactorType==Domain.Entity.FactorType.CompanyBySmsPackage)
+                        if (factor.FactorType == Domain.Entity.FactorType.CompanyBySmsPackage)
                         {
                             factor.User.UserCompany.SmsCharge += factor.FactorSmsDetail.SmsCount;
                         }
                         this.MessageSuccess(Captions.MissionSuccess, "پرداخت شما با موفقیت انجام شد. شماره تراکنش شما : " + RefID);
+                        _userMailer.Factor(new ViewModels.Identity.Account.EmailFactorViewModel
+                        {
+                            CompanyName = factor.User.FirstName,
+                            FactorDate = factor.PaymentDate.Value,
+                            FactorId = factor.Id,
+                            Price = factor.PaymentPrice,
+                            ServiceName = factor.FactorType == Domain.Entity.FactorType.CompanyBySmsPackage ? factor.FactorSmsDetail.PackageName : "",
+                            Subject = string.Format("{0} - {1} : {2}", Captions.Netotik, "فاکتور", factor.Id),
+                            To = factor.User.Email,
+                            ViewName = MVC.UserMailer.Views.Factor
+                        }).Send();
+
+                        _smsService.SendSms(factor.User.PhoneNumber, string.Format("{0} \n {1} برای شما فعال گردید.", Captions.Netotik, factor.FactorSmsDetail.PackageName));
+
                     }
                     else
                     {

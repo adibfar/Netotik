@@ -1,24 +1,66 @@
 ﻿@{
     ViewBag.Title = "Sms Management";
 }﻿
-<section id="configuration">
-    <div class="col-xs-12">
-        <div class="card">
-            <div class="card-header">
-                <button type="button" class="btn btn-social width-150 btn-instagram" data-toggle="modal" data-target="#Create"><span class="icon-plus font-medium-4"></span> New Package</button>
-                @Html.Action(MVC.Admin.Sms.Create())
+
+<section id="sectionSmsChart">
+    <div class="row">
+        @Html.Partial(MVC.Admin.Sms.Views._Chart)
+
+        <div class="col-xl-3 col-lg-3 col-xs-12">
+            <div class="card" id="sectionSmsCredit">
+                <div class="card-body">
+                    <div class="media">
+                        <div class="p-2 text-xs-center bg-pink media-left media-middle">
+                            <i class="icon-banknote font-large-2 white"></i>
+                        </div>
+                        <div class="p-2 media-body">
+                            <h5>شارژ فراپیامک</h5>
+                            <h5 id="smsCredit" class="text-bold-400"></h5>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div class="card-body collapse in">
-                <div class="card-block card-dashboard">
-                    @Html.Partial(MVC.Admin.Sms.Views._Table)
+            <div class="card" id="sectionSmsCompaniesCredit">
+                <div class="card-body">
+                    <div class="media">
+                        <div class="p-2 text-xs-center bg-red dark-10 media-left media-middle">
+                            <i class="icon-users font-large-2 white"></i>
+                        </div>
+                        <div class="p-2 media-body">
+                            <h5>مجموع شارژ کاربران</h5>
+                            <h5 id="smsCompaniesCredit" class="text-bold-400"></h5>
+                        </div>
+                    </div>
+                </div>
+            </div>
+       
+        </div>
+    </div>
+</section>
+
+<section id="configuration">
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="card">
+                <div class="card-header">
+                    <button type="button" class="btn btn-social width-200 btn-instagram" data-toggle="modal" data-target="#Create"><span class="icon-plus font-medium-4"></span> New Package</button>
+                    @Html.Action(MVC.Admin.Sms.Create())
+                </div>
+                <div class="card-body collapse in">
+                    <div class="card-block card-dashboard">
+                        @Html.Partial(MVC.Admin.Sms.Views._Table)
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 </section>
 
+
 <div id="edit-container"></div>
 @section DownScript{
+
+    <script src="~/Content/js/plugins/charts/chart.min.js" type="text/javascript"></script>
     <script type="text/javascript">
         $(function () {
             var table = $('#grid').dataTable({
@@ -88,12 +130,12 @@
         });
 
         function edit(id) {
-            CardBlock('.card');
+            CardBlock('#configuration');
             var url = "@Url.Action(MVC.Admin.Sms.Edit())";
             $.get(url + '/' + id, function (data) {
                 $('#edit-container').html(data);
                 $('#Edit').modal('show');
-                CardUnBlock('.card');
+                CardUnBlock('#configuration');
                 Icheck();
                 AjaxForm.EnableAjaxFormvalidate('Edit');
             });
@@ -102,6 +144,45 @@
          function remove(id) {
             PostData("@Url.Action(MVC.Admin.Sms.Remove())", { id: id });
         }
+
+          $(window).on("load", function () {
+              CardBlock('#sectionSmsChart');
+             $.get("@Url.Action(MVC.Admin.Sms.GetSmsChartData())", function (data) {
+                    var a = $("#sms-chart"),
+                b = {
+                    elements: { rectangle: { borderWidth: 2, borderColor: "rgb(0, 255, 0)", borderSkipped: "bottom" } },
+                    responsive: !0, maintainAspectRatio: !1, responsiveAnimationDuration: 500, legend: { position: "top" },
+                    scales: {
+                        xAxes: [{ display: !0, gridLines: { color: "#f3f3f3", drawTicks: !1 }, scaleLabel: { display: !0 } }],
+                        yAxes: [{ display: !0, gridLines: { color: "#f3f3f3", drawTicks: !1 }, scaleLabel: { display: !0 } }]
+                    }, title: { display: !1, }
+                }, c = {
+                    labels: data.dates,
+                    datasets: [
+                        { label: "پیامک های ارسالی پنل ها", data: data.userSms, backgroundColor: "#3fba82", hoverBackgroundColor: "rgba(103,58,183,.9)", borderColor: "transparent" },
+                        { label: "پیامک های سیستمی", data: data.systemSms, backgroundColor: "#f1d987", hoverBackgroundColor: "rgba(233,30,99,.9)", borderColor: "transparent" }]
+                }, d = { type: "line", options: b, data: c }; new Chart(a, d)
+                CardUnBlock('#sectionSmsChart');
+            }, "json");
+
+        });
+
+
+            $(window).on("load", function () {
+                CardBlock('#sectionSmsCredit');
+                $.get("@Url.Action(MVC.Admin.Sms.GetSmsCredit())", function (data) {
+                    $("#smsCredit").text(data.charge);
+                CardUnBlock('#sectionSmsCredit');
+            }, "json");
+          });
+
+            $(window).on("load", function () {
+                    CardBlock('#sectionSmsCompaniesCredit');
+                    $.get("@Url.Action(MVC.Admin.Sms.GetSmsCompaniesCredit())", function (data) {
+                    $("#smsCompaniesCredit").text(data.charge);
+                    CardUnBlock('#sectionSmsCompaniesCredit');
+            }, "json");
+            });
 
     </script>
 }
