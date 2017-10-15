@@ -24,6 +24,13 @@ using System.Threading.Tasks;
 using System.Net.Sockets;
 using System.Net.NetworkInformation;
 using System.Text;
+using System.IO;
+using System.Web.Hosting;
+using Netotik.Domain.Entity;
+using Netotik.Services.Identity;
+using Netotik.Services.Abstract;
+using Netotik.Data;
+using Netotik.IocConfig;
 
 namespace Netotik.Web
 {
@@ -51,7 +58,7 @@ namespace Netotik.Web
 
             ScheduledTasksRegistry.Init();
 
-            UdpListenerClass.ReceiveMessages();
+
         }
         protected void Application_Error(object sender, EventArgs e)
         {
@@ -105,9 +112,21 @@ namespace Netotik.Web
         public static bool messageReceived = false;
         public static IPEndPoint e = new IPEndPoint(IPAddress.Any, 516);
         public static UdpClient u = new UdpClient(e);
-
+        public static IApplicationUserManager _applicationUserManager;
+        public static IUserCompanyLogClientService _usercompanylogclientservice;
+        public static IUnitOfWork _uow;
         public static UdpState s = new UdpState();
 
+
+        public class UdpState
+        {
+            public UdpClient ut;
+            public IPEndPoint e;
+            public const int BufferSize = 1024;
+            public byte[] buffer = new byte[BufferSize];
+            public int counter = 0;
+            internal UdpClient u;
+        }
 
         public static async void ReceiveCallback(IAsyncResult ar)
         {
@@ -122,8 +141,13 @@ namespace Netotik.Web
             u.BeginReceive(new AsyncCallback(ReceiveCallback), s);
         }
 
-        public async static Task ReceiveMessages()
+        public static void ReceiveMessages()
         {
+
+            _applicationUserManager = ProjectObjectFactory.Container.GetInstance<IApplicationUserManager>();
+            _usercompanylogclientservice = ProjectObjectFactory.Container.GetInstance<IUserCompanyLogClientService>();
+            _uow = ProjectObjectFactory.Container.GetInstance<IUnitOfWork>();
+
             s.e = e;
             s.u = u;
 
@@ -132,17 +156,63 @@ namespace Netotik.Web
             // Do some work while we wait for a message. For this example,
             // we'll just sleep
         }
-        public class UdpState
+
+        public async static Task WirteToDB(string Ip, string Message)
         {
-            public UdpClient ut;
-            public IPEndPoint e;
-            public const int BufferSize = 1024;
-            public byte[] buffer = new byte[BufferSize];
-            public int counter = 0;
-            internal UdpClient u;
-        }
-        public async static Task WirteToDB(string Ip, string message)
-        {
+
+
+            var ActiveUsers = _applicationUserManager.GetUserCompaniesWebsitesLogsActive();
+            if (ActiveUsers != null)//&& Usercompany.WebsiteLogs == true
+            {
+                foreach (var User in ActiveUsers)
+                {
+                    if (User.UserCompany.R_Host == Ip || Dns.GetHostAddresses(User.UserCompany.R_Host).Any(x => x.Address.ToString() == Ip))
+                    {
+                        try
+                        {
+                            UserCompanyLogClient http = new UserCompanyLogClient();
+                            http.MikrotikCreateDate = DateTime.Now;
+                            http.UserCompanyId = User.Id;
+                            if (Message != null && Message.Split(' ')[3].Contains("http://"))
+                            {
+                                http.Url = Message.Split(' ')[3];
+                                http.SrcIp = Message.Split(' ')[1];
+                                http.DstPort = 80;
+                            }
+                            else
+                            {
+                                if (Message.Contains("src-mac"))
+                                {
+                                    if (Message != null && Message.Split(' ')[9].Contains("->"))
+                                    {
+                                        http.SrcMac = Message.Split(' ')[5].Split(',')[0];
+                                        http.SrcIp = Message.Split(' ')[9].Split('-')[0].Split(':')[0];
+                                        http.DstIp = Message.Split(' ')[9].Split('>')[1].Split(':')[0];
+                                        http.SrcPort = Int32.Parse(Message.Split(' ')[9].Split('-')[0].Split(':')[1]);
+                                        http.DstPort = Int32.Parse(Message.Split(' ')[9].Split('>')[1].Split(':')[1]);
+                                    }
+                                }
+                                else
+                                {
+                                    if (Message != null && Message.Split(' ')[7].Contains("->"))
+                                    {
+                                        http.SrcIp = Message.Split(' ')[7].Split('-')[0].Split(':')[0];
+                                        http.DstIp = Message.Split(' ')[7].Split('>')[1].Split(':')[0];
+                                        http.SrcPort = Int32.Parse(Message.Split(' ')[7].Split('-')[0].Split(':')[1]);
+                                        http.DstPort = Int32.Parse(Message.Split(' ')[7].Split('>')[1].Split(':')[1].Split(',')[0]);
+                                    }
+                                }
+
+                            }
+                            _usercompanylogclientservice.Add(http);
+                            await _uow.SaveAllChangesAsync();
+                        }
+                        catch(Exception ex) {
+                            var exs = ex;
+                        }
+                    }
+                }
+            }
 
         }
     }

@@ -331,6 +331,7 @@
     <Folder Include="Areas\Company\Models\" />
     <Folder Include="Areas\Reseller\Models\" />
     <Folder Include="Views\FarapayamakGateway\" />
+    <Folder Include="Views\UdpLoggingToDb\" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AccountController.generated.cs">
@@ -558,10 +559,12 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>T4MVC.tt</DependentUpon>
     </Compile>
+    <Compile Include="UdpLoggingToDbController.generated.cs">
+      <DependentUpon>T4MVC.tt</DependentUpon>
+    </Compile>
     <Compile Include="UserMailerController.generated.cs">
       <DependentUpon>T4MVC.tt</DependentUpon>
     </Compile>
-    <Compile Include="WebTasks\WebsitesLogsTask.cs" />
     <Compile Include="WebTasks\AccountChargeNotificationsTask.cs" />
     <Compile Include="WebTasks\ScheduledTasksRegistry.cs" />
   </ItemGroup>

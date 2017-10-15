@@ -19,11 +19,12 @@
                                     <th>#</th>
                                     <th>MikrotikCreateDate</th>
                                     <th>Method</th>
-                                    <th>Protocol</th>
-                                    <th>SrcIp</th>
-                                    <th>SrcMac</th>
+                                    <th>Src IP</th>
+                                    <th>Src Port</th>
+                                    <th>Src MAC</th>
                                     <th>Url</th>
-                                    <th>DstIp</th>
+                                    <th>Dst IP</th>
+                                    <th>Dst Port</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -33,11 +34,12 @@
                                         <td>@(counter++)</td>
                                         <td>@item.MikrotikCreateDate</td>
                                         <td>@item.Method</td>
-                                        <td>@item.Protocol</td>
                                         <td>@item.SrcIp</td>
+                                        <td>@item.SrcPort</td>
                                         <td>@item.SrcMac</td>
                                         <td>@item.Url</td>
                                         <td>@item.DstIp</td>
+                                        <td>@item.DstPort</td>
                                     </tr>
                                 }
                             </tbody>

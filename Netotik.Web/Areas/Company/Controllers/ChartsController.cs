@@ -396,6 +396,8 @@ namespace Netotik.Web.Areas.Company.Controllers
                 x.SrcIp.Split(':')[0] == user.user_ip
                 ).Select(x => new UserWebsiteLogsWithSessionsModel
                 {
+                    DstPort =x.DstPort,
+                    SrcPort = x.SrcPort,
                     acct_session_id = user.acct_session_id,
                     active = user.active,
                     calling_station_id = user.calling_station_id,
@@ -411,7 +413,6 @@ namespace Netotik.Web.Areas.Company.Controllers
                     nas_port = user.nas_port,
                     nas_port_id = user.nas_port_id,
                     nas_port_type = user.nas_port_type,
-                    Protocol = x.Protocol,
                     SrcIp = x.SrcIp,
                     SrcMac = x.SrcMac,
                     status = user.status,

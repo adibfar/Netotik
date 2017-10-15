@@ -39,12 +39,13 @@ namespace Netotik.ViewModels.Identity.UserClient
 
         public DateTime MikrotikCreateDate { get; set; }
         public string SrcIp { get; set; }
+        public int SrcPort { get; set; }
         public string SrcMac { get; set; }
         public string Url { get; set; }
         public string DstIp { get; set; }
+        public int DstPort { get; set; }
         public string Method { get; set; }
 
-        public string Protocol { get; set; }
 
     }
 }

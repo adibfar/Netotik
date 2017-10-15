@@ -1112,7 +1112,7 @@ namespace Netotik.Services.Identity
 
         public List<User> GetUserCompaniesWebsitesLogsActive()
         {
-            var users = _users.Where(x => x.UserType == UserType.UserCompany && x.IsDeleted == false).ToList();//شرط فعال بودن گزینه لاگ گیری در دیتابیس
+            var users = _users.Where(x => x.UserType == UserType.UserCompany && !x.IsDeleted && x.UserCompany.WebsitesLogs).ToList();//شرط فعال بودن گزینه لاگ گیری در دیتابیس
             return users;
         }
         public SmsModel GetUserCompanySmsSettings(long id)

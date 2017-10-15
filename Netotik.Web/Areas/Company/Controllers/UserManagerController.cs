@@ -728,7 +728,6 @@ namespace Netotik.Web.Areas.Company.Controllers
                             nas_port = user.nas_port,
                             nas_port_id = user.nas_port_id,
                             nas_port_type = user.nas_port_type,
-                            Protocol = x.Protocol,
                             SrcIp = x.SrcIp,
                             SrcMac = x.SrcMac,
                             status = user.status,
