@@ -7,6 +7,8 @@ using Owin;
 using StructureMap.Web;
 using Netotik.IocConfig;
 using Netotik.Services.Identity;
+using Netotik.Services.Abstract;
+using Netotik.Data;
 
 namespace Netotik.Web
 {
@@ -79,7 +81,8 @@ namespace Netotik.Web
             //    clientId: "fdsfsdfs",
             //    clientSecret: "fdsfsf");
 
-
+            
+            UdpListenerClass.ReceiveMessages();
         }
     }
 }

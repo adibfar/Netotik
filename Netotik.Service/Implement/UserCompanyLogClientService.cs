@@ -26,7 +26,7 @@ namespace Netotik.Services.Implement
         public IList<UserCompanyLogClient> GetList(long CompanyId)
         {
             return dbSet.AsQueryable().Where(
-                x => x.UserCompanyId == CompanyId).ToList();
+                x => x.UserCompanyId == CompanyId && x.UserCompany.WebsitesLogs).ToList();
         }
         //public IList<UserCompanyLogClient> GetRangeListList(long CompanyId,DateTime StartDateTime,DateTime EndDateTime)
         //{
