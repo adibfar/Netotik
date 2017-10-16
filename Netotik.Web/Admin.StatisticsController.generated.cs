@@ -79,7 +79,8 @@ namespace Netotik.Web.Areas.Admin.Controllers
         public class ActionNamesClass
         {
             public readonly string Index = "Index";
-            public readonly string Table = "Table";
+            public readonly string GetViewChartData = "GetViewChartData";
+            public readonly string Countries = "Countries";
             public readonly string Chart = "Chart";
             public readonly string Map = "Map";
             public readonly string RequestMapData = "RequestMapData";
@@ -102,7 +103,8 @@ namespace Netotik.Web.Areas.Admin.Controllers
         public class ActionNameConstants
         {
             public const string Index = "Index";
-            public const string Table = "Table";
+            public const string GetViewChartData = "GetViewChartData";
+            public const string Countries = "Countries";
             public const string Chart = "Chart";
             public const string Map = "Map";
             public const string RequestMapData = "RequestMapData";
@@ -141,6 +143,7 @@ namespace Netotik.Web.Areas.Admin.Controllers
             public class _ViewNamesClass
             {
                 public readonly string _BrowserTablePartial = "_BrowserTablePartial";
+                public readonly string _Countries = "_Countries";
                 public readonly string _CurrentVisitorPartial = "_CurrentVisitorPartial";
                 public readonly string _OsTablePartial = "_OsTablePartial";
                 public readonly string _PageViewPartial = "_PageViewPartial";
@@ -150,9 +153,9 @@ namespace Netotik.Web.Areas.Admin.Controllers
                 public readonly string Chart2 = "Chart2";
                 public readonly string Index = "Index";
                 public readonly string Map = "Map";
-                public readonly string Table = "Table";
             }
             public readonly string _BrowserTablePartial = "~/Areas/Admin/Views/Statistics/_BrowserTablePartial.cshtml";
+            public readonly string _Countries = "~/Areas/Admin/Views/Statistics/_Countries.cshtml";
             public readonly string _CurrentVisitorPartial = "~/Areas/Admin/Views/Statistics/_CurrentVisitorPartial.cshtml";
             public readonly string _OsTablePartial = "~/Areas/Admin/Views/Statistics/_OsTablePartial.cshtml";
             public readonly string _PageViewPartial = "~/Areas/Admin/Views/Statistics/_PageViewPartial.cshtml";
@@ -162,7 +165,6 @@ namespace Netotik.Web.Areas.Admin.Controllers
             public readonly string Chart2 = "~/Areas/Admin/Views/Statistics/Chart2.cshtml";
             public readonly string Index = "~/Areas/Admin/Views/Statistics/Index.cshtml";
             public readonly string Map = "~/Areas/Admin/Views/Statistics/Map.cshtml";
-            public readonly string Table = "~/Areas/Admin/Views/Statistics/Table.cshtml";
         }
     }
 
@@ -183,13 +185,24 @@ namespace Netotik.Web.Areas.Admin.Controllers
         }
 
         [NonAction]
-        partial void TableOverride(T4MVC_System_Web_Mvc_ActionResult callInfo);
+        partial void GetViewChartDataOverride(T4MVC_System_Web_Mvc_JsonResult callInfo);
 
         [NonAction]
-        public override System.Web.Mvc.ActionResult Table()
+        public override System.Web.Mvc.JsonResult GetViewChartData()
         {
-            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Table);
-            TableOverride(callInfo);
+            var callInfo = new T4MVC_System_Web_Mvc_JsonResult(Area, Name, ActionNames.GetViewChartData);
+            GetViewChartDataOverride(callInfo);
+            return callInfo;
+        }
+
+        [NonAction]
+        partial void CountriesOverride(T4MVC_System_Web_Mvc_ActionResult callInfo);
+
+        [NonAction]
+        public override System.Web.Mvc.ActionResult Countries()
+        {
+            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Countries);
+            CountriesOverride(callInfo);
             return callInfo;
         }
 

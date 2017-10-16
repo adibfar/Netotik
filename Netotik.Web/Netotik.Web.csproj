@@ -3526,7 +3526,7 @@
     <Content Include="Areas\Admin\Views\Statistics\Chart.cshtml" />
     <Content Include="Areas\Admin\Views\Statistics\Chart2.cshtml" />
     <Content Include="Areas\Admin\Views\Statistics\Map.cshtml" />
-    <Content Include="Areas\Admin\Views\Statistics\Table.cshtml" />
+    <Content Include="Areas\Admin\Views\Statistics\_Countries.cshtml" />
     <Content Include="Areas\Admin\Views\Statistics\_BrowserTablePartial.cshtml" />
     <Content Include="Areas\Admin\Views\Statistics\_CurrentVisitorPartial.cshtml" />
     <Content Include="Areas\Admin\Views\Statistics\_OsTablePartial.cshtml" />

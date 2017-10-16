@@ -3,49 +3,162 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<div class="row">
-    <div class="col-xs-12">
-        <div class="card">
-            <div class="card-body">
-                <div class="card-block">
-                    <div class="row">
-                        <div class="col-xl-3 col-lg-6 col-md-12 border-right-grey border-right-lighten-3 clearfix">
-                            <div class="float-xs-left pl-2">
-                                <span class="grey darken-1 block">افراد آنلاین</span>
-                                <span id="usersCountt" class="font-large-3 line-height-1 text-bold-300"></span>
+
+<section>
+    <div class="row">
+        <div class="col-md-9">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="card" id="viewchartsection">
+                        <div class="card-header">
+                            <h4 class="card-title"> بازدیدهای 20 روز گذشته</h4>
+                            <a class="heading-elements-toggle"><i class="icon-ellipsis font-medium-3"></i></a>
+                            <div class="heading-elements">
+                                <ul class="list-inline mb-0">
+                                    <li><a data-action="collapse"><i class="icon-minus4"></i></a></li>
+                                    <li><a data-action="expand"><i class="icon-expand2"></i></a></li>
+                                </ul>
                             </div>
                         </div>
-                        <div class="col-xl-3 col-lg-6 col-md-12 border-right-grey border-right-lighten-3 clearfix">
-                            <div class="float-xs-left pl-2">
-                                <span class="grey darken-1 block">بازدید امروز</span>
-                                <span class="font-large-3 line-height-1 text-bold-300">@Model.TodayVisits</span>
-                            </div>
-                        </div>
-                        <div class="col-xl-3 col-lg-6 col-md-12 border-right-grey border-right-lighten-3 clearfix">
-                            <div class="float-xs-left pl-2">
-                                <span class="grey darken-1 block">بازدید کل</span>
-                                <span class="font-large-3 line-height-1 text-bold-300">@Model.TotallVisits</span>
-                            </div>
-                        </div>
-                        <div class="col-xl-3 col-lg-6 col-md-12 clearfix">
-                            <div class="float-xs-left pl-2">
-                                <span class="grey darken-1 block">بازدید یونیک</span>
-                                <span class="font-large-3 line-height-1 text-bold-300">@Model.UniquVisitors</span>
+                        <div class="card-body collapse in">
+                            <div class="card-block">
+                                <canvas id="view-chart" height="400"></canvas>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
+            <div class="row">
+                <div class="col-md-5">
+                    @{Html.RenderAction(MVC.Admin.Statistics.BrowserTable());}
+                </div>
+                <div class="col-md-7">
+                    @{Html.RenderAction(MVC.Admin.Statistics.OsTable());}
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-5">
+                    @{Html.RenderAction(MVC.Admin.Statistics.Referrer());}
+                </div>
+                <div class="col-md-7">
+                    @{Html.RenderAction(MVC.Admin.Statistics.PageView());}
+                </div>
+            </div>
+
         </div>
+        <div class="col-md-3">
+            <div class="card">
+                <div class="card-body">
+                    <div class="card-block">
+                        <div class="media">
+                            <div class="media-body text-xs-left">
+                                <h3 class="teal" id="usersCountt"></h3>
+                                <span>@Captions.OnlineUsers</span>
+                            </div>
+                            <div class="media-right media-middle">
+                                <i class="icon-ios-world-outline teal font-large-2 float-xs-right"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-body">
+                    <div class="card-block">
+                        <div class="media">
+                            <div class="media-body text-xs-left">
+                                <h3 class="teal">@Model.TodayVisitors</h3>
+                                <span>بازدید کننده امروز</span>
+                            </div>
+                            <div class="media-right media-middle">
+                                <i class="icon-ios-people-outline teal font-large-2 float-xs-right"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-body">
+                    <div class="card-block">
+                        <div class="media">
+                            <div class="media-body text-xs-left">
+                                <h3 class="teal">@Model.TodayVisits</h3>
+                                <span>بازدید امروز</span>
+                            </div>
+                            <div class="media-right media-middle">
+                                <i class="icon-ios-browsers-outline teal font-large-2 float-xs-right"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            @{Html.RenderAction(MVC.Admin.Statistics.Countries());}
+        </div>
+        
+
     </div>
-</div>
 
-<div class="row">
-    @{Html.RenderAction(MVC.Admin.Statistics.BrowserTable());}
-    @{Html.RenderAction(MVC.Admin.Statistics.OsTable());}
-</div>
+</section>
 
-<div class="row">
-    @{Html.RenderAction(MVC.Admin.Statistics.PageView());}
-    @{Html.RenderAction(MVC.Admin.Statistics.Referrer());}
-</div>
+
+@section DownScript{
+
+    <script src="~/Content/js/plugins/charts/chart.min.js" type="text/javascript"></script>
+    <script type="text/javascript">
+
+        $(window).on("load", function () {
+              CardBlock('#viewchartsection');
+             $.get("@Url.Action(MVC.Admin.Statistics.GetViewChartData())", function (data) {
+                    var a = $("#view-chart"),
+                     b = {
+                         title: { display: !1, text: "Chart.js Column Chart - Stacked" },
+                         tooltips: { mode: "label" }, responsive: !0, maintainAspectRatio: !1,
+                         responsiveAnimationDuration: 500,
+                         scales: {
+                             xAxes: [{
+                                 stacked: !0, display: !0, gridLines:
+                                 { color: "#f3f3f3", drawTicks: !1 }, scaleLabel: { display: !0 }
+                             }], yAxes: [{
+                                 stacked: !0, display: !0, gridLines: { color: "#f3f3f3", drawTicks: !1 },
+                                 scaleLabel: { display: !0 }
+                             }]
+                         }
+                     }, c = {
+                         labels: data.dates,
+                         datasets: [{
+                             label: "بازدیدکننده ها", data: data.visitors,
+                             backgroundColor: "#00BFA5", hoverBackgroundColor: "rgba(0,191,165,.8)", borderColor: "transparent"
+                         },
+                         {
+                             label: "بازدیدها", data: data.views,
+                             backgroundColor: "#1DE9B6", hoverBackgroundColor: "rgba(29,233,182,.8)", borderColor: "transparent"
+                         }]
+                     }, d = { type: "bar", options: b, data: c }; new Chart(a, d)
+                CardUnBlock('#viewchartsection');
+            }, "json");
+
+
+
+        });
+
+
+            @*$(window).on("load", function () {
+                CardBlock('#sectionSmsCredit');
+                $.get("@Url.Action(MVC.Admin.Sms.GetSmsCredit())", function (data) {
+                    $("#smsCredit").text(data.charge);
+                CardUnBlock('#sectionSmsCredit');
+            }, "json");
+          });
+
+            $(window).on("load", function () {
+                    CardBlock('#sectionSmsCompaniesCredit');
+                    $.get("@Url.Action(MVC.Admin.Sms.GetSmsCompaniesCredit())", function (data) {
+                    $("#smsCompaniesCredit").text(data.charge);
+                    CardUnBlock('#sectionSmsCompaniesCredit');
+            }, "json");
+            });*@
+
+    </script>
+}
