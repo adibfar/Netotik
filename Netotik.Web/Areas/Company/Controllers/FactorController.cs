@@ -78,7 +78,7 @@ namespace Netotik.Web.Areas.Company.Controllers
             var paymentType = _paymentTypeService.All().FirstOrDefault();
             if (paymentType == null)
             {
-                this.MessageError(Captions.MissionFail, "درگاه پرداختی در سیسیتم ثبت نشده. با مدیریت تماس بگیرید.");
+                this.MessageError(Captions.MissionFail, Captions.PaymentGatewayNotFound);
                 return RedirectToAction(MVC.Company.Factor.Index());
             }
 
@@ -104,7 +104,7 @@ namespace Netotik.Web.Areas.Company.Controllers
                         {
                             factor.User.UserCompany.SmsCharge += factor.FactorSmsDetail.SmsCount;
                         }
-                        this.MessageSuccess(Captions.MissionSuccess, "پرداخت شما با موفقیت انجام شد. شماره تراکنش شما : " + RefID);
+                        this.MessageSuccess(Captions.MissionSuccess, string.Format(Captions.PaymentSuccess, RefID));
                         _userMailer.Factor(new ViewModels.Identity.Account.EmailFactorViewModel
                         {
                             CompanyName = factor.User.FirstName,
@@ -112,7 +112,7 @@ namespace Netotik.Web.Areas.Company.Controllers
                             FactorId = factor.Id,
                             Price = factor.PaymentPrice,
                             ServiceName = factor.FactorType == Domain.Entity.FactorType.CompanyBySmsPackage ? factor.FactorSmsDetail.PackageName : "",
-                            Subject = string.Format("{0} - {1} : {2}", Captions.Netotik, "فاکتور", factor.Id),
+                            Subject = string.Format("{0} - {1} : {2}", Captions.Netotik, Captions.TransactionNumber, factor.TransactionId),
                             To = factor.User.Email,
                             ViewName = MVC.UserMailer.Views.Factor
                         }).Send();
@@ -128,19 +128,18 @@ namespace Netotik.Web.Areas.Company.Controllers
                             ViewName = MVC.UserMailer.Views.Factor
                         }).Send();
 
-                        _smsService.SendSms(factor.User.PhoneNumber, string.Format("{0} \n {1} برای شما فعال گردید.", Captions.Netotik, factor.FactorSmsDetail.PackageName));
-
+                        _smsService.SendSms(factor.User.PhoneNumber, string.Format(Captions.BuyPackageFactorSmsToUser, Captions.Netotik, factor.FactorSmsDetail.PackageName));
                     }
                     else
                     {
-                        this.MessageError("پرداخت ناموفق", "خطا! وضعیت:" + Request.QueryString["Status"].ToString());
+                        this.MessageError(Captions.UnsuccessfulPaid, string.Format(Captions.PaymentUnsuccesfulMesssage, Request.QueryString["Status"].ToString()));
                     }
                     _uow.SaveChanges();
                 }
             }
             else
             {
-                this.MessageError("پرداخت ناموفق : ", "خطا در پرداخت ، " + Request.QueryString["Authority"].ToString() + " وضعیت: " + Request.QueryString["Status"].ToString());
+                this.MessageError(Captions.UnsuccessfulPaid, string.Format(Captions.PaymentErrorMessage, Request.QueryString["Authority"].ToString(), Request.QueryString["Status"].ToString()));
             }
 
             return RedirectToAction(MVC.Company.Factor.Index());

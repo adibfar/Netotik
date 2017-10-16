@@ -32,7 +32,7 @@
                             @if (CanShowChangePassword)
                             {<a style="margin-bottom:5px; margin-top:5px;" href="@Url.Action(MVC.Client.Home.ChangePassword())" class="btn btn-float btn-float-lg btn-pink"><i class="icon-key22"></i><span>@Netotik.Resources.Captions.ChangePassword</span></a>}
                             @if (CanShowBuyPackage)
-                            {<a style="margin-bottom:5px; margin-top:5px;" href="@Url.Action(MVC.Client.Home.BuyPackage())" class="btn btn-float btn-float-lg btn-pink"><i class="icon-bag"></i><span>@Netotik.Resources.Captions.ChangePackage</span></a>}
+                            {<a style="margin-bottom:5px; margin-top:5px;" href="@Url.Action(MVC.Client.Home.BuyPackage())" class="btn btn-float btn-float-lg btn-pink"><i class="icon-bag"></i><span>@Netotik.Resources.Captions.ChangePlan</span></a>}
                             @if (CanShowAbout)
                             {<a style="margin-bottom:5px; margin-top:5px;" href="#" class="btn btn-float btn-float-lg btn-pink"><i class="icon-office"></i><span>@Netotik.Resources.Captions.About</span></a>}
                             @if (CanShowFoodMenu)
@@ -75,7 +75,7 @@
                 <div class="card-block">
                     <div class="media">
                         <div class="media-body white text-xs-left">
-                            <h3>@Netotik.Resources.Captions.PackageName</h3>
+                            <h3>@Netotik.Resources.Captions.PlanName</h3>
                             <span>@Html.DisplayTextFor(m => m.actual_profile)</span><br />
                             <span class="small_text">@Netotik.Resources.Captions.Enrollment : @(ViewBag.StartTime)</span>
                         </div>

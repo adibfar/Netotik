@@ -23,16 +23,16 @@
                                         <ul class="nav nav-tabs nav-underline">
                                             <li class="nav-item">
                                                 <a class="nav-link active" id="baseIcon-tab21" data-toggle="tab" aria-controls="tabIcon21" href="#Public" aria-expanded="true">
-                                                    <i class="icon-cog"></i> عمومی
+                                                    <i class="icon-cog"></i> @Captions.PublicConfig
                                                 </a>
                                             </li>
                                             <li class="nav-item">
                                                 <a class="nav-link" id="baseIcon-tab22" data-toggle="tab" aria-controls="tabIcon22" href="#Contact" aria-expanded="false">
-                                                <i class="icon-flag4"></i> اطلاعات تماس</a>
+                                                <i class="icon-flag4"></i> @Captions.ContactInformation</a>
                                             </li>
                                             <li class="nav-item">
                                                 <a class="nav-link" id="baseIcon-tab22" data-toggle="tab" aria-controls="tabIcon22" href="#Sms" aria-expanded="false">
-                                                    <i class="icon-bell"></i> سیستم پیامک
+                                                    <i class="icon-bell"></i> @Captions.SmsConfig
                                                 </a>
                                             </li>
                                         </ul>
@@ -106,15 +106,15 @@
                                                 <fieldset>
                                                     <div class="panel-body">
                                                         <div class="form-group">
-                                                            @*@Html.LabelFor(model => model.SmsNumber)*@
+                                                            @Html.LabelFor(model => model.SmsNumber)
                                                             @Html.TextBoxFor(model => model.SmsNumber, new { @class = "form-control" })
                                                         </div>
                                                         <div class="form-group">
-                                                            @*@Html.LabelFor(model => model.SmsUsername)*@
+                                                            @Html.LabelFor(model => model.SmsUsername)
                                                             @Html.TextBoxFor(model => model.SmsUsername, new { @class = "form-control" })
                                                         </div>
                                                         <div class="form-group">
-                                                            @*@Html.LabelFor(model => model.SmsPassword)*@
+                                                            @Html.LabelFor(model => model.SmsPassword)
                                                             @Html.TextBoxFor(model => model.SmsPassword, new { @class = "form-control" })
                                                         </div>
                                                     </div>

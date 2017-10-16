@@ -168,7 +168,7 @@ namespace Netotik.Web.Controllers
                 _mikrotikServices.Usermanager_UserCreate(User.UserCompany.R_Host, User.UserCompany.R_Port, User.UserCompany.R_User, User.UserCompany.R_Password, Usermanuser);
                 if (User.UserCompany.SmsCharge > 0 && User.UserCompany.SmsActive && User.UserCompany.RegisterFormSms)
                 {
-                    _smsService.SendSms(model.phone, string.Format(Captions.SmsUserBuyPackage,model.username), User.Id);
+                    _smsService.SendSms(model.phone, string.Format(Captions.SmsUserBuyPlan,model.username), User.Id);
                 }
             }
 

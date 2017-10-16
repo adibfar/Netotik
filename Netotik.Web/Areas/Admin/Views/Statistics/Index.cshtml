@@ -11,7 +11,7 @@
                 <div class="col-md-12">
                     <div class="card" id="viewchartsection">
                         <div class="card-header">
-                            <h4 class="card-title"> بازدیدهای 20 روز گذشته</h4>
+                            <h4 class="card-title">@Captions.PastTwentyDaysViews </h4>
                             <a class="heading-elements-toggle"><i class="icon-ellipsis font-medium-3"></i></a>
                             <div class="heading-elements">
                                 <ul class="list-inline mb-0">
@@ -69,7 +69,7 @@
                         <div class="media">
                             <div class="media-body text-xs-left">
                                 <h3 class="teal">@Model.TodayVisitors</h3>
-                                <span>بازدید کننده امروز</span>
+                                <span>@Captions.TodayVisitors</span>
                             </div>
                             <div class="media-right media-middle">
                                 <i class="icon-ios-people-outline teal font-large-2 float-xs-right"></i>
@@ -84,7 +84,7 @@
                         <div class="media">
                             <div class="media-body text-xs-left">
                                 <h3 class="teal">@Model.TodayVisits</h3>
-                                <span>بازدید امروز</span>
+                                <span>@Captions.TodayViews</span>
                             </div>
                             <div class="media-right media-middle">
                                 <i class="icon-ios-browsers-outline teal font-large-2 float-xs-right"></i>
@@ -113,7 +113,6 @@
              $.get("@Url.Action(MVC.Admin.Statistics.GetViewChartData())", function (data) {
                     var a = $("#view-chart"),
                      b = {
-                         title: { display: !1, text: "Chart.js Column Chart - Stacked" },
                          tooltips: { mode: "label" }, responsive: !0, maintainAspectRatio: !1,
                          responsiveAnimationDuration: 500,
                          scales: {
@@ -128,11 +127,11 @@
                      }, c = {
                          labels: data.dates,
                          datasets: [{
-                             label: "بازدیدکننده ها", data: data.visitors,
+                             label: "@Captions.Visitors", data: data.visitors,
                              backgroundColor: "#00BFA5", hoverBackgroundColor: "rgba(0,191,165,.8)", borderColor: "transparent"
                          },
                          {
-                             label: "بازدیدها", data: data.views,
+                             label: "@Captions.Views", data: data.views,
                              backgroundColor: "#1DE9B6", hoverBackgroundColor: "rgba(29,233,182,.8)", borderColor: "transparent"
                          }]
                      }, d = { type: "bar", options: b, data: c }; new Chart(a, d)
@@ -142,23 +141,6 @@
 
 
         });
-
-
-            @*$(window).on("load", function () {
-                CardBlock('#sectionSmsCredit');
-                $.get("@Url.Action(MVC.Admin.Sms.GetSmsCredit())", function (data) {
-                    $("#smsCredit").text(data.charge);
-                CardUnBlock('#sectionSmsCredit');
-            }, "json");
-          });
-
-            $(window).on("load", function () {
-                    CardBlock('#sectionSmsCompaniesCredit');
-                    $.get("@Url.Action(MVC.Admin.Sms.GetSmsCompaniesCredit())", function (data) {
-                    $("#smsCompaniesCredit").text(data.charge);
-                    CardUnBlock('#sectionSmsCompaniesCredit');
-            }, "json");
-            });*@
 
     </script>
 }

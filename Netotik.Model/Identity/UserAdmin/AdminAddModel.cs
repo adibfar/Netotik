@@ -66,6 +66,14 @@ namespace Netotik.ViewModels.Identity.UserAdmin
         [Display(ResourceType = typeof(Captions), Name = "ConfirmPassword")]
         public string ConfirmPassword { get; set; }
 
+        [Required(ErrorMessageResourceType = typeof(Captions), ErrorMessageResourceName = "RequiredError")]
+        [Display(ResourceType = typeof(Captions), Name = "IsBanned")]
+        public bool IsBanned { get; set; }
+
+        [Required(ErrorMessageResourceType = typeof(Captions), ErrorMessageResourceName = "RequiredError")]
+        [Display(ResourceType = typeof(Captions), Name = "EmailConfirmed")]
+        public virtual bool EmailConfirmed { get; set; }
+
         public long[] RoleIds { get; set; }
 
         [Display(ResourceType = typeof(Captions), Name = "ImageProfile")]

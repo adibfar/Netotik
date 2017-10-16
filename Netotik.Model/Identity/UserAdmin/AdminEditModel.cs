@@ -54,6 +54,14 @@ namespace Netotik.ViewModels.Identity.UserAdmin
         [System.Web.Mvc.Remote("IsUserNameAvailable", "Remote", System.Web.Mvc.AreaReference.UseRoot, AdditionalFields = "Id", HttpMethod = "POST", ErrorMessageResourceType = typeof(Captions), ErrorMessageResourceName = "ExistError")]
         public string UserName { get; set; }
 
+        [Required(ErrorMessageResourceType = typeof(Captions), ErrorMessageResourceName = "RequiredError")]
+        [Display(ResourceType = typeof(Captions), Name = "IsBanned")]
+        public bool IsBanned { get; set; }
+
+        [Required(ErrorMessageResourceType = typeof(Captions), ErrorMessageResourceName = "RequiredError")]
+        [Display(ResourceType = typeof(Captions), Name = "EmailConfirmed")]
+        public virtual bool EmailConfirmed { get; set; }
+
         public ICollection<UserRole> Roles { get; set; }
         public long[] RoleIds { get; set; }
         public Picture Picture { get; set; }

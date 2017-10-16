@@ -2646,14 +2646,11 @@ namespace Netotik.Resources
             }
         }
 
-
-
-        //<!--======================Fields Ehsan EM===========================-->
-        public static string ChangePackage
+        public static string ChangePlan
         {
             get
             {
-                return resourceProvider.GetResource("ChangePackage", CultureInfo.CurrentUICulture.Name) as string;
+                return resourceProvider.GetResource("ChangePlan", CultureInfo.CurrentUICulture.Name) as string;
             }
         }
         public static string About
@@ -2700,11 +2697,11 @@ namespace Netotik.Resources
                 return resourceProvider.GetResource("Online", CultureInfo.CurrentUICulture.Name) as string;
             }
         }
-        public static string PackageName
+        public static string PlanName
         {
             get
             {
-                return resourceProvider.GetResource("PackageName", CultureInfo.CurrentUICulture.Name) as string;
+                return resourceProvider.GetResource("PlanName", CultureInfo.CurrentUICulture.Name) as string;
             }
         }
         public static string Enrollment
@@ -2842,13 +2839,21 @@ namespace Netotik.Resources
             }
         }
 
-        public static string SelectPackage
+        public static string SelectPlan
         {
             get
             {
-                return resourceProvider.GetResource("SelectPackage", CultureInfo.CurrentUICulture.Name) as string;
+                return resourceProvider.GetResource("SelectPlan", CultureInfo.CurrentUICulture.Name) as string;
             }
         }
+        public static string BuyPlan
+        {
+            get
+            {
+                return resourceProvider.GetResource("BuyPlan", CultureInfo.CurrentUICulture.Name) as string;
+            }
+        }
+
         public static string BuyPackage
         {
             get
@@ -2856,6 +2861,7 @@ namespace Netotik.Resources
                 return resourceProvider.GetResource("BuyPackage", CultureInfo.CurrentUICulture.Name) as string;
             }
         }
+
         public static string Charts
         {
             get
@@ -3216,18 +3222,18 @@ namespace Netotik.Resources
                 return resourceProvider.GetResource("UserManager", CultureInfo.CurrentUICulture.Name) as string;
             }
         }
-        public static string PackageList
+        public static string PlanList
         {
             get
             {
-                return resourceProvider.GetResource("PackageList", CultureInfo.CurrentUICulture.Name) as string;
+                return resourceProvider.GetResource("PlanList", CultureInfo.CurrentUICulture.Name) as string;
             }
         }
-        public static string NewPackage
+        public static string NewPlan
         {
             get
             {
-                return resourceProvider.GetResource("NewPackage", CultureInfo.CurrentUICulture.Name) as string;
+                return resourceProvider.GetResource("NewPlan", CultureInfo.CurrentUICulture.Name) as string;
             }
         }
         public static string Actions
@@ -3286,11 +3292,11 @@ namespace Netotik.Resources
                 return resourceProvider.GetResource("FirstConnection", CultureInfo.CurrentUICulture.Name) as string;
             }
         }
-        public static string PackageBind
+        public static string PlanBind
         {
             get
             {
-                return resourceProvider.GetResource("PackageBind", CultureInfo.CurrentUICulture.Name) as string;
+                return resourceProvider.GetResource("PlanBind", CultureInfo.CurrentUICulture.Name) as string;
             }
         }
         public static string FromTime
@@ -3671,11 +3677,11 @@ namespace Netotik.Resources
                 return resourceProvider.GetResource("RemoveUsermanagerHistory", CultureInfo.CurrentUICulture.Name) as string;
             }
         }
-        public static string RemoveUsermanagerPackages
+        public static string RemoveUsermanagerPlan
         {
             get
             {
-                return resourceProvider.GetResource("RemoveUsermanagerPackages", CultureInfo.CurrentUICulture.Name) as string;
+                return resourceProvider.GetResource("RemoveUsermanagerPlan", CultureInfo.CurrentUICulture.Name) as string;
             }
         }
         public static string RemoveUsermanagerUsers
@@ -3925,18 +3931,18 @@ namespace Netotik.Resources
         }
 
         //<!--======================Messages Ehsan EM===========================-->
-        public static string LastPackageChanges
+        public static string LastPlanChanges
         {
             get
             {
-                return resourceProvider.GetResource("LastPackageChanges", CultureInfo.CurrentUICulture.Name) as string;
+                return resourceProvider.GetResource("LastPlanChanges", CultureInfo.CurrentUICulture.Name) as string;
             }
         }
-        public static string PackageCount
+        public static string PlanCount
         {
             get
             {
-                return resourceProvider.GetResource("PackageCount", CultureInfo.CurrentUICulture.Name) as string;
+                return resourceProvider.GetResource("PlanCount", CultureInfo.CurrentUICulture.Name) as string;
             }
         }
         public static string UsersCount
@@ -4030,11 +4036,11 @@ namespace Netotik.Resources
                 return resourceProvider.GetResource("SmsCompanyLogins", CultureInfo.CurrentUICulture.Name) as string;
             }
         }
-        public static string SmsUserBuyPackage
+        public static string SmsUserBuyPlan
         {
             get
             {
-                return resourceProvider.GetResource("SmsUserBuyPackage", CultureInfo.CurrentUICulture.Name) as string;
+                return resourceProvider.GetResource("SmsUserBuyPlan", CultureInfo.CurrentUICulture.Name) as string;
             }
         }
         public static string SmsUserPasswordChange
@@ -4135,11 +4141,11 @@ namespace Netotik.Resources
                 return resourceProvider.GetResource("SmsUserAfterResetCounter", CultureInfo.CurrentUICulture.Name) as string;
             }
         }
-        public static string SmsUserAfterChangePackage
+        public static string SmsUserAfterChangePlan
         {
             get
             {
-                return resourceProvider.GetResource("SmsUserAfterChangePackage", CultureInfo.CurrentUICulture.Name) as string;
+                return resourceProvider.GetResource("SmsUserAfterChangePlan", CultureInfo.CurrentUICulture.Name) as string;
             }
         }
         public static string SmsUserAfterDelete
@@ -4177,5 +4183,354 @@ namespace Netotik.Resources
                 return resourceProvider.GetResource("RegisterWithSmsRouterProfile", CultureInfo.CurrentUICulture.Name) as string;
             }
         }
+
+        public static string ContactInformation
+        {
+            get
+            {
+                return resourceProvider.GetResource("ContactInformation", CultureInfo.CurrentUICulture.Name) as string;
+            }
+        }
+
+        public static string SmsConfig
+        {
+            get
+            {
+                return resourceProvider.GetResource("SmsConfig", CultureInfo.CurrentUICulture.Name) as string;
+            }
+        }
+
+        public static string SmsPackage
+        {
+            get
+            {
+                return resourceProvider.GetResource("SmsPackage", CultureInfo.CurrentUICulture.Name) as string;
+            }
+        }
+        public static string Paid
+        {
+            get
+            {
+                return resourceProvider.GetResource("Paid", CultureInfo.CurrentUICulture.Name) as string;
+            }
+        }
+        public static string NotPaid
+        {
+            get
+            {
+                return resourceProvider.GetResource("NotPaid", CultureInfo.CurrentUICulture.Name) as string;
+            }
+        }
+        public static string UnsuccessfulPaid
+        {
+            get
+            {
+                return resourceProvider.GetResource("UnsuccessfulPaid", CultureInfo.CurrentUICulture.Name) as string;
+            }
+        }
+
+        public static string TransactionNumber
+        {
+            get
+            {
+                return resourceProvider.GetResource("TransactionNumber", CultureInfo.CurrentUICulture.Name) as string;
+            }
+        }
+        public static string FactorPrice
+        {
+            get
+            {
+                return resourceProvider.GetResource("FactorPrice", CultureInfo.CurrentUICulture.Name) as string;
+            }
+        }
+        public static string FactorDate
+        {
+            get
+            {
+                return resourceProvider.GetResource("FactorDate", CultureInfo.CurrentUICulture.Name) as string;
+            }
+        }
+        public static string FactorStatus
+        {
+            get
+            {
+                return resourceProvider.GetResource("FactorStatus", CultureInfo.CurrentUICulture.Name) as string;
+            }
+        }
+
+        public static string AdminFactorPriceChartHeader
+        {
+            get
+            {
+                return resourceProvider.GetResource("AdminFactorPriceChartHeader", CultureInfo.CurrentUICulture.Name) as string;
+            }
+        }
+        public static string AdminFactorCountChartHeader
+        {
+            get
+            {
+                return resourceProvider.GetResource("AdminFactorCountChartHeader", CultureInfo.CurrentUICulture.Name) as string;
+            }
+        }
+        public static string Factores
+        {
+            get
+            {
+                return resourceProvider.GetResource("Factores", CultureInfo.CurrentUICulture.Name) as string;
+            }
+        }
+
+        public static string SmsCount
+        {
+            get
+            {
+                return resourceProvider.GetResource("SmsCount", CultureInfo.CurrentUICulture.Name) as string;
+            }
+        }
+        public static string UnitSmsPrice
+        {
+            get
+            {
+                return resourceProvider.GetResource("UnitSmsPrice", CultureInfo.CurrentUICulture.Name) as string;
+            }
+        }
+        public static string NewPackage
+        {
+            get
+            {
+                return resourceProvider.GetResource("NewPackage", CultureInfo.CurrentUICulture.Name) as string;
+            }
+        }
+        public static string AdminSmsLogChart
+        {
+            get
+            {
+                return resourceProvider.GetResource("AdminSmsLogChart", CultureInfo.CurrentUICulture.Name) as string;
+            }
+        }
+
+        public static string FarapayamakCharge
+        {
+            get
+            {
+                return resourceProvider.GetResource("FarapayamakCharge", CultureInfo.CurrentUICulture.Name) as string;
+            }
+        }
+
+        public static string AllUserCharge
+        {
+            get
+            {
+                return resourceProvider.GetResource("AllUserCharge", CultureInfo.CurrentUICulture.Name) as string;
+            }
+        }
+
+        public static string SmsSendedByPanels
+        {
+            get
+            {
+                return resourceProvider.GetResource("SmsSendedByPanels", CultureInfo.CurrentUICulture.Name) as string;
+            }
+        }
+
+        public static string SmsSendedBySystem
+        {
+            get
+            {
+                return resourceProvider.GetResource("SmsSendedBySystem", CultureInfo.CurrentUICulture.Name) as string;
+            }
+        }
+        public static string SmsManagement
+        {
+            get
+            {
+                return resourceProvider.GetResource("SmsManagement", CultureInfo.CurrentUICulture.Name) as string;
+            }
+        }
+
+        public static string SmsPackages
+        {
+            get
+            {
+                return resourceProvider.GetResource("SmsPackages", CultureInfo.CurrentUICulture.Name) as string;
+            }
+        }
+
+        public static string FactorList
+        {
+            get
+            {
+                return resourceProvider.GetResource("FactorList", CultureInfo.CurrentUICulture.Name) as string;
+            }
+        }
+        public static string PaymentGatewayNotFound
+        {
+            get
+            {
+                return resourceProvider.GetResource("PaymentGatewayNotFound", CultureInfo.CurrentUICulture.Name) as string;
+            }
+        }
+        public static string PaymentSuccess
+        {
+            get
+            {
+                return resourceProvider.GetResource("PaymentSuccess", CultureInfo.CurrentUICulture.Name) as string;
+            }
+        }
+        public static string BuyPackageFactorSmsToUser
+        {
+            get
+            {
+                return resourceProvider.GetResource("BuyPackageFactorSmsToUser", CultureInfo.CurrentUICulture.Name) as string;
+            }
+        }
+
+        public static string PaymentUnsuccesfulMesssage
+        {
+            get
+            {
+                return resourceProvider.GetResource("PaymentUnsuccesfulMesssage", CultureInfo.CurrentUICulture.Name) as string;
+            }
+        }
+
+        public static string PaymentErrorMessage
+        {
+            get
+            {
+                return resourceProvider.GetResource("PaymentErrorMessage", CultureInfo.CurrentUICulture.Name) as string;
+            }
+        }
+        public static string FinancialManagement
+        {
+            get
+            {
+                return resourceProvider.GetResource("FinancialManagement", CultureInfo.CurrentUICulture.Name) as string;
+            }
+        }
+        public static string PaymentTypesManagement
+        {
+            get
+            {
+                return resourceProvider.GetResource("PaymentTypesManagement", CultureInfo.CurrentUICulture.Name) as string;
+            }
+        }
+
+        public static string PaymentTypes
+        {
+            get
+            {
+                return resourceProvider.GetResource("PaymentTypes", CultureInfo.CurrentUICulture.Name) as string;
+            }
+        }
+
+        public static string SmsPanel
+        {
+            get
+            {
+                return resourceProvider.GetResource("SmsPanel", CultureInfo.CurrentUICulture.Name) as string;
+            }
+        }
+
+        public static string EmailConfirmed
+        {
+            get
+            {
+                return resourceProvider.GetResource("EmailConfirmed", CultureInfo.CurrentUICulture.Name) as string;
+            }
+        }
+
+        public static string IsBanned
+        {
+            get
+            {
+                return resourceProvider.GetResource("IsBanned", CultureInfo.CurrentUICulture.Name) as string;
+            }
+        }
+        public static string TodayVisitors
+        {
+            get
+            {
+                return resourceProvider.GetResource("TodayVisitors", CultureInfo.CurrentUICulture.Name) as string;
+            }
+        }
+        public static string TodayViews
+        {
+            get
+            {
+                return resourceProvider.GetResource("TodayViews", CultureInfo.CurrentUICulture.Name) as string;
+            }
+        }
+        public static string Visitors
+        {
+            get
+            {
+                return resourceProvider.GetResource("Visitors", CultureInfo.CurrentUICulture.Name) as string;
+            }
+        }
+        public static string Views
+        {
+            get
+            {
+                return resourceProvider.GetResource("Views", CultureInfo.CurrentUICulture.Name) as string;
+            }
+        }
+        public static string PastTwentyDaysViews
+        {
+            get
+            {
+                return resourceProvider.GetResource("PastTwentyDaysViews", CultureInfo.CurrentUICulture.Name) as string;
+            }
+        }
+        public static string Browsers
+        {
+            get
+            {
+                return resourceProvider.GetResource("Browsers", CultureInfo.CurrentUICulture.Name) as string;
+            }
+        }
+        public static string Countries
+        {
+            get
+            {
+                return resourceProvider.GetResource("Countries", CultureInfo.CurrentUICulture.Name) as string;
+            }
+        }
+        public static string Unknow
+        {
+            get
+            {
+                return resourceProvider.GetResource("Unknow", CultureInfo.CurrentUICulture.Name) as string;
+            }
+        }
+        public static string OpertaingSystems
+        {
+            get
+            {
+                return resourceProvider.GetResource("OpertaingSystems", CultureInfo.CurrentUICulture.Name) as string;
+            }
+        }
+        public static string MostPagesVisted
+        {
+            get
+            {
+                return resourceProvider.GetResource("MostPagesVisted", CultureInfo.CurrentUICulture.Name) as string;
+            }
+        }
+        public static string MostReferrers
+        {
+            get
+            {
+                return resourceProvider.GetResource("MostReferrers", CultureInfo.CurrentUICulture.Name) as string;
+            }
+        }
+
+        public static string XmlNotValid
+        {
+            get
+            {
+                return resourceProvider.GetResource("XmlNotValid", CultureInfo.CurrentUICulture.Name) as string;
+            }
+        }
+        
     }
 }

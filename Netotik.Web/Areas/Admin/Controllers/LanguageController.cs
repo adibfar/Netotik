@@ -93,7 +93,7 @@ namespace Netotik.Web.Areas.Admin.Controllers
 
             if (model.ResourcesXml == null)
             {
-                this.MessageError(Captions.MissionFail, "فایل xml را وارد کنید");
+                this.MessageError(Captions.MissionFail, Captions.XmlNotValid);
                 return RedirectToAction(MVC.Admin.Language.Index());
             }
 
@@ -123,7 +123,7 @@ namespace Netotik.Web.Areas.Admin.Controllers
             }
             catch
             {
-                this.MessageError(Captions.MissionFail, "فایل xml معتبر نیست");
+                this.MessageError(Captions.MissionFail,Captions.XmlNotValid);
                 return RedirectToAction(MVC.Admin.Language.Index());
             }
 
@@ -134,7 +134,6 @@ namespace Netotik.Web.Areas.Admin.Controllers
             {
                 await _uow.SaveChangesAsync();
                 Netotik.Web.Infrastructure.Caching.LanguageCache.RemoveLanguageCache(HttpContext);
-
                 ModelState.Clear();
             }
             catch
@@ -166,7 +165,7 @@ namespace Netotik.Web.Areas.Admin.Controllers
 
             if (model.ResourcesXml == null)
             {
-                this.MessageError(Captions.MissionFail, "فایل xml را وارد کنید");
+                this.MessageError(Captions.MissionFail, Captions.XmlNotValid);
                 return RedirectToAction(MVC.Admin.Language.Index());
             }
 
@@ -201,7 +200,7 @@ namespace Netotik.Web.Areas.Admin.Controllers
             }
             catch
             {
-                this.MessageError(Captions.MissionFail, "فایل xml معتبر نیست");
+                this.MessageError(Captions.MissionFail, Captions.XmlNotValid);
                 return RedirectToAction(MVC.Admin.Language.Index());
             }
 
@@ -310,7 +309,7 @@ namespace Netotik.Web.Areas.Admin.Controllers
                 }
                 catch (Exception ex)
                 {
-                    this.MessageError(Captions.MissionFail, "فایل xml معتبر نیست");
+                    this.MessageError(Captions.MissionFail, Captions.XmlNotValid);
                     return RedirectToAction(MVC.Admin.Language.Index());
                 }
             }

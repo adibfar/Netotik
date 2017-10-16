@@ -617,7 +617,7 @@ namespace Netotik.Web.Areas.Client.Controllers
             if(model.phone != null && model.phone!= "")
             if (loginedUser.UserCompany.SmsCharge > 0 && loginedUser.UserCompany.SmsActive && loginedUser.UserCompany.SmsUserAfterChangePackage)
             {
-                _smsService.SendSms(model.phone, string.Format(Captions.SmsUserBuyPackage,model.username), loginedUser.Id);
+                _smsService.SendSms(model.phone, string.Format(Captions.SmsUserBuyPlan,model.username), loginedUser.Id);
             }
             _uow.SaveAllChanges();
             return RedirectToAction(MVC.Client.Home.Index());

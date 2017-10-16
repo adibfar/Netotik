@@ -5,7 +5,7 @@
     <div class="col-xs-12">
         <div class="card">
             <div class="card-header">
-                <button type="button" class="btn btn-social width-150 btn-instagram" data-toggle="modal" data-target="#Create"><span class="icon-plus font-medium-4"></span> New Payment Type</button>
+                <button type="button" class="btn btn-social width-150 btn-instagram" data-toggle="modal" data-target="#Create"><span class="icon-plus font-medium-4"></span> @Captions.New</button>
                 @Html.Action(MVC.Admin.PaymentType.Create())
             </div>
             <div class="card-body collapse in">
@@ -45,7 +45,7 @@
                     { "bSortable": false, "aTargets": [0] },
                     { "bSortable": false, "aTargets": [-1] },
                     { "bSortable": false, "aTargets": [2] },
-                    { "bSortable": false, "aTargets": [4] },    
+                    { "bSortable": false, "aTargets": [4] },
                     {
                         "bSortable": false,
                         "targets": [1],
@@ -60,9 +60,9 @@
                         "render": function (data, type, full, meta) {
                             var result = '';
                             if (full.IsActive == false) {
-                                result+=' <div class="tag tag-danger">غیر فعال</div> '
+                                result+=' <div class="tag tag-danger">'+'@Captions.Disabled'+'</div> '
                             } else {
-                                result += ' <div class="tag tag-success">فعال</div> '
+                                result += ' <div class="tag tag-success">'+'@Captions.Active'+'</div> '
                             }
                             return result;
                         }

@@ -401,6 +401,9 @@
   <LocaleResource Name="BuyPackage">
     <Value>Buy Package</Value>
   </LocaleResource>
+  <LocaleResource Name="BuyPlan">
+    <Value>Buy Plan</Value>
+  </LocaleResource>
   <LocaleResource Name="SelectPackage">
     <Value>Select Package</Value>
   </LocaleResource>
@@ -577,7 +580,7 @@
   <LocaleResource Name="PackageList">
     <Value>Package List</Value>
   </LocaleResource>
-  <LocaleResource Name="NewPackage">
+  <LocaleResource Name="NewPlan">
     <Value>New Package</Value>
   </LocaleResource>
   <LocaleResource Name="Actions">
@@ -972,5 +975,204 @@
   </LocaleResource>
   <LocaleResource Name="RegisterWithSmsRouterProfile">
     <Value>Package to select in registertion</Value>
+  </LocaleResource>
+
+
+  <LocaleResource Name="EmailConfirmed">
+    <Value>Email is confirmed</Value>
+  </LocaleResource>
+
+  <LocaleResource Name="IsBanned">
+    <Value>User is banned</Value>
+  </LocaleResource>
+
+  <LocaleResource Name="ContactInformation">
+    <Value>Contact Info</Value>
+  </LocaleResource>
+
+  <LocaleResource Name="SmsConfig">
+    <Value>Sms Config</Value>
+  </LocaleResource>
+
+  <LocaleResource Name="SmsPackage">
+    <Value>Sms Package</Value>
+  </LocaleResource>
+
+  <LocaleResource Name="Paid">
+    <Value>Paid</Value>
+  </LocaleResource>
+
+  <LocaleResource Name="NotPaid">
+    <Value>Not Paid</Value>
+  </LocaleResource>
+
+  <LocaleResource Name="UnsuccessfulPaid">
+    <Value>Unsuccessful Paid</Value>
+  </LocaleResource>
+
+  <LocaleResource Name="TransactionNumber">
+    <Value>Transaction Number</Value>
+  </LocaleResource>
+
+  <LocaleResource Name="FactorPrice">
+    <Value>Factor Price</Value>
+  </LocaleResource>
+
+  <LocaleResource Name="FactorDate">
+    <Value>Factor Date</Value>
+  </LocaleResource>
+
+  <LocaleResource Name="FactorStatus">
+    <Value>Factor Status</Value>
+  </LocaleResource>
+
+  <LocaleResource Name="AdminFactorPriceChartHeader">
+    <Value>Past 20 days factor price</Value>
+  </LocaleResource>
+
+  <LocaleResource Name="AdminFactorCountChartHeader">
+    <Value>Past 20 days factor count</Value>
+  </LocaleResource>
+
+  <LocaleResource Name="Factores">
+    <Value>Factores</Value>
+  </LocaleResource>
+
+  <LocaleResource Name="SmsCount">
+    <Value>Sms Count</Value>
+  </LocaleResource>
+
+  <LocaleResource Name="UnitSmsPrice">
+    <Value>Unit sms price</Value>
+  </LocaleResource>
+
+  <LocaleResource Name="NewPackage">
+    <Value>New Package</Value>
+  </LocaleResource>
+
+  <LocaleResource Name="AdminSmsLogChart">
+    <Value>Past 10 days sended sms</Value>
+  </LocaleResource>
+
+  <LocaleResource Name="ّFarapayamakCharge">
+    <Value>Farapayamak Charge</Value>
+  </LocaleResource>
+
+  <LocaleResource Name="AllUserCharge">
+    <Value>All User Charge</Value>
+  </LocaleResource>
+
+  <LocaleResource Name="SmsSendedByPanels">
+    <Value>Sms Sended By Panels</Value>
+  </LocaleResource>
+
+  <LocaleResource Name="SmsSendedBySystem">
+    <Value>Sms Sended By System</Value>
+  </LocaleResource>
+
+  <LocaleResource Name="SmsManagement">
+    <Value>Sms Management</Value>
+  </LocaleResource>
+
+  <LocaleResource Name="SmsPackages">
+    <Value>Sms Packages</Value>
+  </LocaleResource>
+
+  <LocaleResource Name="FactorList">
+    <Value>Factores List</Value>
+  </LocaleResource>
+
+  <LocaleResource Name="PaymentGatewayNotFound">
+    <Value>
+      Cant find any paymentgateway. Contact to admin.
+    </Value>
+  </LocaleResource>
+
+  <LocaleResource Name="PaymentSuccess">
+    <Value>
+      Your factor submited by transaction {0}.
+    </Value>
+  </LocaleResource>
+
+  <LocaleResource Name="BuyPackageFactorSmsToUser">
+    <Value>
+      {0} \n {1} is activated for you.
+    </Value>
+  </LocaleResource>
+
+  <LocaleResource Name="PaymentUnsuccesfulMesssage">
+    <Value>
+      Your payment has failed. Error status : {0}
+    </Value>
+  </LocaleResource>
+
+  <LocaleResource Name="PaymentErrorMessage">
+    <Value>
+      Your payment has failed. Error status : {0} , Authoriy Code : {1}
+    </Value>
+  </LocaleResource>
+
+  <LocaleResource Name="FinancialManagement">
+    <Value>Financial</Value>
+  </LocaleResource>
+
+  <LocaleResource Name="PaymentTypesManagement">
+    <Value>Payment Types</Value>
+  </LocaleResource>
+
+  <LocaleResource Name="PaymentTypes">
+    <Value>Payment Types</Value>
+  </LocaleResource>
+
+  <LocaleResource Name="SmsPanel">
+    <Value>Sms Panel</Value>
+  </LocaleResource>
+
+  <LocaleResource Name="TodayVisitors">
+    <Value>Visitors Today</Value>
+  </LocaleResource>
+
+  <LocaleResource Name="TodayViews">
+    <Value>Views Today</Value>
+  </LocaleResource>
+
+  <LocaleResource Name="Visitors">
+    <Value>Visitors</Value>
+  </LocaleResource>
+
+  <LocaleResource Name="Views">
+    <Value>Views</Value>
+  </LocaleResource>
+
+  <LocaleResource Name="PastTwentyDaysViews">
+    <Value>Past 20 Days Views</Value>
+  </LocaleResource>
+
+  <LocaleResource Name="Browsers">
+    <Value>Browsers</Value>
+  </LocaleResource>
+
+  <LocaleResource Name="Countries">
+    <Value>Countries</Value>
+  </LocaleResource>
+
+  <LocaleResource Name="Unknow">
+    <Value>Unknow</Value>
+  </LocaleResource>
+
+  <LocaleResource Name="OpertaingSystems">
+    <Value>Operating Systems</Value>
+  </LocaleResource>
+
+  <LocaleResource Name="MostPagesVisted">
+    <Value>Most Pages Visted</Value>
+  </LocaleResource>
+
+  <LocaleResource Name="MostReferrers">
+    <Value>Most Referres</Value>
+  </LocaleResource>
+
+  <LocaleResource Name="XmlNotValid">
+    <Value>Xml file is not valid.</Value>
   </LocaleResource>
 </Language>

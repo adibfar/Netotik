@@ -23,7 +23,7 @@ namespace Netotik.ViewModels.SmsPackage
         [Required(ErrorMessageResourceType = typeof(Captions), ErrorMessageResourceName = "RequiredError")]
         public int Order { get; set; }
 
-        //[Display(ResourceType = typeof(Captions), Name = "DisplayOrder")]
+        [Display(ResourceType = typeof(Captions), Name = "SmsCount")]
         [Required(ErrorMessageResourceType = typeof(Captions), ErrorMessageResourceName = "RequiredError")]
         public int SmsCount { get; set; }
 
@@ -31,8 +31,7 @@ namespace Netotik.ViewModels.SmsPackage
         [Required(ErrorMessageResourceType = typeof(Captions), ErrorMessageResourceName = "RequiredError")]
         public long Price { get; set; }
 
-
-        //[Display(ResourceType = typeof(Captions), Name = "UnitPrice")]
+        [Display(ResourceType = typeof(Captions), Name = "UnitSmsPrice")]
         [Required(ErrorMessageResourceType = typeof(Captions), ErrorMessageResourceName = "RequiredError")]
         public long UnitPrice { get; set; }
 
