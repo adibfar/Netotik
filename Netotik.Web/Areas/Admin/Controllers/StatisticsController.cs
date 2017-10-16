@@ -48,8 +48,8 @@ namespace Netotik.Web.Areas.Admin.Controllers
 
             StatisticsViewModel svm = new StatisticsViewModel()
             {
-                TodayVisits = stat.Count(ss => ss.DateStamp.Day == DateTime.Now.Day),
-                TodayVisitors = stat.Where(ss=>ss.DateStamp.Day == DateTime.Now.Day)
+                TodayVisits = stat.Count(ss => ss.DateStamp.Date == DateTime.Now.Date),
+                TodayVisitors = stat.Where(ss=>ss.DateStamp.Date == DateTime.Now.Date)
                 .GroupBy(x=>x.IpAddress).Select(x=>x.FirstOrDefault()).Count(),
                 UniquVisitors = stat.GroupBy(ta => ta.IpAddress).Select(ta => ta.Key).Count(),
             };
@@ -60,7 +60,7 @@ namespace Netotik.Web.Areas.Admin.Controllers
 
         public virtual JsonResult GetViewChartData()
         {
-            var date = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day).AddDays(-19);
+            var date = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day).AddDays(-20);
             var logs = _statisticsService.All().Where(x => x.DateStamp > date).ToList();
             var viewLog = new long[20];
             var visitorLog = new long[20];

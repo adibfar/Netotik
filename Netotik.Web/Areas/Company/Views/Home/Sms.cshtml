@@ -185,7 +185,7 @@
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
-                    <h4 class="modal-title" id="myModalLabel20">@Captions.BuyPackage</h4>
+                    <h4 class="modal-title" id="myModalLabel20">@Captions.SmsPackages</h4>
                 </div>
                 <div class="model-body">
                     <div class="row">
@@ -200,7 +200,7 @@
                                         <li class="list-group-item">
                                             <a onclick="BuyPackage('@item.Id');" class="btn btn-secondary btn-block btn-square">
                                                 <span class="icon-shopping-bag"></span>
-                                                خرید بسته
+                                                @Captions.BuyPackage
                                             </a>
                                         </li>
                                     </ul>
@@ -225,7 +225,6 @@
         function EnableSMS(id) {
             PostData("@Url.Action(MVC.Company.Home.EnableSMS())", { id: id });
         }
-
 
         function BuyPackage(id) {
             PostData("@Url.Action(MVC.Company.Home.BuySmsPackage())", { id: id });

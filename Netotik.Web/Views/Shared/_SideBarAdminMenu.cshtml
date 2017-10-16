@@ -120,11 +120,11 @@
             @if (AccountingMenu)
             {
                 <li data-menu="dropdown" class="dropdown nav-item">
-                    <a href="#" data-toggle="dropdown" class="dropdown-toggle nav-link"><i class="icon-coin-dollar"></i><span>{Accounting}</span></a>
+                    <a href="#" data-toggle="dropdown" class="dropdown-toggle nav-link"><i class="icon-coin-dollar"></i><span>@Captions.FinancialManagement</span></a>
                     <ul class="dropdown-menu">
                         @if (IssueListMenu)
                         {
-                            <li><a href="@Url.Action(MVC.Admin.Factor.Index())" data-toggle="dropdown" class="dropdown-item">لیست فاکتورها</a></li>}
+                            <li><a href="@Url.Action(MVC.Admin.Factor.Index())" data-toggle="dropdown" class="dropdown-item">@Captions.FactorList</a></li>}
                     </ul>
                 </li>
             }
@@ -169,12 +169,12 @@
 
                         @if (SmsMenu)
                         {
-                            <li><a href="@Url.Action(MVC.Admin.Sms.Index())" data-toggle="dropdown" class="dropdown-item">پنل پیامک</a></li>
+                            <li><a href="@Url.Action(MVC.Admin.Sms.Index())" data-toggle="dropdown" class="dropdown-item">@Captions.SmsPanel</a></li>
                         }
 
                         @if (ShopPaymentTypeMenu)
                         {
-                            <li><a href="@Url.Action(MVC.Admin.PaymentType.Index())" data-toggle="dropdown" class="dropdown-item">درگاه های پرداخت</a></li>
+                            <li><a href="@Url.Action(MVC.Admin.PaymentType.Index())" data-toggle="dropdown" class="dropdown-item">@Captions.PaymentTypes</a></li>
                         }
                     </ul>
                 </li>

@@ -735,9 +735,8 @@
     <Value>نام نمایشی</Value>
   </LocaleResource>
 
-  <!--======================Fields Ehsan EM===========================-->
-  <LocaleResource Name="ChangePackage">
-    <Value>تغییرتعرفه</Value>
+  <LocaleResource Name="ChangePlan">
+    <Value>تغییر تعرفه</Value>
   </LocaleResource>
   <LocaleResource Name="About">
     <Value>درباره</Value>
@@ -757,7 +756,7 @@
   <LocaleResource Name="Online">
     <Value>متصل</Value>
   </LocaleResource>
-  <LocaleResource Name="PackageName">
+  <LocaleResource Name="PlanName">
     <Value>نام تعرفه</Value>
   </LocaleResource>
   <LocaleResource Name="Enrollment">
@@ -808,11 +807,14 @@
   <LocaleResource Name="MakeCard">
     <Value>ساخت کارت</Value>
   </LocaleResource>
-  <LocaleResource Name="BuyPackage">
+  <LocaleResource Name="BuyPlan">
     <Value>خرید تعرفه</Value>
   </LocaleResource>
-  <LocaleResource Name="SelectPackage">
-    <Value>انتخاب تعرفه</Value>
+  <LocaleResource Name="BuyPackage">
+    <Value>خرید بسته</Value>
+  </LocaleResource>
+  <LocaleResource Name="SelectPlan">
+    <Value>انتخاب بسته</Value>
   </LocaleResource>
   <LocaleResource Name="Charts">
     <Value>نمودارها</Value>
@@ -1163,10 +1165,10 @@
   <LocaleResource Name="UserManager">
     <Value>یوزرمنیجر</Value>
   </LocaleResource>
-  <LocaleResource Name="PackageList">
+  <LocaleResource Name="PlanList">
     <Value>لیست تعرفه</Value>
   </LocaleResource>
-  <LocaleResource Name="NewPackage">
+  <LocaleResource Name="NewPlan">
     <Value>تعرفه جدید</Value>
   </LocaleResource>
   <LocaleResource Name="Actions">
@@ -1193,7 +1195,7 @@
   <LocaleResource Name="FirstConnection">
     <Value>اولین اتصال</Value>
   </LocaleResource>
-  <LocaleResource Name="PackageBind">
+  <LocaleResource Name="PlanBind">
     <Value>انتساب تعرفه</Value>
   </LocaleResource>
   <LocaleResource Name="FromTime">
@@ -1229,7 +1231,6 @@
   <LocaleResource Name="LastConnection">
     <Value>آخرین اتصال</Value>
   </LocaleResource>
-  //-----------------------------
   <LocaleResource Name="RouterModel">
     <Value>مدل روتر</Value>
   </LocaleResource>
@@ -1375,7 +1376,7 @@
   <LocaleResource Name="RemoveUsermanagerUsers">
     <Value>پاک کردن کاربران</Value>
   </LocaleResource>
-  <LocaleResource Name="RemoveUsermanagerPackages">
+  <LocaleResource Name="RemoveUsermanagerPlan">
     <Value>پاک کردن تعرفه ها</Value>
   </LocaleResource>
   <LocaleResource Name="RemoveUsermanagerHistory">
@@ -1489,10 +1490,10 @@
   <LocaleResource Name="UsersCount">
     <Value>تعداد کاربران</Value>
   </LocaleResource>
-  <LocaleResource Name="PackageCount">
+  <LocaleResource Name="PlanCount">
     <Value>تعداد تعرفه ها</Value>
   </LocaleResource>
-  <LocaleResource Name="LastPackageChanges">
+  <LocaleResource Name="LastPlanChanges">
     <Value>آخرین تغییرات تعرفه ها</Value>
   </LocaleResource>
   <LocaleResource Name="SmsCompanyPasswordChange">
@@ -1501,7 +1502,7 @@
   <LocaleResource Name="SmsCompanyLogins">
     <Value>کاربر {0} در تاربخ {1} توسط ای پی {2} وارد نتوتیک شد.</Value>
   </LocaleResource>
-  <LocaleResource Name="SmsUserBuyPackage">
+  <LocaleResource Name="SmsUserBuyPlan">
     <Value>کاربر {0} تعرفه شما تغییر یافت.</Value>
   </LocaleResource>
   <LocaleResource Name="SmsUserPasswordChange">
@@ -1513,7 +1514,7 @@
   <LocaleResource Name="SmsUserAccountCreated">
     <Value>اکانت شما با موفقیت ایجاد شد.نام کاربری شما {0} و کلمه عبور شما {1} می باشد.</Value>
   </LocaleResource>
-  <LocaleResource Name="SmsUserAfterChangePackage">
+  <LocaleResource Name="SmsUserAfterChangePlan">
     <Value>اطلاع رسانی به کاربر زمان تغییر تعرفه</Value>
   </LocaleResource>
   <LocaleResource Name="SmsUserAfterDelete">
@@ -1563,5 +1564,197 @@
   </LocaleResource>
   <LocaleResource Name="RegisterWithSmsRouterProfile">
     <Value>تعرفه انتخابی برای ثبت نام از طریق پیامک</Value>
+  </LocaleResource>
+
+  <LocaleResource Name="EmailConfirmed">
+    <Value>ایمیل تایید شده</Value>
+  </LocaleResource>
+
+  <LocaleResource Name="IsBanned">
+    <Value>کاربر مسدود شده</Value>
+  </LocaleResource>
+
+  <LocaleResource Name="ContactInformation">
+    <Value>اطلاعات تماس</Value>
+  </LocaleResource>
+
+  <LocaleResource Name="SmsConfig">
+    <Value>تنظیمات پیامک</Value>
+  </LocaleResource>
+
+  <LocaleResource Name="SmsPackage">
+    <Value>بسته پیامکی</Value>
+  </LocaleResource>
+
+  <LocaleResource Name="Paid">
+    <Value>پرداخت شده</Value>
+  </LocaleResource>
+
+  <LocaleResource Name="NotPaid">
+    <Value>پرداخت نشده</Value>
+  </LocaleResource>
+
+  <LocaleResource Name="UnsuccessfulPaid">
+    <Value>پرداخت ناموفق</Value>
+  </LocaleResource>
+
+  <LocaleResource Name="TransactionNumber">
+    <Value>شماره تراکنش</Value>
+  </LocaleResource>
+
+  <LocaleResource Name="FactorPrice">
+    <Value>مبلغ فاکتور</Value>
+  </LocaleResource>
+
+  <LocaleResource Name="FactorDate">
+    <Value>تاریخ فاکتور</Value>
+  </LocaleResource>
+
+  <LocaleResource Name="FactorStatus">
+    <Value>وضعیت فاکتور</Value>
+  </LocaleResource>
+
+  <LocaleResource Name="AdminFactorPriceChartHeader">
+    <Value>حجم فاکتورهای 20 روز گذشته</Value>
+  </LocaleResource>
+
+  <LocaleResource Name="AdminFactorCountChartHeader">
+    <Value>تعداد فاکتورهای 20 روز گذشته</Value>
+  </LocaleResource>
+
+  <LocaleResource Name="Factores">
+    <Value>فاکتورها</Value>
+  </LocaleResource>
+
+  <LocaleResource Name="SmsCount">
+    <Value>تعداد پیامک</Value>
+  </LocaleResource>
+
+  <LocaleResource Name="UnitSmsPrice">
+    <Value>قیمت هر پیامک</Value>
+  </LocaleResource>
+
+  <LocaleResource Name="NewPackage">
+    <Value>بسته جدید</Value>
+  </LocaleResource>
+
+  <LocaleResource Name="AdminSmsLogChart">
+    <Value>پیامک های ارسالی 10 روز گذشته</Value>
+  </LocaleResource>
+
+  <LocaleResource Name="ّFarapayamakCharge">
+    <Value>شارژ فراپیامک</Value>
+  </LocaleResource>
+
+  <LocaleResource Name="AllUserCharge">
+    <Value>مجموع شارژ کاربران</Value>
+  </LocaleResource>
+
+  <LocaleResource Name="SmsSendedByPanels">
+    <Value>پیامک های ارسالی پنل ها</Value>
+  </LocaleResource>
+
+  <LocaleResource Name="SmsSendedBySystem">
+    <Value>پیامک های سیستمی</Value>
+  </LocaleResource>
+
+  <LocaleResource Name="SmsManagement">
+    <Value>مدیریت پیامک</Value>
+  </LocaleResource>
+
+  <LocaleResource Name="SmsPackages">
+    <Value>بسته های پیامکی</Value>
+  </LocaleResource>
+
+  <LocaleResource Name="FactorList">
+    <Value>لیست فاکتورها</Value>
+  </LocaleResource>
+
+  <LocaleResource Name="PaymentGatewayNotFound">
+    <Value>
+      درگاه پرداختی در سیسیتم ثبت نشده. با مدیریت تماس بگیرید.
+    </Value>
+  </LocaleResource>
+
+  <LocaleResource Name="PaymentSuccess">
+    <Value>فاکتور شما با شماره تراکنش {0} با موفقیت ثبت شد.</Value>
+  </LocaleResource>
+
+  <LocaleResource Name="BuyPackageFactorSmsToUser">
+    <Value>{0} \n {1} برای شما فعال گردید.</Value>
+  </LocaleResource>
+
+  <LocaleResource Name="PaymentUnsuccesfulMesssage">
+    <Value>پرداخت شما با شکست مواجه شد. وضعیت خطا : {0} </Value>
+  </LocaleResource>
+
+  <LocaleResource Name="PaymentErrorMessage">
+    <Value>پرداخت شما با شکست مواجه شد. وضعیت خطا : {0} - کد امنیتی : {1}</Value>
+  </LocaleResource>
+  
+  <LocaleResource Name="FinancialManagement">
+    <Value>مدیریت مالی</Value>
+  </LocaleResource>
+  
+  <LocaleResource Name="PaymentTypesManagement">
+    <Value>مدیریت روش های پرداخت</Value>
+  </LocaleResource>
+  
+  <LocaleResource Name="PaymentTypes">
+    <Value>روش های پرداخت</Value>
+  </LocaleResource>
+
+  <LocaleResource Name="SmsPanel">
+    <Value>پنل پیامک</Value>
+  </LocaleResource>
+
+  
+  
+  <LocaleResource Name="TodayVisitors">
+    <Value>بازدیدکننده های امروز</Value>
+  </LocaleResource>
+
+  <LocaleResource Name="TodayViews">
+    <Value>بازدید های امروز</Value>
+  </LocaleResource>
+
+  <LocaleResource Name="Visitors">
+    <Value>بازدیدکنند ها</Value>
+  </LocaleResource>
+
+  <LocaleResource Name="Views">
+    <Value>بازدیدها</Value>
+  </LocaleResource>
+
+  <LocaleResource Name="PastTwentyDaysViews">
+    <Value>بازدیدهای 20 روز گذشته</Value>
+  </LocaleResource>
+
+  <LocaleResource Name="Browsers">
+    <Value>مرورگرها</Value>
+  </LocaleResource>
+
+  <LocaleResource Name="Countries">
+    <Value>کشورها</Value>
+  </LocaleResource>
+
+  <LocaleResource Name="Unknow">
+    <Value>نامشخص</Value>
+  </LocaleResource>
+
+  <LocaleResource Name="OpertaingSystems">
+    <Value>سیستم عامل ها</Value>
+  </LocaleResource>
+
+  <LocaleResource Name="MostPagesVisted">
+    <Value>بیشترین صفحات بازدید شده</Value>
+  </LocaleResource>
+
+  <LocaleResource Name="MostReferrers">
+    <Value>بیشترین ارجاعات</Value>
+  </LocaleResource>
+  
+  <LocaleResource Name="XmlNotValid">
+    <Value>فایل xml معتبر نیست.</Value>
   </LocaleResource>
 </Language>

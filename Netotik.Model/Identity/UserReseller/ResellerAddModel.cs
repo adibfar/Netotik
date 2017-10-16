@@ -73,6 +73,14 @@ namespace Netotik.ViewModels.Identity.UserReseller
         [RegularExpression(@"(^[a-zA-Z0-9]*$)", ErrorMessageResourceType = typeof(Captions), ErrorMessageResourceName = "JustEnglishNumeric")]
         public string UserName { get; set; }
 
+        [Required(ErrorMessageResourceType = typeof(Captions), ErrorMessageResourceName = "RequiredError")]
+        [Display(ResourceType = typeof(Captions), Name = "IsBanned")]
+        public bool IsBanned { get; set; }
+
+        [Required(ErrorMessageResourceType = typeof(Captions), ErrorMessageResourceName = "RequiredError")]
+        [Display(ResourceType = typeof(Captions), Name = "EmailConfirmed")]
+        public virtual bool EmailConfirmed { get; set; }
+
         [Display(ResourceType = typeof(Captions), Name = "ImageProfile")]
         public System.Web.HttpPostedFileBase ImageAvatar { get; set; }
     }

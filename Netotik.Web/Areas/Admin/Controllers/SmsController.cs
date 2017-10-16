@@ -28,7 +28,7 @@ using Netotik.Services.Identity;
 
 namespace Netotik.Web.Areas.Admin.Controllers
 {
-    [BreadCrumb(Title = "Sms Management", UseDefaultRouteUrl = true, Order = 0, GlyphIcon = "icon-th-large")]
+    [BreadCrumb(Title = "SmsManagement", UseDefaultRouteUrl = true, Order = 0, GlyphIcon = "icon-th-large")]
     [Mvc5Authorize(Roles = AssignableToRolePermissions.CanAccessSlider)]
     public partial class SmsController : BaseController
     {

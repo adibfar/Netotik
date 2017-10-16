@@ -58,17 +58,17 @@
                         "render": function (data, type, full, meta) {
                             var result = '';
                             if (full.FactorType==0) {
-                                result += ' <span class="tag tag-default">' + 'بسته پیامکی' + '</span>';
+                                result += ' <span class="tag tag-default">' + '@Captions.SmsPackage' + '</span>';
                             }
 
                             if (full.FactorStatus==0) {
-                                result += ' <span class="tag tag-success">'+'پرداخت شده'+'</span>';
+                                result += ' <span class="tag tag-success">'+ '@Captions.Paid'+'</span>';
                             }
                             else if (full.status == 1) {
-                                result += ' <span class="tag tag-warning">'+'پرداخت نشده'+'</span>';
+                                result += ' <span class="tag tag-warning">'+'@Captions.NotPaid'+'</span>';
                             }
                             else if (full.status == 2) {
-                                result += ' <span class="tag tag-error">'+'پرداخت ناموفق'+'</span>';
+                                result += ' <span class="tag tag-error">'+'@Captions.UnsuccessfulPaid'+'</span>';
                             }
                             return result;
                         }
@@ -95,6 +95,8 @@
         });
 
         $(window).on("load", function () {
+
+
             CardBlock('#sectionChartPrice');
             $.get("@Url.Action(MVC.Admin.Factor.GetPriceFactorChartData())", function (data) {
                     var a = $("#price-chart"),
@@ -108,12 +110,14 @@
                 }, c = {
                     labels: data.dates,
                     datasets: [
-                        { label: "فاکتورهای پرداخت شده", data: data.success, backgroundColor: "#3fba82", hoverBackgroundColor: "rgba(103,58,183,.9)", borderColor: "transparent" },
-                        { label: "فاکتورهای پرداخت نشده", data: data.unpaid, backgroundColor: "#f1d987", hoverBackgroundColor: "rgba(233,30,99,.9)", borderColor: "transparent" },
-                        { label: "فاکتورهای با پرداخت ناموفق", data:data.fail, backgroundColor: "#f28787", hoverBackgroundColor: "rgba(233,30,99,.9)", borderColor: "transparent" }]
+                        { label: "@Captions.Paid", data: data.success, backgroundColor: "#3fba82", hoverBackgroundColor: "rgba(103,58,183,.9)", borderColor: "transparent" },
+                        { label: "@Captions.NotPaid", data: data.unpaid, backgroundColor: "#f1d987", hoverBackgroundColor: "rgba(233,30,99,.9)", borderColor: "transparent" },
+                        { label: "@Captions.UnsuccessfulPaid", data:data.fail, backgroundColor: "#f28787", hoverBackgroundColor: "rgba(233,30,99,.9)", borderColor: "transparent" }]
                 }, d = { type: "line", options: b, data: c }; new Chart(a, d)
                 CardUnBlock('#sectionChartPrice');
             }, "json");
+
+
 
             CardBlock('#sectionChartCount');
              $.get("@Url.Action(MVC.Admin.Factor.GetCountFactorChartData())", function (data) {
@@ -128,9 +132,9 @@
                 }, c = {
                     labels: data.dates,
                     datasets: [
-                        { label: "فاکتورهای پرداخت شده", data: data.success, backgroundColor: "#3fba82", hoverBackgroundColor: "rgba(103,58,183,.9)", borderColor: "transparent" },
-                        { label: "فاکتورهای پرداخت نشده", data: data.unpaid, backgroundColor: "#f1d987", hoverBackgroundColor: "rgba(233,30,99,.9)", borderColor: "transparent" },
-                        { label: "فاکتورهای با پرداخت ناموفق", data:data.fail, backgroundColor: "#f28787", hoverBackgroundColor: "rgba(233,30,99,.9)", borderColor: "transparent" }]
+                          { label: "@Captions.Paid", data: data.success, backgroundColor: "#3fba82", hoverBackgroundColor: "rgba(103,58,183,.9)", borderColor: "transparent" },
+                          { label: "@Captions.NotPaid", data: data.unpaid, backgroundColor: "#f1d987", hoverBackgroundColor: "rgba(233,30,99,.9)", borderColor: "transparent" },
+                          { label: "@Captions.UnsuccessfulPaid", data:data.fail, backgroundColor: "#f28787", hoverBackgroundColor: "rgba(233,30,99,.9)", borderColor: "transparent" }]
                 }, d = { type: "line", options: b, data: c }; new Chart(a, d)
                 CardUnBlock('#sectionChartCount');
             }, "json");

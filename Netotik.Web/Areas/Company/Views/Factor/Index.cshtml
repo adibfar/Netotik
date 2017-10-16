@@ -52,17 +52,16 @@
                         "render": function (data, type, full, meta) {
                             var result = '';
                             if (full.FactorType==0) {
-                                result += ' <span class="tag tag-default">' + 'بسته پیامکی' + '</span>';
+                                result += ' <span class="tag tag-default">' + '@Captions.SmsPackage' + '</span>';
                             }
-
                             if (full.FactorStatus==0) {
-                                result += ' <span class="tag tag-success">'+'پرداخت شده'+'</span>';
+                                result += ' <span class="tag tag-success">'+'@Captions.Paid'+'</span>';
                             }
                             else if (full.status == 1) {
-                                result += ' <span class="tag tag-warning">'+'پرداخت نشده'+'</span>';
+                                result += ' <span class="tag tag-warning">'+'@Captions.NotPaid'+'</span>';
                             }
                             else if (full.status == 2) {
-                                result += ' <span class="tag tag-error">'+'پرداخت ناموفق'+'</span>';
+                                result += ' <span class="tag tag-error">'+'@Captions.UnsuccessfulPaid'+'</span>';
                             }
                             return result;
                         }

@@ -1004,7 +1004,7 @@ namespace Netotik.Web.Areas.Company.Controllers
                         if (model.phone != null && model.phone != "")
                             if (UserLogined.UserCompany.SmsCharge > 0 && UserLogined.UserCompany.SmsActive && UserLogined.UserCompany.SmsUserAfterChangePackage)
                             {
-                                _smsService.SendSms(model.phone,string.Format(Captions.SmsUserBuyPackage,model.username), UserLogined.Id);
+                                _smsService.SendSms(model.phone,string.Format(Captions.SmsUserBuyPlan,model.username), UserLogined.Id);
                             }
 
                     }

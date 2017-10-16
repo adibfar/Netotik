@@ -95,6 +95,7 @@ namespace Netotik.Web.Areas.Admin.Controllers
                 unpaid = monthUnpayFactores,
                 fail = monthFailFactores,
             }, JsonRequestBehavior.AllowGet);
+
         }
 
         public virtual JsonResult GetCountFactorChartData()
