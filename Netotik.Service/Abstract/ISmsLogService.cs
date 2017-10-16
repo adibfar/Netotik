@@ -11,6 +11,6 @@ namespace Netotik.Services.Abstract
     public interface ISmsLogService : IBaseService<SmsLog>
     {
         IList<SmsLog> GetAll();
-        IList<SmsLog> GetLastDays(int Days);
+      
     }
 }

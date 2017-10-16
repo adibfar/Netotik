@@ -14,6 +14,7 @@ namespace Netotik.Services.Identity
     public interface IApplicationUserManager : IDisposable
     {
 
+        long GetCompaniesChargre();
         ViewModels.Identity.UserAdmin.ProfileModel GetUserAdminProfile();
         ViewModels.Identity.UserReseller.ProfileModel GetUserResellerProfile();
         ViewModels.Identity.UserCompany.ProfileModel GetUserCompanyProfile(long id);

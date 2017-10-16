@@ -351,6 +351,7 @@ namespace Netotik.Web.Areas.Company.Controllers
                 UserId = UserLogined.Id,
                 FactorSmsDetail = new FactorSmsDetail()
                 {
+                    PackageName=package.Name,
                     SmsCount = package.SmsCount,
                     TotalPrice = package.Price,
                     UnitPrice = package.UnitPrice

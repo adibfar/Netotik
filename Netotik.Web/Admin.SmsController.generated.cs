@@ -93,6 +93,9 @@ namespace Netotik.Web.Areas.Admin.Controllers
         {
             public readonly string Index = "Index";
             public readonly string GetList = "GetList";
+            public readonly string GetSmsChartData = "GetSmsChartData";
+            public readonly string GetSmsCredit = "GetSmsCredit";
+            public readonly string GetSmsCompaniesCredit = "GetSmsCompaniesCredit";
             public readonly string Create = "Create";
             public readonly string Remove = "Remove";
             public readonly string Edit = "Edit";
@@ -104,6 +107,9 @@ namespace Netotik.Web.Areas.Admin.Controllers
         {
             public const string Index = "Index";
             public const string GetList = "GetList";
+            public const string GetSmsChartData = "GetSmsChartData";
+            public const string GetSmsCredit = "GetSmsCredit";
+            public const string GetSmsCompaniesCredit = "GetSmsCompaniesCredit";
             public const string Create = "Create";
             public const string Remove = "Remove";
             public const string Edit = "Edit";
@@ -164,11 +170,13 @@ namespace Netotik.Web.Areas.Admin.Controllers
             public _ViewNamesClass ViewNames { get { return s_ViewNames; } }
             public class _ViewNamesClass
             {
+                public readonly string _Chart = "_Chart";
                 public readonly string _CreatePackage = "_CreatePackage";
                 public readonly string _EditPackage = "_EditPackage";
                 public readonly string _Table = "_Table";
                 public readonly string Index = "Index";
             }
+            public readonly string _Chart = "~/Areas/Admin/Views/Sms/_Chart.cshtml";
             public readonly string _CreatePackage = "~/Areas/Admin/Views/Sms/_CreatePackage.cshtml";
             public readonly string _EditPackage = "~/Areas/Admin/Views/Sms/_EditPackage.cshtml";
             public readonly string _Table = "~/Areas/Admin/Views/Sms/_Table.cshtml";
@@ -201,6 +209,39 @@ namespace Netotik.Web.Areas.Admin.Controllers
             var callInfo = new T4MVC_System_Web_Mvc_JsonResult(Area, Name, ActionNames.GetList);
             ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "model", model);
             GetListOverride(callInfo, model);
+            return callInfo;
+        }
+
+        [NonAction]
+        partial void GetSmsChartDataOverride(T4MVC_System_Web_Mvc_JsonResult callInfo);
+
+        [NonAction]
+        public override System.Web.Mvc.JsonResult GetSmsChartData()
+        {
+            var callInfo = new T4MVC_System_Web_Mvc_JsonResult(Area, Name, ActionNames.GetSmsChartData);
+            GetSmsChartDataOverride(callInfo);
+            return callInfo;
+        }
+
+        [NonAction]
+        partial void GetSmsCreditOverride(T4MVC_System_Web_Mvc_JsonResult callInfo);
+
+        [NonAction]
+        public override System.Web.Mvc.JsonResult GetSmsCredit()
+        {
+            var callInfo = new T4MVC_System_Web_Mvc_JsonResult(Area, Name, ActionNames.GetSmsCredit);
+            GetSmsCreditOverride(callInfo);
+            return callInfo;
+        }
+
+        [NonAction]
+        partial void GetSmsCompaniesCreditOverride(T4MVC_System_Web_Mvc_JsonResult callInfo);
+
+        [NonAction]
+        public override System.Web.Mvc.JsonResult GetSmsCompaniesCredit()
+        {
+            var callInfo = new T4MVC_System_Web_Mvc_JsonResult(Area, Name, ActionNames.GetSmsCompaniesCredit);
+            GetSmsCompaniesCreditOverride(callInfo);
             return callInfo;
         }
 

@@ -1,0 +1,39 @@
+﻿@model IEnumerable<Netotik.Domain.Entity.StatisticCountry>
+
+
+<div class="card">
+    <div class="card-header no-border">
+        <h4 class="card-title">کشورها</h4>
+    </div>
+    <div class="card-body">
+        <div id="audience-list-scroll" class="table-responsive position-relative">
+            <table class="table mb-0">
+                <tbody>
+                    @{
+                        foreach (var country in Model.OrderByDescending(x=>x.ViewCount))
+                        {
+                            <tr>
+                                <td>
+                                    @if (!string.IsNullOrWhiteSpace(country.CountryName))
+                                    {
+                                        <i class="flag-icon flag-icon-@country.CountryCode.ToLower()"></i>
+                                        @country.CountryName
+                                    }
+                                    else
+                                    {
+                                        <i class="fa fa-question"></i>
+                                        @("نامعلوم")
+                                    }
+                                </td>
+                                <td>@country.ViewCount</td>
+                            </tr>
+
+                        }
+
+                    }
+                </tbody>
+            </table>
+
+        </div>
+    </div>
+</div>

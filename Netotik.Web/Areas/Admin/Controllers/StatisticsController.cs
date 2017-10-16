@@ -49,13 +49,42 @@ namespace Netotik.Web.Areas.Admin.Controllers
             StatisticsViewModel svm = new StatisticsViewModel()
             {
                 TodayVisits = stat.Count(ss => ss.DateStamp.Day == DateTime.Now.Day),
-                TotallVisits = stat.Count,
+                TodayVisitors = stat.Where(ss=>ss.DateStamp.Day == DateTime.Now.Day)
+                .GroupBy(x=>x.IpAddress).Select(x=>x.FirstOrDefault()).Count(),
                 UniquVisitors = stat.GroupBy(ta => ta.IpAddress).Select(ta => ta.Key).Count(),
             };
 
 
             return View(svm);
         }
+
+        public virtual JsonResult GetViewChartData()
+        {
+            var date = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day).AddDays(-19);
+            var logs = _statisticsService.All().Where(x => x.DateStamp > date).ToList();
+            var viewLog = new long[20];
+            var visitorLog = new long[20];
+            var dates = new string[20];
+
+            for (var i = 0; i < 20; i++)
+            {
+                dates[i] = PersianDate.ConvertDate.ToFa(date, "d");
+                visitorLog[i] = logs.Where(x => x.DateStamp.Date == date.Date)
+                    .GroupBy(x => x.IpAddress).Select(x => x.FirstOrDefault()).Count();
+                viewLog[i] = logs.Where(x => x.DateStamp.Date == date.Date).Count();
+                date = date.AddDays(1);
+
+            }
+
+            return Json(new
+            {
+                dates = dates,
+                views = viewLog,
+                visitors = visitorLog,
+            }, JsonRequestBehavior.AllowGet);
+        }
+
+
 
         public int calculatePercentage(int CurrentValue, int totallValue)
         {
@@ -64,9 +93,11 @@ namespace Netotik.Web.Areas.Admin.Controllers
 
         }
 
-        public virtual ActionResult Table()
+        public virtual ActionResult Countries()
         {
-            return View(_statisticCountryService.All().ToList());
+            return PartialView(MVC.Admin.Statistics.Views._Countries,
+                _statisticCountryService.All()
+                .Take(15).ToList());
         }
 
         public virtual ActionResult Chart()
@@ -117,8 +148,9 @@ namespace Netotik.Web.Areas.Admin.Controllers
         public virtual JsonResult RequestUserBrowserData()
         {
             var results = _statisticsService.All()
-            .GroupBy(ua => new { ua.UserAgent }).Select(g => new { lable = g.Key.UserAgent, value = g.Count() })
-            .ToArray();
+                .GroupBy(ua => new { ua.UserAgent })
+                .Select(g => new { lable = g.Key.UserAgent, value = g.Count() })
+                .ToArray();
             return Json(results, JsonRequestBehavior.AllowGet);
         }
 
@@ -161,8 +193,13 @@ namespace Netotik.Web.Areas.Admin.Controllers
         {
             var btv = new List<BrowserTableViewModel>();
 
-            var tottal = _statisticsService.All().Count();
-            btv.AddRange(_statisticsService.All().GroupBy(ua => new { ua.UserAgent }).OrderByDescending(g => g.Count()).Select(g => new BrowserTableViewModel() { BrowserIcon = g.Key.UserAgent, BrowserName = g.Key.UserAgent, BrowserViewCount = g.Count(), TottalVisits = tottal }).ToList());
+            var tottal = _statisticsService.All()
+                //.GroupBy(x => x.IpAddress).Select(x => x.FirstOrDefault())
+                .Count();
+            btv.AddRange(_statisticsService.All()
+                //.GroupBy(x => x.IpAddress).Select(x => x.FirstOrDefault())
+                .GroupBy(ua => new { ua.UserAgent })
+                .OrderByDescending(g => g.Count()).Select(g => new BrowserTableViewModel() { BrowserIcon = g.Key.UserAgent, BrowserName = g.Key.UserAgent, BrowserViewCount = g.Count(), TottalVisits = tottal }).ToList());
 
             return PartialView("_BrowserTablePartial", btv);
         }
@@ -172,8 +209,12 @@ namespace Netotik.Web.Areas.Admin.Controllers
         public virtual ActionResult OsTable()
         {
             var otv = new List<OsTableViewModel>();
-            var tottal = _statisticsService.All().Count();
-            otv.AddRange(_statisticsService.All().GroupBy(ua => new { ua.UserOs }).OrderByDescending(g => g.Count()).Select(g => new OsTableViewModel() { OsIcon = g.Key.UserOs, OsName = g.Key.UserOs, OsViewCount = g.Count(), TottalVisits = tottal }).ToList());
+            var tottal = _statisticsService.All()
+                //.GroupBy(x => x.IpAddress).Select(x => x.FirstOrDefault())
+                .Count();
+            otv.AddRange(_statisticsService.All()
+                //.GroupBy(x => x.IpAddress).Select(x => x.FirstOrDefault())
+                .GroupBy(ua => new { ua.UserOs }).OrderByDescending(g => g.Count()).Select(g => new OsTableViewModel() { OsIcon = g.Key.UserOs, OsName = g.Key.UserOs, OsViewCount = g.Count(), TottalVisits = tottal }).ToList());
             return PartialView("_OsTablePartial", otv);
         }
 

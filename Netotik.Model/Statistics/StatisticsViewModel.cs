@@ -15,6 +15,7 @@ namespace Netotik.ViewModels.Statistics
         public DateTime DateStamp { get; set; }
         public int OnlineUsers { get; set; }
         public int TodayVisits { get; set; }
+        public int TodayVisitors { get; set; }
         public int YesterdayVisits { get; set; }
         public int TotallVisits { get; set; }
         public int UniquVisitors { get; set; }

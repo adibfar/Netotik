@@ -33,9 +33,9 @@ namespace Netotik.Web.Controllers
         }
         #endregion
         // GET: FarapayamakGateway
-        public virtual async Task<ActionResult> SmsRecive(string fromNum, string to, string text)
+        public virtual async Task<ActionResult> SmsReceive(string fromNum, string toNumber, string textMessage)
         {
-            var User = await _applicationUserManager.FindByCompanySMSCodeAsync(text);
+            var User = await _applicationUserManager.FindByCompanySMSCodeAsync(textMessage);
             if (User == null)
                 return View();
             if (User.UserCompany.SmsActive && User.UserCompany.RegisterWithSms && User.UserCompany.SmsCharge > 0)

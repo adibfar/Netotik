@@ -70,8 +70,8 @@ namespace Netotik.Web.Areas.Admin.Controllers
 
         public virtual JsonResult GetPriceFactorChartData()
         {
-            var date = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day).AddDays(-20);
-            var factores = _factorService.All().Where(x => x.RegisterDate > date);
+            var date = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day).AddDays(-19);
+            var factores = _factorService.All().Where(x => x.RegisterDate > date).ToList();
             var monthSuccessFactores = new long[20];
             var monthFailFactores = new long[20];
             var monthUnpayFactores = new long[20];
@@ -80,9 +80,9 @@ namespace Netotik.Web.Areas.Admin.Controllers
             for (var i = 0; i < 20; i++)
             {
                 dates[i] = PersianDate.ConvertDate.ToFa(date, "d");
-                monthSuccessFactores[i] = _factorService.Where(x => x.RegisterDate.Date == date && x.FactorStatus == FactorStatus.Success).Sum(x => x.PaymentPrice);
-                monthFailFactores[i] = _factorService.Where(x => x.RegisterDate.Date == date && x.FactorStatus == FactorStatus.Fail).Sum(x => x.PaymentPrice);
-                monthUnpayFactores[i] = _factorService.Where(x => x.RegisterDate.Date == date && x.FactorStatus == FactorStatus.Unpaid).Sum(x => x.PaymentPrice);
+                monthSuccessFactores[i] = factores.Where(x => x.FactorStatus == FactorStatus.Success && x.RegisterDate.Date == date.Date).Sum(x => x.PaymentPrice);
+                monthFailFactores[i] = factores.Where(x => x.FactorStatus == FactorStatus.Fail && x.RegisterDate.Date == date.Date).Sum(x => x.PaymentPrice);
+                monthUnpayFactores[i] = factores.Where(x => x.FactorStatus == FactorStatus.Unpaid && x.RegisterDate.Date == date.Date).Sum(x => x.PaymentPrice);
                 date = date.AddDays(1);
 
             }
@@ -99,8 +99,8 @@ namespace Netotik.Web.Areas.Admin.Controllers
 
         public virtual JsonResult GetCountFactorChartData()
         {
-            var date = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day).AddDays(-20);
-            var factores = _factorService.All().Where(x => x.RegisterDate > date);
+            var date = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day).AddDays(-19);
+            var factores = _factorService.All().Where(x => x.RegisterDate > date).ToList();
             var monthSuccessFactores = new long[20];
             var monthFailFactores = new long[20];
             var monthUnpayFactores = new long[20];
@@ -109,9 +109,9 @@ namespace Netotik.Web.Areas.Admin.Controllers
             for (var i = 0; i < 20; i++)
             {
                 dates[i] = PersianDate.ConvertDate.ToFa(date, "d");
-                monthSuccessFactores[i] = _factorService.Where(x => x.RegisterDate.Date == date && x.FactorStatus == FactorStatus.Success).Count();
-                monthFailFactores[i] = _factorService.Where(x => x.RegisterDate.Date == date && x.FactorStatus == FactorStatus.Fail).Count();
-                monthUnpayFactores[i] = _factorService.Where(x => x.RegisterDate.Date == date && x.FactorStatus == FactorStatus.Unpaid).Count();
+                monthSuccessFactores[i] = factores.Where(x => x.FactorStatus == FactorStatus.Success && x.RegisterDate.Date == date.Date).Count();
+                monthFailFactores[i] = factores.Where(x => x.FactorStatus == FactorStatus.Fail && x.RegisterDate.Date == date.Date).Count();
+                monthUnpayFactores[i] = factores.Where(x => x.FactorStatus == FactorStatus.Unpaid && x.RegisterDate.Date == date.Date).Count();
                 date = date.AddDays(1);
 
             }

@@ -60,7 +60,6 @@ namespace Netotik.Services.Implement
             {
                 x.BodyTransferEncoding = System.Net.Mime.TransferEncoding.Base64;
                 x.BodyEncoding = Encoding.UTF8;
-                x.Body = factor.Message;
                 x.Subject = factor.Subject;
                 x.ViewName = factor.ViewName;
                 x.To.Add(factor.To);

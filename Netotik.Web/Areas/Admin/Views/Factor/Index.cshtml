@@ -15,21 +15,13 @@
     </div>
 </section>
 
-<section id="chartPrice">
+<section id="sectionChartPrice">
     @Html.Partial(MVC.Admin.Factor.Views._PriceFactorChart)
 </section>
 
-<section id="chartCount">
+<section id="sectionChartCount">
     @Html.Partial(MVC.Admin.Factor.Views._CountFactorChart)
 </section>
-
-
-
-
-@section UpScript{
-    <link rel="stylesheet" type="text/css" href="~/Content/css/plugins/charts/morris.css">
-}
-
 
 
 
@@ -101,8 +93,9 @@
                 ]
             });
         });
+
         $(window).on("load", function () {
-            CardBlock('#chart');
+            CardBlock('#sectionChartPrice');
             $.get("@Url.Action(MVC.Admin.Factor.GetPriceFactorChartData())", function (data) {
                     var a = $("#price-chart"),
                 b = {
@@ -119,10 +112,10 @@
                         { label: "فاکتورهای پرداخت نشده", data: data.unpaid, backgroundColor: "#f1d987", hoverBackgroundColor: "rgba(233,30,99,.9)", borderColor: "transparent" },
                         { label: "فاکتورهای با پرداخت ناموفق", data:data.fail, backgroundColor: "#f28787", hoverBackgroundColor: "rgba(233,30,99,.9)", borderColor: "transparent" }]
                 }, d = { type: "line", options: b, data: c }; new Chart(a, d)
-                CardUnBlock('#chartPrice');
+                CardUnBlock('#sectionChartPrice');
             }, "json");
 
-
+            CardBlock('#sectionChartCount');
              $.get("@Url.Action(MVC.Admin.Factor.GetCountFactorChartData())", function (data) {
                     var a = $("#count-chart"),
                 b = {
@@ -139,7 +132,7 @@
                         { label: "فاکتورهای پرداخت نشده", data: data.unpaid, backgroundColor: "#f1d987", hoverBackgroundColor: "rgba(233,30,99,.9)", borderColor: "transparent" },
                         { label: "فاکتورهای با پرداخت ناموفق", data:data.fail, backgroundColor: "#f28787", hoverBackgroundColor: "rgba(233,30,99,.9)", borderColor: "transparent" }]
                 }, d = { type: "line", options: b, data: c }; new Chart(a, d)
-                CardUnBlock('#chartCount');
+                CardUnBlock('#sectionChartCount');
             }, "json");
 
         });

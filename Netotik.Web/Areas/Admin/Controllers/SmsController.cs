@@ -24,6 +24,7 @@ using Netotik.ViewModels.Identity.Security;
 using Netotik.ViewModels.SmsPackage;
 using Netotik.Common.Controller;
 using Netotik.Common.DataTables;
+using Netotik.Services.Identity;
 
 namespace Netotik.Web.Areas.Admin.Controllers
 {
@@ -32,14 +33,24 @@ namespace Netotik.Web.Areas.Admin.Controllers
     public partial class SmsController : BaseController
     {
 
+
         #region ctor
+        private readonly IApplicationUserManager _applicationUserManager;
         private readonly ISmsPackageService _smsPackageService;
+        private readonly ISmsService _smsService;
+        private readonly ISmsLogService _smsLogService;
         private readonly IUnitOfWork _uow;
 
         public SmsController(
+            IApplicationUserManager applicationUserManager,
+            ISmsService smsService,
+            ISmsLogService smsLogService,
             ISmsPackageService smsPackageService,
             IUnitOfWork uow)
         {
+            _applicationUserManager = applicationUserManager;
+            _smsService = smsService;
+            _smsLogService = smsLogService;
             _smsPackageService = smsPackageService;
             _uow = uow;
         }
@@ -54,13 +65,57 @@ namespace Netotik.Web.Areas.Admin.Controllers
         public virtual JsonResult GetList(RequestListModel model)
         {
             var result = _smsPackageService.GetAll();
-            
+
             return Json(new
             {
                 sEcho = model.sEcho,
                 iTotalRecords = result.Count,
                 iTotalDisplayRecords = result.Count,
                 aaData = result
+            }, JsonRequestBehavior.AllowGet);
+        }
+
+
+        public virtual JsonResult GetSmsChartData()
+        {
+            var date = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day).AddDays(-9);
+            var smses = _smsLogService.All().Where(x => x.CreateDate > date).ToList();
+            var systemSms = new long[10];
+            var userSms = new long[10];
+            var dates = new string[10];
+
+            for (var i = 0; i < 10; i++)
+            {
+                dates[i] = PersianDate.ConvertDate.ToFa(date, "d");
+                userSms[i] = smses.Where(x => x.UserId.HasValue && x.CreateDate.Date == date.Date).Count();
+                systemSms[i] = smses.Where(x => !x.UserId.HasValue && x.CreateDate.Date == date.Date).Count();
+                date = date.AddDays(1);
+
+            }
+
+            return Json(new
+            {
+                dates = dates,
+                userSms = userSms,
+                systemSms = systemSms,
+            }, JsonRequestBehavior.AllowGet);
+        }
+
+        public virtual JsonResult GetSmsCredit()
+        {
+            var credit = _smsService.GetCredit();
+            return Json(new
+            {
+                charge = credit
+            },JsonRequestBehavior.AllowGet);
+        }
+
+        public virtual JsonResult GetSmsCompaniesCredit()
+        {
+            var credit = _applicationUserManager.GetCompaniesChargre();
+            return Json(new
+            {
+                charge = credit
             }, JsonRequestBehavior.AllowGet);
         }
 

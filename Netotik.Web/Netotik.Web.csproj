@@ -331,7 +331,6 @@
     <Folder Include="Areas\Company\Models\" />
     <Folder Include="Areas\Reseller\Models\" />
     <Folder Include="Views\FarapayamakGateway\" />
-    <Folder Include="Views\UdpLoggingToDb\" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AccountController.generated.cs">
@@ -481,7 +480,6 @@
     <Compile Include="Controllers\RemoteController.cs" />
     <Compile Include="Controllers\SitemapController.cs" />
     <Compile Include="Controllers\RssController.cs" />
-    <Compile Include="Controllers\TestController.cs" />
     <Compile Include="Controllers\TelegramBotController.cs" />
     <Compile Include="ErrorController.generated.cs">
       <DependentUpon>T4MVC.tt</DependentUpon>
@@ -557,9 +555,6 @@
     <Compile Include="T4MVC.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>T4MVC.tt</DependentUpon>
-    </Compile>
-    <Compile Include="UdpLoggingToDbController.generated.cs">
       <DependentUpon>T4MVC.tt</DependentUpon>
     </Compile>
     <Compile Include="UserMailerController.generated.cs">
@@ -3531,7 +3526,7 @@
     <Content Include="Areas\Admin\Views\Statistics\Chart.cshtml" />
     <Content Include="Areas\Admin\Views\Statistics\Chart2.cshtml" />
     <Content Include="Areas\Admin\Views\Statistics\Map.cshtml" />
-    <Content Include="Areas\Admin\Views\Statistics\Table.cshtml" />
+    <Content Include="Areas\Admin\Views\Statistics\_Countries.cshtml" />
     <Content Include="Areas\Admin\Views\Statistics\_BrowserTablePartial.cshtml" />
     <Content Include="Areas\Admin\Views\Statistics\_CurrentVisitorPartial.cshtml" />
     <Content Include="Areas\Admin\Views\Statistics\_OsTablePartial.cshtml" />
@@ -3701,6 +3696,7 @@
     <Content Include="Areas\Admin\Views\Factor\Index.cshtml" />
     <Content Include="Areas\Admin\Views\Factor\_PriceFactorChart.cshtml" />
     <Content Include="Areas\Admin\Views\Factor\_CountFactorChart.cshtml" />
+    <Content Include="Areas\Admin\Views\Sms\_Chart.cshtml" />
     <None Include="Properties\PublishProfiles\DNMA.pubxml" />
     <Content Include="Service References\ZarinPalService\Netotik.Web.ZarinPalService.GetUnverifiedTransactionsResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
