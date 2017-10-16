@@ -40,11 +40,15 @@ namespace T4MVC
             {
                 public readonly string _Layout = "_Layout";
                 public readonly string ConfirmAccount = "ConfirmAccount";
+                public readonly string ContactUs = "ContactUs";
+                public readonly string ContactUsReplayToClient = "ContactUsReplayToClient";
                 public readonly string Factor = "Factor";
                 public readonly string ResetPassword = "ResetPassword";
             }
             public readonly string _Layout = "~/Views/UserMailer/_Layout.cshtml";
             public readonly string ConfirmAccount = "~/Views/UserMailer/ConfirmAccount.cshtml";
+            public readonly string ContactUs = "~/Views/UserMailer/ContactUs.cshtml";
+            public readonly string ContactUsReplayToClient = "~/Views/UserMailer/ContactUsReplayToClient.cshtml";
             public readonly string Factor = "~/Views/UserMailer/Factor.cshtml";
             public readonly string ResetPassword = "~/Views/UserMailer/ResetPassword.cshtml";
         }

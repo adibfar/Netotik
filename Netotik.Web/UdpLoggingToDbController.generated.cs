@@ -23,62 +23,10 @@ using System.Web.Mvc.Ajax;
 using System.Web.Mvc.Html;
 using System.Web.Routing;
 using T4MVC;
-namespace Netotik.Web.Controllers
+namespace T4MVC
 {
-    public partial class UdpLoggingToDbController
+    public class UdpLoggingToDbController
     {
-        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        protected UdpLoggingToDbController(Dummy d) { }
-
-        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        protected RedirectToRouteResult RedirectToAction(ActionResult result)
-        {
-            var callInfo = result.GetT4MVCResult();
-            return RedirectToRoute(callInfo.RouteValueDictionary);
-        }
-
-        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        protected RedirectToRouteResult RedirectToAction(Task<ActionResult> taskResult)
-        {
-            return RedirectToAction(taskResult.Result);
-        }
-
-        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        protected RedirectToRouteResult RedirectToActionPermanent(ActionResult result)
-        {
-            var callInfo = result.GetT4MVCResult();
-            return RedirectToRoutePermanent(callInfo.RouteValueDictionary);
-        }
-
-        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        protected RedirectToRouteResult RedirectToActionPermanent(Task<ActionResult> taskResult)
-        {
-            return RedirectToActionPermanent(taskResult.Result);
-        }
-
-
-        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public UdpLoggingToDbController Actions { get { return MVC.UdpLoggingToDb; } }
-        [GeneratedCode("T4MVC", "2.0")]
-        public readonly string Area = "";
-        [GeneratedCode("T4MVC", "2.0")]
-        public readonly string Name = "UdpLoggingToDb";
-        [GeneratedCode("T4MVC", "2.0")]
-        public const string NameConst = "UdpLoggingToDb";
-        [GeneratedCode("T4MVC", "2.0")]
-        static readonly ActionNamesClass s_actions = new ActionNamesClass();
-        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public ActionNamesClass ActionNames { get { return s_actions; } }
-        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public class ActionNamesClass
-        {
-        }
-
-        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public class ActionNameConstants
-        {
-        }
-
 
         static readonly ViewsClass s_views = new ViewsClass();
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -94,12 +42,6 @@ namespace Netotik.Web.Controllers
         }
     }
 
-    [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-    public partial class T4MVC_UdpLoggingToDbController : Netotik.Web.Controllers.UdpLoggingToDbController
-    {
-        public T4MVC_UdpLoggingToDbController() : base(Dummy.Instance) { }
-
-    }
 }
 
 #endregion T4MVC

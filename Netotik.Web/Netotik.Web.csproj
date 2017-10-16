@@ -3867,6 +3867,8 @@
     <Content Include="Views\Login\Client.cshtml" />
     <Content Include="Views\Shared\_SideBarClientMenu.cshtml" />
     <Content Include="Views\UserMailer\Factor.cshtml" />
+    <Content Include="Views\UserMailer\ContactUs.cshtml" />
+    <Content Include="Views\UserMailer\ContactUsReplayToClient.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
