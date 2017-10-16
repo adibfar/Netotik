@@ -104,6 +104,7 @@
     <Compile Include="Identity\UserClient\ProfileModel.cs" />
     <Compile Include="Identity\UserClient\UserDetailsModel.cs" />
     <Compile Include="Identity\UserClient\UserEditModel.cs" />
+    <Compile Include="Identity\UserClient\UserJsonModel.cs" />
     <Compile Include="Identity\UserClient\UserModel.cs" />
     <Compile Include="Identity\UserClient\UserRegisterModel.cs" />
     <Compile Include="Identity\UserClient\UserWebsiteLogsWithSessionsModel.cs" />

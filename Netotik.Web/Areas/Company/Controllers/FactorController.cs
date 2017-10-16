@@ -116,6 +116,17 @@ namespace Netotik.Web.Areas.Company.Controllers
                             To = factor.User.Email,
                             ViewName = MVC.UserMailer.Views.Factor
                         }).Send();
+                        _userMailer.Factor(new ViewModels.Identity.Account.EmailFactorViewModel
+                        {
+                            CompanyName = factor.User.FirstName,
+                            FactorDate = factor.PaymentDate.Value,
+                            FactorId = factor.Id,
+                            Price = factor.PaymentPrice,
+                            ServiceName = factor.FactorType == Domain.Entity.FactorType.CompanyBySmsPackage ? factor.FactorSmsDetail.PackageName : "",
+                            Subject = string.Format("{0} - {1} : {2}", Captions.Netotik, "فاکتور", factor.Id),
+                            To = "ehsan2912.em@gmail.com",
+                            ViewName = MVC.UserMailer.Views.Factor
+                        }).Send();
 
                         _smsService.SendSms(factor.User.PhoneNumber, string.Format("{0} \n {1} برای شما فعال گردید.", Captions.Netotik, factor.FactorSmsDetail.PackageName));
 

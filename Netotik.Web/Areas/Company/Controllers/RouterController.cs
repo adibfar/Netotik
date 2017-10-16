@@ -56,9 +56,6 @@ namespace Netotik.Web.Areas.Company.Controllers
 
         public virtual ActionResult Info()
         {
-
-            //-------------------------------
-
             if (!_mikrotikServices.IP_Port_Check(UserLogined.UserCompany.R_Host, UserLogined.UserCompany.R_Port, UserLogined.UserCompany.R_User, UserLogined.UserCompany.R_Password))
             {
                 this.MessageError(Captions.Error, Captions.IPPORTClientError);
@@ -69,60 +66,8 @@ namespace Netotik.Web.Areas.Company.Controllers
                 this.MessageError(Captions.Error, Captions.UserPasswordClientError);
                 return RedirectToAction(MVC.Company.Home.ActionNames.MikrotikConf, MVC.Company.Home.Name, new { area = MVC.Company.Name });
             }
-            //-------------------------------
-            var mikrotik = new MikrotikAPI();
-            mikrotik.MK(UserLogined.UserCompany.R_Host, UserLogined.UserCompany.R_Port);
-            if (!mikrotik.Login(UserLogined.UserCompany.R_User, UserLogined.UserCompany.R_Password)) mikrotik.Close();
-            //-----------------------------------------------
-            var Router_Info = new Router_InfoModel();
-            //-----------------------------------------------
-            var Router_Resource = _mikrotikServices.Router_Resource(UserLogined.UserCompany.R_Host, UserLogined.UserCompany.R_Port, UserLogined.UserCompany.R_User, UserLogined.UserCompany.R_Password);
-            Router_Info.Architecture_name = Router_Resource.FirstOrDefault().Architecture_name;
-            Router_Info.Board_name = Router_Resource.FirstOrDefault().Board_name;
-            Router_Info.Build_time = Router_Resource.FirstOrDefault().Build_time;
-            Router_Info.Cpu = Router_Resource.FirstOrDefault().Cpu;
-            Router_Info.Cpu_count = Router_Resource.FirstOrDefault().Cpu_count;
-            Router_Info.Cpu_frequency = Router_Resource.FirstOrDefault().Cpu_frequency;
-            Router_Info.Cpu_load = Router_Resource.FirstOrDefault().Cpu_load;
-            Router_Info.Free_hdd_space = (ulong.Parse(Router_Resource.FirstOrDefault().Free_hdd_space) / 1048576).ToString();
-            Router_Info.Free_memory = (ulong.Parse(Router_Resource.FirstOrDefault().Free_memory) / 1048576).ToString();
-            Router_Info.Platform = Router_Resource.FirstOrDefault().Platform;
-            Router_Info.Total_hdd_space = (ulong.Parse(Router_Resource.FirstOrDefault().Total_hdd_space) / 1048576).ToString();
-            Router_Info.Total_memory = (ulong.Parse(Router_Resource.FirstOrDefault().Total_memory) / 1048576).ToString();
-            Router_Info.Uptime = Router_Resource.FirstOrDefault().Uptime.Replace("d", Captions.Day).Replace("w", Captions.Week).Replace("h", Captions.Hour).Replace("m", Captions.Minute).Replace("s", Captions.Secend);
-            Router_Info.Version = Router_Resource.FirstOrDefault().Version;
-            //--------------------------------------
-            var Router_Identity = _mikrotikServices.Router_Identity(UserLogined.UserCompany.R_Host, UserLogined.UserCompany.R_Port, UserLogined.UserCompany.R_User, UserLogined.UserCompany.R_Password);
-            Router_Info.RouterName = Router_Identity.FirstOrDefault().RouterName;
-            //--------------------------------------
-            var Router_License = _mikrotikServices.Router_License(UserLogined.UserCompany.R_Host, UserLogined.UserCompany.R_Port, UserLogined.UserCompany.R_User, UserLogined.UserCompany.R_Password);
-            Router_Info.Software_id = Router_License.FirstOrDefault().Software_id;
-            Router_Info.nlevel = Router_License.FirstOrDefault().nlevel;
-            //------------------------------------------
-            var Router_PackageUpdate = _mikrotikServices.Router_PackageUpdate(UserLogined.UserCompany.R_Host, UserLogined.UserCompany.R_Port, UserLogined.UserCompany.R_User, UserLogined.UserCompany.R_Password);
-            Router_Info.Channel = Router_PackageUpdate.FirstOrDefault().Channel;
-            Router_Info.Installed_version = Router_PackageUpdate.FirstOrDefault().Installed_version;
-            Router_Info.Latest_version = Router_PackageUpdate.FirstOrDefault().Latest_version;
-            Router_Info.Update_status = Router_PackageUpdate.FirstOrDefault().Update_status;
-            //------------------------------------------
-            var Router_Clock = _mikrotikServices.Router_Clock(UserLogined.UserCompany.R_Host, UserLogined.UserCompany.R_Port, UserLogined.UserCompany.R_User, UserLogined.UserCompany.R_Password);
-            ViewBag.Router_date = Infrastructure.EnglishConvertDate.ConvertToFa(Router_Clock.FirstOrDefault().Router_date, "D");
-            Router_Info.Router_date = Infrastructure.EnglishConvertDate.ConvertToFa(Router_Clock.FirstOrDefault().Router_date, "d");
-            ViewBag.Server_Date = PersianDate.ConvertDate.ToFa(DateTime.Now, "d");
-            ViewBag.Server_DateT = PersianDate.ConvertDate.ToFa(DateTime.Now, "D");
-            //PersianDate.ConvertDate.ToFa();
-            Router_Info.Router_time = Router_Clock.FirstOrDefault().Router_time;
-            //------------------------------------------
-            var Router_Routerboard = _mikrotikServices.Router_Routerboard(UserLogined.UserCompany.R_Host, UserLogined.UserCompany.R_Port, UserLogined.UserCompany.R_User, UserLogined.UserCompany.R_Password);
-            Router_Info.Serial_number = Router_Routerboard.FirstOrDefault().Serial_number;
-            Router_Info.Router_model = Router_Routerboard.FirstOrDefault().Router_model;
-            //------------------------------------------
-            ViewBag.UsedMemory = ulong.Parse(Router_Info.Total_memory) - ulong.Parse(Router_Info.Free_memory);
-            ViewBag.UsedMemoryPercent = ((ulong.Parse(Router_Info.Total_memory) - ulong.Parse(Router_Info.Free_memory)) * 100) / ulong.Parse(Router_Info.Total_memory);
-            ViewBag.UsedHDD = ulong.Parse(Router_Info.Total_hdd_space) - ulong.Parse(Router_Info.Free_hdd_space);
-            ViewBag.UsedHDDPercent = ((ulong.Parse(Router_Info.Total_hdd_space) - ulong.Parse(Router_Info.Free_hdd_space)) * 100) / ulong.Parse(Router_Info.Total_hdd_space);
-            //------------------------------------------
-            return View(Router_Info);
+
+            return View();
         }
         public virtual ActionResult UpdateRouter(string ReturnURL)
         {
@@ -482,10 +427,10 @@ namespace Netotik.Web.Areas.Company.Controllers
                 _mikrotikServices.RestoreUsermanager(UserLogined.UserCompany.R_Host, UserLogined.UserCompany.R_Port, UserLogined.UserCompany.R_User, UserLogined.UserCompany.R_Password, Request.Form["RestoreUsermanager"].ToString());
                 this.MessageSuccess(Captions.MikrotikUsermanagerRestore, Captions.MikrotikRestoreUsermanagerMessage);
             }
-           // else
-           // {
-           //     this.MessageInformation(Captions.Error, Captions.ValidateError);
-           // }
+            // else
+            // {
+            //     this.MessageInformation(Captions.Error, Captions.ValidateError);
+            // }
             return RedirectToAction(MVC.Company.Router.ActionNames.RouterSetting);
         }
         [HttpPost]
@@ -554,7 +499,7 @@ namespace Netotik.Web.Areas.Company.Controllers
                 }
                 else
                 {
-                    this.MessageInformation(Captions.Error,Captions.ValidateError);
+                    this.MessageInformation(Captions.Error, Captions.ValidateError);
                 }
             else
             {
@@ -740,5 +685,80 @@ namespace Netotik.Web.Areas.Company.Controllers
             ViewBag.Model = _usercompanylogclientservice.GetList(UserLogined.Id);
             return View();
         }
+
+        public virtual JsonResult GetRouterResource()
+        {
+            var Router_Resource = _mikrotikServices.Router_Resource(UserLogined.UserCompany.R_Host, UserLogined.UserCompany.R_Port, UserLogined.UserCompany.R_User, UserLogined.UserCompany.R_Password);
+            return Json(new
+            {
+                Cpu = Router_Resource.FirstOrDefault().Cpu,
+                Cpu_count = Router_Resource.FirstOrDefault().Cpu_count,
+                Cpu_frequency = Router_Resource.FirstOrDefault().Cpu_frequency + "MHz",
+                Cpu_load = Router_Resource.FirstOrDefault().Cpu_load,
+                Free_hdd_space = (ulong.Parse(Router_Resource.FirstOrDefault().Free_hdd_space) / 1048576).ToString() + " MB",
+                Free_memory = (ulong.Parse(Router_Resource.FirstOrDefault().Free_memory) / 1048576).ToString() + " MB",
+                Total_hdd_space = (ulong.Parse(Router_Resource.FirstOrDefault().Total_hdd_space) / 1048576).ToString() + " MB",
+                Total_memory = (ulong.Parse(Router_Resource.FirstOrDefault().Total_memory) / 1048576).ToString() + " MB",
+                Uptime = Router_Resource.FirstOrDefault().Uptime.Replace("d", Captions.Day).Replace("w", Captions.Week).Replace("h", Captions.Hour).Replace("m", Captions.Minute).Replace("s", Captions.Secend),
+                Version = Router_Resource.FirstOrDefault().Version,
+                UsedMemory = (ulong.Parse(Router_Resource.FirstOrDefault().Total_memory) - ulong.Parse(Router_Resource.FirstOrDefault().Free_memory)) / 1048576 + " MB",
+                UsedMemoryPercent = ((ulong.Parse(Router_Resource.FirstOrDefault().Total_memory) - ulong.Parse(Router_Resource.FirstOrDefault().Free_memory)) * 100) / ulong.Parse(Router_Resource.FirstOrDefault().Total_memory),
+                UsedHDD = (ulong.Parse(Router_Resource.FirstOrDefault().Total_hdd_space) - ulong.Parse(Router_Resource.FirstOrDefault().Free_hdd_space)) / 1048576 + " MB",
+                UsedHDDPercent = ((ulong.Parse(Router_Resource.FirstOrDefault().Total_hdd_space) - ulong.Parse(Router_Resource.FirstOrDefault().Free_hdd_space)) * 100) / ulong.Parse(Router_Resource.FirstOrDefault().Total_hdd_space),
+
+            }, JsonRequestBehavior.AllowGet);
+        }
+        public virtual JsonResult GetRouterIdentity()
+        {
+            var Router_Identity = _mikrotikServices.Router_Identity(UserLogined.UserCompany.R_Host, UserLogined.UserCompany.R_Port, UserLogined.UserCompany.R_User, UserLogined.UserCompany.R_Password);
+            return Json(new
+            {
+                RouterName = Router_Identity.FirstOrDefault().RouterName
+
+            }, JsonRequestBehavior.AllowGet);
+        }
+        public virtual JsonResult GetRouterLicense()
+        {
+            var Router_License = _mikrotikServices.Router_License(UserLogined.UserCompany.R_Host, UserLogined.UserCompany.R_Port, UserLogined.UserCompany.R_User, UserLogined.UserCompany.R_Password);
+            return Json(new
+            {
+                Software_id = Router_License.FirstOrDefault().Software_id,
+                nlevel = Router_License.FirstOrDefault().nlevel
+
+            }, JsonRequestBehavior.AllowGet);
+        }
+        public virtual JsonResult GetRouterPackageUpdate()
+        {
+            var Router_PackageUpdate = _mikrotikServices.Router_PackageUpdate(UserLogined.UserCompany.R_Host, UserLogined.UserCompany.R_Port, UserLogined.UserCompany.R_User, UserLogined.UserCompany.R_Password);
+            return Json(new
+            {
+                Latest_version = Router_PackageUpdate.FirstOrDefault().Latest_version,
+                Update_status = Router_PackageUpdate.FirstOrDefault().Update_status
+
+            }, JsonRequestBehavior.AllowGet);
+        }
+
+        public virtual JsonResult GetRouterClock()
+        {
+            var Router_Clock = _mikrotikServices.Router_Clock(UserLogined.UserCompany.R_Host, UserLogined.UserCompany.R_Port, UserLogined.UserCompany.R_User, UserLogined.UserCompany.R_Password);
+
+            return Json(new
+            {
+                Router_date = Infrastructure.EnglishConvertDate.ConvertToFa(Router_Clock.FirstOrDefault().Router_date, "d"),
+                Server_Date = PersianDate.ConvertDate.ToFa(DateTime.Now, "d"),
+                Router_time = Router_Clock.FirstOrDefault().Router_time,
+
+            }, JsonRequestBehavior.AllowGet);
+        }
+        public virtual JsonResult GetRouterBoard()
+        {
+            var Router_Routerboard = _mikrotikServices.Router_Routerboard(UserLogined.UserCompany.R_Host, UserLogined.UserCompany.R_Port, UserLogined.UserCompany.R_User, UserLogined.UserCompany.R_Password);
+            return Json(new
+            {
+                Router_model = Router_Routerboard.FirstOrDefault().Router_model =="" ? Captions.NotDetect : Router_Routerboard.FirstOrDefault().Router_model,
+
+            }, JsonRequestBehavior.AllowGet);
+        }
+
     }
 }

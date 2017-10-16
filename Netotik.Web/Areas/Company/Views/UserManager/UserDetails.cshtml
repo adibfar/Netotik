@@ -1,6 +1,6 @@
 ﻿@model Netotik.ViewModels.Identity.UserClient.UserModel
-    @using Netotik.Resources;
-@{ 
+@using Netotik.Resources;
+@{
     var counter = 1;
     var counter2 = 1;
 }
@@ -198,148 +198,222 @@
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="tab-pane fade" id="Router" role="tabpanel" aria-labelledby="linkIcon12-tab1" aria-expanded="false">
-                                    <table class="table table-striped table-bordered table-hover" id="grid">
-                                        <thead>
-                                            <tr>
-                                                <td>#</td>
-                                                <th>@Captions.UserName</th>
-                                                <th>@Captions.FromTime</th>
-                                                <th>@Captions.TillTime</th>
-                                                <th>@Captions.ConnectionOnlineTime</th>
-                                                <th>@Captions.Download (MB)</th>
-                                                <th>@Captions.Upload (MB)</th>
-                                                <th>Nas Port</th>
-                                                <th>Nas Port Type</th>
-                                                <th>Nas Port ID</th>
-                                                <th>Calling Station ID</th>
-                                                <th>Acct Session ID</th>
-                                                <th>User IP</th>
-                                                <th>Host IP</th>
-                                                <th>Status</th>
-                                                <th>Terminate Cause</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-
-                                            @foreach (var item in ViewBag.session)
-                                            {
-                                                <tr>
-                                                    <td>@(counter++)</td>
-                                                    <td>@item.user</td>
-                                                    <td data-toggle="tooltip" data-original-title="<b>@item.from_timeT</b>" data-html="true">@item.from_time</td>
-                                                    <td data-toggle="tooltip" data-original-title="<b>@item.till_timeT</b>" data-html="true">@item.till_time</td>
-                                                    <td>@item.uptime.Replace("s", Captions.Secend).Replace("h", Captions.Hour).Replace("m", Captions.Minute).Replace("d",Captions.Day)</td>
-                                                    <td>@((ulong.Parse(item.download) / 1048576))</td>
-                                                    <td>@(ulong.Parse(item.upload) / 1048576)</td>
-                                                    <td>@item.nas_port</td>
-                                                    <td>@item.nas_port_type</td>
-                                                    <td>@item.nas_port_id</td>
-                                                    <td>@item.calling_station_id</td>
-                                                    <td>@item.acct_session_id</td>
-                                                    <td>@item.user_ip</td>
-                                                    <td>@item.host_ip</td>
-                                                    <td>@item.status</td>
-                                                    <td>@item.terminate_cause</td>
-                                                </tr>
-                                            }
-                                        </tbody>
-                                    </table>
-                            </div>
-                            <div class="tab-pane fade" id="traffic" role="tabpanel" aria-labelledby="linkIconOpt11-tab1" aria-expanded="false">
-                                    <div class="col-md-4">
-                                        <label>@Html.DisplayNameFor(model => model.download_used)</label>
-                                        <div class="input-group">
-                                            <input type="text" class="form-control m-b" style="height:45px !important;" placeholder="0" name="downloadused" id="downloadused" value="@Html.DisplayTextFor(model => model.download_used)"  />
-                                            <div class="input-group-addon">
-                                                <select name="downloadusedB" onchange="changeval('downloadusedB', 'downloadused')" id="downloadusedB">
-                                                    <option value="1">KB</option>
-                                                    <option value="3">MB</option>
-                                                    <option value="5">GB</option>
-                                                </select>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-4">
-                                        <label>@Html.DisplayNameFor(model => model.upload_used)</label>
-                                        <div class="input-group">
-                                            <input type="text" class="form-control m-b" style="height:45px !important;" placeholder="0" name="uploadused" id="uploadused" value="@Html.DisplayTextFor(model => model.upload_used)"  />
-                                            <div class="input-group-addon">
-                                                <select name="uploadusedB" onchange="changeval('uploadusedB', 'uploadused')" id="uploadusedB">
-                                                    <option value="1">KB</option>
-                                                    <option value="3">MB</option>
-                                                    <option value="5">GB</option>
-                                                </select>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-4">
-                                        <label>@Captions.TrafficRemain</label>
-                                        <div class="input-group">
-                                            <input type="text" class="form-control m-b" style="height:45px !important;" placeholder="0" name="downloaduploadremain" id="downloaduploadremain" value="@ViewBag.download_remain" />
-                                            <div class="input-group-addon">
-                                                <select name="downloaduploadremainB" onchange="changeval('downloaduploadremainB', 'downloaduploadremain')" id="downloaduploadremainB">
-                                                    <option value="1">KB</option>
-                                                    <option value="3">MB</option>
-                                                    <option value="5">GB</option>
-                                                </select>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-4">
-                                        <label>@Captions.DownloadTrafficLimit</label>
-                                        <div class="input-group">
-                                            <input type="text" class="form-control m-b" style="height:45px !important;" placeholder="0" name="downloadlimit" id="downloadlimit" value="@ViewBag.download_limit"  />
-                                            <div class="input-group-addon">
-                                                <select name="downloadlimitB" onchange="changeval('downloadlimitB', 'downloadlimit')" id="downloadlimitB">
-                                                    <option value="1">KB</option>
-                                                    <option value="3">MB</option>
-                                                    <option value="5">GB</option>
-                                                </select>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-4">
-                                        <label>@Captions.UploadTrafficLimit</label>
-                                        <div class="input-group">
-                                            <input type="text" class="form-control m-b" style="height:45px !important;" placeholder="0" name="uploadlimit" id="uploadlimit" value="@ViewBag.upload_limit"  />
-                                            <div class="input-group-addon">
-                                                <select name="uploadlimitB" onchange="changeval('uploadlimitB', 'uploadlimit')" id="uploadlimitB">
-                                                    <option value="1">KB</option>
-                                                    <option value="3">MB</option>
-                                                    <option value="5">GB</option>
-                                                </select>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-4">
-                                        <label>@Captions.DownloadUploadTrafficLimit</label>
-                                        <div class="input-group">
-                                            <input type="text" class="form-control m-b" style="height:45px !important;" placeholder="0" name="downloaduploadlimit" id="downloaduploadlimit" value="@ViewBag.transfer_limit" />
-                                            <div class="input-group-addon">
-                                                <select name="downloaduploadlimitB" onchange="changeval('downloaduploadlimitB', 'downloaduploadlimit')" id="downloaduploadlimitB">
-                                                    <option value="1">KB</option>
-                                                    <option value="3">MB</option>
-                                                    <option value="5">GB</option>
-                                                </select>
+                                <div class="row">
+                                    <div class="col-md-3">
+                                        <div class="form-group has-feedback has-icon-left">
+                                            @Html.LabelFor(m => m.NationalCode)
+                                            <div class="position-relative has-icon-left">
+                                                @Html.TextBoxFor(m => m.NationalCode, new { @class = "form-control" })
+                                                <div class="form-control-position">
+                                                    <i class="icon-comments"></i>
+                                                </div>
+                                                @Html.ValidationMessageFor(model => model.NationalCode, "", htmlAttributes: new { @class = "text-danger" })
                                             </div>
                                         </div>
                                     </div>
                                     <div class="col-md-3">
-                                        <label>@Captions.DownloadSpeedLimit</label>
-                                        <div class="input-group ">
-                                            <input type="text" value="@ViewBag.rate_limit_tx"  class="form-control m-b" style="height:45px !important;" placeholder="0" name="uploadrate" id="uploadrate" />
-                                            <div class="input-group-addon">
-                                                <select name="uploadrateB" onchange="changeval('uploadrateB', 'uploadrate')" id="uploadrateB">
-                                                    <option value="2">KB</option>
-                                                    <option value="1">kb</option>
-                                                    <option value="3">MB</option>
-                                                    <option value="4">mb</option>
-                                                </select>
+                                        <div class="form-group has-feedback has-icon-left">
+                                            @Html.LabelFor(m => m.MarriageDate)
+                                            <div class="position-relative has-icon-left">
+                                                @Html.TextBoxFor(m => m.MarriageDate, new { @class = "form-control" })
+                                                <div class="form-control-position">
+                                                    <i class="icon-comments"></i>
+                                                </div>
+                                                @Html.ValidationMessageFor(model => model.MarriageDate, "", htmlAttributes: new { @class = "text-danger" })
                                             </div>
                                         </div>
                                     </div>
+                                    <div class="col-md-3">
+                                        <div class="form-group has-feedback has-icon-left">
+                                            @Html.LabelFor(m => m.CreateDate)
+                                            <div class="position-relative has-icon-left">
+                                                @Html.TextBoxFor(m => m.CreateDate, new { @class = "form-control" })
+                                                <div class="form-control-position">
+                                                    <i class="icon-comments"></i>
+                                                </div>
+                                                @Html.ValidationMessageFor(model => model.CreateDate, "", htmlAttributes: new { @class = "text-danger" })
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <div class="form-group has-feedback has-icon-left">
+                                            @Html.LabelFor(m => m.IsMale)
+                                            <div class="position-relative has-icon-left">
+                                                @Html.TextBoxFor(m => m.IsMale, new { @class = "form-control" })
+                                                <div class="form-control-position">
+                                                    <i class="icon-comments"></i>
+                                                </div>
+                                                @Html.ValidationMessageFor(model => model.IsMale, "", htmlAttributes: new { @class = "text-danger" })
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <div class="form-group has-feedback has-icon-left">
+                                            @Html.LabelFor(m => m.Age)
+                                            <div class="position-relative has-icon-left">
+                                                @Html.TextBoxFor(m => m.Age, new { @class = "form-control" })
+                                                <div class="form-control-position">
+                                                    <i class="icon-comments"></i>
+                                                </div>
+                                                @Html.ValidationMessageFor(model => model.Age, "", htmlAttributes: new { @class = "text-danger" })
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <div class="form-group has-feedback has-icon-left">
+                                            @Html.LabelFor(m => m.Birthday)
+                                            <div class="position-relative has-icon-left">
+                                                @Html.TextBoxFor(m => m.Birthday, new { @class = "form-control" })
+                                                <div class="form-control-position">
+                                                    <i class="icon-comments"></i>
+                                                </div>
+                                                @Html.ValidationMessageFor(model => model.Birthday, "", htmlAttributes: new { @class = "text-danger" })
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="tab-pane fade" id="Router" role="tabpanel" aria-labelledby="linkIcon12-tab1" aria-expanded="false">
+                                <table class="table table-striped table-bordered table-hover" id="grid">
+                                    <thead>
+                                        <tr>
+                                            <td>#</td>
+                                            <th>@Captions.UserName</th>
+                                            <th>@Captions.FromTime</th>
+                                            <th>@Captions.TillTime</th>
+                                            <th>@Captions.ConnectionOnlineTime</th>
+                                            <th>@Captions.Download (MB)</th>
+                                            <th>@Captions.Upload (MB)</th>
+                                            <th>Nas Port</th>
+                                            <th>Nas Port Type</th>
+                                            <th>Nas Port ID</th>
+                                            <th>Calling Station ID</th>
+                                            <th>Acct Session ID</th>
+                                            <th>User IP</th>
+                                            <th>Host IP</th>
+                                            <th>Status</th>
+                                            <th>Terminate Cause</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+
+                                        @foreach (var item in ViewBag.session)
+                                        {
+                                            <tr>
+                                                <td>@(counter++)</td>
+                                                <td>@item.user</td>
+                                                <td data-toggle="tooltip" data-original-title="<b>@item.from_timeT</b>" data-html="true">@item.from_time</td>
+                                                <td data-toggle="tooltip" data-original-title="<b>@item.till_timeT</b>" data-html="true">@item.till_time</td>
+                                                <td>@item.uptime.Replace("s", Captions.Secend).Replace("h", Captions.Hour).Replace("m", Captions.Minute).Replace("d", Captions.Day)</td>
+                                                <td>@((ulong.Parse(item.download) / 1048576))</td>
+                                                <td>@(ulong.Parse(item.upload) / 1048576)</td>
+                                                <td>@item.nas_port</td>
+                                                <td>@item.nas_port_type</td>
+                                                <td>@item.nas_port_id</td>
+                                                <td>@item.calling_station_id</td>
+                                                <td>@item.acct_session_id</td>
+                                                <td>@item.user_ip</td>
+                                                <td>@item.host_ip</td>
+                                                <td>@item.status</td>
+                                                <td>@item.terminate_cause</td>
+                                            </tr>
+                                        }
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class="tab-pane fade" id="traffic" role="tabpanel" aria-labelledby="linkIconOpt11-tab1" aria-expanded="false">
+                                <div class="col-md-4">
+                                    <label>@Html.DisplayNameFor(model => model.download_used)</label>
+                                    <div class="input-group">
+                                        <input type="text" class="form-control m-b" style="height:45px !important;" placeholder="0" name="downloadused" id="downloadused" value="@Html.DisplayTextFor(model => model.download_used)" />
+                                        <div class="input-group-addon">
+                                            <select name="downloadusedB" onchange="changeval('downloadusedB', 'downloadused')" id="downloadusedB">
+                                                <option value="1">KB</option>
+                                                <option value="3">MB</option>
+                                                <option value="5">GB</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <label>@Html.DisplayNameFor(model => model.upload_used)</label>
+                                    <div class="input-group">
+                                        <input type="text" class="form-control m-b" style="height:45px !important;" placeholder="0" name="uploadused" id="uploadused" value="@Html.DisplayTextFor(model => model.upload_used)" />
+                                        <div class="input-group-addon">
+                                            <select name="uploadusedB" onchange="changeval('uploadusedB', 'uploadused')" id="uploadusedB">
+                                                <option value="1">KB</option>
+                                                <option value="3">MB</option>
+                                                <option value="5">GB</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <label>@Captions.TrafficRemain</label>
+                                    <div class="input-group">
+                                        <input type="text" class="form-control m-b" style="height:45px !important;" placeholder="0" name="downloaduploadremain" id="downloaduploadremain" value="@ViewBag.download_remain" />
+                                        <div class="input-group-addon">
+                                            <select name="downloaduploadremainB" onchange="changeval('downloaduploadremainB', 'downloaduploadremain')" id="downloaduploadremainB">
+                                                <option value="1">KB</option>
+                                                <option value="3">MB</option>
+                                                <option value="5">GB</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <label>@Captions.DownloadTrafficLimit</label>
+                                    <div class="input-group">
+                                        <input type="text" class="form-control m-b" style="height:45px !important;" placeholder="0" name="downloadlimit" id="downloadlimit" value="@ViewBag.download_limit" />
+                                        <div class="input-group-addon">
+                                            <select name="downloadlimitB" onchange="changeval('downloadlimitB', 'downloadlimit')" id="downloadlimitB">
+                                                <option value="1">KB</option>
+                                                <option value="3">MB</option>
+                                                <option value="5">GB</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <label>@Captions.UploadTrafficLimit</label>
+                                    <div class="input-group">
+                                        <input type="text" class="form-control m-b" style="height:45px !important;" placeholder="0" name="uploadlimit" id="uploadlimit" value="@ViewBag.upload_limit" />
+                                        <div class="input-group-addon">
+                                            <select name="uploadlimitB" onchange="changeval('uploadlimitB', 'uploadlimit')" id="uploadlimitB">
+                                                <option value="1">KB</option>
+                                                <option value="3">MB</option>
+                                                <option value="5">GB</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <label>@Captions.DownloadUploadTrafficLimit</label>
+                                    <div class="input-group">
+                                        <input type="text" class="form-control m-b" style="height:45px !important;" placeholder="0" name="downloaduploadlimit" id="downloaduploadlimit" value="@ViewBag.transfer_limit" />
+                                        <div class="input-group-addon">
+                                            <select name="downloaduploadlimitB" onchange="changeval('downloaduploadlimitB', 'downloaduploadlimit')" id="downloaduploadlimitB">
+                                                <option value="1">KB</option>
+                                                <option value="3">MB</option>
+                                                <option value="5">GB</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <label>@Captions.DownloadSpeedLimit</label>
+                                    <div class="input-group ">
+                                        <input type="text" value="@ViewBag.rate_limit_tx" class="form-control m-b" style="height:45px !important;" placeholder="0" name="uploadrate" id="uploadrate" />
+                                        <div class="input-group-addon">
+                                            <select name="uploadrateB" onchange="changeval('uploadrateB', 'uploadrate')" id="uploadrateB">
+                                                <option value="2">KB</option>
+                                                <option value="1">kb</option>
+                                                <option value="3">MB</option>
+                                                <option value="4">mb</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
                                 <div class="col-md-3">
                                     <label>@Captions.UploadSpeedLimit</label>
                                     <div class="input-group">
@@ -360,26 +434,26 @@
                                 <div class="row">
                                     <div class="col-xs-6">
 
-                                            <div class="card-body collapse in">
-                                                <div class="card-block">
-                                                        <div id="morris-donut-chart" class="height-400" style="width:240px !important;"></div>
-                                                </div>
+                                        <div class="card-body collapse in">
+                                            <div class="card-block">
+                                                <div id="morris-donut-chart" class="height-400" style="width:240px !important;"></div>
                                             </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                             <div class="tab-pane fade" id="time" role="tabpanel" aria-labelledby="linkIconOpt11-tab1" aria-expanded="false">
-                                    <div class="col-md-4">
-                                        <div class="form-group has-icon-left">
-                                            @Html.LabelFor(m => m.uptime_used)
-                                            <div class="position-relative has-icon-left">
-                                                @Html.TextBoxFor(m => m.uptime_used, new { @class = "form-control" })
-                                                <div class="form-control-position">
-                                                    <i class="icon-android-time"></i>
-                                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group has-icon-left">
+                                        @Html.LabelFor(m => m.uptime_used)
+                                        <div class="position-relative has-icon-left">
+                                            @Html.TextBoxFor(m => m.uptime_used, new { @class = "form-control" })
+                                            <div class="form-control-position">
+                                                <i class="icon-android-time"></i>
                                             </div>
                                         </div>
                                     </div>
+                                </div>
                                 <div class="col-md-4">
                                     <div class="form-group has-icon-left">
                                         @Html.LabelFor(m => m.last_seen)
@@ -392,9 +466,9 @@
                                     </div>
                                 </div>
                             </div>
-                            
+
                             <div class="tab-pane fade" id="WebsiteLog" role="tabpanel" aria-labelledby="linkIconOpt11-tab1" aria-expanded="false">
-                               <table class="table table-striped table-bordered table-hover" id="grid2">
+                                <table class="table table-striped table-bordered table-hover" id="grid2">
                                     <thead>
                                         <tr>
                                             <th>#</th>
@@ -461,7 +535,7 @@
                                 </table>
                             </div>
                         </div>
-                        
+
                     </div>
                 </div>
             </div>
@@ -472,20 +546,20 @@
 
 @section UpScript{
     <link rel="stylesheet" type="text/css" href="~/Content/css/plugins/tables/extensions/dataTables.colVis.css">
-<link rel="stylesheet" type="text/css" href="~/Content/css/plugins/tables/extensions/buttons.dataTables.min.css">
-<link href="~/Content/css/plugins/charts/morris.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="~/Content/css/plugins/tables/extensions/buttons.dataTables.min.css">
+    <link href="~/Content/css/plugins/charts/morris.css" rel="stylesheet">
 }
 @section DownScript{
-<script src="~/Content/js/plugins/tables/datatable/dataTables.buttons.min.js" type="text/javascript"></script>
-<script src="~/Content/js/plugins/tables/jszip.min.js" type="text/javascript"></script>
-<script src="~/Content/js/plugins/tables/pdfmake.min.js" type="text/javascript"></script>
-<script src="~/Content/js/plugins/tables/vfs_fonts.js" type="text/javascript"></script>
-<script src="~/Content/js/plugins/tables/buttons.html5.min.js" type="text/javascript"></script>
-<script src="~/Content/js/plugins/tables/buttons.colVis.min.js" type="text/javascript"></script>
+    <script src="~/Content/js/plugins/tables/datatable/dataTables.buttons.min.js" type="text/javascript"></script>
+    <script src="~/Content/js/plugins/tables/jszip.min.js" type="text/javascript"></script>
+    <script src="~/Content/js/plugins/tables/pdfmake.min.js" type="text/javascript"></script>
+    <script src="~/Content/js/plugins/tables/vfs_fonts.js" type="text/javascript"></script>
+    <script src="~/Content/js/plugins/tables/buttons.html5.min.js" type="text/javascript"></script>
+    <script src="~/Content/js/plugins/tables/buttons.colVis.min.js" type="text/javascript"></script>
 
 
-<script src="~/Content/js/plugins/charts/morris.min.js" type="text/javascript"></script>
-<script src="~/Content/js/plugins/charts/raphael-min.js" type="text/javascript"></script>
+    <script src="~/Content/js/plugins/charts/morris.min.js" type="text/javascript"></script>
+    <script src="~/Content/js/plugins/charts/raphael-min.js" type="text/javascript"></script>
     <script type="text/javascript">
         $(document).ready(function () {
             var table = $('#grid').dataTable({
@@ -593,115 +667,115 @@
                         'copy', 'excel', 'pdf', 'pageLength', 'colvis'
                     ]
                 });
-            changeval('downloadlimitB', 'downloadlimit');
-            changeval('uploadlimitB', 'uploadlimit');
-            changeval('downloaduploadlimitB', 'downloaduploadlimit');
-            changeval('downloadrateB', 'downloadrate');
-            changeval('uploadrateB', 'uploadrate');
-            changeval('downloaduploadremainB', 'downloaduploadremain');
-            changeval('downloadusedB', 'downloadused');
-            changeval('uploadusedB', 'uploadused');
-            Morris.Donut({
-                element: 'morris-donut-chart',
-                data: [{ label: "@Netotik.Resources.Captions.Used", value: @(ViewBag.download_used==null?1: ulong.Parse(ViewBag.download_used.ToString()) < 1048576 ? 1 : (ulong.Parse(Model.download_used.ToString()) / 1048576)) },
-                    { label: "@Netotik.Resources.Captions.Remain", value: @(ViewBag.download_remain == null ? 1 : ulong.Parse(ViewBag.download_remain.ToString())<1048576?1:(ulong.Parse(ViewBag.download_remain.ToString()) / 1048576)) }],
-                resize: !0,
-                colors: ['#ff5733', '#54cdb4']
+                changeval('downloadlimitB', 'downloadlimit');
+                changeval('uploadlimitB', 'uploadlimit');
+                changeval('downloaduploadlimitB', 'downloaduploadlimit');
+                changeval('downloadrateB', 'downloadrate');
+                changeval('uploadrateB', 'uploadrate');
+                changeval('downloaduploadremainB', 'downloaduploadremain');
+                changeval('downloadusedB', 'downloadused');
+                changeval('uploadusedB', 'uploadused');
+                Morris.Donut({
+                    element: 'morris-donut-chart',
+                    data: [{ label: "@Netotik.Resources.Captions.Used", value: @(ViewBag.download_used==null?1: ulong.Parse(ViewBag.download_used.ToString()) < 1048576 ? 1 : (ulong.Parse(Model.download_used.ToString()) / 1048576)) },
+                        { label: "@Netotik.Resources.Captions.Remain", value: @(ViewBag.download_remain == null ? 1 : ulong.Parse(ViewBag.download_remain.ToString())<1048576?1:(ulong.Parse(ViewBag.download_remain.ToString()) / 1048576)) }],
+                    resize: !0,
+                    colors: ['#ff5733', '#54cdb4']
+                });
             });
-        });
 
-        var downloadlimit = document.getElementById('downloadlimit').value;
-        var uploadlimit = document.getElementById('uploadlimit').value;
-        var downloaduploadlimit = document.getElementById('downloaduploadlimit').value;
-        var downloadrate = document.getElementById('downloadrate').value;
-        var uploadrate = document.getElementById('uploadrate').value;
-        var downloaduploadremain = document.getElementById('downloaduploadremain').value;
-        var downloadused = document.getElementById('downloadused').value;
-        var uploadused = document.getElementById('uploadused').value;
+            var downloadlimit = document.getElementById('downloadlimit').value;
+            var uploadlimit = document.getElementById('uploadlimit').value;
+            var downloaduploadlimit = document.getElementById('downloaduploadlimit').value;
+            var downloadrate = document.getElementById('downloadrate').value;
+            var uploadrate = document.getElementById('uploadrate').value;
+            var downloaduploadremain = document.getElementById('downloaduploadremain').value;
+            var downloadused = document.getElementById('downloadused').value;
+            var uploadused = document.getElementById('uploadused').value;
 
-        function changeval(selectid, inputid) {
-            var e = document.getElementById(selectid);
-            var strUser = e.options[e.selectedIndex].value;
-            var temp;
-            switch (strUser) {
-                case '1':
-                    if (inputid == 'uploadrate') temp = (parseInt(uploadrate) / 1024).toFixed(2);
-                    if (inputid == 'downloadrate') temp = (parseInt(downloadrate) / 1024).toFixed(2);
-                    if (inputid == 'downloaduploadlimit') temp = (parseInt(downloaduploadlimit) / 1024).toFixed(2);
-                    if (inputid == 'downloaduploadremain') temp = (parseInt(downloaduploadremain) / 1024).toFixed(2);
-                    if (inputid == 'uploadlimit') temp = (parseInt(uploadlimit) / 1024).toFixed(2);
-                    if (inputid == 'downloadlimit') temp = (parseInt(downloadlimit) / 1024).toFixed(2);
-                    if (inputid == 'downloadused') temp = (parseInt(downloadused) / 1024).toFixed(2);
-                    if (inputid == 'uploadused') temp = (parseInt(uploadused) / 1024).toFixed(2);
-                    document.getElementById(inputid).value = temp.toString();
-                    break;
-                case '2':
-                    if (inputid == 'uploadrate') temp = (parseInt(uploadrate) / 8192).toFixed(2);
-                    if (inputid == 'downloadrate') temp = (parseInt(downloadrate) / 8192).toFixed(2);
-                    if (inputid == 'downloaduploadlimit') temp = (parseInt(downloaduploadlimit) / 8192).toFixed(2);
-                    if (inputid == 'downloaduploadremain') temp = (parseInt(downloaduploadremain) / 8192).toFixed(2);
-                    if (inputid == 'uploadlimit') temp = (parseInt(uploadlimit) / 8192).toFixed(2);
-                    if (inputid == 'downloadlimit') temp = (parseInt(downloadlimit) / 8192).toFixed(2);
-                    if (inputid == 'downloadused') temp = (parseInt(downloadused) / 8192).toFixed(2);
-                    if (inputid == 'uploadused') temp = (parseInt(uploadused) / 8192).toFixed(2);
-                    document.getElementById(inputid).value = temp.toString();
-                    break;
-                case '3':
-                    if (inputid == 'uploadrate') temp = (parseInt(uploadrate) / 1048576).toFixed(2);
-                    if (inputid == 'downloadrate') temp = (parseInt(downloadrate) / 1048576).toFixed(2);
-                    if (inputid == 'downloaduploadlimit') temp = (parseInt(downloaduploadlimit) / 1048576).toFixed(2);
-                    if (inputid == 'downloaduploadremain') temp = (parseInt(downloaduploadremain) / 1048576).toFixed(2);
-                    if (inputid == 'uploadlimit') temp = (parseInt(uploadlimit) / 1048576).toFixed(2);
-                    if (inputid == 'downloadlimit') temp = (parseInt(downloadlimit) / 1048576).toFixed(2);
-                    if (inputid == 'downloadused') temp = (parseInt(downloadused) / 1048576).toFixed(2);
-                    if (inputid == 'uploadused') temp = (parseInt(uploadused) / 1048576).toFixed(2);
-                    document.getElementById(inputid).value = temp.toString();
-                    break;
-                case '4':
-                    if (inputid == 'uploadrate') temp = ((parseInt(uploadrate) / 8388608)).toFixed(2);
-                    if (inputid == 'downloadrate') temp = ((parseInt(downloadrate) / 8388608)).toFixed(2);
-                    if (inputid == 'downloaduploadlimit') temp = ((parseInt(downloaduploadlimit) / 1048576)).toFixed(2);
-                    if (inputid == 'downloaduploadremain') temp = ((parseInt(downloaduploadremain) / 1048576)).toFixed(2);
-                    if (inputid == 'uploadlimit') temp = (parseInt(uploadlimit) / 1048576).toFixed(2);
-                    if (inputid == 'downloadlimit') temp = ((parseInt(downloadlimit) / 1048576)).toFixed(2);
-                    if (inputid == 'downloadused') temp = ((parseInt(downloadused) / 1048576)).toFixed(2);
-                    if (inputid == 'uploadused') temp = ((parseInt(uploadused) / 1048576)).toFixed(2);
-                    document.getElementById(inputid).value = temp.toString();
-                    break;
-                case '5':
-                    if (inputid == 'uploadrate') temp = ((parseInt(uploadrate) / 1073741824)).toFixed(2);
-                    if (inputid == 'downloadrate') temp = ((parseInt(downloadrate) / 1073741824)).toFixed(2);
-                    if (inputid == 'downloaduploadlimit') temp = ((parseInt(downloaduploadlimit) / 1073741824)).toFixed(2);
-                    if (inputid == 'downloaduploadremain') temp = ((parseInt(downloaduploadremain) / 1073741824)).toFixed(2);
-                    if (inputid == 'uploadlimit') temp = ((parseInt(uploadlimit) / 1073741824)).toFixed(2);
-                    if (inputid == 'downloadlimit') temp = ((parseInt(downloadlimit) / 1073741824)).toFixed(2);
-                    if (inputid == 'downloadused') temp = ((parseInt(downloadused) / 1073741824)).toFixed(2);
-                    if (inputid == 'uploadused') temp = ((parseInt(uploadused) / 1073741824)).toFixed(2);
-                    document.getElementById(inputid).value = temp.toString();
-                    break;
+            function changeval(selectid, inputid) {
+                var e = document.getElementById(selectid);
+                var strUser = e.options[e.selectedIndex].value;
+                var temp;
+                switch (strUser) {
+                    case '1':
+                        if (inputid == 'uploadrate') temp = (parseInt(uploadrate) / 1024).toFixed(2);
+                        if (inputid == 'downloadrate') temp = (parseInt(downloadrate) / 1024).toFixed(2);
+                        if (inputid == 'downloaduploadlimit') temp = (parseInt(downloaduploadlimit) / 1024).toFixed(2);
+                        if (inputid == 'downloaduploadremain') temp = (parseInt(downloaduploadremain) / 1024).toFixed(2);
+                        if (inputid == 'uploadlimit') temp = (parseInt(uploadlimit) / 1024).toFixed(2);
+                        if (inputid == 'downloadlimit') temp = (parseInt(downloadlimit) / 1024).toFixed(2);
+                        if (inputid == 'downloadused') temp = (parseInt(downloadused) / 1024).toFixed(2);
+                        if (inputid == 'uploadused') temp = (parseInt(uploadused) / 1024).toFixed(2);
+                        document.getElementById(inputid).value = temp.toString();
+                        break;
+                    case '2':
+                        if (inputid == 'uploadrate') temp = (parseInt(uploadrate) / 8192).toFixed(2);
+                        if (inputid == 'downloadrate') temp = (parseInt(downloadrate) / 8192).toFixed(2);
+                        if (inputid == 'downloaduploadlimit') temp = (parseInt(downloaduploadlimit) / 8192).toFixed(2);
+                        if (inputid == 'downloaduploadremain') temp = (parseInt(downloaduploadremain) / 8192).toFixed(2);
+                        if (inputid == 'uploadlimit') temp = (parseInt(uploadlimit) / 8192).toFixed(2);
+                        if (inputid == 'downloadlimit') temp = (parseInt(downloadlimit) / 8192).toFixed(2);
+                        if (inputid == 'downloadused') temp = (parseInt(downloadused) / 8192).toFixed(2);
+                        if (inputid == 'uploadused') temp = (parseInt(uploadused) / 8192).toFixed(2);
+                        document.getElementById(inputid).value = temp.toString();
+                        break;
+                    case '3':
+                        if (inputid == 'uploadrate') temp = (parseInt(uploadrate) / 1048576).toFixed(2);
+                        if (inputid == 'downloadrate') temp = (parseInt(downloadrate) / 1048576).toFixed(2);
+                        if (inputid == 'downloaduploadlimit') temp = (parseInt(downloaduploadlimit) / 1048576).toFixed(2);
+                        if (inputid == 'downloaduploadremain') temp = (parseInt(downloaduploadremain) / 1048576).toFixed(2);
+                        if (inputid == 'uploadlimit') temp = (parseInt(uploadlimit) / 1048576).toFixed(2);
+                        if (inputid == 'downloadlimit') temp = (parseInt(downloadlimit) / 1048576).toFixed(2);
+                        if (inputid == 'downloadused') temp = (parseInt(downloadused) / 1048576).toFixed(2);
+                        if (inputid == 'uploadused') temp = (parseInt(uploadused) / 1048576).toFixed(2);
+                        document.getElementById(inputid).value = temp.toString();
+                        break;
+                    case '4':
+                        if (inputid == 'uploadrate') temp = ((parseInt(uploadrate) / 8388608)).toFixed(2);
+                        if (inputid == 'downloadrate') temp = ((parseInt(downloadrate) / 8388608)).toFixed(2);
+                        if (inputid == 'downloaduploadlimit') temp = ((parseInt(downloaduploadlimit) / 1048576)).toFixed(2);
+                        if (inputid == 'downloaduploadremain') temp = ((parseInt(downloaduploadremain) / 1048576)).toFixed(2);
+                        if (inputid == 'uploadlimit') temp = (parseInt(uploadlimit) / 1048576).toFixed(2);
+                        if (inputid == 'downloadlimit') temp = ((parseInt(downloadlimit) / 1048576)).toFixed(2);
+                        if (inputid == 'downloadused') temp = ((parseInt(downloadused) / 1048576)).toFixed(2);
+                        if (inputid == 'uploadused') temp = ((parseInt(uploadused) / 1048576)).toFixed(2);
+                        document.getElementById(inputid).value = temp.toString();
+                        break;
+                    case '5':
+                        if (inputid == 'uploadrate') temp = ((parseInt(uploadrate) / 1073741824)).toFixed(2);
+                        if (inputid == 'downloadrate') temp = ((parseInt(downloadrate) / 1073741824)).toFixed(2);
+                        if (inputid == 'downloaduploadlimit') temp = ((parseInt(downloaduploadlimit) / 1073741824)).toFixed(2);
+                        if (inputid == 'downloaduploadremain') temp = ((parseInt(downloaduploadremain) / 1073741824)).toFixed(2);
+                        if (inputid == 'uploadlimit') temp = ((parseInt(uploadlimit) / 1073741824)).toFixed(2);
+                        if (inputid == 'downloadlimit') temp = ((parseInt(downloadlimit) / 1073741824)).toFixed(2);
+                        if (inputid == 'downloadused') temp = ((parseInt(downloadused) / 1073741824)).toFixed(2);
+                        if (inputid == 'uploadused') temp = ((parseInt(uploadused) / 1073741824)).toFixed(2);
+                        document.getElementById(inputid).value = temp.toString();
+                        break;
+                }
             }
-        }
 
 
-        function Userremove(id) {
-            PostData("@Url.Action(MVC.Company.UserManager.Userremove())", { id: id });
-        }
+            function Userremove(id) {
+                PostData("@Url.Action(MVC.Company.UserManager.Userremove())", { id: id });
+            }
 
-        function Userdisable(id) {
-            PostData("@Url.Action(MVC.Company.UserManager.Userdisable())", { id: id });
-        }
+            function Userdisable(id) {
+                PostData("@Url.Action(MVC.Company.UserManager.Userdisable())", { id: id });
+            }
 
-        function Userenable(id) {
-            PostData("@Url.Action(MVC.Company.UserManager.Userenable())", { id: id });
-        }
+            function Userenable(id) {
+                PostData("@Url.Action(MVC.Company.UserManager.Userenable())", { id: id });
+            }
 
-        function UserResetCounter(id,name) {
-            PostData("@Url.Action(MVC.Company.UserManager.ResetCounter())", { id: id, user: name});
-        }
+            function UserResetCounter(id,name) {
+                PostData("@Url.Action(MVC.Company.UserManager.ResetCounter())", { id: id, user: name});
+            }
 
-        function UserCloseSession(id , name) {
-            PostData("@Url.Action(MVC.Company.UserManager.CloseSession())", { id: id ,user: name});
-        }
+            function UserCloseSession(id , name) {
+                PostData("@Url.Action(MVC.Company.UserManager.CloseSession())", { id: id ,user: name});
+            }
 
     </script>
 }

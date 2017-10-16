@@ -3697,6 +3697,7 @@
     <Content Include="Areas\Admin\Views\Factor\_PriceFactorChart.cshtml" />
     <Content Include="Areas\Admin\Views\Factor\_CountFactorChart.cshtml" />
     <Content Include="Areas\Admin\Views\Sms\_Chart.cshtml" />
+    <Content Include="Areas\Company\Views\Home\_IndexChart.cshtml" />
     <None Include="Properties\PublishProfiles\DNMA.pubxml" />
     <Content Include="Service References\ZarinPalService\Netotik.Web.ZarinPalService.GetUnverifiedTransactionsResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>

@@ -8,6 +8,7 @@ using PersianDate;
 using Netotik.ViewModels.Identity.UserClient;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
+using Newtonsoft.Json;
 
 namespace Netotik.Services.Implement
 {
@@ -216,7 +217,18 @@ namespace Netotik.Services.Implement
                     {
                         ColumnList.Add(cols[i], cols[i + 1]);
                     }
+                    var Json = new UserJsonModel();
+                    if (ColumnList.Any(x => x.Key == "comment") && !string.IsNullOrWhiteSpace(ColumnList.FirstOrDefault(x => x.Key == "comment").Value))
+                    {
+                        try
+                        {
+                            Json = JsonConvert.DeserializeObject<UserJsonModel>(ColumnList.FirstOrDefault(x => x.Key == "comment").Value);
+                        }
+                        catch (Exception ex)
+                        {
 
+                        }
+                    }
                     usermodel.Add(new Netotik.ViewModels.Identity.UserClient.UserModel()
                     {
                         id = ColumnList.Any(x => x.Key == ".id") ? (ColumnList.FirstOrDefault(x => x.Key == ".id").Value) : "",
@@ -239,12 +251,18 @@ namespace Netotik.Services.Implement
                         active = ColumnList.Any(x => x.Key == "active") ? (ColumnList.FirstOrDefault(x => x.Key == "active").Value) : "",
                         incomplete = ColumnList.Any(x => x.Key == "incomplete") ? (ColumnList.FirstOrDefault(x => x.Key == "incomplete").Value) : "",
                         disabled = ColumnList.Any(x => x.Key == "disabled") ? (ColumnList.FirstOrDefault(x => x.Key == "disabled").Value) : "",
-                        comment = ColumnList.Any(x => x.Key == "comment") ? (ColumnList.FirstOrDefault(x => x.Key == "comment").Value) : "",
+                        //comment = ColumnList.Any(x => x.Key == "comment") ? (ColumnList.FirstOrDefault(x => x.Key == "comment").Value) : "",
                         uptime_used = ColumnList.Any(x => x.Key == "uptime-used") ? (ColumnList.FirstOrDefault(x => x.Key == "uptime-used").Value) : "",
                         download_used = ColumnList.Any(x => x.Key == "download-used") ? (ColumnList.FirstOrDefault(x => x.Key == "download-used").Value) : "",
                         upload_used = ColumnList.Any(x => x.Key == "upload-used") ? (ColumnList.FirstOrDefault(x => x.Key == "upload-used").Value) : "",
                         registration_date = ColumnList.Any(x => x.Key == "registration-date") ? (ColumnList.FirstOrDefault(x => x.Key == "registration-date").Value) : "",
                         reg_key = ColumnList.Any(x => x.Key == "reg-key") ? (ColumnList.FirstOrDefault(x => x.Key == "reg-key").Value) : "",
+                        IsMale = Json.IsMale,
+                        Age = Json.Age,
+                        Birthday = Json.Birthday,
+                        CreateDate = Json.CreateDate,
+                        MarriageDate = Json.MarriageDate,
+                        NationalCode = Json.NationalCode
                     });
                 }
             }
@@ -403,7 +421,7 @@ namespace Netotik.Services.Implement
                     {
                         ColumnList.Add(cols[i], cols[i + 1]);
                     }
-
+                    var Json = ColumnList.Any(x => x.Key == "comment") ? JsonConvert.DeserializeObject<UserJsonModel>(ColumnList.FirstOrDefault(x => x.Key == "comment").Value) : new UserJsonModel();
                     usermodel.Add(new Netotik.ViewModels.Identity.UserClient.UserModel()
                     {
                         id = ColumnList.Any(x => x.Key == ".id") ? (ColumnList.FirstOrDefault(x => x.Key == ".id").Value) : "",
@@ -428,10 +446,16 @@ namespace Netotik.Services.Implement
                         active = ColumnList.Any(x => x.Key == "active") ? (ColumnList.FirstOrDefault(x => x.Key == "active").Value) : "",
                         incomplete = ColumnList.Any(x => x.Key == "incomplete") ? (ColumnList.FirstOrDefault(x => x.Key == "incomplete").Value) : "",
                         disabled = ColumnList.Any(x => x.Key == "disabled") ? (ColumnList.FirstOrDefault(x => x.Key == "disabled").Value) : "",
-                        comment = ColumnList.Any(x => x.Key == "comment") ? (ColumnList.FirstOrDefault(x => x.Key == "comment").Value) : "",
+                        // comment = ColumnList.Any(x => x.Key == "comment") ? (ColumnList.FirstOrDefault(x => x.Key == "comment").Value) : "",
                         uptime_used = ColumnList.Any(x => x.Key == "uptime-used") ? (ColumnList.FirstOrDefault(x => x.Key == "uptime-used").Value) : "",
                         download_used = ColumnList.Any(x => x.Key == "download-used") ? (ColumnList.FirstOrDefault(x => x.Key == "download-used").Value) : "",
-                        upload_used = ColumnList.Any(x => x.Key == "upload-used") ? (ColumnList.FirstOrDefault(x => x.Key == "upload-used").Value) : ""
+                        upload_used = ColumnList.Any(x => x.Key == "upload-used") ? (ColumnList.FirstOrDefault(x => x.Key == "upload-used").Value) : "",
+                        IsMale = Json.IsMale,
+                        Age = Json.Age,
+                        Birthday = Json.Birthday,
+                        CreateDate = Json.CreateDate,
+                        MarriageDate = Json.MarriageDate,
+                        NationalCode = Json.NationalCode
                     });
                 }
             }
@@ -467,6 +491,7 @@ namespace Netotik.Services.Implement
                         ColumnList.Add(cols[i], cols[i + 1]);
                     }
 
+                    var Json = ColumnList.Any(x => x.Key == "comment") ? JsonConvert.DeserializeObject<UserJsonModel>(ColumnList.FirstOrDefault(x => x.Key == "comment").Value) : new UserJsonModel();
                     usermodel.Add(new Netotik.ViewModels.Identity.UserClient.UserModel()
                     {
                         id = ColumnList.Any(x => x.Key == ".id") ? (ColumnList.FirstOrDefault(x => x.Key == ".id").Value) : "",
@@ -491,10 +516,16 @@ namespace Netotik.Services.Implement
                         active = ColumnList.Any(x => x.Key == "active") ? (ColumnList.FirstOrDefault(x => x.Key == "active").Value) : "",
                         incomplete = ColumnList.Any(x => x.Key == "incomplete") ? (ColumnList.FirstOrDefault(x => x.Key == "incomplete").Value) : "",
                         disabled = ColumnList.Any(x => x.Key == "disabled") ? (ColumnList.FirstOrDefault(x => x.Key == "disabled").Value) : "",
-                        comment = ColumnList.Any(x => x.Key == "comment") ? (ColumnList.FirstOrDefault(x => x.Key == "comment").Value) : "",
+                        //comment = ColumnList.Any(x => x.Key == "comment") ? (ColumnList.FirstOrDefault(x => x.Key == "comment").Value) : "",
                         uptime_used = ColumnList.Any(x => x.Key == "uptime-used") ? (ColumnList.FirstOrDefault(x => x.Key == "uptime-used").Value) : "",
                         download_used = ColumnList.Any(x => x.Key == "download-used") ? (ColumnList.FirstOrDefault(x => x.Key == "download-used").Value) : "",
-                        upload_used = ColumnList.Any(x => x.Key == "upload-used") ? (ColumnList.FirstOrDefault(x => x.Key == "upload-used").Value) : ""
+                        upload_used = ColumnList.Any(x => x.Key == "upload-used") ? (ColumnList.FirstOrDefault(x => x.Key == "upload-used").Value) : "",
+                        IsMale = Json.IsMale,
+                        Age = Json.Age,
+                        Birthday = Json.Birthday,
+                        CreateDate = Json.CreateDate,
+                        MarriageDate = Json.MarriageDate,
+                        NationalCode = Json.NationalCode
                     });
                 }
             }
@@ -603,7 +634,16 @@ namespace Netotik.Services.Implement
             string temp = String.Format("=phone={0}", usermanuser.phone);
             if (usermanuser.phone != "")
                 mikrotik.Send(temp);
-            temp = String.Format("=comment={0}", usermanuser.comment);
+            temp = String.Format("=comment={0}", JsonConvert.SerializeObject(new
+            {
+                Age = usermanuser.Age,
+                Birthday = usermanuser.Birthday,
+                CreateDate = DateTime.Now,
+                MarriageDate = usermanuser.MarriageDate,
+                NationalCode = usermanuser.NationalCode,
+                IsMale = usermanuser.IsMale
+            }));
+            //temp = String.Format("=comment={0}", usermanuser.comment);
             if (usermanuser.comment != "")
                 mikrotik.Send(temp);
             temp = String.Format("=customer={0}", usermanuser.customer);
@@ -649,7 +689,16 @@ namespace Netotik.Services.Implement
             mikrotik.Send("/tool/user-manager/user/set");
             string temp = String.Format("=.id={0}", model.id);
             mikrotik.Send(temp);
-            temp = String.Format("=comment={0}", model.comment);
+            temp = String.Format("=comment={0}", JsonConvert.SerializeObject(new
+            {
+                Age = model.Age,
+                Birthday = model.Birthday,
+                //CreateDate = DateTime.Now,
+                MarriageDate = model.MarriageDate,
+                NationalCode = model.NationalCode,
+                IsMale = model.IsMale
+            }));
+            //temp = String.Format("=comment={0}", model.comment);
             mikrotik.Send(temp);
             temp = String.Format("=customer={0}", model.customer);
             mikrotik.Send(temp);
@@ -830,7 +879,7 @@ namespace Netotik.Services.Implement
                         user = ColumnList.Any(x => x.Key == "user") ? (ColumnList.FirstOrDefault(x => x.Key == "user").Value) : "",
                         currency = ColumnList.Any(x => x.Key == "currency") ? (ColumnList.FirstOrDefault(x => x.Key == "currency").Value) : "",
                         method = ColumnList.Any(x => x.Key == "method") ? (ColumnList.FirstOrDefault(x => x.Key == "method").Value) : "",
-                        price = ColumnList.Any(x => x.Key == "price") ? (ColumnList.FirstOrDefault(x => x.Key == "price").Value) == "1" ? "0" : (ColumnList.FirstOrDefault(x => x.Key == "price").Value) : "",
+                        price = ColumnList.Any(x => x.Key == "price") ? (ColumnList.FirstOrDefault(x => x.Key == "price").Value) == "100" ? "0" : (ColumnList.FirstOrDefault(x => x.Key == "price").Value) : "",
                         result_code = ColumnList.Any(x => x.Key == "result-code") ? (ColumnList.FirstOrDefault(x => x.Key == "result-code").Value) : "",
                         result_msg = ColumnList.Any(x => x.Key == "result-msg") ? (ColumnList.FirstOrDefault(x => x.Key == "result-msg").Value) : "",
                         trans_end = ColumnList.Any(x => x.Key == "trans-end") ? (ColumnList.FirstOrDefault(x => x.Key == "trans-end").Value) : "",

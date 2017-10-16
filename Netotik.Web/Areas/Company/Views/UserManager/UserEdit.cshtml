@@ -57,7 +57,7 @@
                             <span class="text-danger">@Captions.JustEnglish</span>
                         </div>
                     </div>
-                    @Html.HiddenFor(model=>model.id)
+                    @Html.HiddenFor(model => model.id)
                     <div class="card-body">
                         <div class="card-block">
                             <div class="row">
@@ -142,8 +142,8 @@
                                         }
                                     </select>
                                 </div>
-                                
-                               
+
+
 
                                 <div class="col-md-6">
                                     <div class="form-group has-feedback has-icon-left">
@@ -157,15 +157,65 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-md-6">
+                            </div>
+                            <div class="row">
+                                <div class="col-md-3">
                                     <div class="form-group has-feedback has-icon-left">
-                                        @Html.LabelFor(m => m.comment)
+                                        @Html.LabelFor(m => m.NationalCode)
                                         <div class="position-relative has-icon-left">
-                                            @Html.TextBoxFor(m => m.comment, new { @class = "form-control" })
+                                            @Html.TextBoxFor(m => m.NationalCode, new { @class = "form-control" })
                                             <div class="form-control-position">
                                                 <i class="icon-comments"></i>
                                             </div>
-                                            @Html.ValidationMessageFor(model => model.comment, "", htmlAttributes: new { @class = "text-danger" })
+                                            @Html.ValidationMessageFor(model => model.NationalCode, "", htmlAttributes: new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="form-group has-feedback has-icon-left">
+                                        @Html.LabelFor(m => m.MarriageDate)
+                                        <div class="position-relative has-icon-left">
+                                            @Html.TextBoxFor(m => m.MarriageDate, new { @class = "form-control" })
+                                            <div class="form-control-position">
+                                                <i class="icon-comments"></i>
+                                            </div>
+                                            @Html.ValidationMessageFor(model => model.MarriageDate, "", htmlAttributes: new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="form-group has-feedback has-icon-left">
+                                        @Html.LabelFor(m => m.IsMale)
+                                        <div class="position-relative has-icon-left">
+                                            @Html.TextBoxFor(m => m.IsMale, new { @class = "form-control" })
+                                            <div class="form-control-position">
+                                                <i class="icon-comments"></i>
+                                            </div>
+                                            @Html.ValidationMessageFor(model => model.IsMale, "", htmlAttributes: new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="form-group has-feedback has-icon-left">
+                                        @Html.LabelFor(m => m.Age)
+                                        <div class="position-relative has-icon-left">
+                                            @Html.TextBoxFor(m => m.Age, new { @class = "form-control" })
+                                            <div class="form-control-position">
+                                                <i class="icon-comments"></i>
+                                            </div>
+                                            @Html.ValidationMessageFor(model => model.Age, "", htmlAttributes: new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="form-group has-feedback has-icon-left">
+                                        @Html.LabelFor(m => m.Birthday)
+                                        <div class="position-relative has-icon-left">
+                                            @Html.TextBoxFor(m => m.Birthday, new { @class = "form-control" })
+                                            <div class="form-control-position">
+                                                <i class="icon-comments"></i>
+                                            </div>
+                                            @Html.ValidationMessageFor(model => model.Birthday, "", htmlAttributes: new { @class = "text-danger" })
                                         </div>
                                     </div>
                                 </div>
@@ -195,12 +245,12 @@
             PostData("@Url.Action(MVC.Company.UserManager.Userenable())", { id: id });
         }
 
-        function UserResetCounter(id,name) {
-            PostData("@Url.Action(MVC.Company.UserManager.ResetCounter())", { id: id, user: name});
+        function UserResetCounter(id, name) {
+            PostData("@Url.Action(MVC.Company.UserManager.ResetCounter())", { id: id, user: name });
         }
 
-        function UserCloseSession(id , name) {
-            PostData("@Url.Action(MVC.Company.UserManager.CloseSession())", { id: id ,user: name});
+        function UserCloseSession(id, name) {
+            PostData("@Url.Action(MVC.Company.UserManager.CloseSession())", { id: id, user: name });
         }
 
     </script>

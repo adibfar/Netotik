@@ -48,7 +48,6 @@ public static partial class MVC
     public static Netotik.Web.Controllers.SitemapController Sitemap = new Netotik.Web.Controllers.T4MVC_SitemapController();
     public static T4MVC.SharedController Shared = new T4MVC.SharedController();
     public static T4MVC.SharedPublicController SharedPublic = new T4MVC.SharedPublicController();
-    public static T4MVC.UdpLoggingToDbController UdpLoggingToDb = new T4MVC.UdpLoggingToDbController();
     public static T4MVC.UserMailerController UserMailer = new T4MVC.UserMailerController();
 }
 

@@ -122,6 +122,11 @@ namespace Netotik.Web.Areas.Company.Controllers
             public readonly string BuySmsPackage = "BuySmsPackage";
             public readonly string DisableSMS = "DisableSMS";
             public readonly string EnableSMS = "EnableSMS";
+            public readonly string GetUserCount = "GetUserCount";
+            public readonly string GetPackageCount = "GetPackageCount";
+            public readonly string GetActiceSessionCount = "GetActiceSessionCount";
+            public readonly string GetRouterDateTime = "GetRouterDateTime";
+            public readonly string GetLastProfile = "GetLastProfile";
             public readonly string RedirectToLocal = "RedirectToLocal";
         }
 
@@ -140,6 +145,11 @@ namespace Netotik.Web.Areas.Company.Controllers
             public const string BuySmsPackage = "BuySmsPackage";
             public const string DisableSMS = "DisableSMS";
             public const string EnableSMS = "EnableSMS";
+            public const string GetUserCount = "GetUserCount";
+            public const string GetPackageCount = "GetPackageCount";
+            public const string GetActiceSessionCount = "GetActiceSessionCount";
+            public const string GetRouterDateTime = "GetRouterDateTime";
+            public const string GetLastProfile = "GetLastProfile";
             public const string RedirectToLocal = "RedirectToLocal";
         }
 
@@ -235,6 +245,7 @@ namespace Netotik.Web.Areas.Company.Controllers
             public class _ViewNamesClass
             {
                 public readonly string _ImageProfile = "_ImageProfile";
+                public readonly string _IndexChart = "_IndexChart";
                 public readonly string _ProfileData = "_ProfileData";
                 public readonly string ChangePassword = "ChangePassword";
                 public readonly string Index = "Index";
@@ -244,6 +255,7 @@ namespace Netotik.Web.Areas.Company.Controllers
                 public readonly string TelegramBot = "TelegramBot";
             }
             public readonly string _ImageProfile = "~/Areas/Company/Views/Home/_ImageProfile.cshtml";
+            public readonly string _IndexChart = "~/Areas/Company/Views/Home/_IndexChart.cshtml";
             public readonly string _ProfileData = "~/Areas/Company/Views/Home/_ProfileData.cshtml";
             public readonly string ChangePassword = "~/Areas/Company/Views/Home/ChangePassword.cshtml";
             public readonly string Index = "~/Areas/Company/Views/Home/Index.cshtml";
@@ -441,6 +453,61 @@ namespace Netotik.Web.Areas.Company.Controllers
             var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.EnableSMS);
             ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "id", id);
             EnableSMSOverride(callInfo, id);
+            return callInfo;
+        }
+
+        [NonAction]
+        partial void GetUserCountOverride(T4MVC_System_Web_Mvc_JsonResult callInfo);
+
+        [NonAction]
+        public override System.Web.Mvc.JsonResult GetUserCount()
+        {
+            var callInfo = new T4MVC_System_Web_Mvc_JsonResult(Area, Name, ActionNames.GetUserCount);
+            GetUserCountOverride(callInfo);
+            return callInfo;
+        }
+
+        [NonAction]
+        partial void GetPackageCountOverride(T4MVC_System_Web_Mvc_JsonResult callInfo);
+
+        [NonAction]
+        public override System.Web.Mvc.JsonResult GetPackageCount()
+        {
+            var callInfo = new T4MVC_System_Web_Mvc_JsonResult(Area, Name, ActionNames.GetPackageCount);
+            GetPackageCountOverride(callInfo);
+            return callInfo;
+        }
+
+        [NonAction]
+        partial void GetActiceSessionCountOverride(T4MVC_System_Web_Mvc_JsonResult callInfo);
+
+        [NonAction]
+        public override System.Web.Mvc.JsonResult GetActiceSessionCount()
+        {
+            var callInfo = new T4MVC_System_Web_Mvc_JsonResult(Area, Name, ActionNames.GetActiceSessionCount);
+            GetActiceSessionCountOverride(callInfo);
+            return callInfo;
+        }
+
+        [NonAction]
+        partial void GetRouterDateTimeOverride(T4MVC_System_Web_Mvc_JsonResult callInfo);
+
+        [NonAction]
+        public override System.Web.Mvc.JsonResult GetRouterDateTime()
+        {
+            var callInfo = new T4MVC_System_Web_Mvc_JsonResult(Area, Name, ActionNames.GetRouterDateTime);
+            GetRouterDateTimeOverride(callInfo);
+            return callInfo;
+        }
+
+        [NonAction]
+        partial void GetLastProfileOverride(T4MVC_System_Web_Mvc_JsonResult callInfo);
+
+        [NonAction]
+        public override System.Web.Mvc.JsonResult GetLastProfile()
+        {
+            var callInfo = new T4MVC_System_Web_Mvc_JsonResult(Area, Name, ActionNames.GetLastProfile);
+            GetLastProfileOverride(callInfo);
             return callInfo;
         }
 
