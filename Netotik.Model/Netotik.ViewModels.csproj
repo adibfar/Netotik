@@ -82,6 +82,7 @@
     <Compile Include="Identity\Account\ActivationEmailViewModel.cs" />
     <Compile Include="Identity\Account\ChangePasswordViewModel.cs" />
     <Compile Include="Identity\Account\EmailFactorViewModel.cs" />
+    <Compile Include="Identity\Account\EmailContactUsViewModel.cs" />
     <Compile Include="Identity\Account\EmailViewModel.cs" />
     <Compile Include="Identity\Account\ExternalLoginConfirmationViewModel.cs" />
     <Compile Include="Identity\Account\ExternalLoginListViewModel.cs" />

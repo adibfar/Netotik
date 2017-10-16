@@ -8,6 +8,7 @@ namespace Netotik.Services.Abstract
     {
 
         MvcMailMessage ResetPassword(EmailViewModel resetPasswordEmail);
+        MvcMailMessage ContactUsEmail(EmailContactUsViewModel ContactUsEmail);
         MvcMailMessage ConfirmAccount(EmailViewModel confirmAccountEmail);
         MvcMailMessage Factor(EmailFactorViewModel factor);
 

@@ -26,6 +26,19 @@ namespace Netotik.Services.Implement
                 x.To.Add(resetPasswordEmail.To);
             });
         }
+        public MvcMailMessage ContactUsEmail(EmailContactUsViewModel ContactUsEmail)
+        {
+            ViewData.Model = ContactUsEmail;
+            return Populate(x =>
+            {
+                x.BodyTransferEncoding = System.Net.Mime.TransferEncoding.Base64;
+                x.BodyEncoding = Encoding.UTF8;
+                x.Subject = ContactUsEmail.Subject;
+                x.ViewName = ContactUsEmail.ViewName;
+                x.Body = ContactUsEmail.Message;
+                x.To.Add(ContactUsEmail.To);
+            });
+        }
 
         public MvcMailMessage ConfirmAccount(EmailViewModel confirmAccountEmail)
         {
