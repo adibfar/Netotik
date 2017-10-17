@@ -28,6 +28,7 @@ using Microsoft.AspNet.Identity;
 using Netotik.ViewModels.Identity.Security;
 using WebGrease.Css.Extensions;
 using Telegram.Bot;
+using Netotik.ViewModels.Mikrotik;
 
 namespace Netotik.Web.Areas.Company.Controllers
 {
@@ -71,45 +72,10 @@ namespace Netotik.Web.Areas.Company.Controllers
 
         public virtual ActionResult Index()
         {
-            if (!_mikrotikServices.IP_Port_Check(UserLogined.UserCompany.R_Host, UserLogined.UserCompany.R_Port, UserLogined.UserCompany.R_User, UserLogined.UserCompany.R_Password))
-            {
-                this.MessageError(Captions.Error, Captions.IPPORTClientError);
-                return RedirectToAction(MVC.Company.Home.ActionNames.MikrotikConf, MVC.Company.Home.Name, new { area = MVC.Company.Name });
-            }
-            if (!_mikrotikServices.User_Pass_Check(UserLogined.UserCompany.R_Host, UserLogined.UserCompany.R_Port, UserLogined.UserCompany.R_User, UserLogined.UserCompany.R_Password))
-            {
-                this.MessageError(Captions.Error, Captions.UserPasswordClientError);
-                return RedirectToAction(MVC.Company.Home.ActionNames.MikrotikConf, MVC.Company.Home.Name, new { area = MVC.Company.Name });
-            }
             if (!_mikrotikServices.Usermanager_IsInstall(UserLogined.UserCompany.R_Host, UserLogined.UserCompany.R_Port, UserLogined.UserCompany.R_User, UserLogined.UserCompany.R_Password))
             {
                 this.MessageError(Captions.Error, Captions.UsermanagerClientError);
             }
-            try
-            {
-                ViewBag.UsersCount = _mikrotikServices.Usermanager_GetUsersCount(UserLogined.UserCompany.R_Host, UserLogined.UserCompany.R_Port, UserLogined.UserCompany.R_User, UserLogined.UserCompany.R_Password).ToString();
-            }
-            catch { ViewBag.UsersCount = "Error"; }
-            try
-            {
-                ViewBag.PackageCount = _mikrotikServices.Usermanager_GetPackagesCount(UserLogined.UserCompany.R_Host, UserLogined.UserCompany.R_Port, UserLogined.UserCompany.R_User, UserLogined.UserCompany.R_Password).ToString();
-            }
-            catch { ViewBag.PackageCount = "Error"; }
-            try
-            {
-                ViewBag.ActiveSessionsCount = _mikrotikServices.Usermanager_GetActiveSessionsCount(UserLogined.UserCompany.R_Host, UserLogined.UserCompany.R_Port, UserLogined.UserCompany.R_User, UserLogined.UserCompany.R_Password).ToString();
-            }
-            catch { ViewBag.ActiveSessionsCount = "Error"; }
-            try
-            {
-                ViewBag.Payments = _mikrotikServices.Usermanager_Payment(UserLogined.UserCompany.R_Host, UserLogined.UserCompany.R_Port, UserLogined.UserCompany.R_User, UserLogined.UserCompany.R_Password, "").OrderByDescending(x => x.trans_end).Take(10);
-            }
-            catch { ViewBag.Payments = "Error"; }
-
-
-
-
-            ViewBag.Clock = _mikrotikServices.Router_Clock(UserLogined.UserCompany.R_Host, UserLogined.UserCompany.R_Port, UserLogined.UserCompany.R_User, UserLogined.UserCompany.R_Password).FirstOrDefault();
             return View();
         }
 
@@ -419,6 +385,97 @@ namespace Netotik.Web.Areas.Company.Controllers
 
             ViewBag.ClientPermissions = permissions;
         }
+
+        public virtual JsonResult GetUserCount()
+        {
+            var Count = "";
+            try
+            {
+                Count = _mikrotikServices.Usermanager_GetUsersCount(UserLogined.UserCompany.R_Host, UserLogined.UserCompany.R_Port, UserLogined.UserCompany.R_User, UserLogined.UserCompany.R_Password).ToString();
+            }
+            catch(Exception ex)
+            {
+                Count = "Error";
+            }
+            return Json(new
+            {
+                Count = Count
+            }, JsonRequestBehavior.AllowGet);
+        }
+        public virtual JsonResult GetPackageCount()
+        {
+            var Count = "";
+            try
+            {
+                Count = _mikrotikServices.Usermanager_GetPackagesCount(UserLogined.UserCompany.R_Host, UserLogined.UserCompany.R_Port, UserLogined.UserCompany.R_User, UserLogined.UserCompany.R_Password).ToString();
+            }
+            catch (Exception ex)
+            {
+                Count = "Error";
+            }
+            return Json(new
+            {
+                Count = Count
+            }, JsonRequestBehavior.AllowGet);
+        }
+        public virtual JsonResult GetActiceSessionCount()
+        {
+            var Count = "";
+            try
+            {
+                Count = _mikrotikServices.Usermanager_GetActiveSessionsCount(UserLogined.UserCompany.R_Host, UserLogined.UserCompany.R_Port, UserLogined.UserCompany.R_User, UserLogined.UserCompany.R_Password).ToString();
+            }
+            catch (Exception ex)
+            {
+                Count = "Error";
+            }
+            return Json(new
+            {
+                Count = Count
+            }, JsonRequestBehavior.AllowGet);
+        }
+        public virtual JsonResult GetRouterDateTime()
+        {
+            var Clock = new Router_ClockModel();
+            try
+            {
+                Clock = _mikrotikServices.Router_Clock(UserLogined.UserCompany.R_Host, UserLogined.UserCompany.R_Port, UserLogined.UserCompany.R_User, UserLogined.UserCompany.R_Password).FirstOrDefault();
+            }
+            catch (Exception ex)
+            {
+                Clock.Router_date = "Error";
+                Clock.Router_time = "Error";
+            }
+            return Json(new
+            {
+
+                ClockDate = EnglishConvertDate.ConvertToFa(Clock.Router_date, "D"),
+                ClockTime = Clock.Router_time
+            }, JsonRequestBehavior.AllowGet);
+        }
+        public virtual JsonResult GetLastProfile()
+        {
+
+            var Payments = _mikrotikServices.Usermanager_Payment(UserLogined.UserCompany.R_Host, UserLogined.UserCompany.R_Port, UserLogined.UserCompany.R_User, UserLogined.UserCompany.R_Password, "").OrderByDescending(x => x.trans_end).Take(10);
+
+            var Price = new string[10];
+            var Trans = new string[10];
+
+            int i = 0;
+            foreach(var item in Payments)
+            {
+                Trans[i] = item.user + " - " + EnglishConvertDate.ConvertToFa(item.trans_end.Split(' ')[0], "d") + " " + item.trans_end.Split(' ')[1];
+                Price[i] = item.price.Length>2 ? item.price.Remove(item.price.Length - 2, 2):item.price;
+                i++;
+            }
+            return Json(new
+            {
+                Price = Price,
+                Trans = Trans
+            }, JsonRequestBehavior.AllowGet);
+        }
+
+
 
     }
 }

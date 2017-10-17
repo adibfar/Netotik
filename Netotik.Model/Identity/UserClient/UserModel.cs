@@ -58,6 +58,12 @@ namespace Netotik.ViewModels.Identity.UserClient
         public string registration_date { get; set; }
         public string reg_key { get; set; }
 
+        public string Birthday { get; set; }
+        public string NationalCode { get; set; }
+        public string IsMale { get; set; }
+        public string CreateDate { get; set; }
+        public string MarriageDate { get; set; }
+        public string Age { get; set; }
 
     }
 }

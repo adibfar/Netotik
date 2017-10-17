@@ -170,6 +170,12 @@ namespace Netotik.Web.Areas.Company.Controllers
             public readonly string NatEnable = "NatEnable";
             public readonly string NatDisable = "NatDisable";
             public readonly string WebSitesLogs = "WebSitesLogs";
+            public readonly string GetRouterResource = "GetRouterResource";
+            public readonly string GetRouterIdentity = "GetRouterIdentity";
+            public readonly string GetRouterLicense = "GetRouterLicense";
+            public readonly string GetRouterPackageUpdate = "GetRouterPackageUpdate";
+            public readonly string GetRouterClock = "GetRouterClock";
+            public readonly string GetRouterBoard = "GetRouterBoard";
             public readonly string RedirectToLocal = "RedirectToLocal";
         }
 
@@ -202,6 +208,12 @@ namespace Netotik.Web.Areas.Company.Controllers
             public const string NatEnable = "NatEnable";
             public const string NatDisable = "NatDisable";
             public const string WebSitesLogs = "WebSitesLogs";
+            public const string GetRouterResource = "GetRouterResource";
+            public const string GetRouterIdentity = "GetRouterIdentity";
+            public const string GetRouterLicense = "GetRouterLicense";
+            public const string GetRouterPackageUpdate = "GetRouterPackageUpdate";
+            public const string GetRouterClock = "GetRouterClock";
+            public const string GetRouterBoard = "GetRouterBoard";
             public const string RedirectToLocal = "RedirectToLocal";
         }
 
@@ -655,6 +667,72 @@ namespace Netotik.Web.Areas.Company.Controllers
         {
             var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.WebSitesLogs);
             WebSitesLogsOverride(callInfo);
+            return callInfo;
+        }
+
+        [NonAction]
+        partial void GetRouterResourceOverride(T4MVC_System_Web_Mvc_JsonResult callInfo);
+
+        [NonAction]
+        public override System.Web.Mvc.JsonResult GetRouterResource()
+        {
+            var callInfo = new T4MVC_System_Web_Mvc_JsonResult(Area, Name, ActionNames.GetRouterResource);
+            GetRouterResourceOverride(callInfo);
+            return callInfo;
+        }
+
+        [NonAction]
+        partial void GetRouterIdentityOverride(T4MVC_System_Web_Mvc_JsonResult callInfo);
+
+        [NonAction]
+        public override System.Web.Mvc.JsonResult GetRouterIdentity()
+        {
+            var callInfo = new T4MVC_System_Web_Mvc_JsonResult(Area, Name, ActionNames.GetRouterIdentity);
+            GetRouterIdentityOverride(callInfo);
+            return callInfo;
+        }
+
+        [NonAction]
+        partial void GetRouterLicenseOverride(T4MVC_System_Web_Mvc_JsonResult callInfo);
+
+        [NonAction]
+        public override System.Web.Mvc.JsonResult GetRouterLicense()
+        {
+            var callInfo = new T4MVC_System_Web_Mvc_JsonResult(Area, Name, ActionNames.GetRouterLicense);
+            GetRouterLicenseOverride(callInfo);
+            return callInfo;
+        }
+
+        [NonAction]
+        partial void GetRouterPackageUpdateOverride(T4MVC_System_Web_Mvc_JsonResult callInfo);
+
+        [NonAction]
+        public override System.Web.Mvc.JsonResult GetRouterPackageUpdate()
+        {
+            var callInfo = new T4MVC_System_Web_Mvc_JsonResult(Area, Name, ActionNames.GetRouterPackageUpdate);
+            GetRouterPackageUpdateOverride(callInfo);
+            return callInfo;
+        }
+
+        [NonAction]
+        partial void GetRouterClockOverride(T4MVC_System_Web_Mvc_JsonResult callInfo);
+
+        [NonAction]
+        public override System.Web.Mvc.JsonResult GetRouterClock()
+        {
+            var callInfo = new T4MVC_System_Web_Mvc_JsonResult(Area, Name, ActionNames.GetRouterClock);
+            GetRouterClockOverride(callInfo);
+            return callInfo;
+        }
+
+        [NonAction]
+        partial void GetRouterBoardOverride(T4MVC_System_Web_Mvc_JsonResult callInfo);
+
+        [NonAction]
+        public override System.Web.Mvc.JsonResult GetRouterBoard()
+        {
+            var callInfo = new T4MVC_System_Web_Mvc_JsonResult(Area, Name, ActionNames.GetRouterBoard);
+            GetRouterBoardOverride(callInfo);
             return callInfo;
         }
 

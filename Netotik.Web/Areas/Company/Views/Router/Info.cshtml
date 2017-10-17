@@ -10,42 +10,37 @@
             <div class="card-body">
                 <div class="card-block">
                     <div class="row">
-                        <div class="col-xl-3 col-lg-6 col-md-12 border-right-grey border-right-lighten-3 clearfix">
+                        <div class="col-xl-3 col-lg-6 col-md-12 border-right-grey border-right-lighten-3 clearfix RouterBoard" style="padding-bottom:20px;">
                             <div class="float-xs-left pl-2">
                                 <span class="grey darken-1 block">@Captions.RouterModel</span>
-                                <span class="font-large-2 line-height-1 text-bold-300">
-                                    @if (Model.Router_model == "")
-                                    { <span>@Captions.NotDetect</span> }
-                                    else
-                                    { @Html.DisplayTextFor(model => model.Router_model) }
-                                </span>
+                                <span class="font-large-2 line-height-1 text-bold-300" id="Router_model"></span>
                             </div>
                             <div class="float-xs-left mt-2">
                                 <span class="grey darken-1 block"></span>
                             </div>
                         </div>
-                        <div class="col-xl-3 col-lg-6 col-md-12 border-right-grey border-right-lighten-3 clearfix">
+                        <div class="col-xl-3 col-lg-6 col-md-12 border-right-grey border-right-lighten-3 clearfix RouterIdentity"  style="padding-bottom:20px;">
                             <div class="float-xs-left pl-2">
                                 <span class="grey darken-1 block">@Captions.DeviceName</span>
-                                <span class="font-large-2 line-height-1 text-bold-300">@Html.DisplayTextFor(model => model.RouterName)</span>
+                                <span class="font-large-2 line-height-1 text-bold-300" id="RouterName"></span>
                             </div>
                             <div class="float-xs-left mt-2">
                                 <span class="grey darken-1 block"></span>
                             </div>
                         </div>
-                        <div class="col-xl-3 col-lg-6 col-md-12 border-right-grey border-right-lighten-3 clearfix">
+                        <div class="col-xl-3 col-lg-6 col-md-12 border-right-grey border-right-lighten-3 clearfix RouterLicense"  style="padding-bottom:20px;">
                             <div class="float-xs-left pl-2">
                                 <span class="grey darken-1 block">@Captions.LicenseVersion</span>
-                                <span class="font-large-1 line-height-1 text-bold-300">@Html.DisplayTextFor(model => model.nlevel)</span>
+                                <span class="font-large-1 line-height-1 text-bold-300" id="nlevel"></span>
                             </div>
                             <div class="float-xs-left mt-2">
                                 <span class="grey darken-2 block"><a href="https://wiki.mikrotik.com/wiki/Manual:License" target="_blank">@Captions.MoreInfo</a></span>
                             </div>
                         </div>
-                        <div class="col-xl-3 col-lg-6 col-md-12 clearfix">
+                        <div class="col-xl-3 col-lg-6 col-md-12 clearfix RouterLicense"  style="padding-bottom:20px;">
                             <div class="float-xs-left pl-2">
                                 <span class="grey darken-1 block">@Captions.SoftwareSerial</span>
-                                <span class="font-large-1 line-height-1 text-bold-300">@Html.DisplayTextFor(model => model.Software_id)</span>
+                                <span class="font-large-1 line-height-1 text-bold-300" id="Software_id"></span>
                             </div>
                             <div class="float-xs-left mt-2">
                                 <span class="grey darken-1 block"></span>
@@ -63,59 +58,37 @@
             <div class="card-body">
                 <div class="card-block">
                     <div class="row">
-                        <div class="col-xl-3 col-lg-6 col-md-12 border-right-grey border-right-lighten-3 clearfix">
+                        <div class="col-xl-3 col-lg-6 col-md-12 border-right-grey border-right-lighten-3 clearfix RouterClock"  style="padding-bottom:20px;">
                             <div class="float-xs-left pl-2">
                                 <span class="grey darken-1 block">@Captions.RouterTime</span>
-                                <span class="font-large-1 line-height-1 text-bold-300">@Html.DisplayTextFor(model => model.Router_time)</span>
+                                <span class="font-large-1 line-height-1 text-bold-300" id="Router_time"></span>
                             </div>
                         </div>
-                        <div class="col-xl-3 col-lg-6 col-md-12 border-right-grey border-right-lighten-3 clearfix" >
-                            <div class="float-xs-left pl-2" >
+                        <div class="col-xl-3 col-lg-6 col-md-12 border-right-grey border-right-lighten-3 clearfix RouterClock"  style="padding-bottom:20px;">
+                            <div class="float-xs-left pl-2">
                                 <span class="grey darken-1 block">@Captions.RouterDate</span>
-                                <span class="font-large-1 line-height-1 text-bold-300" data-toggle="tooltip" data-original-title="<b>@ViewBag.Router_date</b>" data-html="true">@Html.DisplayTextFor(model => model.Router_date)</span>
+                                <span class="font-large-1 line-height-1 text-bold-300" id="Router_date"></span>
                             </div>
-                            <div class="float-xs-left mt-2">
-                                @if (Model.Router_date == ViewBag.Server_Date)
-                                {
-                                    <span class="grey darken-1 block">@Captions.RouterAndServerDateEqual</span>
-                                }
-                                else
-                                {
-                                    <span class="grey darken-1 block" data-toggle="tooltip" data-original-title="<b>@ViewBag.Router_dateT</b>" data-html="true">@Captions.ServerDate @ViewBag.Server_Date</span>
-                                }
+                            <div class="float-xs-left mt-2" id="RouterDateCheck">
                             </div>
                         </div>
-                        <div class="col-xl-3 col-lg-6 col-md-12 border-right-grey border-right-lighten-3 clearfix">
+                        <div class="col-xl-3 col-lg-6 col-md-12 border-right-grey border-right-lighten-3 clearfix RouterResource"  style="padding-bottom:20px;">
                             <div class="float-xs-left pl-2">
                                 <span class="grey darken-1 block">@Captions.UpTime</span>
-                                <span class="line-height-1 text-bold-300">@Html.DisplayTextFor(model => model.Uptime)</span>
+                                <span class="line-height-1 text-bold-300" id="Uptime"></span>
                             </div>
                             <div class="float-xs-left mt-2">
                                 <span class="grey darken-2 block"></span>
                             </div>
                         </div>
-                        <div class="col-xl-3 col-lg-6 col-md-12 clearfix">
+                        <div class="col-xl-3 col-lg-6 col-md-12 clearfix RouterResource"  style="padding-bottom:20px;">
                             <div class="float-xs-left pl-2">
                                 <span class="grey darken-1 block">@Captions.RouterOSVersion</span>
-                                <span class="font-large-1 line-height-1 text-bold-300">@Html.DisplayTextFor(model => model.Version)</span>
+                                <span class="font-large-1 line-height-1 text-bold-300" id="Version"></span>
                             </div>
-                            <div class="float-xs-left mt-2">
-                                <span class="grey darken-1 block">
-                                    @if (Model.Update_status.Contains("New"))
-                                    {
-                                        <span class="fa fa-toggle-up">
-                                            <a href="@Url.Action(MVC.Company.Router.ActionNames.UpdateRouter)">
-                                                @Captions.UpdateTo
-                                                @Model.Latest_version
-                                            </a>
-                                        </span>
-                                    }
-                                    else
-                                    {
-                                        <span class="fa fa-check">
-                                            @Captions.UpdateIsInstall <a href="@Url.Action(MVC.Company.Router.ActionNames.UpdateRouterCheck)">@Captions.CheckIt</a>
-                                        </span>
-                                    }
+                            <div class="float-xs-left mt-2 RouterPackageUpdate">
+                                <span class="grey darken-1 block" id="checkUpdateSection">
+
                                 </span>
 
                             </div>
@@ -133,63 +106,69 @@
         <div class="card">
             <div class="card-body">
                 <div class="row">
-                    <div class="col-xl-4 col-lg-6 col-md-12 border-right-blue-grey border-right-lighten-5">
+                    <div class="col-xl-4 col-lg-6 col-md-12 border-right-blue-grey border-right-lighten-5 RouterResource">
                         <div class="my-1 text-xs-center">
                             <div class="card-header mb-2 pt-0">
                                 <span class="info">RAM</span>
-                                <h3 class="font-large-2 text-bold-200">@Html.DisplayTextFor(model => model.Total_memory) MB</h3>
+                                <h3 class="font-large-2 text-bold-200" id="Total_memory"></h3>
                             </div>
                             <div class="card-body">
-                                <input type="text" class="knob-ram hide-value responsive angle-offset" data-readOnly="true" data-thickness=".25" data-fgColor="#00BCD4">
+                                <div style="direction:ltr !important;">
+                                    <input type="text" class="knob-ram hide-value responsive angle-offset" data-readOnly="true" data-thickness=".25" data-fgColor="#00BCD4">
+                                </div>
                                 <ul class="list-inline clearfix mt-1 mb-0">
                                     <li class="border-right-grey border-right-lighten-2 pr-2">
-                                        <h2 class="grey darken-1 text-bold-400">@ViewBag.UsedMemory MB</h2>
+                                        <h2 class="grey darken-1 text-bold-400" id="UsedMemory"></h2>
                                         <span class="danger">@Captions.Used</span>
                                     </li>
                                     <li class="pl-2">
-                                        <h2 class="grey darken-1 text-bold-400">@Html.DisplayTextFor(model => model.Free_memory) MB</h2>
+                                        <h2 class="grey darken-1 text-bold-400" id="Free_memory"></h2>
                                         <span class="success">@Captions.Free</span>
                                     </li>
                                 </ul>
                             </div>
                         </div>
                     </div>
-                    <div class="col-xl-4 col-lg-6 col-md-12 border-right-blue-grey border-right-lighten-5">
+                    <div class="col-xl-4 col-lg-6 col-md-12 border-right-blue-grey border-right-lighten-5 RouterResource">
                         <div class="my-1 text-xs-center">
                             <div class="card-header mb-2 pt-0">
                                 <span class="info">CPU</span>
-                                <h3 class="font-large-2 text-bold-200">@Html.DisplayTextFor(model => model.Cpu_frequency) Mhz</h3>
+                                <h3 class="font-large-2 text-bold-200" id="Cpu_frequency"></h3>
                             </div>
                             <div class="card-body">
-                                <input type="text" class="knob-cpu responsive angle-offset" data-readOnly="true" data-thickness=".25" data-fgColor="#00BCD4">
+                                <div style="direction:ltr !important;">
+                                    <input type="text" class="knob-cpu responsive angle-offset" data-readOnly="true" data-thickness=".25" data-fgColor="#00BCD4">
+                                </div>
                                 <ul class="list-inline clearfix mt-1 mb-0">
                                     <li class="pl-2">
-                                        <h2 class="grey darken-1 text-bold-400">@Html.DisplayTextFor(model => model.Cpu)</h2>
+                                        <h2 class="grey darken-1 text-bold-400" id="Cpu"></h2>
                                         <span class="success">@Captions.Structure</span>
                                     </li>
                                     <li class="pl-2">
-                                        <h2 class="grey darken-1 text-bold-400">@Html.DisplayTextFor(model => model.Cpu_count)</h2>
+                                        <h2 class="grey darken-1 text-bold-400" id="Cpu_count"></h2>
                                         <span class="success">@Captions.CoreCount</span>
                                     </li>
                                 </ul>
                             </div>
                         </div>
                     </div>
-                    <div class="col-xl-4 col-lg-6 col-md-12 border-right-blue-grey border-right-lighten-5">
+                    <div class="col-xl-4 col-lg-6 col-md-12 border-right-blue-grey border-right-lighten-5 RouterResource">
                         <div class="my-1 text-xs-center">
                             <div class="card-header mb-2 pt-0">
                                 <span class="info">HDD</span>
-                                <h3 class="font-large-2 text-bold-200">@Html.DisplayTextFor(model => model.Total_hdd_space) MB</h3>
+                                <h3 class="font-large-2 text-bold-200" id="Total_hdd_space"></h3>
                             </div>
                             <div class="card-body">
-                                <input type="text" class="knob-hdd hide-value responsive angle-offset" data-readOnly="true" data-thickness=".25" data-fgColor="#00BCD4">
+                                <div style="direction:ltr !important;">
+                                    <input type="text" class="knob-hdd hide-value responsive angle-offset" data-readOnly="true" data-thickness=".25" data-fgColor="#00BCD4">
+                                </div>
                                 <ul class="list-inline clearfix mt-1 mb-0">
                                     <li class="border-right-grey border-right-lighten-2 pr-2">
-                                        <h2 class="grey darken-1 text-bold-400">@ViewBag.UsedHDD MB</h2>
+                                        <h2 class="grey darken-1 text-bold-400" id="UsedHDD"></h2>
                                         <span class="danger">@Captions.Used</span>
                                     </li>
                                     <li class="pl-2">
-                                        <h2 class="grey darken-1 text-bold-400">@Html.DisplayTextFor(model => model.Free_hdd_space) MB</h2>
+                                        <h2 class="grey darken-1 text-bold-400" id="Free_hdd_space"></h2>
                                         <span class="success">@Captions.Free</span>
                                     </li>
                                 </ul>
@@ -205,16 +184,112 @@
 @section DownScript{
     <script src="~/Content/js/plugins/extensions/jquery.knob.min.js" type="text/javascript"></script>
     <script type="text/javascript">
-        $(function () {
-            $(".knob-cpu")
-                .val(@Html.DisplayTextFor(model => model.Cpu_load))
-                .knob();
-            $(".knob-hdd")
-                .val(@ViewBag.UsedHDDPercent)
-                .knob();
-            $(".knob-ram")
-                    .val(@ViewBag.UsedMemoryPercent)
-                    .knob();
+        $(window).on("load", function () {
+            CardBlock('.RouterResource');
+            $.get("@Url.Action(MVC.Company.Router.GetRouterResource())", function (data) {
+                $("#Cpu").text(data.Cpu);
+                $("#Cpu_count").text(data.Cpu_count);
+                $("#Cpu_frequency").text(data.Cpu_frequency);
+                $(".knob-cpu").val(data.Cpu_load).knob();
+                $("#Free_hdd_space").text(data.Free_hdd_space);
+                $("#Free_memory").text(data.Free_memory);
+                $("#Total_hdd_space").text(data.Total_hdd_space);
+                $("#Total_memory").text(data.Total_memory);
+                $("#Uptime").text(data.Uptime);
+                $("#Version").text(data.Version);
+                $("#UsedMemory").text(data.UsedMemory);
+                $("#UsedMemoryPercent").text(data.UsedMemoryPercent);
+                $("#UsedHDD").text(data.UsedHDD);
+                $(".knob-hdd").val(data.UsedHDDPercent).knob();
+                $(".knob-ram").val(data.UsedMemoryPercent).knob();
+                CardUnBlock('.RouterResource');
+            }, "json");
         });
+        $(window).on("load", function () {
+            CardBlock('.RouterIdentity');
+            $.get("@Url.Action(MVC.Company.Router.GetRouterIdentity())", function (data) {
+                $("#RouterName").text(data.RouterName);
+                CardUnBlock('.RouterIdentity');
+            }, "json");
+        });
+        $(window).on("load", function () {
+            CardBlock('.RouterLicense');
+            $.get("@Url.Action(MVC.Company.Router.GetRouterLicense())", function (data) {
+                $("#Software_id").text(data.Software_id);
+                $("#nlevel").text(data.nlevel);
+                CardUnBlock('.RouterLicense');
+            }, "json");
+        });
+        $(window).on("load", function () {
+            CardBlock('.RouterPackageUpdate');
+            $.get("@Url.Action(MVC.Company.Router.GetRouterPackageUpdate())", function (data) {
+                $("#Latest_version").text(data.Latest_version);
+                $("#Update_status").text(data.Update_status);
+                if (~data.Update_status.indexOf("New")) {
+                    $("#checkUpdateSection").html("<span class='fa fa-toggle-up'><a href="+'@Url.Action(MVC.Company.Router.ActionNames.UpdateRouter)'+">"+'@Captions.UpdateTo'+data.Latest_version+"</a></span>");
+                } else {
+                    $("#checkUpdateSection").html("<span class='fa fa-check'>"+'@Captions.UpdateIsInstall'+"<a href="+'@Url.Action(MVC.Company.Router.ActionNames.UpdateRouterCheck)'+">"+'@Captions.CheckIt'+"</a></span>");
+                }
+                CardUnBlock('.RouterPackageUpdate');
+            }, "json");
+        });
+        $(window).on("load", function () {
+            CardBlock('.RouterClock');
+            $.get("@Url.Action(MVC.Company.Router.GetRouterClock())", function (data) {
+                $("#Router_date").text(data.Router_date);
+                $("#Router_time").text(data.Router_time);
+                if (data.Router_date == data.Server_Date) {
+                    $("#RouterDateCheck").html("<span class='grey darken-1 block'>" + '@Captions.RouterAndServerDateEqual' + "</span>");
+                } else {
+                    $("#RouterDateCheck").html("<span class='grey darken-1 block' data-toggle='tooltip' data-original-title='<b>" + data.Server_DateT + "</b>' data-html='true'>" +'@Captions.ServerDate'+ data.Server_Date + "</span>");
+                }
+
+                CardUnBlock('.RouterClock');
+            }, "json");
+        });
+
+        $(window).on("load", function () {
+            CardBlock('.RouterBoard');
+            $.get("@Url.Action(MVC.Company.Router.GetRouterBoard())", function (data) {
+                $("#Router_model").text(data.Router_model);
+                CardUnBlock('.RouterBoard');
+            }, "json");
+        });
+
+
+        setInterval(
+                 function () {
+                     $.get("@Url.Action(MVC.Company.Router.GetRouterResource())", function (data) {
+                         $("#Cpu").text(data.Cpu);
+                         $("#Cpu_count").text(data.Cpu_count);
+                         $("#Cpu_frequency").text(data.Cpu_frequency);
+                         $(".knob-cpu").val(data.Cpu_load).knob();
+                         $("#Free_hdd_space").text(data.Free_hdd_space);
+                         $("#Free_memory").text(data.Free_memory);
+                         $("#Total_hdd_space").text(data.Total_hdd_space);
+                         $("#Total_memory").text(data.Total_memory);
+                         $("#Uptime").text(data.Uptime);
+                         $("#Version").text(data.Version);
+                         $("#UsedMemory").text(data.UsedMemory);
+                         $("#UsedMemoryPercent").text(data.UsedMemoryPercent);
+                         $("#UsedHDD").text(data.UsedHDD);
+                         $(".knob-hdd").val(data.UsedHDDPercent).knob();
+                         $(".knob-ram").val(data.UsedMemoryPercent).knob();
+                     }, "json");
+                 }
+            , 5000);
+        setInterval(
+                function () {
+                    $.get("@Url.Action(MVC.Company.Router.GetRouterClock())", function (data) {
+                        $("#Router_date").text(data.Router_date);
+                        $("#Router_time").text(data.Router_time);
+                        if (data.Router_date == data.Server_Date) {
+                            $("#RouterDateCheck").html("<span class='grey darken-1 block'>" + '@Captions.RouterAndServerDateEqual' + "</span>");
+                        } else {
+                            $("#RouterDateCheck").html("<span class='grey darken-1 block' data-toggle='tooltip' data-original-title='<b>" + data.Server_DateT + "</b>' data-html='true'>" + '@Captions.ServerDate' + data.Server_Date + "</span>");
+                        }
+                    }, "json");
+                }
+            , 10000);
     </script>
 }
