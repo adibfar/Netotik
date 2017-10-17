@@ -407,6 +407,9 @@
   <LocaleResource Name="SelectPackage">
     <Value>Select Package</Value>
   </LocaleResource>
+  <LocaleResource Name="SelectPlan">
+    <Value>Select Plan</Value>
+  </LocaleResource>
   <LocaleResource Name="Charts">
     <Value>Cahrts</Value>
   </LocaleResource>
@@ -581,7 +584,7 @@
     <Value>Package List</Value>
   </LocaleResource>
   <LocaleResource Name="NewPlan">
-    <Value>New Package</Value>
+    <Value>New Plan</Value>
   </LocaleResource>
   <LocaleResource Name="Actions">
     <Value>Actions</Value>
@@ -607,8 +610,8 @@
   <LocaleResource Name="FirstConnection">
     <Value>First Connection</Value>
   </LocaleResource>
-  <LocaleResource Name="PackageBind">
-    <Value>Package Bind</Value>
+  <LocaleResource Name="PlanBind">
+    <Value>Plan Bind</Value>
   </LocaleResource>
   <LocaleResource Name="FromTime">
     <Value>From Time</Value>
@@ -787,8 +790,8 @@
   <LocaleResource Name="RemoveUsermanagerUsers">
     <Value>Remove Users</Value>
   </LocaleResource>
-  <LocaleResource Name="RemoveUsermanagerPackages">
-    <Value>Remove Packages</Value>
+  <LocaleResource Name="RemoveUsermanagerPLan">
+    <Value>Remove Planes</Value>
   </LocaleResource>
   <LocaleResource Name="RemoveUsermanagerHistory">
     <Value>Remove History</Value>
@@ -901,11 +904,11 @@
   <LocaleResource Name="UsersCount">
     <Value>Users Count</Value>
   </LocaleResource>
-  <LocaleResource Name="PackageCount">
-    <Value>Packages Count</Value>
+  <LocaleResource Name="PlanCount">
+    <Value>Planes Count</Value>
   </LocaleResource>
-  <LocaleResource Name="LastPackageChanges">
-    <Value>Last Package Changes</Value>
+  <LocaleResource Name="LastPlanChanges">
+    <Value>Last Plan Changes</Value>
   </LocaleResource>
   <LocaleResource Name="SmsCompanyPasswordChange">
     <Value>User {0} , Your password changed.Netotik System</Value>
@@ -913,8 +916,8 @@
   <LocaleResource Name="SmsCompanyLogins">
     <Value>User {0} with {1} IP address Logined.Date:{2}</Value>
   </LocaleResource>
-  <LocaleResource Name="SmsUserBuyPackage">
-    <Value>User {0} , Your Package Changed.</Value>
+  <LocaleResource Name="SmsUserBuyPlan">
+    <Value>User {0} , Your Plan Changed.</Value>
   </LocaleResource>
   <LocaleResource Name="SmsUserPasswordChange">
     <Value>User {0} , Your Password Changed To {1}</Value>
@@ -925,8 +928,8 @@
   <LocaleResource Name="SmsUserAccountCreated">
     <Value>Your Account Created. Username: {0}  |  Password: {1}</Value>
   </LocaleResource>
-  <LocaleResource Name="SmsUserAfterChangePackage">
-    <Value>SMS User After Package Change</Value>
+  <LocaleResource Name="SmsUserAfterChangePlan">
+    <Value>SMS User After Plan Change</Value>
   </LocaleResource>
   <LocaleResource Name="SmsUserAfterDelete">
     <Value>SMS User After Account Removed</Value>
