@@ -1196,7 +1196,7 @@
     <Value>اولین اتصال</Value>
   </LocaleResource>
   <LocaleResource Name="PlanBind">
-    <Value>انتساب تعرفه</Value>
+    <Value>انتساب طرح</Value>
   </LocaleResource>
   <LocaleResource Name="FromTime">
     <Value>از ساعت</Value>
