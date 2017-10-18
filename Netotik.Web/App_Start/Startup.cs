@@ -81,8 +81,14 @@ namespace Netotik.Web
             //    clientId: "fdsfsdfs",
             //    clientSecret: "fdsfsf");
 
+            try
+            {
+                UdpListenerClass.ReceiveMessages();
+            }catch(Exception ex)
+            {
+
+            }
             
-            UdpListenerClass.ReceiveMessages();
         }
     }
 }
