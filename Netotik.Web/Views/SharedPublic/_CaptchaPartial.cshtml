@@ -27,7 +27,7 @@
     <div class="col-md-12">
         
 
-        <div class="col-md-6" dir="rtl">
+        <div class="col-md-8" dir="rtl">
             <a href="javascript:void(0)" id="@id" onclick="@functionName" class="btn">
                 <i class="fa fa-refresh"></i>
             </a>
@@ -37,7 +37,7 @@
             
         </div>
         
-        <div class="col-md-4" dir="rtl">
+        <div class="col-md-6" dir="rtl">
             @Html.TextBox(Model.InputElementId, null, new Dictionary<string, object>() { { "data-val", "true" }, { "data-val-required", "لطفا پاسخ تصویر را وارد کنید" }, { "class", "form-control " }, { "autocomplete", "off" }, { "dir", "ltr" } })
             @Html.ValidationMessage(Model.InputElementId, new { @class = "text-danger" })
         </div>

@@ -735,11 +735,11 @@ namespace Netotik.Resources
         }
 
 
-        public static string SmsUserName
+        public static string SmsUsername
         {
             get
             {
-                return resourceProvider.GetResource("SmsUserName", CultureInfo.CurrentUICulture.Name) as string;
+                return resourceProvider.GetResource("SmsUsername", CultureInfo.CurrentUICulture.Name) as string;
             }
         }
 
@@ -4560,5 +4560,15 @@ namespace Netotik.Resources
                 return resourceProvider.GetResource("NewRouter", CultureInfo.CurrentUICulture.Name) as string;
             }
         }
+
+        public static string ContactusSlogan
+        {
+            get
+            {
+                return resourceProvider.GetResource("ContactusSlogan", CultureInfo.CurrentUICulture.Name) as string;
+            }
+        }
+        
+
     }
 }

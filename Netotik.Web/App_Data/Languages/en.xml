@@ -79,7 +79,7 @@
   <LocaleResource Name="SiteUrl">Site URL</LocaleResource>
   <LocaleResource Name="SmsNumber">SMS Number</LocaleResource>
   <LocaleResource Name="SmsPassword">SMS Password</LocaleResource>
-  <LocaleResource Name="SmsUserName">SMS Username</LocaleResource>
+  <LocaleResource Name="SmsUsername">SMS Username</LocaleResource>
   <LocaleResource Name="State">State</LocaleResource>
   <LocaleResource Name="StateName">State Name</LocaleResource>
   <LocaleResource Name="Subject">Category</LocaleResource>
@@ -1190,5 +1190,11 @@
   </LocaleResource>
   <LocaleResource Name="NewRouter">
     <Value>New Router</Value>
+  </LocaleResource>
+
+  <LocaleResource Name="ContactusSlogan">
+    <Value>
+      We respond to your message as soon as possible
+    </Value>
   </LocaleResource>
 </Language>

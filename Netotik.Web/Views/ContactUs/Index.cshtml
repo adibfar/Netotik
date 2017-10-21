@@ -23,15 +23,29 @@
 }
 
 
+<section class="page-header page-header-lg parallax parallax-3" style="background-image: url(/Content/PublicUI//images/8-min.jpg); background-position: 50% 49px;">
+    <div class="overlay dark-5"></div>
 
-<section class="page-header page-header-md parallax parallax-3" style="background-image:url('../../Content/PublicUI/images/backgrounds/grey-noise-min.jpg')">
-    <div class="overlay dark-5"><!-- dark overlay [1 to 9 opacity] --></div>
     <div class="container">
+
         <h1>@Captions.ContactUs</h1>
+        <span class="font-lato size-18 weight-300">
+            @Captions.ContactusSlogan
+        </span>
+
+        <!-- breadcrumbs -->
+        <ol class="breadcrumb">
+            <li><a href="@Url.Action(MVC.Home.Index())">@Captions.HomeMenu</a></li>
+            <li class="active">@Captions.ContactUs</li>
+        </ol>
+        <!-- /breadcrumbs -->
+
     </div>
 </section>
 
-<!-- /PAGE HEADER -->
+
+
+
 <!-- -->
 <section>
     <div class="container">
@@ -39,26 +53,24 @@
         <div class="row">
 
             <!-- FORM -->
-            <div class="col-md-9 col-sm-9">
+            <div class="col-md-6 col-sm-6">
 
-                @*@if (result != null)
-                    {
-                        if (result.Color == MessageColor.Success)
-                        {
-                            <div class="alert alert-success margin-bottom-30">
-                                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-                                <strong> با تشکر </strong> پیام شما با موفقیت ارسال شد.
-                            </div>
-                        }
+                @if (ViewBag.result == true)
+                {
+                    <div class="alert alert-success margin-bottom-30">
+                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                        <strong> @Captions.MissionSuccess </strong> @Captions.Sended
+                    </div>
+                }
 
-                        if (result.Color == MessageColor.Danger)
-                        {
-                            <div class="alert alert-danger margin-bottom-30">
-                                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-                                متاسفانه خطایی رخ داده است، لطفا تماس بگیرید.
-                            </div>
-                        }
-                    }*@
+                @if (ViewBag.result==false)
+                {
+                    <div class="alert alert-danger margin-bottom-30">
+                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                        @Captions.MissionFail
+                    </div>
+
+                }
 
                 @using (Html.BeginForm(MVC.ContactUs.ActionNames.Index, MVC.ContactUs.Name, FormMethod.Post))
                 {
@@ -92,24 +104,24 @@
                         </div>
                     </fieldset>
 
-                    <div class="row">
-                        <div class="col-md-12">
-                            @Html.MathCaptcha(MVC.Shared.Views._CaptchaPartial)
-                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                @Html.MathCaptcha(MVC.Shared.Views._CaptchaPartial)
+                            </div>
 
-                    </div>
-                    <div class="row">
-                        <div class="col-md-12">
-                            <button type="submit" class="btn btn-primary"><i class="fa fa-check"></i> @Captions.Send</button>
                         </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <button type="submit" class="btn btn-primary"><i class="fa fa-check"></i> @Captions.Send</button>
+                            </div>
 
-                    </div>
+                        </div>
                 }
 
             </div>
             <!-- /FORM -->
             <!-- INFO -->
-            <div class="col-md-3 col-sm-3">
+            <div class="col-md-6 col-sm-6">
 
                 <div id="map" class="height-400"></div>
 
@@ -132,18 +144,18 @@
 
         jQuery(document).ready(function () {
             var map2 = new GMaps({
+                zoom:16,
                 div: '#map',
-                lat: 29.752746,
-                lng: 52.684599,
+                lat: 29.6291335,
+                lng: 52.5092713,
                 scrollwheel: false
             });
 
             var marker = map2.addMarker({
-                lat: 29.752746,
-                lng: 52.684599,
-                title: 'Pars Pinova, Inc.'
+                lat: 29.6291335,
+                lng: 52.5092713,
+                title: 'Netotik Office'
             });
-
         });
 
     </script>

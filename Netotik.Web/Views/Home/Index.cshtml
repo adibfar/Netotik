@@ -2,7 +2,7 @@
     var setting = Html.Setting(ViewContext.HttpContext);
     var meta = new Netotik.ViewModels.Common.Meta.MetaViewModel()
     {
-        Title = string.Format("{0} | {1}", Captions.Netotik, setting.HomePageTitle),
+        Title = string.Format("{0}", setting.HomePageTitle),
         Description = setting.HomePageDescription,
         Keywords = setting.HomePageKeywords,
         OgType="website",

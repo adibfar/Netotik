@@ -57,7 +57,7 @@ namespace Netotik.Web.Controllers
                     };
                     _inboxMessageService.Add(entity);
                     await _uow.SaveChangesAsync();
-
+                    ViewBag.result = true;
 
                     _userMailer.ContactUsEmail(new ViewModels.Identity.Account.EmailContactUsViewModel()
                     {
@@ -96,7 +96,7 @@ namespace Netotik.Web.Controllers
                         ViewName = MVC.UserMailer.Views.ViewNames.ContactUsReplayToClient,
                     }).Send();
                     ModelState.Clear();
-                    this.MessageSuccess(Captions.MissionSuccess, Captions.Sended);
+                    
                 }
                 catch
                 {

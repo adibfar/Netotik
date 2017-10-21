@@ -242,7 +242,7 @@
   <LocaleResource Name="SmsPassword">
     <Value>گذرواژه پیامکی</Value>
   </LocaleResource>
-  <LocaleResource Name="SmsUserName">
+  <LocaleResource Name="SmsUsername">
     <Value>نام کاربری خط پیامک</Value>
   </LocaleResource>
   <LocaleResource Name="State">
@@ -1770,4 +1770,12 @@
   <LocaleResource Name="NewRouter">
     <Value>روتر جدید</Value>
   </LocaleResource>
+
+  <LocaleResource Name="ContactusSlogan">
+    <Value>
+      با ما در میان بگذارید هر آنچه در ذهنتان می گذرد..
+    </Value>
+  </LocaleResource>
+
+
 </Language>
