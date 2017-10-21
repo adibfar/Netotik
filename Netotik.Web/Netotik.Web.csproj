@@ -330,7 +330,6 @@
     <Folder Include="Areas\Client\Models\" />
     <Folder Include="Areas\Company\Models\" />
     <Folder Include="Areas\Reseller\Models\" />
-    <Folder Include="Views\FarapayamakGateway\" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AccountController.generated.cs">
@@ -2276,6 +2275,7 @@
     <Content Include="Content\PublicUI\fonts\fontawesome-webfont.svg" />
     <Content Include="Content\PublicUI\images\18-min.jpg" />
     <Content Include="Content\PublicUI\images\1x1.png" />
+    <Content Include="Content\PublicUI\images\8-min.jpg" />
     <Content Include="Content\PublicUI\images\avatar.png" />
     <Content Include="Content\PublicUI\images\avatar2.jpg" />
     <Content Include="Content\PublicUI\images\backgrounds\bg1-min.jpg" />
