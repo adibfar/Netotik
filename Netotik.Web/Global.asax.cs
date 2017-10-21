@@ -110,7 +110,7 @@ namespace Netotik.Web
     {
 
         public static bool messageReceived = false;
-        public static IPEndPoint e = new IPEndPoint(IPAddress.Any, 516);
+        public static IPEndPoint e = new IPEndPoint(IPAddress.Any, 5140);
         public static UdpClient u = new UdpClient(e);
         public static IApplicationUserManager _applicationUserManager;
         public static IUserCompanyLogClientService _usercompanylogclientservice;
@@ -138,7 +138,17 @@ namespace Netotik.Web
 
             await WirteToDB(e.Address.ToString(), receiveString);
 
-            u.BeginReceive(new AsyncCallback(ReceiveCallback), s);
+            try
+            {
+                u.BeginReceive(new AsyncCallback(ReceiveCallback), s);
+            }
+            catch (Exception ex)
+            {
+                //using (StreamWriter _testData = new StreamWriter(HostingEnvironment.MapPath("~/2.txt"), true))
+                //{
+                //    _testData.WriteLine(ex); // Write the file.
+                //}
+            }
         }
 
         public static void ReceiveMessages()
@@ -150,9 +160,16 @@ namespace Netotik.Web
 
             s.e = e;
             s.u = u;
-
-            u.BeginReceive(new AsyncCallback(ReceiveCallback), s);
-
+            try
+            {
+                u.BeginReceive(new AsyncCallback(ReceiveCallback), s);
+            }catch(Exception ex)
+            {
+                //using (StreamWriter _testData = new StreamWriter(HostingEnvironment.MapPath("~/1.txt"), true))
+                //{
+                //    _testData.WriteLine(ex); // Write the file.
+                //}
+            }
             // Do some work while we wait for a message. For this example,
             // we'll just sleep
         }

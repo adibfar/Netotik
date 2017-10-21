@@ -676,7 +676,7 @@ namespace Netotik.Web.Areas.Company.Controllers
 
             //-------------------------------
 
-            if (UserLogined.UserCompany.WebsitesLogs)
+            if (!UserLogined.UserCompany.WebsitesLogs)
             {
                 this.MessageError(Captions.Error, "شما مجوز لازم را ندارید");
                 return RedirectToAction(MVC.Company.Home.ActionNames.Index, MVC.Company.Home.Name, new { area = MVC.Company.Name });
