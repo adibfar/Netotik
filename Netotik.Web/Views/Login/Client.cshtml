@@ -3,7 +3,7 @@
 @using Netotik.ViewModels.Identity.UserClient
 @model LoginModel
 @{
-    ViewBag.Title = ViewBag.CompanyName + Captions.LoginToUserAccount;
+    ViewBag.Title = ViewBag.RouterName + Captions.LoginToUserAccount;
     Layout = null;
 }
 <!DOCTYPE html>
@@ -55,9 +55,9 @@
                         <div class="card border-grey border-lighten-3 px-1 py-1 m-0">
                             <div class="card-header no-border">
                                 <div class="card-title text-xs-center">
-                                    <img src="@Url.Content(Path.Combine(Netotik.Common.Controller.FilePathes._imagesUserAvatarsPath, ViewBag.user.PictureId!=null ? ViewBag.user.Picture.FileName : "Default.png"))?h=100" alt="@ViewBag.CompanyName">
+                                    <img src="@Url.Content(Path.Combine(Netotik.Common.Controller.FilePathes._imagesUserAvatarsPath, ViewBag.user.PictureId!=null ? ViewBag.user.Picture.FileName : "Default.png"))?h=100" alt="@ViewBag.RouterName">
                                 </div>
-                                <h6 class="card-subtitle line-on-side text-muted text-xs-center font-small-3 pt-2"><span>@ViewBag.CompanyName</span></h6>
+                                <h6 class="card-subtitle line-on-side text-muted text-xs-center font-small-3 pt-2"><span>@ViewBag.RouterName</span></h6>
                             </div>
                             <div class="card-body collapse in">
                                 <div class="card-block">

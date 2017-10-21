@@ -1,0 +1,23 @@
+﻿@model Netotik.ViewModels.Mikrotik.Router_WirelessModel
+@{
+    ViewBag.Title = "مخشصات وایرلس";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="ibox-content m-b-sm border-bottom">
+    <div class="row">
+        <div class="col-md-12">
+            <a class="btn btn-default btn-outline pull-left" href="@Url.Action(MVC.MyRouter.Router.ActionNames.Wireless, MVC.MyRouter.Router.Name)">
+                <span class="fa fa-reply"></span>
+                @Netotik.Resources.Captions.Back
+            </a>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+   
+    @Html.DisplayFor(model => model.ssid)
+
+
+
+</div>

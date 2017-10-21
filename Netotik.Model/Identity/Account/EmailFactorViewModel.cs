@@ -10,7 +10,7 @@ namespace Netotik.ViewModels.Identity.Account
         public string To { get; set; }
         public string Subject { get; set; }
         public string ViewName { get; set; }
-        public string CompanyName { get; set; }
+        public string RouterName { get; set; }
         public long FactorId { get; set; }
         public string ServiceName { get; set; }
         public long Price { get; set; }

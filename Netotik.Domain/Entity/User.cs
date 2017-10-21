@@ -42,7 +42,7 @@ namespace Netotik.Domain.Entity
         public virtual Picture Picture { get; set; }
         public virtual UserAdmin UserAdmin { get; set; }
         public virtual UserReseller UserReseller { get; set; }
-        public virtual UserCompany UserCompany { get; set; }
+        public virtual UserRouter UserRouter { get; set; }
         public List<Address> Addresses { get; set; }
         public virtual ICollection<UserRole> Roles { get; set; }
         public virtual ICollection<UserClaim> Claims { get; set; }
@@ -54,7 +54,7 @@ namespace Netotik.Domain.Entity
     {
         UserAdmin = 0,
         UserReseller = 1,
-        UserCompany = 2,
+        UserRouter = 2,
         Client = 3
     }
 }

@@ -113,28 +113,28 @@ namespace Netotik.AutoMapperProfiles
                 .ForMember(d => d.ResellerCode, m => m.MapFrom(t => t.UserReseller.ResellerCode))
                 .IgnoreAllNonExisting();
 
-            CreateMap<User, ViewModels.Identity.UserCompany.ProfileModel>()
-              .ForMember(d => d.NationalCode, m => m.MapFrom(t => t.UserCompany.NationalCode))
-              .ForMember(d => d.CompanyCode, m => m.MapFrom(t => t.UserCompany.CompanyCode))
-              .ForMember(d => d.ZarinPalMerchantId, m => m.MapFrom(t => t.UserCompany.ZarinPalMerchantId))
+            CreateMap<User, ViewModels.Identity.UserRouter.ProfileModel>()
+              .ForMember(d => d.NationalCode, m => m.MapFrom(t => t.UserRouter.NationalCode))
+              .ForMember(d => d.RouterCode, m => m.MapFrom(t => t.UserRouter.RouterCode))
+              .ForMember(d => d.ZarinPalMerchantId, m => m.MapFrom(t => t.UserRouter.ZarinPalMerchantId))
               .IgnoreAllNonExisting();
 
-            CreateMap<User, ViewModels.Identity.UserCompany.CompanyEditModel>()
-              .ForMember(d => d.NationalCode, m => m.MapFrom(t => t.UserCompany.NationalCode))
-              .ForMember(d => d.CompanyCode, m => m.MapFrom(t => t.UserCompany.CompanyCode))
-              .ForMember(d => d.R_User, m => m.MapFrom(t => t.UserCompany.R_User))
-              .ForMember(d => d.R_Port, m => m.MapFrom(t => t.UserCompany.R_Port))
-              .ForMember(d => d.R_Password, m => m.MapFrom(t => t.UserCompany.R_Password))
-              .ForMember(d => d.R_Host, m => m.MapFrom(t => t.UserCompany.R_Host))
-              .ForMember(d => d.Userman_Customer, m => m.MapFrom(t => t.UserCompany.Userman_Customer))
+            CreateMap<User, ViewModels.Identity.UserRouter.RouterEditModel>()
+              .ForMember(d => d.NationalCode, m => m.MapFrom(t => t.UserRouter.NationalCode))
+              .ForMember(d => d.RouterCode, m => m.MapFrom(t => t.UserRouter.RouterCode))
+              .ForMember(d => d.R_User, m => m.MapFrom(t => t.UserRouter.R_User))
+              .ForMember(d => d.R_Port, m => m.MapFrom(t => t.UserRouter.R_Port))
+              .ForMember(d => d.R_Password, m => m.MapFrom(t => t.UserRouter.R_Password))
+              .ForMember(d => d.R_Host, m => m.MapFrom(t => t.UserRouter.R_Host))
+              .ForMember(d => d.Userman_Customer, m => m.MapFrom(t => t.UserRouter.Userman_Customer))
               .IgnoreAllNonExisting();
 
-            CreateMap<User, ViewModels.Identity.UserCompany.MikrotikConfModel>()
-              .ForMember(d => d.R_Host, m => m.MapFrom(t => t.UserCompany.R_Host))
-              .ForMember(d => d.R_Password, m => m.MapFrom(t => t.UserCompany.R_Password))
-              .ForMember(d => d.R_Port, m => m.MapFrom(t => t.UserCompany.R_Port))
-              .ForMember(d => d.R_User, m => m.MapFrom(t => t.UserCompany.R_User))
-              .ForMember(d => d.Userman_Customer, m => m.MapFrom(t => t.UserCompany.Userman_Customer))
+            CreateMap<User, ViewModels.Identity.UserRouter.MikrotikConfModel>()
+              .ForMember(d => d.R_Host, m => m.MapFrom(t => t.UserRouter.R_Host))
+              .ForMember(d => d.R_Password, m => m.MapFrom(t => t.UserRouter.R_Password))
+              .ForMember(d => d.R_Port, m => m.MapFrom(t => t.UserRouter.R_Port))
+              .ForMember(d => d.R_User, m => m.MapFrom(t => t.UserRouter.R_User))
+              .ForMember(d => d.Userman_Customer, m => m.MapFrom(t => t.UserRouter.Userman_Customer))
               .IgnoreAllNonExisting();
 
             CreateMap<ViewModels.Identity.UserAdmin.ProfileModel, UserAdmin>()
@@ -160,43 +160,43 @@ namespace Netotik.AutoMapperProfiles
                 .IgnoreAllNonExisting();
 
 
-            CreateMap<ViewModels.Identity.UserCompany.ProfileModel, UserCompany>()
+            CreateMap<ViewModels.Identity.UserRouter.ProfileModel, UserRouter>()
                 .IgnoreAllNonExisting();
 
-            CreateMap<ViewModels.Identity.UserCompany.ProfileModel, User>()
+            CreateMap<ViewModels.Identity.UserRouter.ProfileModel, User>()
                 .ForMember(d => d.EditDate, m => m.UseValue(DateTime.Now))
                 .ForMember(d => d.Roles, m => m.Ignore())
                 .ForMember(d => d.Claims, m => m.Ignore())
                 .ForMember(d => d.Logins, m => m.Ignore())
-                .ForMember(d => d.UserCompany, opt => opt.MapFrom(s => s))
+                .ForMember(d => d.UserRouter, opt => opt.MapFrom(s => s))
                 .IgnoreAllNonExisting();
 
-            CreateMap<ViewModels.Identity.UserCompany.SmsModel, UserCompany>()
+            CreateMap<ViewModels.Identity.UserRouter.SmsModel, UserRouter>()
     .IgnoreAllNonExisting();
 
-            CreateMap<ViewModels.Identity.UserCompany.SmsModel, User>()
+            CreateMap<ViewModels.Identity.UserRouter.SmsModel, User>()
                 .ForMember(d => d.EditDate, m => m.UseValue(DateTime.Now))
                 .ForMember(d => d.Roles, m => m.Ignore())
                 .ForMember(d => d.Claims, m => m.Ignore())
                 .ForMember(d => d.Logins, m => m.Ignore())
-                .ForMember(d => d.UserCompany, opt => opt.MapFrom(s => s))
+                .ForMember(d => d.UserRouter, opt => opt.MapFrom(s => s))
                 .IgnoreAllNonExisting();
 
-            CreateMap<ViewModels.Identity.UserCompany.MikrotikConfModel, UserCompany>()
+            CreateMap<ViewModels.Identity.UserRouter.MikrotikConfModel, UserRouter>()
                 .IgnoreAllNonExisting();
 
-            CreateMap<ViewModels.Identity.UserCompany.MikrotikConfModel, User>()
+            CreateMap<ViewModels.Identity.UserRouter.MikrotikConfModel, User>()
                 .ForMember(d => d.EditDate, m => m.UseValue(DateTime.Now))
                 .ForMember(d => d.Roles, m => m.Ignore())
                 .ForMember(d => d.Claims, m => m.Ignore())
                 .ForMember(d => d.Logins, m => m.Ignore())
-                .ForMember(d => d.UserCompany, opt => opt.MapFrom(s => s))
+                .ForMember(d => d.UserRouter, opt => opt.MapFrom(s => s))
                 .IgnoreAllNonExisting();
 
-            CreateMap<ViewModels.Identity.UserCompany.Register, UserCompany>()
+            CreateMap<ViewModels.Identity.UserRouter.Register, UserRouter>()
                .IgnoreAllNonExisting();
 
-            CreateMap<ViewModels.Identity.UserCompany.Register, User>()
+            CreateMap<ViewModels.Identity.UserRouter.Register, User>()
                 .ForMember(d => d.CreateDate, m => m.UseValue(DateTime.Now))
                 .ForMember(d => d.EditDate, m => m.UseValue(DateTime.Now))
                 .ForMember(d => d.EmailConfirmed, m => m.UseValue(false))
@@ -205,43 +205,43 @@ namespace Netotik.AutoMapperProfiles
                 .ForMember(d => d.PhoneNumberConfirmed, m => m.UseValue(false))
                 .ForMember(d => d.TwoFactorEnabled, m => m.UseValue(false))
                 .ForMember(d => d.UserName, m => m.MapFrom(s => s.UserName.ToLower()))
-                .ForMember(d => d.UserCompany, opt => opt.MapFrom(s => s))
+                .ForMember(d => d.UserRouter, opt => opt.MapFrom(s => s))
                 .ForMember(d => d.Roles, m => m.Ignore())
                 .ForMember(d => d.Claims, m => m.Ignore())
                 .ForMember(d => d.Logins, m => m.Ignore())
                 .IgnoreAllNonExisting();
 
 
-            CreateMap<ViewModels.Identity.UserCompany.CompanyEditModel, UserCompany>()
+            CreateMap<ViewModels.Identity.UserRouter.RouterEditModel, UserRouter>()
              .IgnoreAllNonExisting();
 
-            CreateMap<ViewModels.Identity.UserCompany.CompanyEditModel, User>()
+            CreateMap<ViewModels.Identity.UserRouter.RouterEditModel, User>()
                 .ForMember(d => d.EditDate, m => m.UseValue(DateTime.Now))
                 .ForMember(d => d.UserName, m => m.MapFrom(s => s.UserName.ToLower()))
-                .ForMember(d => d.UserCompany, opt => opt.MapFrom(s => s))
+                .ForMember(d => d.UserRouter, opt => opt.MapFrom(s => s))
                 .ForMember(d => d.Roles, m => m.Ignore())
                 .ForMember(d => d.Claims, m => m.Ignore())
                 .ForMember(d => d.Logins, m => m.Ignore())
                 .IgnoreAllNonExisting();
 
-            CreateMap<User, ViewModels.Identity.UserCompany.TelegramBotModel>()
-                .ForMember(d => d.TelegramBotToken, m => m.MapFrom(t => t.UserCompany.UserCompanyTelegram.TelegramBotToken))
-                .ForMember(d => d.ContactUsNumber, m => m.MapFrom(t => t.UserCompany.UserCompanyTelegram.ContactUsNumber))
-                .ForMember(d => d.ContactUsMessage, m => m.MapFrom(t => t.UserCompany.UserCompanyTelegram.ContactUsMessage))
-                .ForMember(d => d.ContactUsLastName, m => m.MapFrom(t => t.UserCompany.UserCompanyTelegram.ContactUsLastName))
-                .ForMember(d => d.ContactUsFirstName, m => m.MapFrom(t => t.UserCompany.UserCompanyTelegram.ContactUsFirstName))
-                .ForMember(d => d.AboutMessage, m => m.MapFrom(t => t.UserCompany.UserCompanyTelegram.AboutMessage))
+            CreateMap<User, ViewModels.Identity.UserRouter.TelegramBotModel>()
+                .ForMember(d => d.TelegramBotToken, m => m.MapFrom(t => t.UserRouter.UserRouterTelegram.TelegramBotToken))
+                .ForMember(d => d.ContactUsNumber, m => m.MapFrom(t => t.UserRouter.UserRouterTelegram.ContactUsNumber))
+                .ForMember(d => d.ContactUsMessage, m => m.MapFrom(t => t.UserRouter.UserRouterTelegram.ContactUsMessage))
+                .ForMember(d => d.ContactUsLastName, m => m.MapFrom(t => t.UserRouter.UserRouterTelegram.ContactUsLastName))
+                .ForMember(d => d.ContactUsFirstName, m => m.MapFrom(t => t.UserRouter.UserRouterTelegram.ContactUsFirstName))
+                .ForMember(d => d.AboutMessage, m => m.MapFrom(t => t.UserRouter.UserRouterTelegram.AboutMessage))
                 .IgnoreAllNonExisting();//Read From DB
 
 
-            CreateMap<ViewModels.Identity.UserCompany.TelegramBotModel, UserCompanyTelegram>()
+            CreateMap<ViewModels.Identity.UserRouter.TelegramBotModel, UserRouterTelegram>()
                 .IgnoreAllNonExisting();//Write To DB
-            CreateMap<ViewModels.Identity.UserCompany.TelegramBotModel, UserCompany>()
-                .ForMember(d => d.UserCompanyTelegram, opt => opt.MapFrom(s => s))
+            CreateMap<ViewModels.Identity.UserRouter.TelegramBotModel, UserRouter>()
+                .ForMember(d => d.UserRouterTelegram, opt => opt.MapFrom(s => s))
                 .IgnoreAllNonExisting();//Write To DB
-            CreateMap<ViewModels.Identity.UserCompany.TelegramBotModel, User>()
+            CreateMap<ViewModels.Identity.UserRouter.TelegramBotModel, User>()
                 .ForMember(d => d.EditDate, m => m.UseValue(DateTime.Now))
-                .ForMember(d => d.UserCompany, opt => opt.MapFrom(s => s))
+                .ForMember(d => d.UserRouter, opt => opt.MapFrom(s => s))
                 .ForMember(d => d.Roles, m => m.Ignore())
                 .ForMember(d => d.Claims, m => m.Ignore())
                 .ForMember(d => d.Logins, m => m.Ignore())

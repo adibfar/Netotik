@@ -1,0 +1,124 @@
+﻿﻿@model Netotik.ViewModels.Identity.UserRouter.RegisterSettingModel
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<section class="flexbox-container">
+    <div class="row">
+        <div class="col-md-12">
+
+            @using (Html.BeginForm(MVC.MyRouter.UserManager.ActionNames.RegisterSetting, MVC.MyRouter.UserManager.Name, FormMethod.Post, htmlAttributes: new { @class = "form-horizontal", enctype = "multipart/form-data", id = "formRegisterSetting" }))
+            {
+                @Html.AntiForgeryToken()
+                <div class="card">
+                    <div class="card-header">
+                        <button name="actionType" value="@Netotik.Common.Controller.ActionType.Save" class="btn btn-social width-100 btn-instagram" onclick="AjaxForm.Post(this, 'form')" data-loading-text="در حال ارسال اطلاعات">
+                            <span class="icon-checkmark2 font-medium-4"></span>
+                            @Captions.Save
+                        </button>
+                    </div>
+                    <div class="card-body">
+                        <div class="card-block">
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        @Html.LabelFor(m => m.Name)
+                                        @Html.EnumDropDownListFor(model => model.Name, new { @class = "form-control" })
+                                        @Html.ValidationMessageFor(model => model.Name, "", htmlAttributes: new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        @Html.LabelFor(m => m.Username)
+                                        @Html.EnumDropDownListFor(model => model.Username, new { @class = "form-control" })
+                                        @Html.ValidationMessageFor(model => model.Username, "", htmlAttributes: new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        @Html.LabelFor(m => m.Email)
+                                        @Html.EnumDropDownListFor(model => model.Email, new { @class = "form-control" })
+                                        @Html.ValidationMessageFor(model => model.Email, "", htmlAttributes: new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        @Html.LabelFor(m => m.MobileNumber)
+                                        @Html.EnumDropDownListFor(model => model.MobileNumber, new { @class = "form-control" })
+                                        @Html.ValidationMessageFor(model => model.MobileNumber, "", htmlAttributes: new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        @Html.LabelFor(m => m.NationalCode)
+                                        @Html.EnumDropDownListFor(model => model.NationalCode, new { @class = "form-control" })
+                                        @Html.ValidationMessageFor(model => model.NationalCode, "", htmlAttributes: new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        @Html.LabelFor(m => m.Age)
+                                        @Html.EnumDropDownListFor(model => model.Age, new { @class = "form-control" })
+                                        @Html.ValidationMessageFor(model => model.Age, "", htmlAttributes: new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        @Html.LabelFor(m => m.BirthDate)
+                                        @Html.EnumDropDownListFor(model => model.BirthDate, new { @class = "form-control" })
+                                        @Html.ValidationMessageFor(model => model.BirthDate, "", htmlAttributes: new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        @Html.LabelFor(m => m.IsMale)
+                                        @Html.EnumDropDownListFor(model => model.IsMale, new { @class = "form-control" })
+                                        @Html.ValidationMessageFor(model => model.IsMale, "", htmlAttributes: new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        @Html.LabelFor(m => m.Password)
+                                        @Html.EnumDropDownListFor(model => model.Password, new { @class = "form-control" })
+                                        @Html.ValidationMessageFor(model => model.Password, "", htmlAttributes: new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        @Html.LabelFor(m => m.PasswordConfirm)
+                                        @Html.EnumDropDownListFor(model => model.PasswordConfirm, new { @class = "form-control" })
+                                        @Html.ValidationMessageFor(model => model.PasswordConfirm, "", htmlAttributes: new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                            </div>
+                            <hr />
+                            <div class="row form-group skin skin-flat">
+                                <div class="col-md-4 col-sm-6 col-xs-12">
+                                    <fieldset>
+                                        @Html.CheckBoxFor(model => model.SendSmsUserPass)
+                                        @Html.LabelFor(model => model.SendSmsUserPass)
+                                    </fieldset>
+                                </div>
+                                <div class="col-md-4 col-sm-6 col-xs-12">
+                                    <fieldset>
+                                        @Html.CheckBoxFor(model => model.SendEmailUserPass)
+                                        @Html.LabelFor(model => model.SendEmailUserPass)
+                                    </fieldset>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</section>

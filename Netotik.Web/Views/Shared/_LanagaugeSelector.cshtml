@@ -13,7 +13,7 @@
         user = Session["Client"] as User;
         _actionResult = (user.UserType == Netotik.Domain.Entity.UserType.UserAdmin) ? MVC.Admin.Home.Index() :
     (user.UserType == Netotik.Domain.Entity.UserType.UserReseller) ? MVC.Reseller.Home.Index() :
-    (user.UserType == Netotik.Domain.Entity.UserType.UserCompany) ? MVC.Company.Home.Index() :
+    (user.UserType == Netotik.Domain.Entity.UserType.UserRouter) ? MVC.MyRouter.Home.Index() :
     (user.UserType == Netotik.Domain.Entity.UserType.Client) ? MVC.Client.Home.Index() : MVC.Home.Index();
     }
     else if (User.Identity.IsAuthenticated)
@@ -21,7 +21,7 @@
         user = Html.CurrentUser();
         _actionResult = (user.UserType == Netotik.Domain.Entity.UserType.UserAdmin) ? MVC.Admin.Home.Index() :
     (user.UserType == Netotik.Domain.Entity.UserType.UserReseller) ? MVC.Reseller.Home.Index() :
-    (user.UserType == Netotik.Domain.Entity.UserType.UserCompany) ? MVC.Company.Home.Index() :
+    (user.UserType == Netotik.Domain.Entity.UserType.UserRouter) ? MVC.MyRouter.Home.Index() :
     (user.UserType == Netotik.Domain.Entity.UserType.Client) ? MVC.Client.Home.Index() : MVC.Home.Index();
     }
 

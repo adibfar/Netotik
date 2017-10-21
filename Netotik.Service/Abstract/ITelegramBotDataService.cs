@@ -11,6 +11,6 @@ namespace Netotik.Services.Abstract
 {
     public interface ITelegramBotDataService : IBaseService<TelegramBotData>
     {
-        IList<TelegramBotData> GetList(long CompanyId, long ChatID);
+        IList<TelegramBotData> GetList(long RouterId, long ChatID);
     }
 }

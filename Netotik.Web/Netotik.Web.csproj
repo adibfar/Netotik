@@ -328,7 +328,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Areas\Client\Models\" />
-    <Folder Include="Areas\Company\Models\" />
+    <Folder Include="Areas\MyRouter\Models\" />
     <Folder Include="Areas\Reseller\Models\" />
     <Folder Include="Views\FarapayamakGateway\" />
   </ItemGroup>
@@ -436,39 +436,21 @@
     <Compile Include="Areas\Admin\Controllers\UserResellerController.cs" />
     <Compile Include="Areas\Admin\Controllers\UserAdminController.cs" />
     <Compile Include="Areas\Client\Controllers\HomeController.cs" />
-    <Compile Include="Areas\Company\CompanyAreaRegistration.cs" />
-    <Compile Include="Areas\Company\Controllers\ChartsController.cs" />
-    <Compile Include="Areas\Company\Controllers\FactorController.cs" />
-    <Compile Include="Areas\Company\Controllers\RouterController.cs" />
-    <Compile Include="Areas\Company\Controllers\HotspotController.cs" />
-    <Compile Include="Areas\Company\Controllers\UserManagerController.cs" />
+    <Compile Include="Areas\MyRouter\MyRouterAreaRegistration.cs" />
+    <Compile Include="Areas\MyRouter\Controllers\ChartsController.cs" />
+    <Compile Include="Areas\MyRouter\Controllers\FactorController.cs" />
+    <Compile Include="Areas\MyRouter\Controllers\RouterController.cs" />
+    <Compile Include="Areas\MyRouter\Controllers\HotspotController.cs" />
+    <Compile Include="Areas\MyRouter\Controllers\UserManagerController.cs" />
     <Compile Include="Areas\Reseller\ResellerAreaRegistration.cs" />
-    <Compile Include="Areas\Reseller\Controllers\CompanyController.cs" />
-    <Compile Include="Areas\Company\Controllers\HomeController.cs" />
+    <Compile Include="Areas\Reseller\Controllers\RouterController.cs" />
+    <Compile Include="Areas\MyRouter\Controllers\HomeController.cs" />
     <Compile Include="Areas\Reseller\Controllers\HomeController.cs" />
     <Compile Include="Areas\Client\ClientAreaRegistration.cs" />
     <Compile Include="BlogController.generated.cs">
       <DependentUpon>T4MVC.tt</DependentUpon>
     </Compile>
     <Compile Include="Client.HomeController.generated.cs">
-      <DependentUpon>T4MVC.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Company.ChartsController.generated.cs">
-      <DependentUpon>T4MVC.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Company.FactorController.generated.cs">
-      <DependentUpon>T4MVC.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Company.HomeController.generated.cs">
-      <DependentUpon>T4MVC.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Company.HotspotController.generated.cs">
-      <DependentUpon>T4MVC.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Company.RouterController.generated.cs">
-      <DependentUpon>T4MVC.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Company.UserManagerController.generated.cs">
       <DependentUpon>T4MVC.tt</DependentUpon>
     </Compile>
     <Compile Include="ContactUsController.generated.cs">
@@ -512,6 +494,24 @@
     <Compile Include="LoginController.generated.cs">
       <DependentUpon>T4MVC.tt</DependentUpon>
     </Compile>
+    <Compile Include="MyRouter.ChartsController.generated.cs">
+      <DependentUpon>T4MVC.tt</DependentUpon>
+    </Compile>
+    <Compile Include="MyRouter.FactorController.generated.cs">
+      <DependentUpon>T4MVC.tt</DependentUpon>
+    </Compile>
+    <Compile Include="MyRouter.HomeController.generated.cs">
+      <DependentUpon>T4MVC.tt</DependentUpon>
+    </Compile>
+    <Compile Include="MyRouter.HotspotController.generated.cs">
+      <DependentUpon>T4MVC.tt</DependentUpon>
+    </Compile>
+    <Compile Include="MyRouter.RouterController.generated.cs">
+      <DependentUpon>T4MVC.tt</DependentUpon>
+    </Compile>
+    <Compile Include="MyRouter.UserManagerController.generated.cs">
+      <DependentUpon>T4MVC.tt</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -529,10 +529,10 @@
     <Compile Include="RemoteController.generated.cs">
       <DependentUpon>T4MVC.tt</DependentUpon>
     </Compile>
-    <Compile Include="Reseller.CompanyController.generated.cs">
+    <Compile Include="Reseller.HomeController.generated.cs">
       <DependentUpon>T4MVC.tt</DependentUpon>
     </Compile>
-    <Compile Include="Reseller.HomeController.generated.cs">
+    <Compile Include="Reseller.RouterController.generated.cs">
       <DependentUpon>T4MVC.tt</DependentUpon>
     </Compile>
     <Compile Include="RssController.generated.cs">
@@ -3439,31 +3439,31 @@
     <Content Include="Global.asax" />
     <Content Include="Areas\Admin\Views\Configuration\Index.cshtml" />
     <Content Include="Areas\Admin\Views\Home\Index.cshtml" />
-    <Content Include="Areas\Company\Views\Home\Index.cshtml" />
-    <Content Include="Areas\Reseller\Views\Company\ChangePassword.cshtml" />
-    <Content Include="Areas\Company\Views\Home\MyProfile.cshtml" />
-    <Content Include="Areas\Company\Views\Home\ChangePassword.cshtml" />
-    <Content Include="Areas\Company\Views\web.config" />
+    <Content Include="Areas\MyRouter\Views\Home\Index.cshtml" />
+    <Content Include="Areas\Reseller\Views\Router\ChangePassword.cshtml" />
+    <Content Include="Areas\MyRouter\Views\Home\MyProfile.cshtml" />
+    <Content Include="Areas\MyRouter\Views\Home\ChangePassword.cshtml" />
+    <Content Include="Areas\MyRouter\Views\web.config" />
     <Content Include="Areas\Client\Views\web.config" />
-    <Content Include="Areas\Company\Views\_ViewStart.cshtml" />
+    <Content Include="Areas\MyRouter\Views\_ViewStart.cshtml" />
     <Content Include="Areas\Reseller\Views\_ViewStart.cshtml" />
     <Content Include="Areas\Client\Views\_ViewStart.cshtml" />
-    <Content Include="Areas\Company\Views\UserManager\PackageList.cshtml" />
-    <Content Include="Areas\Company\Views\UserManager\PackageDetails.cshtml" />
-    <Content Include="Areas\Company\Views\UserManager\Register.cshtml" />
-    <Content Include="Areas\Company\Views\UserManager\Report.cshtml" />
-    <Content Include="Areas\Company\Views\UserManager\UserList.cshtml" />
-    <Content Include="Areas\Company\Views\UserManager\PackageCreate.cshtml" />
-    <Content Include="Areas\Company\Views\UserManager\UserCreate.cshtml" />
-    <Content Include="Areas\Company\Views\UserManager\UserDetails.cshtml" />
-    <Content Include="Areas\Company\Views\UserManager\UserEdit.cshtml" />
-    <Content Include="Areas\Company\Views\Router\_Table.cshtml" />
-    <Content Include="Areas\Company\Views\Hotspot\Template.cshtml" />
-    <Content Include="Areas\Company\Views\Router\Info.cshtml" />
-    <Content Include="Areas\Company\Views\Router\Interfaces.cshtml" />
-    <Content Include="Areas\Company\Views\Router\PPP.cshtml" />
-    <Content Include="Areas\Company\Views\Router\Wireless.cshtml" />
-    <Content Include="Areas\Reseller\Views\Company\CompanyLoginURL.cshtml" />
+    <Content Include="Areas\MyRouter\Views\UserManager\PackageList.cshtml" />
+    <Content Include="Areas\MyRouter\Views\UserManager\PackageDetails.cshtml" />
+    <Content Include="Areas\MyRouter\Views\UserManager\Register.cshtml" />
+    <Content Include="Areas\MyRouter\Views\UserManager\Report.cshtml" />
+    <Content Include="Areas\MyRouter\Views\UserManager\UserList.cshtml" />
+    <Content Include="Areas\MyRouter\Views\UserManager\PackageCreate.cshtml" />
+    <Content Include="Areas\MyRouter\Views\UserManager\UserCreate.cshtml" />
+    <Content Include="Areas\MyRouter\Views\UserManager\UserDetails.cshtml" />
+    <Content Include="Areas\MyRouter\Views\UserManager\UserEdit.cshtml" />
+    <Content Include="Areas\MyRouter\Views\Router\_Table.cshtml" />
+    <Content Include="Areas\MyRouter\Views\Hotspot\Template.cshtml" />
+    <Content Include="Areas\MyRouter\Views\Router\Info.cshtml" />
+    <Content Include="Areas\MyRouter\Views\Router\Interfaces.cshtml" />
+    <Content Include="Areas\MyRouter\Views\Router\PPP.cshtml" />
+    <Content Include="Areas\MyRouter\Views\Router\Wireless.cshtml" />
+    <Content Include="Areas\Reseller\Views\Router\RouterLoginURL.cshtml" />
     <Content Include="Content\css\fonts\tinymce\tinymce-small.ttf" />
     <Content Include="Content\css\fonts\tinymce\tinymce-small.woff" />
     <Content Include="Content\css\fonts\tinymce\tinymce.ttf" />
@@ -3482,8 +3482,8 @@
     <Content Include="Areas\Admin\Views\Home\_ProfileData.cshtml" />
     <Content Include="Areas\Reseller\Views\Home\_ProfileData.cshtml" />
     <Content Include="Areas\Reseller\Views\Home\_ImageProfile.cshtml" />
-    <Content Include="Areas\Company\Views\Home\_ProfileData.cshtml" />
-    <Content Include="Areas\Company\Views\Home\_ImageProfile.cshtml" />
+    <Content Include="Areas\MyRouter\Views\Home\_ProfileData.cshtml" />
+    <Content Include="Areas\MyRouter\Views\Home\_ImageProfile.cshtml" />
     <Content Include="Areas\Admin\Views\ContentTag\_Create.cshtml" />
     <Content Include="Areas\Admin\Views\ContentTag\_Edit.cshtml" />
     <Content Include="Areas\Admin\Views\ContentTag\_Table.cshtml" />
@@ -3507,9 +3507,9 @@
     <Content Include="Areas\Admin\Views\Role\_Edit.cshtml" />
     <Content Include="Areas\Admin\Views\Role\_Table.cshtml" />
     <Content Include="Areas\Admin\Views\Role\Index.cshtml" />
-    <Content Include="Areas\Company\Views\Home\MikrotikConf.cshtml" />
-    <Content Include="Areas\Company\Views\Router\InterfaceDetails.cshtml" />
-    <Content Include="Areas\Company\Views\Router\WirelessDetails.cshtml" />
+    <Content Include="Areas\MyRouter\Views\Home\MikrotikConf.cshtml" />
+    <Content Include="Areas\MyRouter\Views\Router\InterfaceDetails.cshtml" />
+    <Content Include="Areas\MyRouter\Views\Router\WirelessDetails.cshtml" />
     <Content Include="Areas\Admin\Views\Slider\_Create.cshtml" />
     <Content Include="Areas\Admin\Views\Slider\_Edit.cshtml" />
     <Content Include="Areas\Admin\Views\Slider\_Table.cshtml" />
@@ -3533,9 +3533,9 @@
     <Content Include="Areas\Admin\Views\Statistics\_PageViewPartial.cshtml" />
     <Content Include="Areas\Admin\Views\Statistics\_SubDetailsPartial.cshtml" />
     <Content Include="Areas\Admin\Views\Statistics\_UserReferrerPartial.cshtml" />
-    <Content Include="Areas\Company\Views\Hotspot\Access.cshtml" />
-    <Content Include="Areas\Company\Views\Router\RouterSetting.cshtml" />
-    <Content Include="Areas\Company\Views\Hotspot\Servers.cshtml" />
+    <Content Include="Areas\MyRouter\Views\Hotspot\Access.cshtml" />
+    <Content Include="Areas\MyRouter\Views\Router\RouterSetting.cshtml" />
+    <Content Include="Areas\MyRouter\Views\Hotspot\Servers.cshtml" />
     <Content Include="Areas\Admin\Views\IndexSection\_Table.cshtml" />
     <Content Include="Areas\Admin\Views\IndexSection\Create.cshtml" />
     <Content Include="Areas\Admin\Views\IndexSection\Edit.cshtml" />
@@ -3660,44 +3660,44 @@
     <Content Include="Content\images\logo\faveicon\manifest.json" />
     <Content Include="Content\fonts\icomoon\icomoon.eot" />
     <Content Include="Content\fonts\icomoon\icomoon.ttf" />
-    <Content Include="Areas\Company\Views\Router\Nat.cshtml" />
-    <Content Include="Areas\Company\Views\Hotspot\Active.cshtml" />
-    <Content Include="Areas\Company\Views\Hotspot\Users.cshtml" />
+    <Content Include="Areas\MyRouter\Views\Router\Nat.cshtml" />
+    <Content Include="Areas\MyRouter\Views\Hotspot\Active.cshtml" />
+    <Content Include="Areas\MyRouter\Views\Hotspot\Users.cshtml" />
     <Content Include="Areas\Client\Views\Home\ChangePassword.cshtml" />
     <Content Include="Areas\Client\Views\Home\Index.cshtml" />
     <Content Include="Areas\Client\Views\Home\Edit.cshtml" />
     <Content Include="Areas\Client\Views\Home\Details.cshtml" />
     <Content Include="Areas\Client\Views\Home\Charts.cshtml" />
     <Content Include="Areas\Client\Views\Home\BuyPackage.cshtml" />
-    <Content Include="Areas\Company\Views\UserManager\ClientArea.cshtml" />
-    <Content Include="Areas\Company\Views\Charts\MaxTrafficUsage.cshtml" />
-    <Content Include="Areas\Company\Views\Charts\MinTrafficUsage.cshtml" />
-    <Content Include="Areas\Company\Views\Charts\MaxTimeUsage.cshtml" />
-    <Content Include="Areas\Company\Views\Charts\UsermanagerUsage.cshtml" />
-    <Content Include="Areas\Company\Views\Charts\Sessions.cshtml" />
-    <Content Include="Areas\Company\Views\Charts\Logs.cshtml" />
-    <Content Include="Areas\Company\Views\Home\TelegramBot.cshtml" />
-    <Content Include="Areas\Company\Views\UserManager\Online.cshtml" />
+    <Content Include="Areas\MyRouter\Views\UserManager\ClientArea.cshtml" />
+    <Content Include="Areas\MyRouter\Views\Charts\MaxTrafficUsage.cshtml" />
+    <Content Include="Areas\MyRouter\Views\Charts\MinTrafficUsage.cshtml" />
+    <Content Include="Areas\MyRouter\Views\Charts\MaxTimeUsage.cshtml" />
+    <Content Include="Areas\MyRouter\Views\Charts\UsermanagerUsage.cshtml" />
+    <Content Include="Areas\MyRouter\Views\Charts\Sessions.cshtml" />
+    <Content Include="Areas\MyRouter\Views\Charts\Logs.cshtml" />
+    <Content Include="Areas\MyRouter\Views\Home\TelegramBot.cshtml" />
+    <Content Include="Areas\MyRouter\Views\UserManager\Online.cshtml" />
     <Content Include="Areas\Admin\Views\PaymentType\_Create.cshtml" />
     <Content Include="Areas\Admin\Views\PaymentType\_Edit.cshtml" />
     <Content Include="Areas\Admin\Views\PaymentType\_Table.cshtml" />
     <Content Include="Areas\Admin\Views\PaymentType\Index.cshtml" />
-    <Content Include="Areas\Company\Views\UserManager\RegisterSetting.cshtml" />
-    <Content Include="Areas\Company\Views\Router\WebSitesLogs.cshtml" />
-    <Content Include="Areas\Company\Views\Charts\WebSitesLogs.cshtml" />
-    <Content Include="Areas\Company\Views\Home\Sms.cshtml" />
+    <Content Include="Areas\MyRouter\Views\UserManager\RegisterSetting.cshtml" />
+    <Content Include="Areas\MyRouter\Views\Router\WebSitesLogs.cshtml" />
+    <Content Include="Areas\MyRouter\Views\Charts\WebSitesLogs.cshtml" />
+    <Content Include="Areas\MyRouter\Views\Home\Sms.cshtml" />
     <Content Include="Areas\Admin\Views\Sms\_CreatePackage.cshtml" />
     <Content Include="Areas\Admin\Views\Sms\_EditPackage.cshtml" />
     <Content Include="Areas\Admin\Views\Sms\_Table.cshtml" />
     <Content Include="Areas\Admin\Views\Sms\Index.cshtml" />
-    <Content Include="Areas\Company\Views\Factor\Index.cshtml" />
-    <Content Include="Areas\Company\Views\Factor\_Table.cshtml" />
+    <Content Include="Areas\MyRouter\Views\Factor\Index.cshtml" />
+    <Content Include="Areas\MyRouter\Views\Factor\_Table.cshtml" />
     <Content Include="Areas\Admin\Views\Factor\_Table.cshtml" />
     <Content Include="Areas\Admin\Views\Factor\Index.cshtml" />
     <Content Include="Areas\Admin\Views\Factor\_PriceFactorChart.cshtml" />
     <Content Include="Areas\Admin\Views\Factor\_CountFactorChart.cshtml" />
     <Content Include="Areas\Admin\Views\Sms\_Chart.cshtml" />
-    <Content Include="Areas\Company\Views\Home\_IndexChart.cshtml" />
+    <Content Include="Areas\MyRouter\Views\Home\_IndexChart.cshtml" />
     <None Include="Properties\PublishProfiles\DNMA.pubxml" />
     <Content Include="Service References\ZarinPalService\Netotik.Web.ZarinPalService.GetUnverifiedTransactionsResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
@@ -3765,11 +3765,11 @@
     <Content Include="Areas\Reseller\Views\Home\ChangePassword.cshtml" />
     <Content Include="Areas\Reseller\Views\Home\Index.cshtml" />
     <Content Include="Areas\Reseller\Views\Home\MyProfile.cshtml" />
-    <Content Include="Areas\Reseller\Views\Company\_Table.cshtml" />
-    <Content Include="Areas\Reseller\Views\Company\Create.cshtml" />
-    <Content Include="Areas\Reseller\Views\Company\Detail.cshtml" />
-    <Content Include="Areas\Reseller\Views\Company\Edit.cshtml" />
-    <Content Include="Areas\Reseller\Views\Company\Index.cshtml" />
+    <Content Include="Areas\Reseller\Views\Router\_Table.cshtml" />
+    <Content Include="Areas\Reseller\Views\Router\Create.cshtml" />
+    <Content Include="Areas\Reseller\Views\Router\Detail.cshtml" />
+    <Content Include="Areas\Reseller\Views\Router\Edit.cshtml" />
+    <Content Include="Areas\Reseller\Views\Router\Index.cshtml" />
     <None Include="Properties\PublishProfiles\Netotik.pubxml" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -3804,7 +3804,7 @@
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\SharedPublic\_Meta.cshtml" />
     <Content Include="Views\Login\Reseller.cshtml" />
-    <Content Include="Views\Login\Company.cshtml" />
+    <Content Include="Views\Login\Router.cshtml" />
     <Content Include="Views\Register\Reseller.cshtml" />
     <Content Include="Views\Error\error.cshtml" />
     <Content Include="Views\UserMailer\ConfirmAccount.cshtml" />
@@ -3826,7 +3826,7 @@
     <Content Include="Views\Shared\_Message.cshtml" />
     <Content Include="Views\Shared\_PicturesList.cshtml" />
     <Content Include="Views\Shared\_SideBarAdminMenu.cshtml" />
-    <Content Include="Views\Shared\_SideBarCompanyMenu.cshtml" />
+    <Content Include="Views\Shared\_SideBarRouterMenu.cshtml" />
     <Content Include="Views\Shared\_SideBarResellerMenu.cshtml" />
     <Content Include="Views\Shared\_SingleImageForm.cshtml" />
     <Content Include="Views\SharedPublic\_BreadCrumb.cshtml" />

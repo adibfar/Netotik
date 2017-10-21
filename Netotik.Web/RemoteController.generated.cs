@@ -70,9 +70,9 @@ namespace Netotik.Web.Controllers
         }
         [NonAction]
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public virtual System.Web.Mvc.JsonResult IsCompanyEmailAvailable()
+        public virtual System.Web.Mvc.JsonResult IsRouterEmailAvailable()
         {
-            return new T4MVC_System_Web_Mvc_JsonResult(Area, Name, ActionNames.IsCompanyEmailAvailable);
+            return new T4MVC_System_Web_Mvc_JsonResult(Area, Name, ActionNames.IsRouterEmailAvailable);
         }
         [NonAction]
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -88,9 +88,9 @@ namespace Netotik.Web.Controllers
         }
         [NonAction]
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public virtual System.Web.Mvc.JsonResult IsCompanyPhoneNumberAvailable()
+        public virtual System.Web.Mvc.JsonResult IsRouterPhoneNumberAvailable()
         {
-            return new T4MVC_System_Web_Mvc_JsonResult(Area, Name, ActionNames.IsCompanyPhoneNumberAvailable);
+            return new T4MVC_System_Web_Mvc_JsonResult(Area, Name, ActionNames.IsRouterPhoneNumberAvailable);
         }
         [NonAction]
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -100,9 +100,9 @@ namespace Netotik.Web.Controllers
         }
         [NonAction]
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public virtual System.Web.Mvc.JsonResult IsCompanyNationalCodeAvailable()
+        public virtual System.Web.Mvc.JsonResult IsRouterNationalCodeAvailable()
         {
-            return new T4MVC_System_Web_Mvc_JsonResult(Area, Name, ActionNames.IsCompanyNationalCodeAvailable);
+            return new T4MVC_System_Web_Mvc_JsonResult(Area, Name, ActionNames.IsRouterNationalCodeAvailable);
         }
         [NonAction]
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -118,9 +118,9 @@ namespace Netotik.Web.Controllers
         }
         [NonAction]
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public virtual System.Web.Mvc.JsonResult IsCompanyCodeAvailable()
+        public virtual System.Web.Mvc.JsonResult IsRouterCodeAvailable()
         {
-            return new T4MVC_System_Web_Mvc_JsonResult(Area, Name, ActionNames.IsCompanyCodeAvailable);
+            return new T4MVC_System_Web_Mvc_JsonResult(Area, Name, ActionNames.IsRouterCodeAvailable);
         }
         [NonAction]
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -158,15 +158,15 @@ namespace Netotik.Web.Controllers
         {
             public readonly string IsAdminEmailAvailable = "IsAdminEmailAvailable";
             public readonly string IsResellerEmailAvailable = "IsResellerEmailAvailable";
-            public readonly string IsCompanyEmailAvailable = "IsCompanyEmailAvailable";
+            public readonly string IsRouterEmailAvailable = "IsRouterEmailAvailable";
             public readonly string IsAdminPhoneNumberAvailable = "IsAdminPhoneNumberAvailable";
             public readonly string IsResellerPhoneNumberAvailable = "IsResellerPhoneNumberAvailable";
-            public readonly string IsCompanyPhoneNumberAvailable = "IsCompanyPhoneNumberAvailable";
+            public readonly string IsRouterPhoneNumberAvailable = "IsRouterPhoneNumberAvailable";
             public readonly string IsResellerNationalCodeAvailable = "IsResellerNationalCodeAvailable";
-            public readonly string IsCompanyNationalCodeAvailable = "IsCompanyNationalCodeAvailable";
+            public readonly string IsRouterNationalCodeAvailable = "IsRouterNationalCodeAvailable";
             public readonly string IsUserNameAvailable = "IsUserNameAvailable";
             public readonly string IsResellerCodeAvailable = "IsResellerCodeAvailable";
-            public readonly string IsCompanyCodeAvailable = "IsCompanyCodeAvailable";
+            public readonly string IsRouterCodeAvailable = "IsRouterCodeAvailable";
             public readonly string CheckPassword = "CheckPassword";
             public readonly string SmsCodeIsValid = "SmsCodeIsValid";
             public readonly string RedirectToLocal = "RedirectToLocal";
@@ -177,15 +177,15 @@ namespace Netotik.Web.Controllers
         {
             public const string IsAdminEmailAvailable = "IsAdminEmailAvailable";
             public const string IsResellerEmailAvailable = "IsResellerEmailAvailable";
-            public const string IsCompanyEmailAvailable = "IsCompanyEmailAvailable";
+            public const string IsRouterEmailAvailable = "IsRouterEmailAvailable";
             public const string IsAdminPhoneNumberAvailable = "IsAdminPhoneNumberAvailable";
             public const string IsResellerPhoneNumberAvailable = "IsResellerPhoneNumberAvailable";
-            public const string IsCompanyPhoneNumberAvailable = "IsCompanyPhoneNumberAvailable";
+            public const string IsRouterPhoneNumberAvailable = "IsRouterPhoneNumberAvailable";
             public const string IsResellerNationalCodeAvailable = "IsResellerNationalCodeAvailable";
-            public const string IsCompanyNationalCodeAvailable = "IsCompanyNationalCodeAvailable";
+            public const string IsRouterNationalCodeAvailable = "IsRouterNationalCodeAvailable";
             public const string IsUserNameAvailable = "IsUserNameAvailable";
             public const string IsResellerCodeAvailable = "IsResellerCodeAvailable";
-            public const string IsCompanyCodeAvailable = "IsCompanyCodeAvailable";
+            public const string IsRouterCodeAvailable = "IsRouterCodeAvailable";
             public const string CheckPassword = "CheckPassword";
             public const string SmsCodeIsValid = "SmsCodeIsValid";
             public const string RedirectToLocal = "RedirectToLocal";
@@ -210,11 +210,11 @@ namespace Netotik.Web.Controllers
             public readonly string email = "email";
             public readonly string Id = "Id";
         }
-        static readonly ActionParamsClass_IsCompanyEmailAvailable s_params_IsCompanyEmailAvailable = new ActionParamsClass_IsCompanyEmailAvailable();
+        static readonly ActionParamsClass_IsRouterEmailAvailable s_params_IsRouterEmailAvailable = new ActionParamsClass_IsRouterEmailAvailable();
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public ActionParamsClass_IsCompanyEmailAvailable IsCompanyEmailAvailableParams { get { return s_params_IsCompanyEmailAvailable; } }
+        public ActionParamsClass_IsRouterEmailAvailable IsRouterEmailAvailableParams { get { return s_params_IsRouterEmailAvailable; } }
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public class ActionParamsClass_IsCompanyEmailAvailable
+        public class ActionParamsClass_IsRouterEmailAvailable
         {
             public readonly string email = "email";
             public readonly string Id = "Id";
@@ -237,11 +237,11 @@ namespace Netotik.Web.Controllers
             public readonly string phoneNumber = "phoneNumber";
             public readonly string Id = "Id";
         }
-        static readonly ActionParamsClass_IsCompanyPhoneNumberAvailable s_params_IsCompanyPhoneNumberAvailable = new ActionParamsClass_IsCompanyPhoneNumberAvailable();
+        static readonly ActionParamsClass_IsRouterPhoneNumberAvailable s_params_IsRouterPhoneNumberAvailable = new ActionParamsClass_IsRouterPhoneNumberAvailable();
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public ActionParamsClass_IsCompanyPhoneNumberAvailable IsCompanyPhoneNumberAvailableParams { get { return s_params_IsCompanyPhoneNumberAvailable; } }
+        public ActionParamsClass_IsRouterPhoneNumberAvailable IsRouterPhoneNumberAvailableParams { get { return s_params_IsRouterPhoneNumberAvailable; } }
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public class ActionParamsClass_IsCompanyPhoneNumberAvailable
+        public class ActionParamsClass_IsRouterPhoneNumberAvailable
         {
             public readonly string phoneNumber = "phoneNumber";
             public readonly string Id = "Id";
@@ -256,11 +256,11 @@ namespace Netotik.Web.Controllers
             public readonly string nationalCode = "nationalCode";
             public readonly string Id = "Id";
         }
-        static readonly ActionParamsClass_IsCompanyNationalCodeAvailable s_params_IsCompanyNationalCodeAvailable = new ActionParamsClass_IsCompanyNationalCodeAvailable();
+        static readonly ActionParamsClass_IsRouterNationalCodeAvailable s_params_IsRouterNationalCodeAvailable = new ActionParamsClass_IsRouterNationalCodeAvailable();
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public ActionParamsClass_IsCompanyNationalCodeAvailable IsCompanyNationalCodeAvailableParams { get { return s_params_IsCompanyNationalCodeAvailable; } }
+        public ActionParamsClass_IsRouterNationalCodeAvailable IsRouterNationalCodeAvailableParams { get { return s_params_IsRouterNationalCodeAvailable; } }
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public class ActionParamsClass_IsCompanyNationalCodeAvailable
+        public class ActionParamsClass_IsRouterNationalCodeAvailable
         {
             public readonly string nationalCode = "nationalCode";
             public readonly string Id = "Id";
@@ -284,13 +284,13 @@ namespace Netotik.Web.Controllers
             public readonly string ResellerCode = "ResellerCode";
             public readonly string Id = "Id";
         }
-        static readonly ActionParamsClass_IsCompanyCodeAvailable s_params_IsCompanyCodeAvailable = new ActionParamsClass_IsCompanyCodeAvailable();
+        static readonly ActionParamsClass_IsRouterCodeAvailable s_params_IsRouterCodeAvailable = new ActionParamsClass_IsRouterCodeAvailable();
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public ActionParamsClass_IsCompanyCodeAvailable IsCompanyCodeAvailableParams { get { return s_params_IsCompanyCodeAvailable; } }
+        public ActionParamsClass_IsRouterCodeAvailable IsRouterCodeAvailableParams { get { return s_params_IsRouterCodeAvailable; } }
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public class ActionParamsClass_IsCompanyCodeAvailable
+        public class ActionParamsClass_IsRouterCodeAvailable
         {
-            public readonly string CompanyCode = "CompanyCode";
+            public readonly string RouterCode = "RouterCode";
             public readonly string Id = "Id";
             public readonly string Resellerid = "Resellerid";
         }
@@ -365,15 +365,15 @@ namespace Netotik.Web.Controllers
         }
 
         [NonAction]
-        partial void IsCompanyEmailAvailableOverride(T4MVC_System_Web_Mvc_JsonResult callInfo, string email, long? Id);
+        partial void IsRouterEmailAvailableOverride(T4MVC_System_Web_Mvc_JsonResult callInfo, string email, long? Id);
 
         [NonAction]
-        public override System.Web.Mvc.JsonResult IsCompanyEmailAvailable(string email, long? Id)
+        public override System.Web.Mvc.JsonResult IsRouterEmailAvailable(string email, long? Id)
         {
-            var callInfo = new T4MVC_System_Web_Mvc_JsonResult(Area, Name, ActionNames.IsCompanyEmailAvailable);
+            var callInfo = new T4MVC_System_Web_Mvc_JsonResult(Area, Name, ActionNames.IsRouterEmailAvailable);
             ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "email", email);
             ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "Id", Id);
-            IsCompanyEmailAvailableOverride(callInfo, email, Id);
+            IsRouterEmailAvailableOverride(callInfo, email, Id);
             return callInfo;
         }
 
@@ -404,16 +404,16 @@ namespace Netotik.Web.Controllers
         }
 
         [NonAction]
-        partial void IsCompanyPhoneNumberAvailableOverride(T4MVC_System_Web_Mvc_JsonResult callInfo, string phoneNumber, long? Id, long? Resellerid);
+        partial void IsRouterPhoneNumberAvailableOverride(T4MVC_System_Web_Mvc_JsonResult callInfo, string phoneNumber, long? Id, long? Resellerid);
 
         [NonAction]
-        public override System.Web.Mvc.JsonResult IsCompanyPhoneNumberAvailable(string phoneNumber, long? Id, long? Resellerid)
+        public override System.Web.Mvc.JsonResult IsRouterPhoneNumberAvailable(string phoneNumber, long? Id, long? Resellerid)
         {
-            var callInfo = new T4MVC_System_Web_Mvc_JsonResult(Area, Name, ActionNames.IsCompanyPhoneNumberAvailable);
+            var callInfo = new T4MVC_System_Web_Mvc_JsonResult(Area, Name, ActionNames.IsRouterPhoneNumberAvailable);
             ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "phoneNumber", phoneNumber);
             ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "Id", Id);
             ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "Resellerid", Resellerid);
-            IsCompanyPhoneNumberAvailableOverride(callInfo, phoneNumber, Id, Resellerid);
+            IsRouterPhoneNumberAvailableOverride(callInfo, phoneNumber, Id, Resellerid);
             return callInfo;
         }
 
@@ -431,16 +431,16 @@ namespace Netotik.Web.Controllers
         }
 
         [NonAction]
-        partial void IsCompanyNationalCodeAvailableOverride(T4MVC_System_Web_Mvc_JsonResult callInfo, string nationalCode, long? Id, long? Resellerid);
+        partial void IsRouterNationalCodeAvailableOverride(T4MVC_System_Web_Mvc_JsonResult callInfo, string nationalCode, long? Id, long? Resellerid);
 
         [NonAction]
-        public override System.Web.Mvc.JsonResult IsCompanyNationalCodeAvailable(string nationalCode, long? Id, long? Resellerid)
+        public override System.Web.Mvc.JsonResult IsRouterNationalCodeAvailable(string nationalCode, long? Id, long? Resellerid)
         {
-            var callInfo = new T4MVC_System_Web_Mvc_JsonResult(Area, Name, ActionNames.IsCompanyNationalCodeAvailable);
+            var callInfo = new T4MVC_System_Web_Mvc_JsonResult(Area, Name, ActionNames.IsRouterNationalCodeAvailable);
             ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "nationalCode", nationalCode);
             ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "Id", Id);
             ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "Resellerid", Resellerid);
-            IsCompanyNationalCodeAvailableOverride(callInfo, nationalCode, Id, Resellerid);
+            IsRouterNationalCodeAvailableOverride(callInfo, nationalCode, Id, Resellerid);
             return callInfo;
         }
 
@@ -471,16 +471,16 @@ namespace Netotik.Web.Controllers
         }
 
         [NonAction]
-        partial void IsCompanyCodeAvailableOverride(T4MVC_System_Web_Mvc_JsonResult callInfo, string CompanyCode, long? Id, long? Resellerid);
+        partial void IsRouterCodeAvailableOverride(T4MVC_System_Web_Mvc_JsonResult callInfo, string RouterCode, long? Id, long? Resellerid);
 
         [NonAction]
-        public override System.Web.Mvc.JsonResult IsCompanyCodeAvailable(string CompanyCode, long? Id, long? Resellerid)
+        public override System.Web.Mvc.JsonResult IsRouterCodeAvailable(string RouterCode, long? Id, long? Resellerid)
         {
-            var callInfo = new T4MVC_System_Web_Mvc_JsonResult(Area, Name, ActionNames.IsCompanyCodeAvailable);
-            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "CompanyCode", CompanyCode);
+            var callInfo = new T4MVC_System_Web_Mvc_JsonResult(Area, Name, ActionNames.IsRouterCodeAvailable);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "RouterCode", RouterCode);
             ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "Id", Id);
             ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "Resellerid", Resellerid);
-            IsCompanyCodeAvailableOverride(callInfo, CompanyCode, Id, Resellerid);
+            IsRouterCodeAvailableOverride(callInfo, RouterCode, Id, Resellerid);
             return callInfo;
         }
 

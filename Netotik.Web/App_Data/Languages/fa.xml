@@ -3,6 +3,9 @@
   <LocaleResource Name="Save">
     <Value>ذخیره</Value>
   </LocaleResource>
+  <LocaleResource Name="CompanyName">
+    <Value>نام شرکت</Value>
+  </LocaleResource>
   <LocaleResource Name="SaveEdit">
     <Value>ذخیره و ادامه ویرایش</Value>
   </LocaleResource>
@@ -72,8 +75,8 @@
   <LocaleResource Name="City">
     <Value>شهر</Value>
   </LocaleResource>
-  <LocaleResource Name="CompanyName">
-    <Value>نام شرکت</Value>
+  <LocaleResource Name="RouterName">
+    <Value>نام روتر</Value>
   </LocaleResource>
   <LocaleResource Name="OldPassword">
     <Value>گذرواژه فعلی</Value>
@@ -566,8 +569,8 @@
   <LocaleResource Name="ResellerPanel">
     <Value>پنل نمایندگی</Value>
   </LocaleResource>
-  <LocaleResource Name="CompanyPanel">
-    <Value>پنل شرکت</Value>
+  <LocaleResource Name="RouterPanel">
+    <Value>پنل روتر</Value>
   </LocaleResource>
   <LocaleResource Name="UserPanel">
     <Value>پنل کاربری</Value>
@@ -930,10 +933,10 @@
   <LocaleResource Name="MikrotikConfig">
     <Value>تنظیمات میکروتیک</Value>
   </LocaleResource>
-  <LocaleResource Name="UserLoginLink">
-    <Value>لینک لاگین کاربران</Value>
+  <LocaleResource Name="RouterLoginLink">
+    <Value>لینک لاگین به پنل روتر</Value>
   </LocaleResource>
-  <LocaleResource Name="UserLoginMessage">
+  <LocaleResource Name="RouterLoginMessage">
     <Value>
       کاربران شما برای ورود به پنل خودشان باید حتما از صفحه لاگین شما جهت ورود استفاده کنند.آدرس این صفحه در زیر نوشته شده
       و به صورت لینک می باشد.
@@ -1496,10 +1499,10 @@
   <LocaleResource Name="LastPlanChanges">
     <Value>آخرین تغییرات تعرفه ها</Value>
   </LocaleResource>
-  <LocaleResource Name="SmsCompanyPasswordChange">
+  <LocaleResource Name="SmsRouterPasswordChange">
     <Value>کاربر {0} پسورد شما در سامانه نتوتیک تغییر یافت.</Value>
   </LocaleResource>
-  <LocaleResource Name="SmsCompanyLogins">
+  <LocaleResource Name="SmsRouterLogins">
     <Value>کاربر {0} در تاربخ {1} توسط ای پی {2} وارد نتوتیک شد.</Value>
   </LocaleResource>
   <LocaleResource Name="SmsUserBuyPlan">
@@ -1756,5 +1759,15 @@
   
   <LocaleResource Name="XmlNotValid">
     <Value>فایل xml معتبر نیست.</Value>
+  </LocaleResource>
+
+  <LocaleResource Name="Routers">
+    <Value>روتر ها</Value>
+  </LocaleResource>
+  <LocaleResource Name="RouterList">
+    <Value>لیست روتر ها</Value>
+  </LocaleResource>
+  <LocaleResource Name="NewRouter">
+    <Value>روتر جدید</Value>
   </LocaleResource>
 </Language>

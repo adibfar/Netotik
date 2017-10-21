@@ -55,20 +55,20 @@ namespace Netotik.Web.Controllers
             _smsService = smsService;
             _menuService = menuService;
         }
-        [Route("{lang}/router/reg/{CompanyCode}")]
+        [Route("{lang}/router/reg/{RouterCode}")]
         [AllowAnonymous]
-        public virtual ActionResult Company(string ReturnUrl, string CompanyName)
+        public virtual ActionResult Router(string ReturnUrl, string RouterName)
         {
             if (User != null && User.Identity.IsAuthenticated)
-                return RedirectToAction(MVC.Company.Home.ActionNames.Index, MVC.Company.Home.Name, new { area = "Company" });
+                return RedirectToAction(MVC.MyRouter.Home.ActionNames.Index, MVC.MyRouter.Home.Name, new { area = "Router" });
             return View();
         }
 
         [AllowAnonymous]
         [HttpPost]
-        [Route("{lang}/router/reg/{CompanyCode}")]
+        [Route("{lang}/router/reg/{RouterCode}")]
         [ValidateAntiForgeryToken]
-        public virtual ActionResult Company(Netotik.ViewModels.Identity.UserCompany.LoginModel model, string ReturnUrl, string CompanyName, int fromPage = 0)
+        public virtual ActionResult Router(Netotik.ViewModels.Identity.UserRouter.LoginModel model, string ReturnUrl, string RouterName, int fromPage = 0)
         {
             return View();
         }
@@ -82,65 +82,65 @@ namespace Netotik.Web.Controllers
         }
 
         [AllowAnonymous]
-        [Route("{lang}/userman/reg/{CompanyCode}")]
-        public virtual async Task<ActionResult> Client(string ReturnUrl, string CompanyCode)
+        [Route("{lang}/userman/reg/{RouterCode}")]
+        public virtual async Task<ActionResult> Client(string ReturnUrl, string RouterCode)
         {
-            var CompanyCodeToid = await _applicationUserManager.FindByCompanyCodeAsync(CompanyCode);
-            var UserLogined = _applicationUserManager.FindUserById(CompanyCodeToid.Id);
-            if (!_mikrotikServices.IP_Port_Check(UserLogined.UserCompany.R_Host, UserLogined.UserCompany.R_Port, UserLogined.UserCompany.R_User, UserLogined.UserCompany.R_Password))
+            var RouterCodeToid = await _applicationUserManager.FindByRouterCodeAsync(RouterCode);
+            var UserLogined = _applicationUserManager.FindUserById(RouterCodeToid.Id);
+            if (!_mikrotikServices.IP_Port_Check(UserLogined.UserRouter.R_Host, UserLogined.UserRouter.R_Port, UserLogined.UserRouter.R_User, UserLogined.UserRouter.R_Password))
             {
                 this.MessageError(Captions.Error, Captions.IPPORTClientError);
-                return RedirectToAction(MVC.Company.Home.ActionNames.MikrotikConf, MVC.Company.Home.Name, new { area = MVC.Company.Name });
+                return RedirectToAction(MVC.MyRouter.Home.ActionNames.MikrotikConf, MVC.MyRouter.Home.Name, new { area = MVC.MyRouter.Name });
                 //errrrrrrrrrrrrrrrrooor
             }
-            if (!_mikrotikServices.User_Pass_Check(UserLogined.UserCompany.R_Host, UserLogined.UserCompany.R_Port, UserLogined.UserCompany.R_User, UserLogined.UserCompany.R_Password))
+            if (!_mikrotikServices.User_Pass_Check(UserLogined.UserRouter.R_Host, UserLogined.UserRouter.R_Port, UserLogined.UserRouter.R_User, UserLogined.UserRouter.R_Password))
             {
                 this.MessageError(Captions.Error, Captions.UserPasswordClientError);
-                return RedirectToAction(MVC.Company.Home.ActionNames.MikrotikConf, MVC.Company.Home.Name, new { area = MVC.Company.Name });
+                return RedirectToAction(MVC.MyRouter.Home.ActionNames.MikrotikConf, MVC.MyRouter.Home.Name, new { area = MVC.MyRouter.Name });
             }
-            if (!_mikrotikServices.Usermanager_IsInstall(UserLogined.UserCompany.R_Host, UserLogined.UserCompany.R_Port, UserLogined.UserCompany.R_User, UserLogined.UserCompany.R_Password))
+            if (!_mikrotikServices.Usermanager_IsInstall(UserLogined.UserRouter.R_Host, UserLogined.UserRouter.R_Port, UserLogined.UserRouter.R_User, UserLogined.UserRouter.R_Password))
             {
                 this.MessageError(Captions.Error, Captions.UsermanagerClientError);
-                return RedirectToAction(MVC.Company.Home.ActionNames.Index);
+                return RedirectToAction(MVC.MyRouter.Home.ActionNames.Index);
             }
 
-            var company = await _applicationUserManager.FindByCompanyCodeAsync(CompanyCode);
-            if (company == null) return HttpNotFound();
-            var User = _applicationUserManager.FindUserById(company.Id);
-            ViewBag.profiles = _mikrotikServices.Usermanager_GetAllProfile(User.UserCompany.R_Host, User.UserCompany.R_Port, User.UserCompany.R_User, User.UserCompany.R_Password);
-            ViewBag.CompanyName = CompanyCode;
+            var Router = await _applicationUserManager.FindByRouterCodeAsync(RouterCode);
+            if (Router == null) return HttpNotFound();
+            var User = _applicationUserManager.FindUserById(Router.Id);
+            ViewBag.profiles = _mikrotikServices.Usermanager_GetAllProfile(User.UserRouter.R_Host, User.UserRouter.R_Port, User.UserRouter.R_User, User.UserRouter.R_Password);
+            ViewBag.RouterName = RouterCode;
             ViewBag.ReturnUrl = ReturnUrl;
-            ViewBag.RegisterSetting = company.UserCompany.UserCompanyRegisterSetting;
+            ViewBag.RegisterSetting = Router.UserRouter.UserRouterRegisterSetting;
             return View();
         }
 
         [AllowAnonymous]
         [HttpPost]
-        [Route("{lang}/userman/reg/{CompanyCode}")]
-        public virtual async Task<ActionResult> Client(Netotik.ViewModels.Identity.UserClient.UserRegisterModel model, string ReturnUrl, string CompanyCode)
+        [Route("{lang}/userman/reg/{RouterCode}")]
+        public virtual async Task<ActionResult> Client(Netotik.ViewModels.Identity.UserClient.UserRegisterModel model, string ReturnUrl, string RouterCode)
         {
-            var UserByCompanyName = await _applicationUserManager.FindByCompanyCodeAsync(CompanyCode);
-            var UserLogined = _applicationUserManager.FindUserById(UserByCompanyName.Id);
-            if (!_mikrotikServices.IP_Port_Check(UserLogined.UserCompany.R_Host, UserLogined.UserCompany.R_Port, UserLogined.UserCompany.R_User, UserLogined.UserCompany.R_Password))
+            var UserByRouterName = await _applicationUserManager.FindByRouterCodeAsync(RouterCode);
+            var UserLogined = _applicationUserManager.FindUserById(UserByRouterName.Id);
+            if (!_mikrotikServices.IP_Port_Check(UserLogined.UserRouter.R_Host, UserLogined.UserRouter.R_Port, UserLogined.UserRouter.R_User, UserLogined.UserRouter.R_Password))
             {
                 this.MessageError(Captions.Error, Captions.IPPORTClientError);
-                return RedirectToAction(MVC.Company.Home.ActionNames.MikrotikConf, MVC.Company.Home.Name, new { area = MVC.Company.Name });
+                return RedirectToAction(MVC.MyRouter.Home.ActionNames.MikrotikConf, MVC.MyRouter.Home.Name, new { area = MVC.MyRouter.Name });
             }
-            if (!_mikrotikServices.User_Pass_Check(UserLogined.UserCompany.R_Host, UserLogined.UserCompany.R_Port, UserLogined.UserCompany.R_User, UserLogined.UserCompany.R_Password))
+            if (!_mikrotikServices.User_Pass_Check(UserLogined.UserRouter.R_Host, UserLogined.UserRouter.R_Port, UserLogined.UserRouter.R_User, UserLogined.UserRouter.R_Password))
             {
                 this.MessageError(Captions.Error, Captions.UserPasswordClientError);
-                return RedirectToAction(MVC.Company.Home.ActionNames.MikrotikConf, MVC.Company.Home.Name, new { area = MVC.Company.Name });
+                return RedirectToAction(MVC.MyRouter.Home.ActionNames.MikrotikConf, MVC.MyRouter.Home.Name, new { area = MVC.MyRouter.Name });
             }
-            if (!_mikrotikServices.Usermanager_IsInstall(UserLogined.UserCompany.R_Host, UserLogined.UserCompany.R_Port, UserLogined.UserCompany.R_User, UserLogined.UserCompany.R_Password))
+            if (!_mikrotikServices.Usermanager_IsInstall(UserLogined.UserRouter.R_Host, UserLogined.UserRouter.R_Port, UserLogined.UserRouter.R_User, UserLogined.UserRouter.R_Password))
             {
                 this.MessageError(Captions.Error, Captions.UsermanagerClientError);
-                return RedirectToAction(MVC.Company.Home.ActionNames.Index);
+                return RedirectToAction(MVC.MyRouter.Home.ActionNames.Index);
             }
             //----------------------------
-            var company = await _applicationUserManager.FindByCompanyCodeAsync(CompanyCode);
-            if (company == null) return HttpNotFound();
-            var User = _applicationUserManager.FindUserById(company.Id);
-            model.customer = User.UserCompany.Userman_Customer;
+            var Router = await _applicationUserManager.FindByRouterCodeAsync(RouterCode);
+            if (Router == null) return HttpNotFound();
+            var User = _applicationUserManager.FindUserById(Router.Id);
+            model.customer = User.UserRouter.Userman_Customer;
             var Usermanuser = new Netotik.ViewModels.Identity.UserClient.UserRegisterModel()
             {
                 username = model.username,
@@ -159,20 +159,20 @@ namespace Netotik.Web.Controllers
                 ViewBag.Message = "خطا";
                 return RedirectToAction(MVC.Register.ActionNames.Client);
             }
-            if (_mikrotikServices.Usermanager_IsUserExist(User.UserCompany.R_Host, User.UserCompany.R_Port, User.UserCompany.R_User, User.UserCompany.R_Password, Usermanuser.username))
+            if (_mikrotikServices.Usermanager_IsUserExist(User.UserRouter.R_Host, User.UserRouter.R_Port, User.UserRouter.R_User, User.UserRouter.R_Password, Usermanuser.username))
             {
                 //SetResultMessage(false, MessageColor.Danger, Captions.InvalidDataError, Captions.MissionFail);
             }
             else
             {
-                _mikrotikServices.Usermanager_UserCreate(User.UserCompany.R_Host, User.UserCompany.R_Port, User.UserCompany.R_User, User.UserCompany.R_Password, Usermanuser);
-                if (User.UserCompany.SmsCharge > 0 && User.UserCompany.SmsActive && User.UserCompany.RegisterFormSms)
+                _mikrotikServices.Usermanager_UserCreate(User.UserRouter.R_Host, User.UserRouter.R_Port, User.UserRouter.R_User, User.UserRouter.R_Password, Usermanuser);
+                if (User.UserRouter.SmsCharge > 0 && User.UserRouter.SmsActive && User.UserRouter.RegisterFormSms)
                 {
                     _smsService.SendSms(model.phone, string.Format(Captions.SmsUserBuyPlan,model.username), User.Id);
                 }
             }
 
-            ViewBag.CompanyName = CompanyCode;
+            ViewBag.RouterName = RouterCode;
             ViewBag.ReturnUrl = ReturnUrl;
             _uow.SaveAllChanges();
             return RedirectToAction(MVC.Register.ActionNames.Client);

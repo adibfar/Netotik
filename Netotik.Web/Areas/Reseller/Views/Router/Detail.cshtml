@@ -1,0 +1,184 @@
+﻿@model Netotik.Domain.Entity.UserRouter
+
+@{
+    ViewBag.Title = "مشخصات";
+}
+<div class="row">
+    <div class="ibox-content m-b-sm border-bottom">
+        <div class="row">
+            <div class="col-md-12">
+                <a class="btn btn-default btn-outline pull-left" href="@Url.Action(MVC.Reseller.Router.Index())">
+                    <span class="fa fa-reply"></span>
+                    @Netotik.Resources.Captions.Back
+                </a>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="tabs-container">
+
+        <ul class="nav nav-tabs">
+            <li class="active">
+                <a data-toggle="tab" href="#profile"><i class="icon-2x icon-user"></i> اطلاعات پروفایل</a>
+            </li>
+            <li class="">
+                <a data-toggle="tab" href="#login"><i class="icon-2x icon-flag"></i> تاریخچه ورود </a>
+            </li>
+            <li class="">
+                <a data-toggle="tab" href="#router"><i class="icon-2x icon-flag"></i> اطلاعات روتر </a>
+            </li>
+            <li class="">
+                <a data-toggle="tab" href="#package"><i class="icon-2x icon-flag"></i> اطلاعات پکیج </a>
+            </li>
+            <li class="">
+                <a data-toggle="tab" href="#money"><i class="icon-2x icon-flag"></i> اطلاعات مالی </a>
+            </li>
+        </ul>
+        <div class="tab-content">
+            <div id="profile" class="tab-pane active form-horizontal">
+                <div class="panel-body">
+                    <fieldset>
+                        <div class="form-group">
+                            @*<div class="col-md-5">
+                                @Html.DisplayFor(model => model.UserName)
+                            </div>*@
+                            @*<div class="col-md-5">
+                                @Html.DisplayFor(model => model.Name)
+                            </div>*@
+                        </div>
+                        <div class="hr-line-dashed"></div>
+                        <div class="form-group">
+                            @*<div class="col-md-5">
+                                @Html.DisplayFor(model => model.CompanyName)
+                            </div>*@
+                            @*<div class="col-md-5">
+                                @Html.DisplayFor(model => model.PersonalCode)
+                            </div>*@
+                        </div>
+                        <div class="hr-line-dashed"></div>
+                        <div class="form-group">
+                            @*<div class="col-md-5">
+                                @Html.DisplayFor(model => model.Email)
+                            </div>
+                            <div class="col-md-5">
+                                @Html.DisplayFor(model => model.MobileNumber)
+                            </div>*@
+                        </div>
+                        <div class="hr-line-dashed"></div>
+                        <div class="form-group">
+                            <div class="col-md-5">
+                                @Html.DisplayFor(model => model.PostalCode)
+                            </div>
+                            @*<div class="col-md-5">
+                                @Html.DisplayFor(model => model.Address)
+                            </div>*@
+                        </div>
+                    </fieldset>
+                </div>
+            </div>
+            <div id="login" class="tab-pane form-horizontal">
+                <div class="panel-body">
+                    @*if (list.Any())
+                        {
+                            <table class="table table-striped border-top dataTable">
+                                <thead class="alert-info">
+                                    <tr>
+                                        <td style="width:30%">زمـــان</td>
+                                        <td>IP Addres </td>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var item in list)
+                                    {
+                                        <tr>
+                                            <td style="width:30%">@item.RegisterDate</td>
+                                            <td>@item.IP</td>
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                        }
+                        else
+                        {
+                            <div class="alert-warning">این کاربر تا به حال به سیستم وارد نشده</div>
+                        }
+                    *@
+                </div>
+            </div>
+            <div id="router" class="tab-pane form-horizontal">
+                <div class="panel-body">
+                    <fieldset>
+                        <div class="form-group">
+                            <div class="col-md-7">
+                                @Html.DisplayFor(model => model.R_Host)
+                            </div>
+                            <div class="col-md-3">
+                                @Html.DisplayFor(model => model.R_Port)
+                            </div>
+                        </div>
+                        <div class="hr-line-dashed"></div>
+                        <div class="form-group">
+                            <div class="col-md-5">
+                                @Html.DisplayFor(model => model.R_User)
+                            </div>
+                            <div class="col-md-5">
+                                @Html.DisplayFor(model => model.R_Password)
+                            </div>
+                        </div>
+                    </fieldset>
+                    <br />
+                    <input type="text" class="form-control input-sm m-b-xs" id="filter"
+                           placeholder="جستجوی زمان،پیغام،تاپیک">
+
+                    <table class="footable table table-stripped toggle-arrow-tiny" data-page-size="30" data-filter=#filter>
+                        <thead>
+                            <tr>
+                                <th data-toggle="true">زمان</th>
+                                <th>Topic</th>
+                                <th>پیغام</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in ViewBag.router_response)
+                            {
+                                <tr>
+                                    <td>@item.time</td>
+                                    <td>@item.topics</td>
+                                    <td>@item.message</td>
+                                </tr>
+                            }
+                        </tbody>
+                        <tfoot>
+                            <tr>
+                                <td colspan="5">
+                                    <ul class="pagination pull-right"></ul>
+                                </td>
+                            </tr>
+                        </tfoot>
+                    </table>
+                </div>
+            </div>
+            <div class="tab-pane form-horizontal" id="package">
+                <div class="panel-body">
+                </div>
+            </div>
+            <div class="tab-pane form-horizontal" id="money">
+                <div class="panel-body">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section UpScript {
+    <link href="~/Content/css/plugins/footable/footable.core.css" rel="stylesheet">
+}
+@section DownScript {
+    <script src="~/Content/js/plugins/footable/footable.all.min.js" type="text/javascript"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $(".footable").footable();
+        });
+    </script>
+}

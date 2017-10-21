@@ -109,12 +109,12 @@
     <Compile Include="Identity\UserClient\UserRegisterModel.cs" />
     <Compile Include="Identity\UserClient\UserWebsiteLogsWithSessionsModel.cs" />
     <Compile Include="Identity\UserClient\UserSessionModel.cs" />
-    <Compile Include="Identity\UserCompany\SmsModel.cs" />
-    <Compile Include="Identity\UserCompany\RegisterSettingModel.cs" />
-    <Compile Include="Identity\UserCompany\CompanyList.cs" />
-    <Compile Include="Identity\UserCompany\TelegramBotModel.cs" />
-    <Compile Include="Identity\UserCompany\MikrotikConfModel.cs" />
-    <Compile Include="Identity\UserCompany\CompanyEditModel.cs" />
+    <Compile Include="Identity\UserRouter\SmsModel.cs" />
+    <Compile Include="Identity\UserRouter\RegisterSettingModel.cs" />
+    <Compile Include="Identity\UserRouter\RouterList.cs" />
+    <Compile Include="Identity\UserRouter\TelegramBotModel.cs" />
+    <Compile Include="Identity\UserRouter\MikrotikConfModel.cs" />
+    <Compile Include="Identity\UserRouter\RouterEditModel.cs" />
     <Compile Include="Identity\UserReseller\ProfileModel.cs" />
     <Compile Include="Identity\UserReseller\RegisterViewModel.cs" />
     <Compile Include="Identity\Account\ResetPasswordEmail.cs" />
@@ -150,10 +150,10 @@
     <Compile Include="CMS\Content\ContentItem.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Identity\UserCompany\LoginModel.cs" />
-    <Compile Include="Identity\UserCompany\ProfileModel.cs" />
-    <Compile Include="Identity\UserCompany\ChangePasswordModel.cs" />
-    <Compile Include="Identity\UserCompany\Register.cs" />
+    <Compile Include="Identity\UserRouter\LoginModel.cs" />
+    <Compile Include="Identity\UserRouter\ProfileModel.cs" />
+    <Compile Include="Identity\UserRouter\ChangePasswordModel.cs" />
+    <Compile Include="Identity\UserRouter\Register.cs" />
     <Compile Include="Identity\UserReseller\ResellerEditModel.cs" />
     <Compile Include="CMS\Menu\MenuModel.cs" />
     <Compile Include="Common\Language\ResourceItem.cs" />

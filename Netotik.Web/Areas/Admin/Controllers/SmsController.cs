@@ -112,7 +112,7 @@ namespace Netotik.Web.Areas.Admin.Controllers
 
         public virtual JsonResult GetSmsCompaniesCredit()
         {
-            var credit = _applicationUserManager.GetCompaniesChargre();
+            var credit = _applicationUserManager.GetRoutersChargre();
             return Json(new
             {
                 charge = credit

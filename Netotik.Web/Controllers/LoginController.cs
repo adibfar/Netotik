@@ -56,16 +56,16 @@ namespace Netotik.Web.Controllers
 
         [AllowAnonymous]
         [Route("{lang}/router/{ResellerCode}")]
-        public virtual async Task<ActionResult> Company(string ReturnUrl, string ResellerCode)
+        public virtual async Task<ActionResult> Router(string ReturnUrl, string ResellerCode)
         {
-            if (User.Identity.IsAuthenticated && _applicationRoleManager.FindUserPermissions(long.Parse(User.Identity.GetUserId())).Any(x => x == "Company"))
-                return RedirectToAction(MVC.Company.Home.Index());
+            if (User.Identity.IsAuthenticated && _applicationRoleManager.FindUserPermissions(long.Parse(User.Identity.GetUserId())).Any(x => x == "Router"))
+                return RedirectToAction(MVC.MyRouter.Home.Index());
 
             var reseller = await _applicationUserManager.FindByResellerCodeAsync(ResellerCode);
             if (reseller == null) return HttpNotFound();
 
             ViewBag.user = _applicationUserManager.FindUserById(reseller.Id);
-            ViewBag.CompanyName = ResellerCode;
+            ViewBag.RouterName = ResellerCode;
             ViewBag.ReturnUrl = ReturnUrl;
             return View();
         }
@@ -74,12 +74,12 @@ namespace Netotik.Web.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Route("{lang}/router/{ResellerCode}")]
-        public virtual async Task<ActionResult> Company(Netotik.ViewModels.Identity.UserCompany.LoginModel model, string ReturnUrl, string ResellerCode)
+        public virtual async Task<ActionResult> Router(Netotik.ViewModels.Identity.UserRouter.LoginModel model, string ReturnUrl, string ResellerCode)
         {
             var reseller = await _applicationUserManager.FindByResellerCodeAsync(ResellerCode);
             if (reseller == null) return HttpNotFound();
             ViewBag.user = _applicationUserManager.FindUserById(reseller.Id);
-            ViewBag.CompanyName = ResellerCode;
+            ViewBag.RouterName = ResellerCode;
             ViewBag.ReturnUrl = ReturnUrl;
 
             if (!ModelState.IsValid)
@@ -95,7 +95,7 @@ namespace Netotik.Web.Controllers
                 return View(model);
             }
 
-            if (loggedinUser.UserType != Domain.Entity.UserType.UserCompany)
+            if (loggedinUser.UserType != Domain.Entity.UserType.UserRouter)
             {
                 ViewBag.Message = Captions.UsernameOrPasswordWrong;
                 return View(model);
@@ -130,17 +130,17 @@ namespace Netotik.Web.Controllers
                 case SignInStatus.Success:
                     if (!string.IsNullOrWhiteSpace(ReturnUrl))
                     {
-                        if (loggedinUser.UserCompany.SmsCharge > 0 && loggedinUser.UserCompany.SmsActive && loggedinUser.UserCompany.SmsAdminLogins)
-                            _smsService.SendSms(loggedinUser.PhoneNumber, string.Format(Captions.SmsCompanyLogins, loggedinUser.UserName, PersianDate.ConvertDate.ToFa(DateTime.Now, "g"), HttpContext.Request.ServerVariables["REMOTE_ADDR"]), loggedinUser.Id);
+                        if (loggedinUser.UserRouter.SmsCharge > 0 && loggedinUser.UserRouter.SmsActive && loggedinUser.UserRouter.SmsAdminLogins)
+                            _smsService.SendSms(loggedinUser.PhoneNumber, string.Format(Captions.SmsRouterLogins, loggedinUser.UserName, PersianDate.ConvertDate.ToFa(DateTime.Now, "g"), HttpContext.Request.ServerVariables["REMOTE_ADDR"]), loggedinUser.Id);
                         _uow.SaveAllChanges();
                         return RedirectToLocal(ReturnUrl);
                     }
                     else
                     {
-                        if (loggedinUser.UserCompany.SmsCharge > 0 && loggedinUser.UserCompany.SmsActive && loggedinUser.UserCompany.SmsAdminLogins)
-                            _smsService.SendSms(loggedinUser.PhoneNumber, string.Format(Captions.SmsCompanyLogins, loggedinUser.UserName,PersianDate.ConvertDate.ToFa(DateTime.Now,"g").ToString(), HttpContext.Request.ServerVariables["REMOTE_ADDR"].ToString()), loggedinUser.Id);
+                        if (loggedinUser.UserRouter.SmsCharge > 0 && loggedinUser.UserRouter.SmsActive && loggedinUser.UserRouter.SmsAdminLogins)
+                            _smsService.SendSms(loggedinUser.PhoneNumber, string.Format(Captions.SmsRouterLogins, loggedinUser.UserName,PersianDate.ConvertDate.ToFa(DateTime.Now,"g").ToString(), HttpContext.Request.ServerVariables["REMOTE_ADDR"].ToString()), loggedinUser.Id);
                         _uow.SaveAllChanges();
-                        return RedirectToAction(MVC.Company.Home.Index());
+                        return RedirectToAction(MVC.MyRouter.Home.Index());
                     }
 
                 case SignInStatus.LockedOut:
@@ -246,22 +246,22 @@ namespace Netotik.Web.Controllers
 
 
         [AllowAnonymous]
-        [Route("{lang}/userman/{CompanyCode}")]
-        public virtual async Task<ActionResult> Client(string ReturnUrl, string CompanyCode)
+        [Route("{lang}/userman/{RouterCode}")]
+        public virtual async Task<ActionResult> Client(string ReturnUrl, string RouterCode)
         {
             if (User.Identity.IsAuthenticated && _applicationRoleManager.FindUserPermissions(long.Parse(User.Identity.GetUserId())).Any(x => x == "Client"))
                 return RedirectToAction(MVC.Client.Home.Index());
 
-            var company = await _applicationUserManager.FindByCompanyCodeAsync(CompanyCode);
-            if (company == null) return HttpNotFound();
-            ViewBag.user = _applicationUserManager.FindUserById(company.Id);
+            var Router = await _applicationUserManager.FindByRouterCodeAsync(RouterCode);
+            if (Router == null) return HttpNotFound();
+            ViewBag.user = _applicationUserManager.FindUserById(Router.Id);
 
 
-            var Permissions = _applicationUserManager.FindClientPermissions(company.Id);
+            var Permissions = _applicationUserManager.FindClientPermissions(Router.Id);
             var CanShowPanel = Permissions.Any(x => x == AssignablePermissionToClient.ClientArea);
             if (!CanShowPanel) return HttpNotFound();
 
-            ViewBag.CompanyName = CompanyCode;
+            ViewBag.RouterName = RouterCode;
             ViewBag.ReturnUrl = ReturnUrl;
             return View();
         }
@@ -269,41 +269,41 @@ namespace Netotik.Web.Controllers
         [AllowAnonymous]
         [HttpPost]
         [ValidateAntiForgeryToken]
-        [Route("{lang}/userman/{CompanyCode}")]
-        public virtual async Task<ActionResult> Client(Netotik.ViewModels.Identity.UserClient.LoginModel model, string ReturnUrl, string CompanyCode)
+        [Route("{lang}/userman/{RouterCode}")]
+        public virtual async Task<ActionResult> Client(Netotik.ViewModels.Identity.UserClient.LoginModel model, string ReturnUrl, string RouterCode)
         {
-            ViewBag.CompanyName = CompanyCode;
+            ViewBag.RouterName = RouterCode;
             ViewBag.ReturnUrl = ReturnUrl;
-            var company = await _applicationUserManager.FindByCompanyCodeAsync(CompanyCode);
-            if (company == null) return HttpNotFound();
-            ViewBag.user = _applicationUserManager.FindUserById(company.Id);
+            var Router = await _applicationUserManager.FindByRouterCodeAsync(RouterCode);
+            if (Router == null) return HttpNotFound();
+            ViewBag.user = _applicationUserManager.FindUserById(Router.Id);
 
             if (!ModelState.IsValid)
             {
                 ViewBag.Message = Captions.UsernameOrPasswordWrong;
                 return View(model);
             }
-            var Permissions = _applicationUserManager.FindClientPermissions(company.Id);
+            var Permissions = _applicationUserManager.FindClientPermissions(Router.Id);
             var CanShowPanel = Permissions.Any(x => x == AssignablePermissionToClient.ClientArea);
             if (!CanShowPanel) return HttpNotFound();
 
-            if (!_mikrotikServices.IP_Port_Check(company.UserCompany.R_Host, company.UserCompany.R_Port, company.UserCompany.R_User, company.UserCompany.R_Password))
+            if (!_mikrotikServices.IP_Port_Check(Router.UserRouter.R_Host, Router.UserRouter.R_Port, Router.UserRouter.R_User, Router.UserRouter.R_Password))
             {
                 ViewBag.Message = Captions.IPPORTClientError;
                 return View();
             }
-            if (!_mikrotikServices.User_Pass_Check(company.UserCompany.R_Host, company.UserCompany.R_Port, company.UserCompany.R_User, company.UserCompany.R_Password))
+            if (!_mikrotikServices.User_Pass_Check(Router.UserRouter.R_Host, Router.UserRouter.R_Port, Router.UserRouter.R_User, Router.UserRouter.R_Password))
             {
                 ViewBag.Message = Captions.UserPasswordClientError;
                 return View();
             }
-            if (!_mikrotikServices.Usermanager_IsInstall(company.UserCompany.R_Host, company.UserCompany.R_Port, company.UserCompany.R_User, company.UserCompany.R_Password))
+            if (!_mikrotikServices.Usermanager_IsInstall(Router.UserRouter.R_Host, Router.UserRouter.R_Port, Router.UserRouter.R_User, Router.UserRouter.R_Password))
             {
                 ViewBag.Message = Captions.UsermanagerClientError;
                 return View();
             }
 
-            var clientUsers = _mikrotikServices.Usermanager_GetUser(company.UserCompany.R_Host, company.UserCompany.R_Port, company.UserCompany.R_User, company.UserCompany.R_Password, model.UserName);
+            var clientUsers = _mikrotikServices.Usermanager_GetUser(Router.UserRouter.R_Host, Router.UserRouter.R_Port, Router.UserRouter.R_User, Router.UserRouter.R_Password, model.UserName);
             var user = clientUsers.FirstOrDefault(x => x.username == model.UserName && x.password == model.Password);
 
             if (user == null)
@@ -315,24 +315,24 @@ namespace Netotik.Web.Controllers
 
             var loginedUser = new User()
             {
-                Id = company.Id,
+                Id = Router.Id,
                 UserName = user.id,
                 Email = user.email,
                 UserType = UserType.Client,
-                UserCompany = new UserCompany()
+                UserRouter = new UserRouter()
                 {
-                    CompanyCode = company.UserCompany.CompanyCode,
-                    Expire_Date = company.UserCompany.Expire_Date,
-                    Id = company.UserCompany.Id,
-                    SmsActive = company.UserCompany.SmsActive,
-                    SmsUserAfterChangePackage = company.UserCompany.SmsUserAfterChangePackage,
-                    SmsUserhangeUserPassword = company.UserCompany.SmsUserhangeUserPassword,
-                    R_Host = company.UserCompany.R_Host,
-                    R_Password = company.UserCompany.R_Password,
-                    R_Port = company.UserCompany.R_Port,
-                    R_User = company.UserCompany.R_User,
-                    Userman_Customer = company.UserCompany.Userman_Customer,
-                    ClientPermissions = company.UserCompany.ClientPermissions
+                    RouterCode = Router.UserRouter.RouterCode,
+                    Expire_Date = Router.UserRouter.Expire_Date,
+                    Id = Router.UserRouter.Id,
+                    SmsActive = Router.UserRouter.SmsActive,
+                    SmsUserAfterChangePackage = Router.UserRouter.SmsUserAfterChangePackage,
+                    SmsUserhangeUserPassword = Router.UserRouter.SmsUserhangeUserPassword,
+                    R_Host = Router.UserRouter.R_Host,
+                    R_Password = Router.UserRouter.R_Password,
+                    R_Port = Router.UserRouter.R_Port,
+                    R_User = Router.UserRouter.R_User,
+                    Userman_Customer = Router.UserRouter.Userman_Customer,
+                    ClientPermissions = Router.UserRouter.ClientPermissions
                 }
             };
 

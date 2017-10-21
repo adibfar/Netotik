@@ -1,0 +1,108 @@
+﻿@using Netotik.Resources;
+@{
+    ViewBag.Title = Captions.OnlineUsers;
+    int ServersCounter = 1;
+}
+<div class="row">
+    <div class="col-md-12">
+        <div class="card">
+            <div class="card-header">
+                <h4 class="card-title">@Captions.HotspotOnlineUsers</h4>
+                <a class="heading-elements-toggle"><i class="icon-ellipsis font-medium-3"></i></a>
+                <div class="heading-elements">
+                    <ul class="list-inline mb-0">
+                        <li><a data-action="collapse"><i class="icon-minus4"></i></a></li>
+                        <li><a data-action="reload"><i class="icon-reload"></i></a></li>
+                        <li><a data-action="expand"><i class="icon-expand2"></i></a></li>
+                        <li><a data-action="close"><i class="icon-cross2"></i></a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="card-body collapse in">
+                <div class="card-block">
+                    <div class="form-body">
+                        <div class="col-xs-12">
+                            <table class="table table-striped table-bordered table-hover zero-configuration dataex-colvis-restore" id="grid" >
+                                <thead>
+                                    <tr>
+                                        <th>#</th>
+                                        <th data-toggle="true">Flags</th>
+                                        <th>Mac Address</th>
+                                        <th>Address</th>
+                                        <th>Server</th>
+                                        <th>Uptime</th>
+                                        <th>Username</th>
+                                        <th>Radius</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var item in ViewBag.servers)
+                                    {
+                                        <tr>
+                                            <td>@(ServersCounter++)</td>
+                                            <td>@item.Flags</td>
+                                            <td>@item.mac_address</td>
+                                            <td>@item.address</td>
+                                            <td>@item.server</td>
+                                            <td>@item.uptime</td>
+                                            <td>@item.user</td>
+                                            <td>@item.radius</td>
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@section UpScript{
+    <link rel="stylesheet" type="text/css" href="~/Content/css/plugins/tables/extensions/buttons.dataTables.min.css">
+}
+@section DownScript{
+    <script src="~/Content/js/plugins/tables/datatable/dataTables.buttons.min.js" type="text/javascript"></script>
+    <script src="~/Content/js/plugins/tables/jszip.min.js" type="text/javascript"></script>
+    <script src="~/Content/js/plugins/tables/pdfmake.min.js" type="text/javascript"></script>
+    <script src="~/Content/js/plugins/tables/vfs_fonts.js" type="text/javascript"></script>
+    <script src="~/Content/js/plugins/tables/buttons.html5.min.js" type="text/javascript"></script>
+    <script type="text/javascript">
+        $(function () {
+            var table = $('#grid').dataTable({
+                "iDisplayLength": 10,
+                "bProcessing": true,
+                "bStateSave": true,
+                "bFilter": true,
+                dom: 'Bfrtip',
+                lengthMenu: [
+                             [10, 25, 50, -1],
+                             ['10', '25', '50', 'All']
+                ],
+                buttons: [
+                    'copy', 'excel', 'pdf', 'pageLength'
+                ]
+            });
+        });
+
+        function ServerRemove(id) {
+            PostData("@Url.Action(MVC.MyRouter.Hotspot.IpWalledGardenRemove())", { id: id });
+        }
+
+        function ServerEnable(id) {
+            PostData("@Url.Action(MVC.MyRouter.Hotspot.IpWalledGardenDisable())", { id: id });
+        }
+
+        function ServerDisable(id) {
+            PostData("@Url.Action(MVC.MyRouter.Hotspot.IpWalledGardenEnable())", { id: id });
+        }
+
+        function ServerDetail(id) {
+            PostData("@Url.Action(MVC.MyRouter.Hotspot.IpWalledGardenEnable())", { id: id });
+        }
+        function ServerEdit(id) {
+            PostData("@Url.Action(MVC.MyRouter.Hotspot.IpWalledGardenEnable())", { id: id });
+        }
+
+    </script>
+}

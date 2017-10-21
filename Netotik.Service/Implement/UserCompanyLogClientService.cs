@@ -14,24 +14,24 @@ using Netotik.Common.DataTables;
 
 namespace Netotik.Services.Implement
 {
-    public class UserCompanyLogClientService : BaseService<UserCompanyLogClient>, IUserCompanyLogClientService
+    public class UserRouterLogClientService : BaseService<UserRouterLogClient>, IUserRouterLogClientService
     {
-        public UserCompanyLogClientService(IUnitOfWork unit)
+        public UserRouterLogClientService(IUnitOfWork unit)
             : base(unit)
         {
 
         }
 
 
-        public IList<UserCompanyLogClient> GetList(long CompanyId)
+        public IList<UserRouterLogClient> GetList(long RouterId)
         {
             return dbSet.AsQueryable().Where(
-                x => x.UserCompanyId == CompanyId && x.UserCompany.WebsitesLogs).ToList();
+                x => x.UserRouterId == RouterId && x.UserRouter.WebsitesLogs).ToList();
         }
-        //public IList<UserCompanyLogClient> GetRangeListList(long CompanyId,DateTime StartDateTime,DateTime EndDateTime)
+        //public IList<UserRouterLogClient> GetRangeListList(long CompanyId,DateTime StartDateTime,DateTime EndDateTime)
         //{
         //    return dbSet.AsQueryable().Where(
-        //        x => x.UserCompanyId == CompanyId).ToList()
+        //        x => x.UserRouterId == CompanyId).ToList()
         //        .Where(x => DateTime.Compare(x..AddMinutes(5), DateTime.Now) > 0).ToList();
         //}
 

@@ -4,9 +4,9 @@ using System.Data.Entity.ModelConfiguration;
 
 namespace Netotik.Domain.EntityConfiguration
 {
-    public class UserCompanyTelegramMap : EntityTypeConfiguration<UserCompanyTelegram>
+    public class UserRouterTelegramMap : EntityTypeConfiguration<UserRouterTelegram>
     {
-        public UserCompanyTelegramMap()
+        public UserRouterTelegramMap()
         {
             // Primary Key
             this.HasKey(t => t.Id);
@@ -16,8 +16,8 @@ namespace Netotik.Domain.EntityConfiguration
                 .HasDatabaseGeneratedOption(DatabaseGeneratedOption.None);
 
             // Relationships
-            this.HasRequired(t => t.UserCompany)
-                .WithOptional(t => t.UserCompanyTelegram);
+            this.HasRequired(t => t.UserRouter)
+                .WithOptional(t => t.UserRouterTelegram);
 
         }
     }

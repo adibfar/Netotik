@@ -6,7 +6,7 @@ using Netotik.Services.Identity;
 
 namespace Netotik.Services.Identity
 {
-    public class PermissionCompanyService : IPermissionCompanyService
+    public class PermissionRouterService : IPermissionRouterService
     {
         #region Fields
 
@@ -17,7 +17,7 @@ namespace Netotik.Services.Identity
 
         #region Ctor
 
-        public PermissionCompanyService()
+        public PermissionRouterService()
         {
 
         }

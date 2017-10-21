@@ -23,7 +23,18 @@ namespace Netotik.Web.Infrastructure
             }
             return PersianDate.ConvertDate.ToFa(date,format);
         }
-
+        public static DateTime ConvertToEn(string miladiDate)
+        {
+            var parts = miladiDate.Split(' ')[0].Split('/');
+            if (parts.Length != 3) return DateTime.Now;
+            int month = GetMonth(parts[0].ToString());
+            int day = int.Parse(parts[1]);
+            int year = int.Parse(parts[2]);
+            int sec = int.Parse(miladiDate.Split(' ')[0].Split(':')[2]);
+            int min = int.Parse(miladiDate.Split(' ')[0].Split(':')[1]);
+            int hour = int.Parse(miladiDate.Split(' ')[0].Split(':')[0]);
+            return new DateTime(year, month, day, sec,min,hour);
+        }
 
         private static int GetMonth(string monthName)
         {

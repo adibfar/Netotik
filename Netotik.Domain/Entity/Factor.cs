@@ -35,6 +35,6 @@ namespace Netotik.Domain.Entity
 
     public enum FactorType : short
     {
-        CompanyBySmsPackage = 0
+        RouterBySmsPackage = 0
     }
 }

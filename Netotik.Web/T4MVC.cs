@@ -31,8 +31,8 @@ public static partial class MVC
     public static AdminClass Admin { get { return s_Admin; } }
     static readonly ClientClass s_Client = new ClientClass();
     public static ClientClass Client { get { return s_Client; } }
-    static readonly CompanyClass s_Company = new CompanyClass();
-    public static CompanyClass Company { get { return s_Company; } }
+    static readonly MyRouterClass s_MyRouter = new MyRouterClass();
+    public static MyRouterClass MyRouter { get { return s_MyRouter; } }
     static readonly ResellerClass s_Reseller = new ResellerClass();
     public static ResellerClass Reseller { get { return s_Reseller; } }
     public static Netotik.Web.Controllers.AccountController Account = new Netotik.Web.Controllers.T4MVC_AccountController();
@@ -87,22 +87,22 @@ namespace T4MVC
         public Netotik.Web.Areas.Client.Controllers.HomeController Home = new Netotik.Web.Areas.Client.Controllers.T4MVC_HomeController();
     }
     [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-    public class CompanyClass
+    public class MyRouterClass
     {
-        public readonly string Name = "Company";
-        public Netotik.Web.Areas.Company.Controllers.ChartsController Charts = new Netotik.Web.Areas.Company.Controllers.T4MVC_ChartsController();
-        public Netotik.Web.Areas.Company.Controllers.FactorController Factor = new Netotik.Web.Areas.Company.Controllers.T4MVC_FactorController();
-        public Netotik.Web.Areas.Company.Controllers.HomeController Home = new Netotik.Web.Areas.Company.Controllers.T4MVC_HomeController();
-        public Netotik.Web.Areas.Company.Controllers.HotspotController Hotspot = new Netotik.Web.Areas.Company.Controllers.T4MVC_HotspotController();
-        public Netotik.Web.Areas.Company.Controllers.RouterController Router = new Netotik.Web.Areas.Company.Controllers.T4MVC_RouterController();
-        public Netotik.Web.Areas.Company.Controllers.UserManagerController UserManager = new Netotik.Web.Areas.Company.Controllers.T4MVC_UserManagerController();
+        public readonly string Name = "MyRouter";
+        public Netotik.Web.Areas.MyRouter.Controllers.ChartsController Charts = new Netotik.Web.Areas.MyRouter.Controllers.T4MVC_ChartsController();
+        public Netotik.Web.Areas.MyRouter.Controllers.FactorController Factor = new Netotik.Web.Areas.MyRouter.Controllers.T4MVC_FactorController();
+        public Netotik.Web.Areas.MyRouter.Controllers.HomeController Home = new Netotik.Web.Areas.MyRouter.Controllers.T4MVC_HomeController();
+        public Netotik.Web.Areas.MyRouter.Controllers.HotspotController Hotspot = new Netotik.Web.Areas.MyRouter.Controllers.T4MVC_HotspotController();
+        public Netotik.Web.Areas.MyRouter.Controllers.RouterController Router = new Netotik.Web.Areas.MyRouter.Controllers.T4MVC_RouterController();
+        public Netotik.Web.Areas.MyRouter.Controllers.UserManagerController UserManager = new Netotik.Web.Areas.MyRouter.Controllers.T4MVC_UserManagerController();
     }
     [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
     public class ResellerClass
     {
         public readonly string Name = "Reseller";
-        public Netotik.Web.Areas.Reseller.Controllers.CompanyController Company = new Netotik.Web.Areas.Reseller.Controllers.T4MVC_CompanyController();
         public Netotik.Web.Areas.Reseller.Controllers.HomeController Home = new Netotik.Web.Areas.Reseller.Controllers.T4MVC_HomeController();
+        public Netotik.Web.Areas.Reseller.Controllers.RouterController Router = new Netotik.Web.Areas.Reseller.Controllers.T4MVC_RouterController();
     }
 }
 

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Netotik.ViewModels.Identity.Permisson
 {
-    public class CompanyPermissionModel
+    public class RouterPermissionModel
     {
         public string Name { get; set; }
         public string Description { get; set; }

@@ -57,7 +57,7 @@ namespace Netotik.Services.Implement
                 long[] rec = null;
                 byte[] status = null;
 
-                if (GetMessageSize(Text) > user.UserCompany.SmsCharge)
+                if (GetMessageSize(Text) > user.UserRouter.SmsCharge)
                     return ResultSms.CreditNotValid;
 
                 int retval = sms.SendSms(setting.SmsUsername, setting.SmsPassword, new string[] { To }, setting.SmsNumber, Text, false, "", ref rec, ref status);
@@ -75,7 +75,7 @@ namespace Netotik.Services.Implement
                 dbSet.Add(smsLog);
 
                 if (smsLog.Result == ResultSms.Success)
-                    user.UserCompany.SmsCharge -= GetMessageSize(Text);
+                    user.UserRouter.SmsCharge -= GetMessageSize(Text);
 
                 return smsLog.Result;
             }

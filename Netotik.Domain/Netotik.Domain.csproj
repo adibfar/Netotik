@@ -116,11 +116,11 @@
     <Compile Include="Entity\Slider.cs" />
     <Compile Include="Entity\Menu.cs" />
     <Compile Include="Entity\ContentTag.cs" />
-    <Compile Include="Entity\UserCompanyRegisterSetting.cs" />
-    <Compile Include="Entity\UserCompanyClient.cs" />
-    <Compile Include="Entity\UserCompanyLogClient.cs" />
-    <Compile Include="Entity\UserCompanyTelegram.cs" />
-    <Compile Include="Entity\UserCompany.cs" />
+    <Compile Include="Entity\UserRouterRegisterSetting.cs" />
+    <Compile Include="Entity\UserRouterClient.cs" />
+    <Compile Include="Entity\UserRouterLogClient.cs" />
+    <Compile Include="Entity\UserRouterTelegram.cs" />
+    <Compile Include="Entity\UserRouter.cs" />
     <Compile Include="Entity\UserReseller.cs" />
     <Compile Include="Entity\UserClaim.cs" />
     <Compile Include="Entity\UserLogin.cs" />

@@ -225,11 +225,11 @@ namespace Netotik.Resources
         }
 
 
-        public static string CompanyName
+        public static string RouterName
         {
             get
             {
-                return resourceProvider.GetResource("CompanyName", CultureInfo.CurrentUICulture.Name) as string;
+                return resourceProvider.GetResource("RouterName", CultureInfo.CurrentUICulture.Name) as string;
             }
         }
 
@@ -1716,11 +1716,11 @@ namespace Netotik.Resources
         }
 
 
-        public static string CompanyPanel
+        public static string RouterPanel
         {
             get
             {
-                return resourceProvider.GetResource("CompanyPanel", CultureInfo.CurrentUICulture.Name) as string;
+                return resourceProvider.GetResource("RouterPanel", CultureInfo.CurrentUICulture.Name) as string;
             }
         }
 
@@ -3166,18 +3166,18 @@ namespace Netotik.Resources
                 return resourceProvider.GetResource("ClientPanelPermission", CultureInfo.CurrentUICulture.Name) as string;
             }
         }
-        public static string UserLoginLink
+        public static string RouterLoginLink
         {
             get
             {
-                return resourceProvider.GetResource("UserLoginLink", CultureInfo.CurrentUICulture.Name) as string;
+                return resourceProvider.GetResource("RouterLoginLink", CultureInfo.CurrentUICulture.Name) as string;
             }
         }
-        public static string UserLoginMessage
+        public static string RouterLoginMessage
         {
             get
             {
-                return resourceProvider.GetResource("UserLoginMessage", CultureInfo.CurrentUICulture.Name) as string;
+                return resourceProvider.GetResource("RouterLoginMessage", CultureInfo.CurrentUICulture.Name) as string;
             }
         }
         public static string FirstNameAndLastName
@@ -4022,18 +4022,18 @@ namespace Netotik.Resources
                 return resourceProvider.GetResource("NoneType", CultureInfo.CurrentUICulture.Name) as string;
             }
         }
-        public static string SmsCompanyPasswordChange
+        public static string SmsRouterPasswordChange
         {
             get
             {
-                return resourceProvider.GetResource("SmsCompanyPasswordChange", CultureInfo.CurrentUICulture.Name) as string;
+                return resourceProvider.GetResource("SmsRouterPasswordChange", CultureInfo.CurrentUICulture.Name) as string;
             }
         }
-        public static string SmsCompanyLogins
+        public static string SmsRouterLogins
         {
             get
             {
-                return resourceProvider.GetResource("SmsCompanyLogins", CultureInfo.CurrentUICulture.Name) as string;
+                return resourceProvider.GetResource("SmsRouterLogins", CultureInfo.CurrentUICulture.Name) as string;
             }
         }
         public static string SmsUserBuyPlan
@@ -4531,6 +4531,34 @@ namespace Netotik.Resources
                 return resourceProvider.GetResource("XmlNotValid", CultureInfo.CurrentUICulture.Name) as string;
             }
         }
-        
+
+        public static string CompanyName
+        {
+            get
+            {
+                return resourceProvider.GetResource("CompanyName", CultureInfo.CurrentUICulture.Name) as string;
+            }
+        }
+        public static string Routers
+        {
+            get
+            {
+                return resourceProvider.GetResource("Routers", CultureInfo.CurrentUICulture.Name) as string;
+            }
+        }
+        public static string RouterList
+        {
+            get
+            {
+                return resourceProvider.GetResource("RouterList", CultureInfo.CurrentUICulture.Name) as string;
+            }
+        }
+        public static string NewRouter
+        {
+            get
+            {
+                return resourceProvider.GetResource("NewRouter", CultureInfo.CurrentUICulture.Name) as string;
+            }
+        }
     }
 }

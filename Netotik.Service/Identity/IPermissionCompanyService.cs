@@ -7,7 +7,7 @@ using System.Xml.Linq;
 
 namespace Netotik.Services.Identity
 {
-    public interface IPermissionCompanyService
+    public interface IPermissionRouterService
     {
         XElement GetPermissionsAsXml(params string[] permissionNames);
         IList<string> GetPermissionsAsList(XElement permissionsAsXml);

@@ -35,12 +35,12 @@
                         </a>
                     </li>
                 }
-                else if (user.UserType == UserType.UserCompany)
+                else if (user.UserType == UserType.UserRouter)
                 {
                     <li>
-                        <a href="@Url.Action(MVC.Company.Home.Index())">
+                        <a href="@Url.Action(MVC.MyRouter.Home.Index())">
                             <i class="fa fa-desktop"></i>
-                            @Captions.CompanyPanel
+                            @Captions.RouterPanel
                         </a>
                     </li>
                 }

@@ -22,7 +22,7 @@
   <LocaleResource Name="Category">Category</LocaleResource>
   <LocaleResource Name="Group">Group</LocaleResource>
   <LocaleResource Name="City">City</LocaleResource>
-  <LocaleResource Name="CompanyName">Company Name</LocaleResource>
+  <LocaleResource Name="RouterName">Router Name</LocaleResource>
   <LocaleResource Name="OldPassword">Old Password</LocaleResource>
   <LocaleResource Name="Password">Password</LocaleResource>
   <LocaleResource Name="NewPassword">New Password</LocaleResource>
@@ -188,7 +188,7 @@
   <LocaleResource Name="HomeMenu">Home</LocaleResource>
   <LocaleResource Name="AdminPanel">Admin Panel</LocaleResource>
   <LocaleResource Name="ResellerPanel">Reseller Panel</LocaleResource>
-  <LocaleResource Name="CompanyPanel">Company Panel</LocaleResource>
+  <LocaleResource Name="RouterPanel">Router Panel</LocaleResource>
   <LocaleResource Name="UserPanel">User PAnel</LocaleResource>
   <LocaleResource Name="Netotik">Netotik</LocaleResource>
   <LocaleResource Name="ContactUs">Contact Us</LocaleResource>
@@ -201,7 +201,7 @@
   <LocaleResource Name="WatchIntroduceNetotikVideo">Watch Intro Video</LocaleResource>
   <LocaleResource Name="ChangePassword">Change Password</LocaleResource>
   <LocaleResource Name="OnlineUsers">Online</LocaleResource>
-  <LocaleResource Name="ResellerCode">Company code : Engilsh and withhout space</LocaleResource>
+  <LocaleResource Name="ResellerCode">Router code : Engilsh and withhout space</LocaleResource>
   <LocaleResource Name="DontHaveAccount">Dont Have Account?</LocaleResource>
   <LocaleResource Name="NetotikDescribtion">Internet and intranets management system used in both large and small organizations</LocaleResource>
   <LocaleResource Name="CopyRight">© All right reserved for Dnma Groups.</LocaleResource>
@@ -554,10 +554,10 @@
   <LocaleResource Name="FirstNameAndLastName">
     <Value>Full Name</Value>
   </LocaleResource>
-  <LocaleResource Name="UserLoginLink">
-    <Value>Users Login Link</Value>
+  <LocaleResource Name="RouterLoginLink">
+    <Value>Routers Login Link</Value>
   </LocaleResource>
-  <LocaleResource Name="UserLoginMessage">
+  <LocaleResource Name="RouterLoginMessage">
     <Value>
       Your Users must use this URL to login to there panels.
       you can show your advertisment in this page.
@@ -910,10 +910,10 @@
   <LocaleResource Name="LastPlanChanges">
     <Value>Last Plan Changes</Value>
   </LocaleResource>
-  <LocaleResource Name="SmsCompanyPasswordChange">
+  <LocaleResource Name="SmsRouterPasswordChange">
     <Value>User {0} , Your password changed.Netotik System</Value>
   </LocaleResource>
-  <LocaleResource Name="SmsCompanyLogins">
+  <LocaleResource Name="SmsRouterLogins">
     <Value>User {0} with {1} IP address Logined.Date:{2}</Value>
   </LocaleResource>
   <LocaleResource Name="SmsUserBuyPlan">
@@ -1177,5 +1177,18 @@
 
   <LocaleResource Name="XmlNotValid">
     <Value>Xml file is not valid.</Value>
+  </LocaleResource>
+  <LocaleResource Name="CompanyName">
+    <Value>Company Name</Value>
+  </LocaleResource>
+
+  <LocaleResource Name="Routers">
+    <Value>Routers</Value>
+  </LocaleResource>
+  <LocaleResource Name="RouterList">
+    <Value>Routers List</Value>
+  </LocaleResource>
+  <LocaleResource Name="NewRouter">
+    <Value>New Router</Value>
   </LocaleResource>
 </Language>

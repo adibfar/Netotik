@@ -8,13 +8,13 @@ using System.Web.Mvc;
 namespace Netotik.ViewModels.Identity.Security
 {
 
-    public static class AssignablePermissionToCompany
+    public static class AssignablePermissionToRouter
     {
 
         #region Fields
 
-        private static Lazy<IEnumerable<CompanyPermissionModel>> _permissionsLazy =
-            new Lazy<IEnumerable<CompanyPermissionModel>>(GetPermision, LazyThreadSafetyMode.ExecutionAndPublication);
+        private static Lazy<IEnumerable<RouterPermissionModel>> _permissionsLazy =
+            new Lazy<IEnumerable<RouterPermissionModel>>(GetPermision, LazyThreadSafetyMode.ExecutionAndPublication);
 
         private static Lazy<IEnumerable<string>> _permissionNamesLazy = new Lazy<IEnumerable<string>>(
             GetPermisionNames, LazyThreadSafetyMode.ExecutionAndPublication);
@@ -32,7 +32,7 @@ namespace Netotik.ViewModels.Identity.Security
 
 
         #region Properties
-        public static IEnumerable<CompanyPermissionModel> Permissions
+        public static IEnumerable<RouterPermissionModel> Permissions
         {
             get
             {
@@ -54,10 +54,15 @@ namespace Netotik.ViewModels.Identity.Security
         #region RolePerssiones
 
 
-        public const string FoodMenu = "0";
+        public const string UserManagerUserList = "01";
+        public const string UserManagerPlanList = "02";
+        public const string UserManagerOnlines = "03";
+        public const string UserManagerRegisterSettings = "04";
+        public const string UserManagerReports = "05";
+        public const string UserManagerClientArea = "06";
 
 
-        public static readonly CompanyPermissionModel FoodMenuPermission = new CompanyPermissionModel { Name = FoodMenu, Description = "منو غدا" };
+        public static readonly RouterPermissionModel UserManagerUserListPermission = new RouterPermissionModel { Name = UserManagerUserList, Description = "لیست کاربران یوزرمنیجر" };
 
         #endregion
 
@@ -67,11 +72,11 @@ namespace Netotik.ViewModels.Identity.Security
         #region GetAllPermisions
 
 
-        public static IEnumerable<CompanyPermissionModel> GetPermision()
+        public static IEnumerable<RouterPermissionModel> GetPermision()
         {
-            return new List<CompanyPermissionModel>
+            return new List<RouterPermissionModel>
             {
-                FoodMenuPermission
+                UserManagerUserListPermission
             };
         }
 
@@ -81,10 +86,18 @@ namespace Netotik.ViewModels.Identity.Security
         {
             return new List<String>
             {
-                FoodMenu
+                UserManagerUserList
             };
         }
         #endregion
+
+        public static IEnumerable<RouterPermissionModel> GetUserManagerPermision()
+        {
+            return new List<RouterPermissionModel>
+            {
+                UserManagerUserListPermission
+            };
+        }
 
     }
 }

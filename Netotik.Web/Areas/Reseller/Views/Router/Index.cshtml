@@ -1,0 +1,53 @@
+﻿@model IList<Netotik.ViewModels.Identity.UserRouter.RouterList>
+@{
+    ViewBag.Title = Netotik.Resources.Captions.UsersList;
+}
+<section id="configuration">
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="card">
+                <div class="card-header">
+                    <a href="@Url.Action(MVC.Reseller.Router.Create())" class="btn btn-social width-150 btn-instagram"><span class="icon-person-add font-medium-4"></span>@Netotik.Resources.Captions.NewRouter</a>
+                </div>
+
+                <div class="card-body collapse in">
+                    <div class="card-block card-dashboard">
+                        @Html.Partial(MVC.Reseller.Router.Views._Table, Model)
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<div id="edit-container"></div>
+@section UpScript{
+    <link rel="stylesheet" type="text/css" href="~/Content/css/plugins/tables/extensions/buttons.dataTables.min.css">
+}
+@section DownScript{
+<script src="~/Content/js/plugins/tables/datatable/dataTables.buttons.min.js" type="text/javascript"></script>
+<script src="~/Content/js/plugins/tables/jszip.min.js" type="text/javascript"></script>
+<script src="~/Content/js/plugins/tables/pdfmake.min.js" type="text/javascript"></script>
+<script src="~/Content/js/plugins/tables/vfs_fonts.js" type="text/javascript"></script>
+<script src="~/Content/js/plugins/tables/buttons.html5.min.js" type="text/javascript"></script>
+    <script type="text/javascript">
+        $(function () {
+            var table = $('#grid').dataTable({
+                "iDisplayLength": 10,
+                "bProcessing": true,
+                "bStateSave": true,
+                "bFilter": true,
+                "bAutoWidth": true,
+                dom: 'Bfrtip',
+                lengthMenu: [
+                             [10, 25, 50, -1],
+                             ['10', '25', '50', 'All']
+                ],
+                buttons: [
+                    'copy', 'excel', 'pdf', 'pageLength'
+                ]
+            });
+        });
+        
+    </script>
+}
+

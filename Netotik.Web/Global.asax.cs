@@ -113,7 +113,7 @@ namespace Netotik.Web
         public static IPEndPoint e = new IPEndPoint(IPAddress.Any, 5140);
         public static UdpClient u = new UdpClient(e);
         public static IApplicationUserManager _applicationUserManager;
-        public static IUserCompanyLogClientService _usercompanylogclientservice;
+        public static IUserRouterLogClientService _UserRouterlogclientservice;
         public static IUnitOfWork _uow;
         public static UdpState s = new UdpState();
 
@@ -155,7 +155,7 @@ namespace Netotik.Web
         {
 
             _applicationUserManager = ProjectObjectFactory.Container.GetInstance<IApplicationUserManager>();
-            _usercompanylogclientservice = ProjectObjectFactory.Container.GetInstance<IUserCompanyLogClientService>();
+            _UserRouterlogclientservice = ProjectObjectFactory.Container.GetInstance<IUserRouterLogClientService>();
             _uow = ProjectObjectFactory.Container.GetInstance<IUnitOfWork>();
 
             s.e = e;
@@ -178,18 +178,18 @@ namespace Netotik.Web
         {
 
 
-            var ActiveUsers = _applicationUserManager.GetUserCompaniesWebsitesLogsActive();
-            if (ActiveUsers != null)//&& Usercompany.WebsiteLogs == true
+            var ActiveUsers = _applicationUserManager.GetUserRoutersWebsitesLogsActive();
+            if (ActiveUsers != null)//&& UserRouter.WebsiteLogs == true
             {
                 foreach (var User in ActiveUsers)
                 {
-                    if (User.UserCompany.R_Host == Ip || Dns.GetHostAddresses(User.UserCompany.R_Host).Any(x => x.Address.ToString() == Ip))
+                    if (User.UserRouter.R_Host == Ip || Dns.GetHostAddresses(User.UserRouter.R_Host).Any(x => x.Address.ToString() == Ip))
                     {
                         try
                         {
-                            UserCompanyLogClient http = new UserCompanyLogClient();
+                            UserRouterLogClient http = new UserRouterLogClient();
                             http.MikrotikCreateDate = DateTime.Now;
-                            http.UserCompanyId = User.Id;
+                            http.UserRouterId = User.Id;
                             if (Message != null && Message.Split(' ')[3].Contains("http://"))
                             {
                                 http.Url = Message.Split(' ')[3];
@@ -198,20 +198,20 @@ namespace Netotik.Web
                             }
                             else
                             {
-                                if (Message.Contains("src-mac"))
+                                if (Message.Contains("mac"))
                                 {
-                                    if (Message != null && Message.Split(' ')[9].Contains("->"))
+                                    if (Message != null && Message.Split(' ')[9].Contains(">"))
                                     {
                                         http.SrcMac = Message.Split(' ')[5].Split(',')[0];
                                         http.SrcIp = Message.Split(' ')[9].Split('-')[0].Split(':')[0];
                                         http.DstIp = Message.Split(' ')[9].Split('>')[1].Split(':')[0];
                                         http.SrcPort = Int32.Parse(Message.Split(' ')[9].Split('-')[0].Split(':')[1]);
-                                        http.DstPort = Int32.Parse(Message.Split(' ')[9].Split('>')[1].Split(':')[1]);
+                                        http.DstPort = Int32.Parse(Message.Split(' ')[9].Split('>')[1].Split(':')[1].Split(',')[0]);
                                     }
                                 }
                                 else
                                 {
-                                    if (Message != null && Message.Split(' ')[7].Contains("->"))
+                                    if (Message != null && Message.Split(' ')[7].Contains(">"))
                                     {
                                         http.SrcIp = Message.Split(' ')[7].Split('-')[0].Split(':')[0];
                                         http.DstIp = Message.Split(' ')[7].Split('>')[1].Split(':')[0];
@@ -221,7 +221,7 @@ namespace Netotik.Web
                                 }
 
                             }
-                            _usercompanylogclientservice.Add(http);
+                            _UserRouterlogclientservice.Add(http);
                             await _uow.SaveAllChangesAsync();
                         }
                         catch(Exception ex) {

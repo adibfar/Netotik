@@ -10,6 +10,7 @@ using System.Web;
 using Netotik.Web.Infrastructure;
 using Netotik.Web.Infrastructure.Caching;
 using Netotik.Common.Filters;
+using Microsoft.AspNet.Identity;
 
 namespace Netotik.Web.Controllers
 {
@@ -87,16 +88,16 @@ namespace Netotik.Web.Controllers
             
             if (User.IsInRole(Netotik.ViewModels.Identity.Security.AssignableToRolePermissions.CanViewAdminPanel))
             {
-                var menues = _menuService.All().Where(x => x.IsActive).Include(x => x.SubMenues).ToList();
-                return PartialView(MVC.Shared.Views._SideBarAdminMenu, menues);
+                return PartialView(MVC.Shared.Views._SideBarAdminMenu);
             }
             else if (User.IsInRole("Reseller"))
             {
                 return PartialView(MVC.Shared.Views._SideBarResellerMenu);
             }
-            else if (User.IsInRole("Company"))
+            else if (User.IsInRole("Router"))
             {
-                return PartialView(MVC.Shared.Views._SideBarCompanyMenu);
+                var RouterPermissions = _applicationUserManager.FindRouterPermissions(User.Identity.GetUserId<long>());
+                return PartialView(MVC.Shared.Views._SideBarRouterMenu,RouterPermissions);
             }
             return View("");
         }

@@ -9,8 +9,8 @@ using System.Threading.Tasks;
 
 namespace Netotik.Services.Abstract
 {
-    public interface IUserCompanyLogClientService : IBaseService<UserCompanyLogClient>
+    public interface IUserRouterLogClientService : IBaseService<UserRouterLogClient>
     {
-        IList<UserCompanyLogClient> GetList(long CompanyId);
+        IList<UserRouterLogClient> GetList(long RouterId);
     }
 }

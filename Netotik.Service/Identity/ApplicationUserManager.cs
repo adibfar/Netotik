@@ -24,7 +24,7 @@ using Netotik.Services.Abstract;
 using Netotik.ViewModels.Identity.UserAdmin;
 using Netotik.Common.Security.RijndaelEncryption;
 using System.Xml.Linq;
-using Netotik.ViewModels.Identity.UserCompany;
+using Netotik.ViewModels.Identity.UserRouter;
 
 namespace Netotik.Services.Identity
 {
@@ -38,7 +38,7 @@ namespace Netotik.Services.Identity
         private readonly HttpContextBase _contextBase;
         private readonly IPermissionService _permissionService;
         private readonly IPermissionClientService _permissionClientService;
-        private readonly IPermissionCompanyService _permissionCompanyService;
+        private readonly IPermissionRouterService _permissionRouterService;
         private readonly IApplicationRoleManager _roleManager;
         private readonly ILanguageService _languageService;
         private readonly ILanguageTranslationService _languageTranslationService;
@@ -51,13 +51,13 @@ namespace Netotik.Services.Identity
 
         #region Constructor
 
-        public ApplicationUserManager(IIdentity identity, IPermissionCompanyService permissionCompanyService,
+        public ApplicationUserManager(IIdentity identity, IPermissionRouterService permissionRouterService,
             IPermissionClientService permissionClientService, ILanguageService languageService, ILanguageTranslationService languageTranslationService,
             HttpContextBase contextBase, IPermissionService permissionService, IUserStore<User, long> userStore, IApplicationRoleManager roleManager, IUnitOfWork unitOfWork,
             IMappingEngine mappingEngine, IDataProtectionProvider dataProtectionProvider)
             : base(userStore)
         {
-            _permissionCompanyService = permissionCompanyService;
+            _permissionRouterService = permissionRouterService;
             _permissionClientService = permissionClientService;
             _languageTranslationService = languageTranslationService;
             _languageService = languageService;
@@ -104,31 +104,31 @@ namespace Netotik.Services.Identity
             return _mappingEngine.Map<ViewModels.Identity.UserReseller.ProfileModel>(GetCurrentUser());
         }
 
-        public ViewModels.Identity.UserCompany.ProfileModel GetUserCompanyProfile(long id)
+        public ViewModels.Identity.UserRouter.ProfileModel GetUserRouterProfile(long id)
         {
-            return _mappingEngine.Map<ViewModels.Identity.UserCompany.ProfileModel>(_users.FirstOrDefault(a => a.Id == id && !a.IsDeleted));
+            return _mappingEngine.Map<ViewModels.Identity.UserRouter.ProfileModel>(_users.FirstOrDefault(a => a.Id == id && !a.IsDeleted));
         }
 
-        public ViewModels.Identity.UserCompany.MikrotikConfModel GetUserCompanyMikrotikConf(long id)
+        public ViewModels.Identity.UserRouter.MikrotikConfModel GetUserRouterMikrotikConf(long id)
         {
-            return _mappingEngine.Map<ViewModels.Identity.UserCompany.MikrotikConfModel>(_users.FirstOrDefault(a => a.Id == id && !a.IsDeleted));
+            return _mappingEngine.Map<ViewModels.Identity.UserRouter.MikrotikConfModel>(_users.FirstOrDefault(a => a.Id == id && !a.IsDeleted));
         }
-        public ViewModels.Identity.UserCompany.TelegramBotModel GetUserCompanyTelegramBot(long id)
+        public ViewModels.Identity.UserRouter.TelegramBotModel GetUserRouterTelegramBot(long id)
         {
-            return _mappingEngine.Map<ViewModels.Identity.UserCompany.TelegramBotModel>(_users.FirstOrDefault(a => a.Id == id && !a.IsDeleted));
+            return _mappingEngine.Map<ViewModels.Identity.UserRouter.TelegramBotModel>(_users.FirstOrDefault(a => a.Id == id && !a.IsDeleted));
         }
-        public IList<ViewModels.Identity.UserCompany.CompanyList> GetListUserCompany(long id)
+        public IList<ViewModels.Identity.UserRouter.RouterList> GetListUserRouter(long id)
         {
-            IList<ViewModels.Identity.UserCompany.CompanyList> selectedUsers = _users.Where(x => !x.IsDeleted && x.UserCompany.UserResellerId == id)
-                                            .Select(x => new ViewModels.Identity.UserCompany.CompanyList
+            IList<ViewModels.Identity.UserRouter.RouterList> selectedUsers = _users.Where(x => !x.IsDeleted && x.UserRouter.UserResellerId == id)
+                                            .Select(x => new ViewModels.Identity.UserRouter.RouterList
                                             {
                                                 Id = x.Id,
-                                                CompanyCode = x.UserCompany.CompanyCode,
+                                                RouterCode = x.UserRouter.RouterCode,
                                                 Email = x.Email,
                                                 FirstName = x.FirstName,
                                                 IsBanned = x.IsBanned,
                                                 LastName = x.LastName,
-                                                NationalCode = x.UserCompany.NationalCode,
+                                                NationalCode = x.UserRouter.NationalCode,
                                                 PhoneNumber = x.PhoneNumber,
                                                 UserName = x.UserName,
                                                 ImageAvatar = x.PictureId.HasValue ? x.Picture.FileName : "Default.png",
@@ -138,43 +138,43 @@ namespace Netotik.Services.Identity
         }
 
 
-        ViewModels.Identity.UserCompany.RegisterSettingModel IApplicationUserManager.GetCompanyRegisterSetting(long UserId)
+        ViewModels.Identity.UserRouter.RegisterSettingModel IApplicationUserManager.GetRouterRegisterSetting(long UserId)
         {
             var user = _users.FirstOrDefault(x => x.Id == UserId);
-            var model = new ViewModels.Identity.UserCompany.RegisterSettingModel();
+            var model = new ViewModels.Identity.UserRouter.RegisterSettingModel();
 
             model.Id = UserId;
-            model.Age = user.UserCompany.UserCompanyRegisterSetting.Age;
-            model.BirthDate = user.UserCompany.UserCompanyRegisterSetting.BirthDate;
-            model.Email = user.UserCompany.UserCompanyRegisterSetting.Email;
-            model.IsMale = user.UserCompany.UserCompanyRegisterSetting.IsMale;
-            model.MobileNumber = user.UserCompany.UserCompanyRegisterSetting.MobileNumber;
-            model.Name = user.UserCompany.UserCompanyRegisterSetting.Name;
-            model.NationalCode = user.UserCompany.UserCompanyRegisterSetting.NationalCode;
-            model.Password = user.UserCompany.UserCompanyRegisterSetting.Password;
-            model.PasswordConfirm = user.UserCompany.UserCompanyRegisterSetting.PasswordConfirm;
-            model.Username = user.UserCompany.UserCompanyRegisterSetting.Username;
-            model.SendEmailUserPass = user.UserCompany.UserCompanyRegisterSetting.SendEmailUserPass;
-            model.SendSmsUserPass = user.UserCompany.RegisterFormSms;
+            model.Age = user.UserRouter.UserRouterRegisterSetting.Age;
+            model.BirthDate = user.UserRouter.UserRouterRegisterSetting.BirthDate;
+            model.Email = user.UserRouter.UserRouterRegisterSetting.Email;
+            model.IsMale = user.UserRouter.UserRouterRegisterSetting.IsMale;
+            model.MobileNumber = user.UserRouter.UserRouterRegisterSetting.MobileNumber;
+            model.Name = user.UserRouter.UserRouterRegisterSetting.Name;
+            model.NationalCode = user.UserRouter.UserRouterRegisterSetting.NationalCode;
+            model.Password = user.UserRouter.UserRouterRegisterSetting.Password;
+            model.PasswordConfirm = user.UserRouter.UserRouterRegisterSetting.PasswordConfirm;
+            model.Username = user.UserRouter.UserRouterRegisterSetting.Username;
+            model.SendEmailUserPass = user.UserRouter.UserRouterRegisterSetting.SendEmailUserPass;
+            model.SendSmsUserPass = user.UserRouter.RegisterFormSms;
 
             return model;
         }
 
-        public async Task UpdateCompanyRegisterSettingAsync(ViewModels.Identity.UserCompany.RegisterSettingModel model)
+        public async Task UpdateRouterRegisterSettingAsync(ViewModels.Identity.UserRouter.RegisterSettingModel model)
         {
             var user = _users.Find(model.Id);
-            user.UserCompany.UserCompanyRegisterSetting.Age = model.Age;
-            user.UserCompany.UserCompanyRegisterSetting.BirthDate = model.BirthDate;
-            user.UserCompany.UserCompanyRegisterSetting.Email = model.Email;
-            user.UserCompany.UserCompanyRegisterSetting.IsMale = model.IsMale;
-            user.UserCompany.UserCompanyRegisterSetting.MobileNumber = model.MobileNumber;
-            user.UserCompany.UserCompanyRegisterSetting.Name = model.Name;
-            user.UserCompany.UserCompanyRegisterSetting.NationalCode = model.NationalCode;
-            user.UserCompany.UserCompanyRegisterSetting.Password = model.Password;
-            user.UserCompany.UserCompanyRegisterSetting.PasswordConfirm = model.PasswordConfirm;
-            user.UserCompany.UserCompanyRegisterSetting.Username = model.Username;
-            user.UserCompany.UserCompanyRegisterSetting.SendEmailUserPass = model.SendEmailUserPass;
-            user.UserCompany.RegisterFormSms = model.SendSmsUserPass;
+            user.UserRouter.UserRouterRegisterSetting.Age = model.Age;
+            user.UserRouter.UserRouterRegisterSetting.BirthDate = model.BirthDate;
+            user.UserRouter.UserRouterRegisterSetting.Email = model.Email;
+            user.UserRouter.UserRouterRegisterSetting.IsMale = model.IsMale;
+            user.UserRouter.UserRouterRegisterSetting.MobileNumber = model.MobileNumber;
+            user.UserRouter.UserRouterRegisterSetting.Name = model.Name;
+            user.UserRouter.UserRouterRegisterSetting.NationalCode = model.NationalCode;
+            user.UserRouter.UserRouterRegisterSetting.Password = model.Password;
+            user.UserRouter.UserRouterRegisterSetting.PasswordConfirm = model.PasswordConfirm;
+            user.UserRouter.UserRouterRegisterSetting.Username = model.Username;
+            user.UserRouter.UserRouterRegisterSetting.SendEmailUserPass = model.SendEmailUserPass;
+            user.UserRouter.RegisterFormSms = model.SendSmsUserPass;
 
             await _unitOfWork.SaveChangesAsync();
         }
@@ -240,7 +240,7 @@ namespace Netotik.Services.Identity
             await _unitOfWork.SaveChangesAsync();
         }
 
-        public async Task UpdateUserClientPermissions(ViewModels.Identity.UserCompany.ProfileModel model)
+        public async Task UpdateUserClientPermissions(ViewModels.Identity.UserRouter.ProfileModel model)
         {
             var user = _users.Find(model.Id);
 
@@ -249,12 +249,12 @@ namespace Netotik.Services.Identity
                 XmlClientPermissions = _permissionClientService.GetPermissionsAsXml("null").ToString();
             else XmlClientPermissions = _permissionClientService.GetPermissionsAsXml(model.ClientPermissionNames).ToString();
 
-            user.UserCompany.ClientPermissions = XmlClientPermissions;
+            user.UserRouter.ClientPermissions = XmlClientPermissions;
 
             await _unitOfWork.SaveChangesAsync();
         }
 
-        public async Task UpdateUserCompanyProfile(ViewModels.Identity.UserCompany.ProfileModel model)
+        public async Task UpdateUserRouterProfile(ViewModels.Identity.UserRouter.ProfileModel model)
         {
             var user = _users.Find(model.Id);
 
@@ -272,14 +272,14 @@ namespace Netotik.Services.Identity
             //    XmlClientPermissions = _permissionClientService.GetPermissionsAsXml("null").ToString();
             //else XmlClientPermissions = _permissionClientService.GetPermissionsAsXml(model.ClientPermissionNames).ToString();
 
-            //user.UserCompany.ClientPermissions = XmlClientPermissions;
+            //user.UserRouter.ClientPermissions = XmlClientPermissions;
 
             //var XmlCompanyPermissions = "";
-            //if (model.CompanyPermissionNames == null || model.CompanyPermissionNames.Length < 1)
+            //if (model.RouterPermissionNames == null || model.RouterPermissionNames.Length < 1)
             //    XmlCompanyPermissions = _permissionCompanyService.GetPermissionsAsXml("null").ToString();
-            //else XmlCompanyPermissions = _permissionCompanyService.GetPermissionsAsXml(model.CompanyPermissionNames).ToString();
+            //else XmlCompanyPermissions = _permissionCompanyService.GetPermissionsAsXml(model.RouterPermissionNames).ToString();
 
-            //user.UserCompany.CompanyPermissions= XmlCompanyPermissions;
+            //user.UserRouter.CompanyPermissions= XmlCompanyPermissions;
 
             await _unitOfWork.SaveChangesAsync();
         }
@@ -323,13 +323,13 @@ namespace Netotik.Services.Identity
 
         }
 
-        public async Task UpdateUserCompanyMikrotikConf(ViewModels.Identity.UserCompany.MikrotikConfModel model)
+        public async Task UpdateUserRouterMikrotikConf(ViewModels.Identity.UserRouter.MikrotikConfModel model)
         {
             var user = _users.Find(model.Id);
             _mappingEngine.Map(model, user);
             await _unitOfWork.SaveChangesAsync();
         }
-        public async Task UpdateUserCompanyTelegramBot(ViewModels.Identity.UserCompany.TelegramBotModel model)
+        public async Task UpdateUserRouterTelegramBot(ViewModels.Identity.UserRouter.TelegramBotModel model)
         {
             var user = _users.Find(model.Id);
             _mappingEngine.Map(model, user);
@@ -571,12 +571,12 @@ namespace Netotik.Services.Identity
             return _mappingEngine.Map<ViewModels.Identity.UserReseller.ResellerEditModel>(userWithRoles);
         }
 
-        public async Task<ViewModels.Identity.UserCompany.CompanyEditModel> GetUserCompanyByIdAsync(long id)
+        public async Task<ViewModels.Identity.UserRouter.RouterEditModel> GetUserRouterByIdAsync(long id)
         {
             var userWithRoles = await
                  _users.AsNoTracking().FirstOrDefaultAsync(a => a.Id == id);
 
-            return _mappingEngine.Map<ViewModels.Identity.UserCompany.CompanyEditModel>(userWithRoles);
+            return _mappingEngine.Map<ViewModels.Identity.UserRouter.RouterEditModel>(userWithRoles);
         }
         #endregion
 
@@ -652,7 +652,7 @@ namespace Netotik.Services.Identity
             await _unitOfWork.SaveChangesAsync();
             return await Task.FromResult(true);
         }
-        public async Task<bool> EditCompany(ViewModels.Identity.UserCompany.CompanyEditModel viewModel)
+        public async Task<bool> EditRouter(ViewModels.Identity.UserRouter.RouterEditModel viewModel)
         {
             var passwordModify = false;
 
@@ -678,14 +678,14 @@ namespace Netotik.Services.Identity
                 XmlClientPermissions = _permissionClientService.GetPermissionsAsXml("null").ToString();
             else XmlClientPermissions = _permissionClientService.GetPermissionsAsXml(viewModel.ClientPermissionNames).ToString();
 
-            user.UserCompany.ClientPermissions = XmlClientPermissions;
+            user.UserRouter.ClientPermissions = XmlClientPermissions;
 
-            var XmlCompanyPermissions = "";
-            if (viewModel.CompanyPermissionNames == null || viewModel.CompanyPermissionNames.Length < 1)
-                XmlCompanyPermissions = _permissionCompanyService.GetPermissionsAsXml("null").ToString();
-            else XmlCompanyPermissions = _permissionCompanyService.GetPermissionsAsXml(viewModel.CompanyPermissionNames).ToString();
+            var XmlRouterPermissions = "";
+            if (viewModel.RouterPermissionNames == null || viewModel.RouterPermissionNames.Length < 1)
+                XmlRouterPermissions = _permissionRouterService.GetPermissionsAsXml("null").ToString();
+            else XmlRouterPermissions = _permissionRouterService.GetPermissionsAsXml(viewModel.RouterPermissionNames).ToString();
 
-            user.UserCompany.CompanyPermissions = XmlCompanyPermissions;
+            user.UserRouter.RouterPermissions = XmlRouterPermissions;
 
             //if (passwordModify || emailModify)
             if (passwordModify)
@@ -725,7 +725,7 @@ namespace Netotik.Services.Identity
             await CreateAsync(user, viewModel.Password);
             return user.Id;
         }
-        public async Task<long> AddCompany(ViewModels.Identity.UserCompany.Register viewModel)
+        public async Task<long> AddRouter(ViewModels.Identity.UserRouter.Register viewModel)
         {
             var user = _mappingEngine.Map<User>(viewModel);
 
@@ -735,8 +735,8 @@ namespace Netotik.Services.Identity
                 XmlClientPermissions = _permissionClientService.GetPermissionsAsXml("null").ToString();
             else XmlClientPermissions = _permissionClientService.GetPermissionsAsXml(viewModel.ClientPermissionNames).ToString();
 
-            user.UserCompany.ClientPermissions = XmlClientPermissions;
-            user.UserType = UserType.UserCompany;
+            user.UserRouter.ClientPermissions = XmlClientPermissions;
+            user.UserType = UserType.UserRouter;
             user.EmailConfirmed = false;
             await CreateAsync(user, viewModel.Password);
             return user.Id;
@@ -776,11 +776,11 @@ namespace Netotik.Services.Identity
                ? _users.Any(a => a.Email.ToLower() == email.ToLower() && !a.IsDeleted)
                : _users.Any(a => a.Email.ToLower() == email.ToLower() && !a.IsDeleted && a.Id != id.Value);
         }
-        public bool CheckCompanyEmailExist(string email, long? id)
+        public bool CheckRouterEmailExist(string email, long? id)
         {/*
             return id == null
-               ? _users.Any(a => a.Email.ToLower() == email.ToLower() && a.UserType == UserType.UserCompany && !a.IsDeleted)
-               : _users.Any(a => a.Email.ToLower() == email.ToLower() && !a.IsDeleted && a.UserType == UserType.UserCompany && a.Id != id.Value);
+               ? _users.Any(a => a.Email.ToLower() == email.ToLower() && a.UserType == UserType.UserRouter && !a.IsDeleted)
+               : _users.Any(a => a.Email.ToLower() == email.ToLower() && !a.IsDeleted && a.UserType == UserType.UserRouter && a.Id != id.Value);
             */
             return id == null
                ? _users.Any(a => a.Email.ToLower() == email.ToLower() && !a.IsDeleted)
@@ -793,33 +793,33 @@ namespace Netotik.Services.Identity
                : _users.Any(a => a.UserReseller.NationalCode == nCode && !a.IsDeleted && a.Id != id.Value);
         }
 
-        public bool CheckCompanyNationalCodeExist(string nCode, long? id, long? resellerid)
+        public bool CheckRouterNationalCodeExist(string nCode, long? id, long? resellerid)
         {
             return id == null
-               ? _users.Any(a => a.UserCompany.NationalCode == nCode && a.UserCompany.UserResellerId == resellerid && !a.IsDeleted)
-               : _users.Any(a => a.UserCompany.NationalCode == nCode && a.UserCompany.UserResellerId == resellerid && !a.IsDeleted && a.Id != id.Value);
+               ? _users.Any(a => a.UserRouter.NationalCode == nCode && a.UserRouter.UserResellerId == resellerid && !a.IsDeleted)
+               : _users.Any(a => a.UserRouter.NationalCode == nCode && a.UserRouter.UserResellerId == resellerid && !a.IsDeleted && a.Id != id.Value);
         }
 
         public bool SmsCodeIsValid(string RegisterWithSmsCode, long? id)
         {
             return id == null
-               ? _users.Any(a => a.UserCompany.RegisterWithSmsCode == RegisterWithSmsCode && !a.IsDeleted)
-               : _users.Any(a => a.UserCompany.RegisterWithSmsCode == RegisterWithSmsCode && !a.IsDeleted && a.Id != id.Value);
+               ? _users.Any(a => a.UserRouter.RegisterWithSmsCode == RegisterWithSmsCode && !a.IsDeleted)
+               : _users.Any(a => a.UserRouter.RegisterWithSmsCode == RegisterWithSmsCode && !a.IsDeleted && a.Id != id.Value);
         }
-        public bool CheckResellerCompanyNameExist(string name, long? id)
+        public bool CheckResellerRouterNameExist(string name, long? id)
         {
             return id == null
                ? _users.Any(a => a.UserReseller.ResellerCode == name.ToLower() && !a.IsDeleted)
                : _users.Any(a => a.UserReseller.ResellerCode == name.ToLower() && !a.IsDeleted && a.Id != id.Value);
         }
-        public bool CheckCompanyCompanyNameExist(string name, long? id, long? resellerid)
+        public bool CheckRouterRouterNameExist(string name, long? id, long? resellerid)
         {
             //return id == null
-            //   ? _users.Any(a => a.UserCompany.CompanyCode == name.ToLower() && a.UserCompany.UserResellerId == resellerid && !a.IsDeleted)
-            //   : _users.Any(a => a.UserCompany.CompanyCode == name.ToLower() && a.UserCompany.UserResellerId == resellerid && !a.IsDeleted && a.Id != id.Value);
+            //   ? _users.Any(a => a.UserRouter.RouterCode == name.ToLower() && a.UserRouter.UserResellerId == resellerid && !a.IsDeleted)
+            //   : _users.Any(a => a.UserRouter.RouterCode == name.ToLower() && a.UserRouter.UserResellerId == resellerid && !a.IsDeleted && a.Id != id.Value);
             return id == null
-               ? _users.Any(a => a.UserCompany.CompanyCode == name.ToLower() && !a.IsDeleted)
-               : _users.Any(a => a.UserCompany.CompanyCode == name.ToLower() && !a.IsDeleted && a.Id != id.Value);
+               ? _users.Any(a => a.UserRouter.RouterCode == name.ToLower() && !a.IsDeleted)
+               : _users.Any(a => a.UserRouter.RouterCode == name.ToLower() && !a.IsDeleted && a.Id != id.Value);
         }
 
         public bool CheckGooglePlusIdExist(string googlePlusId, long? id)
@@ -850,11 +850,11 @@ namespace Netotik.Services.Identity
                ? _users.Any(a => a.PhoneNumber == phoneNumber && a.UserType == UserType.UserAdmin && !a.IsDeleted)
                : _users.Any(a => a.PhoneNumber == phoneNumber && a.UserType == UserType.UserAdmin && !a.IsDeleted && a.Id != id.Value);
         }
-        public bool CheckCompanyPhoneNumberExist(string phoneNumber, long? id, long? resellerid)
+        public bool CheckRouterPhoneNumberExist(string phoneNumber, long? id, long? resellerid)
         {
             return id == null
-               ? _users.Any(a => a.PhoneNumber == phoneNumber && a.UserType == UserType.UserCompany && a.UserCompany.UserResellerId == resellerid && !a.IsDeleted)
-               : _users.Any(a => a.PhoneNumber == phoneNumber && a.UserType == UserType.UserCompany && a.UserCompany.UserResellerId == resellerid && !a.IsDeleted && a.Id != id.Value);
+               ? _users.Any(a => a.PhoneNumber == phoneNumber && a.UserType == UserType.UserRouter && a.UserRouter.UserResellerId == resellerid && !a.IsDeleted)
+               : _users.Any(a => a.PhoneNumber == phoneNumber && a.UserType == UserType.UserRouter && a.UserRouter.UserResellerId == resellerid && !a.IsDeleted && a.Id != id.Value);
         }
         #endregion
 
@@ -947,10 +947,10 @@ namespace Netotik.Services.Identity
             //return _users.FirstOrDefaultAsync(x => !x.IsDeleted && x.IsBanned && x.EmailConfirmed && x.UserType == UserType.UserReseller && x.UserReseller.ResellerCode == Code);
             return _users.FirstOrDefaultAsync(x => !x.IsDeleted && x.UserType == UserType.UserReseller && x.UserReseller.ResellerCode == Code);
         }
-        public async Task<User> FindByCompanyCodeAsync(string Code)
+        public async Task<User> FindByRouterCodeAsync(string Code)
         {
             //return _users.FirstOrDefaultAsync(x => !x.IsDeleted && x.IsBanned && x.EmailConfirmed && x.UserType == UserType.UserReseller && x.UserReseller.ResellerCode == Code);
-            return await _users.FirstOrDefaultAsync(x => !x.IsDeleted && x.UserType == UserType.UserCompany && x.UserCompany.CompanyCode == Code);
+            return await _users.FirstOrDefaultAsync(x => !x.IsDeleted && x.UserType == UserType.UserRouter && x.UserRouter.RouterCode == Code);
         }
         #endregion
 
@@ -1099,61 +1099,66 @@ namespace Netotik.Services.Identity
 
         public IList<string> FindClientPermissions(long userId)
         {
-            var user = _users.Where(x => x.Id == userId).Include(x => x.UserCompany).FirstOrDefault();
-            return _permissionClientService.GetPermissionsAsList(XElement.Parse(user.UserCompany.ClientPermissions)).ToList();
+            var user = _users.Where(x => x.Id == userId).Include(x => x.UserRouter).FirstOrDefault();
+            if (user.UserRouter.ClientPermissions == null)
+                return new[] { "" };
+            return _permissionClientService.GetPermissionsAsList(XElement.Parse(user.UserRouter.ClientPermissions)).ToList();
         }
 
 
-        public IList<string> FindCompanyPermissions(long userId)
+        public IList<string> FindRouterPermissions(long userId)
         {
-            var user = _users.Where(x => x.Id == userId).Include(x => x.UserCompany).FirstOrDefault();
-            return _permissionCompanyService.GetPermissionsAsList(XElement.Parse(user.UserCompany.CompanyPermissions)).ToList();
+            var user = _users.Where(x => x.Id == userId).Include(x => x.UserRouter).FirstOrDefault();
+            if (user.UserRouter.RouterPermissions == null)
+                return new[] { "" };
+
+            return _permissionRouterService.GetPermissionsAsList(XElement.Parse(user.UserRouter.RouterPermissions)).ToList();
         }
 
-        public List<User> GetUserCompaniesWebsitesLogsActive()
+        public List<User> GetUserRoutersWebsitesLogsActive()
         {
-            var users = _users.Where(x => x.UserType == UserType.UserCompany && !x.IsDeleted && x.UserCompany.WebsitesLogs).ToList();//شرط فعال بودن گزینه لاگ گیری در دیتابیس
+            var users = _users.Where(x => x.UserType == UserType.UserRouter && !x.IsDeleted && x.UserRouter.WebsitesLogs).ToList();//شرط فعال بودن گزینه لاگ گیری در دیتابیس
             return users;
         }
-        public SmsModel GetUserCompanySmsSettings(long id)
+        public SmsModel GetUserRouterSmsSettings(long id)
         {
-            return _users.Where(x => x.UserType == UserType.UserCompany && x.Id == id).Select(x => new SmsModel
+            return _users.Where(x => x.UserType == UserType.UserRouter && x.Id == id).Select(x => new SmsModel
             {
                 Id = x.Id,
-                RegisterFormSms = x.UserCompany.RegisterFormSms,
-                RegisterWithSms = x.UserCompany.RegisterWithSms,
-                RegisterWithSmsCode = x.UserCompany.RegisterWithSmsCode,
-                SmsActive = x.UserCompany.SmsActive,
-                SmsAdminChangeAdminPassword = x.UserCompany.SmsAdminChangeAdminPassword,
-                SmsAdminChangeUserPassword = x.UserCompany.SmsAdminChangeUserPassword,
-                SmsAdminLogins = x.UserCompany.SmsAdminLogins,
-                SmsCharge = x.UserCompany.SmsCharge,
-                SmsUserAfterChangePackage = x.UserCompany.SmsUserAfterChangePackage,
-                SmsUserAfterCreateWithAdmin = x.UserCompany.SmsUserAfterCreateWithAdmin,
-                SmsUserAfterDelete = x.UserCompany.SmsUserAfterDelete,
-                SmsUserAfterResetCounter = x.UserCompany.SmsUserAfterResetCounter,
-                SmsUserhangeUserPassword = x.UserCompany.SmsUserhangeUserPassword,
-                RegisterWithSmsMessage = x.UserCompany.RegisterWithSmsMessage,
-                RegisterWithSmsRouterProfile = x.UserCompany.RegisterWithSmsRouterProfile,
-                SmsIfErrorInSms = x.UserCompany.SmsIfErrorInSms
+                RegisterFormSms = x.UserRouter.RegisterFormSms,
+                RegisterWithSms = x.UserRouter.RegisterWithSms,
+                RegisterWithSmsCode = x.UserRouter.RegisterWithSmsCode,
+                SmsActive = x.UserRouter.SmsActive,
+                SmsAdminChangeAdminPassword = x.UserRouter.SmsAdminChangeAdminPassword,
+                SmsAdminChangeUserPassword = x.UserRouter.SmsAdminChangeUserPassword,
+                SmsAdminLogins = x.UserRouter.SmsAdminLogins,
+                SmsCharge = x.UserRouter.SmsCharge,
+                SmsUserAfterChangePackage = x.UserRouter.SmsUserAfterChangePackage,
+                SmsUserAfterCreateWithAdmin = x.UserRouter.SmsUserAfterCreateWithAdmin,
+                SmsUserAfterDelete = x.UserRouter.SmsUserAfterDelete,
+                SmsUserAfterResetCounter = x.UserRouter.SmsUserAfterResetCounter,
+                SmsUserhangeUserPassword = x.UserRouter.SmsUserhangeUserPassword,
+                RegisterWithSmsMessage = x.UserRouter.RegisterWithSmsMessage,
+                RegisterWithSmsRouterProfile = x.UserRouter.RegisterWithSmsRouterProfile,
+                SmsIfErrorInSms = x.UserRouter.SmsIfErrorInSms
             }).FirstOrDefault();
         }
 
-        public async Task UpdateUserCompanySmsSettingsAsync(SmsModel model)
+        public async Task UpdateUserRouterSmsSettingsAsync(SmsModel model)
         {
             var user = _users.Find(model.Id);
             _mappingEngine.Map(model, user);
             await _unitOfWork.SaveChangesAsync();
         }
-        public async Task<User> FindByCompanySMSCodeAsync(string Code)
+        public async Task<User> FindByRouterSMSCodeAsync(string Code)
         {
             //return _users.FirstOrDefaultAsync(x => !x.IsDeleted && x.IsBanned && x.EmailConfirmed && x.UserType == UserType.UserReseller && x.UserReseller.ResellerCode == Code);
-            return await _users.FirstOrDefaultAsync(x => !x.IsDeleted && x.UserType == UserType.UserCompany && x.UserCompany.RegisterWithSmsCode == Code);
+            return await _users.FirstOrDefaultAsync(x => !x.IsDeleted && x.UserType == UserType.UserRouter && x.UserRouter.RegisterWithSmsCode == Code);
         }
 
-        public long GetCompaniesChargre()
+        public long GetRoutersChargre()
         {
-            return _users.Where(x => !x.IsDeleted && x.UserType == UserType.UserCompany).Sum(x => x.UserCompany.SmsCharge);
+            return _users.Where(x => !x.IsDeleted && x.UserType == UserType.UserRouter).Sum(x => x.UserRouter.SmsCharge);
         }
     }
 }

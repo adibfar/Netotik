@@ -4,9 +4,9 @@ using System.Data.Entity.ModelConfiguration;
 
 namespace Netotik.Domain.EntityConfiguration
 {
-    public class UserCompanyRegisterSettingMap : EntityTypeConfiguration<UserCompanyRegisterSetting>
+    public class UserRouterRegisterSettingMap : EntityTypeConfiguration<UserRouterRegisterSetting>
     {
-        public UserCompanyRegisterSettingMap()
+        public UserRouterRegisterSettingMap()
         {
             // Primary Key
             this.HasKey(t => t.Id);
@@ -16,8 +16,8 @@ namespace Netotik.Domain.EntityConfiguration
                 .HasDatabaseGeneratedOption(DatabaseGeneratedOption.None);
 
             // Relationships
-            this.HasRequired(t => t.UserCompany)
-                .WithOptional(t => t.UserCompanyRegisterSetting);
+            this.HasRequired(t => t.UserRouter)
+                .WithOptional(t => t.UserRouterRegisterSetting);
 
         }
     }

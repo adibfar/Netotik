@@ -45,11 +45,11 @@ namespace Netotik.Data.Context
         public DbSet<Factor> Factors { get; set; }
         public DbSet<FactorSmsDetail> FactorSmsDetails { get; set; }
         public DbSet<UserReseller> UserReselleres { get; set; }
-        public DbSet<UserCompany> UserCompanies { get; set; }
-        public DbSet<UserCompanyTelegram> UserCompanyTelegrams { get; set; }
-        public DbSet<UserCompanyRegisterSetting> UserCompanyRegisterSettings { get; set; }
-        public DbSet<UserCompanyClient> UserCompanyClients { get; set; }
-        public DbSet<UserCompanyLogClient> UserCompanyLogClients { get; set; }
+        public DbSet<UserRouter> UserCompanies { get; set; }
+        public DbSet<UserRouterTelegram> UserRouterTelegrams { get; set; }
+        public DbSet<UserRouterRegisterSetting> UserRouterRegisterSettings { get; set; }
+        public DbSet<UserRouterClient> UserRouterClients { get; set; }
+        public DbSet<UserRouterLogClient> UserRouterLogClients { get; set; }
         public DbSet<TelegramBotData> TelegramBotData { get; set; }
         public DbSet<UserAdmin> UserAdmines { get; set; }
         public DbSet<Address> Addresses { get; set; }
@@ -74,15 +74,15 @@ namespace Netotik.Data.Context
         {
             modelBuilder.Configurations.Add(new LanguageTranslationMap());
             modelBuilder.Configurations.Add(new UserResellerMap());
-            modelBuilder.Configurations.Add(new UserCompanyMap());
+            modelBuilder.Configurations.Add(new UserRouterMap());
             modelBuilder.Configurations.Add(new SmsLogMap());
             modelBuilder.Configurations.Add(new FactorMap());
             modelBuilder.Configurations.Add(new FactorSmsDetailMap());
-            modelBuilder.Configurations.Add(new UserCompanyTelegramMap());
-            modelBuilder.Configurations.Add(new UserCompanyRegisterSettingMap());
+            modelBuilder.Configurations.Add(new UserRouterTelegramMap());
+            modelBuilder.Configurations.Add(new UserRouterRegisterSettingMap());
             modelBuilder.Configurations.Add(new TelegramBotDataMap());
-            modelBuilder.Configurations.Add(new UserCompanyClientMap());
-            modelBuilder.Configurations.Add(new UserCompanyLogClientMap());
+            modelBuilder.Configurations.Add(new UserRouterClientMap());
+            modelBuilder.Configurations.Add(new UserRouterLogClientMap());
             modelBuilder.Configurations.Add(new UserAdminMap());
             modelBuilder.Configurations.Add(new UserMap());
             modelBuilder.Configurations.Add(new AddressMap());

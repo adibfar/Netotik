@@ -1,0 +1,102 @@
+﻿@model Netotik.ViewModels.Identity.UserRouter.TelegramBotModel
+@{
+    ViewBag.Title = "TelegramBot";
+}
+<section class="flexbox-container">
+    <div class="row">
+        <div class="col-md-12">
+            @using (Html.BeginForm(MVC.MyRouter.Home.ActionNames.TelegramBot, MVC.MyRouter.Home.Name, null, FormMethod.Post, htmlAttributes: new { @class = "cmxform form-horizontal tasi-form", id = "form" }))
+            {
+                @Html.AntiForgeryToken()
+                <div class="card">
+                    <div class="card-header">
+                        <button name="actionType" value="@Netotik.Common.Controller.ActionType.Save" class="btn btn-social width-100 btn-instagram" onclick="AjaxForm.Post(this, 'form')" data-loading-text="در حال ارسال اطلاعات">
+                            <span class="icon-checkmark2 font-medium-4"></span>
+                            @Netotik.Resources.Captions.Save
+                        </button>
+                    </div>
+                    <div class="card-body">
+                        <div class="card-block">
+                            <div class="row">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group has-feedback has-icon-left">
+                                            @Html.LabelFor(m => m.TelegramBotToken)
+                                            <div class="position-relative has-icon-left">
+                                                @Html.TextBoxFor(m => m.TelegramBotToken, new { @class = "form-control ltr left" })
+                                                <div class="form-control-position">
+                                                    <i class="icon-server"></i>
+                                                </div>
+                                                @Html.ValidationMessageFor(model => model.TelegramBotToken, "", htmlAttributes: new { @class = "text-danger" })
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group has-feedback has-icon-left">
+                                        @Html.LabelFor(m => m.AboutMessage)
+                                        <div class="position-relative has-icon-left">
+                                            @Html.TextAreaFor(m => m.AboutMessage, new { @class = "form-control" })
+                                            <div class="form-control-position">
+                                                <i class="icon-chat-2"></i>
+                                            </div>
+                                            @Html.ValidationMessageFor(model => model.AboutMessage, "", htmlAttributes: new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group has-feedback has-icon-left">
+                                        @Html.LabelFor(m => m.ContactUsMessage)
+                                        <div class="position-relative has-icon-left">
+                                            @Html.TextAreaFor(m => m.ContactUsMessage, new { @class = "form-control" })
+                                            <div class="form-control-position">
+                                                <i class="icon-chat-2"></i>
+                                            </div>
+                                            @Html.ValidationMessageFor(model => model.ContactUsMessage, "", htmlAttributes: new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group has-feedback has-icon-left">
+                                        @Html.LabelFor(m => m.ContactUsFirstName)
+                                        <div class="position-relative has-icon-left">
+                                            @Html.TextBoxFor(m => m.ContactUsFirstName, new { @class = "form-control" })
+                                            <div class="form-control-position">
+                                                <i class="icon-ios-person"></i>
+                                            </div>
+                                            @Html.ValidationMessageFor(model => model.ContactUsFirstName, "", htmlAttributes: new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group has-feedback has-icon-left">
+                                        @Html.LabelFor(m => m.ContactUsLastName)
+                                        <div class="position-relative has-icon-left">
+                                            @Html.TextBoxFor(m => m.ContactUsLastName, new { @class = "form-control" })
+                                            <div class="form-control-position">
+                                                <i class="icon-ios-person"></i>
+                                            </div>
+                                            @Html.ValidationMessageFor(model => model.ContactUsLastName, "", htmlAttributes: new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group has-feedback has-icon-left">
+                                        @Html.LabelFor(m => m.ContactUsNumber)
+                                        <div class="position-relative has-icon-left">
+                                            @Html.TextBoxFor(m => m.ContactUsNumber, new { @class = "form-control" })
+                                            <div class="form-control-position">
+                                                <i class="icon-mobile-phone"></i>
+                                            </div>
+                                            @Html.ValidationMessageFor(model => model.ContactUsNumber, "", htmlAttributes: new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</section>

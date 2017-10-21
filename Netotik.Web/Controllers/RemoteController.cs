@@ -65,9 +65,9 @@ namespace Netotik.Web.Controllers
         [HttpPost]
         [AllowAnonymous]
         [OutputCache(Location = OutputCacheLocation.None, NoStore = true, Duration = 0, VaryByParam = "*")]
-        public virtual JsonResult IsCompanyEmailAvailable(string email, long? Id)
+        public virtual JsonResult IsRouterEmailAvailable(string email, long? Id)
         {
-            var check = _applicationUserManager.CheckCompanyEmailExist(email, Id);
+            var check = _applicationUserManager.CheckRouterEmailExist(email, Id);
             return Json(!check);
         }
 
@@ -95,9 +95,9 @@ namespace Netotik.Web.Controllers
         [HttpPost]
         [AllowAnonymous]
         [OutputCache(Location = OutputCacheLocation.None, NoStore = true, Duration = 0, VaryByParam = "*")]
-        public virtual JsonResult IsCompanyPhoneNumberAvailable(string phoneNumber, long? Id, long? Resellerid)
+        public virtual JsonResult IsRouterPhoneNumberAvailable(string phoneNumber, long? Id, long? Resellerid)
         {
-            var check = _applicationUserManager.CheckCompanyPhoneNumberExist(phoneNumber, Id, Resellerid);
+            var check = _applicationUserManager.CheckRouterPhoneNumberExist(phoneNumber, Id, Resellerid);
             return check ? Json(false) : Json(true);
         }
         #endregion
@@ -123,7 +123,7 @@ namespace Netotik.Web.Controllers
         [HttpPost]
         [AllowAnonymous]
         [OutputCache(Location = OutputCacheLocation.None, NoStore = true, Duration = 0, VaryByParam = "*")]
-        public virtual JsonResult IsCompanyNationalCodeAvailable(string nationalCode, long? Id, long? Resellerid)
+        public virtual JsonResult IsRouterNationalCodeAvailable(string nationalCode, long? Id, long? Resellerid)
         {
             /*
             if (_applicationUserManager.CheckCompanyNationalCodeExist(nationalCode, Id, Resellerid))
@@ -152,7 +152,7 @@ namespace Netotik.Web.Controllers
         [OutputCache(Location = OutputCacheLocation.None, NoStore = true, Duration = 0, VaryByParam = "*")]
         public virtual JsonResult IsResellerCodeAvailable(string ResellerCode, long? Id)
         {
-            var check = _applicationUserManager.CheckResellerCompanyNameExist(ResellerCode, Id);
+            var check = _applicationUserManager.CheckResellerRouterNameExist(ResellerCode, Id);
             return check ? Json(false) : Json(true);
 
         }
@@ -160,9 +160,9 @@ namespace Netotik.Web.Controllers
         [HttpPost]
         [AllowAnonymous]
         [OutputCache(Location = OutputCacheLocation.None, NoStore = true, Duration = 0, VaryByParam = "*")]
-        public virtual JsonResult IsCompanyCodeAvailable(string CompanyCode, long? Id, long? Resellerid)
+        public virtual JsonResult IsRouterCodeAvailable(string RouterCode, long? Id, long? Resellerid)
         {
-            var check = _applicationUserManager.CheckCompanyCompanyNameExist(CompanyCode, Id, Resellerid);
+            var check = _applicationUserManager.CheckRouterRouterNameExist(RouterCode, Id, Resellerid);
             return check ? Json(false) : Json(true);
 
         }

@@ -151,10 +151,10 @@ namespace Netotik.Web.Controllers
                 {
                     LoginURL = Url.Action(MVC.Account.Login());
                 }
-                if (user.UserType == Domain.Entity.UserType.UserCompany)
+                if (user.UserType == Domain.Entity.UserType.UserRouter)
                 {
-                    var ResellerCompanyName = _userManager.FindUserById(user.UserCompany.UserResellerId);
-                    LoginURL = Url.Action(MVC.Login.Company("", ResellerCompanyName.UserReseller.ResellerCode));
+                    var ResellerRouterName = _userManager.FindUserById(user.UserRouter.UserResellerId);
+                    LoginURL = Url.Action(MVC.Login.Router("", ResellerRouterName.UserReseller.ResellerCode));
                 }
                 if (user.UserType == Domain.Entity.UserType.UserReseller)
                 {
@@ -274,7 +274,7 @@ namespace Netotik.Web.Controllers
                 await _applicationSignInManager.SignInAsync(user, false, false);
                 if (user.UserType == Domain.Entity.UserType.UserReseller)
                     return RedirectToAction(MVC.Account.ResetPasswordConfirmation(user.Id));
-                if (user.UserType == Domain.Entity.UserType.UserCompany)
+                if (user.UserType == Domain.Entity.UserType.UserRouter)
                     return RedirectToAction(MVC.Account.ResetPasswordConfirmation(user.Id));
                 if (user.UserType == Domain.Entity.UserType.UserAdmin)
                     return RedirectToAction(MVC.Account.ResetPasswordConfirmation(user.Id));

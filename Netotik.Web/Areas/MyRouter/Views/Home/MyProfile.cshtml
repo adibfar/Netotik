@@ -1,0 +1,14 @@
+﻿@model Netotik.ViewModels.Identity.UserRouter.ProfileModel
+@{
+    ViewBag.Title = Netotik.Resources.Captions.Profile;
+}
+<section class="flexbox-container">
+    <div class="row">
+        <div class="col-md-4">
+            @Html.Partial(MVC.MyRouter.Home.Views._ImageProfile)
+        </div>
+        <div class="col-md-8">
+            @Html.Action(MVC.MyRouter.Home.ProfileData())
+        </div>
+    </div>
+</section>

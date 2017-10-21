@@ -50,8 +50,8 @@ namespace T4MVC
                 public readonly string _PicturesList = "_PicturesList";
                 public readonly string _SideBarAdminMenu = "_SideBarAdminMenu";
                 public readonly string _SideBarClientMenu = "_SideBarClientMenu";
-                public readonly string _SideBarCompanyMenu = "_SideBarCompanyMenu";
                 public readonly string _SideBarResellerMenu = "_SideBarResellerMenu";
+                public readonly string _SideBarRouterMenu = "_SideBarRouterMenu";
                 public readonly string _SingleImageForm = "_SingleImageForm";
             }
             public readonly string _Attachments = "~/Views/Shared/_Attachments.cshtml";
@@ -66,8 +66,8 @@ namespace T4MVC
             public readonly string _PicturesList = "~/Views/Shared/_PicturesList.cshtml";
             public readonly string _SideBarAdminMenu = "~/Views/Shared/_SideBarAdminMenu.cshtml";
             public readonly string _SideBarClientMenu = "~/Views/Shared/_SideBarClientMenu.cshtml";
-            public readonly string _SideBarCompanyMenu = "~/Views/Shared/_SideBarCompanyMenu.cshtml";
             public readonly string _SideBarResellerMenu = "~/Views/Shared/_SideBarResellerMenu.cshtml";
+            public readonly string _SideBarRouterMenu = "~/Views/Shared/_SideBarRouterMenu.cshtml";
             public readonly string _SingleImageForm = "~/Views/Shared/_SingleImageForm.cshtml";
             static readonly _EditorTemplatesClass s_EditorTemplates = new _EditorTemplatesClass();
             public _EditorTemplatesClass EditorTemplates { get { return s_EditorTemplates; } }

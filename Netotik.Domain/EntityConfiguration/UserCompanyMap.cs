@@ -4,9 +4,9 @@ using System.Data.Entity.ModelConfiguration;
 
 namespace Netotik.Domain.EntityConfiguration
 {
-    public class UserCompanyMap : EntityTypeConfiguration<UserCompany>
+    public class UserRouterMap : EntityTypeConfiguration<UserRouter>
     {
-        public UserCompanyMap()
+        public UserRouterMap()
         {
             // Primary Key
             this.HasKey(t => t.Id);
@@ -17,7 +17,7 @@ namespace Netotik.Domain.EntityConfiguration
 
             // Relationships
             this.HasRequired(t => t.User)
-                .WithOptional(t => t.UserCompany);
+                .WithOptional(t => t.UserRouter);
 
             this.HasRequired(t => t.UserReseller)
                 .WithMany(t => t.UserCompanies)

@@ -65,26 +65,26 @@ namespace Netotik.Web.Areas.Client.Controllers
             ViewBag.ClientPermissions = Permissions;
 
 
-            if (!_mikrotikServices.IP_Port_Check(loginedUser.UserCompany.R_Host, loginedUser.UserCompany.R_Port, loginedUser.UserCompany.R_User, loginedUser.UserCompany.R_Password))
+            if (!_mikrotikServices.IP_Port_Check(loginedUser.UserRouter.R_Host, loginedUser.UserRouter.R_Port, loginedUser.UserRouter.R_User, loginedUser.UserRouter.R_Password))
             {
                 this.MessageError(Captions.Error, Captions.IPPORTClientError);
             }
-            if (!_mikrotikServices.User_Pass_Check(loginedUser.UserCompany.R_Host, loginedUser.UserCompany.R_Port, loginedUser.UserCompany.R_User, loginedUser.UserCompany.R_Password))
+            if (!_mikrotikServices.User_Pass_Check(loginedUser.UserRouter.R_Host, loginedUser.UserRouter.R_Port, loginedUser.UserRouter.R_User, loginedUser.UserRouter.R_Password))
             {
                 this.MessageError(Captions.Error, Captions.UserPasswordClientError);
             }
-            if (!_mikrotikServices.Usermanager_IsInstall(loginedUser.UserCompany.R_Host, loginedUser.UserCompany.R_Port, loginedUser.UserCompany.R_User, loginedUser.UserCompany.R_Password))
+            if (!_mikrotikServices.Usermanager_IsInstall(loginedUser.UserRouter.R_Host, loginedUser.UserRouter.R_Port, loginedUser.UserRouter.R_User, loginedUser.UserRouter.R_Password))
             {
                 this.MessageError(Captions.Error, Captions.UsermanagerClientError);
             }
-            var users = _mikrotikServices.Usermanager_GetUser(loginedUser.UserCompany.R_Host, loginedUser.UserCompany.R_Port, loginedUser.UserCompany.R_User, loginedUser.UserCompany.R_Password, loginedUser.UserName);
+            var users = _mikrotikServices.Usermanager_GetUser(loginedUser.UserRouter.R_Host, loginedUser.UserRouter.R_Port, loginedUser.UserRouter.R_User, loginedUser.UserRouter.R_Password, loginedUser.UserName);
             foreach (var item in users)
                 if (item.id == loginedUser.UserName)
                 {
-                    var session = _mikrotikServices.Usermanager_UserSession(loginedUser.UserCompany.R_Host, loginedUser.UserCompany.R_Port, loginedUser.UserCompany.R_User, loginedUser.UserCompany.R_Password, item.username);
-                    var profile = _mikrotikServices.Usermanager_GetAllProfile(loginedUser.UserCompany.R_Host, loginedUser.UserCompany.R_Port, loginedUser.UserCompany.R_User, loginedUser.UserCompany.R_Password);
-                    var Limition = _mikrotikServices.Usermanager_GetAllLimition(loginedUser.UserCompany.R_Host, loginedUser.UserCompany.R_Port, loginedUser.UserCompany.R_User, loginedUser.UserCompany.R_Password);
-                    var profileLimition = _mikrotikServices.Usermanager_GetAllProfileLimition(loginedUser.UserCompany.R_Host, loginedUser.UserCompany.R_Port, loginedUser.UserCompany.R_User, loginedUser.UserCompany.R_Password);
+                    var session = _mikrotikServices.Usermanager_UserSession(loginedUser.UserRouter.R_Host, loginedUser.UserRouter.R_Port, loginedUser.UserRouter.R_User, loginedUser.UserRouter.R_Password, item.username);
+                    var profile = _mikrotikServices.Usermanager_GetAllProfile(loginedUser.UserRouter.R_Host, loginedUser.UserRouter.R_Port, loginedUser.UserRouter.R_User, loginedUser.UserRouter.R_Password);
+                    var Limition = _mikrotikServices.Usermanager_GetAllLimition(loginedUser.UserRouter.R_Host, loginedUser.UserRouter.R_Port, loginedUser.UserRouter.R_User, loginedUser.UserRouter.R_Password);
+                    var profileLimition = _mikrotikServices.Usermanager_GetAllProfileLimition(loginedUser.UserRouter.R_Host, loginedUser.UserRouter.R_Port, loginedUser.UserRouter.R_User, loginedUser.UserRouter.R_Password);
                     var UserProfile = new Netotik.ViewModels.Identity.UserClient.ProfileModel();
                     var UserProfileLimition = new Netotik.ViewModels.Identity.UserClient.ProfileLimitionModel();
                     var UserLimition = new Netotik.ViewModels.Identity.UserClient.LimitionModel();
@@ -227,7 +227,7 @@ namespace Netotik.Web.Areas.Client.Controllers
                     if (ViewBag.RemianUpTime == null || ViewBag.RemianUpTime == "")
                         ViewBag.RemianUpTime = Captions.Inaccessible;
                     //--------------------------------------------------------------------
-                    var time = _mikrotikServices.Usermanager_Payment(loginedUser.UserCompany.R_Host, loginedUser.UserCompany.R_Port, loginedUser.UserCompany.R_User, loginedUser.UserCompany.R_Password, item.username);
+                    var time = _mikrotikServices.Usermanager_Payment(loginedUser.UserRouter.R_Host, loginedUser.UserRouter.R_Port, loginedUser.UserRouter.R_User, loginedUser.UserRouter.R_Password, item.username);
                     var LastTime = time.LastOrDefault();
                     ViewBag.StartTime = (LastTime.trans_end == null || LastTime.trans_end == "") ? Captions.Inaccessible : Infrastructure.EnglishConvertDate.ConvertToFa(LastTime.trans_end.Split(' ')[0], "") + " " + LastTime.trans_end.Split(' ')[1];
                     days = ValidSec / 86400;
@@ -290,17 +290,17 @@ namespace Netotik.Web.Areas.Client.Controllers
                 return RedirectToAction(MVC.Client.Home.ActionNames.Index, MVC.Client.Home.Name, new { area = MVC.Client.Name });
             }
 
-            if (!_mikrotikServices.IP_Port_Check(loginedUser.UserCompany.R_Host, loginedUser.UserCompany.R_Port, loginedUser.UserCompany.R_User, loginedUser.UserCompany.R_Password))
+            if (!_mikrotikServices.IP_Port_Check(loginedUser.UserRouter.R_Host, loginedUser.UserRouter.R_Port, loginedUser.UserRouter.R_User, loginedUser.UserRouter.R_Password))
             {
                 this.MessageError(Captions.Error, Captions.IPPORTClientError);
                 return RedirectToAction(MVC.Client.Home.ActionNames.Index, MVC.Client.Home.Name, new { area = MVC.Client.Name });
             }
-            if (!_mikrotikServices.User_Pass_Check(loginedUser.UserCompany.R_Host, loginedUser.UserCompany.R_Port, loginedUser.UserCompany.R_User, loginedUser.UserCompany.R_Password))
+            if (!_mikrotikServices.User_Pass_Check(loginedUser.UserRouter.R_Host, loginedUser.UserRouter.R_Port, loginedUser.UserRouter.R_User, loginedUser.UserRouter.R_Password))
             {
                 this.MessageError(Captions.Error, Captions.UserPasswordClientError);
                 return RedirectToAction(MVC.Client.Home.ActionNames.Index, MVC.Client.Home.Name, new { area = MVC.Client.Name });
             }
-            if (!_mikrotikServices.Usermanager_IsInstall(loginedUser.UserCompany.R_Host, loginedUser.UserCompany.R_Port, loginedUser.UserCompany.R_User, loginedUser.UserCompany.R_Password))
+            if (!_mikrotikServices.Usermanager_IsInstall(loginedUser.UserRouter.R_Host, loginedUser.UserRouter.R_Port, loginedUser.UserRouter.R_User, loginedUser.UserRouter.R_Password))
             {
                 this.MessageError(Captions.Error, Captions.UsermanagerClientError);
                 return RedirectToAction(MVC.Client.Home.ActionNames.Index, MVC.Client.Home.Name, new { area = MVC.Client.Name });
@@ -317,17 +317,17 @@ namespace Netotik.Web.Areas.Client.Controllers
             {
                 return RedirectToAction(MVC.Client.Home.ActionNames.Index, MVC.Client.Home.Name, new { area = MVC.Client.Name });
             }
-            if (!_mikrotikServices.IP_Port_Check(loginedUser.UserCompany.R_Host, loginedUser.UserCompany.R_Port, loginedUser.UserCompany.R_User, loginedUser.UserCompany.R_Password))
+            if (!_mikrotikServices.IP_Port_Check(loginedUser.UserRouter.R_Host, loginedUser.UserRouter.R_Port, loginedUser.UserRouter.R_User, loginedUser.UserRouter.R_Password))
             {
                 this.MessageError(Captions.Error, Captions.IPPORTClientError);
                 return RedirectToAction(MVC.Client.Home.ActionNames.Index, MVC.Client.Home.Name, new { area = MVC.Client.Name });
             }
-            if (!_mikrotikServices.User_Pass_Check(loginedUser.UserCompany.R_Host, loginedUser.UserCompany.R_Port, loginedUser.UserCompany.R_User, loginedUser.UserCompany.R_Password))
+            if (!_mikrotikServices.User_Pass_Check(loginedUser.UserRouter.R_Host, loginedUser.UserRouter.R_Port, loginedUser.UserRouter.R_User, loginedUser.UserRouter.R_Password))
             {
                 this.MessageError(Captions.Error, Captions.UserPasswordClientError);
                 return RedirectToAction(MVC.Client.Home.ActionNames.Index, MVC.Client.Home.Name, new { area = MVC.Client.Name });
             }
-            if (!_mikrotikServices.Usermanager_IsInstall(loginedUser.UserCompany.R_Host, loginedUser.UserCompany.R_Port, loginedUser.UserCompany.R_User, loginedUser.UserCompany.R_Password))
+            if (!_mikrotikServices.Usermanager_IsInstall(loginedUser.UserRouter.R_Host, loginedUser.UserRouter.R_Port, loginedUser.UserRouter.R_User, loginedUser.UserRouter.R_Password))
             {
                 this.MessageError(Captions.Error, Captions.UsermanagerClientError);
                 return RedirectToAction(MVC.Client.Home.ActionNames.Index, MVC.Client.Home.Name, new { area = MVC.Client.Name });
@@ -342,9 +342,9 @@ namespace Netotik.Web.Areas.Client.Controllers
             //   this.MessageInformation(Captions.MissionSuccess, Captions.UpdateSuccess);
             //else
             //    this.MessageError(Captions.MissionFail, Captions.UpdateError);
-            var User = _mikrotikServices.Usermanager_GetUser(loginedUser.UserCompany.R_Host, loginedUser.UserCompany.R_Port, loginedUser.UserCompany.R_User, loginedUser.UserCompany.R_Password, loginedUser.UserName);
-            if (_mikrotikServices.Usermanager_UserChangePassword(loginedUser.UserCompany.R_Host, loginedUser.UserCompany.R_Port, loginedUser.UserCompany.R_User, loginedUser.UserCompany.R_Password, model, loginedUser.UserName) && loginedUser.UserCompany.SmsCharge > 0 && loginedUser.UserCompany.SmsActive && loginedUser.UserCompany.SmsUserhangeUserPassword && User.FirstOrDefault().phone != null && User.FirstOrDefault().phone != null)
-                _smsService.SendSms(User.FirstOrDefault().phone, string.Format(Captions.SmsUserPasswordChange,User.FirstOrDefault().username,model.Password),loginedUser.UserCompany.Id);
+            var User = _mikrotikServices.Usermanager_GetUser(loginedUser.UserRouter.R_Host, loginedUser.UserRouter.R_Port, loginedUser.UserRouter.R_User, loginedUser.UserRouter.R_Password, loginedUser.UserName);
+            if (_mikrotikServices.Usermanager_UserChangePassword(loginedUser.UserRouter.R_Host, loginedUser.UserRouter.R_Port, loginedUser.UserRouter.R_User, loginedUser.UserRouter.R_Password, model, loginedUser.UserName) && loginedUser.UserRouter.SmsCharge > 0 && loginedUser.UserRouter.SmsActive && loginedUser.UserRouter.SmsUserhangeUserPassword && User.FirstOrDefault().phone != null && User.FirstOrDefault().phone != null)
+                _smsService.SendSms(User.FirstOrDefault().phone, string.Format(Captions.SmsUserPasswordChange,User.FirstOrDefault().username,model.Password),loginedUser.UserRouter.Id);
             _uow.SaveAllChanges();
             return View();
         }
@@ -359,23 +359,23 @@ namespace Netotik.Web.Areas.Client.Controllers
                 return RedirectToAction(MVC.Client.Home.ActionNames.Index, MVC.Client.Home.Name, new { area = MVC.Client.Name });
             }
             //-------------------------------
-            if (!_mikrotikServices.IP_Port_Check(loginedUser.UserCompany.R_Host, loginedUser.UserCompany.R_Port, loginedUser.UserCompany.R_User, loginedUser.UserCompany.R_Password))
+            if (!_mikrotikServices.IP_Port_Check(loginedUser.UserRouter.R_Host, loginedUser.UserRouter.R_Port, loginedUser.UserRouter.R_User, loginedUser.UserRouter.R_Password))
             {
                 this.MessageError(Captions.Error, Captions.IPPORTClientError);
                 return RedirectToAction(MVC.Client.Home.ActionNames.Index, MVC.Client.Home.Name, new { area = MVC.Client.Name });
             }
-            if (!_mikrotikServices.User_Pass_Check(loginedUser.UserCompany.R_Host, loginedUser.UserCompany.R_Port, loginedUser.UserCompany.R_User, loginedUser.UserCompany.R_Password))
+            if (!_mikrotikServices.User_Pass_Check(loginedUser.UserRouter.R_Host, loginedUser.UserRouter.R_Port, loginedUser.UserRouter.R_User, loginedUser.UserRouter.R_Password))
             {
                 this.MessageError(Captions.Error, Captions.UserPasswordClientError);
                 return RedirectToAction(MVC.Client.Home.ActionNames.Index, MVC.Client.Home.Name, new { area = MVC.Client.Name });
             }
-            if (!_mikrotikServices.Usermanager_IsInstall(loginedUser.UserCompany.R_Host, loginedUser.UserCompany.R_Port, loginedUser.UserCompany.R_User, loginedUser.UserCompany.R_Password))
+            if (!_mikrotikServices.Usermanager_IsInstall(loginedUser.UserRouter.R_Host, loginedUser.UserRouter.R_Port, loginedUser.UserRouter.R_User, loginedUser.UserRouter.R_Password))
             {
                 this.MessageError(Captions.Error, Captions.UsermanagerClientError);
                 return RedirectToAction(MVC.Client.Home.ActionNames.Index, MVC.Client.Home.Name, new { area = MVC.Client.Name });
             }
             //-------------------------------
-            var model = _mikrotikServices.Usermanager_GetUser(loginedUser.UserCompany.R_Host, loginedUser.UserCompany.R_Port, loginedUser.UserCompany.R_User, loginedUser.UserCompany.R_Password, loginedUser.UserName);
+            var model = _mikrotikServices.Usermanager_GetUser(loginedUser.UserRouter.R_Host, loginedUser.UserRouter.R_Port, loginedUser.UserRouter.R_User, loginedUser.UserRouter.R_Password, loginedUser.UserName);
             foreach (var item in model)
                 if (item.id == loginedUser.UserName)
                 {
@@ -394,7 +394,7 @@ namespace Netotik.Web.Areas.Client.Controllers
                     };
                     return View(editModel);
                 }
-            //            ViewBag.Customers = _mikrotikServices.GetAllCustomers(loginedUser.UserCompany.R_Host, loginedUser.UserCompany.R_Port, loginedUser.UserCompany.R_User, loginedUser.UserCompany.R_Password);
+            //            ViewBag.Customers = _mikrotikServices.GetAllCustomers(loginedUser.UserRouter.R_Host, loginedUser.UserRouter.R_Port, loginedUser.UserRouter.R_User, loginedUser.UserRouter.R_Password);
             return View();
         }
         [ValidateAntiForgeryToken]
@@ -409,17 +409,17 @@ namespace Netotik.Web.Areas.Client.Controllers
                 return RedirectToAction(MVC.Client.Home.ActionNames.Index, MVC.Client.Home.Name, new { area = MVC.Client.Name });
             }
             //-------------------------------
-            if (!_mikrotikServices.IP_Port_Check(loginedUser.UserCompany.R_Host, loginedUser.UserCompany.R_Port, loginedUser.UserCompany.R_User, loginedUser.UserCompany.R_Password))
+            if (!_mikrotikServices.IP_Port_Check(loginedUser.UserRouter.R_Host, loginedUser.UserRouter.R_Port, loginedUser.UserRouter.R_User, loginedUser.UserRouter.R_Password))
             {
                 this.MessageError(Captions.Error, Captions.IPPORTClientError);
                 return RedirectToAction(MVC.Client.Home.ActionNames.Index, MVC.Client.Home.Name, new { area = MVC.Client.Name });
             }
-            if (!_mikrotikServices.User_Pass_Check(loginedUser.UserCompany.R_Host, loginedUser.UserCompany.R_Port, loginedUser.UserCompany.R_User, loginedUser.UserCompany.R_Password))
+            if (!_mikrotikServices.User_Pass_Check(loginedUser.UserRouter.R_Host, loginedUser.UserRouter.R_Port, loginedUser.UserRouter.R_User, loginedUser.UserRouter.R_Password))
             {
                 this.MessageError(Captions.Error, Captions.UserPasswordClientError);
                 return RedirectToAction(MVC.Client.Home.ActionNames.Index, MVC.Client.Home.Name, new { area = MVC.Client.Name });
             }
-            if (!_mikrotikServices.Usermanager_IsInstall(loginedUser.UserCompany.R_Host, loginedUser.UserCompany.R_Port, loginedUser.UserCompany.R_User, loginedUser.UserCompany.R_Password))
+            if (!_mikrotikServices.Usermanager_IsInstall(loginedUser.UserRouter.R_Host, loginedUser.UserRouter.R_Port, loginedUser.UserRouter.R_User, loginedUser.UserRouter.R_Password))
             {
                 this.MessageError(Captions.Error, Captions.UsermanagerClientError);
                 return RedirectToAction(MVC.Client.Home.ActionNames.Index, MVC.Client.Home.Name, new { area = MVC.Client.Name });
@@ -432,11 +432,11 @@ namespace Netotik.Web.Areas.Client.Controllers
             }
             else
             {
-                var UsermanagerUser = _mikrotikServices.Usermanager_GetUser(loginedUser.UserCompany.R_Host, loginedUser.UserCompany.R_Port, loginedUser.UserCompany.R_User, loginedUser.UserCompany.R_Password, loginedUser.UserName);
-                model.customer = loginedUser.UserCompany.Userman_Customer;
+                var UsermanagerUser = _mikrotikServices.Usermanager_GetUser(loginedUser.UserRouter.R_Host, loginedUser.UserRouter.R_Port, loginedUser.UserRouter.R_User, loginedUser.UserRouter.R_Password, loginedUser.UserName);
+                model.customer = loginedUser.UserRouter.Userman_Customer;
                 model.profile = "";
                 model.password = UsermanagerUser.FirstOrDefault().password;
-                _mikrotikServices.Usermanager_UserEdit(loginedUser.UserCompany.R_Host, loginedUser.UserCompany.R_Port, loginedUser.UserCompany.R_User, loginedUser.UserCompany.R_Password, model);
+                _mikrotikServices.Usermanager_UserEdit(loginedUser.UserRouter.R_Host, loginedUser.UserRouter.R_Port, loginedUser.UserRouter.R_User, loginedUser.UserRouter.R_Password, model);
 
                 return RedirectToAction(MVC.Client.Home.Index());
             }
@@ -451,30 +451,30 @@ namespace Netotik.Web.Areas.Client.Controllers
                 return RedirectToAction(MVC.Client.Home.ActionNames.Index, MVC.Client.Home.Name, new { area = MVC.Client.Name });
             }
             //-------------------------------
-            if (!_mikrotikServices.IP_Port_Check(loginedUser.UserCompany.R_Host, loginedUser.UserCompany.R_Port, loginedUser.UserCompany.R_User, loginedUser.UserCompany.R_Password))
+            if (!_mikrotikServices.IP_Port_Check(loginedUser.UserRouter.R_Host, loginedUser.UserRouter.R_Port, loginedUser.UserRouter.R_User, loginedUser.UserRouter.R_Password))
             {
                 this.MessageError(Captions.Error, Captions.IPPORTClientError);
                 return RedirectToAction(MVC.Client.Home.ActionNames.Index, MVC.Client.Home.Name, new { area = MVC.Client.Name });
             }
-            if (!_mikrotikServices.User_Pass_Check(loginedUser.UserCompany.R_Host, loginedUser.UserCompany.R_Port, loginedUser.UserCompany.R_User, loginedUser.UserCompany.R_Password))
+            if (!_mikrotikServices.User_Pass_Check(loginedUser.UserRouter.R_Host, loginedUser.UserRouter.R_Port, loginedUser.UserRouter.R_User, loginedUser.UserRouter.R_Password))
             {
                 this.MessageError(Captions.Error, Captions.UserPasswordClientError);
                 return RedirectToAction(MVC.Client.Home.ActionNames.Index, MVC.Client.Home.Name, new { area = MVC.Client.Name });
             }
-            if (!_mikrotikServices.Usermanager_IsInstall(loginedUser.UserCompany.R_Host, loginedUser.UserCompany.R_Port, loginedUser.UserCompany.R_User, loginedUser.UserCompany.R_Password))
+            if (!_mikrotikServices.Usermanager_IsInstall(loginedUser.UserRouter.R_Host, loginedUser.UserRouter.R_Port, loginedUser.UserRouter.R_User, loginedUser.UserRouter.R_Password))
             {
                 this.MessageError(Captions.Error, Captions.UsermanagerClientError);
                 return RedirectToAction(MVC.Client.Home.ActionNames.Index, MVC.Client.Home.Name, new { area = MVC.Client.Name });
             }
             //-------------------------------
-            var users = _mikrotikServices.Usermanager_GetUser(loginedUser.UserCompany.R_Host, loginedUser.UserCompany.R_Port, loginedUser.UserCompany.R_User, loginedUser.UserCompany.R_Password, loginedUser.UserName);
+            var users = _mikrotikServices.Usermanager_GetUser(loginedUser.UserRouter.R_Host, loginedUser.UserRouter.R_Port, loginedUser.UserRouter.R_User, loginedUser.UserRouter.R_Password, loginedUser.UserName);
             foreach (var item in users)
                 if (item.id == loginedUser.UserName)
                 {
-                    var session = _mikrotikServices.Usermanager_UserSession(loginedUser.UserCompany.R_Host, loginedUser.UserCompany.R_Port, loginedUser.UserCompany.R_User, loginedUser.UserCompany.R_Password, item.username);
-                    var profile = _mikrotikServices.Usermanager_GetAllProfile(loginedUser.UserCompany.R_Host, loginedUser.UserCompany.R_Port, loginedUser.UserCompany.R_User, loginedUser.UserCompany.R_Password);
-                    var Limition = _mikrotikServices.Usermanager_GetAllLimition(loginedUser.UserCompany.R_Host, loginedUser.UserCompany.R_Port, loginedUser.UserCompany.R_User, loginedUser.UserCompany.R_Password);
-                    var profileLimition = _mikrotikServices.Usermanager_GetAllProfileLimition(loginedUser.UserCompany.R_Host, loginedUser.UserCompany.R_Port, loginedUser.UserCompany.R_User, loginedUser.UserCompany.R_Password);
+                    var session = _mikrotikServices.Usermanager_UserSession(loginedUser.UserRouter.R_Host, loginedUser.UserRouter.R_Port, loginedUser.UserRouter.R_User, loginedUser.UserRouter.R_Password, item.username);
+                    var profile = _mikrotikServices.Usermanager_GetAllProfile(loginedUser.UserRouter.R_Host, loginedUser.UserRouter.R_Port, loginedUser.UserRouter.R_User, loginedUser.UserRouter.R_Password);
+                    var Limition = _mikrotikServices.Usermanager_GetAllLimition(loginedUser.UserRouter.R_Host, loginedUser.UserRouter.R_Port, loginedUser.UserRouter.R_User, loginedUser.UserRouter.R_Password);
+                    var profileLimition = _mikrotikServices.Usermanager_GetAllProfileLimition(loginedUser.UserRouter.R_Host, loginedUser.UserRouter.R_Port, loginedUser.UserRouter.R_User, loginedUser.UserRouter.R_Password);
                     var UserProfile = new Netotik.ViewModels.Identity.UserClient.ProfileModel();
                     var UserProfileLimition = new Netotik.ViewModels.Identity.UserClient.ProfileLimitionModel();
                     var UserLimition = new Netotik.ViewModels.Identity.UserClient.LimitionModel();
@@ -581,27 +581,27 @@ namespace Netotik.Web.Areas.Client.Controllers
                 return RedirectToAction(MVC.Client.Home.ActionNames.Index, MVC.Client.Home.Name, new { area = MVC.Client.Name });
             }
             //-------------------------------
-            if (!_mikrotikServices.IP_Port_Check(loginedUser.UserCompany.R_Host, loginedUser.UserCompany.R_Port, loginedUser.UserCompany.R_User, loginedUser.UserCompany.R_Password))
+            if (!_mikrotikServices.IP_Port_Check(loginedUser.UserRouter.R_Host, loginedUser.UserRouter.R_Port, loginedUser.UserRouter.R_User, loginedUser.UserRouter.R_Password))
             {
                 this.MessageError(Captions.Error, Captions.IPPORTClientError);
                 return RedirectToAction(MVC.Client.Home.ActionNames.Index, MVC.Client.Home.Name, new { area = MVC.Client.Name });
             }
-            if (!_mikrotikServices.User_Pass_Check(loginedUser.UserCompany.R_Host, loginedUser.UserCompany.R_Port, loginedUser.UserCompany.R_User, loginedUser.UserCompany.R_Password))
+            if (!_mikrotikServices.User_Pass_Check(loginedUser.UserRouter.R_Host, loginedUser.UserRouter.R_Port, loginedUser.UserRouter.R_User, loginedUser.UserRouter.R_Password))
             {
                 this.MessageError(Captions.Error, Captions.UserPasswordClientError);
                 return RedirectToAction(MVC.Client.Home.ActionNames.Index, MVC.Client.Home.Name, new { area = MVC.Client.Name });
             }
-            if (!_mikrotikServices.Usermanager_IsInstall(loginedUser.UserCompany.R_Host, loginedUser.UserCompany.R_Port, loginedUser.UserCompany.R_User, loginedUser.UserCompany.R_Password))
+            if (!_mikrotikServices.Usermanager_IsInstall(loginedUser.UserRouter.R_Host, loginedUser.UserRouter.R_Port, loginedUser.UserRouter.R_User, loginedUser.UserRouter.R_Password))
             {
                 this.MessageError(Captions.Error, Captions.UsermanagerClientError);
                 return RedirectToAction(MVC.Client.Home.ActionNames.Index, MVC.Client.Home.Name, new { area = MVC.Client.Name });
             }
             //-------------------------------
-            ViewBag.profiles = _mikrotikServices.Usermanager_GetAllProfile(loginedUser.UserCompany.R_Host, loginedUser.UserCompany.R_Port, loginedUser.UserCompany.R_User, loginedUser.UserCompany.R_Password);
-            ViewBag.limitions = _mikrotikServices.Usermanager_GetAllLimition(loginedUser.UserCompany.R_Host, loginedUser.UserCompany.R_Port, loginedUser.UserCompany.R_User, loginedUser.UserCompany.R_Password);
+            ViewBag.profiles = _mikrotikServices.Usermanager_GetAllProfile(loginedUser.UserRouter.R_Host, loginedUser.UserRouter.R_Port, loginedUser.UserRouter.R_User, loginedUser.UserRouter.R_Password);
+            ViewBag.limitions = _mikrotikServices.Usermanager_GetAllLimition(loginedUser.UserRouter.R_Host, loginedUser.UserRouter.R_Port, loginedUser.UserRouter.R_User, loginedUser.UserRouter.R_Password);
             var model = new UserEditModel();
-            var UsermanagerUser = _mikrotikServices.Usermanager_GetUser(loginedUser.UserCompany.R_Host, loginedUser.UserCompany.R_Port, loginedUser.UserCompany.R_User, loginedUser.UserCompany.R_Password, loginedUser.UserName);
-            model.customer = loginedUser.UserCompany.Userman_Customer;
+            var UsermanagerUser = _mikrotikServices.Usermanager_GetUser(loginedUser.UserRouter.R_Host, loginedUser.UserRouter.R_Port, loginedUser.UserRouter.R_User, loginedUser.UserRouter.R_Password, loginedUser.UserName);
+            model.customer = loginedUser.UserRouter.Userman_Customer;
             model.id = UsermanagerUser.FirstOrDefault().id;
             model.username = UsermanagerUser.FirstOrDefault().username;
             model.shared_users = UsermanagerUser.FirstOrDefault().shared_users;
@@ -613,9 +613,9 @@ namespace Netotik.Web.Areas.Client.Controllers
             model.last_name = UsermanagerUser.FirstOrDefault().last_name;
             model.phone = UsermanagerUser.FirstOrDefault().phone;
             model.profile = pname;
-            _mikrotikServices.Usermanager_UserEdit(loginedUser.UserCompany.R_Host, loginedUser.UserCompany.R_Port, loginedUser.UserCompany.R_User, loginedUser.UserCompany.R_Password, model);
+            _mikrotikServices.Usermanager_UserEdit(loginedUser.UserRouter.R_Host, loginedUser.UserRouter.R_Port, loginedUser.UserRouter.R_User, loginedUser.UserRouter.R_Password, model);
             if(model.phone != null && model.phone!= "")
-            if (loginedUser.UserCompany.SmsCharge > 0 && loginedUser.UserCompany.SmsActive && loginedUser.UserCompany.SmsUserAfterChangePackage)
+            if (loginedUser.UserRouter.SmsCharge > 0 && loginedUser.UserRouter.SmsActive && loginedUser.UserRouter.SmsUserAfterChangePackage)
             {
                 _smsService.SendSms(model.phone, string.Format(Captions.SmsUserBuyPlan,model.username), loginedUser.Id);
             }
@@ -632,24 +632,24 @@ namespace Netotik.Web.Areas.Client.Controllers
                 return RedirectToAction(MVC.Client.Home.ActionNames.Index, MVC.Client.Home.Name, new { area = MVC.Client.Name });
             }
             //-------------------------------
-            if (!_mikrotikServices.IP_Port_Check(loginedUser.UserCompany.R_Host, loginedUser.UserCompany.R_Port, loginedUser.UserCompany.R_User, loginedUser.UserCompany.R_Password))
+            if (!_mikrotikServices.IP_Port_Check(loginedUser.UserRouter.R_Host, loginedUser.UserRouter.R_Port, loginedUser.UserRouter.R_User, loginedUser.UserRouter.R_Password))
             {
                 this.MessageError(Captions.Error, Captions.IPPORTClientError);
                 return RedirectToAction(MVC.Client.Home.ActionNames.Index, MVC.Client.Home.Name, new { area = MVC.Client.Name });
             }
-            if (!_mikrotikServices.User_Pass_Check(loginedUser.UserCompany.R_Host, loginedUser.UserCompany.R_Port, loginedUser.UserCompany.R_User, loginedUser.UserCompany.R_Password))
+            if (!_mikrotikServices.User_Pass_Check(loginedUser.UserRouter.R_Host, loginedUser.UserRouter.R_Port, loginedUser.UserRouter.R_User, loginedUser.UserRouter.R_Password))
             {
                 this.MessageError(Captions.Error, Captions.UserPasswordClientError);
                 return RedirectToAction(MVC.Client.Home.ActionNames.Index, MVC.Client.Home.Name, new { area = MVC.Client.Name });
             }
-            if (!_mikrotikServices.Usermanager_IsInstall(loginedUser.UserCompany.R_Host, loginedUser.UserCompany.R_Port, loginedUser.UserCompany.R_User, loginedUser.UserCompany.R_Password))
+            if (!_mikrotikServices.Usermanager_IsInstall(loginedUser.UserRouter.R_Host, loginedUser.UserRouter.R_Port, loginedUser.UserRouter.R_User, loginedUser.UserRouter.R_Password))
             {
                 this.MessageError(Captions.Error, Captions.UsermanagerClientError);
                 return RedirectToAction(MVC.Client.Home.ActionNames.Index, MVC.Client.Home.Name, new { area = MVC.Client.Name });
             }
             //-------------------------------
-            ViewBag.profiles = _mikrotikServices.Usermanager_GetAllProfile(loginedUser.UserCompany.R_Host, loginedUser.UserCompany.R_Port, loginedUser.UserCompany.R_User, loginedUser.UserCompany.R_Password);
-            ViewBag.limitions = _mikrotikServices.Usermanager_GetAllLimition(loginedUser.UserCompany.R_Host, loginedUser.UserCompany.R_Port, loginedUser.UserCompany.R_User, loginedUser.UserCompany.R_Password);
+            ViewBag.profiles = _mikrotikServices.Usermanager_GetAllProfile(loginedUser.UserRouter.R_Host, loginedUser.UserRouter.R_Port, loginedUser.UserRouter.R_User, loginedUser.UserRouter.R_Password);
+            ViewBag.limitions = _mikrotikServices.Usermanager_GetAllLimition(loginedUser.UserRouter.R_Host, loginedUser.UserRouter.R_Port, loginedUser.UserRouter.R_User, loginedUser.UserRouter.R_Password);
             return View();
         }
         public virtual ActionResult Charts()
@@ -662,24 +662,24 @@ namespace Netotik.Web.Areas.Client.Controllers
                 return RedirectToAction(MVC.Client.Home.ActionNames.Index, MVC.Client.Home.Name, new { area = MVC.Client.Name });
             }
             //-------------------------------
-            if (!_mikrotikServices.IP_Port_Check(loginedUser.UserCompany.R_Host, loginedUser.UserCompany.R_Port, loginedUser.UserCompany.R_User, loginedUser.UserCompany.R_Password))
+            if (!_mikrotikServices.IP_Port_Check(loginedUser.UserRouter.R_Host, loginedUser.UserRouter.R_Port, loginedUser.UserRouter.R_User, loginedUser.UserRouter.R_Password))
             {
                 this.MessageError(Captions.Error, Captions.IPPORTClientError);
                 return RedirectToAction(MVC.Client.Home.ActionNames.Index, MVC.Client.Home.Name, new { area = MVC.Client.Name });
             }
-            if (!_mikrotikServices.User_Pass_Check(loginedUser.UserCompany.R_Host, loginedUser.UserCompany.R_Port, loginedUser.UserCompany.R_User, loginedUser.UserCompany.R_Password))
+            if (!_mikrotikServices.User_Pass_Check(loginedUser.UserRouter.R_Host, loginedUser.UserRouter.R_Port, loginedUser.UserRouter.R_User, loginedUser.UserRouter.R_Password))
             {
                 this.MessageError(Captions.Error, Captions.UserPasswordClientError);
                 return RedirectToAction(MVC.Client.Home.ActionNames.Index, MVC.Client.Home.Name, new { area = MVC.Client.Name });
             }
-            if (!_mikrotikServices.Usermanager_IsInstall(loginedUser.UserCompany.R_Host, loginedUser.UserCompany.R_Port, loginedUser.UserCompany.R_User, loginedUser.UserCompany.R_Password))
+            if (!_mikrotikServices.Usermanager_IsInstall(loginedUser.UserRouter.R_Host, loginedUser.UserRouter.R_Port, loginedUser.UserRouter.R_User, loginedUser.UserRouter.R_Password))
             {
                 this.MessageError(Captions.Error, Captions.UsermanagerClientError);
                 return RedirectToAction(MVC.Client.Home.ActionNames.Index, MVC.Client.Home.Name, new { area = MVC.Client.Name });
             }
             //-------------------------------
-            var usermanagerUser = _mikrotikServices.Usermanager_GetUser(loginedUser.UserCompany.R_Host, loginedUser.UserCompany.R_Port, loginedUser.UserCompany.R_User, loginedUser.UserCompany.R_Password, loginedUser.UserName);
-            var session = _mikrotikServices.Usermanager_UserSession(loginedUser.UserCompany.R_Host, loginedUser.UserCompany.R_Port, loginedUser.UserCompany.R_User, loginedUser.UserCompany.R_Password, usermanagerUser.FirstOrDefault().username);
+            var usermanagerUser = _mikrotikServices.Usermanager_GetUser(loginedUser.UserRouter.R_Host, loginedUser.UserRouter.R_Port, loginedUser.UserRouter.R_User, loginedUser.UserRouter.R_Password, loginedUser.UserName);
+            var session = _mikrotikServices.Usermanager_UserSession(loginedUser.UserRouter.R_Host, loginedUser.UserRouter.R_Port, loginedUser.UserRouter.R_User, loginedUser.UserRouter.R_Password, usermanagerUser.FirstOrDefault().username);
             var UserSession = new List<Netotik.ViewModels.Identity.UserClient.UserSessionModel>();
             Dictionary<DateTime, ulong> DownloadMonth = new Dictionary<DateTime, ulong>();
             Dictionary<DateTime, ulong> UploadMonth = new Dictionary<DateTime, ulong>();

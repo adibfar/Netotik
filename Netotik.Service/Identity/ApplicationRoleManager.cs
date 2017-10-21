@@ -113,7 +113,7 @@ namespace Netotik.Services.Identity
         {
             var user = await _users.FirstOrDefaultAsync(x => x.Id == userId);
 
-            if (user.UserType == UserType.UserCompany) return new List<string> { "Company" };
+            if (user.UserType == UserType.UserRouter) return new List<string> { "Router" };
             else if (user.UserType == UserType.UserReseller) return new List<string> { "Reseller" };
             else if (user.UserType == UserType.Client) return new List<string> { "Client" };
 

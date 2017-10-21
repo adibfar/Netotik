@@ -4,17 +4,17 @@ using System.Data.Entity.ModelConfiguration;
 
 namespace Netotik.Domain.EntityConfiguration
 {
-    public class UserCompanyLogClientMap : EntityTypeConfiguration<UserCompanyLogClient>
+    public class UserRouterLogClientMap : EntityTypeConfiguration<UserRouterLogClient>
     {
-        public UserCompanyLogClientMap()
+        public UserRouterLogClientMap()
         {
             // Primary Key
             this.HasKey(t => t.Id);
 
             // Relationships
-            this.HasRequired(t => t.UserCompany)
-                .WithMany(t => t.UserCompanyLogClients)
-                .HasForeignKey(t => t.UserCompanyId)
+            this.HasRequired(t => t.UserRouter)
+                .WithMany(t => t.UserRouterLogClients)
+                .HasForeignKey(t => t.UserRouterId)
                 .WillCascadeOnDelete(false);
 
         }

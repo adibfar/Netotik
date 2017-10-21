@@ -35,51 +35,51 @@ namespace Netotik.Web.Controllers
         // GET: FarapayamakGateway
         public virtual async Task<ActionResult> SmsReceive(string fromNum, string toNumber, string textMessage)
         {
-            var User = await _applicationUserManager.FindByCompanySMSCodeAsync(textMessage);
+            var User = await _applicationUserManager.FindByRouterSMSCodeAsync(textMessage);
             if (User == null)
                 return View();
-            if (User.UserCompany.SmsActive && User.UserCompany.RegisterWithSms && User.UserCompany.SmsCharge > 0)
+            if (User.UserRouter.SmsActive && User.UserRouter.RegisterWithSms && User.UserRouter.SmsCharge > 0)
             {
-                if (!_mikrotikServices.IP_Port_Check(UserLogined.UserCompany.R_Host, UserLogined.UserCompany.R_Port, UserLogined.UserCompany.R_User, UserLogined.UserCompany.R_Password))
+                if (!_mikrotikServices.IP_Port_Check(UserLogined.UserRouter.R_Host, UserLogined.UserRouter.R_Port, UserLogined.UserRouter.R_User, UserLogined.UserRouter.R_Password))
                 {
-                    if (User.UserCompany.SmsIfErrorInSms)
+                    if (User.UserRouter.SmsIfErrorInSms)
                         _smsService.SendSms(User.PhoneNumber, "در هنگام ثبت نام پیامکی خطای اتصال به روتر ایجاد شد.", User.Id);
                     return View();
                 }
-                if (!_mikrotikServices.User_Pass_Check(UserLogined.UserCompany.R_Host, UserLogined.UserCompany.R_Port, UserLogined.UserCompany.R_User, UserLogined.UserCompany.R_Password))
+                if (!_mikrotikServices.User_Pass_Check(UserLogined.UserRouter.R_Host, UserLogined.UserRouter.R_Port, UserLogined.UserRouter.R_User, UserLogined.UserRouter.R_Password))
                 {
-                    if (User.UserCompany.SmsIfErrorInSms)
+                    if (User.UserRouter.SmsIfErrorInSms)
                         _smsService.SendSms(User.PhoneNumber, "در هنگام ثبت نام پیامکی خطای نام کاربری و رمز عبور ایجاد شد.", User.Id);
                     return View();
                 }
-                if (!_mikrotikServices.Usermanager_IsInstall(UserLogined.UserCompany.R_Host, UserLogined.UserCompany.R_Port, UserLogined.UserCompany.R_User, UserLogined.UserCompany.R_Password))
+                if (!_mikrotikServices.Usermanager_IsInstall(UserLogined.UserRouter.R_Host, UserLogined.UserRouter.R_Port, UserLogined.UserRouter.R_User, UserLogined.UserRouter.R_Password))
                 {
-                    if (User.UserCompany.SmsIfErrorInSms)
+                    if (User.UserRouter.SmsIfErrorInSms)
                         _smsService.SendSms(User.PhoneNumber, "در هنگام ثبت نام پیامکی خطای اتصال یوزرمنیجر ایجاد شد.", User.Id);
                     return View();
                 }
-                var Profiles = _mikrotikServices.Usermanager_GetAllProfile(UserLogined.UserCompany.R_Host, UserLogined.UserCompany.R_Port, UserLogined.UserCompany.R_User, UserLogined.UserCompany.R_Password);
+                var Profiles = _mikrotikServices.Usermanager_GetAllProfile(UserLogined.UserRouter.R_Host, UserLogined.UserRouter.R_Port, UserLogined.UserRouter.R_User, UserLogined.UserRouter.R_Password);
                 bool Flag = false;
                 foreach (var profile in Profiles)
-                    if (profile.name == User.UserCompany.RegisterWithSmsRouterProfile)
+                    if (profile.name == User.UserRouter.RegisterWithSmsRouterProfile)
                         Flag = true;
                 if (!Flag)
                 {
-                    if (User.UserCompany.SmsIfErrorInSms)
+                    if (User.UserRouter.SmsIfErrorInSms)
                         _smsService.SendSms(User.PhoneNumber, "در هنگام ثبت نام پیامکی خطای عدم وجود تعرفه انتخابی ایجاد شد.", User.Id);
                     return View();
                 }
 
                 var Rand = new Random();
                 UserRegisterModel UserClient = new UserRegisterModel();
-                UserClient.customer = User.UserCompany.Userman_Customer;
+                UserClient.customer = User.UserRouter.Userman_Customer;
                 UserClient.phone = fromNum;
                 UserClient.username = fromNum;
                 UserClient.password = Rand.Next(6).ToString();
-                UserClient.profile = User.UserCompany.RegisterWithSmsRouterProfile;
+                UserClient.profile = User.UserRouter.RegisterWithSmsRouterProfile;
 
-                _mikrotikServices.Usermanager_UserCreate(UserLogined.UserCompany.R_Host, UserLogined.UserCompany.R_Port, UserLogined.UserCompany.R_User, UserLogined.UserCompany.R_Password, UserClient);
-                string SmsText = User.UserCompany.RegisterWithSmsMessage + " User: " + fromNum + " Pass: " + Rand;
+                _mikrotikServices.Usermanager_UserCreate(UserLogined.UserRouter.R_Host, UserLogined.UserRouter.R_Port, UserLogined.UserRouter.R_User, UserLogined.UserRouter.R_Password, UserClient);
+                string SmsText = User.UserRouter.RegisterWithSmsMessage + " User: " + fromNum + " Pass: " + Rand;
                 _smsService.SendSms(fromNum, SmsText, User.Id);
             }
             return View();

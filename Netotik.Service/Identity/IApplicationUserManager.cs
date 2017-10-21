@@ -6,7 +6,7 @@ using Microsoft.AspNet.Identity;
 using Microsoft.Owin.Security.Cookies;
 using Netotik.Domain.Entity;
 using Netotik.Common.DataTables;
-using Netotik.ViewModels.Identity.UserCompany;
+using Netotik.ViewModels.Identity.UserRouter;
 
 namespace Netotik.Services.Identity
 {
@@ -14,26 +14,26 @@ namespace Netotik.Services.Identity
     public interface IApplicationUserManager : IDisposable
     {
 
-        long GetCompaniesChargre();
+        long GetRoutersChargre();
         ViewModels.Identity.UserAdmin.ProfileModel GetUserAdminProfile();
         ViewModels.Identity.UserReseller.ProfileModel GetUserResellerProfile();
-        ViewModels.Identity.UserCompany.ProfileModel GetUserCompanyProfile(long id);
+        ViewModels.Identity.UserRouter.ProfileModel GetUserRouterProfile(long id);
 
-        ViewModels.Identity.UserCompany.MikrotikConfModel GetUserCompanyMikrotikConf(long id);
-        ViewModels.Identity.UserCompany.TelegramBotModel GetUserCompanyTelegramBot(long id);
+        ViewModels.Identity.UserRouter.MikrotikConfModel GetUserRouterMikrotikConf(long id);
+        ViewModels.Identity.UserRouter.TelegramBotModel GetUserRouterTelegramBot(long id);
 
-        ViewModels.Identity.UserCompany.RegisterSettingModel GetCompanyRegisterSetting(long UserId);
-        Task UpdateCompanyRegisterSettingAsync(ViewModels.Identity.UserCompany.RegisterSettingModel model);
+        ViewModels.Identity.UserRouter.RegisterSettingModel GetRouterRegisterSetting(long UserId);
+        Task UpdateRouterRegisterSettingAsync(ViewModels.Identity.UserRouter.RegisterSettingModel model);
         Task UpdateUserAdminProfile(ViewModels.Identity.UserAdmin.ProfileModel model);
         Task UpdateUserResellerProfile(ViewModels.Identity.UserReseller.ProfileModel model);
-        Task UpdateUserCompanyProfile(ViewModels.Identity.UserCompany.ProfileModel model);
-        Task UpdateUserClientPermissions(ViewModels.Identity.UserCompany.ProfileModel model);
+        Task UpdateUserRouterProfile(ViewModels.Identity.UserRouter.ProfileModel model);
+        Task UpdateUserClientPermissions(ViewModels.Identity.UserRouter.ProfileModel model);
         IList<ViewModels.Identity.UserAdmin.UserItem> GetListUserAdmins(RequestListModel model, out long TotalCount, out long ShowCount);
         IList<ViewModels.Identity.UserReseller.UserItem> GetListUserResellers(RequestListModel model, out long TotalCount, out long ShowCount);
-        Task UpdateUserCompanyMikrotikConf(ViewModels.Identity.UserCompany.MikrotikConfModel model);
-        Task UpdateUserCompanyTelegramBot(ViewModels.Identity.UserCompany.TelegramBotModel model);
+        Task UpdateUserRouterMikrotikConf(ViewModels.Identity.UserRouter.MikrotikConfModel model);
+        Task UpdateUserRouterTelegramBot(ViewModels.Identity.UserRouter.TelegramBotModel model);
 
-        IList<ViewModels.Identity.UserCompany.CompanyList> GetListUserCompany(long id);
+        IList<ViewModels.Identity.UserRouter.RouterList> GetListUserRouter(long id);
 
         /// <summary>
         /// Used to hash/verify passwords
@@ -184,8 +184,8 @@ namespace Netotik.Services.Identity
         /// <param name="Code"/>
         /// <returns/>
         Task<User> FindByResellerCodeAsync(string Code);
-        Task<User> FindByCompanyCodeAsync(string Code);
-        Task<User> FindByCompanySMSCodeAsync(string Code);
+        Task<User> FindByRouterCodeAsync(string Code);
+        Task<User> FindByRouterSMSCodeAsync(string Code);
 
         /// <summary>
         /// Find a user by user name
@@ -333,8 +333,8 @@ namespace Netotik.Services.Identity
         /// <param name="userId">user id</param><param name="roles">list of role names</param>
         /// <returns/>
         Task<IdentityResult> AddToRolesAsync(long userId, params string[] roles);
-        SmsModel GetUserCompanySmsSettings(long id);
-        Task UpdateUserCompanySmsSettingsAsync(SmsModel model);
+        SmsModel GetUserRouterSmsSettings(long id);
+        Task UpdateUserRouterSmsSettingsAsync(SmsModel model);
 
         /// <summary>
         /// Remove user from multiple roles
@@ -361,7 +361,7 @@ namespace Netotik.Services.Identity
 
         Task<ViewModels.Identity.UserAdmin.AdminEditModel> GetUserAdminByIdAsync(long id);
         Task<ViewModels.Identity.UserReseller.ResellerEditModel> GetUserResellerByIdAsync(long id);
-        Task<ViewModels.Identity.UserCompany.CompanyEditModel> GetUserCompanyByIdAsync(long id);
+        Task<ViewModels.Identity.UserRouter.RouterEditModel> GetUserRouterByIdAsync(long id);
 
         /// <summary>
         /// Returns true if the user is in the specified role
@@ -595,7 +595,7 @@ namespace Netotik.Services.Identity
         Task<bool> HasPhoneNumber(long userId);
         Task RemoveAll();
         Task<List<User>> GetAllUsersAsync();
-        List<User> GetUserCompaniesWebsitesLogsActive();
+        List<User> GetUserRoutersWebsitesLogsActive();
         
         bool Any();
         IList<User> GetUsersWithRoleIds(params long[] ids);
@@ -604,7 +604,7 @@ namespace Netotik.Services.Identity
         void SeedDatabase();
         Task<bool> EditUser(ViewModels.Identity.UserAdmin.AdminEditModel viewModel);
         Task<bool> EditReseller(ViewModels.Identity.UserReseller.ResellerEditModel viewModel);
-        Task<bool> EditCompany(ViewModels.Identity.UserCompany.CompanyEditModel viewModel);
+        Task<bool> EditRouter(ViewModels.Identity.UserRouter.RouterEditModel viewModel);
 
         void SetRolesToUser(User user, IEnumerable<Role> roles);
 
@@ -614,24 +614,24 @@ namespace Netotik.Services.Identity
         bool CheckUserNameExist(string userName, long? id);
         bool CheckAdminEmailExist(string email, long? id);
         bool CheckResellerEmailExist(string email, long? id); 
-        bool CheckCompanyEmailExist(string email, long? id);
+        bool CheckRouterEmailExist(string email, long? id);
         bool CheckResellerNationalCodeExist(string nCode, long? id);
-        bool CheckCompanyNationalCodeExist(string nCode, long? id, long? resellerid);
-        bool CheckResellerCompanyNameExist(string name, long? id);
+        bool CheckRouterNationalCodeExist(string nCode, long? id, long? resellerid);
+        bool CheckResellerRouterNameExist(string name, long? id);
         bool SmsCodeIsValid(string RegisterWithSmsCode,long? id);
-        bool CheckCompanyCompanyNameExist(string name, long? id, long? resellerid);
+        bool CheckRouterRouterNameExist(string name, long? id, long? resellerid);
         bool CheckGooglePlusIdExist(string googlePlusId, long? id);
         bool CheckFacebookIdExist(string faceBookId, long? id);
         bool CheckResellerPhoneNumberExist(string phoneNumber, long? id);
         bool CheckAdminPhoneNumberExist(string phoneNumber, long? id);
-        bool CheckCompanyPhoneNumberExist(string phoneNumber, long? id,long? resellerid);
+        bool CheckRouterPhoneNumberExist(string phoneNumber, long? id,long? resellerid);
         Task<string> CustomValidatePasswordAsync(string pass);
         bool CheckIsUserBanned(long id);
         bool CheckIsUserBanned(string userName);
         Task<User> AddUser(ViewModels.Identity.UserAdmin.AdminAddModel viewModel);
         Task<User> AddReseller(ViewModels.Identity.UserReseller.ResellerAddModel viewModel);
         Task<long> AddReseller(ViewModels.Identity.UserReseller.RegisterViewModel viewModel);
-        Task<long> AddCompany(Netotik.ViewModels.Identity.UserCompany.Register viewModel);
+        Task<long> AddRouter(Netotik.ViewModels.Identity.UserRouter.Register viewModel);
         IUserEmailStore<User, long> GetEmailStore();
 
         bool IsEmailConfirmedByUserNameAsync(string userName);
@@ -648,7 +648,7 @@ namespace Netotik.Services.Identity
         long GetCurrentUserId();
 
         IList<string> FindClientPermissions(long userId);
-        IList<string> FindCompanyPermissions(long userId);
+        IList<string> FindRouterPermissions(long userId);
 
         IList<User> GetbyIds(long[] ids);
         

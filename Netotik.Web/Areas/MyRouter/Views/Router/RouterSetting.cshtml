@@ -1,0 +1,348 @@
+﻿@using Netotik.Resources;
+@{
+    ViewBag.Title = Captions.MikrotikConfig;
+}
+<div class="row">
+    <div class="col-md-12">
+        <div class="card">
+            <div class="card-header">
+                <h4 class="card-title">@Captions.MikrotikConfig</h4>
+                <a class="heading-elements-toggle"><i class="icon-ellipsis font-medium-3"></i></a>
+                <div class="heading-elements">
+                    <ul class="list-inline mb-0">
+                        <li><a data-action="collapse"><i class="icon-minus4"></i></a></li>
+                        <li><a data-action="reload"><i class="icon-reload"></i></a></li>
+                        <li><a data-action="expand"><i class="icon-expand2"></i></a></li>
+                        <li><a data-action="close"><i class="icon-cross2"></i></a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="card-body collapse in">
+                <div class="card-block">
+                    <div class="form-body">
+                        <div class="row">
+                            <div class="col-lg-4 col-md-12">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <div class="card-block">
+                                            <form>
+                                                <h4 class="form-section"><i class="icon-repeat2"></i>@Captions.Reboot</h4>
+                                                @Captions.MikrotikRebootDesctiption
+                                                <div style="direction:ltr;">
+                                                    <a href="@Url.Action(MVC.MyRouter.Router.ActionNames.Reboot)" class="btn btn-outline-primary">
+                                                        <i class="icon-repeat2"></i> @Captions.Reboot
+                                                    </a>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-4 col-md-12">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <div class="card-block">
+                                            <form>
+                                                <h4 class="form-section"><i class="icon-cloud-download"></i>@Captions.Update</h4>
+                                                @if (ViewBag.Update_status.Contains("New"))
+                                                {
+                                                    <p>
+                                                        @Captions.UpdateTo
+                                                        @ViewBag.Latest_version
+                                                    </p>
+                                                    <div style="direction:ltr;">
+                                                        <a href="@Url.Action(MVC.MyRouter.Router.ActionNames.UpdateRouter)" class="btn btn-outline-primary">
+                                                            <i class="icon-cloud-download"></i> Update
+                                                        </a>
+                                                    </div>
+                                                }
+                                                else
+                                                {
+                                                    <div class="inline">@Captions.UpdateIsInstall</div>
+                                                    <div style="direction:ltr;">
+                                                        <a href="@Url.Action(MVC.MyRouter.Router.ActionNames.UpdateRouterCheck)" class="btn btn-outline-primary">
+                                                            <span class="icon-cloud-check"></span> @Captions.CheckIt
+                                                        </a>
+                                                    </div>
+                                                }
+
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-4 col-md-12">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <div class="card-block">
+                                            <form>
+                                                <h4 class="form-section"><i class="icon-file-text2"></i>@Captions.RemoveLogs</h4>
+                                                @Captions.MikrotikRemoveLogsDesctiption
+                                                <div style="direction:ltr;">
+                                                    <a href="@Url.Action(MVC.MyRouter.Router.ActionNames.RemoveLogs)" class="btn btn-outline-primary">
+                                                        <i class="icon-file-text2"></i> @Captions.RemoveLogs
+                                                    </a>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-lg-4 col-md-12">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <div class="card-block">
+                                            @using (Html.BeginForm(MVC.MyRouter.Router.ActionNames.ResetRouter, MVC.MyRouter.Router.Name, FormMethod.Post,
+                                            htmlAttributes: new { @class = "form-horizontal", enctype = "multipart/form-data", id = "form" }))
+                                            {
+                                                @Html.AntiForgeryToken()
+                                                <h4 class="form-section"><i class="icon-android-alert"></i>@Captions.MikrotikReset</h4><div>
+    @Captions.MikrotikResetDesctiption
+</div>
+                                                <div class="col-md-6">
+                                                    <br />
+                                                    <div class="controls">
+                                                        <label class="custom-control custom-checkbox">
+                                                            <input type="checkbox" class="custom-control-input" id="nodefualt" name="nodefualt" />
+                                                            <span class="custom-control-indicator"></span>
+                                                            <span class="custom-control-description">
+                                                                @Captions.DefualtConfiguration
+                                                            </span>
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="form-group has-icon-left">
+                                                        < "yes">
+                                                        <div class="position-relative has-icon-left">
+                                                            <input name="reset" id="reset" class="form-control" />
+                                                            <div class="form-control-position">
+                                                                <i class="icon-ei-pencil"></i>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div style="direction:ltr;">
+                                                    <button class="btn btn-outline-primary danger" type="submit">
+                                                        <i class="icon-alert"></i> @Captions.Reset
+                                                    </button>
+                                                </div>
+                                            }
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-lg-4 col-md-12">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <div class="card-block">
+                                            <form>
+                                                <h4 class="form-section"><i class="icon-floppy-disk"></i>@Captions.MikrotikBackup</h4>
+                                                @Captions.MikrotikBackupDesctiption
+                                                <div style="direction:ltr;">
+                                                    <a href="@Url.Action(MVC.MyRouter.Router.ActionNames.BackupRouter)" class="btn btn-outline-primary">
+                                                        <i class="icon-floppy-disk"></i> Backup Router
+                                                    </a>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-4 col-md-12">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <div class="card-block">
+                                            @using (Html.BeginForm(MVC.MyRouter.Router.ActionNames.RestoreRouter, MVC.MyRouter.Router.Name, FormMethod.Post,
+                                            htmlAttributes: new { @class = "form-horizontal", enctype = "multipart/form-data", id = "form" }))
+                                            {
+                                                @Html.AntiForgeryToken()
+                                                <h4 class="form-section"><i class="icon-reload"></i>@Captions.MikrotikRestore</h4>
+                                            <div>
+                                                @Captions.MikrotikRestoreDesctiption
+                                            </div>
+                                                <div class="col-md-12">
+                                                    <label class="font-noraml">@Captions.SelectBackup</label>
+                                                    <select name="RestoreRouter" data-placeholder="@Captions.SelectBackup" class="selectize-select" style="min-width:350px;" tabindex="2">
+                                                        @foreach (var item in ViewBag.RestoreRouter)
+                                                        {
+                                                            <option value="@item.Name">@item.Name</option>
+                                                        }
+                                                    </select>
+                                                </div>
+                                                <div style="direction:ltr;">
+                                                    <button class="btn btn-outline-primary" type="submit">
+                                                        <i class="icon-reload"></i> @Captions.MikrotikRestore
+                                                    </button>
+                                                </div>
+                                            }
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-4 col-md-12">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <div class="card-block">
+                                            @using (Html.BeginForm(MVC.MyRouter.Router.ActionNames.ResetUsermanager, MVC.MyRouter.Router.Name, FormMethod.Post,
+                                            htmlAttributes: new { @class = "form-horizontal", enctype = "multipart/form-data", id = "form" }))
+                                            {
+                                                @Html.AntiForgeryToken()
+                                                <h4 class="form-section"><i class="icon-android-alert"></i>@Captions.MikrotikResetUsermanager</h4>
+                                            <div>
+                                                @Captions.MikrotikResetUsermanagerDesctiption
+                                            </div>
+                                                <br />
+                                                <br /><br />
+                                                <div class="col-md-6">
+                                                    <br />
+                                                    <div class="controls">
+                                                        <label class="custom-control custom-checkbox">
+                                                            <input type="checkbox" class="custom-control-input" name="logs" />
+                                                            <span class="custom-control-indicator"></span>
+                                                            <span class="custom-control-description">
+                                                                @Captions.RemoveUsermanagerLogs
+                                                            </span>
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <br />
+                                                    <div class="controls">
+                                                        <label class="custom-control custom-checkbox">
+                                                            <input type="checkbox" class="custom-control-input" name="users" />
+                                                            <span class="custom-control-indicator"></span>
+                                                            <span class="custom-control-description">
+                                                                @Captions.RemoveUsermanagerUsers
+                                                            </span>
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                            <div class="col-md-6">
+                                                <br />
+                                                <div class="controls">
+                                                    <label class="custom-control custom-checkbox">
+                                                        <input type="checkbox" class="custom-control-input" name="history" />
+                                                        <span class="custom-control-indicator"></span>
+                                                        <span class="custom-control-description">
+                                                            @Captions.RemoveUsermanagerPlan
+                                                        </span>
+                                                    </label>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <br />
+                                                <div class="controls">
+                                                    <label class="custom-control custom-checkbox">
+                                                        <input type="checkbox" class="custom-control-input" name="history" />
+                                                        <span class="custom-control-indicator"></span>
+                                                        <span class="custom-control-description">
+                                                            @Captions.RemoveUsermanagerHistory
+                                                        </span>
+                                                    </label>
+                                                </div>
+                                            </div>
+                                                <div class="col-md-6">
+                                                    <br />
+                                                    <div class="controls">
+                                                        <label class="custom-control custom-checkbox">
+                                                            <input type="checkbox" class="custom-control-input" name="session" />
+                                                            <span class="custom-control-indicator"></span>
+                                                            <span class="custom-control-description">
+                                                                @Captions.RemoveUsermanagerSession
+                                                            </span>
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <br />
+                                                    <div class="controls">
+                                                        <label class="custom-control custom-checkbox">
+                                                            <input type="checkbox" class="custom-control-input" name="db" />
+                                                            <span class="custom-control-indicator"></span>
+                                                            <span class="custom-control-description">
+                                                                @Captions.RemoveUsermanagerDB
+                                                            </span>
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="form-group has-icon-left">
+                                                        < "yes" >
+                                                        <div class="position-relative has-icon-left">
+                                                            <input name="reset" id="reset" class="form-control" />
+                                                            <div class="form-control-position">
+                                                                <i class="icon-ei-pencil"></i>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div style="direction:ltr;">
+                                                    <button class="btn btn-outline-primary danger" type="submit">
+                                                        <i class="icon-alert"></i> @Captions.Reset
+                                                    </button>
+                                                </div>
+                                            }
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-4 col-md-12">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <div class="card-block">
+                                            <form>
+                                                <h4 class="form-section"><i class="icon-floppy-disk"></i>@Captions.MikrotikUsermanagerBackup</h4>
+                                                @Captions.MikrotikUsermanagerBackupDesctiption
+                                                <div style="direction:ltr;">
+                                                    <a href="@Url.Action(MVC.MyRouter.Router.ActionNames.BackupUsermanager)" class="btn btn-outline-primary">
+                                                        <i class="icon-floppy-disk"></i> @Captions.MikrotikUsermanagerBackup
+                                                    </a>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-4 col-md-12">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <div class="card-block">
+                                            @using (Html.BeginForm(MVC.MyRouter.Router.ActionNames.RestoreUsermanager, MVC.MyRouter.Router.Name, FormMethod.Post,
+                                            htmlAttributes: new { @class = "form-horizontal", enctype = "multipart/form-data", id = "form" }))
+                                            {
+                                                @Html.AntiForgeryToken()
+                                                <h4 class="form-section"><i class="icon-reload"></i>@Captions.MikrotikUsermanagerRestore</h4>
+                                            <div>@Captions.MikrotikUsermanagerRestoreDesctiption</div>
+                                                <div class="col-md-12">
+                                                    <label class="font-noraml">@Captions.SelectBackup</label>
+                                                    <select name="RestoreUsermanager" data-placeholder="@Captions.SelectBackup" class="selectize-select" style="min-width:350px;" tabindex="2">
+                                                        @foreach (var item in ViewBag.RestoreUsermanager)
+                                                        {
+                                                            <option value="@item.Name">@item.Name</option>
+                                                        }
+                                                    </select>
+                                                </div>
+                                                <div style="direction:ltr;">
+                                                    <button class="btn btn-outline-primary" type="submit">
+                                                        <i class="icon-reload"></i> @Captions.MikrotikUsermanagerRestore
+                                                    </button>
+                                                </div>
+                                            }
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
