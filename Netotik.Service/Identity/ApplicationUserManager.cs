@@ -736,6 +736,14 @@ namespace Netotik.Services.Identity
             else XmlClientPermissions = _permissionClientService.GetPermissionsAsXml(viewModel.ClientPermissionNames).ToString();
 
             user.UserRouter.ClientPermissions = XmlClientPermissions;
+
+            var XmlRouterPermissions = "";
+            if (viewModel.RouterPermissionNames == null || viewModel.RouterPermissionNames.Length < 1)
+                XmlRouterPermissions = _permissionRouterService.GetPermissionsAsXml("null").ToString();
+            else XmlRouterPermissions = _permissionClientService.GetPermissionsAsXml(viewModel.RouterPermissionNames).ToString();
+
+            user.UserRouter.RouterPermissions = XmlRouterPermissions;
+
             user.UserType = UserType.UserRouter;
             user.EmailConfirmed = false;
             await CreateAsync(user, viewModel.Password);

@@ -1,6 +1,7 @@
 ﻿@model Netotik.ViewModels.Identity.UserRouter.Register
 @{
     var clientPermissions = ViewBag.ClientPermissions as List<SelectListItem>;
+    var routerPermissions = ViewBag.RouterPermissions as List<SelectListItem>;
     ViewBag.Title = Netotik.Resources.Captions.NewUser;
 }
 <section class="flexbox-container">
@@ -28,6 +29,9 @@
                                 </li>
                                 <li class="nav-item">
                                     <a class="nav-link" id="linkIcon12-tab1" data-toggle="tab" href="#image" aria-controls="linkIcon12" aria-expanded="false"><i class="icon-camera5"></i>@Netotik.Resources.Captions.ImageProfile</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" id="linkIcon12-tab1" data-toggle="tab" href="#RouterPermission" aria-controls="linkIcon12" aria-expanded="false"><i class="icon-lock2"></i>مجوزهای پنل روتر</a>
                                 </li>
                                 <li class="nav-item">
                                     <a class="nav-link" id="linkIcon12-tab1" data-toggle="tab" href="#ClientPermission" aria-controls="linkIcon12" aria-expanded="false"><i class="icon-lock2"></i>@Netotik.Resources.Captions.ClientPanelPermission</a>
@@ -233,6 +237,19 @@
                                 <div class="tab-pane fade" id="image" role="tabpanel" aria-labelledby="linkIconOpt11-tab1" aria-expanded="false">
                                     <fieldset>
                                         @Html.EditorFor(model => model.ImageAvatar)
+                                    </fieldset>
+                                </div>
+                                <div class="tab-pane fade" id="RouterPermission" role="tabpanel" aria-labelledby="linkIconOpt11-tab1" aria-expanded="false">
+                                    <fieldset>
+                                        <div class="row skin skin-flat">
+                                            @foreach (var item in routerPermissions)
+                                            {
+                                                <div class="col-md-4">
+                                                    <input type="checkbox" name="ClientPermissionNames" value="@item.Value">
+                                                    @Html.Label("RouterPermissionNames", item.Text)
+                                                </div>
+                                            }
+                                        </div>
                                     </fieldset>
                                 </div>
                                 <div class="tab-pane fade" id="ClientPermission" role="tabpanel" aria-labelledby="linkIconOpt11-tab1" aria-expanded="false">
