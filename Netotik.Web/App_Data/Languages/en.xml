@@ -1214,4 +1214,12 @@
     <Value>Router Code</Value>
   </LocaleResource>
 
+  <LocaleResource Name="Reseller">
+    <Value>Reseller</Value>
+  </LocaleResource>
+
+  <LocaleResource Name="LastLogin">
+    <Value>Last Login</Value>
+  </LocaleResource>
+  
 </Language>

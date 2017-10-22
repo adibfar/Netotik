@@ -1789,9 +1789,16 @@
     <Value>تصویر لوگو</Value>
   </LocaleResource>
 
-
   <LocaleResource Name="RouterCode">
     <Value>کد روتر</Value>
   </LocaleResource>
-  
+
+  <LocaleResource Name="Reseller">
+    <Value>نماینده</Value>
+  </LocaleResource>
+
+  <LocaleResource Name="LastLogin">
+    <Value>آخرین لاگین</Value>
+  </LocaleResource>
+
 </Language>

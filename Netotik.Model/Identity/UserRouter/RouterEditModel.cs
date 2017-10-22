@@ -19,7 +19,7 @@ namespace Netotik.ViewModels.Identity.UserRouter
         [Required(ErrorMessageResourceType = typeof(Captions), ErrorMessageResourceName = "RequiredError")]
         [MaxLength(100, ErrorMessageResourceType = typeof(Captions), ErrorMessageResourceName = "MaxLengthError")]
         [MinLength(2, ErrorMessageResourceType = typeof(Captions), ErrorMessageResourceName = "MinLengthError")]
-        [Display(ResourceType = typeof(Captions), Name = "BussinessName")]
+        [Display(ResourceType = typeof(Captions), Name = "BussinesName")]
         public string FirstName { get; set; }
 
         [Required(ErrorMessageResourceType = typeof(Captions), ErrorMessageResourceName = "RequiredError")]

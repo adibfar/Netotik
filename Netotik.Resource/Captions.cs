@@ -4594,6 +4594,13 @@ namespace Netotik.Resources
             }
         }
 
+        public static string Reseller
+        {
+            get
+            {
+                return resourceProvider.GetResource("Reseller", CultureInfo.CurrentUICulture.Name) as string;
+            }
+        }
 
         public static string ContactusSlogan
         {
@@ -4602,7 +4609,15 @@ namespace Netotik.Resources
                 return resourceProvider.GetResource("ContactusSlogan", CultureInfo.CurrentUICulture.Name) as string;
             }
         }
-        
+
+        public static string LastLogin
+        {
+            get
+            {
+                return resourceProvider.GetResource("LastLogin", CultureInfo.CurrentUICulture.Name) as string;
+            }
+        }
+
 
     }
 }
