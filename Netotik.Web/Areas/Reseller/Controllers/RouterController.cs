@@ -87,12 +87,19 @@ namespace Netotik.Web.Areas.Reseller.Controllers
         public virtual ActionResult Create()
         {
             PopulateClientPermissions();
+            PopulateRouterPermissions();
             return View();
         }
 
         [Mvc5Authorize(Roles = "Reseller")]
         public virtual ActionResult Remove(int id = 0)
         {
+            var check = _applicationUserManager.FindUserById(id);
+            if (check.UserRouter.UserResellerId != UserLogined.Id)
+            {
+                this.MessageError(Captions.Error, Captions.InvalidDataError);
+                return RedirectToAction(MVC.Reseller.Router.ActionNames.Index);
+            }
             _applicationUserManager.LogicalRemove(id);
             return RedirectToAction(MVC.Reseller.Router.Index());
         }
@@ -104,6 +111,7 @@ namespace Netotik.Web.Areas.Reseller.Controllers
         public virtual async Task<ActionResult> Create(Register model)
         {
             PopulateClientPermissions(model.ClientPermissionNames);
+            PopulateRouterPermissions(model.RouterPermissionNames);
 
             if (_applicationUserManager.CheckResellerEmailExist(model.Email, null))
                 ModelState.AddModelError("Email", Captions.NotValidError);
@@ -176,15 +184,22 @@ namespace Netotik.Web.Areas.Reseller.Controllers
         [BreadCrumb(Title = "EditUser", Order = 1)]
         public virtual async Task<ActionResult> Edit(long? id)
         {
+            
             if (id == null) return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
 
             var viewModel = await _userManager.GetUserRouterByIdAsync(id.Value);
             if (viewModel == null) return HttpNotFound();
-
+            var check = _applicationUserManager.FindUserById(viewModel.Id);
+            if (check.UserRouter.UserResellerId != UserLogined.Id)
+            {
+                this.MessageError(Captions.Error, Captions.InvalidDataError);
+                return RedirectToAction(MVC.Reseller.Router.ActionNames.Index);
+            }
             if (viewModel.Picture != null)
                 ViewBag.Avatar = Path.Combine(Common.Controller.FilePathes._imagesUserAvatarsPath, viewModel.Picture.FileName);
 
             PopulateClientPermissions(_applicationUserManager.FindClientPermissions(viewModel.Id).ToArray());
+            PopulateRouterPermissions(_applicationUserManager.FindRouterPermissions(viewModel.Id).ToArray());
 
             return View(viewModel);
 
@@ -196,7 +211,14 @@ namespace Netotik.Web.Areas.Reseller.Controllers
         [HttpPost]
         public virtual async Task<ActionResult> Edit(RouterEditModel model)
         {
+            var check = _applicationUserManager.FindUserById(model.Id);
+            if (check.UserRouter.UserResellerId != UserLogined.Id)
+            {
+                this.MessageError(Captions.Error, Captions.InvalidDataError);
+                return RedirectToAction(MVC.Reseller.Router.ActionNames.Index);
+            }
             PopulateClientPermissions(model.ClientPermissionNames);
+            PopulateRouterPermissions(model.RouterPermissionNames);
 
             if (!ModelState.IsValid)
             {
@@ -362,6 +384,18 @@ namespace Netotik.Web.Areas.Reseller.Controllers
                     a => a.Selected = selectedpermissions.Any(s => s == a.Value));
             }
             ViewBag.ClientPermissions = permissions;
+        }
+        [NonAction]
+        private void PopulateRouterPermissions(params string[] selectedpermissions)
+        {
+            var permissions = AssignablePermissionToRouter.GetAsSelectListItems();
+
+            if (selectedpermissions != null)
+            {
+                permissions.ForEach(
+                    a => a.Selected = selectedpermissions.Any(s => s == a.Value));
+            }
+            ViewBag.RouterPermissions = permissions;
         }
 
 

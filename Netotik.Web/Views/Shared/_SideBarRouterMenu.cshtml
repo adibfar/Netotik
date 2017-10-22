@@ -1,7 +1,29 @@
 ﻿@using Netotik.ViewModels.Identity.Security
 @model IList<string>
 @{
-    var UserManager = Model.Any(x => AssignablePermissionToRouter.GetUserManagerPermision().Any(y => y.Name == x));
+    var CanShowUserManager = Model.Any(x => AssignablePermissionToRouter.GetUserManagerMenuPermision().Any(y => y.Name == x));
+    var CanShowUserManagerClientArea = Model.Any(x => x == AssignablePermissionToRouter.UserManagerClientArea);
+    var CanShowUserManagerOnlines = Model.Any(x => x == AssignablePermissionToRouter.UserManagerOnlines);
+    var CanShowUserManagerPlanList = Model.Any(x => x == AssignablePermissionToRouter.UserManagerPlanList);
+    var CanShowUserManagerRegisterSettings = Model.Any(x => x == AssignablePermissionToRouter.UserManagerRegisterSettings);
+    var CanShowUserManagerReports = Model.Any(x => x == AssignablePermissionToRouter.UserManagerReports);
+    var CanShowUserManagerUserList = Model.Any(x => x == AssignablePermissionToRouter.UserManagerUserList);
+    //-------------------------------------------------------------------------------------------------------
+    var CanShowRouter = Model.Any(x => AssignablePermissionToRouter.GetRouterMenuPermision().Any(y => y.Name == x));
+    var CanShowRouterInfo = Model.Any(x => x == AssignablePermissionToRouter.RouterInfo);
+    var CanShowRouterActions = Model.Any(x => x == AssignablePermissionToRouter.RouterActions);
+    var CanShowWebsitesLogs = Model.Any(x => x == AssignablePermissionToRouter.WebsitesLogs);
+    
+//-------------------------------------------------------------------------------------------------------
+var CanShowHotspot = Model.Any(x => AssignablePermissionToRouter.GetHotspotMenuPermision().Any(y => y.Name == x));
+    var CanShowHotspotOnline = Model.Any(x => x == AssignablePermissionToRouter.HotspotsOnline);
+    var CanShowHotspotAccess = Model.Any(x => x == AssignablePermissionToRouter.HotspotsAccess);
+    //-------------------------------------------------------------------------------------------------------
+    var CanShowTelegramBot = Model.Any(x => x == AssignablePermissionToRouter.TelegramBot);
+    var CanShowSms = Model.Any(x => x == AssignablePermissionToRouter.Sms);
+    var CanShowMikrotikConnectionSetting = Model.Any(x => x == AssignablePermissionToRouter.MikrotikConnectionSetting);
+
+
 }
 <div role="navigation" data-menu="menu-wrapper" class="header-navbar navbar navbar-horizontal navbar-light navbar-shadow navbar-without-dd-arrow navbar-fixed">
     <!-- Horizontal menu content-->
@@ -12,48 +34,84 @@
             <li class="nav-item">
                 <a href="@Url.Action(MVC.MyRouter.Home.Index())" class="nav-link"><i class="icon-home3"></i><span>@Captions.Dashboard</span></a>
             </li>
-            @if (UserManager)
+            @if (CanShowUserManager)
             {
-            <li data-menu="dropdown" class="dropdown nav-item">
-                <a href="index.html" data-toggle="dropdown" class="dropdown-toggle nav-link"><i class="icon-users2"></i><span>@Captions.UserManager</span> </a>
-                <ul class="dropdown-menu">
-                    <li><a href="@Url.Action(MVC.MyRouter.UserManager.UserList())" data-toggle="dropdown" class="dropdown-item">@Captions.UsersList</a></li>
-                    <li><a href="@Url.Action(MVC.MyRouter.UserManager.PackageList())" data-toggle="dropdown" class="dropdown-item">@Captions.PlanList</a></li>
-                    <li><a href="@Url.Action(MVC.MyRouter.UserManager.Online())" data-toggle="dropdown" class="dropdown-item">@Captions.OnlineUsers</a></li>
-                    <li><a href="@Url.Action(MVC.MyRouter.UserManager.Register())" data-toggle="dropdown" class="dropdown-item">@Captions.Register</a></li>
-                    <li><a href="@Url.Action(MVC.MyRouter.UserManager.Report())" data-toggle="dropdown" class="dropdown-item">@Captions.Reports</a></li>
-                    <li><a href="@Url.Action(MVC.MyRouter.UserManager.ClientArea())" data-toggle="dropdown" class="dropdown-item">@Captions.UserPanel</a></li>
-                    <li><a href="@Url.Action(MVC.MyRouter.UserManager.RegisterSetting())" data-toggle="dropdown" class="dropdown-item"> @Captions.RegisterSetting </a></li>
-                </ul>
-            </li>
+                <li data-menu="dropdown" class="dropdown nav-item">
+                    <a href="index.html" data-toggle="dropdown" class="dropdown-toggle nav-link"><i class="icon-users2"></i><span>@Captions.UserManager</span> </a>
+                    <ul class="dropdown-menu">
+                        @if (CanShowUserManagerUserList)
+                        {
+                            <li><a href="@Url.Action(MVC.MyRouter.UserManager.UserList())" data-toggle="dropdown" class="dropdown-item">@Captions.UsersList</a></li>}
+                        @if (CanShowUserManagerPlanList)
+                        {
+                            <li><a href="@Url.Action(MVC.MyRouter.UserManager.PackageList())" data-toggle="dropdown" class="dropdown-item">@Captions.PlanList</a></li>}
+                        @if (CanShowUserManagerOnlines)
+                        {
+                            <li><a href="@Url.Action(MVC.MyRouter.UserManager.Online())" data-toggle="dropdown" class="dropdown-item">@Captions.OnlineUsers</a></li>}
+                        @if (CanShowUserManagerRegisterSettings)
+                        {
+                            <li><a href="@Url.Action(MVC.MyRouter.UserManager.Register())" data-toggle="dropdown" class="dropdown-item">@Captions.Register</a></li>}
+                        @if (CanShowUserManagerReports)
+                        {
+                            <li><a href="@Url.Action(MVC.MyRouter.UserManager.Report())" data-toggle="dropdown" class="dropdown-item">@Captions.Reports</a></li>}
+                        @if (CanShowUserManagerClientArea)
+                        {
+                            <li><a href="@Url.Action(MVC.MyRouter.UserManager.ClientArea())" data-toggle="dropdown" class="dropdown-item">@Captions.UserPanel</a></li>}
+                        @if (CanShowUserManagerRegisterSettings)
+                        {
+                            <li><a href="@Url.Action(MVC.MyRouter.UserManager.RegisterSetting())" data-toggle="dropdown" class="dropdown-item"> @Captions.RegisterSetting </a></li>}
+                    </ul>
+                </li>
             }
-            <li data-menu="dropdown" class="dropdown nav-item">
-                <a href="#" data-toggle="dropdown" class="dropdown-toggle nav-link"><i class="icon-drive"></i><span>@Captions.Router</span></a>
-                <ul class="dropdown-menu">
-                    <li><a href="@Url.Action(MVC.MyRouter.Router.Info())" data-toggle="dropdown" class="dropdown-item">@Captions.RouterInformation</a></li>
-                    <li><a href="@Url.Action(MVC.MyRouter.Router.RouterSetting())" data-toggle="dropdown" class="dropdown-item">@Captions.Actions</a></li>
-                    @if (false)
-                    {
-                        <li><a href="@Url.Action(MVC.MyRouter.Router.PPP())" data-toggle="dropdown" class="dropdown-item">PPP & Other </a></li>
-                        <li><a href="@Url.Action(MVC.MyRouter.Router.Interfaces())" data-toggle="dropdown" class="dropdown-item">InterFaces</a></li>
-                        <li><a href="@Url.Action(MVC.MyRouter.Router.Wireless())" data-toggle="dropdown" class="dropdown-item">Wireless</a></li>
-                        <li><a href="@Url.Action(MVC.MyRouter.Router.Nat())" data-toggle="dropdown" class="dropdown-item">Nat</a></li>
-                    }
-                </ul>
-            </li>
-            <li data-menu="dropdown" class="dropdown nav-item">
-                <a href="#" data-toggle="dropdown" class="dropdown-toggle nav-link"><i class="icon-wifi"></i><span>@Captions.Hotspot</span></a>
-                <ul class="dropdown-menu">
-                    <li><a href="@Url.Action(MVC.MyRouter.Hotspot.Access())" data-toggle="dropdown" class="dropdown-item">@Captions.Access</a></li>
-                    <li><a href="@Url.Action(MVC.MyRouter.Hotspot.Active())" data-toggle="dropdown" class="dropdown-item">@Captions.Online</a></li>
-                    @if (false)
-                    {
-                        <li><a href="@Url.Action(MVC.MyRouter.Hotspot.Template())" data-toggle="dropdown" class="dropdown-item">قالب های لاگین هات اسپات</a></li>
-                        <li><a href="@Url.Action(MVC.MyRouter.Hotspot.Servers())" data-toggle="dropdown" class="dropdown-item">سرور ها</a></li>
-                        <li><a href="@Url.Action(MVC.MyRouter.Hotspot.Users())" data-toggle="dropdown" class="dropdown-item">کاربران</a></li>
-                    }
-                </ul>
-            </li>
+            @if (CanShowRouter)
+            {
+                <li data-menu="dropdown" class="dropdown nav-item">
+                    <a href="#" data-toggle="dropdown" class="dropdown-toggle nav-link"><i class="icon-drive"></i><span>@Captions.Router</span></a>
+                    <ul class="dropdown-menu">
+                        @if (CanShowRouterInfo)
+                        {
+                            <li><a href="@Url.Action(MVC.MyRouter.Router.Info())" data-toggle="dropdown" class="dropdown-item">@Captions.RouterInformation</a></li>
+                        }
+                        @if (CanShowRouterActions)
+                        {
+                            <li><a href="@Url.Action(MVC.MyRouter.Router.RouterSetting())" data-toggle="dropdown" class="dropdown-item">@Captions.Actions</a></li>
+                        }
+                        @if (CanShowWebsitesLogs)
+                        {
+                            <li><a href="@Url.Action(MVC.MyRouter.Router.WebSitesLogs())" data-toggle="dropdown" class="dropdown-item">لاگ سایت های بازدید شده</a></li>
+                        }
+                        @if (false)
+                        {
+                            <li><a href="@Url.Action(MVC.MyRouter.Router.PPP())" data-toggle="dropdown" class="dropdown-item">PPP & Other </a></li>
+                            <li><a href="@Url.Action(MVC.MyRouter.Router.Interfaces())" data-toggle="dropdown" class="dropdown-item">InterFaces</a></li>
+                            <li><a href="@Url.Action(MVC.MyRouter.Router.Wireless())" data-toggle="dropdown" class="dropdown-item">Wireless</a></li>
+                            <li><a href="@Url.Action(MVC.MyRouter.Router.Nat())" data-toggle="dropdown" class="dropdown-item">Nat</a></li>
+                        }
+                    </ul>
+                </li>
+            }
+            @if (CanShowHotspot)
+            {
+                <li data-menu="dropdown" class="dropdown nav-item">
+                    <a href="#" data-toggle="dropdown" class="dropdown-toggle nav-link"><i class="icon-wifi"></i><span>@Captions.Hotspot</span></a>
+                    <ul class="dropdown-menu">
+                        @if (CanShowHotspotAccess)
+                        {
+                            <li><a href="@Url.Action(MVC.MyRouter.Hotspot.Access())" data-toggle="dropdown" class="dropdown-item">@Captions.Access</a></li>
+                        }
+                        @if (CanShowHotspotOnline)
+                        {
+                            <li><a href="@Url.Action(MVC.MyRouter.Hotspot.Active())" data-toggle="dropdown" class="dropdown-item">@Captions.Online</a></li>
+                        }
+                        @if (false)
+                        {
+                            <li><a href="@Url.Action(MVC.MyRouter.Hotspot.Template())" data-toggle="dropdown" class="dropdown-item">قالب های لاگین هات اسپات</a></li>
+                            <li><a href="@Url.Action(MVC.MyRouter.Hotspot.Servers())" data-toggle="dropdown" class="dropdown-item">سرور ها</a></li>
+                            <li><a href="@Url.Action(MVC.MyRouter.Hotspot.Users())" data-toggle="dropdown" class="dropdown-item">کاربران</a></li>
+                        }
+                    </ul>
+                </li>
+            }
             @if (false)
             {
                 <li data-menu="dropdown" class="dropdown nav-item">
@@ -67,17 +125,29 @@
                 </li>
             }
             <li data-menu="dropdown" class="dropdown nav-item">
+                <a href="#" data-toggle="dropdown" class="dropdown-toggle nav-link"><i class="icon-coin-dollar"></i><span>@Captions.FinancialManagement</span></a>
+                <ul class="dropdown-menu">
+                        <li><a href="@Url.Action(MVC.MyRouter.Factor.Index())" data-toggle="dropdown" class="dropdown-item">@Captions.FactorList</a></li>
+                </ul>
+            </li>
+
+            <li data-menu="dropdown" class="dropdown nav-item">
                 <a href="#" data-toggle="dropdown" class="dropdown-toggle nav-link"><i class="icon-cog"></i><span>@Captions.Configuration</span></a>
                 <ul class="dropdown-menu">
                     <li><a href="@Url.Action(MVC.MyRouter.Home.MyProfile())" data-toggle="dropdown" class="dropdown-item">@Captions.Profile</a></li>
-                    <li><a href="@Url.Action(MVC.MyRouter.Home.MikrotikConf())" data-toggle="dropdown" class="dropdown-item">@Captions.MikrotikConfig</a></li>
-                    <li><a href="@Url.Action(MVC.MyRouter.Home.TelegramBot())" data-toggle="dropdown" class="dropdown-item">Telegram Bot</a></li>
-                    <li><a href="@Url.Action(MVC.MyRouter.Home.Sms())" data-toggle="dropdown" class="dropdown-item">پیامک</a></li>
-                    <li><a href="@Url.Action(MVC.MyRouter.Home.ChangePassword())" data-toggle="dropdown" class="dropdown-item">@Captions.ChangePassword</a></li>
-                    @if (false)
+                    @if (CanShowMikrotikConnectionSetting)
                     {
-                        <li><a href="@Url.Action(MVC.MyRouter.Home.MyProfile())" data-toggle="dropdown" class="dropdown-item">مالی</a></li>
+                        <li><a href="@Url.Action(MVC.MyRouter.Home.MikrotikConf())" data-toggle="dropdown" class="dropdown-item">@Captions.MikrotikConfig</a></li>
                     }
+                    @if (CanShowTelegramBot)
+                    {
+                        <li><a href="@Url.Action(MVC.MyRouter.Home.TelegramBot())" data-toggle="dropdown" class="dropdown-item">Telegram Bot</a></li>
+                    }
+                    @if (CanShowSms)
+                    {
+                        <li><a href="@Url.Action(MVC.MyRouter.Home.Sms())" data-toggle="dropdown" class="dropdown-item">پیامک</a></li>
+                    }
+                    <li><a href="@Url.Action(MVC.MyRouter.Home.ChangePassword())" data-toggle="dropdown" class="dropdown-item">@Captions.ChangePassword</a></li>
                 </ul>
             </li>
 
@@ -98,4 +168,3 @@
     </div>
     <!-- /horizontal menu content-->
 </div>
-
