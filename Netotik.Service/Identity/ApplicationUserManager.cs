@@ -137,6 +137,51 @@ namespace Netotik.Services.Identity
             return selectedUsers;
         }
 
+        public IList<RouterAdminList> GetListUserRouters(RequestListModel model, out long TotalCount, out long ShowCount)
+        {
+
+            IQueryable<User> all = _users
+                .Where(x => !x.IsDeleted && x.UserType == UserType.UserRouter)
+                .AsQueryable();
+            TotalCount = all.LongCount();
+
+            // Apply Filtering
+            if (!string.IsNullOrEmpty(model.sSearch))
+            {
+                all = all.
+                    Where(x => x.FirstName.Contains(model.sSearch) ||
+                    x.UserReseller.User.FirstName.Contains(model.sSearch) ||
+                    x.UserReseller.User.LastName.Contains(model.sSearch) ||
+                    x.Email.Contains(model.sSearch) ||
+                    x.PhoneNumber.Contains(model.sSearch))
+                    .AsQueryable();
+            }
+
+
+            // Apply Sorting
+            Func<User, string> orderingFunction = (x => model.iSortCol_0 == 2 ? x.FirstName : x.Email);
+            // asc or desc
+            all = model.sSortDir_0 == "asc" ? all.OrderBy(orderingFunction).AsQueryable() : all.OrderByDescending(orderingFunction).AsQueryable();
+
+            var test = all.ToList();
+            ShowCount = all.Count();
+            return all.AsEnumerable().Skip(model.iDisplayStart).Take(model.iDisplayLength).ToList()
+                .Select((x, index) => new ViewModels.Identity.UserRouter.RouterAdminList
+                {
+                    ImageFileName = x.PictureId.HasValue ? x.Picture.FileName : "Default.png",
+                    PhoneNumber = x.PhoneNumber,
+                    ResellerName = string.Format("{0} {1}", x.UserRouter.UserReseller.User.FirstName, x.UserRouter.UserReseller.User.LastName),
+                    ResellerId = x.UserRouter.UserResellerId,
+                    Name = x.FirstName,
+                    LastLoginDate = PersianDate.ConvertDate.ToFa(x.LastLoginDate, "g"),
+                    Email = x.Email,
+                    Id = x.Id,
+                    IsBanned = x.IsBanned,
+                    RowNumber = model.iDisplayStart + index + 1
+                })
+                .ToList();
+        }
+        
 
         ViewModels.Identity.UserRouter.RegisterSettingModel IApplicationUserManager.GetRouterRegisterSetting(long UserId)
         {
@@ -1160,5 +1205,6 @@ namespace Netotik.Services.Identity
         {
             return _users.Where(x => !x.IsDeleted && x.UserType == UserType.UserRouter).Sum(x => x.UserRouter.SmsCharge);
         }
+
     }
 }

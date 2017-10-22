@@ -4561,6 +4561,40 @@ namespace Netotik.Resources
             }
         }
 
+        public static string EditRouter
+        {
+            get
+            {
+                return resourceProvider.GetResource("EditRouter", CultureInfo.CurrentUICulture.Name) as string;
+            }
+        }
+
+        public static string BussinesName
+        {
+            get
+            {
+                return resourceProvider.GetResource("BussinesName", CultureInfo.CurrentUICulture.Name) as string;
+            }
+        }
+
+        public static string RouterCode
+        {
+            get
+            {
+                return resourceProvider.GetResource("RouterCode", CultureInfo.CurrentUICulture.Name) as string;
+            }
+        }
+
+
+        public static string LogoImage
+        {
+            get
+            {
+                return resourceProvider.GetResource("LogoImage", CultureInfo.CurrentUICulture.Name) as string;
+            }
+        }
+
+
         public static string ContactusSlogan
         {
             get

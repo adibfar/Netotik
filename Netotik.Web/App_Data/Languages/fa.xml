@@ -1761,6 +1761,12 @@
     <Value>فایل xml معتبر نیست.</Value>
   </LocaleResource>
 
+  <LocaleResource Name="ContactusSlogan">
+    <Value>
+      با ما در میان بگذارید هر آنچه در ذهنتان می گذرد..
+    </Value>
+  </LocaleResource>
+
   <LocaleResource Name="Routers">
     <Value>روتر ها</Value>
   </LocaleResource>
@@ -1771,11 +1777,21 @@
     <Value>روتر جدید</Value>
   </LocaleResource>
 
-  <LocaleResource Name="ContactusSlogan">
-    <Value>
-      با ما در میان بگذارید هر آنچه در ذهنتان می گذرد..
-    </Value>
+  <LocaleResource Name="EditRouter">
+    <Value>روتر جدید</Value>
+  </LocaleResource>
+  
+  <LocaleResource Name="BussinesName">
+    <Value>نام تجاری</Value>
+  </LocaleResource>
+
+  <LocaleResource Name="LogoImage">
+    <Value>تصویر لوگو</Value>
   </LocaleResource>
 
 
+  <LocaleResource Name="RouterCode">
+    <Value>کد روتر</Value>
+  </LocaleResource>
+  
 </Language>

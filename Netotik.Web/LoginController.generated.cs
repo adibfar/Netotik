@@ -163,12 +163,12 @@ namespace Netotik.Web.Controllers
             public class _ViewNamesClass
             {
                 public readonly string Client = "Client";
-                public readonly string Company = "Company";
                 public readonly string Reseller = "Reseller";
+                public readonly string Router = "Router";
             }
             public readonly string Client = "~/Views/Login/Client.cshtml";
-            public readonly string Company = "~/Views/Login/Company.cshtml";
             public readonly string Reseller = "~/Views/Login/Reseller.cshtml";
+            public readonly string Router = "~/Views/Login/Router.cshtml";
         }
     }
 

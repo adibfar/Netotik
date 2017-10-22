@@ -79,6 +79,7 @@ namespace T4MVC
         public Netotik.Web.Areas.Admin.Controllers.TicketTagController TicketTag = new Netotik.Web.Areas.Admin.Controllers.T4MVC_TicketTagController();
         public Netotik.Web.Areas.Admin.Controllers.UserAdminController UserAdmin = new Netotik.Web.Areas.Admin.Controllers.T4MVC_UserAdminController();
         public Netotik.Web.Areas.Admin.Controllers.UserResellerController UserReseller = new Netotik.Web.Areas.Admin.Controllers.T4MVC_UserResellerController();
+        public Netotik.Web.Areas.Admin.Controllers.UserRouterController UserRouter = new Netotik.Web.Areas.Admin.Controllers.T4MVC_UserRouterController();
     }
     [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
     public class ClientClass
@@ -3799,6 +3800,7 @@ namespace Links
                 public static string Url(string fileName) { return T4MVCHelpers.ProcessVirtualPath(UrlPath + "/" + fileName); }
                 public static readonly string _18_min_jpg = Url("18-min.jpg");
                 public static readonly string _1x1_png = Url("1x1.png");
+                public static readonly string _8_min_jpg = Url("8-min.jpg");
                 public static readonly string avatar_png = Url("avatar.png");
                 public static readonly string avatar2_jpg = Url("avatar2.jpg");
                 [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]

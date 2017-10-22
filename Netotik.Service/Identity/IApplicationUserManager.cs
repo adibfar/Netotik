@@ -35,6 +35,8 @@ namespace Netotik.Services.Identity
 
         IList<ViewModels.Identity.UserRouter.RouterList> GetListUserRouter(long id);
 
+        IList<ViewModels.Identity.UserRouter.RouterAdminList> GetListUserRouters(RequestListModel model, out long TotalCount, out long ShowCount);
+
         /// <summary>
         /// Used to hash/verify passwords
         /// </summary>

@@ -1182,6 +1182,12 @@
     <Value>Company Name</Value>
   </LocaleResource>
 
+  <LocaleResource Name="ContactusSlogan">
+    <Value>
+      We respond to your message as soon as possible
+    </Value>
+  </LocaleResource>
+  
   <LocaleResource Name="Routers">
     <Value>Routers</Value>
   </LocaleResource>
@@ -1192,9 +1198,20 @@
     <Value>New Router</Value>
   </LocaleResource>
 
-  <LocaleResource Name="ContactusSlogan">
-    <Value>
-      We respond to your message as soon as possible
-    </Value>
+  <LocaleResource Name="EditRouter">
+    <Value>Edit router</Value>
   </LocaleResource>
+
+  <LocaleResource Name="BussinesName">
+    <Value>Bussines Name</Value>
+  </LocaleResource>
+
+  <LocaleResource Name="LogoImage">
+    <Value>Logo Image</Value>
+  </LocaleResource>
+
+  <LocaleResource Name="RouterCode">
+    <Value>Router Code</Value>
+  </LocaleResource>
+
 </Language>

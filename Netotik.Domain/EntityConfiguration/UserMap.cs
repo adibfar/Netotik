@@ -30,8 +30,6 @@ namespace Netotik.Domain.EntityConfiguration
 
             this.Property(t => t.LastLoginIpAddress)
                 .HasMaxLength(1000);
-            // Relationships
-
 
             this.HasMany(t => t.IssuesCreated)
                 .WithRequired(t => t.UserCreated)
@@ -46,10 +44,7 @@ namespace Netotik.Domain.EntityConfiguration
             this.HasOptional(t => t.Picture)
                 .WithMany(t => t.Users)
                 .HasForeignKey(d => d.PictureId);
-
-
             
-
         }
     }
 }

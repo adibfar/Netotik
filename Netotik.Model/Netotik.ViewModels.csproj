@@ -109,6 +109,7 @@
     <Compile Include="Identity\UserClient\UserRegisterModel.cs" />
     <Compile Include="Identity\UserClient\UserWebsiteLogsWithSessionsModel.cs" />
     <Compile Include="Identity\UserClient\UserSessionModel.cs" />
+    <Compile Include="Identity\UserRouter\RouterAdminList.cs" />
     <Compile Include="Identity\UserRouter\SmsModel.cs" />
     <Compile Include="Identity\UserRouter\RegisterSettingModel.cs" />
     <Compile Include="Identity\UserRouter\RouterList.cs" />

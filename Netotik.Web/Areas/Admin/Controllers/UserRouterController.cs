@@ -31,12 +31,14 @@ using Netotik.ViewModels.Identity.Account;
 using Netotik.ViewModels.Identity.Security;
 using WebGrease.Css.Extensions;
 using System.Net;
+using Netotik.Common.DataTables;
 
-namespace Netotik.Web.Areas.Reseller.Controllers
+namespace Netotik.Web.Areas.Admin.Controllers
 {
-    [BreadCrumb(Title = "UsersList", UseDefaultRouteUrl = true, RemoveAllDefaultRouteValues = true,
+    [Mvc5Authorize(Roles = AssignableToRolePermissions.CanAccessUser)]
+    [BreadCrumb(Title = "RouterList", UseDefaultRouteUrl = true, RemoveAllDefaultRouteValues = true,
  Order = 0, GlyphIcon = "icon icon-table")]
-    public partial class RouterController : BasePanelController
+    public partial class UserRouterController : BasePanelController
     {
         #region ctor
         private readonly IApplicationUserManager _applicationUserManager;
@@ -47,7 +49,7 @@ namespace Netotik.Web.Areas.Reseller.Controllers
         private readonly IUnitOfWork _uow;
         private readonly ISmsService _smsService;
 
-        public RouterController(
+        public UserRouterController(
             IApplicationUserManager applicationUserManager,
             IPictureService pictureservice,
             IUserMailer userMailer,
@@ -66,23 +68,36 @@ namespace Netotik.Web.Areas.Reseller.Controllers
         }
         #endregion
 
+
         #region Index
-        [Mvc5Authorize(Roles = "Reseller")]
+        [Mvc5Authorize(Roles = AssignableToRolePermissions.CanAccessUser)]
         public virtual ActionResult Index()
         {
-            var model = _applicationUserManager.GetListUserRouter(UserLogined.UserReseller.Id);
-            return View(model);
-
-        }
-        [Mvc5Authorize(Roles = "Reseller")]
-        public virtual ActionResult RouterLoginURL()
-        {
-            ViewBag.ResellerCode = UserLogined.UserReseller.ResellerCode;
             return View();
         }
+
+
+        public virtual JsonResult GetList(RequestListModel model)
+        {
+            long totalCount;
+            long showCount;
+
+            var result = _applicationUserManager.GetListUserRouters(model, out totalCount, out showCount);
+
+            return Json(new
+            {
+                sEcho = model.sEcho,
+                iTotalRecords = totalCount,
+                iTotalDisplayRecords = showCount,
+                aaData = result
+            }, JsonRequestBehavior.AllowGet);
+
+
+        }
+
         #endregion
 
-        [Mvc5Authorize(Roles = "Reseller")]
+
         [BreadCrumb(Title = "NewUser", Order = 1)]
         public virtual ActionResult Create()
         {
@@ -90,78 +105,17 @@ namespace Netotik.Web.Areas.Reseller.Controllers
             return View();
         }
 
-        [Mvc5Authorize(Roles = "Reseller")]
-        public virtual ActionResult Remove(int id = 0)
+        public virtual ActionResult Remove(long id = 0)
         {
             _applicationUserManager.LogicalRemove(id);
-            return RedirectToAction(MVC.Reseller.Router.Index());
+            return RedirectToAction(MVC.Admin.UserRouter.Index());
         }
 
-        [Mvc5Authorize(Roles = "Reseller")]
-        [BreadCrumb(Title = "NewUser", Order = 1)]
-        [ValidateAntiForgeryToken]
-        [HttpPost]
-        public virtual async Task<ActionResult> Create(Register model)
-        {
-            PopulateClientPermissions(model.ClientPermissionNames);
 
-            if (_applicationUserManager.CheckResellerEmailExist(model.Email, null))
-                ModelState.AddModelError("Email", Captions.NotValidError);
-
-            if (_applicationUserManager.CheckUserNameExist(model.UserName, null))
-                ModelState.AddModelError("UserName", Captions.NotValidError);
-
-            if (!model.Password.IsSafePasword())
-                ModelState.AddModelError("Password", Captions.PasswordEasy);
-
-            if (!ModelState.IsValid)
-            {
-                this.MessageError(Captions.MissionFail, Captions.InvalidDataError);
-                return View(model);
-            }
-
-            if (!_mikrotikServices.IP_Port_Check(model.R_Host, model.R_Port, model.R_User, model.R_Password))
-            {
-                this.MessageWarning(Captions.Information, Captions.IPPORTClientError);
-            }
-            else
-            {
-                if (!_mikrotikServices.User_Pass_Check(model.R_Host, model.R_Port, model.R_User, model.R_Password))
-                {
-                    this.MessageWarning(Captions.Information, Captions.UserPasswordClientError);
-                }
-                else
-                {
-                    if (!_mikrotikServices.Usermanager_IsInstall(model.R_Host, model.R_Port, model.R_User, model.R_Password))
-                    {
-                        this.MessageWarning(Captions.Information, Captions.UsermanagerClientError);
-                    }
-                    else
-                    {
-                        if (model.cloud)
-                        {
-                            model.R_Host = _mikrotikServices.EnableAndGetCloud(model.R_Host, model.R_Port, model.R_User, model.R_Password);
-                        }
-                    }
-                }
-            }
-            model.UserResellerId = UserLogined.UserReseller.Id;
-            var userId = await _applicationUserManager.AddRouter(model);
-
-            await SendConfirmationEmail(model.Email, userId);
-            var Success = Captions.CreateSuccsessGoToEmail;
-
-            ModelState.Clear();
-            this.MessageSuccess(Captions.ActiveYourAccount, Success);
-            this.MessageSuccess(Captions.MissionSuccess, Captions.AddSuccess);
-            return RedirectToAction(MVC.Reseller.Router.ActionNames.Index);
-
-        }
 
         #region Detail
 
-        [Mvc5Authorize(Roles = "Reseller")]
-        public virtual ActionResult Detail(int id)
+        public virtual ActionResult Detail(long id)
         {
             return View();
         }
@@ -172,8 +126,7 @@ namespace Netotik.Web.Areas.Reseller.Controllers
 
 
         #region Edit
-        [Mvc5Authorize(Roles = "Reseller")]
-        [BreadCrumb(Title = "EditUser", Order = 1)]
+        [BreadCrumb(Title = "EditRouter", Order = 1)]
         public virtual async Task<ActionResult> Edit(long? id)
         {
             if (id == null) return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -190,8 +143,7 @@ namespace Netotik.Web.Areas.Reseller.Controllers
 
         }
 
-        [Mvc5Authorize(Roles = "Reseller")]
-        [BreadCrumb(Title = "EditUser", Order = 1)]
+        [BreadCrumb(Title = "EditRouter", Order = 1)]
         [ValidateAntiForgeryToken]
         [HttpPost]
         public virtual async Task<ActionResult> Edit(RouterEditModel model)
@@ -205,7 +157,7 @@ namespace Netotik.Web.Areas.Reseller.Controllers
 
 
             var dbUser = _userManager.FindUserById(model.Id);
-            if (dbUser == null) return HttpNotFound();
+            if (dbUser == null || dbUser.IsDeleted) return HttpNotFound();
 
             if (model.R_Password == "" || model.R_Password == null)
             {
@@ -230,6 +182,7 @@ namespace Netotik.Web.Areas.Reseller.Controllers
                 model.Picture = picture;
             }
             #endregion
+
             if (!_mikrotikServices.IP_Port_Check(model.R_Host, model.R_Port, model.R_User, model.R_Password))
             {
                 this.MessageWarning(Captions.Information, Captions.IPPORTClientError);
@@ -266,18 +219,16 @@ namespace Netotik.Web.Areas.Reseller.Controllers
             }
 
             this.MessageSuccess(Captions.MissionSuccess, Captions.UpdateSuccess);
-            return RedirectToAction(MVC.Reseller.Router.Index());
+            return RedirectToAction(MVC.Admin.UserRouter.Index());
 
         }
 
 
-        [Mvc5Authorize(Roles = "Reseller")]
         public virtual ActionResult ChangePassword()
         {
             return View();
         }
 
-        [Mvc5Authorize(Roles = "Reseller")]
         [HttpPost]
         public virtual async Task<ActionResult> ChangePassword(ChangePasswordModel model)
         {
@@ -291,7 +242,7 @@ namespace Netotik.Web.Areas.Reseller.Controllers
             {
                 var Router = _applicationUserManager.FindUserById(User.Identity.GetUserId<long>());
                 if (Router.UserRouter.SmsCharge > 0 && Router.UserRouter.SmsActive && Router.UserRouter.SmsAdminChangeAdminPassword)
-                    _smsService.SendSms(UserLogined.PhoneNumber, string.Format(Captions.SmsRouterPasswordChange,UserLogined.UserName), UserLogined.Id);
+                    _smsService.SendSms(UserLogined.PhoneNumber, string.Format(Captions.SmsRouterPasswordChange, UserLogined.UserName), UserLogined.Id);
                 this.MessageInformation(Captions.MissionSuccess, Captions.UpdateSuccess);
             }
             else
@@ -300,7 +251,6 @@ namespace Netotik.Web.Areas.Reseller.Controllers
         }
 
 
-        [Mvc5Authorize(Roles = "Reseller")]
         public virtual async Task<ActionResult> Disable(int id = 0)
         {
             var model = _userManager.FindUserById(id);
@@ -315,7 +265,6 @@ namespace Netotik.Web.Areas.Reseller.Controllers
             return RedirectToAction(MVC.Reseller.Router.ActionNames.Index);
         }
 
-        [Mvc5Authorize(Roles = "Reseller")]
         public virtual async Task<ActionResult> Enable(int id = 0)
         {
             var model = _userManager.FindUserById(id);
@@ -330,25 +279,6 @@ namespace Netotik.Web.Areas.Reseller.Controllers
             return RedirectToAction(MVC.Reseller.Router.ActionNames.Index);
         }
         #endregion
-
-        public async Task SendConfirmationEmail(string email, long userId)
-        {
-            var code = await _applicationUserManager.GenerateEmailConfirmationTokenAsync(userId);
-            var callbackUrl = Url.Abs(Url.Action(MVC.Account.ActionNames.ConfirmEmail, MVC.Account.Name,
-                new { userId, code, area = "" }, protocol: Request.Url.Scheme));
-
-            _userMailer.ConfirmAccount(new EmailViewModel
-            {
-                Message = Captions.ConfirmEmailMessage,
-                To = email,
-                Url = callbackUrl,
-                UrlText = Captions.ActiveYourAccount,
-                Subject = Captions.ActiveYourAccount,
-                ViewName = MVC.UserMailer.Views.ViewNames.ConfirmAccount
-            }).Send();
-
-        }
-
 
 
         [NonAction]

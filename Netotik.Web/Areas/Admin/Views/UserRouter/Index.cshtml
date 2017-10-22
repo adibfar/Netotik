@@ -1,0 +1,123 @@
+﻿@using Netotik.ViewModels.Identity.Security
+@{
+    ViewBag.Title = Captions.Routers;
+    var Roles = Html.CurrentUserPermissions();
+    var CanEdit = Roles.Any(x => x == AssignableToRolePermissions.CanEditUser);
+    var CanDelete = Roles.Any(x => x == AssignableToRolePermissions.CanDeleteUser);
+}
+
+<section id="configuration">
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="card">
+                <div class="card-body collapse in">
+                    <div class="card-block card-dashboard">
+                        @Html.Partial(MVC.Admin.UserRouter.Views._Table)
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+
+
+@section DownScript{
+
+    <script type="text/javascript">
+        $(function () {
+            var table = $('#grid').dataTable({
+                "order": [[1, 'asc']],
+                "iDisplayLength": 10,
+                "bProcessing": true,
+                "bStateSave": true,
+                "bServerSide": true,
+                "bFilter": true,
+                "aLengthMenu": [[10, 25, 50, 100], [10, 25, 50, 100]],
+                "bAutoWidth": false,
+                "sAjaxSource": "@Url.Action(MVC.Admin.UserRouter.GetList())",
+                "fnServerData": function (sSource, aoData, fnCallback) {
+                    $.ajax({
+                        "dataType": 'json',
+                        "type": "POST",
+                        "url": sSource,
+                        "data": aoData,
+                        "success": fnCallback
+                    });
+                },
+
+                "aoColumnDefs": [
+                    { "bSortable": false, "aTargets": [0] },
+                    { "bSortable": false, "aTargets": [-1] },
+                    {
+                        "targets": 2,
+                        "render": function (data, type, full, meta) {
+                            var result = '<div class="media"><div class="media-left"><span class="avatar"><img src="/Content/Upload/Image/Avatar/' + full.ImageFileName + '?w=100&h=100"></span></div><div class="media-body media-middle"><a href="#" class="media-heading">' + full.Name + '</a></div></div>';
+                            if (full.IsBanned == true) {
+                                result += ' <div class="tag tag-danger">'+'@Captions.Disabled'+'</div>'
+                            }
+                            return result;
+                        }
+                    },
+                    {
+                         "targets": -1,
+                         "render": function (data, type, full, meta) {
+                             var canEdit = '@CanEdit';
+                             var canDelete = '@CanDelete';
+                             var result = '';
+                             if (canEdit == 'True' || canDelete == 'True') {
+                                 result = '<span class="dropdown">'
+                                     + '<button id="btnSearchDrop2" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" class="btn btn-outline-secondary dropdown-toggle dropdown-menu-right">'
+                                     + '<i class="icon-cog3"></i> '+'@Captions.Action'+'</button><span aria-labelledby="btnSearchDrop2" class="dropdown-menu mt-1 dropdown-menu-right">';
+                                 if (canEdit == 'True') {
+                                     result += '<a href="'+'@Url.Action(MVC.Admin.UserRouter.Edit())'+'/'+ full.Id + '" class="edit dropdown-item">'
+                                                                     + '<i class="icon-pen3"></i> '+'@Captions.Edit'+' </a>'
+                                     if (full.IsBanned == false) {
+                                         result += '<a onclick="banne(' + full.Id + ');" class="dropdown-item">'
+                                            + '<i class="icon-blocked"></i> '+'@Captions.Disable'+'</a>';
+                                     } else {
+                                         result += '<a onclick="active(' + full.Id + ');" class="dropdown-item">'
+                                            + '<i class="icon-checkmark2"></i> '+'@Captions.Enable'+'</a>';
+                                     }
+                                 }
+
+                                 if (canDelete == 'True') {
+                                     result += '<a onclick="remove(' + full.Id + ');" class="dropdown-item">'
+                                       + '<i class="icon-trash4"></i> '+'@Captions.Remove'+' </a>';
+                                 }
+                                 result += "</span></span>";
+                             }
+                             return result;
+                         }
+                     }
+                ]
+                ,
+                "aoColumns": [
+                    { "mDataProp": "RowNumber" },
+                    { "mDataProp": "ResellerName" },
+                    { "mDataProp": "Name" },
+                    { "mDataProp": "PhoneNumber" },
+                    { "mDataProp": "LastLoginDate" },
+                    { "no": "no" }
+                ]
+            });
+
+        });
+
+
+        function remove(id) {
+                PostData("@Url.Action(MVC.Admin.UserRouter.Remove())", { id: id });
+        }
+
+        @*function active(id) {
+                PostData("@Url.Action(MVC.Admin.UserRouter.Active())", { id: id });
+        }*@
+
+        @*function banne(id) {
+                PostData("@Url.Action(MVC.Admin.UserRouter.Banne())", { id: id });
+        }*@
+    </script>
+}
+

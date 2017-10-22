@@ -72,12 +72,12 @@
     <Compile Include="EntityConfiguration\SliderMap.cs" />
     <Compile Include="EntityConfiguration\InboxMessageMap.cs" />
     <Compile Include="EntityConfiguration\TelegramBotDataMap.cs" />
-    <Compile Include="EntityConfiguration\UserCompanyLogClientMap.cs" />
-    <Compile Include="EntityConfiguration\UserCompanyClientMap.cs" />
-    <Compile Include="EntityConfiguration\UserCompanyRegisterSettingMap.cs" />
-    <Compile Include="EntityConfiguration\UserCompanyTelegramMap.cs" />
+    <Compile Include="EntityConfiguration\UserRouterLogClientMap.cs" />
+    <Compile Include="EntityConfiguration\UserRouterClientMap.cs" />
+    <Compile Include="EntityConfiguration\UserRouterRegisterSettingMap.cs" />
+    <Compile Include="EntityConfiguration\UserRouterTelegramMap.cs" />
     <Compile Include="EntityConfiguration\UserResellerMap.cs" />
-    <Compile Include="EntityConfiguration\UserCompanyMap.cs" />
+    <Compile Include="EntityConfiguration\UserRouterMap.cs" />
     <Compile Include="Entity\Address.cs" />
     <Compile Include="Entity\Factor.cs" />
     <Compile Include="Entity\FactorSmsDetail.cs" />
