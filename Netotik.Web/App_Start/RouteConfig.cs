@@ -18,6 +18,12 @@ namespace Netotik.Web
             routes.LowercaseUrls = true;
 
             routes.MapRoute(
+               "account",                                           // Route name
+               "account/login",                            // URL with parameters
+               new { lang = "en",controller = "Account", action = "Login" , ReturnUrl = UrlParameter.Optional }  // Parameter defaults
+           );
+
+            routes.MapRoute(
             name: "sitemap.xml",
             url: "sitemap.xml",
             defaults: new { controller = "Sitemap", action = "Index" },

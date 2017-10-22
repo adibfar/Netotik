@@ -49,7 +49,7 @@
                         <button id="btnSearchDrop2" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" class="btn btn-outline-secondary dropdown-toggle dropdown-menu-right"><i class="icon-cog3"></i>@Netotik.Resources.Captions.Action</button>
                         <span aria-labelledby="btnSearchDrop2" class="dropdown-menu mt-1 dropdown-menu-right">
                             <a href="@Url.Action(MVC.Reseller.Router.ActionNames.Edit, new { id = item.Id })" class="dropdown-item"><i class="icon-pen3 primary"></i>@Captions.Edit</a>
-                            <a href="@Url.Action(MVC.Reseller.Router.ActionNames.ChangePassword, new { id = item.Id })" class="dropdown-item"><i class="icon-key2 primary"></i>@Captions.ChangePassword</a>
+                            <a href="@Url.Action(MVC.Reseller.Router.ActionNames.ChangePassword, new { Id = item.Id })" class="dropdown-item"><i class="icon-key2 primary"></i>@Captions.ChangePassword</a>
                             <a href="@Url.Action(MVC.Reseller.Router.ActionNames.Remove, new { id = item.Id })" class="dropdown-item"><i class="icon-trash4 danger"></i>@Captions.Remove</a>
                             
                             @if (!item.IsBanned)
