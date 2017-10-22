@@ -20,11 +20,8 @@ namespace Netotik.ViewModels.Identity.UserRouter
 
         public bool? EmailConfirmed { get; set; }
 
-        [Display(ResourceType = typeof(Captions), Name = "Name")]
+        [Display(ResourceType = typeof(Captions), Name = "BussinesName")]
         public string FirstName { get; set; }
-        
-        [Display(ResourceType = typeof(Captions), Name = "LastName")]
-        public string LastName { get; set; }
 
         [Display(ResourceType = typeof(Captions), Name = "MobileNumber")]
         public string PhoneNumber { get; set; }
@@ -57,10 +54,10 @@ namespace Netotik.ViewModels.Identity.UserRouter
         [Display(ResourceType = typeof(Captions), Name = "UserName")]
         public string UserName { get; set; }
 
-        [Display(ResourceType = typeof(Captions), Name = "RouterName")]
+        [Display(ResourceType = typeof(Captions), Name = "RouterCode")]
         public string RouterCode { get; set; }
 
-        [Display(ResourceType = typeof(Captions), Name = "ImageProfile")]
+        [Display(ResourceType = typeof(Captions), Name = "LogoImage")]
         public string ImageAvatar { get; set; }
     }
 }
