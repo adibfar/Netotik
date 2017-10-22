@@ -26,6 +26,8 @@ using Netotik.Services.Identity;
 using Microsoft.AspNet.Identity;
 using Netotik.Common.Controller;
 using System.IO;
+using Netotik.ViewModels.Identity.Account;
+using Mvc.Mailer;
 
 namespace Netotik.Web.Areas.Reseller.Controllers
 {
@@ -35,13 +37,19 @@ namespace Netotik.Web.Areas.Reseller.Controllers
         private readonly IUnitOfWork _uow;
         private readonly IMenuService _menuService;
         private readonly IApplicationUserManager _applicationUserManager;
+        private readonly IApplicationSignInManager _applicationSignInManager;
+        private readonly IUserMailer _userMailer;
 
         public HomeController(
             IApplicationUserManager applicationUserManager,
+            IApplicationSignInManager applicationSignInManager,
+            IUserMailer userMailer,
             IUnitOfWork uow, IMenuService menuService)
         {
             _applicationUserManager = applicationUserManager;
+            _applicationSignInManager = applicationSignInManager;
             _menuService = menuService;
+            _userMailer = userMailer;
             _uow = uow;
         }
         public virtual ActionResult Index()
@@ -98,8 +106,11 @@ namespace Netotik.Web.Areas.Reseller.Controllers
             }
             #endregion
             if (model.Email != UserLogined.Email)
+            {
                 model.EmailConfirmed = false;
-
+                await SendConfirmationEmail(model.Email, UserLogined.Id);
+                this.MessageSuccess(Captions.MissionSuccess, Captions.WillSendActivationAccountMessage);
+            }
             this.MessageInformation(Captions.MissionSuccess, Captions.UpdateSuccess);
             await _applicationUserManager.UpdateUserResellerProfile(model);
             return RedirectToAction(MVC.Reseller.Home.ActionNames.MyProfile);
@@ -129,12 +140,33 @@ namespace Netotik.Web.Areas.Reseller.Controllers
                 this.MessageError(Captions.MissionFail, Captions.InvalidDataError);
                 return RedirectToAction(MVC.Reseller.Home.ActionNames.ChangePassword);
             }
-                var temp = await _applicationUserManager.ChangePasswordAsync(User.Identity.GetUserId<long>(), model.OldPassword, model.Password);
-            if(temp.Succeeded)
+            var temp = await _applicationUserManager.ChangePasswordAsync(User.Identity.GetUserId<long>(), model.OldPassword, model.Password);
+            if (temp.Succeeded)
+            {
+                await _applicationSignInManager.PasswordSignInAsync
+                    (UserLogined.UserName, model.Password, false, shouldLockout: true);
                 this.MessageInformation(Captions.MissionSuccess, Captions.UpdateSuccess);
-            else
+            } else
                 this.MessageError(Captions.MissionFail, Captions.UpdateError);
             return View();
+        }
+
+        public async Task SendConfirmationEmail(string email, long userId)
+        {
+            var code = await _userManager.GenerateEmailConfirmationTokenAsync(userId);
+            var callbackUrl = Url.Abs(Url.Action(MVC.Account.ActionNames.ConfirmEmail, MVC.Account.Name,
+                new { userId, code, area = "" }, protocol: Request.Url.Scheme));
+
+            _userMailer.ConfirmAccount(new EmailViewModel
+            {
+                Message = Captions.ActivationMailMessage,
+                To = email,
+                Url = callbackUrl,
+                UrlText = Captions.ActivationMailSubject,
+                Subject = Captions.ActivationMailSubject,
+                ViewName = MVC.UserMailer.Views.ViewNames.ConfirmAccount
+            }).Send();
+
         }
 
     }

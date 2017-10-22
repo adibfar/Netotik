@@ -29,16 +29,19 @@ using Netotik.ViewModels.Identity.Security;
 using WebGrease.Css.Extensions;
 using Telegram.Bot;
 using Netotik.ViewModels.Mikrotik;
+using Mvc.Mailer;
+using Netotik.ViewModels.Identity.Account;
 
 namespace Netotik.Web.Areas.MyRouter.Controllers
 {
-     [Mvc5Authorize(Roles = "Router")]
+    [Mvc5Authorize(Roles = "Router")]
     [BreadCrumb(Title = "User", UseDefaultRouteUrl = true, RemoveAllDefaultRouteValues = true,
- Order = 0, GlyphIcon = "icon icon-table")]
+Order = 0, GlyphIcon = "icon icon-table")]
     public partial class HomeController : BasePanelController
     {
         #region ctor
         private readonly IApplicationUserManager _applicationUserManager;
+        private readonly IApplicationSignInManager _applicationSignInManager;
         private readonly IMikrotikServices _mikrotikServices;
         private readonly ISmsPackageService _smsPackageService;
         private readonly IFactorService _factorService;
@@ -46,6 +49,7 @@ namespace Netotik.Web.Areas.MyRouter.Controllers
         private readonly IPictureService _pictureService;
         private readonly ISmsService _smsService;
         private readonly IUnitOfWork _uow;
+        private readonly IUserMailer _userMailer;
 
         public HomeController(
             IPaymentTypeService paymentTypeService,
@@ -54,15 +58,19 @@ namespace Netotik.Web.Areas.MyRouter.Controllers
             IMikrotikServices mikrotikServices,
             IPictureService pictureservice,
             IApplicationUserManager applicationUserManager,
+            IApplicationSignInManager applicationSignInManager,
             ISmsService smsService,
+            IUserMailer userMailer,
             IUnitOfWork uow)
         {
             _paymentTypeService = paymentTypeService;
             _factorService = factorService;
+            _userMailer = userMailer;
             _smsPackageService = smsPackageService;
             _mikrotikServices = mikrotikServices;
             _pictureService = pictureservice;
             _applicationUserManager = applicationUserManager;
+            _applicationSignInManager = applicationSignInManager;
             _smsService = smsService;
             _uow = uow;
         }
@@ -87,7 +95,7 @@ namespace Netotik.Web.Areas.MyRouter.Controllers
             else
                 this.MessageError(Captions.Error, Captions.IPPORTClientError);
 
-           
+
             return View();
         }
 
@@ -149,7 +157,11 @@ namespace Netotik.Web.Areas.MyRouter.Controllers
             }
             #endregion
             if (model.Email != UserLogined.Email)
+            {
                 model.EmailConfirmed = false;
+                await SendConfirmationEmail(model.Email, UserLogined.Id);
+                this.MessageSuccess(Captions.MissionSuccess, Captions.WillSendActivationAccountMessage);
+            }
             model.Id = UserLogined.Id;
             model.UserResellerId = UserLogined.UserRouter.UserResellerId;
 
@@ -242,6 +254,8 @@ namespace Netotik.Web.Areas.MyRouter.Controllers
                 if (UserLogined.UserRouter.SmsCharge > 0 && UserLogined.UserRouter.SmsActive && UserLogined.UserRouter.SmsAdminChangeAdminPassword)
                     _smsService.SendSms(UserLogined.PhoneNumber, string.Format(Captions.SmsRouterPasswordChange, UserLogined.UserName), UserLogined.Id);
                 this.MessageInformation(Captions.MissionSuccess, Captions.UpdateSuccess);
+                await _applicationSignInManager.PasswordSignInAsync
+                (UserLogined.UserName, model.Password, false, shouldLockout: true);
             }
             else
                 this.MessageError(Captions.MissionFail, Captions.UpdateError);
@@ -329,7 +343,7 @@ namespace Netotik.Web.Areas.MyRouter.Controllers
                 UserId = UserLogined.Id,
                 FactorSmsDetail = new FactorSmsDetail()
                 {
-                    PackageName=package.Name,
+                    PackageName = package.Name,
                     SmsCount = package.SmsCount,
                     TotalPrice = package.Price,
                     UnitPrice = package.UnitPrice
@@ -405,7 +419,7 @@ namespace Netotik.Web.Areas.MyRouter.Controllers
             {
                 Count = _mikrotikServices.Usermanager_GetUsersCount(UserLogined.UserRouter.R_Host, UserLogined.UserRouter.R_Port, UserLogined.UserRouter.R_User, UserLogined.UserRouter.R_Password).ToString();
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 Count = "Error";
             }
@@ -474,10 +488,10 @@ namespace Netotik.Web.Areas.MyRouter.Controllers
             var Trans = new string[10];
 
             int i = 0;
-            foreach(var item in Payments)
+            foreach (var item in Payments)
             {
                 Trans[i] = item.user + " - " + EnglishConvertDate.ConvertToFa(item.trans_end.Split(' ')[0], "d") + " " + item.trans_end.Split(' ')[1];
-                Price[i] = item.price.Length>2 ? item.price.Remove(item.price.Length - 2, 2):item.price;
+                Price[i] = item.price.Length > 2 ? item.price.Remove(item.price.Length - 2, 2) : item.price;
                 i++;
             }
             return Json(new
@@ -487,7 +501,22 @@ namespace Netotik.Web.Areas.MyRouter.Controllers
             }, JsonRequestBehavior.AllowGet);
         }
 
+        public async Task SendConfirmationEmail(string email, long userId)
+        {
+            var code = await _userManager.GenerateEmailConfirmationTokenAsync(userId);
+            var callbackUrl = Url.Abs(Url.Action(MVC.Account.ActionNames.ConfirmEmail, MVC.Account.Name,
+                new { userId, code, area = "" }, protocol: Request.Url.Scheme));
 
+            _userMailer.ConfirmAccount(new EmailViewModel
+            {
+                Message = Captions.ActivationMailMessage,
+                To = email,
+                Url = callbackUrl,
+                UrlText = Captions.ActivationMailSubject,
+                Subject = Captions.ActivationMailSubject,
+                ViewName = MVC.UserMailer.Views.ViewNames.ConfirmAccount
+            }).Send();
 
+        }
     }
 }
