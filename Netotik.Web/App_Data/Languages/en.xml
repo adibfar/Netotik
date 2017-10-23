@@ -1199,7 +1199,7 @@
   </LocaleResource>
 
   <LocaleResource Name="EditRouter">
-    <Value>Edit router</Value>
+    <Value>Edit Router</Value>
   </LocaleResource>
 
   <LocaleResource Name="BussinesName">
@@ -1221,5 +1221,18 @@
   <LocaleResource Name="LastLogin">
     <Value>Last Login</Value>
   </LocaleResource>
-  
+
+  <LocaleResource Name="CantLogin">
+    <Value>
+      In this moment you can not login in this site..
+    </Value>
+  </LocaleResource>
+
+  <LocaleResource Name="AccountLockMessage">
+    <Value>
+      Your Account has locked. please try again after {0} minuts..
+    </Value>
+  </LocaleResource>
+
+
 </Language>

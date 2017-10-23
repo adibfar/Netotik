@@ -32,6 +32,7 @@ using Netotik.ViewModels.Identity.Security;
 using WebGrease.Css.Extensions;
 using System.Net;
 using Netotik.Common.DataTables;
+using Microsoft.Owin.Security;
 
 namespace Netotik.Web.Areas.Admin.Controllers
 {
@@ -42,6 +43,8 @@ namespace Netotik.Web.Areas.Admin.Controllers
     {
         #region ctor
         private readonly IApplicationUserManager _applicationUserManager;
+        private readonly IApplicationSignInManager _applicationSignInManager;
+        private readonly IAuthenticationManager _authenticationManager;
         private readonly IPictureService _pictureService;
         private readonly IUserMailer _userMailer;
         private readonly IApplicationRoleManager _applicationRoleManager;
@@ -50,6 +53,8 @@ namespace Netotik.Web.Areas.Admin.Controllers
         private readonly ISmsService _smsService;
 
         public UserRouterController(
+            IApplicationSignInManager applicationSignInManager,
+            IAuthenticationManager authenticationManager,
             IApplicationUserManager applicationUserManager,
             IPictureService pictureservice,
             IUserMailer userMailer,
@@ -58,6 +63,8 @@ namespace Netotik.Web.Areas.Admin.Controllers
             ISmsService smsService,
             IUnitOfWork uow)
         {
+            _authenticationManager = authenticationManager;
+            _applicationSignInManager = applicationSignInManager;
             _pictureService = pictureservice;
             _userMailer = userMailer;
             _applicationRoleManager = applicationRoleManager;
@@ -98,13 +105,6 @@ namespace Netotik.Web.Areas.Admin.Controllers
         #endregion
 
 
-        [BreadCrumb(Title = "NewUser", Order = 1)]
-        public virtual ActionResult Create()
-        {
-            PopulateClientPermissions();
-            return View();
-        }
-
         public virtual ActionResult Remove(long id = 0)
         {
             _applicationUserManager.LogicalRemove(id);
@@ -121,22 +121,21 @@ namespace Netotik.Web.Areas.Admin.Controllers
         }
 
         #endregion
-
-
-
-
         #region Edit
         [BreadCrumb(Title = "EditRouter", Order = 1)]
         public virtual async Task<ActionResult> Edit(long? id)
         {
             if (id == null) return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
 
-            var viewModel = await _userManager.GetUserRouterByIdAsync(id.Value);
+            var viewModel = await _userManager.GetAdminUserRouterByIdAsync(id.Value);
             if (viewModel == null) return HttpNotFound();
+
+
 
             if (viewModel.Picture != null)
                 ViewBag.Avatar = Path.Combine(Common.Controller.FilePathes._imagesUserAvatarsPath, viewModel.Picture.FileName);
 
+            PopulateResellers(viewModel.ResellerId);
             PopulateClientPermissions(_applicationUserManager.FindClientPermissions(viewModel.Id).ToArray());
 
             return View(viewModel);
@@ -146,9 +145,28 @@ namespace Netotik.Web.Areas.Admin.Controllers
         [BreadCrumb(Title = "EditRouter", Order = 1)]
         [ValidateAntiForgeryToken]
         [HttpPost]
-        public virtual async Task<ActionResult> Edit(RouterEditModel model)
+        public virtual async Task<ActionResult> Edit(RouterAdminEditModel model)
         {
             PopulateClientPermissions(model.ClientPermissionNames);
+            PopulateResellers(model.ResellerId);
+
+            #region Validation
+            if (_userManager.CheckRouterPhoneNumberExist(model.PhoneNumber, model.Id))
+                ModelState.AddModelError("PhoneNumber", string.Format(Captions.ExistError, Captions.MobileNumber));
+
+            if (_userManager.CheckUserNameExist(model.UserName, model.Id))
+                ModelState.AddModelError("UserName", string.Format(Captions.ExistError, Captions.UserName));
+
+            if (_userManager.CheckRouterEmailExist(model.Email, model.Id))
+                ModelState.AddModelError("Email", string.Format(Captions.ExistError, Captions.Email));
+
+            if (!_userManager.IsNationalCodeValid(model.NationalCode))
+                ModelState.AddModelError("NationalCode", string.Format(Captions.NotValidError, Captions.NationalCode));
+
+            if (_userManager.CheckRouterRouterCodeExist(model.RouterCode, model.Id))
+                ModelState.AddModelError("RouterCode", string.Format(Captions.ExistError, Captions.RouterCode));
+
+            #endregion
 
             if (!ModelState.IsValid)
             {
@@ -220,7 +238,6 @@ namespace Netotik.Web.Areas.Admin.Controllers
 
             this.MessageSuccess(Captions.MissionSuccess, Captions.UpdateSuccess);
             return RedirectToAction(MVC.Admin.UserRouter.Index());
-
         }
 
 
@@ -249,6 +266,23 @@ namespace Netotik.Web.Areas.Admin.Controllers
                 this.MessageError(Captions.MissionFail, Captions.UpdateError);
             return View();
         }
+
+
+        [Mvc5Authorize(Roles = AssignableToRolePermissions.CanEditUser)]
+        [HttpPost]
+        public virtual async Task<ActionResult> LoginRouter(long id)
+        {
+            var user = await _userManager.FindByIdAsync(id);
+            _authenticationManager.SignOut
+                (
+                    DefaultAuthenticationTypes.ExternalCookie,
+                    DefaultAuthenticationTypes.ApplicationCookie
+                );
+
+            await _applicationSignInManager.SignInAsync(user, false, false);
+            return RedirectToAction(MVC.MyRouter.Home.Index());
+        }
+
 
 
         public virtual async Task<ActionResult> Disable(int id = 0)
@@ -294,6 +328,10 @@ namespace Netotik.Web.Areas.Admin.Controllers
             ViewBag.ClientPermissions = permissions;
         }
 
-
+        [NonAction]
+        private void PopulateResellers(long? resellerId = null)
+        {
+            ViewBag.Resellers = _userManager.GetResellersSelectList(resellerId);
+        }
     }
 }

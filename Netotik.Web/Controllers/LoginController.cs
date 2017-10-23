@@ -128,33 +128,32 @@ namespace Netotik.Web.Controllers
             switch (result)
             {
                 case SignInStatus.Success:
+                    loggedinUser.LastLoginDate = DateTime.Now;
+                    loggedinUser.LastLoginIpAddress = GetMyIp();
+                    
                     if (!string.IsNullOrWhiteSpace(ReturnUrl))
                     {
                         if (loggedinUser.UserRouter.SmsCharge > 0 && loggedinUser.UserRouter.SmsActive && loggedinUser.UserRouter.SmsAdminLogins)
-                            _smsService.SendSms(loggedinUser.PhoneNumber, string.Format(Captions.SmsRouterLogins, loggedinUser.UserName, PersianDate.ConvertDate.ToFa(DateTime.Now, "g"), HttpContext.Request.ServerVariables["REMOTE_ADDR"]), loggedinUser.Id);
-                        _uow.SaveAllChanges();
+                            _smsService.SendSms(loggedinUser.PhoneNumber, string.Format(Captions.SmsRouterLogins, loggedinUser.UserName, PersianDate.ConvertDate.ToFa(DateTime.Now, "g"), GetMyIp()), loggedinUser.Id);
+                        await _uow.SaveAllChangesAsync();
                         return RedirectToLocal(ReturnUrl);
                     }
                     else
                     {
                         if (loggedinUser.UserRouter.SmsCharge > 0 && loggedinUser.UserRouter.SmsActive && loggedinUser.UserRouter.SmsAdminLogins)
-                            _smsService.SendSms(loggedinUser.PhoneNumber, string.Format(Captions.SmsRouterLogins, loggedinUser.UserName,PersianDate.ConvertDate.ToFa(DateTime.Now,"g").ToString(), HttpContext.Request.ServerVariables["REMOTE_ADDR"].ToString()), loggedinUser.Id);
-                        _uow.SaveAllChanges();
+                            _smsService.SendSms(loggedinUser.PhoneNumber, string.Format(Captions.SmsRouterLogins, loggedinUser.UserName,PersianDate.ConvertDate.ToFa(DateTime.Now,"g").ToString(), GetMyIp()), loggedinUser.Id);
+                        await _uow.SaveAllChangesAsync();
                         return RedirectToAction(MVC.MyRouter.Home.Index());
                     }
-
                 case SignInStatus.LockedOut:
-                    ModelState.AddModelError("UserName",
-                        $"دقیقه دوباره امتحان کنید {_applicationUserManager.DefaultAccountLockoutTimeSpan} حساب شما قفل شد ! لطفا بعد از ");
+                    ModelState.AddModelError("UserName", string.Format(Captions.AccountLockMessage, _applicationUserManager.DefaultAccountLockoutTimeSpan));
                     return View(model);
                 case SignInStatus.Failure:
                     ModelState.AddModelError("UserName", Captions.UsernameOrPasswordWrong);
                     ModelState.AddModelError("Password", Captions.UsernameOrPasswordWrong);
                     return View(model);
                 default:
-                    ModelState.AddModelError("UserName",
-                       Captions.ErrorLogin
-                       );
+                    ModelState.AddModelError("UserName", Captions.CantLogin);
                     return View(model);
             }
 
@@ -223,22 +222,24 @@ namespace Netotik.Web.Controllers
             switch (result)
             {
                 case SignInStatus.Success:
+                    loggedinUser.LastLoginDate = DateTime.Now;
+                    loggedinUser.LastLoginIpAddress = GetMyIp();
+                    await _uow.SaveAllChangesAsync();
+
                     if (!string.IsNullOrWhiteSpace(ReturnUrl))
                         return RedirectToLocal(ReturnUrl);
                     else
                         return RedirectToAction(MVC.Reseller.Home.Index());
+
                 case SignInStatus.LockedOut:
-                    ModelState.AddModelError("UserName",
-                        $"دقیقه دوباره امتحان کنید {_applicationUserManager.DefaultAccountLockoutTimeSpan} حساب شما قفل شد ! لطفا بعد از ");
+                    ModelState.AddModelError("UserName", string.Format(Captions.AccountLockMessage, _applicationUserManager.DefaultAccountLockoutTimeSpan));
                     return View(model);
                 case SignInStatus.Failure:
                     ModelState.AddModelError("UserName", Captions.UsernameOrPasswordWrong);
                     ModelState.AddModelError("Password", Captions.UsernameOrPasswordWrong);
                     return View(model);
                 default:
-                    ModelState.AddModelError("UserName",
-                        Captions.ErrorLogin
-                       );
+                    ModelState.AddModelError("UserName", Captions.CantLogin);
                     return View(model);
             }
         }

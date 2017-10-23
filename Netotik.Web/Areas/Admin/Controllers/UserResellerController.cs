@@ -18,7 +18,6 @@ using System.Web.UI;
 using System.Threading.Tasks;
 using Netotik.Web;
 using System.Data.Entity.Validation;
-
 using System.IO;
 using DNTBreadCrumb;
 using Netotik.ViewModels.Identity.Security;
@@ -28,6 +27,8 @@ using Netotik.Common.Controller;
 using Netotik.Common.DataTables;
 using WebGrease.Css.Extensions;
 using System.Net;
+using Microsoft.AspNet.Identity;
+using Microsoft.Owin.Security;
 
 namespace Netotik.Web.Areas.Admin.Controllers
 {
@@ -37,16 +38,22 @@ namespace Netotik.Web.Areas.Admin.Controllers
 
         #region ctor
         private readonly IApplicationUserManager _applicationUserManager;
+        private readonly IApplicationSignInManager _applicationSignInManager;
+        private readonly IAuthenticationManager _authenticationManager;
         private readonly IPictureService _pictureService;
         private readonly IApplicationRoleManager _applicationRoleManager;
         private readonly IUnitOfWork _uow;
 
         public UserResellerController(
+            IAuthenticationManager authenticationManager,
+            IApplicationSignInManager applicationSignInManager,
             IPictureService pictureservice,
             IApplicationUserManager applicationUserManager,
             IApplicationRoleManager applicationRoleManager,
             IUnitOfWork uow)
         {
+            _authenticationManager = authenticationManager;
+            _applicationSignInManager = applicationSignInManager;
             _pictureService = pictureservice;
             _applicationRoleManager = applicationRoleManager;
             _applicationUserManager = applicationUserManager;
@@ -99,13 +106,13 @@ namespace Netotik.Web.Areas.Admin.Controllers
         {
             #region Validation
             if (_userManager.CheckResellerPhoneNumberExist(model.PhoneNumber, null))
-                ModelState.AddModelError("PhoneNumber", "این شماره موبایل قبلا در سیستم ثبت شده است");
+                ModelState.AddModelError("PhoneNumber", string.Format(Captions.ExistError, Captions.MobileNumber));
             if (_userManager.CheckUserNameExist(model.UserName, null))
-                ModelState.AddModelError("UserName", "این نام کاربری قبلا در سیستم ثبت شده است");
+                ModelState.AddModelError("UserName", string.Format(Captions.ExistError, Captions.UserName));
             if (!model.Password.IsSafePasword())
-                ModelState.AddModelError("Password", "این کلمه عبور به راحتی قابل تشخیص است");
+                ModelState.AddModelError("Password", Captions.PasswordEasy);
             if (_userManager.CheckResellerEmailExist(model.Email, null))
-                ModelState.AddModelError("Email", "این ایمیل قبلا در سیستم ثبت شده است");
+                ModelState.AddModelError("Email", string.Format(Captions.ExistError, Captions.Email));
             #endregion
 
             if (!ModelState.IsValid)
@@ -189,6 +196,7 @@ namespace Netotik.Web.Areas.Admin.Controllers
 
         }
 
+
         [Mvc5Authorize(Roles = AssignableToRolePermissions.CanEditUser)]
         [ValidateAntiForgeryToken]
         [HttpPost]
@@ -196,11 +204,11 @@ namespace Netotik.Web.Areas.Admin.Controllers
         {
             #region Validation
             if (_userManager.CheckResellerPhoneNumberExist(model.PhoneNumber, model.Id))
-                ModelState.AddModelError("PhoneNumber", "این شماره موبایل قبلا در سیستم ثبت شده است");
+                ModelState.AddModelError("PhoneNumber", string.Format(Captions.ExistError, Captions.MobileNumber));
             if (_userManager.CheckUserNameExist(model.UserName, model.Id))
-                ModelState.AddModelError("UserName", "این نام کاربری قبلا در سیستم ثبت شده است");
+                ModelState.AddModelError("UserName", string.Format(Captions.ExistError, Captions.UserName));
             if (_userManager.CheckResellerEmailExist(model.Email, model.Id))
-                ModelState.AddModelError("Email", "این ایمیل قبلا در سیستم ثبت شده است");
+                ModelState.AddModelError("Email", string.Format(Captions.ExistError, Captions.Email));
             #endregion
 
 
@@ -242,6 +250,22 @@ namespace Netotik.Web.Areas.Admin.Controllers
 
             this.MessageSuccess(Captions.MissionSuccess, Captions.UpdateSuccess);
             return RedirectToAction(MVC.Admin.UserReseller.Index());
+        }
+
+
+        [Mvc5Authorize(Roles = AssignableToRolePermissions.CanEditUser)]
+        [HttpPost]
+        public virtual async Task<ActionResult> LoginReseller(long id)
+        {
+            var user = await _userManager.FindByIdAsync(id);
+            _authenticationManager.SignOut
+                (
+                    DefaultAuthenticationTypes.ExternalCookie,
+                    DefaultAuthenticationTypes.ApplicationCookie
+                );
+
+            await _applicationSignInManager.SignInAsync(user, false, false);
+            return RedirectToAction(MVC.Reseller.Home.Index());
         }
 
         #endregion

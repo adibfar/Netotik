@@ -7,12 +7,14 @@ using Microsoft.Owin.Security.Cookies;
 using Netotik.Domain.Entity;
 using Netotik.Common.DataTables;
 using Netotik.ViewModels.Identity.UserRouter;
+using System.Web.Mvc;
 
 namespace Netotik.Services.Identity
 {
 
     public interface IApplicationUserManager : IDisposable
     {
+        SelectList GetResellersSelectList(long? resellerId);
 
         long GetRoutersChargre();
         ViewModels.Identity.UserAdmin.ProfileModel GetUserAdminProfile();
@@ -364,6 +366,7 @@ namespace Netotik.Services.Identity
         Task<ViewModels.Identity.UserAdmin.AdminEditModel> GetUserAdminByIdAsync(long id);
         Task<ViewModels.Identity.UserReseller.ResellerEditModel> GetUserResellerByIdAsync(long id);
         Task<ViewModels.Identity.UserRouter.RouterEditModel> GetUserRouterByIdAsync(long id);
+        Task<ViewModels.Identity.UserRouter.RouterAdminEditModel> GetAdminUserRouterByIdAsync(long id);
 
         /// <summary>
         /// Returns true if the user is in the specified role
@@ -607,6 +610,7 @@ namespace Netotik.Services.Identity
         Task<bool> EditUser(ViewModels.Identity.UserAdmin.AdminEditModel viewModel);
         Task<bool> EditReseller(ViewModels.Identity.UserReseller.ResellerEditModel viewModel);
         Task<bool> EditRouter(ViewModels.Identity.UserRouter.RouterEditModel viewModel);
+        Task<bool> EditRouter(ViewModels.Identity.UserRouter.RouterAdminEditModel viewModel);
 
         void SetRolesToUser(User user, IEnumerable<Role> roles);
 
@@ -618,15 +622,15 @@ namespace Netotik.Services.Identity
         bool CheckResellerEmailExist(string email, long? id); 
         bool CheckRouterEmailExist(string email, long? id);
         bool CheckResellerNationalCodeExist(string nCode, long? id);
-        bool CheckRouterNationalCodeExist(string nCode, long? id, long? resellerid);
+        bool CheckRouterNationalCodeExist(string nCode, long? id);
         bool CheckResellerRouterNameExist(string name, long? id);
         bool SmsCodeIsValid(string RegisterWithSmsCode,long? id);
-        bool CheckRouterRouterNameExist(string name, long? id, long? resellerid);
+        bool CheckRouterRouterCodeExist(string name, long? id);
         bool CheckGooglePlusIdExist(string googlePlusId, long? id);
         bool CheckFacebookIdExist(string faceBookId, long? id);
         bool CheckResellerPhoneNumberExist(string phoneNumber, long? id);
         bool CheckAdminPhoneNumberExist(string phoneNumber, long? id);
-        bool CheckRouterPhoneNumberExist(string phoneNumber, long? id,long? resellerid);
+        bool CheckRouterPhoneNumberExist(string phoneNumber, long? id);
         Task<string> CustomValidatePasswordAsync(string pass);
         bool CheckIsUserBanned(long id);
         bool CheckIsUserBanned(string userName);

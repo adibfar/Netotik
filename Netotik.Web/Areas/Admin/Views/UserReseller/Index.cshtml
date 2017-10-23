@@ -96,6 +96,9 @@
                                          result += '<a onclick="active(' + full.Id + ');" class="dropdown-item">'
                                             + '<i class="icon-checkmark2"></i> '+'@Captions.Enable'+'</a>';
                                      }
+
+                                         result += '<a onclick="login(' + full.Id + ');" class="dropdown-item">'
+                                             + '<i class="icon-log-in"></i> '+'@Captions.Login'+'</a>';
                                  }
 
                                  if (canDelete == 'True') {
@@ -122,7 +125,9 @@
 
         });
 
-
+        function login(id) {
+            PostData("@Url.Action(MVC.Admin.UserReseller.LoginReseller())",{id:id});
+        }
         function remove(id) {
                 PostData("@Url.Action(MVC.Admin.UserReseller.Remove())", { id: id });
         }

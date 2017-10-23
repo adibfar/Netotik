@@ -18,6 +18,22 @@ namespace Netotik.Resources
             return resourceProvider.GetResource(key, CultureInfo.CurrentUICulture.Name) as string;
         }
 
+        public static string AccountLockMessage
+        {
+            get
+            {
+                return resourceProvider.GetResource("AccountLockMessage", CultureInfo.CurrentUICulture.Name) as string;
+            }
+        }
+
+        public static string CantLogin
+        {
+            get
+            {
+                return resourceProvider.GetResource("CantLogin", CultureInfo.CurrentUICulture.Name) as string;
+            }
+        }
+
         public static string Save
         {
             get

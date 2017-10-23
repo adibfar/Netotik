@@ -338,7 +338,7 @@ Order = 0, GlyphIcon = "icon icon-table")]
                 PaymentTypeId = paymentType.Id,
                 RegisterDate = DateTime.Now,
                 FactorStatus = FactorStatus.Unpaid,
-                IpAddress = this.Request.ServerVariables["REMOTE_ADDR"],
+                IpAddress = GetMyIp(),
                 PaymentPrice = package.Price,
                 UserId = UserLogined.Id,
                 FactorSmsDetail = new FactorSmsDetail()
