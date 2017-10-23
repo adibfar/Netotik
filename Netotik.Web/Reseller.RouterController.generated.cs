@@ -71,6 +71,12 @@ namespace Netotik.Web.Areas.Reseller.Controllers
         }
         [NonAction]
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public virtual System.Web.Mvc.ActionResult ChangePassword()
+        {
+            return new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.ChangePassword);
+        }
+        [NonAction]
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public virtual System.Web.Mvc.ActionResult RedirectToLocal()
         {
             return new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.RedirectToLocal);
@@ -158,6 +164,7 @@ namespace Netotik.Web.Areas.Reseller.Controllers
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public class ActionParamsClass_ChangePassword
         {
+            public readonly string Id = "Id";
             public readonly string model = "model";
         }
         static readonly ActionParamsClass_Disable s_params_Disable = new ActionParamsClass_Disable();
@@ -311,13 +318,14 @@ namespace Netotik.Web.Areas.Reseller.Controllers
         }
 
         [NonAction]
-        partial void ChangePasswordOverride(T4MVC_System_Web_Mvc_ActionResult callInfo);
+        partial void ChangePasswordOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, long Id);
 
         [NonAction]
-        public override System.Web.Mvc.ActionResult ChangePassword()
+        public override System.Web.Mvc.ActionResult ChangePassword(long Id)
         {
             var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.ChangePassword);
-            ChangePasswordOverride(callInfo);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "Id", Id);
+            ChangePasswordOverride(callInfo, Id);
             return callInfo;
         }
 

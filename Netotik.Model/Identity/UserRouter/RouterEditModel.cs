@@ -87,7 +87,7 @@ namespace Netotik.ViewModels.Identity.UserRouter
 
         public Picture Picture { get; set; }
 
-        [Display(ResourceType = typeof(Captions), Name = "ImageProfile")]
+        [Display(ResourceType = typeof(Captions), Name = "LogoImage")]
         public System.Web.HttpPostedFileBase ImageAvatar { get; set; }
 
     }

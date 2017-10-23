@@ -12,7 +12,7 @@ namespace Netotik.ViewModels.Identity.UserRouter
 {
     public class ChangePasswordModel
     {
-
+        public long id { get; set; }
         [DataType(DataType.Password)]
         [Required(ErrorMessageResourceType = typeof(Captions), ErrorMessageResourceName = "RequiredError")]
         [MaxLength(100, ErrorMessageResourceType = typeof(Captions), ErrorMessageResourceName = "MaxLengthError")]

@@ -20,7 +20,7 @@
         <div class="card-body">
             <div class="card-block">
                 <div class="row">
-                    <div class="col-md-4">
+                    <div class="col-md-6">
                         <div class="form-group has-icon-left">
                             @Html.LabelFor(m => m.FirstName)
                             <div class="position-relative has-icon-left">
@@ -32,19 +32,22 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-4">
-                        <div class="form-group has-icon-left">
-                            @Html.LabelFor(m => m.LastName)
+                    <div class="col-md-6">
+                        <div class="form-group has-feedback has-icon-left">
+                            @Html.LabelFor(m => m.RouterCode)
                             <div class="position-relative has-icon-left">
-                                @Html.TextBoxFor(m => m.LastName, new { @class = "form-control" })
+                                @Html.TextBoxFor(m => m.RouterCode, new { @class = "form-control" })
                                 <div class="form-control-position">
-                                    <i class="icon-user"></i>
+                                    <i class="icon-office"></i>
                                 </div>
-                                @Html.ValidationMessageFor(model => model.LastName, "", htmlAttributes: new { @class = "text-danger" })
+                                @Html.ValidationMessageFor(model => model.RouterCode, "", htmlAttributes: new { @class = "text-danger" })
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-4">
+                   
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
                         <div class="form-group has-icon-left">
                             @Html.LabelFor(m => m.PhoneNumber)
                             <div class="position-relative has-icon-left">
@@ -53,20 +56,6 @@
                                     <i class="icon-phone"></i>
                                 </div>
                                 @Html.ValidationMessageFor(model => model.PhoneNumber, "", htmlAttributes: new { @class = "text-danger" })
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-6">
-                        <div class="form-group has-feedback has-icon-left">
-                            @Html.LabelFor(m => m.NationalCode)
-                            <div class="position-relative has-icon-left">
-                                @Html.TextBoxFor(m => m.NationalCode, new { @class = "form-control" })
-                                <div class="form-control-position">
-                                    <i class="icon-user-tie"></i>
-                                </div>
-                                @Html.ValidationMessageFor(model => model.NationalCode, "", htmlAttributes: new { @class = "text-danger" })
                             </div>
                         </div>
                     </div>
@@ -86,13 +75,13 @@
                 <div class="row">
                     <div class="col-md-6">
                         <div class="form-group has-feedback has-icon-left">
-                            @Html.LabelFor(m => m.RouterCode)
+                            @Html.LabelFor(m => m.NationalCode)
                             <div class="position-relative has-icon-left">
-                                @Html.TextBoxFor(m => m.RouterCode, new { @class = "form-control" })
+                                @Html.TextBoxFor(m => m.NationalCode, new { @class = "form-control" })
                                 <div class="form-control-position">
-                                    <i class="icon-office"></i>
+                                    <i class="icon-user-tie"></i>
                                 </div>
-                                @Html.ValidationMessageFor(model => model.RouterCode, "", htmlAttributes: new { @class = "text-danger" })
+                                @Html.ValidationMessageFor(model => model.NationalCode, "", htmlAttributes: new { @class = "text-danger" })
                             </div>
                         </div>
                     </div>

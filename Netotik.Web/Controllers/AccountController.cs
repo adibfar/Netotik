@@ -55,9 +55,7 @@ namespace Netotik.Web.Controllers
         }
 
         #endregion
-
-
-
+        
 
         [AllowAnonymous]
         public virtual ActionResult Login(string ReturnUrl)

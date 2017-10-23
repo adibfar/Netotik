@@ -70,9 +70,7 @@ namespace Netotik.Web.Areas.Reseller.Controllers
         [Mvc5Authorize(Roles = "Reseller")]
         public virtual ActionResult Index()
         {
-            var model = _applicationUserManager.GetListUserRouter(UserLogined.UserReseller.Id);
-            return View(model);
-
+            return View(_applicationUserManager.GetListUserRouter(UserLogined.UserReseller.Id));
         }
         [Mvc5Authorize(Roles = "Reseller")]
         public virtual ActionResult RouterLoginURL()
@@ -316,9 +314,10 @@ namespace Netotik.Web.Areas.Reseller.Controllers
 
 
         [Mvc5Authorize(Roles = "Reseller")]
-        public virtual ActionResult ChangePassword()
+        public virtual ActionResult ChangePassword(long Id)
         {
-            return View();
+            
+            return View(new ChangePasswordModel() { id = Id });
         }
 
         [Mvc5Authorize(Roles = "Reseller")]
@@ -328,12 +327,18 @@ namespace Netotik.Web.Areas.Reseller.Controllers
             if (!ModelState.IsValid)
             {
                 this.MessageError(Captions.MissionFail, Captions.InvalidDataError);
-                return RedirectToAction(MVC.MyRouter.Home.ActionNames.ChangePassword);
+                return RedirectToAction(MVC.Reseller.Router.ChangePassword(model.id));
             }
-            var temp = await _applicationUserManager.ChangePasswordAsync(User.Identity.GetUserId<long>(), model.OldPassword, model.Password);
+
+            if (_applicationUserManager.FindUserById(model.id).UserRouter.UserResellerId != UserLogined.Id)
+            {
+                this.MessageError(Captions.MissionFail, Captions.InvalidDataError);
+                return RedirectToAction(MVC.Reseller.Router.Index());
+            }
+            var temp = await _applicationUserManager.ChangePasswordAsync(model.id, model.OldPassword, model.Password);
             if (temp.Succeeded)
             {
-                var Router = _applicationUserManager.FindUserById(User.Identity.GetUserId<long>());
+                var Router = _applicationUserManager.FindUserById(model.id);
                 if (Router.UserRouter.SmsCharge > 0 && Router.UserRouter.SmsActive && Router.UserRouter.SmsAdminChangeAdminPassword)
                     _smsService.SendSms(UserLogined.PhoneNumber, string.Format(Captions.SmsRouterPasswordChange,UserLogined.UserName), UserLogined.Id);
                 this.MessageInformation(Captions.MissionSuccess, Captions.UpdateSuccess);

@@ -10,11 +10,11 @@
         <div class="card-body">
             <div class="card-img-top img-fluid bg-cover height-200" style="background: url('/Content/images/backgrounds/bg-12.jpg') 0 40%;"></div>
             <div class="card-profile-image">
-                <img src="@Url.Content(Path.Combine(Netotik.Common.Controller.FilePathes._imagesUserAvatarsPath, user.PictureId.HasValue ? user.Picture.FileName : "Default.png"))?w=120&h=120" class="rounded-circle img-border box-shadow-1" alt="@user.FirstName @user.LastName">
+                <img src="@Url.Content(Path.Combine(Netotik.Common.Controller.FilePathes._imagesUserAvatarsPath, user.PictureId.HasValue ? user.Picture.FileName : "Default.png"))?w=120&h=120" class="rounded-circle img-border box-shadow-1" alt="@user.FirstName">
             </div>
             <div class="profile-card-with-cover-content text-xs-center">
                 <div class="profile-details mt-2">
-                    <h4 class="card-title">@user.FirstName @user.LastName</h4>
+                    <h4 class="card-title">@user.FirstName</h4>
                 </div>
                 <div class="card-block">
                     <fieldset class="form-group">

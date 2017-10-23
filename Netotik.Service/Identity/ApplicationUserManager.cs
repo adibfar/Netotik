@@ -134,7 +134,6 @@ namespace Netotik.Services.Identity
                                                 Email = x.Email,
                                                 FirstName = x.FirstName,
                                                 IsBanned = x.IsBanned,
-                                                LastName = x.LastName,
                                                 NationalCode = x.UserRouter.NationalCode,
                                                 PhoneNumber = x.PhoneNumber,
                                                 UserName = x.UserName,

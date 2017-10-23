@@ -23,14 +23,8 @@ namespace Netotik.ViewModels.Identity.UserRouter
         [Required(ErrorMessageResourceType = typeof(Captions), ErrorMessageResourceName = "RequiredError")]
         [MaxLength(100, ErrorMessageResourceType = typeof(Captions), ErrorMessageResourceName = "MaxLengthError")]
         [MinLength(2, ErrorMessageResourceType = typeof(Captions), ErrorMessageResourceName = "MinLengthError")]
-        [Display(ResourceType = typeof(Captions), Name = "Name")]
+        [Display(ResourceType = typeof(Captions), Name = "BussinesName")]
         public string FirstName { get; set; }
-
-        [Required(ErrorMessageResourceType = typeof(Captions), ErrorMessageResourceName = "RequiredError")]
-        [MaxLength(100, ErrorMessageResourceType = typeof(Captions), ErrorMessageResourceName = "MaxLengthError")]
-        [MinLength(2, ErrorMessageResourceType = typeof(Captions), ErrorMessageResourceName = "MinLengthError")]
-        [Display(ResourceType = typeof(Captions), Name = "LastName")]
-        public string LastName { get; set; }
 
         [Required(ErrorMessageResourceType = typeof(Captions), ErrorMessageResourceName = "RequiredError")]
         [Display(ResourceType = typeof(Captions), Name = "MobileNumber")]
@@ -55,12 +49,12 @@ namespace Netotik.ViewModels.Identity.UserRouter
         [Required(ErrorMessageResourceType = typeof(Captions), ErrorMessageResourceName = "RequiredError")]
         [MaxLength(100, ErrorMessageResourceType = typeof(Captions), ErrorMessageResourceName = "MaxLengthError")]
         [MinLength(6, ErrorMessageResourceType = typeof(Captions), ErrorMessageResourceName = "MinLengthError")]
-        [Display(ResourceType = typeof(Captions), Name = "RouterName")]
+        [Display(ResourceType = typeof(Captions), Name = "RouterCode")]
         [RegularExpression(@"(^[a-zA-Z0-9]*$)", ErrorMessageResourceType = typeof(Captions), ErrorMessageResourceName = "JustEnglishNumeric")]
         [System.Web.Mvc.Remote("IsRouterCodeAvailable", "Remote", System.Web.Mvc.AreaReference.UseRoot, AdditionalFields = "Id,Reseller_Id", HttpMethod = "POST", ErrorMessageResourceType = typeof(Captions), ErrorMessageResourceName = "ExistError")]
         public string RouterCode { get; set; }
 
-        [Display(ResourceType = typeof(Captions), Name = "ImageProfile")]
+        [Display(ResourceType = typeof(Captions), Name = "LogoImage")]
         public System.Web.HttpPostedFileBase ImageAvatar { get; set; }
 
 
