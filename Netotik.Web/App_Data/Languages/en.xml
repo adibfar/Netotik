@@ -1221,5 +1221,67 @@
   <LocaleResource Name="LastLogin">
     <Value>Last Login</Value>
   </LocaleResource>
-  
+
+
+
+  <LocaleResource Name="Creator">
+    <Value>Creator</Value>
+  </LocaleResource>
+
+  <LocaleResource Name="ProfileName">
+    <Value>Profile Name</Value>
+  </LocaleResource>
+
+  <LocaleResource Name="LimitationName">
+    <Value>Limitation Name</Value>
+  </LocaleResource>
+
+  <LocaleResource Name="DownloadUsed">
+    <Value>Download Used</Value>
+  </LocaleResource>
+  <LocaleResource Name="UploadUsed">
+    <Value>Upload Used</Value>
+  </LocaleResource>
+  <LocaleResource Name="CreateDate">
+    <Value>Create Date</Value>
+  </LocaleResource>
+  <LocaleResource Name="MarriageDate">
+    <Value>Marriage Date</Value>
+  </LocaleResource>
+  <LocaleResource Name="SendSmsNow">
+    <Value>Send Sms Now</Value>
+  </LocaleResource>
+  <LocaleResource Name="TerminateCause">
+    <Value>Terminate Cause</Value>
+  </LocaleResource>
+  <LocaleResource Name="Status">
+    <Value>Status</Value>
+  </LocaleResource>
+  <LocaleResource Name="IpAddress">
+    <Value>IP</Value>
+  </LocaleResource>
+  <LocaleResource Name="SrcIpAddress">
+    <Value>Source IP</Value>
+  </LocaleResource>
+  <LocaleResource Name="DstIpAddress">
+    <Value>Destination IP</Value>
+  </LocaleResource>
+  <LocaleResource Name="SrcPort">
+    <Value>Source Port</Value>
+  </LocaleResource>
+  <LocaleResource Name="DstPort">
+    <Value>Destination Port</Value>
+  </LocaleResource>
+  <LocaleResource Name="SrcMacAddress">
+    <Value>Source Mac</Value>
+  </LocaleResource>
+  <LocaleResource Name="ContactUsMessageReceived">
+    <Value>Message Recive Success!</Value>
+  </LocaleResource>
+  <LocaleResource Name="ThanksMessageNetotikSystem">
+    <Value>Thanks - Netotik System</Value>
+  </LocaleResource>
+  <LocaleResource Name="ContactUsEmailMessage">
+    <Value>Thanks To send message, We will reply to your message as soon as possible.</Value>
+  </LocaleResource>
 </Language>

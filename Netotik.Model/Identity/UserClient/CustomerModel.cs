@@ -8,7 +8,7 @@ namespace Netotik.ViewModels.Identity.UserClient
     {
         [AllowHtml]
         public string id { get; set; }
-        [Display(Name = "نام کاربری")]
+        [Display(ResourceType = typeof(Captions), Name = "UserName")]
         [RegularExpression(@"(^$)|(^[a-zA-Z0-9:.-_]*$)", ErrorMessageResourceType = typeof(Captions), ErrorMessageResourceName = "NotValidError")]
         public string login { get; set; }
         

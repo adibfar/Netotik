@@ -9,47 +9,54 @@ namespace Netotik.ViewModels.Identity.UserClient
         [AllowHtml]
         public string id { get; set; }
         [RegularExpression(@"(^$)|(^[a-zA-Z0-9:.-_]*$)", ErrorMessageResourceType = typeof(Captions), ErrorMessageResourceName = "NotValidError")]
-        [Display(Name = "ایجاد کننده")]
+        [Display(ResourceType = typeof(Captions), Name = "Creator")]
         public string customer { get; set; }
         [RegularExpression(@"(^[a-zA-Z0-9:.-_]*$)", ErrorMessageResourceType = typeof(Captions), ErrorMessageResourceName = "NotValidError")]
-        [Display(Name = "نام کاربری")]
+        [Display(ResourceType = typeof(Captions), Name = "UserName")]
         public string username { get; set; }
-        [Display(Name = "گذرواژه")]
+        [Display(ResourceType = typeof(Captions), Name = "Password")]
         public string password { get; set; }
+        [Display(ResourceType = typeof(Captions), Name = "SharedUsers")]
         public string shared_users { get; set; }
         public string wireless_psk { get; set; }
         public string wireless_enc_key { get; set; }
         public string wireless_enc_algo { get; set; }
 
-        [Display(Name = "فعال")]
+        [Display(ResourceType = typeof(Captions), Name = "Active")]
         public string disabled { get; set; }
 
         public string caller_id { get; set; }
         [RegularExpression(@"(^$)|(^[a-zA-Z0-9: .-_]*$)", ErrorMessageResourceType = typeof(Captions), ErrorMessageResourceName = "NotValidError")]
-        [Display(Name = "نام")]
+        [Display(ResourceType = typeof(Captions), Name = "FirstName")]
         public string first_name { get; set; }
         [RegularExpression(@"(^$)|(^[a-zA-Z0-9: .-_]*$)", ErrorMessageResourceType = typeof(Captions), ErrorMessageResourceName = "NotValidError")]
-        [Display(Name = "نام خانوادگی")]
+        [Display(ResourceType = typeof(Captions), Name = "LastName")]
         public string last_name { get; set; }
-        [Display(Name = "شماره تماس")]
+        [Display(ResourceType = typeof(Captions), Name = "Tel")]
         public string phone { get; set; }
-        [Display(Name = "آدرس")]
+        [Display(ResourceType = typeof(Captions), Name = "Address")]
         [RegularExpression(@"(^$)|(^[a-zA-Z0-9: .-_]*$)", ErrorMessageResourceType = typeof(Captions), ErrorMessageResourceName = "NotValidError")]
         public string location { get; set; }
-        [Display(Name = "ایمیل")]
+        [Display(ResourceType = typeof(Captions), Name = "Email")]
         public string email { get; set; }
         public string ip_address { get; set; }
-        [Display(Name = "توضیحات")]
         public string comment { get; set; }
-        [Display(Name = "نام تعرفه")]
+        [Display(ResourceType = typeof(Captions), Name = "PlanName")]
         public string profile { get; set; }
         public string registration_date { get; set; }
 
+        [Display(ResourceType = typeof(Captions), Name = "BirthDate")]
         public string Birthday { get; set; }
+        [Display(ResourceType = typeof(Captions), Name = "NationalCode")]
+        [System.Web.Mvc.Remote("IsNationalCodeValid", "Remote", System.Web.Mvc.AreaReference.UseRoot, HttpMethod = "POST", ErrorMessageResourceType = typeof(Captions), ErrorMessageResourceName = "NotValidError")]
         public string NationalCode { get; set; }
+        [Display(ResourceType = typeof(Captions), Name = "IsMale")]
         public string IsMale { get; set; }
+        [Display(ResourceType = typeof(Captions), Name = "CreateDate")]
         public string CreateDate { get; set; }
+        [Display(ResourceType = typeof(Captions), Name = "MarriageDate")]
         public string MarriageDate { get; set; }
+        [Display(ResourceType = typeof(Captions), Name = "Age")]
         public string Age { get; set; }
         public string reg_key { get; set; }
 

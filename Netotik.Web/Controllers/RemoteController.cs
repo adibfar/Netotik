@@ -134,6 +134,17 @@ namespace Netotik.Web.Controllers
 
             return Json(true);
         }
+
+        [HttpPost]
+        [AllowAnonymous]
+        [OutputCache(Location = OutputCacheLocation.None, NoStore = true, Duration = 0, VaryByParam = "*")]
+        public virtual JsonResult IsNationalCodeValid(string nationalCode)
+        {
+            if (!_applicationUserManager.IsNationalCodeValid(nationalCode))
+                return Json(false);
+
+            return Json(true);
+        }
         #endregion
 
         #region Username

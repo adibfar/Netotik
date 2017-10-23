@@ -4618,6 +4618,139 @@ namespace Netotik.Resources
             }
         }
 
+        public static string Creator
+        {
+            get
+            {
+                return resourceProvider.GetResource("Creator", CultureInfo.CurrentUICulture.Name) as string;
+            }
+        }
 
+        public static string ProfileName
+        {
+            get
+            {
+                return resourceProvider.GetResource("ProfileName", CultureInfo.CurrentUICulture.Name) as string;
+            }
+        }
+        public static string LimitationName
+        {
+            get
+            {
+                return resourceProvider.GetResource("LimitationName", CultureInfo.CurrentUICulture.Name) as string;
+            }
+        }
+        public static string DownloadUsed
+        {
+            get
+            {
+                return resourceProvider.GetResource("DownloadUsed", CultureInfo.CurrentUICulture.Name) as string;
+            }
+        }
+        public static string UploadUsed
+        {
+            get
+            {
+                return resourceProvider.GetResource("UploadUsed", CultureInfo.CurrentUICulture.Name) as string;
+            }
+        }
+        public static string CreateDate
+        {
+            get
+            {
+                return resourceProvider.GetResource("CreateDate", CultureInfo.CurrentUICulture.Name) as string;
+            }
+        }
+        public static string MarriageDate
+        {
+            get
+            {
+                return resourceProvider.GetResource("MarriageDate", CultureInfo.CurrentUICulture.Name) as string;
+            }
+        }
+        public static string SendSmsNow
+        {
+            get
+            {
+                return resourceProvider.GetResource("SendSmsNow", CultureInfo.CurrentUICulture.Name) as string;
+            }
+        }
+        public static string TerminateCause
+        {
+            get
+            {
+                return resourceProvider.GetResource("TerminateCause", CultureInfo.CurrentUICulture.Name) as string;
+            }
+        }
+        public static string Status
+        {
+            get
+            {
+                return resourceProvider.GetResource("Status", CultureInfo.CurrentUICulture.Name) as string;
+            }
+        }
+        public static string IpAddress
+        {
+            get
+            {
+                return resourceProvider.GetResource("IpAddress", CultureInfo.CurrentUICulture.Name) as string;
+            }
+        }
+        public static string SrcIpAddress
+        {
+            get
+            {
+                return resourceProvider.GetResource("SrcIpAddress", CultureInfo.CurrentUICulture.Name) as string;
+            }
+        }
+        public static string DstIpAddress
+        {
+            get
+            {
+                return resourceProvider.GetResource("DstIpAddress", CultureInfo.CurrentUICulture.Name) as string;
+            }
+        }
+        public static string SrcPort
+        {
+            get
+            {
+                return resourceProvider.GetResource("SrcPort", CultureInfo.CurrentUICulture.Name) as string;
+            }
+        }
+        public static string DstPort
+        {
+            get
+            {
+                return resourceProvider.GetResource("DstPort", CultureInfo.CurrentUICulture.Name) as string;
+            }
+        }
+        public static string SrcMacAddress
+        {
+            get
+            {
+                return resourceProvider.GetResource("SrcMacAddress", CultureInfo.CurrentUICulture.Name) as string;
+            }
+        }
+        public static string ContactUsMessageReceived
+        {
+            get
+            {
+                return resourceProvider.GetResource("ContactUsMessageReceived", CultureInfo.CurrentUICulture.Name) as string;
+            }
+        }
+        public static string ThanksMessageNetotikSystem
+        {
+            get
+            {
+                return resourceProvider.GetResource("ThanksMessageNetotikSystem", CultureInfo.CurrentUICulture.Name) as string;
+            }
+        }
+        public static string ContactUsEmailMessage
+        {
+            get
+            {
+                return resourceProvider.GetResource("ContactUsEmailMessage", CultureInfo.CurrentUICulture.Name) as string;
+            }
+        }
     }
 }

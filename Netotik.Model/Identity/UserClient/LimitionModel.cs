@@ -8,23 +8,23 @@ namespace Netotik.ViewModels.Identity.UserClient
     {
         [AllowHtml]
         public string id { get; set; }
-        [Display(Name = "نام")]
+        [Display(ResourceType = typeof(Captions), Name = "Name")]
         [RegularExpression(@"(^$)|(^[a-zA-Z0-9: .-_]*$)", ErrorMessageResourceType = typeof(Captions), ErrorMessageResourceName = "NotValidError")]
         public string name { get; set; }
-        [Display(Name = "ایجاد کننده")]
+        [Display(ResourceType = typeof(Captions), Name = "Creator")]
         [RegularExpression(@"(^[a-zA-Z0-9:.-_]*$)", ErrorMessageResourceType = typeof(Captions), ErrorMessageResourceName = "NotValidError")]
         public string owner { get; set; }
-        [Display(Name = "محدودیت دانلود")]
+        [Display(ResourceType = typeof(Captions), Name = "DownloadTrafficLimit")]
         public string download_limit { get; set; }
-        [Display(Name = "محدودیت آپلود")]
+        [Display(ResourceType = typeof(Captions), Name = "UploadTrafficLimit")]
         public string upload_limit { get; set; }
-        [Display(Name = "محدودیت آپلود و دانلود")]
+        [Display(ResourceType = typeof(Captions), Name = "DownloadUploadTrafficLimit")]
         public string transfer_limit { get; set; }
-        [Display(Name = "محدودیت زمان اتصال")]
+        [Display(ResourceType = typeof(Captions), Name = "ConnectionOnlineTime")]
         public string uptime_limit { get; set; }
-        [Display(Name = "محدودیت سرعت آپلود")]
+        [Display(ResourceType = typeof(Captions), Name = "UploadSpeedLimit")]
         public string rate_limit_rx { get; set; }
-        [Display(Name = "محدودیت سرعت دانلود")]
+        [Display(ResourceType = typeof(Captions), Name = "DownloadSpeedLimit")]
         public string rate_limit_tx { get; set; }
         public string rate_limit_min_tx { get; set; }
         public string group_name { get; set; }

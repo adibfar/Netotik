@@ -40,25 +40,25 @@ namespace Netotik.Web.Controllers
                 return View();
             if (User.UserRouter.SmsActive && User.UserRouter.RegisterWithSms && User.UserRouter.SmsCharge > 0)
             {
-                if (!_mikrotikServices.IP_Port_Check(UserLogined.UserRouter.R_Host, UserLogined.UserRouter.R_Port, UserLogined.UserRouter.R_User, UserLogined.UserRouter.R_Password))
+                if (!_mikrotikServices.IP_Port_Check(User.UserRouter.R_Host, User.UserRouter.R_Port, User.UserRouter.R_User, User.UserRouter.R_Password))
                 {
                     if (User.UserRouter.SmsIfErrorInSms)
                         _smsService.SendSms(User.PhoneNumber, "در هنگام ثبت نام پیامکی خطای اتصال به روتر ایجاد شد.", User.Id);
                     return View();
                 }
-                if (!_mikrotikServices.User_Pass_Check(UserLogined.UserRouter.R_Host, UserLogined.UserRouter.R_Port, UserLogined.UserRouter.R_User, UserLogined.UserRouter.R_Password))
+                if (!_mikrotikServices.User_Pass_Check(User.UserRouter.R_Host, User.UserRouter.R_Port, User.UserRouter.R_User, User.UserRouter.R_Password))
                 {
                     if (User.UserRouter.SmsIfErrorInSms)
                         _smsService.SendSms(User.PhoneNumber, "در هنگام ثبت نام پیامکی خطای نام کاربری و رمز عبور ایجاد شد.", User.Id);
                     return View();
                 }
-                if (!_mikrotikServices.Usermanager_IsInstall(UserLogined.UserRouter.R_Host, UserLogined.UserRouter.R_Port, UserLogined.UserRouter.R_User, UserLogined.UserRouter.R_Password))
+                if (!_mikrotikServices.Usermanager_IsInstall(User.UserRouter.R_Host, User.UserRouter.R_Port, User.UserRouter.R_User, User.UserRouter.R_Password))
                 {
                     if (User.UserRouter.SmsIfErrorInSms)
                         _smsService.SendSms(User.PhoneNumber, "در هنگام ثبت نام پیامکی خطای اتصال یوزرمنیجر ایجاد شد.", User.Id);
                     return View();
                 }
-                var Profiles = _mikrotikServices.Usermanager_GetAllProfile(UserLogined.UserRouter.R_Host, UserLogined.UserRouter.R_Port, UserLogined.UserRouter.R_User, UserLogined.UserRouter.R_Password);
+                var Profiles = _mikrotikServices.Usermanager_GetAllProfile(User.UserRouter.R_Host, User.UserRouter.R_Port, User.UserRouter.R_User, User.UserRouter.R_Password);
                 bool Flag = false;
                 foreach (var profile in Profiles)
                     if (profile.name == User.UserRouter.RegisterWithSmsRouterProfile)
@@ -75,12 +75,16 @@ namespace Netotik.Web.Controllers
                 UserClient.customer = User.UserRouter.Userman_Customer;
                 UserClient.phone = fromNum;
                 UserClient.username = fromNum;
-                UserClient.password = Rand.Next(6).ToString();
+                UserClient.password = Rand.Next(10000,99999).ToString();
                 UserClient.profile = User.UserRouter.RegisterWithSmsRouterProfile;
 
-                _mikrotikServices.Usermanager_UserCreate(UserLogined.UserRouter.R_Host, UserLogined.UserRouter.R_Port, UserLogined.UserRouter.R_User, UserLogined.UserRouter.R_Password, UserClient);
-                string SmsText = User.UserRouter.RegisterWithSmsMessage + " User: " + fromNum + " Pass: " + Rand;
-                _smsService.SendSms(fromNum, SmsText, User.Id);
+                if (!_mikrotikServices.Usermanager_IsUserExist(User.UserRouter.R_Host, User.UserRouter.R_Port, User.UserRouter.R_User, User.UserRouter.R_Password, UserClient.username))
+                {
+                    _mikrotikServices.Usermanager_UserCreate(User.UserRouter.R_Host, User.UserRouter.R_Port, User.UserRouter.R_User, User.UserRouter.R_Password, UserClient);
+                    string SmsText = User.UserRouter.RegisterWithSmsMessage + "\n User: " + UserClient.username + "\n Pass: " + UserClient.password;
+                    _smsService.SendSms(fromNum, SmsText, User.Id);
+                    _uow.SaveAllChanges();
+                }
             }
             return View();
         }

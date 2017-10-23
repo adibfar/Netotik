@@ -1801,4 +1801,64 @@
     <Value>آخرین لاگین</Value>
   </LocaleResource>
 
+  <LocaleResource Name="Creator">
+    <Value>ایجاد کننده</Value>
+  </LocaleResource>
+
+  <LocaleResource Name="ProfileName">
+    <Value>نام پروفایل</Value>
+  </LocaleResource>
+
+  <LocaleResource Name="LimitationName">
+    <Value>نام محدودیت</Value>
+  </LocaleResource>
+
+  <LocaleResource Name="DownloadUsed">
+    <Value>دانلود استفاده شده</Value>
+  </LocaleResource>
+  <LocaleResource Name="UploadUsed">
+    <Value>آپلود استفاده شده</Value>
+  </LocaleResource>
+  <LocaleResource Name="CreateDate">
+    <Value>تاریخ ایجاد</Value>
+  </LocaleResource>
+  <LocaleResource Name="MarriageDate">
+    <Value>تاریخ ازدواج</Value>
+  </LocaleResource>
+  <LocaleResource Name="SendSmsNow">
+    <Value>پیامک هم اکنون ارسال شود</Value>
+  </LocaleResource>
+  <LocaleResource Name="TerminateCause">
+    <Value>دلیل قطع اتصال</Value>
+  </LocaleResource>
+  <LocaleResource Name="Status">
+    <Value>وضعیت</Value>
+  </LocaleResource>
+  <LocaleResource Name="IpAddress">
+    <Value>آدرس IP</Value>
+  </LocaleResource>
+  <LocaleResource Name="SrcIpAddress">
+    <Value>آدرس مبدا</Value>
+  </LocaleResource>
+  <LocaleResource Name="DstIpAddress">
+    <Value>آدرس مقصد</Value>
+  </LocaleResource>
+  <LocaleResource Name="SrcPort">
+    <Value>پورت مبدا</Value>
+  </LocaleResource>
+  <LocaleResource Name="DstPort">
+    <Value>پورت مقصد</Value>
+  </LocaleResource>
+  <LocaleResource Name="SrcMacAddress">
+    <Value>آدرس Mac مبدا</Value>
+  </LocaleResource>
+  <LocaleResource Name="ContactUsMessageReceived">
+    <Value>پیام شما با موفقیت دریافت شد!</Value>
+  </LocaleResource>
+  <LocaleResource Name="ThanksMessageNetotikSystem">
+    <Value>با تشکر از شما - سیستم مدیریت شبکه نتوتیک</Value>
+  </LocaleResource>
+  <LocaleResource Name="ContactUsEmailMessage">
+    <Value>کاربر گرامی ضمن تقدیر و تشکر از شما بابت ارسال پیام ، ایمیل شما با موفقیت دریافت شد و به زودی پیام شما را بررسی در صورت نیاز پاسخ داده میشود. </Value>
+  </LocaleResource>
 </Language>

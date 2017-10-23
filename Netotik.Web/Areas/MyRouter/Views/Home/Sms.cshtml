@@ -8,6 +8,7 @@
         <div class="col-md-12">
             @using (Html.BeginForm(MVC.MyRouter.Home.ActionNames.Sms, MVC.MyRouter.Home.Name, null, FormMethod.Post, htmlAttributes: new { @class = "cmxform form-horizontal tasi-form", id = "form" }))
             {
+                @Html.HiddenFor(m=>m.SmsActive)
                 @Html.HiddenFor(m=>m.Id)
                 @Html.AntiForgeryToken()
                 <div class="card">

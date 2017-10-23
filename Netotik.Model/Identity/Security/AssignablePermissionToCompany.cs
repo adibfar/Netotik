@@ -87,9 +87,9 @@ namespace Netotik.ViewModels.Identity.Security
         public static readonly RouterPermissionModel HotspotsOnlinePermission = new RouterPermissionModel { Name = HotspotsOnline, Description = "لیست کاربران آنلاین هات اسپات" };
         public static readonly RouterPermissionModel HotspotsAccessPermission = new RouterPermissionModel { Name = HotspotsAccess, Description = "دسترسی ها در هات اسپات" };
 
-        public static readonly RouterPermissionModel TelegramBotPermission = new RouterPermissionModel { Name = HotspotsAccess, Description = "ربات تلگرام" };
-        public static readonly RouterPermissionModel SmsPermission = new RouterPermissionModel { Name = HotspotsAccess, Description = "پیامک" };
-        public static readonly RouterPermissionModel MikrotikConnectionSettingPermission = new RouterPermissionModel { Name = HotspotsAccess, Description = "تنظیمات اتصال میکروتیک" };
+        public static readonly RouterPermissionModel TelegramBotPermission = new RouterPermissionModel { Name = TelegramBot, Description = "ربات تلگرام" };
+        public static readonly RouterPermissionModel SmsPermission = new RouterPermissionModel { Name = Sms, Description = "پیامک" };
+        public static readonly RouterPermissionModel MikrotikConnectionSettingPermission = new RouterPermissionModel { Name = MikrotikConnectionSetting, Description = "تنظیمات اتصال میکروتیک" };
 
         #endregion
 
