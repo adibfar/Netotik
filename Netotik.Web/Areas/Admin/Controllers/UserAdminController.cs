@@ -30,7 +30,7 @@ using System.Net;
 
 namespace Netotik.Web.Areas.Admin.Controllers
 {
-    [BreadCrumb(Title = "UsersList", UseDefaultRouteUrl = true,Order = 0, GlyphIcon = "icon-users2")]
+    [BreadCrumb(Title = "UsersList", UseDefaultRouteUrl = true, Order = 0, GlyphIcon = "icon-users2")]
     public partial class UserAdminController : BasePanelController
     {
 
@@ -98,13 +98,13 @@ namespace Netotik.Web.Areas.Admin.Controllers
         {
             #region Validation
             if (_userManager.CheckAdminPhoneNumberExist(model.PhoneNumber, null))
-                ModelState.AddModelError("PhoneNumber", "این شماره موبایل قبلا در سیستم ثبت شده است");
+                ModelState.AddModelError("PhoneNumber", string.Format(Captions.ExistError, Captions.MobileNumber));
             if (_userManager.CheckUserNameExist(model.UserName, null))
-                ModelState.AddModelError("UserName", "این نام کاربری قبلا در سیستم ثبت شده است");
+                ModelState.AddModelError("UserName", string.Format(Captions.ExistError, Captions.UserName));
             if (!model.Password.IsSafePasword())
-                ModelState.AddModelError("Password", "این کلمه عبور به راحتی قابل تشخیص است");
+                ModelState.AddModelError("Password", Captions.PasswordEasy);
             if (_userManager.CheckAdminEmailExist(model.Email, null))
-                ModelState.AddModelError("Email", "این ایمیل قبلا در سیستم ثبت شده است");
+                ModelState.AddModelError("Email", string.Format(Captions.ExistError, Captions.Email));
             #endregion
 
             if (!ModelState.IsValid)
@@ -115,7 +115,7 @@ namespace Netotik.Web.Areas.Admin.Controllers
             }
             if (model.RoleIds == null || model.RoleIds.Length < 1)
             {
-                this.MessageError(Captions.MissionFail, "لطفا برای  کاربر مورد نظر ، گروه کاربری تعیین کنید");
+                this.MessageError(Captions.MissionFail, Captions.SelectRole);
                 await PopulateRoles(model.RoleIds);
                 return View(model);
             }
@@ -146,7 +146,7 @@ namespace Netotik.Web.Areas.Admin.Controllers
         #endregion
 
 
-        
+
         #region Edit
         [Mvc5Authorize(Roles = AssignableToRolePermissions.CanEditUser)]
         [HttpPost]
@@ -205,11 +205,11 @@ namespace Netotik.Web.Areas.Admin.Controllers
         {
             #region Validation
             if (_userManager.CheckAdminPhoneNumberExist(model.PhoneNumber, model.Id))
-                ModelState.AddModelError("PhoneNumber", "این شماره موبایل قبلا در سیستم ثبت شده است");
+                ModelState.AddModelError("PhoneNumber", string.Format(Captions.ExistError, Captions.MobileNumber));
             if (_userManager.CheckUserNameExist(model.UserName, model.Id))
-                ModelState.AddModelError("UserName", "این نام کاربری قبلا در سیستم ثبت شده است");
+                ModelState.AddModelError("UserName", string.Format(Captions.ExistError, Captions.UserName));
             if (_userManager.CheckAdminEmailExist(model.Email, model.Id))
-                ModelState.AddModelError("Email", "این ایمیل قبلا در سیستم ثبت شده است");
+                ModelState.AddModelError("Email", string.Format(Captions.ExistError, Captions.Email));
             #endregion
 
 
@@ -246,7 +246,7 @@ namespace Netotik.Web.Areas.Admin.Controllers
                 if (model.Picture != null)
                     DeleteFile(Server.MapPath(Path.Combine(FilePathes._imagesUserAvatarsPath, model.Picture.FileName)));
 
-                this.MessageError(Captions.MissionFail, "لطفا برای کاربر مورد نظر ، گروه کاربری تعیین کنید");
+                this.MessageError(Captions.MissionFail, Captions.SelectRole);
                 await PopulateRoles();
                 return View(model);
             }

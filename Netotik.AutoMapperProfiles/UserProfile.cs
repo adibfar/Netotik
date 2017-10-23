@@ -129,6 +129,17 @@ namespace Netotik.AutoMapperProfiles
               .ForMember(d => d.Userman_Customer, m => m.MapFrom(t => t.UserRouter.Userman_Customer))
               .IgnoreAllNonExisting();
 
+            CreateMap<User, ViewModels.Identity.UserRouter.RouterAdminEditModel>()
+              .ForMember(d => d.ResellerId, m => m.MapFrom(t => t.UserRouter.UserResellerId))
+              .ForMember(d => d.NationalCode, m => m.MapFrom(t => t.UserRouter.NationalCode))
+              .ForMember(d => d.RouterCode, m => m.MapFrom(t => t.UserRouter.RouterCode))
+              .ForMember(d => d.R_User, m => m.MapFrom(t => t.UserRouter.R_User))
+              .ForMember(d => d.R_Port, m => m.MapFrom(t => t.UserRouter.R_Port))
+              .ForMember(d => d.R_Password, m => m.MapFrom(t => t.UserRouter.R_Password))
+              .ForMember(d => d.R_Host, m => m.MapFrom(t => t.UserRouter.R_Host))
+              .ForMember(d => d.Userman_Customer, m => m.MapFrom(t => t.UserRouter.Userman_Customer))
+              .IgnoreAllNonExisting();
+
             CreateMap<User, ViewModels.Identity.UserRouter.MikrotikConfModel>()
               .ForMember(d => d.R_Host, m => m.MapFrom(t => t.UserRouter.R_Host))
               .ForMember(d => d.R_Password, m => m.MapFrom(t => t.UserRouter.R_Password))
@@ -216,6 +227,20 @@ namespace Netotik.AutoMapperProfiles
              .IgnoreAllNonExisting();
 
             CreateMap<ViewModels.Identity.UserRouter.RouterEditModel, User>()
+                .ForMember(d => d.EditDate, m => m.UseValue(DateTime.Now))
+                .ForMember(d => d.UserName, m => m.MapFrom(s => s.UserName.ToLower()))
+                .ForMember(d => d.UserRouter, opt => opt.MapFrom(s => s))
+                .ForMember(d => d.Roles, m => m.Ignore())
+                .ForMember(d => d.Claims, m => m.Ignore())
+                .ForMember(d => d.Logins, m => m.Ignore())
+                .IgnoreAllNonExisting();
+
+
+            CreateMap<ViewModels.Identity.UserRouter.RouterAdminEditModel, UserRouter>()
+              .ForMember(d => d.UserResellerId, m => m.MapFrom(s => s.ResellerId))
+             .IgnoreAllNonExisting();
+
+            CreateMap<ViewModels.Identity.UserRouter.RouterAdminEditModel, User>()
                 .ForMember(d => d.EditDate, m => m.UseValue(DateTime.Now))
                 .ForMember(d => d.UserName, m => m.MapFrom(s => s.UserName.ToLower()))
                 .ForMember(d => d.UserRouter, opt => opt.MapFrom(s => s))

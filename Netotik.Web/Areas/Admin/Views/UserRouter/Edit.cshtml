@@ -1,4 +1,4 @@
-﻿@model Netotik.ViewModels.Identity.UserRouter.RouterEditModel
+﻿@model Netotik.ViewModels.Identity.UserRouter.RouterAdminEditModel
 @{
     var clientPermissions = ViewBag.ClientPermissions as List<SelectListItem>;
     ViewBag.Title = Netotik.Resources.Captions.EditUser;
@@ -58,6 +58,18 @@
                                                         <i class="icon-list-numbered"></i>
                                                     </div>
                                                     @Html.ValidationMessageFor(model => model.NationalCode, "", htmlAttributes: new { @class = "text-danger" })
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="form-group has-icon-left">
+                                                @Html.LabelFor(m => m.ResellerId)
+                                                <div class="position-relative has-icon-left">
+                                                    @Html.DropDownListFor(m => m.ResellerId,ViewBag.Resellers as SelectList, new { @class = "form-control" })
+                                                    <div class="form-control-position">
+                                                        <i class="icon-user-tie"></i>
+                                                    </div>
+                                                    @Html.ValidationMessageFor(model => model.ResellerId, "", htmlAttributes: new { @class = "text-danger" })
                                                 </div>
                                             </div>
                                         </div>

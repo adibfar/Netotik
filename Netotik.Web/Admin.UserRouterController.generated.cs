@@ -77,6 +77,13 @@ namespace Netotik.Web.Areas.Admin.Controllers
         }
         [NonAction]
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public virtual System.Threading.Tasks.Task<System.Web.Mvc.ActionResult> LoginRouter()
+        {
+            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.LoginRouter);
+            return System.Threading.Tasks.Task.FromResult(callInfo as System.Web.Mvc.ActionResult);
+        }
+        [NonAction]
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public virtual System.Web.Mvc.ActionResult RedirectToLocal()
         {
             return new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.RedirectToLocal);
@@ -99,11 +106,11 @@ namespace Netotik.Web.Areas.Admin.Controllers
         {
             public readonly string Index = "Index";
             public readonly string GetList = "GetList";
-            public readonly string Create = "Create";
             public readonly string Remove = "Remove";
             public readonly string Detail = "Detail";
             public readonly string Edit = "Edit";
             public readonly string ChangePassword = "ChangePassword";
+            public readonly string LoginRouter = "LoginRouter";
             public readonly string Disable = "Disable";
             public readonly string Enable = "Enable";
             public readonly string RedirectToLocal = "RedirectToLocal";
@@ -114,11 +121,11 @@ namespace Netotik.Web.Areas.Admin.Controllers
         {
             public const string Index = "Index";
             public const string GetList = "GetList";
-            public const string Create = "Create";
             public const string Remove = "Remove";
             public const string Detail = "Detail";
             public const string Edit = "Edit";
             public const string ChangePassword = "ChangePassword";
+            public const string LoginRouter = "LoginRouter";
             public const string Disable = "Disable";
             public const string Enable = "Enable";
             public const string RedirectToLocal = "RedirectToLocal";
@@ -165,6 +172,14 @@ namespace Netotik.Web.Areas.Admin.Controllers
         public class ActionParamsClass_ChangePassword
         {
             public readonly string model = "model";
+        }
+        static readonly ActionParamsClass_LoginRouter s_params_LoginRouter = new ActionParamsClass_LoginRouter();
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public ActionParamsClass_LoginRouter LoginRouterParams { get { return s_params_LoginRouter; } }
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public class ActionParamsClass_LoginRouter
+        {
+            public readonly string id = "id";
         }
         static readonly ActionParamsClass_Disable s_params_Disable = new ActionParamsClass_Disable();
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -241,17 +256,6 @@ namespace Netotik.Web.Areas.Admin.Controllers
         }
 
         [NonAction]
-        partial void CreateOverride(T4MVC_System_Web_Mvc_ActionResult callInfo);
-
-        [NonAction]
-        public override System.Web.Mvc.ActionResult Create()
-        {
-            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Create);
-            CreateOverride(callInfo);
-            return callInfo;
-        }
-
-        [NonAction]
         partial void RemoveOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, long id);
 
         [NonAction]
@@ -288,10 +292,10 @@ namespace Netotik.Web.Areas.Admin.Controllers
         }
 
         [NonAction]
-        partial void EditOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, Netotik.ViewModels.Identity.UserRouter.RouterEditModel model);
+        partial void EditOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, Netotik.ViewModels.Identity.UserRouter.RouterAdminEditModel model);
 
         [NonAction]
-        public override System.Threading.Tasks.Task<System.Web.Mvc.ActionResult> Edit(Netotik.ViewModels.Identity.UserRouter.RouterEditModel model)
+        public override System.Threading.Tasks.Task<System.Web.Mvc.ActionResult> Edit(Netotik.ViewModels.Identity.UserRouter.RouterAdminEditModel model)
         {
             var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Edit);
             ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "model", model);
@@ -319,6 +323,18 @@ namespace Netotik.Web.Areas.Admin.Controllers
             var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.ChangePassword);
             ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "model", model);
             ChangePasswordOverride(callInfo, model);
+            return System.Threading.Tasks.Task.FromResult(callInfo as System.Web.Mvc.ActionResult);
+        }
+
+        [NonAction]
+        partial void LoginRouterOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, long id);
+
+        [NonAction]
+        public override System.Threading.Tasks.Task<System.Web.Mvc.ActionResult> LoginRouter(long id)
+        {
+            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.LoginRouter);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "id", id);
+            LoginRouterOverride(callInfo, id);
             return System.Threading.Tasks.Task.FromResult(callInfo as System.Web.Mvc.ActionResult);
         }
 

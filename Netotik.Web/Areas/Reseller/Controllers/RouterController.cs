@@ -34,7 +34,7 @@ using System.Net;
 
 namespace Netotik.Web.Areas.Reseller.Controllers
 {
-    [BreadCrumb(Title = "UsersList", UseDefaultRouteUrl = true, RemoveAllDefaultRouteValues = true,
+    [BreadCrumb(Title = "RouterList", UseDefaultRouteUrl = true, RemoveAllDefaultRouteValues = true,
  Order = 0, GlyphIcon = "icon icon-table")]
     public partial class RouterController : BasePanelController
     {
@@ -81,7 +81,7 @@ namespace Netotik.Web.Areas.Reseller.Controllers
         #endregion
 
         [Mvc5Authorize(Roles = "Reseller")]
-        [BreadCrumb(Title = "NewUser", Order = 1)]
+        [BreadCrumb(Title = "NewRouter", Order = 1)]
         public virtual ActionResult Create()
         {
             PopulateClientPermissions();
@@ -103,7 +103,7 @@ namespace Netotik.Web.Areas.Reseller.Controllers
         }
 
         [Mvc5Authorize(Roles = "Reseller")]
-        [BreadCrumb(Title = "NewUser", Order = 1)]
+        [BreadCrumb(Title = "NewRouter", Order = 1)]
         [ValidateAntiForgeryToken]
         [HttpPost]
         public virtual async Task<ActionResult> Create(Register model)
@@ -111,14 +111,20 @@ namespace Netotik.Web.Areas.Reseller.Controllers
             PopulateClientPermissions(model.ClientPermissionNames);
             PopulateRouterPermissions(model.RouterPermissionNames);
 
-            if (_applicationUserManager.CheckResellerEmailExist(model.Email, null))
-                ModelState.AddModelError("Email", Captions.NotValidError);
+            if (_userManager.CheckRouterPhoneNumberExist(model.PhoneNumber, null))
+                ModelState.AddModelError("PhoneNumber", string.Format(Captions.ExistError, Captions.MobileNumber));
 
-            if (_applicationUserManager.CheckUserNameExist(model.UserName, null))
-                ModelState.AddModelError("UserName", Captions.NotValidError);
+            if (_userManager.CheckUserNameExist(model.UserName, null))
+                ModelState.AddModelError("UserName", string.Format(Captions.ExistError, Captions.UserName));
 
-            if (!model.Password.IsSafePasword())
-                ModelState.AddModelError("Password", Captions.PasswordEasy);
+            if (_userManager.CheckRouterEmailExist(model.Email, null))
+                ModelState.AddModelError("Email", string.Format(Captions.ExistError, Captions.Email));
+
+            if (!_userManager.IsNationalCodeValid(model.NationalCode))
+                ModelState.AddModelError("NationalCode", string.Format(Captions.NotValidError, Captions.NationalCode));
+
+            if (_userManager.CheckRouterRouterCodeExist(model.RouterCode, null))
+                ModelState.AddModelError("RouterCode", string.Format(Captions.ExistError, Captions.RouterCode));
 
             if (!ModelState.IsValid)
             {
@@ -179,7 +185,7 @@ namespace Netotik.Web.Areas.Reseller.Controllers
 
         #region Edit
         [Mvc5Authorize(Roles = "Reseller")]
-        [BreadCrumb(Title = "EditUser", Order = 1)]
+        [BreadCrumb(Title = "EditRouter", Order = 1)]
         public virtual async Task<ActionResult> Edit(long? id)
         {
             
@@ -204,7 +210,7 @@ namespace Netotik.Web.Areas.Reseller.Controllers
         }
 
         [Mvc5Authorize(Roles = "Reseller")]
-        [BreadCrumb(Title = "EditUser", Order = 1)]
+        [BreadCrumb(Title = "EditRouter", Order = 1)]
         [ValidateAntiForgeryToken]
         [HttpPost]
         public virtual async Task<ActionResult> Edit(RouterEditModel model)
@@ -217,6 +223,22 @@ namespace Netotik.Web.Areas.Reseller.Controllers
             }
             PopulateClientPermissions(model.ClientPermissionNames);
             PopulateRouterPermissions(model.RouterPermissionNames);
+
+            if (_userManager.CheckRouterPhoneNumberExist(model.PhoneNumber, model.Id))
+                ModelState.AddModelError("PhoneNumber", string.Format(Captions.ExistError, Captions.MobileNumber));
+
+            if (_userManager.CheckUserNameExist(model.UserName, model.Id))
+                ModelState.AddModelError("UserName", string.Format(Captions.ExistError, Captions.UserName));
+
+            if (_userManager.CheckRouterEmailExist(model.Email, model.Id))
+                ModelState.AddModelError("Email", string.Format(Captions.ExistError, Captions.Email));
+
+            if (!_userManager.IsNationalCodeValid(model.NationalCode))
+                ModelState.AddModelError("NationalCode", string.Format(Captions.NotValidError, Captions.NationalCode));
+
+            if (_userManager.CheckRouterRouterCodeExist(model.RouterCode, model.Id))
+                ModelState.AddModelError("RouterCode", string.Format(Captions.ExistError, Captions.RouterCode));
+
 
             if (!ModelState.IsValid)
             {

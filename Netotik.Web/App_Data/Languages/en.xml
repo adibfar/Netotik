@@ -1199,7 +1199,7 @@
   </LocaleResource>
 
   <LocaleResource Name="EditRouter">
-    <Value>Edit router</Value>
+    <Value>Edit Router</Value>
   </LocaleResource>
 
   <LocaleResource Name="BussinesName">
@@ -1284,4 +1284,18 @@
   <LocaleResource Name="ContactUsEmailMessage">
     <Value>Thanks To send message, We will reply to your message as soon as possible.</Value>
   </LocaleResource>
+
+  <LocaleResource Name="CantLogin">
+    <Value>
+      In this moment you can not login in this site..
+    </Value>
+  </LocaleResource>
+
+  <LocaleResource Name="AccountLockMessage">
+    <Value>
+      Your Account has locked. please try again after {0} minuts..
+    </Value>
+  </LocaleResource>
+
+
 </Language>

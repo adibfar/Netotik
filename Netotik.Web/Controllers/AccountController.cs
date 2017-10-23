@@ -60,6 +60,22 @@ namespace Netotik.Web.Controllers
         [AllowAnonymous]
         public virtual ActionResult Login(string ReturnUrl)
         {
+            if (User.Identity.IsAuthenticated)
+            {
+                if (UserLogined.UserType==Domain.Entity.UserType.UserAdmin)
+                {
+                    return RedirectToAction(MVC.Admin.Home.MyProfile());
+                }
+                else if (UserLogined.UserType == Domain.Entity.UserType.UserReseller)
+                {
+                    return RedirectToAction(MVC.Reseller.Home.MyProfile());
+                }
+                else if (UserLogined.UserType == Domain.Entity.UserType.UserRouter)
+                {
+                    return RedirectToAction(MVC.MyRouter.Home.MyProfile());
+                }
+            }
+
             ViewBag.ReturnUrl = ReturnUrl;
             return View();
         }
@@ -113,23 +129,24 @@ namespace Netotik.Web.Controllers
             switch (result)
             {
                 case SignInStatus.Success:
+                    loggedinUser.LastLoginDate = DateTime.Now;
+                    loggedinUser.LastLoginIpAddress = GetMyIp();
+                    await _unitOfWork.SaveAllChangesAsync();
+
                     if (!string.IsNullOrWhiteSpace(ReturnUrl))
                         return RedirectToLocal(ReturnUrl);
                     else
                         return RedirectToAction(MVC.Admin.Home.Index());
 
                 case SignInStatus.LockedOut:
-                    ModelState.AddModelError("UserName",
-                        $"دقیقه دوباره امتحان کنید {_applicationUserManager.DefaultAccountLockoutTimeSpan} حساب شما قفل شد ! لطفا بعد از");
+                    ModelState.AddModelError("UserName", string.Format(Captions.AccountLockMessage, _applicationUserManager.DefaultAccountLockoutTimeSpan));
                     return View(model);
                 case SignInStatus.Failure:
                     ModelState.AddModelError("UserName", Captions.UsernameOrPasswordWrong);
                     ModelState.AddModelError("Password", Captions.UsernameOrPasswordWrong);
                     return View(model);
                 default:
-                    ModelState.AddModelError("UserName",
-                        "در این لحظه امکان ورود به  سابت وجود ندارد . مراتب را با مسئولان سایت در میان بگذارید"
-                       );
+                    ModelState.AddModelError("UserName", Captions.CantLogin);
                     return View(model);
             }
         }

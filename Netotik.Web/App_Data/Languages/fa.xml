@@ -1778,7 +1778,7 @@
   </LocaleResource>
 
   <LocaleResource Name="EditRouter">
-    <Value>روتر جدید</Value>
+    <Value>ویرایش  اطلاعات روتر</Value>
   </LocaleResource>
   
   <LocaleResource Name="BussinesName">
@@ -1861,4 +1861,16 @@
   <LocaleResource Name="ContactUsEmailMessage">
     <Value>کاربر گرامی ضمن تقدیر و تشکر از شما بابت ارسال پیام ، ایمیل شما با موفقیت دریافت شد و به زودی پیام شما را بررسی در صورت نیاز پاسخ داده میشود. </Value>
   </LocaleResource>
+  <LocaleResource Name="CantLogin">
+    <Value>
+      در این لحظه امکان ورود به  سایت وجود ندارد . مراتب را با مسئولان سایت در میان بگذارید
+    </Value>
+  </LocaleResource>
+
+  <LocaleResource Name="AccountLockMessage">
+    <Value>
+      دقیقه دوباره امتحان کنید {0} حساب شما قفل شد ! لطفا بعد از
+    </Value>
+  </LocaleResource>
+
 </Language>

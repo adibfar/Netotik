@@ -81,6 +81,8 @@
                                          result += '<a onclick="active(' + full.Id + ');" class="dropdown-item">'
                                             + '<i class="icon-checkmark2"></i> '+'@Captions.Enable'+'</a>';
                                      }
+                                             result += '<a onclick="login(' + full.Id + ');" class="dropdown-item">'
+                                             + '<i class="icon-log-in"></i> '+'@Captions.Login'+'</a>';
                                  }
 
                                  if (canDelete == 'True') {
@@ -107,17 +109,20 @@
         });
 
 
+        function login(id) {
+            PostData("@Url.Action(MVC.Admin.UserRouter.LoginRouter())",{id:id});
+        }
         function remove(id) {
                 PostData("@Url.Action(MVC.Admin.UserRouter.Remove())", { id: id });
         }
 
-        @*function active(id) {
-                PostData("@Url.Action(MVC.Admin.UserRouter.Active())", { id: id });
-        }*@
+        function active(id) {
+                PostData("@Url.Action(MVC.Admin.UserRouter.Enable())", { id: id });
+        }
 
-        @*function banne(id) {
-                PostData("@Url.Action(MVC.Admin.UserRouter.Banne())", { id: id });
-        }*@
+        function banne(id) {
+                PostData("@Url.Action(MVC.Admin.UserRouter.Disable())", { id: id });
+        }
     </script>
 }
 

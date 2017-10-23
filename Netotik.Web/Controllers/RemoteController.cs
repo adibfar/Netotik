@@ -97,7 +97,7 @@ namespace Netotik.Web.Controllers
         [OutputCache(Location = OutputCacheLocation.None, NoStore = true, Duration = 0, VaryByParam = "*")]
         public virtual JsonResult IsRouterPhoneNumberAvailable(string phoneNumber, long? Id, long? Resellerid)
         {
-            var check = _applicationUserManager.CheckRouterPhoneNumberExist(phoneNumber, Id, Resellerid);
+            var check = _applicationUserManager.CheckRouterPhoneNumberExist(phoneNumber, Id);
             return check ? Json(false) : Json(true);
         }
         #endregion
@@ -173,7 +173,7 @@ namespace Netotik.Web.Controllers
         [OutputCache(Location = OutputCacheLocation.None, NoStore = true, Duration = 0, VaryByParam = "*")]
         public virtual JsonResult IsRouterCodeAvailable(string RouterCode, long? Id, long? Resellerid)
         {
-            var check = _applicationUserManager.CheckRouterRouterNameExist(RouterCode, Id, Resellerid);
+            var check = _applicationUserManager.CheckRouterRouterCodeExist(RouterCode, Id);
             return check ? Json(false) : Json(true);
 
         }
