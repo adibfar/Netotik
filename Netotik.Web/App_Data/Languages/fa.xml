@@ -1872,5 +1872,10 @@
       دقیقه دوباره امتحان کنید {0} حساب شما قفل شد ! لطفا بعد از
     </Value>
   </LocaleResource>
+  <LocaleResource Name="CantConnectToRouter">
+    <Value>
+      خطا در اتصال به روتر..
+    </Value>
+  </LocaleResource>
 
 </Language>

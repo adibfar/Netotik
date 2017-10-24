@@ -1297,5 +1297,11 @@
     </Value>
   </LocaleResource>
 
+  <LocaleResource Name="CantConnectToRouter">
+    <Value>
+      Cant Connect To Router..
+    </Value>
+  </LocaleResource>
+  
 
 </Language>

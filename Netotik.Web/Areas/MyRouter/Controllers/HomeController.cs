@@ -269,19 +269,6 @@ Order = 0, GlyphIcon = "icon icon-table")]
         {
             var Model = new SmsModel();
             Model = _applicationUserManager.GetUserRouterSmsSettings(UserLogined.Id);
-            if (_mikrotikServices.IP_Port_Check(UserLogined.UserRouter.R_Host, UserLogined.UserRouter.R_Port, UserLogined.UserRouter.R_User, UserLogined.UserRouter.R_Password))
-            {
-                if (_mikrotikServices.User_Pass_Check(UserLogined.UserRouter.R_Host, UserLogined.UserRouter.R_Port, UserLogined.UserRouter.R_User, UserLogined.UserRouter.R_Password))
-                {
-                    ViewBag.profiles = _mikrotikServices.Usermanager_GetAllProfile(UserLogined.UserRouter.R_Host, UserLogined.UserRouter.R_Port, UserLogined.UserRouter.R_User, UserLogined.UserRouter.R_Password);
-                }
-                else
-                    this.MessageError(Captions.Error, Captions.UserPasswordClientError);
-            }
-            else
-                this.MessageError(Captions.Error, Captions.IPPORTClientError);
-
-
             ViewBag.Packages = _smsPackageService.All()
                 .Where(x => x.IsActive)
                 .OrderByDescending(x => x.Order).ToList();
@@ -297,17 +284,6 @@ Order = 0, GlyphIcon = "icon icon-table")]
          .Where(x => x.IsActive)
          .OrderByDescending(x => x.Order).ToList();
             model.SmsCharge = UserLogined.UserRouter.SmsCharge;
-            if (_mikrotikServices.IP_Port_Check(UserLogined.UserRouter.R_Host, UserLogined.UserRouter.R_Port, UserLogined.UserRouter.R_User, UserLogined.UserRouter.R_Password))
-            {
-                if (_mikrotikServices.User_Pass_Check(UserLogined.UserRouter.R_Host, UserLogined.UserRouter.R_Port, UserLogined.UserRouter.R_User, UserLogined.UserRouter.R_Password))
-                {
-                    ViewBag.profiles = _mikrotikServices.Usermanager_GetAllProfile(UserLogined.UserRouter.R_Host, UserLogined.UserRouter.R_Port, UserLogined.UserRouter.R_User, UserLogined.UserRouter.R_Password);
-                }
-                else
-                    this.MessageError(Captions.Error, Captions.UserPasswordClientError);
-            }
-            else
-                this.MessageError(Captions.Error, Captions.IPPORTClientError);
 
 
             if (ModelState.IsValid)
@@ -328,7 +304,7 @@ Order = 0, GlyphIcon = "icon icon-table")]
             var paymentType = _paymentTypeService.All().FirstOrDefault();
             if (paymentType == null)
             {
-                this.MessageError(Captions.MissionFail, "درگاه پرداختی در سیسیتم ثبت نشده. با مدیریت تماس بگیرید.");
+                this.MessageError(Captions.MissionFail, "درگاه پرداختی در سیستم ثبت نشده. با مدیریت تماس بگیرید.");
                 return RedirectToAction(MVC.MyRouter.Home.Sms());
             }
 
@@ -362,7 +338,6 @@ Order = 0, GlyphIcon = "icon icon-table")]
             if (Status == 100)
             {
                 Response.Redirect(paymentType.GateWayUrl + Authority);
-                //https://www.zarinpal.com/pg/StartPay/
             }
             else
             {
@@ -372,31 +347,16 @@ Order = 0, GlyphIcon = "icon icon-table")]
             return RedirectToAction(MVC.MyRouter.Home.Sms());
         }
 
-        [HttpPost]
-        public virtual ActionResult DisableSMS(long id)
+        public virtual ActionResult LoadProfiles()
         {
-            if (UserLogined.Id != id)
-            {
-                this.MessageError(Captions.Error, Captions.InvalidDataError);
-                return RedirectToAction(MVC.MyRouter.Home.ActionNames.Sms, MVC.MyRouter.Home.Name, new { area = MVC.MyRouter.Name });
-            }
-            var user = _applicationUserManager.FindUserById(UserLogined.Id);
-            user.UserRouter.SmsActive = false;
-            _uow.SaveAllChanges();
-            return RedirectToAction(MVC.MyRouter.Home.ActionNames.Sms, MVC.MyRouter.Home.Name, new { area = MVC.MyRouter.Name });
-        }
-        [HttpPost]
-        public virtual ActionResult EnableSMS(long id)
-        {
-            if (UserLogined.Id != id)
-            {
-                this.MessageError(Captions.Error, Captions.InvalidDataError);
-                return RedirectToAction(MVC.MyRouter.Home.ActionNames.Sms, MVC.MyRouter.Home.Name, new { area = MVC.MyRouter.Name });
-            }
-            var user = _applicationUserManager.FindUserById(UserLogined.Id);
-            user.UserRouter.SmsActive = true;
-            _uow.SaveAllChanges();
-            return RedirectToAction(MVC.MyRouter.Home.ActionNames.Sms, MVC.MyRouter.Home.Name, new { area = MVC.MyRouter.Name });
+            if (_mikrotikServices.IP_Port_Check(UserLogined.UserRouter.R_Host, UserLogined.UserRouter.R_Port, UserLogined.UserRouter.R_User, UserLogined.UserRouter.R_Password))
+                if (_mikrotikServices.User_Pass_Check(UserLogined.UserRouter.R_Host, UserLogined.UserRouter.R_Port, UserLogined.UserRouter.R_User, UserLogined.UserRouter.R_Password))
+                {
+                    var listProfiles = _mikrotikServices.Usermanager_GetAllProfile(UserLogined.UserRouter.R_Host, UserLogined.UserRouter.R_Port, UserLogined.UserRouter.R_User, UserLogined.UserRouter.R_Password);
+                    ViewBag.profiles = new SelectList(listProfiles, "name", "name", UserLogined.UserRouter.RegisterWithSmsRouterProfile);
+                }
+
+            return PartialView(MVC.MyRouter.Home.Views._Profiles);
         }
 
         [NonAction]

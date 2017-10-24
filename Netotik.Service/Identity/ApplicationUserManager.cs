@@ -848,8 +848,11 @@ namespace Netotik.Services.Identity
 
             user.UserRouter.RouterPermissions = XmlRouterPermissions;
 
+            user.UserRouter.UserRouterRegisterSetting = new UserRouterRegisterSetting();
             user.UserType = UserType.UserRouter;
             user.EmailConfirmed = false;
+            
+
             await CreateAsync(user, viewModel.Password);
             return user.Id;
 
