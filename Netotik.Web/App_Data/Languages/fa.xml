@@ -1877,4 +1877,10 @@
       دریافت نام کاربری و رمز عبور دوباره(ساعت)
     </Value>
   </LocaleResource>
+  <LocaleResource Name="CantConnectToRouter">
+    <Value>
+      خطا در اتصال به روتر..
+    </Value>
+  </LocaleResource>
+
 </Language>

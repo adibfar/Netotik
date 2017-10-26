@@ -1,0 +1,13 @@
+﻿
+@if (ViewBag.profiles == null)
+{
+    <label>@Captions.RegisterWithSmsRouterProfile</label>
+    <div class="alert alert-danger">
+        @Captions.CantConnectToRouter
+    </div>
+}
+else
+{
+    <label>@Captions.RegisterWithSmsRouterProfile</label>
+    @Html.DropDownList("RegisterWithSmsRouterProfile", ViewBag.profiles as SelectList, Captions.RegisterWithSmsRouterProfile, new { @class = "selectize-select" })
+}

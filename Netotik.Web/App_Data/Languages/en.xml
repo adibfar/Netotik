@@ -1296,6 +1296,13 @@
       Your Account has locked. please try again after {0} minuts..
     </Value>
   </LocaleResource>
+
+  <LocaleResource Name="CantConnectToRouter">
+    <Value>
+      Cant Connect To Router..
+    </Value>
+  </LocaleResource>
+  
   <LocaleResource Name="RegisterWithSmsAgainHour">
     <Value>
       Recreate account(Hour)

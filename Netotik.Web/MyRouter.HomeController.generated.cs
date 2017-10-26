@@ -78,18 +78,6 @@ namespace Netotik.Web.Areas.MyRouter.Controllers
         }
         [NonAction]
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public virtual System.Web.Mvc.ActionResult DisableSMS()
-        {
-            return new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.DisableSMS);
-        }
-        [NonAction]
-        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public virtual System.Web.Mvc.ActionResult EnableSMS()
-        {
-            return new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.EnableSMS);
-        }
-        [NonAction]
-        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public virtual System.Web.Mvc.ActionResult RedirectToLocal()
         {
             return new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.RedirectToLocal);
@@ -120,8 +108,7 @@ namespace Netotik.Web.Areas.MyRouter.Controllers
             public readonly string ChangePassword = "ChangePassword";
             public readonly string Sms = "Sms";
             public readonly string BuySmsPackage = "BuySmsPackage";
-            public readonly string DisableSMS = "DisableSMS";
-            public readonly string EnableSMS = "EnableSMS";
+            public readonly string LoadProfiles = "LoadProfiles";
             public readonly string GetUserCount = "GetUserCount";
             public readonly string GetPackageCount = "GetPackageCount";
             public readonly string GetActiceSessionCount = "GetActiceSessionCount";
@@ -143,8 +130,7 @@ namespace Netotik.Web.Areas.MyRouter.Controllers
             public const string ChangePassword = "ChangePassword";
             public const string Sms = "Sms";
             public const string BuySmsPackage = "BuySmsPackage";
-            public const string DisableSMS = "DisableSMS";
-            public const string EnableSMS = "EnableSMS";
+            public const string LoadProfiles = "LoadProfiles";
             public const string GetUserCount = "GetUserCount";
             public const string GetPackageCount = "GetPackageCount";
             public const string GetActiceSessionCount = "GetActiceSessionCount";
@@ -210,22 +196,6 @@ namespace Netotik.Web.Areas.MyRouter.Controllers
         {
             public readonly string id = "id";
         }
-        static readonly ActionParamsClass_DisableSMS s_params_DisableSMS = new ActionParamsClass_DisableSMS();
-        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public ActionParamsClass_DisableSMS DisableSMSParams { get { return s_params_DisableSMS; } }
-        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public class ActionParamsClass_DisableSMS
-        {
-            public readonly string id = "id";
-        }
-        static readonly ActionParamsClass_EnableSMS s_params_EnableSMS = new ActionParamsClass_EnableSMS();
-        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public ActionParamsClass_EnableSMS EnableSMSParams { get { return s_params_EnableSMS; } }
-        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public class ActionParamsClass_EnableSMS
-        {
-            public readonly string id = "id";
-        }
         static readonly ActionParamsClass_RedirectToLocal s_params_RedirectToLocal = new ActionParamsClass_RedirectToLocal();
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public ActionParamsClass_RedirectToLocal RedirectToLocalParams { get { return s_params_RedirectToLocal; } }
@@ -247,6 +217,7 @@ namespace Netotik.Web.Areas.MyRouter.Controllers
                 public readonly string _ImageProfile = "_ImageProfile";
                 public readonly string _IndexChart = "_IndexChart";
                 public readonly string _ProfileData = "_ProfileData";
+                public readonly string _Profiles = "_Profiles";
                 public readonly string ChangePassword = "ChangePassword";
                 public readonly string Index = "Index";
                 public readonly string MikrotikConf = "MikrotikConf";
@@ -257,6 +228,7 @@ namespace Netotik.Web.Areas.MyRouter.Controllers
             public readonly string _ImageProfile = "~/Areas/MyRouter/Views/Home/_ImageProfile.cshtml";
             public readonly string _IndexChart = "~/Areas/MyRouter/Views/Home/_IndexChart.cshtml";
             public readonly string _ProfileData = "~/Areas/MyRouter/Views/Home/_ProfileData.cshtml";
+            public readonly string _Profiles = "~/Areas/MyRouter/Views/Home/_Profiles.cshtml";
             public readonly string ChangePassword = "~/Areas/MyRouter/Views/Home/ChangePassword.cshtml";
             public readonly string Index = "~/Areas/MyRouter/Views/Home/Index.cshtml";
             public readonly string MikrotikConf = "~/Areas/MyRouter/Views/Home/MikrotikConf.cshtml";
@@ -433,26 +405,13 @@ namespace Netotik.Web.Areas.MyRouter.Controllers
         }
 
         [NonAction]
-        partial void DisableSMSOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, long id);
+        partial void LoadProfilesOverride(T4MVC_System_Web_Mvc_ActionResult callInfo);
 
         [NonAction]
-        public override System.Web.Mvc.ActionResult DisableSMS(long id)
+        public override System.Web.Mvc.ActionResult LoadProfiles()
         {
-            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.DisableSMS);
-            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "id", id);
-            DisableSMSOverride(callInfo, id);
-            return callInfo;
-        }
-
-        [NonAction]
-        partial void EnableSMSOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, long id);
-
-        [NonAction]
-        public override System.Web.Mvc.ActionResult EnableSMS(long id)
-        {
-            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.EnableSMS);
-            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "id", id);
-            EnableSMSOverride(callInfo, id);
+            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.LoadProfiles);
+            LoadProfilesOverride(callInfo);
             return callInfo;
         }
 
