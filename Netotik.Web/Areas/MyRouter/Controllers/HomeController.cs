@@ -482,22 +482,48 @@ Order = 0, GlyphIcon = "icon icon-table")]
         public virtual JsonResult GetLastProfile()
         {
 
-            var Payments = _mikrotikServices.Usermanager_Payment(UserLogined.UserRouter.R_Host, UserLogined.UserRouter.R_Port, UserLogined.UserRouter.R_User, UserLogined.UserRouter.R_Password, "").OrderByDescending(x => x.trans_end).Take(10);
+            //var Payments = _mikrotikServices.Usermanager_Payment(UserLogined.UserRouter.R_Host, UserLogined.UserRouter.R_Port, UserLogined.UserRouter.R_User, UserLogined.UserRouter.R_Password, "").OrderByDescending(x => x.trans_end).Take(10);
 
-            var Price = new string[10];
-            var Trans = new string[10];
+            //var Price = new string[10];
+            //var Trans = new string[10];
 
-            int i = 0;
-            foreach (var item in Payments)
+            //int i = 0;
+            //foreach (var item in Payments)
+            //{
+            //    Trans[i] = item.user + " - " + EnglishConvertDate.ConvertToFa(item.trans_end.Split(' ')[0], "d") + " " + item.trans_end.Split(' ')[1];
+            //    Price[i] = item.price.Length > 2 ? item.price.Remove(item.price.Length - 2, 2) : item.price;
+            //    i++;
+            //}
+            //return Json(new
+            //{
+            //    Price = Price,
+            //    Trans = Trans
+            //}, JsonRequestBehavior.AllowGet);
+
+            var date = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day).AddDays(-19);
+            var sessions = _mikrotikServices.Usermanager_GetAllUsersSessions(UserLogined.UserRouter.R_Host, UserLogined.UserRouter.R_Port, UserLogined.UserRouter.R_User, UserLogined.UserRouter.R_Password).Where(x => EnglishConvertDate.ConvertToEn(x.till_time) > date).ToList();
+            var download = new ulong[20];
+            var upload = new ulong[20];
+            var dates = new string[20];
+
+            for (var i = 0; i < 20; i++)
             {
-                Trans[i] = item.user + " - " + EnglishConvertDate.ConvertToFa(item.trans_end.Split(' ')[0], "d") + " " + item.trans_end.Split(' ')[1];
-                Price[i] = item.price.Length > 2 ? item.price.Remove(item.price.Length - 2, 2) : item.price;
-                i++;
+                dates[i] = PersianDate.ConvertDate.ToFa(date, "d");
+                var today = sessions.Where(x => EnglishConvertDate.ConvertToEn(x.till_time).Date == date.Date).ToList();
+                foreach (var connaction in today)
+                {
+                    upload[i] += (ulong.Parse(connaction.upload)/ 1048576);
+                    download[i] += (ulong.Parse(connaction.download) / 1048576);
+                }
+                date = date.AddDays(1);
+
             }
+
             return Json(new
             {
-                Price = Price,
-                Trans = Trans
+                dates = dates,
+                upload = upload,
+                download = download,
             }, JsonRequestBehavior.AllowGet);
         }
 

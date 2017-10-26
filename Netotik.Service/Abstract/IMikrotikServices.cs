@@ -99,5 +99,7 @@ namespace Netotik.Services.Abstract
         bool FileExist(string r_Host, int r_Port, string r_User, string r_Password, string FileName);
         void CopyFileToFtp(string r_Host, int r_Port, string r_User, string r_Password, string FtpIP, string FtpPort, string FtpUser, string FtpPass, string SrcFile, string DstFile);
         int GetIpServicePortNumber(string r_Host, int r_Port, string r_User, string r_Password, string ServiceName);
+        //void RouterAccessAdd(string r_Host, int r_Port, string r_User, string r_Password,RouterAccessModel Model);
+        //List<RouterAccessModel> RouterAccessList(string r_Host, int r_Port, string r_User, string r_Password);
     }
 }

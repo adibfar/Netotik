@@ -124,6 +124,18 @@ namespace Netotik.Web.Areas.MyRouter.Controllers
         }
         [NonAction]
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public virtual System.Web.Mvc.ActionResult AccessDisable()
+        {
+            return new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.AccessDisable);
+        }
+        [NonAction]
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public virtual System.Web.Mvc.ActionResult AccessEnable()
+        {
+            return new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.AccessEnable);
+        }
+        [NonAction]
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public virtual System.Web.Mvc.ActionResult RedirectToLocal()
         {
             return new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.RedirectToLocal);
@@ -176,6 +188,9 @@ namespace Netotik.Web.Areas.MyRouter.Controllers
             public readonly string GetRouterPackageUpdate = "GetRouterPackageUpdate";
             public readonly string GetRouterClock = "GetRouterClock";
             public readonly string GetRouterBoard = "GetRouterBoard";
+            public readonly string Access = "Access";
+            public readonly string AccessDisable = "AccessDisable";
+            public readonly string AccessEnable = "AccessEnable";
             public readonly string RedirectToLocal = "RedirectToLocal";
         }
 
@@ -214,6 +229,9 @@ namespace Netotik.Web.Areas.MyRouter.Controllers
             public const string GetRouterPackageUpdate = "GetRouterPackageUpdate";
             public const string GetRouterClock = "GetRouterClock";
             public const string GetRouterBoard = "GetRouterBoard";
+            public const string Access = "Access";
+            public const string AccessDisable = "AccessDisable";
+            public const string AccessEnable = "AccessEnable";
             public const string RedirectToLocal = "RedirectToLocal";
         }
 
@@ -314,6 +332,22 @@ namespace Netotik.Web.Areas.MyRouter.Controllers
         {
             public readonly string id = "id";
         }
+        static readonly ActionParamsClass_AccessDisable s_params_AccessDisable = new ActionParamsClass_AccessDisable();
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public ActionParamsClass_AccessDisable AccessDisableParams { get { return s_params_AccessDisable; } }
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public class ActionParamsClass_AccessDisable
+        {
+            public readonly string id = "id";
+        }
+        static readonly ActionParamsClass_AccessEnable s_params_AccessEnable = new ActionParamsClass_AccessEnable();
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public ActionParamsClass_AccessEnable AccessEnableParams { get { return s_params_AccessEnable; } }
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public class ActionParamsClass_AccessEnable
+        {
+            public readonly string id = "id";
+        }
         static readonly ActionParamsClass_RedirectToLocal s_params_RedirectToLocal = new ActionParamsClass_RedirectToLocal();
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public ActionParamsClass_RedirectToLocal RedirectToLocalParams { get { return s_params_RedirectToLocal; } }
@@ -333,6 +367,7 @@ namespace Netotik.Web.Areas.MyRouter.Controllers
             public class _ViewNamesClass
             {
                 public readonly string _Table = "_Table";
+                public readonly string Access = "Access";
                 public readonly string Info = "Info";
                 public readonly string InterfaceDetails = "InterfaceDetails";
                 public readonly string Interfaces = "Interfaces";
@@ -344,6 +379,7 @@ namespace Netotik.Web.Areas.MyRouter.Controllers
                 public readonly string WirelessDetails = "WirelessDetails";
             }
             public readonly string _Table = "~/Areas/MyRouter/Views/Router/_Table.cshtml";
+            public readonly string Access = "~/Areas/MyRouter/Views/Router/Access.cshtml";
             public readonly string Info = "~/Areas/MyRouter/Views/Router/Info.cshtml";
             public readonly string InterfaceDetails = "~/Areas/MyRouter/Views/Router/InterfaceDetails.cshtml";
             public readonly string Interfaces = "~/Areas/MyRouter/Views/Router/Interfaces.cshtml";
@@ -733,6 +769,41 @@ namespace Netotik.Web.Areas.MyRouter.Controllers
         {
             var callInfo = new T4MVC_System_Web_Mvc_JsonResult(Area, Name, ActionNames.GetRouterBoard);
             GetRouterBoardOverride(callInfo);
+            return callInfo;
+        }
+
+        [NonAction]
+        partial void AccessOverride(T4MVC_System_Web_Mvc_ActionResult callInfo);
+
+        [NonAction]
+        public override System.Web.Mvc.ActionResult Access()
+        {
+            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Access);
+            AccessOverride(callInfo);
+            return callInfo;
+        }
+
+        [NonAction]
+        partial void AccessDisableOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, string id);
+
+        [NonAction]
+        public override System.Web.Mvc.ActionResult AccessDisable(string id)
+        {
+            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.AccessDisable);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "id", id);
+            AccessDisableOverride(callInfo, id);
+            return callInfo;
+        }
+
+        [NonAction]
+        partial void AccessEnableOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, string id);
+
+        [NonAction]
+        public override System.Web.Mvc.ActionResult AccessEnable(string id)
+        {
+            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.AccessEnable);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "id", id);
+            AccessEnableOverride(callInfo, id);
             return callInfo;
         }
 

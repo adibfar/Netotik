@@ -5,9 +5,11 @@ using Netotik.ViewModels.Identity.UserClient;
 using Netotik.Web.Infrastructure;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
+using System.Web.Hosting;
 using System.Web.Mvc;
 
 namespace Netotik.Web.Controllers
@@ -35,28 +37,50 @@ namespace Netotik.Web.Controllers
         // GET: FarapayamakGateway
         public virtual async Task<ActionResult> SmsReceive(string fromNum, string toNumber, string textMessage)
         {
+            try
+            {
+                using (StreamWriter _testData = new StreamWriter(HostingEnvironment.MapPath("~/sms.txt"), true))
+                {
+                    _testData.WriteLine(fromNum + toNumber + textMessage); // Write the file.
+                }
+            }
+            catch (Exception ex)
+            {
+                using (StreamWriter _testData = new StreamWriter(HostingEnvironment.MapPath("~/debug.txt"), true))
+                {
+                    _testData.WriteLine(fromNum + toNumber + textMessage); // Write the file.
+                    _testData.WriteLine(ex.Message + "\n");
+                    if (ex.InnerException != null)
+                    {
+                        _testData.WriteLine(ex.Message + "\n");
+                    }
+                }
+            }
+
+            return Content("Ok");
+
             var User = await _applicationUserManager.FindByRouterSMSCodeAsync(textMessage);
             if (User == null)
-                return View();
+                return Content("ok");
             if (User.UserRouter.SmsActive && User.UserRouter.RegisterWithSms && User.UserRouter.SmsCharge > 0)
             {
                 if (!_mikrotikServices.IP_Port_Check(User.UserRouter.R_Host, User.UserRouter.R_Port, User.UserRouter.R_User, User.UserRouter.R_Password))
                 {
                     if (User.UserRouter.SmsIfErrorInSms)
                         _smsService.SendSms(User.PhoneNumber, "در هنگام ثبت نام پیامکی خطای اتصال به روتر ایجاد شد.", User.Id);
-                    return View();
+                    return Content("ok");
                 }
                 if (!_mikrotikServices.User_Pass_Check(User.UserRouter.R_Host, User.UserRouter.R_Port, User.UserRouter.R_User, User.UserRouter.R_Password))
                 {
                     if (User.UserRouter.SmsIfErrorInSms)
                         _smsService.SendSms(User.PhoneNumber, "در هنگام ثبت نام پیامکی خطای نام کاربری و رمز عبور ایجاد شد.", User.Id);
-                    return View();
+                    return Content("ok");
                 }
                 if (!_mikrotikServices.Usermanager_IsInstall(User.UserRouter.R_Host, User.UserRouter.R_Port, User.UserRouter.R_User, User.UserRouter.R_Password))
                 {
                     if (User.UserRouter.SmsIfErrorInSms)
                         _smsService.SendSms(User.PhoneNumber, "در هنگام ثبت نام پیامکی خطای اتصال یوزرمنیجر ایجاد شد.", User.Id);
-                    return View();
+                    return Content("ok");
                 }
                 var Profiles = _mikrotikServices.Usermanager_GetAllProfile(User.UserRouter.R_Host, User.UserRouter.R_Port, User.UserRouter.R_User, User.UserRouter.R_Password);
                 bool Flag = false;
@@ -67,7 +91,7 @@ namespace Netotik.Web.Controllers
                 {
                     if (User.UserRouter.SmsIfErrorInSms)
                         _smsService.SendSms(User.PhoneNumber, "در هنگام ثبت نام پیامکی خطای عدم وجود تعرفه انتخابی ایجاد شد.", User.Id);
-                    return View();
+                    return Content("ok");
                 }
 
                 var Rand = new Random();
@@ -75,7 +99,7 @@ namespace Netotik.Web.Controllers
                 UserClient.customer = User.UserRouter.Userman_Customer;
                 UserClient.phone = fromNum;
                 UserClient.username = fromNum;
-                UserClient.password = Rand.Next(10000,99999).ToString();
+                UserClient.password = Rand.Next(10000, 99999).ToString();
                 UserClient.profile = User.UserRouter.RegisterWithSmsRouterProfile;
 
                 if (!_mikrotikServices.Usermanager_IsUserExist(User.UserRouter.R_Host, User.UserRouter.R_Port, User.UserRouter.R_User, User.UserRouter.R_Password, UserClient.username))
@@ -85,8 +109,33 @@ namespace Netotik.Web.Controllers
                     _smsService.SendSms(fromNum, SmsText, User.Id);
                     _uow.SaveAllChanges();
                 }
+                else
+                {
+                    var usermanuser = _mikrotikServices.Usermanager_GetUser(User.UserRouter.R_Host, User.UserRouter.R_Port, User.UserRouter.R_User, User.UserRouter.R_Password, UserClient.username);
+                    if (Convert.ToDateTime(usermanuser.FirstOrDefault().CreateDate).AddHours(User.UserRouter.RegisterWithSmsAgainHour) < DateTime.Now || Convert.ToDateTime(User.UserRouter.RegisterWithSmsAgainHour).AddHours(0) < DateTime.Now)
+                    {
+                        _mikrotikServices.Usermanager_ResetUserProfiles(User.UserRouter.R_Host, User.UserRouter.R_Port, User.UserRouter.R_User, User.UserRouter.R_Password, UserClient.username);
+                        var UserEditmodel = new UserEditModel()
+                        {
+                            Age = usermanuser.FirstOrDefault().Age,
+                            Birthday = usermanuser.FirstOrDefault().Birthday,
+                            CreateDate = usermanuser.FirstOrDefault().CreateDate,
+                            IsMale = usermanuser.FirstOrDefault().IsMale,
+                            MarriageDate = usermanuser.FirstOrDefault().MarriageDate,
+                            NationalCode = usermanuser.FirstOrDefault().NationalCode,
+                            profile = UserClient.profile,
+                            password = UserClient.password,
+                            id = usermanuser.FirstOrDefault().id,
+                            username = UserClient.username
+                        };
+                        _mikrotikServices.Usermanager_UserEdit(User.UserRouter.R_Host, User.UserRouter.R_Port, User.UserRouter.R_User, User.UserRouter.R_Password, UserEditmodel);
+                        string SmsText = User.UserRouter.RegisterWithSmsMessage + "\n User: " + UserClient.username + "\n Pass: " + UserClient.password;
+                        _smsService.SendSms(fromNum, SmsText, User.Id);
+                        _uow.SaveAllChanges();
+                    }
+                }
             }
-            return View();
+            return Content("ok");
         }
     }
 }

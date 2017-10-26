@@ -48,5 +48,7 @@ namespace Netotik.ViewModels.Identity.UserRouter
         public string RegisterWithSmsMessage { get; set; }
         [Display(ResourceType = typeof(Captions), Name = "SmsIfErrorInSms")]
         public bool SmsIfErrorInSms { get; set; }
+        [Display(ResourceType = typeof(Captions), Name = "RegisterWithSmsAgainHour")]
+        public int RegisterWithSmsAgainHour { get; set; }
     }
 }

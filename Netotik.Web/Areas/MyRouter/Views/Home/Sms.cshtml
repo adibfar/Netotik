@@ -111,6 +111,17 @@
                                             }
                                         </select>
                                     </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group has-icon-left">
+                                            @Html.LabelFor(m => m.RegisterWithSmsAgainHour)
+                                            <div class="position-relative has-icon-left">
+                                                @Html.TextBoxFor(m => m.RegisterWithSmsAgainHour, new { @class = "form-control" })
+                                                <div class="form-control-position">
+                                                    <i class="icon-ios-timer"></i>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
 
                                 </div>
                                 <div class="tab-pane fade row form-group skin skin-flat" id="Info" role="tabpanel" aria-labelledby="linkIconOpt11-tab1" aria-expanded="false">

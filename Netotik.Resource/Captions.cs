@@ -4768,5 +4768,12 @@ namespace Netotik.Resources
                 return resourceProvider.GetResource("ContactUsEmailMessage", CultureInfo.CurrentUICulture.Name) as string;
             }
         }
+        public static string RegisterWithSmsAgainHour
+        {
+            get
+            {
+                return resourceProvider.GetResource("RegisterWithSmsAgainHour", CultureInfo.CurrentUICulture.Name) as string;
+            }
+        }
     }
 }

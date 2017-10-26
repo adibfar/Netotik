@@ -1238,7 +1238,8 @@ namespace Netotik.Services.Identity
                 SmsUserhangeUserPassword = x.UserRouter.SmsUserhangeUserPassword,
                 RegisterWithSmsMessage = x.UserRouter.RegisterWithSmsMessage,
                 RegisterWithSmsRouterProfile = x.UserRouter.RegisterWithSmsRouterProfile,
-                SmsIfErrorInSms = x.UserRouter.SmsIfErrorInSms
+                SmsIfErrorInSms = x.UserRouter.SmsIfErrorInSms,
+                RegisterWithSmsAgainHour = x.UserRouter.RegisterWithSmsAgainHour
             }).FirstOrDefault();
         }
 

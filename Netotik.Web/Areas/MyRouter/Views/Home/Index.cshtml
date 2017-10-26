@@ -118,19 +118,24 @@
             CardBlock('#sectionChartPrice');
             $.get("@Url.Action(MVC.MyRouter.Home.GetLastProfile())", function (data) {
                 var a = $("#price-chart"),
-            b = {
-                elements: { rectangle: { borderWidth: 2, borderColor: "rgb(0, 255, 0)", borderSkipped: "bottom" } },
-                responsive: !0, maintainAspectRatio: !1, responsiveAnimationDuration: 500, legend: { position: "top" },
-                scales: {
-                    xAxes: [{ display: !0, gridLines: { color: "#f3f3f3", drawTicks: !1 }, scaleLabel: { display: !0 } }],
-                    yAxes: [{ display: !0, gridLines: { color: "#f3f3f3", drawTicks: !1 }, scaleLabel: { display: !0 } }]
-                }, title: { display: !1, }
-            }, c = {
-                labels: data.Trans,
+           b = {
+               tooltips: { mode: "label" }, responsive: !0, maintainAspectRatio: !1,
+               responsiveAnimationDuration: 500,
+               scales: {
+                   xAxes: [{
+                       stacked: !0, display: !0, gridLines:
+                       { color: "#f3f3f3", drawTicks: !1 }, scaleLabel: { display: !0 }
+                   }], yAxes: [{
+                       stacked: !0, display: !0, gridLines: { color: "#f3f3f3", drawTicks: !1 },
+                       scaleLabel: { display: !0 }
+                   }]
+               }
+           }, c = {
+                labels: data.dates,
                 datasets: [
-                    { label: "@Captions.Price", data: data.Price, backgroundColor: "#3fba82", hoverBackgroundColor: "rgba(103,58,183,.9)", borderColor: "transparent" },
-                ]
-            }, d = { type: "line", options: b, data: c }; new Chart(a, d)
+                    { label: "@Captions.Upload", data: data.upload, backgroundColor: "#3fba82", hoverBackgroundColor: "rgba(103,58,183,.9)", borderColor: "transparent" },
+                    { label: "@Captions.Download", data: data.download, backgroundColor: "#f1d987", hoverBackgroundColor: "rgba(233,30,99,.9)", borderColor: "transparent" }]
+            }, d = { type: "bar", options: b, data: c }; new Chart(a, d)
                 CardUnBlock('#sectionChartPrice');
             }, "json");
         });
@@ -141,6 +146,6 @@
                      $("#RouterTime").text(data.ClockTime);
                  }, "json");
              }
-            , 1000);
+            , 10000);
     </script>
 }
