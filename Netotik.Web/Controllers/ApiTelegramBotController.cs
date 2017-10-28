@@ -20,7 +20,7 @@ using Netotik.Web.Infrastructure;
 
 namespace Netotik.Web.Controllers
 {
-    public class TelegramBotController : ApiController
+    public class ApiTelegramBotController : ApiController
     {
         private IApplicationUserManager _applicationUserManager;
         private IMikrotikServices _mikrotikServices;

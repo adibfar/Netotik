@@ -136,6 +136,12 @@ namespace Netotik.Web.Areas.MyRouter.Controllers
         }
         [NonAction]
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public virtual System.Web.Mvc.ActionResult AccessRemove()
+        {
+            return new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.AccessRemove);
+        }
+        [NonAction]
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public virtual System.Web.Mvc.ActionResult RedirectToLocal()
         {
             return new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.RedirectToLocal);
@@ -191,6 +197,7 @@ namespace Netotik.Web.Areas.MyRouter.Controllers
             public readonly string Access = "Access";
             public readonly string AccessDisable = "AccessDisable";
             public readonly string AccessEnable = "AccessEnable";
+            public readonly string AccessRemove = "AccessRemove";
             public readonly string RedirectToLocal = "RedirectToLocal";
         }
 
@@ -232,6 +239,7 @@ namespace Netotik.Web.Areas.MyRouter.Controllers
             public const string Access = "Access";
             public const string AccessDisable = "AccessDisable";
             public const string AccessEnable = "AccessEnable";
+            public const string AccessRemove = "AccessRemove";
             public const string RedirectToLocal = "RedirectToLocal";
         }
 
@@ -345,6 +353,14 @@ namespace Netotik.Web.Areas.MyRouter.Controllers
         public ActionParamsClass_AccessEnable AccessEnableParams { get { return s_params_AccessEnable; } }
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public class ActionParamsClass_AccessEnable
+        {
+            public readonly string id = "id";
+        }
+        static readonly ActionParamsClass_AccessRemove s_params_AccessRemove = new ActionParamsClass_AccessRemove();
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public ActionParamsClass_AccessRemove AccessRemoveParams { get { return s_params_AccessRemove; } }
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public class ActionParamsClass_AccessRemove
         {
             public readonly string id = "id";
         }
@@ -804,6 +820,18 @@ namespace Netotik.Web.Areas.MyRouter.Controllers
             var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.AccessEnable);
             ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "id", id);
             AccessEnableOverride(callInfo, id);
+            return callInfo;
+        }
+
+        [NonAction]
+        partial void AccessRemoveOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, string id);
+
+        [NonAction]
+        public override System.Web.Mvc.ActionResult AccessRemove(string id)
+        {
+            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.AccessRemove);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "id", id);
+            AccessRemoveOverride(callInfo, id);
             return callInfo;
         }
 
