@@ -80,21 +80,6 @@ Order = 0, GlyphIcon = "icon icon-table")]
 
         public virtual ActionResult Index()
         {
-            if (_mikrotikServices.IP_Port_Check(UserLogined.UserRouter.R_Host, UserLogined.UserRouter.R_Port, UserLogined.UserRouter.R_User, UserLogined.UserRouter.R_Password))
-            {
-                if (_mikrotikServices.User_Pass_Check(UserLogined.UserRouter.R_Host, UserLogined.UserRouter.R_Port, UserLogined.UserRouter.R_User, UserLogined.UserRouter.R_Password))
-                {
-                    if (!_mikrotikServices.Usermanager_IsInstall(UserLogined.UserRouter.R_Host, UserLogined.UserRouter.R_Port, UserLogined.UserRouter.R_User, UserLogined.UserRouter.R_Password))
-                    {
-                        this.MessageError(Captions.Error, Captions.UsermanagerClientError);
-                    }
-                }
-                else
-                    this.MessageError(Captions.Error, Captions.UserPasswordClientError);
-            }
-            else
-                this.MessageError(Captions.Error, Captions.IPPORTClientError);
-
 
             return View();
         }
@@ -284,7 +269,7 @@ Order = 0, GlyphIcon = "icon icon-table")]
          .Where(x => x.IsActive)
          .OrderByDescending(x => x.Order).ToList();
             model.SmsCharge = UserLogined.UserRouter.SmsCharge;
-
+            model.RegisterWithSmsCode = model.RegisterWithSmsCode.Replace("ي", "ی");
 
             if (ModelState.IsValid)
             {
@@ -472,7 +457,7 @@ Order = 0, GlyphIcon = "icon icon-table")]
                 var today = sessions.Where(x => EnglishConvertDate.ConvertToEn(x.till_time).Date == date.Date).ToList();
                 foreach (var connaction in today)
                 {
-                    upload[i] += (ulong.Parse(connaction.upload)/ 1048576);
+                    upload[i] += (ulong.Parse(connaction.upload) / 1048576);
                     download[i] += (ulong.Parse(connaction.download) / 1048576);
                 }
                 date = date.AddDays(1);
@@ -503,6 +488,48 @@ Order = 0, GlyphIcon = "icon icon-table")]
                 ViewName = MVC.UserMailer.Views.ViewNames.ConfirmAccount
             }).Send();
 
+        }
+
+        public virtual ActionResult MkAlerts()
+        {
+            if (_mikrotikServices.IP_Port_Check(UserLogined.UserRouter.R_Host, UserLogined.UserRouter.R_Port, UserLogined.UserRouter.R_User, UserLogined.UserRouter.R_Password))
+            {
+                if (_mikrotikServices.User_Pass_Check(UserLogined.UserRouter.R_Host, UserLogined.UserRouter.R_Port, UserLogined.UserRouter.R_User, UserLogined.UserRouter.R_Password))
+                {
+                    if (_mikrotikServices.Usermanager_IsInstall(UserLogined.UserRouter.R_Host, UserLogined.UserRouter.R_Port, UserLogined.UserRouter.R_User, UserLogined.UserRouter.R_Password))
+                    {
+                        //------------------------
+                        var customers = _mikrotikServices.Usermanager_GetAllCustomers(UserLogined.UserRouter.R_Host, UserLogined.UserRouter.R_Port, UserLogined.UserRouter.R_User, UserLogined.UserRouter.R_Password);
+                        foreach(var customer in customers)
+                        {
+                            if(!customer.disabled && customer.password == "")
+                                this.MessageWarning(Captions.Information,string.Format("کاربر یوزرمنیجر {0} فاقد پسورد می باشد.",customer.login));
+                        }
+                        //------------------------
+                        var Router_Clock = _mikrotikServices.Router_Clock(UserLogined.UserRouter.R_Host, UserLogined.UserRouter.R_Port, UserLogined.UserRouter.R_User, UserLogined.UserRouter.R_Password);
+                        var Router_date = Infrastructure.EnglishConvertDate.ConvertToFa(Router_Clock.FirstOrDefault().Router_date, "d");
+                        var Server_Date = PersianDate.ConvertDate.ToFa(DateTime.Now, "d");
+                        if(Router_date!=Server_Date)
+                            this.MessageWarning(Captions.Information,"تاریخ روتر صحیح نمی باشد.لطفا تاریخ روتر را برای دریافت گزارشات دقیق ،تنظیم کنید.");
+                        //------------------------
+
+                        //------------------------
+
+                        //------------------------
+
+                    }
+                    else
+                        this.MessageWarning(Captions.Error, Captions.UsermanagerClientError);
+                }
+                else
+                    this.MessageError(Captions.Error, Captions.UserPasswordClientError);
+            }
+            else
+                this.MessageError(Captions.Error, Captions.IPPORTClientError);
+
+
+
+            return PartialView(MVC.Shared.Views._Message);
         }
     }
 }

@@ -142,6 +142,7 @@ namespace Netotik.Web.Areas.MyRouter.Controllers
             public readonly string CloseSession = "CloseSession";
             public readonly string PackageCreate = "PackageCreate";
             public readonly string UserList = "UserList";
+            public readonly string LoadUsers = "LoadUsers";
             public readonly string Userdisable = "Userdisable";
             public readonly string Userremove = "Userremove";
             public readonly string ProfileRemove = "ProfileRemove";
@@ -150,6 +151,7 @@ namespace Netotik.Web.Areas.MyRouter.Controllers
             public readonly string UserDetails = "UserDetails";
             public readonly string UserCreate = "UserCreate";
             public readonly string PackageList = "PackageList";
+            public readonly string LoadPackages = "LoadPackages";
             public readonly string Report = "Report";
             public readonly string Register = "Register";
             public readonly string UserEdit = "UserEdit";
@@ -167,6 +169,7 @@ namespace Netotik.Web.Areas.MyRouter.Controllers
             public const string CloseSession = "CloseSession";
             public const string PackageCreate = "PackageCreate";
             public const string UserList = "UserList";
+            public const string LoadUsers = "LoadUsers";
             public const string Userdisable = "Userdisable";
             public const string Userremove = "Userremove";
             public const string ProfileRemove = "ProfileRemove";
@@ -175,6 +178,7 @@ namespace Netotik.Web.Areas.MyRouter.Controllers
             public const string UserDetails = "UserDetails";
             public const string UserCreate = "UserCreate";
             public const string PackageList = "PackageList";
+            public const string LoadPackages = "LoadPackages";
             public const string Report = "Report";
             public const string Register = "Register";
             public const string UserEdit = "UserEdit";
@@ -321,6 +325,8 @@ namespace Netotik.Web.Areas.MyRouter.Controllers
             public _ViewNamesClass ViewNames { get { return s_ViewNames; } }
             public class _ViewNamesClass
             {
+                public readonly string _Packages = "_Packages";
+                public readonly string _Users = "_Users";
                 public readonly string ClientArea = "ClientArea";
                 public readonly string Online = "Online";
                 public readonly string PackageCreate = "PackageCreate";
@@ -334,6 +340,8 @@ namespace Netotik.Web.Areas.MyRouter.Controllers
                 public readonly string UserEdit = "UserEdit";
                 public readonly string UserList = "UserList";
             }
+            public readonly string _Packages = "~/Areas/MyRouter/Views/UserManager/_Packages.cshtml";
+            public readonly string _Users = "~/Areas/MyRouter/Views/UserManager/_Users.cshtml";
             public readonly string ClientArea = "~/Areas/MyRouter/Views/UserManager/ClientArea.cshtml";
             public readonly string Online = "~/Areas/MyRouter/Views/UserManager/Online.cshtml";
             public readonly string PackageCreate = "~/Areas/MyRouter/Views/UserManager/PackageCreate.cshtml";
@@ -412,6 +420,17 @@ namespace Netotik.Web.Areas.MyRouter.Controllers
         {
             var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.UserList);
             UserListOverride(callInfo);
+            return callInfo;
+        }
+
+        [NonAction]
+        partial void LoadUsersOverride(T4MVC_System_Web_Mvc_ActionResult callInfo);
+
+        [NonAction]
+        public override System.Web.Mvc.ActionResult LoadUsers()
+        {
+            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.LoadUsers);
+            LoadUsersOverride(callInfo);
             return callInfo;
         }
 
@@ -519,6 +538,17 @@ namespace Netotik.Web.Areas.MyRouter.Controllers
         {
             var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.PackageList);
             PackageListOverride(callInfo);
+            return callInfo;
+        }
+
+        [NonAction]
+        partial void LoadPackagesOverride(T4MVC_System_Web_Mvc_ActionResult callInfo);
+
+        [NonAction]
+        public override System.Web.Mvc.ActionResult LoadPackages()
+        {
+            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.LoadPackages);
+            LoadPackagesOverride(callInfo);
             return callInfo;
         }
 

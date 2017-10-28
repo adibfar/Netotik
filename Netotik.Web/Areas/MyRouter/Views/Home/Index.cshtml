@@ -2,9 +2,10 @@
 @using Netotik.Resources;
 @{
     ViewBag.Title = Netotik.Resources.Captions.Dashboard;
-    String temp = "";
 }
 <div class="row">
+    <div class="row col-xl-12 col-xs-12" id="mkalerts">
+    </div>
     <div class="col-xl-3 col-xs-12">
         <div class="card">
             <div class="card-body">
@@ -147,5 +148,11 @@
                  }, "json");
              }
             , 10000);
+
+        $(window).on("load", function () {
+            $.get("@Url.Action(MVC.MyRouter.Home.MkAlerts())", function (data) {
+                $("#mkalerts").html(data);
+            }, "html");
+        });
     </script>
 }

@@ -114,6 +114,7 @@ namespace Netotik.Web.Areas.MyRouter.Controllers
             public readonly string GetActiceSessionCount = "GetActiceSessionCount";
             public readonly string GetRouterDateTime = "GetRouterDateTime";
             public readonly string GetLastProfile = "GetLastProfile";
+            public readonly string MkAlerts = "MkAlerts";
             public readonly string RedirectToLocal = "RedirectToLocal";
         }
 
@@ -136,6 +137,7 @@ namespace Netotik.Web.Areas.MyRouter.Controllers
             public const string GetActiceSessionCount = "GetActiceSessionCount";
             public const string GetRouterDateTime = "GetRouterDateTime";
             public const string GetLastProfile = "GetLastProfile";
+            public const string MkAlerts = "MkAlerts";
             public const string RedirectToLocal = "RedirectToLocal";
         }
 
@@ -467,6 +469,17 @@ namespace Netotik.Web.Areas.MyRouter.Controllers
         {
             var callInfo = new T4MVC_System_Web_Mvc_JsonResult(Area, Name, ActionNames.GetLastProfile);
             GetLastProfileOverride(callInfo);
+            return callInfo;
+        }
+
+        [NonAction]
+        partial void MkAlertsOverride(T4MVC_System_Web_Mvc_ActionResult callInfo);
+
+        [NonAction]
+        public override System.Web.Mvc.ActionResult MkAlerts()
+        {
+            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.MkAlerts);
+            MkAlertsOverride(callInfo);
             return callInfo;
         }
 

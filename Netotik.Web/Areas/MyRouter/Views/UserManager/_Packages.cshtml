@@ -1,0 +1,51 @@
+﻿@{ 
+    var counter = 1;
+}
+
+@if (ViewBag.packagelist == null)
+{
+    <label>@Captions.RegisterWithSmsRouterProfile</label>
+    <div class="alert alert-danger">
+        @Captions.CantConnectToRouter
+    </div>
+}
+else
+{
+    <table class="table table-striped table-bordered table-hover" id="grid">
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>@Netotik.Resources.Captions.PlanName</th>
+                <th>Name OF Group</th>
+                <th>@Netotik.Resources.Captions.Price</th>
+                <th>@Netotik.Resources.Captions.TimeValidity</th>
+                <th width="10%"></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in ViewBag.packagelist)
+            {
+                <tr>
+                    <td>@(counter++)</td>
+                    <td>@item.name</td>
+                    <td>@item.name_for_users</td>
+                    <td>@item.price</td>
+                    <td>@item.validity</td>
+                    <td>
+                        <span class="dropdown">
+                            <button id="btnSearchDrop2" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" class="btn btn-outline-secondary dropdown-toggle dropdown-menu-right"><i class="icon-cog3"></i> @Netotik.Resources.Captions.Action</button>
+                            <span aria-labelledby="btnSearchDrop2" class="dropdown-menu mt-1 dropdown-menu-right">
+                                <a onclick="PackageDetails('@item.id');" class="dropdown-item">
+                                    <i class="fa fa-book"></i> @Netotik.Resources.Captions.Details
+                                </a>
+                                <a onclick="ProfileRemove('@item.id');" class="dropdown-item">
+                                    <i class="icon-trash4 danger"></i> @Netotik.Resources.Captions.Remove
+                                </a>
+                            </span>
+                        </span>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}

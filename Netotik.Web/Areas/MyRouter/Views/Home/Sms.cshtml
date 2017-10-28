@@ -107,6 +107,7 @@
                                 <div class="card-block">
 
                                     <h4 class="form-section"><i class="icon-mobile"></i>@Captions.RegisterWithSms</h4>
+                                    
                                     <div class="row" id="profilesSections">
                                         @Html.LabelFor(m=>m.RegisterWithSmsRouterProfile)
                                         <select class="selectize-select" id="">
@@ -114,6 +115,14 @@
                                     </div>
                                     <hr />
                                     <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="form-group has-icon-left">
+                                                @Html.LabelFor(m => m.RegisterWithSmsCode)
+                                                <div class="position-relative " data-toggle="tooltip" data-original-title="<b>@Model.RegisterWithSmsCode</b>" data-html="true">
+                                                    @Html.TextBoxFor(m => m.RegisterWithSmsCode, new { @class = "form-control" })
+                                                </div>
+                                            </div>
+                                        </div>
                                         <div class="col-md-12">
                                             <div class="form-group has-icon-left">
                                                 @Html.LabelFor(m => m.RegisterWithSmsMessage)
@@ -126,7 +135,7 @@
                                             <div class="form-group has-icon-left">
                                                 @Html.LabelFor(m => m.RegisterWithSmsAgainHour)
                                                 <div class="position-relative " data-toggle="tooltip" data-original-title="<b>@Model.RegisterWithSmsAgainHour</b>" data-html="true">
-                                                    @Html.TextAreaFor(m => m.RegisterWithSmsAgainHour, new { @class = "form-control" })
+                                                    @Html.TextBoxFor(m => m.RegisterWithSmsAgainHour, new { @class = "form-control" })
                                                 </div>
                                             </div>
                                         </div>

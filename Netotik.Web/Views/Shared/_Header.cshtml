@@ -54,17 +54,26 @@
                                     <a href="@Url.Action(MVC.Admin.Home.MyProfile())" class="dropdown-item">
                                         <i class="icon-head"></i> @Captions.Profile
                                     </a>
+                                    <a href="@Url.Action(MVC.Admin.Home.ChangePassword())" class="dropdown-item">
+                                        <i class="icon-lock2"></i> @Captions.ChangePassword
+                                    </a>
                                 }
                                 else if (user.UserType == Netotik.Domain.Entity.UserType.UserRouter)
                                 {
                                     <a href="@Url.Action(MVC.MyRouter.Home.MyProfile())" class="dropdown-item">
                                         <i class="icon-head"></i> @Captions.Profile
                                     </a>
+                                    <a href="@Url.Action(MVC.MyRouter.Home.ChangePassword())" class="dropdown-item">
+                                        <i class="icon-lock2"></i> @Captions.ChangePassword
+                                    </a>
                                 }
                                 else
                                 {
                                     <a href="@Url.Action(MVC.Reseller.Home.MyProfile())" class="dropdown-item">
                                         <i class="icon-head"></i> @Captions.Profile
+                                    </a>
+                                    <a href="@Url.Action(MVC.Reseller.Home.ChangePassword())" class="dropdown-item">
+                                        <i class="icon-lock2"></i> @Captions.ChangePassword
                                     </a>
                                 }
                                 <div class="dropdown-divider"></div>
@@ -82,6 +91,9 @@
                             <div class="dropdown-menu dropdown-menu-right">
                                 <a href="@Url.Action(MVC.Client.Home.Edit())" cla class="dropdown-item">
                                     <i class="icon-head"></i> @Captions.Profile
+                                </a>
+                                <a href="@Url.Action(MVC.Client.Home.ChangePassword())" cla class="dropdown-item">
+                                    <i class="icon-head"></i> @Captions.ChangePassword
                                 </a>
                                 <div class="dropdown-divider"></div>
                                 <a href="@Url.Action(MVC.Client.Home.LogOff())" class="dropdown-item">

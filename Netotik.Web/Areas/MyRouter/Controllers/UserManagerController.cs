@@ -358,49 +358,54 @@ namespace Netotik.Web.Areas.MyRouter.Controllers
                 return RedirectToAction(MVC.MyRouter.Home.ActionNames.Index);
             }
             //-------------------------------
-            if (_mikrotikServices.Usermanager_IsInstall(UserLogined.UserRouter.R_Host, UserLogined.UserRouter.R_Port, UserLogined.UserRouter.R_User, UserLogined.UserRouter.R_Password))
+            if (!_mikrotikServices.Usermanager_IsInstall(UserLogined.UserRouter.R_Host, UserLogined.UserRouter.R_Port, UserLogined.UserRouter.R_User, UserLogined.UserRouter.R_Password))
             {
-                var userlist = _mikrotikServices.Usermanager_GetAllUsers(UserLogined.UserRouter.R_Host, UserLogined.UserRouter.R_Port, UserLogined.UserRouter.R_User, UserLogined.UserRouter.R_Password);
-                var UserListModel = new List<Netotik.ViewModels.Identity.UserClient.UserModel>();
-                foreach (var item in userlist)
-                {
-                    if (item.download_used == "0" || item.download_used == "")
-                        item.download_used = "0";
-                    if (item.upload_used == "0" || item.upload_used == "")
-                        item.upload_used = "0";
-                    item.download_used = (ulong.Parse(item.download_used) / 1048576).ToString();
-                    if (item.last_seen == "never")
-                    {
-                        item.last_seen = item.last_seen.Replace("never", Captions.NoConnection);
-                        item.last_seenT = item.last_seen.Replace("never", Captions.NoConnection);
-                    }
-                    else
-                    {
-                        var last_seenT = item.last_seen.Split(' ');
-                        var last_seen = item.last_seen.Split(' ');
-                        last_seen[0] = Infrastructure.EnglishConvertDate.ConvertToFa(last_seen[0], "d");
-                        item.last_seen = last_seen[0] + " " + last_seen[1];
-
-
-                        last_seenT[0] = Infrastructure.EnglishConvertDate.ConvertToFa(last_seenT[0], "D");
-                        item.last_seenT = last_seenT[0] + " " + last_seenT[1];
-                    }
-                    item.shared_users = item.shared_users.Replace("unlimited", Captions.Unlimited);
-                    item.upload_used = (ulong.Parse(item.upload_used) / 1048576).ToString();
-                    item.uptime_used = item.uptime_used.Replace("d", Captions.Day).Replace("w", Captions.Week).Replace("h", Captions.Hour).Replace("m", Captions.Minute).Replace("s", Captions.Secend).Replace("never", Captions.NoConnection);
-                    UserListModel.Add(item);
-                }
-                ViewBag.userlist = UserListModel;
+                this.MessageError(Captions.Error, Captions.UsermanagerClientError);
+                return RedirectToAction(MVC.MyRouter.Home.ActionNames.Index);
             }
 
-            /*
-            var mikrotik = new MikrotikAPI();
-            mikrotik.MK("192.168.216.128", 8728);
-            if (!mikrotik.Login("admin", "")) mikrotik.Close();
-            //-----------------------------------------------
-            mikrotik.Send("/tool/user-manager/profile/add", true);
-            ViewBag.test = mikrotik.Read();*/
             return View();
+        }
+
+        public virtual ActionResult LoadUsers()
+        {
+            if (_mikrotikServices.IP_Port_Check(UserLogined.UserRouter.R_Host, UserLogined.UserRouter.R_Port, UserLogined.UserRouter.R_User, UserLogined.UserRouter.R_Password))
+                if (_mikrotikServices.User_Pass_Check(UserLogined.UserRouter.R_Host, UserLogined.UserRouter.R_Port, UserLogined.UserRouter.R_User, UserLogined.UserRouter.R_Password))
+                {
+                    var userlist = _mikrotikServices.Usermanager_GetAllUsers(UserLogined.UserRouter.R_Host, UserLogined.UserRouter.R_Port, UserLogined.UserRouter.R_User, UserLogined.UserRouter.R_Password);
+                    var UserListModel = new List<Netotik.ViewModels.Identity.UserClient.UserModel>();
+                    foreach (var item in userlist)
+                    {
+                        if (item.download_used == "0" || item.download_used == "")
+                            item.download_used = "0";
+                        if (item.upload_used == "0" || item.upload_used == "")
+                            item.upload_used = "0";
+                        item.download_used = (ulong.Parse(item.download_used) / 1048576).ToString();
+                        if (item.last_seen == "never")
+                        {
+                            item.last_seen = item.last_seen.Replace("never", Captions.NoConnection);
+                            item.last_seenT = item.last_seen.Replace("never", Captions.NoConnection);
+                        }
+                        else
+                        {
+                            var last_seenT = item.last_seen.Split(' ');
+                            var last_seen = item.last_seen.Split(' ');
+                            last_seen[0] = Infrastructure.EnglishConvertDate.ConvertToFa(last_seen[0], "d");
+                            item.last_seen = last_seen[0] + " " + last_seen[1];
+
+
+                            last_seenT[0] = Infrastructure.EnglishConvertDate.ConvertToFa(last_seenT[0], "D");
+                            item.last_seenT = last_seenT[0] + " " + last_seenT[1];
+                        }
+                        item.shared_users = item.shared_users.Replace("unlimited", Captions.Unlimited);
+                        item.upload_used = (ulong.Parse(item.upload_used) / 1048576).ToString();
+                        item.uptime_used = item.uptime_used.Replace("d", Captions.Day).Replace("w", Captions.Week).Replace("h", Captions.Hour).Replace("m", Captions.Minute).Replace("s", Captions.Secend).Replace("never", Captions.NoConnection);
+                        UserListModel.Add(item);
+                    }
+                    ViewBag.Users = UserListModel;
+                }
+
+            return PartialView(MVC.MyRouter.UserManager.Views._Users);
         }
 
         [ValidateInput(false)]
@@ -896,20 +901,32 @@ namespace Netotik.Web.Areas.MyRouter.Controllers
                 return RedirectToAction(MVC.MyRouter.Home.ActionNames.Index);
             }
             //-------------------------------
-            if (_mikrotikServices.Usermanager_IsInstall(UserLogined.UserRouter.R_Host, UserLogined.UserRouter.R_Port, UserLogined.UserRouter.R_User, UserLogined.UserRouter.R_Password))
+            if (!_mikrotikServices.Usermanager_IsInstall(UserLogined.UserRouter.R_Host, UserLogined.UserRouter.R_Port, UserLogined.UserRouter.R_User, UserLogined.UserRouter.R_Password))
             {
-                var Profiles = _mikrotikServices.Usermanager_GetAllProfile(UserLogined.UserRouter.R_Host, UserLogined.UserRouter.R_Port, UserLogined.UserRouter.R_User, UserLogined.UserRouter.R_Password);
-                var RouterProfiles = new List<Netotik.ViewModels.Identity.UserClient.ProfileModel>();
-                foreach (var item in Profiles)
-                {
-                    if (item.starts_at != null)
-                        item.starts_at = item.starts_at.Replace("logon", Captions.FirstConnection).Replace("now", Captions.PlanBind);
-                    item.validity = item.validity=="0s"?Captions.Unlimited: item.validity.Replace("d", Captions.Day).Replace("w", Captions.Week).Replace("h", Captions.Hour).Replace("m", Captions.Minute).Replace("s", Captions.Secend); ;
-                    RouterProfiles.Add(item);
-                }
-                ViewBag.userlist = RouterProfiles;
+                this.MessageError(Captions.Error, Captions.UsermanagerClientError);
+                return RedirectToAction(MVC.MyRouter.Home.ActionNames.Index);
             }
             return View();
+        }
+
+        public virtual ActionResult LoadPackages()
+        {
+            if (_mikrotikServices.IP_Port_Check(UserLogined.UserRouter.R_Host, UserLogined.UserRouter.R_Port, UserLogined.UserRouter.R_User, UserLogined.UserRouter.R_Password))
+                if (_mikrotikServices.User_Pass_Check(UserLogined.UserRouter.R_Host, UserLogined.UserRouter.R_Port, UserLogined.UserRouter.R_User, UserLogined.UserRouter.R_Password))
+                {
+                    var Profiles = _mikrotikServices.Usermanager_GetAllProfile(UserLogined.UserRouter.R_Host, UserLogined.UserRouter.R_Port, UserLogined.UserRouter.R_User, UserLogined.UserRouter.R_Password);
+                    var RouterProfiles = new List<Netotik.ViewModels.Identity.UserClient.ProfileModel>();
+                    foreach (var item in Profiles)
+                    {
+                        if (item.starts_at != null)
+                            item.starts_at = item.starts_at.Replace("logon", Captions.FirstConnection).Replace("now", Captions.PlanBind);
+                        item.validity = item.validity == "0s" ? Captions.Unlimited : item.validity.Replace("d", Captions.Day).Replace("w", Captions.Week).Replace("h", Captions.Hour).Replace("m", Captions.Minute).Replace("s", Captions.Secend); ;
+                        RouterProfiles.Add(item);
+                    }
+                    ViewBag.packagelist = RouterProfiles;
+                }
+
+            return PartialView(MVC.MyRouter.UserManager.Views._Packages);
         }
 
         public virtual ActionResult Report()
