@@ -946,7 +946,7 @@
   </LocaleResource>
   <!--======================Messages Ehsan EM===========================-->
   <LocaleResource Name="JustEnglish">
-    <Value>تمامی مقادیر را انگلیسی تکمیل کنید.</Value>
+    <Value>* تمامی مقادیر را انگلیسی تکمیل کنید.</Value>
   </LocaleResource>
   <LocaleResource Name="ChartOfMonthAndYear">
     <Value>نمودار یک ماه و یک سال اخیر</Value>

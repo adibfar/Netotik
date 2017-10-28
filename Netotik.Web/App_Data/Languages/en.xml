@@ -276,7 +276,7 @@
   <LocaleResource Name="UpdateSuccess">Update Success.</LocaleResource>
   <LocaleResource Name="UserIsBanned">Your Account is Banned</LocaleResource>
   <LocaleResource Name="UserNameOrEmailReqired">Enter your username or email.</LocaleResource>
-  <LocaleResource Name="JustEnglishNumeric">English and Numeric Allow</LocaleResource>
+  <LocaleResource Name="JustEnglishNumeric">* English and Numeric Allow</LocaleResource>
   <LocaleResource Name="ConfirmEmailMessage">Thank You For Register.Please Click Here to Login to your account</LocaleResource>
   <LocaleResource Name="CountCommentSended">{0} comments were registered.</LocaleResource>
   <LocaleResource Name="RegisterDone">Register Done.</LocaleResource>

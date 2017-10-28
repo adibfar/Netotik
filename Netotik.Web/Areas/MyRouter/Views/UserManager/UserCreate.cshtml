@@ -13,14 +13,17 @@
                 @Html.AntiForgeryToken()
                 <div class="card">
                     <div class="card-header">
-                        <button name="actionType" value="@Netotik.Common.Controller.ActionType.Save" class="btn btn-social width-100 btn-instagram" onclick="AjaxForm.Post(this, 'form')" data-loading-text="در حال ارسال اطلاعات">
+                        <button name="actionType" value="@Netotik.Common.Controller.ActionType.Save" class="btn btn-social width-150 btn-instagram" onclick="AjaxForm.Post(this, 'form')" data-loading-text="در حال ارسال اطلاعات">
                             <span class="icon-checkmark2 font-medium-4"></span>
                             @Netotik.Resources.Captions.Save
                         </button>
+                        <a href="@Url.Action(MVC.MyRouter.UserManager.UserList())" class="btn btn-social width-150 btn-secondary btn-default  margin-bottom-2"><span class="icon-android-arrow-back font-medium-3"></span> @Captions.Back </a>
 
-                        <div class="col-md-12">
-                            @Html.ValidationSummary(false, "", htmlAttributes: new { @class = "text-danger" })
-                            <span class="text-danger">@Captions.JustEnglish</span>
+                        <div class="row">
+                            <div class="col-md-12">
+                                @Html.ValidationSummary(false, "", htmlAttributes: new { @class = "text-danger" })
+                                <span class="text-danger">@Captions.JustEnglish</span>
+                            </div>
                         </div>
                     </div>
                     <div class="card-body">

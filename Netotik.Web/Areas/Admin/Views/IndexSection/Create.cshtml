@@ -12,10 +12,11 @@
                 @Html.AntiForgeryToken()
                 <div class="card">
                     <div class="card-header">
-                        <button name="actionType" value="@Netotik.Common.Controller.ActionType.Save" class="btn btn-social width-100 btn-instagram" onclick="AjaxForm.Post(this, 'form')" data-loading-text="@Captions.SendingData">
+                        <button name="actionType" value="@Netotik.Common.Controller.ActionType.Save" class="btn btn-social width-150 btn-instagram margin-bottom-2" onclick="AjaxForm.Post(this, 'form')" data-loading-text="@Captions.SendingData">
                             <span class="icon-checkmark2 font-medium-4"></span>
                             @Netotik.Resources.Captions.Save
                         </button>
+                        <a href="@Url.Action(MVC.Admin.IndexSection.Index())" class="btn btn-social width-150 btn-secondary btn-default"><span class="icon-android-arrow-back font-medium-3"></span> @Captions.Back </a>
                     </div>
                     <div class="card-body">
                         <div class="row">
