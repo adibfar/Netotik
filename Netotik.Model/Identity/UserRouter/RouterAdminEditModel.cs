@@ -82,6 +82,13 @@ namespace Netotik.ViewModels.Identity.UserRouter
         [System.Web.Mvc.Remote("IsRouterCodeAvailable", "Remote", System.Web.Mvc.AreaReference.UseRoot, AdditionalFields = "Id,Reseller_Id", HttpMethod = "POST", ErrorMessageResourceType = typeof(Captions), ErrorMessageResourceName = "ExistError")]
         public string RouterCode { get; set; }
 
+        [Required(ErrorMessageResourceType = typeof(Captions), ErrorMessageResourceName = "RequiredError")]
+        [Display(ResourceType = typeof(Captions), Name = "IsBanned")]
+        public bool IsBanned { get; set; }
+
+        [Required(ErrorMessageResourceType = typeof(Captions), ErrorMessageResourceName = "RequiredError")]
+        [Display(ResourceType = typeof(Captions), Name = "EmailConfirmed")]
+        public virtual bool EmailConfirmed { get; set; }
 
         public string[] ClientPermissionNames { get; set; }
         public string[] RouterPermissionNames { get; set; }
