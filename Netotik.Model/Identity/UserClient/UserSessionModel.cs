@@ -40,6 +40,7 @@ namespace Netotik.ViewModels.Identity.UserClient
         public string upload { get; set; }
         [Display(ResourceType = typeof(Captions), Name = "Active")]
         public string active { get; set; }
+
                
     }
 }

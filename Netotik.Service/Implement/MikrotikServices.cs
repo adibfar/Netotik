@@ -693,10 +693,11 @@ namespace Netotik.Services.Implement
             {
                 Age = model.Age,
                 Birthday = model.Birthday,
-                //CreateDate = DateTime.Now,
+                CreateDate = model.CreateDate,
                 MarriageDate = model.MarriageDate,
                 NationalCode = model.NationalCode,
-                IsMale = model.IsMale
+                IsMale = model.IsMale,
+                EditDate= DateTime.Now
             }));
             //temp = String.Format("=comment={0}", model.comment);
             mikrotik.Send(temp);
@@ -2905,5 +2906,86 @@ namespace Netotik.Services.Implement
             mikrotik.Send(command, true);
             mikrotik.Read();
         }
+        //public List<RouterAccessModel> RouterAccessWithAdressListList(string r_Host, int r_Port, string r_User, string r_Password)
+        //{
+        //    var mikrotik = new MikrotikAPI();
+        //    mikrotik.MK(r_Host, r_Port);
+        //    if (!mikrotik.Login(r_User, r_Password)) mikrotik.Close();
+        //    //-----------------------------------------------
+        //    mikrotik.Send("/tool/user-manager/log/print", true);
+        //    var RouterAccess = new List<RouterAccessModel>();
+        //    foreach (var item in mikrotik.Read())
+        //    {
+        //        if (item != "!done")
+        //        {
+        //            var cols = item.Split('=');
+        //            var ColumnList = new Dictionary<string, string>();
+        //            for (int i = 1; i < cols.Count(); i += 2)
+        //            {
+        //                ColumnList.Add(cols[i], cols[i + 1]);
+        //            }
+        //            RouterAccess.Add(new RouterAccessModel()
+        //            {
+        //                id = ColumnList.Any(x => x.Key == ".id") ? (ColumnList.FirstOrDefault(x => x.Key == ".id").Value) : "",
+        //                Address = ColumnList.Any(x => x.Key == "user-orig") ? (ColumnList.FirstOrDefault(x => x.Key == "user-orig").Value) : "",
+        //            });
+
+        //        }
+        //    }
+
+        //    return RouterAccess;
+        //}
+        //public void RouterAccessWithAdressListAdd(string r_Host, int r_Port, string r_User, string r_Password, RouterAccessModel Model)
+        //{
+        //    var mikrotik = new MikrotikAPI();
+        //    mikrotik.MK(r_Host, r_Port);
+        //    if (!mikrotik.Login(r_User, r_Password)) mikrotik.Close();
+        //    //-----------------------------------------------
+        //    mikrotik.Send("/ip/service/disable");
+        //    string command = string.Format("?number={0}");
+        //    mikrotik.Send(command, true);
+        //    mikrotik.Read();
+        //}
+        //public void RouterAccessWithAdressListRemove(string r_Host, int r_Port, string r_User, string r_Password, string id)
+        //{
+        //    var mikrotik = new MikrotikAPI();
+        //    mikrotik.MK(r_Host, r_Port);
+        //    if (!mikrotik.Login(r_User, r_Password)) mikrotik.Close();
+        //    //-----------------------------------------------
+        //    mikrotik.Send("/ip/service/disable");
+        //    string command = string.Format("?number={0}");
+        //    mikrotik.Send(command, true);
+        //    mikrotik.Read();
+        //}
+        //public void RouterAccessWithAdressListEnable(string r_Host, int r_Port, string r_User, string r_Password, string id)
+        //{
+        //    var mikrotik = new MikrotikAPI();
+        //    mikrotik.MK(r_Host, r_Port);
+        //    if (!mikrotik.Login(r_User, r_Password)) mikrotik.Close();
+        //    //-----------------------------------------------
+        //    mikrotik.Send("/ip/service/disable");
+        //    string command = string.Format("?number={0}");
+        //    mikrotik.Send(command, true);
+        //    mikrotik.Read();
+        //}
+        //public void RouterAccessWithAdressListDisable(string r_Host, int r_Port, string r_User, string r_Password, string id)
+        //{
+        //    var mikrotik = new MikrotikAPI();
+        //    mikrotik.MK(r_Host, r_Port);
+        //    if (!mikrotik.Login(r_User, r_Password)) mikrotik.Close();
+        //    //-----------------------------------------------
+        //    if (id.Contains("AddressList:"))
+        //    {
+        //        mikrotik.Send("/ip/address/remove");
+        //        mikrotik.Send(string.Format("?number={0}",id.Split(':')[1]),true);
+        //        mikrotik.Read();
+        //    }
+        //    if(id.Contains("L7:"))
+        //    {
+        //        mikrotik.Send("/ip/address/layer7-protocol/remove");
+        //        mikrotik.Send(string.Format("?number={0}", id.Split(':')[1]), true);
+        //        mikrotik.Read();
+        //    }
+        //}
     }
 }

@@ -11,6 +11,7 @@ namespace Netotik.ViewModels.Identity.UserClient
         public string CreateDate { get; set; }
         public string MarriageDate { get; set; }
         public string Age { get; set; }
+        public string EditDate { get; set; }
 
     }
 }

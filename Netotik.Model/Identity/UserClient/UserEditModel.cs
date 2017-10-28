@@ -58,6 +58,8 @@ namespace Netotik.ViewModels.Identity.UserClient
         public string MarriageDate { get; set; }
         [Display(ResourceType = typeof(Captions), Name = "Age")]
         public string Age { get; set; }
+        [Display(ResourceType = typeof(Captions), Name = "LastEdit")]
+        public string EditDate { get; set; }
         public string reg_key { get; set; }
 
     }

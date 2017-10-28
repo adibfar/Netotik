@@ -607,12 +607,18 @@ namespace Netotik.Web.Areas.Client.Controllers
             model.shared_users = UsermanagerUser.FirstOrDefault().shared_users;
             model.password = UsermanagerUser.FirstOrDefault().password;
             model.location = UsermanagerUser.FirstOrDefault().location;
-            model.comment = UsermanagerUser.FirstOrDefault().comment;
             model.email = UsermanagerUser.FirstOrDefault().email;
             model.first_name = UsermanagerUser.FirstOrDefault().first_name;
             model.last_name = UsermanagerUser.FirstOrDefault().last_name;
             model.phone = UsermanagerUser.FirstOrDefault().phone;
             model.profile = pname;
+            model.Age = UsermanagerUser.FirstOrDefault().Age;
+            model.Birthday = UsermanagerUser.FirstOrDefault().Birthday;
+            model.CreateDate = UsermanagerUser.FirstOrDefault().CreateDate;
+            model.IsMale = UsermanagerUser.FirstOrDefault().IsMale;
+            model.MarriageDate = UsermanagerUser.FirstOrDefault().MarriageDate;
+            model.NationalCode = UsermanagerUser.FirstOrDefault().NationalCode;
+            
             _mikrotikServices.Usermanager_UserEdit(loginedUser.UserRouter.R_Host, loginedUser.UserRouter.R_Port, loginedUser.UserRouter.R_User, loginedUser.UserRouter.R_Password, model);
             if(model.phone != null && model.phone!= "")
             if (loginedUser.UserRouter.SmsCharge > 0 && loginedUser.UserRouter.SmsActive && loginedUser.UserRouter.SmsUserAfterChangePackage)

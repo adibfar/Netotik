@@ -1018,7 +1018,7 @@ namespace Netotik.Web.Areas.MyRouter.Controllers
                             {
                                 _smsService.SendSms(model.phone,string.Format(Captions.SmsUserBuyPlan,model.username), UserLogined.Id);
                             }
-
+                        model.CreateDate = item.CreateDate;
                     }
                 _mikrotikServices.Usermanager_UserEdit(UserLogined.UserRouter.R_Host, UserLogined.UserRouter.R_Port, UserLogined.UserRouter.R_User, UserLogined.UserRouter.R_Password, model);
                 if (model.password != model2.FirstOrDefault().password)

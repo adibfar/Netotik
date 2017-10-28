@@ -45,6 +45,7 @@ namespace Netotik.Domain.Entity
 
         public string RegisterWithSmsRouterProfile { get; set; }
         public string RegisterWithSmsMessage { get; set; }
+        public int RegisterWithSmsAgainHour { get; set; }
         public bool SmsIfErrorInSms { get; set; }
 
 

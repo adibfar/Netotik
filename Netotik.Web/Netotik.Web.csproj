@@ -330,6 +330,7 @@
     <Folder Include="Areas\Client\Models\" />
     <Folder Include="Areas\MyRouter\Models\" />
     <Folder Include="Areas\Reseller\Models\" />
+    <Folder Include="Views\Test\" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AccountController.generated.cs">
@@ -466,6 +467,7 @@
     <Compile Include="Controllers\SitemapController.cs" />
     <Compile Include="Controllers\RssController.cs" />
     <Compile Include="Controllers\TelegramBotController.cs" />
+    <Compile Include="Controllers\TestController.cs" />
     <Compile Include="ErrorController.generated.cs">
       <DependentUpon>T4MVC.tt</DependentUpon>
     </Compile>
@@ -3706,6 +3708,7 @@
     <Content Include="Areas\Admin\Views\UserRouter\Detail.cshtml" />
     <Content Include="Areas\Admin\Views\UserRouter\Edit.cshtml" />
     <Content Include="Areas\Admin\Views\UserRouter\Index.cshtml" />
+    <Content Include="Areas\MyRouter\Views\Router\Access.cshtml" />
     <Content Include="Areas\MyRouter\Views\Home\_Profiles.cshtml" />
     <None Include="Properties\PublishProfiles\DNMA.pubxml" />
     <Content Include="Service References\ZarinPalService\Netotik.Web.ZarinPalService.GetUnverifiedTransactionsResponse.datasource">

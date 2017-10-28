@@ -1303,5 +1303,10 @@
     </Value>
   </LocaleResource>
   
+  <LocaleResource Name="RegisterWithSmsAgainHour">
+    <Value>
+      Recreate account(Hour)
+    </Value>
+  </LocaleResource>
 
 </Language>
