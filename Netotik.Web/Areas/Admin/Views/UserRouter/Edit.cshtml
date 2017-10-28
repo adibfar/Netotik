@@ -40,7 +40,7 @@
                                     <a class="nav-link" id="linkIcon12-tab1" data-toggle="tab" href="#sms" aria-controls="linkIcon12" aria-expanded="false"><i class="icon-lock2"></i>@Captions.Sms</a>
                                 </li>
                             </ul>
-                            @Html.HiddenFor(m=>m.Id)
+                            @Html.HiddenFor(m => m.Id)
                             <div class="tab-content px-1 pt-1" style="min-height:260px!important">
                                 <div role="tabpanel" class="tab-pane fade active in" id="property" aria-labelledby="activeIcon12-tab1" aria-expanded="true">
                                     <div class="row">
@@ -72,7 +72,7 @@
                                             <div class="form-group has-icon-left">
                                                 @Html.LabelFor(m => m.ResellerId)
                                                 <div class="position-relative has-icon-left">
-                                                    @Html.DropDownListFor(m => m.ResellerId,ViewBag.Resellers as SelectList, new { @class = "form-control" })
+                                                    @Html.DropDownListFor(m => m.ResellerId, ViewBag.Resellers as SelectList, new { @class = "form-control" })
                                                     <div class="form-control-position">
                                                         <i class="icon-user-tie"></i>
                                                     </div>
@@ -234,6 +234,19 @@
                                     </fieldset>
                                 </div>
                                 <div class="tab-pane fade" id="RouterPermission" role="tabpanel" aria-labelledby="linkIconOpt11-tab1" aria-expanded="false">
+
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                            <div class="col-md-4">
+                                                <div class="form-group">
+                                                    @Html.CheckBoxFor(model => model.WebsitesLogs)
+                                                    @Html.LabelFor(m => m.WebsitesLogs)
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+
                                     <fieldset>
                                         <div class="row skin skin-flat">
                                             @foreach (var item in routerPermissions)
@@ -249,13 +262,13 @@
                                 <div class="tab-pane fade" id="ClientPermission" role="tabpanel" aria-labelledby="linkIconOpt11-tab1" aria-expanded="false">
                                     <fieldset>
                                         <div class="row skin skin-flat">
-                                           @foreach (var item in clientPermissions)
-                                           {
-                                            <div class="col-md-4">
-                                                <input type="checkbox" name="ClientPermissionNames" @(item.Selected ? "checked" : "") value="@item.Value">
-                                                @Html.Label("ClientPermissionNames", item.Text)
-                                            </div>
-                                           }
+                                            @foreach (var item in clientPermissions)
+                                            {
+                                                <div class="col-md-4">
+                                                    <input type="checkbox" name="ClientPermissionNames" @(item.Selected ? "checked" : "") value="@item.Value">
+                                                    @Html.Label("ClientPermissionNames", item.Text)
+                                                </div>
+                                            }
                                         </div>
                                     </fieldset>
                                 </div>
