@@ -14,9 +14,9 @@ using System.Collections.Generic;
 
 namespace Netotik.Web.Areas.MyRouter.Controllers
 {
-     [Mvc5Authorize(Roles = "Router")]
+    [Mvc5Authorize(Roles = "Router")]
     [BreadCrumb(Title = "Hotspot", UseDefaultRouteUrl = true, RemoveAllDefaultRouteValues = true,
- Order = 0, GlyphIcon = "icon icon-table")]
+Order = 0, GlyphIcon = "icon icon-table")]
     public partial class HotspotController : BasePanelController
     {
         #region ctor
@@ -38,7 +38,7 @@ namespace Netotik.Web.Areas.MyRouter.Controllers
         }
         #endregion
 
-        
+
         [HttpPost]
         public virtual ActionResult AddIpWalledGarden()
         {
@@ -47,7 +47,7 @@ namespace Netotik.Web.Areas.MyRouter.Controllers
 
             if (!_mikrotikServices.IP_Port_Check(UserLogined.UserRouter.R_Host, UserLogined.UserRouter.R_Port, UserLogined.UserRouter.R_User, UserLogined.UserRouter.R_Password))
             {
-                this.MessageError(Captions.Error,Captions.IPPORTClientError);
+                this.MessageError(Captions.Error, Captions.IPPORTClientError);
                 return RedirectToAction(MVC.MyRouter.Home.ActionNames.MikrotikConf, MVC.MyRouter.Home.Name, new { area = MVC.MyRouter.Name });
             }
             if (!_mikrotikServices.User_Pass_Check(UserLogined.UserRouter.R_Host, UserLogined.UserRouter.R_Port, UserLogined.UserRouter.R_User, UserLogined.UserRouter.R_Password))
@@ -82,7 +82,7 @@ namespace Netotik.Web.Areas.MyRouter.Controllers
             return RedirectToAction(MVC.MyRouter.Hotspot.ActionNames.Access);
         }
 
-        
+
         [HttpPost]
         public virtual ActionResult AddIpBindings()
         {
@@ -102,9 +102,9 @@ namespace Netotik.Web.Areas.MyRouter.Controllers
 
             //-------------------------------
             if (Request.Form["IpAddress"] == null) Request.Form["IpAddress"] = "";
-            if (Request.Form["MacAddress"]== null) Request.Form["MacAddress"] = "";
+            if (Request.Form["MacAddress"] == null) Request.Form["MacAddress"] = "";
             if (Request.Form["NatIpAddress"] == null) Request.Form["NatIpAddress"] = "";
-           // if (Request.Form["Comment"] == null) Request.Form["Comment"] = "";
+            // if (Request.Form["Comment"] == null) Request.Form["Comment"] = "";
             if (Request.Form["Server"] == null) Request.Form["Server"] = "";
             if (Request.Form["Type"] == null) Request.Form["Type"] = "";
             Hotspot_IPBindingsModel temp = new Hotspot_IPBindingsModel()
@@ -112,7 +112,7 @@ namespace Netotik.Web.Areas.MyRouter.Controllers
                 address = Request.Form["IpAddress"].ToString(),
                 mac_address = Request.Form["MacAddress"].ToString(),
                 to_address = Request.Form["NatIpAddress"].ToString(),
-               // comment = Request.Form["Comment"].ToString(),
+                // comment = Request.Form["Comment"].ToString(),
                 disabled = "no",
                 server = Request.Form["Server"].ToString(),
                 type = Request.Form["Type"].ToString(),
@@ -122,7 +122,7 @@ namespace Netotik.Web.Areas.MyRouter.Controllers
             this.MessageSuccess(Captions.UpdateSuccess, Captions.HotspotUserAccessAdd);
             return RedirectToAction(MVC.MyRouter.Hotspot.ActionNames.Access);
         }
-        
+
         public virtual ActionResult Servers()
         {
 
@@ -140,10 +140,10 @@ namespace Netotik.Web.Areas.MyRouter.Controllers
             }
             //-------------------------------
             ViewBag.servers = _mikrotikServices.Hotspot_ServersList(UserLogined.UserRouter.R_Host, UserLogined.UserRouter.R_Port, UserLogined.UserRouter.R_User, UserLogined.UserRouter.R_Password);
-            
+
             return View();
         }
-        
+
         public virtual ActionResult Active()
         {
 
@@ -164,9 +164,12 @@ namespace Netotik.Web.Areas.MyRouter.Controllers
             var Active = new List<Hotspot_ActiveModel>();
             foreach (var item in ActiveList)
             {
-                item.Flags = item.Flags.Replace("Active","A").Replace("Host","");
-                item.radius = item.radius.Replace("true", "R").Replace("flase","");
-                item.uptime = item.uptime.Replace("d",Captions.Day).Replace("w",Captions.Week).Replace("h", Captions.Hour).Replace("m", Captions.Minute).Replace("s", Captions.Secend).Replace("never", Captions.NoConnection);
+                item.Flags = item.Flags.Replace("Active", "A").Replace("Host", "");
+                if (item.Flags != "")
+                {
+                    item.radius = item.radius.Replace("true", "R").Replace("flase", "");
+                }
+                item.uptime = item.uptime.Replace("d", Captions.Day).Replace("w", Captions.Week).Replace("h", Captions.Hour).Replace("m", Captions.Minute).Replace("s", Captions.Secend).Replace("never", Captions.NoConnection);
                 item.session_time_left = item.session_time_left.Replace("d", Captions.Day).Replace("w", Captions.Week).Replace("h", Captions.Hour).Replace("m", Captions.Minute).Replace("s", Captions.Secend).Replace("never", Captions.NoConnection);
                 item.keepalive_timeout = item.keepalive_timeout.Replace("d", Captions.Day).Replace("w", Captions.Week).Replace("h", Captions.Hour).Replace("m", Captions.Minute).Replace("s", Captions.Secend).Replace("never", Captions.NoConnection);
                 if (item.limit_bytes_in != null)
@@ -180,14 +183,14 @@ namespace Netotik.Web.Areas.MyRouter.Controllers
                         item.limit_bytes_total = (ulong.Parse(item.limit_bytes_total) / 1048576).ToString();
                 Active.Add(item);
             }
-            if(Active == null)
+            if (Active == null)
             {
-                Active.Add(new Hotspot_ActiveModel { mac_address = "No One Is Online", address="مورد یافت نشد"});
+                Active.Add(new Hotspot_ActiveModel { mac_address = "No One Is Online", address = "مورد یافت نشد" });
             }
             ViewBag.servers = Active;
             return View();
         }
-        
+
         public virtual ActionResult Users()
         {
 
@@ -206,7 +209,7 @@ namespace Netotik.Web.Areas.MyRouter.Controllers
             //-------------------------------
             var UsersList = _mikrotikServices.Hotspot_UsersList(UserLogined.UserRouter.R_Host, UserLogined.UserRouter.R_Port, UserLogined.UserRouter.R_User, UserLogined.UserRouter.R_Password);
             var Users = new List<Hotspot_UsersModel>();
-            foreach(var item in UsersList)
+            foreach (var item in UsersList)
             {
                 item.uptime = item.uptime.Replace("d", Captions.Day).Replace("w", Captions.Week).Replace("h", Captions.Hour).Replace("m", Captions.Minute).Replace("s", Captions.Secend).Replace("never", Captions.NoConnection);
                 item.limit_uptime = item.limit_uptime.Replace("d", Captions.Day).Replace("w", Captions.Week).Replace("h", Captions.Hour).Replace("m", Captions.Minute).Replace("s", Captions.Secend).Replace("never", Captions.NoConnection);
@@ -230,7 +233,7 @@ namespace Netotik.Web.Areas.MyRouter.Controllers
             ViewBag.servers = Users;
             return View();
         }
-        
+
         public virtual ActionResult Access()
         {
 
@@ -247,14 +250,14 @@ namespace Netotik.Web.Areas.MyRouter.Controllers
                 return RedirectToAction(MVC.MyRouter.Home.ActionNames.MikrotikConf, MVC.MyRouter.Home.Name, new { area = MVC.MyRouter.Name });
             }
             //-------------------------------
-            ViewBag.ipbindings =  _mikrotikServices.Hotspot_IpBindings(UserLogined.UserRouter.R_Host, UserLogined.UserRouter.R_Port, UserLogined.UserRouter.R_User, UserLogined.UserRouter.R_Password);
-            ViewBag.servers =  _mikrotikServices.Hotspot_ServersList(UserLogined.UserRouter.R_Host, UserLogined.UserRouter.R_Port, UserLogined.UserRouter.R_User, UserLogined.UserRouter.R_Password);
-            ViewBag.ipwalledgarden =  _mikrotikServices.Hotspot_IpWalledGarden(UserLogined.UserRouter.R_Host, UserLogined.UserRouter.R_Port, UserLogined.UserRouter.R_User, UserLogined.UserRouter.R_Password);
+            ViewBag.ipbindings = _mikrotikServices.Hotspot_IpBindings(UserLogined.UserRouter.R_Host, UserLogined.UserRouter.R_Port, UserLogined.UserRouter.R_User, UserLogined.UserRouter.R_Password);
+            ViewBag.servers = _mikrotikServices.Hotspot_ServersList(UserLogined.UserRouter.R_Host, UserLogined.UserRouter.R_Port, UserLogined.UserRouter.R_User, UserLogined.UserRouter.R_Password);
+            ViewBag.ipwalledgarden = _mikrotikServices.Hotspot_IpWalledGarden(UserLogined.UserRouter.R_Host, UserLogined.UserRouter.R_Port, UserLogined.UserRouter.R_User, UserLogined.UserRouter.R_Password);
 
             return View();
         }
 
-        
+
         [ValidateInput(false)]
         public virtual ActionResult IpBindigsRemove(string id)
         {
@@ -275,7 +278,7 @@ namespace Netotik.Web.Areas.MyRouter.Controllers
             return RedirectToAction(MVC.MyRouter.Hotspot.ActionNames.Access);
         }
 
-        
+
         [ValidateInput(false)]
         public virtual ActionResult IpWalledGardenRemove(string id)
         {
@@ -292,11 +295,11 @@ namespace Netotik.Web.Areas.MyRouter.Controllers
                 return RedirectToAction(MVC.MyRouter.Home.ActionNames.MikrotikConf, MVC.MyRouter.Home.Name, new { area = MVC.MyRouter.Name });
             }
             //-------------------------------
-           _mikrotikServices.Hotspot_IpWalledGardenRemove(UserLogined.UserRouter.R_Host, UserLogined.UserRouter.R_Port, UserLogined.UserRouter.R_User, UserLogined.UserRouter.R_Password, id);
+            _mikrotikServices.Hotspot_IpWalledGardenRemove(UserLogined.UserRouter.R_Host, UserLogined.UserRouter.R_Port, UserLogined.UserRouter.R_User, UserLogined.UserRouter.R_Password, id);
             return RedirectToAction(MVC.MyRouter.Hotspot.ActionNames.Access);
         }
 
-        
+
         [ValidateInput(false)]
         public virtual ActionResult IpBindigsEnable(string id)
         {
@@ -316,7 +319,7 @@ namespace Netotik.Web.Areas.MyRouter.Controllers
             _mikrotikServices.Hotspot_IpBindingsEnable(UserLogined.UserRouter.R_Host, UserLogined.UserRouter.R_Port, UserLogined.UserRouter.R_User, UserLogined.UserRouter.R_Password, id);
             return RedirectToAction(MVC.MyRouter.Hotspot.ActionNames.Access);
         }
-        
+
         [ValidateInput(false)]
         public virtual ActionResult IpBindigsDisable(string id)
         {
@@ -336,7 +339,7 @@ namespace Netotik.Web.Areas.MyRouter.Controllers
             _mikrotikServices.Hotspot_IpBindingsDisable(UserLogined.UserRouter.R_Host, UserLogined.UserRouter.R_Port, UserLogined.UserRouter.R_User, UserLogined.UserRouter.R_Password, id);
             return RedirectToAction(MVC.MyRouter.Hotspot.ActionNames.Access);
         }
-        
+
         [ValidateInput(false)]
         public virtual ActionResult IpWalledGardenEnable(string id)
         {
@@ -356,7 +359,7 @@ namespace Netotik.Web.Areas.MyRouter.Controllers
             _mikrotikServices.Hotspot_IpWalledGardenEnable(UserLogined.UserRouter.R_Host, UserLogined.UserRouter.R_Port, UserLogined.UserRouter.R_User, UserLogined.UserRouter.R_Password, id);
             return RedirectToAction(MVC.MyRouter.Hotspot.ActionNames.Access);
         }
-        
+
         [ValidateInput(false)]
         public virtual ActionResult IpWalledGardenDisable(string id)
         {
@@ -376,7 +379,7 @@ namespace Netotik.Web.Areas.MyRouter.Controllers
             _mikrotikServices.Hotspot_IpWalledGardenDisable(UserLogined.UserRouter.R_Host, UserLogined.UserRouter.R_Port, UserLogined.UserRouter.R_User, UserLogined.UserRouter.R_Password, id);
             return RedirectToAction(MVC.MyRouter.Hotspot.ActionNames.Access);
         }
-        
+
         public virtual ActionResult Template()
         {
 

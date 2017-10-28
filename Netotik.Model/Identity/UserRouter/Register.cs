@@ -68,7 +68,7 @@ namespace Netotik.ViewModels.Identity.UserRouter
 
         [Required(ErrorMessageResourceType = typeof(Captions), ErrorMessageResourceName = "RequiredError")]
         [Display(ResourceType = typeof(Captions), Name = "UserName")]
-        [StringLength(256, MinimumLength = 5,ErrorMessageResourceType =typeof(Captions),ErrorMessageResourceName ="LengthError")]
+        [StringLength(256, MinimumLength = 4,ErrorMessageResourceType =typeof(Captions),ErrorMessageResourceName ="LengthError")]
         [System.Web.Mvc.Remote("IsUserNameAvailable", "Remote", System.Web.Mvc.AreaReference.UseRoot, ErrorMessageResourceType =typeof(Captions),ErrorMessageResourceName = "ExistError", HttpMethod = "POST")]
         [RegularExpression(@"(^[a-zA-Z0-9:.-_]*$)", ErrorMessageResourceType = typeof(Captions), ErrorMessageResourceName = "JustEnglishNumeric")]
         public string UserName { get; set; }

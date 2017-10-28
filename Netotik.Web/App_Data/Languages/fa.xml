@@ -1554,7 +1554,7 @@
     <Value>متن پیامکی جهت ثبت نام</Value>
   </LocaleResource>
   <LocaleResource Name="RegisterWithSms">
-    <Value>ثبت نام از طریق پیامک</Value>
+    <Value>ثبت نام پیامکی</Value>
   </LocaleResource>
   <LocaleResource Name="SmsCharge">
     <Value>اعتبار پیامک</Value>
@@ -1694,15 +1694,15 @@
   <LocaleResource Name="PaymentErrorMessage">
     <Value>پرداخت شما با شکست مواجه شد. وضعیت خطا : {0} - کد امنیتی : {1}</Value>
   </LocaleResource>
-  
+
   <LocaleResource Name="FinancialManagement">
     <Value>مدیریت مالی</Value>
   </LocaleResource>
-  
+
   <LocaleResource Name="PaymentTypesManagement">
     <Value>مدیریت روش های پرداخت</Value>
   </LocaleResource>
-  
+
   <LocaleResource Name="PaymentTypes">
     <Value>روش های پرداخت</Value>
   </LocaleResource>
@@ -1711,8 +1711,8 @@
     <Value>پنل پیامک</Value>
   </LocaleResource>
 
-  
-  
+
+
   <LocaleResource Name="TodayVisitors">
     <Value>بازدیدکننده های امروز</Value>
   </LocaleResource>
@@ -1756,7 +1756,7 @@
   <LocaleResource Name="MostReferrers">
     <Value>بیشترین ارجاعات</Value>
   </LocaleResource>
-  
+
   <LocaleResource Name="XmlNotValid">
     <Value>فایل xml معتبر نیست.</Value>
   </LocaleResource>
@@ -1780,7 +1780,7 @@
   <LocaleResource Name="EditRouter">
     <Value>ویرایش  اطلاعات روتر</Value>
   </LocaleResource>
-  
+
   <LocaleResource Name="BussinesName">
     <Value>نام تجاری</Value>
   </LocaleResource>
@@ -1882,5 +1882,29 @@
       خطا در اتصال به روتر..
     </Value>
   </LocaleResource>
-
+<LocaleResource Name="SmsAlerts">
+    <Value>
+پیامک های اطلاع رسانی
+</Value>
+  </LocaleResource>
+  <LocaleResource Name="ClientLoginLink">
+    <Value>لینک لاگین به کاربران</Value>
+  </LocaleResource>
+  <LocaleResource Name="ClientLoginMessage">
+    <Value>
+      کاربران شما برای ورود به پنل خودشان باید حتما از صفحه لاگین شما جهت ورود استفاده کنند.آدرس این صفحه در زیر نوشته شده
+      و به صورت لینک می باشد.
+      لینک زیر را به کاربران خود بدهید.
+      در آینده در این صفحه اختصاصی ،شما می توانید تبلیغات خود را بگذارید که کاربران شما در هر بار ورود آنها را ببینند.
+    </Value>
+  </LocaleResource>
+  <LocaleResource Name="WebsitesLogs">
+    <Value>لاگ سایت های بازدید شده</Value>
+  </LocaleResource>
+  <LocaleResource Name="TelegramBot">
+    <Value>ربات تلگرام</Value>
+  </LocaleResource>
+  <LocaleResource Name="Sms">
+    <Value>پیامک</Value>
+  </LocaleResource>
 </Language>

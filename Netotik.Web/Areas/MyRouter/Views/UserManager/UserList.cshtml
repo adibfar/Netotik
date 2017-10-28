@@ -13,14 +13,17 @@
                         <span class="icon-user-plus font-medium-4"></span>
                         @Captions.NewUser
                     </a>
-                    <a value="@Captions.NewMultiUser" class="btn btn-social btn-instagram" href="@Url.Action(MVC.MyRouter.UserManager.ResetCounter())">
-                        <span class="icon-users font-medium-4"></span>
-                        @Captions.NewMultiUser
-                    </a>
-                    <a value="@Captions.MakeCard" class="btn btn-social btn-instagram" href="@Url.Action(MVC.MyRouter.UserManager.ResetCounter())">
-                        <span class="icon-card font-medium-4"></span>
-                        @Captions.MakeCard
-                    </a>
+                    @if (false)
+                    {
+                        <a value="@Captions.NewMultiUser" class="btn btn-social btn-instagram" href="@Url.Action(MVC.MyRouter.UserManager.ResetCounter())">
+                            <span class="icon-users font-medium-4"></span>
+                            @Captions.NewMultiUser
+                        </a>
+                        <a value="@Captions.MakeCard" class="btn btn-social btn-instagram" href="@Url.Action(MVC.MyRouter.UserManager.ResetCounter())">
+                            <span class="icon-card font-medium-4"></span>
+                            @Captions.MakeCard
+                        </a>
+                    }
                 </div>
                 <div class="card-body collapse in">
                     <div class="card-block card-dashboard">
@@ -55,11 +58,13 @@
                                             @try
                                             { @item.download_used }
                                             catch { }
+                                            MB
                                         </td>
                                         <td>
                                             @try
                                             { @item.upload_used }
                                             catch { }
+                                            MB
                                         </td>
                                         <td data-toggle="tooltip" data-original-title="<b>@item.last_seenT</b>" data-html="true">@item.last_seen</td>
                                         <td>@item.first_name</td>
@@ -70,11 +75,11 @@
                                         <td>
                                             @if (item.disabled == "false")
                                             {
-                                                <span class="label label-success">@Captions.Enabled</span>
+                                                <span class="tag tag-success">@Captions.Enabled</span>
                                             }
                                             else
                                             {
-                                                <span class="label label-danger">@Captions.Disabled</span>
+                                                <span class="tag tag-warning">@Captions.Disabled</span>
                                             }
                                         </td>
                                         <td>

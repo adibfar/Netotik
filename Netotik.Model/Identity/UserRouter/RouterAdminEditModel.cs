@@ -44,7 +44,7 @@ namespace Netotik.ViewModels.Identity.UserRouter
 
         [Required(ErrorMessageResourceType = typeof(Captions), ErrorMessageResourceName = "RequiredError")]
         [MaxLength(300, ErrorMessageResourceType = typeof(Captions), ErrorMessageResourceName = "MaxLengthError")]
-        [MinLength(6, ErrorMessageResourceType = typeof(Captions), ErrorMessageResourceName = "MinLengthError")]
+        [MinLength(4, ErrorMessageResourceType = typeof(Captions), ErrorMessageResourceName = "MinLengthError")]
         [Display(ResourceType = typeof(Captions), Name = "UserName")]
         [System.Web.Mvc.Remote("IsUserNameAvailable", "Remote", System.Web.Mvc.AreaReference.UseRoot, AdditionalFields = "Id", HttpMethod = "POST", ErrorMessageResourceType = typeof(Captions), ErrorMessageResourceName = "ExistError")]
         [RegularExpression(@"(^[a-zA-Z0-9]*$)", ErrorMessageResourceType = typeof(Captions), ErrorMessageResourceName = "JustEnglishNumeric")]
@@ -89,7 +89,8 @@ namespace Netotik.ViewModels.Identity.UserRouter
         [Required(ErrorMessageResourceType = typeof(Captions), ErrorMessageResourceName = "RequiredError")]
         [Display(ResourceType = typeof(Captions), Name = "EmailConfirmed")]
         public virtual bool EmailConfirmed { get; set; }
-
+        [Display(ResourceType = typeof(Captions), Name = "WebsitesLogs")]
+        public bool WebsitesLogs { get; set; }
         public string[] ClientPermissionNames { get; set; }
         public string[] RouterPermissionNames { get; set; }
 
