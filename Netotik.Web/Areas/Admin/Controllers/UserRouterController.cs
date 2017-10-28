@@ -131,13 +131,13 @@ namespace Netotik.Web.Areas.Admin.Controllers
             if (viewModel == null) return HttpNotFound();
 
 
-
+            
             if (viewModel.Picture != null)
                 ViewBag.Avatar = Path.Combine(Common.Controller.FilePathes._imagesUserAvatarsPath, viewModel.Picture.FileName);
 
             PopulateResellers(viewModel.ResellerId);
             PopulateClientPermissions(_applicationUserManager.FindClientPermissions(viewModel.Id).ToArray());
-
+            PopulateRouterPermissions(_applicationUserManager.FindRouterPermissions(viewModel.Id).ToArray());
             return View(viewModel);
 
         }
@@ -148,6 +148,7 @@ namespace Netotik.Web.Areas.Admin.Controllers
         public virtual async Task<ActionResult> Edit(RouterAdminEditModel model)
         {
             PopulateClientPermissions(model.ClientPermissionNames);
+            PopulateRouterPermissions(model.RouterPermissionNames);
             PopulateResellers(model.ResellerId);
 
             #region Validation
@@ -332,6 +333,18 @@ namespace Netotik.Web.Areas.Admin.Controllers
         private void PopulateResellers(long? resellerId = null)
         {
             ViewBag.Resellers = _userManager.GetResellersSelectList(resellerId);
+        }
+        [NonAction]
+        private void PopulateRouterPermissions(params string[] selectedpermissions)
+        {
+            var permissions = AssignablePermissionToRouter.GetAsSelectListItems();
+
+            if (selectedpermissions != null)
+            {
+                permissions.ForEach(
+                    a => a.Selected = selectedpermissions.Any(s => s == a.Value));
+            }
+            ViewBag.RouterPermissions = permissions;
         }
     }
 }

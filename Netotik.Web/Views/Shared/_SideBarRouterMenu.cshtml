@@ -78,7 +78,7 @@ var CanShowHotspot = Model.Any(x => AssignablePermissionToRouter.GetHotspotMenuP
                         }
                         @if (CanShowWebsitesLogs)
                         {
-                            <li><a href="@Url.Action(MVC.MyRouter.Router.WebSitesLogs())" data-toggle="dropdown" class="dropdown-item">لاگ سایت های بازدید شده</a></li>
+                            <li><a href="@Url.Action(MVC.MyRouter.Router.WebSitesLogs())" data-toggle="dropdown" class="dropdown-item">@Captions.WebsitesLogs</a></li>
                         }
                         @if (false)
                         {
@@ -141,11 +141,11 @@ var CanShowHotspot = Model.Any(x => AssignablePermissionToRouter.GetHotspotMenuP
                     }
                     @if (CanShowTelegramBot)
                     {
-                        <li><a href="@Url.Action(MVC.MyRouter.Home.TelegramBot())" data-toggle="dropdown" class="dropdown-item">Telegram Bot</a></li>
+                        <li><a href="@Url.Action(MVC.MyRouter.Home.TelegramBot())" data-toggle="dropdown" class="dropdown-item">@Captions.TelegramBot</a></li>
                     }
                     @if (CanShowSms)
                     {
-                        <li><a href="@Url.Action(MVC.MyRouter.Home.Sms())" data-toggle="dropdown" class="dropdown-item">پیامک</a></li>
+                        <li><a href="@Url.Action(MVC.MyRouter.Home.Sms())" data-toggle="dropdown" class="dropdown-item">@Captions.Sms</a></li>
                     }
                     <li><a href="@Url.Action(MVC.MyRouter.Home.ChangePassword())" data-toggle="dropdown" class="dropdown-item">@Captions.ChangePassword</a></li>
                 </ul>

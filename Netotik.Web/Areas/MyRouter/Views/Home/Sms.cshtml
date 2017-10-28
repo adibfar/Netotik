@@ -31,8 +31,14 @@
                         <div class="row">
                             <div class="col-md-9">
                                 <div class="card-block">
-                                    <h4 class="form-section"><i class="icon-cog3"></i> پیامک های اطلاع رسانی</h4>
+                                    <h4 class="form-section"><i class="icon-cog3"></i> @Captions.SmsAlerts</h4>
                                     <div class="row skin skin-flat">
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                @Html.CheckBoxFor(model => model.SmsActive)
+                                                @Html.LabelFor(m => m.SmsActive)
+                                            </div>
+                                        </div>
                                         <div class="col-md-4">
                                             <div class="form-group">
                                                 @Html.CheckBoxFor(model => model.SmsUserhangeUserPassword)
@@ -100,7 +106,7 @@
                             <div class="col-md-3">
                                 <div class="card-block">
 
-                                    <h4 class="form-section"><i class="icon-mobile"></i>تنظیمات ثبت نام پیامکی</h4>
+                                    <h4 class="form-section"><i class="icon-mobile"></i>@Captions.RegisterWithSms</h4>
                                     <div class="row" id="profilesSections">
                                         @Html.LabelFor(m=>m.RegisterWithSmsRouterProfile)
                                         <select class="selectize-select" id="">
@@ -113,6 +119,14 @@
                                                 @Html.LabelFor(m => m.RegisterWithSmsMessage)
                                                 <div class="position-relative " data-toggle="tooltip" data-original-title="<b>@Model.RegisterWithSmsMessage</b>" data-html="true">
                                                     @Html.TextAreaFor(m => m.RegisterWithSmsMessage, new { @class = "form-control" })
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-12">
+                                            <div class="form-group has-icon-left">
+                                                @Html.LabelFor(m => m.RegisterWithSmsAgainHour)
+                                                <div class="position-relative " data-toggle="tooltip" data-original-title="<b>@Model.RegisterWithSmsAgainHour</b>" data-html="true">
+                                                    @Html.TextAreaFor(m => m.RegisterWithSmsAgainHour, new { @class = "form-control" })
                                                 </div>
                                             </div>
                                         </div>

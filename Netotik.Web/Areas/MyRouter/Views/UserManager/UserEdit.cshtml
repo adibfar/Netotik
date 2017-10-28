@@ -16,22 +16,22 @@
                             <span class="icon-checkmark2 font-medium-4"></span>
                             @Netotik.Resources.Captions.Save
                         </button>
-                        <a value="@Captions.Back" class="btn btn-social btn-instagram" href="@Url.Action(MVC.MyRouter.UserManager.UserList())">
-                            <span class="icon-reply font-medium-4"></span>
-                            @Captions.Back
-                        </a>
-                        <a value="@Captions.TerminateConnection" class="btn btn-social btn-instagram" href="#" onclick="UserCloseSession('@Model.id','@Model.username');">
-                            <span class="icon-blocked font-medium-4"></span>
-                            @Captions.TerminateConnection
-                        </a>
                         <a value="@Captions.Reset" class="btn btn-social btn-instagram" href="#" onclick="UserResetCounter('@Model.id','@Model.username');">
                             <span class="icon-refresh font-medium-4"></span>
                             @Captions.Reset
                         </a>
-                        <a value="@Captions.PrintReport" class="btn btn-social btn-instagram" href="#">
-                            <span class="icon-printer2 font-medium-4"></span>
-                            @Captions.PrintReport
-                        </a>
+                        @if (false)
+                        {
+                            <a value="@Captions.PrintReport" class="btn btn-social btn-instagram" href="#">
+                                <span class="icon-printer2 font-medium-4"></span>
+                                @Captions.PrintReport
+                            </a>
+                            <a value="@Captions.MakeCard" class="btn btn-social btn-instagram" href="#">
+                                <span class="icon-card font-medium-4"></span>
+                                @Captions.MakeCard
+                            </a>
+                        }
+
                         <a value="@Captions.Remove" class="btn btn-social btn-instagram" href="#" onclick="Userremove('@Model.id');">
                             <span class="icon-remove font-medium-4"></span>
                             @Captions.Remove
@@ -39,22 +39,25 @@
                         @if (Model.disabled == "false")
                         {
                             <a onclick="Userdisable('@Model.id');" class="btn btn-social btn-instagram" value="@Captions.Disabled" href="#">
-                                <span class="icon-eye-blocked font-medium-4"></span> @Captions.Disabled
+                                <span class="icon-eye-blocked font-medium-4"></span> @Captions.Disable
                             </a>
                         }
                         else
                         {
                             <a href="#" onclick="Userenable('@Model.id');" class="btn btn-social btn-instagram" value="@Captions.Enabled">
-                                <span class="icon-eye font-medium-4"></span> @Captions.Enabled
+                                <span class="icon-eye font-medium-4"></span> @Captions.Enable
                             </a>
                         }
-                        <a value="@Captions.MakeCard" class="btn btn-social btn-instagram" href="#">
-                            <span class="icon-card font-medium-4"></span>
-                            @Captions.MakeCard
-                        </a>
+                        <div class="heading-elements">
+                            <a value="@Captions.Back" class="btn btn-social btn-instagram" href="@Url.Action(MVC.MyRouter.UserManager.UserList())">
+                                <span class="icon-reply font-medium-4"></span>
+                                @Captions.Back
+                            </a>
+                        </div>
+
                         <div class="col-md-12">
                             @Html.ValidationSummary(false, "", htmlAttributes: new { @class = "text-danger" })
-                            <span class="text-danger">@Captions.JustEnglish</span>
+                            <span class="tag tag-warning">@Captions.JustEnglish</span>
                         </div>
                     </div>
                     @Html.HiddenFor(model => model.id)

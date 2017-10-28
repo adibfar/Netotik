@@ -551,9 +551,9 @@ namespace Netotik.Web.Areas.MyRouter.Controllers
                             resualtmodel.UsermanLimition = item3;
                 }
             if (resualtmodel.UsermanProfile.validity != null)
-                resualtmodel.UsermanProfile.validity = resualtmodel.UsermanProfile.validity.Replace("d", Captions.Day).Replace("w", Captions.Week).Replace("h", Captions.Hour).Replace("m", Captions.Minute).Replace("s", Captions.Secend);
+                resualtmodel.UsermanProfile.validity = resualtmodel.UsermanProfile.validity == "0s" ? Captions.Unlimited : resualtmodel.UsermanProfile.validity.Replace("d", Captions.Day).Replace("w", Captions.Week).Replace("h", Captions.Hour).Replace("m", Captions.Minute).Replace("s", Captions.Secend);
             if (resualtmodel.UsermanProfile.starts_at != null)
-                resualtmodel.UsermanProfile.starts_at = resualtmodel.UsermanProfile.starts_at.Replace("logon", " زمان اولین اتصال ").Replace("now", " زمان انتساب پکیج ");
+                resualtmodel.UsermanProfile.starts_at = resualtmodel.UsermanProfile.starts_at.Replace("logon", Captions.FirstConnection).Replace("now", Captions.PlanBind);
             if (resualtmodel.UsermanProfile.override_shared_users != null)
                 resualtmodel.UsermanProfile.override_shared_users = resualtmodel.UsermanProfile.override_shared_users.Replace("unlimited", Captions.Unlimited);
             if (resualtmodel.UsermanProfileLimition != null)
@@ -567,7 +567,11 @@ namespace Netotik.Web.Areas.MyRouter.Controllers
             }
             if (resualtmodel.UsermanLimition != null)
                 if (resualtmodel.UsermanLimition.uptime_limit != null)
-                    resualtmodel.UsermanLimition.uptime_limit = resualtmodel.UsermanLimition.uptime_limit.Replace("d", Captions.Day).Replace("w", Captions.Week).Replace("h", Captions.Hour).Replace("m", Captions.Minute).Replace("s", Captions.Secend);
+                    resualtmodel.UsermanLimition.uptime_limit = resualtmodel.UsermanLimition.uptime_limit=="0s"?Captions.Unlimited: resualtmodel.UsermanLimition.uptime_limit.Replace("d", Captions.Day).Replace("w", Captions.Week).Replace("h", Captions.Hour).Replace("m", Captions.Minute).Replace("s", Captions.Secend);
+            if (resualtmodel.UsermanLimition.rate_limit_rx == "")
+                resualtmodel.UsermanLimition.rate_limit_rx = "0";
+            if (resualtmodel.UsermanLimition.rate_limit_tx == "")
+                resualtmodel.UsermanLimition.rate_limit_tx = "0";
             return View(resualtmodel);
         }
 
@@ -649,7 +653,7 @@ namespace Netotik.Web.Areas.MyRouter.Controllers
                     if (UserLimition.upload_limit != "" && item.upload_used != "")
                         ViewBag.upload_remain = (ulong.Parse(UserLimition.upload_limit) - ulong.Parse(item.upload_used)).ToString();
                     if (UserLimition.uptime_limit != null)
-                        ViewBag.uptime_limit = UserLimition.uptime_limit.Replace("d", Captions.Day).Replace("w", Captions.Week).Replace("h", Captions.Hour).Replace("m", Captions.Minute).Replace("s", Captions.Secend);
+                        ViewBag.uptime_limit = UserLimition.uptime_limit == "0s" ? Captions.Unlimited : UserLimition.uptime_limit.Replace("d", Captions.Day).Replace("w", Captions.Week).Replace("h", Captions.Hour).Replace("m", Captions.Minute).Replace("s", Captions.Secend);
                     if (UserProfile.validity != null)
                         ViewBag.validity = UserProfile.validity.Replace("d", Captions.Day).Replace("w", Captions.Week).Replace("h", Captions.Hour).Replace("m", Captions.Minute).Replace("s", Captions.Secend);
                     if (item.shared_users != null)
@@ -898,8 +902,9 @@ namespace Netotik.Web.Areas.MyRouter.Controllers
                 var RouterProfiles = new List<Netotik.ViewModels.Identity.UserClient.ProfileModel>();
                 foreach (var item in Profiles)
                 {
-                    item.starts_at = item.starts_at.Replace("logon", " زمان اولین اتصال ").Replace("now", " زمان انتساب پکیج ");
-                    item.validity = item.validity.Replace("d", Captions.Day).Replace("w", Captions.Week).Replace("h", Captions.Hour).Replace("m", Captions.Minute).Replace("s", Captions.Secend); ;
+                    if (item.starts_at != null)
+                        item.starts_at = item.starts_at.Replace("logon", Captions.FirstConnection).Replace("now", Captions.PlanBind);
+                    item.validity = item.validity=="0s"?Captions.Unlimited: item.validity.Replace("d", Captions.Day).Replace("w", Captions.Week).Replace("h", Captions.Hour).Replace("m", Captions.Minute).Replace("s", Captions.Secend); ;
                     RouterProfiles.Add(item);
                 }
                 ViewBag.userlist = RouterProfiles;

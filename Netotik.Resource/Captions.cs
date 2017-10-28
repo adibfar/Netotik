@@ -25,6 +25,27 @@ namespace Netotik.Resources
                 return resourceProvider.GetResource("CantConnectToRouter", CultureInfo.CurrentUICulture.Name) as string;
             }
         }
+        public static string TelegramBot
+        {
+            get
+            {
+                return resourceProvider.GetResource("TelegramBot", CultureInfo.CurrentUICulture.Name) as string;
+            }
+        }
+        public static string WebsitesLogs
+        {
+            get
+            {
+                return resourceProvider.GetResource("WebsitesLogs", CultureInfo.CurrentUICulture.Name) as string;
+            }
+        }
+        public static string Sms
+        {
+            get
+            {
+                return resourceProvider.GetResource("Sms", CultureInfo.CurrentUICulture.Name) as string;
+            }
+        }
 
         public static string AccountLockMessage
         {
@@ -4781,6 +4802,27 @@ namespace Netotik.Resources
             get
             {
                 return resourceProvider.GetResource("RegisterWithSmsAgainHour", CultureInfo.CurrentUICulture.Name) as string;
+            }
+        }
+        public static string SmsAlerts
+        {
+            get
+            {
+                return resourceProvider.GetResource("SmsAlerts", CultureInfo.CurrentUICulture.Name) as string;
+            }
+        }
+        public static string ClientLoginLink
+        {
+            get
+            {
+                return resourceProvider.GetResource("ClientLoginLink", CultureInfo.CurrentUICulture.Name) as string;
+            }
+        }
+        public static string ClientLoginMessage
+        {
+            get
+            {
+                return resourceProvider.GetResource("ClientLoginMessage", CultureInfo.CurrentUICulture.Name) as string;
             }
         }
     }

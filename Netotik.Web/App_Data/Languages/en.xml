@@ -1308,5 +1308,26 @@
       Recreate account(Hour)
     </Value>
   </LocaleResource>
-
+  <LocaleResource Name="SmsAlerts">
+    <Value>
+      SMS Alerts
+    </Value>
+  </LocaleResource>
+  <LocaleResource Name="ClientLoginLink">
+    <Value>Login URL To Login</Value>
+  </LocaleResource>
+  <LocaleResource Name="ClientLoginMessage">
+    <Value>
+      This Link is for you and your user can login to there panel with this login page
+    </Value>
+  </LocaleResource>
+  <LocaleResource Name="WebsitesLogs">
+    <Value>Websites Logs</Value>
+  </LocaleResource>
+  <LocaleResource Name="TelegramBot">
+    <Value>Telegram Bot</Value>
+  </LocaleResource>
+  <LocaleResource Name="Sms">
+    <Value>Sms</Value>
+  </LocaleResource>
 </Language>
