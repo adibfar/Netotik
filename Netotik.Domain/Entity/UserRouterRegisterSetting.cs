@@ -13,17 +13,14 @@ namespace Netotik.Domain.Entity
         public long Id { get; set; }
         public FieldType MobileNumber { get; set; }
         public FieldType Email { get; set; }
-        public FieldType Username { get; set; }
+        public UsernameFieldType Username { get; set; }
         public FieldType Age { get; set; }
-        public FieldType Password { get; set; }
+        public PasswordFieldType Password { get; set; }
         public FieldType PasswordConfirm { get; set; }
         public FieldType BirthDate { get; set; }
         public FieldType Name { get; set; }
         public FieldType IsMale { get; set; }
         public FieldType NationalCode { get; set; }
-
-
-
         public bool SendEmailUserPass { get; set; }
         
 
@@ -37,6 +34,31 @@ namespace Netotik.Domain.Entity
         Show = 1,
         [Display(ResourceType = typeof(Captions), Name = "RequiredType")]
         Required
+    }
+
+    public enum UsernameFieldType : short
+    {
+        [Display(ResourceType = typeof(Captions), Name = "NoneType")]
+        None = 0,
+        [Display(ResourceType = typeof(Captions), Name = "RequiredType")]
+        Required,
+        [Display(ResourceType = typeof(Captions), Name = "MobileNumber")]
+        MobileNumber,
+        [Display(ResourceType = typeof(Captions), Name = "NationalCode")]
+        NationalCode,
+        [Display(ResourceType = typeof(Captions), Name = "Email")]
+        Email,
+    }
+    public enum PasswordFieldType : short
+    {
+        [Display(ResourceType = typeof(Captions), Name = "NoneType")]
+        None = 0,
+        [Display(ResourceType = typeof(Captions), Name = "RequiredType")]
+        Required,
+        [Display(ResourceType = typeof(Captions), Name = "MobileNumber")]
+        MobileNumber,
+        [Display(ResourceType = typeof(Captions), Name = "NationalCode")]
+        NationalCode,
     }
 
 }

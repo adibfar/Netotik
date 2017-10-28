@@ -59,7 +59,7 @@ else
                                         </div>
                                     </div>
                                 }
-                                @if (setting.MobileNumber != FieldType.None)
+                                @if (setting.MobileNumber != FieldType.None || setting.Username == UsernameFieldType.MobileNumber || setting.Password == PasswordFieldType.MobileNumber)
                                 {
                                     <div class="col-md-12">
                                         <div class="form-group has-feedback has-icon-left">
@@ -70,7 +70,7 @@ else
                                         </div>
                                     </div>
                                 }
-                                @if (setting.Username != FieldType.None)
+                                @if (setting.Username == UsernameFieldType.Required)
                                 {
                                     <div class="col-md-12">
                                         <div class="form-group has-feedback has-icon-left">
@@ -81,7 +81,7 @@ else
                                         </div>
                                     </div>
                                 }
-                                @if (setting.Email != FieldType.None)
+                                @if (setting.Email != FieldType.None || setting.Username==UsernameFieldType.Email)
                                 {
                                     <div class="col-md-12">
                                         <div class="form-group has-feedback has-icon-left">
@@ -92,7 +92,7 @@ else
                                         </div>
                                     </div>
                                 }
-                                @if (setting.NationalCode != FieldType.None)
+                                @if (setting.NationalCode != FieldType.None || setting.Username == UsernameFieldType.NationalCode || setting.Password==PasswordFieldType.NationalCode)
                                 {
                                     <div class="col-md-12">
                                         <div class="form-group has-feedback has-icon-left">
@@ -116,7 +116,7 @@ else
                                         </div>
                                     </div>
                                 }
-                                @if (setting.Password != FieldType.None)
+                                @if (setting.Password == PasswordFieldType.Required)
                                 {
                                     <div class="col-md-12">
                                         <div class="form-group has-feedback has-icon-left">
@@ -127,7 +127,7 @@ else
                                         </div>
                                     </div>
                                 }
-                                @if (setting.PasswordConfirm != FieldType.None)
+                                @if (setting.PasswordConfirm != FieldType.Required && setting.Password == PasswordFieldType.Required)
                                 {
                                     <div class="col-md-12">
                                         <div class="form-group has-feedback has-icon-left">

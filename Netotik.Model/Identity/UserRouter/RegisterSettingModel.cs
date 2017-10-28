@@ -34,7 +34,7 @@ namespace Netotik.ViewModels.Identity.UserRouter
 
         [Required(ErrorMessageResourceType = typeof(Captions), ErrorMessageResourceName = "RequiredError")]
         [Display(ResourceType = typeof(Captions), Name = "UserName")]
-        public FieldType Username { get; set; }
+        public UsernameFieldType Username { get; set; }
 
         [Required(ErrorMessageResourceType = typeof(Captions), ErrorMessageResourceName = "RequiredError")]
         [Display(ResourceType = typeof(Captions), Name = "Age")]
@@ -42,7 +42,7 @@ namespace Netotik.ViewModels.Identity.UserRouter
 
         [Required(ErrorMessageResourceType = typeof(Captions), ErrorMessageResourceName = "RequiredError")]
         [Display(ResourceType = typeof(Captions), Name = "Password")]
-        public FieldType Password { get; set; }
+        public PasswordFieldType Password { get; set; }
 
         [Required(ErrorMessageResourceType = typeof(Captions), ErrorMessageResourceName = "RequiredError")]
         [Display(ResourceType = typeof(Captions), Name = "ConfirmPassword")]

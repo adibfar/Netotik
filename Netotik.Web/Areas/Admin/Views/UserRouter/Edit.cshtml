@@ -133,6 +133,20 @@
                                             </div>
                                         </div>
                                     </div>
+                                    <div class="row">
+                                        <div class="col-md-4 col-sm-6 col-xs-12">
+                                            <fieldset>
+                                                @Html.CheckBoxFor(model => model.EmailConfirmed)
+                                                @Html.LabelFor(model => model.EmailConfirmed)
+                                            </fieldset>
+                                        </div>
+                                        <div class="col-md-4 col-sm-6 col-xs-12">
+                                            <fieldset>
+                                                @Html.CheckBoxFor(model => model.IsBanned)
+                                                @Html.LabelFor(model => model.IsBanned)
+                                            </fieldset>
+                                        </div>
+                                    </div>
                                 </div>
                                 <div class="tab-pane fade" id="Router" role="tabpanel" aria-labelledby="linkIcon12-tab1" aria-expanded="false">
                                     <div class="row">
