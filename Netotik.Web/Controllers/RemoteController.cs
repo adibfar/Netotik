@@ -195,7 +195,7 @@ namespace Netotik.Web.Controllers
         [AllowAnonymous]
         public virtual JsonResult SmsCodeIsValid(string RegisterWithSmsCode,long? id)
         {
-            var check = _applicationUserManager.SmsCodeIsValid(RegisterWithSmsCode,id);
+            var check = _applicationUserManager.SmsCodeIsValid(RegisterWithSmsCode.Replace("ي", "ی"), id);
             return check ? Json(false) : Json(true);
         }
         #endregion

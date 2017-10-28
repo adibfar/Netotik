@@ -1,0 +1,101 @@
+﻿@{ 
+    var counter = 1;
+}
+
+@if (ViewBag.Users == null)
+{
+    <label>@Captions.RegisterWithSmsRouterProfile</label>
+    <div class="alert alert-danger">
+        @Captions.CantConnectToRouter
+    </div>
+}
+else
+{
+    <table class="table table-striped table-bordered table-hover" id="grid">
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>@Captions.UserName</th>
+                <th>@Captions.PlanName</th>
+                <th>@Captions.OnlineTime</th>
+                <th>@Captions.Download</th>
+                <th>@Captions.Upload</th>
+                <th>@Captions.LastConnection</th>
+                <th>@Captions.FirstName</th>
+                <th>@Captions.LastName</th>
+                <th>@Captions.MobileNumber</th>
+                <th>@Captions.Email</th>
+                <th>@Captions.NationalCode</th>
+                <th>@Captions.Active</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in ViewBag.Users)
+            {
+                <tr>
+                    <td>@(counter++)</td>
+                    <td>@item.username</td>
+                    <td>@item.actual_profile</td>
+                    <td>@item.uptime_used</td>
+                    <td>
+                        @try
+                        { @item.download_used }
+                        catch { }
+                        MB
+                    </td>
+                    <td>
+                        @try
+                        { @item.upload_used }
+                        catch { }
+                        MB
+                    </td>
+                    <td data-toggle="tooltip" data-original-title="<b>@item.last_seenT</b>" data-html="true">@item.last_seen</td>
+                    <td>@item.first_name</td>
+                    <td>@item.last_name</td>
+                    <td>@item.phone</td>
+                    <td>@item.email</td>
+                    <td>@item.NationalCode</td>
+                    <td>
+                        @if (item.disabled == "false")
+                        {
+                            <span class="tag tag-success">@Captions.Enabled</span>
+                        }
+                        else
+                        {
+                            <span class="tag tag-warning">@Captions.Disabled</span>
+                        }
+                    </td>
+                    <td>
+                        <span class="dropdown">
+                            <button id="btnSearchDrop2" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" class="btn btn-outline-secondary dropdown-toggle dropdown-menu-right"><i class="icon-cog3"></i>@Captions.Action</button>
+                            <span aria-labelledby="btnSearchDrop2" class="dropdown-menu mt-1 dropdown-menu-right">
+                                <a onclick="UserEdit('@item.id');" class="dropdown-item">
+                                    <i class="icon-pen3 primary"></i> @Captions.Edit
+                                </a>
+                                <a onclick="UserDetails('@item.id');" class="dropdown-item">
+                                    <i class="fa fa-book"></i> @Captions.Details
+                                </a>
+                                <a onclick="Userremove('@item.id');" class="dropdown-item">
+                                    <i class="icon-trash4 danger"></i> @Captions.Remove
+                                </a>
+                                @if (item.disabled == "false")
+                                {
+                                    <a onclick="Userdisable('@item.id');" class="dropdown-item">
+                                        <i class="icon-lock danger"></i> @Captions.Disable
+                                    </a>
+                                }
+                                else
+                                {
+                                    <a onclick="Userenable('@item.id');" class="dropdown-item">
+                                        <i class="icon-unlock primary"></i> @Captions.Enable
+                                    </a>
+                                }
+                            </span>
+                        </span>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}

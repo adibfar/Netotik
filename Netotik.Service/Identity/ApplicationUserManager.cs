@@ -1254,8 +1254,8 @@ namespace Netotik.Services.Identity
         }
         public async Task<User> FindByRouterSMSCodeAsync(string Code)
         {
-            //return _users.FirstOrDefaultAsync(x => !x.IsDeleted && x.IsBanned && x.EmailConfirmed && x.UserType == UserType.UserReseller && x.UserReseller.ResellerCode == Code);
-            return await _users.FirstOrDefaultAsync(x => !x.IsDeleted && x.UserType == UserType.UserRouter && x.UserRouter.RegisterWithSmsCode == Code);
+            var list =await _users.Where(x => !x.IsDeleted && x.UserType == UserType.UserRouter).ToListAsync();
+            return list.FirstOrDefault(x => x.UserRouter.RegisterWithSmsCode==Code);
         }
 
         public long GetRoutersChargre()

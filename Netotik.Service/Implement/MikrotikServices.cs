@@ -95,6 +95,13 @@ namespace Netotik.Services.Implement
                     {
                         id = ColumnList.Any(x => x.Key == ".id") ? (ColumnList.FirstOrDefault(x => x.Key == ".id").Value) : "",
                         login = ColumnList.Any(x => x.Key == "login") ? (ColumnList.FirstOrDefault(x => x.Key == "login").Value) : "",
+                        access = ColumnList.Any(x => x.Key == "access") ? (ColumnList.FirstOrDefault(x => x.Key == "access").Value) : "",
+                        backup_allowed = ColumnList.Any(x => x.Key == "backup-allowed") ? (ColumnList.FirstOrDefault(x => x.Key == "backup-allowed").Value) : "",
+                        disabled = ColumnList.Any(x => x.Key == "disabled") ? (ColumnList.FirstOrDefault(x => x.Key == "disabled").Value)=="true"?true:false : false,
+                        password = ColumnList.Any(x => x.Key == "password") ? (ColumnList.FirstOrDefault(x => x.Key == "password").Value) : "",
+                        permissions = ColumnList.Any(x => x.Key == "permissions") ? (ColumnList.FirstOrDefault(x => x.Key == "permissions").Value) : "",
+                        signup_allowed = ColumnList.Any(x => x.Key == "signup-allowed") ? (ColumnList.FirstOrDefault(x => x.Key == "signup-allowed").Value) : "",
+                        time_zone = ColumnList.Any(x => x.Key == "time-zone") ? (ColumnList.FirstOrDefault(x => x.Key == "time-zone").Value) : ""
                     });
                 }
             }

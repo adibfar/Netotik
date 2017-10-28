@@ -9,6 +9,7 @@ using System.IO;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
+using System.Text;
 using System.Threading.Tasks;
 using System.Web.Hosting;
 using System.Web.Http;
@@ -24,7 +25,7 @@ namespace Netotik.Web.Controllers
         private ISmsService _smsService;
 
         [HttpGet]
-        [Route(@"api/SmsGateway/Farapayamak/{from}/{to}/{text}")]
+        [Route(@"api/SmsGateway/Farapayamak/{from}/{to}")]
         public async Task<string> Farapayamak(string from, string to, string text)
         {
 
@@ -33,27 +34,7 @@ namespace Netotik.Web.Controllers
             _mikrotikServices = ProjectObjectFactory.Container.GetInstance<IMikrotikServices>();
             _smsService = ProjectObjectFactory.Container.GetInstance<ISmsService>();
 
-            try
-            {
-                using (StreamWriter _testData = new StreamWriter(HostingEnvironment.MapPath("~/sms.txt"), true))
-                {
-                    _testData.WriteLine(from + to + text); // Write the file.
-                }
-            }
-            catch (Exception ex)
-            {
-                using (StreamWriter _testData = new StreamWriter(HostingEnvironment.MapPath("~/debug.txt"), true))
-                {
-                    _testData.WriteLine(from + text + text); // Write the file.
-                    _testData.WriteLine(ex.Message + "\n");
-                    if (ex.InnerException != null)
-                    {
-                        _testData.WriteLine(ex.Message + "\n");
-                    }
-                }
-            }
-
-            var User = await _applicationUserManager.FindByRouterSMSCodeAsync(text);
+            var User = await _applicationUserManager.FindByRouterSMSCodeAsync(text.Replace("ي","ی"));
             if (User == null)
                 return "ok";
 
