@@ -1,0 +1,54 @@
+﻿@{
+    var counter = 1;
+}
+
+@if (ViewBag.Sessions == null)
+{
+    <label>@Captions.OnlineUsers</label>
+    <div class="alert alert-danger">
+        @Captions.CantConnectToRouter
+    </div>
+}
+else
+{
+    <table class="table table-striped table-bordered table-hover" id="grid">
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>@Captions.UserName</th>
+                <th>MAC</th>
+                <th>User IP</th>
+                <th>Nas Port Type</th>
+                <th>Nas Port ID</th>
+                <th>From Time</th>
+                <th>Uptime</th>
+                <th>Download</th>
+                <th>Upload</th>
+                <th>Close</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in ViewBag.Sessions)
+            {
+                <tr>
+                    <td>@(counter++)</td>
+                    <td>@item.user</td>
+                    <td>@item.calling_station_id</td>
+                    <td>@item.user_ip</td>
+                    <td>@item.nas_port_type</td>
+                    <td>@item.nas_port_id</td>
+                    <td data-toggle="tooltip" data-original-title="<b>@item.from_timeT</b>" data-html="true">@item.from_time</td>
+                    <td>@item.uptime</td>
+                    <td>@item.download</td>
+                    <td>@item.upload</td>
+                    <td>
+                        <button type="button" aria-haspopup="true" aria-expanded="true" class="btn btn-outline-secondary"><i class="icon-pen3"></i>@Captions.Action</button>
+                        <a onclick="UserCloseSession('@item.user','@item.user');" class="dropdown-item">
+                            <i class="icon-pen3 primary"></i> @Captions.Close
+                        </a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}

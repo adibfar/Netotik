@@ -13,8 +13,10 @@ namespace Netotik.ViewModels.Identity.UserClient
         public string customer { get; set; }
         [RegularExpression(@"(^[a-zA-Z0-9:.-_]*$)", ErrorMessageResourceType = typeof(Captions), ErrorMessageResourceName = "NotValidError")]
         [Display(ResourceType = typeof(Captions), Name = "UserName")]
+        [Required(ErrorMessageResourceType = typeof(Captions), ErrorMessageResourceName = "RequiredError")]
         public string username { get; set; }
         [Display(ResourceType = typeof(Captions), Name = "Password")]
+        [Required(ErrorMessageResourceType = typeof(Captions), ErrorMessageResourceName = "RequiredError")]
         public string password { get; set; }
         [Display(ResourceType = typeof(Captions), Name = "SharedUsers")]
         public string shared_users { get; set; }

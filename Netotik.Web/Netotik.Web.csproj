@@ -3707,6 +3707,8 @@
     <Content Include="Areas\MyRouter\Views\Home\_Profiles.cshtml" />
     <Content Include="Areas\MyRouter\Views\UserManager\_Users.cshtml" />
     <Content Include="Areas\MyRouter\Views\UserManager\_Packages.cshtml" />
+    <Content Include="Areas\MyRouter\Views\UserManager\_Onlines.cshtml" />
+    <Content Include="Areas\MyRouter\Views\UserManager\_UserDetailsSessions.cshtml" />
     <None Include="Properties\PublishProfiles\DNMA.pubxml" />
     <Content Include="Service References\ZarinPalService\Netotik.Web.ZarinPalService.GetUnverifiedTransactionsResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
