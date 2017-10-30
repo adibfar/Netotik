@@ -22,7 +22,7 @@
                             <span class="icon-card font-medium-4"></span>
                             @Captions.MakeCard
                         </a>
-                    }                   
+                    }
                 </div>
                 <div class="card-body collapse in">
                     <div class="card-block card-dashboard">
@@ -37,6 +37,8 @@
 @section UpScript{
     <link rel="stylesheet" type="text/css" href="~/Content/css/plugins/tables/extensions/dataTables.colVis.css">
     <link rel="stylesheet" type="text/css" href="~/Content/css/plugins/tables/extensions/buttons.dataTables.min.css">
+    <link rel="stylesheet" type="text/css" href="~/Content/css/plugins/extensions/sweetalert.css">
+
 }
 @section DownScript{
     <script src="~/Content/js/plugins/tables/datatable/dataTables.buttons.min.js" type="text/javascript"></script>
@@ -45,6 +47,7 @@
     <script src="~/Content/js/plugins/tables/vfs_fonts.js" type="text/javascript"></script>
     <script src="~/Content/js/plugins/tables/buttons.html5.min.js" type="text/javascript"></script>
     <script src="~/Content/js/plugins/tables/buttons.colVis.min.js" type="text/javascript"></script>
+    <script src="~/Content/js/plugins/extensions/sweetalert.min.js" type="text/javascript"></script>
 
 
 
@@ -95,9 +98,26 @@
             }, "html");
         });
 
-
         function Userremove(id) {
-            PostData("@Url.Action(MVC.MyRouter.UserManager.Userremove())", { id: id });
+            swal({
+                title: "@Captions.AreYouSure",
+                text: "@Captions.AfterRemoveCantRecover",
+                type: "warning",
+                showCancelButton: !0,
+                confirmButtonColor: "#DA4453",
+                confirmButtonText: "@Captions.YesRemove",
+                cancelButtonText: "@Captions.NoCancel",
+                closeOnConfirm: !1,
+                closeOnCancel: !1
+            }, function (a) {
+                if (a) {
+                    swal("@Captions.Removed", "@Captions.AccountRemoved", "success");
+                    PostData("@Url.Action(MVC.MyRouter.UserManager.Userremove())", { id: id });
+                } else {
+                    swal("@Captions.Canceled", "@Captions.RemoveActionCanceled", "error");
+                }
+
+            })
         }
 
         function Userdisable(id) {

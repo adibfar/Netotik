@@ -114,12 +114,17 @@ namespace Netotik.Web.Areas.MyRouter.Controllers
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public class ActionNamesClass
         {
+            public readonly string CreateIpWalledGarden = "CreateIpWalledGarden";
             public readonly string AddIpWalledGarden = "AddIpWalledGarden";
+            public readonly string CreateIpBindings = "CreateIpBindings";
             public readonly string AddIpBindings = "AddIpBindings";
             public readonly string Servers = "Servers";
+            public readonly string LoadOnlines = "LoadOnlines";
             public readonly string Active = "Active";
             public readonly string Users = "Users";
             public readonly string Access = "Access";
+            public readonly string LoadUsersAccess = "LoadUsersAccess";
+            public readonly string LoadWebsitesAccess = "LoadWebsitesAccess";
             public readonly string IpBindigsRemove = "IpBindigsRemove";
             public readonly string IpWalledGardenRemove = "IpWalledGardenRemove";
             public readonly string IpBindigsEnable = "IpBindigsEnable";
@@ -133,12 +138,17 @@ namespace Netotik.Web.Areas.MyRouter.Controllers
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public class ActionNameConstants
         {
+            public const string CreateIpWalledGarden = "CreateIpWalledGarden";
             public const string AddIpWalledGarden = "AddIpWalledGarden";
+            public const string CreateIpBindings = "CreateIpBindings";
             public const string AddIpBindings = "AddIpBindings";
             public const string Servers = "Servers";
+            public const string LoadOnlines = "LoadOnlines";
             public const string Active = "Active";
             public const string Users = "Users";
             public const string Access = "Access";
+            public const string LoadUsersAccess = "LoadUsersAccess";
+            public const string LoadWebsitesAccess = "LoadWebsitesAccess";
             public const string IpBindigsRemove = "IpBindigsRemove";
             public const string IpWalledGardenRemove = "IpWalledGardenRemove";
             public const string IpBindigsEnable = "IpBindigsEnable";
@@ -216,12 +226,22 @@ namespace Netotik.Web.Areas.MyRouter.Controllers
             public _ViewNamesClass ViewNames { get { return s_ViewNames; } }
             public class _ViewNamesClass
             {
+                public readonly string _CreateUserAccess = "_CreateUserAccess";
+                public readonly string _CreateWebsiteAccess = "_CreateWebsiteAccess";
+                public readonly string _Onlines = "_Onlines";
+                public readonly string _UserAccess = "_UserAccess";
+                public readonly string _WebsiteAccess = "_WebsiteAccess";
                 public readonly string Access = "Access";
                 public readonly string Active = "Active";
                 public readonly string Servers = "Servers";
                 public readonly string Template = "Template";
                 public readonly string Users = "Users";
             }
+            public readonly string _CreateUserAccess = "~/Areas/MyRouter/Views/Hotspot/_CreateUserAccess.cshtml";
+            public readonly string _CreateWebsiteAccess = "~/Areas/MyRouter/Views/Hotspot/_CreateWebsiteAccess.cshtml";
+            public readonly string _Onlines = "~/Areas/MyRouter/Views/Hotspot/_Onlines.cshtml";
+            public readonly string _UserAccess = "~/Areas/MyRouter/Views/Hotspot/_UserAccess.cshtml";
+            public readonly string _WebsiteAccess = "~/Areas/MyRouter/Views/Hotspot/_WebsiteAccess.cshtml";
             public readonly string Access = "~/Areas/MyRouter/Views/Hotspot/Access.cshtml";
             public readonly string Active = "~/Areas/MyRouter/Views/Hotspot/Active.cshtml";
             public readonly string Servers = "~/Areas/MyRouter/Views/Hotspot/Servers.cshtml";
@@ -236,6 +256,17 @@ namespace Netotik.Web.Areas.MyRouter.Controllers
         public T4MVC_HotspotController() : base(Dummy.Instance) { }
 
         [NonAction]
+        partial void CreateIpWalledGardenOverride(T4MVC_System_Web_Mvc_ActionResult callInfo);
+
+        [NonAction]
+        public override System.Web.Mvc.ActionResult CreateIpWalledGarden()
+        {
+            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.CreateIpWalledGarden);
+            CreateIpWalledGardenOverride(callInfo);
+            return callInfo;
+        }
+
+        [NonAction]
         partial void AddIpWalledGardenOverride(T4MVC_System_Web_Mvc_ActionResult callInfo);
 
         [NonAction]
@@ -243,6 +274,17 @@ namespace Netotik.Web.Areas.MyRouter.Controllers
         {
             var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.AddIpWalledGarden);
             AddIpWalledGardenOverride(callInfo);
+            return callInfo;
+        }
+
+        [NonAction]
+        partial void CreateIpBindingsOverride(T4MVC_System_Web_Mvc_ActionResult callInfo);
+
+        [NonAction]
+        public override System.Web.Mvc.ActionResult CreateIpBindings()
+        {
+            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.CreateIpBindings);
+            CreateIpBindingsOverride(callInfo);
             return callInfo;
         }
 
@@ -265,6 +307,17 @@ namespace Netotik.Web.Areas.MyRouter.Controllers
         {
             var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Servers);
             ServersOverride(callInfo);
+            return callInfo;
+        }
+
+        [NonAction]
+        partial void LoadOnlinesOverride(T4MVC_System_Web_Mvc_ActionResult callInfo);
+
+        [NonAction]
+        public override System.Web.Mvc.ActionResult LoadOnlines()
+        {
+            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.LoadOnlines);
+            LoadOnlinesOverride(callInfo);
             return callInfo;
         }
 
@@ -298,6 +351,28 @@ namespace Netotik.Web.Areas.MyRouter.Controllers
         {
             var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Access);
             AccessOverride(callInfo);
+            return callInfo;
+        }
+
+        [NonAction]
+        partial void LoadUsersAccessOverride(T4MVC_System_Web_Mvc_ActionResult callInfo);
+
+        [NonAction]
+        public override System.Web.Mvc.ActionResult LoadUsersAccess()
+        {
+            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.LoadUsersAccess);
+            LoadUsersAccessOverride(callInfo);
+            return callInfo;
+        }
+
+        [NonAction]
+        partial void LoadWebsitesAccessOverride(T4MVC_System_Web_Mvc_ActionResult callInfo);
+
+        [NonAction]
+        public override System.Web.Mvc.ActionResult LoadWebsitesAccess()
+        {
+            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.LoadWebsitesAccess);
+            LoadWebsitesAccessOverride(callInfo);
             return callInfo;
         }
 

@@ -4825,5 +4825,68 @@ namespace Netotik.Resources
                 return resourceProvider.GetResource("ClientLoginMessage", CultureInfo.CurrentUICulture.Name) as string;
             }
         }
+        public static string AccountRemoved
+        {
+            get
+            {
+                return resourceProvider.GetResource("AccountRemoved", CultureInfo.CurrentUICulture.Name) as string;
+            }
+        }
+        public static string RemoveActionCanceled
+        {
+            get
+            {
+                return resourceProvider.GetResource("RemoveActionCanceled", CultureInfo.CurrentUICulture.Name) as string;
+            }
+        }
+        public static string Canceled
+        {
+            get
+            {
+                return resourceProvider.GetResource("Canceled", CultureInfo.CurrentUICulture.Name) as string;
+            }
+        }
+        public static string Removed
+        {
+            get
+            {
+                return resourceProvider.GetResource("Removed", CultureInfo.CurrentUICulture.Name) as string;
+            }
+        }
+        public static string NoCancel
+        {
+            get
+            {
+                return resourceProvider.GetResource("NoCancel", CultureInfo.CurrentUICulture.Name) as string;
+            }
+        }
+        public static string AreYouSure
+        {
+            get
+            {
+                return resourceProvider.GetResource("AreYouSure", CultureInfo.CurrentUICulture.Name) as string;
+            }
+        }
+        public static string AfterRemoveCantRecover
+        {
+            get
+            {
+                return resourceProvider.GetResource("AfterRemoveCantRecover", CultureInfo.CurrentUICulture.Name) as string;
+            }
+        }
+        public static string YesRemove
+        {
+            get
+            {
+                return resourceProvider.GetResource("YesRemove", CultureInfo.CurrentUICulture.Name) as string;
+            }
+        }
+        public static string PlanRemoved
+        {
+            get
+            {
+                return resourceProvider.GetResource("PlanRemoved", CultureInfo.CurrentUICulture.Name) as string;
+            }
+        }
     }
 }

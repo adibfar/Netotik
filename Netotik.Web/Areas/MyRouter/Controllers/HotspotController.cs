@@ -38,7 +38,11 @@ Order = 0, GlyphIcon = "icon icon-table")]
         }
         #endregion
 
-
+        public virtual ActionResult CreateIpWalledGarden()
+        {
+            ViewBag.servers = _mikrotikServices.Hotspot_ServersList(UserLogined.UserRouter.R_Host, UserLogined.UserRouter.R_Port, UserLogined.UserRouter.R_User, UserLogined.UserRouter.R_Password);
+            return PartialView(MVC.MyRouter.Hotspot.Views._CreateWebsiteAccess);
+        }
         [HttpPost]
         public virtual ActionResult AddIpWalledGarden()
         {
@@ -82,7 +86,11 @@ Order = 0, GlyphIcon = "icon icon-table")]
             return RedirectToAction(MVC.MyRouter.Hotspot.ActionNames.Access);
         }
 
-
+        public virtual ActionResult CreateIpBindings()
+        {
+            ViewBag.servers = _mikrotikServices.Hotspot_ServersList(UserLogined.UserRouter.R_Host, UserLogined.UserRouter.R_Port, UserLogined.UserRouter.R_User, UserLogined.UserRouter.R_Password);
+            return PartialView(MVC.MyRouter.Hotspot.Views._CreateUserAccess);
+        }
         [HttpPost]
         public virtual ActionResult AddIpBindings()
         {
@@ -144,50 +152,41 @@ Order = 0, GlyphIcon = "icon icon-table")]
             return View();
         }
 
+        public virtual ActionResult LoadOnlines()
+        {
+            if (_mikrotikServices.IP_Port_Check(UserLogined.UserRouter.R_Host, UserLogined.UserRouter.R_Port, UserLogined.UserRouter.R_User, UserLogined.UserRouter.R_Password))
+                if (_mikrotikServices.User_Pass_Check(UserLogined.UserRouter.R_Host, UserLogined.UserRouter.R_Port, UserLogined.UserRouter.R_User, UserLogined.UserRouter.R_Password))
+                {
+                    var ActiveList = _mikrotikServices.Hotspot_ActiveList(UserLogined.UserRouter.R_Host, UserLogined.UserRouter.R_Port, UserLogined.UserRouter.R_User, UserLogined.UserRouter.R_Password);
+                    var Active = new List<Hotspot_ActiveModel>();
+                    foreach (var item in ActiveList)
+                    {
+                        item.Flags = item.Flags.Replace("Active", "A").Replace("Host", "");
+                        if (item.Flags != "")
+                        {
+                            item.radius = item.radius.Replace("true", "R").Replace("flase", "");
+                        }
+                        item.uptime = item.uptime.Replace("d", Captions.Day).Replace("w", Captions.Week).Replace("h", Captions.Hour).Replace("m", Captions.Minute).Replace("s", Captions.Secend).Replace("never", Captions.NoConnection);
+                        item.session_time_left = item.session_time_left.Replace("d", Captions.Day).Replace("w", Captions.Week).Replace("h", Captions.Hour).Replace("m", Captions.Minute).Replace("s", Captions.Secend).Replace("never", Captions.NoConnection);
+                        item.keepalive_timeout = item.keepalive_timeout.Replace("d", Captions.Day).Replace("w", Captions.Week).Replace("h", Captions.Hour).Replace("m", Captions.Minute).Replace("s", Captions.Secend).Replace("never", Captions.NoConnection);
+                        if (item.limit_bytes_in != null)
+                            if (item.limit_bytes_in != "")
+                                item.limit_bytes_in = (ulong.Parse(item.limit_bytes_in) / 1048576).ToString();
+                        if (item.limit_bytes_out != null)
+                            if (item.limit_bytes_out != "")
+                                item.limit_bytes_out = (ulong.Parse(item.limit_bytes_out) / 1048576).ToString();
+                        if (item.limit_bytes_total != null)
+                            if (item.limit_bytes_total != "")
+                                item.limit_bytes_total = (ulong.Parse(item.limit_bytes_total) / 1048576).ToString();
+                        Active.Add(item);
+                    }
+                    ViewBag.servers = Active;
+                }
+
+            return PartialView(MVC.MyRouter.Hotspot.Views._Onlines);
+        }
         public virtual ActionResult Active()
         {
-
-            //-------------------------------
-
-            if (!_mikrotikServices.IP_Port_Check(UserLogined.UserRouter.R_Host, UserLogined.UserRouter.R_Port, UserLogined.UserRouter.R_User, UserLogined.UserRouter.R_Password))
-            {
-                this.MessageError(Captions.Error, Captions.IPPORTClientError);
-                return RedirectToAction(MVC.MyRouter.Home.ActionNames.MikrotikConf, MVC.MyRouter.Home.Name, new { area = MVC.MyRouter.Name });
-            }
-            if (!_mikrotikServices.User_Pass_Check(UserLogined.UserRouter.R_Host, UserLogined.UserRouter.R_Port, UserLogined.UserRouter.R_User, UserLogined.UserRouter.R_Password))
-            {
-                this.MessageError(Captions.Error, Captions.UserPasswordClientError);
-                return RedirectToAction(MVC.MyRouter.Home.ActionNames.MikrotikConf, MVC.MyRouter.Home.Name, new { area = MVC.MyRouter.Name });
-            }
-            //-------------------------------
-            var ActiveList = _mikrotikServices.Hotspot_ActiveList(UserLogined.UserRouter.R_Host, UserLogined.UserRouter.R_Port, UserLogined.UserRouter.R_User, UserLogined.UserRouter.R_Password);
-            var Active = new List<Hotspot_ActiveModel>();
-            foreach (var item in ActiveList)
-            {
-                item.Flags = item.Flags.Replace("Active", "A").Replace("Host", "");
-                if (item.Flags != "")
-                {
-                    item.radius = item.radius.Replace("true", "R").Replace("flase", "");
-                }
-                item.uptime = item.uptime.Replace("d", Captions.Day).Replace("w", Captions.Week).Replace("h", Captions.Hour).Replace("m", Captions.Minute).Replace("s", Captions.Secend).Replace("never", Captions.NoConnection);
-                item.session_time_left = item.session_time_left.Replace("d", Captions.Day).Replace("w", Captions.Week).Replace("h", Captions.Hour).Replace("m", Captions.Minute).Replace("s", Captions.Secend).Replace("never", Captions.NoConnection);
-                item.keepalive_timeout = item.keepalive_timeout.Replace("d", Captions.Day).Replace("w", Captions.Week).Replace("h", Captions.Hour).Replace("m", Captions.Minute).Replace("s", Captions.Secend).Replace("never", Captions.NoConnection);
-                if (item.limit_bytes_in != null)
-                    if (item.limit_bytes_in != "")
-                        item.limit_bytes_in = (ulong.Parse(item.limit_bytes_in) / 1048576).ToString();
-                if (item.limit_bytes_out != null)
-                    if (item.limit_bytes_out != "")
-                        item.limit_bytes_out = (ulong.Parse(item.limit_bytes_out) / 1048576).ToString();
-                if (item.limit_bytes_total != null)
-                    if (item.limit_bytes_total != "")
-                        item.limit_bytes_total = (ulong.Parse(item.limit_bytes_total) / 1048576).ToString();
-                Active.Add(item);
-            }
-            if (Active == null)
-            {
-                Active.Add(new Hotspot_ActiveModel { mac_address = "No One Is Online", address = "مورد یافت نشد" });
-            }
-            ViewBag.servers = Active;
             return View();
         }
 
@@ -236,27 +235,30 @@ Order = 0, GlyphIcon = "icon icon-table")]
 
         public virtual ActionResult Access()
         {
-
-            //-------------------------------
-
-            if (!_mikrotikServices.IP_Port_Check(UserLogined.UserRouter.R_Host, UserLogined.UserRouter.R_Port, UserLogined.UserRouter.R_User, UserLogined.UserRouter.R_Password))
-            {
-                this.MessageError(Captions.Error, Captions.IPPORTClientError);
-                return RedirectToAction(MVC.MyRouter.Home.ActionNames.MikrotikConf, MVC.MyRouter.Home.Name, new { area = MVC.MyRouter.Name });
-            }
-            if (!_mikrotikServices.User_Pass_Check(UserLogined.UserRouter.R_Host, UserLogined.UserRouter.R_Port, UserLogined.UserRouter.R_User, UserLogined.UserRouter.R_Password))
-            {
-                this.MessageError(Captions.Error, Captions.UserPasswordClientError);
-                return RedirectToAction(MVC.MyRouter.Home.ActionNames.MikrotikConf, MVC.MyRouter.Home.Name, new { area = MVC.MyRouter.Name });
-            }
-            //-------------------------------
-            ViewBag.ipbindings = _mikrotikServices.Hotspot_IpBindings(UserLogined.UserRouter.R_Host, UserLogined.UserRouter.R_Port, UserLogined.UserRouter.R_User, UserLogined.UserRouter.R_Password);
             ViewBag.servers = _mikrotikServices.Hotspot_ServersList(UserLogined.UserRouter.R_Host, UserLogined.UserRouter.R_Port, UserLogined.UserRouter.R_User, UserLogined.UserRouter.R_Password);
-            ViewBag.ipwalledgarden = _mikrotikServices.Hotspot_IpWalledGarden(UserLogined.UserRouter.R_Host, UserLogined.UserRouter.R_Port, UserLogined.UserRouter.R_User, UserLogined.UserRouter.R_Password);
-
             return View();
         }
 
+        public virtual ActionResult LoadUsersAccess()
+        {
+            if (_mikrotikServices.IP_Port_Check(UserLogined.UserRouter.R_Host, UserLogined.UserRouter.R_Port, UserLogined.UserRouter.R_User, UserLogined.UserRouter.R_Password))
+                if (_mikrotikServices.User_Pass_Check(UserLogined.UserRouter.R_Host, UserLogined.UserRouter.R_Port, UserLogined.UserRouter.R_User, UserLogined.UserRouter.R_Password))
+                {
+                    ViewBag.ipbindings = _mikrotikServices.Hotspot_IpBindings(UserLogined.UserRouter.R_Host, UserLogined.UserRouter.R_Port, UserLogined.UserRouter.R_User, UserLogined.UserRouter.R_Password);
+                }
+
+            return PartialView(MVC.MyRouter.Hotspot.Views._UserAccess);
+        }
+        public virtual ActionResult LoadWebsitesAccess()
+        {
+            if (_mikrotikServices.IP_Port_Check(UserLogined.UserRouter.R_Host, UserLogined.UserRouter.R_Port, UserLogined.UserRouter.R_User, UserLogined.UserRouter.R_Password))
+                if (_mikrotikServices.User_Pass_Check(UserLogined.UserRouter.R_Host, UserLogined.UserRouter.R_Port, UserLogined.UserRouter.R_User, UserLogined.UserRouter.R_Password))
+                {
+                    ViewBag.ipwalledgarden = _mikrotikServices.Hotspot_IpWalledGarden(UserLogined.UserRouter.R_Host, UserLogined.UserRouter.R_Port, UserLogined.UserRouter.R_User, UserLogined.UserRouter.R_Password);
+                }
+
+            return PartialView(MVC.MyRouter.Hotspot.Views._WebsiteAccess);
+        }
 
         [ValidateInput(false)]
         public virtual ActionResult IpBindigsRemove(string id)
