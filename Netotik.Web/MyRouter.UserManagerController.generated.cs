@@ -100,6 +100,12 @@ namespace Netotik.Web.Areas.MyRouter.Controllers
         }
         [NonAction]
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public virtual System.Web.Mvc.ActionResult LoadSessions()
+        {
+            return new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.LoadSessions);
+        }
+        [NonAction]
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public virtual System.Web.Mvc.ActionResult UserDetails()
         {
             return new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.UserDetails);
@@ -148,6 +154,7 @@ namespace Netotik.Web.Areas.MyRouter.Controllers
             public readonly string ProfileRemove = "ProfileRemove";
             public readonly string Userenable = "Userenable";
             public readonly string PackageDetails = "PackageDetails";
+            public readonly string LoadSessions = "LoadSessions";
             public readonly string UserDetails = "UserDetails";
             public readonly string UserCreate = "UserCreate";
             public readonly string PackageList = "PackageList";
@@ -159,6 +166,7 @@ namespace Netotik.Web.Areas.MyRouter.Controllers
             public readonly string RegisterSetting = "RegisterSetting";
             public readonly string ClientArea = "ClientArea";
             public readonly string Online = "Online";
+            public readonly string LoadOnlines = "LoadOnlines";
             public readonly string RedirectToLocal = "RedirectToLocal";
         }
 
@@ -175,6 +183,7 @@ namespace Netotik.Web.Areas.MyRouter.Controllers
             public const string ProfileRemove = "ProfileRemove";
             public const string Userenable = "Userenable";
             public const string PackageDetails = "PackageDetails";
+            public const string LoadSessions = "LoadSessions";
             public const string UserDetails = "UserDetails";
             public const string UserCreate = "UserCreate";
             public const string PackageList = "PackageList";
@@ -186,6 +195,7 @@ namespace Netotik.Web.Areas.MyRouter.Controllers
             public const string RegisterSetting = "RegisterSetting";
             public const string ClientArea = "ClientArea";
             public const string Online = "Online";
+            public const string LoadOnlines = "LoadOnlines";
             public const string RedirectToLocal = "RedirectToLocal";
         }
 
@@ -257,6 +267,14 @@ namespace Netotik.Web.Areas.MyRouter.Controllers
         {
             public readonly string id = "id";
         }
+        static readonly ActionParamsClass_LoadSessions s_params_LoadSessions = new ActionParamsClass_LoadSessions();
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public ActionParamsClass_LoadSessions LoadSessionsParams { get { return s_params_LoadSessions; } }
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public class ActionParamsClass_LoadSessions
+        {
+            public readonly string userOrid = "userOrid";
+        }
         static readonly ActionParamsClass_UserDetails s_params_UserDetails = new ActionParamsClass_UserDetails();
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public ActionParamsClass_UserDetails UserDetailsParams { get { return s_params_UserDetails; } }
@@ -325,7 +343,9 @@ namespace Netotik.Web.Areas.MyRouter.Controllers
             public _ViewNamesClass ViewNames { get { return s_ViewNames; } }
             public class _ViewNamesClass
             {
+                public readonly string _Onlines = "_Onlines";
                 public readonly string _Packages = "_Packages";
+                public readonly string _UserDetailsSessions = "_UserDetailsSessions";
                 public readonly string _Users = "_Users";
                 public readonly string ClientArea = "ClientArea";
                 public readonly string Online = "Online";
@@ -340,7 +360,9 @@ namespace Netotik.Web.Areas.MyRouter.Controllers
                 public readonly string UserEdit = "UserEdit";
                 public readonly string UserList = "UserList";
             }
+            public readonly string _Onlines = "~/Areas/MyRouter/Views/UserManager/_Onlines.cshtml";
             public readonly string _Packages = "~/Areas/MyRouter/Views/UserManager/_Packages.cshtml";
+            public readonly string _UserDetailsSessions = "~/Areas/MyRouter/Views/UserManager/_UserDetailsSessions.cshtml";
             public readonly string _Users = "~/Areas/MyRouter/Views/UserManager/_Users.cshtml";
             public readonly string ClientArea = "~/Areas/MyRouter/Views/UserManager/ClientArea.cshtml";
             public readonly string Online = "~/Areas/MyRouter/Views/UserManager/Online.cshtml";
@@ -491,6 +513,18 @@ namespace Netotik.Web.Areas.MyRouter.Controllers
             var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.PackageDetails);
             ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "id", id);
             PackageDetailsOverride(callInfo, id);
+            return callInfo;
+        }
+
+        [NonAction]
+        partial void LoadSessionsOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, string userOrid);
+
+        [NonAction]
+        public override System.Web.Mvc.ActionResult LoadSessions(string userOrid)
+        {
+            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.LoadSessions);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "userOrid", userOrid);
+            LoadSessionsOverride(callInfo, userOrid);
             return callInfo;
         }
 
@@ -653,6 +687,17 @@ namespace Netotik.Web.Areas.MyRouter.Controllers
         {
             var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Online);
             OnlineOverride(callInfo);
+            return callInfo;
+        }
+
+        [NonAction]
+        partial void LoadOnlinesOverride(T4MVC_System_Web_Mvc_ActionResult callInfo);
+
+        [NonAction]
+        public override System.Web.Mvc.ActionResult LoadOnlines()
+        {
+            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.LoadOnlines);
+            LoadOnlinesOverride(callInfo);
             return callInfo;
         }
 

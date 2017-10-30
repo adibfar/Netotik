@@ -6,14 +6,11 @@
         <div class="col-md-12">
             <div class="card">
                 <div class="card-header">
-                    <a value="@Captions.Back" class="btn btn-social btn-instagram" href="@Url.Action(MVC.MyRouter.UserManager.PackageList())">
-                        <span class="icon-reply font-medium-4"></span>
-                        @Captions.Back
-                    </a>
-                    <a value="@Captions.Remove" class="btn btn-social btn-instagram" onclick="ProfileRemove('@Model.UsermanProfile.id');" href="#">
+                    <a value="@Captions.Remove" class="btn btn-social btn-instagram width-150 margin-bottom-2" onclick="ProfileRemove('@Model.UsermanProfile.id');" href="#">
                         <span class="icon-remove font-medium-4"></span>
                         @Captions.Remove
                     </a>
+                    <a href="@Url.Action(MVC.MyRouter.UserManager.UserList())" class="btn btn-social width-150 btn-secondary btn-default  margin-bottom-2"><span class="icon-android-arrow-back font-medium-3"></span> @Captions.Back </a>
                 </div>
                 <div class="card-body">
                     <div class="card-block">

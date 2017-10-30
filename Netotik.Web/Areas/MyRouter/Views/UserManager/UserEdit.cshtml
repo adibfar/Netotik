@@ -61,54 +61,6 @@
                     <div class="card-body">
                         <div class="card-block">
                             <div class="row">
-                                <div class="col-md-3">
-                                    <div class="form-group has-feedback has-icon-left">
-                                        @Html.LabelFor(m => m.first_name)
-                                        <div class="position-relative has-icon-left">
-                                            @Html.TextBoxFor(m => m.first_name, new { @class = "form-control" })
-                                            <div class="form-control-position">
-                                                <i class="icon-head"></i>
-                                            </div>
-                                            @Html.ValidationMessageFor(model => model.first_name, "", htmlAttributes: new { @class = "text-danger" })
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-3">
-                                    <div class="form-group has-feedback has-icon-left">
-                                        @Html.LabelFor(m => m.last_name)
-                                        <div class="position-relative has-icon-left">
-                                            @Html.TextBoxFor(m => m.last_name, new { @class = "form-control" })
-                                            <div class="form-control-position">
-                                                <i class="icon-user"></i>
-                                            </div>
-                                            @Html.ValidationMessageFor(model => model.last_name, "", htmlAttributes: new { @class = "text-danger" })
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-3">
-                                    <div class="form-group has-feedback has-icon-left">
-                                        @Html.LabelFor(m => m.phone)
-                                        <div class="position-relative has-icon-left">
-                                            @Html.TextBoxFor(m => m.phone, new { @class = "form-control" })
-                                            <div class="form-control-position">
-                                                <i class="icon-phone"></i>
-                                            </div>
-                                            @Html.ValidationMessageFor(model => model.phone, "", htmlAttributes: new { @class = "text-danger" })
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-3">
-                                    <div class="form-group has-feedback has-icon-left">
-                                        @Html.LabelFor(m => m.email)
-                                        <div class="position-relative has-icon-left">
-                                            @Html.TextBoxFor(m => m.email, new { @class = "form-control" })
-                                            <div class="form-control-position">
-                                                <i class="icon-email"></i>
-                                            </div>
-                                            @Html.ValidationMessageFor(model => model.email, "", htmlAttributes: new { @class = "text-danger" })
-                                        </div>
-                                    </div>
-                                </div>
                                 <div class="col-md-4">
                                     <div class="form-group has-feedback has-icon-left">
                                         @Html.LabelFor(m => m.username)
@@ -136,16 +88,86 @@
                                 <div class="col-md-4">
                                     <label class="font-noraml">@Captions.SelectPlan</label>
                                     <select id="profile" name="profile" data-placeholder="@Captions.SelectPlan" class="selectize-select" style="min-width:350px;" tabindex="2">
+                                        <option value="@Model.profile">@Model.profile</option>
                                         @foreach (var item in ViewBag.profiles)
                                         {
+                                            if (item.name != Model.profile)
+                                            {
                                             <option value="@item.name">@item.name</option>
+                                            }
                                         }
                                     </select>
                                 </div>
 
 
+                            </div>
+                            <br />
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <div class="form-group has-feedback has-icon-left">
+                                        @Html.LabelFor(m => m.first_name)
+                                        <div class="position-relative has-icon-left">
+                                            @Html.TextBoxFor(m => m.first_name, new { @class = "form-control" })
+                                            <div class="form-control-position">
+                                                <i class="icon-head"></i>
+                                            </div>
+                                            @Html.ValidationMessageFor(model => model.first_name, "", htmlAttributes: new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group has-feedback has-icon-left">
+                                        @Html.LabelFor(m => m.last_name)
+                                        <div class="position-relative has-icon-left">
+                                            @Html.TextBoxFor(m => m.last_name, new { @class = "form-control" })
+                                            <div class="form-control-position">
+                                                <i class="icon-user"></i>
+                                            </div>
+                                            @Html.ValidationMessageFor(model => model.last_name, "", htmlAttributes: new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group has-feedback has-icon-left">
+                                        @Html.LabelFor(m => m.NationalCode)
+                                        <div class="position-relative has-icon-left">
+                                            @Html.TextBoxFor(m => m.NationalCode, new { @class = "form-control" })
+                                            <div class="form-control-position">
+                                                <i class="icon-comments"></i>
+                                            </div>
+                                            @Html.ValidationMessageFor(model => model.NationalCode, "", htmlAttributes: new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+                                </div>
 
-                                <div class="col-md-6">
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <div class="form-group has-feedback has-icon-left">
+                                        @Html.LabelFor(m => m.phone)
+                                        <div class="position-relative has-icon-left">
+                                            @Html.TextBoxFor(m => m.phone, new { @class = "form-control" })
+                                            <div class="form-control-position">
+                                                <i class="icon-phone"></i>
+                                            </div>
+                                            @Html.ValidationMessageFor(model => model.phone, "", htmlAttributes: new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group has-feedback has-icon-left">
+                                        @Html.LabelFor(m => m.email)
+                                        <div class="position-relative has-icon-left">
+                                            @Html.TextBoxFor(m => m.email, new { @class = "form-control" })
+                                            <div class="form-control-position">
+                                                <i class="icon-email"></i>
+                                            </div>
+                                            @Html.ValidationMessageFor(model => model.email, "", htmlAttributes: new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
                                     <div class="form-group has-feedback has-icon-left">
                                         @Html.LabelFor(m => m.location)
                                         <div class="position-relative has-icon-left">
@@ -159,19 +181,19 @@
                                 </div>
                             </div>
                             <div class="row">
-                                <div class="col-md-3">
+                                <div class="col-md-4">
                                     <div class="form-group has-feedback has-icon-left">
-                                        @Html.LabelFor(m => m.NationalCode)
+                                        @Html.LabelFor(m => m.Birthday)
                                         <div class="position-relative has-icon-left">
-                                            @Html.TextBoxFor(m => m.NationalCode, new { @class = "form-control" })
+                                            @Html.TextBoxFor(m => m.Birthday, new { @class = "form-control" })
                                             <div class="form-control-position">
                                                 <i class="icon-comments"></i>
                                             </div>
-                                            @Html.ValidationMessageFor(model => model.NationalCode, "", htmlAttributes: new { @class = "text-danger" })
+                                            @Html.ValidationMessageFor(model => model.Birthday, "", htmlAttributes: new { @class = "text-danger" })
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-md-3">
+                                <div class="col-md-4">
                                     <div class="form-group has-feedback has-icon-left">
                                         @Html.LabelFor(m => m.MarriageDate)
                                         <div class="position-relative has-icon-left">
@@ -183,19 +205,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-md-3">
-                                    <div class="form-group has-feedback has-icon-left">
-                                        @Html.LabelFor(m => m.IsMale)
-                                        <div class="position-relative has-icon-left">
-                                            @Html.TextBoxFor(m => m.IsMale, new { @class = "form-control" })
-                                            <div class="form-control-position">
-                                                <i class="icon-comments"></i>
-                                            </div>
-                                            @Html.ValidationMessageFor(model => model.IsMale, "", htmlAttributes: new { @class = "text-danger" })
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-3">
+                                <div class="col-md-4">
                                     <div class="form-group has-feedback has-icon-left">
                                         @Html.LabelFor(m => m.Age)
                                         <div class="position-relative has-icon-left">
@@ -207,16 +217,16 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-md-3">
+                            </div>
+                            <div class="row">
+                                <div class="col-md-4">
                                     <div class="form-group has-feedback has-icon-left">
-                                        @Html.LabelFor(m => m.Birthday)
-                                        <div class="position-relative has-icon-left">
-                                            @Html.TextBoxFor(m => m.Birthday, new { @class = "form-control" })
-                                            <div class="form-control-position">
-                                                <i class="icon-comments"></i>
-                                            </div>
-                                            @Html.ValidationMessageFor(model => model.Birthday, "", htmlAttributes: new { @class = "text-danger" })
-                                        </div>
+                                        <label class="font-noraml">@Captions.IsMale</label>
+                                        <select id="IsMale" name="IsMale" data-placeholder="@Captions.IsMale" class="selectize-select" style="min-width:350px;" tabindex="2">
+                                            <option value="true">مذکر</option>
+                                            <option value="false">مونث</option>
+                                        </select>
+                                        @Html.ValidationMessageFor(model => model.IsMale, "", htmlAttributes: new { @class = "text-danger" })
                                     </div>
                                 </div>
                             </div>

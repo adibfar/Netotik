@@ -8,6 +8,7 @@ namespace Netotik.ViewModels.Identity.UserClient
         [Display(ResourceType = typeof(Captions), Name = "Creator")]
         [RegularExpression(@"(^[a-zA-Z0-9:.-_]*$)", ErrorMessageResourceType = typeof(Captions), ErrorMessageResourceName = "NotValidError")]
         public string customer { get; set; }
+        [Required(ErrorMessageResourceType = typeof(Captions), ErrorMessageResourceName = "RequiredError")]
         [RegularExpression(@"(^[a-zA-Z0-9:.-_]*$)", ErrorMessageResourceType = typeof(Captions), ErrorMessageResourceName = "NotValidError")]
         [Display(ResourceType = typeof(Captions), Name = "UserName")]
         public string username { get; set; }
