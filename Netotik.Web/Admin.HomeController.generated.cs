@@ -247,12 +247,12 @@ namespace Netotik.Web.Areas.Admin.Controllers
         partial void ChangePasswordOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, Netotik.ViewModels.Identity.UserAdmin.ChangePasswordModel model);
 
         [NonAction]
-        public override System.Web.Mvc.ActionResult ChangePassword(Netotik.ViewModels.Identity.UserAdmin.ChangePasswordModel model)
+        public override System.Threading.Tasks.Task<System.Web.Mvc.ActionResult> ChangePassword(Netotik.ViewModels.Identity.UserAdmin.ChangePasswordModel model)
         {
             var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.ChangePassword);
             ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "model", model);
             ChangePasswordOverride(callInfo, model);
-            return callInfo;
+            return System.Threading.Tasks.Task.FromResult(callInfo as System.Web.Mvc.ActionResult);
         }
 
         [NonAction]

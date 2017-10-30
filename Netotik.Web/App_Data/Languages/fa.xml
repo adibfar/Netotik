@@ -1645,7 +1645,7 @@
     <Value>پیامک های ارسالی 10 روز گذشته</Value>
   </LocaleResource>
 
-  <LocaleResource Name="ّFarapayamakCharge">
+  <LocaleResource Name="FarapayamakCharge">
     <Value>شارژ فراپیامک</Value>
   </LocaleResource>
 
@@ -1882,14 +1882,17 @@
       خطا در اتصال به روتر..
     </Value>
   </LocaleResource>
+  
 <LocaleResource Name="SmsAlerts">
     <Value>
 پیامک های اطلاع رسانی
 </Value>
   </LocaleResource>
+  
   <LocaleResource Name="ClientLoginLink">
     <Value>لینک لاگین به کاربران</Value>
   </LocaleResource>
+  
   <LocaleResource Name="ClientLoginMessage">
     <Value>
       کاربران شما برای ورود به پنل خودشان باید حتما از صفحه لاگین شما جهت ورود استفاده کنند.آدرس این صفحه در زیر نوشته شده
@@ -1898,12 +1901,15 @@
       در آینده در این صفحه اختصاصی ،شما می توانید تبلیغات خود را بگذارید که کاربران شما در هر بار ورود آنها را ببینند.
     </Value>
   </LocaleResource>
+  
   <LocaleResource Name="WebsitesLogs">
     <Value>لاگ سایت های بازدید شده</Value>
   </LocaleResource>
+  
   <LocaleResource Name="TelegramBot">
     <Value>ربات تلگرام</Value>
   </LocaleResource>
+  
   <LocaleResource Name="Sms">
     <Value>پیامک</Value>
   </LocaleResource>
@@ -1934,4 +1940,5 @@
   <LocaleResource Name="PlanRemoved">
     <Value>اکانت مورد نظر حذف گردید.</Value>
   </LocaleResource>
+  
 </Language>

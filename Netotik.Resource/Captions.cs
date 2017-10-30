@@ -4888,5 +4888,6 @@ namespace Netotik.Resources
                 return resourceProvider.GetResource("PlanRemoved", CultureInfo.CurrentUICulture.Name) as string;
             }
         }
+
     }
 }
