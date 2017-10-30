@@ -4825,5 +4825,6 @@ namespace Netotik.Resources
                 return resourceProvider.GetResource("ClientLoginMessage", CultureInfo.CurrentUICulture.Name) as string;
             }
         }
+
     }
 }

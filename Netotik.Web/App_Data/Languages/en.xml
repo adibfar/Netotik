@@ -1057,7 +1057,7 @@
     <Value>Past 10 days sended sms</Value>
   </LocaleResource>
 
-  <LocaleResource Name="ّFarapayamakCharge">
+  <LocaleResource Name="FarapayamakCharge">
     <Value>Farapayamak Charge</Value>
   </LocaleResource>
 
@@ -1330,4 +1330,5 @@
   <LocaleResource Name="Sms">
     <Value>Sms</Value>
   </LocaleResource>
+
 </Language>

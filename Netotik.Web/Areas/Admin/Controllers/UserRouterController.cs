@@ -37,8 +37,7 @@ using Microsoft.Owin.Security;
 namespace Netotik.Web.Areas.Admin.Controllers
 {
     [Mvc5Authorize(Roles = AssignableToRolePermissions.CanAccessUser)]
-    [BreadCrumb(Title = "RouterList", UseDefaultRouteUrl = true, RemoveAllDefaultRouteValues = true,
- Order = 0, GlyphIcon = "icon icon-table")]
+    [BreadCrumb(Title = "RouterList", UseDefaultRouteUrl = true, Order = 0, GlyphIcon = "icon icon-table")]
     public partial class UserRouterController : BasePanelController
     {
         #region ctor

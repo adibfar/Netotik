@@ -28,17 +28,20 @@ namespace Netotik.Web.Areas.Admin.Controllers
     {
         private readonly IInboxContactUsMessageService _inboxMessageService;
         private readonly IApplicationUserManager _applicationUserManager;
+        private readonly IApplicationSignInManager _applicationSignInManager;
         private readonly ILanguageService _languageService;
         private readonly IUnitOfWork _uow;
         private readonly ISmsLogService _smsLogService;
 
         public HomeController(
+            IApplicationSignInManager applicationSignInManager,
             ILanguageService languageService,
             IInboxContactUsMessageService inboxMessageService,
             IApplicationUserManager applicationUserManager,
             ISmsLogService smsLogService,
             IUnitOfWork uow)
         {
+            _applicationSignInManager = applicationSignInManager;
             _languageService = languageService;
             _applicationUserManager = applicationUserManager;
             _inboxMessageService = inboxMessageService;
@@ -126,15 +129,24 @@ namespace Netotik.Web.Areas.Admin.Controllers
         }
 
         [HttpPost]
-        public virtual ActionResult ChangePassword(ChangePasswordModel model)
+        public virtual async Task<ActionResult> ChangePassword(ChangePasswordModel model)
         {
-
-            //if (ModelState.IsValid)
-            //{
-            //    SetResultMessage(_applicationUserManager.ChangePassword(model, User.UserId));
-            //}
-            return RedirectToAction(MVC.Admin.Home.ActionNames.ChangePassword);
+            if (!ModelState.IsValid)
+            {
+                this.MessageError(Captions.MissionFail, Captions.InvalidDataError);
+                return RedirectToAction(MVC.Reseller.Home.ActionNames.ChangePassword);
+            }
+            var temp = await _applicationUserManager.ChangePasswordAsync(User.Identity.GetUserId<long>(), model.OldPassword, model.Password);
+            if (temp.Succeeded)
+            {
+                await _applicationSignInManager.PasswordSignInAsync(UserLogined.UserName, model.Password, false, shouldLockout: true);
+                this.MessageInformation(Captions.MissionSuccess, Captions.UpdateSuccess);
+            }
+            else
+                this.MessageError(Captions.MissionFail, Captions.UpdateError);
+            return View();
         }
+
 
         private void PopulateLangauges(int? selectedId = null)
         {

@@ -6,11 +6,15 @@
         <div class="card">
             <div class="card-header">
 
-                <button type="button" class="btn btn-social width-150 btn-instagram" data-toggle="modal" data-target="#Create"><span class="icon-plus font-medium-4"></span> @Captions.NewLanguage</button>
+                <button type="button" class="btn btn-social width-150 btn-instagram margin-bottom-2" data-toggle="modal" data-target="#Create"><span class="icon-plus font-medium-4"></span> @Captions.NewLanguage</button>
                 @Html.Action(MVC.Admin.Language.Create())
 
-                <button type="button" class="btn btn-social width-200 btn-instagram" data-toggle="modal" data-target="#CreateByXml"><span class="icon-upload3 font-medium-4"></span> @Captions.NewLanguageWithXml</button>
+                <button type="button" class="btn btn-social width-250 btn-instagram margin-bottom-2" data-toggle="modal" data-target="#CreateByXml"><span class="icon-upload3 font-medium-4"></span> @Captions.NewLanguageWithXml</button>
                 @Html.Action(MVC.Admin.Language.CreateByXml())
+
+                @*<button type="button" class="btn btn-social width-250 btn-instagram margin-bottom-2" data-toggle="modal" data-target="#Transltion"><span class="icon-language font-medium-4"></span> @Captions.TranslationSystem</button>
+                @Html.Partial(MVC.Admin.Language.Views._Translate)*@
+
             </div>
 
             <div class="card-body collapse in">
@@ -18,6 +22,7 @@
                     @Html.Partial(MVC.Admin.Language.Views._TableLanguage)
                 </div>
             </div>
+
         </div>
     </div>
 </section>
