@@ -69,15 +69,16 @@
         </div>
     </div>
 
-
-    <footer class="footer footer-dark navbar-fixed-bottom navbar-hide-on-scroll hidden-sm hidden-xs">
-        <p class="clearfix text-muted text-sm-center mb-0 px-2">
-            <span class="float-md-right d-xs-block d-md-inline-block">
-                Copyright  &copy; 2017 <a href="https://Dnma.ir" target="_blank" class="text-bold-800 grey darken-2">DNMA Groups </a>, All rights reserved
-            </span>
-        </p>
-    </footer>
-
+    @if (!Request.Browser.IsMobileDevice)
+    {
+        <footer class="footer footer-dark navbar-fixed-bottom navbar-hide-on-scroll">
+            <p class="clearfix text-muted text-sm-center mb-0 px-2">
+                <span class="float-md-right d-xs-block d-md-inline-block">
+                    Copyright  &copy; 2017 <a href="https://Dnma.ir" target="_blank" class="text-bold-800 grey darken-2">DNMA Groups </a>, All rights reserved
+                </span>
+            </p>
+        </footer>
+    }
 
     @Scripts.Render("~/bundles/paneljs")
     @Scripts.Render("~/bundles/jqueryvalpanel")
@@ -104,6 +105,6 @@
 
         </script>
     }
-    <script type="text/javascript">window.$crisp=[];window.CRISP_WEBSITE_ID="bf350b7d-2a3e-49e1-8305-fded55663cd4";(function(){d=document;s=d.createElement("script");s.src="https://client.crisp.chat/l.js";s.async=1;d.getElementsByTagName("head")[0].appendChild(s);})();</script>
+    <script type="text/javascript">window.$crisp = []; window.CRISP_WEBSITE_ID = "bf350b7d-2a3e-49e1-8305-fded55663cd4"; (function () { d = document; s = d.createElement("script"); s.src = "https://client.crisp.chat/l.js"; s.async = 1; d.getElementsByTagName("head")[0].appendChild(s); })();</script>
 </body>
 </html>

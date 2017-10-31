@@ -54,6 +54,8 @@ namespace Netotik.ViewModels.Common.Setting
         public string Twitter { get; set; }
         [Display(ResourceType = typeof(Captions), Name = "Instagram")]
         public string Instagram { get; set; }
+        [Display(ResourceType = typeof(Captions), Name = "LinkedIn")]
+        public string LinkedIn { get; set; }
         [Display(Name = "GooglePlus")]
         public string GooglePlus { get; set; }
 

@@ -79,11 +79,12 @@ namespace Netotik.Web
 
             if (controllerType == null)
             {
-                
-                //requestContext.RouteData.Values["action"] = MVC.Error.ActionNames.NotFound;
-                //return CreateController(requestContext, MVC.Error.Name);
 
-                throw new InvalidOperationException(string.Format("Page not found: {0}", requestContext.HttpContext.Request.RawUrl));
+                requestContext.RouteData.Values["action"] = MVC.Error.ActionNames.NotFound;
+                requestContext.RouteData.Values["controller"] = MVC.Error.Name;
+                return CreateController(requestContext, MVC.Error.Name);
+
+                //throw new InvalidOperationException(string.Format("Page not found: {0}", requestContext.HttpContext.Request.RawUrl));
 
             }
 

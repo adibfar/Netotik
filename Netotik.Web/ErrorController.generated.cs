@@ -82,7 +82,7 @@ namespace Netotik.Web.Controllers
             public readonly string BadRequest = "BadRequest";
             public readonly string NotFound = "NotFound";
             public readonly string Forbidden = "Forbidden";
-            public readonly string URLTooLong = "URLTooLong";
+            public readonly string UrlTooLong = "UrlTooLong";
             public readonly string ServiceUnavailable = "ServiceUnavailable";
             public readonly string RedirectToLocal = "RedirectToLocal";
         }
@@ -94,7 +94,7 @@ namespace Netotik.Web.Controllers
             public const string BadRequest = "BadRequest";
             public const string NotFound = "NotFound";
             public const string Forbidden = "Forbidden";
-            public const string URLTooLong = "URLTooLong";
+            public const string UrlTooLong = "UrlTooLong";
             public const string ServiceUnavailable = "ServiceUnavailable";
             public const string RedirectToLocal = "RedirectToLocal";
         }
@@ -118,9 +118,19 @@ namespace Netotik.Web.Controllers
             public _ViewNamesClass ViewNames { get { return s_ViewNames; } }
             public class _ViewNamesClass
             {
-                public readonly string error = "error";
+                public readonly string BadRequest = "BadRequest";
+                public readonly string Error = "Error";
+                public readonly string Forbidden = "Forbidden";
+                public readonly string NotFound = "NotFound";
+                public readonly string ServiceUnavailable = "ServiceUnavailable";
+                public readonly string UrlTooLong = "UrlTooLong";
             }
-            public readonly string error = "~/Views/Error/error.cshtml";
+            public readonly string BadRequest = "~/Views/Error/BadRequest.cshtml";
+            public readonly string Error = "~/Views/Error/Error.cshtml";
+            public readonly string Forbidden = "~/Views/Error/Forbidden.cshtml";
+            public readonly string NotFound = "~/Views/Error/NotFound.cshtml";
+            public readonly string ServiceUnavailable = "~/Views/Error/ServiceUnavailable.cshtml";
+            public readonly string UrlTooLong = "~/Views/Error/UrlTooLong.cshtml";
         }
     }
 
@@ -174,13 +184,13 @@ namespace Netotik.Web.Controllers
         }
 
         [NonAction]
-        partial void URLTooLongOverride(T4MVC_System_Web_Mvc_ActionResult callInfo);
+        partial void UrlTooLongOverride(T4MVC_System_Web_Mvc_ActionResult callInfo);
 
         [NonAction]
-        public override System.Web.Mvc.ActionResult URLTooLong()
+        public override System.Web.Mvc.ActionResult UrlTooLong()
         {
-            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.URLTooLong);
-            URLTooLongOverride(callInfo);
+            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.UrlTooLong);
+            UrlTooLongOverride(callInfo);
             return callInfo;
         }
 

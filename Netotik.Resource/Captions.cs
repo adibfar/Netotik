@@ -4826,5 +4826,61 @@ namespace Netotik.Resources
             }
         }
 
+        public static string BacktoHome
+        {
+            get
+            {
+                return resourceProvider.GetResource("BacktoHome", CultureInfo.CurrentUICulture.Name) as string;
+            }
+        }
+
+        public static string SystemError
+        {
+            get
+            {
+                return resourceProvider.GetResource("SystemError", CultureInfo.CurrentUICulture.Name) as string;
+            }
+        }
+
+        public static string BadRequest
+        {
+            get
+            {
+                return resourceProvider.GetResource("BadRequest", CultureInfo.CurrentUICulture.Name) as string;
+            }
+        }
+
+        public static string PageNotFound
+        {
+            get
+            {
+                return resourceProvider.GetResource("PageNotFound", CultureInfo.CurrentUICulture.Name) as string;
+            }
+        }
+
+        public static string Forbidden
+        {
+            get
+            {
+                return resourceProvider.GetResource("Forbidden", CultureInfo.CurrentUICulture.Name) as string;
+            }
+        }
+
+        public static string UrlTooLong
+        {
+            get
+            {
+                return resourceProvider.GetResource("UrlTooLong", CultureInfo.CurrentUICulture.Name) as string;
+            }
+        }
+
+        public static string ServiceUnavailable
+        {
+            get
+            {
+                return resourceProvider.GetResource("ServiceUnavailable", CultureInfo.CurrentUICulture.Name) as string;
+            }
+        }
+
     }
 }
