@@ -1,0 +1,63 @@
+﻿@{
+    int IPBindingsCounter = 1;
+}
+
+@if (ViewBag.ipbindings == null)
+{
+    <label>@Captions.Access</label>
+    <div class="alert alert-danger">
+        @Captions.CantConnectToRouter
+    </div>
+}
+else
+{
+    <table class="table table-striped table-bordered table-hover" id="grid">
+        <thead>
+            <tr>
+                <th>#</th>
+                <th data-toggle="true">MAC Address</th>
+                <th>IP Address</th>
+                <th>Server</th>
+                <th>Type</th>
+                <th>Hits</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in ViewBag.ipbindings)
+            {
+                <tr>
+                    <td>@(IPBindingsCounter++)</td>
+                    <td>@item.mac_address</td>
+                    <td>@item.address</td>
+                    <td>@item.server</td>
+                    <td>@item.type</td>
+                    <td>@item.hits</td>
+                    <td>
+                        <span class="dropdown">
+                            <button id="btnSearchDrop2" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" class="btn btn-outline-secondary dropdown-toggle dropdown-menu-right"><i class="icon-cog3"></i>@Captions.Action</button>
+                            <span aria-labelledby="btnSearchDrop2" class="dropdown-menu mt-1 dropdown-menu-right">
+
+                                @if (item.disabled == "false")
+                                {
+                                    <a onclick="IpBindigsDisable('@item.id');" class="dropdown-item">
+                                        <i class="icon-lock danger"></i> @Captions.Disable
+                                    </a>
+                                }
+                                else
+                                {
+                                    <a onclick="IpBindigsEnable('@item.id');" class="dropdown-item">
+                                        <i class="icon-unlock primary"></i> @Captions.Enable
+                                    </a>
+                                }
+                                <a onclick="IpBindigsRemove('@item.id');" class="dropdown-item">
+                                    <i class="icon-trash4 danger"></i> @Captions.Remove
+                                </a>
+                            </span>
+                        </span>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}

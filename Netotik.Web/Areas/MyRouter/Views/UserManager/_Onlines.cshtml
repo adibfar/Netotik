@@ -42,9 +42,8 @@ else
                     <td>@item.download</td>
                     <td>@item.upload</td>
                     <td>
-                        <button type="button" aria-haspopup="true" aria-expanded="true" class="btn btn-outline-secondary"><i class="icon-pen3"></i>@Captions.Action</button>
-                        <a onclick="UserCloseSession('@item.user','@item.user');" class="dropdown-item">
-                            <i class="icon-pen3 primary"></i> @Captions.Close
+                        <a onclick="UserCloseSession('@item.user','@item.user');" class="btn btn-outline-secondary">
+                            <i class="icon-remove primary"></i> @Captions.Close
                         </a>
                     </td>
                 </tr>

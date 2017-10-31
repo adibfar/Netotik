@@ -1913,6 +1913,33 @@
   <LocaleResource Name="Sms">
     <Value>پیامک</Value>
   </LocaleResource>
+  <LocaleResource Name="AreYouSure">
+    <Value>آیا مطمئن هستید؟</Value>
+  </LocaleResource>
+  <LocaleResource Name="AfterRemoveCantRecover">
+    <Value>پس از حذف قابل بازیابی نمی باشد.</Value>
+  </LocaleResource>
+  <LocaleResource Name="YesRemove">
+    <Value>بله ، حذف کن</Value>
+  </LocaleResource>
+  <LocaleResource Name="NoCancel">
+    <Value>خیر ، لغو شود</Value>
+  </LocaleResource>
+  <LocaleResource Name="Removed">
+    <Value>حذف گردید.</Value>
+  </LocaleResource>
+  <LocaleResource Name="Canceled">
+    <Value>لغو گردید.</Value>
+  </LocaleResource>
+  <LocaleResource Name="RemoveActionCanceled">
+    <Value>عملیات حذف لغو گردید.</Value>
+  </LocaleResource>
+  <LocaleResource Name="AccountRemoved">
+    <Value>اکانت مورد نظر حذف گردید.</Value>
+  </LocaleResource>
+  <LocaleResource Name="PlanRemoved">
+    <Value>اکانت مورد نظر حذف گردید.</Value>
+  </LocaleResource>
   
   <LocaleResource Name="BacktoHome">
     <Value>بازگشت به صفحه اصلی</Value>

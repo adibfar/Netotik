@@ -428,6 +428,7 @@
     <link rel="stylesheet" type="text/css" href="~/Content/css/plugins/tables/extensions/dataTables.colVis.css">
     <link rel="stylesheet" type="text/css" href="~/Content/css/plugins/tables/extensions/buttons.dataTables.min.css">
     <link href="~/Content/css/plugins/charts/morris.css" rel="stylesheet">
+<link rel="stylesheet" type="text/css" href="~/Content/css/plugins/extensions/sweetalert.css">
 }
 @section DownScript{
     <script src="~/Content/js/plugins/tables/datatable/dataTables.buttons.min.js" type="text/javascript"></script>
@@ -436,7 +437,7 @@
     <script src="~/Content/js/plugins/tables/vfs_fonts.js" type="text/javascript"></script>
     <script src="~/Content/js/plugins/tables/buttons.html5.min.js" type="text/javascript"></script>
     <script src="~/Content/js/plugins/tables/buttons.colVis.min.js" type="text/javascript"></script>
-
+<script src="~/Content/js/plugins/extensions/sweetalert.min.js" type="text/javascript"></script>
 
     <script src="~/Content/js/plugins/charts/morris.min.js" type="text/javascript"></script>
     <script src="~/Content/js/plugins/charts/raphael-min.js" type="text/javascript"></script>
@@ -451,7 +452,7 @@
         var downloaduploadremain = document.getElementById('downloaduploadremain').value;
         var downloadused = document.getElementById('downloadused').value;
         var uploadused = document.getElementById('uploadused').value;
-        
+
         //changeval('downloadlimitB', 'downloadlimit');
         //changeval('uploadlimitB', 'uploadlimit');
         changeval('downloaduploadlimitB', 'downloaduploadlimit');
@@ -531,9 +532,26 @@
         }
 
         function Userremove(id) {
-            PostData("@Url.Action(MVC.MyRouter.UserManager.Userremove())", { id: id });
-        }
+            swal({
+                title: "@Captions.AreYouSure",
+                text: "@Captions.AfterRemoveCantRecover",
+                type: "warning",
+                showCancelButton: !0,
+                confirmButtonColor: "#DA4453",
+                confirmButtonText: "@Captions.YesRemove",
+                cancelButtonText: "@Captions.NoCancel",
+                closeOnConfirm: !1,
+                closeOnCancel: !1
+            }, function (a) {
+                if (a) {
+                    swal("@Captions.Removed", "@Captions.AccountRemoved", "success");
+                    PostData("@Url.Action(MVC.MyRouter.UserManager.Userremove())", { id: id });
+                } else {
+                    swal("@Captions.Canceled", "@Captions.RemoveActionCanceled", "error");
+                }
 
+            })
+        }
         function Userdisable(id) {
             PostData("@Url.Action(MVC.MyRouter.UserManager.Userdisable())", { id: id });
         }
@@ -549,7 +567,7 @@
         function UserCloseSession(id , name) {
             PostData("@Url.Action(MVC.MyRouter.UserManager.CloseSession())", { id: id ,user: name});
         }
-        
+
 
         $(window).on("load", function () {
 

@@ -1,0 +1,72 @@
+﻿@{
+    int IPWalledGardenCounter = 1;
+}
+
+@if (ViewBag.ipwalledgarden == null)
+{
+    <label>@Captions.Access</label>
+    <div class="alert alert-danger">
+        @Captions.CantConnectToRouter
+    </div>
+}
+else
+{
+    <table class="table table-striped table-bordered table-hover" id="grid2">
+        <thead>
+            <tr>
+                <th>#</th>
+                <th data-toggle="true">Dst Host</th>
+                <th>Dst Port</th>
+                <th>Portocol</th>
+                <th>Server</th>
+                <th>Action</th>
+                <th>Hits</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in ViewBag.ipwalledgarden)
+            {
+                <tr>
+                    <td>@(IPWalledGardenCounter++)</td>
+                    @if (item.dst_host != "")
+                    {
+                        <td>@item.dst_host</td>
+                    }
+                    else
+                    {
+                        <td>@item.dst_address</td>
+                    }
+                    <td>@item.dst_port</td>
+                    <td>@item.protocol</td>
+                    <td>@item.server</td>
+                    <td>@item.action</td>
+                    <td>@item.hits</td>
+                    <td>
+                        <span class="dropdown">
+                            <button id="btnSearchDrop2" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" class="btn btn-outline-secondary dropdown-toggle dropdown-menu-right"><i class="icon-cog3"></i>@Captions.Action</button>
+                            <span aria-labelledby="btnSearchDrop2" class="dropdown-menu mt-1 dropdown-menu-right">
+                                @if (item.disabled == "false")
+                                {
+                                    <a onclick="IpWalledGardenDisable('@item.id');" class="dropdown-item">
+                                        <i class="icon-lock danger"></i> @Captions.Disable
+                                    </a>
+                                }
+                                else
+                                {
+                                    <a onclick="IpWalledGardenEnable('@item.id');" class="dropdown-item">
+                                        <i class="icon-unlock primary"></i> @Captions.Enable
+                                    </a>
+                                }
+                                <a onclick="IpWalledGardenRemove('@item.id');" class="dropdown-item">
+                                    <i class="icon-trash4 danger"></i> @Captions.Remove
+                                </a>
+                            </span>
+                        </span>
+
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}

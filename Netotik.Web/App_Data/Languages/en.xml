@@ -1330,6 +1330,33 @@
   <LocaleResource Name="Sms">
     <Value>Sms</Value>
   </LocaleResource>
+  <LocaleResource Name="AreYouSure">
+    <Value>Are you sure?</Value>
+  </LocaleResource>
+  <LocaleResource Name="AfterRemoveCantRecover">
+    <Value>After remove cant recover</Value>
+  </LocaleResource>
+  <LocaleResource Name="YesRemove">
+    <Value>Yes, Remove</Value>
+  </LocaleResource>
+  <LocaleResource Name="NoCancel">
+    <Value>No,cancel</Value>
+  </LocaleResource>
+  <LocaleResource Name="Removed">
+    <Value>Removed</Value>
+  </LocaleResource>
+  <LocaleResource Name="Canceled">
+    <Value>Canceled</Value>
+  </LocaleResource>
+  <LocaleResource Name="RemoveActionCanceled">
+    <Value>Removed action Canceled</Value>
+  </LocaleResource>
+  <LocaleResource Name="AccountRemoved">
+    <Value>Account removed.</Value>
+  </LocaleResource>
+  <LocaleResource Name="PlanRemoved">
+    <Value>Package Removed.</Value>
+  </LocaleResource>
   <LocaleResource Name="BacktoHome">
     <Value>Back to home</Value>
   </LocaleResource>
