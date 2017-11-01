@@ -6611,6 +6611,55 @@ namespace Links
             
             }
         
+            [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+            public static class TemplateFiles {
+                public const string UrlPath = "~/Content/Upload/TemplateFiles";
+                public static string Url() { return T4MVCHelpers.ProcessVirtualPath(UrlPath); }
+                public static string Url(string fileName) { return T4MVCHelpers.ProcessVirtualPath(UrlPath + "/" + fileName); }
+                public static readonly string errors_txt = Url("errors.txt");
+                [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+                public static class fonts {
+                    public const string UrlPath = "~/Content/Upload/TemplateFiles/fonts";
+                    public static string Url() { return T4MVCHelpers.ProcessVirtualPath(UrlPath); }
+                    public static string Url(string fileName) { return T4MVCHelpers.ProcessVirtualPath(UrlPath + "/" + fileName); }
+                    public static readonly string IRANSans_web_eot = Url("IRANSans-web.eot");
+                    public static readonly string IRANSans_web_ttf = Url("IRANSans-web.ttf");
+                    public static readonly string IRANSans_web_woff = Url("IRANSans-web.woff");
+                    public static readonly string IRANSans_web_woff2 = Url("IRANSans-web.woff2");
+                    public static readonly string IRANSansWeb_eot = Url("IRANSansWeb.eot");
+                    public static readonly string IRANSansWeb_ttf = Url("IRANSansWeb.ttf");
+                    public static readonly string IRANSansWeb_woff = Url("IRANSansWeb.woff");
+                    public static readonly string IRANSansWeb_woff2 = Url("IRANSansWeb.woff2");
+                }
+            
+                [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+                public static class img {
+                    public const string UrlPath = "~/Content/Upload/TemplateFiles/img";
+                    public static string Url() { return T4MVCHelpers.ProcessVirtualPath(UrlPath); }
+                    public static string Url(string fileName) { return T4MVCHelpers.ProcessVirtualPath(UrlPath + "/" + fileName); }
+                    public static readonly string Eor57Ae_jpg = Url("Eor57Ae.jpg");
+                    public static readonly string instagram_png = Url("instagram.png");
+                    public static readonly string logo_png = Url("logo.png");
+                    public static readonly string Qf83FTt_png = Url("Qf83FTt.png");
+                    public static readonly string telegram_png = Url("telegram.png");
+                    public static readonly string u0XmBmv_png = Url("u0XmBmv.png");
+                }
+            
+                public static readonly string md5_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(UrlPath + "/md5.min.js") ? Url("md5.min.js") : Url("md5.js");
+                public static readonly string radvert_html = Url("radvert.html");
+                public static readonly string redirect_html = Url("redirect.html");
+                public static readonly string rlogin_html = Url("rlogin.html");
+            }
+        
+            [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+            public static class TemplateSettingsXML {
+                public const string UrlPath = "~/Content/Upload/TemplateSettingsXML";
+                public static string Url() { return T4MVCHelpers.ProcessVirtualPath(UrlPath); }
+                public static string Url(string fileName) { return T4MVCHelpers.ProcessVirtualPath(UrlPath + "/" + fileName); }
+                public static readonly string _15 = Url("15");
+                public static readonly string _3 = Url("3");
+            }
+        
         }
     
     }
@@ -10997,6 +11046,31 @@ namespace Links
                         {
                         }
                     }
+                    public static class Assets
+                    {
+                    }
+                }
+                public static partial class TemplateFiles 
+                {
+                    public static partial class fonts 
+                    {
+                        public static class Assets
+                        {
+                        }
+                    }
+                    public static partial class img 
+                    {
+                        public static class Assets
+                        {
+                        }
+                    }
+                    public static class Assets
+                    {
+                        public const string md5_js = "~/Content/Upload/TemplateFiles/md5.js"; 
+                    }
+                }
+                public static partial class TemplateSettingsXML 
+                {
                     public static class Assets
                     {
                     }

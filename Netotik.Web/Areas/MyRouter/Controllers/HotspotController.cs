@@ -14,6 +14,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Xml.Linq;
 using System.Web.Hosting;
+using System.Threading.Tasks;
 
 namespace Netotik.Web.Areas.MyRouter.Controllers
 {
@@ -411,7 +412,7 @@ Order = 0, GlyphIcon = "icon icon-table")]
         }
 
         [HttpPost]
-        public virtual ActionResult ActiveTemplate(ViewModels.Template.TemplateSettings setting)
+        public virtual async Task<ActionResult> ActiveTemplate(ViewModels.Template.TemplateSettings setting)
         {
             //------------Save To Xml---------------------------
             var xml = new XDocument(new XElement("TemplateSetting",
@@ -439,10 +440,163 @@ Order = 0, GlyphIcon = "icon icon-table")]
             xml.Save(HostingEnvironment.MapPath(@"~\Content\Upload\TemplateSettingsXML\"+UserLogined.Id));
 
             //------------Connect To Router To Get---------------------------
+            var Fetch = new List<FetchModel>();
+            Fetch = AddDefualtTemplateFiles(Fetch);
+            Fetch.Add(new FetchModel() {
+                DstPath = "/NetotikTemplate/alogin.html",
+                Mode = "https",
+                Url = Url.Action(MVC.GetRouterTemplate.GetAlogin(UserLogined.UserRouter.RouterCode), protocol: "https")
+            });
+            Fetch.Add(new FetchModel()
+            {
+                DstPath = "/NetotikTemplate/login.html",
+                Mode = "https",
+                Url = Url.Action(MVC.GetRouterTemplate.GetLogin(UserLogined.UserRouter.RouterCode), protocol: "https")
+            });
+            Fetch.Add(new FetchModel()
+            {
+                DstPath = "/NetotikTemplate/error.html",
+                Mode = "https",
+                Url = Url.Action(MVC.GetRouterTemplate.GetError(UserLogined.UserRouter.RouterCode), protocol: "https")
+            });
+            Fetch.Add(new FetchModel()
+            {
+                DstPath = "/NetotikTemplate/status.html",
+                Mode = "https",
+                Url = Url.Action(MVC.GetRouterTemplate.GetStatus(UserLogined.UserRouter.RouterCode), protocol: "https")
+            });
+            Fetch.Add(new FetchModel()
+            {
+                DstPath = "/NetotikTemplate/logout.html",
+                Mode = "https",
+                Url = Url.Action(MVC.GetRouterTemplate.GetLogout(UserLogined.UserRouter.RouterCode), protocol: "https")
+            });
 
+            await _mikrotikServices.FetchUrlsAsync(UserLogined.UserRouter.R_Host, UserLogined.UserRouter.R_Port, UserLogined.UserRouter.R_User, UserLogined.UserRouter.R_Password, UserLogined.Id, Fetch);
+
+            
 
             this.MessageSuccess(Captions.MissionSuccess,"قالب با موفقیت نصب گردید.");
             return RedirectToAction(MVC.MyRouter.Hotspot.ActionNames.Template);
+        }
+
+        public List<FetchModel> AddDefualtTemplateFiles(List<FetchModel> Fetch)
+        {
+            Fetch.Add(new FetchModel()
+            {
+                DstPath = "/NetotikTemplate/fonts/IRANSansWeb.eot",
+                Mode = "https",
+                Url = "https://netotik.com"+Links.Content.Upload.TemplateFiles.fonts.IRANSansWeb_eot
+            });
+            Fetch.Add(new FetchModel()
+            {
+                DstPath = "/NetotikTemplate/fonts/IRANSansWeb.ttf",
+                Mode = "https",
+                Url = "https://netotik.com" + Links.Content.Upload.TemplateFiles.fonts.IRANSansWeb_ttf
+            });
+            Fetch.Add(new FetchModel()
+            {
+                DstPath = "/NetotikTemplate/fonts/IRANSansWeb.woff",
+                Mode = "https",
+                Url = "https://netotik.com" + Links.Content.Upload.TemplateFiles.fonts.IRANSansWeb_woff
+            });
+            Fetch.Add(new FetchModel()
+            {
+                DstPath = "/NetotikTemplate/fonts/IRANSansWeb.woff2",
+                Mode = "https",
+                Url = "https://netotik.com" + Links.Content.Upload.TemplateFiles.fonts.IRANSansWeb_woff2
+            });
+            Fetch.Add(new FetchModel()
+            {
+                DstPath = "/NetotikTemplate/fonts/IRANSans-web.eot",
+                Mode = "https",
+                Url = "https://netotik.com" + Links.Content.Upload.TemplateFiles.fonts.IRANSans_web_eot
+            });
+            Fetch.Add(new FetchModel()
+            {
+                DstPath = "/NetotikTemplate/fonts/IRANSans-web.ttf",
+                Mode = "https",
+                Url = "https://netotik.com" + Links.Content.Upload.TemplateFiles.fonts.IRANSans_web_ttf
+            });
+            Fetch.Add(new FetchModel()
+            {
+                DstPath = "/NetotikTemplate/fonts/IRANSans-web.woff",
+                Mode = "https",
+                Url = "https://netotik.com" + Links.Content.Upload.TemplateFiles.fonts.IRANSans_web_woff
+            });
+            Fetch.Add(new FetchModel()
+            {
+                DstPath = "/NetotikTemplate/fonts/IRANSans-web.woff2",
+                Mode = "https",
+                Url = "https://netotik.com" + Links.Content.Upload.TemplateFiles.fonts.IRANSans_web_woff2
+            });
+            Fetch.Add(new FetchModel()
+            {
+                DstPath = "/NetotikTemplate/img/Eor57Ae.jpg",
+                Mode = "https",
+                Url = "https://netotik.com" + Links.Content.Upload.TemplateFiles.img.Eor57Ae_jpg
+            });
+            Fetch.Add(new FetchModel()
+            {
+                DstPath = "/NetotikTemplate/img/instagram.png",
+                Mode = "https",
+                Url = "https://netotik.com" + Links.Content.Upload.TemplateFiles.img.instagram_png
+            });
+            Fetch.Add(new FetchModel()
+            {
+                DstPath = "/NetotikTemplate/img/logo.png",
+                Mode = "https",
+                Url = "https://netotik.com" + Links.Content.Upload.TemplateFiles.img.logo_png
+            });
+            Fetch.Add(new FetchModel()
+            {
+                DstPath = "/NetotikTemplate/img/Qf83FTt.png",
+                Mode = "https",
+                Url = "https://netotik.com" + Links.Content.Upload.TemplateFiles.img.Qf83FTt_png
+            });
+            Fetch.Add(new FetchModel()
+            {
+                DstPath = "/NetotikTemplate/img/telegram.png",
+                Mode = "https",
+                Url = "https://netotik.com" + Links.Content.Upload.TemplateFiles.img.telegram_png
+            });
+            Fetch.Add(new FetchModel()
+            {
+                DstPath = "/NetotikTemplate/img/u0XmBmv.png",
+                Mode = "https",
+                Url = "https://netotik.com" + Links.Content.Upload.TemplateFiles.img.u0XmBmv_png
+            });
+            Fetch.Add(new FetchModel()
+            {
+                DstPath = "/NetotikTemplate/errors.txt",
+                Mode = "https",
+                Url = "https://netotik.com" + Links.Content.Upload.TemplateFiles.errors_txt
+            });
+            Fetch.Add(new FetchModel()
+            {
+                DstPath = "/NetotikTemplate/md5.js",
+                Mode = "https",
+                Url = "https://netotik.com" + Links.Content.Upload.TemplateFiles.md5_js
+            });
+            Fetch.Add(new FetchModel()
+            {
+                DstPath = "/NetotikTemplate/radvert.html",
+                Mode = "https",
+                Url = "https://netotik.com" + Links.Content.Upload.TemplateFiles.radvert_html
+            });
+            Fetch.Add(new FetchModel()
+            {
+                DstPath = "/NetotikTemplate/redirect.html",
+                Mode = "https",
+                Url = "https://netotik.com" + Links.Content.Upload.TemplateFiles.redirect_html
+            });
+            Fetch.Add(new FetchModel()
+            {
+                DstPath = "/NetotikTemplate/rlogin.html",
+                Mode = "https",
+                Url = "https://netotik.com" + Links.Content.Upload.TemplateFiles.rlogin_html
+            });
+            return Fetch;
         }
     }
 }

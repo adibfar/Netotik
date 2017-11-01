@@ -97,7 +97,7 @@ namespace Netotik.Services.Implement
                         login = ColumnList.Any(x => x.Key == "login") ? (ColumnList.FirstOrDefault(x => x.Key == "login").Value) : "",
                         access = ColumnList.Any(x => x.Key == "access") ? (ColumnList.FirstOrDefault(x => x.Key == "access").Value) : "",
                         backup_allowed = ColumnList.Any(x => x.Key == "backup-allowed") ? (ColumnList.FirstOrDefault(x => x.Key == "backup-allowed").Value) : "",
-                        disabled = ColumnList.Any(x => x.Key == "disabled") ? (ColumnList.FirstOrDefault(x => x.Key == "disabled").Value)=="true"?true:false : false,
+                        disabled = ColumnList.Any(x => x.Key == "disabled") ? (ColumnList.FirstOrDefault(x => x.Key == "disabled").Value) == "true" ? true : false : false,
                         password = ColumnList.Any(x => x.Key == "password") ? (ColumnList.FirstOrDefault(x => x.Key == "password").Value) : "",
                         permissions = ColumnList.Any(x => x.Key == "permissions") ? (ColumnList.FirstOrDefault(x => x.Key == "permissions").Value) : "",
                         signup_allowed = ColumnList.Any(x => x.Key == "signup-allowed") ? (ColumnList.FirstOrDefault(x => x.Key == "signup-allowed").Value) : "",
@@ -433,7 +433,8 @@ namespace Netotik.Services.Implement
                     {
                         Json = ColumnList.Any(x => x.Key == "comment") ? JsonConvert.DeserializeObject<UserJsonModel>(ColumnList.FirstOrDefault(x => x.Key == "comment").Value) : new UserJsonModel();
                     }
-                    catch {
+                    catch
+                    {
                         Json = new UserJsonModel();
                     }
                     usermodel.Add(new Netotik.ViewModels.Identity.UserClient.UserModel()
@@ -711,7 +712,7 @@ namespace Netotik.Services.Implement
                 MarriageDate = model.MarriageDate,
                 NationalCode = model.NationalCode,
                 IsMale = model.IsMale,
-                EditDate= DateTime.Now
+                EditDate = DateTime.Now
             }));
             //temp = String.Format("=comment={0}", model.comment);
             mikrotik.Send(temp);
@@ -2919,6 +2920,23 @@ namespace Netotik.Services.Implement
             string command = string.Format("?number={0}", ServiceName);
             mikrotik.Send(command, true);
             mikrotik.Read();
+        }
+
+        public virtual async Task FetchUrlsAsync(string r_Host, int r_Port, string r_User, string r_Password, long id, List<FetchModel> fetch)
+        {
+            var mikrotik = new MikrotikAPI();
+            await mikrotik.MKAsync(r_Host, r_Port);
+            if (! await mikrotik.LoginAsync(r_User, r_Password)) mikrotik.Close();
+            //-----------------------------------------------
+
+            foreach (var item in fetch)
+            {
+                await mikrotik.SendAsync("/tool/fetch");
+                await mikrotik.SendAsync("=url="+item.Url);
+                await mikrotik.SendAsync("=mode=" + item.Mode);
+                await mikrotik.SendAsync("=dst-path=" + item.DstPath,true);
+                var Read = mikrotik.Read();
+            }
         }
         //public List<RouterAccessModel> RouterAccessWithAdressListList(string r_Host, int r_Port, string r_User, string r_Password)
         //{
