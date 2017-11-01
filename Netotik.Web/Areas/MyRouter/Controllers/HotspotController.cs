@@ -472,7 +472,11 @@ Order = 0, GlyphIcon = "icon icon-table")]
                 Url = Url.Action(MVC.GetRouterTemplate.GetLogout(UserLogined.UserRouter.RouterCode), protocol: "https")
             });
 
-            await _mikrotikServices.FetchUrlsAsync(UserLogined.UserRouter.R_Host, UserLogined.UserRouter.R_Port, UserLogined.UserRouter.R_User, UserLogined.UserRouter.R_Password, UserLogined.Id, Fetch);
+            HostingEnvironment.QueueBackgroundWorkItem(async cancellationToken =>
+            {
+               await _mikrotikServices.FetchUrlsAsync(UserLogined.UserRouter.R_Host, UserLogined.UserRouter.R_Port, UserLogined.UserRouter.R_User, UserLogined.UserRouter.R_Password, UserLogined.Id, Fetch);
+            });
+            
 
             
 

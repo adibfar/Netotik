@@ -136,7 +136,12 @@ namespace Netotik.Web
             Byte[] receiveBytes = u.EndReceive(ar, ref e);
             string receiveString = Encoding.UTF8.GetString(receiveBytes);
 
-            await WirteToDB(e.Address.ToString(), receiveString);
+
+            HostingEnvironment.QueueBackgroundWorkItem(async cancellationToken =>
+            {
+                await WirteToDB(e.Address.ToString(), receiveString);
+            });
+
 
             try
             {
@@ -163,7 +168,8 @@ namespace Netotik.Web
             try
             {
                 u.BeginReceive(new AsyncCallback(ReceiveCallback), s);
-            }catch(Exception ex)
+            }
+            catch (Exception ex)
             {
                 //using (StreamWriter _testData = new StreamWriter(HostingEnvironment.MapPath("~/1.txt"), true))
                 //{
@@ -224,7 +230,8 @@ namespace Netotik.Web
                             _UserRouterlogclientservice.Add(http);
                             await _uow.SaveAllChangesAsync();
                         }
-                        catch(Exception ex) {
+                        catch (Exception ex)
+                        {
                             var exs = ex;
                         }
                     }
