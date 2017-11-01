@@ -9,6 +9,13 @@
     <div class="col-md-4 offset-md-4 col-xs-10 offset-xs-1 box-shadow-3 p-0">
         <div class="card border-grey border-lighten-3 m-0">
             <div class="card-body collapse in">
+                <center>
+                    <div class="card-body">
+                        <div class="card-profile-image" style="margin-top:5px !important;">
+                            <img src="~/Content/images/logo/NetotikLogo.png?h=90" alt="Netotik">
+                        </div>
+                    </div>
+                </center>
                 @if (ViewBag.Message != null)
                 {
                     <div class="alert alert-icon-left alert-danger alert-dismissible fade in mb-2" role="alert">
@@ -25,7 +32,6 @@
                         <div class="ui-separator">
                         </div>
                     }
-
                 }
                 <div class="card-block">
                     @using (Html.BeginForm(MVC.Account.ActionNames.Login, MVC.Account.Name, new { ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form", id = "loginForm", autocomplete = "off" }))
