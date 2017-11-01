@@ -11,146 +11,219 @@
 
 @if (setting == null)
 {
-   
+
 }
 else
 {
-<section class="flexbox-container">
-    @if (ViewBag.Success != null)
-    {
-        <div class="col-md-5 offset-md-2 col-xs-12">
-            <div class="alert alert-icon-left alert-success alert-dismissible fade in mb-2" role="alert">
-                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                    <span aria-hidden="true">×</span>
-                </button>
-                <strong>@Captions.RegisterDone</strong> @ViewBag.Success
+    <section class="flexbox-container">
+        @if (ViewBag.Success != null)
+        {
+            <div class="col-md-5 offset-md-2 col-xs-12">
+                <div class="alert alert-icon-left alert-success alert-dismissible fade in mb-2" role="alert">
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                    <strong>@Captions.RegisterDone</strong> @ViewBag.Success
+                </div>
             </div>
-        </div>
-    }
-    else
-    {
+        }
+        else
+        {
 
-        <div class="col-md-3 offset-md-6 col-xs-10 box-shadow-2 p-0">
-            <div class="card border-grey border-lighten-3 m-0">
-                <div class="card-body collapse in">
-                    @if (ViewBag.Message != null)
+            <div class="col-md-3 offset-md-6 col-xs-10 box-shadow-2 p-0">
+                <div class="card border-grey border-lighten-3 m-0">
+                    <div class="card-body collapse in">
+                        @if (ViewBag.Message != null)
                     {
-                        <div class="alert alert-icon-left alert-danger alert-dismissible fade in mb-2" role="alert">
-                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                <span aria-hidden="true">×</span>
-                            </button>
-                            <strong>@Captions.MissionFail</strong> @ViewBag.Message
-                        </div>
+                            <div class="alert alert-icon-left alert-danger alert-dismissible fade in mb-2" role="alert">
+                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                    <span aria-hidden="true">×</span>
+                                </button>
+                                <strong>@Captions.MissionFail</strong> @ViewBag.Message
+                            </div>
 
-                    }
-                    <div class="card-block">
-                        @using (Html.BeginForm(MVC.Register.ActionNames.Client, MVC.Register.Name, new { ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form", id = "loginForm", autocomplete = "off" }))
-                        {
-                            @Html.AntiForgeryToken()
-                            <div class="row">
-                                @if (setting.Name != FieldType.None)
-                                {
-                                    <div class="col-md-12">
-                                        <div class="form-group has-feedback has-icon-left">
-                                            @Html.TextBoxFor(m => m.Name, new { @class = "form-control", placeholder = Captions.Name })
-                                            <div class="form-control-position">
-                                                <i class="icon-head"></i>
-                                            </div>
-                                        </div>
-                                    </div>
-                                }
-                                @if (setting.MobileNumber != FieldType.None || setting.Username == UsernameFieldType.MobileNumber || setting.Password == PasswordFieldType.MobileNumber)
-                                {
-                                    <div class="col-md-12">
-                                        <div class="form-group has-feedback has-icon-left">
-                                            @Html.TextBoxFor(m => m.MobileNumber, new { @class = "form-control", placeholder = Captions.MobileNumber })
-                                            <div class="form-control-position">
-                                                <i class="icon-phone"></i>
-                                            </div>
-                                        </div>
-                                    </div>
-                                }
-                                @if (setting.Username == UsernameFieldType.Required)
-                                {
-                                    <div class="col-md-12">
-                                        <div class="form-group has-feedback has-icon-left">
-                                            @Html.TextBoxFor(m => m.Username, new { @class = "form-control", placeholder = Captions.UserName })
-                                            <div class="form-control-position">
-                                                <i class="icon-user"></i>
-                                            </div>
-                                        </div>
-                                    </div>
-                                }
-                                @if (setting.Email != FieldType.None || setting.Username==UsernameFieldType.Email)
-                                {
-                                    <div class="col-md-12">
-                                        <div class="form-group has-feedback has-icon-left">
-                                            @Html.TextBoxFor(m => m.Email, new { @class = "form-control", placeholder = Captions.Email })
-                                            <div class="form-control-position">
-                                                <i class="icon-mail"></i>
-                                            </div>
-                                        </div>
-                                    </div>
-                                }
-                                @if (setting.NationalCode != FieldType.None || setting.Username == UsernameFieldType.NationalCode || setting.Password==PasswordFieldType.NationalCode)
-                                {
-                                    <div class="col-md-12">
-                                        <div class="form-group has-feedback has-icon-left">
-                                            @Html.TextBoxFor(m => m.NationalCode, new { @class = "form-control", placeholder = Captions.NationalCode })
-                                            <div class="form-control-position">
-                                                <i class="icon-diamonds"></i>
-                                            </div>
-                                        </div>
-                                    </div>
-                                }
-                                @if (setting.BirthDate != FieldType.None)
-                                {
-                                    <div class="col-md-12">
-                                        <div class="form-group has-feedback has-icon-left">
-                                            <div class="position-relative has-icon-left">
-                                                @Html.TextBoxFor(m => m.BirthDate, new { @class = "form-control", placeholder = "تاریخ تولد" })
+                        }
+                        <div class="card-block">
+                            @using (Html.BeginForm(MVC.Register.ActionNames.Client, MVC.Register.Name, new { ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form", id = "loginForm", autocomplete = "off" }))
+                            {
+                                @Html.AntiForgeryToken()
+                                <div class="row">
+                                    @if (setting.Name != FieldType.None)
+                                    {
+                                        <div class="col-md-12">
+                                            <div class="form-group has-feedback has-icon-left">
+                                                @Html.TextBoxFor(m => m.Name, new { @class = "form-control", placeholder = Captions.Name })
                                                 <div class="form-control-position">
-                                                    <i class="icon-birthday-cake"></i>
+                                                    <i class="icon-head"></i>
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
-                                }
-                                @if (setting.Password == PasswordFieldType.Required)
-                                {
-                                    <div class="col-md-12">
-                                        <div class="form-group has-feedback has-icon-left">
-                                            @Html.PasswordFor(m => m.Password, new { @class = "form-control", placeholder = Captions.Password })
-                                            <div class="form-control-position">
-                                                <i class="icon-key2"></i>
+                                    }
+                                    @if (setting.MobileNumber != FieldType.None || setting.Username == UsernameFieldType.MobileNumber || setting.Password == PasswordFieldType.MobileNumber)
+                                    {
+                                        <div class="col-md-12">
+                                            <div class="form-group has-feedback has-icon-left">
+                                                @Html.TextBoxFor(m => m.MobileNumber, new { @class = "form-control", placeholder = Captions.MobileNumber })
+                                                <div class="form-control-position">
+                                                    <i class="icon-phone"></i>
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
-                                }
-                                @if (setting.PasswordConfirm != FieldType.Required && setting.Password == PasswordFieldType.Required)
-                                {
-                                    <div class="col-md-12">
-                                        <div class="form-group has-feedback has-icon-left">
-                                            @Html.PasswordFor(m => m.PasswordConfirm, new { @class = "form-control", placeholder = Captions.ConfirmPassword })
-                                            <div class="form-control-position">
-                                                <i class="icon-key2"></i>
+                                    }
+                                    @if (setting.Username == UsernameFieldType.Required)
+                                    {
+                                        <div class="col-md-12">
+                                            <div class="form-group has-feedback has-icon-left">
+                                                @Html.TextBoxFor(m => m.Username, new { @class = "form-control", placeholder = Captions.UserName })
+                                                <div class="form-control-position">
+                                                    <i class="icon-user"></i>
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
-                                }
-                            </div>
+                                    }
+                                    @if (setting.Email != FieldType.None || setting.Username == UsernameFieldType.Email)
+                                    {
+                                        <div class="col-md-12">
+                                            <div class="form-group has-feedback has-icon-left">
+                                                @Html.TextBoxFor(m => m.Email, new { @class = "form-control", placeholder = Captions.Email })
+                                                <div class="form-control-position">
+                                                    <i class="icon-mail"></i>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    }
+                                    @if (setting.NationalCode != FieldType.None || setting.Username == UsernameFieldType.NationalCode || setting.Password == PasswordFieldType.NationalCode)
+                                    {
+                                        <div class="col-md-12">
+                                            <div class="form-group has-feedback has-icon-left">
+                                                @Html.TextBoxFor(m => m.NationalCode, new { @class = "form-control", placeholder = Captions.NationalCode })
+                                                <div class="form-control-position">
+                                                    <i class="icon-diamonds"></i>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    }
+                                    @if (setting.BirthDate != FieldType.None)
+                                    {
+                                        <div class="col-md-12">
+                                            <div class="form-group has-feedback has-icon-left">
+                                                <div class="position-relative has-icon-left">
+                                                    @Html.TextBoxFor(m => m.BirthDate, new { @class = "form-control", placeholder = "تاریخ تولد" })
+                                                    <div class="form-control-position">
+                                                        <i class="icon-birthday-cake"></i>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    }
+                                    @if (setting.Password == PasswordFieldType.Required)
+                                    {
+                                        <div class="col-md-12">
+                                            <div class="form-group has-feedback has-icon-left">
+                                                @Html.PasswordFor(m => m.Password, new { @class = "form-control", placeholder = Captions.Password })
+                                                <div class="form-control-position">
+                                                    <i class="icon-key2"></i>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    }
+                                    @if (setting.PasswordConfirm != FieldType.Required && setting.Password == PasswordFieldType.Required)
+                                    {
+                                        <div class="col-md-12">
+                                            <div class="form-group has-feedback has-icon-left">
+                                                @Html.PasswordFor(m => m.PasswordConfirm, new { @class = "form-control", placeholder = Captions.ConfirmPassword })
+                                                <div class="form-control-position">
+                                                    <i class="icon-key2"></i>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    }
+                                </div>
 
-                            <button type="submit" class="btn btn-success btn-block">
-                                <i class="icon-user"></i> @Captions.Register
-                            </button>
-                        }
-                    </div>
-                    <div class="card-block">
-                        <a href="#" class="btn btn-outline-primary btn-block"><i class="icon-lock4"></i> @Captions.LoginToUserAccount</a>
+                                <button type="submit" class="btn btn-success btn-block">
+                                    <i class="icon-user"></i> @Captions.Register
+                                </button>
+                            }
+                        </div>
+                        <div class="card-block">
+                            <a href="#" class="btn btn-outline-primary btn-block"><i class="icon-lock4"></i> @Captions.LoginToUserAccount</a>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-    }
-</section>
+        }
+    </section>
+}
+
+
+
+@section DownScript{
+
+    <script type="text/javascript">
+
+
+        $(function () {
+            $("#loginForm").validate({
+                rules: {
+                    'model.MobileNumber': "required",
+                },
+                errorPlacement: function (error, element) { }
+            });
+        });
+
+        //$("#form").validate({
+        //    rules: {
+        //        'model.MobileNumber': "required",
+        //        'model.Surname': "required",
+        //        'model.Phone': {
+        //            required: false,
+        //            digits: true,
+        //            minlength: 7
+        //        },
+        //        'model.Mobile': {
+        //            required: true,
+        //            digits: true,
+        //            minlength: 11,
+        //            maxlength: 11
+        //        },
+        //        'model.Email': {
+        //            required: true,
+        //            email: true,
+        //            remote: {
+        //                url: "/Account/Register_CheckEmail",
+        //                type: "post",
+        //                data: {
+        //                    email: function () {
+        //                        return $("#email").val();
+        //                    }
+        //                }
+        //            }
+        //        },
+        //        'model.Username': {
+        //            required: true,
+        //            minlength: 4,
+        //            remote: {
+        //                url: "/Account/Register_CheckUsername",
+        //                type: "post",
+        //                data: {
+        //                    username: function () {
+        //                        return $("#username").val();
+        //                    }
+        //                }
+        //            }
+        //        },
+        //        password: {
+        //            required: true,
+        //            minlength: 6
+        //        },
+        //        rePassword: {
+        //            required: true,
+        //            minlength: 6,
+        //            equalTo: "#password"
+        //        },
+        //        'captcha': "required"
+        //    },
+        //    errorPlacement: function (error, element) { }
+        //});
+    </script>
 }

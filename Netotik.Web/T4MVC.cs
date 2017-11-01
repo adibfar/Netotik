@@ -251,6 +251,7 @@ namespace Links
                 public static string Url() { return T4MVCHelpers.ProcessVirtualPath(UrlPath); }
                 public static string Url(string fileName) { return T4MVCHelpers.ProcessVirtualPath(UrlPath + "/" + fileName); }
                 public static readonly string app_min_css = Url("app.min.css");
+                public static readonly string my_style_css = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(UrlPath + "/my-style.min.css") ? Url("my-style.min.css") : Url("my-style.css");
                 public static readonly string vendors_min_css = Url("vendors.min.css");
             }
         
@@ -6673,6 +6674,7 @@ namespace Links
                     public static class Assets
                     {
                         public const string app_min_css = "~/Content/css/Ltr/app.min.css";
+                        public const string my_style_css = "~/Content/css/Ltr/my-style.css";
                         public const string vendors_min_css = "~/Content/css/Ltr/vendors.min.css";
                     }
                 }
