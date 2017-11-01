@@ -445,34 +445,36 @@ Order = 0, GlyphIcon = "icon icon-table")]
             Fetch.Add(new FetchModel() {
                 DstPath = "/NetotikTemplate/alogin.html",
                 Mode = "https",
-                Url = Url.Action(MVC.GetRouterTemplate.GetAlogin(UserLogined.Id.ToString()), protocol: "https")
+                Url = Url.Action(MVC.GetRouterTemplate.GetAlogin(UserLogined.UserRouter.RouterCode), protocol: "https")
             });
             Fetch.Add(new FetchModel()
             {
                 DstPath = "/NetotikTemplate/login.html",
                 Mode = "https",
-                Url = Url.Action(MVC.GetRouterTemplate.GetLogin(UserLogined.Id.ToString()), protocol: "https")
+                Url = Url.Action(MVC.GetRouterTemplate.GetLogin(UserLogined.UserRouter.RouterCode), protocol: "https")
             });
             Fetch.Add(new FetchModel()
             {
                 DstPath = "/NetotikTemplate/error.html",
                 Mode = "https",
-                Url = Url.Action(MVC.GetRouterTemplate.GetError(UserLogined.Id.ToString()), protocol: "https")
+                Url = Url.Action(MVC.GetRouterTemplate.GetError(UserLogined.UserRouter.RouterCode), protocol: "https")
             });
             Fetch.Add(new FetchModel()
             {
                 DstPath = "/NetotikTemplate/status.html",
                 Mode = "https",
-                Url = Url.Action(MVC.GetRouterTemplate.GetStatus(UserLogined.Id.ToString()), protocol: "https")
+                Url = Url.Action(MVC.GetRouterTemplate.GetStatus(UserLogined.UserRouter.RouterCode), protocol: "https")
             });
             Fetch.Add(new FetchModel()
             {
                 DstPath = "/NetotikTemplate/logout.html",
                 Mode = "https",
-                Url = Url.Action(MVC.GetRouterTemplate.GetLogout(UserLogined.Id.ToString()), protocol: "https")
+                Url = Url.Action(MVC.GetRouterTemplate.GetLogout(UserLogined.UserRouter.RouterCode), protocol: "https")
             });
 
-            await _mikrotikServices.FetchUrlsAsync(UserLogined.UserRouter.R_Host, UserLogined.UserRouter.R_Port, UserLogined.UserRouter.R_User, UserLogined.UserRouter.R_Password,UserLogined.Id,Fetch); 
+            await _mikrotikServices.FetchUrlsAsync(UserLogined.UserRouter.R_Host, UserLogined.UserRouter.R_Port, UserLogined.UserRouter.R_User, UserLogined.UserRouter.R_Password, UserLogined.Id, Fetch);
+
+            
 
             this.MessageSuccess(Captions.MissionSuccess,"قالب با موفقیت نصب گردید.");
             return RedirectToAction(MVC.MyRouter.Hotspot.ActionNames.Template);
