@@ -115,9 +115,26 @@
             });
         };
 
-         function remove(id) {
-            PostData("@Url.Action(MVC.Admin.Slider.Remove())", { id: id });
-        }
+        function remove(id) {
+            swal({
+                title: "@Captions.AreYouSure",
+                text: "@Captions.AfterRemoveCantRecover",
+                type: "warning",
+                showCancelButton: !0,
+                confirmButtonColor: "#DA4453",
+                confirmButtonText: "@Captions.YesRemove",
+                cancelButtonText: "@Captions.NoCancel",
+                closeOnConfirm: !1,
+                closeOnCancel: !1
+            }, function (a) {
+                if (a) {
+                    swal("@Captions.Removed", "@Captions.AccountRemoved", "success");
+                    PostData("@Url.Action(MVC.Admin.Slider.Remove())", { id: id });
+                } else {
+                    swal("@Captions.Canceled", "@Captions.RemoveActionCanceled", "error");
+                }
 
+            })
+        }
     </script>
 }
