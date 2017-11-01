@@ -43,7 +43,7 @@ namespace Netotik.Web.Controllers
 
             var settingXml = XDocument.Load(file.FullName).Elements("TemplateSetting").First();
             Tempset.AutoLogin = settingXml.Element("AutoLogin").Value == "true" ? true : false;
-            Tempset.AutoLoginAfterSec = settingXml.Element("AutoLoginAfterSec").Value==""?0: int.Parse(settingXml.Element("AutoLoginAfterSec").Value);
+            Tempset.AutoLoginAfterSec = settingXml.Element("AutoLoginAfterSec").Value == "" ? 0 : int.Parse(settingXml.Element("AutoLoginAfterSec").Value);
             Tempset.AutoLoginUser = settingXml.Element("AutoLoginUser").Value;
             Tempset.CustomButton = settingXml.Element("CustomButton").Value == "true" ? true : false;
             Tempset.CustomButtonLink = settingXml.Element("CustomButtonLink").Value;
@@ -61,8 +61,8 @@ namespace Netotik.Web.Controllers
             Tempset.TelegramButton = settingXml.Element("TelegramButton").Value == "true" ? true : false;
             Tempset.TelegramButtonLink = settingXml.Element("TelegramButtonLink").Value;
             Tempset.Redirect = settingXml.Element("Redirect").Value == "true" ? true : false;
-            Tempset.PanelButtonLink = Url.Action(MVC.Login.Client("",user.UserRouter.RouterCode));
-            Tempset.RegisterButtonLink = Url.Action(MVC.Register.Client("", user.UserRouter.RouterCode));
+            Tempset.PanelButtonLink = Url.Action(MVC.Login.Client("", user.UserRouter.RouterCode), protocol: "https");
+            Tempset.RegisterButtonLink = Url.Action(MVC.Register.Client("", user.UserRouter.RouterCode), protocol: "https");
 
             return View(Tempset);
         }
@@ -98,6 +98,8 @@ namespace Netotik.Web.Controllers
             Tempset.TelegramButton = settingXml.Element("TelegramButton").Value == "True" ? true : false;
             Tempset.TelegramButtonLink = settingXml.Element("TelegramButtonLink").Value;
             Tempset.Redirect = settingXml.Element("Redirect").Value == "True" ? true : false;
+            Tempset.PanelButtonLink = Url.Action(MVC.Login.Client("", user.UserRouter.RouterCode), protocol: "https");
+            Tempset.RegisterButtonLink = Url.Action(MVC.Register.Client("", user.UserRouter.RouterCode), protocol: "https");
 
             return View(Tempset);
         }
@@ -133,6 +135,8 @@ namespace Netotik.Web.Controllers
             Tempset.TelegramButton = settingXml.Element("TelegramButton").Value == "True" ? true : false;
             Tempset.TelegramButtonLink = settingXml.Element("TelegramButtonLink").Value;
             Tempset.Redirect = settingXml.Element("Redirect").Value == "True" ? true : false;
+            Tempset.PanelButtonLink = Url.Action(MVC.Login.Client("", user.UserRouter.RouterCode), protocol: "https");
+            Tempset.RegisterButtonLink = Url.Action(MVC.Register.Client("", user.UserRouter.RouterCode), protocol: "https");
 
             return View(Tempset);
         }
@@ -168,6 +172,8 @@ namespace Netotik.Web.Controllers
             Tempset.TelegramButton = settingXml.Element("TelegramButton").Value == "True" ? true : false;
             Tempset.TelegramButtonLink = settingXml.Element("TelegramButtonLink").Value;
             Tempset.Redirect = settingXml.Element("Redirect").Value == "True" ? true : false;
+            Tempset.PanelButtonLink = Url.Action(MVC.Login.Client("", user.UserRouter.RouterCode), protocol: "https");
+            Tempset.RegisterButtonLink = Url.Action(MVC.Register.Client("", user.UserRouter.RouterCode), protocol: "https");
 
             return View(Tempset);
 
@@ -205,6 +211,8 @@ namespace Netotik.Web.Controllers
             Tempset.TelegramButton = settingXml.Element("TelegramButton").Value == "True" ? true : false;
             Tempset.TelegramButtonLink = settingXml.Element("TelegramButtonLink").Value;
             Tempset.Redirect = settingXml.Element("Redirect").Value == "True" ? true : false;
+            Tempset.PanelButtonLink = Url.Action(MVC.Login.Client("", user.UserRouter.RouterCode), protocol: "https");
+            Tempset.RegisterButtonLink = Url.Action(MVC.Register.Client("", user.UserRouter.RouterCode), protocol: "https");
 
             return View(Tempset);
 

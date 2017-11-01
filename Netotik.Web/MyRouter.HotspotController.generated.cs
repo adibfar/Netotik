@@ -94,9 +94,10 @@ namespace Netotik.Web.Areas.MyRouter.Controllers
         }
         [NonAction]
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public virtual System.Web.Mvc.ActionResult ActiveTemplate()
+        public virtual System.Threading.Tasks.Task<System.Web.Mvc.ActionResult> ActiveTemplate()
         {
-            return new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.ActiveTemplate);
+            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.ActiveTemplate);
+            return System.Threading.Tasks.Task.FromResult(callInfo as System.Web.Mvc.ActionResult);
         }
         [NonAction]
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -494,12 +495,12 @@ namespace Netotik.Web.Areas.MyRouter.Controllers
         partial void ActiveTemplateOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, Netotik.ViewModels.Template.TemplateSettings setting);
 
         [NonAction]
-        public override System.Web.Mvc.ActionResult ActiveTemplate(Netotik.ViewModels.Template.TemplateSettings setting)
+        public override System.Threading.Tasks.Task<System.Web.Mvc.ActionResult> ActiveTemplate(Netotik.ViewModels.Template.TemplateSettings setting)
         {
             var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.ActiveTemplate);
             ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "setting", setting);
             ActiveTemplateOverride(callInfo, setting);
-            return callInfo;
+            return System.Threading.Tasks.Task.FromResult(callInfo as System.Web.Mvc.ActionResult);
         }
 
         [NonAction]

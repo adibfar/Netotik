@@ -128,6 +128,7 @@
     <Compile Include="Mikrotik\Hotspot\ServersModel.cs" />
     <Compile Include="Mikrotik\Hotspot\WalledGardenModel.cs" />
     <Compile Include="Mikrotik\Hotspot\IpBindingsModel.cs" />
+    <Compile Include="Mikrotik\Router\FetchModel.cs" />
     <Compile Include="Mikrotik\Router\RouterAccessModel.cs" />
     <Compile Include="Mikrotik\Router\NatModel.cs" />
     <Compile Include="Mikrotik\Router\RouterFileModel.cs" />

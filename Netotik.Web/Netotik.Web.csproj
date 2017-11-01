@@ -3439,6 +3439,17 @@
     <Content Include="Content\Upload\Image\Avatar\Default.png" />
     <Content Include="Content\Upload\Image\Content\background.jpg" />
     <Content Include="Content\Upload\Image\Content\Default.png" />
+    <Content Include="Content\Upload\TemplateFiles\errors.txt" />
+    <Content Include="Content\Upload\TemplateFiles\img\Eor57Ae.jpg" />
+    <Content Include="Content\Upload\TemplateFiles\img\instagram.png" />
+    <Content Include="Content\Upload\TemplateFiles\img\logo.png" />
+    <Content Include="Content\Upload\TemplateFiles\img\Qf83FTt.png" />
+    <Content Include="Content\Upload\TemplateFiles\img\telegram.png" />
+    <Content Include="Content\Upload\TemplateFiles\img\u0XmBmv.png" />
+    <Content Include="Content\Upload\TemplateFiles\md5.js" />
+    <Content Include="Content\Upload\TemplateFiles\radvert.html" />
+    <Content Include="Content\Upload\TemplateFiles\redirect.html" />
+    <Content Include="Content\Upload\TemplateFiles\rlogin.html" />
     <Content Include="NoScript.html" />
     <Content Include="persian date info.txt" />
     <Content Include="readme.txt" />
@@ -3720,6 +3731,16 @@
     <Content Include="Areas\MyRouter\Views\Hotspot\_TemplateSetting.cshtml" />
     <Content Include="Areas\MyRouter\Views\Hotspot\_Onlines.cshtml" />
     <Content Include="Areas\MyRouter\Views\Hotspot\_CreateUserAccess.cshtml" />
+    <Content Include="Content\Upload\TemplateFiles\fonts\IRANSans-web.eot" />
+    <Content Include="Content\Upload\TemplateFiles\fonts\IRANSans-web.ttf" />
+    <Content Include="Content\Upload\TemplateFiles\fonts\IRANSans-web.woff" />
+    <Content Include="Content\Upload\TemplateFiles\fonts\IRANSans-web.woff2" />
+    <Content Include="Content\Upload\TemplateFiles\fonts\IRANSansWeb.eot" />
+    <Content Include="Content\Upload\TemplateFiles\fonts\IRANSansWeb.ttf" />
+    <Content Include="Content\Upload\TemplateFiles\fonts\IRANSansWeb.woff" />
+    <Content Include="Content\Upload\TemplateFiles\fonts\IRANSansWeb.woff2" />
+    <Content Include="Content\Upload\TemplateSettingsXML\15" />
+    <Content Include="Content\Upload\TemplateSettingsXML\3" />
     <None Include="Properties\PublishProfiles\DNMA.pubxml" />
     <Content Include="Service References\ZarinPalService\Netotik.Web.ZarinPalService.GetUnverifiedTransactionsResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>

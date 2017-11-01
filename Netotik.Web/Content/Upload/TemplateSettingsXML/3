@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TemplateSetting>
+  <AutoLogin>false</AutoLogin>
+  <AutoLoginAfterSec>1</AutoLoginAfterSec>
+  <AutoLoginUser>all</AutoLoginUser>
+  <CustomButton>false</CustomButton>
+  <CustomButtonLink />
+  <CustomButtonText />
+  <InstagramButton>false</InstagramButton>
+  <InstagramButtonLink />
+  <PanelButton>false</PanelButton>
+  <PanelButtonText />
+  <Redirect>false</Redirect>
+  <RedirectToInstagram>false</RedirectToInstagram>
+  <RedirectToTelegram>false</RedirectToTelegram>
+  <RedirectToUrl />
+  <RegisterButton>false</RegisterButton>
+  <RegisterButtonText />
+  <ShowTrialButton>false</ShowTrialButton>
+  <TelegramButton>false</TelegramButton>
+  <TelegramButtonLink />
+</TemplateSetting>
