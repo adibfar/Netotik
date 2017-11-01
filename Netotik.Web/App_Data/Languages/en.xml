@@ -1357,5 +1357,32 @@
   <LocaleResource Name="PlanRemoved">
     <Value>Package Removed.</Value>
   </LocaleResource>
+  <LocaleResource Name="BacktoHome">
+    <Value>Back to home</Value>
+  </LocaleResource>
+
+  <LocaleResource Name="SystemError">
+    <Value>System error ..</Value>
+  </LocaleResource>
+
+  <LocaleResource Name="BadRequest">
+    <Value>Bad Request..</Value>
+  </LocaleResource>
+
+  <LocaleResource Name="PageNotFound">
+    <Value>Page Not Found..</Value>
+  </LocaleResource>
+
+  <LocaleResource Name="Forbidden">
+    <Value>Forbidden..</Value>
+  </LocaleResource>
+
+  <LocaleResource Name="UrlTooLong">
+    <Value>Url is too long..</Value>
+  </LocaleResource>
+
+  <LocaleResource Name="ServiceUnavailable">
+    <Value>Service is unavailable..</Value>
+  </LocaleResource>
 
 </Language>

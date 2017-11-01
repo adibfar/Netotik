@@ -1941,4 +1941,32 @@
     <Value>اکانت مورد نظر حذف گردید.</Value>
   </LocaleResource>
   
+  <LocaleResource Name="BacktoHome">
+    <Value>بازگشت به صفحه اصلی</Value>
+  </LocaleResource>
+
+  <LocaleResource Name="SystemError">
+    <Value>خطای سیستمی رخ داده است.</Value>
+  </LocaleResource>
+
+  <LocaleResource Name="BadRequest">
+    <Value>درخواست نامعتبر است.</Value>
+  </LocaleResource>
+
+  <LocaleResource Name="PageNotFound">
+    <Value>صفحه پیدا نشد..</Value>
+  </LocaleResource>
+
+  <LocaleResource Name="Forbidden">
+    <Value>نیازمند مجوز دسترسی می باشد.</Value>
+  </LocaleResource>
+
+  <LocaleResource Name="UrlTooLong">
+    <Value>آدرس وارد شده نامعتبر است.</Value>
+  </LocaleResource>
+  
+  <LocaleResource Name="ServiceUnavailable">
+    <Value>دسترسی به سایت امکان پذیر نیست</Value>
+  </LocaleResource>
+
 </Language>

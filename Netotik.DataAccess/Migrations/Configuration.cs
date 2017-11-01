@@ -31,6 +31,7 @@
                 new Setting { Name = "Twitter", Value = "" },
                 new Setting { Name = "GooglePlus", Value = "" },
                 new Setting { Name = "Instagram", Value = "" },
+                  new Setting { Name = "LinkedIn", Value = "" },
 
                 new Setting { Name = "CompanyName", Value = "" },
                 new Setting { Name = "CompanyAddress", Value = "" },

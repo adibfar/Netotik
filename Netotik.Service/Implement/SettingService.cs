@@ -38,6 +38,7 @@ namespace Netotik.Services.Implement
             model.Facebook = list.FirstOrDefault(x => x.Name == "Facebook").Value;
             model.Twitter = list.FirstOrDefault(x => x.Name == "Twitter").Value;
             model.Instagram = list.FirstOrDefault(x => x.Name == "Instagram").Value;
+            model.LinkedIn = list.FirstOrDefault(x => x.Name == "LinkedIn").Value;
             model.GooglePlus = list.FirstOrDefault(x => x.Name == "GooglePlus").Value;
 
             model.CompanyName = list.FirstOrDefault(x => x.Name == "CompanyName").Value;
@@ -67,6 +68,7 @@ namespace Netotik.Services.Implement
             list.First(x => x.Name.Equals("Twitter")).Value = model.Twitter;
             list.First(x => x.Name.Equals("Instagram")).Value = model.Instagram;
             list.First(x => x.Name.Equals("GooglePlus")).Value = model.GooglePlus;
+            list.First(x => x.Name.Equals("LinkedIn")).Value = model.LinkedIn;
 
             list.First(x => x.Name.Equals("CompanyName")).Value = model.CompanyName;
             list.First(x => x.Name.Equals("CompanyAddress")).Value = model.CompanyAddress;

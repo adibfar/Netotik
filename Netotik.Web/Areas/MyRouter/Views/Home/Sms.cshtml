@@ -2,7 +2,7 @@
 @using Netotik.Domain.Entity;
 @{
     var packages = ViewBag.Packages as List<SmsPackage>;
-  
+
 
 }
 <section class="flexbox-container">
@@ -16,15 +16,13 @@
 
                 <div class="card">
                     <div class="card-header">
-                        <button name="actionType" value="@Netotik.Common.Controller.ActionType.Save" class="btn btn-social width-150 btn-instagram" onclick="AjaxForm.Post(this, 'form')" data-loading-text="در حال ارسال اطلاعات">
+                        <button name="actionType" value="@Netotik.Common.Controller.ActionType.Save" class="btn btn-social width-150 btn-instagram margin-bottom-2" onclick="AjaxForm.Post(this, 'form')" data-loading-text="در حال ارسال اطلاعات">
                             <span class="icon-checkmark2 font-medium-4"></span>
                             @Netotik.Resources.Captions.Save
                         </button>
-                        <button type="button" class="btn btn-social width-150 btn-instagram" data-toggle="modal" data-target="#BuySmsPackage"><span class="icon-credit-card2 font-medium-4"></span> @Captions.BuyPackage</button>
+                        <button type="button" class="btn btn-social width-150 btn-instagram margin-bottom-2 " data-toggle="modal" data-target="#BuySmsPackage"><span class="icon-credit-card2 font-medium-4"></span> @Captions.BuyPackage</button>
 
-                        <div class="heading-elements">
-                            <button class="btn btn-outline btn-danger width-200" disabled=""> @Captions.SmsCharge @Model.SmsCharge</button>
-                        </div>
+                        <button class="btn btn-outline btn-danger width-200 margin-bottom-2" disabled=""> @Captions.SmsCharge @Model.SmsCharge</button>
                     </div>
 
                     <div class="card-body">
@@ -107,11 +105,10 @@
                                 <div class="card-block">
 
                                     <h4 class="form-section"><i class="icon-mobile"></i>@Captions.RegisterWithSms</h4>
-                                    
+
                                     <div class="row" id="profilesSections">
-                                        @Html.LabelFor(m=>m.RegisterWithSmsRouterProfile)
-                                        <select class="selectize-select" id="">
-                                        </select>
+                                        @Html.LabelFor(m => m.RegisterWithSmsRouterProfile)
+                                        <select class="selectize-select" id=""></select>
                                     </div>
                                     <hr />
                                     <div class="row">

@@ -79,9 +79,11 @@ namespace Netotik.Web
                        "~/Content/css/Rtl/my-style.css"));
 
 
+
             bundles.Add(new StyleBundle("~/Content/panelltrcss").Include(
                        "~/Content/css/Ltr/vendors.min.css",
-                       "~/Content/css/Ltr/app.min.css"));
+                       "~/Content/css/Ltr/app.min.css",
+                       "~/Content/css/Ltr/my-style.css"));
 
 
 

@@ -35,7 +35,7 @@ using Netotik.ViewModels.Identity.Account;
 namespace Netotik.Web.Areas.MyRouter.Controllers
 {
     [Mvc5Authorize(Roles = "Router")]
-    [BreadCrumb(Title = "User", UseDefaultRouteUrl = true, RemoveAllDefaultRouteValues = true,
+    [BreadCrumb(Title = "User", RemoveAllDefaultRouteValues = true,
 Order = 0, GlyphIcon = "icon icon-table")]
     public partial class HomeController : BasePanelController
     {

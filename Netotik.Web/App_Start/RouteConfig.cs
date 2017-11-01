@@ -18,9 +18,41 @@ namespace Netotik.Web
             routes.LowercaseUrls = true;
 
             routes.MapRoute(
-               "account",                                           // Route name
-               "account/login",                            // URL with parameters
-               new { lang = "en",controller = "Account", action = "Login" , ReturnUrl = UrlParameter.Optional }  // Parameter defaults
+               "account",
+               "account/login",
+               new { lang = "fa",controller = "Account", action = "Login" , ReturnUrl = UrlParameter.Optional }
+           );
+
+
+            routes.MapRoute(
+               "error",
+               "error/error",
+               new { lang = "fa", controller = "Error", action = "Error", ReturnUrl = UrlParameter.Optional }
+           );
+            routes.MapRoute(
+               "badrequest",
+               "error/badrequest",
+               new { lang = "fa", controller = "Error", action = "BadRequest", ReturnUrl = UrlParameter.Optional }
+           );
+            routes.MapRoute(
+               "notfound",
+               "error/notfound",
+               new { lang = "fa", controller = "Error", action = "NotFound", ReturnUrl = UrlParameter.Optional }
+           );
+            routes.MapRoute(
+               "forbidden",
+               "error/forbidden",
+               new { lang = "fa", controller = "Error", action = "Forbidden", ReturnUrl = UrlParameter.Optional }
+           );
+            routes.MapRoute(
+               "urltoolong",
+               "error/urltoolong",
+               new { lang = "fa", controller = "Error", action = "UrlTooLong", ReturnUrl = UrlParameter.Optional }
+           );
+            routes.MapRoute(
+               "serviceunavailable",
+               "error/serviceunavailable",
+               new { lang = "fa", controller = "Error", action = "ServiceUnavailable", ReturnUrl = UrlParameter.Optional }
            );
 
             routes.MapRoute(

@@ -575,6 +575,7 @@
       <SubType>Designer</SubType>
     </Content>
     <Content Include="Content\css\Ltr\app.min.css" />
+    <Content Include="Content\css\Ltr\my-style.css" />
     <Content Include="Content\css\Ltr\vendors.min.css" />
     <Content Include="Content\css\Rtl\ClientBuyPackage.css" />
     <Content Include="Content\css\Rtl\my-style.css" />
@@ -3827,7 +3828,7 @@
     <Content Include="Views\Login\Reseller.cshtml" />
     <Content Include="Views\Login\Router.cshtml" />
     <Content Include="Views\Register\Reseller.cshtml" />
-    <Content Include="Views\Error\error.cshtml" />
+    <Content Include="Views\Error\Error.cshtml" />
     <Content Include="Views\UserMailer\ConfirmAccount.cshtml" />
     <Content Include="Views\UserMailer\ResetPassword.cshtml" />
     <Content Include="Views\UserMailer\_Layout.cshtml" />
@@ -3887,6 +3888,11 @@
     <Content Include="Views\UserMailer\Factor.cshtml" />
     <Content Include="Views\UserMailer\ContactUs.cshtml" />
     <Content Include="Views\UserMailer\ContactUsReplayToClient.cshtml" />
+    <Content Include="Views\Error\BadRequest.cshtml" />
+    <Content Include="Views\Error\NotFound.cshtml" />
+    <Content Include="Views\Error\Forbidden.cshtml" />
+    <Content Include="Views\Error\ServiceUnavailable.cshtml" />
+    <Content Include="Views\Error\UrlTooLong.cshtml" />
     <Content Include="Views\GetRouterTemplate\GetLogin.cshtml" />
     <Content Include="Views\GetRouterTemplate\GetLogout.cshtml" />
     <Content Include="Views\GetRouterTemplate\GetStatus.cshtml" />
