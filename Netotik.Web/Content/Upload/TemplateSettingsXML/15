@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TemplateSetting>
+  <AutoLogin>false</AutoLogin>
+  <AutoLoginAfterSec>1</AutoLoginAfterSec>
+  <AutoLoginUser>all</AutoLoginUser>
+  <CustomButton>true</CustomButton>
+  <CustomButtonLink>http://google.com</CustomButtonLink>
+  <CustomButtonText>سایت گوگل</CustomButtonText>
+  <InstagramButton>true</InstagramButton>
+  <InstagramButtonLink>https://instagram.com/test</InstagramButtonLink>
+  <PanelButton>true</PanelButton>
+  <PanelButtonText>ورود به پنل کاربری</PanelButtonText>
+  <Redirect>true</Redirect>
+  <RedirectToInstagram>true</RedirectToInstagram>
+  <RedirectToTelegram>false</RedirectToTelegram>
+  <RedirectToUrl />
+  <RegisterButton>true</RegisterButton>
+  <RegisterButtonText>ثبت نام</RegisterButtonText>
+  <ShowTrialButton>true</ShowTrialButton>
+  <TelegramButton>true</TelegramButton>
+  <TelegramButtonLink>https:t.me/test</TelegramButtonLink>
+</TemplateSetting>

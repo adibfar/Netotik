@@ -461,12 +461,16 @@
     </Compile>
     <Compile Include="Controllers\BlogController.cs" />
     <Compile Include="Controllers\ContactUsController.cs" />
+    <Compile Include="Controllers\GetRouterTemplateController.cs" />
     <Compile Include="Controllers\RemoteController.cs" />
     <Compile Include="Controllers\SitemapController.cs" />
     <Compile Include="Controllers\RssController.cs" />
     <Compile Include="Controllers\ApiSmsGatewayController.cs" />
     <Compile Include="Controllers\ApiTelegramBotController.cs" />
     <Compile Include="ErrorController.generated.cs">
+      <DependentUpon>T4MVC.tt</DependentUpon>
+    </Compile>
+    <Compile Include="GetRouterTemplateController.generated.cs">
       <DependentUpon>T4MVC.tt</DependentUpon>
     </Compile>
     <Compile Include="Infrastructure\Caching\LanguageCache.cs" />
@@ -3712,8 +3716,9 @@
     <Content Include="Areas\MyRouter\Views\Hotspot\_UserAccess.cshtml" />
     <Content Include="Areas\MyRouter\Views\Hotspot\_WebsiteAccess.cshtml" />
     <Content Include="Areas\MyRouter\Views\Hotspot\_CreateWebsiteAccess.cshtml" />
-    <Content Include="Areas\MyRouter\Views\Hotspot\_CreateUserAccess.cshtml" />
+    <Content Include="Areas\MyRouter\Views\Hotspot\_TemplateSetting.cshtml" />
     <Content Include="Areas\MyRouter\Views\Hotspot\_Onlines.cshtml" />
+    <Content Include="Areas\MyRouter\Views\Hotspot\_CreateUserAccess.cshtml" />
     <None Include="Properties\PublishProfiles\DNMA.pubxml" />
     <Content Include="Service References\ZarinPalService\Netotik.Web.ZarinPalService.GetUnverifiedTransactionsResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
@@ -3882,6 +3887,11 @@
     <Content Include="Views\UserMailer\Factor.cshtml" />
     <Content Include="Views\UserMailer\ContactUs.cshtml" />
     <Content Include="Views\UserMailer\ContactUsReplayToClient.cshtml" />
+    <Content Include="Views\GetRouterTemplate\GetLogin.cshtml" />
+    <Content Include="Views\GetRouterTemplate\GetLogout.cshtml" />
+    <Content Include="Views\GetRouterTemplate\GetStatus.cshtml" />
+    <Content Include="Views\GetRouterTemplate\GetAlogin.cshtml" />
+    <Content Include="Views\GetRouterTemplate\GetError.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />

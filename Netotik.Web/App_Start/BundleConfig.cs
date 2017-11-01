@@ -68,6 +68,7 @@ namespace Netotik.Web
                        "~/Content/css/plugins/forms/toggle/bootstrap-switch.min.css",
                        "~/Content/css/plugins/forms/toggle/switchery.min.css",
                        "~/Content/css/plugins/tables/datatable/dataTables.bootstrap4.min.css",
+                       "~/Content/css/plugins/extensions/sweetalert.css",
                        "~/Content/css/components/weather-icons/climacons.min.css"));
 
 
@@ -103,6 +104,7 @@ namespace Netotik.Web
                                 "~/Content/js/plugins/editors/summernote/summernote.js",
                                 "~/Content/js/plugins/pickers/dateTime/moment-with-locales.min.js",
                                 "~/Content/js/plugins/pickers/dateTime/bootstrap-datetimepicker.min.js",
+                                "~/Content/js/plugins/extensions/sweetalert.min.js",
                                 "~/Content/js/plugins/extensions/unslider-min.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/publicjs").Include(

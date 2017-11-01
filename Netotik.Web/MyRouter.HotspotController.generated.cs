@@ -94,6 +94,12 @@ namespace Netotik.Web.Areas.MyRouter.Controllers
         }
         [NonAction]
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public virtual System.Web.Mvc.ActionResult ActiveTemplate()
+        {
+            return new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.ActiveTemplate);
+        }
+        [NonAction]
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public virtual System.Web.Mvc.ActionResult RedirectToLocal()
         {
             return new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.RedirectToLocal);
@@ -132,6 +138,8 @@ namespace Netotik.Web.Areas.MyRouter.Controllers
             public readonly string IpWalledGardenEnable = "IpWalledGardenEnable";
             public readonly string IpWalledGardenDisable = "IpWalledGardenDisable";
             public readonly string Template = "Template";
+            public readonly string LoadTemplateSetting = "LoadTemplateSetting";
+            public readonly string ActiveTemplate = "ActiveTemplate";
             public readonly string RedirectToLocal = "RedirectToLocal";
         }
 
@@ -156,6 +164,8 @@ namespace Netotik.Web.Areas.MyRouter.Controllers
             public const string IpWalledGardenEnable = "IpWalledGardenEnable";
             public const string IpWalledGardenDisable = "IpWalledGardenDisable";
             public const string Template = "Template";
+            public const string LoadTemplateSetting = "LoadTemplateSetting";
+            public const string ActiveTemplate = "ActiveTemplate";
             public const string RedirectToLocal = "RedirectToLocal";
         }
 
@@ -208,6 +218,14 @@ namespace Netotik.Web.Areas.MyRouter.Controllers
         {
             public readonly string id = "id";
         }
+        static readonly ActionParamsClass_ActiveTemplate s_params_ActiveTemplate = new ActionParamsClass_ActiveTemplate();
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public ActionParamsClass_ActiveTemplate ActiveTemplateParams { get { return s_params_ActiveTemplate; } }
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public class ActionParamsClass_ActiveTemplate
+        {
+            public readonly string setting = "setting";
+        }
         static readonly ActionParamsClass_RedirectToLocal s_params_RedirectToLocal = new ActionParamsClass_RedirectToLocal();
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public ActionParamsClass_RedirectToLocal RedirectToLocalParams { get { return s_params_RedirectToLocal; } }
@@ -229,6 +247,7 @@ namespace Netotik.Web.Areas.MyRouter.Controllers
                 public readonly string _CreateUserAccess = "_CreateUserAccess";
                 public readonly string _CreateWebsiteAccess = "_CreateWebsiteAccess";
                 public readonly string _Onlines = "_Onlines";
+                public readonly string _TemplateSetting = "_TemplateSetting";
                 public readonly string _UserAccess = "_UserAccess";
                 public readonly string _WebsiteAccess = "_WebsiteAccess";
                 public readonly string Access = "Access";
@@ -240,6 +259,7 @@ namespace Netotik.Web.Areas.MyRouter.Controllers
             public readonly string _CreateUserAccess = "~/Areas/MyRouter/Views/Hotspot/_CreateUserAccess.cshtml";
             public readonly string _CreateWebsiteAccess = "~/Areas/MyRouter/Views/Hotspot/_CreateWebsiteAccess.cshtml";
             public readonly string _Onlines = "~/Areas/MyRouter/Views/Hotspot/_Onlines.cshtml";
+            public readonly string _TemplateSetting = "~/Areas/MyRouter/Views/Hotspot/_TemplateSetting.cshtml";
             public readonly string _UserAccess = "~/Areas/MyRouter/Views/Hotspot/_UserAccess.cshtml";
             public readonly string _WebsiteAccess = "~/Areas/MyRouter/Views/Hotspot/_WebsiteAccess.cshtml";
             public readonly string Access = "~/Areas/MyRouter/Views/Hotspot/Access.cshtml";
@@ -456,6 +476,29 @@ namespace Netotik.Web.Areas.MyRouter.Controllers
         {
             var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Template);
             TemplateOverride(callInfo);
+            return callInfo;
+        }
+
+        [NonAction]
+        partial void LoadTemplateSettingOverride(T4MVC_System_Web_Mvc_ActionResult callInfo);
+
+        [NonAction]
+        public override System.Web.Mvc.ActionResult LoadTemplateSetting()
+        {
+            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.LoadTemplateSetting);
+            LoadTemplateSettingOverride(callInfo);
+            return callInfo;
+        }
+
+        [NonAction]
+        partial void ActiveTemplateOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, Netotik.ViewModels.Template.TemplateSettings setting);
+
+        [NonAction]
+        public override System.Web.Mvc.ActionResult ActiveTemplate(Netotik.ViewModels.Template.TemplateSettings setting)
+        {
+            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.ActiveTemplate);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "setting", setting);
+            ActiveTemplateOverride(callInfo, setting);
             return callInfo;
         }
 

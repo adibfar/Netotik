@@ -2,7 +2,7 @@
     <div class="col-xl-4">
         <div class="card">
             <div class="card-header">
-                <h4 class="card-title center">قالب شماره یک</h4>
+                <h4 class="card-title center">قالب پیش فرض</h4>
             </div>
             <div class="card-body">
                 <div id="carousel-example" class="carousel slide" data-ride="carousel">
@@ -39,9 +39,10 @@
                 </div>
             </div>
             <div class="card-footer border-top-blue-grey border-top-lighten-5 text-muted">
-                <span class="float-xs-left">1000 تومان</span>
+                <span class="float-xs-left">رایگان</span>
                 <span class="tags float-xs-right">
-                    <a href="#>"<span class="tag tag-pill tag-primary">فعال کردن</span></a>
+                    <a href="#" class="tag tag-pill tag-primary" data-toggle="modal" data-target="#TemplateSetting">فعال کردن </a>
+                    @Html.Action(MVC.MyRouter.Hotspot.LoadTemplateSetting())
                 </span>
             </div>
         </div>

@@ -428,7 +428,14 @@ namespace Netotik.Services.Implement
                     {
                         ColumnList.Add(cols[i], cols[i + 1]);
                     }
-                    var Json = ColumnList.Any(x => x.Key == "comment") ? JsonConvert.DeserializeObject<UserJsonModel>(ColumnList.FirstOrDefault(x => x.Key == "comment").Value) : new UserJsonModel();
+                    var Json = new UserJsonModel();
+                    try
+                    {
+                        Json = ColumnList.Any(x => x.Key == "comment") ? JsonConvert.DeserializeObject<UserJsonModel>(ColumnList.FirstOrDefault(x => x.Key == "comment").Value) : new UserJsonModel();
+                    }
+                    catch {
+                        Json = new UserJsonModel();
+                    }
                     usermodel.Add(new Netotik.ViewModels.Identity.UserClient.UserModel()
                     {
                         id = ColumnList.Any(x => x.Key == ".id") ? (ColumnList.FirstOrDefault(x => x.Key == ".id").Value) : "",

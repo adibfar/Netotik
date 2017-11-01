@@ -1,0 +1,146 @@
+﻿@model Netotik.ViewModels.Template.TemplateSettings
+@{
+    Layout = null;
+}
+<!-- Modal -->
+<div class="modal fade text-xs-left" id="TemplateSetting" tabindex="-1" role="dialog" aria-labelledby="myModalLabel20" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title" id="myModalLabel20">@Captions.Configuration</h4>
+            </div>
+            @using (Html.BeginForm(MVC.MyRouter.Hotspot.ActionNames.ActiveTemplate, MVC.MyRouter.Hotspot.Name, FormMethod.Post,
+        htmlAttributes: new { @class = "form cmxform form-horizontal tasi-form", enctype = "multipart/form-data", id = "form" }))
+            {
+                <div class="modal-body">
+
+                    <div class="row">
+                        <div class="col-md-4 skin skin-flat">
+                            <div class="form-group">
+                                <br />
+                                @Html.CheckBoxFor(x => x.AutoLogin)
+                                @Html.LabelFor(x => x.AutoLogin)
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            @Html.LabelFor(x => x.AutoLoginAfterSec)
+                            @Html.TextBoxFor(x => x.AutoLoginAfterSec, new { @class = "form-control" })
+                        </div>
+                        <div class="col-md-5">
+                            <div class="form-group">
+                                <label class="font-noraml">AutoLoginUser</label>
+                                <select name="AutoLoginUser" data-placeholder="AutoLoginUser" class="selectize-select" tabindex="2">
+                                    <option value="all">All</option>
+                                    @foreach (var item in ViewBag.Users)
+                                    {
+                                        <option value="@item.username">@item.username</option>
+                                    }
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4 skin skin-flat">
+                            <br />
+                            @Html.CheckBoxFor(x => x.CustomButton)
+                            @Html.LabelFor(x => x.CustomButton)
+                        </div>
+                        <div class="col-md-4">
+                            @Html.LabelFor(x => x.CustomButtonLink)
+                            @Html.TextBoxFor(x => x.CustomButtonLink, new { @class = "form-control" })
+                        </div>
+                        <div class="col-md-4">
+                            @Html.LabelFor(x => x.CustomButtonText)
+                            @Html.TextBoxFor(x => x.CustomButtonText, new { @class = "form-control" })
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4 skin skin-flat">
+                            <br />
+                            @Html.CheckBoxFor(x => x.InstagramButton)
+                            @Html.LabelFor(x => x.InstagramButton)
+                        </div>
+                        <div class="col-md-4">
+                            @Html.LabelFor(x => x.InstagramButtonLink)
+                            @Html.TextBoxFor(x => x.InstagramButtonLink, new { @class = "form-control" })
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4 skin skin-flat">
+                            <br />
+                            @Html.CheckBoxFor(x => x.TelegramButton)
+                            @Html.LabelFor(x => x.TelegramButton)
+                        </div>
+                        <div class="col-md-4">
+                            @Html.LabelFor(x => x.TelegramButtonLink)
+                            @Html.TextBoxFor(x => x.TelegramButtonLink, new { @class = "form-control" })
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4 skin skin-flat">
+                            <br />
+                            @Html.CheckBoxFor(x => x.PanelButton)
+                            @Html.LabelFor(x => x.PanelButton)
+                        </div>
+                        <div class="col-md-4">
+                            @Html.LabelFor(x => x.PanelButtonText)
+                            @Html.TextBoxFor(x => x.PanelButtonText, new { @class = "form-control" })
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4 skin skin-flat">
+                            <br />
+                            @Html.CheckBoxFor(x => x.RegisterButton)
+                            @Html.LabelFor(x => x.RegisterButton)
+                        </div>
+                        <div class="col-md-4">
+                            @Html.LabelFor(x => x.RegisterButtonText)
+                            @Html.TextBoxFor(x => x.RegisterButtonText, new { @class = "form-control" })
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4 skin skin-flat">
+                            <br />
+                            @Html.CheckBoxFor(x => x.Redirect)
+                            @Html.LabelFor(x => x.Redirect)
+                        </div>
+                        <div class="col-md-4 skin skin-flat">
+                            <br />
+                            @Html.CheckBoxFor(x => x.RedirectToInstagram)
+                            @Html.LabelFor(x => x.RedirectToInstagram)
+                        </div>
+                        <div class="col-md-4 skin skin-flat">
+                            <br />
+                            @Html.CheckBoxFor(x => x.RedirectToTelegram)
+                            @Html.LabelFor(x => x.RedirectToTelegram)
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4">
+                            @Html.LabelFor(x => x.RedirectToUrl)
+                            @Html.TextBoxFor(x => x.RedirectToUrl, new { @class = "form-control" })
+                        </div>
+                        <div class="col-md-4 skin skin-flat">
+                            <br />
+                            @Html.CheckBoxFor(x => x.ShowTrialButton)
+                            @Html.LabelFor(x => x.ShowTrialButton)
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">
+                        <i class="icon-cross2"></i>
+                        @Captions.Close
+                    </button>
+                    <button name="actionType" value="@Netotik.Common.Controller.ActionType.Save" type="button" class="btn btn-outline-success" onclick="AjaxForm.Post(this, 'form')" data-loading-text="@Captions.SendingData">
+                        <i class="icon-check2"></i>
+                        @Captions.Add
+                    </button>
+                </div>
+            }
+        </div>
+    </div>
+</div>

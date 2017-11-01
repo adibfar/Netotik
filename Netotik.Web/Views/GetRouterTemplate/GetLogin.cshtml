@@ -1,0 +1,218 @@
+﻿@model Netotik.ViewModels.Template.TemplateSettings
+@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="theme-color" content="#ff656c" />
+    <meta name="msapplication-navbutton-color" content="#ff656c">
+    <meta name="apple-mobile-web-app-status-bar-style" content="#ff656c">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta http-equiv="pragma" content="no-cache" />
+    <meta http-equiv="expires" content="-1" />
+    <meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0;" />
+
+    <title>ورود</title>
+    <style>
+        body {
+            height: 100vh;
+            background: url('img/Eor57Ae.jpg') no-repeat fixed center center;
+            background-size: cover;
+            font-family: IRANSans;
+            direction: rtl;
+        }
+
+        .logo {
+            color: white;
+            width: 213px;
+            height: 36px;
+            margin: 30px auto;
+        }
+
+        .login-block {
+            width: 320px;
+            padding: 20px;
+            background: #fff;
+            border-radius: 5px;
+            border-top: 5px solid #ff656c;
+            margin: 0 auto;
+        }
+
+            .login-block h1 {
+                text-align: center;
+                color: #000;
+                font-size: 18px;
+                text-transform: uppercase;
+                margin-top: 0;
+                margin-bottom: 20px;
+            }
+
+            .login-block input {
+                width: 100%;
+                height: 42px;
+                box-sizing: border-box;
+                border-radius: 5px;
+                border: 1px solid #ccc;
+                margin-bottom: 20px;
+                font-size: 14px;
+                font-family: IRANSans;
+                padding: 0 20px 0 50px;
+                outline: none;
+            }
+
+                .login-block input#username {
+                    background: #fff url('img/u0XmBmv.png') 20px top no-repeat;
+                    background-size: 16px 80px;
+                }
+
+                    .login-block input#username:focus {
+                        background: #fff url('img/u0XmBmv.png') 20px bottom no-repeat;
+                        background-size: 16px 80px;
+                    }
+
+                .login-block input#password {
+                    background: #fff url('img/Qf83FTt.png') 20px top no-repeat;
+                    background-size: 16px 80px;
+                }
+
+                    .login-block input#password:focus {
+                        background: #fff url('img/Qf83FTt.png') 20px bottom no-repeat;
+                        background-size: 16px 80px;
+                    }
+
+                .login-block input:active, .login-block input:focus {
+                    border: 1px solid #ff656c;
+                }
+
+            .login-block button {
+                width: 100%;
+                height: 40px;
+                background: #ff656c;
+                box-sizing: border-box;
+                border-radius: 5px;
+                border: 1px solid #e15960;
+                color: #fff;
+                font-weight: bold;
+                text-transform: uppercase;
+                font-size: 14px;
+                font-family: IRANSans;
+                outline: none;
+                cursor: pointer;
+            }
+
+                .login-block button:hover {
+                    background: #ff7b81;
+                }
+
+
+
+        div .trial {
+            text-align: center;
+            line-height: 2.4;
+            width: 100%;
+            height: 40px;
+            background: #ff656c;
+            box-sizing: border-box;
+            border-radius: 5px;
+            border: 1px solid #e15960;
+            color: #fff;
+            font-weight: bold;
+            text-transform: uppercase;
+            font-size: 14px;
+            font-family: IRANSans;
+            outline: none;
+            cursor: pointer;
+        }
+
+        div:hover .trial {
+            background: #ff7b81;
+        }
+
+        @@font-face {
+            font-family: IRANSans;
+            font-style: normal;
+            font-weight: normal;
+            src: url('fonts/IRANSans-web.eot');
+            src: url('fonts/IRANSans-web.eot?#iefix') format('embedded-opentype'), /* IE6-8 */
+            url('fonts/IRANSans-web.woff2') format('woff2'), /* Chrome36+, Opera24+*/
+            url('fonts/IRANSans-web.woff') format('woff'), /* FF3.6+, IE9, Chrome6+, Saf5.1+*/
+            url('fonts/IRANSans-web.ttf') format('truetype');
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="logo"><center><h1><img src="img/logo.png" /></h1></center></div>
+    <div class="login-block">
+        <h1>ورود</h1>
+        $(if chap-id)
+        <form name="sendin" action="$(link-login-only)" method="post">
+            <input type="hidden" name="username" />
+            <input type="hidden" name="password" />
+            <input type="hidden" name="dst" value="$(link-orig)" />
+            <input type="hidden" name="popup" value="true" />
+        </form>
+
+        <script type="text/javascript" src="/md5.js"></script>
+        <script type="text/javascript">
+						<!--
+							function doLogin() {
+							document.sendin.username.value = document.login.username.value;
+							document.sendin.password.value = hexMD5('$(chap-id)' + document.login.password.value + '$(chap-challenge)');
+							document.sendin.submit();
+							return false;
+							}
+						//-->
+        </script>
+        $(endif)
+        <form name="login" action="$(link-login-only)" method="post" $(if chap-id) onSubmit="return doLogin()" $(endif)>
+            <input type="hidden" name="dst" value="$(link-orig)" />
+            <input type="hidden" name="popup" value="true" />
+            <input type="text" value="" placeholder="نام کاربری" id="username" />
+            <input type="password" value="" placeholder="گذرواژه" id="password" />
+            $(if error)<br /><div style="color: #FF8080; ">$(error)</div>$(endif)
+            <button type="submit">ورود</button>
+
+        </form>
+        <br />
+        @if (Model.ShowTrialButton)
+        {
+            <text>
+                $(if trial == 'yes')<a href="$(link-login-only)?dst=$(link-orig-esc)&amp;username=T-$(mac-esc)"><div class="trial"> اینترنت رایگان</div></a><br />$(endif)
+            </text>
+        }
+        @if (Model.RegisterButton)
+        {
+            <a href="@Model.RegisterButtonLink" target="_blank" style="margin-top:5px !important;"><div class="trial">@Model.RegisterButtonText</div></a><br/>
+        }
+        @if (Model.PanelButton)
+        {
+            <a href="@Model.PanelButtonLink" target="_blank" style="margin-top:5px !important;"><div class="trial">@Model.PanelButtonText</div></a><br />
+        }
+        @if (Model.CustomButton)
+        {
+            <a href="@Model.CustomButtonLink" target="_blank" style="margin-top:5px !important;"><div class="trial">@Model.CustomButtonText</div></a><br />
+        }
+
+        <center>
+            @if (Model.TelegramButton)
+            {
+                <a href="@Model.TelegramButtonLink" target="_blank"><img width="80" height="80" src="img/telegram.png" /></a>
+            }
+            @if (Model.InstagramButton)
+            {
+                <a href="@Model.InstagramButtonLink" target="_blank"><img width="80" height="80" src="img/instagram.png" /></a>
+            }
+        </center>
+        <!--
+        <button style="margin-top:5px !important;">منوی غذا</button>
+        <button style="margin-top:5px !important;">دفتر تلفن</button>
+        <button style="margin-top:5px !important;">درباره شرکت</button>
+        <button style="margin-top:5px !important;">پنل کاربری</button>
+        -->
+    </div>
+</body>
+
+</html>

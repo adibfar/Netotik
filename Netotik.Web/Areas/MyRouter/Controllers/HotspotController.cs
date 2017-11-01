@@ -11,6 +11,9 @@ using Netotik.Data;
 using Netotik.Common.Filters;
 using Netotik.Common.Controller;
 using System.Collections.Generic;
+using System.Text;
+using System.Xml.Linq;
+using System.Web.Hosting;
 
 namespace Netotik.Web.Areas.MyRouter.Controllers
 {
@@ -400,6 +403,46 @@ Order = 0, GlyphIcon = "icon icon-table")]
             //-------------------------------
 
             return View();
+        }
+        public virtual ActionResult LoadTemplateSetting()
+        {
+            ViewBag.Users = _mikrotikServices.Usermanager_GetAllUsers(UserLogined.UserRouter.R_Host, UserLogined.UserRouter.R_Port, UserLogined.UserRouter.R_User, UserLogined.UserRouter.R_Password);
+            return PartialView(MVC.MyRouter.Hotspot.Views._TemplateSetting);
+        }
+
+        [HttpPost]
+        public virtual ActionResult ActiveTemplate(ViewModels.Template.TemplateSettings setting)
+        {
+            //------------Save To Xml---------------------------
+            var xml = new XDocument(new XElement("TemplateSetting",
+                new XElement("AutoLogin", setting.AutoLogin),
+                new XElement("AutoLoginAfterSec", setting.AutoLoginAfterSec??1),
+                new XElement("AutoLoginUser", setting.AutoLoginUser),
+                new XElement("CustomButton", setting.CustomButton),
+                new XElement("CustomButtonLink", setting.CustomButtonLink),
+                new XElement("CustomButtonText", setting.CustomButtonText),
+                new XElement("InstagramButton", setting.InstagramButton),
+                new XElement("InstagramButtonLink", setting.InstagramButtonLink),
+                new XElement("PanelButton", setting.PanelButton),
+                new XElement("PanelButtonText", setting.PanelButtonText),
+                new XElement("Redirect", setting.Redirect),
+                new XElement("RedirectToInstagram", setting.RedirectToInstagram),
+                new XElement("RedirectToTelegram", setting.RedirectToTelegram),
+                new XElement("RedirectToUrl", setting.RedirectToUrl),
+                new XElement("RegisterButton", setting.RegisterButton),
+                new XElement("RegisterButtonText", setting.RegisterButtonText),
+                new XElement("ShowTrialButton", setting.ShowTrialButton),
+                new XElement("TelegramButton", setting.TelegramButton),
+                new XElement("TelegramButtonLink", setting.TelegramButtonLink)
+                ));
+
+            xml.Save(HostingEnvironment.MapPath(@"~\Content\Upload\TemplateSettingsXML\"+UserLogined.Id));
+
+            //------------Connect To Router To Get---------------------------
+
+
+            this.MessageSuccess(Captions.MissionSuccess,"قالب با موفقیت نصب گردید.");
+            return RedirectToAction(MVC.MyRouter.Hotspot.ActionNames.Template);
         }
     }
 }

@@ -199,6 +199,7 @@
     <Compile Include="Statistics\SubDetailsViewModel.cs" />
     <Compile Include="Statistics\UserOsViewModel.cs" />
     <Compile Include="Statistics\VectorMapViewModel.cs" />
+    <Compile Include="Template\TemplateSettingsModel.cs" />
     <Compile Include="Ticketing\Issue\IssueLabelModel.cs" />
     <Compile Include="Ticketing\Issue\IssueModel.cs" />
     <Compile Include="Ticketing\Issue\IssueTrackModel.cs" />

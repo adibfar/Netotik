@@ -39,6 +39,7 @@ public static partial class MVC
     public static Netotik.Web.Controllers.BlogController Blog = new Netotik.Web.Controllers.T4MVC_BlogController();
     public static Netotik.Web.Controllers.ContactUsController ContactUs = new Netotik.Web.Controllers.T4MVC_ContactUsController();
     public static Netotik.Web.Controllers.ErrorController Error = new Netotik.Web.Controllers.T4MVC_ErrorController();
+    public static Netotik.Web.Controllers.GetRouterTemplateController GetRouterTemplate = new Netotik.Web.Controllers.T4MVC_GetRouterTemplateController();
     public static Netotik.Web.Controllers.HomeController Home = new Netotik.Web.Controllers.T4MVC_HomeController();
     public static Netotik.Web.Controllers.LoginController Login = new Netotik.Web.Controllers.T4MVC_LoginController();
     public static Netotik.Web.Controllers.RegisterController Register = new Netotik.Web.Controllers.T4MVC_RegisterController();

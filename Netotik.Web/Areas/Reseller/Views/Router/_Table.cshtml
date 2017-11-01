@@ -50,7 +50,7 @@
                         <span aria-labelledby="btnSearchDrop2" class="dropdown-menu mt-1 dropdown-menu-right">
                             <a href="@Url.Action(MVC.Reseller.Router.ActionNames.Edit, new { id = item.Id })" class="dropdown-item"><i class="icon-pen3 primary"></i>@Captions.Edit</a>
                             <a href="@Url.Action(MVC.Reseller.Router.ActionNames.ChangePassword, new { Id = item.Id })" class="dropdown-item"><i class="icon-key2 primary"></i>@Captions.ChangePassword</a>
-                            <a href="@Url.Action(MVC.Reseller.Router.ActionNames.Remove, new { id = item.Id })" class="dropdown-item"><i class="icon-trash4 danger"></i>@Captions.Remove</a>
+                            <a href="#" onclick="Remove(@item.Id);" class="dropdown-item"><i class="icon-trash4 danger"></i>@Captions.Remove</a>
                             
                             @if (!item.IsBanned)
                             {
