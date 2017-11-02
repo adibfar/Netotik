@@ -497,7 +497,7 @@ Order = 0, GlyphIcon = "icon icon-table")]
                await _mikrotikServices.FetchUrlsAsync(UserLogined.UserRouter.R_Host, UserLogined.UserRouter.R_Port, UserLogined.UserRouter.R_User, UserLogined.UserRouter.R_Password, UserLogined.Id, Fetch);
                 var servers = _mikrotikServices.Hotspot_ServersList(UserLogined.UserRouter.R_Host, UserLogined.UserRouter.R_Port, UserLogined.UserRouter.R_User, UserLogined.UserRouter.R_Password);
                 foreach(var item in servers)
-               _mikrotikServices.ChangeHotspotFolder(UserLogined.UserRouter.R_Host, UserLogined.UserRouter.R_Port, UserLogined.UserRouter.R_User, UserLogined.UserRouter.R_Password, "/flash/NetotikTemplate",item.name);
+               _mikrotikServices.ChangeHotspotFolder(UserLogined.UserRouter.R_Host, UserLogined.UserRouter.R_Port, UserLogined.UserRouter.R_User, UserLogined.UserRouter.R_Password, "flash/NetotikTemplate", item.name);
             });
             
 
