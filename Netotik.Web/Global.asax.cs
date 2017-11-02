@@ -189,7 +189,7 @@ namespace Netotik.Web
             {
                 foreach (var User in ActiveUsers)
                 {
-                    if (User.UserRouter.R_Host == Ip || Dns.GetHostAddresses(User.UserRouter.R_Host).Any(x => x.Address.ToString() == Ip))
+                    if (User.UserRouter.R_Host == Ip || Dns.GetHostAddresses(User.UserRouter.R_Host).Any(x => x.Address.Equals(IPAddress.Parse(Ip))))
                     {
                         try
                         {

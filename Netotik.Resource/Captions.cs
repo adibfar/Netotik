@@ -4945,5 +4945,61 @@ namespace Netotik.Resources
             }
         }
 
+        public static string ShowTrialButton
+        {
+            get
+            {
+                return resourceProvider.GetResource("ShowTrialButton", CultureInfo.CurrentUICulture.Name) as string;
+            }
+        }
+        public static string RegisterButton
+        {
+            get
+            {
+                return resourceProvider.GetResource("RegisterButton", CultureInfo.CurrentUICulture.Name) as string;
+            }
+        }
+        public static string PanelButton
+        {
+            get
+            {
+                return resourceProvider.GetResource("PanelButton", CultureInfo.CurrentUICulture.Name) as string;
+            }
+        }
+        public static string CustomButton
+        {
+            get
+            {
+                return resourceProvider.GetResource("CustomButton", CultureInfo.CurrentUICulture.Name) as string;
+            }
+        }
+        public static string TelegramButton
+        {
+            get
+            {
+                return resourceProvider.GetResource("TelegramButton", CultureInfo.CurrentUICulture.Name) as string;
+            }
+        }
+        public static string InstagramButton
+        {
+            get
+            {
+                return resourceProvider.GetResource("InstagramButton", CultureInfo.CurrentUICulture.Name) as string;
+            }
+        }
+        public static string Redirect
+        {
+            get
+            {
+                return resourceProvider.GetResource("Redirect", CultureInfo.CurrentUICulture.Name) as string;
+            }
+        }
+        public static string TemplateInstallToRouter
+        {
+            get
+            {
+                return resourceProvider.GetResource("TemplateInstallToRouter", CultureInfo.CurrentUICulture.Name) as string;
+            }
+        }
     }
 }

@@ -6,36 +6,24 @@
             </div>
             <div class="card-body">
                 <div id="carousel-example" class="carousel slide" data-ride="carousel">
-                    <ol class="carousel-indicators">
-                        <li data-target="#carousel-example" data-slide-to="0" class="active"></li>
-                        <li data-target="#carousel-example" data-slide-to="1"></li>
-                    </ol>
                     <div class="carousel-inner" role="listbox">
                         <div class="carousel-item active">
-                            <img src="~/Content/images/logo/NetotikLogo.png" alt="First slide">
-                        </div>
-                        <div class="carousel-item">
-                            <img src="~/Content/images/logo/NetotikLogo.png" alt="Second slide">
+                            <img src="~/Content/images/TemplatesImages/D-Login.PNG" alt="First slide">
                         </div>
                     </div>
-                    <a class="left carousel-control" href="#carousel-example" role="button" data-slide="prev">
-                        <span class="icon-prev" aria-hidden="true"></span>
-                        <span class="sr-only">قبلی</span>
-                    </a>
-                    <a class="right carousel-control" href="#carousel-example" role="button" data-slide="next">
-                        <span class="icon-next" aria-hidden="true"></span>
-                        <span class="sr-only">بعدی</span>
-                    </a>
                 </div>
                 <div class="card-block">
-                    <p class="card-text">
-
-                    </p>
                     <span class="tags float-xs-right">
                         <span class="tag tag-pill tag-danger">رستوران</span>
                         <span class="tag tag-pill tag-danger">فست فود</span>
                         <span class="tag tag-pill tag-danger">فودکورت</span>
                     </span>
+                    <p class="card-text">
+                        <br/>- کاملا واکنشگرا
+                        <br />- قابل سفارشی سازی
+                        <br />- نصب خودکار
+                        <br />- مناسب برای نمایشگر های بزرگ و کوچک
+                    </p>
                 </div>
             </div>
             <div class="card-footer border-top-blue-grey border-top-lighten-5 text-muted">
@@ -49,3 +37,15 @@
     </div>
 
 </section>
+<br/>
+<br />
+
+@section DownScript{
+    <script>
+        jQuery('input').iCheck({
+            checkboxClass: 'icheckbox_square-green',
+            radioClass: 'iradio_square-green',
+            increaseArea: '20%' // optional
+        });
+    </script>
+}

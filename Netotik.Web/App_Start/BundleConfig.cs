@@ -69,6 +69,7 @@ namespace Netotik.Web
                        "~/Content/css/plugins/forms/toggle/switchery.min.css",
                        "~/Content/css/plugins/tables/datatable/dataTables.bootstrap4.min.css",
                        "~/Content/css/plugins/extensions/sweetalert.css",
+                       "~/Content/css/plugins/forms/icheck/icheck.css",
                        "~/Content/css/components/weather-icons/climacons.min.css"));
 
 
