@@ -27,7 +27,7 @@
                 </div>
             </div>
             <div class="card-footer border-top-blue-grey border-top-lighten-5 text-muted">
-                <span class="float-xs-left">رایگان</span>
+                <span class="float-xs-left">@Captions.Free</span>
                 <span class="tags float-xs-right">
                     <a href="#" class="tag tag-pill tag-primary" data-toggle="modal" data-target="#TemplateSetting">فعال کردن </a>
                     @Html.Action(MVC.MyRouter.Hotspot.LoadTemplateSetting())
@@ -40,17 +40,14 @@
 <br/>
 <br />
 
-@section UpScript{
-    
-    <link rel="stylesheet" type="text/css" href="~/Content/css/plugins/forms/icheck/icheck.css">
-}
-
 @section DownScript{
     <script>
+        
         jQuery('input').iCheck({
             checkboxClass: 'icheckbox_square-green',
             radioClass: 'iradio_square-green',
             increaseArea: '20%' // optional
         });
+
     </script>
 }
