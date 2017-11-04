@@ -115,6 +115,7 @@ namespace Netotik.Web.Areas.MyRouter.Controllers
             public readonly string GetRouterDateTime = "GetRouterDateTime";
             public readonly string GetLastProfile = "GetLastProfile";
             public readonly string MkAlerts = "MkAlerts";
+            public readonly string ConfigRouterClock = "ConfigRouterClock";
             public readonly string RedirectToLocal = "RedirectToLocal";
         }
 
@@ -138,6 +139,7 @@ namespace Netotik.Web.Areas.MyRouter.Controllers
             public const string GetRouterDateTime = "GetRouterDateTime";
             public const string GetLastProfile = "GetLastProfile";
             public const string MkAlerts = "MkAlerts";
+            public const string ConfigRouterClock = "ConfigRouterClock";
             public const string RedirectToLocal = "RedirectToLocal";
         }
 
@@ -480,6 +482,17 @@ namespace Netotik.Web.Areas.MyRouter.Controllers
         {
             var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.MkAlerts);
             MkAlertsOverride(callInfo);
+            return callInfo;
+        }
+
+        [NonAction]
+        partial void ConfigRouterClockOverride(T4MVC_System_Web_Mvc_ActionResult callInfo);
+
+        [NonAction]
+        public override System.Web.Mvc.ActionResult ConfigRouterClock()
+        {
+            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.ConfigRouterClock);
+            ConfigRouterClockOverride(callInfo);
             return callInfo;
         }
 
