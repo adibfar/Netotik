@@ -2,21 +2,21 @@
 <TemplateSetting>
   <AutoLogin>false</AutoLogin>
   <AutoLoginAfterSec>1</AutoLoginAfterSec>
-  <AutoLoginUser>all</AutoLoginUser>
+  <AutoLoginUser />
   <CustomButton>false</CustomButton>
   <CustomButtonLink />
   <CustomButtonText />
-  <InstagramButton>false</InstagramButton>
-  <InstagramButtonLink />
-  <PanelButton>false</PanelButton>
-  <PanelButtonText />
-  <Redirect>false</Redirect>
+  <InstagramButton>true</InstagramButton>
+  <InstagramButtonLink>https://www.instagram.com/netotik</InstagramButtonLink>
+  <PanelButton>true</PanelButton>
+  <PanelButtonText>ورود به پنل کاربری</PanelButtonText>
+  <Redirect>true</Redirect>
   <RedirectToInstagram>false</RedirectToInstagram>
-  <RedirectToTelegram>false</RedirectToTelegram>
-  <RedirectToUrl />
+  <RedirectToTelegram>true</RedirectToTelegram>
+  <RedirectToUrl>http://</RedirectToUrl>
   <RegisterButton>false</RegisterButton>
-  <RegisterButtonText />
-  <ShowTrialButton>false</ShowTrialButton>
-  <TelegramButton>false</TelegramButton>
-  <TelegramButtonLink />
+  <RegisterButtonText>ثبت نام</RegisterButtonText>
+  <ShowTrialButton>true</ShowTrialButton>
+  <TelegramButton>true</TelegramButton>
+  <TelegramButtonLink>https://telegram.me/netotik</TelegramButtonLink>
 </TemplateSetting>

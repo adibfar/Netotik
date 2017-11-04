@@ -414,6 +414,26 @@ Order = 0, GlyphIcon = "icon icon-table")]
         [HttpPost]
         public virtual async Task<ActionResult> ActiveTemplate(ViewModels.Template.TemplateSettings setting)
         {
+            //------------Fix Some Settings---------------------
+            setting.InstagramButtonLink = "https://www.instagram.com/" + setting.InstagramButtonLink;
+            setting.TelegramButtonLink = "https://telegram.me/" + setting.TelegramButtonLink;
+            switch (setting.RedirectCheckBokValue)
+            {
+                case "RedirectToTelegram":
+                    setting.RedirectToTelegram = true;
+                    setting.Redirect = true;
+                    break;
+                case "Redirect":
+                    setting.Redirect = true;
+                    break;
+                case "RedirectToInstagram":
+                    setting.RedirectToInstagram =true;
+                    setting.Redirect = true;
+                    break;
+                default:
+                    setting.Redirect = false;
+                    break;
+            }
             //------------Save To Xml---------------------------
             var xml = new XDocument(new XElement("TemplateSetting",
                 new XElement("AutoLogin", setting.AutoLogin),
@@ -443,40 +463,47 @@ Order = 0, GlyphIcon = "icon icon-table")]
             var Fetch = new List<FetchModel>();
             Fetch = AddDefualtTemplateFiles(Fetch);
             Fetch.Add(new FetchModel() {
-                DstPath = "/NetotikTemplate/alogin.html",
+                DstPath = "/flash/NetotikTemplate/alogin.html",
                 Mode = "https",
                 Url = Url.Action(MVC.GetRouterTemplate.GetAlogin(UserLogined.UserRouter.RouterCode), protocol: "https")
             });
             Fetch.Add(new FetchModel()
             {
-                DstPath = "/NetotikTemplate/login.html",
+                DstPath = "/flash/NetotikTemplate/login.html",
                 Mode = "https",
                 Url = Url.Action(MVC.GetRouterTemplate.GetLogin(UserLogined.UserRouter.RouterCode), protocol: "https")
             });
             Fetch.Add(new FetchModel()
             {
-                DstPath = "/NetotikTemplate/error.html",
+                DstPath = "/flash/NetotikTemplate/error.html",
                 Mode = "https",
                 Url = Url.Action(MVC.GetRouterTemplate.GetError(UserLogined.UserRouter.RouterCode), protocol: "https")
             });
             Fetch.Add(new FetchModel()
             {
-                DstPath = "/NetotikTemplate/status.html",
+                DstPath = "/flash/NetotikTemplate/status.html",
                 Mode = "https",
                 Url = Url.Action(MVC.GetRouterTemplate.GetStatus(UserLogined.UserRouter.RouterCode), protocol: "https")
             });
             Fetch.Add(new FetchModel()
             {
-                DstPath = "/NetotikTemplate/logout.html",
+                DstPath = "/flash/NetotikTemplate/logout.html",
                 Mode = "https",
                 Url = Url.Action(MVC.GetRouterTemplate.GetLogout(UserLogined.UserRouter.RouterCode), protocol: "https")
             });
 
-            await _mikrotikServices.FetchUrlsAsync(UserLogined.UserRouter.R_Host, UserLogined.UserRouter.R_Port, UserLogined.UserRouter.R_User, UserLogined.UserRouter.R_Password, UserLogined.Id, Fetch);
+            HostingEnvironment.QueueBackgroundWorkItem(async cancellationToken =>
+            {
+               await _mikrotikServices.FetchUrlsAsync(UserLogined.UserRouter.R_Host, UserLogined.UserRouter.R_Port, UserLogined.UserRouter.R_User, UserLogined.UserRouter.R_Password, UserLogined.Id, Fetch);
+                var servers = _mikrotikServices.Hotspot_ServersList(UserLogined.UserRouter.R_Host, UserLogined.UserRouter.R_Port, UserLogined.UserRouter.R_User, UserLogined.UserRouter.R_Password);
+                foreach(var item in servers)
+               _mikrotikServices.ChangeHotspotFolder(UserLogined.UserRouter.R_Host, UserLogined.UserRouter.R_Port, UserLogined.UserRouter.R_User, UserLogined.UserRouter.R_Password, "flash/NetotikTemplate", item.name);
+            });
+            
 
             
 
-            this.MessageSuccess(Captions.MissionSuccess,"قالب با موفقیت نصب گردید.");
+            this.MessageSuccess(Captions.MissionSuccess,Captions.TemplateInstallToRouter);
             return RedirectToAction(MVC.MyRouter.Hotspot.ActionNames.Template);
         }
 
@@ -484,115 +511,115 @@ Order = 0, GlyphIcon = "icon icon-table")]
         {
             Fetch.Add(new FetchModel()
             {
-                DstPath = "/NetotikTemplate/fonts/IRANSansWeb.eot",
+                DstPath = "/flash/NetotikTemplate/fonts/IRANSansWeb.eot",
                 Mode = "https",
                 Url = "https://netotik.com"+Links.Content.Upload.TemplateFiles.fonts.IRANSansWeb_eot
             });
             Fetch.Add(new FetchModel()
             {
-                DstPath = "/NetotikTemplate/fonts/IRANSansWeb.ttf",
+                DstPath = "/flash/NetotikTemplate/fonts/IRANSansWeb.ttf",
                 Mode = "https",
                 Url = "https://netotik.com" + Links.Content.Upload.TemplateFiles.fonts.IRANSansWeb_ttf
             });
             Fetch.Add(new FetchModel()
             {
-                DstPath = "/NetotikTemplate/fonts/IRANSansWeb.woff",
+                DstPath = "/flash/NetotikTemplate/fonts/IRANSansWeb.woff",
                 Mode = "https",
                 Url = "https://netotik.com" + Links.Content.Upload.TemplateFiles.fonts.IRANSansWeb_woff
             });
             Fetch.Add(new FetchModel()
             {
-                DstPath = "/NetotikTemplate/fonts/IRANSansWeb.woff2",
+                DstPath = "/flash/NetotikTemplate/fonts/IRANSansWeb.woff2",
                 Mode = "https",
                 Url = "https://netotik.com" + Links.Content.Upload.TemplateFiles.fonts.IRANSansWeb_woff2
             });
             Fetch.Add(new FetchModel()
             {
-                DstPath = "/NetotikTemplate/fonts/IRANSans-web.eot",
+                DstPath = "/flash/NetotikTemplate/fonts/IRANSans-web.eot",
                 Mode = "https",
                 Url = "https://netotik.com" + Links.Content.Upload.TemplateFiles.fonts.IRANSans_web_eot
             });
             Fetch.Add(new FetchModel()
             {
-                DstPath = "/NetotikTemplate/fonts/IRANSans-web.ttf",
+                DstPath = "/flash/NetotikTemplate/fonts/IRANSans-web.ttf",
                 Mode = "https",
                 Url = "https://netotik.com" + Links.Content.Upload.TemplateFiles.fonts.IRANSans_web_ttf
             });
             Fetch.Add(new FetchModel()
             {
-                DstPath = "/NetotikTemplate/fonts/IRANSans-web.woff",
+                DstPath = "/flash/NetotikTemplate/fonts/IRANSans-web.woff",
                 Mode = "https",
                 Url = "https://netotik.com" + Links.Content.Upload.TemplateFiles.fonts.IRANSans_web_woff
             });
             Fetch.Add(new FetchModel()
             {
-                DstPath = "/NetotikTemplate/fonts/IRANSans-web.woff2",
+                DstPath = "/flash/NetotikTemplate/fonts/IRANSans-web.woff2",
                 Mode = "https",
                 Url = "https://netotik.com" + Links.Content.Upload.TemplateFiles.fonts.IRANSans_web_woff2
             });
             Fetch.Add(new FetchModel()
             {
-                DstPath = "/NetotikTemplate/img/Eor57Ae.jpg",
+                DstPath = "/flash/NetotikTemplate/img/Eor57Ae.jpg",
                 Mode = "https",
                 Url = "https://netotik.com" + Links.Content.Upload.TemplateFiles.img.Eor57Ae_jpg
             });
             Fetch.Add(new FetchModel()
             {
-                DstPath = "/NetotikTemplate/img/instagram.png",
+                DstPath = "/flash/NetotikTemplate/img/instagram.png",
                 Mode = "https",
                 Url = "https://netotik.com" + Links.Content.Upload.TemplateFiles.img.instagram_png
             });
             Fetch.Add(new FetchModel()
             {
-                DstPath = "/NetotikTemplate/img/logo.png",
+                DstPath = "/flash/NetotikTemplate/img/logo.png",
                 Mode = "https",
                 Url = "https://netotik.com" + Links.Content.Upload.TemplateFiles.img.logo_png
             });
             Fetch.Add(new FetchModel()
             {
-                DstPath = "/NetotikTemplate/img/Qf83FTt.png",
+                DstPath = "/flash/NetotikTemplate/img/Qf83FTt.png",
                 Mode = "https",
                 Url = "https://netotik.com" + Links.Content.Upload.TemplateFiles.img.Qf83FTt_png
             });
             Fetch.Add(new FetchModel()
             {
-                DstPath = "/NetotikTemplate/img/telegram.png",
+                DstPath = "/flash/NetotikTemplate/img/telegram.png",
                 Mode = "https",
                 Url = "https://netotik.com" + Links.Content.Upload.TemplateFiles.img.telegram_png
             });
             Fetch.Add(new FetchModel()
             {
-                DstPath = "/NetotikTemplate/img/u0XmBmv.png",
+                DstPath = "/flash/NetotikTemplate/img/u0XmBmv.png",
                 Mode = "https",
                 Url = "https://netotik.com" + Links.Content.Upload.TemplateFiles.img.u0XmBmv_png
             });
             Fetch.Add(new FetchModel()
             {
-                DstPath = "/NetotikTemplate/errors.txt",
+                DstPath = "/flash/NetotikTemplate/errors.txt",
                 Mode = "https",
                 Url = "https://netotik.com" + Links.Content.Upload.TemplateFiles.errors_txt
             });
             Fetch.Add(new FetchModel()
             {
-                DstPath = "/NetotikTemplate/md5.js",
+                DstPath = "/flash/NetotikTemplate/md5.js",
                 Mode = "https",
                 Url = "https://netotik.com" + Links.Content.Upload.TemplateFiles.md5_js
             });
             Fetch.Add(new FetchModel()
             {
-                DstPath = "/NetotikTemplate/radvert.html",
+                DstPath = "/flash/NetotikTemplate/radvert.html",
                 Mode = "https",
                 Url = "https://netotik.com" + Links.Content.Upload.TemplateFiles.radvert_html
             });
             Fetch.Add(new FetchModel()
             {
-                DstPath = "/NetotikTemplate/redirect.html",
+                DstPath = "/flash/NetotikTemplate/redirect.html",
                 Mode = "https",
                 Url = "https://netotik.com" + Links.Content.Upload.TemplateFiles.redirect_html
             });
             Fetch.Add(new FetchModel()
             {
-                DstPath = "/NetotikTemplate/rlogin.html",
+                DstPath = "/flash/NetotikTemplate/rlogin.html",
                 Mode = "https",
                 Url = "https://netotik.com" + Links.Content.Upload.TemplateFiles.rlogin_html
             });

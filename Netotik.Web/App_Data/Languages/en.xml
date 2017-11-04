@@ -1385,6 +1385,30 @@
     <Value>Service is unavailable..</Value>
   </LocaleResource>
 
+  <LocaleResource Name="RegisterButton">
+    <Value>Show Register Button</Value>
+  </LocaleResource>
+  <LocaleResource Name="PanelButton">
+    <Value>Show Panel Login Button</Value>
+  </LocaleResource>
+  <LocaleResource Name="CustomButton">
+    <Value>Show Your Link</Value>
+  </LocaleResource>
+  <LocaleResource Name="TelegramButton">
+    <Value>Telegram Icon</Value>
+  </LocaleResource>
+  <LocaleResource Name="InstagramButton">
+    <Value>Instagram Icon</Value>
+  </LocaleResource>
+  <LocaleResource Name="Redirect">
+    <Value>Redirect After Login</Value>
+  </LocaleResource>
+  <LocaleResource Name="ShowTrialButton">
+    <Value>Show Trial Button</Value>
+  </LocaleResource>
+  <LocaleResource Name="TemplateInstallToRouter">
+    <Value>Template will install soon as soon</Value>
+  </LocaleResource>
   <LocaleResource Name="Male">
     <Value>Male</Value>
   </LocaleResource>

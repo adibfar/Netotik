@@ -1968,6 +1968,30 @@
   <LocaleResource Name="ServiceUnavailable">
     <Value>دسترسی به سایت امکان پذیر نیست</Value>
   </LocaleResource>
+  <LocaleResource Name="RegisterButton">
+    <Value>نمایش دکمه ثبت نام</Value>
+  </LocaleResource>
+  <LocaleResource Name="PanelButton">
+    <Value>نمایش دکمه ورود به پنل</Value>
+  </LocaleResource>
+  <LocaleResource Name="CustomButton">
+    <Value>فعال سازی دکمه دلخواه</Value>
+  </LocaleResource>
+  <LocaleResource Name="TelegramButton">
+    <Value>آیکون تلگرام</Value>
+  </LocaleResource>
+  <LocaleResource Name="InstagramButton">
+    <Value>آیکون اینستاگرام</Value>
+  </LocaleResource>
+  <LocaleResource Name="Redirect">
+    <Value>انتقال پس از ورود</Value>
+  </LocaleResource>
+  <LocaleResource Name="ShowTrialButton">
+    <Value>نمایش دکمه Trial</Value>
+  </LocaleResource>
+  <LocaleResource Name="TemplateInstallToRouter">
+    <Value>قالب مورد نظر لحظاتی دیگر نصب می گردد.</Value>
+  </LocaleResource>
 
   <LocaleResource Name="Male">
     <Value>آقــا</Value>

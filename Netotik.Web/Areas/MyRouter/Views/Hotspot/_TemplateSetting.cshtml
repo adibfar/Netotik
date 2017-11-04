@@ -16,7 +16,7 @@
         htmlAttributes: new { @class = "form cmxform form-horizontal tasi-form", enctype = "multipart/form-data", id = "form" }))
             {
                 <div class="modal-body">
-
+                    <!--
                     <div class="row">
                         <div class="col-md-4 skin skin-flat">
                             <div class="form-group">
@@ -42,91 +42,120 @@
                             </div>
                         </div>
                     </div>
+                        -->
                     <div class="row">
+                        <div class="col-md-6">
+                            @Html.LabelFor(x => x.PanelButton)
+                            <div class="input-group">
+                                <span class="input-group-addon ">
+                                    <span class="skin skin-flat">
+                                        @Html.CheckBoxFor(x => x.PanelButton)
+                                    </span>
+                                </span>
+                                @Html.TextBoxFor(x => x.PanelButtonText, new { @class = "form-control", @Value = "ورود به پنل کاربری" })
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            @Html.LabelFor(x => x.RegisterButton)
+                            <div class="input-group">
+                                <span class="input-group-addon ">
+                                    <span class="skin skin-flat">
+                                        @Html.CheckBoxFor(x => x.RegisterButton)
+                                    </span>
+                                </span>
+                                @Html.TextBoxFor(x => x.RegisterButtonText, new { @class = "form-control", @Value = "ثبت نام" })
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <br />
+                        <div class="col-md-12">
+                            @Html.LabelFor(x => x.InstagramButton)
+                            <div class="input-group">
+                                <span class="input-group-addon ">
+                                    <span class="skin skin-flat">
+                                        @Html.CheckBoxFor(x => x.InstagramButton)
+                                    </span>
+                                </span>
+                                @Html.TextBoxFor(x => x.InstagramButtonLink, new { @class = "form-control ltr", @placeholder = "Netotik", @onkeyup = "document.getElementById('InstagramButtonLink2').value = 'Instagram.com/' + document.getElementById('InstagramButtonLink').value" })
+                                <span class="input-group-addon">/https://www.instagram.com</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <br />
+                        <div class="col-md-12">
+                            @Html.LabelFor(x => x.TelegramButton)
+                            <div class="input-group">
+                                <span class="input-group-addon ">
+                                    <span class="skin skin-flat">
+                                        @Html.CheckBoxFor(x => x.TelegramButton)
+                                    </span>
+                                </span>
+                                @Html.TextBoxFor(x => x.TelegramButtonLink, new { @class = "form-control ltr", @placeholder = "Netotik", @onkeyup = "document.getElementById('TelegramButtonLink2').value = 'Telegram.me/' + document.getElementById('TelegramButtonLink').value" })
+                                <span class="input-group-addon">@@/https://telegram.me</span>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="row">
+                        <br />
                         <div class="col-md-4 skin skin-flat">
-                            <br />
                             @Html.CheckBoxFor(x => x.CustomButton)
                             @Html.LabelFor(x => x.CustomButton)
                         </div>
                         <div class="col-md-4">
-                            @Html.LabelFor(x => x.CustomButtonLink)
-                            @Html.TextBoxFor(x => x.CustomButtonLink, new { @class = "form-control" })
+                            @Html.TextBoxFor(x => x.CustomButtonLink, new { @class = "form-control", placeholder = "لینک دکمه" })
                         </div>
                         <div class="col-md-4">
-                            @Html.LabelFor(x => x.CustomButtonText)
-                            @Html.TextBoxFor(x => x.CustomButtonText, new { @class = "form-control" })
+                            @Html.TextBoxFor(x => x.CustomButtonText, new { @class = "form-control", @placeholder = "متن دکمه" })
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-md-4 skin skin-flat">
-                            <br />
-                            @Html.CheckBoxFor(x => x.InstagramButton)
-                            @Html.LabelFor(x => x.InstagramButton)
-                        </div>
-                        <div class="col-md-4">
-                            @Html.LabelFor(x => x.InstagramButtonLink)
-                            @Html.TextBoxFor(x => x.InstagramButtonLink, new { @class = "form-control" })
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-4 skin skin-flat">
-                            <br />
-                            @Html.CheckBoxFor(x => x.TelegramButton)
-                            @Html.LabelFor(x => x.TelegramButton)
-                        </div>
-                        <div class="col-md-4">
-                            @Html.LabelFor(x => x.TelegramButtonLink)
-                            @Html.TextBoxFor(x => x.TelegramButtonLink, new { @class = "form-control" })
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-4 skin skin-flat">
-                            <br />
-                            @Html.CheckBoxFor(x => x.PanelButton)
-                            @Html.LabelFor(x => x.PanelButton)
-                        </div>
-                        <div class="col-md-4">
-                            @Html.LabelFor(x => x.PanelButtonText)
-                            @Html.TextBoxFor(x => x.PanelButtonText, new { @class = "form-control" })
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-4 skin skin-flat">
-                            <br />
-                            @Html.CheckBoxFor(x => x.RegisterButton)
-                            @Html.LabelFor(x => x.RegisterButton)
-                        </div>
-                        <div class="col-md-4">
-                            @Html.LabelFor(x => x.RegisterButtonText)
-                            @Html.TextBoxFor(x => x.RegisterButtonText, new { @class = "form-control" })
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-4 skin skin-flat">
-                            <br />
-                            @Html.CheckBoxFor(x => x.Redirect)
-                            @Html.LabelFor(x => x.Redirect)
-                        </div>
-                        <div class="col-md-4 skin skin-flat">
-                            <br />
-                            @Html.CheckBoxFor(x => x.RedirectToInstagram)
-                            @Html.LabelFor(x => x.RedirectToInstagram)
-                        </div>
-                        <div class="col-md-4 skin skin-flat">
-                            <br />
-                            @Html.CheckBoxFor(x => x.RedirectToTelegram)
-                            @Html.LabelFor(x => x.RedirectToTelegram)
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-4">
-                            @Html.LabelFor(x => x.RedirectToUrl)
-                            @Html.TextBoxFor(x => x.RedirectToUrl, new { @class = "form-control" })
-                        </div>
                         <div class="col-md-4 skin skin-flat">
                             <br />
                             @Html.CheckBoxFor(x => x.ShowTrialButton)
                             @Html.LabelFor(x => x.ShowTrialButton)
+                        </div>
+                    </div>
+                    <br />
+                    <div class="row">
+                        <div class="col-md-12">
+                            <h4 class="form-section">@Html.LabelFor(x => x.Redirect)</h4>
+                            <div class="col-md-6">
+                                <div class="input-group">
+                                    <span class="input-group-addon">
+                                        <input type="radio" checked name="RedirectCheckBokValue" value="NoRedirect" />
+                                    </span>
+                                    <input type="text" class="form-control" readonly="yes" placeholder="غیره فعال">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="input-group">
+                                    <span class="input-group-addon">
+                                        <input type="radio" name="RedirectCheckBokValue" value="RedirectToTelegram" />
+                                    </span>
+                                    <input type="text" class="form-control ltr" readonly="yes" id="TelegramButtonLink2" placeholder="کانال تلگرام">
+                                </div>
+                            </div>
+                            <br /><br />
+                            <div class="col-md-6">
+                                <div class="input-group">
+                                    <span class="input-group-addon">
+                                        <input type="radio" name="RedirectCheckBokValue" id="input-radio-11" value="RedirectToInstagram" />
+                                    </span>
+                                    <input type="text" class="form-control ltr" readonly="yes" id="InstagramButtonLink2" placeholder="کانال اینستاگرام">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="input-group">
+                                    <span class="input-group-addon">
+                                        <input type="radio" name="RedirectCheckBokValue" value="Redirect"/>
+                                    </span>
+                                    <input type="text" class="form-control ltr" placeholder="لینک دلخواه" value="http://" name="RedirectToUrl">
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>

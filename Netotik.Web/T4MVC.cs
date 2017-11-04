@@ -2604,6 +2604,15 @@ namespace Links
                 public static readonly string magnifier_svg = Url("magnifier.svg");
             }
         
+            [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+            public static class TemplatesImages {
+                public const string UrlPath = "~/Content/images/TemplatesImages";
+                public static string Url() { return T4MVCHelpers.ProcessVirtualPath(UrlPath); }
+                public static string Url(string fileName) { return T4MVCHelpers.ProcessVirtualPath(UrlPath + "/" + fileName); }
+                public static readonly string D_Login_PNG = Url("D-Login.PNG");
+                public static readonly string M_Login_png = Url("M-Login.png");
+            }
+        
         }
     
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -8669,6 +8678,12 @@ namespace Links
                     }
                 }
                 public static partial class svg 
+                {
+                    public static class Assets
+                    {
+                    }
+                }
+                public static partial class TemplatesImages 
                 {
                     public static class Assets
                     {

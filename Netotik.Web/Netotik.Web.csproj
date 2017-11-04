@@ -900,6 +900,8 @@
     <Content Include="Content\images\logo\LogoPanelAdmin.png" />
     <Content Include="Content\images\logo\NetotikLogo.png" />
     <Content Include="Content\images\particles_bg.jpg" />
+    <Content Include="Content\images\TemplatesImages\D-Login.PNG" />
+    <Content Include="Content\images\TemplatesImages\M-Login.png" />
     <Content Include="Content\js\plugins\tables\datatable\dataTables.persian.txt" />
     <Content Include="Content\css\Rtl\app.min.css" />
     <Content Include="Content\css\components\buttons\ladda-themeless.min.css" />

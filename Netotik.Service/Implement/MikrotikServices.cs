@@ -2938,6 +2938,21 @@ namespace Netotik.Services.Implement
                 var Read = mikrotik.Read();
             }
         }
+
+        public void ChangeHotspotFolder(string r_Host, int r_Port, string r_User, string r_Password, string DirectoryName, string ServerName)
+        {
+            var mikrotik = new MikrotikAPI();
+            mikrotik.MK(r_Host, r_Port);
+            if (!mikrotik.Login(r_User, r_Password)) mikrotik.Close();
+            //-----------------------------------------------
+
+            mikrotik.Send("/ip/hotspot/profile/set");
+            string temp = String.Format("=numbers={0}", ServerName);
+            mikrotik.Send(temp);
+            temp = String.Format("=html-directory={0}", DirectoryName);
+            mikrotik.Send(temp ,true);
+            var Read = mikrotik.Read();
+        }
         //public List<RouterAccessModel> RouterAccessWithAdressListList(string r_Host, int r_Port, string r_User, string r_Password)
         //{
         //    var mikrotik = new MikrotikAPI();
