@@ -9,6 +9,7 @@ using System.Web.Routing;
 using Netotik.Web.Infrastructure.Caching;
 using Netotik.IocConfig;
 using Netotik.Services.Abstract;
+using Netotik.Common.Extensions;
 
 namespace Netotik.Web.Infrastructure
 {
@@ -34,28 +35,9 @@ namespace Netotik.Web.Infrastructure
 
         public string SaveFile(HttpPostedFileBase image, string path)
         {
-            var vFileName = Guid.NewGuid() + Path.GetExtension(image.FileName).ToLower();
+            //var vFileName = Guid.NewGuid() + Path.GetExtension(image.FileName).ToLower();
+            var vFileName = image.FileName.GetFileName(path);
             var vFolderPath = Server.MapPath(path);
-
-            if (!Directory.Exists(vFolderPath)) Directory.CreateDirectory(vFolderPath);
-
-            var vFilePath = Path.Combine(vFolderPath, vFileName);
-            image.SaveAs(vFilePath);
-            var vImagePath = Url.Content(path + vFileName);
-
-            return vFileName;
-        }
-
-        public string SaveFile(HttpPostedFileBase image, string path, string fileName)
-        {
-            var vFileName = fileName + Path.GetExtension(image.FileName).ToLower();
-            var vFolderPath = Server.MapPath(path);
-            if (System.IO.File.Exists(Path.Combine(vFolderPath, vFileName)))
-            {
-                vFileName = new Random().Next(9999, 999999).ToString() + fileName + Path.GetExtension(image.FileName).ToLower();
-            }
-
-
 
             if (!Directory.Exists(vFolderPath)) Directory.CreateDirectory(vFolderPath);
 

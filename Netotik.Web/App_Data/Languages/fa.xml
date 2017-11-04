@@ -992,7 +992,7 @@
   <LocaleResource Name="BirthDate">
     <Value>تاریخ تولد</Value>
   </LocaleResource>
-  <LocaleResource Name="IsMale">
+  <LocaleResource Name="Sex">
     <Value>جنسیت</Value>
   </LocaleResource>
   <LocaleResource Name="ShowType">
@@ -1967,6 +1967,14 @@
   
   <LocaleResource Name="ServiceUnavailable">
     <Value>دسترسی به سایت امکان پذیر نیست</Value>
+  </LocaleResource>
+
+  <LocaleResource Name="Male">
+    <Value>آقــا</Value>
+  </LocaleResource>
+
+  <LocaleResource Name="Female">
+    <Value>خــانم</Value>
   </LocaleResource>
 
 </Language>

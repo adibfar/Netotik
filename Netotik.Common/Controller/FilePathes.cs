@@ -19,6 +19,7 @@ namespace Netotik.Common.Controller
         public static string _imagesShopManuFacturerPath = "/Content/Upload/Image/Shop/Manufacturer";
         public static string _imagesShopProductPath = "/Content/Upload/Image/Shop/Product";
         public static string _filesContentPath = "/Content/Upload/File/Content";
+        public static string _imagesEditorPath = "/Content/Upload/Image/Editor";
 
     }
 }

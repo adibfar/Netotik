@@ -312,7 +312,7 @@
   <LocaleResource Name="BirthDate">
     <Value>Birth Date</Value>
   </LocaleResource>
-  <LocaleResource Name="IsMale">
+  <LocaleResource Name="Sex">
     <Value>Is Male</Value>
   </LocaleResource>
   <LocaleResource Name="ShowType">
@@ -1385,4 +1385,12 @@
     <Value>Service is unavailable..</Value>
   </LocaleResource>
 
+  <LocaleResource Name="Male">
+    <Value>Male</Value>
+  </LocaleResource>
+
+  <LocaleResource Name="Female">
+    <Value>Female</Value>
+  </LocaleResource>
+  
 </Language>

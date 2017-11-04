@@ -198,7 +198,7 @@ namespace Netotik.Services.Identity
             model.Age = user.UserRouter.UserRouterRegisterSetting.Age;
             model.BirthDate = user.UserRouter.UserRouterRegisterSetting.BirthDate;
             model.Email = user.UserRouter.UserRouterRegisterSetting.Email;
-            model.IsMale = user.UserRouter.UserRouterRegisterSetting.IsMale;
+            model.Sex = user.UserRouter.UserRouterRegisterSetting.Sex;
             model.MobileNumber = user.UserRouter.UserRouterRegisterSetting.MobileNumber;
             model.Name = user.UserRouter.UserRouterRegisterSetting.Name;
             model.NationalCode = user.UserRouter.UserRouterRegisterSetting.NationalCode;
@@ -217,7 +217,7 @@ namespace Netotik.Services.Identity
             user.UserRouter.UserRouterRegisterSetting.Age = model.Age;
             user.UserRouter.UserRouterRegisterSetting.BirthDate = model.BirthDate;
             user.UserRouter.UserRouterRegisterSetting.Email = model.Email;
-            user.UserRouter.UserRouterRegisterSetting.IsMale = model.IsMale;
+            user.UserRouter.UserRouterRegisterSetting.Sex = model.Sex;
             user.UserRouter.UserRouterRegisterSetting.MobileNumber = model.MobileNumber;
             user.UserRouter.UserRouterRegisterSetting.Name = model.Name;
             user.UserRouter.UserRouterRegisterSetting.NationalCode = model.NationalCode;

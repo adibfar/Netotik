@@ -228,10 +228,10 @@ namespace Netotik.Web.Controllers
         }
 
         [NonAction]
-        partial void ClientOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, Netotik.ViewModels.Identity.UserClient.UserRegisterModel model, string ReturnUrl, string RouterCode);
+        partial void ClientOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, Netotik.ViewModels.Identity.UserClient.UserClientRegisterModel model, string ReturnUrl, string RouterCode);
 
         [NonAction]
-        public override System.Threading.Tasks.Task<System.Web.Mvc.ActionResult> Client(Netotik.ViewModels.Identity.UserClient.UserRegisterModel model, string ReturnUrl, string RouterCode)
+        public override System.Threading.Tasks.Task<System.Web.Mvc.ActionResult> Client(Netotik.ViewModels.Identity.UserClient.UserClientRegisterModel model, string ReturnUrl, string RouterCode)
         {
             var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Client);
             ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "model", model);

@@ -1,7 +1,7 @@
 ﻿$(function () {
     AjaxForm.EnablePostbackValidation();
     Selectize();
-    StartSummerNote();
+    CKEDITOR.replace();
 
     $(".datepicker").datetimepicker({ defaultDate: "" });
     $("#unslider").unslider({ animation: "fade", infinite: !0 });
@@ -45,11 +45,6 @@ CardUnBlock = function (element) {
     $(element).unblock();
 };
 
-StartSummerNote = function () {
-    $(".summernote").summernote({
-        minHeight: 300,             // set minimum height of editor
-    });
-}
 
 
 PostData = function (path, params, method) {

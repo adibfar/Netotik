@@ -18,6 +18,20 @@ namespace Netotik.Resources
             return resourceProvider.GetResource(key, CultureInfo.CurrentUICulture.Name) as string;
         }
 
+        public static string Male
+        {
+            get
+            {
+                return resourceProvider.GetResource("Male", CultureInfo.CurrentUICulture.Name) as string;
+            }
+        }
+        public static string Female
+        {
+            get
+            {
+                return resourceProvider.GetResource("Female", CultureInfo.CurrentUICulture.Name) as string;
+            }
+        }
         public static string CantConnectToRouter
         {
             get
@@ -4036,11 +4050,11 @@ namespace Netotik.Resources
                 return resourceProvider.GetResource("BirthDate", CultureInfo.CurrentUICulture.Name) as string;
             }
         }
-        public static string IsMale
+        public static string Sex
         {
             get
             {
-                return resourceProvider.GetResource("IsMale", CultureInfo.CurrentUICulture.Name) as string;
+                return resourceProvider.GetResource("Sex", CultureInfo.CurrentUICulture.Name) as string;
             }
         }
 

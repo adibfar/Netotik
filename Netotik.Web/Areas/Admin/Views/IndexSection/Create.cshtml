@@ -39,7 +39,7 @@
                                             <div class="form-group">
                                                 @Html.LabelFor(m => m.Html)
                                                 <div class="position-relative">
-                                                    @Html.TextAreaFor(m => m.Html, new { @class = "summernote", cols = "20" })
+                                                    @Html.TextAreaFor(m => m.Html, new { @class = "ckeditor" })
                                                     @Html.ValidationMessageFor(model => model.Html, "", htmlAttributes: new { @class = "text-danger" })
                                                 </div>
                                             </div>
