@@ -111,6 +111,7 @@
     <Compile Include="Extensions\NormalizationInfo.cs" />
     <Compile Include="Extensions\RemainingDateTime.cs" />
     <Compile Include="Extensions\TypeExtentions.cs" />
+    <Compile Include="Extensions\FileNameUtility.cs" />
     <Compile Include="Extensions\YeKe.cs" />
     <Compile Include="Extensions\YeKeInterceptor.cs" />
     <Compile Include="Filters\AjaxOnlyAttribute.cs" />

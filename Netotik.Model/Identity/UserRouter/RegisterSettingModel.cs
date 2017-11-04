@@ -57,8 +57,8 @@ namespace Netotik.ViewModels.Identity.UserRouter
         public FieldType Name { get; set; }
 
         [Required(ErrorMessageResourceType = typeof(Captions), ErrorMessageResourceName = "RequiredError")]
-        [Display(ResourceType = typeof(Captions), Name = "IsMale")]
-        public FieldType IsMale { get; set; }
+        [Display(ResourceType = typeof(Captions), Name = "Sex")]
+        public FieldType Sex { get; set; }
 
         [Required(ErrorMessageResourceType = typeof(Captions), ErrorMessageResourceName = "RequiredError")]
         [Display(ResourceType = typeof(Captions), Name = "NationalCode")]

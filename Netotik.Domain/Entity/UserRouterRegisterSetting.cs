@@ -19,7 +19,7 @@ namespace Netotik.Domain.Entity
         public FieldType PasswordConfirm { get; set; }
         public FieldType BirthDate { get; set; }
         public FieldType Name { get; set; }
-        public FieldType IsMale { get; set; }
+        public FieldType Sex { get; set; }
         public FieldType NationalCode { get; set; }
         public bool SendEmailUserPass { get; set; }
         

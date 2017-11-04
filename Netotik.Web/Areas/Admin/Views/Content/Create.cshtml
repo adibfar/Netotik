@@ -61,8 +61,8 @@
                                             <div class="form-group">
                                                 @Html.LabelFor(m => m.Body)
                                                 <div class="position-relative">
-                                                    @Html.TextAreaFor(m => m.Body, new { @class = "summernote", cols = "20" })
                                                     @Html.ValidationMessageFor(model => model.Body, "", htmlAttributes: new { @class = "text-danger" })
+                                                    @Html.TextAreaFor(m => m.Body, new { @class = "ckeditor" })
                                                 </div>
                                             </div>
                                         </div>
