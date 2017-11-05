@@ -18,6 +18,30 @@ namespace Netotik.Resources
             return resourceProvider.GetResource(key, CultureInfo.CurrentUICulture.Name) as string;
         }
 
+        public static string ClientWithSmsError
+        {
+            get
+            {
+                return resourceProvider.GetResource("ClientWithSmsError", CultureInfo.CurrentUICulture.Name) as string;
+            }
+        }
+
+        public static string ClientRegisterWithSmsUserPassError
+        {
+            get
+            {
+                return resourceProvider.GetResource("ClientRegisterWithSmsUserPassError", CultureInfo.CurrentUICulture.Name) as string;
+            }
+        }
+
+        public static string ClientRegisterWithSmsUsermanagerError
+        {
+            get
+            {
+                return resourceProvider.GetResource("ClientRegisterWithSmsUsermanagerError", CultureInfo.CurrentUICulture.Name) as string;
+            }
+        }
+
         public static string Male
         {
             get
@@ -1037,11 +1061,11 @@ namespace Netotik.Resources
         }
 
 
-        public static string Linkedin
+        public static string LinkedIn
         {
             get
             {
-                return resourceProvider.GetResource("Linkedin", CultureInfo.CurrentUICulture.Name) as string;
+                return resourceProvider.GetResource("LinkedIn", CultureInfo.CurrentUICulture.Name) as string;
             }
         }
 
@@ -2763,6 +2787,13 @@ namespace Netotik.Resources
                 return resourceProvider.GetResource("PlanName", CultureInfo.CurrentUICulture.Name) as string;
             }
         }
+        public static string PackageName
+        {
+            get
+            {
+                return resourceProvider.GetResource("PackageName", CultureInfo.CurrentUICulture.Name) as string;
+            }
+        }
         public static string Enrollment
         {
             get
@@ -2897,7 +2928,13 @@ namespace Netotik.Resources
                 return resourceProvider.GetResource("MakeCard", CultureInfo.CurrentUICulture.Name) as string;
             }
         }
-
+        public static string SelectPackage
+        {
+            get
+            {
+                return resourceProvider.GetResource("SelectPackage", CultureInfo.CurrentUICulture.Name) as string;
+            }
+        }
         public static string SelectPlan
         {
             get

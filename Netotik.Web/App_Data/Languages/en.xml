@@ -106,7 +106,7 @@
   <LocaleResource Name="IsRtl">Rtl?</LocaleResource>
   <LocaleResource Name="XmlResource">Xml Resources</LocaleResource>
   <LocaleResource Name="Facebook">Facebook</LocaleResource>
-  <LocaleResource Name="Linkedin">LinkedIn</LocaleResource>
+  <LocaleResource Name="LinkedIn">LinkedIn</LocaleResource>
   <LocaleResource Name="Twitter">Twiiter</LocaleResource>
   <LocaleResource Name="Website">Website</LocaleResource>
   <LocaleResource Name="Instagram">Instagram</LocaleResource>
@@ -313,7 +313,7 @@
     <Value>Birth Date</Value>
   </LocaleResource>
   <LocaleResource Name="Sex">
-    <Value>Is Male</Value>
+    <Value>Sex</Value>
   </LocaleResource>
   <LocaleResource Name="ShowType">
     <Value>Show </Value>
@@ -326,8 +326,8 @@
   </LocaleResource>
 
   <!--======================Fields Ehsan EM===========================-->
-  <LocaleResource Name="ChangePackage">
-    <Value>Change Package</Value>
+  <LocaleResource Name="ChangePlan">
+    <Value>Change Plan</Value>
   </LocaleResource>
   <LocaleResource Name="About">
     <Value>About</Value>
@@ -346,6 +346,9 @@
   </LocaleResource>
   <LocaleResource Name="Online">
     <Value>Online</Value>
+  </LocaleResource>
+  <LocaleResource Name="PlanName">
+    <Value>Plan Name</Value>
   </LocaleResource>
   <LocaleResource Name="PackageName">
     <Value>Package Name</Value>
@@ -580,8 +583,8 @@
   <LocaleResource Name="UserManager">
     <Value>UserManager</Value>
   </LocaleResource>
-  <LocaleResource Name="PackageList">
-    <Value>Package List</Value>
+  <LocaleResource Name="PlanList">
+    <Value>Plan List</Value>
   </LocaleResource>
   <LocaleResource Name="NewPlan">
     <Value>New Plan</Value>
@@ -1416,5 +1419,20 @@
   <LocaleResource Name="Female">
     <Value>Female</Value>
   </LocaleResource>
+
+  <LocaleResource Name="ClientWithSmsError">
+    <Value>
+       Error connecting to the router during SMS registration.
+    </Value>
+  </LocaleResource>
+
+  <LocaleResource Name="ClientRegisterWithSmsUserPassError">
+    <Value>Username or Password invalid error during SMS registration.</Value>
+  </LocaleResource>
+
+  <LocaleResource Name="ClientRegisterWithSmsUsermanagerError">
+    <Value>Usermanager error during SMS registration.</Value>
+  </LocaleResource>
+
   
 </Language>

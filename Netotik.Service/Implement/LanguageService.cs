@@ -64,8 +64,8 @@ namespace Netotik.Services.Implement
 
             var xml = XDocument.Parse(xmlResource).Element("Language");
             var langName = xml.Attribute("Name").Value;
-
-            if (!dbSet.Any(x => x.Name == langName))
+            var lang = dbSet.FirstOrDefault(x => x.Name == langName);
+            if (lang == null)
             {
                 var list = xml.Elements("LocaleResource")
                 .Select(e => new Netotik.Domain.Entity.LocaleStringResource
@@ -73,7 +73,7 @@ namespace Netotik.Services.Implement
                     Name = e.Attribute("Name").Value,
                     Value = e.Value,
                 }).ToList();
-                var lang = new Language()
+                lang = new Language()
                 {
                     Name = langName,
                     DisplayOrder = int.Parse(xml.Attribute("DisplayOrder").Value),
@@ -86,8 +86,26 @@ namespace Netotik.Services.Implement
                     LocaleStringResources = list.ToList()
                 };
                 dbSet.Add(lang);
-                UnitOfWork.SaveAllChanges();
+
             }
+            else
+            {
+                var list = xml.Elements("LocaleResource")
+                .Select(e => new Netotik.Domain.Entity.LocaleStringResource
+                {
+                    Name = e.Attribute("Name").Value,
+                    Value = e.Value,
+                }).ToList();
+
+                if (lang.LocaleStringResources.Count != list.Count)
+                {
+                    lang.LocaleStringResources.Clear();
+                    lang.LocaleStringResources = list;
+                }
+
+
+            }
+            UnitOfWork.SaveAllChanges();
 
         }
 

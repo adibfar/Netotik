@@ -1,16 +1,16 @@
 ﻿@{
-    var setting = Html.Setting(ViewContext.HttpContext);
-    var meta = new Netotik.ViewModels.Common.Meta.MetaViewModel()
-    {
-        Title = string.Format("{0}", setting.HomePageTitle),
-        Description = setting.HomePageDescription,
-        Keywords = setting.HomePageKeywords,
-        OgType="website",
-        OgTitle = string.Format("{0} | {1}", Captions.Netotik, Captions.HomeMenu),
-        OgUrl = Url.Action(MVC.Home.Index()),
-        OgDescription = setting.HomePageDescription,
-        OgSiteName = Captions.Netotik,
-        OgTags = setting.HomePageKeywords.Split(',')
+        var setting = Html.Setting(ViewContext.HttpContext);
+        var meta = new Netotik.ViewModels.Common.Meta.MetaViewModel()
+        {
+            Title = string.Format("{0}", setting.HomePageTitle),
+            Description = setting.HomePageDescription,
+            Keywords = setting.HomePageKeywords,
+            OgType = "website",
+            OgTitle = string.Format("{0} | {1}", Captions.Netotik, Captions.HomeMenu),
+            OgUrl = Url.Action(MVC.Home.Index()),
+            OgDescription = setting.HomePageDescription,
+            OgSiteName = Captions.Netotik,
+            OgTags = string.IsNullOrWhiteSpace(setting.HomePageKeywords) ? new List<string>().ToArray() : setting.HomePageKeywords.Split(',')
     };
 }
 
@@ -21,7 +21,7 @@
 
 @if (false)
 {
-    @Html.Action(MVC.Home.Slider())
+        @Html.Action(MVC.Home.Slider())
 }
 else
 {
