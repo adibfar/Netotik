@@ -1567,6 +1567,27 @@ namespace Links
         }
     
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public static class DateTimePicker {
+            public const string UrlPath = "~/Content/DateTimePicker";
+            public static string Url() { return T4MVCHelpers.ProcessVirtualPath(UrlPath); }
+            public static string Url(string fileName) { return T4MVCHelpers.ProcessVirtualPath(UrlPath + "/" + fileName); }
+            [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+            public static class Content {
+                public const string UrlPath = "~/Content/DateTimePicker/Content";
+                public static string Url() { return T4MVCHelpers.ProcessVirtualPath(UrlPath); }
+                public static string Url(string fileName) { return T4MVCHelpers.ProcessVirtualPath(UrlPath + "/" + fileName); }
+            }
+        
+            [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+            public static class Scripts {
+                public const string UrlPath = "~/Content/DateTimePicker/Scripts";
+                public static string Url() { return T4MVCHelpers.ProcessVirtualPath(UrlPath); }
+                public static string Url(string fileName) { return T4MVCHelpers.ProcessVirtualPath(UrlPath + "/" + fileName); }
+            }
+        
+        }
+    
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public static class Email {
             public const string UrlPath = "~/Content/Email";
             public static string Url() { return T4MVCHelpers.ProcessVirtualPath(UrlPath); }
@@ -8529,6 +8550,24 @@ namespace Links
                         public const string ClientBuyPackage_css = "~/Content/css/Rtl/ClientBuyPackage.css";
                         public const string my_style_css = "~/Content/css/Rtl/my-style.css";
                         public const string vendors_min_css = "~/Content/css/Rtl/vendors.min.css";
+                    }
+                }
+                public static class Assets
+                {
+                }
+            }
+            public static partial class DateTimePicker 
+            {
+                public static partial class Content 
+                {
+                    public static class Assets
+                    {
+                    }
+                }
+                public static partial class Scripts 
+                {
+                    public static class Assets
+                    {
                     }
                 }
                 public static class Assets
