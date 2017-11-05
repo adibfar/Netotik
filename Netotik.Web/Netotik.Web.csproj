@@ -3469,7 +3469,6 @@
     <Content Include="Areas\Client\Views\_ViewStart.cshtml" />
     <Content Include="Areas\MyRouter\Views\UserManager\PackageList.cshtml" />
     <Content Include="Areas\MyRouter\Views\UserManager\PackageDetails.cshtml" />
-    <Content Include="Areas\MyRouter\Views\UserManager\Register.cshtml" />
     <Content Include="Areas\MyRouter\Views\UserManager\Report.cshtml" />
     <Content Include="Areas\MyRouter\Views\UserManager\UserList.cshtml" />
     <Content Include="Areas\MyRouter\Views\UserManager\PackageCreate.cshtml" />
@@ -3743,6 +3742,7 @@
     <Content Include="Content\Upload\TemplateFiles\fonts\IRANSansWeb.woff2" />
     <Content Include="Content\Upload\TemplateSettingsXML\15" />
     <Content Include="Content\Upload\TemplateSettingsXML\3" />
+    <Content Include="Areas\MyRouter\Views\UserManager\_Profiles.cshtml" />
     <Content Include="Areas\MyRouter\Views\UserManager\_GetUserLog.cshtml" />
     <None Include="Properties\PublishProfiles\DNMA.pubxml" />
     <Content Include="Scripts\ckeditor\adapters\jquery.js" />

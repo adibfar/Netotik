@@ -1,0 +1,13 @@
+﻿
+@if (ViewBag.profiles == null)
+{
+    <label>@Captions.PlanName</label>
+    <div class="alert alert-danger">
+        @Captions.CantConnectToRouter
+    </div>
+}
+else
+{
+    <label>@Captions.PlanName</label>
+    @Html.DropDownList("ProfileName", ViewBag.profiles as SelectList, Captions.PlanName, new { @class = "selectize-select" })
+}

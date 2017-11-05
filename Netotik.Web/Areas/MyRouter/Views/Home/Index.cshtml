@@ -3,6 +3,15 @@
 @{
     ViewBag.Title = Netotik.Resources.Captions.Dashboard;
 }
+@if (ViewBag.TimeError != null)
+{
+    <div class="alert alert-icon-left alert-warning alert-dismissible fade in mb-2" role="alert">
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">×</span>
+        </button>
+        <strong>@Captions.Information:</strong>تاریخ روتر صحیح نمی باشد.لطفا برای تنظیم تاریخ روتر <a href="@Url.Action(MVC.MyRouter.Home.ConfigRouterClock())"> اینجا </a> کلید کنید.
+    </div>
+}
 <div class="row">
     <div class="row col-xl-12 col-xs-12" id="mkalerts">
     </div>

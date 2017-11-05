@@ -859,8 +859,8 @@ namespace Netotik.Web.Areas.MyRouter.Controllers
                     password = model.password,
                     //comment = model.comment,
                     Age = model.Age,
-                    Birthday = model.Age,
-                    CreateDate = DateTime.Now.ToString(),
+                    Birthday = model.Birthday,
+                    CreateDate = DateTime.Now,
                     IsMale = model.IsMale,
                     MarriageDate = model.MarriageDate,
                     NationalCode = model.NationalCode,
@@ -936,12 +936,6 @@ namespace Netotik.Web.Areas.MyRouter.Controllers
             return View();
         }
 
-
-        public virtual ActionResult Register()
-        {
-            ViewBag.ResellerCode = UserLogined.UserRouter.RouterCode;
-            return View();
-        }
 
         [HttpPost]
         [ValidateInput(false)]
@@ -1063,6 +1057,7 @@ namespace Netotik.Web.Areas.MyRouter.Controllers
         [BreadCrumb(Title = "RegisterSetting", Order = 1)]
         public virtual ActionResult RegisterSetting()
         {
+            ViewBag.ResellerCode = UserLogined.UserRouter.RouterCode;
             return PartialView(MVC.MyRouter.UserManager.Views.RegisterSetting, _userManager.GetRouterRegisterSetting(UserLogined.Id));
         }
 
@@ -1072,6 +1067,7 @@ namespace Netotik.Web.Areas.MyRouter.Controllers
         [HttpPost]
         public virtual async Task<ActionResult> RegisterSetting(RegisterSettingModel model)
         {
+            ViewBag.ResellerCode = UserLogined.UserRouter.RouterCode;
             if (!ModelState.IsValid)
             {
                 return View(model);
@@ -1118,25 +1114,6 @@ namespace Netotik.Web.Areas.MyRouter.Controllers
 
         public virtual ActionResult Online()
         {
-
-            //-------------------------------
-            //if (!_mikrotikServices.IP_Port_Check(UserLogined.UserRouter.R_Host, UserLogined.UserRouter.R_Port, UserLogined.UserRouter.R_User, UserLogined.UserRouter.R_Password))
-            //{
-            //    this.MessageError(Captions.Error, Captions.IPPORTClientError);
-            //    return RedirectToAction(MVC.MyRouter.Home.ActionNames.MikrotikConf, MVC.MyRouter.Home.Name, new { area = MVC.MyRouter.Name });
-            //}
-            //if (!_mikrotikServices.User_Pass_Check(UserLogined.UserRouter.R_Host, UserLogined.UserRouter.R_Port, UserLogined.UserRouter.R_User, UserLogined.UserRouter.R_Password))
-            //{
-            //    this.MessageError(Captions.Error, Captions.UserPasswordClientError);
-            //    return RedirectToAction(MVC.MyRouter.Home.ActionNames.MikrotikConf, MVC.MyRouter.Home.Name, new { area = MVC.MyRouter.Name });
-            //}
-            //if (!_mikrotikServices.Usermanager_IsInstall(UserLogined.UserRouter.R_Host, UserLogined.UserRouter.R_Port, UserLogined.UserRouter.R_User, UserLogined.UserRouter.R_Password))
-            //{
-            //    this.MessageError(Captions.Error, Captions.UsermanagerClientError);
-            //    return RedirectToAction(MVC.MyRouter.Home.ActionNames.Index);
-            //}
-            //-------------------------------
-
             return View();
         }
         public virtual ActionResult LoadOnlines()
@@ -1162,6 +1139,17 @@ namespace Netotik.Web.Areas.MyRouter.Controllers
                 }
 
             return PartialView(MVC.MyRouter.UserManager.Views._Onlines);
+        }
+        public virtual ActionResult LoadProfiles()
+        {
+            if (_mikrotikServices.IP_Port_Check(UserLogined.UserRouter.R_Host, UserLogined.UserRouter.R_Port, UserLogined.UserRouter.R_User, UserLogined.UserRouter.R_Password))
+                if (_mikrotikServices.User_Pass_Check(UserLogined.UserRouter.R_Host, UserLogined.UserRouter.R_Port, UserLogined.UserRouter.R_User, UserLogined.UserRouter.R_Password))
+                {
+                    var listProfiles = _mikrotikServices.Usermanager_GetAllProfile(UserLogined.UserRouter.R_Host, UserLogined.UserRouter.R_Port, UserLogined.UserRouter.R_User, UserLogined.UserRouter.R_Password);
+                    ViewBag.profiles = new SelectList(listProfiles, "name", "name", UserLogined.UserRouter.UserRouterRegisterSetting.ProfileName);
+                }
+
+            return PartialView(MVC.MyRouter.UserManager.Views._Profiles);
         }
 
        

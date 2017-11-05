@@ -264,11 +264,11 @@ namespace Netotik.Services.Implement
                         upload_used = ColumnList.Any(x => x.Key == "upload-used") ? (ColumnList.FirstOrDefault(x => x.Key == "upload-used").Value) : "",
                         registration_date = ColumnList.Any(x => x.Key == "registration-date") ? (ColumnList.FirstOrDefault(x => x.Key == "registration-date").Value) : "",
                         reg_key = ColumnList.Any(x => x.Key == "reg-key") ? (ColumnList.FirstOrDefault(x => x.Key == "reg-key").Value) : "",
-                        IsMale = Json.IsMale,
-                        Age = Json.Age,
-                        Birthday = Json.Birthday,
-                        CreateDate = Json.CreateDate,
-                        MarriageDate = Json.MarriageDate,
+                        IsMale = Json.IsMale == "true" ?true:false,
+                        Age = int.Parse(Json.Age),
+                        Birthday = DateTime.Parse(Json.Birthday),
+                        CreateDate = DateTime.Parse(Json.CreateDate),
+                        MarriageDate = DateTime.Parse(Json.MarriageDate),
                         NationalCode = Json.NationalCode
                     });
                 }
@@ -465,11 +465,11 @@ namespace Netotik.Services.Implement
                         uptime_used = ColumnList.Any(x => x.Key == "uptime-used") ? (ColumnList.FirstOrDefault(x => x.Key == "uptime-used").Value) : "",
                         download_used = ColumnList.Any(x => x.Key == "download-used") ? (ColumnList.FirstOrDefault(x => x.Key == "download-used").Value) : "",
                         upload_used = ColumnList.Any(x => x.Key == "upload-used") ? (ColumnList.FirstOrDefault(x => x.Key == "upload-used").Value) : "",
-                        IsMale = Json.IsMale,
-                        Age = Json.Age,
-                        Birthday = Json.Birthday,
-                        CreateDate = Json.CreateDate,
-                        MarriageDate = Json.MarriageDate,
+                        IsMale = Json.IsMale == "true" ? true : false,
+                        Age = int.Parse(Json.Age),
+                        Birthday = DateTime.Parse(Json.Birthday),
+                        CreateDate = DateTime.Parse(Json.CreateDate),
+                        MarriageDate = DateTime.Parse(Json.MarriageDate),
                         NationalCode = Json.NationalCode
                     });
                 }
@@ -534,12 +534,11 @@ namespace Netotik.Services.Implement
                         //comment = ColumnList.Any(x => x.Key == "comment") ? (ColumnList.FirstOrDefault(x => x.Key == "comment").Value) : "",
                         uptime_used = ColumnList.Any(x => x.Key == "uptime-used") ? (ColumnList.FirstOrDefault(x => x.Key == "uptime-used").Value) : "",
                         download_used = ColumnList.Any(x => x.Key == "download-used") ? (ColumnList.FirstOrDefault(x => x.Key == "download-used").Value) : "",
-                        upload_used = ColumnList.Any(x => x.Key == "upload-used") ? (ColumnList.FirstOrDefault(x => x.Key == "upload-used").Value) : "",
-                        IsMale = Json.IsMale,
-                        Age = Json.Age,
-                        Birthday = Json.Birthday,
-                        CreateDate = Json.CreateDate,
-                        MarriageDate = Json.MarriageDate,
+                        IsMale = Json.IsMale == "true" ? true : false,
+                        Age = int.Parse(Json.Age),
+                        Birthday = DateTime.Parse(Json.Birthday),
+                        CreateDate = DateTime.Parse(Json.CreateDate),
+                        MarriageDate = DateTime.Parse(Json.MarriageDate),
                         NationalCode = Json.NationalCode
                     });
                 }
@@ -2952,6 +2951,58 @@ namespace Netotik.Services.Implement
             temp = String.Format("=html-directory={0}", DirectoryName);
             mikrotik.Send(temp ,true);
             var Read = mikrotik.Read();
+        }
+
+        public void SetDefaultNtpServers(string r_Host, int r_Port, string r_User, string r_Password)
+        {
+            var mikrotik = new MikrotikAPI();
+            mikrotik.MK(r_Host, r_Port);
+            if (!mikrotik.Login(r_User, r_Password)) mikrotik.Close();
+            //-----------------------------------------------
+            mikrotik.Send("/system/ntp/client/set");
+            mikrotik.Send("=enabled=yes");
+            mikrotik.Send("=primary-ntp=132.163.97.2");
+            mikrotik.Send("=secondary-ntp=104.45.18.177", true);
+            var Read = mikrotik.Read();
+
+            mikrotik.Send("/system/clock/set");
+            mikrotik.Send("=time-zone-autodetect=yes");
+            mikrotik.Send(string.Format("=time={0}:{1}:{2}",DateTime.Now.Hour,DateTime.Now.Minute,DateTime.Now.Second));
+            mikrotik.Send(string.Format("=date={0}/{1}/{2}",GetMonthName(DateTime.Now.Month),DateTime.Now.Day,DateTime.Now.Year),true);
+            Read = mikrotik.Read();
+        }
+
+        private static string GetMonthName(int month)
+        {
+            switch (month)
+            {
+                case 1:
+                    return "jan";
+                case 2:
+                    return "feb";
+                case 3:
+                    return "mar";
+                case 4:
+                    return "apr";
+                case 5:
+                    return "may";
+                case 6:
+                    return "jun";
+                case 7:
+                    return "jul";
+                case 8:
+                    return "aug";
+                case 9:
+                    return "sep";
+                case 10:
+                    return "oct";
+                case 11:
+                    return "nov";
+                case 12:
+                    return "dec";
+
+            }
+            return "";
         }
         //public List<RouterAccessModel> RouterAccessWithAdressListList(string r_Host, int r_Port, string r_User, string r_Password)
         //{

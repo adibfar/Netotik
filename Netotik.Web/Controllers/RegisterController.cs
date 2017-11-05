@@ -28,6 +28,8 @@ using Netotik.Services.Implement;
 using Mvc.Mailer;
 using Netotik.ViewModels.Identity.Account;
 using Netotik.Common.Controller;
+using System.Web.Hosting;
+using Netotik.ViewModels.Identity.UserClient;
 //Test Comment
 namespace Netotik.Web.Controllers
 {
@@ -86,28 +88,27 @@ namespace Netotik.Web.Controllers
         public virtual async Task<ActionResult> Client(string ReturnUrl, string RouterCode)
         {
             var RouterCodeToid = await _applicationUserManager.FindByRouterCodeAsync(RouterCode);
-            var UserLogined = _applicationUserManager.FindUserById(RouterCodeToid.Id);
-            if (!_mikrotikServices.IP_Port_Check(UserLogined.UserRouter.R_Host, UserLogined.UserRouter.R_Port, UserLogined.UserRouter.R_User, UserLogined.UserRouter.R_Password))
+            if (RouterCodeToid == null) return HttpNotFound();
+            var Router = _applicationUserManager.FindUserById(RouterCodeToid.Id);
+
+            if (!Router.UserRouter.UserRouterRegisterSetting.ActiveRegisterForm)
+                return HttpNotFound();
+            if (!_mikrotikServices.IP_Port_Check(Router.UserRouter.R_Host, Router.UserRouter.R_Port, Router.UserRouter.R_User, Router.UserRouter.R_Password))
             {
                 this.MessageError(Captions.Error, Captions.IPPORTClientError);
                 return RedirectToAction(MVC.MyRouter.Home.ActionNames.MikrotikConf, MVC.MyRouter.Home.Name, new { area = MVC.MyRouter.Name });
                 //errrrrrrrrrrrrrrrrooor
             }
-            if (!_mikrotikServices.User_Pass_Check(UserLogined.UserRouter.R_Host, UserLogined.UserRouter.R_Port, UserLogined.UserRouter.R_User, UserLogined.UserRouter.R_Password))
+            if (!_mikrotikServices.User_Pass_Check(Router.UserRouter.R_Host, Router.UserRouter.R_Port, Router.UserRouter.R_User, Router.UserRouter.R_Password))
             {
                 this.MessageError(Captions.Error, Captions.UserPasswordClientError);
                 return RedirectToAction(MVC.MyRouter.Home.ActionNames.MikrotikConf, MVC.MyRouter.Home.Name, new { area = MVC.MyRouter.Name });
             }
-            if (!_mikrotikServices.Usermanager_IsInstall(UserLogined.UserRouter.R_Host, UserLogined.UserRouter.R_Port, UserLogined.UserRouter.R_User, UserLogined.UserRouter.R_Password))
+            if (!_mikrotikServices.Usermanager_IsInstall(Router.UserRouter.R_Host, Router.UserRouter.R_Port, Router.UserRouter.R_User, Router.UserRouter.R_Password))
             {
                 this.MessageError(Captions.Error, Captions.UsermanagerClientError);
                 return RedirectToAction(MVC.MyRouter.Home.ActionNames.Index);
             }
-
-            var Router = await _applicationUserManager.FindByRouterCodeAsync(RouterCode);
-            if (Router == null) return HttpNotFound();
-            var User = _applicationUserManager.FindUserById(Router.Id);
-            ViewBag.profiles = _mikrotikServices.Usermanager_GetAllProfile(User.UserRouter.R_Host, User.UserRouter.R_Port, User.UserRouter.R_User, User.UserRouter.R_Password);
             ViewBag.RouterName = RouterCode;
             ViewBag.ReturnUrl = ReturnUrl;
             ViewBag.RegisterSetting = Router.UserRouter.UserRouterRegisterSetting;
@@ -119,62 +120,186 @@ namespace Netotik.Web.Controllers
         [Route("{lang}/userman/reg/{RouterCode}")]
         public virtual async Task<ActionResult> Client(Netotik.ViewModels.Identity.UserClient.UserClientRegisterModel model, string ReturnUrl, string RouterCode)
         {
-            //var UserByRouterName = await _applicationUserManager.FindByRouterCodeAsync(RouterCode);
-            //var UserLogined = _applicationUserManager.FindUserById(UserByRouterName.Id);
-            //if (!_mikrotikServices.IP_Port_Check(UserLogined.UserRouter.R_Host, UserLogined.UserRouter.R_Port, UserLogined.UserRouter.R_User, UserLogined.UserRouter.R_Password))
-            //{
-            //    this.MessageError(Captions.Error, Captions.IPPORTClientError);
-            //    return RedirectToAction(MVC.MyRouter.Home.ActionNames.MikrotikConf, MVC.MyRouter.Home.Name, new { area = MVC.MyRouter.Name });
-            //}
-            //if (!_mikrotikServices.User_Pass_Check(UserLogined.UserRouter.R_Host, UserLogined.UserRouter.R_Port, UserLogined.UserRouter.R_User, UserLogined.UserRouter.R_Password))
-            //{
-            //    this.MessageError(Captions.Error, Captions.UserPasswordClientError);
-            //    return RedirectToAction(MVC.MyRouter.Home.ActionNames.MikrotikConf, MVC.MyRouter.Home.Name, new { area = MVC.MyRouter.Name });
-            //}
-            //if (!_mikrotikServices.Usermanager_IsInstall(UserLogined.UserRouter.R_Host, UserLogined.UserRouter.R_Port, UserLogined.UserRouter.R_User, UserLogined.UserRouter.R_Password))
-            //{
-            //    this.MessageError(Captions.Error, Captions.UsermanagerClientError);
-            //    return RedirectToAction(MVC.MyRouter.Home.ActionNames.Index);
-            //}
-            ////----------------------------
-            //var Router = await _applicationUserManager.FindByRouterCodeAsync(RouterCode);
-            //if (Router == null) return HttpNotFound();
-            //var User = _applicationUserManager.FindUserById(Router.Id);
-            //model.customer = User.UserRouter.Userman_Customer;
-            //var Usermanuser = new Netotik.ViewModels.Identity.UserClient.UserRegisterModel()
-            //{
-            //    username = model.username,
-            //    email = model.email,
-            //    phone = model.phone,
-            //    first_name = model.first_name,
-            //    last_name = model.last_name,
-            //    password = model.password,
-            //    comment = model.comment,
-            //    customer = model.customer,
-            //    location = model.location,
-            //    profile = Request.Form["profile"].ToString()
-            //};
-            //if (!ModelState.IsValid)
-            //{
-            //    ViewBag.Message = "خطا";
-            //    return RedirectToAction(MVC.Register.ActionNames.Client);
-            //}
-            //if (_mikrotikServices.Usermanager_IsUserExist(User.UserRouter.R_Host, User.UserRouter.R_Port, User.UserRouter.R_User, User.UserRouter.R_Password, Usermanuser.username))
-            //{
-            //    //SetResultMessage(false, MessageColor.Danger, Captions.InvalidDataError, Captions.MissionFail);
-            //}
-            //else
-            //{
-            //    _mikrotikServices.Usermanager_UserCreate(User.UserRouter.R_Host, User.UserRouter.R_Port, User.UserRouter.R_User, User.UserRouter.R_Password, Usermanuser);
-            //    if (User.UserRouter.SmsCharge > 0 && User.UserRouter.SmsActive && User.UserRouter.RegisterFormSms)
-            //    {
-            //        _smsService.SendSms(model.phone, string.Format(Captions.SmsUserBuyPlan,model.username), User.Id);
-            //    }
-            //}
+            var RouterCodeToid = await _applicationUserManager.FindByRouterCodeAsync(RouterCode);
+            if (RouterCodeToid == null) return HttpNotFound();
+            var Router = _applicationUserManager.FindUserById(RouterCodeToid.Id);
+            if (!Router.UserRouter.UserRouterRegisterSetting.ActiveRegisterForm)
+                return HttpNotFound();
+            ViewBag.RouterName = RouterCode;
+            ViewBag.ReturnUrl = ReturnUrl;
+            ViewBag.RegisterSetting = Router.UserRouter.UserRouterRegisterSetting;
 
-            //ViewBag.RouterName = RouterCode;
-            //ViewBag.ReturnUrl = ReturnUrl;
-            //_uow.SaveAllChanges();
+            if (Router.UserRouter.UserRouterRegisterSetting.Age == FieldType.Required && model.Age == null)
+                ModelState.AddModelError("Age", string.Format(Captions.RequiredError, model.Age));
+
+            if (Router.UserRouter.UserRouterRegisterSetting.BirthDate == FieldType.Required && model.BirthDate == null)
+                ModelState.AddModelError("BirthDate", string.Format(Captions.RequiredError, model.BirthDate));
+
+            if (Router.UserRouter.UserRouterRegisterSetting.Email == FieldType.Required && string.IsNullOrWhiteSpace(model.Email))
+                ModelState.AddModelError("Email", string.Format(Captions.RequiredError, model.Email));
+            if (Router.UserRouter.UserRouterRegisterSetting.MobileNumber == FieldType.Required && string.IsNullOrWhiteSpace(model.MobileNumber))
+                ModelState.AddModelError("MobileNumber", string.Format(Captions.RequiredError, model.MobileNumber));
+            if (Router.UserRouter.UserRouterRegisterSetting.Name == FieldType.Required && string.IsNullOrWhiteSpace(model.Name))
+                ModelState.AddModelError("Name", string.Format(Captions.RequiredError, model.Name));
+            if (Router.UserRouter.UserRouterRegisterSetting.NationalCode == FieldType.Required && string.IsNullOrWhiteSpace(model.NationalCode))
+                ModelState.AddModelError("NationalCode", string.Format(Captions.RequiredError, model.NationalCode));
+            if (Router.UserRouter.UserRouterRegisterSetting.Password == PasswordFieldType.Required && string.IsNullOrWhiteSpace(model.Password))
+                ModelState.AddModelError("Password", string.Format(Captions.RequiredError, model.Password));
+            if (Router.UserRouter.UserRouterRegisterSetting.Password == PasswordFieldType.MobileNumber && string.IsNullOrWhiteSpace(model.MobileNumber))
+                ModelState.AddModelError("MobileNumber", string.Format(Captions.RequiredError, model.MobileNumber));
+            if (Router.UserRouter.UserRouterRegisterSetting.Password == PasswordFieldType.NationalCode && string.IsNullOrWhiteSpace(model.NationalCode))
+                ModelState.AddModelError("NationalCode", string.Format(Captions.RequiredError, model.NationalCode));
+
+            if (Router.UserRouter.UserRouterRegisterSetting.Password == PasswordFieldType.Required && Router.UserRouter.UserRouterRegisterSetting.PasswordConfirm == FieldType.Required && string.IsNullOrWhiteSpace(model.Password))
+            {
+                ModelState.AddModelError("Password", string.Format(Captions.RequiredError, model.Password));
+                ModelState.AddModelError("PasswordConfirm", string.Format(Captions.RequiredError, model.PasswordConfirm));
+            }
+            if (Router.UserRouter.UserRouterRegisterSetting.Username == UsernameFieldType.Required && string.IsNullOrWhiteSpace(model.Username))
+                ModelState.AddModelError("Username", string.Format(Captions.RequiredError, model.Username));
+
+            if (Router.UserRouter.UserRouterRegisterSetting.Username == UsernameFieldType.Email && string.IsNullOrWhiteSpace(model.Email))
+                ModelState.AddModelError("Email", string.Format(Captions.RequiredError, model.Email));
+
+            if (Router.UserRouter.UserRouterRegisterSetting.Username == UsernameFieldType.MobileNumber && string.IsNullOrWhiteSpace(model.MobileNumber))
+                ModelState.AddModelError("MobileNumber", string.Format(Captions.RequiredError, model.MobileNumber));
+
+            if (Router.UserRouter.UserRouterRegisterSetting.Username == UsernameFieldType.NationalCode && string.IsNullOrWhiteSpace(model.NationalCode))
+                ModelState.AddModelError("NationalCode", string.Format(Captions.RequiredError, model.NationalCode));
+
+            if (!ModelState.IsValid)
+                return View();
+
+            if (!_mikrotikServices.IP_Port_Check(Router.UserRouter.R_Host, Router.UserRouter.R_Port, Router.UserRouter.R_User, Router.UserRouter.R_Password))
+            {
+                this.MessageError(Captions.Error, Captions.IPPORTClientError);
+                return RedirectToAction(MVC.Register.ActionNames.Client);
+            }
+            if (!_mikrotikServices.User_Pass_Check(Router.UserRouter.R_Host, Router.UserRouter.R_Port, Router.UserRouter.R_User, Router.UserRouter.R_Password))
+            {
+                this.MessageError(Captions.Error, Captions.UserPasswordClientError);
+                return RedirectToAction(MVC.Register.ActionNames.Client);
+            }
+            if (!_mikrotikServices.Usermanager_IsInstall(Router.UserRouter.R_Host, Router.UserRouter.R_Port, Router.UserRouter.R_User, Router.UserRouter.R_Password))
+            {
+                this.MessageError(Captions.Error, Captions.UsermanagerClientError);
+                return RedirectToAction(MVC.Register.ActionNames.Client);
+            }
+
+            var UserClient = new Netotik.ViewModels.Identity.UserClient.UserRegisterModel();
+            UserClient.Age = model.Age;
+            UserClient.Birthday = model.BirthDate;
+            UserClient.CreateDate = DateTime.Now;
+            UserClient.customer = Router.UserRouter.Userman_Customer;
+            UserClient.email = model.Email;
+            UserClient.first_name = model.Name;
+            UserClient.IsMale = model.Sex == ViewModels.Identity.UserClient.Sex.Male ? true : false;
+            UserClient.last_name = model.Name;
+            UserClient.NationalCode = model.NationalCode;
+            UserClient.phone = model.MobileNumber;
+            UserClient.profile = Router.UserRouter.UserRouterRegisterSetting.ProfileName;
+
+            switch (Router.UserRouter.UserRouterRegisterSetting.Password)
+            {
+                case PasswordFieldType.None:
+                    var rand = new Random();
+                    UserClient.password = rand.Next(1000, 9999).ToString();
+                    break;
+                case PasswordFieldType.Required:
+                    UserClient.password = model.Password;
+                    break;
+                case PasswordFieldType.MobileNumber:
+                    UserClient.password = model.MobileNumber;
+                    break;
+                case PasswordFieldType.NationalCode:
+                    UserClient.password = model.NationalCode;
+                    break;
+                default:
+                    break;
+            }
+
+            switch (Router.UserRouter.UserRouterRegisterSetting.Username)
+            {
+                case UsernameFieldType.None:
+                    var Rand = new Random();
+                    bool flag = true;
+                    while (flag)
+                    {
+                        var Randoms = Rand.Next(1000, 999999);
+                        if (_mikrotikServices.Usermanager_GetUser(Router.UserRouter.R_Host, Router.UserRouter.R_Port, Router.UserRouter.R_User, Router.UserRouter.R_Password, Randoms.ToString()).FirstOrDefault().username != Randoms.ToString())
+                        {
+                            flag = false;
+                            UserClient.username = Randoms.ToString();
+                        }
+                    }
+                    break;
+                case UsernameFieldType.Required:
+                    UserClient.username = model.Username;
+                    break;
+                case UsernameFieldType.MobileNumber:
+                    UserClient.username = model.MobileNumber;
+                    break;
+                case UsernameFieldType.NationalCode:
+                    UserClient.username = model.NationalCode;
+                    break;
+                case UsernameFieldType.Email:
+                    UserClient.username = model.Email;
+                    break;
+                default:
+                    break;
+            }
+
+
+            _mikrotikServices.Usermanager_UserCreate(Router.UserRouter.R_Host, Router.UserRouter.R_Port, Router.UserRouter.R_User, Router.UserRouter.R_Password, UserClient);
+            var UserFind = _mikrotikServices.Usermanager_GetUser(Router.UserRouter.R_Host, Router.UserRouter.R_Port, Router.UserRouter.R_User, Router.UserRouter.R_Password, UserClient.username).FirstOrDefault();
+            if (UserFind.username != model.Username)
+                _mikrotikServices.Usermanager_UserCreate(Router.UserRouter.R_Host, Router.UserRouter.R_Port, Router.UserRouter.R_User, Router.UserRouter.R_Password, UserClient);
+            else
+            {
+                if ((UserFind.EditDate == null ? UserFind.CreateDate : UserFind.EditDate).AddHours(Router.UserRouter.UserRouterRegisterSetting.RegisterAgianHour) <= DateTime.Now)
+                {
+                    _mikrotikServices.Usermanager_ResetUserProfiles(Router.UserRouter.R_Host, Router.UserRouter.R_Port, Router.UserRouter.R_User, Router.UserRouter.R_Password, UserFind.username);
+                    var UserEditmodel = new UserEditModel()
+                    {
+                        Age = model.Age,
+                        Birthday = UserFind.Birthday,
+                        CreateDate = UserFind.CreateDate,
+                        IsMale = model.Sex == Sex.Male ? true:false,
+                        MarriageDate = UserFind.MarriageDate,
+                        NationalCode = model.NationalCode,
+                        profile = Router.UserRouter.UserRouterRegisterSetting.ProfileName,
+                        password = model.Password,
+                        id = UserFind.id,
+                        username = model.Username
+                    };
+                    _mikrotikServices.Usermanager_UserEdit(Router.UserRouter.R_Host, Router.UserRouter.R_Port, Router.UserRouter.R_User, Router.UserRouter.R_Password, UserEditmodel);
+                }
+            }
+            this.MessageSuccess(Captions.MissionSuccess, Captions.RegisterDone);
+            if (Router.UserRouter.UserRouterRegisterSetting.ShowUserPass)
+                ViewBag.UserFind = UserFind;
+
+            //-------------Email
+            if (Router.UserRouter.UserRouterRegisterSetting.SendEmailUserPass && (UserFind.email != null || UserFind.email != ""))
+            {
+                _userMailer.ResetPassword(new EmailViewModel
+                {
+                    Message = Captions.ForgetPasswordMailMessage,
+                    To = model.Email,
+                    Subject = Captions.ForgetPasswordMailSubject,
+                    ViewName = MVC.UserMailer.Views.ViewNames.ResetPassword
+                }
+               ).Send();
+            }
+
+            //--------------SMS
+            if (Router.UserRouter.RegisterFormSms && (UserFind.phone != null || UserFind.phone != "") && Router.UserRouter.SmsActive && Router.UserRouter.SmsCharge > 0)
+            {
+                string SmsText = Router.UserRouter.RegisterWithSmsMessage + "\n User: " + UserFind.username + "\n Pass: " + UserFind.password;
+                _smsService.SendSms(UserFind.phone, SmsText, Router.Id);
+                _uow.SaveAllChanges();
+            }
+
             return RedirectToAction(MVC.Register.ActionNames.Client);
         }
 
@@ -222,7 +347,7 @@ namespace Netotik.Web.Controllers
 
             _userMailer.ConfirmAccount(new EmailViewModel
             {
-                Message =Captions.ActivationMailMessage,
+                Message = Captions.ActivationMailMessage,
                 To = email,
                 Url = callbackUrl,
                 UrlText = Captions.ActivationMailSubject,

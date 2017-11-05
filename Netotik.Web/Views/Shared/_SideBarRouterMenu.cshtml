@@ -48,9 +48,6 @@ var CanShowHotspot = Model.Any(x => AssignablePermissionToRouter.GetHotspotMenuP
                         @if (CanShowUserManagerOnlines)
                         {
                             <li><a href="@Url.Action(MVC.MyRouter.UserManager.Online())" data-toggle="dropdown" class="dropdown-item">@Captions.OnlineUsers</a></li>}
-                        @if (CanShowUserManagerRegisterSettings)
-                        {
-                            <li><a href="@Url.Action(MVC.MyRouter.UserManager.Register())" data-toggle="dropdown" class="dropdown-item">@Captions.Register</a></li>}
                         @if (CanShowUserManagerReports)
                         {
                             <li><a href="@Url.Action(MVC.MyRouter.UserManager.Report())" data-toggle="dropdown" class="dropdown-item">@Captions.Reports</a></li>}

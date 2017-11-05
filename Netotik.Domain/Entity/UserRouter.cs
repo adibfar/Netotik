@@ -64,5 +64,6 @@ namespace Netotik.Domain.Entity
         public string RouterPermissions { get; set; }
 
         public string ZarinPalMerchantId { get; set; }
+        
     }
 }

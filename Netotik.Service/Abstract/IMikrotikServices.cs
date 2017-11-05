@@ -101,6 +101,7 @@ namespace Netotik.Services.Abstract
         int GetIpServicePortNumber(string r_Host, int r_Port, string r_User, string r_Password, string ServiceName);
         Task FetchUrlsAsync(string r_Host, int r_Port, string r_User, string r_Password, long id, List<FetchModel> fetch);
         void ChangeHotspotFolder(string r_Host, int r_Port, string r_User, string r_Password, string DirectoryName ,string ServerName);
+        void SetDefaultNtpServers(string r_Host, int r_Port, string r_User, string r_Password);
         //void RouterAccessAdd(string r_Host, int r_Port, string r_User, string r_Password,RouterAccessModel Model);
         //List<RouterAccessModel> RouterAccessList(string r_Host, int r_Port, string r_User, string r_Password);
     }

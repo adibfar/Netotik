@@ -80,7 +80,21 @@ Order = 0, GlyphIcon = "icon icon-table")]
 
         public virtual ActionResult Index()
         {
-
+            if (!_mikrotikServices.IP_Port_Check(UserLogined.UserRouter.R_Host, UserLogined.UserRouter.R_Port, UserLogined.UserRouter.R_User, UserLogined.UserRouter.R_Password))
+            {
+                this.MessageError(Captions.Error, Captions.IPPORTClientError);
+                return RedirectToAction(MVC.MyRouter.Home.ActionNames.MikrotikConf, MVC.MyRouter.Home.Name, new { area = MVC.MyRouter.Name });
+            }
+            if (!_mikrotikServices.User_Pass_Check(UserLogined.UserRouter.R_Host, UserLogined.UserRouter.R_Port, UserLogined.UserRouter.R_User, UserLogined.UserRouter.R_Password))
+            {
+                this.MessageError(Captions.Error, Captions.UserPasswordClientError);
+                return RedirectToAction(MVC.MyRouter.Home.ActionNames.MikrotikConf, MVC.MyRouter.Home.Name, new { area = MVC.MyRouter.Name });
+            }
+            var Router_Clock = _mikrotikServices.Router_Clock(UserLogined.UserRouter.R_Host, UserLogined.UserRouter.R_Port, UserLogined.UserRouter.R_User, UserLogined.UserRouter.R_Password);
+            var Router_date = Infrastructure.EnglishConvertDate.ConvertToFa(Router_Clock.FirstOrDefault().Router_date, "d");
+            var Server_Date = PersianDate.ConvertDate.ToFa(DateTime.Now, "d");
+            if (Router_date != Server_Date)
+                ViewBag.TimeError = true;
             return View();
         }
 
@@ -506,11 +520,7 @@ Order = 0, GlyphIcon = "icon icon-table")]
                                 this.MessageWarning(Captions.Information,string.Format("کاربر یوزرمنیجر {0} فاقد پسورد می باشد.",customer.login));
                         }
                         //------------------------
-                        var Router_Clock = _mikrotikServices.Router_Clock(UserLogined.UserRouter.R_Host, UserLogined.UserRouter.R_Port, UserLogined.UserRouter.R_User, UserLogined.UserRouter.R_Password);
-                        var Router_date = Infrastructure.EnglishConvertDate.ConvertToFa(Router_Clock.FirstOrDefault().Router_date, "d");
-                        var Server_Date = PersianDate.ConvertDate.ToFa(DateTime.Now, "d");
-                        if(Router_date!=Server_Date)
-                            this.MessageWarning(Captions.Information,"تاریخ روتر صحیح نمی باشد.لطفا تاریخ روتر را برای دریافت گزارشات دقیق ،تنظیم کنید.");
+                        
                         //------------------------
 
                         //------------------------
@@ -530,6 +540,17 @@ Order = 0, GlyphIcon = "icon icon-table")]
 
 
             return PartialView(MVC.Shared.Views._Message);
+        }
+
+        public virtual ActionResult ConfigRouterClock()
+        {
+            if (_mikrotikServices.IP_Port_Check(UserLogined.UserRouter.R_Host, UserLogined.UserRouter.R_Port, UserLogined.UserRouter.R_User, UserLogined.UserRouter.R_Password))
+                if (_mikrotikServices.User_Pass_Check(UserLogined.UserRouter.R_Host, UserLogined.UserRouter.R_Port, UserLogined.UserRouter.R_User, UserLogined.UserRouter.R_Password))
+                {
+                    _mikrotikServices.SetDefaultNtpServers(UserLogined.UserRouter.R_Host, UserLogined.UserRouter.R_Port, UserLogined.UserRouter.R_User, UserLogined.UserRouter.R_Password);
+                }
+
+            return RedirectToAction(MVC.MyRouter.Home.Index());
         }
     }
 }
