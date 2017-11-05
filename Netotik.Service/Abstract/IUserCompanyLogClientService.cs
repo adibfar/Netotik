@@ -12,5 +12,6 @@ namespace Netotik.Services.Abstract
     public interface IUserRouterLogClientService : IBaseService<UserRouterLogClient>
     {
         IList<UserRouterLogClient> GetList(long RouterId);
+        IList<UserRouterLogClient> GetList(long RouterId,DateTime FromTime,DateTime TillTime);
     }
 }
