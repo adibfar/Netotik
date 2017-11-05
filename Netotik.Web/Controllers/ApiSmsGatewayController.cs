@@ -1,5 +1,6 @@
 ﻿using Netotik.Data;
 using Netotik.IocConfig;
+using Netotik.Resources;
 using Netotik.Services.Abstract;
 using Netotik.Services.Identity;
 using Netotik.ViewModels.Identity.UserClient;
@@ -36,39 +37,40 @@ namespace Netotik.Web.Controllers
 
             var User = await _applicationUserManager.FindByRouterSMSCodeAsync(text.Replace("ي","ی"));
             if (User == null)
-                return "ok";
+                return "ok....";
 
             if (User.UserRouter.SmsActive && User.UserRouter.RegisterWithSms && User.UserRouter.SmsCharge > 0)
             {
                 if (!_mikrotikServices.IP_Port_Check(User.UserRouter.R_Host, User.UserRouter.R_Port, User.UserRouter.R_User, User.UserRouter.R_Password))
                 {
                     if (User.UserRouter.SmsIfErrorInSms)
-                        _smsService.SendSms(User.PhoneNumber, "در هنگام ثبت نام پیامکی خطای اتصال به روتر ایجاد شد.", User.Id);
-                    return "User router not found";
+                        _smsService.SendSms(User.PhoneNumber, Captions.ClientWithSmsError, User.Id);
+                    return "ok.";
                 }
                 if (!_mikrotikServices.User_Pass_Check(User.UserRouter.R_Host, User.UserRouter.R_Port, User.UserRouter.R_User, User.UserRouter.R_Password))
                 {
                     if (User.UserRouter.SmsIfErrorInSms)
-                        _smsService.SendSms(User.PhoneNumber, "در هنگام ثبت نام پیامکی خطای نام کاربری و رمز عبور ایجاد شد.", User.Id);
-                    return "ok";
+                        _smsService.SendSms(User.PhoneNumber, Captions.ClientRegisterWithSmsUserPassError, User.Id);
+                    return "ok..";
                 }
                 if (!_mikrotikServices.Usermanager_IsInstall(User.UserRouter.R_Host, User.UserRouter.R_Port, User.UserRouter.R_User, User.UserRouter.R_Password))
                 {
                     if (User.UserRouter.SmsIfErrorInSms)
-                        _smsService.SendSms(User.PhoneNumber, "در هنگام ثبت نام پیامکی خطای اتصال یوزرمنیجر ایجاد شد.", User.Id);
-                    return "ok";
+                        _smsService.SendSms(User.PhoneNumber,Captions.ClientRegisterWithSmsUsermanagerError, User.Id);
+                    return "ok...";
                 }
-                var Profiles = _mikrotikServices.Usermanager_GetAllProfile(User.UserRouter.R_Host, User.UserRouter.R_Port, User.UserRouter.R_User, User.UserRouter.R_Password);
-                bool Flag = false;
-                foreach (var profile in Profiles)
-                    if (profile.name == User.UserRouter.RegisterWithSmsRouterProfile)
-                        Flag = true;
-                if (!Flag)
-                {
-                    if (User.UserRouter.SmsIfErrorInSms)
-                        _smsService.SendSms(User.PhoneNumber, "در هنگام ثبت نام پیامکی خطای عدم وجود تعرفه انتخابی ایجاد شد.", User.Id);
-                    return "ok";
-                }
+
+                //var Profiles = _mikrotikServices.Usermanager_GetAllProfile(User.UserRouter.R_Host, User.UserRouter.R_Port, User.UserRouter.R_User, User.UserRouter.R_Password);
+                //bool Flag = false;
+                //foreach (var profile in Profiles)
+                //    if (profile.name == User.UserRouter.RegisterWithSmsRouterProfile)
+                //        Flag = true;
+                //if (!Flag)
+                //{
+                //    if (User.UserRouter.SmsIfErrorInSms)
+                //        _smsService.SendSms(User.PhoneNumber, "در هنگام ثبت نام پیامکی خطای عدم وجود تعرفه انتخابی ایجاد شد.", User.Id);
+                //    return "ok......";
+                //}
 
                 var Rand = new Random();
                 UserRegisterModel UserClient = new UserRegisterModel();
@@ -111,7 +113,7 @@ namespace Netotik.Web.Controllers
                     }
                 }
             }
-            return "ok";
+            return "ok.......";
 
         }
     }

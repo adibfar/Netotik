@@ -323,7 +323,7 @@
   <LocaleResource Name="Facebook">
     <Value>فیس بوک</Value>
   </LocaleResource>
-  <LocaleResource Name="Linkedin">
+  <LocaleResource Name="LinkedIn">
     <Value>لینکداین</Value>
   </LocaleResource>
   <LocaleResource Name="Twitter">
@@ -737,7 +737,6 @@
   <LocaleResource Name="ShowName">
     <Value>نام نمایشی</Value>
   </LocaleResource>
-
   <LocaleResource Name="ChangePlan">
     <Value>تغییر تعرفه</Value>
   </LocaleResource>
@@ -761,6 +760,9 @@
   </LocaleResource>
   <LocaleResource Name="PlanName">
     <Value>نام تعرفه</Value>
+  </LocaleResource>
+  <LocaleResource Name="PackageName">
+    <Value>نام بسته</Value>
   </LocaleResource>
   <LocaleResource Name="Enrollment">
     <Value>انتساب</Value>
@@ -816,8 +818,11 @@
   <LocaleResource Name="BuyPackage">
     <Value>خرید بسته</Value>
   </LocaleResource>
-  <LocaleResource Name="SelectPlan">
+  <LocaleResource Name="SelectPackage">
     <Value>انتخاب بسته</Value>
+  </LocaleResource>
+  <LocaleResource Name="SelectPlan">
+    <Value>انتخاب تعرفه</Value>
   </LocaleResource>
   <LocaleResource Name="Charts">
     <Value>نمودارها</Value>
@@ -2000,5 +2005,18 @@
   <LocaleResource Name="Female">
     <Value>خــانم</Value>
   </LocaleResource>
+
+  <LocaleResource Name="ClientWithSmsError">
+    <Value>در هنگام ثبت نام پیامکی خطای اتصال به روتر ایجاد شد.</Value>
+  </LocaleResource>
+
+  <LocaleResource Name="ClientRegisterWithSmsUserPassError">
+    <Value>در هنگام ثبت نام پیامکی خطای نام کاربری و رمز عبور ایجاد شد.</Value>
+  </LocaleResource>
+
+  <LocaleResource Name="ClientRegisterWithSmsUsermanagerError">
+    <Value>در هنگام ثبت نام پیامکی خطای اتصال یوزرمنیجر ایجاد شد.</Value>
+  </LocaleResource>
+
 
 </Language>
