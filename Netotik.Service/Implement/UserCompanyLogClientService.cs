@@ -28,13 +28,13 @@ namespace Netotik.Services.Implement
             return dbSet.AsQueryable().Where(
                 x => x.UserRouterId == RouterId && x.UserRouter.WebsitesLogs).ToList();
         }
-        //public IList<UserRouterLogClient> GetRangeListList(long CompanyId,DateTime StartDateTime,DateTime EndDateTime)
-        //{
-        //    return dbSet.AsQueryable().Where(
-        //        x => x.UserRouterId == CompanyId).ToList()
-        //        .Where(x => DateTime.Compare(x..AddMinutes(5), DateTime.Now) > 0).ToList();
-        //}
-
+        public IList<UserRouterLogClient> GetList(long RouterId, DateTime FromTime, DateTime ToTime)
+        {
+            return dbSet.AsQueryable().Where(
+                x => x.UserRouterId == RouterId && x.UserRouter.WebsitesLogs &&
+                x.MikrotikCreateDate >= FromTime && x.MikrotikCreateDate <= ToTime
+                ).ToList();
+        }
 
     }
 }

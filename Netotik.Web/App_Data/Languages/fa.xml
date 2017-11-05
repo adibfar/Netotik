@@ -2005,6 +2005,12 @@
   <LocaleResource Name="Female">
     <Value>خــانم</Value>
   </LocaleResource>
+  <LocaleResource Name="FromDate">
+    <Value>از تاریخ</Value>
+  </LocaleResource>
+  <LocaleResource Name="ToDate">
+    <Value>تا تاریخ</Value>
+  </LocaleResource>
 
   <LocaleResource Name="ClientWithSmsError">
     <Value>در هنگام ثبت نام پیامکی خطای اتصال به روتر ایجاد شد.</Value>

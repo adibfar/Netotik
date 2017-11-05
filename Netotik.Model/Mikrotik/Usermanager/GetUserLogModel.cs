@@ -12,7 +12,13 @@ namespace Netotik.ViewModels.Mikrotik
 
         [Required(ErrorMessageResourceType = typeof(Captions), ErrorMessageResourceName = "RequiredError")]
         [Display(ResourceType = typeof(Captions), Name = "Date")]
-        public DateTime DateTime { get; set; }
+        public DateTime Date { get; set; }
+        [Required(ErrorMessageResourceType = typeof(Captions), ErrorMessageResourceName = "RequiredError")]
+        [Display(ResourceType = typeof(Captions), Name = "FromTime")]
+        public DateTime FromTime { get; set; }
+        [Required(ErrorMessageResourceType = typeof(Captions), ErrorMessageResourceName = "RequiredError")]
+        [Display(ResourceType = typeof(Captions), Name = "TillTime")]
+        public DateTime ToTime { get; set; }
 
     }
 }
