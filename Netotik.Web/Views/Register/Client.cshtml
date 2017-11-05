@@ -8,9 +8,238 @@
 
     var setting = ViewBag.RegisterSetting as Netotik.Domain.Entity.UserRouterRegisterSetting;
 }
-
-@if (setting == null)
+@if (ViewBag.UserFind == null)
 {
+    if (setting == null)
+    {
+
+    }
+    else
+    {
+        <section class="flexbox-container">
+            @if (ViewBag.Success != null)
+            {
+                <div class="col-md-5 offset-md-2 col-xs-12">
+                    <div class="alert alert-icon-left alert-success alert-dismissible fade in mb-2" role="alert">
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">×</span>
+                        </button>
+                        <strong>@Captions.RegisterDone</strong> @ViewBag.Success
+                    </div>
+                </div>
+            }
+            else
+            {
+
+                <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 offset6 col-xs-offset-3 offset-lg-3 offset-md-3 box-shadow-2 p-0">
+                    <div class="card border-grey border-lighten-3 m-0">
+                        <div class="card-body collapse in">
+                            @if (ViewBag.Message != null)
+                        {
+                                <div class="alert alert-icon-left alert-danger alert-dismissible fade in mb-2" role="alert">
+                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                        <span aria-hidden="true">×</span>
+                                    </button>
+                                    <strong>@Captions.MissionFail</strong> @ViewBag.Message
+                                </div>
+
+                            }
+                            <div class="card-block">
+                                @using (Html.BeginForm(MVC.Register.ActionNames.Client, MVC.Register.Name, new { ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form", id = "loginForm", autocomplete = "off" }))
+                                {
+                                    @Html.AntiForgeryToken()
+                                    <div class="row">
+                                        @if (setting.Name != FieldType.None)
+                                        {
+                                            <div class="col-md-12">
+                                                <div class="form-group has-feedback has-icon-left">
+                                                    @if (setting.Name == FieldType.Required)
+                                                    {
+                                                        @Html.TextBoxFor(m => m.Name, new { @class = "form-control", placeholder = Captions.Name, @data_val = "true", @data_val_required = string.Format(Captions.RequiredError, Captions.Name) })
+                                                    }
+                                                    else
+                                                    {
+                                                        <input type="text" name="Name" placeholder="@Captions.Name" value="@Model.Name" class="form-control">
+                                                    }
+                                                    <div class="form-control-position">
+                                                        <i class="icon-head"></i>
+                                                    </div>
+                                                    @Html.ValidationMessageFor(model => model.Name, "", htmlAttributes: new { @class = "text-danger" })
+                                                </div>
+                                            </div>
+                                        }
+                                        @if (setting.Age != FieldType.None || setting.Sex != FieldType.None)
+                                        {
+                                            if (setting.Age != FieldType.None)
+                                            {
+                                                <div class="col-md-6">
+                                                    <div class="form-group has-feedback has-icon-left">
+                                                        @if (setting.Age == FieldType.Required)
+                                                        {
+                                                            @Html.TextBoxFor(m => m.Age, new { @class = "form-control", placeholder = Captions.Age, @data_val = "true", @data_val_required = string.Format(Captions.RequiredError, Captions.Age) })
+                                                        }
+                                                        else
+                                                        {
+                                                            <input type="text" name="Age" placeholder="@Captions.Age" value="@Model.Age" class="form-control">
+                                                        }
+                                                        <div class="form-control-position">
+                                                            <i class="icon-head"></i>
+                                                        </div>
+                                                        @Html.ValidationMessageFor(model => model.Age, "", htmlAttributes: new { @class = "text-danger" })
+                                                    </div>
+                                                </div>
+                                            }
+
+                                            if (setting.Sex != FieldType.None)
+                                            {
+                                                <div class="col-md-6">
+                                                    <div class="form-group has-feedback has-icon-left">
+                                                        @Html.EnumDropDownListFor(m => m.Sex, new { @class = "form-control", placeholder = Captions.Sex, @data_val = "true", @data_val_required = string.Format(Captions.RequiredError, Captions.Sex) })
+                                                        <div class="form-control-position">
+                                                            <i class="icon-male2"></i>
+                                                        </div>
+                                                        @Html.ValidationMessageFor(model => model.Sex, "", htmlAttributes: new { @class = "text-danger" })
+                                                    </div>
+                                                </div>
+                                            }
+
+                                        }
+                                        @if (setting.Username == UsernameFieldType.Required)
+                                        {
+                                            <div class="col-md-12">
+                                                <div class="form-group has-feedback has-icon-left">
+                                                    @Html.TextBoxFor(m => m.Username, new { @class = "form-control", placeholder = Captions.UserName, @data_val = "true", @data_val_required = string.Format(Captions.RequiredError, Captions.UserName) })
+                                                    <div class="form-control-position">
+                                                        <i class="icon-user"></i>
+                                                    </div>
+                                                    @Html.ValidationMessageFor(model => model.Username, "", htmlAttributes: new { @class = "text-danger" })
+                                                </div>
+                                            </div>
+                                        }
+                                        @if (setting.MobileNumber != FieldType.None || setting.Username == UsernameFieldType.MobileNumber || setting.Password == PasswordFieldType.MobileNumber)
+                                        {
+                                            <div class="col-md-12">
+                                                <div class="form-group has-feedback has-icon-left">
+                                                    @if (setting.MobileNumber == FieldType.Required || setting.Username == UsernameFieldType.MobileNumber || setting.Password == PasswordFieldType.MobileNumber)
+                                                    {
+                                                        @Html.TextBoxFor(m => m.MobileNumber, new { @class = "form-control", placeholder = Captions.MobileNumber, @data_val_required = string.Format(Captions.RequiredError, Captions.MobileNumber) })
+                                                    }
+                                                    else
+                                                    {
+                                                        <input type="text" name="MobileNumber" placeholder="@Captions.MobileNumber" value="@Model.MobileNumber" class="form-control">
+                                                    }
+                                                    <div class="form-control-position">
+                                                        <i class="icon-phone"></i>
+                                                    </div>
+                                                    @Html.ValidationMessageFor(model => model.MobileNumber, "", htmlAttributes: new { @class = "text-danger" })
+                                                </div>
+                                            </div>
+                                        }
+
+                                        @if (setting.Email != FieldType.None || setting.Username == UsernameFieldType.Email)
+                                        {
+                                            <div class="col-md-12">
+                                                <div class="form-group has-feedback has-icon-left">
+                                                    @if (setting.Email == FieldType.Required || setting.Username == UsernameFieldType.Email)
+                                                    {
+                                                        @Html.TextBoxFor(m => m.Email, new { @class = "form-control", placeholder = Captions.Email, @data_val_required = string.Format(Captions.RequiredError, Captions.Email) })
+                                                    }
+                                                    else
+                                                    {
+                                                        <input type="text" name="Email" placeholder="@Captions.Email" value="@Model.Email" class="form-control">
+                                                    }
+                                                    <div class="form-control-position">
+                                                        <i class="icon-mail"></i>
+                                                    </div>
+                                                    @Html.ValidationMessageFor(model => model.Email, "", htmlAttributes: new { @class = "text-danger" })
+                                                </div>
+                                            </div>
+                                        }
+                                        @if (setting.NationalCode != FieldType.None || setting.Username == UsernameFieldType.NationalCode || setting.Password == PasswordFieldType.NationalCode)
+                                        {
+                                            <div class="col-md-12">
+                                                <div class="form-group has-feedback has-icon-left">
+                                                    @if (setting.NationalCode == FieldType.Required || setting.Username == UsernameFieldType.NationalCode || setting.Password == PasswordFieldType.NationalCode)
+                                                    {
+                                                        @Html.TextBoxFor(m => m.NationalCode, new { @class = "form-control", placeholder = Captions.NationalCode, @data_val_required = string.Format(Captions.RequiredError, Captions.NationalCode) })
+                                                    }
+                                                    else
+                                                    {
+                                                        <input type="text" name="NationalCode" placeholder="@Captions.NationalCode" value="@Model.NationalCode" class="form-control">
+                                                    }
+                                                    <div class="form-control-position">
+                                                        <i class="icon-diamonds"></i>
+                                                    </div>
+                                                    @Html.ValidationMessageFor(model => model.NationalCode, "", htmlAttributes: new { @class = "text-danger" })
+                                                </div>
+                                            </div>
+                                        }
+                                        @if (setting.BirthDate != FieldType.None)
+                                        {
+                                            <div class="col-md-12">
+                                                <div class="form-group has-feedback has-icon-left">
+                                                    <div class="position-relative has-icon-left">
+                                                        @if (setting.BirthDate == FieldType.Required)
+                                                        {
+                                                            @Html.TextBoxFor(m => m.BirthDate, new { @class = "form-control", placeholder = Captions.BirthDate, @data_val = "true", @data_val_required = string.Format(Captions.RequiredError, Captions.BirthDate) })
+                                                        }
+                                                        else
+                                                        {
+                                                            <input type="text" name="BirthDate" placeholder="@Captions.BirthDate" value="@Model.BirthDate" class="form-control">
+                                                        }
+                                                        <div class="form-control-position">
+                                                            <i class="icon-birthday-cake"></i>
+                                                        </div>
+                                                        @Html.ValidationMessageFor(model => model.BirthDate, "", htmlAttributes: new { @class = "text-danger" })
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        }
+                                        @if (setting.Password == PasswordFieldType.Required)
+                                        {
+                                            <div class="col-md-12">
+                                                <div class="form-group has-feedback has-icon-left">
+                                                    @Html.PasswordFor(m => m.Password, new { @class = "form-control", placeholder = Captions.Password, @data_val = "true", @data_val_required = string.Format(Captions.RequiredError, Captions.Password) })
+                                                    <div class="form-control-position">
+                                                        <i class="icon-key2"></i>
+                                                    </div>
+                                                    @Html.ValidationMessageFor(model => model.Password, "", htmlAttributes: new { @class = "text-danger" })
+                                                </div>
+                                            </div>
+                                        }
+                                        @if (setting.PasswordConfirm != FieldType.Required && setting.Password == PasswordFieldType.Required)
+                                        {
+                                            <div class="col-md-12">
+                                                <div class="form-group has-feedback has-icon-left">
+                                                    @Html.PasswordFor(m => m.PasswordConfirm, new { @class = "form-control", placeholder = Captions.ConfirmPassword, @data_val = "true", @data_val_required = string.Format(Captions.RequiredError, Captions.ConfirmPassword) })
+                                                    <div class="form-control-position">
+                                                        <i class="icon-key2"></i>
+                                                    </div>
+                                                    @Html.ValidationMessageFor(model => model.PasswordConfirm, "", htmlAttributes: new { @class = "text-danger" })
+                                                </div>
+                                            </div>
+                                        }
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <button type="submit" class="btn btn-success btn-block ">
+                                                <i class="icon-user"></i> @Captions.Register
+                                            </button>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <a href="@Url.Action(MVC.Login.Client("",ViewBag.RouterName))" class="btn btn-outline-primary btn-block"><i class="icon-lock4"></i> @Captions.LoginToUserAccount</a>
+                                        </div>
+                                    </div>
+                                }
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            }
+        </section>
+    }
 
 }
 else
@@ -33,204 +262,36 @@ else
             <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 offset6 col-xs-offset-3 offset-lg-3 offset-md-3 box-shadow-2 p-0">
                 <div class="card border-grey border-lighten-3 m-0">
                     <div class="card-body collapse in">
-                        @if (ViewBag.Message != null)
-                    {
-                            <div class="alert alert-icon-left alert-danger alert-dismissible fade in mb-2" role="alert">
-                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                    <span aria-hidden="true">×</span>
-                                </button>
-                                <strong>@Captions.MissionFail</strong> @ViewBag.Message
-                            </div>
-
-                        }
                         <div class="card-block">
-                            @using (Html.BeginForm(MVC.Register.ActionNames.Client, MVC.Register.Name, new { ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form", id = "loginForm", autocomplete = "off" }))
-                            {
-                                @Html.AntiForgeryToken()
                                 <div class="row">
-                                    @if (setting.Name != FieldType.None)
-                                    {
-                                        <div class="col-md-12">
+                                        <div class="col-md-6">
                                             <div class="form-group has-feedback has-icon-left">
-                                                @if (setting.Name == FieldType.Required)
-                                                {
-                                                    @Html.TextBoxFor(m => m.Name, new { @class = "form-control", placeholder = Captions.Name, @data_val = "true", @data_val_required = string.Format(Captions.RequiredError, Captions.Name) })
-                                                }
-                                                else
-                                                {
-                                                    <input type="text" name="Name" placeholder="@Captions.Name" value="@Model.Name" class="form-control">
-                                                }
-                                                <div class="form-control-position">
-                                                    <i class="icon-head"></i>
-                                                </div>
-                                                @Html.ValidationMessageFor(model => model.Name, "", htmlAttributes: new { @class = "text-danger" })
-                                            </div>
-                                        </div>
-                                    }
-                                    @if (setting.Age != FieldType.None || setting.Sex != FieldType.None)
-                                    {
-                                        if (setting.Age != FieldType.None)
-                                        {
-                                            <div class="col-md-6">
-                                                <div class="form-group has-feedback has-icon-left">
-                                                    @if (setting.Age == FieldType.Required)
-                                                    {
-                                                        @Html.TextBoxFor(m => m.Age, new { @class = "form-control", placeholder = Captions.Age, @data_val = "true", @data_val_required = string.Format(Captions.RequiredError, Captions.Age) })
-                                                    }
-                                                    else
-                                                    {
-                                                        <input type="text" name="Age" placeholder="@Captions.Age" value="@Model.Age" class="form-control">
-                                                    }
-                                                    <div class="form-control-position">
-                                                        <i class="icon-head"></i>
-                                                    </div>
-                                                    @Html.ValidationMessageFor(model => model.Age, "", htmlAttributes: new { @class = "text-danger" })
-                                                </div>
-                                            </div>
-                                        }
-
-                                        if (setting.Sex != FieldType.None)
-                                        {
-                                            <div class="col-md-6">
-                                                <div class="form-group has-feedback has-icon-left">
-                                                    @Html.EnumDropDownListFor(m => m.Sex, new { @class = "form-control", placeholder = Captions.Sex, @data_val = "true", @data_val_required = string.Format(Captions.RequiredError, Captions.Sex) })
-                                                    <div class="form-control-position">
-                                                        <i class="icon-male2"></i>
-                                                    </div>
-                                                    @Html.ValidationMessageFor(model => model.Sex, "", htmlAttributes: new { @class = "text-danger" })
-                                                </div>
-                                            </div>
-                                        }
-
-                                    }
-                                    @if (setting.Username == UsernameFieldType.Required)
-                                    {
-                                        <div class="col-md-12">
-                                            <div class="form-group has-feedback has-icon-left">
-                                                @Html.TextBoxFor(m => m.Username, new { @class = "form-control", placeholder = Captions.UserName, @data_val = "true", @data_val_required = string.Format(Captions.RequiredError, Captions.UserName) })
+                                                @Html.TextBox("",(ViewBag.UserFind as UserModel).username, new { @class = "form-control", @readonly = "yes"})
                                                 <div class="form-control-position">
                                                     <i class="icon-user"></i>
                                                 </div>
-                                                @Html.ValidationMessageFor(model => model.Username, "", htmlAttributes: new { @class = "text-danger" })
                                             </div>
                                         </div>
-                                    }
-                                    @if (setting.MobileNumber != FieldType.None || setting.Username == UsernameFieldType.MobileNumber || setting.Password == PasswordFieldType.MobileNumber)
-                                    {
-                                        <div class="col-md-12">
-                                            <div class="form-group has-feedback has-icon-left">
-                                                @if (setting.MobileNumber == FieldType.Required || setting.Username == UsernameFieldType.MobileNumber || setting.Password == PasswordFieldType.MobileNumber)
-                                                {
-                                                    @Html.TextBoxFor(m => m.MobileNumber, new { @class = "form-control", placeholder = Captions.MobileNumber, @data_val_required = string.Format(Captions.RequiredError, Captions.MobileNumber) })
-                                                }
-                                                else
-                                                {
-                                                    <input type="text" name="MobileNumber" placeholder="@Captions.MobileNumber" value="@Model.MobileNumber" class="form-control">
-                                                }
-                                                <div class="form-control-position">
-                                                    <i class="icon-phone"></i>
-                                                </div>
-                                                @Html.ValidationMessageFor(model => model.MobileNumber, "", htmlAttributes: new { @class = "text-danger" })
-                                            </div>
-                                        </div>
-                                    }
-
-                                    @if (setting.Email != FieldType.None || setting.Username == UsernameFieldType.Email)
-                                    {
-                                        <div class="col-md-12">
-                                            <div class="form-group has-feedback has-icon-left">
-                                                @if (setting.Email == FieldType.Required || setting.Username == UsernameFieldType.Email)
-                                                {
-                                                    @Html.TextBoxFor(m => m.Email, new { @class = "form-control", placeholder = Captions.Email, @data_val_required = string.Format(Captions.RequiredError, Captions.Email) })
-                                                }
-                                                else
-                                                {
-                                                    <input type="text" name="Email" placeholder="@Captions.Email" value="@Model.Email" class="form-control">
-                                                }
-                                                <div class="form-control-position">
-                                                    <i class="icon-mail"></i>
-                                                </div>
-                                                @Html.ValidationMessageFor(model => model.Email, "", htmlAttributes: new { @class = "text-danger" })
-                                            </div>
-                                        </div>
-                                    }
-                                    @if (setting.NationalCode != FieldType.None || setting.Username == UsernameFieldType.NationalCode || setting.Password == PasswordFieldType.NationalCode)
-                                    {
-                                        <div class="col-md-12">
-                                            <div class="form-group has-feedback has-icon-left">
-                                                @if (setting.NationalCode == FieldType.Required || setting.Username == UsernameFieldType.NationalCode || setting.Password == PasswordFieldType.NationalCode)
-                                                {
-                                                    @Html.TextBoxFor(m => m.NationalCode, new { @class = "form-control", placeholder = Captions.NationalCode, @data_val_required = string.Format(Captions.RequiredError, Captions.NationalCode) })
-                                                }
-                                                else
-                                                {
-                                                    <input type="text" name="NationalCode" placeholder="@Captions.NationalCode" value="@Model.NationalCode" class="form-control">
-                                                }
-                                                <div class="form-control-position">
-                                                    <i class="icon-diamonds"></i>
-                                                </div>
-                                                @Html.ValidationMessageFor(model => model.NationalCode, "", htmlAttributes: new { @class = "text-danger" })
-                                            </div>
-                                        </div>
-                                    }
-                                    @if (setting.BirthDate != FieldType.None)
-                                    {
-                                        <div class="col-md-12">
-                                            <div class="form-group has-feedback has-icon-left">
-                                                <div class="position-relative has-icon-left">
-                                                    @if (setting.BirthDate == FieldType.Required)
-                                                    {
-                                                        @Html.TextBoxFor(m => m.BirthDate, new { @class = "form-control", placeholder = Captions.BirthDate, @data_val = "true", @data_val_required = string.Format(Captions.RequiredError, Captions.BirthDate) })
-                                                    }
-                                                    else
-                                                    {
-                                                        <input type="text" name="BirthDate" placeholder="@Captions.BirthDate" value="@Model.BirthDate" class="form-control">
-                                                    }
-                                                    <div class="form-control-position">
-                                                        <i class="icon-birthday-cake"></i>
-                                                    </div>
-                                                    @Html.ValidationMessageFor(model => model.BirthDate, "", htmlAttributes: new { @class = "text-danger" })
-                                                </div>
-                                            </div>
-                                        </div>
-                                    }
-                                    @if (setting.Password == PasswordFieldType.Required)
-                                    {
-                                        <div class="col-md-12">
-                                            <div class="form-group has-feedback has-icon-left">
-                                                @Html.PasswordFor(m => m.Password, new { @class = "form-control", placeholder = Captions.Password, @data_val = "true", @data_val_required = string.Format(Captions.RequiredError, Captions.Password) })
-                                                <div class="form-control-position">
-                                                    <i class="icon-key2"></i>
-                                                </div>
-                                                @Html.ValidationMessageFor(model => model.Password, "", htmlAttributes: new { @class = "text-danger" })
-                                            </div>
-                                        </div>
-                                    }
-                                    @if (setting.PasswordConfirm != FieldType.Required && setting.Password == PasswordFieldType.Required)
-                                    {
-                                        <div class="col-md-12">
-                                            <div class="form-group has-feedback has-icon-left">
-                                                @Html.PasswordFor(m => m.PasswordConfirm, new { @class = "form-control", placeholder = Captions.ConfirmPassword, @data_val = "true", @data_val_required = string.Format(Captions.RequiredError, Captions.ConfirmPassword) })
-                                                <div class="form-control-position">
-                                                    <i class="icon-key2"></i>
-                                                </div>
-                                                @Html.ValidationMessageFor(model => model.PasswordConfirm, "", htmlAttributes: new { @class = "text-danger" })
-                                            </div>
-                                        </div>
-                                    }
-                                </div>
-
-                                <div class="row">
                                     <div class="col-md-6">
-                                        <button type="submit" class="btn btn-success btn-block ">
-                                            <i class="icon-user"></i> @Captions.Register
-                                        </button>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <a href="#" class="btn btn-outline-primary btn-block"><i class="icon-lock4"></i> @Captions.LoginToUserAccount</a>
+                                        <div class="form-group has-feedback has-icon-left">
+                                            @Html.TextBox("", (ViewBag.UserFind as UserModel).password, new { @class = "form-control", @readonly = "yes" })
+                                            <div class="form-control-position">
+                                                <i class="icon-key2"></i>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
-                            }
+
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <a href="#" class="btn btn-success btn-block ">
+                                                <i class="icon-user"></i> @Captions.Login
+                                            </a>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <a href="@Url.Action(MVC.Login.Client("",ViewBag.RouterName))" class="btn btn-outline-primary btn-block"><i class="icon-lock4"></i> @Captions.LoginToUserAccount</a>
+                                        </div>
+                                    </div>
                         </div>
 
                     </div>
@@ -239,4 +300,3 @@ else
         }
     </section>
 }
-

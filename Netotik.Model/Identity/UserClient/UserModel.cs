@@ -1,4 +1,5 @@
 ﻿using Netotik.Resources;
+using System;
 using System.ComponentModel.DataAnnotations;
 using System.Web.Mvc;
 
@@ -60,20 +61,20 @@ namespace Netotik.ViewModels.Identity.UserClient
 
 
         [Display(ResourceType = typeof(Captions), Name = "BirthDate")]
-        public string Birthday { get; set; }
+        public DateTime Birthday { get; set; }
         [Display(ResourceType = typeof(Captions), Name = "NationalCode")]
         [System.Web.Mvc.Remote("IsNationalCodeValid", "Remote", System.Web.Mvc.AreaReference.UseRoot, HttpMethod = "POST", ErrorMessageResourceType = typeof(Captions), ErrorMessageResourceName = "NotValidError")]
         public string NationalCode { get; set; }
         [Display(ResourceType = typeof(Captions), Name = "IsMale")]
-        public string IsMale { get; set; }
+        public bool IsMale { get; set; }
         [Display(ResourceType = typeof(Captions), Name = "CreateDate")]
-        public string CreateDate { get; set; }
+        public DateTime CreateDate { get; set; }
         [Display(ResourceType = typeof(Captions), Name = "MarriageDate")]
-        public string MarriageDate { get; set; }
+        public DateTime MarriageDate { get; set; }
         [Display(ResourceType = typeof(Captions), Name = "Age")]
-        public string Age { get; set; }
+        public int? Age { get; set; }
         [Display(ResourceType = typeof(Captions), Name = "LastEdit")]
-        public string EditDate { get; set; }
+        public DateTime EditDate { get; set; }
 
     }
 }

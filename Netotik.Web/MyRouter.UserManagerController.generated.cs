@@ -160,13 +160,13 @@ namespace Netotik.Web.Areas.MyRouter.Controllers
             public readonly string PackageList = "PackageList";
             public readonly string LoadPackages = "LoadPackages";
             public readonly string Report = "Report";
-            public readonly string Register = "Register";
             public readonly string UserEdit = "UserEdit";
             public readonly string UserEdit_Save = "UserEdit_Save";
             public readonly string RegisterSetting = "RegisterSetting";
             public readonly string ClientArea = "ClientArea";
             public readonly string Online = "Online";
             public readonly string LoadOnlines = "LoadOnlines";
+            public readonly string LoadProfiles = "LoadProfiles";
             public readonly string RedirectToLocal = "RedirectToLocal";
         }
 
@@ -189,13 +189,13 @@ namespace Netotik.Web.Areas.MyRouter.Controllers
             public const string PackageList = "PackageList";
             public const string LoadPackages = "LoadPackages";
             public const string Report = "Report";
-            public const string Register = "Register";
             public const string UserEdit = "UserEdit";
             public const string UserEdit_Save = "UserEdit_Save";
             public const string RegisterSetting = "RegisterSetting";
             public const string ClientArea = "ClientArea";
             public const string Online = "Online";
             public const string LoadOnlines = "LoadOnlines";
+            public const string LoadProfiles = "LoadProfiles";
             public const string RedirectToLocal = "RedirectToLocal";
         }
 
@@ -345,6 +345,7 @@ namespace Netotik.Web.Areas.MyRouter.Controllers
             {
                 public readonly string _Onlines = "_Onlines";
                 public readonly string _Packages = "_Packages";
+                public readonly string _Profiles = "_Profiles";
                 public readonly string _UserDetailsSessions = "_UserDetailsSessions";
                 public readonly string _Users = "_Users";
                 public readonly string ClientArea = "ClientArea";
@@ -352,7 +353,6 @@ namespace Netotik.Web.Areas.MyRouter.Controllers
                 public readonly string PackageCreate = "PackageCreate";
                 public readonly string PackageDetails = "PackageDetails";
                 public readonly string PackageList = "PackageList";
-                public readonly string Register = "Register";
                 public readonly string RegisterSetting = "RegisterSetting";
                 public readonly string Report = "Report";
                 public readonly string UserCreate = "UserCreate";
@@ -362,6 +362,7 @@ namespace Netotik.Web.Areas.MyRouter.Controllers
             }
             public readonly string _Onlines = "~/Areas/MyRouter/Views/UserManager/_Onlines.cshtml";
             public readonly string _Packages = "~/Areas/MyRouter/Views/UserManager/_Packages.cshtml";
+            public readonly string _Profiles = "~/Areas/MyRouter/Views/UserManager/_Profiles.cshtml";
             public readonly string _UserDetailsSessions = "~/Areas/MyRouter/Views/UserManager/_UserDetailsSessions.cshtml";
             public readonly string _Users = "~/Areas/MyRouter/Views/UserManager/_Users.cshtml";
             public readonly string ClientArea = "~/Areas/MyRouter/Views/UserManager/ClientArea.cshtml";
@@ -369,7 +370,6 @@ namespace Netotik.Web.Areas.MyRouter.Controllers
             public readonly string PackageCreate = "~/Areas/MyRouter/Views/UserManager/PackageCreate.cshtml";
             public readonly string PackageDetails = "~/Areas/MyRouter/Views/UserManager/PackageDetails.cshtml";
             public readonly string PackageList = "~/Areas/MyRouter/Views/UserManager/PackageList.cshtml";
-            public readonly string Register = "~/Areas/MyRouter/Views/UserManager/Register.cshtml";
             public readonly string RegisterSetting = "~/Areas/MyRouter/Views/UserManager/RegisterSetting.cshtml";
             public readonly string Report = "~/Areas/MyRouter/Views/UserManager/Report.cshtml";
             public readonly string UserCreate = "~/Areas/MyRouter/Views/UserManager/UserCreate.cshtml";
@@ -598,17 +598,6 @@ namespace Netotik.Web.Areas.MyRouter.Controllers
         }
 
         [NonAction]
-        partial void RegisterOverride(T4MVC_System_Web_Mvc_ActionResult callInfo);
-
-        [NonAction]
-        public override System.Web.Mvc.ActionResult Register()
-        {
-            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Register);
-            RegisterOverride(callInfo);
-            return callInfo;
-        }
-
-        [NonAction]
         partial void UserEditOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, string id);
 
         [NonAction]
@@ -698,6 +687,17 @@ namespace Netotik.Web.Areas.MyRouter.Controllers
         {
             var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.LoadOnlines);
             LoadOnlinesOverride(callInfo);
+            return callInfo;
+        }
+
+        [NonAction]
+        partial void LoadProfilesOverride(T4MVC_System_Web_Mvc_ActionResult callInfo);
+
+        [NonAction]
+        public override System.Web.Mvc.ActionResult LoadProfiles()
+        {
+            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.LoadProfiles);
+            LoadProfilesOverride(callInfo);
             return callInfo;
         }
 

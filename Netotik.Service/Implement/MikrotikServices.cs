@@ -264,11 +264,11 @@ namespace Netotik.Services.Implement
                         upload_used = ColumnList.Any(x => x.Key == "upload-used") ? (ColumnList.FirstOrDefault(x => x.Key == "upload-used").Value) : "",
                         registration_date = ColumnList.Any(x => x.Key == "registration-date") ? (ColumnList.FirstOrDefault(x => x.Key == "registration-date").Value) : "",
                         reg_key = ColumnList.Any(x => x.Key == "reg-key") ? (ColumnList.FirstOrDefault(x => x.Key == "reg-key").Value) : "",
-                        IsMale = Json.IsMale,
-                        Age = Json.Age,
-                        Birthday = Json.Birthday,
-                        CreateDate = Json.CreateDate,
-                        MarriageDate = Json.MarriageDate,
+                        IsMale = Json.IsMale == "true" ?true:false,
+                        Age = int.Parse(Json.Age),
+                        Birthday = DateTime.Parse(Json.Birthday),
+                        CreateDate = DateTime.Parse(Json.CreateDate),
+                        MarriageDate = DateTime.Parse(Json.MarriageDate),
                         NationalCode = Json.NationalCode
                     });
                 }
@@ -465,11 +465,11 @@ namespace Netotik.Services.Implement
                         uptime_used = ColumnList.Any(x => x.Key == "uptime-used") ? (ColumnList.FirstOrDefault(x => x.Key == "uptime-used").Value) : "",
                         download_used = ColumnList.Any(x => x.Key == "download-used") ? (ColumnList.FirstOrDefault(x => x.Key == "download-used").Value) : "",
                         upload_used = ColumnList.Any(x => x.Key == "upload-used") ? (ColumnList.FirstOrDefault(x => x.Key == "upload-used").Value) : "",
-                        IsMale = Json.IsMale,
-                        Age = Json.Age,
-                        Birthday = Json.Birthday,
-                        CreateDate = Json.CreateDate,
-                        MarriageDate = Json.MarriageDate,
+                        IsMale = Json.IsMale == "true" ? true : false,
+                        Age = int.Parse(Json.Age),
+                        Birthday = DateTime.Parse(Json.Birthday),
+                        CreateDate = DateTime.Parse(Json.CreateDate),
+                        MarriageDate = DateTime.Parse(Json.MarriageDate),
                         NationalCode = Json.NationalCode
                     });
                 }
@@ -534,12 +534,11 @@ namespace Netotik.Services.Implement
                         //comment = ColumnList.Any(x => x.Key == "comment") ? (ColumnList.FirstOrDefault(x => x.Key == "comment").Value) : "",
                         uptime_used = ColumnList.Any(x => x.Key == "uptime-used") ? (ColumnList.FirstOrDefault(x => x.Key == "uptime-used").Value) : "",
                         download_used = ColumnList.Any(x => x.Key == "download-used") ? (ColumnList.FirstOrDefault(x => x.Key == "download-used").Value) : "",
-                        upload_used = ColumnList.Any(x => x.Key == "upload-used") ? (ColumnList.FirstOrDefault(x => x.Key == "upload-used").Value) : "",
-                        IsMale = Json.IsMale,
-                        Age = Json.Age,
-                        Birthday = Json.Birthday,
-                        CreateDate = Json.CreateDate,
-                        MarriageDate = Json.MarriageDate,
+                        IsMale = Json.IsMale == "true" ? true : false,
+                        Age = int.Parse(Json.Age),
+                        Birthday = DateTime.Parse(Json.Birthday),
+                        CreateDate = DateTime.Parse(Json.CreateDate),
+                        MarriageDate = DateTime.Parse(Json.MarriageDate),
                         NationalCode = Json.NationalCode
                     });
                 }

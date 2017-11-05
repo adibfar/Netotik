@@ -6,17 +6,47 @@
 
 <section class="flexbox-container">
     <div class="row">
+        <div class="col-md-12 col-sm-12">
+            <div class="card box-shadow-0 border-success">
+                <div class="card-header card-head-inverse bg-success">
+                    <h4 class="card-title">ثبت نام کاربران</h4>
+                    <a class="heading-elements-toggle"><i class="icon-ellipsis font-medium-3"></i></a>
+                    <div class="heading-elements">
+                        <ul class="list-inline mb-0">
+                            <li><a data-action="collapse"><i class="icon-minus4"></i></a></li>
+                            <li><a data-action="reload"><i class="icon-reload"></i></a></li>
+                            <li><a data-action="close"><i class="icon-cross2"></i></a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="card-body collapse in">
+                    <div class="card-block">
+                        <p>
+                            در صورت فعال سازی این قابلیت ، با وارد شدن کاربران به صفحه زیر می توانند ثبت نام خود را انجام دهند.
+                            این ثبت نام را میتوانید سفارشی سازی کنید.
+                            مثلا فیلد های مورد نیاز جهت ثبت نام را کم یا زیاد کنید یا اجباری و اختیاری کنید یا اینکه بسته رایگان یا پولی ارائه دهید که با پرداخت اکانت کاربر ساخته و فعال شود
+                            یا اینکه با دریافت شماره موبایل کلمه عبور برای کاربر ارسال شود.یا از طریق ایمیل ارسال شود.
+                        </p>
+                        <a href="https://netotik.com/fa/userman/reg/@ViewBag.ResellerCode" class="btn btn-float-lg btn-outline-pink btn-social" style="width:100%;"><i class="icon-world" style="padding-top:7px;"></i><span>https://netotik.com/fa/userman/reg/@ViewBag.ResellerCode</span></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
         <div class="col-md-12">
 
             @using (Html.BeginForm(MVC.MyRouter.UserManager.ActionNames.RegisterSetting, MVC.MyRouter.UserManager.Name, FormMethod.Post, htmlAttributes: new { @class = "form-horizontal", enctype = "multipart/form-data", id = "formRegisterSetting" }))
             {
                 @Html.AntiForgeryToken()
                 <div class="card">
-                    <div class="card-header">
+                    <div class="card-header skin skin-flat">
                         <button name="actionType" value="@Netotik.Common.Controller.ActionType.Save" class="btn btn-social width-150 btn-instagram" onclick="AjaxForm.Post(this, 'form')" data-loading-text="در حال ارسال اطلاعات">
                             <span class="icon-checkmark2 font-medium-4"></span>
                             @Captions.Save
                         </button>
+                        @Html.CheckBoxFor(model => model.ActiveRegisterForm)
+                        @Html.LabelFor(model => model.ActiveRegisterForm)
                     </div>
                     <div class="card-body">
                         <div class="card-block">
@@ -67,7 +97,6 @@
                                 </div>
                             </div>
                             <div class="row">
-
                                 <div class="col-md-4">
                                     <div class="form-group">
                                         @Html.LabelFor(m => m.BirthDate)
@@ -80,6 +109,12 @@
                                         @Html.LabelFor(m => m.Sex)
                                         @Html.EnumDropDownListFor(model => model.Sex, new { @class = "form-control" })
                                         @Html.ValidationMessageFor(model => model.Sex, "", htmlAttributes: new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="row" id="profilesSections">
+                                        @Html.LabelFor(m => m.ProfileName)
+                                        <select class="selectize-select" id=""></select>
                                     </div>
                                 </div>
                             </div>
@@ -99,6 +134,13 @@
                                         @Html.ValidationMessageFor(model => model.PasswordConfirm, "", htmlAttributes: new { @class = "text-danger" })
                                     </div>
                                 </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        @Html.LabelFor(m => m.RegisterAgianHour)
+                                        @Html.TextBoxFor(model => model.RegisterAgianHour, new { @class = "form-control" })
+                                        @Html.ValidationMessageFor(model => model.RegisterAgianHour, "", htmlAttributes: new { @class = "text-danger" })
+                                    </div>
+                                </div>
                             </div>
                             <hr />
                             <div class="row form-group skin skin-flat">
@@ -114,7 +156,14 @@
                                         @Html.LabelFor(model => model.SendEmailUserPass)
                                     </fieldset>
                                 </div>
+                                <div class="col-md-4 col-sm-6 col-xs-12">
+                                    <fieldset>
+                                        @Html.CheckBoxFor(model => model.ShowUserPass)
+                                        @Html.LabelFor(model => model.ShowUserPass)
+                                    </fieldset>
+                                </div>
                             </div>
+
                         </div>
                     </div>
                 </div>
@@ -122,3 +171,16 @@
         </div>
     </div>
 </section>
+
+@section DownScript{
+    <script type="text/javascript">
+        $(window).on("load", function () {
+            CardBlock('#profilesSections');
+            $.get("@Url.Action(MVC.MyRouter.UserManager.LoadProfiles())", function (data) {
+                $("#profilesSections").html(data);
+                Selectize();
+                CardUnBlock('#profilesSections');
+            }, "html");
+        });
+    </script>
+}

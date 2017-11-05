@@ -53,6 +53,9 @@ namespace Netotik.ViewModels.Identity.UserClient
         [MinLength(10, ErrorMessageResourceType = typeof(Captions), ErrorMessageResourceName = "MinLengthError")]
         [System.Web.Mvc.Remote("IsNationalCodeValid", "Remote", System.Web.Mvc.AreaReference.UseRoot, HttpMethod = "POST", ErrorMessageResourceType = typeof(Captions), ErrorMessageResourceName = "ExistError")]
         public string NationalCode { get; set; }
+
+
+        public int RegisterAgianHour { get; set; }
     }
 
 

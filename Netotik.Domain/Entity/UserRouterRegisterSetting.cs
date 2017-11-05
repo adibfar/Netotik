@@ -22,7 +22,10 @@ namespace Netotik.Domain.Entity
         public FieldType Sex { get; set; }
         public FieldType NationalCode { get; set; }
         public bool SendEmailUserPass { get; set; }
-        
+        public string ProfileName { get; set; }
+        public int RegisterAgianHour { get; set; }
+        public bool ShowUserPass { get; set; }
+        public bool ActiveRegisterForm { get; set; }
 
         public virtual UserRouter UserRouter { get; set; }
     }

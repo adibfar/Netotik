@@ -63,5 +63,12 @@ namespace Netotik.ViewModels.Identity.UserRouter
         [Required(ErrorMessageResourceType = typeof(Captions), ErrorMessageResourceName = "RequiredError")]
         [Display(ResourceType = typeof(Captions), Name = "NationalCode")]
         public FieldType NationalCode { get; set; }
+
+        [Display(ResourceType = typeof(Captions), Name = "PlanName")]
+        public string ProfileName { get; set; }
+
+        public int RegisterAgianHour { get; set; }
+        public bool ShowUserPass { get; set; }
+        public bool ActiveRegisterForm { get; set; }
     }
 }

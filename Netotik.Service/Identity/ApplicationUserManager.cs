@@ -207,6 +207,10 @@ namespace Netotik.Services.Identity
             model.Username = user.UserRouter.UserRouterRegisterSetting.Username;
             model.SendEmailUserPass = user.UserRouter.UserRouterRegisterSetting.SendEmailUserPass;
             model.SendSmsUserPass = user.UserRouter.RegisterFormSms;
+            model.ProfileName = user.UserRouter.UserRouterRegisterSetting.ProfileName;
+            model.ShowUserPass = user.UserRouter.UserRouterRegisterSetting.ShowUserPass;
+            model.RegisterAgianHour = user.UserRouter.UserRouterRegisterSetting.RegisterAgianHour;
+            model.ActiveRegisterForm = user.UserRouter.UserRouterRegisterSetting.ActiveRegisterForm;
 
             return model;
         }
@@ -226,6 +230,10 @@ namespace Netotik.Services.Identity
             user.UserRouter.UserRouterRegisterSetting.Username = model.Username;
             user.UserRouter.UserRouterRegisterSetting.SendEmailUserPass = model.SendEmailUserPass;
             user.UserRouter.RegisterFormSms = model.SendSmsUserPass;
+            user.UserRouter.UserRouterRegisterSetting.ProfileName = model.ProfileName;
+            user.UserRouter.UserRouterRegisterSetting.ShowUserPass = model.ShowUserPass;
+            user.UserRouter.UserRouterRegisterSetting.RegisterAgianHour = model.RegisterAgianHour;
+            user.UserRouter.UserRouterRegisterSetting.ActiveRegisterForm = model.ActiveRegisterForm;
 
             await _unitOfWork.SaveChangesAsync();
         }
@@ -851,7 +859,7 @@ namespace Netotik.Services.Identity
             user.UserRouter.UserRouterRegisterSetting = new UserRouterRegisterSetting();
             user.UserType = UserType.UserRouter;
             user.EmailConfirmed = false;
-            
+
 
             await CreateAsync(user, viewModel.Password);
             return user.Id;
@@ -1254,8 +1262,8 @@ namespace Netotik.Services.Identity
         }
         public async Task<User> FindByRouterSMSCodeAsync(string Code)
         {
-            var list =await _users.Where(x => !x.IsDeleted && x.UserType == UserType.UserRouter).ToListAsync();
-            return list.FirstOrDefault(x => x.UserRouter.RegisterWithSmsCode==Code);
+            var list = await _users.Where(x => !x.IsDeleted && x.UserType == UserType.UserRouter).ToListAsync();
+            return list.FirstOrDefault(x => x.UserRouter.RegisterWithSmsCode == Code);
         }
 
         public long GetRoutersChargre()
