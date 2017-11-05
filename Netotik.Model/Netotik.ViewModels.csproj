@@ -163,6 +163,7 @@
     <Compile Include="CMS\Menu\MenuModel.cs" />
     <Compile Include="Common\Language\ResourceItem.cs" />
     <Compile Include="Identity\Security\AssignableToRolePermissions.cs" />
+    <Compile Include="Mikrotik\Usermanager\GetUserLogModel.cs" />
     <Compile Include="Mikrotik\Usermanager\LogModel.cs" />
     <Compile Include="Shop\Factor\FactorMonthlyChart.cs" />
     <Compile Include="Shop\Factor\FactorUserItem.cs" />

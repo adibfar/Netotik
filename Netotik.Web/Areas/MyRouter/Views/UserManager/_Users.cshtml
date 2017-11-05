@@ -74,7 +74,10 @@ else
                                     <i class="icon-pen3 primary"></i> @Captions.Edit
                                 </a>
                                 <a onclick="UserDetails('@item.id');" class="dropdown-item">
-                                    <i class="fa fa-book"></i> @Captions.Details
+                                    <i class="icon-search"></i> @Captions.Details
+                                </a>
+                                <a onclick="GetUserLog('@item.id');" class="dropdown-item">
+                                    <i class="icon-document-text primary"></i> @Captions.Logs
                                 </a>
                                 <a onclick="Userremove('@item.id');" class="dropdown-item">
                                     <i class="icon-trash4 danger"></i> @Captions.Remove

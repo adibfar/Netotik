@@ -63,7 +63,7 @@
                                         <div class="form-group has-icon-left">
                                             @Html.LabelFor(m => m.username)
                                             <div class="position-relative has-icon-left">
-                                                @Html.TextBoxFor(m => m.username, new { @class = "form-control" , @readonly = "yes" })
+                                                @Html.TextBoxFor(m => m.username, new { @class = "form-control", @readonly = "yes" })
                                                 <div class="form-control-position">
                                                     <i class="icon-user"></i>
                                                 </div>
@@ -175,7 +175,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                    
+
                                     <div class="col-md-4">
                                         <div class="form-group has-icon-left">
                                             @Html.LabelFor(m => m.email)
@@ -238,15 +238,15 @@
                                     <div class="row">
                                         <div class="col-md-4">
                                             <div class="form-group has-feedback has-icon-left">
-                                                <label class="font-noraml">@Captions.IsMale</label>
-                                                <select id="IsMale" name="IsMale" data-placeholder="@Captions.IsMale" class="selectize-select" style="min-width:350px;" tabindex="2">
+                                                <label class="font-noraml">@Captions.Sex</label>
+                                                <select id="IsMale" name="IsMale" data-placeholder="@Captions.Sex" class="selectize-select" style="min-width:350px;" tabindex="2">
                                                     @if (Model.IsMale == "false")
                                                     {
-                                                        <option value="false">مونث</option>
+                                                        <option value="false">@Captions.Male</option>
                                                     }
                                                     else
                                                     {
-                                                        <option value="true">مذکر</option>
+                                                        <option value="true">@Captions.Female</option>
                                                     }
 
                                                 </select>
@@ -254,7 +254,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                   
+
                                 </div>
                             </div>
                             <div class="tab-pane fade" id="Router" role="tabpanel" aria-labelledby="linkIcon12-tab1" aria-expanded="false">
@@ -289,7 +289,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                </div><br/></br/>
+                                </div><br /><br />
                                 <div class="row">
                                     <div class="col-md-4">
                                         <label>@Captions.TrafficRemain</label>
@@ -306,33 +306,33 @@
                                     </div>
                                 </div>
                                 @*<div class="col-md-4">
-                                    <label>@Captions.DownloadTrafficLimit</label>
-                                    <div class="input-group">
-                                        <input type="text" class="form-control m-b" style="height:45px !important;" placeholder="0" name="downloadlimit" id="downloadlimit" value="@ViewBag.download_limit" />
-                                        <div class="input-group-addon">
-                                            <select name="downloadlimitB" onchange="changeval('downloadlimitB', 'downloadlimit')" id="downloadlimitB">
-                                                <option value="1">KB</option>
-                                                <option value="3">MB</option>
-                                                <option value="5">GB</option>
-                                            </select>
+                                        <label>@Captions.DownloadTrafficLimit</label>
+                                        <div class="input-group">
+                                            <input type="text" class="form-control m-b" style="height:45px !important;" placeholder="0" name="downloadlimit" id="downloadlimit" value="@ViewBag.download_limit" />
+                                            <div class="input-group-addon">
+                                                <select name="downloadlimitB" onchange="changeval('downloadlimitB', 'downloadlimit')" id="downloadlimitB">
+                                                    <option value="1">KB</option>
+                                                    <option value="3">MB</option>
+                                                    <option value="5">GB</option>
+                                                </select>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="col-md-4">
-                                    <label>@Captions.UploadTrafficLimit</label>
-                                    <div class="input-group">
-                                        <input type="text" class="form-control m-b" style="height:45px !important;" placeholder="0" name="uploadlimit" id="uploadlimit" value="@ViewBag.upload_limit" />
-                                        <div class="input-group-addon">
-                                            <select name="uploadlimitB" onchange="changeval('uploadlimitB', 'uploadlimit')" id="uploadlimitB">
-                                                <option value="1">KB</option>
-                                                <option value="3">MB</option>
-                                                <option value="5">GB</option>
-                                            </select>
+                                    <div class="col-md-4">
+                                        <label>@Captions.UploadTrafficLimit</label>
+                                        <div class="input-group">
+                                            <input type="text" class="form-control m-b" style="height:45px !important;" placeholder="0" name="uploadlimit" id="uploadlimit" value="@ViewBag.upload_limit" />
+                                            <div class="input-group-addon">
+                                                <select name="uploadlimitB" onchange="changeval('uploadlimitB', 'uploadlimit')" id="uploadlimitB">
+                                                    <option value="1">KB</option>
+                                                    <option value="3">MB</option>
+                                                    <option value="5">GB</option>
+                                                </select>
+                                            </div>
                                         </div>
-                                    </div>
 
-                                </div>*@
-                                <br/><br/>
+                                    </div>*@
+                                <br /><br />
                                 <div class="row">
                                     <div class="col-md-4">
                                         <label>@Captions.DownloadUploadTrafficLimit</label>
@@ -377,17 +377,17 @@
                                     </div>
                                 </div>
 
-                                @if (ulong.Parse(ViewBag.download_remain)<ulong.Parse(ViewBag.transfer_limit))
+                                @if (ulong.Parse(ViewBag.download_remain) < ulong.Parse(ViewBag.transfer_limit))
                                 {
-                                <div class="row">
-                                    <div class="col-xs-6">
-                                        <div class="card-body collapse in">
-                                            <div class="card-block">
-                                                <div id="morris-donut-chart" class="height-400" style="width:240px !important;"></div>
+                                    <div class="row">
+                                        <div class="col-xs-6">
+                                            <div class="card-body collapse in">
+                                                <div class="card-block">
+                                                    <div id="morris-donut-chart" class="height-400" style="width:240px !important;"></div>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
                                 }
                             </div>
                             <div class="tab-pane fade" id="time" role="tabpanel" aria-labelledby="linkIconOpt11-tab1" aria-expanded="false">

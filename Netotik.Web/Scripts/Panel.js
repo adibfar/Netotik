@@ -1,8 +1,7 @@
 ﻿$(function () {
     AjaxForm.EnablePostbackValidation();
     Selectize();
-    CKEDITOR.replace();
-
+    
     $(".datepicker").datetimepicker({ defaultDate: "" });
     $("#unslider").unslider({ animation: "fade", infinite: !0 });
 });

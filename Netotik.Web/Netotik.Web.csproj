@@ -326,11 +326,7 @@
       <Private>True</Private>
     </Reference>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Areas\Client\Models\" />
-    <Folder Include="Areas\MyRouter\Models\" />
-    <Folder Include="Areas\Reseller\Models\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Compile Include="AccountController.generated.cs">
       <DependentUpon>T4MVC.tt</DependentUpon>
@@ -3747,6 +3743,7 @@
     <Content Include="Content\Upload\TemplateFiles\fonts\IRANSansWeb.woff2" />
     <Content Include="Content\Upload\TemplateSettingsXML\15" />
     <Content Include="Content\Upload\TemplateSettingsXML\3" />
+    <Content Include="Areas\MyRouter\Views\UserManager\_GetUserLog.cshtml" />
     <None Include="Properties\PublishProfiles\DNMA.pubxml" />
     <Content Include="Scripts\ckeditor\adapters\jquery.js" />
     <Content Include="Scripts\ckeditor\build-config.js" />

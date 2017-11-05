@@ -702,8 +702,8 @@ namespace Netotik.Web.Areas.MyRouter.Controllers
                     ViewBag.download_limit = UserLimition.download_limit;
                     ViewBag.upload_limit = UserLimition.upload_limit;
                     ViewBag.transfer_limit = UserLimition.transfer_limit;
-                    ViewBag.rate_limit_rx = UserLimition.rate_limit_rx==""?"0":UserLimition.rate_limit_rx;
-                    ViewBag.rate_limit_tx = UserLimition.rate_limit_tx==""?"0":UserLimition.rate_limit_tx;
+                    ViewBag.rate_limit_rx = UserLimition.rate_limit_rx == "" ? "0" : UserLimition.rate_limit_rx;
+                    ViewBag.rate_limit_tx = UserLimition.rate_limit_tx == "" ? "0" : UserLimition.rate_limit_tx;
                     decimal Downloadlimit = 0;
                     if (UserLimition.transfer_limit == null) UserLimition.transfer_limit = "0";
                     if (UserLimition.transfer_limit != "0") Downloadlimit += ulong.Parse(UserLimition.transfer_limit);
@@ -1162,6 +1162,28 @@ namespace Netotik.Web.Areas.MyRouter.Controllers
                 }
 
             return PartialView(MVC.MyRouter.UserManager.Views._Onlines);
+        }
+
+       
+        [HttpPost]
+        [ValidateInput(false)]
+        public virtual ActionResult GetUserLogRequest(string Id)
+        {
+            var model = new GetUserLogModel()
+            {
+                Name = "test",
+                DateTime = DateTime.Now,
+                UserId = "*12"
+            };
+            return PartialView(MVC.MyRouter.UserManager.Views._GetUserLog, model);
+        }
+
+
+        [HttpPost]
+        public virtual ActionResult GetUserLog(GetUserLogModel model)
+        {
+
+            return PartialView();
         }
 
     }

@@ -221,10 +221,10 @@
                             <div class="row">
                                 <div class="col-md-4">
                                     <div class="form-group has-feedback has-icon-left">
-                                        <label class="font-noraml">@Captions.IsMale</label>
-                                        <select id="IsMale" name="IsMale" data-placeholder="@Captions.IsMale" class="selectize-select" style="min-width:350px;" tabindex="2">
-                                            <option value="true">مذکر</option>
-                                            <option value="false">مونث</option>
+                                        <label class="font-noraml">@Captions.Sex</label>
+                                        <select id="IsMale" name="IsMale" data-placeholder="@Captions.Sex" class="selectize-select" style="min-width:350px;" tabindex="2">
+                                            <option value="true">@Captions.Male</option>
+                                            <option value="false">@Captions.Female</option>
                                         </select>
                                         @Html.ValidationMessageFor(model => model.IsMale, "", htmlAttributes: new { @class = "text-danger" })
                                     </div>
