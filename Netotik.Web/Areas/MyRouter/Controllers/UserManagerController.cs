@@ -1152,16 +1152,41 @@ namespace Netotik.Web.Areas.MyRouter.Controllers
             return PartialView(MVC.MyRouter.UserManager.Views._Profiles);
         }
 
-       
+
         [HttpPost]
         [ValidateInput(false)]
         public virtual ActionResult GetUserLogRequest(string Id)
         {
             var userclient = _mikrotikServices.Usermanager_GetUser(UserLogined.UserRouter.R_Host, UserLogined.UserRouter.R_Port, UserLogined.UserRouter.R_User, UserLogined.UserRouter.R_Password, Id).FirstOrDefault();
+
+            System.Globalization.PersianCalendar cal = new System.Globalization.PersianCalendar();
+            var year = cal.GetYear(DateTime.Now);
+            var month = cal.GetMonth(DateTime.Now);
+            var day = cal.GetDayOfMonth(DateTime.Now);
+
+            var yearList = new List<SelectListItem>();
+            for (int i = 1396; i <= year; i++)
+                yearList.Add(new SelectListItem() { Text = i.ToString(), Value = i.ToString(), Selected = i == year });
+
+            var monthList = new List<SelectListItem>();
+            for (int i = 1; i <= 12; i++)
+                monthList.Add(new SelectListItem() { Text = i.ToString(), Value = i.ToString(), Selected = i == month });
+
+            var dayList = new List<SelectListItem>();
+            for (int i = 1; i <= 31; i++)
+                dayList.Add(new SelectListItem() { Text = i.ToString(), Value = i.ToString(), Selected = i == day });
+
+
+            ViewBag.Years = yearList;
+            ViewBag.Months = monthList;
+            ViewBag.Days = dayList;
+
             var model = new GetUserLogModel()
             {
+                Day = day,
+                Month = month,
+                Year = year,
                 Name = userclient.username,
-                Date = DateTime.Now,
                 UserId = Id
             };
             return PartialView(MVC.MyRouter.UserManager.Views._GetUserLog, model);
@@ -1171,8 +1196,12 @@ namespace Netotik.Web.Areas.MyRouter.Controllers
         [HttpPost]
         public virtual ActionResult GetUserLog(GetUserLogModel model)
         {
-            var Logs = _UserRouterlogclientservice.GetList(UserLogined.Id);
-            var UserSessions = _mikrotikServices.Usermanager_UserSession(UserLogined.UserRouter.R_Host, UserLogined.UserRouter.R_Port, UserLogined.UserRouter.R_User, UserLogined.UserRouter.R_Password,model.Name);
+            var date = PersianDate.ConvertDate.ToEn(model.Year,model.Month,model.Day);
+            var FromTime = new DateTime(date.Year, date.Month, date.Day, int.Parse(model.FromTime.Split(':')[0]), int.Parse(model.FromTime.Split(':')[1]), 0);
+            var ToTime = new DateTime(date.Year, date.Month, date.Day, int.Parse(model.ToTime.Split(':')[0]), int.Parse(model.ToTime.Split(':')[1]), 59);
+            var Logs = _UserRouterlogclientservice.GetList(UserLogined.Id, FromTime, ToTime);
+
+            var UserSessions = _mikrotikServices.Usermanager_UserSession(UserLogined.UserRouter.R_Host, UserLogined.UserRouter.R_Port, UserLogined.UserRouter.R_User, UserLogined.UserRouter.R_Password, model.Name);
             var UsersLogs = new List<UserWebsiteLogsWithSessionsModel>();
             foreach (var user in UserSessions)
             {
@@ -1224,7 +1253,7 @@ namespace Netotik.Web.Areas.MyRouter.Controllers
                     user_ip = user.user_ip
                 }).ToList());
             }
-                return PartialView();
+            return PartialView();
         }
 
     }

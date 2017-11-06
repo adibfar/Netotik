@@ -264,11 +264,12 @@ namespace Netotik.Services.Implement
                         upload_used = ColumnList.Any(x => x.Key == "upload-used") ? (ColumnList.FirstOrDefault(x => x.Key == "upload-used").Value) : "",
                         registration_date = ColumnList.Any(x => x.Key == "registration-date") ? (ColumnList.FirstOrDefault(x => x.Key == "registration-date").Value) : "",
                         reg_key = ColumnList.Any(x => x.Key == "reg-key") ? (ColumnList.FirstOrDefault(x => x.Key == "reg-key").Value) : "",
-                        IsMale = Json.IsMale == "true" ?true:false,
-                        Age = int.Parse(Json.Age),
-                        Birthday = DateTime.Parse(Json.Birthday),
-                        CreateDate = DateTime.Parse(Json.CreateDate),
-                        MarriageDate = DateTime.Parse(Json.MarriageDate),
+                        IsMale = Json.IsMale != null ? Json.IsMale == "true" ? true : false : false,
+                        Age = Json.Age != null ? int.Parse(Json.Age) : 0,
+                        EditDate = Convert.ToDateTime(Json.EditDate),
+                        Birthday = Convert.ToDateTime(Json.Birthday),
+                        CreateDate = Convert.ToDateTime(Json.CreateDate),
+                        MarriageDate = Convert.ToDateTime(Json.MarriageDate),
                         NationalCode = Json.NationalCode
                     });
                 }
@@ -465,12 +466,14 @@ namespace Netotik.Services.Implement
                         uptime_used = ColumnList.Any(x => x.Key == "uptime-used") ? (ColumnList.FirstOrDefault(x => x.Key == "uptime-used").Value) : "",
                         download_used = ColumnList.Any(x => x.Key == "download-used") ? (ColumnList.FirstOrDefault(x => x.Key == "download-used").Value) : "",
                         upload_used = ColumnList.Any(x => x.Key == "upload-used") ? (ColumnList.FirstOrDefault(x => x.Key == "upload-used").Value) : "",
-                        IsMale = Json.IsMale == "true" ? true : false,
-                        Age = int.Parse(Json.Age),
-                        Birthday = DateTime.Parse(Json.Birthday),
-                        CreateDate = DateTime.Parse(Json.CreateDate),
-                        MarriageDate = DateTime.Parse(Json.MarriageDate),
+                        IsMale = Json.IsMale != null ? Json.IsMale == "true" ? true : false : false,
+                        Age = Json.Age != null ? int.Parse(Json.Age) : 0,
+                        EditDate = Convert.ToDateTime(Json.EditDate),
+                        Birthday = Convert.ToDateTime(Json.Birthday),
+                        CreateDate = Convert.ToDateTime(Json.CreateDate),
+                        MarriageDate = Convert.ToDateTime(Json.MarriageDate),
                         NationalCode = Json.NationalCode
+
                     });
                 }
             }
@@ -534,11 +537,12 @@ namespace Netotik.Services.Implement
                         //comment = ColumnList.Any(x => x.Key == "comment") ? (ColumnList.FirstOrDefault(x => x.Key == "comment").Value) : "",
                         uptime_used = ColumnList.Any(x => x.Key == "uptime-used") ? (ColumnList.FirstOrDefault(x => x.Key == "uptime-used").Value) : "",
                         download_used = ColumnList.Any(x => x.Key == "download-used") ? (ColumnList.FirstOrDefault(x => x.Key == "download-used").Value) : "",
-                        IsMale = Json.IsMale == "true" ? true : false,
-                        Age = int.Parse(Json.Age),
-                        Birthday = DateTime.Parse(Json.Birthday),
-                        CreateDate = DateTime.Parse(Json.CreateDate),
-                        MarriageDate = DateTime.Parse(Json.MarriageDate),
+                        IsMale = Json.IsMale != null ? Json.IsMale == "true" ? true : false : false,
+                        Age = Json.Age != null ? int.Parse(Json.Age) : 0,
+                        EditDate = Convert.ToDateTime(Json.EditDate),
+                        Birthday = Convert.ToDateTime(Json.Birthday),
+                        CreateDate = Convert.ToDateTime(Json.CreateDate),
+                        MarriageDate = Convert.ToDateTime(Json.MarriageDate),
                         NationalCode = Json.NationalCode
                     });
                 }
@@ -2925,15 +2929,15 @@ namespace Netotik.Services.Implement
         {
             var mikrotik = new MikrotikAPI();
             await mikrotik.MKAsync(r_Host, r_Port);
-            if (! await mikrotik.LoginAsync(r_User, r_Password)) mikrotik.Close();
+            if (!await mikrotik.LoginAsync(r_User, r_Password)) mikrotik.Close();
             //-----------------------------------------------
 
             foreach (var item in fetch)
             {
                 await mikrotik.SendAsync("/tool/fetch");
-                await mikrotik.SendAsync("=url="+item.Url);
+                await mikrotik.SendAsync("=url=" + item.Url);
                 await mikrotik.SendAsync("=mode=" + item.Mode);
-                await mikrotik.SendAsync("=dst-path=" + item.DstPath,true);
+                await mikrotik.SendAsync("=dst-path=" + item.DstPath, true);
                 var Read = mikrotik.Read();
             }
         }
@@ -2949,7 +2953,7 @@ namespace Netotik.Services.Implement
             string temp = String.Format("=numbers={0}", ServerName);
             mikrotik.Send(temp);
             temp = String.Format("=html-directory={0}", DirectoryName);
-            mikrotik.Send(temp ,true);
+            mikrotik.Send(temp, true);
             var Read = mikrotik.Read();
         }
 
@@ -2967,8 +2971,8 @@ namespace Netotik.Services.Implement
 
             mikrotik.Send("/system/clock/set");
             mikrotik.Send("=time-zone-autodetect=yes");
-            mikrotik.Send(string.Format("=time={0}:{1}:{2}",DateTime.Now.Hour,DateTime.Now.Minute,DateTime.Now.Second));
-            mikrotik.Send(string.Format("=date={0}/{1}/{2}",GetMonthName(DateTime.Now.Month),DateTime.Now.Day,DateTime.Now.Year),true);
+            mikrotik.Send(string.Format("=time={0}:{1}:{2}", DateTime.Now.Hour, DateTime.Now.Minute, DateTime.Now.Second));
+            mikrotik.Send(string.Format("=date={0}/{1}/{2}", GetMonthName(DateTime.Now.Month), DateTime.Now.Day, DateTime.Now.Year), true);
             Read = mikrotik.Read();
         }
 

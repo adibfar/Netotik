@@ -10,15 +10,12 @@ namespace Netotik.ViewModels.Mikrotik
         public string UserId { get; set; }
         public string Name { get; set; }
 
-        [Required(ErrorMessageResourceType = typeof(Captions), ErrorMessageResourceName = "RequiredError")]
-        [Display(ResourceType = typeof(Captions), Name = "Date")]
-        public DateTime Date { get; set; }
-        [Required(ErrorMessageResourceType = typeof(Captions), ErrorMessageResourceName = "RequiredError")]
-        [Display(ResourceType = typeof(Captions), Name = "FromTime")]
-        public DateTime FromTime { get; set; }
-        [Required(ErrorMessageResourceType = typeof(Captions), ErrorMessageResourceName = "RequiredError")]
-        [Display(ResourceType = typeof(Captions), Name = "TillTime")]
-        public DateTime ToTime { get; set; }
+
+        public int Year { get; set; }
+        public int Month { get; set; }
+        public int Day { get; set; }
+        public string FromTime { get; set; }
+        public string ToTime { get; set; }
 
     }
 }

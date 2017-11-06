@@ -5052,5 +5052,12 @@ namespace Netotik.Resources
                 return resourceProvider.GetResource("TemplateInstallToRouter", CultureInfo.CurrentUICulture.Name) as string;
             }
         }
+        public static string GetReport
+        {
+            get
+            {
+                return resourceProvider.GetResource("GetReport", CultureInfo.CurrentUICulture.Name) as string;
+            }
+        }
     }
 }

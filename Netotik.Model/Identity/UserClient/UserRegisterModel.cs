@@ -56,19 +56,19 @@ namespace Netotik.ViewModels.Identity.UserClient
 
 
         [Display(ResourceType = typeof(Captions), Name = "BirthDate")]
-        public DateTime Birthday { get; set; }
+        public DateTime? Birthday { get; set; }
         [Display(ResourceType = typeof(Captions), Name = "NationalCode")]
         [System.Web.Mvc.Remote("IsNationalCodeValid", "Remote", System.Web.Mvc.AreaReference.UseRoot, HttpMethod = "POST", ErrorMessageResourceType = typeof(Captions), ErrorMessageResourceName = "NotValidError")]
         public string NationalCode { get; set; }
         [Display(ResourceType = typeof(Captions), Name = "IsMale")]
-        public bool IsMale { get; set; }
+        public bool? IsMale { get; set; }
         [Display(ResourceType = typeof(Captions), Name = "CreateDate")]
-        public DateTime CreateDate { get; set; }
+        public DateTime? CreateDate { get; set; }
         [Display(ResourceType = typeof(Captions), Name = "MarriageDate")]
-        public DateTime MarriageDate { get; set; }
+        public DateTime? MarriageDate { get; set; }
         [Display(ResourceType = typeof(Captions), Name = "Age")]
         public int? Age { get; set; }
         [Display(ResourceType = typeof(Captions), Name = "LastEdit")]
-        public DateTime EditDate { get; set; }
+        public DateTime? EditDate { get; set; }
     }
 }

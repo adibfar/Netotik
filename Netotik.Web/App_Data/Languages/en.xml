@@ -1433,6 +1433,8 @@
   <LocaleResource Name="ClientRegisterWithSmsUsermanagerError">
     <Value>Usermanager error during SMS registration.</Value>
   </LocaleResource>
-
+  <LocaleResource Name="GetReport">
+    <Value>Get Report</Value>
+  </LocaleResource>
   
 </Language>

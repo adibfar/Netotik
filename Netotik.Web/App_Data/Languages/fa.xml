@@ -2024,5 +2024,8 @@
     <Value>در هنگام ثبت نام پیامکی خطای اتصال یوزرمنیجر ایجاد شد.</Value>
   </LocaleResource>
 
-
+  <LocaleResource Name="GetReport">
+    <Value>دریافت گزارش</Value>
+  </LocaleResource>
+  
 </Language>
