@@ -326,7 +326,10 @@
       <Private>True</Private>
     </Reference>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Content\DateTimePicker\Content\" />
+    <Folder Include="Content\DateTimePicker\Scripts\" />
+  </ItemGroup>
   <ItemGroup>
     <Compile Include="AccountController.generated.cs">
       <DependentUpon>T4MVC.tt</DependentUpon>
