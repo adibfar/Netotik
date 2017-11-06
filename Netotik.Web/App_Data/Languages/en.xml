@@ -1419,7 +1419,13 @@
   <LocaleResource Name="Female">
     <Value>Female</Value>
   </LocaleResource>
-
+ <LocaleResource Name="FromDate">
+    <Value>From Date</Value>
+  </LocaleResource>
+  <LocaleResource Name="ToDate">
+    <Value>To Date</Value>
+  </LocaleResource>
+  
   <LocaleResource Name="ClientWithSmsError">
     <Value>
        Error connecting to the router during SMS registration.
