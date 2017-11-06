@@ -86,7 +86,7 @@ namespace Netotik.Services.Implement
                     LocaleStringResources = list.ToList()
                 };
                 dbSet.Add(lang);
-
+                UnitOfWork.SaveAllChanges();
             }
             else
             {
@@ -95,20 +95,19 @@ namespace Netotik.Services.Implement
                 {
                     Name = e.Attribute("Name").Value,
                     Value = e.Value,
+                    LanguageId = lang.Id
                 }).ToList();
 
                 if (lang.LocaleStringResources.Count != list.Count)
                 {
-                    lang.LocaleStringResources.Clear();
+                    foreach (var item in lang.LocaleStringResources.ToList())
+                        UnitOfWork.MarkAsDeleted<LocaleStringResource>(item);
                     lang.LocaleStringResources = list;
+                    UnitOfWork.SaveAllChanges();
                 }
-
-
             }
-            UnitOfWork.SaveAllChanges();
 
         }
-
 
 
 
