@@ -45,10 +45,10 @@
         .bg-green-netotik {
             background-color: cadetblue !important;
         }
+
         .text-darkslategrey {
             color: darkslategrey !important;
         }
-
     </style>
 
     <noscript>
@@ -73,11 +73,11 @@
 
         @Html.Action(MVC.Home.ActionNames.Footer, MVC.Home.Name)
 
-        @Html.Partial(MVC.SharedPublic.Views._Request)
+        @Html.Partial(MVC.SharedPublic.Views._Request, new Netotik.ViewModels.Common.ContactUs.RequestModel())
 
     </div>
 
-
+   
     <!-- SCROLL TO TOP -->
     <a href="#" id="toTop"></a>
 

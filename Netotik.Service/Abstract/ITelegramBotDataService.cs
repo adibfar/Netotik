@@ -1,6 +1,5 @@
 ﻿using Netotik.Common.DataTables;
 using Netotik.Domain.Entity;
-using Netotik.Model.Common.ContactUs;
 using System;
 using System.Collections.Generic;
 using System.Linq;

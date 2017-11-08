@@ -30,9 +30,9 @@ namespace Netotik.Web.Areas.Admin.Controllers
                     resultMesssage = Captions.AddSuccess;
                 }
             }
-            catch
+            catch (Exception ex)
             {
-                resultMesssage = Captions.AddError;
+                resultMesssage = Captions.AddError + " - " + ex.Message;
             }
             var vOutput = @"<html><body><script>window.parent.CKEDITOR.tools.callFunction(" + CKEditorFuncNum + ", \"" + FilePathes._imagesEditorPath + "/" + fileName + "\", \"" + resultMesssage + "\");</script></body></html>";
             return Content(vOutput);

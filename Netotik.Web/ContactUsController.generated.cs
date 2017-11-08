@@ -58,6 +58,12 @@ namespace Netotik.Web.Controllers
 
         [NonAction]
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public virtual System.Web.Mvc.ActionResult RequestConsultaion()
+        {
+            return new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.RequestConsultaion);
+        }
+        [NonAction]
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public virtual System.Web.Mvc.ActionResult RedirectToLocal()
         {
             return new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.RedirectToLocal);
@@ -79,6 +85,7 @@ namespace Netotik.Web.Controllers
         public class ActionNamesClass
         {
             public readonly string Index = "Index";
+            public readonly string RequestConsultaion = "RequestConsultaion";
             public readonly string RedirectToLocal = "RedirectToLocal";
         }
 
@@ -86,6 +93,7 @@ namespace Netotik.Web.Controllers
         public class ActionNameConstants
         {
             public const string Index = "Index";
+            public const string RequestConsultaion = "RequestConsultaion";
             public const string RedirectToLocal = "RedirectToLocal";
         }
 
@@ -95,6 +103,14 @@ namespace Netotik.Web.Controllers
         public ActionParamsClass_Index IndexParams { get { return s_params_Index; } }
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public class ActionParamsClass_Index
+        {
+            public readonly string model = "model";
+        }
+        static readonly ActionParamsClass_RequestConsultaion s_params_RequestConsultaion = new ActionParamsClass_RequestConsultaion();
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public ActionParamsClass_RequestConsultaion RequestConsultaionParams { get { return s_params_RequestConsultaion; } }
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public class ActionParamsClass_RequestConsultaion
         {
             public readonly string model = "model";
         }
@@ -150,6 +166,18 @@ namespace Netotik.Web.Controllers
             ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "model", model);
             IndexOverride(callInfo, model);
             return System.Threading.Tasks.Task.FromResult(callInfo as System.Web.Mvc.ActionResult);
+        }
+
+        [NonAction]
+        partial void RequestConsultaionOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, Netotik.ViewModels.Common.ContactUs.RequestModel model);
+
+        [NonAction]
+        public override System.Web.Mvc.ActionResult RequestConsultaion(Netotik.ViewModels.Common.ContactUs.RequestModel model)
+        {
+            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.RequestConsultaion);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "model", model);
+            RequestConsultaionOverride(callInfo, model);
+            return callInfo;
         }
 
         [NonAction]

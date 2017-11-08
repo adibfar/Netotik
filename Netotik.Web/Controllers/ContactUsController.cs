@@ -37,6 +37,7 @@ namespace Netotik.Web.Controllers
             return View();
         }
 
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         [CaptchaVerify("تصویر امنیتی را درست وارد کنید")]
@@ -61,15 +62,15 @@ namespace Netotik.Web.Controllers
 
                     _userMailer.ContactUsEmail(new ViewModels.Identity.Account.EmailContactUsViewModel()
                     {
-                        ContactUsCreateDate=entity.CreateDate,
+                        ContactUsCreateDate = entity.CreateDate,
                         ContactUsEmail = entity.Email,
-                        ContactUsMessage=entity.Message,
+                        ContactUsMessage = entity.Message,
                         ContactUsName = entity.Name,
-                        ContactUsPhoneNumber=entity.PhoneNumber,
-                        From=entity.Email,
+                        ContactUsPhoneNumber = entity.PhoneNumber,
+                        From = entity.Email,
                         Subject = "پیام از صفحه درباره ما سایت نتوتیک",
-                        To ="ehsan2912.em@gmail.com",
-                        ViewName= MVC.UserMailer.Views.ViewNames.ContactUs,
+                        To = "ehsan2912.em@gmail.com",
+                        ViewName = MVC.UserMailer.Views.ViewNames.ContactUs,
                     }).Send();
                     _userMailer.ContactUsEmail(new ViewModels.Identity.Account.EmailContactUsViewModel()
                     {
@@ -96,7 +97,7 @@ namespace Netotik.Web.Controllers
                         ViewName = MVC.UserMailer.Views.ViewNames.ContactUsReplayToClient,
                     }).Send();
                     ModelState.Clear();
-                    
+
                 }
                 catch
                 {
@@ -105,5 +106,78 @@ namespace Netotik.Web.Controllers
             }
             return View();
         }
+
+
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        [CaptchaVerify("تصویر امنیتی را درست وارد کنید")]
+        public virtual ActionResult RequestConsultaion(RequestModel model)
+        {
+            ViewBag.siteConfig = PublicUICache.GetSiteConfig(HttpContext, _settingService);
+            if (ModelState.IsValid)
+            {
+                try
+                {
+                    InboxContactUsMessage entity = new InboxContactUsMessage
+                    {
+                        Name = model.Name,
+                        Message = Captions.ConsultationRequest + " : " + model.Text,
+                        PhoneNumber = model.PhoneNumber,
+                        Email = model.Email,
+                        CreateDate = DateTime.Now
+                    };
+                    _inboxMessageService.Add(entity);
+                    _uow.SaveChangesAsync();
+                    ViewBag.result = true;
+
+                    _userMailer.ContactUsEmail(new ViewModels.Identity.Account.EmailContactUsViewModel()
+                    {
+                        ContactUsCreateDate = entity.CreateDate,
+                        ContactUsEmail = entity.Email,
+                        ContactUsMessage = entity.Message,
+                        ContactUsName = entity.Name,
+                        ContactUsPhoneNumber = entity.PhoneNumber,
+                        From = entity.Email,
+                        Subject = "درخواست مشاوره",
+                        To = "ehsan2912.em@gmail.com",
+                        ViewName = MVC.UserMailer.Views.ViewNames.ContactUs,
+                    }).Send();
+                    _userMailer.ContactUsEmail(new ViewModels.Identity.Account.EmailContactUsViewModel()
+                    {
+                        ContactUsCreateDate = entity.CreateDate,
+                        ContactUsEmail = entity.Email,
+                        ContactUsMessage = entity.Message,
+                        ContactUsName = entity.Name,
+                        ContactUsPhoneNumber = entity.PhoneNumber,
+                        From = entity.Email,
+                        Subject = "درخواست مشاوره",
+                        To = "pouriya.adibfar@gmail.com",
+                        ViewName = MVC.UserMailer.Views.ViewNames.ContactUs,
+                    }).Send();
+                    _userMailer.ContactUsEmail(new ViewModels.Identity.Account.EmailContactUsViewModel()
+                    {
+                        ContactUsCreateDate = entity.CreateDate,
+                        ContactUsEmail = entity.Email,
+                        ContactUsMessage = entity.Message,
+                        ContactUsName = entity.Name,
+                        ContactUsPhoneNumber = entity.PhoneNumber,
+                        From = entity.Email,
+                        Subject = "نتوتیک - پیام شما دریافت شد",
+                        To = entity.Email,
+                        ViewName = MVC.UserMailer.Views.ViewNames.ContactUsReplayToClient,
+                    }).Send();
+                    ModelState.Clear();
+
+                }
+                catch
+                {
+                }
+
+            }
+            return RedirectToAction(MVC.ContactUs.Index());
+        }
+
+
     }
 }
