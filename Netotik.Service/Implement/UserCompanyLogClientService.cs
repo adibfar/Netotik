@@ -23,15 +23,15 @@ namespace Netotik.Services.Implement
         }
 
 
-        public IList<UserRouterLogClient> GetList(long RouterId)
+        public IList<UserRouterLogClient> GetList(long Id)
         {
             return dbSet.AsQueryable().Where(
-                x => x.UserRouterId == RouterId && x.UserRouter.WebsitesLogs).ToList();
+                x => x.UserRouterId == Id && x.UserRouter.WebsitesLogs).ToList();
         }
-        public IList<UserRouterLogClient> GetList(long RouterId, DateTime FromTime, DateTime ToTime)
+        public IList<UserRouterLogClient> GetList(long Id, DateTime FromTime, DateTime ToTime)
         {
             return dbSet.AsQueryable().Where(
-                x => x.UserRouterId == RouterId && x.UserRouter.WebsitesLogs &&
+                x => x.UserRouterId == Id && x.UserRouter.WebsitesLogs &&
                 x.MikrotikCreateDate >= FromTime && x.MikrotikCreateDate <= ToTime
                 ).ToList();
         }

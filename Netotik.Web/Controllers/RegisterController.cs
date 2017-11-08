@@ -256,7 +256,7 @@ namespace Netotik.Web.Controllers
                 _mikrotikServices.Usermanager_UserCreate(Router.UserRouter.R_Host, Router.UserRouter.R_Port, Router.UserRouter.R_User, Router.UserRouter.R_Password, UserClient);
             else
             {
-                if ((UserFind.EditDate == null ? UserFind.CreateDate : UserFind.EditDate).AddHours(Router.UserRouter.UserRouterRegisterSetting.RegisterAgianHour) <= DateTime.Now)
+                if (Convert.ToDateTime((UserFind.EditDate == null ? UserFind.CreateDate : UserFind.EditDate)).AddHours(Router.UserRouter.UserRouterRegisterSetting.RegisterAgianHour) <= DateTime.Now)
                 {
                     _mikrotikServices.Usermanager_ResetUserProfiles(Router.UserRouter.R_Host, Router.UserRouter.R_Port, Router.UserRouter.R_User, Router.UserRouter.R_Password, UserFind.username);
                     var UserEditmodel = new UserEditModel()

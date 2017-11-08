@@ -15,19 +15,51 @@
             @using (Html.BeginForm(MVC.MyRouter.UserManager.ActionNames.GetUserLog, MVC.MyRouter.UserManager.Name, FormMethod.Post, htmlAttributes: new { @class = "form-horizontal", id = "form" }))
             {
                 @Html.HiddenFor(model => model.UserId)
+                @Html.HiddenFor(model => model.Name)
                 @Html.AntiForgeryToken()
                 <div class="modal-body">
 
                     <div class="row">
-                        <div class="col-md-12">
-                            <div class="form-group has-feedback has-icon-left">
-                                @Html.LabelFor(m => m.DateTime)
-                                <div class="position-relative has-icon-left">
-                                    @Html.TextBoxFor(m => m.DateTime, new { @class = "form-control" })
-                                    <div class="form-control-position">
-                                        <i class="icon-location22"></i>
-                                    </div>
-                                    @Html.ValidationMessageFor(model => model.DateTime, "", htmlAttributes: new { @class = "text-danger" })
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                @Html.LabelFor(m => m.Day)
+                                @Html.DropDownListFor(model => model.Day, ViewBag.Days as IEnumerable<SelectListItem>, new { @class = "form-control" })
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                @Html.LabelFor(m => m.Month)
+                                @Html.DropDownListFor(model => model.Month, ViewBag.Months as IEnumerable<SelectListItem>, new { @class = "form-control" })
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                @Html.LabelFor(m => m.Year)
+                                @Html.DropDownListFor(model => model.Year, ViewBag.Years as IEnumerable<SelectListItem>, new { @class = "form-control" })
+                                
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="input-group m-b">
+                                <span class="input-group-addon">@Netotik.Resources.Captions.FromTime</span>
+                                <div class="input-group clockpicker" data-autoclose="true">
+                                    @Html.TextBoxFor(m => m.FromTime, new { @class = "form-control time", @value = "00:00" })
+                                    <span class="input-group-addon">
+                                        <span class="icon-ios-time"></span>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="input-group m-b">
+                                <span class="input-group-addon">@Netotik.Resources.Captions.TillTime</span>
+                                <div class="input-group clockpicker" data-autoclose="true">
+                                    @Html.TextBoxFor(m => m.ToTime, new { @class = "form-control time", @value = "23:59" })
+                                    <span class="input-group-addon">
+                                        <span class="icon-ios-time"></span>
+                                    </span>
                                 </div>
                             </div>
                         </div>
@@ -41,7 +73,7 @@
                     </button>
                     <button name="actionType" value="@Netotik.Common.Controller.ActionType.Save" type="submit" class="btn btn-outline-success" onclick="AjaxForm.Post(this, 'form')" data-loading-text="@Captions.SendingData">
                         <i class="icon-check2"></i>
-                        @Captions.Save
+                        @Captions.GetReport
                     </button>
                 </div>
             }
