@@ -18,6 +18,10 @@ using System.Net;
 using Netotik.ViewModels.Identity.UserRouter;
 using System.Threading.Tasks;
 using Netotik.ViewModels.Identity.UserClient;
+using OfficeOpenXml;
+using OfficeOpenXml.Table;
+using System.Data;
+using System.Reflection;
 
 namespace Netotik.Web.Areas.MyRouter.Controllers
 {
@@ -1199,8 +1203,9 @@ namespace Netotik.Web.Areas.MyRouter.Controllers
                     user_ip = user.user_ip
                 }).ToList());
             }
-            return PartialView();
+                return PartialView();
         }
-
+        
+       
     }
 }

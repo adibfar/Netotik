@@ -13,11 +13,26 @@ namespace Netotik.Resources
     {
         private static IResourceProvider resourceProvider = new DbResourceProvider();
 
+
         public static string GetName(string key)
         {
             return resourceProvider.GetResource(key, CultureInfo.CurrentUICulture.Name) as string;
         }
+        public static string ConsultationRequest
+        {
+            get
+            {
+                return resourceProvider.GetResource("ConsultationRequest", CultureInfo.CurrentUICulture.Name) as string;
+            }
+        }
 
+        public static string ConsultationRequestNote
+        {
+            get
+            {
+                return resourceProvider.GetResource("ConsultationRequestNote", CultureInfo.CurrentUICulture.Name) as string;
+            }
+        }
         public static string ClientWithSmsError
         {
             get

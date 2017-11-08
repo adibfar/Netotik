@@ -49,6 +49,7 @@ namespace T4MVC
                 public readonly string _Layout = "_Layout";
                 public readonly string _Message = "_Message";
                 public readonly string _Meta = "_Meta";
+                public readonly string _Request = "_Request";
             }
             public readonly string _BreadCrumb = "~/Views/SharedPublic/_BreadCrumb.cshtml";
             public readonly string _CaptchaPartial = "~/Views/SharedPublic/_CaptchaPartial.cshtml";
@@ -61,6 +62,7 @@ namespace T4MVC
             public readonly string _Layout = "~/Views/SharedPublic/_Layout.cshtml";
             public readonly string _Message = "~/Views/SharedPublic/_Message.cshtml";
             public readonly string _Meta = "~/Views/SharedPublic/_Meta.cshtml";
+            public readonly string _Request = "~/Views/SharedPublic/_Request.cshtml";
         }
     }
 

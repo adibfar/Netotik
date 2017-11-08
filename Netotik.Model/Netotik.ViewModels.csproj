@@ -73,6 +73,7 @@
     <Compile Include="Common\City\CityModel.cs" />
     <Compile Include="Common\City\CityItem.cs" />
     <Compile Include="Common\ContactUs\MessageItem.cs" />
+    <Compile Include="Common\ContactUs\RequestModel.cs" />
     <Compile Include="Common\Error\ErrorInfo.cs" />
     <Compile Include="Common\Language\LanguageItem.cs" />
     <Compile Include="Common\Language\LanguageXmlModel.cs" />

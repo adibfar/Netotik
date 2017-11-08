@@ -106,6 +106,7 @@
     <Compile Include="DataTables\RequestListModel.cs" />
     <Compile Include="Extensions\ConvertExtentions.cs" />
     <Compile Include="Extensions\CookieExtention.cs" />
+    <Compile Include="Extensions\DataTableExtention.cs" />
     <Compile Include="Extensions\EnumExtensions.cs" />
     <Compile Include="Extensions\MenuExtension.cs" />
     <Compile Include="Extensions\NormalizationInfo.cs" />

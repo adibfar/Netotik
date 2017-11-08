@@ -41,7 +41,6 @@ namespace Netotik.Web
             // change captcha provider for using cookie
             //  CaptchaUtils.CaptchaManager.StorageProvider = new CookieStorageProvider();
 
-
             ViewEngines.Engines.Clear();
             ViewEngines.Engines.Add(new RazorViewEngine());
 

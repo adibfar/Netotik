@@ -2028,4 +2028,15 @@
     <Value>دریافت گزارش</Value>
   </LocaleResource>
   
+  
+<LocaleResource Name="ConsultationRequest">
+  <Value>درخواست مشاوره</Value>
+</LocaleResource>
+
+  <LocaleResource Name="ConsultationRequestNote">
+    <Value>
+      ما در کمتر از 24 ساعت درخواست شما را بررسی می کنیم و درصورت لزوم با شما تماس خواهیم گرفت.
+    </Value>
+  </LocaleResource>
+
 </Language>
