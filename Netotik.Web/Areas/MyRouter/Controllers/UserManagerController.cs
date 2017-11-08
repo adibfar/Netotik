@@ -18,6 +18,10 @@ using System.Net;
 using Netotik.ViewModels.Identity.UserRouter;
 using System.Threading.Tasks;
 using Netotik.ViewModels.Identity.UserClient;
+using OfficeOpenXml;
+using OfficeOpenXml.Table;
+using System.Data;
+using System.Reflection;
 
 namespace Netotik.Web.Areas.MyRouter.Controllers
 {
@@ -1152,7 +1156,7 @@ namespace Netotik.Web.Areas.MyRouter.Controllers
             return PartialView(MVC.MyRouter.UserManager.Views._Profiles);
         }
 
-       
+
         [HttpPost]
         [ValidateInput(false)]
         public virtual ActionResult GetUserLogRequest(string Id)
@@ -1172,7 +1176,7 @@ namespace Netotik.Web.Areas.MyRouter.Controllers
         public virtual ActionResult GetUserLog(GetUserLogModel model)
         {
             var Logs = _UserRouterlogclientservice.GetList(UserLogined.Id);
-            var UserSessions = _mikrotikServices.Usermanager_UserSession(UserLogined.UserRouter.R_Host, UserLogined.UserRouter.R_Port, UserLogined.UserRouter.R_User, UserLogined.UserRouter.R_Password,model.Name);
+            var UserSessions = _mikrotikServices.Usermanager_UserSession(UserLogined.UserRouter.R_Host, UserLogined.UserRouter.R_Port, UserLogined.UserRouter.R_User, UserLogined.UserRouter.R_Password, model.Name);
             var UsersLogs = new List<UserWebsiteLogsWithSessionsModel>();
             foreach (var user in UserSessions)
             {
@@ -1224,8 +1228,25 @@ namespace Netotik.Web.Areas.MyRouter.Controllers
                     user_ip = user.user_ip
                 }).ToList());
             }
-                return PartialView();
-        }
 
+            var userReport = UsersLogs.FirstOrDefault();
+
+            using (ExcelPackage pck = new ExcelPackage())
+            {
+                ExcelWorksheet ws = pck.Workbook.Worksheets.Add("Main");
+                ws.Cells["A1"].LoadFromDataTable(Netotik.Common.Extensions.DataTableExtention.ToDataTable<UserWebsiteLogsWithSessionsModel>(UsersLogs), true, TableStyles.Medium2);
+                Byte[] fileBytes = pck.GetAsByteArray();
+                Response.ClearContent();
+                Response.AddHeader("content-disposition", "attachment;filename=" + userReport != null ? userReport.user : "null" + "_Logs_" + DateTime.Now.ToString("M_dd_yyyy_H_M_s") + ".xlsx");
+                Response.ContentType = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet";
+                Response.BinaryWrite(fileBytes);
+                Response.End();
+            }
+
+
+            return RedirectToAction(MVC.MyRouter.UserManager.UserList());
+        }
+        
+       
     }
 }

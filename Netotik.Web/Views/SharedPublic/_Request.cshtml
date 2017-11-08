@@ -1,0 +1,77 @@
+﻿@model Netotik.ViewModels.Common.ContactUs.RequestModel
+@using CaptchaMvc.HtmlHelpers
+@*@{
+            var languages = Netotik.Web.Infrastructure.Caching.LanguageCache.GetLanguages(ViewContext.HttpContext);
+    }*@
+
+<div id="myModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            @using (Html.BeginForm(MVC.ContactUs.ActionNames.Index, MVC.ContactUs.Name, FormMethod.Post))
+            {
+            <!-- Modal Header -->
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myModalLabel">@Captions.ConsultationRequest</h4>
+                </div>
+
+            <!-- Modal Body -->
+                <div class="modal-body">
+                    <div class="alert alert-info">
+                        <p>
+                            <i class="fa fa-exclamation-circle"></i>
+                            @Captions.ConsultationRequestNote
+                        </p>
+                    </div>
+
+                    @Html.AntiForgeryToken()
+
+                    <fieldset>
+
+                        <div class="row">
+                            <div class="form-group">
+                                <div class="col-md-6">
+                                    <label for="contact:name">@Captions.Name *</label>
+                                    @Html.TextBoxFor(model => model.Name, new { @class = "form-control" })
+                                </div>
+
+                                <div class="col-md-6">
+                                    <label for="contact:phone">@Captions.MobileNumber</label>
+                                    @Html.TextBoxFor(model => model.PhoneNumber, new { @class = "form-control" })
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <label for="contact:email">@Captions.Email *</label>
+                                @Html.TextBoxFor(model => model.Email, new { @class = "form-control" })
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="form-group">
+                                <div class="col-md-12">
+                                    <label for="contact:message">@Captions.MessageText *</label>
+                                    @Html.TextAreaFor(model => model.Text, new { @class = "form-control", maxlength = "10000", rows = "8" })
+                                </div>
+                            </div>
+                        </div>
+                    </fieldset>
+
+                    <div class="row">
+                        <div class="col-md-12">
+                            @Html.MathCaptcha(MVC.Shared.Views._CaptchaPartial)
+                        </div>
+
+                    </div>
+
+                </div>
+
+            <!-- Modal Footer -->
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">@Captions.Close</button>
+                    <button type="submit" class="btn btn-primary">@Captions.Save</button>
+                </div>
+            }
+        </div>
+    </div>
+</div>

@@ -1440,5 +1440,13 @@
     <Value>Usermanager error during SMS registration.</Value>
   </LocaleResource>
 
-  
+  <LocaleResource Name="ConsultationRequest">
+    <Value>Consultation Request</Value>
+  </LocaleResource>
+
+  <LocaleResource Name="ConsultationRequestNote">
+    <Value>
+      We will review your request within 24 hours. We will contact you if necessary.
+    </Value>
+  </LocaleResource>
 </Language>

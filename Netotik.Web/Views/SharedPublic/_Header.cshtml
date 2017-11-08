@@ -15,6 +15,11 @@
 
         <!-- right -->
         <ul class="top-links list-inline">
+            <li>
+                <a class="text-white bg-green-netotik"  data-toggle="modal" data-target="#myModal">
+                    @Captions.ConsultationRequest
+                </a>
+            </li>
             @if (user != null)
             {
                 if (user.UserType == UserType.UserAdmin)
