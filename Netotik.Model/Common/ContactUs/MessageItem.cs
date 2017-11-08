@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Netotik.Model.Common.ContactUs
+namespace Netotik.ViewModels.Common.ContactUs
 {
     public class MessageItem
     {

@@ -9,7 +9,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Data.Entity;
-using Netotik.Model.Common.ContactUs;
 using Netotik.Common.DataTables;
 
 namespace Netotik.Services.Implement

@@ -57,7 +57,7 @@ namespace Netotik.ViewModels.Identity.UserAdmin
         [Url(ErrorMessageResourceType = typeof(Captions), ErrorMessageResourceName = "NotValidError")]
         public string Facebook { get; set; }
 
-        [Display(ResourceType = typeof(Captions), Name = "Linkedin")]
+        [Display(ResourceType = typeof(Captions), Name = "LinkedIn")]
         [Url(ErrorMessageResourceType = typeof(Captions), ErrorMessageResourceName = "NotValidError")]
         public string LinkedIn { get; set; }
 
