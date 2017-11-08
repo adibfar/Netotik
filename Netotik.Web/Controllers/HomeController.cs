@@ -88,7 +88,7 @@ namespace Netotik.Web.Controllers
             //    ViewName = MVC.UserMailer.Views.ViewNames.ClientUserPass
             //}
             //   ).Send();
-            //return View();
+            return View();
         }
 
         public virtual ActionResult AdminHeader()
