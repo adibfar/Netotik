@@ -82,6 +82,7 @@
     <Compile Include="Common\Rss\RssItemViewModel.cs" />
     <Compile Include="Identity\Account\ActivationEmailViewModel.cs" />
     <Compile Include="Identity\Account\ChangePasswordViewModel.cs" />
+    <Compile Include="Identity\Account\EmailClientUserPassViewModel.cs" />
     <Compile Include="Identity\Account\EmailFactorViewModel.cs" />
     <Compile Include="Identity\Account\EmailContactUsViewModel.cs" />
     <Compile Include="Identity\Account\EmailViewModel.cs" />

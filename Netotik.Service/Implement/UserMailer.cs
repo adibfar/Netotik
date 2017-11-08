@@ -65,5 +65,17 @@ namespace Netotik.Services.Implement
                 x.To.Add(factor.To);
             });
         }
+        public MvcMailMessage ClientUserPass(EmailClientUserPassViewModel ClientUserPass)
+        {
+            ViewData.Model = ClientUserPass;
+            return Populate(x =>
+            {
+                x.BodyTransferEncoding = System.Net.Mime.TransferEncoding.Base64;
+                x.BodyEncoding = Encoding.UTF8;
+                x.Subject = ClientUserPass.Subject;
+                x.ViewName = ClientUserPass.ViewName;
+                x.To.Add(ClientUserPass.To);
+            });
+        }
     }
 }
