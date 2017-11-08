@@ -44,6 +44,16 @@ Order = 0, GlyphIcon = "icon icon-table")]
 
         public virtual ActionResult CreateIpWalledGarden()
         {
+            if (!_mikrotikServices.IP_Port_Check(UserLogined.UserRouter.R_Host, UserLogined.UserRouter.R_Port, UserLogined.UserRouter.R_User, UserLogined.UserRouter.R_Password))
+            {
+                this.MessageError(Captions.Error, Captions.IPPORTClientError);
+                return RedirectToAction(MVC.MyRouter.Home.ActionNames.MikrotikConf, MVC.MyRouter.Home.Name, new { area = MVC.MyRouter.Name });
+            }
+            if (!_mikrotikServices.User_Pass_Check(UserLogined.UserRouter.R_Host, UserLogined.UserRouter.R_Port, UserLogined.UserRouter.R_User, UserLogined.UserRouter.R_Password))
+            {
+                this.MessageError(Captions.Error, Captions.UserPasswordClientError);
+                return RedirectToAction(MVC.MyRouter.Home.ActionNames.MikrotikConf, MVC.MyRouter.Home.Name, new { area = MVC.MyRouter.Name });
+            }
             ViewBag.servers = _mikrotikServices.Hotspot_ServersList(UserLogined.UserRouter.R_Host, UserLogined.UserRouter.R_Port, UserLogined.UserRouter.R_User, UserLogined.UserRouter.R_Password);
             return PartialView(MVC.MyRouter.Hotspot.Views._CreateWebsiteAccess);
         }
@@ -92,6 +102,16 @@ Order = 0, GlyphIcon = "icon icon-table")]
 
         public virtual ActionResult CreateIpBindings()
         {
+            if (!_mikrotikServices.IP_Port_Check(UserLogined.UserRouter.R_Host, UserLogined.UserRouter.R_Port, UserLogined.UserRouter.R_User, UserLogined.UserRouter.R_Password))
+            {
+                this.MessageError(Captions.Error, Captions.IPPORTClientError);
+                return RedirectToAction(MVC.MyRouter.Home.ActionNames.MikrotikConf, MVC.MyRouter.Home.Name, new { area = MVC.MyRouter.Name });
+            }
+            if (!_mikrotikServices.User_Pass_Check(UserLogined.UserRouter.R_Host, UserLogined.UserRouter.R_Port, UserLogined.UserRouter.R_User, UserLogined.UserRouter.R_Password))
+            {
+                this.MessageError(Captions.Error, Captions.UserPasswordClientError);
+                return RedirectToAction(MVC.MyRouter.Home.ActionNames.MikrotikConf, MVC.MyRouter.Home.Name, new { area = MVC.MyRouter.Name });
+            }
             ViewBag.servers = _mikrotikServices.Hotspot_ServersList(UserLogined.UserRouter.R_Host, UserLogined.UserRouter.R_Port, UserLogined.UserRouter.R_User, UserLogined.UserRouter.R_Password);
             return PartialView(MVC.MyRouter.Hotspot.Views._CreateUserAccess);
         }
@@ -239,6 +259,16 @@ Order = 0, GlyphIcon = "icon icon-table")]
 
         public virtual ActionResult Access()
         {
+            if (!_mikrotikServices.IP_Port_Check(UserLogined.UserRouter.R_Host, UserLogined.UserRouter.R_Port, UserLogined.UserRouter.R_User, UserLogined.UserRouter.R_Password))
+            {
+                this.MessageError(Captions.Error, Captions.IPPORTClientError);
+                return RedirectToAction(MVC.MyRouter.Home.ActionNames.MikrotikConf, MVC.MyRouter.Home.Name, new { area = MVC.MyRouter.Name });
+            }
+            if (!_mikrotikServices.User_Pass_Check(UserLogined.UserRouter.R_Host, UserLogined.UserRouter.R_Port, UserLogined.UserRouter.R_User, UserLogined.UserRouter.R_Password))
+            {
+                this.MessageError(Captions.Error, Captions.UserPasswordClientError);
+                return RedirectToAction(MVC.MyRouter.Home.ActionNames.MikrotikConf, MVC.MyRouter.Home.Name, new { area = MVC.MyRouter.Name });
+            }
             ViewBag.servers = _mikrotikServices.Hotspot_ServersList(UserLogined.UserRouter.R_Host, UserLogined.UserRouter.R_Port, UserLogined.UserRouter.R_User, UserLogined.UserRouter.R_Password);
             return View();
         }
@@ -388,9 +418,17 @@ Order = 0, GlyphIcon = "icon icon-table")]
 
         public virtual ActionResult Template()
         {
+            return View();
+        }
+        public virtual ActionResult LoadTemplateSetting()
+        {
+            //ViewBag.Users = _mikrotikServices.Usermanager_GetAllUsers(UserLogined.UserRouter.R_Host, UserLogined.UserRouter.R_Port, UserLogined.UserRouter.R_User, UserLogined.UserRouter.R_Password);
+            return PartialView(MVC.MyRouter.Hotspot.Views._TemplateSetting);
+        }
 
-            //-------------------------------
-
+        [HttpPost]
+        public virtual async Task<ActionResult> ActiveTemplate(ViewModels.Template.TemplateSettings setting)
+        {
             if (!_mikrotikServices.IP_Port_Check(UserLogined.UserRouter.R_Host, UserLogined.UserRouter.R_Port, UserLogined.UserRouter.R_User, UserLogined.UserRouter.R_Password))
             {
                 this.MessageError(Captions.Error, Captions.IPPORTClientError);
@@ -401,19 +439,6 @@ Order = 0, GlyphIcon = "icon icon-table")]
                 this.MessageError(Captions.Error, Captions.UserPasswordClientError);
                 return RedirectToAction(MVC.MyRouter.Home.ActionNames.MikrotikConf, MVC.MyRouter.Home.Name, new { area = MVC.MyRouter.Name });
             }
-            //-------------------------------
-
-            return View();
-        }
-        public virtual ActionResult LoadTemplateSetting()
-        {
-            ViewBag.Users = _mikrotikServices.Usermanager_GetAllUsers(UserLogined.UserRouter.R_Host, UserLogined.UserRouter.R_Port, UserLogined.UserRouter.R_User, UserLogined.UserRouter.R_Password);
-            return PartialView(MVC.MyRouter.Hotspot.Views._TemplateSetting);
-        }
-
-        [HttpPost]
-        public virtual async Task<ActionResult> ActiveTemplate(ViewModels.Template.TemplateSettings setting)
-        {
             //------------Fix Some Settings---------------------
             setting.InstagramButtonLink = "https://www.instagram.com/" + setting.InstagramButtonLink;
             setting.TelegramButtonLink = "https://telegram.me/" + setting.TelegramButtonLink;

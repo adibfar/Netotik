@@ -3707,7 +3707,6 @@
     <Content Include="Areas\Admin\Views\PaymentType\_Table.cshtml" />
     <Content Include="Areas\Admin\Views\PaymentType\Index.cshtml" />
     <Content Include="Areas\MyRouter\Views\UserManager\RegisterSetting.cshtml" />
-    <Content Include="Areas\MyRouter\Views\Router\WebSitesLogs.cshtml" />
     <Content Include="Areas\MyRouter\Views\Charts\WebSitesLogs.cshtml" />
     <Content Include="Areas\MyRouter\Views\Home\Sms.cshtml" />
     <Content Include="Areas\Admin\Views\Sms\_CreatePackage.cshtml" />

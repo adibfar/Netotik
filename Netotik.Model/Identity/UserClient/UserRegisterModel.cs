@@ -53,6 +53,8 @@ namespace Netotik.ViewModels.Identity.UserClient
         public string reg_key { get; set; }
         [Display(ResourceType = typeof(Captions), Name = "SendSmsNow")]
         public bool SendSmsNow { get; set; }
+        [Display(ResourceType = typeof(Captions), Name = "SendEmailNow")]
+        public bool SendEmailNow { get; set; }
 
 
         [Display(ResourceType = typeof(Captions), Name = "BirthDate")]

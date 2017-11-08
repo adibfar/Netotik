@@ -1,6 +1,10 @@
-﻿@{ 
+﻿@using Netotik.ViewModels.Identity.Security
+@{ 
     var counter = 1;
+    var permissions = ViewBag.Permissions as List<string>;
+    var CanShowWebsitesLogs = permissions.Any(x => x == AssignablePermissionToRouter.WebsitesLogs);
 }
+
 
 @if (ViewBag.Users == null)
 {
@@ -76,9 +80,12 @@ else
                                 <a onclick="UserDetails('@item.id');" class="dropdown-item">
                                     <i class="icon-search"></i> @Captions.Details
                                 </a>
+                                @if (CanShowWebsitesLogs)
+                                {
                                 <a onclick="GetUserLog('@item.id');" class="dropdown-item">
                                     <i class="icon-document-text primary"></i> @Captions.Logs
                                 </a>
+                                }
                                 <a onclick="Userremove('@item.id');" class="dropdown-item">
                                     <i class="icon-trash4 danger"></i> @Captions.Remove
                                 </a>

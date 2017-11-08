@@ -70,7 +70,7 @@ namespace Netotik.ViewModels.Identity.Security
         public const string ClientArea = "13";
 
 
-        public static readonly ClientPermissionModel FoodMenuPermission = new ClientPermissionModel { Name = FoodMenu, Description = "منو غدا" };
+        public static readonly ClientPermissionModel FoodMenuPermission = new ClientPermissionModel { Name = FoodMenu, Description = "منو غذا" };
         public static readonly ClientPermissionModel BuyPackagePermission = new ClientPermissionModel { Name = BuyPackage, Description = "خرید تعرفه" };
         public static readonly ClientPermissionModel ChangePasswordPermission = new ClientPermissionModel { Name = ChangePassword, Description = "منو تغییر گذار واژه" };
         public static readonly ClientPermissionModel EditPermission = new ClientPermissionModel { Name = Edit, Description = "ویرایش اطلاعات" };

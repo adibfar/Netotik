@@ -1453,4 +1453,39 @@
       We will review your request within 24 hours. We will contact you if necessary.
     </Value>
   </LocaleResource>
+  <LocaleResource Name="HotspotLoginTemplate">
+    <Value>
+      Hotpost Login Template
+    </Value>
+  </LocaleResource>
+  <LocaleResource Name="ZarinPalMerchant">
+    <Value>
+      ZarinPal Merchant ID
+    </Value>
+  </LocaleResource>
+  <LocaleResource Name="TelegramBotToken">
+    <Value>
+      Telegram Robot Token (Recive from @botfather )
+    </Value>
+  </LocaleResource>
+  <LocaleResource Name="AboutMessage">
+    <Value>
+      About Us Message
+    </Value>
+  </LocaleResource>
+  <LocaleResource Name="ContactUsMessage">
+    <Value>
+      Contact Us Message
+    </Value>
+  </LocaleResource>
+  <LocaleResource Name="ContactUsNumber">
+    <Value>
+      Contact Number
+    </Value>
+  </LocaleResource>
+  <LocaleResource Name="SendEmailNow">
+    <Value>
+      Send User and Pass to Email
+    </Value>
+  </LocaleResource>
 </Language>

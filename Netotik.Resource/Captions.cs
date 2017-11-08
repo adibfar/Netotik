@@ -5074,5 +5074,54 @@ namespace Netotik.Resources
                 return resourceProvider.GetResource("GetReport", CultureInfo.CurrentUICulture.Name) as string;
             }
         }
+        public static string HotspotLoginTemplate
+        {
+            get
+            {
+                return resourceProvider.GetResource("HotspotLoginTemplate", CultureInfo.CurrentUICulture.Name) as string;
+            }
+        }
+        public static string ZarinPalMerchant
+        {
+            get
+            {
+                return resourceProvider.GetResource("ZarinPalMerchant", CultureInfo.CurrentUICulture.Name) as string;
+            }
+        }
+        public static string TelegramBotToken
+        {
+            get
+            {
+                return resourceProvider.GetResource("TelegramBotToken", CultureInfo.CurrentUICulture.Name) as string;
+            }
+        }
+        public static string ContactUsNumber
+        {
+            get
+            {
+                return resourceProvider.GetResource("ContactUsNumber", CultureInfo.CurrentUICulture.Name) as string;
+            }
+        }
+        public static string ContactUsMessage
+        {
+            get
+            {
+                return resourceProvider.GetResource("ContactUsMessage", CultureInfo.CurrentUICulture.Name) as string;
+            }
+        }
+        public static string AboutMessage
+        {
+            get
+            {
+                return resourceProvider.GetResource("AboutMessage", CultureInfo.CurrentUICulture.Name) as string;
+            }
+        }
+        public static string SendEmailNow
+        {
+            get
+            {
+                return resourceProvider.GetResource("SendEmailNow", CultureInfo.CurrentUICulture.Name) as string;
+            }
+        }
     }
 }

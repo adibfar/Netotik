@@ -22,6 +22,7 @@ using OfficeOpenXml;
 using OfficeOpenXml.Table;
 using System.Data;
 using System.Reflection;
+using Netotik.ViewModels.Identity.Account;
 
 namespace Netotik.Web.Areas.MyRouter.Controllers
 {
@@ -36,6 +37,7 @@ namespace Netotik.Web.Areas.MyRouter.Controllers
         private readonly IPictureService _pictureService;
         private readonly IUserRouterLogClientService _UserRouterlogclientservice;
         private readonly IUnitOfWork _uow;
+        private readonly IUserMailer _userMailer;
         private readonly ISmsService _smsService;
 
         public UserManagerController(
@@ -44,6 +46,7 @@ namespace Netotik.Web.Areas.MyRouter.Controllers
             IApplicationUserManager applicationUserManager,
             IUserRouterLogClientService UserRouterlogclientservice,
             ISmsService smsService,
+            IUserMailer userMailer,
             IUnitOfWork uow)
         {
             _mikrotikServices = mikrotikServices;
@@ -51,6 +54,7 @@ namespace Netotik.Web.Areas.MyRouter.Controllers
             _applicationUserManager = applicationUserManager;
             _UserRouterlogclientservice = UserRouterlogclientservice;
             _smsService = smsService;
+            _userMailer = userMailer;
             _uow = uow;
         }
         #endregion
@@ -86,6 +90,16 @@ namespace Netotik.Web.Areas.MyRouter.Controllers
         [ValidateInput(false)]
         public virtual ActionResult CloseSession(string user, string id)
         {
+            if (!_mikrotikServices.IP_Port_Check(UserLogined.UserRouter.R_Host, UserLogined.UserRouter.R_Port, UserLogined.UserRouter.R_User, UserLogined.UserRouter.R_Password))
+            {
+                this.MessageError(Captions.Error, Captions.IPPORTClientError);
+                return RedirectToAction(MVC.MyRouter.Home.ActionNames.MikrotikConf, MVC.MyRouter.Home.Name, new { area = MVC.MyRouter.Name });
+            }
+            if (!_mikrotikServices.User_Pass_Check(UserLogined.UserRouter.R_Host, UserLogined.UserRouter.R_Port, UserLogined.UserRouter.R_User, UserLogined.UserRouter.R_Password))
+            {
+                this.MessageError(Captions.Error, Captions.UserPasswordClientError);
+                return RedirectToAction(MVC.MyRouter.Home.ActionNames.MikrotikConf, MVC.MyRouter.Home.Name, new { area = MVC.MyRouter.Name });
+            }
             //-------------------------------
             _mikrotikServices.Usermanager_CloseSession(UserLogined.UserRouter.R_Host, UserLogined.UserRouter.R_Port, UserLogined.UserRouter.R_User, UserLogined.UserRouter.R_Password, user);
             //--------------------------------
@@ -344,25 +358,6 @@ namespace Netotik.Web.Areas.MyRouter.Controllers
 
         public virtual ActionResult UserList()
         {
-
-            //-------------------------------
-            //if (!_mikrotikServices.IP_Port_Check(UserLogined.UserRouter.R_Host, UserLogined.UserRouter.R_Port, UserLogined.UserRouter.R_User, UserLogined.UserRouter.R_Password))
-            //{
-            //    this.MessageError(Captions.Error, Captions.IPPORTClientError);
-            //    return RedirectToAction(MVC.MyRouter.Home.ActionNames.MikrotikConf, MVC.MyRouter.Home.Name, new { area = MVC.MyRouter.Name });
-            //}
-            //if (!_mikrotikServices.User_Pass_Check(UserLogined.UserRouter.R_Host, UserLogined.UserRouter.R_Port, UserLogined.UserRouter.R_User, UserLogined.UserRouter.R_Password))
-            //{
-            //    this.MessageError(Captions.Error, Captions.UserPasswordClientError);
-            //    return RedirectToAction(MVC.MyRouter.Home.ActionNames.MikrotikConf, MVC.MyRouter.Home.Name, new { area = MVC.MyRouter.Name });
-            //}
-            //if (!_mikrotikServices.Usermanager_IsInstall(UserLogined.UserRouter.R_Host, UserLogined.UserRouter.R_Port, UserLogined.UserRouter.R_User, UserLogined.UserRouter.R_Password))
-            //{
-            //    this.MessageError(Captions.Error, Captions.UsermanagerClientError);
-            //    return RedirectToAction(MVC.MyRouter.Home.ActionNames.Index);
-            //}
-
-
             return View();
         }
 
@@ -402,6 +397,8 @@ namespace Netotik.Web.Areas.MyRouter.Controllers
                         UserListModel.Add(item);
                     }
                     ViewBag.Users = UserListModel;
+                    var Permissions = _applicationUserManager.FindRouterPermissions(UserLogined.Id);
+                    ViewBag.Permissions = Permissions;
                 }
 
             return PartialView(MVC.MyRouter.UserManager.Views._Users);
@@ -832,6 +829,23 @@ namespace Netotik.Web.Areas.MyRouter.Controllers
                         if (model.SendSmsNow)
                             _smsService.SendSms(model.phone, string.Format(Captions.SmsUserAccountCreated, model.username, model.password), UserLogined.Id);
                     }
+                    if (model.SendEmailNow)
+                    {
+                        if (string.IsNullOrWhiteSpace(model.email)){
+                            _userMailer.ClientUserPass(new EmailClientUserPassViewModel
+                            {
+                                To = model.email,
+                                PanelLoginLink = Url.Action(MVC.Login.Client("",UserLogined.UserRouter.RouterCode), protocol: "https"),
+                                Password = model.password,
+                                Profile = model.profile,
+                                RouterCode = UserLogined.UserRouter.RouterCode,
+                                Subject = Captions.AdminUserCreated,
+                                Username = model.username,
+                                ViewName = MVC.UserMailer.Views.ViewNames.ClientUserPass
+                            }
+                               ).Send();
+                        }
+                    }
                 }
                 _uow.SaveAllChanges();
                 return RedirectToAction(MVC.MyRouter.UserManager.UserList());
@@ -840,24 +854,6 @@ namespace Netotik.Web.Areas.MyRouter.Controllers
 
         public virtual ActionResult PackageList()
         {
-
-            ////-------------------------------
-            //if (!_mikrotikServices.IP_Port_Check(UserLogined.UserRouter.R_Host, UserLogined.UserRouter.R_Port, UserLogined.UserRouter.R_User, UserLogined.UserRouter.R_Password))
-            //{
-            //    this.MessageError(Captions.Error, Captions.IPPORTClientError);
-            //    return RedirectToAction(MVC.MyRouter.Home.ActionNames.MikrotikConf, MVC.MyRouter.Home.Name, new { area = MVC.MyRouter.Name });
-            //}
-            //if (!_mikrotikServices.User_Pass_Check(UserLogined.UserRouter.R_Host, UserLogined.UserRouter.R_Port, UserLogined.UserRouter.R_User, UserLogined.UserRouter.R_Password))
-            //{
-            //    this.MessageError(Captions.Error, Captions.UserPasswordClientError);
-            //    return RedirectToAction(MVC.MyRouter.Home.ActionNames.MikrotikConf, MVC.MyRouter.Home.Name, new { area = MVC.MyRouter.Name });
-            //}
-            //if (!_mikrotikServices.Usermanager_IsInstall(UserLogined.UserRouter.R_Host, UserLogined.UserRouter.R_Port, UserLogined.UserRouter.R_User, UserLogined.UserRouter.R_Password))
-            //{
-            //    this.MessageError(Captions.Error, Captions.UsermanagerClientError);
-            //    return RedirectToAction(MVC.MyRouter.Home.ActionNames.Index);
-            //}
-
             return View();
         }
 
@@ -1107,6 +1103,16 @@ namespace Netotik.Web.Areas.MyRouter.Controllers
         [ValidateInput(false)]
         public virtual ActionResult GetUserLogRequest(string Id)
         {
+            if (!_mikrotikServices.IP_Port_Check(UserLogined.UserRouter.R_Host, UserLogined.UserRouter.R_Port, UserLogined.UserRouter.R_User, UserLogined.UserRouter.R_Password))
+            {
+                this.MessageError(Captions.Error, Captions.IPPORTClientError);
+                return RedirectToAction(MVC.MyRouter.Home.ActionNames.MikrotikConf, MVC.MyRouter.Home.Name, new { area = MVC.MyRouter.Name });
+            }
+            if (!_mikrotikServices.User_Pass_Check(UserLogined.UserRouter.R_Host, UserLogined.UserRouter.R_Port, UserLogined.UserRouter.R_User, UserLogined.UserRouter.R_Password))
+            {
+                this.MessageError(Captions.Error, Captions.UserPasswordClientError);
+                return RedirectToAction(MVC.MyRouter.Home.ActionNames.MikrotikConf, MVC.MyRouter.Home.Name, new { area = MVC.MyRouter.Name });
+            }
             var userclient = _mikrotikServices.Usermanager_GetUser(UserLogined.UserRouter.R_Host, UserLogined.UserRouter.R_Port, UserLogined.UserRouter.R_User, UserLogined.UserRouter.R_Password, Id).FirstOrDefault();
 
             System.Globalization.PersianCalendar cal = new System.Globalization.PersianCalendar();
@@ -1146,6 +1152,16 @@ namespace Netotik.Web.Areas.MyRouter.Controllers
         [HttpPost]
         public virtual ActionResult GetUserLog(GetUserLogModel model)
         {
+            if (!_mikrotikServices.IP_Port_Check(UserLogined.UserRouter.R_Host, UserLogined.UserRouter.R_Port, UserLogined.UserRouter.R_User, UserLogined.UserRouter.R_Password))
+            {
+                this.MessageError(Captions.Error, Captions.IPPORTClientError);
+                return RedirectToAction(MVC.MyRouter.Home.ActionNames.MikrotikConf, MVC.MyRouter.Home.Name, new { area = MVC.MyRouter.Name });
+            }
+            if (!_mikrotikServices.User_Pass_Check(UserLogined.UserRouter.R_Host, UserLogined.UserRouter.R_Port, UserLogined.UserRouter.R_User, UserLogined.UserRouter.R_Password))
+            {
+                this.MessageError(Captions.Error, Captions.UserPasswordClientError);
+                return RedirectToAction(MVC.MyRouter.Home.ActionNames.MikrotikConf, MVC.MyRouter.Home.Name, new { area = MVC.MyRouter.Name });
+            }
             var date = PersianDate.ConvertDate.ToEn(model.Year,model.Month,model.Day);
             var FromTime = new DateTime(date.Year, date.Month, date.Day, int.Parse(model.FromTime.Split(':')[0]), int.Parse(model.FromTime.Split(':')[1]), 0);
             var ToTime = new DateTime(date.Year, date.Month, date.Day, int.Parse(model.ToTime.Split(':')[0]), int.Parse(model.ToTime.Split(':')[1]), 59);

@@ -131,32 +131,17 @@ namespace Netotik.Web.Areas.Reseller.Controllers
                 this.MessageError(Captions.MissionFail, Captions.InvalidDataError);
                 return View(model);
             }
-
-            if (!_mikrotikServices.IP_Port_Check(model.R_Host, model.R_Port, model.R_User, model.R_Password))
-            {
-                this.MessageWarning(Captions.Information, Captions.IPPORTClientError);
-            }
-            else
-            {
-                if (!_mikrotikServices.User_Pass_Check(model.R_Host, model.R_Port, model.R_User, model.R_Password))
-                {
-                    this.MessageWarning(Captions.Information, Captions.UserPasswordClientError);
-                }
+            if (model.cloud)
+                if (!_mikrotikServices.IP_Port_Check(model.R_Host, model.R_Port, model.R_User, model.R_Password))
+                    this.MessageWarning(Captions.Information, Captions.IPPORTClientError);
                 else
-                {
+                if (!_mikrotikServices.User_Pass_Check(model.R_Host, model.R_Port, model.R_User, model.R_Password))
+                    this.MessageWarning(Captions.Information, Captions.UserPasswordClientError);
+                else
                     if (!_mikrotikServices.Usermanager_IsInstall(model.R_Host, model.R_Port, model.R_User, model.R_Password))
-                    {
-                        this.MessageWarning(Captions.Information, Captions.UsermanagerClientError);
-                    }
-                    else
-                    {
-                        if (model.cloud)
-                        {
-                            model.R_Host = _mikrotikServices.EnableAndGetCloud(model.R_Host, model.R_Port, model.R_User, model.R_Password);
-                        }
-                    }
-                }
-            }
+                    this.MessageWarning(Captions.Information, Captions.UsermanagerClientError);
+                else
+                    model.R_Host = _mikrotikServices.EnableAndGetCloud(model.R_Host, model.R_Port, model.R_User, model.R_Password);
             model.UserResellerId = UserLogined.UserReseller.Id;
             var userId = await _applicationUserManager.AddRouter(model);
 
@@ -188,7 +173,7 @@ namespace Netotik.Web.Areas.Reseller.Controllers
         [BreadCrumb(Title = "EditRouter", Order = 1)]
         public virtual async Task<ActionResult> Edit(long? id)
         {
-            
+
             if (id == null) return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
 
             var viewModel = await _userManager.GetUserRouterByIdAsync(id.Value);
@@ -316,7 +301,7 @@ namespace Netotik.Web.Areas.Reseller.Controllers
         [Mvc5Authorize(Roles = "Reseller")]
         public virtual ActionResult ChangePassword(long Id)
         {
-            
+
             return View(new ChangePasswordModel() { id = Id });
         }
 
@@ -340,7 +325,7 @@ namespace Netotik.Web.Areas.Reseller.Controllers
             {
                 var Router = _applicationUserManager.FindUserById(model.id);
                 if (Router.UserRouter.SmsCharge > 0 && Router.UserRouter.SmsActive && Router.UserRouter.SmsAdminChangeAdminPassword)
-                    _smsService.SendSms(UserLogined.PhoneNumber, string.Format(Captions.SmsRouterPasswordChange,UserLogined.UserName), UserLogined.Id);
+                    _smsService.SendSms(UserLogined.PhoneNumber, string.Format(Captions.SmsRouterPasswordChange, UserLogined.UserName), UserLogined.Id);
                 this.MessageInformation(Captions.MissionSuccess, Captions.UpdateSuccess);
             }
             else

@@ -76,18 +76,7 @@ namespace Netotik.Web.Controllers
 
         public virtual ActionResult Index()
         {
-            //_userMailer.ClientUserPass(new EmailClientUserPassViewModel
-            //{
-            //    To= "ehsan2912.em@gmail.com",
-            //    PanelLoginLink = Url.Action(MVC.Login.Client(),protocol:"https"),
-            //    Password = "sadsad",
-            //    Profile = "test asd",
-            //    RouterCode = "RouterCode",
-            //    Subject = Captions.AdminUserCreated,
-            //    Username = "sakldasj",
-            //    ViewName = MVC.UserMailer.Views.ViewNames.ClientUserPass
-            //}
-            //   ).Send();
+
             return View();
         }
 
