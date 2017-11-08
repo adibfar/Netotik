@@ -4242,6 +4242,7 @@
     <Content Include="Views\GetRouterTemplate\GetAlogin.cshtml" />
     <Content Include="Views\GetRouterTemplate\GetError.cshtml" />
     <Content Include="Views\SharedPublic\_Request.cshtml" />
+    <Content Include="Views\UserMailer\ClientUserPass.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />

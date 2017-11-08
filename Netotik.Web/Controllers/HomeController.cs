@@ -11,6 +11,8 @@ using Netotik.Web.Infrastructure;
 using Netotik.Web.Infrastructure.Caching;
 using Netotik.Common.Filters;
 using Microsoft.AspNet.Identity;
+using Netotik.ViewModels.Identity.Account;
+using Netotik.Resources;
 
 namespace Netotik.Web.Controllers
 {
@@ -74,6 +76,18 @@ namespace Netotik.Web.Controllers
 
         public virtual ActionResult Index()
         {
+            //_userMailer.ClientUserPass(new EmailClientUserPassViewModel
+            //{
+            //    To= "ehsan2912.em@gmail.com",
+            //    PanelLoginLink = Url.Action(MVC.Login.Client(),protocol:"https"),
+            //    Password = "sadsad",
+            //    Profile = "test asd",
+            //    RouterCode = "RouterCode",
+            //    Subject = Captions.AdminUserCreated,
+            //    Username = "sakldasj",
+            //    ViewName = MVC.UserMailer.Views.ViewNames.ClientUserPass
+            //}
+            //   ).Send();
             return View();
         }
 
