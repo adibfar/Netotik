@@ -56,17 +56,6 @@ namespace Netotik.Web.Areas.MyRouter.Controllers
 
         public virtual ActionResult Info()
         {
-            if (!_mikrotikServices.IP_Port_Check(UserLogined.UserRouter.R_Host, UserLogined.UserRouter.R_Port, UserLogined.UserRouter.R_User, UserLogined.UserRouter.R_Password))
-            {
-                this.MessageError(Captions.Error, Captions.IPPORTClientError);
-                return RedirectToAction(MVC.MyRouter.Home.ActionNames.MikrotikConf, MVC.MyRouter.Home.Name, new { area = MVC.MyRouter.Name });
-            }
-            if (!_mikrotikServices.User_Pass_Check(UserLogined.UserRouter.R_Host, UserLogined.UserRouter.R_Port, UserLogined.UserRouter.R_User, UserLogined.UserRouter.R_Password))
-            {
-                this.MessageError(Captions.Error, Captions.UserPasswordClientError);
-                return RedirectToAction(MVC.MyRouter.Home.ActionNames.MikrotikConf, MVC.MyRouter.Home.Name, new { area = MVC.MyRouter.Name });
-            }
-
             return View();
         }
         public virtual ActionResult UpdateRouter(string ReturnURL)
@@ -670,20 +659,6 @@ namespace Netotik.Web.Areas.MyRouter.Controllers
             //-------------------------------
             _mikrotikServices.Router_NatDisable(UserLogined.UserRouter.R_Host, UserLogined.UserRouter.R_Port, UserLogined.UserRouter.R_User, UserLogined.UserRouter.R_Password, id);
             return RedirectToAction(MVC.MyRouter.Router.ActionNames.Nat);
-        }
-        public virtual ActionResult WebSitesLogs()
-        {
-
-            //-------------------------------
-
-            if (!UserLogined.UserRouter.WebsitesLogs)
-            {
-                this.MessageError(Captions.Error, "شما مجوز لازم را ندارید");
-                return RedirectToAction(MVC.MyRouter.Home.ActionNames.Index, MVC.MyRouter.Home.Name, new { area = MVC.MyRouter.Name });
-            }
-            //-------------------------------
-            ViewBag.Model = _UserRouterlogclientservice.GetList(UserLogined.Id);
-            return View();
         }
 
         public virtual JsonResult GetRouterResource()

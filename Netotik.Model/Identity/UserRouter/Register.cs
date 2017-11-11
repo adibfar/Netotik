@@ -99,6 +99,8 @@ namespace Netotik.ViewModels.Identity.UserRouter
         public System.Web.HttpPostedFileBase ImageAvatar { get; set; }
 
 
+        [Display(ResourceType = typeof(Captions), Name = "ZarinPalMerchant")]
+        public string ZarinPalMerchantId { get; set; }
 
         public string[] ClientPermissionNames { get; set; }
         public string[] RouterPermissionNames { get; set; }

@@ -81,6 +81,8 @@ namespace Netotik.ViewModels.Identity.UserRouter
         [System.Web.Mvc.Remote("IsRouterCodeAvailable", "Remote", System.Web.Mvc.AreaReference.UseRoot, AdditionalFields = "Id,Reseller_Id", HttpMethod = "POST", ErrorMessageResourceType = typeof(Captions), ErrorMessageResourceName = "ExistError")]
         public string RouterCode { get; set; }
 
+        [Display(ResourceType = typeof(Captions), Name = "ZarinPalMerchant")]
+        public string ZarinPalMerchantId { get; set; }
 
         public string[] ClientPermissionNames { get; set; }
         public string[] RouterPermissionNames { get; set; }

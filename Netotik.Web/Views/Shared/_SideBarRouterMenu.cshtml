@@ -12,14 +12,16 @@
     var CanShowRouter = Model.Any(x => AssignablePermissionToRouter.GetRouterMenuPermision().Any(y => y.Name == x));
     var CanShowRouterInfo = Model.Any(x => x == AssignablePermissionToRouter.RouterInfo);
     var CanShowRouterActions = Model.Any(x => x == AssignablePermissionToRouter.RouterActions);
-    var CanShowWebsitesLogs = Model.Any(x => x == AssignablePermissionToRouter.WebsitesLogs);
-    
-//-------------------------------------------------------------------------------------------------------
-var CanShowHotspot = Model.Any(x => AssignablePermissionToRouter.GetHotspotMenuPermision().Any(y => y.Name == x));
+
+
+    //-------------------------------------------------------------------------------------------------------
+    var CanShowHotspot = Model.Any(x => AssignablePermissionToRouter.GetHotspotMenuPermision().Any(y => y.Name == x));
     var CanShowHotspotOnline = Model.Any(x => x == AssignablePermissionToRouter.HotspotsOnline);
     var CanShowHotspotAccess = Model.Any(x => x == AssignablePermissionToRouter.HotspotsAccess);
-    //-------------------------------------------------------------------------------------------------------
-    var CanShowTelegramBot = Model.Any(x => x == AssignablePermissionToRouter.TelegramBot);
+    var CanShowHotspotTemplates = Model.Any(x => x == AssignablePermissionToRouter.HotspotTemplate);
+    
+//-------------------------------------------------------------------------------------------------------
+var CanShowTelegramBot = Model.Any(x => x == AssignablePermissionToRouter.TelegramBot);
     var CanShowSms = Model.Any(x => x == AssignablePermissionToRouter.Sms);
     var CanShowMikrotikConnectionSetting = Model.Any(x => x == AssignablePermissionToRouter.MikrotikConnectionSetting);
 
@@ -73,10 +75,6 @@ var CanShowHotspot = Model.Any(x => AssignablePermissionToRouter.GetHotspotMenuP
                         {
                             <li><a href="@Url.Action(MVC.MyRouter.Router.RouterSetting())" data-toggle="dropdown" class="dropdown-item">@Captions.Actions</a></li>
                         }
-                        @if (CanShowWebsitesLogs)
-                        {
-                            <li><a href="@Url.Action(MVC.MyRouter.Router.WebSitesLogs())" data-toggle="dropdown" class="dropdown-item">@Captions.WebsitesLogs</a></li>
-                        }
                         @if (false)
                         {
                             <li><a href="@Url.Action(MVC.MyRouter.Router.PPP())" data-toggle="dropdown" class="dropdown-item">PPP & Other </a></li>
@@ -100,9 +98,13 @@ var CanShowHotspot = Model.Any(x => AssignablePermissionToRouter.GetHotspotMenuP
                         {
                             <li><a href="@Url.Action(MVC.MyRouter.Hotspot.Active())" data-toggle="dropdown" class="dropdown-item">@Captions.Online</a></li>
                         }
+                        @if (CanShowHotspotTemplates)
+                        {
+                            <li><a href="@Url.Action(MVC.MyRouter.Hotspot.Template())" data-toggle="dropdown" class="dropdown-item">@Captions.HotspotLoginTemplate</a></li>
+                        }
                         @if (false)
                         {
-                            <li><a href="@Url.Action(MVC.MyRouter.Hotspot.Template())" data-toggle="dropdown" class="dropdown-item">قالب های لاگین هات اسپات</a></li>
+                            
                             <li><a href="@Url.Action(MVC.MyRouter.Hotspot.Servers())" data-toggle="dropdown" class="dropdown-item">سرور ها</a></li>
                             <li><a href="@Url.Action(MVC.MyRouter.Hotspot.Users())" data-toggle="dropdown" class="dropdown-item">کاربران</a></li>
                         }

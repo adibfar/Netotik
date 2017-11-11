@@ -14,11 +14,18 @@ namespace Netotik.ViewModels.Identity.UserRouter
     public class TelegramBotModel
     {
         public long Id { get; set; }
+        [Display(ResourceType = typeof(Captions), Name = "TelegramBotToken")]
         public string TelegramBotToken { get; set; }
+        [Display(ResourceType = typeof(Captions), Name = "AboutMessage")]
         public string AboutMessage { get; set; }
+        [Display(ResourceType = typeof(Captions), Name = "ContactUsMessage")]
         public string ContactUsMessage { get; set; }
+        [Display(ResourceType = typeof(Captions), Name = "ContactUsNumber")]
         public string ContactUsNumber { get; set; }
+        [Display(ResourceType = typeof(Captions), Name = "FirstName")]
         public string ContactUsFirstName { get; set; }
+        [Display(ResourceType = typeof(Captions), Name = "LastName")]
         public string ContactUsLastName { get; set; }
+
     }
 }

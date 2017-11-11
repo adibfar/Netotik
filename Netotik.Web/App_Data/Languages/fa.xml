@@ -2038,5 +2038,39 @@
       ما در کمتر از 24 ساعت درخواست شما را بررسی می کنیم و درصورت لزوم با شما تماس خواهیم گرفت.
     </Value>
   </LocaleResource>
-
+  <LocaleResource Name="HotspotLoginTemplate">
+    <Value>
+      قالب صفحه ورود هات اسپات
+    </Value>
+  </LocaleResource>
+  <LocaleResource Name="ZarinPalMerchant">
+    <Value>
+      مرچنت زرین پال
+    </Value>
+  </LocaleResource>
+  <LocaleResource Name="TelegramBotToken">
+    <Value>
+      توکن ربات ( دریافت از @botfather )
+    </Value>
+  </LocaleResource>
+  <LocaleResource Name="AboutMessage">
+    <Value>
+      پیام درباره ما
+    </Value>
+  </LocaleResource>
+  <LocaleResource Name="ContactUsMessage">
+    <Value>
+      پیام ارتباط با ما
+    </Value>
+  </LocaleResource>
+  <LocaleResource Name="ContactUsNumber">
+    <Value>
+      شماره تماس
+    </Value>
+  </LocaleResource>
+  <LocaleResource Name="SendEmailNow">
+    <Value>
+      ارسال نام کاربری و کلمه عبور به ایمیل
+    </Value>
+  </LocaleResource>
 </Language>

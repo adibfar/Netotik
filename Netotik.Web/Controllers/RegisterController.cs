@@ -280,16 +280,20 @@ namespace Netotik.Web.Controllers
                 ViewBag.UserFind = UserFind;
 
             //-------------Email
-            if (Router.UserRouter.UserRouterRegisterSetting.SendEmailUserPass && (UserFind.email != null || UserFind.email != ""))
+            if (Router.UserRouter.UserRouterRegisterSetting.SendEmailUserPass && string.IsNullOrWhiteSpace(UserFind.email))
             {
-                _userMailer.ResetPassword(new EmailViewModel
-                {
-                    Message = Captions.ForgetPasswordMailMessage,
-                    To = model.Email,
-                    Subject = Captions.ForgetPasswordMailSubject,
-                    ViewName = MVC.UserMailer.Views.ViewNames.ResetPassword
-                }
-               ).Send();
+                        _userMailer.ClientUserPass(new EmailClientUserPassViewModel
+                        {
+                            To = UserFind.email,
+                            PanelLoginLink = Url.Action(MVC.Login.Client("", Router.UserRouter.RouterCode), protocol: "https"),
+                            Password = UserFind.password,
+                            Profile = UserFind.actual_profile,
+                            RouterCode = Router.UserRouter.RouterCode,
+                            Subject = Captions.AdminUserCreated,
+                            Username = UserFind.username,
+                            ViewName = MVC.UserMailer.Views.ViewNames.ClientUserPass
+                        }
+                           ).Send();
             }
 
             //--------------SMS

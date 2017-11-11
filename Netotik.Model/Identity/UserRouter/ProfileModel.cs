@@ -60,7 +60,7 @@ namespace Netotik.ViewModels.Identity.UserRouter
 
         public string[] ClientPermissionNames { get; set; }
         public string[] RouterPermissionNames { get; set; }
-
+        [Display(ResourceType = typeof(Captions), Name = "ZarinPalMerchant")]
         public string ZarinPalMerchantId { get; set; }
     }
 }

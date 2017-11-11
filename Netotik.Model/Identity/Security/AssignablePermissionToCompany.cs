@@ -67,11 +67,12 @@ namespace Netotik.ViewModels.Identity.Security
 
         public const string HotspotsOnline = "21";
         public const string HotspotsAccess = "22";
+        public const string HotspotTemplate = "23";
 
         public const string TelegramBot = "31";
         public const string Sms = "32";
         public const string MikrotikConnectionSetting = "33";
-
+        
 
         public static readonly RouterPermissionModel UserManagerUserListPermission = new RouterPermissionModel { Name = UserManagerUserList, Description = "لیست کاربران یوزرمنیجر" };
         public static readonly RouterPermissionModel UserManagerPlanListPermission = new RouterPermissionModel { Name = UserManagerPlanList, Description = "لیست تعرفه های یوزرمنیجر" };
@@ -86,6 +87,7 @@ namespace Netotik.ViewModels.Identity.Security
 
         public static readonly RouterPermissionModel HotspotsOnlinePermission = new RouterPermissionModel { Name = HotspotsOnline, Description = "لیست کاربران آنلاین هات اسپات" };
         public static readonly RouterPermissionModel HotspotsAccessPermission = new RouterPermissionModel { Name = HotspotsAccess, Description = "دسترسی ها در هات اسپات" };
+        public static readonly RouterPermissionModel HotspotTemplatePermission = new RouterPermissionModel { Name = HotspotTemplate, Description = "قالب صفحه ورود هات اسپات" };
 
         public static readonly RouterPermissionModel TelegramBotPermission = new RouterPermissionModel { Name = TelegramBot, Description = "ربات تلگرام" };
         public static readonly RouterPermissionModel SmsPermission = new RouterPermissionModel { Name = Sms, Description = "پیامک" };
@@ -116,7 +118,9 @@ namespace Netotik.ViewModels.Identity.Security
                 TelegramBotPermission,
                 SmsPermission,
                 MikrotikConnectionSettingPermission,
-                WebsitesLogsPermission
+                WebsitesLogsPermission,
+                HotspotTemplatePermission
+                
             };
         }
 
@@ -139,7 +143,8 @@ namespace Netotik.ViewModels.Identity.Security
                 TelegramBot,
                 Sms,
                 MikrotikConnectionSetting,
-                WebsitesLogs
+                WebsitesLogs,
+                HotspotTemplate
             };
         }
         #endregion
@@ -172,7 +177,8 @@ namespace Netotik.ViewModels.Identity.Security
             return new List<RouterPermissionModel>
             {
                 HotspotsAccessPermission,
-                HotspotsOnlinePermission
+                HotspotsOnlinePermission,
+                HotspotTemplatePermission
             };
         }
 
