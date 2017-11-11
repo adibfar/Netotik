@@ -1219,6 +1219,10 @@ namespace Netotik.Web.Areas.MyRouter.Controllers
                     user_ip = user.user_ip
                 }).ToList());
             }
+            //if (UsersLogs==null)
+            //{
+
+            //}
             var userReport = UsersLogs.FirstOrDefault();
 
             using (ExcelPackage pck = new ExcelPackage())
@@ -1227,7 +1231,7 @@ namespace Netotik.Web.Areas.MyRouter.Controllers
                 ws.Cells["A1"].LoadFromDataTable(Netotik.Common.Extensions.DataTableExtention.ToDataTable<UserWebsiteLogsWithSessionsModel>(UsersLogs), true, TableStyles.Medium2);
                 Byte[] fileBytes = pck.GetAsByteArray();
                 Response.ClearContent();
-                Response.AddHeader("content-disposition", "attachment;filename=" + userReport != null ? userReport.user : "null" + "_Logs_" + DateTime.Now.ToString("M_dd_yyyy_H_M_s") + ".xlsx");
+                Response.AddHeader("content-disposition", "attachment;filename=" + (userReport != null ? userReport.user : "null" )+ "_Logs_" + DateTime.Now.ToString("M_dd_yyyy_H_M_s") + ".xlsx");
                 Response.ContentType = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet";
                 Response.BinaryWrite(fileBytes);
                 Response.End();
