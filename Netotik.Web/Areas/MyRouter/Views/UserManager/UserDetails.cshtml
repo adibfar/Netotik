@@ -459,13 +459,9 @@
         changeval('downloaduploadremainB', 'downloaduploadremain');
         changeval('downloadusedB', 'downloadused');
         changeval('uploadusedB', 'uploadused');
-        Morris.Donut({
-            element: 'morris-donut-chart',
-            data: [{ label: "@Netotik.Resources.Captions.Used", value: @(ViewBag.download_used==null?1: ulong.Parse(ViewBag.download_used.ToString()) < 1048576 ? 1 : (ulong.Parse(Model.download_used.ToString()) / 1048576)) },
-                { label: "@Netotik.Resources.Captions.Remain", value: @(ViewBag.download_remain == null ? 1 : ulong.Parse(ViewBag.download_remain.ToString())<1048576?1:(ulong.Parse(ViewBag.download_remain.ToString()) / 1048576)) }],
-            resize: !0,
-            colors: ['#ff5733', '#54cdb4']
-        });
+        
+
+
         function changeval(selectid, inputid) {
             var e = document.getElementById(selectid);
             var strUser = e.options[e.selectedIndex].value;
@@ -625,61 +621,16 @@
                     ]
                 });
 
-                var table = $('#grid2').dataTable({
-                    "iDisplayLength": 10,
-                    "bProcessing": true,
-                    "bStateSave": true,
-                    "bFilter": true,
-                    "columnDefs": [
-                   {
-                       "targets": [7],
-                       "visible": false
-                   },
-                   {
-                       "targets": [11],
-                       "visible": false
-                   },
-                   {
-                       "targets": [8],
-                       "visible": false
-                   },
-                   {
-                       "targets": [9],
-                       "visible": false
-                   },
-                   {
-                       "targets": [10],
-                       "visible": false
-                   },
-                   {
-                       "targets": [12],
-                       "visible": false
-                   },
-                   {
-                       "targets": [13],
-                       "visible": false
-                   },
-                   {
-                       "targets": [14],
-                       "visible": false
-                   },
-                   {
-                       "targets": [15],
-                       "visible": false
-                   }
-                    ],
-                    dom: 'Bfrtip',
-                    lengthMenu: [
-                                 [10, 25, 50, -1],
-                                 ['10', '25', '50', 'All']
-                    ],
-                    buttons: [
-                        'copy', 'excel', 'pdf', 'pageLength', 'colvis'
-                    ]
-                });
-
                 CardUnBlock('#list');
             }, "html");
+        });
+
+        Morris.Donut({
+            element: 'morris-donut-chart',
+            data: [{ label: "@Netotik.Resources.Captions.Used", value: @(ViewBag.download_used==null?1: ulong.Parse(ViewBag.download_used.ToString()) < 1048576 ? 1 : (ulong.Parse(Model.download_used.ToString()) / 1048576)) },
+                { label: "@Netotik.Resources.Captions.Remain", value: @(ViewBag.download_remain == null ? 1 : ulong.Parse(ViewBag.download_remain.ToString())<1048576?1:(ulong.Parse(ViewBag.download_remain.ToString()) / 1048576)) }],
+            resize: !0,
+            colors: ['#ff5733', '#54cdb4']
         });
 
     </script>
