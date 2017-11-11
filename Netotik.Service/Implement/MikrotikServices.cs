@@ -2363,7 +2363,8 @@ namespace Netotik.Services.Implement
                     {
                         ColumnList.Add(cols[i], cols[i + 1]);
                     }
-
+                    
+                    if ((ColumnList.Any(x => x.Key == "name") ? (ColumnList.FirstOrDefault(x => x.Key == "name").Value) : "")!= "default-trial")
                     Hotspot_Users.Add(new Hotspot_UsersModel()
                     {
                         id = ColumnList.Any(x => x.Key == ".id") ? (ColumnList.FirstOrDefault(x => x.Key == ".id").Value) : "",
