@@ -36,7 +36,7 @@
     <!--[if IE]><meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'><![endif]-->
 
 
-    @Styles.Render("~/Content/publiccss")
+    @Styles.Render("~/content/publiccss")
     @Html.Action(MVC.Home.HeaderPublicCss())
 
     @RenderSection("Top", false)
@@ -85,7 +85,7 @@
 
     <!-- JAVASCRIPT FILES -->
 
-    <script type="text/javascript">var plugin_path = '/Content/PublicUI/plugins/';</script>
+    <script type="text/javascript">var plugin_path = '/content/publicui/plugins/';</script>
     @Scripts.Render("~/bundles/publicjs")
     @Scripts.Render("~/bundles/jqueryvalpublic")
 

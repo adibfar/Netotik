@@ -30,7 +30,7 @@ namespace Netotik.Web
                         "~/Content/PublicUI/js/vendor/modernizr-2.8.3.min.js"));
 
 
-            bundles.Add(new StyleBundle("~/Content/publiccss").Include(
+            bundles.Add(new StyleBundle("~/content/publiccss").Include(
                                 "~/Content/PublicUI/plugins/bootstrap/css/bootstrap.min.css",
                                 "~/Content/PublicUI/css/essentials.css",
                                 "~/Content/PublicUI/css/layout.css",
@@ -43,7 +43,7 @@ namespace Netotik.Web
 
 
 
-            bundles.Add(new StyleBundle("~/Content/publicrtlcss").Include(
+            bundles.Add(new StyleBundle("~/content/publicrtlcss").Include(
                                 "~/Content/PublicUI/plugins/bootstrap/RTL/bootstrap-rtl.min.css",
                                 "~/Content/PublicUI/plugins/bootstrap/RTL/bootstrap-flipped.min.css",
                                 "~/Content/PublicUI/css/layout-RTL.css",
@@ -53,7 +53,7 @@ namespace Netotik.Web
 
 
 
-            bundles.Add(new StyleBundle("~/Content/admincss").Include(
+            bundles.Add(new StyleBundle("~/content/admincss").Include(
                        "~/Content/fonts/icomoon.css",
                        "~/Content/fonts/flag-icon-css/css/flag-icon.min.css",
                        "~/Content/css/plugins/sliders/slick/slick.css",
@@ -72,14 +72,14 @@ namespace Netotik.Web
 
 
 
-            bundles.Add(new StyleBundle("~/Content/panelrtlcss").Include(
+            bundles.Add(new StyleBundle("~/content/panelrtlcss").Include(
                        "~/Content/css/Rtl/vendors.min.css",
                        "~/Content/css/Rtl/app.min.css",
                        "~/Content/css/Rtl/my-style.css"));
 
 
 
-            bundles.Add(new StyleBundle("~/Content/panelltrcss").Include(
+            bundles.Add(new StyleBundle("~/content/panelltrcss").Include(
                        "~/Content/css/Ltr/vendors.min.css",
                        "~/Content/css/Ltr/app.min.css",
                        "~/Content/css/Ltr/my-style.css"));
