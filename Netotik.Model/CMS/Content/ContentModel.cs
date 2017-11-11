@@ -72,6 +72,14 @@ namespace Netotik.ViewModels.CMS.Content
         [Display(ResourceType = typeof(Captions), Name = "Language")]
         public int LanguageId { get; set; }
 
+
+        [Display(ResourceType = typeof(Captions), Name = "StartDatePublish")]
+        public Nullable<System.DateTime> StartDate { get; set; }
+
+        [Display(ResourceType = typeof(Captions), Name = "StartTimePublish")]
+        public string StartDateTime { get; set; }
+
+        
         public Picture Picture { get; set; }
 
         [Display(ResourceType = typeof(Captions), Name = "Image")]

@@ -130,10 +130,11 @@ namespace Netotik.Web.Areas.Admin.Controllers
                 status = ContentStatus.WaitForAccept,
                 Title = model.Title,
                 Url = model.Url,
-                StartDate = now,
+                StartDate = new DateTime(model.StartDate.Value.Year,model.StartDate.Value.Month,model.StartDate.Value.Day,int.Parse(model.StartDateTime.Split(':')[0]),int.Parse(model.StartDateTime.Split(':')[1]),00),
                 MetaDescription = model.MetaDescription,
                 MetaKeywords = model.MetaKeywords,
-                MetaTitle = model.MetaTitle
+                MetaTitle = model.MetaTitle,
+                
             };
             content.ContentTages = _contentTagService.GetTagesbyIdsAsync(model.TagIds);
             content.ContentCategories = _categoryService.GetbyIds(model.CategoryIds);
@@ -256,7 +257,7 @@ namespace Netotik.Web.Areas.Admin.Controllers
             #region Update
             var now = DateTime.Now;
 
-            entity.StartDate = now;
+            entity.StartDate = new DateTime(model.StartDate.Value.Year, model.StartDate.Value.Month, model.StartDate.Value.Day, int.Parse(model.StartDateTime.Split(':')[0]), int.Parse(model.StartDateTime.Split(':')[1]), 00);
             entity.Title = model.Title;
             entity.Url = model.Url;
             entity.BodyOverview = model.BodyOverview;
