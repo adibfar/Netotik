@@ -146,6 +146,28 @@
                             </div>
                             <div class="col-md-3">
                                 <div class="card-block">
+                                    <h4 class="form-section"><i class="icon-language"></i>@Captions.StartDatePublish</h4>
+                                    <div class="row mb-3">
+                                        <div class="col-md-12">
+                                            <div class="form-group has-feedback">
+                                                @Html.LabelFor(m => m.StartDate)
+                                                <div class="position-relative">
+                                                    @Html.TextBox("StartDate", Model.StartDate.Value.ToString("yyyy/MM/dd"), new { @class = "form-control" })
+                                                    @Html.ValidationMessageFor(model => model.StartDate, "", htmlAttributes: new { @class = "text-danger" })
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-12">
+                                            <div class="form-group has-feedback">
+                                                @Html.LabelFor(m => m.StartDateTime)
+                                                <div class="position-relative clockpicker" data-autoclose="true">
+                                                    @Html.TextBox("StartDateTime", Model.StartDate.Value.ToString("HH:mm"), new { @class = "form-control" })
+                                                    @Html.ValidationMessageFor(model => model.StartDateTime, "", htmlAttributes: new { @class = "text-danger" })
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
                                     <h4 class="form-section"><i class="icon-language"></i>@Captions.Language</h4>
                                     <div class="row mb-3">
                                         <div class="col-md-12">
@@ -219,3 +241,19 @@
         </div>
     </div>
 </section>
+@section UpScript{
+    <link rel="stylesheet" type="text/css" href="~/Content/css/plugins/extensions/timedropper.min.css">
+}
+
+@section DownScript{
+    <script src="~/Content/js/plugins/extensions/timedropper.min.js" type="text/javascript"></script>
+    <script type="text/javascript">
+        $(".time").timeDropper({
+            init_animation: "dropDown",
+            format: "HH:mm",
+            setCurrentTime: false,
+            meridians: !0
+        })
+    </script>
+}
+

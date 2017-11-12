@@ -5,15 +5,19 @@
 <p>
     <span class="block"><strong><i class="fa fa-map-marker"></i> @Captions.Address :</strong> @setting.CompanyAddress </span>
     <span class="block">
-        <strong><i class="fa fa-phone"></i> @Captions.Tel :</strong> <a href="#">
+        <strong><i class="fa fa-phone"></i> @Captions.Tel :</strong> <a href="tel:@setting.CompanyTel1">
             @setting.CompanyTel1
-            @if (string.IsNullOrWhiteSpace(setting.CompanyTel2))
-            {
-                <text>-</text> @setting.CompanyTel2
-            }
         </a>
+        @if (!string.IsNullOrWhiteSpace(setting.CompanyTel2))
+            {
+            <a href="tel:@setting.CompanyTel2">
+                <text>-</text> @setting.CompanyTel2
+            </a>
+        }
+
+
     </span>
-    <span class="block"><strong><i class="fa fa-envelope"></i> @Captions.Email :</strong> <a href="#"> @setting.CompanyEmail1</a></span>
+    <span class="block"><strong><i class="fa fa-envelope"></i> @Captions.Email :</strong> <a href="mailto:@setting.CompanyEmail1"> @setting.CompanyEmail1</a></span>
 </p>
 
 <hr />
