@@ -533,7 +533,7 @@ Order = 0, GlyphIcon = "icon icon-table")]
                         if (!NetotikFlag)
                             this.MessageWarning(Captions.Information, "لطفا آدرس netotik.com را به دسترسی های وب سایت هات اسپات از طریق منوی هات اسپات و گزینه دسترسی اضافه کنید.");
                         //------------------------
-                        this.MessageInformation("تاریخ پایان اعتبار:", "کلیه پنل ها موقتا تا تاریخ 1396/11/01 به صورت رایگان می باشند");
+                        this.MessageInformation(Captions.Attention, "پنل ها تا تاریخ 1396/11/01 رایگان می باشند.");
 
                     }
                     else
