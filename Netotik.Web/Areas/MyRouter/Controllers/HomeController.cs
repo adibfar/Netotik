@@ -523,7 +523,15 @@ Order = 0, GlyphIcon = "icon icon-table")]
                             if (user.password == null || user.password == "")
                                 this.MessageWarning(Captions.Information, string.Format("کاربر {0} در لیست کاربران هات اسپات فاقد پسورد می باشد.",user.name));
                         //------------------------
-
+                        var WalledGarden = _mikrotikServices.Hotspot_IpWalledGarden(UserLogined.UserRouter.R_Host, UserLogined.UserRouter.R_Port, UserLogined.UserRouter.R_User, UserLogined.UserRouter.R_Password);
+                        bool NetotikFlag = false;
+                        foreach(var Wall in WalledGarden)
+                        {
+                            if (Wall.dst_host.Contains("netotik.com"))
+                                NetotikFlag = true;
+                        }
+                        if (!NetotikFlag)
+                            this.MessageWarning(Captions.Information, "لطفا آدرس netotik.com را به دسترسی های وب سایت هات اسپات از طریق منوی هات اسپات و گزینه دسترسی اضافه کنید.");
                         //------------------------
 
                     }
