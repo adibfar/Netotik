@@ -19,7 +19,7 @@ htmlAttributes: new { @class = "form cmxform form-horizontal tasi-form", enctype
                         <div class="col-md-6">
                             <div class="form-group">
                                 Dst Host
-                                <div class="position-relative">
+                                <div class="position-relative ltr">
                                     <input class="form-control" name="DstHost" />
                                 </div>
                             </div>
@@ -27,13 +27,13 @@ htmlAttributes: new { @class = "form cmxform form-horizontal tasi-form", enctype
                         <div class="col-md-3">
                             <div class="form-group">
                                 Dst Port
-                                <div class="position-relative">
+                                <div class="position-relative ltr">
                                     <input class="form-control" name="DstPort" placeholder="@Captions.LeaveBlankAllPort" />
                                 </div>
                             </div>
                         </div>
                         <div class="col-md-3">
-                            <div class="form-group"><br/>
+                            <div class="form-group ltr"><br/>
                                 <select name="Portocol" data-placeholder="Portocol" class="selectize-select" style="min-width:350px;" tabindex="2">
                                     <option value="">No</option>
                                     <option value="tcp">tcp</option>
@@ -48,7 +48,7 @@ htmlAttributes: new { @class = "form cmxform form-horizontal tasi-form", enctype
                     </div>
                     <div class="row">
                         <div class="col-md-6">
-                            <div class="form-group">
+                            <div class="form-group ltr">
                                 <label class="font-noraml">Server</label>
                                 <select name="Server" data-placeholder="Server" class="selectize-select" style="min-width:350px;" tabindex="2">
                                     @foreach (var item in ViewBag.servers)
@@ -60,7 +60,7 @@ htmlAttributes: new { @class = "form cmxform form-horizontal tasi-form", enctype
                             </div>
                         </div>
                         <div class="col-md-6">
-                            <div class="form-group">
+                            <div class="form-group ltr">
                                 <label class="font-noraml">Action</label>
                                 <select name="Action" data-placeholder="Action" class="selectize-select" style="min-width:350px;" tabindex="2">
                                     <option value="drop">Block</option>

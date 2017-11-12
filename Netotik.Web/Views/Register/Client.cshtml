@@ -55,7 +55,7 @@
                                                 <div class="form-group has-feedback has-icon-left">
                                                     @if (setting.Name == FieldType.Required)
                                                     {
-                                                        @Html.TextBoxFor(m => m.Name, new { @class = "form-control", placeholder = Captions.Name, @data_val = "true", @data_val_required = string.Format(Captions.RequiredError, Captions.Name) })
+                                                        @Html.TextBoxFor(m => m.Name, new { @class = "form-control ltr", placeholder = Captions.Name, @data_val = "true", @data_val_required = string.Format(Captions.RequiredError, Captions.Name) })
                                                     }
                                                     else
                                                     {
@@ -108,7 +108,7 @@
                                         {
                                             <div class="col-md-12">
                                                 <div class="form-group has-feedback has-icon-left">
-                                                    @Html.TextBoxFor(m => m.Username, new { @class = "form-control", placeholder = Captions.UserName, @data_val = "true", @data_val_required = string.Format(Captions.RequiredError, Captions.UserName) })
+                                                    @Html.TextBoxFor(m => m.Username, new { @class = "form-control ltr", placeholder = Captions.UserName, @data_val = "true", @data_val_required = string.Format(Captions.RequiredError, Captions.UserName) })
                                                     <div class="form-control-position">
                                                         <i class="icon-user"></i>
                                                     </div>
@@ -142,7 +142,7 @@
                                                 <div class="form-group has-feedback has-icon-left">
                                                     @if (setting.Email == FieldType.Required || setting.Username == UsernameFieldType.Email)
                                                     {
-                                                        @Html.TextBoxFor(m => m.Email, new { @class = "form-control", placeholder = Captions.Email, @data_val_required = string.Format(Captions.RequiredError, Captions.Email) })
+                                                        @Html.TextBoxFor(m => m.Email, new { @class = "form-control ltr", placeholder = Captions.Email, @data_val_required = string.Format(Captions.RequiredError, Captions.Email) })
                                                     }
                                                     else
                                                     {
@@ -199,7 +199,7 @@
                                         {
                                             <div class="col-md-12">
                                                 <div class="form-group has-feedback has-icon-left">
-                                                    @Html.PasswordFor(m => m.Password, new { @class = "form-control", placeholder = Captions.Password, @data_val = "true", @data_val_required = string.Format(Captions.RequiredError, Captions.Password) })
+                                                    @Html.PasswordFor(m => m.Password, new { @class = "form-control ltr", placeholder = Captions.Password, @data_val = "true", @data_val_required = string.Format(Captions.RequiredError, Captions.Password) })
                                                     <div class="form-control-position">
                                                         <i class="icon-key2"></i>
                                                     </div>
@@ -211,7 +211,7 @@
                                         {
                                             <div class="col-md-12">
                                                 <div class="form-group has-feedback has-icon-left">
-                                                    @Html.PasswordFor(m => m.PasswordConfirm, new { @class = "form-control", placeholder = Captions.ConfirmPassword, @data_val = "true", @data_val_required = string.Format(Captions.RequiredError, Captions.ConfirmPassword) })
+                                                    @Html.PasswordFor(m => m.PasswordConfirm, new { @class = "form-control ltr", placeholder = Captions.ConfirmPassword, @data_val = "true", @data_val_required = string.Format(Captions.RequiredError, Captions.ConfirmPassword) })
                                                     <div class="form-control-position">
                                                         <i class="icon-key2"></i>
                                                     </div>

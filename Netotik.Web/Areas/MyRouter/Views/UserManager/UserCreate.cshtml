@@ -33,7 +33,7 @@
                                     <div class="form-group has-feedback has-icon-left">
                                         @Html.LabelFor(m => m.username)
                                         <div class="position-relative has-icon-left">
-                                            @Html.TextBoxFor(m => m.username, new { @class = "form-control" })
+                                            @Html.TextBoxFor(m => m.username, new { @class = "form-control ltr" })
                                             <div class="form-control-position">
                                                 <i class="icon-user-tie"></i>
                                             </div>
@@ -45,7 +45,7 @@
                                     <div class="form-group has-feedback has-icon-left">
                                         @Html.LabelFor(m => m.password)
                                         <div class="position-relative has-icon-left">
-                                            @Html.TextBoxFor(m => m.password, new { @class = "form-control" })
+                                            @Html.TextBoxFor(m => m.password, new { @class = "form-control ltr" })
                                             <div class="form-control-position">
                                                 <i class="icon-key2"></i>
                                             </div>
@@ -53,7 +53,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-md-4">
+                                <div class="col-md-4 ltr">
                                     <label class="font-noraml">@Captions.SelectPlan</label>
                                     <select id="profile" name="profile" data-placeholder="@Captions.SelectPlan" class="selectize-select" style="min-width:350px;" tabindex="2">
                                         @foreach (var item in ViewBag.profiles)
@@ -71,7 +71,7 @@
                                     <div class="form-group has-feedback has-icon-left">
                                         @Html.LabelFor(m => m.first_name)
                                         <div class="position-relative has-icon-left">
-                                            @Html.TextBoxFor(m => m.first_name, new { @class = "form-control" })
+                                            @Html.TextBoxFor(m => m.first_name, new { @class = "form-control ltr" })
                                             <div class="form-control-position">
                                                 <i class="icon-head"></i>
                                             </div>
@@ -83,7 +83,7 @@
                                     <div class="form-group has-feedback has-icon-left">
                                         @Html.LabelFor(m => m.last_name)
                                         <div class="position-relative has-icon-left">
-                                            @Html.TextBoxFor(m => m.last_name, new { @class = "form-control" })
+                                            @Html.TextBoxFor(m => m.last_name, new { @class = "form-control ltr" })
                                             <div class="form-control-position">
                                                 <i class="icon-user"></i>
                                             </div>
@@ -123,7 +123,7 @@
                                     <div class="form-group has-feedback has-icon-left">
                                         @Html.LabelFor(m => m.email)
                                         <div class="position-relative has-icon-left">
-                                            @Html.TextBoxFor(m => m.email, new { @class = "form-control" })
+                                            @Html.TextBoxFor(m => m.email, new { @class = "form-control ltr" })
                                             <div class="form-control-position">
                                                 <i class="icon-email"></i>
                                             </div>
@@ -135,7 +135,7 @@
                                     <div class="form-group has-feedback has-icon-left">
                                         @Html.LabelFor(m => m.location)
                                         <div class="position-relative has-icon-left">
-                                            @Html.TextBoxFor(m => m.location, new { @class = "form-control" })
+                                            @Html.TextBoxFor(m => m.location, new { @class = "form-control ltr" })
                                             <div class="form-control-position">
                                                 <i class="icon-location"></i>
                                             </div>

@@ -72,7 +72,7 @@
                         <div class="form-group has-feedback has-icon-left">
                             @Html.LabelFor(m => m.Email)
                             <div class="position-relative has-icon-left">
-                                @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
+                                @Html.TextBoxFor(m => m.Email, new { @class = "form-control ltr" })
                                 <div class="form-control-position">
                                     <i class="icon-mail"></i>
                                 </div>
@@ -85,13 +85,12 @@
                     <div class="col-md-6">
                         <div class="form-group has-feedback has-icon-left">
                             @Html.LabelFor(m => m.ResellerCode)
-                            <div class="position-relative has-icon-left">
-                                @Html.TextBoxFor(m => m.ResellerCode, new { @class = "form-control" })
-                                <div class="form-control-position">
-                                    <i class="icon-office"></i>
-                                </div>
-                                @Html.ValidationMessageFor(model => model.ResellerCode, "", htmlAttributes: new { @class = "text-danger" })
+                            <div class="position-relative has-icon-left input-group">
+                                @Html.TextBoxFor(m => m.ResellerCode, new { @class = "form-control ltr" })
+                                <span class="input-group-addon">/https://netotik.com</span>
+                                
                             </div>
+                            @Html.ValidationMessageFor(model => model.ResellerCode, "", htmlAttributes: new { @class = "text-danger" })
                         </div>
                     </div>
                     
