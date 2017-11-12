@@ -5123,5 +5123,47 @@ namespace Netotik.Resources
                 return resourceProvider.GetResource("SendEmailNow", CultureInfo.CurrentUICulture.Name) as string;
             }
         }
+        public static string PanelsFreeExpireDate
+        {
+            get
+            {
+                return resourceProvider.GetResource("PanelsFreeExpireDate", CultureInfo.CurrentUICulture.Name) as string;
+            }
+        }
+        public static string WebsitesLogsTimeWillSave
+        {
+            get
+            {
+                return resourceProvider.GetResource("WebsitesLogsTimeWillSave", CultureInfo.CurrentUICulture.Name) as string;
+            }
+        }
+        public static string AddWebsiteToHotspotAccess
+        {
+            get
+            {
+                return resourceProvider.GetResource("AddWebsiteToHotspotAccess", CultureInfo.CurrentUICulture.Name) as string;
+            }
+        }
+        public static string HotspotUserNoPassword
+        {
+            get
+            {
+                return resourceProvider.GetResource("HotspotUserNoPassword", CultureInfo.CurrentUICulture.Name) as string;
+            }
+        }
+        public static string MikrotikPortServiceIsOpen
+        {
+            get
+            {
+                return resourceProvider.GetResource("MikrotikPortServiceIsOpen", CultureInfo.CurrentUICulture.Name) as string;
+            }
+        }
+        public static string UsermanageCustomerNoPassword
+        {
+            get
+            {
+                return resourceProvider.GetResource("UsermanageCustomerNoPassword", CultureInfo.CurrentUICulture.Name) as string;
+            }
+        }
     }
 }

@@ -2073,4 +2073,38 @@
       ارسال نام کاربری و کلمه عبور به ایمیل
     </Value>
   </LocaleResource>
+  <LocaleResource Name="PanelsFreeExpireDate">
+    <Value>
+      پنل ها تا تاریخ 1396/11/01 رایگان می باشند.
+    </Value>
+  </LocaleResource>
+  <LocaleResource Name="WebsitesLogsTimeWillSave">
+    <Value>
+      لاگ ها تا 10 روز بیشتر نگهداری نمی شوند
+    </Value>
+  </LocaleResource>
+  <LocaleResource Name="AddWebsiteToHotspotAccess">
+    <Value>
+      لطفا آدرس {0} را به دسترسی های وب سایت هات اسپات از طریق منوی هات اسپات و گزینه دسترسی اضافه کنید.
+    </Value>
+  </LocaleResource>
+  <LocaleResource Name="HotspotUserNoPassword">
+    <Value>
+      کاربر {0} در لیست کاربران هات اسپات فاقد پسورد می باشد.
+    </Value>
+  </LocaleResource>
+  <LocaleResource Name="MikrotikPortServiceIsOpen">
+    <Value>
+      پورت شماره {0} مربوط به سرویس {1} شما باز می باشد. لطفا آنرا تغییر دهید یا غیره فعال کنید.
+    </Value>
+  </LocaleResource>
+  <LocaleResource Name="UsermanageCustomerNoPassword">
+    <Value>
+      کاربر مدیریت {0} یوزرمنیجر فاقد پسورد می باشد.
+    </Value>
+  </LocaleResource>
+  
+
+
+
 </Language>

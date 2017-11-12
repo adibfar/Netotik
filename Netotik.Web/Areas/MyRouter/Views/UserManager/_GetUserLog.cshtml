@@ -16,7 +16,7 @@
                 <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                     <span aria-hidden="true">×</span>
                 </button>
-                <strong>@Captions.Attention:</strong> لاگ ها تا 10 روز بیشتر نگهداری نمی شوند
+                <strong>@Captions.Attention:</strong> @Captions.WebsitesLogsTimeWillSave
             </div>
             @using (Html.BeginForm(MVC.MyRouter.UserManager.ActionNames.GetUserLog, MVC.MyRouter.UserManager.Name, FormMethod.Post, htmlAttributes: new { @class = "form-horizontal", id = "form" }))
             {

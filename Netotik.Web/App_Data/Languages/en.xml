@@ -1488,4 +1488,34 @@
       Send User and Pass to Email
     </Value>
   </LocaleResource>
+  <LocaleResource Name="PanelsFreeExpireDate">
+    <Value>
+      Panels will free until 2018/02/21
+    </Value>
+  </LocaleResource>
+  <LocaleResource Name="WebsitesLogsTimeWillSave">
+    <Value>
+      Websites Logs will save just for 10 days
+    </Value>
+  </LocaleResource>
+  <LocaleResource Name="AddWebsiteToHotspotAccess">
+    <Value>
+      Please add {0} To hotspot website access list.
+    </Value>
+  </LocaleResource>
+  <LocaleResource Name="HotspotUserNoPassword">
+    <Value>
+      User {0} in hotspot user has no password.
+    </Value>
+  </LocaleResource>
+  <LocaleResource Name="MikrotikPortServiceIsOpen">
+    <Value>
+      Port {0} for service {1} is open.for security please change or disable it.
+    </Value>
+  </LocaleResource>
+  <LocaleResource Name="UsermanageCustomerNoPassword">
+    <Value>
+      Usermanager Customer {0} has no password.
+    </Value>
+  </LocaleResource>
 </Language>
