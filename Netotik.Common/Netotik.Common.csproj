@@ -129,6 +129,8 @@
     <Compile Include="Security\ActionKeyService.cs" />
     <Compile Include="Security\Encryption.cs" />
     <Compile Include="Security\IActionKeyService.cs" />
+    <Compile Include="Security\RemoveHeader\ClientRemoveHeader.cs" />
+    <Compile Include="Security\RemoveHeader\RemoveHeaderModule.cs" />
     <Compile Include="Security\RijndaelEncryption\EncryptSettingsProvider.cs" />
     <Compile Include="Security\RijndaelEncryption\IEncryptSettingsProvider.cs" />
     <Compile Include="Security\RijndaelEncryption\IRijndaelStringEncrypter.cs" />

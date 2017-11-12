@@ -30,5 +30,6 @@ CKEDITOR.editorConfig = function( config ) {
     config.allowedContent = true;
     config.extraAllowedContent = 'section p div h1 h2 h3 h4 h5 h6 span i aside nav header',
     CKEDITOR.filter.disabled = true;
+    config.protectedSource.push(/<i[^>]*><\/i>/g);
     config.language = CKEDITOR_Lang;
 };
