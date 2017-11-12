@@ -498,30 +498,30 @@ Order = 0, GlyphIcon = "icon icon-table")]
                         foreach(var customer in customers)
                         {
                             if(!customer.disabled && customer.password == "")
-                                this.MessageWarning(Captions.Information,string.Format("کاربر یوزرمنیجر {0} فاقد پسورد می باشد.",customer.login));
+                                this.MessageWarning(Captions.Information,string.Format(Captions.UsermanageCustomerNoPassword, customer.login));
                         }
                         //------------------------
                         var ftp = _mikrotikServices.IsIpServiceEnable(UserLogined.UserRouter.R_Host, UserLogined.UserRouter.R_Port, UserLogined.UserRouter.R_User, UserLogined.UserRouter.R_Password, "ftp");
                         var ftpPort = _mikrotikServices.GetIpServicePortNumber(UserLogined.UserRouter.R_Host, UserLogined.UserRouter.R_Port, UserLogined.UserRouter.R_User, UserLogined.UserRouter.R_Password, "ftp");
                         if (ftp && ftpPort == 21)
-                            this.MessageWarning(Captions.Information,"پورت شماره 21 مربوط به سرویس FTP شما باز می باشد. لطفا آنرا تغییر دهید یا غیره فعال کنید.");
+                            this.MessageWarning(Captions.Information, string.Format(Captions.MikrotikPortServiceIsOpen, "21", "FTP"));
                         var telnet = _mikrotikServices.IsIpServiceEnable(UserLogined.UserRouter.R_Host, UserLogined.UserRouter.R_Port, UserLogined.UserRouter.R_User, UserLogined.UserRouter.R_Password, "telnet");
                         var telnetPort = _mikrotikServices.GetIpServicePortNumber(UserLogined.UserRouter.R_Host, UserLogined.UserRouter.R_Port, UserLogined.UserRouter.R_User, UserLogined.UserRouter.R_Password, "telnet");
                         if (telnet && telnetPort == 23)
-                            this.MessageWarning(Captions.Information, "پورت شماره 23 مربوط به سرویس Telnet شما باز می باشد. لطفا آنرا تغییر دهید یا غیره فعال کنید.");
+                            this.MessageWarning(Captions.Information, string.Format(Captions.MikrotikPortServiceIsOpen, "23", "Telnet"));
                         var ssh = _mikrotikServices.IsIpServiceEnable(UserLogined.UserRouter.R_Host, UserLogined.UserRouter.R_Port, UserLogined.UserRouter.R_User, UserLogined.UserRouter.R_Password, "ssh");
                         var sshPort = _mikrotikServices.GetIpServicePortNumber(UserLogined.UserRouter.R_Host, UserLogined.UserRouter.R_Port, UserLogined.UserRouter.R_User, UserLogined.UserRouter.R_Password, "ssh");
                         if (ssh && sshPort == 22)
-                            this.MessageWarning(Captions.Information, "پورت شماره 22 مربوط به سرویس SSH شما باز می باشد. لطفا آنرا تغییر دهید یا غیره فعال کنید.");
+                            this.MessageWarning(Captions.Information, string.Format(Captions.MikrotikPortServiceIsOpen, "22", "SSH"));
                         var www = _mikrotikServices.IsIpServiceEnable(UserLogined.UserRouter.R_Host, UserLogined.UserRouter.R_Port, UserLogined.UserRouter.R_User, UserLogined.UserRouter.R_Password, "www");
                         var wwwPort = _mikrotikServices.GetIpServicePortNumber(UserLogined.UserRouter.R_Host, UserLogined.UserRouter.R_Port, UserLogined.UserRouter.R_User, UserLogined.UserRouter.R_Password, "www");
                         if (www && wwwPort == 80)
-                            this.MessageWarning(Captions.Information, "پورت شماره 80 مربوط به سرویس Web شما باز می باشد. لطفا آنرا تغییر دهید یا غیره فعال کنید.");
+                            this.MessageWarning(Captions.Information, string.Format(Captions.MikrotikPortServiceIsOpen,"80","Web"));
                         //------------------------
                         var HotspotUsers = _mikrotikServices.Hotspot_UsersList(UserLogined.UserRouter.R_Host, UserLogined.UserRouter.R_Port, UserLogined.UserRouter.R_User, UserLogined.UserRouter.R_Password);
                         foreach (var user in HotspotUsers)
                             if (user.password == null || user.password == "")
-                                this.MessageWarning(Captions.Information, string.Format("کاربر {0} در لیست کاربران هات اسپات فاقد پسورد می باشد.",user.name));
+                                this.MessageWarning(Captions.Information, string.Format(Captions.HotspotUserNoPassword, user.name));
                         //------------------------
                         var WalledGarden = _mikrotikServices.Hotspot_IpWalledGarden(UserLogined.UserRouter.R_Host, UserLogined.UserRouter.R_Port, UserLogined.UserRouter.R_User, UserLogined.UserRouter.R_Password);
                         bool NetotikFlag = false;
@@ -531,9 +531,9 @@ Order = 0, GlyphIcon = "icon icon-table")]
                                 NetotikFlag = true;
                         }
                         if (!NetotikFlag)
-                            this.MessageWarning(Captions.Information, "لطفا آدرس netotik.com را به دسترسی های وب سایت هات اسپات از طریق منوی هات اسپات و گزینه دسترسی اضافه کنید.");
+                            this.MessageWarning(Captions.Information, string.Format(Captions.AddWebsiteToHotspotAccess,"netotik.com"));
                         //------------------------
-                        this.MessageInformation("تاریخ پایان اعتبار:", "کلیه پنل ها موقتا تا تاریخ 1396/11/01 به صورت رایگان می باشند");
+                        this.MessageInformation(Captions.Attention, Captions.PanelsFreeExpireDate);
 
                     }
                     else

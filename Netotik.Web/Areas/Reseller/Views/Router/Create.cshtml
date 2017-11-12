@@ -69,13 +69,11 @@
                                         <div class="col-md-4">
                                             <div class="form-group has-feedback has-icon-left">
                                                 @Html.LabelFor(m => m.RouterCode)
-                                                <div class="position-relative has-icon-left">
-                                                    @Html.TextBoxFor(m => m.RouterCode, new { @class = "form-control" })
-                                                    <div class="form-control-position">
-                                                        <i class="icon-office"></i>
-                                                    </div>
-                                                    @Html.ValidationMessageFor(model => model.RouterCode, "", htmlAttributes: new { @class = "text-danger" })
+                                                <div class="position-relative has-icon-left input-group">
+                                                    @Html.TextBoxFor(m => m.RouterCode, new { @class = "form-control ltr" })
+                                                    <span class="input-group-addon">/https://netotik.com</span>
                                                 </div>
+                                                @Html.ValidationMessageFor(model => model.RouterCode, "", htmlAttributes: new { @class = "text-danger" })
                                             </div>
                                         </div>
                                     </div>
@@ -84,7 +82,7 @@
                                             <div class="form-group has-feedback has-icon-left">
                                                 @Html.LabelFor(m => m.Email)
                                                 <div class="position-relative has-icon-left">
-                                                    @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
+                                                    @Html.TextBoxFor(m => m.Email, new { @class = "form-control ltr" })
                                                     <div class="form-control-position">
                                                         <i class="icon-mail"></i>
                                                     </div>
@@ -108,7 +106,7 @@
                                             <div class="form-group has-icon-left">
                                                 @Html.LabelFor(m => m.ZarinPalMerchantId)
                                                 <div class="position-relative has-icon-left">
-                                                    @Html.TextBoxFor(m => m.ZarinPalMerchantId, new { @class = "form-control" })
+                                                    @Html.TextBoxFor(m => m.ZarinPalMerchantId, new { @class = "form-control ltr" })
                                                     <div class="form-control-position">
                                                         <i class="icon-credit-card"></i>
                                                     </div>
@@ -122,7 +120,7 @@
                                             <div class="form-group has-feedback has-icon-left">
                                                 @Html.LabelFor(m => m.UserName)
                                                 <div class="position-relative has-icon-left">
-                                                    @Html.TextBoxFor(m => m.UserName, new { @class = "form-control" })
+                                                    @Html.TextBoxFor(m => m.UserName, new { @class = "form-control ltr" })
                                                     <div class="form-control-position">
                                                         <i class="icon-user-tie"></i>
                                                     </div>
@@ -134,7 +132,7 @@
                                             <div class="form-group has-feedback has-icon-left">
                                                 @Html.LabelFor(m => m.Password)
                                                 <div class="position-relative has-icon-left">
-                                                    @Html.PasswordFor(m => m.Password, new { @class = "form-control" })
+                                                    @Html.PasswordFor(m => m.Password, new { @class = "form-control ltr" })
                                                     <div class="form-control-position">
                                                         <i class="icon-key2"></i>
                                                     </div>
@@ -146,7 +144,7 @@
                                             <div class="form-group has-feedback has-icon-left">
                                                 @Html.LabelFor(m => m.ConfirmPassword)
                                                 <div class="position-relative has-icon-left">
-                                                    @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "form-control" })
+                                                    @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "form-control ltr" })
                                                     <div class="form-control-position">
                                                         <i class="icon-key2"></i>
                                                     </div>
@@ -162,7 +160,7 @@
                                             <div class="form-group has-feedback has-icon-left">
                                                 @Html.LabelFor(m => m.R_Host)
                                                 <div class="position-relative has-icon-left">
-                                                    @Html.TextBoxFor(m => m.R_Host, new { @class = "form-control" })
+                                                    @Html.TextBoxFor(m => m.R_Host, new { @class = "form-control ltr" })
                                                     <div class="form-control-position">
                                                         <i class="icon-server"></i>
                                                     </div>
@@ -200,7 +198,7 @@
                                             <div class="form-group has-feedback has-icon-left">
                                                 @Html.LabelFor(m => m.R_User)
                                                 <div class="position-relative has-icon-left">
-                                                    @Html.TextBoxFor(m => m.R_User, new { @class = "form-control" })
+                                                    @Html.TextBoxFor(m => m.R_User, new { @class = "form-control ltr" })
                                                     <div class="form-control-position">
                                                         <i class="icon-user-tie"></i>
                                                     </div>
@@ -212,7 +210,7 @@
                                             <div class="form-group has-feedback has-icon-left">
                                                 @Html.LabelFor(m => m.R_Password)
                                                 <div class="position-relative has-icon-left">
-                                                    @Html.PasswordFor(m => m.R_Password, new { @class = "form-control" })
+                                                    @Html.PasswordFor(m => m.R_Password, new { @class = "form-control ltr" })
                                                     <div class="form-control-position">
                                                         <i class="icon-key2"></i>
                                                     </div>
@@ -224,7 +222,7 @@
                                             <div class="form-group has-feedback has-icon-left">
                                                 @Html.LabelFor(m => m.Userman_Customer)
                                                 <div class="position-relative has-icon-left">
-                                                    @Html.TextBoxFor(m => m.Userman_Customer, new { @class = "form-control", @Value = "admin" })
+                                                    @Html.TextBoxFor(m => m.Userman_Customer, new { @class = "form-control ltr", @Value = "admin" })
                                                     <div class="form-control-position">
                                                         <i class="icon-user-tie"></i>
                                                     </div>

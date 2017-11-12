@@ -35,13 +35,12 @@
                     <div class="col-md-6">
                         <div class="form-group has-feedback has-icon-left">
                             @Html.LabelFor(m => m.RouterCode)
-                            <div class="position-relative has-icon-left">
-                                @Html.TextBoxFor(m => m.RouterCode, new { @class = "form-control" })
-                                <div class="form-control-position">
-                                    <i class="icon-office"></i>
-                                </div>
-                                @Html.ValidationMessageFor(model => model.RouterCode, "", htmlAttributes: new { @class = "text-danger" })
+                            <div class="position-relative has-icon-left ltr">
+                                @Html.TextBoxFor(m => m.RouterCode, new { @class = "form-control ltr" })
+                                <span class="input-group-addon">/https://netotik.com</span>
+                                
                             </div>
+                            @Html.ValidationMessageFor(model => model.RouterCode, "", htmlAttributes: new { @class = "text-danger" })
                         </div>
                     </div>
                    
@@ -63,7 +62,7 @@
                         <div class="form-group has-feedback has-icon-left">
                             @Html.LabelFor(m => m.Email)
                             <div class="position-relative has-icon-left">
-                                @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
+                                @Html.TextBoxFor(m => m.Email, new { @class = "form-control ltr" })
                                 <div class="form-control-position">
                                     <i class="icon-mail"></i>
                                 </div>
@@ -89,7 +88,7 @@
                         <div class="form-group has-feedback has-icon-left">
                             @Html.LabelFor(m => m.ZarinPalMerchantId)
                             <div class="position-relative has-icon-left">
-                                @Html.TextBoxFor(m => m.ZarinPalMerchantId, new { @class = "form-control" })
+                                @Html.TextBoxFor(m => m.ZarinPalMerchantId, new { @class = "form-control ltr" })
                                 <div class="form-control-position">
                                     <i class="icon-office"></i>
                                 </div>

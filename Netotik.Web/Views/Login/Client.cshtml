@@ -64,14 +64,14 @@
                                     @using (Html.BeginForm(MVC.Login.ActionNames.Client, MVC.Login.Name, new { ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form", id = "loginForm", autocomplete = "off" }))
                                     {
                                         @Html.AntiForgeryToken()
-                                        <fieldset class="form-group has-feedback has-icon-left">
-                                            @Html.TextBoxFor(m => m.UserName, new { @class = "form-control", placeholder = Captions.UserName })
+                                        <fieldset class="form-group has-feedback ltr">
+                                            @Html.TextBoxFor(m => m.UserName, new { @class = "form-control ltr", placeholder = Captions.UserName })
                                             <div class="form-control-position">
                                                 <i class="icon-head"></i>
                                             </div>
                                         </fieldset>
-                                        <fieldset class="form-group has-feedback has-icon-left">
-                                            @Html.PasswordFor(m => m.Password, new { @class = "form-control", placeholder = Captions.Password })
+                                        <fieldset class="form-group has-feedback ltr">
+                                            @Html.PasswordFor(m => m.Password, new { @class = "form-control ltr", placeholder = Captions.Password })
                                             <div class="form-control-position">
                                                 <i class="icon-key3"></i>
                                             </div>

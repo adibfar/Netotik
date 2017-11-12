@@ -24,7 +24,7 @@
         else
         {
 
-            <div class="col-md-6 offset-md-3 col-xs-10 box-shadow-2 p-0">
+            <div class="col-md-6 offset-md-3 box-shadow-2 p-0">
                 <div class="card border-grey border-lighten-3 m-0">
                     <div class="card-body collapse in">
                         @if (ViewBag.Message != null)
@@ -76,7 +76,7 @@
                                     </div>
                                 </div>
                                 <div class="row">
-                                    <div class="col-md-6">
+                                    <div class="col-md-4">
                                         <div class="form-group has-feedback has-icon-left">
                                             @Html.TextBoxFor(m => m.NationalCode, new { @class = "form-control", placeholder = Captions.NationalCode })
                                             <div class="form-control-position">
@@ -85,20 +85,19 @@
                                             @Html.ValidationMessageFor(model => model.NationalCode, "", htmlAttributes: new { @class = "text-danger" })
                                         </div>
                                     </div>
-                                    <div class="col-md-6">
-                                        <div class="form-group has-feedback has-icon-left">
-                                            @Html.TextBoxFor(m => m.ResellerCode, new { @class = "form-control", placeholder = Captions.ResellerCode })
-                                            <div class="form-control-position">
-                                                <i class="icon-office"></i>
-                                            </div>
-                                            @Html.ValidationMessageFor(model => model.ResellerCode, "", htmlAttributes: new { @class = "text-danger" })
+                                    <div class="col-md-8">
+                                        <div class="form-group input-group">
+                                            @Html.TextBoxFor(m => m.ResellerCode, new { @class = "form-control ltr", placeholder = Captions.ResellerCode })
+                                            <span class="input-group-addon">/https://netotik.com</span>
+                                            
                                         </div>
+                                        @Html.ValidationMessageFor(model => model.ResellerCode, "", htmlAttributes: new { @class = "text-danger" })
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="col-md-6">
                                         <div class="form-group has-feedback has-icon-left">
-                                            @Html.TextBoxFor(m => m.UserName, new { @class = "form-control", placeholder = Captions.UserName })
+                                            @Html.TextBoxFor(m => m.UserName, new { @class = "form-control ltr", placeholder = Captions.UserName })
                                             <div class="form-control-position">
                                                 <i class="icon-head"></i>
                                             </div>
@@ -107,7 +106,7 @@
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group has-feedback has-icon-left">
-                                            @Html.TextBoxFor(m => m.Email, new { @class = "form-control", placeholder = Captions.Email })
+                                            @Html.TextBoxFor(m => m.Email, new { @class = "form-control ltr", placeholder = Captions.Email })
                                             <div class="form-control-position">
                                                 <i class="icon-mail"></i>
                                             </div>
@@ -119,7 +118,7 @@
                                 <div class="row">
                                     <div class="col-md-6">
                                         <div class="form-group has-feedback has-icon-left">
-                                            @Html.PasswordFor(m => m.Password, new { @class = "form-control", placeholder = Captions.Password })
+                                            @Html.PasswordFor(m => m.Password, new { @class = "form-control ltr", placeholder = Captions.Password })
                                             <div class="form-control-position">
                                                 <i class="icon-key2"></i>
                                             </div>
@@ -128,7 +127,7 @@
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group has-feedback has-icon-left">
-                                            @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "form-control", placeholder = Captions.ConfirmPassword })
+                                            @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "form-control ltr", placeholder = Captions.ConfirmPassword })
                                             <div class="form-control-position">
                                                 <i class="icon-key2"></i>
                                             </div>
