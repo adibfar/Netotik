@@ -86,6 +86,7 @@ namespace Netotik.Web.Areas.Reseller.Controllers
         {
             PopulateClientPermissions();
             PopulateRouterPermissions();
+            this.MessageInformation("تاریخ پایان اعتبار:", "کلیه پنل ها موقتا تا تاریخ 1396/11/01 به صورت رایگان می باشند");
             return View();
         }
 

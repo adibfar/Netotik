@@ -12,6 +12,7 @@
                 </button>
                 <h4 class="modal-title" id="myModalLabel20">@Captions.Logs - @Model.Name</h4>
             </div>
+            <p>سیستم نتوتیک مسئولیتی در برابر نگهداری لاگ های شما ندارید.لاگ ها تا 10 روز بیشتر نگهداری نمی شودند.</p>
             @using (Html.BeginForm(MVC.MyRouter.UserManager.ActionNames.GetUserLog, MVC.MyRouter.UserManager.Name, FormMethod.Post, htmlAttributes: new { @class = "form-horizontal", id = "form" }))
             {
                 @Html.HiddenFor(model => model.UserId)
