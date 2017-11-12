@@ -86,7 +86,7 @@ namespace Netotik.Web
 
 
 
-            bundles.Add(new ScriptBundle("~/bundles/paneljs").Include(
+            bundles.Add(new ScriptBundle("~/bundles/1/paneljs").Include(
                                 "~/Content/js/vendors.min.js",
                                 "~/Content/js/plugins/ui/jquery.sticky.js",
                                 "~/Content/js/plugins/forms/spinner/jquery.bootstrap-touchspin.js",
