@@ -50,7 +50,6 @@ namespace Netotik.ViewModels.Identity.UserAdmin
         [Display(ResourceType = typeof(Captions), Name = "UserName")]
         [StringLength(50, ErrorMessageResourceType = typeof(Captions), ErrorMessageResourceName = "LengthError", MinimumLength = 6)]
         [System.Web.Mvc.Remote("IsUserNameAvailable", "Remote", AreaReference.UseRoot, AdditionalFields = "Id", HttpMethod = "POST", ErrorMessageResourceType = typeof(Captions), ErrorMessageResourceName = "ExistError")]
-        [RegularExpression("^[a-zA-Z0-9_]*$", ErrorMessageResourceType = typeof(Captions), ErrorMessageResourceName = "JustEnglishNumeric")]
         public string UserName { get; set; }
 
         [Display(ResourceType = typeof(Captions), Name = "Facebook")]

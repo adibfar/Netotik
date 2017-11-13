@@ -16,33 +16,6 @@
         htmlAttributes: new { @class = "form cmxform form-horizontal tasi-form", enctype = "multipart/form-data", id = "form" }))
             {
                 <div class="modal-body">
-                    <!--
-                    <div class="row">
-                        <div class="col-md-4 skin skin-flat">
-                            <div class="form-group">
-                                <br />
-                                @Html.CheckBoxFor(x => x.AutoLogin)
-                                @Html.LabelFor(x => x.AutoLogin)
-                            </div>
-                        </div>
-                        <div class="col-md-3">
-                            @Html.LabelFor(x => x.AutoLoginAfterSec)
-                            @Html.TextBoxFor(x => x.AutoLoginAfterSec, new { @class = "form-control" })
-                        </div>
-                        <div class="col-md-5">
-                            <div class="form-group">
-                                <label class="font-noraml">AutoLoginUser</label>
-                                <select name="AutoLoginUser" data-placeholder="AutoLoginUser" class="selectize-select" tabindex="2">
-                                    <option value="all">All</option>
-                                    @foreach (var item in ViewBag.Users)
-                                    {
-                                        <option value="@item.username">@item.username</option>
-                                    }
-                                </select>
-                            </div>
-                        </div>
-                    </div>
-                        -->
                     <div class="row">
                         <div class="col-md-6">
                             @Html.LabelFor(x => x.PanelButton)
