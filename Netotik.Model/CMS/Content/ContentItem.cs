@@ -13,7 +13,7 @@ namespace Netotik.ViewModels.CMS.Content
         public long RowNumber { get; set; }
         public string Title { get; set; }
         public bool AllowComments { get; set; }
-        public String LastEdited { get; set; }
+        public String StartDate { get; set; }
         public string UserCreator { get; set; }
         public string PublishDate { get; set; }
         public ContentStatus status { get; set; }

@@ -150,7 +150,7 @@
                                             <div class="form-group has-feedback">
                                                 @Html.LabelFor(m => m.StartDate)
                                                 <div class="position-relative">
-                                                    @Html.TextBox("StartDate", DateTime.Now.ToString("yyyy/MM/dd"), new { @class = "form-control" })
+                                                    @Html.TextBox("StartDate", PersianDate.ConvertDate.ToFa(DateTime.Now), new { @class = "form-control" })
                                                     @Html.ValidationMessageFor(model => model.StartDate, "", htmlAttributes: new { @class = "text-danger" })
                                                 </div>
                                             </div>

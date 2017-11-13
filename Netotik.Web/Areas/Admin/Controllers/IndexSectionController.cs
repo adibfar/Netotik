@@ -30,7 +30,7 @@ using Netotik.Common.DataTables;
 
 namespace Netotik.Web.Areas.Admin.Controllers
 {
-    [BreadCrumb(Title = "بخش های صفحه اصلی", UseDefaultRouteUrl = true,Order = 0, GlyphIcon = "icon icon-table")]
+    [BreadCrumb(Title = "IndexSections", UseDefaultRouteUrl = true,Order = 0, GlyphIcon = "icon icon-table")]
     public partial class IndexSectionController : BasePanelController
     {
 
@@ -78,7 +78,7 @@ namespace Netotik.Web.Areas.Admin.Controllers
         #region Create
 
         [Mvc5Authorize(Roles = AssignableToRolePermissions.CanCreateContent)]
-        [BreadCrumb(Title = "بخش جدید", Order = 1)]
+        [BreadCrumb(Title = "NewIndexSectoin", Order = 1)]
         public virtual ActionResult Create()
         {
             PopulateLangauges();
@@ -142,7 +142,7 @@ namespace Netotik.Web.Areas.Admin.Controllers
         #region Edit
 
         [Mvc5Authorize(Roles = AssignableToRolePermissions.CanEditContent)]
-        [BreadCrumb(Title = "ویرایش بخش", Order = 1)]
+        [BreadCrumb(Title = "EditIndexSectoin", Order = 1)]
         public virtual ActionResult Edit(int id)
         {
             var model = _indexSectionService.SingleOrDefault(id);

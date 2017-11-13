@@ -455,7 +455,7 @@
   <LocaleResource Name="NewContent">
     <Value>مطلب جدید</Value>
   </LocaleResource>
-  <LocaleResource Name="EditContents">
+  <LocaleResource Name="EditContent">
     <Value>ویرایش مطلب</Value>
   </LocaleResource>
   <LocaleResource Name="NewSubject">

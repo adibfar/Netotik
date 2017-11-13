@@ -17,7 +17,6 @@ using Netotik.Resources;
 
 namespace Netotik.Web.Controllers
 {
-
     public partial class BlogController : BaseController
     {
         private readonly IContentService _contentService;
