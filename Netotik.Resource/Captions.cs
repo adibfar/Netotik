@@ -1472,11 +1472,11 @@ namespace Netotik.Resources
         }
 
 
-        public static string EditContents
+        public static string EditContent
         {
             get
             {
-                return resourceProvider.GetResource("EditContents", CultureInfo.CurrentUICulture.Name) as string;
+                return resourceProvider.GetResource("EditContent", CultureInfo.CurrentUICulture.Name) as string;
             }
         }
 

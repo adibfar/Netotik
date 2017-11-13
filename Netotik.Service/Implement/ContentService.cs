@@ -138,7 +138,7 @@ namespace Netotik.Services.Implement
 
 
             // Apply Sorting
-            Func<Content, string> orderingFunction = (x => model.iSortCol_0 == 1 ? x.Title : x.UserCreated.FirstName);
+            Func<Content, DateTime> orderingFunction = (x => x.StartDate.Value);
             // asc or desc
             all = model.sSortDir_0 == "asc" ? all.OrderBy(orderingFunction).AsQueryable() : all.OrderByDescending(orderingFunction).AsQueryable();
 
@@ -149,7 +149,7 @@ namespace Netotik.Services.Implement
                     Id = x.Id,
                     RowNumber = model.iDisplayStart + index + 1,
                     AllowComments = x.AllowComments,
-                    LastEdited = PersianDate.ConvertDate.ToFa(x.EditDate, "g"),
+                    StartDate = PersianDate.ConvertDate.ToFa(x.StartDate, "g"),
                     UserCreator = x.UserEdited.FirstName + " " + x.UserEdited.LastName,
                     status = x.status,
                     ViewCount = x.CountView,
@@ -167,13 +167,11 @@ namespace Netotik.Services.Implement
         public IEnumerable<PublicItemContentModel> GetForPublicView(out int total, int page, int count, int languageId, int? categoryId, int? tagId)
         {
             var date = DateTime.Now;
-            var date1 = new DateTime(date.Year, date.Month, date.Day, 23, 59, 59);
-            var date2 = new DateTime(date.Year, date.Month, date.Day, 0, 0, 0);
 
             var contents = dbSet.AsNoTracking()
                 .Where(x => x.status == ContentStatus.Accepted && x.LanguageId == languageId)
-                .Where(x => (x.StartDate.HasValue ? x.StartDate.Value <= date1 : true) &&
-                            (x.EndDate.HasValue ? x.EndDate.Value >= date2 : true))
+                .Where(x => (x.StartDate.HasValue ? x.StartDate.Value <= date : true) &&
+                            (x.EndDate.HasValue ? x.EndDate.Value >= date : true))
                 .Include(x => x.Picture)
                 .Include(x => x.ContentTages)
                 .Include(x => x.UserCreated)
@@ -184,7 +182,7 @@ namespace Netotik.Services.Implement
 
             var totalQuery = contents.FutureCount();
 
-            var selectQuery = contents.OrderBy(x => x.StartDate).Skip((page - 1) * count).Take(count)
+            var selectQuery = contents.OrderByDescending(x => x.StartDate).Skip((page - 1) * count).Take(count)
                .Select(a => new PublicItemContentModel
                {
                    Id = a.Id,
@@ -204,13 +202,11 @@ namespace Netotik.Services.Implement
 
         public IList<Content> GetLastContents(int size, int languageId)
         {
-            var date = DateTime.Now.Date;
-            var date1 = new DateTime(date.Year, date.Month, date.Day, 23, 59, 59);
-            var date2 = new DateTime(date.Year, date.Month, date.Day, 0, 0, 0);
+            var date = DateTime.Now;
             return dbSet
                 .Where(x => x.status == ContentStatus.Accepted && x.LanguageId == languageId &&
-                      (x.StartDate.HasValue ? x.StartDate.Value <= date1 : true) &&
-                      (x.EndDate.HasValue ? x.EndDate.Value >= date2 : true))
+                      (x.StartDate.HasValue ? x.StartDate.Value <= date : true) &&
+                      (x.EndDate.HasValue ? x.EndDate.Value >= date : true))
                 .Include(x => x.Picture).Include(x => x.UserCreated)
                 .OrderByDescending(x => x.StartDate)
                 .Take(size).ToList();
@@ -219,13 +215,11 @@ namespace Netotik.Services.Implement
 
         public IList<Content> GetRss(int size, int languageId)
         {
-            var date = DateTime.Now.Date;
-            var date1 = new DateTime(date.Year, date.Month, date.Day, 23, 59, 59);
-            var date2 = new DateTime(date.Year, date.Month, date.Day, 0, 0, 0);
+            var date = DateTime.Now;
             return dbSet
                 .Where(x => x.status == ContentStatus.Accepted && x.LanguageId == languageId &&
-                      (x.StartDate.HasValue ? x.StartDate.Value <= date1 : true) &&
-                      (x.EndDate.HasValue ? x.EndDate.Value >= date2 : true))
+                      (x.StartDate.HasValue ? x.StartDate.Value <= date : true) &&
+                      (x.EndDate.HasValue ? x.EndDate.Value >= date : true))
                 .OrderByDescending(x => x.StartDate)
                 .Take(size)
                 .ToList();
@@ -236,13 +230,11 @@ namespace Netotik.Services.Implement
 
         public IList<Content> GetLastPopular(int size, int languageId)
         {
-            var date = DateTime.Now.Date;
-            var date1 = new DateTime(date.Year, date.Month, date.Day, 23, 59, 59);
-            var date2 = new DateTime(date.Year, date.Month, date.Day, 0, 0, 0);
+            var date = DateTime.Now;
 
             return dbSet.Where(x => x.status == ContentStatus.Accepted && x.LanguageId == languageId &&
-                            (x.StartDate.HasValue ? x.StartDate.Value <= date1 : true) &&
-                            (x.EndDate.HasValue ? x.EndDate.Value >= date2 : true))
+                            (x.StartDate.HasValue ? x.StartDate.Value <= date : true) &&
+                            (x.EndDate.HasValue ? x.EndDate.Value >= date : true))
              .Include(x => x.Picture).Include(x => x.UserCreated)
              .OrderByDescending(x => x.CountView)
              .Take(size).ToList();

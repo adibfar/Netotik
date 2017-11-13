@@ -31,7 +31,7 @@ using Netotik.Common.DataTables;
 
 namespace Netotik.Web.Areas.Admin.Controllers
 {
-    [BreadCrumb(Title = "ContentsList", UseDefaultRouteUrl = true,Order = 0, GlyphIcon = "icon-files-o")]
+    [BreadCrumb(Title = "ContentsList", UseDefaultRouteUrl = true, Order = 0, GlyphIcon = "icon-files-o")]
     public partial class ContentController : BasePanelController
     {
 
@@ -130,11 +130,11 @@ namespace Netotik.Web.Areas.Admin.Controllers
                 status = ContentStatus.WaitForAccept,
                 Title = model.Title,
                 Url = model.Url,
-                StartDate = new DateTime(model.StartDate.Value.Year,model.StartDate.Value.Month,model.StartDate.Value.Day,int.Parse(model.StartDateTime.Split(':')[0]),int.Parse(model.StartDateTime.Split(':')[1]),00),
+                StartDate = new DateTime(model.StartDate.Value.Year, model.StartDate.Value.Month, model.StartDate.Value.Day, int.Parse(model.StartDateTime.Split(':')[0]), int.Parse(model.StartDateTime.Split(':')[1]), 00),
                 MetaDescription = model.MetaDescription,
                 MetaKeywords = model.MetaKeywords,
                 MetaTitle = model.MetaTitle,
-                
+
             };
             content.ContentTages = _contentTagService.GetTagesbyIdsAsync(model.TagIds);
             content.ContentCategories = _categoryService.GetbyIds(model.CategoryIds);
@@ -168,9 +168,8 @@ namespace Netotik.Web.Areas.Admin.Controllers
                 this.MessageError(Captions.MissionFail, Captions.AddError);
                 return RedirectToAction(MVC.Admin.Content.Create());
             }
-
             this.MessageSuccess(Captions.MissionSuccess, Captions.AddSuccess);
-            return RedirectToAction(MVC.Admin.Content.Index());
+            return RedirectToAction(MVC.Admin.Content.Edit(content.Id));
         }
         #endregion
 
@@ -239,6 +238,7 @@ namespace Netotik.Web.Areas.Admin.Controllers
         [Mvc5Authorize(Roles = AssignableToRolePermissions.CanEditContent)]
         [ValidateAntiForgeryToken]
         [HttpPost]
+        [BreadCrumb(Title = "EditContent", GlyphIcon = "icon-edit2", Order = 1)]
         public virtual async Task<ActionResult> Edit(ContentModel model, ActionType actionType)
         {
             var entity = _contentService.SingleOrDefault(model.Id);
@@ -315,7 +315,7 @@ namespace Netotik.Web.Areas.Admin.Controllers
             }
 
             this.MessageSuccess(Captions.MissionSuccess, Captions.UpdateSuccess);
-            return RedirectToAction(MVC.Admin.Content.Index());
+            return RedirectToAction(MVC.Admin.Content.Edit(entity.Id));
         }
         #endregion
 

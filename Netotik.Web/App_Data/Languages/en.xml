@@ -150,7 +150,7 @@
   <LocaleResource Name="EditComment">Edit Comment</LocaleResource>
   <LocaleResource Name="ReplyComment">Reply To comment</LocaleResource>
   <LocaleResource Name="NewContent">New Content</LocaleResource>
-  <LocaleResource Name="EditContents">Edit Content</LocaleResource>
+  <LocaleResource Name="EditContent">Edit Content</LocaleResource>
   <LocaleResource Name="NewSubject">New Subject</LocaleResource>
   <LocaleResource Name="EditSubject">Edit Subject</LocaleResource>
   <LocaleResource Name="NewTag">New Tag</LocaleResource>

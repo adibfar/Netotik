@@ -1,6 +1,6 @@
 ﻿@model Netotik.ViewModels.CMS.Content.ContentModel
 @{
-    ViewBag.Title = Captions.EditContents;
+    ViewBag.Title = Captions.EditContent;
 }
 <section class="flexbox-container">
     <div class="row">
@@ -152,7 +152,7 @@
                                             <div class="form-group has-feedback">
                                                 @Html.LabelFor(m => m.StartDate)
                                                 <div class="position-relative">
-                                                    @Html.TextBox("StartDate", Model.StartDate.Value.ToString("yyyy/MM/dd"), new { @class = "form-control" })
+                                                    @Html.TextBox("StartDate",PersianDate.ConvertDate.ToFa(Model.StartDate.Value), new { @class = "form-control" })
                                                     @Html.ValidationMessageFor(model => model.StartDate, "", htmlAttributes: new { @class = "text-danger" })
                                                 </div>
                                             </div>

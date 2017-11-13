@@ -2292,6 +2292,7 @@
     <Content Include="Content\PublicUI\images\8-min.jpg" />
     <Content Include="Content\PublicUI\images\avatar.png" />
     <Content Include="Content\PublicUI\images\avatar2.jpg" />
+    <Content Include="Content\PublicUI\images\backgrounds\bg-37.jpg" />
     <Content Include="Content\PublicUI\images\backgrounds\bg1-min.jpg" />
     <Content Include="Content\PublicUI\images\backgrounds\bg2-min.jpg" />
     <Content Include="Content\PublicUI\images\backgrounds\blue.jpg" />
