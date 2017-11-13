@@ -20,18 +20,18 @@
                 @foreach (var item in Model)
                 {
                     <div class="img-hover">
-                        <a title="@item.Title" href="@Url.Action(MVC.Blog.ActionNames.Detail, MVC.Blog.Name, new { Id = item.Id, name = item.Title })">
+                        <a title="@item.Title" href="@Url.Action(MVC.Blog.Detail(item.Id))">
                             <img class="img-responsive" src="@Url.Content(Path.Combine(Netotik.Common.Controller.FilePathes._imagesContentPath, item.PictureId.HasValue ? item.Picture.FileName:"Default.png"))?w=370&h=243&mode=crop" alt="@item.Title" />
                         </a>
 
-                        <h4 class="@(isRtl ? "text-right":"text-left")" style="min-height:70px;"><a href="@Url.Action(MVC.Blog.ActionNames.Detail, MVC.Blog.Name, new { Id = item.Id, name = item.Title })">@item.Title</a></h4>
+                        <h4 class="margin-top-10 @(isRtl ? "text-right":"text-left")" style="min-height:70px;"><a href="@Url.Action(MVC.Blog.ActionNames.Detail, MVC.Blog.Name, new { Id = item.Id, name = item.Title })">@item.Title</a></h4>
                         <ul class="@(isRtl ? "text-right":"text-left") size-12 list-inline list-separator">
                             <li>
                                 <i class="fa fa-calendar"></i>
                                 @PersianDate.ConvertDate.ToFa(item.StartDate.Value, "g")
                             </li>
                             <li>
-                                <a title="@item.Title" href="@Url.Action(MVC.Blog.ActionNames.Detail, MVC.Blog.Name, new { Id = item.Id, name = item.Title })">
+                                <a title="@item.Title" href="@Url.Action(MVC.Blog.Detail(item.Id))">
                                     <i class="fa fa-eye"></i>
                                     @item.CountView
                                 </a>
