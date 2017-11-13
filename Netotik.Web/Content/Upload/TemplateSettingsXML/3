@@ -6,17 +6,17 @@
   <CustomButton>false</CustomButton>
   <CustomButtonLink />
   <CustomButtonText />
-  <InstagramButton>true</InstagramButton>
-  <InstagramButtonLink>https://www.instagram.com/netotik</InstagramButtonLink>
-  <PanelButton>true</PanelButton>
+  <InstagramButton>false</InstagramButton>
+  <InstagramButtonLink>https://www.instagram.com/</InstagramButtonLink>
+  <PanelButton>false</PanelButton>
   <PanelButtonText>ورود به پنل کاربری</PanelButtonText>
-  <Redirect>true</Redirect>
+  <Redirect>false</Redirect>
   <RedirectToInstagram>false</RedirectToInstagram>
-  <RedirectToTelegram>true</RedirectToTelegram>
+  <RedirectToTelegram>false</RedirectToTelegram>
   <RedirectToUrl>http://</RedirectToUrl>
   <RegisterButton>false</RegisterButton>
   <RegisterButtonText>ثبت نام</RegisterButtonText>
-  <ShowTrialButton>true</ShowTrialButton>
-  <TelegramButton>true</TelegramButton>
-  <TelegramButtonLink>https://telegram.me/netotik</TelegramButtonLink>
+  <ShowTrialButton>false</ShowTrialButton>
+  <TelegramButton>false</TelegramButton>
+  <TelegramButtonLink>https://telegram.me/</TelegramButtonLink>
 </TemplateSetting>

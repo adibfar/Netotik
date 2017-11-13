@@ -12,7 +12,7 @@
                 <h4 class="modal-title" id="myModalLabel20"><i class="icon-plus"></i>@Captions.New</h4>
             </div>
             @using (Html.BeginForm(MVC.MyRouter.Hotspot.ActionNames.AddIpWalledGarden, MVC.MyRouter.Hotspot.Name, FormMethod.Post,
-htmlAttributes: new { @class = "form cmxform form-horizontal tasi-form", enctype = "multipart/form-data", id = "form" }))
+htmlAttributes: new { @class = "form cmxform form-horizontal tasi-form", enctype = "multipart/form-data", id = "AddIpWalledGardenform" }))
             {
                 <div class="modal-body">
                     <div class="row">
@@ -50,7 +50,7 @@ htmlAttributes: new { @class = "form cmxform form-horizontal tasi-form", enctype
                         <div class="col-md-6">
                             <div class="form-group ltr">
                                 <label class="font-noraml">Server</label>
-                                <select name="Server" data-placeholder="Server" class="selectize-select" style="min-width:350px;" tabindex="2">
+                                <select name="Server" data-placeholder="Server" class="selectize-select ltr" style="min-width:350px;" tabindex="2">
                                     @foreach (var item in ViewBag.servers)
                                     {
                                         <option value="@item.name">@item.name</option>
@@ -62,7 +62,7 @@ htmlAttributes: new { @class = "form cmxform form-horizontal tasi-form", enctype
                         <div class="col-md-6">
                             <div class="form-group ltr">
                                 <label class="font-noraml">Action</label>
-                                <select name="Action" data-placeholder="Action" class="selectize-select" style="min-width:350px;" tabindex="2">
+                                <select name="Action" data-placeholder="Action" class="selectize-select ltr" style="min-width:350px;" tabindex="2">
                                     <option value="drop">Block</option>
                                     <option value="accept">Allow</option>
                                 </select>
@@ -76,7 +76,7 @@ htmlAttributes: new { @class = "form cmxform form-horizontal tasi-form", enctype
                         <i class="icon-cross2"></i>
                         @Captions.Close
                     </button>
-                    <button name="actionType" value="@Netotik.Common.Controller.ActionType.Save" type="button" class="btn btn-outline-success" onclick="AjaxForm.Post(this, 'form')" data-loading-text="@Captions.SendingData">
+                    <button name="actionType" value="@Netotik.Common.Controller.ActionType.Save" type="submit" class="btn btn-outline-success" onclick="AjaxForm.Post(this, 'AddIpWalledGardenform')" data-loading-text="@Captions.SendingData">
                         <i class="icon-check2"></i>
                         @Captions.Add
                     </button>

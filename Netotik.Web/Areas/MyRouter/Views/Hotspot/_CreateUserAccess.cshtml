@@ -12,7 +12,7 @@
                 <h4 class="modal-title" id="myModalLabel20"><i class="icon-plus"></i>@Captions.New</h4>
             </div>
             @using (Html.BeginForm(MVC.MyRouter.Hotspot.ActionNames.AddIpBindings, MVC.MyRouter.Hotspot.Name, FormMethod.Post,
-        htmlAttributes: new { @class = "form cmxform form-horizontal tasi-form", enctype = "multipart/form-data", id = "form" }))
+        htmlAttributes: new { @class = "form cmxform form-horizontal tasi-form", enctype = "multipart/form-data", id = "AddIpBindingsform" }))
             {
                 <div class="modal-body">
 
@@ -71,7 +71,7 @@
                         <i class="icon-cross2"></i>
                         @Captions.Close
                     </button>
-                    <button name="actionType" value="@Netotik.Common.Controller.ActionType.Save" type="button" class="btn btn-outline-success" onclick="AjaxForm.Post(this, 'form')" data-loading-text="@Captions.SendingData">
+                    <button name="actionType" value="@Netotik.Common.Controller.ActionType.Save" type="submit" class="btn btn-outline-success" onclick="AjaxForm.Post(this, 'AddIpBindingsform')" data-loading-text="@Captions.SendingData">
                         <i class="icon-check2"></i>
                         @Captions.Add
                     </button>

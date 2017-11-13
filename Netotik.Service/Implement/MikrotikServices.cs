@@ -2951,7 +2951,7 @@ namespace Netotik.Services.Implement
             //-----------------------------------------------
 
             mikrotik.Send("/ip/hotspot/profile/set");
-            string temp = String.Format("=numbers={0}", ServerName);
+            string temp = String.Format("=.id={0}", ServerName);
             mikrotik.Send(temp);
             temp = String.Format("=html-directory={0}", DirectoryName);
             mikrotik.Send(temp, true);

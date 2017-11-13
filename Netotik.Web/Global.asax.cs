@@ -135,6 +135,13 @@ namespace Netotik.Web
             Byte[] receiveBytes = u.EndReceive(ar, ref e);
             string receiveString = Encoding.UTF8.GetString(receiveBytes);
 
+            //using (StreamWriter _testData = new StreamWriter(HostingEnvironment.MapPath("~/udp.txt"), true))
+            //{
+            //    var temp = "";
+            //    foreach (var item in receiveBytes)
+            //        temp += item;
+            //    _testData.WriteLine(temp + " \t "); // Write the file.
+            //}
 
             HostingEnvironment.QueueBackgroundWorkItem(async cancellationToken =>
             {

@@ -452,7 +452,7 @@ Order = 0, GlyphIcon = "icon icon-table")]
                     setting.Redirect = true;
                     break;
                 case "RedirectToInstagram":
-                    setting.RedirectToInstagram =true;
+                    setting.RedirectToInstagram = true;
                     setting.Redirect = true;
                     break;
                 default:
@@ -462,7 +462,7 @@ Order = 0, GlyphIcon = "icon icon-table")]
             //------------Save To Xml---------------------------
             var xml = new XDocument(new XElement("TemplateSetting",
                 new XElement("AutoLogin", setting.AutoLogin),
-                new XElement("AutoLoginAfterSec", setting.AutoLoginAfterSec??1),
+                new XElement("AutoLoginAfterSec", setting.AutoLoginAfterSec ?? 1),
                 new XElement("AutoLoginUser", setting.AutoLoginUser),
                 new XElement("CustomButton", setting.CustomButton),
                 new XElement("CustomButtonLink", setting.CustomButtonLink),
@@ -482,12 +482,13 @@ Order = 0, GlyphIcon = "icon icon-table")]
                 new XElement("TelegramButtonLink", setting.TelegramButtonLink)
                 ));
 
-            xml.Save(HostingEnvironment.MapPath(@"~\Content\Upload\TemplateSettingsXML\"+UserLogined.Id));
+            xml.Save(HostingEnvironment.MapPath(@"~\Content\Upload\TemplateSettingsXML\" + UserLogined.Id));
 
             //------------Connect To Router To Get---------------------------
             var Fetch = new List<FetchModel>();
             Fetch = AddDefualtTemplateFiles(Fetch);
-            Fetch.Add(new FetchModel() {
+            Fetch.Add(new FetchModel()
+            {
                 DstPath = "/flash/NetotikTemplate/alogin.html",
                 Mode = "https",
                 Url = Url.Action(MVC.GetRouterTemplate.GetAlogin(UserLogined.UserRouter.RouterCode), protocol: "https")
@@ -519,16 +520,15 @@ Order = 0, GlyphIcon = "icon icon-table")]
 
             HostingEnvironment.QueueBackgroundWorkItem(async cancellationToken =>
             {
-               await _mikrotikServices.FetchUrlsAsync(UserLogined.UserRouter.R_Host, UserLogined.UserRouter.R_Port, UserLogined.UserRouter.R_User, UserLogined.UserRouter.R_Password, UserLogined.Id, Fetch);
-                var servers = _mikrotikServices.Hotspot_ServersList(UserLogined.UserRouter.R_Host, UserLogined.UserRouter.R_Port, UserLogined.UserRouter.R_User, UserLogined.UserRouter.R_Password);
-                foreach(var item in servers)
-               _mikrotikServices.ChangeHotspotFolder(UserLogined.UserRouter.R_Host, UserLogined.UserRouter.R_Port, UserLogined.UserRouter.R_User, UserLogined.UserRouter.R_Password, "flash/NetotikTemplate", item.name);
+                await _mikrotikServices.FetchUrlsAsync(UserLogined.UserRouter.R_Host, UserLogined.UserRouter.R_Port, UserLogined.UserRouter.R_User, UserLogined.UserRouter.R_Password, UserLogined.Id, Fetch);
+                
             });
-            
+            var servers = _mikrotikServices.Hotspot_ServersList(UserLogined.UserRouter.R_Host, UserLogined.UserRouter.R_Port, UserLogined.UserRouter.R_User, UserLogined.UserRouter.R_Password);
+            foreach (var item in servers)
+                _mikrotikServices.ChangeHotspotFolder(UserLogined.UserRouter.R_Host, UserLogined.UserRouter.R_Port, UserLogined.UserRouter.R_User, UserLogined.UserRouter.R_Password, "flash/NetotikTemplate", item.id);
 
-            
 
-            this.MessageSuccess(Captions.MissionSuccess,Captions.TemplateInstallToRouter);
+            this.MessageSuccess(Captions.MissionSuccess, Captions.TemplateInstallToRouter);
             return RedirectToAction(MVC.MyRouter.Hotspot.ActionNames.Template);
         }
 
@@ -538,7 +538,7 @@ Order = 0, GlyphIcon = "icon icon-table")]
             {
                 DstPath = "/flash/NetotikTemplate/fonts/IRANSansWeb.eot",
                 Mode = "https",
-                Url = "https://netotik.com"+Links.Content.Upload.TemplateFiles.fonts.IRANSansWeb_eot
+                Url = "https://netotik.com" + Links.Content.Upload.TemplateFiles.fonts.IRANSansWeb_eot
             });
             Fetch.Add(new FetchModel()
             {
