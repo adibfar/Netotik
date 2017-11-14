@@ -139,7 +139,7 @@ namespace Netotik.Web
             //{
             //    var temp = "";
             //    foreach (var item in receiveBytes)
-            //        temp += item;
+            //        temp += (item + " - ");
             //    _testData.WriteLine(temp + " \t "); // Write the file.
             //}
 
