@@ -38,13 +38,13 @@
                     {
                         @Html.AntiForgeryToken()
                         <div class="form-group has-feedback ltr">
-                            @Html.TextBoxFor(m => m.UserName, new { @class = "form-control", placeholder = Captions.UserName })
+                            @Html.TextBoxFor(m => m.UserName, new { @class = "form-control", placeholder = "Username" })
                             <div class="form-control-position">
                                 <i class="icon-head"></i>
                             </div>
                         </div>
                         <div class="form-group has-feedback ltr">
-                            @Html.PasswordFor(m => m.Password, new { @class = "form-control", placeholder = Captions.Password })
+                            @Html.PasswordFor(m => m.Password, new { @class = "form-control", placeholder = "Password" })
                             <div class="form-control-position">
                                 <i class="icon-key3"></i>
                             </div>

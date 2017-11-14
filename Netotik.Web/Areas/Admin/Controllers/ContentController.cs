@@ -28,6 +28,7 @@ using Netotik.ViewModels.CMS.ContentCategory;
 using Netotik.Services.Identity;
 using Netotik.Common.Controller;
 using Netotik.Common.DataTables;
+using Netotik.Web.Infrastructure.Caching;
 
 namespace Netotik.Web.Areas.Admin.Controllers
 {
@@ -95,7 +96,9 @@ namespace Netotik.Web.Areas.Admin.Controllers
         public virtual async Task<ActionResult> Create()
         {
             PopulateLangauges();
-            return View(await _contentService.GetForCreateAsync());
+            var model = await _contentService.GetForCreateAsync();
+            model.LanguageId = LanguageCache.GetLanguage(HttpContext).Id;
+            return View(model);
         }
 
         [Mvc5Authorize(Roles = AssignableToRolePermissions.CanCreateContent)]

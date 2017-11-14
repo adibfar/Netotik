@@ -31,7 +31,7 @@
                         <div class="col-md-12">
                             <div class="form-group">
                                 @Html.LabelFor(m => m.ParentId)
-                                @Html.DropDownListFor(model => model.ParentId, ViewBag.Menues as SelectList, new { @class = "selectize-select" })
+                                @Html.DropDownListFor(model => model.ParentId, ViewBag.Menues as SelectList,"", new { @class = "selectize-select" })
                                 @Html.ValidationMessageFor(model => model.ParentId, "", htmlAttributes: new { @class = "text-danger" })
                             </div>
                         </div>

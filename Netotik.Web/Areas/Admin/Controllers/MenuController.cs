@@ -24,6 +24,7 @@ using Netotik.ViewModels.CMS.Menu;
 using Netotik.Common.Controller;
 using Netotik.Common.DataTables;
 using Netotik.Common.Extensions;
+using Netotik.Web.Infrastructure.Caching;
 
 namespace Netotik.Web.Areas.Admin.Controllers
 {
@@ -78,7 +79,12 @@ namespace Netotik.Web.Areas.Admin.Controllers
         {
             PopulateLangauges();
             PopulateParents();
-            return View(MVC.Admin.Menu.Views._Create, new MenuModel() { Order = 0, MenuLocation = MenuLocation.Header });
+            return View(MVC.Admin.Menu.Views._Create, new MenuModel()
+            {
+                Order = 0,
+                MenuLocation = MenuLocation.Header,
+                LanguageId = LanguageCache.GetLanguage(HttpContext).Id
+            });
         }
 
         [ValidateAntiForgeryToken]
