@@ -24,6 +24,7 @@ using Netotik.ViewModels.Identity.Security;
 using Netotik.ViewModels.CMS.ContentTag;
 using Netotik.Common.Controller;
 using Netotik.Common.DataTables;
+using Netotik.Web.Infrastructure.Caching;
 
 namespace Netotik.Web.Areas.Admin.Controllers
 {
@@ -83,7 +84,7 @@ namespace Netotik.Web.Areas.Admin.Controllers
         public virtual ActionResult Create()
         {
             PopulateLangauges();
-            return PartialView(MVC.Admin.ContentTag.Views._Create);
+            return PartialView(MVC.Admin.ContentTag.Views._Create, new ContentTagModel { LanguageId = LanguageCache.GetLanguage(HttpContext).Id });
         }
 
 

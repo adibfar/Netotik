@@ -24,6 +24,7 @@ using Netotik.ViewModels.Identity.Security;
 using Netotik.ViewModels.CMS.ContentCategory;
 using Netotik.Common.Controller;
 using Netotik.Common.DataTables;
+using Netotik.Web.Infrastructure.Caching;
 
 namespace Netotik.Web.Areas.Admin.Controllers
 {
@@ -78,7 +79,7 @@ namespace Netotik.Web.Areas.Admin.Controllers
         {
             PopulateCategories();
             PopulateLangauges();
-            return PartialView(MVC.Admin.ContentCategory.Views._Create);
+            return PartialView(MVC.Admin.ContentCategory.Views._Create, new ContentCategoryModel { LanguageId = LanguageCache.GetLanguage(HttpContext).Id });
         }
 
         [ValidateAntiForgeryToken]

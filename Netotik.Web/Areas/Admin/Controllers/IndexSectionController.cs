@@ -27,6 +27,7 @@ using Netotik.ViewModels.CMS.ContentCategory;
 using Netotik.Services.Identity;
 using Netotik.Common.Controller;
 using Netotik.Common.DataTables;
+using Netotik.Web.Infrastructure.Caching;
 
 namespace Netotik.Web.Areas.Admin.Controllers
 {
@@ -82,7 +83,7 @@ namespace Netotik.Web.Areas.Admin.Controllers
         public virtual ActionResult Create()
         {
             PopulateLangauges();
-            return View();
+            return View(new IndexSectionModel { LanguageId= LanguageCache.GetLanguage(HttpContext).Id });
         }
 
         [Mvc5Authorize(Roles = AssignableToRolePermissions.CanCreateContent)]
