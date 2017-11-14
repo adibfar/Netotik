@@ -35,7 +35,7 @@ namespace Netotik.Web.Controllers
             _mikrotikServices = ProjectObjectFactory.Container.GetInstance<IMikrotikServices>();
             _smsService = ProjectObjectFactory.Container.GetInstance<ISmsService>();
 
-            var User = await _applicationUserManager.FindByRouterSMSCodeAsync(text.Replace("ي","ی"));
+            var User = await _applicationUserManager.FindByRouterSMSCodeAsync(text.Replace("ي", "ی"));
             if (User == null)
                 return "ok....";
 
@@ -56,7 +56,7 @@ namespace Netotik.Web.Controllers
                 if (!_mikrotikServices.Usermanager_IsInstall(User.UserRouter.R_Host, User.UserRouter.R_Port, User.UserRouter.R_User, User.UserRouter.R_Password))
                 {
                     if (User.UserRouter.SmsIfErrorInSms)
-                        _smsService.SendSms(User.PhoneNumber,Captions.ClientRegisterWithSmsUsermanagerError, User.Id);
+                        _smsService.SendSms(User.PhoneNumber, Captions.ClientRegisterWithSmsUsermanagerError, User.Id);
                     return "ok...";
                 }
 
@@ -90,7 +90,7 @@ namespace Netotik.Web.Controllers
                 else
                 {
                     var usermanuser = _mikrotikServices.Usermanager_GetUser(User.UserRouter.R_Host, User.UserRouter.R_Port, User.UserRouter.R_User, User.UserRouter.R_Password, UserClient.username);
-                    if (Convert.ToDateTime(usermanuser.FirstOrDefault().CreateDate).AddHours(User.UserRouter.RegisterWithSmsAgainHour) < DateTime.Now || Convert.ToDateTime(User.UserRouter.RegisterWithSmsAgainHour).AddHours(0) < DateTime.Now)
+                    if (Convert.ToDateTime((usermanuser.FirstOrDefault().EditDate.Value.Year == 1 ? usermanuser.FirstOrDefault().CreateDate : usermanuser.FirstOrDefault().EditDate)).AddHours(User.UserRouter.RegisterWithSmsAgainHour) <= DateTime.Now)
                     {
                         _mikrotikServices.Usermanager_ResetUserProfiles(User.UserRouter.R_Host, User.UserRouter.R_Port, User.UserRouter.R_User, User.UserRouter.R_Password, UserClient.username);
                         var UserEditmodel = new UserEditModel()

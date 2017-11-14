@@ -10,7 +10,7 @@ namespace Netotik.ViewModels.Identity.UserClient
 {
     public class UserClientRegisterModel
     {
-        [RegularExpression(@"^0?9\d{9}$", ErrorMessageResourceType = typeof(Captions), ErrorMessageResourceName = "NotValidError")]
+        [RegularExpression(@"(^$)|(^0?9\d{9}$)", ErrorMessageResourceType = typeof(Captions), ErrorMessageResourceName = "NotValidError")]
         [Display(ResourceType = typeof(Captions), Name = "MobileNumber")]
         public string MobileNumber { get; set; }
 
@@ -34,7 +34,6 @@ namespace Netotik.ViewModels.Identity.UserClient
         public string Password { get; set; }
 
         [DataType(DataType.Password)]
-        [Required(ErrorMessageResourceType = typeof(Captions), ErrorMessageResourceName = "RequiredError")]
         [Compare("Password", ErrorMessageResourceType = typeof(Captions), ErrorMessageResourceName = "ConfirmPasswordNotValid")]
         [Display(ResourceType = typeof(Captions), Name = "ConfirmPassword")]
         public string PasswordConfirm { get; set; }

@@ -139,7 +139,6 @@ namespace Netotik.Web.Controllers
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public class ActionParamsClass_Client
         {
-            public readonly string ReturnUrl = "ReturnUrl";
             public readonly string RouterCode = "RouterCode";
             public readonly string model = "model";
         }
@@ -215,29 +214,27 @@ namespace Netotik.Web.Controllers
         }
 
         [NonAction]
-        partial void ClientOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, string ReturnUrl, string RouterCode);
+        partial void ClientOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, string RouterCode);
 
         [NonAction]
-        public override System.Threading.Tasks.Task<System.Web.Mvc.ActionResult> Client(string ReturnUrl, string RouterCode)
+        public override System.Threading.Tasks.Task<System.Web.Mvc.ActionResult> Client(string RouterCode)
         {
             var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Client);
-            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "ReturnUrl", ReturnUrl);
             ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "RouterCode", RouterCode);
-            ClientOverride(callInfo, ReturnUrl, RouterCode);
+            ClientOverride(callInfo, RouterCode);
             return System.Threading.Tasks.Task.FromResult(callInfo as System.Web.Mvc.ActionResult);
         }
 
         [NonAction]
-        partial void ClientOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, Netotik.ViewModels.Identity.UserClient.UserClientRegisterModel model, string ReturnUrl, string RouterCode);
+        partial void ClientOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, Netotik.ViewModels.Identity.UserClient.UserClientRegisterModel model, string RouterCode);
 
         [NonAction]
-        public override System.Threading.Tasks.Task<System.Web.Mvc.ActionResult> Client(Netotik.ViewModels.Identity.UserClient.UserClientRegisterModel model, string ReturnUrl, string RouterCode)
+        public override System.Threading.Tasks.Task<System.Web.Mvc.ActionResult> Client(Netotik.ViewModels.Identity.UserClient.UserClientRegisterModel model, string RouterCode)
         {
             var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Client);
             ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "model", model);
-            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "ReturnUrl", ReturnUrl);
             ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "RouterCode", RouterCode);
-            ClientOverride(callInfo, model, ReturnUrl, RouterCode);
+            ClientOverride(callInfo, model, RouterCode);
             return System.Threading.Tasks.Task.FromResult(callInfo as System.Web.Mvc.ActionResult);
         }
 

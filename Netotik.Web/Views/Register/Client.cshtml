@@ -45,7 +45,7 @@
 
                             }
                             <div class="card-block">
-                                @using (Html.BeginForm(MVC.Register.ActionNames.Client, MVC.Register.Name, new { ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form", id = "loginForm", autocomplete = "off" }))
+                                @using (Html.BeginForm(MVC.Register.ActionNames.Client, MVC.Register.Name, FormMethod.Post, new { @class = "form-horizontal", role = "form", id = "loginForm", autocomplete = "off" }))
                                 {
                                     @Html.AntiForgeryToken()
                                     <div class="row">
@@ -228,7 +228,7 @@
                                             </button>
                                         </div>
                                         <div class="col-md-6">
-                                            <a href="@Url.Action(MVC.Login.Client("",ViewBag.RouterName))" class="btn btn-outline-primary btn-block"><i class="icon-lock4"></i> @Captions.LoginToUserAccount</a>
+                                            <a href="@Url.Action(MVC.Login.Client("",ViewBag.RouterName as string))" class="btn btn-outline-primary btn-block"><i class="icon-lock4"></i> @Captions.LoginToUserAccount</a>
                                         </div>
                                     </div>
                                 }
@@ -266,7 +266,7 @@ else
                                 <div class="row">
                                         <div class="col-md-6">
                                             <div class="form-group has-feedback has-icon-left">
-                                                @Html.TextBox("",(ViewBag.UserFind as UserModel).username, new { @class = "form-control", @readonly = "yes"})
+                                                @Html.TextBox("1",(ViewBag.UserFind as UserModel).username, new { @class = "form-control", @readonly = "yes"})
                                                 <div class="form-control-position">
                                                     <i class="icon-user"></i>
                                                 </div>
@@ -274,7 +274,7 @@ else
                                         </div>
                                     <div class="col-md-6">
                                         <div class="form-group has-feedback has-icon-left">
-                                            @Html.TextBox("", (ViewBag.UserFind as UserModel).password, new { @class = "form-control", @readonly = "yes" })
+                                            @Html.TextBox("2", (ViewBag.UserFind as UserModel).password, new { @class = "form-control", @readonly = "yes" })
                                             <div class="form-control-position">
                                                 <i class="icon-key2"></i>
                                             </div>

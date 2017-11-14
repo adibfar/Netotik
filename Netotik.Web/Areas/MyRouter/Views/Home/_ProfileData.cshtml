@@ -35,10 +35,10 @@
                     <div class="col-md-6">
                         <div class="form-group has-feedback has-icon-left">
                             @Html.LabelFor(m => m.RouterCode)
-                            <div class="position-relative has-icon-left input-group ltr">
+                            <div class="position-relative has-icon-left input-group">
                                 @Html.TextBoxFor(m => m.RouterCode, new { @class = "form-control ltr" })
                                 <span class="input-group-addon">/https://netotik.com</span>
-                                
+
                             </div>
                             @Html.ValidationMessageFor(model => model.RouterCode, "", htmlAttributes: new { @class = "text-danger" })
                         </div>
