@@ -4640,6 +4640,7 @@ namespace Links
                     public const string UrlPath = "~/Content/PublicUI/images/backgrounds";
                     public static string Url() { return T4MVCHelpers.ProcessVirtualPath(UrlPath); }
                     public static string Url(string fileName) { return T4MVCHelpers.ProcessVirtualPath(UrlPath + "/" + fileName); }
+                    public static readonly string bg_37_jpg = Url("bg-37.jpg");
                     public static readonly string bg1_min_jpg = Url("bg1-min.jpg");
                     public static readonly string bg2_min_jpg = Url("bg2-min.jpg");
                     public static readonly string blue_jpg = Url("blue.jpg");

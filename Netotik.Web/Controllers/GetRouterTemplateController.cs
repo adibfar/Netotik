@@ -62,7 +62,7 @@ namespace Netotik.Web.Controllers
             Tempset.TelegramButtonLink = settingXml.Element("TelegramButtonLink").Value;
             Tempset.Redirect = settingXml.Element("Redirect").Value == "true" ? true : false;
             Tempset.PanelButtonLink = Url.Action(MVC.Login.Client("", user.UserRouter.RouterCode), protocol: "https");
-            Tempset.RegisterButtonLink = Url.Action(MVC.Register.Client("", user.UserRouter.RouterCode), protocol: "https");
+            Tempset.RegisterButtonLink = Url.Action(MVC.Register.Client(user.UserRouter.RouterCode), protocol: "https");
 
             return View(Tempset);
         }
@@ -99,7 +99,7 @@ namespace Netotik.Web.Controllers
             Tempset.TelegramButtonLink = settingXml.Element("TelegramButtonLink").Value;
             Tempset.Redirect = settingXml.Element("Redirect").Value == "true" ? true : false;
             Tempset.PanelButtonLink = Url.Action(MVC.Login.Client("", user.UserRouter.RouterCode), protocol: "https");
-            Tempset.RegisterButtonLink = Url.Action(MVC.Register.Client("", user.UserRouter.RouterCode), protocol: "https");
+            Tempset.RegisterButtonLink = Url.Action(MVC.Register.Client(user.UserRouter.RouterCode), protocol: "https");
 
             return View(Tempset);
         }
@@ -136,7 +136,7 @@ namespace Netotik.Web.Controllers
             Tempset.TelegramButtonLink = settingXml.Element("TelegramButtonLink").Value;
             Tempset.Redirect = settingXml.Element("Redirect").Value == "true" ? true : false;
             Tempset.PanelButtonLink = Url.Action(MVC.Login.Client("", user.UserRouter.RouterCode), protocol: "https");
-            Tempset.RegisterButtonLink = Url.Action(MVC.Register.Client("", user.UserRouter.RouterCode), protocol: "https");
+            Tempset.RegisterButtonLink = Url.Action(MVC.Register.Client(user.UserRouter.RouterCode), protocol: "https");
 
             return View(Tempset);
         }
@@ -173,7 +173,7 @@ namespace Netotik.Web.Controllers
             Tempset.TelegramButtonLink = settingXml.Element("TelegramButtonLink").Value;
             Tempset.Redirect = settingXml.Element("Redirect").Value == "true" ? true : false;
             Tempset.PanelButtonLink = Url.Action(MVC.Login.Client("", user.UserRouter.RouterCode), protocol: "https");
-            Tempset.RegisterButtonLink = Url.Action(MVC.Register.Client("", user.UserRouter.RouterCode), protocol: "https");
+            Tempset.RegisterButtonLink = Url.Action(MVC.Register.Client(user.UserRouter.RouterCode), protocol: "https");
 
             return View(Tempset);
 
@@ -211,7 +211,7 @@ namespace Netotik.Web.Controllers
             Tempset.TelegramButtonLink = settingXml.Element("TelegramButtonLink").Value;
             Tempset.Redirect = settingXml.Element("Redirect").Value == "true" ? true : false;
             Tempset.PanelButtonLink = Url.Action(MVC.Login.Client("", user.UserRouter.RouterCode), protocol: "https");
-            Tempset.RegisterButtonLink = Url.Action(MVC.Register.Client("", user.UserRouter.RouterCode), protocol: "https");
+            Tempset.RegisterButtonLink = Url.Action(MVC.Register.Client(user.UserRouter.RouterCode), protocol: "https");
 
             return View(Tempset);
 
