@@ -11,7 +11,7 @@ namespace Netotik.ViewModels.Identity.UserAdmin
 {
     public class AdminAddModel 
     {
-        public int? Id { get; set; }
+        public long? Id { get; set; }
 
         [Required(ErrorMessageResourceType = typeof(Captions), ErrorMessageResourceName = "RequiredError")]
         [MaxLength(100, ErrorMessageResourceType = typeof(Captions), ErrorMessageResourceName = "MaxLengthError")]

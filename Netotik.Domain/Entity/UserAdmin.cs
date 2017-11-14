@@ -5,7 +5,7 @@ namespace Netotik.Domain.Entity
 {
     public partial class UserAdmin
     {
-        public int Id { get; set; }
+        public long Id { get; set; }
 
         public string Facebook { get; set; }
         public string Twitter { get; set; }

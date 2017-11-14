@@ -241,12 +241,14 @@ namespace Netotik.Services.Identity
         public async Task UpdateUserAdminProfile(ViewModels.Identity.UserAdmin.ProfileModel model)
         {
             var user = _users.Find(GetCurrentUserId());
-            var id = user.Id.ToString();
-            var trans = await _languageTranslationService.All().Where(x => x.EntityId == id).ToListAsync();
+            if (user.UserAdmin == null)
+                user.UserAdmin = new UserAdmin();
+
             _mappingEngine.Map(model, user);
 
 
-
+            var id = user.Id.ToString();
+            var trans = await _languageTranslationService.All().Where(x => x.EntityId == id).ToListAsync();
             for (int a = 0; a < model.LanguageIds.Length; a++)
             {
                 var showName = trans.FirstOrDefault(x => x.ObjectName == "User" && x.PropertyName == "ShowName" && x.LanguageId == model.LanguageIds[a]);

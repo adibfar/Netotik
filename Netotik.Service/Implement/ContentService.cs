@@ -150,7 +150,7 @@ namespace Netotik.Services.Implement
                     RowNumber = model.iDisplayStart + index + 1,
                     AllowComments = x.AllowComments,
                     StartDate = PersianDate.ConvertDate.ToFa(x.StartDate, "g"),
-                    UserCreator = x.UserEdited.FirstName + " " + x.UserEdited.LastName,
+                    UserCreator = x.UserCreated.FirstName + " " + x.UserCreated.LastName,
                     status = x.status,
                     ViewCount = x.CountView,
                     CommentCount = x.ContentComments.Count,

@@ -10,7 +10,7 @@ namespace Netotik.ViewModels.Identity.UserAdmin
 {
     public class UserChangePasswordModel
     {
-        public int Id { get; set; }
+        public long Id { get; set; }
 
         [DataType(DataType.Password)]
         [Required(ErrorMessageResourceType = typeof(Captions), ErrorMessageResourceName = "RequiredError")]

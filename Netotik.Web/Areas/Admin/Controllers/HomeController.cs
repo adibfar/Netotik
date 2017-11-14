@@ -87,9 +87,11 @@ namespace Netotik.Web.Areas.Admin.Controllers
             }
             #endregion
 
-            this.MessageInformation(Captions.MissionSuccess, Captions.UpdateSuccess);
+           
             await _applicationUserManager.UpdateUserAdminProfile(model);
-            return RedirectToAction(MVC.Admin.Home.ActionNames.MyProfile);
+            this.MessageInformation(Captions.MissionSuccess, Captions.UpdateSuccess);
+
+            return RedirectToAction(MVC.Admin.Home.MyProfile());
         }
 
         [ValidateAntiForgeryToken]

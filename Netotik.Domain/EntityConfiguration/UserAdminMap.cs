@@ -16,7 +16,8 @@ namespace Netotik.Domain.EntityConfiguration
                 .HasDatabaseGeneratedOption(DatabaseGeneratedOption.None);
 
             this.HasRequired(t => t.User)
-                .WithOptional(t => t.UserAdmin);
+                .WithOptional(t => t.UserAdmin)
+                .WillCascadeOnDelete(true);
 
         }
     }
