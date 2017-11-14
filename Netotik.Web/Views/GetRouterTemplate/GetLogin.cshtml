@@ -157,7 +157,7 @@
 
         <script type="text/javascript" src="/md5.js"></script>
         <script type="text/javascript">
-						<!--
+						//<!--
 							function doLogin() {
 							document.sendin.username.value = document.login.username.value;
 							document.sendin.password.value = hexMD5('$(chap-id)' + document.login.password.value + '$(chap-challenge)');
@@ -180,20 +180,20 @@
         @if (Model.ShowTrialButton)
         {
             <text>
-                $(if trial == 'yes')<a href="$(link-login-only)?dst=$(link-orig-esc)&amp;username=T-$(mac-esc)"><div class="trial"> اینترنت رایگان</div></a><br />$(endif)
+                $(if trial == 'yes')<a href="$(link-login-only)?dst=$(link-orig-esc)&amp;username=T-$(mac-esc)" style="text-decoration:none !important;"><div class="trial"> اینترنت رایگان</div></a><br />$(endif)
             </text>
         }
         @if (Model.RegisterButton)
         {
-            <a href="@Model.RegisterButtonLink" target="_blank" style="margin-top:5px !important;"><div class="trial">@Model.RegisterButtonText</div></a><br/>
+            <a href="@Model.RegisterButtonLink" target="_blank" style="margin-top:5px !important;text-decoration:none !important;"><div class="trial">@Model.RegisterButtonText</div></a><br/>
         }
         @if (Model.PanelButton)
         {
-            <a href="@Model.PanelButtonLink" target="_blank" style="margin-top:5px !important;"><div class="trial">@Model.PanelButtonText</div></a><br />
+            <a href="@Model.PanelButtonLink" target="_blank" style="margin-top:5px !important;text-decoration:none !important;"><div class="trial">@Model.PanelButtonText</div></a><br />
         }
         @if (Model.CustomButton)
         {
-            <a href="@Model.CustomButtonLink" target="_blank" style="margin-top:5px !important;"><div class="trial">@Model.CustomButtonText</div></a><br />
+            <a href="@Model.CustomButtonLink" target="_blank" style="margin-top:5px !important;text-decoration:none !important;"><div class="trial">@Model.CustomButtonText</div></a><br />
         }
 
         <center>
