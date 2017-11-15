@@ -479,14 +479,14 @@
     <Compile Include="GetRouterTemplateController.generated.cs">
       <DependentUpon>T4MVC.tt</DependentUpon>
     </Compile>
+    <Compile Include="HomeController.generated.cs">
+      <DependentUpon>T4MVC.tt</DependentUpon>
+    </Compile>
     <Compile Include="Infrastructure\Caching\LanguageCache.cs" />
     <Compile Include="Infrastructure\EnglishConvertDate.cs" />
     <Compile Include="Infrastructure\HtmlSettingExtension.cs" />
     <Compile Include="Infrastructure\HtmlCurrentLanguageExtension.cs" />
     <Compile Include="Infrastructure\HtmlCurrentUserExtension.cs" />
-    <Compile Include="HomeController.generated.cs">
-      <DependentUpon>T4MVC.tt</DependentUpon>
-    </Compile>
     <Compile Include="Infrastructure\BaseController.cs" />
     <Compile Include="Infrastructure\BasePanelController.cs" />
     <Compile Include="Infrastructure\Caching\PublicUICache.cs" />
@@ -563,9 +563,9 @@
       <DependentUpon>T4MVC.tt</DependentUpon>
     </Compile>
     <Compile Include="T4MVC.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
       <DependentUpon>T4MVC.tt</DependentUpon>
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
     </Compile>
     <Compile Include="UserMailerController.generated.cs">
       <DependentUpon>T4MVC.tt</DependentUpon>
@@ -4094,10 +4094,10 @@
     <Content Include="Scripts\ckeditor\samples\toolbarconfigurator\lib\codemirror\LICENSE" />
     <Content Include="Scripts\ckeditor\skins\moono-lisa\readme.md" />
     <None Include="Service References\ZarinPalService\PaymentGatewayImplementationService.wsdl" />
-    <None Include="T4MVC.tt">
+    <Content Include="T4MVC.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>T4MVC.cs</LastGenOutput>
-    </None>
+    </Content>
     <None Include="T4MVC.tt.hooks.t4" />
     <None Include="T4MVC.tt.settings.xml" />
     <Content Include="Areas\Admin\Views\UserAdmin\Create.cshtml" />
