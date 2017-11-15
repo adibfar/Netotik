@@ -393,7 +393,29 @@ namespace Netotik.Web.Areas.MyRouter.Controllers
                         }
                         item.shared_users = item.shared_users.Replace("unlimited", Captions.Unlimited);
                         item.upload_used = (ulong.Parse(item.upload_used) / 1048576).ToString();
-                        item.uptime_used = item.uptime_used.Replace("d", Captions.Day).Replace("w", Captions.Week).Replace("h", Captions.Hour).Replace("m", Captions.Minute).Replace("s", Captions.Secend).Replace("never", Captions.NoConnection);
+                        int hour = 0;
+                        if (!item.uptime_used.Contains("never"))
+                        {
+                            if (item.uptime_used.Contains("w"))
+                            {
+                                hour += int.Parse(item.uptime_used.Split('w')[0]) * 168;
+                                item.uptime_used = item.uptime_used.Split('w')[1];
+                            }
+                            if (item.uptime_used.Contains("d"))
+                            {
+                                hour += int.Parse(item.uptime_used.Split('d')[0]) * 24;
+                                item.uptime_used = item.uptime_used.Split('d')[1];
+                            }
+                            if (item.uptime_used.Contains("h"))
+                            {
+                                hour += int.Parse(item.uptime_used.Split('h')[0]);
+                            }
+                            item.uptime_used = hour + Captions.Hour;
+                        }
+                        else
+                        {
+                            item.uptime_used = Captions.NoConnection;
+                        }
                         UserListModel.Add(item);
                     }
                     ViewBag.Users = UserListModel;
@@ -675,8 +697,30 @@ namespace Netotik.Web.Areas.MyRouter.Controllers
                         ViewBag.till_time = UserProfileLimition.till_time.Replace("d", Captions.Day).Replace("s", Captions.Secend).Replace("m", Captions.Minute).Replace("h", Captions.Hour);
                     if (UserProfileLimition.weekdays != null)
                         ViewBag.weekdays = UserProfileLimition.weekdays.Replace("friday", Captions.Friday).Replace("thursday", Captions.Thursday).Replace("wednesday", Captions.Wednesday).Replace("tuesday", Captions.Tuesday).Replace("monday", Captions.Monday).Replace("sunday", Captions.Sunday).Replace("saturday", Captions.Saturday);
+                    int hour = 0;
                     if (item.uptime_used != null)
-                        item.uptime_used = item.uptime_used.Replace("d", Captions.Day).Replace("w", Captions.Week).Replace("h", Captions.Hour).Replace("m", Captions.Minute).Replace("s", Captions.Secend).Replace("never", Captions.NoConnection);
+                        if (!item.uptime_used.Contains("never"))
+                        {
+                            if (item.uptime_used.Contains("w"))
+                            {
+                                hour += int.Parse(item.uptime_used.Split('w')[0]) * 168;
+                                item.uptime_used = item.uptime_used.Split('w')[1];
+                            }
+                            if (item.uptime_used.Contains("d"))
+                            {
+                                hour += int.Parse(item.uptime_used.Split('d')[0]) * 24;
+                                item.uptime_used = item.uptime_used.Split('d')[1];
+                            }
+                            if (item.uptime_used.Contains("h"))
+                            {
+                                hour += int.Parse(item.uptime_used.Split('h')[0]);
+                            }
+                            item.uptime_used = hour + Captions.Hour;
+                        }
+                        else
+                        {
+                            item.uptime_used = Captions.NoConnection;
+                        }
                     if (item.last_seen != null)
                         if (item.last_seen == "never")
                         {
@@ -831,11 +875,12 @@ namespace Netotik.Web.Areas.MyRouter.Controllers
                     }
                     if (model.SendEmailNow)
                     {
-                        if (string.IsNullOrWhiteSpace(model.email)){
+                        if (string.IsNullOrWhiteSpace(model.email))
+                        {
                             _userMailer.ClientUserPass(new EmailClientUserPassViewModel
                             {
                                 To = model.email,
-                                PanelLoginLink = Url.Action(MVC.Login.Client("",UserLogined.UserRouter.RouterCode), protocol: "https"),
+                                PanelLoginLink = Url.Action(MVC.Login.Client("", UserLogined.UserRouter.RouterCode), protocol: "https"),
                                 Password = model.password,
                                 Profile = model.profile,
                                 RouterCode = UserLogined.UserRouter.RouterCode,
@@ -1162,7 +1207,7 @@ namespace Netotik.Web.Areas.MyRouter.Controllers
                 this.MessageError(Captions.Error, Captions.UserPasswordClientError);
                 return RedirectToAction(MVC.MyRouter.Home.ActionNames.MikrotikConf, MVC.MyRouter.Home.Name, new { area = MVC.MyRouter.Name });
             }
-            var date = PersianDate.ConvertDate.ToEn(model.Year,model.Month,model.Day);
+            var date = PersianDate.ConvertDate.ToEn(model.Year, model.Month, model.Day);
             var FromTime = new DateTime(date.Year, date.Month, date.Day, int.Parse(model.FromTime.Split(':')[0]), int.Parse(model.FromTime.Split(':')[1]), 0);
             var ToTime = new DateTime(date.Year, date.Month, date.Day, int.Parse(model.ToTime.Split(':')[0]), int.Parse(model.ToTime.Split(':')[1]), 59);
             var Logs = _UserRouterlogclientservice.GetList(UserLogined.Id, FromTime, ToTime);
@@ -1231,7 +1276,7 @@ namespace Netotik.Web.Areas.MyRouter.Controllers
                 ws.Cells["A1"].LoadFromDataTable(Netotik.Common.Extensions.DataTableExtention.ToDataTable<UserWebsiteLogsWithSessionsModel>(UsersLogs), true, TableStyles.Medium2);
                 Byte[] fileBytes = pck.GetAsByteArray();
                 Response.ClearContent();
-                Response.AddHeader("content-disposition", "attachment;filename=" + (userReport != null ? userReport.user : "null" )+ "_Logs_" + DateTime.Now.ToString("M_dd_yyyy_H_M_s") + ".xlsx");
+                Response.AddHeader("content-disposition", "attachment;filename=" + (userReport != null ? userReport.user : "null") + "_Logs_" + DateTime.Now.ToString("M_dd_yyyy_H_M_s") + ".xlsx");
                 Response.ContentType = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet";
                 Response.BinaryWrite(fileBytes);
                 Response.End();
@@ -1240,7 +1285,7 @@ namespace Netotik.Web.Areas.MyRouter.Controllers
 
             return RedirectToAction(MVC.MyRouter.UserManager.UserList());
         }
-        
-       
+
+
     }
 }
