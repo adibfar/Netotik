@@ -239,7 +239,17 @@ namespace Netotik.Services.Implement
              .OrderByDescending(x => x.CountView)
              .Take(size).ToList();
         }
+        public IList<Content> GetRelatedPost(int size, int[] categoryIds)
+        {
+            var date = DateTime.Now;
 
+            return dbSet.Where(x => x.status == ContentStatus.Accepted && x.ContentCategories.Any(z => categoryIds.Any(c => c == z.Id)) &&
+                            (x.StartDate.HasValue ? x.StartDate.Value <= date : true) &&
+                            (x.EndDate.HasValue ? x.EndDate.Value >= date : true))
+             .Include(x => x.Picture)
+             .OrderByDescending(x => x.StartDate)
+             .Take(size).ToList();
+        }
 
 
         public async Task<Content> SingleOrDefaultAsync(int primaryKey)

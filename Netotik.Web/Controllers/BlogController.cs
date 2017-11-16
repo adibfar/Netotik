@@ -24,9 +24,11 @@ namespace Netotik.Web.Controllers
         private readonly IContentCategoryService _contentCategoryService;
         private readonly IContentCommentService _contentCommentService;
         private readonly IApplicationUserManager _applicationUserManager;
+        private readonly ISettingService _settingService;
         private readonly IUnitOfWork _uow;
 
         public BlogController(
+            ISettingService settingService,
             IContentService contentService,
             IContentTagService contentTagService,
             IContentCategoryService contentCategoryService,
@@ -34,6 +36,7 @@ namespace Netotik.Web.Controllers
             IApplicationUserManager applicationUserManager,
             IUnitOfWork uow)
         {
+            _settingService = settingService;
             _contentTagService = contentTagService;
             _contentCategoryService = contentCategoryService;
             _contentCommentService = contentCommentService;
@@ -134,6 +137,10 @@ namespace Netotik.Web.Controllers
             if (!id.HasValue) return HttpNotFound();
 
             var content = await _contentService.SingleOrDefaultAsync(id.Value);
+            if (content.status != ContentStatus.Accepted || content.StartDate > DateTime.Now || (content.EndDate.HasValue ? DateTime.Now < content.EndDate : false))
+                return HttpNotFound();
+
+            ViewBag.RelatedPost = _contentService.GetRelatedPost(6, content.ContentCategories.Select(x => x.Id).ToArray());
 
             #region Add View
             if (Request.Cookies["ViewedPost"] != null)
@@ -160,7 +167,7 @@ namespace Netotik.Web.Controllers
             #endregion
 
             if (content == null)
-                return RedirectToAction(MVC.Home.ActionNames.Index, MVC.Home.Name);
+                return HttpNotFound();
 
             if (content.AllowViewComments)
             {

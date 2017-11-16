@@ -1,0 +1,59 @@
+﻿@model IList<Netotik.Domain.Entity.Content>
+@{
+    Layout = null;
+}
+
+@if (Model.Any())
+{
+
+    <div>
+        <h4 class="page-header margin-bottom-60 size-20">
+            <i class="et-hotairballoon"></i> @Captions.RelatedPost
+        </h4>
+
+        <!--
+            RELATED CAROUSEL
+
+            controlls-over		= navigation buttons over the image
+            buttons-autohide 	= navigation buttons visible on mouse hover only
+
+            owl-carousel item paddings
+                .owl-padding-0
+                .owl-padding-1
+                .owl-padding-2
+                .owl-padding-3
+                .owl-padding-6
+                .owl-padding-10
+                .owl-padding-15
+                .owl-padding-20
+        -->
+        <div class="text-center">
+            <div class="owl-carousel owl-padding-1 nomargin buttons-autohide controlls-over" data-plugin-options='{"singleItem": false, "items": "3", "autoPlay": 3500, "navigation": true, "pagination": false}'>
+
+                @foreach (var item in Model)
+                {
+                    <div class="item-box">
+                        <figure>
+                            <img class="img-responsive" src="@Url.Content((item.PictureId.HasValue ? Path.Combine(Netotik.Common.Controller.FilePathes._imagesContentPath, item.Picture.FileName) : "/Content/Upload/Image/Content/Default.png")+"?w=600&h=399")" width="600" height="399" alt="">
+                        </figure>
+
+                        <div class="item-box-desc">
+                            <h3>@item.Title</h3>
+                            <ul class="list-inline categories nomargin">
+                                @foreach (var t in item.ContentCategories.Where(x => !x.IsDeleted))
+                                {
+                                    <li>
+                                        <a href="@Url.Action(MVC.Blog.ActionNames.Index, MVC.Blog.Name, new { categoryId = item.Id, tagId = "",page=1 })">
+                                            @t.Name
+                                        </a>
+                                    </li>
+                                }
+
+                            </ul>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+}

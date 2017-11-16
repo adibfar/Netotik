@@ -2103,7 +2103,12 @@
       کاربر مدیریت {0} یوزرمنیجر فاقد پسورد می باشد.
     </Value>
   </LocaleResource>
-  
+
+  <LocaleResource Name="RelatedPost">
+    <Value>
+      مطالب مشابه
+    </Value>
+  </LocaleResource>
 
 
 

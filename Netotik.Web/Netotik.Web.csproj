@@ -2355,6 +2355,7 @@
     <Content Include="Content\PublicUI\images\submenu_inverse_dark.png" />
     <Content Include="Content\PublicUI\images\submenu_inverse_light.png" />
     <Content Include="Content\PublicUI\images\submenu_light.png" />
+    <Content Include="Content\PublicUI\images\telegram-banner.png" />
     <Content Include="Content\PublicUI\images\timeline\textline.png" />
     <Content Include="Content\PublicUI\images\timeline\timeline_left.png" />
     <Content Include="Content\PublicUI\images\timeline\timeline_right.png" />
@@ -4254,6 +4255,7 @@
     <Content Include="Views\GetRouterTemplate\GetError.cshtml" />
     <Content Include="Views\SharedPublic\_Request.cshtml" />
     <Content Include="Views\UserMailer\ClientUserPass.cshtml" />
+    <Content Include="Views\Blog\_RelatedPost.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
