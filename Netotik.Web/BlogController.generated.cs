@@ -192,6 +192,7 @@ namespace Netotik.Web.Controllers
                 public readonly string _List = "_List";
                 public readonly string _PopularPosts = "_PopularPosts";
                 public readonly string _Post = "_Post";
+                public readonly string _RelatedPost = "_RelatedPost";
                 public readonly string _SideBar = "_SideBar";
                 public readonly string _Tags = "_Tags";
                 public readonly string Detail = "Detail";
@@ -203,6 +204,7 @@ namespace Netotik.Web.Controllers
             public readonly string _List = "~/Views/Blog/_List.cshtml";
             public readonly string _PopularPosts = "~/Views/Blog/_PopularPosts.cshtml";
             public readonly string _Post = "~/Views/Blog/_Post.cshtml";
+            public readonly string _RelatedPost = "~/Views/Blog/_RelatedPost.cshtml";
             public readonly string _SideBar = "~/Views/Blog/_SideBar.cshtml";
             public readonly string _Tags = "~/Views/Blog/_Tags.cshtml";
             public readonly string Detail = "~/Views/Blog/Detail.cshtml";

@@ -16,6 +16,17 @@
     @Html.HiddenFor(model => model.ContentId)
     <div class="row">
         @Html.Partial(MVC.SharedPublic.Views.ViewNames._Message)
+    </div>
+    <div class="row">
+        <div class="form-group">
+            <div class="col-md-12">
+                @Html.LabelFor(x => x.Text)
+                @Html.TextAreaFor(model => model.Text, new { @class = "form-control", rows = 6 })
+                @Html.ValidationMessageFor(model => model.Text, "", htmlAttributes: new { @class = "text-danger" })
+            </div>
+        </div>
+    </div>
+    <div class="row">
         <div class="form-group">
             <div class="col-md-4">
                 @Html.LabelFor(x => x.Name)
@@ -35,15 +46,7 @@
         </div>
     </div>
 
-    <div class="row">
-        <div class="form-group">
-            <div class="col-md-12">
-                @Html.LabelFor(x => x.Text)
-                @Html.TextAreaFor(model => model.Text, new { @class = "form-control", rows = 6 })
-                @Html.ValidationMessageFor(model => model.Text, "", htmlAttributes: new { @class = "text-danger" })
-            </div>
-        </div>
-    </div>
+   
 
     <div class="row">
         <div class="col-md-12">

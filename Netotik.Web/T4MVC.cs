@@ -4740,6 +4740,7 @@ namespace Links
                 public static readonly string submenu_inverse_dark_png = Url("submenu_inverse_dark.png");
                 public static readonly string submenu_inverse_light_png = Url("submenu_inverse_light.png");
                 public static readonly string submenu_light_png = Url("submenu_light.png");
+                public static readonly string telegram_banner_png = Url("telegram-banner.png");
                 [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
                 public static class timeline {
                     public const string UrlPath = "~/Content/PublicUI/images/timeline";

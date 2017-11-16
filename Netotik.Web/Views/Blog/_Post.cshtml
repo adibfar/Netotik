@@ -119,6 +119,7 @@
     </div>
 </div>
 
+@Html.Partial(MVC.Blog.Views._RelatedPost, ViewBag.RelatedPost as List<Netotik.Domain.Entity.Content>)
 
 @Html.Partial(MVC.Blog.Views._Comments, Model.ContentComments)
 

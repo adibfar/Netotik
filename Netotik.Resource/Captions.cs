@@ -18,6 +18,15 @@ namespace Netotik.Resources
         {
             return resourceProvider.GetResource(key, CultureInfo.CurrentUICulture.Name) as string;
         }
+
+        public static string RelatedPost
+        {
+            get
+            {
+                return resourceProvider.GetResource("RelatedPost", CultureInfo.CurrentUICulture.Name) as string;
+            }
+        }
+
         public static string ConsultationRequest
         {
             get

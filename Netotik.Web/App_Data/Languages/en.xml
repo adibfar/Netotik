@@ -1518,4 +1518,11 @@
       Usermanager Customer {0} has no password.
     </Value>
   </LocaleResource>
+
+  <LocaleResource Name="RelatedPost">
+    <Value>
+      RelatedPost
+    </Value>
+  </LocaleResource>
+
 </Language>

@@ -19,6 +19,7 @@ namespace Netotik.Services.Abstract
         Task<ContentModel> GetForEditAsync(int Id);
         IList<Content> GetLastContents(int size,int languageId);
         IList<Content> GetLastPopular(int size, int languageId);
+        IList<Content> GetRelatedPost(int size, int[] categoryIds);
 
         IList<Content> GetRss(int size, int languageId);
         IEnumerable<PublicItemContentModel> GetForPublicView(out int total, int page, int count, int languageId, int? categoryId, int? tagId);
