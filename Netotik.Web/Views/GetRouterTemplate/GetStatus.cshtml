@@ -1,14 +1,9 @@
-﻿@model Netotik.ViewModels.Template.TemplateSettings
-@{
-    Layout = null;
-}
-
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html>
 <head>
-    <meta name="theme-color" content="#ff656c" />
-    <meta name="msapplication-navbutton-color" content="#ff656c">
-    <meta name="apple-mobile-web-app-status-bar-style" content="#ff656c">
+    <meta name="theme-color" content="#13232f" />
+    <meta name="msapplication-navbutton-color" content="#13232f">
+    <meta name="apple-mobile-web-app-status-bar-style" content="#13232f">
     $(if refresh-timeout)
     <meta http-equiv="refresh" content="$(refresh-timeout-secs)">
     $(endif)
@@ -16,213 +11,251 @@
     <meta http-equiv="pragma" content="no-cache" />
     <meta http-equiv="expires" content="-1" />
     <meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0;" />
-
     <title>اطلاعات</title>
+    <link rel="stylesheet" href="css/style.css">
     <style>
-body {
-height:100vh;
-    background: url('img/Eor57Ae.jpg') no-repeat fixed center center;
-    background-size: cover;
-    font-family: IRANSans;
-	direction:rtl;
-}
+        body {
+            /**background: #c1bdba;**/
+        }
 
-.logo {
-	color:white;
-    width: 213px;
-    height: 36px;
-    margin: 30px auto;
-}
-
-.login-block {
-    width: 320px;
-    padding: 20px;
-    background: #fff;
-    border-radius: 5px;
-    border-top: 5px solid #ff656c;
-    margin: 0 auto;
-}
-
-.login-block h1 {
-    text-align: center;
-    color: #000;
-    font-size: 18px;
-    text-transform: uppercase;
-    margin-top: 0;
-    margin-bottom: 20px;
-}
-
-.login-block input {
-    width: 100%;
-    height: 42px;
-    box-sizing: border-box;
-    border-radius: 5px;
-    border: 1px solid #ccc;
-    margin-bottom: 20px;
-    font-size: 14px;
-    font-family: IRANSans;
-    padding: 0 20px 0 50px;
-    outline: none;
-}
-
-.login-block input#username {
-    background: #fff url('img/u0XmBmv.png') 20px top no-repeat;
-    background-size: 16px 80px;
-}
-
-.login-block input#username:focus {
-    background: #fff url('img/u0XmBmv.png') 20px bottom no-repeat;
-    background-size: 16px 80px;
-}
-
-.login-block input#password {
-    background: #fff url('img/Qf83FTt.png') 20px top no-repeat;
-    background-size: 16px 80px;
-}
-
-.login-block input#password:focus {
-    background: #fff url('img/Qf83FTt.png') 20px bottom no-repeat;
-    background-size: 16px 80px;
-}
-
-.login-block input:active, .login-block input:focus {
-    border: 1px solid #ff656c;
-}
-
-.login-block button {
-    width: 100%;
-    height: 40px;
-    background: #ff656c;
-    box-sizing: border-box;
-    border-radius: 5px;
-    border: 1px solid #e15960;
-    color: #fff;
-    font-weight: bold;
-    text-transform: uppercase;
-    font-size: 14px;
-    font-family: IRANSans;
-    outline: none;
-    cursor: pointer;
-}
-
-.login-block button:hover {
-    background: #ff7b81;
-}
-
-@@font-face {
-		   font-family: IRANSans;
-			font-style: normal;
-			font-weight: normal;
-			src: url('fonts/IRANSans-web.eot');
-			src: url('fonts/IRANSans-web.eot?#iefix') format('embedded-opentype'),  /* IE6-8 */
-				 url('fonts/IRANSans-web.woff2') format('woff2'),  /* Chrome36+, Opera24+*/
-				 url('fonts/IRANSans-web.woff') format('woff'),  /* FF3.6+, IE9, Chrome6+, Saf5.1+*/
-				 url('fonts/IRANSans-web.ttf') format('truetype');
-		}
+        body {
+            background-image: url(img/background.png);
+            background-repeat: no-repeat;
+        }
     </style>
     <script language="JavaScript">
-//<!--
 @Html.Raw("$(if advert-pending == 'yes')")
-    var popup = '';
-    function focusAdvert() {
-	if (window.focus) popup.focus();
-    }
-    function openAdvert() {
-	popup = open('$(link-advert)', 'hotspot_advert', '');
-	setTimeout("focusAdvert()", 1000);
-    }
-$(endif)
-    function openLogout() {
-	if (window.name != 'hotspot_status') return true;
-        open('$(link-logout)', 'hotspot_logout', 'toolbar=0,location=0,directories=0,status=0,menubars=0,resizable=1,width=280,height=250');
-	window.close();
-	return false;
-    }
-//-->
+        var popup = '';
+        function focusAdvert() {
+            if (window.focus) popup.focus();
+        }
+        function openAdvert() {
+            popup = open('$(link-advert)', 'hotspot_advert', '');
+            setTimeout("focusAdvert()", 1000);
+        }
+        $(endif)
+        function openLogout() {
+            if (window.name != 'hotspot_status') return true;
+            open('$(link-logout)', 'hotspot_logout', 'toolbar=0,location=0,directories=0,status=0,menubars=0,resizable=1,width=280,height=250');
+            window.close();
+            return false;
+        }
     </script>
 </head>
-
-<body $(if advert-pending=='yes')
+<body $(if advert-pending= ='yes' )
       onLoad="openAdvert()"
-      $(endif) >
+      $(endif)>
 
-    <div class="logo"><center><h1><img src="img/logo.png" /></h1></center></div>
-    <div class="login-block">
-        <h1>اطلاعات</h1>
-        <table style="direction:rtl;" border="0" width="100%">
-            <tr>
-                <td align="center" valign="middle">
-                    <form action="$(link-logout)" id="logout" name="logout" onsubmit="return openLogout()">
-                        $(if login-by == 'trial')<br>
-                        <div style="text-align: center;">
-                            خوش آمدید، از اینترنت رایگان لذت ببرید!
-                        </div><br>
-                        $(elif login-by != 'mac')<br>
-                        <div style="text-align: center;">
-                            خوش آمدید $(username)!
-                        </div><br>
-                        $(endif) $(if session-time-left) $(else) $(endif) $(if blocked == 'yes') $(elif refresh-timeout) $(endif)
-                        <style>
-                            .tabula {
-                                width: 80%;
-                            }
+    <div class="form">
+        <h1><img src="img/logo.png" /></h1>
 
-                                .tabula th, td {
-                                    padding: 5px;
-                                }
+        <ul class="tab-group">
+            <li class="tab active"><a href="#persian">فارسی</a></li>
+            <li class="tab"><a href="#english">English</a></li>
+        </ul>
+        <div class="tab-content">
+            <div id="persian" style="direction:rtl; color:white;">
 
-                                .tabula tr:nth-child(odd) {
-                                    background: rgba(128,128,128,.4);
-                                }
 
-                                .tabula tr:nth-child(even) {
-                                    background: rgba(128,128,128,.1);
-                                }
-                        </style>
-                        <table border="0" class="tabula">
-                            <tr>
-                                <td align="right">آدرس IP:</td>
-                                <td>$(ip)</td>
-                            </tr>
-                            <tr>
-                                <td align="right">دریافتی:$(if limit-bytes-in != '')<br />محدودیت(بایت):$(endif) $(if remain-bytes-in != '')<br />باقیمانده(بایت):$(endif)</td>
-                                <td>$(bytes-in-nice) $(if limit-bytes-in != '')<br />$(limit-bytes-in) $(endif) $(if remain-bytes-in != '')</br>$(remain-bytes-in) $(endif)</td>
-                            </tr>
-                            <tr>
-                                <td align="right">ارسالی: $(if limit-bytes-out != '')<br />محدودیت(بایت): $(endif) $(if remain-bytes-out != '')<br />باقیمانده(بایت):$(endif)</td>
-                                <td>$(bytes-out-nice) $(if limit-bytes-out != '')<br /> $(limit-bytes-out) $(endif) $(if remain-bytes-out != '')<br />$(remain-bytes-out) $(endif)</td>
-                            </tr>
-                            <tr>
-                                <td align="right">زمان اتصال:$(if session-timeout != '')<br />محدودیت: $(endif) $(if session-time-left != '')<br />باقیمانده:$(endif)</td>
-                                <td>$(uptime) $(if session-timeout != '')<br /> $(session-timeout) $(endif) $(if session-time-left != '')<br /> $(session-time-left) $(endif)</td>
-                            </tr>$(if blocked == 'yes')
-                            <tr>
-                                <td align="right">وضعیت:</td>
-                                <td>
-                                    <div style="color: #FF8080">
-                                        <a href="$(link-advert)" target="hotspot_advert">advertisement</a> required
-                                    </div>
-                                </td>
-                            </tr>$(elif refresh-timeout)
-                            <tr>
-                                <td align="right">زمان بروزرسانی صفحه:</td>
-                                <td>$(refresh-timeout)</td>
-                            </tr>
-                            $(endif)
-                        </table>$(if login-by-mac != 'yes')<br>
-                        <button class="button button-block" type="submit" onclick="document.getElementById('logout').submit();">خروج</button> $(endif)
-                    </form>
-                </td>
-            </tr>
-        </table>
-        <!--
-        <button style="margin-top:5px !important;">ثبت نام</button>
-        <button style="margin-top:5px !important;">منوی غذا</button>
-        <button style="margin-top:5px !important;">دفتر تلفن</button>
-        <button style="margin-top:5px !important;">درباره شرکت</button>
-        <button style="margin-top:5px !important;">پنل کاربری</button>
-        -->
-    </div>
+                <table style="direction:rtl; color:white;" border="0" width="100%">
+                    <tr>
+                        <td align="center" valign="middle">
+                            <form action="$(link-logout)" id="logout" name="logout" onsubmit="return openLogout()">
+                                $(if login-by == 'trial')<br>
+                                <div style="text-align: center;">
+                                    خوش آمدید، از اینترنت رایگان لذت ببرید!
+                                </div><br>
+                                $(elif login-by != 'mac')<br>
+                                <div style="text-align: center;">
+                                    خوش آمدید $(username)!
+                                </div><br>
+                                $(endif)
+                                <style>
+                                    .tabula {
+                                        width: 100%;
+                                    }
+
+                                        .tabula th, td {
+                                            padding: 5px;
+                                        }
+
+                                        .tabula tr:nth-child(odd) {
+                                            background: rgba(128,128,128,.4);
+                                        }
+
+                                        .tabula tr:nth-child(even) {
+                                            background: rgba(128,128,128,.1);
+                                        }
+                                </style>
+                                <table border="0" class="tabula">
+                                    <tr>
+                                        <td align="right">آدرس IP:</td>
+                                        <td>$(ip)</td>
+                                    </tr>
+                                    <tr>
+                                        <td align="right">دریافتی:$(if limit-bytes-in != '')<br />محدودیت(بایت):$(endif) $(if remain-bytes-in != '')<br />باقیمانده(بایت):$(endif)</td>
+                                        <td>$(bytes-in-nice) $(if limit-bytes-in != '')<br />$(limit-bytes-in) $(endif) $(if remain-bytes-in != '')</br>$(remain-bytes-in) $(endif)</td>
+                                    </tr>
+                                    <tr>
+                                        <td align="right">ارسالی: $(if limit-bytes-out != '')<br />محدودیت(بایت): $(endif) $(if remain-bytes-out != '')<br />باقیمانده(بایت):$(endif)</td>
+                                        <td>$(bytes-out-nice) $(if limit-bytes-out != '')<br /> $(limit-bytes-out) $(endif) $(if remain-bytes-out != '')<br />$(remain-bytes-out) $(endif)</td>
+                                    </tr>
+                                    <tr>
+                                        <td align="right">زمان اتصال:$(if session-timeout != '')<br />محدودیت: $(endif) $(if session-time-left != '')<br />باقیمانده:$(endif)</td>
+                                        <td>$(uptime) $(if session-timeout != '')<br /> $(session-timeout) $(endif) $(if session-time-left != '')<br /> $(session-time-left) $(endif)</td>
+                                    </tr>$(if blocked == 'yes')
+                                    <tr>
+                                        <td align="right">وضعیت:</td>
+                                        <td>
+                                            <div style="color: #FF8080">
+                                                <a href="$(link-advert)" target="hotspot_advert">advertisement</a> required
+                                            </div>
+                                        </td>
+                                    </tr>$(elif refresh-timeout)
+                                    <tr>
+                                        <td align="right">زمان بروزرسانی صفحه:</td>
+                                        <td>$(refresh-timeout)</td>
+                                    </tr>
+                                    $(endif)
+                                </table>$(if login-by-mac != 'yes')<br>
+                                <button class="button button-block" type="submit" onclick="document.getElementById('logout').submit();">خروج</button> $(endif)
+                            </form>
+                        </td>
+                    </tr>
+                </table><br />
+                <ul class="tab-group">
+                    @if (Model.RegisterButton)
+                    {
+                        <li class="tab">
+                            <a href="@Model.RegisterButtonLink" target="_blank" style="margin-top:5px !important;text-decoration:none !important;">@Model.RegisterButtonText</a>
+                        </li>}
+                    @if (Model.PanelButton)
+                    {
+                        <li class="tab">
+                            <a href="@Model.PanelButtonLink" target="_blank" style="margin-top:5px !important;text-decoration:none !important;">@Model.PanelButtonText</a>
+                        </li>}
+                    @if (Model.CustomButton)
+                    {
+                        <li class="tab">
+                            <a href="@Model.CustomButtonLink" target="_blank" style="margin-top:5px !important;text-decoration:none !important;">@Model.CustomButtonText</a>
+                        </li>}
+                </ul>
+                <center>
+                    @if (Model.TelegramButton)
+                    {
+                        <a href="@Model.TelegramButtonLink" target="_blank"><img width="80" height="80" src="img/telegram.png" /></a>
+                    }
+                    @if (Model.InstagramButton)
+                    {
+                        <a href="@Model.InstagramButtonLink" target="_blank"><img width="80" height="80" src="img/instagram.png" /></a>
+                    }
+                </center>
+            </div>
+
+            <div id="english">
+
+
+
+                <table style="direction:rtl; color:white;" border="0" width="100%">
+                    <tr>
+                        <td align="center" valign="middle">
+                            <form action="$(link-logout)" id="logout" name="logout" onsubmit="return openLogout()">
+                                $(if login-by == 'trial')<br>
+                                <div style="text-align: center;">
+                                    Wellcome , Enjoy Internet :)
+                                </div><br>
+                                $(elif login-by != 'mac')<br>
+                                <div style="text-align: center;">
+                                    Welcome User : $(username)!
+                                </div><br>
+                                $(endif)
+                                <style>
+                                    .tabula {
+                                        width: 100%;
+                                    }
+
+                                        .tabula th, td {
+                                            padding: 5px;
+                                        }
+
+                                        .tabula tr:nth-child(odd) {
+                                            background: rgba(128,128,128,.4);
+                                        }
+
+                                        .tabula tr:nth-child(even) {
+                                            background: rgba(128,128,128,.1);
+                                        }
+                                </style>
+                                <table border="0" class="tabula">
+                                    <tr>
+                                        <td align="right">IP:</td>
+                                        <td>$(ip)</td>
+                                    </tr>
+                                    <tr>
+                                        <td align="right">Recive:$(if limit-bytes-in != '')<br />Limit:$(endif) $(if remain-bytes-in != '')<br />Remain:$(endif)</td>
+                                        <td>$(bytes-in-nice) $(if limit-bytes-in != '')<br />$(limit-bytes-in) $(endif) $(if remain-bytes-in != '')</br>$(remain-bytes-in) $(endif)</td>
+                                    </tr>
+                                    <tr>
+                                        <td align="right">Send: $(if limit-bytes-out != '')<br />Limit: $(endif) $(if remain-bytes-out != '')<br />Remain:$(endif)</td>
+                                        <td>$(bytes-out-nice) $(if limit-bytes-out != '')<br /> $(limit-bytes-out) $(endif) $(if remain-bytes-out != '')<br />$(remain-bytes-out) $(endif)</td>
+                                    </tr>
+                                    <tr>
+                                        <td align="right">Time:$(if session-timeout != '')<br />Limit: $(endif) $(if session-time-left != '')<br />Remian:$(endif)</td>
+                                        <td>$(uptime) $(if session-timeout != '')<br /> $(session-timeout) $(endif) $(if session-time-left != '')<br /> $(session-time-left) $(endif)</td>
+                                    </tr>$(if blocked == 'yes')
+                                    <tr>
+                                        <td align="right">Status:</td>
+                                        <td>
+                                            <div style="color: #FF8080">
+                                                <a href="$(link-advert)" target="hotspot_advert">advertisement</a> required
+                                            </div>
+                                        </td>
+                                    </tr>$(elif refresh-timeout)
+                                    <tr>
+                                        <td align="right">Refresh Time:</td>
+                                        <td>$(refresh-timeout)</td>
+                                    </tr>
+                                    $(endif)
+                                </table>$(if login-by-mac != 'yes')<br>
+                                <button class="button button-block" type="submit" onclick="document.getElementById('logout').submit();">Logout</button> $(endif)
+                            </form>
+                        </td>
+                    </tr>
+                </table><br />
+                <ul class="tab-group">
+                    @if (Model.RegisterButton)
+                    {
+                        <li class="tab">
+                            <a href="@Model.RegisterButtonLink" target="_blank" style="margin-top:5px !important;text-decoration:none !important;">Register</a>
+                        </li>}
+                    @if (Model.PanelButton)
+                    {
+                        <li class="tab">
+                            <a href="@Model.PanelButtonLink" target="_blank" style="margin-top:5px !important;text-decoration:none !important;">User Panel</a>
+                        </li>}
+                    @if (Model.CustomButton)
+                    {
+                        <li class="tab">
+                            <a href="@Model.CustomButtonLink" target="_blank" style="margin-top:5px !important;text-decoration:none !important;">@Model.CustomButtonText</a>
+                        </li>}
+                </ul>
+                <center>
+                    @if (Model.TelegramButton)
+                    {
+                        <a href="@Model.TelegramButtonLink" target="_blank"><img width="80" height="80" src="img/telegram.png" /></a>
+                    }
+                    @if (Model.InstagramButton)
+                    {
+                        <a href="@Model.InstagramButtonLink" target="_blank"><img width="80" height="80" src="img/instagram.png" /></a>
+                    }
+                </center>
+            </div>
+        </div>
+    </div> <!-- /form -->
+
+
+
+    <script src='js/jquery.min.js'></script>
+    <script src="js/index.js"></script>
 </body>
-
 </html>

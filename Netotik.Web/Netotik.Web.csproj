@@ -3448,13 +3448,17 @@
     <Content Include="Content\Upload\Image\Avatar\Default.png" />
     <Content Include="Content\Upload\Image\Content\background.jpg" />
     <Content Include="Content\Upload\Image\Content\Default.png" />
+    <Content Include="Content\Upload\TemplateFiles\css\style.css" />
     <Content Include="Content\Upload\TemplateFiles\errors.txt" />
+    <Content Include="Content\Upload\TemplateFiles\img\background.png" />
     <Content Include="Content\Upload\TemplateFiles\img\Eor57Ae.jpg" />
     <Content Include="Content\Upload\TemplateFiles\img\instagram.png" />
     <Content Include="Content\Upload\TemplateFiles\img\logo.png" />
     <Content Include="Content\Upload\TemplateFiles\img\Qf83FTt.png" />
     <Content Include="Content\Upload\TemplateFiles\img\telegram.png" />
     <Content Include="Content\Upload\TemplateFiles\img\u0XmBmv.png" />
+    <Content Include="Content\Upload\TemplateFiles\js\index.js" />
+    <Content Include="Content\Upload\TemplateFiles\js\jquery.min.js" />
     <Content Include="Content\Upload\TemplateFiles\md5.js" />
     <Content Include="Content\Upload\TemplateFiles\radvert.html" />
     <Content Include="Content\Upload\TemplateFiles\redirect.html" />
@@ -4094,10 +4098,6 @@
     <Content Include="Scripts\ckeditor\samples\toolbarconfigurator\lib\codemirror\LICENSE" />
     <Content Include="Scripts\ckeditor\skins\moono-lisa\readme.md" />
     <None Include="Service References\ZarinPalService\PaymentGatewayImplementationService.wsdl" />
-    <Content Include="T4MVC.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>T4MVC.cs</LastGenOutput>
-    </Content>
     <None Include="T4MVC.tt.hooks.t4" />
     <None Include="T4MVC.tt.settings.xml" />
     <Content Include="Areas\Admin\Views\UserAdmin\Create.cshtml" />
@@ -4167,6 +4167,10 @@
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
+    <Content Include="T4MVC.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>T4MVC.cs</LastGenOutput>
+    </Content>
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>

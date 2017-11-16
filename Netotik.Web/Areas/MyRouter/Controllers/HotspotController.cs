@@ -584,9 +584,9 @@ Order = 0, GlyphIcon = "icon icon-table")]
             });
             Fetch.Add(new FetchModel()
             {
-                DstPath = "/flash/NetotikTemplate/img/Eor57Ae.jpg",
+                DstPath = "/flash/NetotikTemplate/img/background.png",
                 Mode = "https",
-                Url = "https://netotik.com" + Links.Content.Upload.TemplateFiles.img.Eor57Ae_jpg
+                Url = "https://netotik.com" + Links.Content.Upload.TemplateFiles.img.background_png
             });
             Fetch.Add(new FetchModel()
             {
@@ -600,24 +600,24 @@ Order = 0, GlyphIcon = "icon icon-table")]
                 Mode = "https",
                 Url = "https://netotik.com" + Links.Content.Upload.TemplateFiles.img.logo_png
             });
-            Fetch.Add(new FetchModel()
-            {
-                DstPath = "/flash/NetotikTemplate/img/Qf83FTt.png",
-                Mode = "https",
-                Url = "https://netotik.com" + Links.Content.Upload.TemplateFiles.img.Qf83FTt_png
-            });
+            //Fetch.Add(new FetchModel()
+            //{
+            //    DstPath = "/flash/NetotikTemplate/img/Qf83FTt.png",
+            //    Mode = "https",
+            //    Url = "https://netotik.com" + Links.Content.Upload.TemplateFiles.img.Qf83FTt_png
+            //});
             Fetch.Add(new FetchModel()
             {
                 DstPath = "/flash/NetotikTemplate/img/telegram.png",
                 Mode = "https",
                 Url = "https://netotik.com" + Links.Content.Upload.TemplateFiles.img.telegram_png
             });
-            Fetch.Add(new FetchModel()
-            {
-                DstPath = "/flash/NetotikTemplate/img/u0XmBmv.png",
-                Mode = "https",
-                Url = "https://netotik.com" + Links.Content.Upload.TemplateFiles.img.u0XmBmv_png
-            });
+            //Fetch.Add(new FetchModel()
+            //{
+            //    DstPath = "/flash/NetotikTemplate/img/u0XmBmv.png",
+            //    Mode = "https",
+            //    Url = "https://netotik.com" + Links.Content.Upload.TemplateFiles.img.u0XmBmv_png
+            //});
             Fetch.Add(new FetchModel()
             {
                 DstPath = "/flash/NetotikTemplate/errors.txt",
@@ -647,6 +647,24 @@ Order = 0, GlyphIcon = "icon icon-table")]
                 DstPath = "/flash/NetotikTemplate/rlogin.html",
                 Mode = "https",
                 Url = "https://netotik.com" + Links.Content.Upload.TemplateFiles.rlogin_html
+            });
+            Fetch.Add(new FetchModel()
+            {
+                DstPath = "/flash/NetotikTemplate/css/style.css",
+                Mode = "https",
+                Url = "https://netotik.com" + Links.Content.Upload.TemplateFiles.css.style_css
+            });
+            Fetch.Add(new FetchModel()
+            {
+                DstPath = "/flash/NetotikTemplate/js/index.css",
+                Mode = "https",
+                Url = "https://netotik.com" + Links.Content.Upload.TemplateFiles.js.index_js
+            });
+            Fetch.Add(new FetchModel()
+            {
+                DstPath = "/flash/NetotikTemplate/js/jquery.min.js",
+                Mode = "https",
+                Url = "https://netotik.com" + Links.Content.Upload.TemplateFiles.js.jquery_min_js
             });
             return Fetch;
         }
