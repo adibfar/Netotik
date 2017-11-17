@@ -189,7 +189,7 @@
                                                     @foreach (var item in Model.ContentCategories)
                                                     {
                                                         <li>
-                                                            <input type="checkbox" name="CategoryIds" value="#@item.Id">
+                                                            <input type="checkbox" name="CategoryIds" value="@item.Id">
                                                             @Html.Label("CategoryIds", item.Name)
                                                             @if (item.SubCategories.Any())
                                                             {
@@ -197,7 +197,7 @@
                                                                     @foreach (var item2 in item.SubCategories)
                                                                     {
                                                                         <li>
-                                                                            <input type="checkbox" name="CategoryIds" value="#@item2.Id">
+                                                                            <input type="checkbox" name="CategoryIds" value="@item2.Id">
                                                                             @Html.Label("CategoryIds", item2.Name)
                                                                         </li>
                                                                     }
