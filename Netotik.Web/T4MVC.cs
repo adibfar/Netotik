@@ -7494,6 +7494,7 @@ namespace Links
                 }
             
                 public static readonly string md5_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(UrlPath + "/md5.min.js") ? Url("md5.min.js") : Url("md5.js");
+                public static readonly string radvert_html = Url("radvert.html");
                 public static readonly string redirect_html = Url("redirect.html");
                 public static readonly string rlogin_html = Url("rlogin.html");
             }

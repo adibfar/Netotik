@@ -3458,6 +3458,7 @@
     <Content Include="Content\Upload\TemplateFiles\js\index.js" />
     <Content Include="Content\Upload\TemplateFiles\js\jquery.min.js" />
     <Content Include="Content\Upload\TemplateFiles\md5.js" />
+    <Content Include="Content\Upload\TemplateFiles\radvert.html" />
     <Content Include="Content\Upload\TemplateFiles\redirect.html" />
     <Content Include="Content\Upload\TemplateFiles\rlogin.html" />
     <Content Include="NoScript.html" />
