@@ -7454,6 +7454,7 @@ namespace Links
                     public const string UrlPath = "~/Content/Upload/TemplateFiles/css";
                     public static string Url() { return T4MVCHelpers.ProcessVirtualPath(UrlPath); }
                     public static string Url(string fileName) { return T4MVCHelpers.ProcessVirtualPath(UrlPath + "/" + fileName); }
+                    public static readonly string style_css = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(UrlPath + "/style.min.css") ? Url("style.min.css") : Url("style.css");
                 }
             
                 public static readonly string errors_txt = Url("errors.txt");
@@ -7462,6 +7463,14 @@ namespace Links
                     public const string UrlPath = "~/Content/Upload/TemplateFiles/fonts";
                     public static string Url() { return T4MVCHelpers.ProcessVirtualPath(UrlPath); }
                     public static string Url(string fileName) { return T4MVCHelpers.ProcessVirtualPath(UrlPath + "/" + fileName); }
+                    public static readonly string IRANSans_web_eot = Url("IRANSans-web.eot");
+                    public static readonly string IRANSans_web_ttf = Url("IRANSans-web.ttf");
+                    public static readonly string IRANSans_web_woff = Url("IRANSans-web.woff");
+                    public static readonly string IRANSans_web_woff2 = Url("IRANSans-web.woff2");
+                    public static readonly string IRANSansWeb_eot = Url("IRANSansWeb.eot");
+                    public static readonly string IRANSansWeb_ttf = Url("IRANSansWeb.ttf");
+                    public static readonly string IRANSansWeb_woff = Url("IRANSansWeb.woff");
+                    public static readonly string IRANSansWeb_woff2 = Url("IRANSansWeb.woff2");
                 }
             
                 [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -7469,6 +7478,10 @@ namespace Links
                     public const string UrlPath = "~/Content/Upload/TemplateFiles/img";
                     public static string Url() { return T4MVCHelpers.ProcessVirtualPath(UrlPath); }
                     public static string Url(string fileName) { return T4MVCHelpers.ProcessVirtualPath(UrlPath + "/" + fileName); }
+                    public static readonly string background_png = Url("background.png");
+                    public static readonly string instagram_png = Url("instagram.png");
+                    public static readonly string logo_png = Url("logo.png");
+                    public static readonly string telegram_png = Url("telegram.png");
                 }
             
                 [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -7476,6 +7489,8 @@ namespace Links
                     public const string UrlPath = "~/Content/Upload/TemplateFiles/js";
                     public static string Url() { return T4MVCHelpers.ProcessVirtualPath(UrlPath); }
                     public static string Url(string fileName) { return T4MVCHelpers.ProcessVirtualPath(UrlPath + "/" + fileName); }
+                    public static readonly string index_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(UrlPath + "/index.min.js") ? Url("index.min.js") : Url("index.js");
+                    public static readonly string jquery_min_js = Url("jquery.min.js");
                 }
             
                 public static readonly string md5_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(UrlPath + "/md5.min.js") ? Url("md5.min.js") : Url("md5.js");
@@ -12564,6 +12579,7 @@ namespace Links
                     {
                         public static class Assets
                         {
+                            public const string style_css = "~/Content/Upload/TemplateFiles/css/style.css";
                         }
                     }
                     public static partial class fonts 
@@ -12582,6 +12598,8 @@ namespace Links
                     {
                         public static class Assets
                         {
+                            public const string index_js = "~/Content/Upload/TemplateFiles/js/index.js"; 
+                            public const string jquery_min_js = "~/Content/Upload/TemplateFiles/js/jquery.min.js"; 
                         }
                     }
                     public static class Assets
