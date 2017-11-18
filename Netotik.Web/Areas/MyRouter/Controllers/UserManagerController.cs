@@ -83,6 +83,7 @@ namespace Netotik.Web.Areas.MyRouter.Controllers
                 _smsService.SendSms(Users.FirstOrDefault().phone, string.Format(Captions.SmsYourAccountCounterReset, Users.FirstOrDefault().username), UserLogined.Id);
             //--------------------------------
             _uow.SaveAllChanges();
+            this.MessageSuccess(Captions.MissionSuccess, "User Counters Reseted");
             return RedirectToAction(MVC.MyRouter.UserManager.UserList());
         }
 
@@ -102,6 +103,7 @@ namespace Netotik.Web.Areas.MyRouter.Controllers
             }
             //-------------------------------
             _mikrotikServices.Usermanager_CloseSession(UserLogined.UserRouter.R_Host, UserLogined.UserRouter.R_Port, UserLogined.UserRouter.R_User, UserLogined.UserRouter.R_Password, user);
+            this.MessageSuccess(Captions.MissionSuccess, "User Terminated");
             //--------------------------------
             return RedirectToAction(MVC.MyRouter.UserManager.UserList());
         }
@@ -352,6 +354,7 @@ namespace Netotik.Web.Areas.MyRouter.Controllers
 
                     _mikrotikServices.Usermanager_ProfileCreate(UserLogined.UserRouter.R_Host, UserLogined.UserRouter.R_Port, UserLogined.UserRouter.R_User, UserLogined.UserRouter.R_Password, UsermanProfile);
                 }
+                this.MessageSuccess(Captions.MissionSuccess, Captions.AddSuccess);
                 return RedirectToAction(MVC.MyRouter.UserManager.PackageList());
             }
         }
@@ -449,6 +452,7 @@ namespace Netotik.Web.Areas.MyRouter.Controllers
             }
             //-------------------------------
             _mikrotikServices.Usermanager_DisableUser(UserLogined.UserRouter.R_Host, UserLogined.UserRouter.R_Port, UserLogined.UserRouter.R_User, UserLogined.UserRouter.R_Password, id);
+            this.MessageSuccess(Captions.MissionSuccess, Captions.Disabled);
             return RedirectToAction(MVC.MyRouter.UserManager.ActionNames.UserList);
         }
 
@@ -479,6 +483,7 @@ namespace Netotik.Web.Areas.MyRouter.Controllers
             if (UserLogined.UserRouter.SmsCharge > 0 && UserLogined.UserRouter.SmsActive && UserLogined.UserRouter.SmsUserAfterDelete && Users.FirstOrDefault().phone != null && Users.FirstOrDefault().phone != "")
                 _smsService.SendSms(Users.FirstOrDefault().phone, string.Format(Captions.SmsUserAccountRemoved, Users.FirstOrDefault().username), UserLogined.Id);
             _uow.SaveAllChanges();
+            this.MessageSuccess(Captions.MissionSuccess, Captions.Removed);
             return RedirectToAction(MVC.MyRouter.UserManager.ActionNames.UserList);
         }
 
@@ -505,6 +510,7 @@ namespace Netotik.Web.Areas.MyRouter.Controllers
             }
             //-------------------------------
             _mikrotikServices.Usermanager_RemoveProfile(UserLogined.UserRouter.R_Host, UserLogined.UserRouter.R_Port, UserLogined.UserRouter.R_User, UserLogined.UserRouter.R_Password, id);
+            this.MessageSuccess(Captions.MissionSuccess,Captions.Removed);
             return RedirectToAction(MVC.MyRouter.UserManager.ActionNames.PackageList);
         }
 
@@ -531,6 +537,7 @@ namespace Netotik.Web.Areas.MyRouter.Controllers
             }
             //-------------------------------
             _mikrotikServices.Usermanager_EnableUser(UserLogined.UserRouter.R_Host, UserLogined.UserRouter.R_Port, UserLogined.UserRouter.R_User, UserLogined.UserRouter.R_Password, id);
+            this.MessageSuccess(Captions.MissionSuccess, Captions.Enabled);
             return RedirectToAction(MVC.MyRouter.UserManager.ActionNames.UserList);
         }
 
@@ -807,6 +814,7 @@ namespace Netotik.Web.Areas.MyRouter.Controllers
             //-------------------------------
             ViewBag.profiles = _mikrotikServices.Usermanager_GetAllProfile(UserLogined.UserRouter.R_Host, UserLogined.UserRouter.R_Port, UserLogined.UserRouter.R_User, UserLogined.UserRouter.R_Password);
             //            ViewBag.Customers = _mikrotikServices.GetAllCustomers(UserLogined.UserRouter.R_Host, UserLogined.UserRouter.R_Port, UserLogined.UserRouter.R_User, UserLogined.UserRouter.R_Password);
+            
             return View();
         }
 
@@ -893,6 +901,7 @@ namespace Netotik.Web.Areas.MyRouter.Controllers
                     }
                 }
                 _uow.SaveAllChanges();
+                this.MessageSuccess(Captions.MissionSuccess, Captions.AddSuccess);
                 return RedirectToAction(MVC.MyRouter.UserManager.UserList());
             }
         }
@@ -1039,6 +1048,7 @@ namespace Netotik.Web.Areas.MyRouter.Controllers
                     }
                 }
                 _uow.SaveAllChanges();
+                this.MessageSuccess(Captions.MissionSuccess, Captions.UpdateSuccess);
                 return RedirectToAction(MVC.MyRouter.UserManager.UserList());
             }
         }

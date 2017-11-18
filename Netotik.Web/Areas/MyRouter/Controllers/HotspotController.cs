@@ -656,7 +656,7 @@ Order = 0, GlyphIcon = "icon icon-table")]
             });
             Fetch.Add(new FetchModel()
             {
-                DstPath = "/flash/NetotikTemplate/js/index.css",
+                DstPath = "/flash/NetotikTemplate/js/index.js",
                 Mode = "https",
                 Url = "https://netotik.com" + Links.Content.Upload.TemplateFiles.js.index_js
             });

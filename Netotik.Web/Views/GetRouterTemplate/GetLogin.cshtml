@@ -1,55 +1,50 @@
-﻿<!DOCTYPE html>
+﻿@model Netotik.ViewModels.Template.TemplateSettings
+@{
+    Layout = null;
+}
+<!DOCTYPE html>
 <html>
 <head>
+    <meta charset="UTF-8">
+    <title>Login | ورود</title>
     <meta name="theme-color" content="#13232f" />
     <meta name="msapplication-navbutton-color" content="#13232f">
     <meta name="apple-mobile-web-app-status-bar-style" content="#13232f">
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0;" />
     <meta http-equiv="pragma" content="no-cache" />
     <meta http-equiv="expires" content="-1" />
-    <meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0;" />
-    <title>ورود</title>
     <link rel="stylesheet" href="css/style.css">
-    <style>
-        body {
-            /**background: #c1bdba;**/
-        }
-
-        body {
-            background-image: url(img/background.png);
-            background-repeat: no-repeat;
-        }
-    </style>
-
 </head>
 <body>
-    <div class="form">
-        <h1><img src="img/logo.png" /></h1>
+    $(if chap-id)
+    <form name="sendin" action="$(link-login-only)" method="post">
+        <input type="hidden" name="username" />
+        <input type="hidden" name="password" />
+        <input type="hidden" name="dst" value="$(link-orig)" />
+        <input type="hidden" name="popup" value="true" />
+    </form>
 
-        <ul class="tab-group">
-            <li class="tab active"><a href="#persian">فارسی</a></li>
-            <li class="tab"><a href="#english">English</a></li>
-        </ul>
-        <div class="tab-content">
-            <div id="persian" style="direction:rtl; color:white;">
-                $(if chap-id)
-                <form name="sendin" action="$(link-login-only)" method="post">
-                    <input type="hidden" name="username" />
-                    <input type="hidden" name="password" />
-                    <input type="hidden" name="dst" value="$(link-orig)" />
-                    <input type="hidden" name="popup" value="true" />
-                </form>
-
-                <script type="text/javascript" src="/md5.js"></script>
-                <script type="text/javascript">
+    <script type="text/javascript" src="/md5.js"></script>
+    <script type="text/javascript">
 							function doLogin() {
 							document.sendin.username.value = document.login.username.value;
 							document.sendin.password.value = hexMD5('$(chap-id)' + document.login.password.value + '$(chap-challenge)');
 							document.sendin.submit();
 							return false;
 							}
-                </script>
-                $(endif)
+    </script>
+    $(endif)
+
+    <div class="form">
+        <h1><img src="img/logo.png" width=150 /></h1>
+        <ul class="tab-group">
+            <li class="tab active"><a href="#Per">فارسی</a></li>
+            <li class="tab"><a href="#Eng">English</a></li>
+        </ul>
+
+        <div class="tab-content">
+            <div id="Per">
                 <form name="login" action="$(link-login-only)" method="post" $(if chap-id) onSubmit="return doLogin()" $(endif)>
                     <input type="hidden" name="dst" value="$(link-orig)" />
                     <input type="hidden" name="popup" value="true" />
@@ -65,50 +60,42 @@
                         </label>
                         <input type="password" autocomplete="off" name="password" />
                     </div>
-                    <button type="submit" class="button button-block" >ورود</button><br />
+                    <button type="submit" class="button button-block">ورود</button><br />
                     $(if error)<br /><div style="color: #FF8080; ">$(error)</div><br />$(endif)
                 </form>
-                @if (Model.ShowTrialButton)
-                {
-                    <text>
-                        $(if trial == 'yes')
-                        <a href="$(link-login-only)?dst=$(link-orig-esc)&amp;username=T-$(mac-esc)">
-                            <button formaction="$(link-login-only)?dst=$(link-orig-esc)&amp;username=T-$(mac-esc)" style="background:red;" class="button button-block" />اینترنت رایگان
-                        </a>
-                        <br />
-                        $(endif)
-                    </text>
-                }
+
+                <br />
+
                 <ul class="tab-group">
                     @if (Model.RegisterButton)
                     {
-                        <li class="tab">
-                            <a href="@Model.RegisterButtonLink" target="_blank" style="margin-top:5px !important;text-decoration:none !important;">@Model.RegisterButtonText</a>
+                        <li>
+                            <a href="@Model.RegisterButtonLink" target="_blank">@Model.RegisterButtonText</a>
                         </li>}
                     @if (Model.PanelButton)
                     {
-                        <li class="tab">
-                            <a href="@Model.PanelButtonLink" target="_blank" style="margin-top:5px !important;text-decoration:none !important;">@Model.PanelButtonText</a>
+                        <li>
+                            <a href="@Model.PanelButtonLink" target="_blank">@Model.PanelButtonText</a>
                         </li>}
                     @if (Model.CustomButton)
                     {
-                        <li class="tab">
-                            <a href="@Model.CustomButtonLink" target="_blank" style="margin-top:5px !important;text-decoration:none !important;">@Model.CustomButtonText</a>
+                        <li>
+                            <a href="@Model.CustomButtonLink" target="_blank">@Model.CustomButtonText</a>
                         </li>}
                 </ul>
                 <center>
                     @if (Model.TelegramButton)
                     {
-                        <a href="@Model.TelegramButtonLink" target="_blank"><img width="80" height="80" src="img/telegram.png" /></a>
+                        <a href="@Model.TelegramButtonLink" target="_blank"><img width="70" height="70" src="img/telegram.png" /></a>
                     }
                     @if (Model.InstagramButton)
                     {
-                        <a href="@Model.InstagramButtonLink" target="_blank"><img width="80" height="80" src="img/instagram.png" /></a>
+                        <a href="@Model.InstagramButtonLink" target="_blank"><img width="70" height="70" src="img/instagram.png" /></a>
                     }
                 </center>
             </div>
 
-            <div id="english">
+            <div id="Eng">
                 <form name="login" action="$(link-login-only)" method="post" $(if chap-id) onSubmit="return doLogin()" $(endif)>
                     <input type="hidden" name="dst" value="$(link-orig)" />
                     <input type="hidden" name="popup" value="true" />
@@ -124,49 +111,43 @@
                         </label>
                         <input type="password" autocomplete="off" name="password" />
                     </div>
-                    <button type="submit" class="button button-block" >Login</button><br />
+                    <button type="submit" class="button button-block">Login</button><br />
                     $(if error)<br /><div style="color: #FF8080; ">$(error)</div><br />$(endif)
                 </form>
-                @if (Model.ShowTrialButton)
-                {
-                    <text>
-                        $(if trial == 'yes')
-                        <a href="$(link-login-only)?dst=$(link-orig-esc)&amp;username=T-$(mac-esc)">
-                            <button formaction="$(link-login-only)?dst=$(link-orig-esc)&amp;username=T-$(mac-esc)" style="background:red;" class="button button-block" />Free Internt
-                        </a>
-                        <br/>
-                        $(endif)
-                   </text>
-                }
+
+                <br />
+
                 <ul class="tab-group">
                     @if (Model.RegisterButton)
                     {
-                        <li class="tab">
-                            <a href="@Model.RegisterButtonLink" target="_blank" style="margin-top:5px !important;text-decoration:none !important;">Register</a>
+                        <li>
+                            <a href="@Model.RegisterButtonLink" target="_blank">Register</a>
                         </li>}
                     @if (Model.PanelButton)
                     {
-                        <li class="tab">
-                            <a href="@Model.PanelButtonLink" target="_blank" style="margin-top:5px !important;text-decoration:none !important;">User Panel</a>
+                        <li>
+                            <a href="@Model.PanelButtonLink" target="_blank">User Panel</a>
                         </li>}
                     @if (Model.CustomButton)
                     {
-                        <li class="tab">
-                            <a href="@Model.CustomButtonLink" target="_blank" style="margin-top:5px !important;text-decoration:none !important;">@Model.CustomButtonText</a>
+                        <li>
+                            <a href="@Model.CustomButtonLink" target="_blank">@Model.CustomButtonText</a>
                         </li>}
                 </ul>
                 <center>
                     @if (Model.TelegramButton)
                     {
-                        <a href="@Model.TelegramButtonLink" target="_blank"><img width="80" height="80" src="img/telegram.png" /></a>
+                        <a href="@Model.TelegramButtonLink" target="_blank"><img width="70" height="70" src="img/telegram.png" /></a>
                     }
                     @if (Model.InstagramButton)
                     {
-                        <a href="@Model.InstagramButtonLink" target="_blank"><img width="80" height="80" src="img/instagram.png" /></a>
+                        <a href="@Model.InstagramButtonLink" target="_blank"><img width="70" height="70" src="img/instagram.png" /></a>
                     }
                 </center>
             </div>
-        </div>
+
+        </div><!-- tab-content -->
+
     </div> <!-- /form -->
     <script src='js/jquery.min.js'></script>
     <script src="js/index.js"></script>

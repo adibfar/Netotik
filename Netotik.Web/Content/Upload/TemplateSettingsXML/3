@@ -3,20 +3,20 @@
   <AutoLogin>false</AutoLogin>
   <AutoLoginAfterSec>1</AutoLoginAfterSec>
   <AutoLoginUser />
-  <CustomButton>false</CustomButton>
-  <CustomButtonLink />
-  <CustomButtonText />
-  <InstagramButton>false</InstagramButton>
-  <InstagramButtonLink>https://www.instagram.com/</InstagramButtonLink>
-  <PanelButton>false</PanelButton>
-  <PanelButtonText>ورود به پنل کاربری</PanelButtonText>
-  <Redirect>false</Redirect>
+  <CustomButton>true</CustomButton>
+  <CustomButtonLink>https://netotik.com</CustomButtonLink>
+  <CustomButtonText>سایت نتوتیک</CustomButtonText>
+  <InstagramButton>true</InstagramButton>
+  <InstagramButtonLink>https://www.instagram.com/netotik</InstagramButtonLink>
+  <PanelButton>true</PanelButton>
+  <PanelButtonText>پنل کاربری</PanelButtonText>
+  <Redirect>true</Redirect>
   <RedirectToInstagram>false</RedirectToInstagram>
-  <RedirectToTelegram>false</RedirectToTelegram>
+  <RedirectToTelegram>true</RedirectToTelegram>
   <RedirectToUrl>http://</RedirectToUrl>
-  <RegisterButton>false</RegisterButton>
+  <RegisterButton>true</RegisterButton>
   <RegisterButtonText>ثبت نام</RegisterButtonText>
-  <ShowTrialButton>false</ShowTrialButton>
-  <TelegramButton>false</TelegramButton>
-  <TelegramButtonLink>https://telegram.me/</TelegramButtonLink>
+  <ShowTrialButton>true</ShowTrialButton>
+  <TelegramButton>true</TelegramButton>
+  <TelegramButtonLink>https://telegram.me/netotik</TelegramButtonLink>
 </TemplateSetting>

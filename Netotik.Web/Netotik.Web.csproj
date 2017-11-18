@@ -332,6 +332,10 @@
   <ItemGroup>
     <Folder Include="Content\DateTimePicker\Content\" />
     <Folder Include="Content\DateTimePicker\Scripts\" />
+    <Folder Include="Content\Upload\TemplateFiles\css\" />
+    <Folder Include="Content\Upload\TemplateFiles\fonts\" />
+    <Folder Include="Content\Upload\TemplateFiles\img\" />
+    <Folder Include="Content\Upload\TemplateFiles\js\" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AccountController.generated.cs">
@@ -3449,19 +3453,8 @@
     <Content Include="Content\Upload\Image\Avatar\Default.png" />
     <Content Include="Content\Upload\Image\Content\background.jpg" />
     <Content Include="Content\Upload\Image\Content\Default.png" />
-    <Content Include="Content\Upload\TemplateFiles\css\style.css" />
     <Content Include="Content\Upload\TemplateFiles\errors.txt" />
-    <Content Include="Content\Upload\TemplateFiles\img\background.png" />
-    <Content Include="Content\Upload\TemplateFiles\img\Eor57Ae.jpg" />
-    <Content Include="Content\Upload\TemplateFiles\img\instagram.png" />
-    <Content Include="Content\Upload\TemplateFiles\img\logo.png" />
-    <Content Include="Content\Upload\TemplateFiles\img\Qf83FTt.png" />
-    <Content Include="Content\Upload\TemplateFiles\img\telegram.png" />
-    <Content Include="Content\Upload\TemplateFiles\img\u0XmBmv.png" />
-    <Content Include="Content\Upload\TemplateFiles\js\index.js" />
-    <Content Include="Content\Upload\TemplateFiles\js\jquery.min.js" />
     <Content Include="Content\Upload\TemplateFiles\md5.js" />
-    <Content Include="Content\Upload\TemplateFiles\radvert.html" />
     <Content Include="Content\Upload\TemplateFiles\redirect.html" />
     <Content Include="Content\Upload\TemplateFiles\rlogin.html" />
     <Content Include="NoScript.html" />
@@ -3743,14 +3736,6 @@
     <Content Include="Areas\MyRouter\Views\Hotspot\_TemplateSetting.cshtml" />
     <Content Include="Areas\MyRouter\Views\Hotspot\_Onlines.cshtml" />
     <Content Include="Areas\MyRouter\Views\Hotspot\_CreateUserAccess.cshtml" />
-    <Content Include="Content\Upload\TemplateFiles\fonts\IRANSans-web.eot" />
-    <Content Include="Content\Upload\TemplateFiles\fonts\IRANSans-web.ttf" />
-    <Content Include="Content\Upload\TemplateFiles\fonts\IRANSans-web.woff" />
-    <Content Include="Content\Upload\TemplateFiles\fonts\IRANSans-web.woff2" />
-    <Content Include="Content\Upload\TemplateFiles\fonts\IRANSansWeb.eot" />
-    <Content Include="Content\Upload\TemplateFiles\fonts\IRANSansWeb.ttf" />
-    <Content Include="Content\Upload\TemplateFiles\fonts\IRANSansWeb.woff" />
-    <Content Include="Content\Upload\TemplateFiles\fonts\IRANSansWeb.woff2" />
     <Content Include="Content\Upload\TemplateSettingsXML\15" />
     <Content Include="Content\Upload\TemplateSettingsXML\3" />
     <Content Include="Areas\MyRouter\Views\UserManager\_Profiles.cshtml" />
