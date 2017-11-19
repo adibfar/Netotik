@@ -883,7 +883,7 @@ namespace Netotik.Web.Areas.MyRouter.Controllers
                     }
                     if (model.SendEmailNow)
                     {
-                        if (string.IsNullOrWhiteSpace(model.email))
+                        if (!string.IsNullOrWhiteSpace(model.email))
                         {
                             _userMailer.ClientUserPass(new EmailClientUserPassViewModel
                             {
