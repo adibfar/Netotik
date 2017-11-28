@@ -28,12 +28,18 @@
                         <ul class="@(isRtl ? "text-right":"text-left") size-12 list-inline list-separator">
                             <li>
                                 <i class="fa fa-calendar"></i>
-                                @PersianDate.ConvertDate.ToFa(item.StartDate.Value, "g")
+                                @PersianDate.ConvertDate.ToFa(item.StartDate.Value, "d")
                             </li>
                             <li>
                                 <a title="@item.Title" href="@Url.Action(MVC.Blog.Detail(item.Id))">
                                     <i class="fa fa-eye"></i>
                                     @item.CountView
+                                </a>
+                            </li>
+                            <li>
+                                <a title="@item.Title" href="@Url.Action(MVC.Blog.Detail(item.Id))">
+                                    <i class="fa fa-comments-o"></i>
+                                    @item.CommentCount
                                 </a>
                             </li>
                         </ul>

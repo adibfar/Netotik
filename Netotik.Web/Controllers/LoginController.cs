@@ -116,10 +116,10 @@ namespace Netotik.Web.Controllers
                 return View();
             }
 
-            if (loggedinUser != null)
-            {
-                await _applicationUserManager.UpdateSecurityStampAsync(loggedinUser.Id);
-            }
+            //if (loggedinUser != null)
+            //{
+            //    await _applicationUserManager.UpdateSecurityStampAsync(loggedinUser.Id);
+            //}
 
             var result = await _applicationSignInManager.PasswordSignInAsync
                 (model.UserName, model.Password, model.RememberMe, shouldLockout: true);
@@ -210,10 +210,10 @@ namespace Netotik.Web.Controllers
                 return View();
             }
 
-            if (loggedinUser != null)
-            {
-                await _applicationUserManager.UpdateSecurityStampAsync(loggedinUser.Id);
-            }
+            //if (loggedinUser != null)
+            //{
+            //    await _applicationUserManager.UpdateSecurityStampAsync(loggedinUser.Id);
+            //}
 
             var result = await _applicationSignInManager.PasswordSignInAsync
                 (model.UserName, model.Password, model.RememberMe, shouldLockout: true);
