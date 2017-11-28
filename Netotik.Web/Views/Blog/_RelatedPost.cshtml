@@ -34,11 +34,15 @@
                 {
                     <div class="item-box">
                         <figure>
-                            <img class="img-responsive" src="@Url.Content((item.PictureId.HasValue ? Path.Combine(Netotik.Common.Controller.FilePathes._imagesContentPath, item.Picture.FileName) : "/Content/Upload/Image/Content/Default.png")+"?w=600&h=399")" width="600" height="399" alt="">
+                            <a href="@Url.Action(MVC.Blog.Detail(item.Id))">
+                                <img class="img-responsive" src="@Url.Content((item.PictureId.HasValue ? Path.Combine(Netotik.Common.Controller.FilePathes._imagesContentPath, item.Picture.FileName) : "/Content/Upload/Image/Content/Default.png")+"?w=600&h=399")" width="600" height="399" alt="">
+                            </a>
                         </figure>
 
                         <div class="item-box-desc">
-                            <h3>@item.Title</h3>
+                            <a href="@Url.Action(MVC.Blog.Detail(item.Id))">
+                                <h3>@item.Title</h3>
+                            </a>
                             <ul class="list-inline categories nomargin">
                                 @foreach (var t in item.ContentCategories.Where(x => !x.IsDeleted))
                                 {

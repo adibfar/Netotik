@@ -27,11 +27,17 @@
 
     <script type="text/javascript" src="/md5.js"></script>
     <script type="text/javascript">
-							function doLogin() {
-							document.sendin.username.value = document.login.username.value;
-							document.sendin.password.value = hexMD5('$(chap-id)' + document.login.password.value + '$(chap-challenge)');
+							function doLoginPe() {
+							document.sendin.username.value = document.loginPe.username.value;
+							document.sendin.password.value = hexMD5('$(chap-id)' + document.loginPe.password.value + '$(chap-challenge)');
 							document.sendin.submit();
 							return false;
+							}
+							function doLoginEn() {
+							    document.sendin.username.value = document.loginEn.username.value;
+							    document.sendin.password.value = hexMD5('$(chap-id)' + document.loginEn.password.value + '$(chap-challenge)');
+							    document.sendin.submit();
+							    return false;
 							}
     </script>
     $(endif)
@@ -45,9 +51,9 @@
 
         <div class="tab-content">
             <div id="Per">
-                <form name="login" action="$(link-login-only)" method="post" $(if chap-id) onSubmit="return doLogin()" $(endif)>
+                <form name="loginPe" action="$(link-login-only)" method="post" $(if chap-id) onSubmit="return doLoginPe()" $(endif)>
                     <input type="hidden" name="dst" value="$(link-orig)" />
-                    <input type="hidden" name="popup" value="true" />
+                    <input type="hidden" name="popup" value="false" />
                     <div class="field-wrap">
                         <label>
                             نام کاربری<span class="req">*</span>
@@ -77,9 +83,19 @@
                         <li>
                             <a href="@Model.PanelButtonLink" target="_blank">@Model.PanelButtonText</a>
                         </li>}
-                    @if (Model.CustomButton)
+                    @if (Model.ShowTrialButton)
                     {
-                        <li>
+                        <text>
+                            $(if trial == 'yes')
+                    <li>
+                        <a href="$(link-login-only)?dst=$(link-orig-esc)&amp;username=T-$(mac-esc)"> اینترنت رایگان</a>
+                    </li>
+                        $(endif)
+                        </text>
+}
+                @if (Model.CustomButton)
+                {
+<li>
                             <a href="@Model.CustomButtonLink" target="_blank">@Model.CustomButtonText</a>
                         </li>}
                 </ul>
@@ -96,9 +112,9 @@
             </div>
 
             <div id="Eng">
-                <form name="login2" action="$(link-login-only)" method="post" $(if chap-id) onSubmit="return doLogin()" $(endif)>
+                <form name="loginEn" action="$(link-login-only)" method="post" $(if chap-id) onSubmit="return doLoginEn()" $(endif)>
                     <input type="hidden" name="dst" value="$(link-orig)" />
-                    <input type="hidden" name="popup" value="true" />
+                    <input type="hidden" name="popup" value="false" />
                     <div class="field-wrap">
                         <label>
                             Username<span class="req">*</span>

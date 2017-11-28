@@ -546,7 +546,7 @@ section.dark .timeline.timeline-inverse>.timeline-hline {
 }
 .blog-post-item .blog-item-small-image + .blog-item-small-content {
 	padding-left:0;
-	padding-right:330px;
+	/*padding-right:330px;*/
 }
 	.blog-post-item.blog-post-item-inverse .blog-item-small-image {
 		float:left;

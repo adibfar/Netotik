@@ -110,11 +110,17 @@ namespace Netotik.Web
 
         public static bool messageReceived = false;
         public static IPEndPoint e = new IPEndPoint(IPAddress.Any, 5140);
+        public static IPEndPoint eauth = new IPEndPoint(IPAddress.Any, 1812);
+        public static IPEndPoint eacco = new IPEndPoint(IPAddress.Any, 1813);
         public static UdpClient u = new UdpClient(e);
+        public static UdpClient uauth = new UdpClient(eauth);
+        public static UdpClient uacco = new UdpClient(eacco);
         public static IApplicationUserManager _applicationUserManager;
         public static IUserRouterLogClientService _UserRouterlogclientservice;
         public static IUnitOfWork _uow;
         public static UdpState s = new UdpState();
+        public static UdpState sauth = new UdpState();
+        public static UdpState sacco = new UdpState();
 
 
         public class UdpState
@@ -161,6 +167,51 @@ namespace Netotik.Web
                 //}
             }
         }
+        public static async void ReceiveCallbackAuth(IAsyncResult ar)
+        {
+            UdpClient uauth = (UdpClient)((UdpState)(ar.AsyncState)).u;
+            IPEndPoint eauth = (IPEndPoint)((UdpState)(ar.AsyncState)).e;
+
+            Byte[] receiveBytes = uauth.EndReceive(ar, ref eauth);
+            string receiveString = Encoding.UTF8.GetString(receiveBytes);
+
+            HostingEnvironment.QueueBackgroundWorkItem(async cancellationToken =>
+            {
+                await WirteToDB(e.Address.ToString(), receiveString);
+            });
+
+
+            try
+            {
+                uauth.BeginReceive(new AsyncCallback(ReceiveCallbackAuth), sauth);
+            }
+            catch (Exception ex)
+            {
+
+            }
+        }
+        public static async void ReceiveCallbackAcco(IAsyncResult ar)
+        {
+            UdpClient uacco = (UdpClient)((UdpState)(ar.AsyncState)).u;
+            IPEndPoint eacco = (IPEndPoint)((UdpState)(ar.AsyncState)).e;
+
+            Byte[] receiveBytes = uacco.EndReceive(ar, ref eacco);
+            string receiveString = Encoding.UTF8.GetString(receiveBytes);
+
+            HostingEnvironment.QueueBackgroundWorkItem(async cancellationToken =>
+            {
+                await WirteToDB(e.Address.ToString(), receiveString);
+            });
+
+
+            try
+            {
+                uacco.BeginReceive(new AsyncCallback(ReceiveCallbackAcco), sacco);
+            }
+            catch (Exception ex)
+            {
+            }
+        }
 
         public static void ReceiveMessages()
         {
@@ -171,16 +222,33 @@ namespace Netotik.Web
 
             s.e = e;
             s.u = u;
+
+            sacco.e = eacco;
+            sacco.u = uacco;
+
+            sauth.e = eauth;
+            sauth.u = uauth;
+
+            try
+            {
+                uacco.BeginReceive(new AsyncCallback(ReceiveCallbackAcco), sacco);
+            }
+            catch (Exception ex)
+            {
+            }
+            try
+            {
+                uauth.BeginReceive(new AsyncCallback(ReceiveCallbackAuth), sauth);
+            }
+            catch (Exception ex)
+            {
+            }
             try
             {
                 u.BeginReceive(new AsyncCallback(ReceiveCallback), s);
             }
             catch (Exception ex)
             {
-                //using (StreamWriter _testData = new StreamWriter(HostingEnvironment.MapPath("~/1.txt"), true))
-                //{
-                //    _testData.WriteLine(ex); // Write the file.
-                //}
             }
             // Do some work while we wait for a message. For this example,
             // we'll just sleep
