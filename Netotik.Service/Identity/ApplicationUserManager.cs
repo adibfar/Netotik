@@ -26,6 +26,7 @@ using Netotik.Common.Security.RijndaelEncryption;
 using System.Xml.Linq;
 using Netotik.ViewModels.Identity.UserRouter;
 using System.Web.Mvc;
+using System.Data.Entity.SqlServer.Utilities;
 
 namespace Netotik.Services.Identity
 {
@@ -818,7 +819,7 @@ namespace Netotik.Services.Identity
             throw new NotImplementedException();
         }
         #endregion
-
+        
         #region AddUser
         public async Task<User> AddUser(ViewModels.Identity.UserAdmin.AdminAddModel viewModel)
         {
@@ -863,7 +864,7 @@ namespace Netotik.Services.Identity
             user.EmailConfirmed = false;
 
 
-            await CreateAsync(user, viewModel.Password);
+             await CreateAsync(user, viewModel.Password);
             return user.Id;
 
 
@@ -871,12 +872,15 @@ namespace Netotik.Services.Identity
         #endregion
 
         #region Validations
-
+        public override async Task<User> FindByNameAsync(string userName)
+        {
+            return await _users.FirstOrDefaultAsync(a => a.UserName == userName.ToLower() && !a.IsDeleted);
+        }
         public bool CheckUserNameExist(string userName, long? id)
         {
             return id == null
-                ? _users.Any(a => a.UserName == userName.ToLower() && !a.IsDeleted)
-                : _users.Any(a => a.UserName == userName.ToLower() && !a.IsDeleted && a.Id != id.Value);
+                ? _users.Any(a => a.UserName == userName.ToLower())
+                : _users.Any(a => a.UserName == userName.ToLower() && a.Id != id.Value);
         }
 
 
@@ -1025,7 +1029,7 @@ namespace Netotik.Services.Identity
         #region IsEmailConfirmedByUserNameAsync
         public bool IsEmailConfirmedByUserNameAsync(string userName)
         {
-            return _users.Any(a => a.UserName == userName.ToLower() && a.EmailConfirmed);
+            return _users.Any(a => a.UserName == userName.ToLower() && a.EmailConfirmed && !a.IsDeleted);
 
         }
 
