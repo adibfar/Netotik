@@ -12,26 +12,10 @@
 <!-- Top Bar -->
 <div id="topBar">
     <div class="container">
-
-        <!-- right -->
         <ul class="top-links list-inline">
-            <li>
-                <a class="text-white bg-green-netotik"  data-toggle="modal" data-target="#myModal">
-                    @Captions.ConsultationRequest
-                </a>
-            </li>
             @if (user != null)
             {
-                if (user.UserType == UserType.UserAdmin)
-                {
-                    <li>
-                        <a href="@Url.Action(MVC.Admin.Home.Index())">
-                            <i class="fa fa-desktop"></i>
-                            @Captions.AdminPanel
-                        </a>
-                    </li>
-                }
-                else if (user.UserType == UserType.UserReseller)
+                if (user.UserType == UserType.UserReseller)
                 {
                     <li>
                         <a href="@Url.Action(MVC.Reseller.Home.Index())">

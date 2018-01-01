@@ -121,7 +121,6 @@ namespace Netotik.Web.Controllers
         public class ActionParamsClass_Router
         {
             public readonly string ReturnUrl = "ReturnUrl";
-            public readonly string ResellerCode = "ResellerCode";
             public readonly string model = "model";
         }
         static readonly ActionParamsClass_Reseller s_params_Reseller = new ActionParamsClass_Reseller();
@@ -178,29 +177,27 @@ namespace Netotik.Web.Controllers
         public T4MVC_LoginController() : base(Dummy.Instance) { }
 
         [NonAction]
-        partial void RouterOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, string ReturnUrl, string ResellerCode);
+        partial void RouterOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, string ReturnUrl);
 
         [NonAction]
-        public override System.Threading.Tasks.Task<System.Web.Mvc.ActionResult> Router(string ReturnUrl, string ResellerCode)
+        public override System.Threading.Tasks.Task<System.Web.Mvc.ActionResult> Router(string ReturnUrl)
         {
             var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Router);
             ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "ReturnUrl", ReturnUrl);
-            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "ResellerCode", ResellerCode);
-            RouterOverride(callInfo, ReturnUrl, ResellerCode);
+            RouterOverride(callInfo, ReturnUrl);
             return System.Threading.Tasks.Task.FromResult(callInfo as System.Web.Mvc.ActionResult);
         }
 
         [NonAction]
-        partial void RouterOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, Netotik.ViewModels.Identity.UserRouter.LoginModel model, string ReturnUrl, string ResellerCode);
+        partial void RouterOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, Netotik.ViewModels.Identity.UserRouter.LoginModel model, string ReturnUrl);
 
         [NonAction]
-        public override System.Threading.Tasks.Task<System.Web.Mvc.ActionResult> Router(Netotik.ViewModels.Identity.UserRouter.LoginModel model, string ReturnUrl, string ResellerCode)
+        public override System.Threading.Tasks.Task<System.Web.Mvc.ActionResult> Router(Netotik.ViewModels.Identity.UserRouter.LoginModel model, string ReturnUrl)
         {
             var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Router);
             ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "model", model);
             ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "ReturnUrl", ReturnUrl);
-            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "ResellerCode", ResellerCode);
-            RouterOverride(callInfo, model, ReturnUrl, ResellerCode);
+            RouterOverride(callInfo, model, ReturnUrl);
             return System.Threading.Tasks.Task.FromResult(callInfo as System.Web.Mvc.ActionResult);
         }
 

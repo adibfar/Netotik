@@ -10,18 +10,6 @@
     <div class="col-md-4 offset-md-4 col-xs-10 offset-xs-1 box-shadow-3 p-0">
         <div class="card border-grey border-lighten-3 m-0">
             <div class="card-body collapse in">
-                <center>
-                    <div class="card-body">
-                        <div class="card-profile-image" style="margin-top:5px !important;">
-                            <img src="@Url.Content(Path.Combine(Netotik.Common.Controller.FilePathes._imagesUserAvatarsPath, ViewBag.user.PictureId!=null ? ViewBag.user.Picture.FileName : "Default.png"))?h=100" alt="@ViewBag.RouterName">
-                        </div>
-                        <div class="profile-card-with-cover-content text-xs-center">
-                            <div class="profile-details mt-2">
-                                <h4 class="card-title">@ViewBag.RouterName</h4>
-                            </div>
-                        </div>
-                    </div>
-                </center>
                 @if (ViewBag.Message != null)
                 {
                     <div class="alert alert-icon-left alert-danger alert-dismissible fade in mb-2" role="alert">
@@ -64,7 +52,7 @@
                                     @Html.LabelFor(m=>m.RememberMe, new { @class = "control-label" })
                                 </fieldset>
                             </div>
-                            <div class="col-md-6 col-xs-12 float-sm-left text-xs-center"><a href="@Url.Action(MVC.Account.ForgotPassword())" class="card-link"> @Captions.ForgetIt</a></div>
+                            @*<div class="col-md-6 col-xs-12 float-sm-left text-xs-center"><a href="@Url.Action(MVC.Account.ForgotPassword())" class="card-link"> @Captions.ForgetIt</a></div>*@
                         </fieldset>
                         <button type="submit" class="btn btn-outline-primary btn-block"><i class="icon-unlock2"></i> @Captions.Login</button>
                     }

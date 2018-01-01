@@ -61,6 +61,7 @@ namespace Netotik.Web.Controllers
         [AllowAnonymous]
         public virtual ActionResult Router(string ReturnUrl, string RouterName)
         {
+            return HttpNotFound();
             if (User != null && User.Identity.IsAuthenticated)
                 return RedirectToAction(MVC.MyRouter.Home.ActionNames.Index, MVC.MyRouter.Home.Name, new { area = "Router" });
             return View();
@@ -72,6 +73,7 @@ namespace Netotik.Web.Controllers
         [ValidateAntiForgeryToken]
         public virtual ActionResult Router(Netotik.ViewModels.Identity.UserRouter.LoginModel model, string ReturnUrl, string RouterName, int fromPage = 0)
         {
+            return HttpNotFound();
             return View();
         }
 
@@ -79,6 +81,7 @@ namespace Netotik.Web.Controllers
         [AllowAnonymous]
         public virtual ActionResult Reseller(string ReturnUrl)
         {
+            return HttpNotFound();
             IUserMailer mailer = new UserMailer();
             return View();
         }
@@ -323,6 +326,7 @@ namespace Netotik.Web.Controllers
         [ValidateAntiForgeryToken]
         public virtual async Task<ActionResult> Reseller(RegisterViewModel model)
         {
+            return HttpNotFound();
             #region Validation
             if (_applicationUserManager.CheckResellerEmailExist(model.Email, null))
                 ModelState.AddModelError("Email", Captions.ExistError);

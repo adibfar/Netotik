@@ -55,17 +55,12 @@ namespace Netotik.Web.Controllers
 
 
         [AllowAnonymous]
-        [Route("{lang}/router/{ResellerCode}")]
-        public virtual async Task<ActionResult> Router(string ReturnUrl, string ResellerCode)
+        [Route("{lang}/router")]
+        public virtual async Task<ActionResult> Router(string ReturnUrl)
         {
             if (User.Identity.IsAuthenticated && _applicationRoleManager.FindUserPermissions(long.Parse(User.Identity.GetUserId())).Any(x => x == "Router"))
                 return RedirectToAction(MVC.MyRouter.Home.Index());
 
-            var reseller = await _applicationUserManager.FindByResellerCodeAsync(ResellerCode);
-            if (reseller == null) return HttpNotFound();
-
-            ViewBag.user = _applicationUserManager.FindUserById(reseller.Id);
-            ViewBag.RouterName = ResellerCode;
             ViewBag.ReturnUrl = ReturnUrl;
             return View();
         }
@@ -73,13 +68,13 @@ namespace Netotik.Web.Controllers
         [AllowAnonymous]
         [HttpPost]
         [ValidateAntiForgeryToken]
-        [Route("{lang}/router/{ResellerCode}")]
-        public virtual async Task<ActionResult> Router(Netotik.ViewModels.Identity.UserRouter.LoginModel model, string ReturnUrl, string ResellerCode)
+        [Route("{lang}/router")]
+        public virtual async Task<ActionResult> Router(Netotik.ViewModels.Identity.UserRouter.LoginModel model, string ReturnUrl)
         {
-            var reseller = await _applicationUserManager.FindByResellerCodeAsync(ResellerCode);
+            var reseller = (await _applicationUserManager.GetAllUsersAsync()).FirstOrDefault();
             if (reseller == null) return HttpNotFound();
             ViewBag.user = _applicationUserManager.FindUserById(reseller.Id);
-            ViewBag.RouterName = ResellerCode;
+            ViewBag.RouterName = reseller.UserReseller.ResellerCode;
             ViewBag.ReturnUrl = ReturnUrl;
 
             if (!ModelState.IsValid)

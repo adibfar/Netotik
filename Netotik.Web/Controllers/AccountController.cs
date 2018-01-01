@@ -60,6 +60,7 @@ namespace Netotik.Web.Controllers
         [AllowAnonymous]
         public virtual ActionResult Login(string ReturnUrl)
         {
+            return HttpNotFound();
             if (User.Identity.IsAuthenticated)
             {
                 if (UserLogined.UserType==Domain.Entity.UserType.UserAdmin)
@@ -85,7 +86,7 @@ namespace Netotik.Web.Controllers
         [ValidateAntiForgeryToken]
         public virtual async Task<ActionResult> Login(ViewModels.Identity.UserAdmin.LoginModel model, string ReturnUrl)
         {
-
+            return HttpNotFound();
             if (!ModelState.IsValid)
             {
                 ViewBag.Message = Captions.UsernameOrPasswordWrong;
@@ -169,7 +170,7 @@ namespace Netotik.Web.Controllers
                 if (user.UserType == Domain.Entity.UserType.UserRouter)
                 {
                     var ResellerRouterName = _userManager.FindUserById(user.UserRouter.UserResellerId);
-                    LoginURL = Url.Action(MVC.Login.Router("", ResellerRouterName.UserReseller.ResellerCode));
+                    LoginURL = Url.Action(MVC.Login.Router());
                 }
                 if (user.UserType == Domain.Entity.UserType.UserReseller)
                 {

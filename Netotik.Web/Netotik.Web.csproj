@@ -465,13 +465,13 @@
     <Compile Include="ContactUsController.generated.cs">
       <DependentUpon>T4MVC.tt</DependentUpon>
     </Compile>
+    <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\BlogController.cs" />
     <Compile Include="Controllers\ContactUsController.cs" />
     <Compile Include="Controllers\GetRouterTemplateController.cs" />
     <Compile Include="Controllers\RemoteController.cs" />
     <Compile Include="Controllers\SitemapController.cs" />
     <Compile Include="Controllers\RssController.cs" />
-    <Compile Include="Controllers\ApiSmsGatewayController.cs" />
     <Compile Include="Controllers\ApiTelegramBotController.cs" />
     <Compile Include="ErrorController.generated.cs">
       <DependentUpon>T4MVC.tt</DependentUpon>
@@ -494,7 +494,6 @@
     <Compile Include="Controllers\RegisterController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -4095,6 +4094,7 @@
     <Content Include="Scripts\ckeditor\samples\toolbarconfigurator\font\fontello.woff" />
     <Content Include="Scripts\ckeditor\samples\toolbarconfigurator\lib\codemirror\LICENSE" />
     <Content Include="Scripts\ckeditor\skins\moono-lisa\readme.md" />
+    <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
     <None Include="Service References\ZarinPalService\PaymentGatewayImplementationService.wsdl" />
     <None Include="T4MVC.tt.hooks.t4" />
     <None Include="T4MVC.tt.settings.xml" />
@@ -4169,6 +4169,13 @@
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>T4MVC.cs</LastGenOutput>
     </Content>
+    <Content Include="Views\Account\ConfirmEmail.cshtml" />
+    <Content Include="Views\Account\ForgotPassword.cshtml" />
+    <Content Include="Views\Account\ForgotPasswordConfirmation.cshtml" />
+    <Content Include="Views\Account\Login.cshtml" />
+    <Content Include="Views\Account\ReceiveActivatorEmail.cshtml" />
+    <Content Include="Views\Account\ResetPassword.cshtml" />
+    <Content Include="Views\Account\ResetPasswordConfirmation.cshtml" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -4183,18 +4190,10 @@
     <Content Include="Views\SharedPublic\_Meta.cshtml" />
     <Content Include="Views\Login\Reseller.cshtml" />
     <Content Include="Views\Login\Router.cshtml" />
-    <Content Include="Views\Register\Reseller.cshtml" />
     <Content Include="Views\Error\Error.cshtml" />
     <Content Include="Views\UserMailer\ConfirmAccount.cshtml" />
     <Content Include="Views\UserMailer\ResetPassword.cshtml" />
     <Content Include="Views\UserMailer\_Layout.cshtml" />
-    <Content Include="Views\Account\ConfirmEmail.cshtml" />
-    <Content Include="Views\Account\ForgotPassword.cshtml" />
-    <Content Include="Views\Account\ForgotPasswordConfirmation.cshtml" />
-    <Content Include="Views\Account\ReceiveActivatorEmail.cshtml" />
-    <Content Include="Views\Account\ResetPassword.cshtml" />
-    <Content Include="Views\Account\ResetPasswordConfirmation.cshtml" />
-    <Content Include="Views\Account\Login.cshtml" />
     <Content Include="Views\Shared\_Attachments.cshtml" />
     <Content Include="Views\Shared\_BreadCrumb.cshtml" />
     <Content Include="Views\Shared\_CaptchaPartial.cshtml" />

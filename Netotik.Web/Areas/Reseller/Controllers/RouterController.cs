@@ -84,6 +84,12 @@ namespace Netotik.Web.Areas.Reseller.Controllers
         [BreadCrumb(Title = "NewRouter", Order = 1)]
         public virtual ActionResult Create()
         {
+            var list = _applicationUserManager.GetListUserRouter(UserLogined.UserReseller.Id);
+            if (list.Count() > 3)
+            {
+                this.MessageError(Captions.MissionFail, "تنها مجاز به ایجاد سه روتر می باشید.");
+                return RedirectToAction(MVC.Reseller.Router.Index());
+            }
             PopulateClientPermissions();
             PopulateRouterPermissions();
             this.MessageInformation(Captions.Attention, Captions.PanelsFreeExpireDate);
@@ -109,6 +115,14 @@ namespace Netotik.Web.Areas.Reseller.Controllers
         [HttpPost]
         public virtual async Task<ActionResult> Create(Register model)
         {
+            var list = _applicationUserManager.GetListUserRouter(UserLogined.UserReseller.Id);
+            if (list.Count() > 3)
+            {
+                this.MessageError(Captions.MissionFail, "تنها مجاز به ایجاد سه روتر می باشید.");
+                return View(model);
+            }
+
+
             PopulateClientPermissions(model.ClientPermissionNames);
             PopulateRouterPermissions(model.RouterPermissionNames);
 

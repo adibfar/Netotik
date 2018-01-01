@@ -161,10 +161,8 @@ namespace Netotik.Web.Controllers
             public class _ViewNamesClass
             {
                 public readonly string Client = "Client";
-                public readonly string Reseller = "Reseller";
             }
             public readonly string Client = "~/Views/Register/Client.cshtml";
-            public readonly string Reseller = "~/Views/Register/Reseller.cshtml";
         }
     }
 
