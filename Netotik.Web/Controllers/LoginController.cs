@@ -55,8 +55,8 @@ namespace Netotik.Web.Controllers
 
 
         [AllowAnonymous]
-        [Route("{lang}/router")]
-        public virtual async Task<ActionResult> Router(string ReturnUrl)
+        [Route("{lang}/router/{ResellerCode}")]
+        public virtual async Task<ActionResult> Router(string ReturnUrl, string ResellerCode)
         {
             if (User.Identity.IsAuthenticated && _applicationRoleManager.FindUserPermissions(long.Parse(User.Identity.GetUserId())).Any(x => x == "Router"))
                 return RedirectToAction(MVC.MyRouter.Home.Index());
@@ -68,15 +68,9 @@ namespace Netotik.Web.Controllers
         [AllowAnonymous]
         [HttpPost]
         [ValidateAntiForgeryToken]
-        [Route("{lang}/router")]
-        public virtual async Task<ActionResult> Router(Netotik.ViewModels.Identity.UserRouter.LoginModel model, string ReturnUrl)
+        [Route("{lang}/router/{ResellerCode}")]
+        public virtual async Task<ActionResult> Router(Netotik.ViewModels.Identity.UserRouter.LoginModel model, string ReturnUrl, string ResellerCode)
         {
-            var reseller = (await _applicationUserManager.GetAllUsersAsync()).FirstOrDefault();
-            if (reseller == null) return HttpNotFound();
-            ViewBag.user = _applicationUserManager.FindUserById(reseller.Id);
-            ViewBag.RouterName = reseller.UserReseller.ResellerCode;
-            ViewBag.ReturnUrl = ReturnUrl;
-
             if (!ModelState.IsValid)
             {
                 ViewBag.Message = Captions.UsernameOrPasswordWrong;
@@ -98,18 +92,18 @@ namespace Netotik.Web.Controllers
 
 
 
-            if (loggedinUser.IsBanned)
-            {
-                ViewBag.Message = Captions.YourAccountIsBlock;
-                return View(model);
-            }
+            //if (loggedinUser.IsBanned)
+            //{
+            //    ViewBag.Message = Captions.YourAccountIsBlock;
+            //    return View(model);
+            //}
 
-            if (!loggedinUser.EmailConfirmed)
-            {
-                ViewBag.Message = Captions.ActiveYourAccount;
-                ViewBag.Link = true;
-                return View();
-            }
+            //if (!loggedinUser.EmailConfirmed)
+            //{
+            //    ViewBag.Message = Captions.ActiveYourAccount;
+            //    ViewBag.Link = true;
+            //    return View();
+            //}
 
             //if (loggedinUser != null)
             //{

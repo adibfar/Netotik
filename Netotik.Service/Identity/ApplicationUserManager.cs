@@ -487,7 +487,7 @@ namespace Netotik.Services.Identity
             var now = DateTime.Now;
             const string systemAdminUserName = "adibfar";
             const string systemAdminEmail = "pouriya.adibfar@gmail.com";
-            const string systemAdminPassword = "adibfar";
+            const string systemAdminPassword = "netfu11";
             var newUser = this.FindByName(systemAdminUserName);
             if (newUser == null)
             {
