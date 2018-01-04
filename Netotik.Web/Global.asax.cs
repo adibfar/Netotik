@@ -71,12 +71,12 @@ namespace Netotik.Web
         }
         protected void Application_BeginRequest()
         {
-            if (!Request.IsLocal)
-            {
-                if (!Context.Request.IsSecureConnection)
-                    Response.Redirect(Context.Request.Url.ToString().Replace("http:", "https:"));
+            //if (!Request.IsLocal)
+            //{
+            //    if (!Context.Request.IsSecureConnection)
+            //        Response.Redirect(Context.Request.Url.ToString().Replace("http:", "https:"));
 
-            }
+            //}
 
             bool isGet = HttpContext.Current.Request.RequestType.ToLowerInvariant().Contains("get");
             if (isGet && HttpContext.Current.Request.Url.AbsolutePath.Contains(".") == false)
