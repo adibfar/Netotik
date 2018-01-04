@@ -139,9 +139,6 @@ namespace Netotik.Web.Areas.Reseller.Controllers
                 if (!_mikrotikServices.User_Pass_Check(model.R_Host, model.R_Port, model.R_User, model.R_Password))
                     this.MessageWarning(Captions.Information, Captions.UserPasswordClientError);
                 else
-                    if (!_mikrotikServices.Usermanager_IsInstall(model.R_Host, model.R_Port, model.R_User, model.R_Password))
-                    this.MessageWarning(Captions.Information, Captions.UsermanagerClientError);
-                else
                     model.R_Host = _mikrotikServices.EnableAndGetCloud(model.R_Host, model.R_Port, model.R_User, model.R_Password);
             model.UserResellerId = UserLogined.UserReseller.Id;
             var userId = await _applicationUserManager.AddRouter(model);
