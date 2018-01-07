@@ -7415,6 +7415,14 @@ namespace Links
         }
     
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public static class Reports {
+            public const string UrlPath = "~/Content/Reports";
+            public static string Url() { return T4MVCHelpers.ProcessVirtualPath(UrlPath); }
+            public static string Url(string fileName) { return T4MVCHelpers.ProcessVirtualPath(UrlPath + "/" + fileName); }
+            public static readonly string InternetCard_mrt = Url("InternetCard.mrt");
+        }
+    
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public static class Upload {
             public const string UrlPath = "~/Content/Upload";
             public static string Url() { return T4MVCHelpers.ProcessVirtualPath(UrlPath); }
@@ -12550,6 +12558,12 @@ namespace Links
                         public const string typeahead_bundle_js = "~/Content/PublicUI/plugins/typeahead.bundle.js"; 
                     }
                 }
+                public static class Assets
+                {
+                }
+            }
+            public static partial class Reports 
+            {
                 public static class Assets
                 {
                 }

@@ -24,6 +24,7 @@
     <RestorePackages>true</RestorePackages>
     <UseGlobalApplicationHostFile />
     <TargetFrameworkProfile />
+    <Use64BitIISExpress />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -3751,6 +3752,7 @@
     <Content Include="Content\Upload\TemplateFiles\fonts\IRANSansWeb.ttf" />
     <Content Include="Content\Upload\TemplateFiles\fonts\IRANSansWeb.woff" />
     <Content Include="Content\Upload\TemplateFiles\fonts\IRANSansWeb.woff2" />
+    <Content Include="Content\Reports\InternetCard.mrt" />
     <None Include="Properties\PublishProfiles\DNMA.pubxml" />
     <Content Include="Scripts\ckeditor\adapters\jquery.js" />
     <Content Include="Scripts\ckeditor\build-config.js" />

@@ -1,0 +1,195 @@
+﻿<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<StiSerializer version="1.02" type="Net" application="StiReport">
+  <Dictionary Ref="1" type="Dictionary" isKey="true">
+    <BusinessObjects isList="true" count="1">
+      <InternetCard Ref="2" type="Stimulsoft.Report.Dictionary.StiBusinessObject" isKey="true">
+        <Alias>InternetCard</Alias>
+        <BusinessObjects isList="true" count="0" />
+        <Category />
+        <Columns isList="true" count="6">
+          <value>Username,System.String</value>
+          <value>Password,System.String</value>
+          <value>Title,System.String</value>
+          <value>Package,System.String</value>
+          <value>Logo,System.Drawing.Image</value>
+          <value>Background,System.Drawing.Image</value>
+        </Columns>
+        <Dictionary isRef="1" />
+        <Guid>b19433bb93b44675ba67d193fbab7e71</Guid>
+        <Name>InternetCard</Name>
+      </InternetCard>
+    </BusinessObjects>
+    <Databases isList="true" count="0" />
+    <DataSources isList="true" count="0" />
+    <Relations isList="true" count="0" />
+    <Report isRef="0" />
+    <Resources isList="true" count="0" />
+    <Variables isList="true" count="0" />
+  </Dictionary>
+  <EngineVersion>EngineV2</EngineVersion>
+  <GlobalizationStrings isList="true" count="0" />
+  <MetaTags isList="true" count="0" />
+  <Pages isList="true" count="1">
+    <Page1 Ref="3" type="Page" isKey="true">
+      <Border>None;Black;2;Solid;False;4;Black</Border>
+      <Brush>Transparent</Brush>
+      <Components isList="true" count="1">
+        <LabelsDataBand Ref="4" type="DataBand" isKey="true">
+          <Brush>Transparent</Brush>
+          <BusinessObjectGuid>b19433bb93b44675ba67d193fbab7e71</BusinessObjectGuid>
+          <ClientRectangle>0,0.4,19.56,3.9</ClientRectangle>
+          <ColumnGaps>0.25</ColumnGaps>
+          <Columns>3</Columns>
+          <ColumnWidth>6.4</ColumnWidth>
+          <Components isList="true" count="1">
+            <Label_Area Ref="5" type="Container" isKey="true">
+              <Border>All;Black;1;Solid;False;4;Black</Border>
+              <Brush>Transparent</Brush>
+              <ClientRectangle>0,0,6.4,3.9</ClientRectangle>
+              <Components isList="true" count="6">
+                <Image2 Ref="6" type="Image" isKey="true">
+                  <Brush>Transparent</Brush>
+                  <ClientRectangle>0,0,6.4,3.8</ClientRectangle>
+                  <Conditions isList="true" count="0" />
+                  <DataColumn>InternetCard.Background</DataColumn>
+                  <Margins>0,0,0,0</Margins>
+                  <Name>Image2</Name>
+                  <Page isRef="3" />
+                  <Parent isRef="5" />
+                </Image2>
+                <Text1 Ref="7" type="Text" isKey="true">
+                  <Brush>Transparent</Brush>
+                  <ClientRectangle>2.6,1.2,3.6,0.6</ClientRectangle>
+                  <Conditions isList="true" count="0" />
+                  <Font>B Nazanin,10</Font>
+                  <Margins>0,0,0,0</Margins>
+                  <Name>Text1</Name>
+                  <Page isRef="3" />
+                  <Parent isRef="5" />
+                  <Text>{InternetCard.Username}</Text>
+                  <TextBrush>Black</TextBrush>
+                </Text1>
+                <Text2 Ref="8" type="Text" isKey="true">
+                  <Brush>Transparent</Brush>
+                  <ClientRectangle>2.6,2,3.6,0.6</ClientRectangle>
+                  <Conditions isList="true" count="0" />
+                  <Font>B Nazanin,10</Font>
+                  <Margins>0,0,0,0</Margins>
+                  <Name>Text2</Name>
+                  <Page isRef="3" />
+                  <Parent isRef="5" />
+                  <Text>{InternetCard.Password}</Text>
+                  <TextBrush>Black</TextBrush>
+                </Text2>
+                <Text3 Ref="9" type="Text" isKey="true">
+                  <Brush>Transparent</Brush>
+                  <ClientRectangle>2.6,0.2,3.6,0.6</ClientRectangle>
+                  <Conditions isList="true" count="0" />
+                  <Font>B Nazanin,10</Font>
+                  <Margins>0,0,0,0</Margins>
+                  <Name>Text3</Name>
+                  <Page isRef="3" />
+                  <Parent isRef="5" />
+                  <Text>{InternetCard.Title}</Text>
+                  <TextBrush>Black</TextBrush>
+                </Text3>
+                <Text4 Ref="10" type="Text" isKey="true">
+                  <Brush>Transparent</Brush>
+                  <ClientRectangle>0.2,2.8,6,1</ClientRectangle>
+                  <Conditions isList="true" count="0" />
+                  <Font>B Nazanin,10</Font>
+                  <Margins>0,0,0,0</Margins>
+                  <Name>Text4</Name>
+                  <Page isRef="3" />
+                  <Parent isRef="5" />
+                  <Text>{InternetCard.Package}</Text>
+                  <TextBrush>Black</TextBrush>
+                </Text4>
+                <Image1 Ref="11" type="Image" isKey="true">
+                  <Brush>Transparent</Brush>
+                  <ClientRectangle>0.2,0.2,2.2,2.4</ClientRectangle>
+                  <Conditions isList="true" count="0" />
+                  <DataColumn>InternetCard.Logo</DataColumn>
+                  <Margins>0,0,0,0</Margins>
+                  <Name>Image1</Name>
+                  <Page isRef="3" />
+                  <Parent isRef="5" />
+                </Image1>
+              </Components>
+              <Conditions isList="true" count="0" />
+              <Name>Label_Area</Name>
+              <Page isRef="3" />
+              <Parent isRef="4" />
+            </Label_Area>
+          </Components>
+          <Conditions isList="true" count="0" />
+          <CountData>21</CountData>
+          <DataRelationName isNull="true" />
+          <Filters isList="true" count="0" />
+          <Name>LabelsDataBand</Name>
+          <Page isRef="3" />
+          <Parent isRef="3" />
+          <RightToLeft>True</RightToLeft>
+          <Sort isList="true" count="0" />
+        </LabelsDataBand>
+      </Components>
+      <Conditions isList="true" count="0" />
+      <Guid>5905e9a04c1c40eab8cae576d3723ae7</Guid>
+      <Margins>0.72,0.72,1.3,0.109999999999999</Margins>
+      <Name>Page1</Name>
+      <PageHeight>29</PageHeight>
+      <PageWidth>21</PageWidth>
+      <PaperSize>Letter</PaperSize>
+      <Report isRef="0" />
+      <Watermark Ref="12" type="Stimulsoft.Report.Components.StiWatermark" isKey="true">
+        <Font>Arial,100</Font>
+        <TextBrush>[50:0:0:0]</TextBrush>
+      </Watermark>
+    </Page1>
+  </Pages>
+  <PrinterSettings Ref="13" type="Stimulsoft.Report.Print.StiPrinterSettings" isKey="true" />
+  <ReferencedAssemblies isList="true" count="8">
+    <value>System.Dll</value>
+    <value>System.Drawing.Dll</value>
+    <value>System.Windows.Forms.Dll</value>
+    <value>System.Data.Dll</value>
+    <value>System.Xml.Dll</value>
+    <value>Stimulsoft.Controls.Dll</value>
+    <value>Stimulsoft.Base.Dll</value>
+    <value>Stimulsoft.Report.Dll</value>
+  </ReferencedAssemblies>
+  <ReportAlias>Report</ReportAlias>
+  <ReportChanged>1/7/2018 11:30:55 AM</ReportChanged>
+  <ReportCreated>1/7/2018 10:53:15 AM</ReportCreated>
+  <ReportFile />
+  <ReportGuid>7db10e3bbcdf495f94dc33a624c5c4e3</ReportGuid>
+  <ReportImage isNull="true" />
+  <ReportName>Report</ReportName>
+  <ReportUnit>Centimeters</ReportUnit>
+  <ReportVersion>2018.1.4.0</ReportVersion>
+  <Script>using System;
+using System.Drawing;
+using System.Windows.Forms;
+using System.Data;
+using Stimulsoft.Controls;
+using Stimulsoft.Base.Drawing;
+using Stimulsoft.Report;
+using Stimulsoft.Report.Dialogs;
+using Stimulsoft.Report.Components;
+
+namespace Reports
+{
+    public class Report : Stimulsoft.Report.StiReport
+    {
+        public Report()        {
+            this.InitializeComponent();
+        }
+
+        #region StiReport Designer generated code - do not modify
+		#endregion StiReport Designer generated code - do not modify
+    }
+}
+</Script>
+  <ScriptLanguage>CSharp</ScriptLanguage>
+  <Styles isList="true" count="0" />
+</StiSerializer>
