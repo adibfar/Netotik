@@ -9,17 +9,17 @@
             <div class="card">
                 <div class="card-header">
                     <a href="@Url.Action(MVC.MyRouter.UserManager.UserCreate())" class="btn btn-social btn-instagram width-150 margin-bottom-2"><span class="icon-person-add font-medium-4"></span>@Captions.NewUser</a>
-
+                    <a value="@Captions.MakeCard" class="btn btn-social btn-instagram width-150 margin-bottom-2" href="@Url.Action(MVC.MyRouter.UserManager.Print())" target="_blank">
+                        <span class="icon-card font-medium-4"></span>
+                        @Captions.MakeCard
+                    </a>
                     @if (false)
                     {
                         <a value="@Captions.NewMultiUser" class="btn btn-social btn-instagram width-150 margin-bottom-2" href="@Url.Action(MVC.MyRouter.UserManager.ResetCounter())">
                             <span class="icon-users font-medium-4"></span>
                             @Captions.NewMultiUser
                         </a>
-                        <a value="@Captions.MakeCard" class="btn btn-social btn-instagram width-150 margin-bottom-2" href="@Url.Action(MVC.MyRouter.UserManager.ResetCounter())">
-                            <span class="icon-card font-medium-4"></span>
-                            @Captions.MakeCard
-                        </a>
+                        
                     }
                 </div>
                 <div class="card-body collapse in">

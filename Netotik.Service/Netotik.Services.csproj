@@ -106,9 +106,30 @@
       <HintPath>..\packages\RefactorThis.GraphDiff.2.0.1\lib\RefactorThis.GraphDiff.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="Stimulsoft.Base, Version=2017.1.10.0, Culture=neutral, PublicKeyToken=ebe6666cba19647a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Downloads\Compressed\New folder\Stimulsoft_Reports_Ultimate_2016.3.1_Downloadly.ir\Stimulsoft Reports Ultimate 2016.3.1\.NET\Stimulsoft.Base.dll</HintPath>
+    </Reference>
+    <Reference Include="Stimulsoft.Design, Version=2017.1.10.0, Culture=neutral, PublicKeyToken=ebe6666cba19647a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Downloads\Compressed\New folder\Stimulsoft_Reports_Ultimate_2016.3.1_Downloadly.ir\Stimulsoft Reports Ultimate 2016.3.1\.NET\Stimulsoft.Design.dll</HintPath>
+    </Reference>
+    <Reference Include="Stimulsoft.Report, Version=2017.1.10.0, Culture=neutral, PublicKeyToken=ebe6666cba19647a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Downloads\Compressed\New folder\Stimulsoft_Reports_Ultimate_2016.3.1_Downloadly.ir\Stimulsoft Reports Ultimate 2016.3.1\.NET\Stimulsoft.Report.dll</HintPath>
+    </Reference>
+    <Reference Include="Stimulsoft.Report.Mvc, Version=2017.1.10.0, Culture=neutral, PublicKeyToken=ebe6666cba19647a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Downloads\Compressed\New folder\Stimulsoft_Reports_Ultimate_2016.3.1_Downloadly.ir\Stimulsoft Reports Ultimate 2016.3.1\.NET\Stimulsoft.Report.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="Stimulsoft.Report.Web, Version=2017.1.10.0, Culture=neutral, PublicKeyToken=ebe6666cba19647a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Downloads\Compressed\New folder\Stimulsoft_Reports_Ultimate_2016.3.1_Downloadly.ir\Stimulsoft Reports Ultimate 2016.3.1\.NET\Stimulsoft.Report.Web.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
     <Reference Include="System.EnterpriseServices" />
     <Reference Include="System.ServiceModel" />
     <Reference Include="System.Web" />
@@ -151,6 +172,7 @@
     <Compile Include="Abstract\IFactorService.cs" />
     <Compile Include="Abstract\ISmsLogService.cs" />
     <Compile Include="Abstract\ISmsPackageService.cs" />
+    <Compile Include="Abstract\IReportService.cs" />
     <Compile Include="Abstract\ISmsService.cs" />
     <Compile Include="Abstract\IUserCompanyLogClientService.cs" />
     <Compile Include="Abstract\ITelegramBotDataService.cs" />
@@ -211,6 +233,7 @@
     <Compile Include="Implement\FactorService.cs" />
     <Compile Include="Implement\SmsLogService.cs" />
     <Compile Include="Implement\SmsPackageService.cs" />
+    <Compile Include="Implement\ReportService.cs" />
     <Compile Include="Implement\SmsService.cs" />
     <Compile Include="Implement\UserCompanyLogClientService.cs" />
     <Compile Include="Implement\TelegramBotDataService.cs" />

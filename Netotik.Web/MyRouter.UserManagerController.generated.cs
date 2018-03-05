@@ -156,6 +156,7 @@ namespace Netotik.Web.Areas.MyRouter.Controllers
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public class ActionNamesClass
         {
+            public readonly string Print = "Print";
             public readonly string ResetCounter = "ResetCounter";
             public readonly string CloseSession = "CloseSession";
             public readonly string PackageCreate = "PackageCreate";
@@ -187,6 +188,7 @@ namespace Netotik.Web.Areas.MyRouter.Controllers
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public class ActionNameConstants
         {
+            public const string Print = "Print";
             public const string ResetCounter = "ResetCounter";
             public const string CloseSession = "CloseSession";
             public const string PackageCreate = "PackageCreate";
@@ -417,6 +419,17 @@ namespace Netotik.Web.Areas.MyRouter.Controllers
     public partial class T4MVC_UserManagerController : Netotik.Web.Areas.MyRouter.Controllers.UserManagerController
     {
         public T4MVC_UserManagerController() : base(Dummy.Instance) { }
+
+        [NonAction]
+        partial void PrintOverride(T4MVC_System_Web_Mvc_ActionResult callInfo);
+
+        [NonAction]
+        public override System.Web.Mvc.ActionResult Print()
+        {
+            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Print);
+            PrintOverride(callInfo);
+            return callInfo;
+        }
 
         [NonAction]
         partial void ResetCounterOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, string user, string id);

@@ -1,0 +1,243 @@
+﻿<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<StiSerializer version="1.02" type="Net" application="StiReport">
+  <Dictionary Ref="1" type="Dictionary" isKey="true">
+    <BusinessObjects isList="true" count="1">
+      <InternetCard Ref="2" type="Stimulsoft.Report.Dictionary.StiBusinessObject" isKey="true">
+        <Alias>InternetCard</Alias>
+        <BusinessObjects isList="true" count="0" />
+        <Category />
+        <Columns isList="true" count="7">
+          <value>Title,System.String</value>
+          <value>Username,System.String</value>
+          <value>Password,System.String</value>
+          <value>Package,System.String</value>
+          <value>Discription,System.String</value>
+          <value>Logo,System.Drawing.Image</value>
+          <value>Background,System.Drawing.Image</value>
+        </Columns>
+        <Dictionary isRef="1" />
+        <Guid>7cbdea5ef2bd467f83974d315e9870d1</Guid>
+        <Name>InternetCard</Name>
+      </InternetCard>
+    </BusinessObjects>
+    <Databases isList="true" count="0" />
+    <DataSources isList="true" count="0" />
+    <Relations isList="true" count="0" />
+    <Report isRef="0" />
+    <Resources isList="true" count="0" />
+    <Variables isList="true" count="0" />
+  </Dictionary>
+  <EngineVersion>EngineV2</EngineVersion>
+  <GlobalizationStrings isList="true" count="0" />
+  <MetaTags isList="true" count="0" />
+  <Pages isList="true" count="1">
+    <Page1 Ref="3" type="Page" isKey="true">
+      <Border>None;Black;2;Solid;False;4;Black</Border>
+      <Brush>Transparent</Brush>
+      <Components isList="true" count="1">
+        <LabelsDataBand Ref="4" type="DataBand" isKey="true">
+          <Brush>Transparent</Brush>
+          <BusinessObjectGuid>7cbdea5ef2bd467f83974d315e9870d1</BusinessObjectGuid>
+          <ClientRectangle>0,0.4,19.3,4.2</ClientRectangle>
+          <ColumnGaps>0.5</ColumnGaps>
+          <Columns>3</Columns>
+          <ColumnWidth>6.1</ColumnWidth>
+          <Components isList="true" count="1">
+            <Label_Area Ref="5" type="Container" isKey="true">
+              <Border>All;Black;1;Solid;False;4;Black</Border>
+              <Brush>Transparent</Brush>
+              <ClientRectangle>0,0,6.1,4</ClientRectangle>
+              <Components isList="true" count="8">
+                <Image2 Ref="6" type="Image" isKey="true">
+                  <Brush>Transparent</Brush>
+                  <ClientRectangle>0,0,6,4</ClientRectangle>
+                  <Conditions isList="true" count="0" />
+                  <DataColumn>InternetCard.Background</DataColumn>
+                  <Margins>0,0,0,0</Margins>
+                  <Name>Image2</Name>
+                  <Page isRef="3" />
+                  <Parent isRef="5" />
+                </Image2>
+                <Text1 Ref="7" type="Text" isKey="true">
+                  <Brush>Transparent</Brush>
+                  <CanGrow>True</CanGrow>
+                  <CanShrink>True</CanShrink>
+                  <ClientRectangle>2.2,0.2,3.8,0.6</ClientRectangle>
+                  <Conditions isList="true" count="0" />
+                  <Font>B Titr,9.75,Bold,Point,False,178</Font>
+                  <HorAlignment>Center</HorAlignment>
+                  <Margins>0,0,0,0</Margins>
+                  <Name>Text1</Name>
+                  <Page isRef="3" />
+                  <Parent isRef="5" />
+                  <ShrinkFontToFit>True</ShrinkFontToFit>
+                  <Text>{InternetCard.Title}</Text>
+                  <TextBrush>Black</TextBrush>
+                  <TextOptions>,,RightToLeft=True,,,A=0</TextOptions>
+                </Text1>
+                <Text2 Ref="8" type="Text" isKey="true">
+                  <Brush>Transparent</Brush>
+                  <CanGrow>True</CanGrow>
+                  <CanShrink>True</CanShrink>
+                  <ClientRectangle>2.2,1,3.8,0.6</ClientRectangle>
+                  <Conditions isList="true" count="0" />
+                  <Font>B Nazanin,10</Font>
+                  <HorAlignment>Center</HorAlignment>
+                  <Margins>0,0,0,0</Margins>
+                  <Name>Text2</Name>
+                  <Page isRef="3" />
+                  <Parent isRef="5" />
+                  <ShrinkFontToFit>True</ShrinkFontToFit>
+                  <Text>{InternetCard.Username}</Text>
+                  <TextBrush>Black</TextBrush>
+                  <TextOptions>,,RightToLeft=True,,,A=0</TextOptions>
+                  <VertAlignment>Center</VertAlignment>
+                </Text2>
+                <Text3 Ref="9" type="Text" isKey="true">
+                  <Brush>Transparent</Brush>
+                  <CanGrow>True</CanGrow>
+                  <CanShrink>True</CanShrink>
+                  <ClientRectangle>2.2,1.6,3.8,0.8</ClientRectangle>
+                  <Conditions isList="true" count="0" />
+                  <Font>B Nazanin,10</Font>
+                  <HorAlignment>Center</HorAlignment>
+                  <Margins>0,0,0,0</Margins>
+                  <Name>Text3</Name>
+                  <Page isRef="3" />
+                  <Parent isRef="5" />
+                  <ShrinkFontToFit>True</ShrinkFontToFit>
+                  <Text>{InternetCard.Password}</Text>
+                  <TextBrush>Black</TextBrush>
+                  <TextOptions>,,RightToLeft=True,,,A=0</TextOptions>
+                </Text3>
+                <Text4 Ref="10" type="Text" isKey="true">
+                  <Brush>Transparent</Brush>
+                  <ClientRectangle>0,2.2,6,0.6</ClientRectangle>
+                  <Conditions isList="true" count="0" />
+                  <Font>B Nazanin,10</Font>
+                  <Margins>0,0,0,0</Margins>
+                  <Name>Text4</Name>
+                  <Page isRef="3" />
+                  <Parent isRef="5" />
+                  <ShrinkFontToFit>True</ShrinkFontToFit>
+                  <Text>{InternetCard.Package}</Text>
+                  <TextBrush>Black</TextBrush>
+                  <TextOptions>,,RightToLeft=True,,,A=0</TextOptions>
+                </Text4>
+                <Text5 Ref="11" type="Text" isKey="true">
+                  <Brush>Transparent</Brush>
+                  <ClientRectangle>0,2.8,6,1</ClientRectangle>
+                  <Conditions isList="true" count="0" />
+                  <Font>B Nazanin,10</Font>
+                  <Margins>0,0,0,0</Margins>
+                  <Name>Text5</Name>
+                  <Page isRef="3" />
+                  <Parent isRef="5" />
+                  <ShrinkFontToFit>True</ShrinkFontToFit>
+                  <Text>{InternetCard.Discription}</Text>
+                  <TextBrush>Black</TextBrush>
+                  <TextOptions>,,RightToLeft=True,,,A=0</TextOptions>
+                </Text5>
+                <Image1 Ref="12" type="Image" isKey="true">
+                  <Brush>Transparent</Brush>
+                  <ClientRectangle>0.2,0.2,2,2</ClientRectangle>
+                  <Conditions isList="true" count="0" />
+                  <DataColumn>InternetCard.Logo</DataColumn>
+                  <Margins>0,0,0,0</Margins>
+                  <Name>Image1</Name>
+                  <Page isRef="3" />
+                  <Parent isRef="5" />
+                </Image1>
+                <HorizontalLinePrimitive1 Ref="13" type="HorizontalLinePrimitive" isKey="true">
+                  <ClientRectangle>2.8,0.8,3,0.0254</ClientRectangle>
+                  <Color>Black</Color>
+                  <EndCap Ref="14" type="Cap" isKey="true">
+                    <Color>Black</Color>
+                  </EndCap>
+                  <Name>HorizontalLinePrimitive1</Name>
+                  <Page isRef="3" />
+                  <Parent isRef="5" />
+                  <StartCap Ref="15" type="Cap" isKey="true">
+                    <Color>Black</Color>
+                  </StartCap>
+                </HorizontalLinePrimitive1>
+              </Components>
+              <Conditions isList="true" count="0" />
+              <Name>Label_Area</Name>
+              <Page isRef="3" />
+              <Parent isRef="4" />
+            </Label_Area>
+          </Components>
+          <Conditions isList="true" count="0" />
+          <CountData>21</CountData>
+          <DataRelationName isNull="true" />
+          <DataSourceName isNull="true" />
+          <Filters isList="true" count="0" />
+          <Name>LabelsDataBand</Name>
+          <Page isRef="3" />
+          <Parent isRef="3" />
+          <RightToLeft>True</RightToLeft>
+          <Sort isList="true" count="0" />
+        </LabelsDataBand>
+      </Components>
+      <Conditions isList="true" count="0" />
+      <Guid>8fd2a8b9495f4a73b98986d838a9c73f</Guid>
+      <Margins>0.85,0.85,0.85,0.85</Margins>
+      <Name>Page1</Name>
+      <PageHeight>29.7</PageHeight>
+      <PageWidth>21</PageWidth>
+      <PaperSize>Letter</PaperSize>
+      <Report isRef="0" />
+      <RightToLeft>True</RightToLeft>
+      <Watermark Ref="16" type="Stimulsoft.Report.Components.StiWatermark" isKey="true">
+        <Font>Arial,100</Font>
+        <TextBrush>[50:0:0:0]</TextBrush>
+      </Watermark>
+    </Page1>
+  </Pages>
+  <PrinterSettings Ref="17" type="Stimulsoft.Report.Print.StiPrinterSettings" isKey="true" />
+  <ReferencedAssemblies isList="true" count="8">
+    <value>System.Dll</value>
+    <value>System.Drawing.Dll</value>
+    <value>System.Windows.Forms.Dll</value>
+    <value>System.Data.Dll</value>
+    <value>System.Xml.Dll</value>
+    <value>Stimulsoft.Controls.Dll</value>
+    <value>Stimulsoft.Base.Dll</value>
+    <value>Stimulsoft.Report.Dll</value>
+  </ReferencedAssemblies>
+  <ReportAlias>Report</ReportAlias>
+  <ReportChanged>1/9/2018 6:25:57 PM</ReportChanged>
+  <ReportCreated>1/9/2018 5:41:51 PM</ReportCreated>
+  <ReportFile>C:\Users\Ehsan Mirzaee\Documents\Netotik\Netotik.Web\Content\Reports\InternetCard.mrt</ReportFile>
+  <ReportGuid>74c2bacc50a04f18aaee74ed852016c0</ReportGuid>
+  <ReportImage isNull="true" />
+  <ReportName>Report</ReportName>
+  <ReportUnit>Centimeters</ReportUnit>
+  <ReportVersion>2016.3.0</ReportVersion>
+  <Script>using System;
+using System.Drawing;
+using System.Windows.Forms;
+using System.Data;
+using Stimulsoft.Controls;
+using Stimulsoft.Base.Drawing;
+using Stimulsoft.Report;
+using Stimulsoft.Report.Dialogs;
+using Stimulsoft.Report.Components;
+
+namespace Reports
+{
+    public class Report : Stimulsoft.Report.StiReport
+    {
+        public Report()        {
+            this.InitializeComponent();
+        }
+
+        #region StiReport Designer generated code - do not modify
+		#endregion StiReport Designer generated code - do not modify
+    }
+}
+</Script>
+  <ScriptLanguage>CSharp</ScriptLanguage>
+  <Styles isList="true" count="0" />
+</StiSerializer>

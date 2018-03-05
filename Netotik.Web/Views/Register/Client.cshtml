@@ -263,35 +263,35 @@ else
                 <div class="card border-grey border-lighten-3 m-0">
                     <div class="card-body collapse in">
                         <div class="card-block">
-                                <div class="row">
-                                        <div class="col-md-6">
-                                            <div class="form-group has-feedback has-icon-left">
-                                                @Html.TextBox("1",(ViewBag.UserFind as UserModel).username, new { @class = "form-control", @readonly = "yes"})
-                                                <div class="form-control-position">
-                                                    <i class="icon-user"></i>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    <div class="col-md-6">
-                                        <div class="form-group has-feedback has-icon-left">
-                                            @Html.TextBox("2", (ViewBag.UserFind as UserModel).password, new { @class = "form-control", @readonly = "yes" })
-                                            <div class="form-control-position">
-                                                <i class="icon-key2"></i>
-                                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group has-feedback has-icon-left">
+                                        @Html.TextBox("1", (ViewBag.UserFind as UserModel).username, new { @class = "form-control", @readonly = "yes" })
+                                        <div class="form-control-position">
+                                            <i class="icon-user"></i>
                                         </div>
                                     </div>
                                 </div>
-
-                                    <div class="row">
-                                        <div class="col-md-6">
-                                            <a href="#" class="btn btn-success btn-block ">
-                                                <i class="icon-user"></i> @Captions.Login
-                                            </a>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <a href="@Url.Action(MVC.Login.Client("",ViewBag.RouterName))" class="btn btn-outline-primary btn-block"><i class="icon-lock4"></i> @Captions.LoginToUserAccount</a>
+                                <div class="col-md-6">
+                                    <div class="form-group has-feedback has-icon-left">
+                                        @Html.TextBox("2", (ViewBag.UserFind as UserModel).password, new { @class = "form-control", @readonly = "yes" })
+                                        <div class="form-control-position">
+                                            <i class="icon-key2"></i>
                                         </div>
                                     </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <a href="http://sanjesh.org" class="btn btn-success btn-block ">
+                                        <i class="icon-user"></i> @Captions.Login
+                                    </a>
+                                </div>
+                                <div class="col-md-6">
+                                    <a href="@Url.Action(MVC.Login.Client("",ViewBag.RouterName))" class="btn btn-outline-primary btn-block"><i class="icon-lock4"></i> @Captions.LoginToUserAccount</a>
+                                </div>
+                            </div>
                         </div>
 
                     </div>

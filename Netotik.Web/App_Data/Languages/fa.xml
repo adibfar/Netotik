@@ -891,7 +891,7 @@
     <Value>خطا</Value>
   </LocaleResource>
   <LocaleResource Name="Inaccessible">
-    <Value>غیرفابل دسترس</Value>
+    <Value>غیرقابل دسترس</Value>
   </LocaleResource>
   <LocaleResource Name="Saturday">
     <Value>شنبه</Value>

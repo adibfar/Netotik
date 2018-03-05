@@ -39,6 +39,7 @@ namespace Netotik.Web.Areas.MyRouter.Controllers
         private readonly IUnitOfWork _uow;
         private readonly IUserMailer _userMailer;
         private readonly ISmsService _smsService;
+        private readonly IReportService _reportService;
 
         public UserManagerController(
             IMikrotikServices mikrotikServices,
@@ -47,7 +48,8 @@ namespace Netotik.Web.Areas.MyRouter.Controllers
             IUserRouterLogClientService UserRouterlogclientservice,
             ISmsService smsService,
             IUserMailer userMailer,
-            IUnitOfWork uow)
+            IUnitOfWork uow,
+            IReportService reportService)
         {
             _mikrotikServices = mikrotikServices;
             _pictureService = pictureservice;
@@ -56,12 +58,18 @@ namespace Netotik.Web.Areas.MyRouter.Controllers
             _smsService = smsService;
             _userMailer = userMailer;
             _uow = uow;
+            _reportService = reportService;
         }
         #endregion
 
 
         #region Usermanager
-
+        public virtual ActionResult Print()
+        {
+            var userlist = _mikrotikServices.Usermanager_GetAllUsers(UserLogined.UserRouter.R_Host, UserLogined.UserRouter.R_Port, UserLogined.UserRouter.R_User, UserLogined.UserRouter.R_Password);
+            
+            return _reportService.Print(userlist, UserLogined.Id);
+        }
         [HttpPost]
         [ValidateInput(false)]
         public virtual ActionResult ResetCounter(string user, string id)
@@ -1099,7 +1107,7 @@ namespace Netotik.Web.Areas.MyRouter.Controllers
         {
             ViewBag.RouterCode = UserLogined.UserRouter.RouterCode;
             PopulatePermissions(_applicationUserManager.FindClientPermissions(UserLogined.Id).ToArray());
-            return View();
+            return View(_applicationUserManager.GetUserRouterProfile(UserLogined.Id));
         }
 
         [HttpPost]

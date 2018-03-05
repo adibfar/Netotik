@@ -17,6 +17,7 @@ namespace Netotik.ViewModels.Identity.UserRouter
         [Display(ResourceType = typeof(Captions), Name = "TelegramBotToken")]
         public string TelegramBotToken { get; set; }
         [Display(ResourceType = typeof(Captions), Name = "AboutMessage")]
+        [MaxLength(200, ErrorMessage = "Max 200 Characters.(This is Telegram Limit)")]
         public string AboutMessage { get; set; }
         [Display(ResourceType = typeof(Captions), Name = "ContactUsMessage")]
         public string ContactUsMessage { get; set; }

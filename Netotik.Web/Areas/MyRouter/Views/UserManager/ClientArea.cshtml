@@ -32,6 +32,13 @@
                                                          htmlAttributes: new { @class = "form-horizontal", enctype = "multipart/form-data", id = "form" }))
     {
         @Html.AntiForgeryToken()
+        @Html.HiddenFor(m=>m.Email)
+        @Html.HiddenFor(m => m.Email)
+        @Html.HiddenFor(m => m.FirstName)
+        @Html.HiddenFor(m => m.NationalCode)
+        @Html.HiddenFor(m => m.PhoneNumber)
+        @Html.HiddenFor(m => m.RouterCode)
+        @Html.HiddenFor(m => m.ZarinPalMerchantId)
         <div class="card">
             <div class="card-header">
                 <button name="actionType" value="@Netotik.Common.Controller.ActionType.Save" class="btn btn-social width-150 btn-instagram" onclick="AjaxForm.Post(this, 'form')" data-loading-text="در حال ارسال اطلاعات">

@@ -55,7 +55,7 @@ namespace Netotik.Web.Controllers
                 ForceReply markup = new ForceReply();
                 markup.Force = true;
                 var message = update.Message;
-                var MessageId = await Api.SendTextMessageAsync(message.Chat.Id, "لطفا تا دریافت پاسخ شکیبا باشید.🌹");
+                //var MessageId = await Api.SendTextMessageAsync(message.Chat.Id, "لطفا تا دریافت پاسخ شکیبا باشید.🌹");
                 try
                 {
                     using (StreamWriter _testData = new StreamWriter(HostingEnvironment.MapPath("~/TelegramBotErrors2.txt"), true))
@@ -89,7 +89,9 @@ namespace Netotik.Web.Controllers
                 {
 
                     await Api.SendChatActionAsync(message.Chat.Id, ChatAction.UploadPhoto);
-                    string file = HostingEnvironment.MapPath("\\Content\\images\\logo\\NetotikLogo.png");
+                    //string file = HostingEnvironment.MapPath("\\Content\\images\\logo\\NetotikLogo.png");
+                    string file = HostingEnvironment.MapPath(user.PictureId.HasValue? Netotik.Common.Controller.FilePathes._imagesUserAvatarsPath+ user.Picture.FileName : "\\Content\\images\\logo\\NetotikLogo.png");
+                    
                     var fileName = file.Split('\\').Last();
                     using (var fileStream = new FileStream(file, FileMode.Open, FileAccess.Read, FileShare.Read))
                     {
@@ -575,13 +577,12 @@ namespace Netotik.Web.Controllers
                                     {
                                     new [] // first row
                                     {
-                                        new KeyboardButton("حجم ⬆⬇"),
                                         new KeyboardButton("مشخصات کاربری 📋"),
                                     },
                                     new [] // last row
                                     {
                                         new KeyboardButton("زمان 🕐"),
-                                        new KeyboardButton("اتصالات 📊"),
+                                        new KeyboardButton("حجم ⬆⬇"),
                                     },
                                     new [] // last row
                                     {
@@ -660,7 +661,7 @@ namespace Netotik.Web.Controllers
                     new [] // last row
                     {
                         new KeyboardButton("ورود کاربران 👱"),
-                        new KeyboardButton("ورود مدیر 👷"),
+                        //new KeyboardButton("ورود مدیر 👷"),
                     }
                 }, resizeKeyboard: true);
                     await Api.SendTextMessageAsync(message.Chat.Id, "به ربات تلگرامی " + RouterCode + " خوش آمدید.لطفا یکی از گزینه ها را انتخاب کنید.",
@@ -689,7 +690,7 @@ namespace Netotik.Web.Controllers
                 }
 
                 #endregion
-                await Api.DeleteMessageAsync(message.Chat.Id, MessageId.MessageId);
+                //await Api.DeleteMessageAsync(message.Chat.Id, MessageId.MessageId);
             }
             catch (Exception ex)
             {

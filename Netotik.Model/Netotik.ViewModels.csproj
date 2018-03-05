@@ -49,6 +49,7 @@
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
     <Reference Include="System.ServiceModel" />
     <Reference Include="System.Web" />
     <Reference Include="System.Web.Mvc, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
@@ -131,6 +132,7 @@
     <Compile Include="Mikrotik\Hotspot\ServersModel.cs" />
     <Compile Include="Mikrotik\Hotspot\WalledGardenModel.cs" />
     <Compile Include="Mikrotik\Hotspot\IpBindingsModel.cs" />
+    <Compile Include="Mikrotik\InternetCard\ActiveModel.cs" />
     <Compile Include="Mikrotik\Router\FetchModel.cs" />
     <Compile Include="Mikrotik\Router\RouterAccessModel.cs" />
     <Compile Include="Mikrotik\Router\NatModel.cs" />

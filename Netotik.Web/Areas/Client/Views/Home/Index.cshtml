@@ -33,10 +33,10 @@
                             {<a style="margin-bottom:5px; margin-top:5px;" href="@Url.Action(MVC.Client.Home.ChangePassword())" class="btn btn-float btn-float-lg btn-pink"><i class="icon-key22"></i><span>@Netotik.Resources.Captions.ChangePassword</span></a>}
                             @if (CanShowBuyPackage)
                             {<a style="margin-bottom:5px; margin-top:5px;" href="@Url.Action(MVC.Client.Home.BuyPackage())" class="btn btn-float btn-float-lg btn-pink"><i class="icon-bag"></i><span>@Netotik.Resources.Captions.ChangePlan</span></a>}
-                            @if (CanShowAbout)
+                            @*@if (CanShowAbout)
                             {<a style="margin-bottom:5px; margin-top:5px;" href="#" class="btn btn-float btn-float-lg btn-pink"><i class="icon-office"></i><span>@Netotik.Resources.Captions.About</span></a>}
                             @if (CanShowFoodMenu)
-                            {<a style="margin-bottom:5px; margin-top:5px;" href="#" class="btn btn-float btn-float-lg btn-pink"><i class="icon-food"></i><span>@Netotik.Resources.Captions.FoodMenu</span></a>}
+                            {<a style="margin-bottom:5px; margin-top:5px;" href="#" class="btn btn-float btn-float-lg btn-pink"><i class="icon-food"></i><span>@Netotik.Resources.Captions.FoodMenu</span></a>}*@
                             @if (CanShowDetails)
                             {<a style="margin-bottom:5px; margin-top:5px;" href="@Url.Action(MVC.Client.Home.Details())" class="btn btn-float btn-float-lg btn-pink"><i class="icon-line-chart"></i><span>@Netotik.Resources.Captions.Details</span></a>}
 
@@ -113,7 +113,7 @@
                             {
                                 if (ulong.Parse(ViewBag.TransferRemain.ToString()) > 0)
                                 {
-                                <input type="text" value="@(((ulong.Parse(ViewBag.TransferRemain.ToString())) * 100) / (ulong.Parse(ViewBag.TransferLimit.ToString())))" class="knob angle-offset-arc" data-angleOffset="-125" data-angleArc="250" data-rotation="anticlockwise" data-fgColor="#008000" data-readOnly="true">
+                                <input type="text" value="@(((ulong.Parse(ViewBag.TransferRemain.ToString())) * 100) / (ulong.Parse(ViewBag.TransferLimit.ToString())))%" class="knob angle-offset-arc" data-angleOffset="-125" data-angleArc="250" data-rotation="anticlockwise" data-fgColor="#008000" data-readOnly="true">
                                 }
                                 else
                                 {
@@ -170,9 +170,12 @@
                 <div class="chart-title mb-1 text-xs-center">
                     <span class="text-muted">@Netotik.Resources.Captions.ConnectionHistory</span>
                 </div>
+                @if (CanShowConnectionDetails)
+                {
                 <div class="chart-stats text-xs-center">
-                    <a href="#" class="btn btn-sm btn-primary mr-1">@Netotik.Resources.Captions.ConnectionDetails<i class="icon-stats-bars"></i></a> <span class="text-muted">@Netotik.Resources.Captions.ChartOfMonthAndYear</span>
+                    <a href="@Url.Action(MVC.Client.Home.Details())" class="btn btn-sm btn-primary mr-1">@Netotik.Resources.Captions.ConnectionDetails<i class="icon-stats-bars"></i></a> <span class="text-muted">@Netotik.Resources.Captions.ChartOfMonthAndYear</span>
                 </div>
+                }
             </div>
         </div>
     </div>
