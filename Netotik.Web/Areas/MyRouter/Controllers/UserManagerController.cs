@@ -685,7 +685,7 @@ namespace Netotik.Web.Areas.MyRouter.Controllers
                             }
                     ViewBag.download_limit = UserLimition.download_limit;
                     ViewBag.upload_limit = UserLimition.upload_limit;
-                    ViewBag.transfer_limit = UserLimition.transfer_limit;
+                    ViewBag.transfer_limit = UserLimition.transfer_limit==null|| UserLimition.transfer_limit == "" ?"0": UserLimition.transfer_limit;
                     ViewBag.rate_limit_rx = UserLimition.rate_limit_rx == "" ? "0" : UserLimition.rate_limit_rx;
                     ViewBag.rate_limit_tx = UserLimition.rate_limit_tx == "" ? "0" : UserLimition.rate_limit_tx;
                     decimal Downloadlimit = 0;

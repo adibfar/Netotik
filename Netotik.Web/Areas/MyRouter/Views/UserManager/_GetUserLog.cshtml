@@ -50,8 +50,8 @@
                         <div class="col-md-6">
                             <div class="input-group m-b">
                                 <span class="input-group-addon">@Netotik.Resources.Captions.FromTime</span>
-                                <div class="input-group clockpicker" data-autoclose="true">
-                                    @Html.TextBoxFor(m => m.FromTime, new { @class = "form-control time", @value = "00:00" })
+                                <div class="input-group">
+                                    @Html.TextBoxFor(m => m.FromTime, new { @class = "form-control", @value = "00:00" })
                                     <span class="input-group-addon">
                                         <span class="icon-ios-time"></span>
                                     </span>
@@ -61,8 +61,8 @@
                         <div class="col-md-6">
                             <div class="input-group m-b">
                                 <span class="input-group-addon">@Netotik.Resources.Captions.TillTime</span>
-                                <div class="input-group clockpicker" data-autoclose="true">
-                                    @Html.TextBoxFor(m => m.ToTime, new { @class = "form-control time", @value = "23:59" })
+                                <div class="input-group">
+                                    @Html.TextBoxFor(m => m.ToTime, new { @class = "form-control", @value = "23:59" })
                                     <span class="input-group-addon">
                                         <span class="icon-ios-time"></span>
                                     </span>

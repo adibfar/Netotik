@@ -90,8 +90,13 @@ namespace Netotik.Web.Controllers
 
                     await Api.SendChatActionAsync(message.Chat.Id, ChatAction.UploadPhoto);
                     //string file = HostingEnvironment.MapPath("\\Content\\images\\logo\\NetotikLogo.png");
-                    string file = HostingEnvironment.MapPath(user.PictureId.HasValue? Netotik.Common.Controller.FilePathes._imagesUserAvatarsPath+ user.Picture.FileName : "\\Content\\images\\logo\\NetotikLogo.png");
+                    string file = HostingEnvironment.MapPath(
+                        user.PictureId.HasValue ?
+                        "\\Content\\Upload\\Image\\Avatar\\" + user.Picture.FileName
+                        : "\\Content\\images\\logo\\NetotikLogo.png");
                     
+
+
                     var fileName = file.Split('\\').Last();
                     using (var fileStream = new FileStream(file, FileMode.Open, FileAccess.Read, FileShare.Read))
                     {
@@ -682,7 +687,7 @@ namespace Netotik.Web.Controllers
                     new [] // last row
                     {
                         new KeyboardButton("ورود کاربران 👱"),
-                        new KeyboardButton("ورود مدیر 👷"),
+                        //new KeyboardButton("ورود مدیر 👷"),
                     }
                 }, resizeKeyboard: true);
                     await Api.SendTextMessageAsync(message.Chat.Id, "به ربات تلگرامی " + RouterCode + " خوش آمدید.لطفا یکی از گزینه ها را انتخاب کنید.",

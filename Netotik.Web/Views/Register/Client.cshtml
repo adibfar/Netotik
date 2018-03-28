@@ -222,10 +222,15 @@
                                     </div>
 
                                     <div class="row">
-                                        <div class="col-md-6">
+                                        <div class="col-md-12">
                                             <button type="submit" class="btn btn-success btn-block ">
                                                 <i class="icon-user"></i> @Captions.Register
                                             </button>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <a href="http://detectportal.firefox.com/success.txt" class="btn btn-outline-primary btn-block"><i class="icon-lock4"></i> ورود به اینترنت</a>
                                         </div>
                                         <div class="col-md-6">
                                             <a href="@Url.Action(MVC.Login.Client("",ViewBag.RouterName as string))" class="btn btn-outline-primary btn-block"><i class="icon-lock4"></i> @Captions.LoginToUserAccount</a>
@@ -284,9 +289,7 @@ else
 
                             <div class="row">
                                 <div class="col-md-6">
-                                    <a href="http://sanjesh.org" class="btn btn-success btn-block ">
-                                        <i class="icon-user"></i> @Captions.Login
-                                    </a>
+                                    <a href="http://detectportal.firefox.com/success.txt" class="btn btn-outline-primary btn-block"><i class="icon-lock4"></i>@Captions.Login </a>
                                 </div>
                                 <div class="col-md-6">
                                     <a href="@Url.Action(MVC.Login.Client("",ViewBag.RouterName))" class="btn btn-outline-primary btn-block"><i class="icon-lock4"></i> @Captions.LoginToUserAccount</a>
