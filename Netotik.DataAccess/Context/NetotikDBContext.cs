@@ -45,7 +45,7 @@ namespace Netotik.Data.Context
         public DbSet<Factor> Factors { get; set; }
         public DbSet<FactorSmsDetail> FactorSmsDetails { get; set; }
         public DbSet<UserReseller> UserReselleres { get; set; }
-        public DbSet<UserRouter> UserCompanies { get; set; }
+        public DbSet<UserRouter> UserRouteres { get; set; }
         public DbSet<UserRouterTelegram> UserRouterTelegrams { get; set; }
         public DbSet<UserRouterRegisterSetting> UserRouterRegisterSettings { get; set; }
         public DbSet<UserRouterClient> UserRouterClients { get; set; }

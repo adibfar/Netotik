@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 14
-VisualStudioVersion = 14.0.25420.1
+# Visual Studio 15
+VisualStudioVersion = 15.0.27004.2009
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Netotik.Web", "Netotik.Web\Netotik.Web.csproj", "{B49BE2BB-9CE5-49D7-9F03-B57F63ADD819}"
 EndProject
@@ -27,6 +27,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Netotik.IocConfig", "Netotik.IocConfig\Netotik.IocConfig.csproj", "{F321F700-8B9D-4904-9106-2A17DE64006A}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Netotik.AutoMapperProfiles", "Netotik.AutoMapperProfiles\Netotik.AutoMapperProfiles.csproj", "{4571E14E-3708-48C4-BC69-B82F822530FC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Netotik.WindowsService", "Netotik.WindowsService\Netotik.WindowsService.csproj", "{28F62F33-8A69-4E92-A3E2-A9B16339BDEB}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -70,8 +72,15 @@ Global
 		{4571E14E-3708-48C4-BC69-B82F822530FC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4571E14E-3708-48C4-BC69-B82F822530FC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4571E14E-3708-48C4-BC69-B82F822530FC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{28F62F33-8A69-4E92-A3E2-A9B16339BDEB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{28F62F33-8A69-4E92-A3E2-A9B16339BDEB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{28F62F33-8A69-4E92-A3E2-A9B16339BDEB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{28F62F33-8A69-4E92-A3E2-A9B16339BDEB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {D75A5FDA-654A-46C1-B279-86F162EF2A31}
 	EndGlobalSection
 EndGlobal

@@ -235,7 +235,7 @@
     <Compile Include="Implement\SmsPackageService.cs" />
     <Compile Include="Implement\ReportService.cs" />
     <Compile Include="Implement\SmsService.cs" />
-    <Compile Include="Implement\UserCompanyLogClientService.cs" />
+    <Compile Include="Implement\UserRouterLogClientService.cs" />
     <Compile Include="Implement\TelegramBotDataService.cs" />
     <Compile Include="Implement\IndexSectionService.cs" />
     <Compile Include="Implement\StatisticsCountryService.cs" />
