@@ -13,6 +13,10 @@
                         <span class="icon-card font-medium-4"></span>
                         @Captions.MakeCard
                     </a>
+                    <a value="@Captions.Logs" class="btn btn-social btn-instagram width-150 margin-bottom-2" href="#" onclick="GetLog()">
+                        <span class="icon-document-text font-medium-4"></span>
+                        @Captions.Logs
+                    </a>
                     @if (false)
                     {
                         <a value="@Captions.NewMultiUser" class="btn btn-social btn-instagram width-150 margin-bottom-2" href="@Url.Action(MVC.MyRouter.UserManager.ResetCounter())">
@@ -35,6 +39,7 @@
 
 
 <div id="UserGetLogModal"></div>
+<div id="GetLogModal"></div>
 
 @section UpScript{
     <link rel="stylesheet" type="text/css" href="~/Content/css/plugins/tables/extensions/dataTables.colVis.css">
@@ -138,6 +143,17 @@
             });
         };
 
+        function GetLog(id) {
+             CardBlock('#configuration');
+            var url = "@Url.Action(MVC.MyRouter.UserManager.GetLogRequest())";
+            $.get(url + '/' + id, function (data) {
+                $('#GetLogModal').html(data);
+                $('#GetLog').modal('show');
+                CardUnBlock('#configuration');
+                Icheck();
+                AjaxForm.EnableAjaxFormvalidate('Edit');
+            });
+        };
 
         function Userdisable(id) {
             PostData("@Url.Action(MVC.MyRouter.UserManager.Userdisable())", { id: id });

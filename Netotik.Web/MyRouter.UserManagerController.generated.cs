@@ -130,6 +130,12 @@ namespace Netotik.Web.Areas.MyRouter.Controllers
         }
         [NonAction]
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public virtual System.Web.Mvc.ActionResult GetLog()
+        {
+            return new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.GetLog);
+        }
+        [NonAction]
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public virtual System.Web.Mvc.ActionResult GetUserLog()
         {
             return new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.GetUserLog);
@@ -181,6 +187,8 @@ namespace Netotik.Web.Areas.MyRouter.Controllers
             public readonly string LoadOnlines = "LoadOnlines";
             public readonly string LoadProfiles = "LoadProfiles";
             public readonly string GetUserLogRequest = "GetUserLogRequest";
+            public readonly string GetLogRequest = "GetLogRequest";
+            public readonly string GetLog = "GetLog";
             public readonly string GetUserLog = "GetUserLog";
             public readonly string RedirectToLocal = "RedirectToLocal";
         }
@@ -213,6 +221,8 @@ namespace Netotik.Web.Areas.MyRouter.Controllers
             public const string LoadOnlines = "LoadOnlines";
             public const string LoadProfiles = "LoadProfiles";
             public const string GetUserLogRequest = "GetUserLogRequest";
+            public const string GetLogRequest = "GetLogRequest";
+            public const string GetLog = "GetLog";
             public const string GetUserLog = "GetUserLog";
             public const string RedirectToLocal = "RedirectToLocal";
         }
@@ -351,6 +361,14 @@ namespace Netotik.Web.Areas.MyRouter.Controllers
         {
             public readonly string Id = "Id";
         }
+        static readonly ActionParamsClass_GetLog s_params_GetLog = new ActionParamsClass_GetLog();
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public ActionParamsClass_GetLog GetLogParams { get { return s_params_GetLog; } }
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public class ActionParamsClass_GetLog
+        {
+            public readonly string model = "model";
+        }
         static readonly ActionParamsClass_GetUserLog s_params_GetUserLog = new ActionParamsClass_GetUserLog();
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public ActionParamsClass_GetUserLog GetUserLogParams { get { return s_params_GetUserLog; } }
@@ -377,6 +395,7 @@ namespace Netotik.Web.Areas.MyRouter.Controllers
             public _ViewNamesClass ViewNames { get { return s_ViewNames; } }
             public class _ViewNamesClass
             {
+                public readonly string _GetLog = "_GetLog";
                 public readonly string _GetUserLog = "_GetUserLog";
                 public readonly string _Onlines = "_Onlines";
                 public readonly string _Packages = "_Packages";
@@ -395,6 +414,7 @@ namespace Netotik.Web.Areas.MyRouter.Controllers
                 public readonly string UserEdit = "UserEdit";
                 public readonly string UserList = "UserList";
             }
+            public readonly string _GetLog = "~/Areas/MyRouter/Views/UserManager/_GetLog.cshtml";
             public readonly string _GetUserLog = "~/Areas/MyRouter/Views/UserManager/_GetUserLog.cshtml";
             public readonly string _Onlines = "~/Areas/MyRouter/Views/UserManager/_Onlines.cshtml";
             public readonly string _Packages = "~/Areas/MyRouter/Views/UserManager/_Packages.cshtml";
@@ -757,6 +777,29 @@ namespace Netotik.Web.Areas.MyRouter.Controllers
             var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.GetUserLogRequest);
             ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "Id", Id);
             GetUserLogRequestOverride(callInfo, Id);
+            return callInfo;
+        }
+
+        [NonAction]
+        partial void GetLogRequestOverride(T4MVC_System_Web_Mvc_ActionResult callInfo);
+
+        [NonAction]
+        public override System.Web.Mvc.ActionResult GetLogRequest()
+        {
+            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.GetLogRequest);
+            GetLogRequestOverride(callInfo);
+            return callInfo;
+        }
+
+        [NonAction]
+        partial void GetLogOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, Netotik.ViewModels.Mikrotik.GetUserLogModel model);
+
+        [NonAction]
+        public override System.Web.Mvc.ActionResult GetLog(Netotik.ViewModels.Mikrotik.GetUserLogModel model)
+        {
+            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.GetLog);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "model", model);
+            GetLogOverride(callInfo, model);
             return callInfo;
         }
 

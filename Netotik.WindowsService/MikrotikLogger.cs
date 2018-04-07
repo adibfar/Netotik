@@ -109,7 +109,18 @@ namespace Netotik.WindowsService
                 {
                     foreach (var User in ActiveUsers)
                     {
-                        if (User.UserRouter.R_Host == address || Dns.GetHostAddresses(User.UserRouter.R_Host).Any(x => x.Address.Equals(IPAddress.Parse(address))))
+                        bool dnslookupflag = false;
+                        IPHostEntry hostEntry;
+
+                        hostEntry = Dns.GetHostEntry(User.UserRouter.R_Host);
+                        if (hostEntry.AddressList.Length > 0)
+                        {
+                            var ip = hostEntry.AddressList[0];
+                            IPAddress ip1 = IPAddress.Parse(address);
+                            if (ip1.Equals(ip))
+                                dnslookupflag = true;
+                        }
+                        if (User.UserRouter.R_Host == address|| dnslookupflag || Dns.GetHostAddresses(User.UserRouter.R_Host).Any(x => x.Address.Equals(IPAddress.Parse(address))))
                         {
                             try
                             {
@@ -126,7 +137,7 @@ namespace Netotik.WindowsService
                                 {
                                     if (receiveString.Contains("mac"))
                                     {
-                                        if (receiveString != null && receiveString.Split(' ')[9].Contains(">"))
+                                        if (receiveString != null && receiveString.Split(' ')[9].Contains(">") && receiveString.Split(' ')[1].Contains("srcnat"))
                                         {
                                             http.SrcMac = receiveString.Split(' ')[5].Split(',')[0];
                                             http.SrcIp = receiveString.Split(' ')[9].Split('-')[0].Split(':')[0];
@@ -137,7 +148,7 @@ namespace Netotik.WindowsService
                                     }
                                     else
                                     {
-                                        if (receiveString != null && receiveString.Split(' ')[7].Contains(">"))
+                                        if (receiveString != null && receiveString.Split(' ')[7].Contains(">") && receiveString.Split(' ')[1].Contains("srcnat"))
                                         {
                                             http.SrcIp = receiveString.Split(' ')[7].Split('-')[0].Split(':')[0];
                                             http.DstIp = receiveString.Split(' ')[7].Split('>')[1].Split(':')[0];

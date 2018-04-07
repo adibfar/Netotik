@@ -533,7 +533,6 @@ Order = 0, GlyphIcon = "icon icon-table")]
                         if (!NetotikFlag)
                             this.MessageWarning(Captions.Information, string.Format(Captions.AddWebsiteToHotspotAccess,"netotik.com"));
                         //------------------------
-                        this.MessageInformation(Captions.Attention, Captions.PanelsFreeExpireDate);
 
                     }
                     else

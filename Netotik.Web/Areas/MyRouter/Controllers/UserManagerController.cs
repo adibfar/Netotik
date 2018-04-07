@@ -1212,6 +1212,144 @@ namespace Netotik.Web.Areas.MyRouter.Controllers
         }
 
 
+        public virtual ActionResult GetLogRequest()
+        {
+            if (!_mikrotikServices.IP_Port_Check(UserLogined.UserRouter.R_Host, UserLogined.UserRouter.R_Port, UserLogined.UserRouter.R_User, UserLogined.UserRouter.R_Password))
+            {
+                this.MessageError(Captions.Error, Captions.IPPORTClientError);
+                return RedirectToAction(MVC.MyRouter.Home.ActionNames.MikrotikConf, MVC.MyRouter.Home.Name, new { area = MVC.MyRouter.Name });
+            }
+            if (!_mikrotikServices.User_Pass_Check(UserLogined.UserRouter.R_Host, UserLogined.UserRouter.R_Port, UserLogined.UserRouter.R_User, UserLogined.UserRouter.R_Password))
+            {
+                this.MessageError(Captions.Error, Captions.UserPasswordClientError);
+                return RedirectToAction(MVC.MyRouter.Home.ActionNames.MikrotikConf, MVC.MyRouter.Home.Name, new { area = MVC.MyRouter.Name });
+            }
+
+
+            System.Globalization.PersianCalendar cal = new System.Globalization.PersianCalendar();
+            var year = cal.GetYear(DateTime.Now);
+            var month = cal.GetMonth(DateTime.Now);
+            var day = cal.GetDayOfMonth(DateTime.Now);
+
+            var yearList = new List<SelectListItem>();
+            for (int i = 1397; i <= year; i++)
+                yearList.Add(new SelectListItem() { Text = i.ToString(), Value = i.ToString(), Selected = i == year });
+
+            var monthList = new List<SelectListItem>();
+            for (int i = 1; i <= 12; i++)
+                monthList.Add(new SelectListItem() { Text = i.ToString(), Value = i.ToString(), Selected = i == month });
+
+            var dayList = new List<SelectListItem>();
+            for (int i = 1; i <= 31; i++)
+                dayList.Add(new SelectListItem() { Text = i.ToString(), Value = i.ToString(), Selected = i == day });
+
+
+            ViewBag.Years = yearList;
+            ViewBag.Months = monthList;
+            ViewBag.Days = dayList;
+
+            var model = new GetUserLogModel()
+            {
+                Day = day,
+                Month = month,
+                Year = year,
+                Name ="",
+                UserId = ""
+            };
+            return PartialView(MVC.MyRouter.UserManager.Views._GetLog, model);
+        }
+
+        [HttpPost]
+        public virtual ActionResult GetLog(GetUserLogModel model)
+        {
+            if (!_mikrotikServices.IP_Port_Check(UserLogined.UserRouter.R_Host, UserLogined.UserRouter.R_Port, UserLogined.UserRouter.R_User, UserLogined.UserRouter.R_Password))
+            {
+                this.MessageError(Captions.Error, Captions.IPPORTClientError);
+                return RedirectToAction(MVC.MyRouter.Home.ActionNames.MikrotikConf, MVC.MyRouter.Home.Name, new { area = MVC.MyRouter.Name });
+            }
+            if (!_mikrotikServices.User_Pass_Check(UserLogined.UserRouter.R_Host, UserLogined.UserRouter.R_Port, UserLogined.UserRouter.R_User, UserLogined.UserRouter.R_Password))
+            {
+                this.MessageError(Captions.Error, Captions.UserPasswordClientError);
+                return RedirectToAction(MVC.MyRouter.Home.ActionNames.MikrotikConf, MVC.MyRouter.Home.Name, new { area = MVC.MyRouter.Name });
+            }
+            var date = PersianDate.ConvertDate.ToEn(model.Year, model.Month, model.Day);
+            var FromTime = new DateTime(date.Year, date.Month, date.Day, int.Parse(model.FromTime.Split(':')[0]), int.Parse(model.FromTime.Split(':')[1]), 0);
+            var ToTime = new DateTime(date.Year, date.Month, date.Day, int.Parse(model.ToTime.Split(':')[0]), int.Parse(model.ToTime.Split(':')[1]), 59);
+            var Logs = _UserRouterlogclientservice.GetList(UserLogined.Id, FromTime, ToTime);
+
+            var UserSessions = _mikrotikServices.Usermanager_GetAllUsersSessions(UserLogined.UserRouter.R_Host, UserLogined.UserRouter.R_Port, UserLogined.UserRouter.R_User, UserLogined.UserRouter.R_Password);
+            var UsersLogs = new List<UserWebsiteLogsWithSessionsModel>();
+            foreach (var user in UserSessions)
+            {
+                int month = GetMonth(user.from_time.Split(' ')[0].Split('/')[0]);
+                int day = Int32.Parse(user.from_time.Split(' ')[0].Split('/')[1]);
+                int year = Int32.Parse(user.from_time.Split(' ')[0].Split('/')[2]);
+                int hour = Int32.Parse(user.from_time.Split(' ')[1].Split(':')[0]);
+                int min = Int32.Parse(user.from_time.Split(' ')[1].Split(':')[1]);
+                int sec = Int32.Parse(user.from_time.Split(' ')[1].Split(':')[2]);
+                DateTime UserFromTime = new DateTime(year, month, day, hour, min, sec);
+                month = GetMonth(user.till_time.Split(' ')[0].Split('/')[0]);
+                day = Int32.Parse(user.till_time.Split(' ')[0].Split('/')[1]);
+                year = Int32.Parse(user.till_time.Split(' ')[0].Split('/')[2]);
+                hour = Int32.Parse(user.till_time.Split(' ')[1].Split(':')[0]);
+                min = Int32.Parse(user.till_time.Split(' ')[1].Split(':')[1]);
+                sec = Int32.Parse(user.till_time.Split(' ')[1].Split(':')[2]);
+                DateTime UserTillTime = new DateTime(year, month, day, hour, min, sec);
+
+                UsersLogs.AddRange(Logs.Where(x =>
+                x.MikrotikCreateDate < UserTillTime &&
+                x.MikrotikCreateDate > UserFromTime
+                ).Select(x => new UserWebsiteLogsWithSessionsModel
+                {
+                    DstPort = x.DstPort,
+                    SrcPort = x.SrcPort,
+                    acct_session_id = user.acct_session_id,
+                    active = user.active,
+                    calling_station_id = user.calling_station_id,
+                    customer = user.customer,
+                    download = user.download,
+                    DstIp = x.DstIp,
+                    from_time = UserFromTime.ToString(),
+                    till_time = UserTillTime.ToString(),
+                    host_ip = user.host_ip,
+                    Method = x.Method,
+                    MikrotikCreateDate = x.MikrotikCreateDate,
+                    user = user.user,
+                    nas_port = user.nas_port,
+                    nas_port_id = user.nas_port_id,
+                    nas_port_type = user.nas_port_type,
+                    SrcIp = x.SrcIp,
+                    SrcMac = x.SrcMac,
+                    status = user.status,
+                    terminate_cause = user.terminate_cause,
+                    upload = user.upload,
+                    uptime = user.uptime,
+                    Url = x.Url,
+                    user_ip = user.user_ip
+                }).ToList());
+            }
+            //if (UsersLogs==null)
+            //{
+
+            //}
+            var userReport = UsersLogs.FirstOrDefault();
+
+            using (ExcelPackage pck = new ExcelPackage())
+            {
+                ExcelWorksheet ws = pck.Workbook.Worksheets.Add("Main");
+                ws.Cells["A1"].LoadFromDataTable(Netotik.Common.Extensions.DataTableExtention.ToDataTable<UserWebsiteLogsWithSessionsModel>(UsersLogs), true, TableStyles.Medium2);
+                Byte[] fileBytes = pck.GetAsByteArray();
+                Response.ClearContent();
+                Response.AddHeader("content-disposition", "attachment;filename=" + (userReport != null ? userReport.user : "null") + "_Logs_" + DateTime.Now.ToString("M_dd_yyyy_H_M_s") + ".xlsx");
+                Response.ContentType = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet";
+                Response.BinaryWrite(fileBytes);
+                Response.End();
+            }
+
+
+            return RedirectToAction(MVC.MyRouter.UserManager.UserList());
+        }
+
         [HttpPost]
         public virtual ActionResult GetUserLog(GetUserLogModel model)
         {
