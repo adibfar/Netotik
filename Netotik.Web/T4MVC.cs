@@ -7524,83 +7524,83 @@ namespace Links
                 {
                     public static class Assets
                     {
-                        public const string jquery_js = "~/Scripts/ckeditor/adapters/jquery.js"; 
+                        public static readonly string jquery_js = T4MVCHelpers.ProcessAssetPath("~/Scripts/ckeditor/adapters/jquery.js"); 
                     }
                 }
                 public static partial class lang 
                 {
                     public static class Assets
                     {
-                        public const string af_js = "~/Scripts/ckeditor/lang/af.js"; 
-                        public const string ar_js = "~/Scripts/ckeditor/lang/ar.js"; 
-                        public const string az_js = "~/Scripts/ckeditor/lang/az.js"; 
-                        public const string bg_js = "~/Scripts/ckeditor/lang/bg.js"; 
-                        public const string bn_js = "~/Scripts/ckeditor/lang/bn.js"; 
-                        public const string bs_js = "~/Scripts/ckeditor/lang/bs.js"; 
-                        public const string ca_js = "~/Scripts/ckeditor/lang/ca.js"; 
-                        public const string cs_js = "~/Scripts/ckeditor/lang/cs.js"; 
-                        public const string cy_js = "~/Scripts/ckeditor/lang/cy.js"; 
-                        public const string da_js = "~/Scripts/ckeditor/lang/da.js"; 
-                        public const string de_ch_js = "~/Scripts/ckeditor/lang/de-ch.js"; 
-                        public const string de_js = "~/Scripts/ckeditor/lang/de.js"; 
-                        public const string el_js = "~/Scripts/ckeditor/lang/el.js"; 
-                        public const string en_au_js = "~/Scripts/ckeditor/lang/en-au.js"; 
-                        public const string en_ca_js = "~/Scripts/ckeditor/lang/en-ca.js"; 
-                        public const string en_gb_js = "~/Scripts/ckeditor/lang/en-gb.js"; 
-                        public const string en_js = "~/Scripts/ckeditor/lang/en.js"; 
-                        public const string eo_js = "~/Scripts/ckeditor/lang/eo.js"; 
-                        public const string es_mx_js = "~/Scripts/ckeditor/lang/es-mx.js"; 
-                        public const string es_js = "~/Scripts/ckeditor/lang/es.js"; 
-                        public const string et_js = "~/Scripts/ckeditor/lang/et.js"; 
-                        public const string eu_js = "~/Scripts/ckeditor/lang/eu.js"; 
-                        public const string fa_js = "~/Scripts/ckeditor/lang/fa.js"; 
-                        public const string fi_js = "~/Scripts/ckeditor/lang/fi.js"; 
-                        public const string fo_js = "~/Scripts/ckeditor/lang/fo.js"; 
-                        public const string fr_ca_js = "~/Scripts/ckeditor/lang/fr-ca.js"; 
-                        public const string fr_js = "~/Scripts/ckeditor/lang/fr.js"; 
-                        public const string gl_js = "~/Scripts/ckeditor/lang/gl.js"; 
-                        public const string gu_js = "~/Scripts/ckeditor/lang/gu.js"; 
-                        public const string he_js = "~/Scripts/ckeditor/lang/he.js"; 
-                        public const string hi_js = "~/Scripts/ckeditor/lang/hi.js"; 
-                        public const string hr_js = "~/Scripts/ckeditor/lang/hr.js"; 
-                        public const string hu_js = "~/Scripts/ckeditor/lang/hu.js"; 
-                        public const string id_js = "~/Scripts/ckeditor/lang/id.js"; 
-                        public const string is_js = "~/Scripts/ckeditor/lang/is.js"; 
-                        public const string it_js = "~/Scripts/ckeditor/lang/it.js"; 
-                        public const string ja_js = "~/Scripts/ckeditor/lang/ja.js"; 
-                        public const string ka_js = "~/Scripts/ckeditor/lang/ka.js"; 
-                        public const string km_js = "~/Scripts/ckeditor/lang/km.js"; 
-                        public const string ko_js = "~/Scripts/ckeditor/lang/ko.js"; 
-                        public const string ku_js = "~/Scripts/ckeditor/lang/ku.js"; 
-                        public const string lt_js = "~/Scripts/ckeditor/lang/lt.js"; 
-                        public const string lv_js = "~/Scripts/ckeditor/lang/lv.js"; 
-                        public const string mk_js = "~/Scripts/ckeditor/lang/mk.js"; 
-                        public const string mn_js = "~/Scripts/ckeditor/lang/mn.js"; 
-                        public const string ms_js = "~/Scripts/ckeditor/lang/ms.js"; 
-                        public const string nb_js = "~/Scripts/ckeditor/lang/nb.js"; 
-                        public const string nl_js = "~/Scripts/ckeditor/lang/nl.js"; 
-                        public const string no_js = "~/Scripts/ckeditor/lang/no.js"; 
-                        public const string oc_js = "~/Scripts/ckeditor/lang/oc.js"; 
-                        public const string pl_js = "~/Scripts/ckeditor/lang/pl.js"; 
-                        public const string pt_br_js = "~/Scripts/ckeditor/lang/pt-br.js"; 
-                        public const string pt_js = "~/Scripts/ckeditor/lang/pt.js"; 
-                        public const string ro_js = "~/Scripts/ckeditor/lang/ro.js"; 
-                        public const string ru_js = "~/Scripts/ckeditor/lang/ru.js"; 
-                        public const string si_js = "~/Scripts/ckeditor/lang/si.js"; 
-                        public const string sk_js = "~/Scripts/ckeditor/lang/sk.js"; 
-                        public const string sl_js = "~/Scripts/ckeditor/lang/sl.js"; 
-                        public const string sq_js = "~/Scripts/ckeditor/lang/sq.js"; 
-                        public const string sr_latn_js = "~/Scripts/ckeditor/lang/sr-latn.js"; 
-                        public const string sr_js = "~/Scripts/ckeditor/lang/sr.js"; 
-                        public const string sv_js = "~/Scripts/ckeditor/lang/sv.js"; 
-                        public const string th_js = "~/Scripts/ckeditor/lang/th.js"; 
-                        public const string tr_js = "~/Scripts/ckeditor/lang/tr.js"; 
-                        public const string tt_js = "~/Scripts/ckeditor/lang/tt.js"; 
-                        public const string ug_js = "~/Scripts/ckeditor/lang/ug.js"; 
-                        public const string uk_js = "~/Scripts/ckeditor/lang/uk.js"; 
-                        public const string vi_js = "~/Scripts/ckeditor/lang/vi.js"; 
-                        public const string zh_cn_js = "~/Scripts/ckeditor/lang/zh-cn.js"; 
-                        public const string zh_js = "~/Scripts/ckeditor/lang/zh.js"; 
+                        public static readonly string af_js = T4MVCHelpers.ProcessAssetPath("~/Scripts/ckeditor/lang/af.js"); 
+                        public static readonly string ar_js = T4MVCHelpers.ProcessAssetPath("~/Scripts/ckeditor/lang/ar.js"); 
+                        public static readonly string az_js = T4MVCHelpers.ProcessAssetPath("~/Scripts/ckeditor/lang/az.js"); 
+                        public static readonly string bg_js = T4MVCHelpers.ProcessAssetPath("~/Scripts/ckeditor/lang/bg.js"); 
+                        public static readonly string bn_js = T4MVCHelpers.ProcessAssetPath("~/Scripts/ckeditor/lang/bn.js"); 
+                        public static readonly string bs_js = T4MVCHelpers.ProcessAssetPath("~/Scripts/ckeditor/lang/bs.js"); 
+                        public static readonly string ca_js = T4MVCHelpers.ProcessAssetPath("~/Scripts/ckeditor/lang/ca.js"); 
+                        public static readonly string cs_js = T4MVCHelpers.ProcessAssetPath("~/Scripts/ckeditor/lang/cs.js"); 
+                        public static readonly string cy_js = T4MVCHelpers.ProcessAssetPath("~/Scripts/ckeditor/lang/cy.js"); 
+                        public static readonly string da_js = T4MVCHelpers.ProcessAssetPath("~/Scripts/ckeditor/lang/da.js"); 
+                        public static readonly string de_ch_js = T4MVCHelpers.ProcessAssetPath("~/Scripts/ckeditor/lang/de-ch.js"); 
+                        public static readonly string de_js = T4MVCHelpers.ProcessAssetPath("~/Scripts/ckeditor/lang/de.js"); 
+                        public static readonly string el_js = T4MVCHelpers.ProcessAssetPath("~/Scripts/ckeditor/lang/el.js"); 
+                        public static readonly string en_au_js = T4MVCHelpers.ProcessAssetPath("~/Scripts/ckeditor/lang/en-au.js"); 
+                        public static readonly string en_ca_js = T4MVCHelpers.ProcessAssetPath("~/Scripts/ckeditor/lang/en-ca.js"); 
+                        public static readonly string en_gb_js = T4MVCHelpers.ProcessAssetPath("~/Scripts/ckeditor/lang/en-gb.js"); 
+                        public static readonly string en_js = T4MVCHelpers.ProcessAssetPath("~/Scripts/ckeditor/lang/en.js"); 
+                        public static readonly string eo_js = T4MVCHelpers.ProcessAssetPath("~/Scripts/ckeditor/lang/eo.js"); 
+                        public static readonly string es_mx_js = T4MVCHelpers.ProcessAssetPath("~/Scripts/ckeditor/lang/es-mx.js"); 
+                        public static readonly string es_js = T4MVCHelpers.ProcessAssetPath("~/Scripts/ckeditor/lang/es.js"); 
+                        public static readonly string et_js = T4MVCHelpers.ProcessAssetPath("~/Scripts/ckeditor/lang/et.js"); 
+                        public static readonly string eu_js = T4MVCHelpers.ProcessAssetPath("~/Scripts/ckeditor/lang/eu.js"); 
+                        public static readonly string fa_js = T4MVCHelpers.ProcessAssetPath("~/Scripts/ckeditor/lang/fa.js"); 
+                        public static readonly string fi_js = T4MVCHelpers.ProcessAssetPath("~/Scripts/ckeditor/lang/fi.js"); 
+                        public static readonly string fo_js = T4MVCHelpers.ProcessAssetPath("~/Scripts/ckeditor/lang/fo.js"); 
+                        public static readonly string fr_ca_js = T4MVCHelpers.ProcessAssetPath("~/Scripts/ckeditor/lang/fr-ca.js"); 
+                        public static readonly string fr_js = T4MVCHelpers.ProcessAssetPath("~/Scripts/ckeditor/lang/fr.js"); 
+                        public static readonly string gl_js = T4MVCHelpers.ProcessAssetPath("~/Scripts/ckeditor/lang/gl.js"); 
+                        public static readonly string gu_js = T4MVCHelpers.ProcessAssetPath("~/Scripts/ckeditor/lang/gu.js"); 
+                        public static readonly string he_js = T4MVCHelpers.ProcessAssetPath("~/Scripts/ckeditor/lang/he.js"); 
+                        public static readonly string hi_js = T4MVCHelpers.ProcessAssetPath("~/Scripts/ckeditor/lang/hi.js"); 
+                        public static readonly string hr_js = T4MVCHelpers.ProcessAssetPath("~/Scripts/ckeditor/lang/hr.js"); 
+                        public static readonly string hu_js = T4MVCHelpers.ProcessAssetPath("~/Scripts/ckeditor/lang/hu.js"); 
+                        public static readonly string id_js = T4MVCHelpers.ProcessAssetPath("~/Scripts/ckeditor/lang/id.js"); 
+                        public static readonly string is_js = T4MVCHelpers.ProcessAssetPath("~/Scripts/ckeditor/lang/is.js"); 
+                        public static readonly string it_js = T4MVCHelpers.ProcessAssetPath("~/Scripts/ckeditor/lang/it.js"); 
+                        public static readonly string ja_js = T4MVCHelpers.ProcessAssetPath("~/Scripts/ckeditor/lang/ja.js"); 
+                        public static readonly string ka_js = T4MVCHelpers.ProcessAssetPath("~/Scripts/ckeditor/lang/ka.js"); 
+                        public static readonly string km_js = T4MVCHelpers.ProcessAssetPath("~/Scripts/ckeditor/lang/km.js"); 
+                        public static readonly string ko_js = T4MVCHelpers.ProcessAssetPath("~/Scripts/ckeditor/lang/ko.js"); 
+                        public static readonly string ku_js = T4MVCHelpers.ProcessAssetPath("~/Scripts/ckeditor/lang/ku.js"); 
+                        public static readonly string lt_js = T4MVCHelpers.ProcessAssetPath("~/Scripts/ckeditor/lang/lt.js"); 
+                        public static readonly string lv_js = T4MVCHelpers.ProcessAssetPath("~/Scripts/ckeditor/lang/lv.js"); 
+                        public static readonly string mk_js = T4MVCHelpers.ProcessAssetPath("~/Scripts/ckeditor/lang/mk.js"); 
+                        public static readonly string mn_js = T4MVCHelpers.ProcessAssetPath("~/Scripts/ckeditor/lang/mn.js"); 
+                        public static readonly string ms_js = T4MVCHelpers.ProcessAssetPath("~/Scripts/ckeditor/lang/ms.js"); 
+                        public static readonly string nb_js = T4MVCHelpers.ProcessAssetPath("~/Scripts/ckeditor/lang/nb.js"); 
+                        public static readonly string nl_js = T4MVCHelpers.ProcessAssetPath("~/Scripts/ckeditor/lang/nl.js"); 
+                        public static readonly string no_js = T4MVCHelpers.ProcessAssetPath("~/Scripts/ckeditor/lang/no.js"); 
+                        public static readonly string oc_js = T4MVCHelpers.ProcessAssetPath("~/Scripts/ckeditor/lang/oc.js"); 
+                        public static readonly string pl_js = T4MVCHelpers.ProcessAssetPath("~/Scripts/ckeditor/lang/pl.js"); 
+                        public static readonly string pt_br_js = T4MVCHelpers.ProcessAssetPath("~/Scripts/ckeditor/lang/pt-br.js"); 
+                        public static readonly string pt_js = T4MVCHelpers.ProcessAssetPath("~/Scripts/ckeditor/lang/pt.js"); 
+                        public static readonly string ro_js = T4MVCHelpers.ProcessAssetPath("~/Scripts/ckeditor/lang/ro.js"); 
+                        public static readonly string ru_js = T4MVCHelpers.ProcessAssetPath("~/Scripts/ckeditor/lang/ru.js"); 
+                        public static readonly string si_js = T4MVCHelpers.ProcessAssetPath("~/Scripts/ckeditor/lang/si.js"); 
+                        public static readonly string sk_js = T4MVCHelpers.ProcessAssetPath("~/Scripts/ckeditor/lang/sk.js"); 
+                        public static readonly string sl_js = T4MVCHelpers.ProcessAssetPath("~/Scripts/ckeditor/lang/sl.js"); 
+                        public static readonly string sq_js = T4MVCHelpers.ProcessAssetPath("~/Scripts/ckeditor/lang/sq.js"); 
+                        public static readonly string sr_latn_js = T4MVCHelpers.ProcessAssetPath("~/Scripts/ckeditor/lang/sr-latn.js"); 
+                        public static readonly string sr_js = T4MVCHelpers.ProcessAssetPath("~/Scripts/ckeditor/lang/sr.js"); 
+                        public static readonly string sv_js = T4MVCHelpers.ProcessAssetPath("~/Scripts/ckeditor/lang/sv.js"); 
+                        public static readonly string th_js = T4MVCHelpers.ProcessAssetPath("~/Scripts/ckeditor/lang/th.js"); 
+                        public static readonly string tr_js = T4MVCHelpers.ProcessAssetPath("~/Scripts/ckeditor/lang/tr.js"); 
+                        public static readonly string tt_js = T4MVCHelpers.ProcessAssetPath("~/Scripts/ckeditor/lang/tt.js"); 
+                        public static readonly string ug_js = T4MVCHelpers.ProcessAssetPath("~/Scripts/ckeditor/lang/ug.js"); 
+                        public static readonly string uk_js = T4MVCHelpers.ProcessAssetPath("~/Scripts/ckeditor/lang/uk.js"); 
+                        public static readonly string vi_js = T4MVCHelpers.ProcessAssetPath("~/Scripts/ckeditor/lang/vi.js"); 
+                        public static readonly string zh_cn_js = T4MVCHelpers.ProcessAssetPath("~/Scripts/ckeditor/lang/zh-cn.js"); 
+                        public static readonly string zh_js = T4MVCHelpers.ProcessAssetPath("~/Scripts/ckeditor/lang/zh.js"); 
                     }
                 }
                 public static partial class plugins 
@@ -7613,74 +7613,74 @@ namespace Links
                             {
                                 public static class Assets
                                 {
-                                    public const string af_js = "~/Scripts/ckeditor/plugins/a11yhelp/dialogs/lang/af.js"; 
-                                    public const string ar_js = "~/Scripts/ckeditor/plugins/a11yhelp/dialogs/lang/ar.js"; 
-                                    public const string az_js = "~/Scripts/ckeditor/plugins/a11yhelp/dialogs/lang/az.js"; 
-                                    public const string bg_js = "~/Scripts/ckeditor/plugins/a11yhelp/dialogs/lang/bg.js"; 
-                                    public const string ca_js = "~/Scripts/ckeditor/plugins/a11yhelp/dialogs/lang/ca.js"; 
-                                    public const string cs_js = "~/Scripts/ckeditor/plugins/a11yhelp/dialogs/lang/cs.js"; 
-                                    public const string cy_js = "~/Scripts/ckeditor/plugins/a11yhelp/dialogs/lang/cy.js"; 
-                                    public const string da_js = "~/Scripts/ckeditor/plugins/a11yhelp/dialogs/lang/da.js"; 
-                                    public const string de_ch_js = "~/Scripts/ckeditor/plugins/a11yhelp/dialogs/lang/de-ch.js"; 
-                                    public const string de_js = "~/Scripts/ckeditor/plugins/a11yhelp/dialogs/lang/de.js"; 
-                                    public const string el_js = "~/Scripts/ckeditor/plugins/a11yhelp/dialogs/lang/el.js"; 
-                                    public const string en_gb_js = "~/Scripts/ckeditor/plugins/a11yhelp/dialogs/lang/en-gb.js"; 
-                                    public const string en_js = "~/Scripts/ckeditor/plugins/a11yhelp/dialogs/lang/en.js"; 
-                                    public const string eo_js = "~/Scripts/ckeditor/plugins/a11yhelp/dialogs/lang/eo.js"; 
-                                    public const string es_mx_js = "~/Scripts/ckeditor/plugins/a11yhelp/dialogs/lang/es-mx.js"; 
-                                    public const string es_js = "~/Scripts/ckeditor/plugins/a11yhelp/dialogs/lang/es.js"; 
-                                    public const string et_js = "~/Scripts/ckeditor/plugins/a11yhelp/dialogs/lang/et.js"; 
-                                    public const string eu_js = "~/Scripts/ckeditor/plugins/a11yhelp/dialogs/lang/eu.js"; 
-                                    public const string fa_js = "~/Scripts/ckeditor/plugins/a11yhelp/dialogs/lang/fa.js"; 
-                                    public const string fi_js = "~/Scripts/ckeditor/plugins/a11yhelp/dialogs/lang/fi.js"; 
-                                    public const string fo_js = "~/Scripts/ckeditor/plugins/a11yhelp/dialogs/lang/fo.js"; 
-                                    public const string fr_ca_js = "~/Scripts/ckeditor/plugins/a11yhelp/dialogs/lang/fr-ca.js"; 
-                                    public const string fr_js = "~/Scripts/ckeditor/plugins/a11yhelp/dialogs/lang/fr.js"; 
-                                    public const string gl_js = "~/Scripts/ckeditor/plugins/a11yhelp/dialogs/lang/gl.js"; 
-                                    public const string gu_js = "~/Scripts/ckeditor/plugins/a11yhelp/dialogs/lang/gu.js"; 
-                                    public const string he_js = "~/Scripts/ckeditor/plugins/a11yhelp/dialogs/lang/he.js"; 
-                                    public const string hi_js = "~/Scripts/ckeditor/plugins/a11yhelp/dialogs/lang/hi.js"; 
-                                    public const string hr_js = "~/Scripts/ckeditor/plugins/a11yhelp/dialogs/lang/hr.js"; 
-                                    public const string hu_js = "~/Scripts/ckeditor/plugins/a11yhelp/dialogs/lang/hu.js"; 
-                                    public const string id_js = "~/Scripts/ckeditor/plugins/a11yhelp/dialogs/lang/id.js"; 
-                                    public const string it_js = "~/Scripts/ckeditor/plugins/a11yhelp/dialogs/lang/it.js"; 
-                                    public const string ja_js = "~/Scripts/ckeditor/plugins/a11yhelp/dialogs/lang/ja.js"; 
-                                    public const string km_js = "~/Scripts/ckeditor/plugins/a11yhelp/dialogs/lang/km.js"; 
-                                    public const string ko_js = "~/Scripts/ckeditor/plugins/a11yhelp/dialogs/lang/ko.js"; 
-                                    public const string ku_js = "~/Scripts/ckeditor/plugins/a11yhelp/dialogs/lang/ku.js"; 
-                                    public const string lt_js = "~/Scripts/ckeditor/plugins/a11yhelp/dialogs/lang/lt.js"; 
-                                    public const string lv_js = "~/Scripts/ckeditor/plugins/a11yhelp/dialogs/lang/lv.js"; 
-                                    public const string mk_js = "~/Scripts/ckeditor/plugins/a11yhelp/dialogs/lang/mk.js"; 
-                                    public const string mn_js = "~/Scripts/ckeditor/plugins/a11yhelp/dialogs/lang/mn.js"; 
-                                    public const string nb_js = "~/Scripts/ckeditor/plugins/a11yhelp/dialogs/lang/nb.js"; 
-                                    public const string nl_js = "~/Scripts/ckeditor/plugins/a11yhelp/dialogs/lang/nl.js"; 
-                                    public const string no_js = "~/Scripts/ckeditor/plugins/a11yhelp/dialogs/lang/no.js"; 
-                                    public const string oc_js = "~/Scripts/ckeditor/plugins/a11yhelp/dialogs/lang/oc.js"; 
-                                    public const string pl_js = "~/Scripts/ckeditor/plugins/a11yhelp/dialogs/lang/pl.js"; 
-                                    public const string pt_br_js = "~/Scripts/ckeditor/plugins/a11yhelp/dialogs/lang/pt-br.js"; 
-                                    public const string pt_js = "~/Scripts/ckeditor/plugins/a11yhelp/dialogs/lang/pt.js"; 
-                                    public const string ro_js = "~/Scripts/ckeditor/plugins/a11yhelp/dialogs/lang/ro.js"; 
-                                    public const string ru_js = "~/Scripts/ckeditor/plugins/a11yhelp/dialogs/lang/ru.js"; 
-                                    public const string si_js = "~/Scripts/ckeditor/plugins/a11yhelp/dialogs/lang/si.js"; 
-                                    public const string sk_js = "~/Scripts/ckeditor/plugins/a11yhelp/dialogs/lang/sk.js"; 
-                                    public const string sl_js = "~/Scripts/ckeditor/plugins/a11yhelp/dialogs/lang/sl.js"; 
-                                    public const string sq_js = "~/Scripts/ckeditor/plugins/a11yhelp/dialogs/lang/sq.js"; 
-                                    public const string sr_latn_js = "~/Scripts/ckeditor/plugins/a11yhelp/dialogs/lang/sr-latn.js"; 
-                                    public const string sr_js = "~/Scripts/ckeditor/plugins/a11yhelp/dialogs/lang/sr.js"; 
-                                    public const string sv_js = "~/Scripts/ckeditor/plugins/a11yhelp/dialogs/lang/sv.js"; 
-                                    public const string th_js = "~/Scripts/ckeditor/plugins/a11yhelp/dialogs/lang/th.js"; 
-                                    public const string tr_js = "~/Scripts/ckeditor/plugins/a11yhelp/dialogs/lang/tr.js"; 
-                                    public const string tt_js = "~/Scripts/ckeditor/plugins/a11yhelp/dialogs/lang/tt.js"; 
-                                    public const string ug_js = "~/Scripts/ckeditor/plugins/a11yhelp/dialogs/lang/ug.js"; 
-                                    public const string uk_js = "~/Scripts/ckeditor/plugins/a11yhelp/dialogs/lang/uk.js"; 
-                                    public const string vi_js = "~/Scripts/ckeditor/plugins/a11yhelp/dialogs/lang/vi.js"; 
-                                    public const string zh_cn_js = "~/Scripts/ckeditor/plugins/a11yhelp/dialogs/lang/zh-cn.js"; 
-                                    public const string zh_js = "~/Scripts/ckeditor/plugins/a11yhelp/dialogs/lang/zh.js"; 
+                                    public static readonly string af_js = T4MVCHelpers.ProcessAssetPath("~/Scripts/ckeditor/plugins/a11yhelp/dialogs/lang/af.js"); 
+                                    public static readonly string ar_js = T4MVCHelpers.ProcessAssetPath("~/Scripts/ckeditor/plugins/a11yhelp/dialogs/lang/ar.js"); 
+                                    public static readonly string az_js = T4MVCHelpers.ProcessAssetPath("~/Scripts/ckeditor/plugins/a11yhelp/dialogs/lang/az.js"); 
+                                    public static readonly string bg_js = T4MVCHelpers.ProcessAssetPath("~/Scripts/ckeditor/plugins/a11yhelp/dialogs/lang/bg.js"); 
+                                    public static readonly string ca_js = T4MVCHelpers.ProcessAssetPath("~/Scripts/ckeditor/plugins/a11yhelp/dialogs/lang/ca.js"); 
+                                    public static readonly string cs_js = T4MVCHelpers.ProcessAssetPath("~/Scripts/ckeditor/plugins/a11yhelp/dialogs/lang/cs.js"); 
+                                    public static readonly string cy_js = T4MVCHelpers.ProcessAssetPath("~/Scripts/ckeditor/plugins/a11yhelp/dialogs/lang/cy.js"); 
+                                    public static readonly string da_js = T4MVCHelpers.ProcessAssetPath("~/Scripts/ckeditor/plugins/a11yhelp/dialogs/lang/da.js"); 
+                                    public static readonly string de_ch_js = T4MVCHelpers.ProcessAssetPath("~/Scripts/ckeditor/plugins/a11yhelp/dialogs/lang/de-ch.js"); 
+                                    public static readonly string de_js = T4MVCHelpers.ProcessAssetPath("~/Scripts/ckeditor/plugins/a11yhelp/dialogs/lang/de.js"); 
+                                    public static readonly string el_js = T4MVCHelpers.ProcessAssetPath("~/Scripts/ckeditor/plugins/a11yhelp/dialogs/lang/el.js"); 
+                                    public static readonly string en_gb_js = T4MVCHelpers.ProcessAssetPath("~/Scripts/ckeditor/plugins/a11yhelp/dialogs/lang/en-gb.js"); 
+                                    public static readonly string en_js = T4MVCHelpers.ProcessAssetPath("~/Scripts/ckeditor/plugins/a11yhelp/dialogs/lang/en.js"); 
+                                    public static readonly string eo_js = T4MVCHelpers.ProcessAssetPath("~/Scripts/ckeditor/plugins/a11yhelp/dialogs/lang/eo.js"); 
+                                    public static readonly string es_mx_js = T4MVCHelpers.ProcessAssetPath("~/Scripts/ckeditor/plugins/a11yhelp/dialogs/lang/es-mx.js"); 
+                                    public static readonly string es_js = T4MVCHelpers.ProcessAssetPath("~/Scripts/ckeditor/plugins/a11yhelp/dialogs/lang/es.js"); 
+                                    public static readonly string et_js = T4MVCHelpers.ProcessAssetPath("~/Scripts/ckeditor/plugins/a11yhelp/dialogs/lang/et.js"); 
+                                    public static readonly string eu_js = T4MVCHelpers.ProcessAssetPath("~/Scripts/ckeditor/plugins/a11yhelp/dialogs/lang/eu.js"); 
+                                    public static readonly string fa_js = T4MVCHelpers.ProcessAssetPath("~/Scripts/ckeditor/plugins/a11yhelp/dialogs/lang/fa.js"); 
+                                    public static readonly string fi_js = T4MVCHelpers.ProcessAssetPath("~/Scripts/ckeditor/plugins/a11yhelp/dialogs/lang/fi.js"); 
+                                    public static readonly string fo_js = T4MVCHelpers.ProcessAssetPath("~/Scripts/ckeditor/plugins/a11yhelp/dialogs/lang/fo.js"); 
+                                    public static readonly string fr_ca_js = T4MVCHelpers.ProcessAssetPath("~/Scripts/ckeditor/plugins/a11yhelp/dialogs/lang/fr-ca.js"); 
+                                    public static readonly string fr_js = T4MVCHelpers.ProcessAssetPath("~/Scripts/ckeditor/plugins/a11yhelp/dialogs/lang/fr.js"); 
+                                    public static readonly string gl_js = T4MVCHelpers.ProcessAssetPath("~/Scripts/ckeditor/plugins/a11yhelp/dialogs/lang/gl.js"); 
+                                    public static readonly string gu_js = T4MVCHelpers.ProcessAssetPath("~/Scripts/ckeditor/plugins/a11yhelp/dialogs/lang/gu.js"); 
+                                    public static readonly string he_js = T4MVCHelpers.ProcessAssetPath("~/Scripts/ckeditor/plugins/a11yhelp/dialogs/lang/he.js"); 
+                                    public static readonly string hi_js = T4MVCHelpers.ProcessAssetPath("~/Scripts/ckeditor/plugins/a11yhelp/dialogs/lang/hi.js"); 
+                                    public static readonly string hr_js = T4MVCHelpers.ProcessAssetPath("~/Scripts/ckeditor/plugins/a11yhelp/dialogs/lang/hr.js"); 
+                                    public static readonly string hu_js = T4MVCHelpers.ProcessAssetPath("~/Scripts/ckeditor/plugins/a11yhelp/dialogs/lang/hu.js"); 
+                                    public static readonly string id_js = T4MVCHelpers.ProcessAssetPath("~/Scripts/ckeditor/plugins/a11yhelp/dialogs/lang/id.js"); 
+                                    public static readonly string it_js = T4MVCHelpers.ProcessAssetPath("~/Scripts/ckeditor/plugins/a11yhelp/dialogs/lang/it.js"); 
+                                    public static readonly string ja_js = T4MVCHelpers.ProcessAssetPath("~/Scripts/ckeditor/plugins/a11yhelp/dialogs/lang/ja.js"); 
+                                    public static readonly string km_js = T4MVCHelpers.ProcessAssetPath("~/Scripts/ckeditor/plugins/a11yhelp/dialogs/lang/km.js"); 
+                                    public static readonly string ko_js = T4MVCHelpers.ProcessAssetPath("~/Scripts/ckeditor/plugins/a11yhelp/dialogs/lang/ko.js"); 
+                                    public static readonly string ku_js = T4MVCHelpers.ProcessAssetPath("~/Scripts/ckeditor/plugins/a11yhelp/dialogs/lang/ku.js"); 
+                                    public static readonly string lt_js = T4MVCHelpers.ProcessAssetPath("~/Scripts/ckeditor/plugins/a11yhelp/dialogs/lang/lt.js"); 
+                                    public static readonly string lv_js = T4MVCHelpers.ProcessAssetPath("~/Scripts/ckeditor/plugins/a11yhelp/dialogs/lang/lv.js"); 
+                                    public static readonly string mk_js = T4MVCHelpers.ProcessAssetPath("~/Scripts/ckeditor/plugins/a11yhelp/dialogs/lang/mk.js"); 
+                                    public static readonly string mn_js = T4MVCHelpers.ProcessAssetPath("~/Scripts/ckeditor/plugins/a11yhelp/dialogs/lang/mn.js"); 
+                                    public static readonly string nb_js = T4MVCHelpers.ProcessAssetPath("~/Scripts/ckeditor/plugins/a11yhelp/dialogs/lang/nb.js"); 
+                                    public static readonly string nl_js = T4MVCHelpers.ProcessAssetPath("~/Scripts/ckeditor/plugins/a11yhelp/dialogs/lang/nl.js"); 
+                                    public static readonly string no_js = T4MVCHelpers.ProcessAssetPath("~/Scripts/ckeditor/plugins/a11yhelp/dialogs/lang/no.js"); 
+                                    public static readonly string oc_js = T4MVCHelpers.ProcessAssetPath("~/Scripts/ckeditor/plugins/a11yhelp/dialogs/lang/oc.js"); 
+                                    public static readonly string pl_js = T4MVCHelpers.ProcessAssetPath("~/Scripts/ckeditor/plugins/a11yhelp/dialogs/lang/pl.js"); 
+                                    public static readonly string pt_br_js = T4MVCHelpers.ProcessAssetPath("~/Scripts/ckeditor/plugins/a11yhelp/dialogs/lang/pt-br.js"); 
+                                    public static readonly string pt_js = T4MVCHelpers.ProcessAssetPath("~/Scripts/ckeditor/plugins/a11yhelp/dialogs/lang/pt.js"); 
+                                    public static readonly string ro_js = T4MVCHelpers.ProcessAssetPath("~/Scripts/ckeditor/plugins/a11yhelp/dialogs/lang/ro.js"); 
+                                    public static readonly string ru_js = T4MVCHelpers.ProcessAssetPath("~/Scripts/ckeditor/plugins/a11yhelp/dialogs/lang/ru.js"); 
+                                    public static readonly string si_js = T4MVCHelpers.ProcessAssetPath("~/Scripts/ckeditor/plugins/a11yhelp/dialogs/lang/si.js"); 
+                                    public static readonly string sk_js = T4MVCHelpers.ProcessAssetPath("~/Scripts/ckeditor/plugins/a11yhelp/dialogs/lang/sk.js"); 
+                                    public static readonly string sl_js = T4MVCHelpers.ProcessAssetPath("~/Scripts/ckeditor/plugins/a11yhelp/dialogs/lang/sl.js"); 
+                                    public static readonly string sq_js = T4MVCHelpers.ProcessAssetPath("~/Scripts/ckeditor/plugins/a11yhelp/dialogs/lang/sq.js"); 
+                                    public static readonly string sr_latn_js = T4MVCHelpers.ProcessAssetPath("~/Scripts/ckeditor/plugins/a11yhelp/dialogs/lang/sr-latn.js"); 
+                                    public static readonly string sr_js = T4MVCHelpers.ProcessAssetPath("~/Scripts/ckeditor/plugins/a11yhelp/dialogs/lang/sr.js"); 
+                                    public static readonly string sv_js = T4MVCHelpers.ProcessAssetPath("~/Scripts/ckeditor/plugins/a11yhelp/dialogs/lang/sv.js"); 
+                                    public static readonly string th_js = T4MVCHelpers.ProcessAssetPath("~/Scripts/ckeditor/plugins/a11yhelp/dialogs/lang/th.js"); 
+                                    public static readonly string tr_js = T4MVCHelpers.ProcessAssetPath("~/Scripts/ckeditor/plugins/a11yhelp/dialogs/lang/tr.js"); 
+                                    public static readonly string tt_js = T4MVCHelpers.ProcessAssetPath("~/Scripts/ckeditor/plugins/a11yhelp/dialogs/lang/tt.js"); 
+                                    public static readonly string ug_js = T4MVCHelpers.ProcessAssetPath("~/Scripts/ckeditor/plugins/a11yhelp/dialogs/lang/ug.js"); 
+                                    public static readonly string uk_js = T4MVCHelpers.ProcessAssetPath("~/Scripts/ckeditor/plugins/a11yhelp/dialogs/lang/uk.js"); 
+                                    public static readonly string vi_js = T4MVCHelpers.ProcessAssetPath("~/Scripts/ckeditor/plugins/a11yhelp/dialogs/lang/vi.js"); 
+                                    public static readonly string zh_cn_js = T4MVCHelpers.ProcessAssetPath("~/Scripts/ckeditor/plugins/a11yhelp/dialogs/lang/zh-cn.js"); 
+                                    public static readonly string zh_js = T4MVCHelpers.ProcessAssetPath("~/Scripts/ckeditor/plugins/a11yhelp/dialogs/lang/zh.js"); 
                                 }
                             }
                             public static class Assets
                             {
-                                public const string a11yhelp_js = "~/Scripts/ckeditor/plugins/a11yhelp/dialogs/a11yhelp.js"; 
+                                public static readonly string a11yhelp_js = T4MVCHelpers.ProcessAssetPath("~/Scripts/ckeditor/plugins/a11yhelp/dialogs/a11yhelp.js"); 
                             }
                         }
                         public static class Assets
@@ -7699,7 +7699,7 @@ namespace Links
                             }
                             public static class Assets
                             {
-                                public const string about_js = "~/Scripts/ckeditor/plugins/about/dialogs/about.js"; 
+                                public static readonly string about_js = T4MVCHelpers.ProcessAssetPath("~/Scripts/ckeditor/plugins/about/dialogs/about.js"); 
                             }
                         }
                         public static class Assets
@@ -7710,7 +7710,7 @@ namespace Links
                     {
                         public static class Assets
                         {
-                            public const string dialogDefinition_js = "~/Scripts/ckeditor/plugins/dialog/dialogDefinition.js"; 
+                            public static readonly string dialogDefinition_js = T4MVCHelpers.ProcessAssetPath("~/Scripts/ckeditor/plugins/dialog/dialogDefinition.js"); 
                         }
                     }
                     public static partial class image 
@@ -7719,7 +7719,7 @@ namespace Links
                         {
                             public static class Assets
                             {
-                                public const string image_js = "~/Scripts/ckeditor/plugins/image/dialogs/image.js"; 
+                                public static readonly string image_js = T4MVCHelpers.ProcessAssetPath("~/Scripts/ckeditor/plugins/image/dialogs/image.js"); 
                             }
                         }
                         public static partial class images 
@@ -7738,8 +7738,8 @@ namespace Links
                         {
                             public static class Assets
                             {
-                                public const string anchor_js = "~/Scripts/ckeditor/plugins/link/dialogs/anchor.js"; 
-                                public const string link_js = "~/Scripts/ckeditor/plugins/link/dialogs/link.js"; 
+                                public static readonly string anchor_js = T4MVCHelpers.ProcessAssetPath("~/Scripts/ckeditor/plugins/link/dialogs/anchor.js"); 
+                                public static readonly string link_js = T4MVCHelpers.ProcessAssetPath("~/Scripts/ckeditor/plugins/link/dialogs/link.js"); 
                             }
                         }
                         public static partial class images 
@@ -7782,7 +7782,7 @@ namespace Links
                         {
                             public static class Assets
                             {
-                                public const string default_js = "~/Scripts/ckeditor/plugins/pastefromword/filter/default.js"; 
+                                public static readonly string default_js = T4MVCHelpers.ProcessAssetPath("~/Scripts/ckeditor/plugins/pastefromword/filter/default.js"); 
                             }
                         }
                         public static class Assets
@@ -7795,9 +7795,9 @@ namespace Links
                         {
                             public static class Assets
                             {
-                                public const string dialog_css = "~/Scripts/ckeditor/plugins/scayt/dialogs/dialog.css";
-                                public const string options_js = "~/Scripts/ckeditor/plugins/scayt/dialogs/options.js"; 
-                                public const string toolbar_css = "~/Scripts/ckeditor/plugins/scayt/dialogs/toolbar.css";
+                                public static readonly string dialog_css = T4MVCHelpers.ProcessAssetPath("~/Scripts/ckeditor/plugins/scayt/dialogs/dialog.css");
+                                public static readonly string options_js = T4MVCHelpers.ProcessAssetPath("~/Scripts/ckeditor/plugins/scayt/dialogs/options.js"); 
+                                public static readonly string toolbar_css = T4MVCHelpers.ProcessAssetPath("~/Scripts/ckeditor/plugins/scayt/dialogs/toolbar.css");
                             }
                         }
                         public static partial class skins 
@@ -7806,7 +7806,7 @@ namespace Links
                             {
                                 public static class Assets
                                 {
-                                    public const string scayt_css = "~/Scripts/ckeditor/plugins/scayt/skins/moono-lisa/scayt.css";
+                                    public static readonly string scayt_css = T4MVCHelpers.ProcessAssetPath("~/Scripts/ckeditor/plugins/scayt/skins/moono-lisa/scayt.css");
                                 }
                             }
                             public static class Assets
@@ -7825,68 +7825,68 @@ namespace Links
                             {
                                 public static class Assets
                                 {
-                                    public const string af_js = "~/Scripts/ckeditor/plugins/specialchar/dialogs/lang/af.js"; 
-                                    public const string ar_js = "~/Scripts/ckeditor/plugins/specialchar/dialogs/lang/ar.js"; 
-                                    public const string az_js = "~/Scripts/ckeditor/plugins/specialchar/dialogs/lang/az.js"; 
-                                    public const string bg_js = "~/Scripts/ckeditor/plugins/specialchar/dialogs/lang/bg.js"; 
-                                    public const string ca_js = "~/Scripts/ckeditor/plugins/specialchar/dialogs/lang/ca.js"; 
-                                    public const string cs_js = "~/Scripts/ckeditor/plugins/specialchar/dialogs/lang/cs.js"; 
-                                    public const string cy_js = "~/Scripts/ckeditor/plugins/specialchar/dialogs/lang/cy.js"; 
-                                    public const string da_js = "~/Scripts/ckeditor/plugins/specialchar/dialogs/lang/da.js"; 
-                                    public const string de_ch_js = "~/Scripts/ckeditor/plugins/specialchar/dialogs/lang/de-ch.js"; 
-                                    public const string de_js = "~/Scripts/ckeditor/plugins/specialchar/dialogs/lang/de.js"; 
-                                    public const string el_js = "~/Scripts/ckeditor/plugins/specialchar/dialogs/lang/el.js"; 
-                                    public const string en_au_js = "~/Scripts/ckeditor/plugins/specialchar/dialogs/lang/en-au.js"; 
-                                    public const string en_ca_js = "~/Scripts/ckeditor/plugins/specialchar/dialogs/lang/en-ca.js"; 
-                                    public const string en_gb_js = "~/Scripts/ckeditor/plugins/specialchar/dialogs/lang/en-gb.js"; 
-                                    public const string en_js = "~/Scripts/ckeditor/plugins/specialchar/dialogs/lang/en.js"; 
-                                    public const string eo_js = "~/Scripts/ckeditor/plugins/specialchar/dialogs/lang/eo.js"; 
-                                    public const string es_mx_js = "~/Scripts/ckeditor/plugins/specialchar/dialogs/lang/es-mx.js"; 
-                                    public const string es_js = "~/Scripts/ckeditor/plugins/specialchar/dialogs/lang/es.js"; 
-                                    public const string et_js = "~/Scripts/ckeditor/plugins/specialchar/dialogs/lang/et.js"; 
-                                    public const string eu_js = "~/Scripts/ckeditor/plugins/specialchar/dialogs/lang/eu.js"; 
-                                    public const string fa_js = "~/Scripts/ckeditor/plugins/specialchar/dialogs/lang/fa.js"; 
-                                    public const string fi_js = "~/Scripts/ckeditor/plugins/specialchar/dialogs/lang/fi.js"; 
-                                    public const string fr_ca_js = "~/Scripts/ckeditor/plugins/specialchar/dialogs/lang/fr-ca.js"; 
-                                    public const string fr_js = "~/Scripts/ckeditor/plugins/specialchar/dialogs/lang/fr.js"; 
-                                    public const string gl_js = "~/Scripts/ckeditor/plugins/specialchar/dialogs/lang/gl.js"; 
-                                    public const string he_js = "~/Scripts/ckeditor/plugins/specialchar/dialogs/lang/he.js"; 
-                                    public const string hr_js = "~/Scripts/ckeditor/plugins/specialchar/dialogs/lang/hr.js"; 
-                                    public const string hu_js = "~/Scripts/ckeditor/plugins/specialchar/dialogs/lang/hu.js"; 
-                                    public const string id_js = "~/Scripts/ckeditor/plugins/specialchar/dialogs/lang/id.js"; 
-                                    public const string it_js = "~/Scripts/ckeditor/plugins/specialchar/dialogs/lang/it.js"; 
-                                    public const string ja_js = "~/Scripts/ckeditor/plugins/specialchar/dialogs/lang/ja.js"; 
-                                    public const string km_js = "~/Scripts/ckeditor/plugins/specialchar/dialogs/lang/km.js"; 
-                                    public const string ko_js = "~/Scripts/ckeditor/plugins/specialchar/dialogs/lang/ko.js"; 
-                                    public const string ku_js = "~/Scripts/ckeditor/plugins/specialchar/dialogs/lang/ku.js"; 
-                                    public const string lt_js = "~/Scripts/ckeditor/plugins/specialchar/dialogs/lang/lt.js"; 
-                                    public const string lv_js = "~/Scripts/ckeditor/plugins/specialchar/dialogs/lang/lv.js"; 
-                                    public const string nb_js = "~/Scripts/ckeditor/plugins/specialchar/dialogs/lang/nb.js"; 
-                                    public const string nl_js = "~/Scripts/ckeditor/plugins/specialchar/dialogs/lang/nl.js"; 
-                                    public const string no_js = "~/Scripts/ckeditor/plugins/specialchar/dialogs/lang/no.js"; 
-                                    public const string oc_js = "~/Scripts/ckeditor/plugins/specialchar/dialogs/lang/oc.js"; 
-                                    public const string pl_js = "~/Scripts/ckeditor/plugins/specialchar/dialogs/lang/pl.js"; 
-                                    public const string pt_br_js = "~/Scripts/ckeditor/plugins/specialchar/dialogs/lang/pt-br.js"; 
-                                    public const string pt_js = "~/Scripts/ckeditor/plugins/specialchar/dialogs/lang/pt.js"; 
-                                    public const string ru_js = "~/Scripts/ckeditor/plugins/specialchar/dialogs/lang/ru.js"; 
-                                    public const string si_js = "~/Scripts/ckeditor/plugins/specialchar/dialogs/lang/si.js"; 
-                                    public const string sk_js = "~/Scripts/ckeditor/plugins/specialchar/dialogs/lang/sk.js"; 
-                                    public const string sl_js = "~/Scripts/ckeditor/plugins/specialchar/dialogs/lang/sl.js"; 
-                                    public const string sq_js = "~/Scripts/ckeditor/plugins/specialchar/dialogs/lang/sq.js"; 
-                                    public const string sv_js = "~/Scripts/ckeditor/plugins/specialchar/dialogs/lang/sv.js"; 
-                                    public const string th_js = "~/Scripts/ckeditor/plugins/specialchar/dialogs/lang/th.js"; 
-                                    public const string tr_js = "~/Scripts/ckeditor/plugins/specialchar/dialogs/lang/tr.js"; 
-                                    public const string tt_js = "~/Scripts/ckeditor/plugins/specialchar/dialogs/lang/tt.js"; 
-                                    public const string ug_js = "~/Scripts/ckeditor/plugins/specialchar/dialogs/lang/ug.js"; 
-                                    public const string uk_js = "~/Scripts/ckeditor/plugins/specialchar/dialogs/lang/uk.js"; 
-                                    public const string vi_js = "~/Scripts/ckeditor/plugins/specialchar/dialogs/lang/vi.js"; 
-                                    public const string zh_cn_js = "~/Scripts/ckeditor/plugins/specialchar/dialogs/lang/zh-cn.js"; 
-                                    public const string zh_js = "~/Scripts/ckeditor/plugins/specialchar/dialogs/lang/zh.js"; 
+                                    public static readonly string af_js = T4MVCHelpers.ProcessAssetPath("~/Scripts/ckeditor/plugins/specialchar/dialogs/lang/af.js"); 
+                                    public static readonly string ar_js = T4MVCHelpers.ProcessAssetPath("~/Scripts/ckeditor/plugins/specialchar/dialogs/lang/ar.js"); 
+                                    public static readonly string az_js = T4MVCHelpers.ProcessAssetPath("~/Scripts/ckeditor/plugins/specialchar/dialogs/lang/az.js"); 
+                                    public static readonly string bg_js = T4MVCHelpers.ProcessAssetPath("~/Scripts/ckeditor/plugins/specialchar/dialogs/lang/bg.js"); 
+                                    public static readonly string ca_js = T4MVCHelpers.ProcessAssetPath("~/Scripts/ckeditor/plugins/specialchar/dialogs/lang/ca.js"); 
+                                    public static readonly string cs_js = T4MVCHelpers.ProcessAssetPath("~/Scripts/ckeditor/plugins/specialchar/dialogs/lang/cs.js"); 
+                                    public static readonly string cy_js = T4MVCHelpers.ProcessAssetPath("~/Scripts/ckeditor/plugins/specialchar/dialogs/lang/cy.js"); 
+                                    public static readonly string da_js = T4MVCHelpers.ProcessAssetPath("~/Scripts/ckeditor/plugins/specialchar/dialogs/lang/da.js"); 
+                                    public static readonly string de_ch_js = T4MVCHelpers.ProcessAssetPath("~/Scripts/ckeditor/plugins/specialchar/dialogs/lang/de-ch.js"); 
+                                    public static readonly string de_js = T4MVCHelpers.ProcessAssetPath("~/Scripts/ckeditor/plugins/specialchar/dialogs/lang/de.js"); 
+                                    public static readonly string el_js = T4MVCHelpers.ProcessAssetPath("~/Scripts/ckeditor/plugins/specialchar/dialogs/lang/el.js"); 
+                                    public static readonly string en_au_js = T4MVCHelpers.ProcessAssetPath("~/Scripts/ckeditor/plugins/specialchar/dialogs/lang/en-au.js"); 
+                                    public static readonly string en_ca_js = T4MVCHelpers.ProcessAssetPath("~/Scripts/ckeditor/plugins/specialchar/dialogs/lang/en-ca.js"); 
+                                    public static readonly string en_gb_js = T4MVCHelpers.ProcessAssetPath("~/Scripts/ckeditor/plugins/specialchar/dialogs/lang/en-gb.js"); 
+                                    public static readonly string en_js = T4MVCHelpers.ProcessAssetPath("~/Scripts/ckeditor/plugins/specialchar/dialogs/lang/en.js"); 
+                                    public static readonly string eo_js = T4MVCHelpers.ProcessAssetPath("~/Scripts/ckeditor/plugins/specialchar/dialogs/lang/eo.js"); 
+                                    public static readonly string es_mx_js = T4MVCHelpers.ProcessAssetPath("~/Scripts/ckeditor/plugins/specialchar/dialogs/lang/es-mx.js"); 
+                                    public static readonly string es_js = T4MVCHelpers.ProcessAssetPath("~/Scripts/ckeditor/plugins/specialchar/dialogs/lang/es.js"); 
+                                    public static readonly string et_js = T4MVCHelpers.ProcessAssetPath("~/Scripts/ckeditor/plugins/specialchar/dialogs/lang/et.js"); 
+                                    public static readonly string eu_js = T4MVCHelpers.ProcessAssetPath("~/Scripts/ckeditor/plugins/specialchar/dialogs/lang/eu.js"); 
+                                    public static readonly string fa_js = T4MVCHelpers.ProcessAssetPath("~/Scripts/ckeditor/plugins/specialchar/dialogs/lang/fa.js"); 
+                                    public static readonly string fi_js = T4MVCHelpers.ProcessAssetPath("~/Scripts/ckeditor/plugins/specialchar/dialogs/lang/fi.js"); 
+                                    public static readonly string fr_ca_js = T4MVCHelpers.ProcessAssetPath("~/Scripts/ckeditor/plugins/specialchar/dialogs/lang/fr-ca.js"); 
+                                    public static readonly string fr_js = T4MVCHelpers.ProcessAssetPath("~/Scripts/ckeditor/plugins/specialchar/dialogs/lang/fr.js"); 
+                                    public static readonly string gl_js = T4MVCHelpers.ProcessAssetPath("~/Scripts/ckeditor/plugins/specialchar/dialogs/lang/gl.js"); 
+                                    public static readonly string he_js = T4MVCHelpers.ProcessAssetPath("~/Scripts/ckeditor/plugins/specialchar/dialogs/lang/he.js"); 
+                                    public static readonly string hr_js = T4MVCHelpers.ProcessAssetPath("~/Scripts/ckeditor/plugins/specialchar/dialogs/lang/hr.js"); 
+                                    public static readonly string hu_js = T4MVCHelpers.ProcessAssetPath("~/Scripts/ckeditor/plugins/specialchar/dialogs/lang/hu.js"); 
+                                    public static readonly string id_js = T4MVCHelpers.ProcessAssetPath("~/Scripts/ckeditor/plugins/specialchar/dialogs/lang/id.js"); 
+                                    public static readonly string it_js = T4MVCHelpers.ProcessAssetPath("~/Scripts/ckeditor/plugins/specialchar/dialogs/lang/it.js"); 
+                                    public static readonly string ja_js = T4MVCHelpers.ProcessAssetPath("~/Scripts/ckeditor/plugins/specialchar/dialogs/lang/ja.js"); 
+                                    public static readonly string km_js = T4MVCHelpers.ProcessAssetPath("~/Scripts/ckeditor/plugins/specialchar/dialogs/lang/km.js"); 
+                                    public static readonly string ko_js = T4MVCHelpers.ProcessAssetPath("~/Scripts/ckeditor/plugins/specialchar/dialogs/lang/ko.js"); 
+                                    public static readonly string ku_js = T4MVCHelpers.ProcessAssetPath("~/Scripts/ckeditor/plugins/specialchar/dialogs/lang/ku.js"); 
+                                    public static readonly string lt_js = T4MVCHelpers.ProcessAssetPath("~/Scripts/ckeditor/plugins/specialchar/dialogs/lang/lt.js"); 
+                                    public static readonly string lv_js = T4MVCHelpers.ProcessAssetPath("~/Scripts/ckeditor/plugins/specialchar/dialogs/lang/lv.js"); 
+                                    public static readonly string nb_js = T4MVCHelpers.ProcessAssetPath("~/Scripts/ckeditor/plugins/specialchar/dialogs/lang/nb.js"); 
+                                    public static readonly string nl_js = T4MVCHelpers.ProcessAssetPath("~/Scripts/ckeditor/plugins/specialchar/dialogs/lang/nl.js"); 
+                                    public static readonly string no_js = T4MVCHelpers.ProcessAssetPath("~/Scripts/ckeditor/plugins/specialchar/dialogs/lang/no.js"); 
+                                    public static readonly string oc_js = T4MVCHelpers.ProcessAssetPath("~/Scripts/ckeditor/plugins/specialchar/dialogs/lang/oc.js"); 
+                                    public static readonly string pl_js = T4MVCHelpers.ProcessAssetPath("~/Scripts/ckeditor/plugins/specialchar/dialogs/lang/pl.js"); 
+                                    public static readonly string pt_br_js = T4MVCHelpers.ProcessAssetPath("~/Scripts/ckeditor/plugins/specialchar/dialogs/lang/pt-br.js"); 
+                                    public static readonly string pt_js = T4MVCHelpers.ProcessAssetPath("~/Scripts/ckeditor/plugins/specialchar/dialogs/lang/pt.js"); 
+                                    public static readonly string ru_js = T4MVCHelpers.ProcessAssetPath("~/Scripts/ckeditor/plugins/specialchar/dialogs/lang/ru.js"); 
+                                    public static readonly string si_js = T4MVCHelpers.ProcessAssetPath("~/Scripts/ckeditor/plugins/specialchar/dialogs/lang/si.js"); 
+                                    public static readonly string sk_js = T4MVCHelpers.ProcessAssetPath("~/Scripts/ckeditor/plugins/specialchar/dialogs/lang/sk.js"); 
+                                    public static readonly string sl_js = T4MVCHelpers.ProcessAssetPath("~/Scripts/ckeditor/plugins/specialchar/dialogs/lang/sl.js"); 
+                                    public static readonly string sq_js = T4MVCHelpers.ProcessAssetPath("~/Scripts/ckeditor/plugins/specialchar/dialogs/lang/sq.js"); 
+                                    public static readonly string sv_js = T4MVCHelpers.ProcessAssetPath("~/Scripts/ckeditor/plugins/specialchar/dialogs/lang/sv.js"); 
+                                    public static readonly string th_js = T4MVCHelpers.ProcessAssetPath("~/Scripts/ckeditor/plugins/specialchar/dialogs/lang/th.js"); 
+                                    public static readonly string tr_js = T4MVCHelpers.ProcessAssetPath("~/Scripts/ckeditor/plugins/specialchar/dialogs/lang/tr.js"); 
+                                    public static readonly string tt_js = T4MVCHelpers.ProcessAssetPath("~/Scripts/ckeditor/plugins/specialchar/dialogs/lang/tt.js"); 
+                                    public static readonly string ug_js = T4MVCHelpers.ProcessAssetPath("~/Scripts/ckeditor/plugins/specialchar/dialogs/lang/ug.js"); 
+                                    public static readonly string uk_js = T4MVCHelpers.ProcessAssetPath("~/Scripts/ckeditor/plugins/specialchar/dialogs/lang/uk.js"); 
+                                    public static readonly string vi_js = T4MVCHelpers.ProcessAssetPath("~/Scripts/ckeditor/plugins/specialchar/dialogs/lang/vi.js"); 
+                                    public static readonly string zh_cn_js = T4MVCHelpers.ProcessAssetPath("~/Scripts/ckeditor/plugins/specialchar/dialogs/lang/zh-cn.js"); 
+                                    public static readonly string zh_js = T4MVCHelpers.ProcessAssetPath("~/Scripts/ckeditor/plugins/specialchar/dialogs/lang/zh.js"); 
                                 }
                             }
                             public static class Assets
                             {
-                                public const string specialchar_js = "~/Scripts/ckeditor/plugins/specialchar/dialogs/specialchar.js"; 
+                                public static readonly string specialchar_js = T4MVCHelpers.ProcessAssetPath("~/Scripts/ckeditor/plugins/specialchar/dialogs/specialchar.js"); 
                             }
                         }
                         public static class Assets
@@ -7899,7 +7899,7 @@ namespace Links
                         {
                             public static class Assets
                             {
-                                public const string table_js = "~/Scripts/ckeditor/plugins/table/dialogs/table.js"; 
+                                public static readonly string table_js = T4MVCHelpers.ProcessAssetPath("~/Scripts/ckeditor/plugins/table/dialogs/table.js"); 
                             }
                         }
                         public static class Assets
@@ -7912,7 +7912,7 @@ namespace Links
                         {
                             public static class Assets
                             {
-                                public const string tableselection_css = "~/Scripts/ckeditor/plugins/tableselection/styles/tableselection.css";
+                                public static readonly string tableselection_css = T4MVCHelpers.ProcessAssetPath("~/Scripts/ckeditor/plugins/tableselection/styles/tableselection.css");
                             }
                         }
                         public static class Assets
@@ -7925,7 +7925,7 @@ namespace Links
                         {
                             public static class Assets
                             {
-                                public const string tableCell_js = "~/Scripts/ckeditor/plugins/tabletools/dialogs/tableCell.js"; 
+                                public static readonly string tableCell_js = T4MVCHelpers.ProcessAssetPath("~/Scripts/ckeditor/plugins/tabletools/dialogs/tableCell.js"); 
                             }
                         }
                         public static class Assets
@@ -7938,9 +7938,9 @@ namespace Links
                         {
                             public static class Assets
                             {
-                                public const string wsc_css = "~/Scripts/ckeditor/plugins/wsc/dialogs/wsc.css";
-                                public const string wsc_js = "~/Scripts/ckeditor/plugins/wsc/dialogs/wsc.js"; 
-                                public const string wsc_ie_js = "~/Scripts/ckeditor/plugins/wsc/dialogs/wsc_ie.js"; 
+                                public static readonly string wsc_css = T4MVCHelpers.ProcessAssetPath("~/Scripts/ckeditor/plugins/wsc/dialogs/wsc.css");
+                                public static readonly string wsc_js = T4MVCHelpers.ProcessAssetPath("~/Scripts/ckeditor/plugins/wsc/dialogs/wsc.js"); 
+                                public static readonly string wsc_ie_js = T4MVCHelpers.ProcessAssetPath("~/Scripts/ckeditor/plugins/wsc/dialogs/wsc_ie.js"); 
                             }
                         }
                         public static partial class skins 
@@ -7949,7 +7949,7 @@ namespace Links
                             {
                                 public static class Assets
                                 {
-                                    public const string wsc_css = "~/Scripts/ckeditor/plugins/wsc/skins/moono-lisa/wsc.css";
+                                    public static readonly string wsc_css = T4MVCHelpers.ProcessAssetPath("~/Scripts/ckeditor/plugins/wsc/skins/moono-lisa/wsc.css");
                                 }
                             }
                             public static class Assets
@@ -7970,7 +7970,7 @@ namespace Links
                     {
                         public static class Assets
                         {
-                            public const string samples_css = "~/Scripts/ckeditor/samples/css/samples.css";
+                            public static readonly string samples_css = T4MVCHelpers.ProcessAssetPath("~/Scripts/ckeditor/samples/css/samples.css");
                         }
                     }
                     public static partial class img 
@@ -7983,8 +7983,8 @@ namespace Links
                     {
                         public static class Assets
                         {
-                            public const string sample_js = "~/Scripts/ckeditor/samples/js/sample.js"; 
-                            public const string sf_js = "~/Scripts/ckeditor/samples/js/sf.js"; 
+                            public static readonly string sample_js = T4MVCHelpers.ProcessAssetPath("~/Scripts/ckeditor/samples/js/sample.js"); 
+                            public static readonly string sf_js = T4MVCHelpers.ProcessAssetPath("~/Scripts/ckeditor/samples/js/sf.js"); 
                         }
                     }
                     public static partial class old 
@@ -8001,14 +8001,14 @@ namespace Links
                             {
                                 public static class Assets
                                 {
-                                    public const string outputxhtml_css = "~/Scripts/ckeditor/samples/old/assets/outputxhtml/outputxhtml.css";
+                                    public static readonly string outputxhtml_css = T4MVCHelpers.ProcessAssetPath("~/Scripts/ckeditor/samples/old/assets/outputxhtml/outputxhtml.css");
                                 }
                             }
                             public static partial class uilanguages 
                             {
                                 public static class Assets
                                 {
-                                    public const string languages_js = "~/Scripts/ckeditor/samples/old/assets/uilanguages/languages.js"; 
+                                    public static readonly string languages_js = T4MVCHelpers.ProcessAssetPath("~/Scripts/ckeditor/samples/old/assets/uilanguages/languages.js"); 
                                 }
                             }
                             public static class Assets
@@ -8021,7 +8021,7 @@ namespace Links
                             {
                                 public static class Assets
                                 {
-                                    public const string my_dialog_js = "~/Scripts/ckeditor/samples/old/dialog/assets/my_dialog.js"; 
+                                    public static readonly string my_dialog_js = T4MVCHelpers.ProcessAssetPath("~/Scripts/ckeditor/samples/old/dialog/assets/my_dialog.js"); 
                                 }
                             }
                             public static class Assets
@@ -8042,7 +8042,7 @@ namespace Links
                                 {
                                     public static class Assets
                                     {
-                                        public const string swfobject_js = "~/Scripts/ckeditor/samples/old/htmlwriter/assets/outputforflash/swfobject.js"; 
+                                        public static readonly string swfobject_js = T4MVCHelpers.ProcessAssetPath("~/Scripts/ckeditor/samples/old/htmlwriter/assets/outputforflash/swfobject.js"); 
                                     }
                                 }
                                 public static class Assets
@@ -8073,8 +8073,8 @@ namespace Links
                         }
                         public static class Assets
                         {
-                            public const string sample_css = "~/Scripts/ckeditor/samples/old/sample.css";
-                            public const string sample_js = "~/Scripts/ckeditor/samples/old/sample.js"; 
+                            public static readonly string sample_css = T4MVCHelpers.ProcessAssetPath("~/Scripts/ckeditor/samples/old/sample.css");
+                            public static readonly string sample_js = T4MVCHelpers.ProcessAssetPath("~/Scripts/ckeditor/samples/old/sample.js"); 
                         }
                     }
                     public static partial class toolbarconfigurator 
@@ -8083,7 +8083,7 @@ namespace Links
                         {
                             public static class Assets
                             {
-                                public const string fontello_css = "~/Scripts/ckeditor/samples/toolbarconfigurator/css/fontello.css";
+                                public static readonly string fontello_css = T4MVCHelpers.ProcessAssetPath("~/Scripts/ckeditor/samples/toolbarconfigurator/css/fontello.css");
                             }
                         }
                         public static partial class font 
@@ -8096,10 +8096,10 @@ namespace Links
                         {
                             public static class Assets
                             {
-                                public const string abstracttoolbarmodifier_js = "~/Scripts/ckeditor/samples/toolbarconfigurator/js/abstracttoolbarmodifier.js"; 
-                                public const string fulltoolbareditor_js = "~/Scripts/ckeditor/samples/toolbarconfigurator/js/fulltoolbareditor.js"; 
-                                public const string toolbarmodifier_js = "~/Scripts/ckeditor/samples/toolbarconfigurator/js/toolbarmodifier.js"; 
-                                public const string toolbartextmodifier_js = "~/Scripts/ckeditor/samples/toolbarconfigurator/js/toolbartextmodifier.js"; 
+                                public static readonly string abstracttoolbarmodifier_js = T4MVCHelpers.ProcessAssetPath("~/Scripts/ckeditor/samples/toolbarconfigurator/js/abstracttoolbarmodifier.js"); 
+                                public static readonly string fulltoolbareditor_js = T4MVCHelpers.ProcessAssetPath("~/Scripts/ckeditor/samples/toolbarconfigurator/js/fulltoolbareditor.js"); 
+                                public static readonly string toolbarmodifier_js = T4MVCHelpers.ProcessAssetPath("~/Scripts/ckeditor/samples/toolbarconfigurator/js/toolbarmodifier.js"); 
+                                public static readonly string toolbartextmodifier_js = T4MVCHelpers.ProcessAssetPath("~/Scripts/ckeditor/samples/toolbarconfigurator/js/toolbartextmodifier.js"); 
                             }
                         }
                         public static partial class lib 
@@ -8108,12 +8108,12 @@ namespace Links
                             {
                                 public static class Assets
                                 {
-                                    public const string codemirror_css = "~/Scripts/ckeditor/samples/toolbarconfigurator/lib/codemirror/codemirror.css";
-                                    public const string codemirror_js = "~/Scripts/ckeditor/samples/toolbarconfigurator/lib/codemirror/codemirror.js"; 
-                                    public const string javascript_js = "~/Scripts/ckeditor/samples/toolbarconfigurator/lib/codemirror/javascript.js"; 
-                                    public const string neo_css = "~/Scripts/ckeditor/samples/toolbarconfigurator/lib/codemirror/neo.css";
-                                    public const string show_hint_css = "~/Scripts/ckeditor/samples/toolbarconfigurator/lib/codemirror/show-hint.css";
-                                    public const string show_hint_js = "~/Scripts/ckeditor/samples/toolbarconfigurator/lib/codemirror/show-hint.js"; 
+                                    public static readonly string codemirror_css = T4MVCHelpers.ProcessAssetPath("~/Scripts/ckeditor/samples/toolbarconfigurator/lib/codemirror/codemirror.css");
+                                    public static readonly string codemirror_js = T4MVCHelpers.ProcessAssetPath("~/Scripts/ckeditor/samples/toolbarconfigurator/lib/codemirror/codemirror.js"); 
+                                    public static readonly string javascript_js = T4MVCHelpers.ProcessAssetPath("~/Scripts/ckeditor/samples/toolbarconfigurator/lib/codemirror/javascript.js"); 
+                                    public static readonly string neo_css = T4MVCHelpers.ProcessAssetPath("~/Scripts/ckeditor/samples/toolbarconfigurator/lib/codemirror/neo.css");
+                                    public static readonly string show_hint_css = T4MVCHelpers.ProcessAssetPath("~/Scripts/ckeditor/samples/toolbarconfigurator/lib/codemirror/show-hint.css");
+                                    public static readonly string show_hint_js = T4MVCHelpers.ProcessAssetPath("~/Scripts/ckeditor/samples/toolbarconfigurator/lib/codemirror/show-hint.js"); 
                                 }
                             }
                             public static class Assets
@@ -8146,15 +8146,15 @@ namespace Links
                         }
                         public static class Assets
                         {
-                            public const string dialog_css = "~/Scripts/ckeditor/skins/moono-lisa/dialog.css";
-                            public const string dialog_ie_css = "~/Scripts/ckeditor/skins/moono-lisa/dialog_ie.css";
-                            public const string dialog_ie8_css = "~/Scripts/ckeditor/skins/moono-lisa/dialog_ie8.css";
-                            public const string dialog_iequirks_css = "~/Scripts/ckeditor/skins/moono-lisa/dialog_iequirks.css";
-                            public const string editor_css = "~/Scripts/ckeditor/skins/moono-lisa/editor.css";
-                            public const string editor_gecko_css = "~/Scripts/ckeditor/skins/moono-lisa/editor_gecko.css";
-                            public const string editor_ie_css = "~/Scripts/ckeditor/skins/moono-lisa/editor_ie.css";
-                            public const string editor_ie8_css = "~/Scripts/ckeditor/skins/moono-lisa/editor_ie8.css";
-                            public const string editor_iequirks_css = "~/Scripts/ckeditor/skins/moono-lisa/editor_iequirks.css";
+                            public static readonly string dialog_css = T4MVCHelpers.ProcessAssetPath("~/Scripts/ckeditor/skins/moono-lisa/dialog.css");
+                            public static readonly string dialog_ie_css = T4MVCHelpers.ProcessAssetPath("~/Scripts/ckeditor/skins/moono-lisa/dialog_ie.css");
+                            public static readonly string dialog_ie8_css = T4MVCHelpers.ProcessAssetPath("~/Scripts/ckeditor/skins/moono-lisa/dialog_ie8.css");
+                            public static readonly string dialog_iequirks_css = T4MVCHelpers.ProcessAssetPath("~/Scripts/ckeditor/skins/moono-lisa/dialog_iequirks.css");
+                            public static readonly string editor_css = T4MVCHelpers.ProcessAssetPath("~/Scripts/ckeditor/skins/moono-lisa/editor.css");
+                            public static readonly string editor_gecko_css = T4MVCHelpers.ProcessAssetPath("~/Scripts/ckeditor/skins/moono-lisa/editor_gecko.css");
+                            public static readonly string editor_ie_css = T4MVCHelpers.ProcessAssetPath("~/Scripts/ckeditor/skins/moono-lisa/editor_ie.css");
+                            public static readonly string editor_ie8_css = T4MVCHelpers.ProcessAssetPath("~/Scripts/ckeditor/skins/moono-lisa/editor_ie8.css");
+                            public static readonly string editor_iequirks_css = T4MVCHelpers.ProcessAssetPath("~/Scripts/ckeditor/skins/moono-lisa/editor_iequirks.css");
                         }
                     }
                     public static class Assets
@@ -8163,23 +8163,23 @@ namespace Links
                 }
                 public static class Assets
                 {
-                    public const string build_config_js = "~/Scripts/ckeditor/build-config.js"; 
-                    public const string ckeditor_js = "~/Scripts/ckeditor/ckeditor.js"; 
-                    public const string config_js = "~/Scripts/ckeditor/config.js"; 
-                    public const string contents_css = "~/Scripts/ckeditor/contents.css";
-                    public const string styles_js = "~/Scripts/ckeditor/styles.js"; 
+                    public static readonly string build_config_js = T4MVCHelpers.ProcessAssetPath("~/Scripts/ckeditor/build-config.js"); 
+                    public static readonly string ckeditor_js = T4MVCHelpers.ProcessAssetPath("~/Scripts/ckeditor/ckeditor.js"); 
+                    public static readonly string config_js = T4MVCHelpers.ProcessAssetPath("~/Scripts/ckeditor/config.js"); 
+                    public static readonly string contents_css = T4MVCHelpers.ProcessAssetPath("~/Scripts/ckeditor/contents.css");
+                    public static readonly string styles_js = T4MVCHelpers.ProcessAssetPath("~/Scripts/ckeditor/styles.js"); 
                 }
             }
             public static class Assets
             {
-                public const string jquery_signalR_2_2_2_js = "~/Scripts/jquery.signalR-2.2.2.js"; 
-                public const string jquery_signalR_2_2_2_min_js = "~/Scripts/jquery.signalR-2.2.2.min.js"; 
-                public const string jquery_unobtrusive_ajax_js = "~/Scripts/jquery.unobtrusive-ajax.js"; 
-                public const string jquery_unobtrusive_ajax_min_js = "~/Scripts/jquery.unobtrusive-ajax.min.js"; 
-                public const string jquery_validate_js = "~/Scripts/jquery.validate.js"; 
-                public const string jquery_validate_unobtrusive_js = "~/Scripts/jquery.validate.unobtrusive.js"; 
-                public const string Panel_js = "~/Scripts/Panel.js"; 
-                public const string Public_js = "~/Scripts/Public.js"; 
+                public static readonly string jquery_signalR_2_2_2_js = T4MVCHelpers.ProcessAssetPath("~/Scripts/jquery.signalR-2.2.2.js"); 
+                public static readonly string jquery_signalR_2_2_2_min_js = T4MVCHelpers.ProcessAssetPath("~/Scripts/jquery.signalR-2.2.2.min.js"); 
+                public static readonly string jquery_unobtrusive_ajax_js = T4MVCHelpers.ProcessAssetPath("~/Scripts/jquery.unobtrusive-ajax.js"); 
+                public static readonly string jquery_unobtrusive_ajax_min_js = T4MVCHelpers.ProcessAssetPath("~/Scripts/jquery.unobtrusive-ajax.min.js"); 
+                public static readonly string jquery_validate_js = T4MVCHelpers.ProcessAssetPath("~/Scripts/jquery.validate.js"); 
+                public static readonly string jquery_validate_unobtrusive_js = T4MVCHelpers.ProcessAssetPath("~/Scripts/jquery.validate.unobtrusive.js"); 
+                public static readonly string Panel_js = T4MVCHelpers.ProcessAssetPath("~/Scripts/Panel.js"); 
+                public static readonly string Public_js = T4MVCHelpers.ProcessAssetPath("~/Scripts/Public.js"); 
             }
         }
         public static partial class Content 
@@ -8192,14 +8192,14 @@ namespace Links
                     {
                         public static class Assets
                         {
-                            public const string ladda_themeless_min_css = "~/Content/css/components/buttons/ladda-themeless.min.css";
+                            public static readonly string ladda_themeless_min_css = T4MVCHelpers.ProcessAssetPath("~/Content/css/components/buttons/ladda-themeless.min.css");
                         }
                     }
                     public static partial class weather_icons 
                     {
                         public static class Assets
                         {
-                            public const string climacons_min_css = "~/Content/css/components/weather-icons/climacons.min.css";
+                            public static readonly string climacons_min_css = T4MVCHelpers.ProcessAssetPath("~/Content/css/components/weather-icons/climacons.min.css");
                         }
                     }
                     public static class Assets
@@ -8222,9 +8222,9 @@ namespace Links
                 {
                     public static class Assets
                     {
-                        public const string app_min_css = "~/Content/css/Ltr/app.min.css";
-                        public const string my_style_css = "~/Content/css/Ltr/my-style.css";
-                        public const string vendors_min_css = "~/Content/css/Ltr/vendors.min.css";
+                        public static readonly string app_min_css = T4MVCHelpers.ProcessAssetPath("~/Content/css/Ltr/app.min.css");
+                        public static readonly string my_style_css = T4MVCHelpers.ProcessAssetPath("~/Content/css/Ltr/my-style.css");
+                        public static readonly string vendors_min_css = T4MVCHelpers.ProcessAssetPath("~/Content/css/Ltr/vendors.min.css");
                     }
                 }
                 public static partial class plugins 
@@ -8233,22 +8233,22 @@ namespace Links
                     {
                         public static class Assets
                         {
-                            public const string fullcalendar_min_css = "~/Content/css/plugins/calendars/fullcalendar.min.css";
+                            public static readonly string fullcalendar_min_css = T4MVCHelpers.ProcessAssetPath("~/Content/css/plugins/calendars/fullcalendar.min.css");
                         }
                     }
                     public static partial class charts 
                     {
                         public static class Assets
                         {
-                            public const string c3_css = "~/Content/css/plugins/charts/c3.css";
-                            public const string chartist_plugin_tooltip_css = "~/Content/css/plugins/charts/chartist-plugin-tooltip.css";
-                            public const string chartist_css = "~/Content/css/plugins/charts/chartist.css";
-                            public const string d3_css = "~/Content/css/plugins/charts/d3.css";
-                            public const string jquery_jvectormap_2_0_3_css = "~/Content/css/plugins/charts/jquery-jvectormap-2.0.3.css";
-                            public const string jqvmap_css = "~/Content/css/plugins/charts/jqvmap.css";
-                            public const string mapael_css = "~/Content/css/plugins/charts/mapael.css";
-                            public const string morris_css = "~/Content/css/plugins/charts/morris.css";
-                            public const string rickshaw_css = "~/Content/css/plugins/charts/rickshaw.css";
+                            public static readonly string c3_css = T4MVCHelpers.ProcessAssetPath("~/Content/css/plugins/charts/c3.css");
+                            public static readonly string chartist_plugin_tooltip_css = T4MVCHelpers.ProcessAssetPath("~/Content/css/plugins/charts/chartist-plugin-tooltip.css");
+                            public static readonly string chartist_css = T4MVCHelpers.ProcessAssetPath("~/Content/css/plugins/charts/chartist.css");
+                            public static readonly string d3_css = T4MVCHelpers.ProcessAssetPath("~/Content/css/plugins/charts/d3.css");
+                            public static readonly string jquery_jvectormap_2_0_3_css = T4MVCHelpers.ProcessAssetPath("~/Content/css/plugins/charts/jquery-jvectormap-2.0.3.css");
+                            public static readonly string jqvmap_css = T4MVCHelpers.ProcessAssetPath("~/Content/css/plugins/charts/jqvmap.css");
+                            public static readonly string mapael_css = T4MVCHelpers.ProcessAssetPath("~/Content/css/plugins/charts/mapael.css");
+                            public static readonly string morris_css = T4MVCHelpers.ProcessAssetPath("~/Content/css/plugins/charts/morris.css");
+                            public static readonly string rickshaw_css = T4MVCHelpers.ProcessAssetPath("~/Content/css/plugins/charts/rickshaw.css");
                         }
                     }
                     public static partial class editors 
@@ -8259,14 +8259,14 @@ namespace Links
                             {
                                 public static class Assets
                                 {
-                                    public const string dialog_css = "~/Content/css/plugins/editors/addon/dialog/dialog.css";
+                                    public static readonly string dialog_css = T4MVCHelpers.ProcessAssetPath("~/Content/css/plugins/editors/addon/dialog/dialog.css");
                                 }
                             }
                             public static partial class fold 
                             {
                                 public static class Assets
                                 {
-                                    public const string foldgutter_css = "~/Content/css/plugins/editors/addon/fold/foldgutter.css";
+                                    public static readonly string foldgutter_css = T4MVCHelpers.ProcessAssetPath("~/Content/css/plugins/editors/addon/fold/foldgutter.css");
                                 }
                             }
                             public static class Assets
@@ -8283,32 +8283,32 @@ namespace Links
                             }
                             public static class Assets
                             {
-                                public const string katex_min_css = "~/Content/css/plugins/editors/quill/katex.min.css";
-                                public const string monokai_sublime_min_css = "~/Content/css/plugins/editors/quill/monokai-sublime.min.css";
-                                public const string quill_bubble_css = "~/Content/css/plugins/editors/quill/quill.bubble.css";
-                                public const string quill_snow_css = "~/Content/css/plugins/editors/quill/quill.snow.css";
+                                public static readonly string katex_min_css = T4MVCHelpers.ProcessAssetPath("~/Content/css/plugins/editors/quill/katex.min.css");
+                                public static readonly string monokai_sublime_min_css = T4MVCHelpers.ProcessAssetPath("~/Content/css/plugins/editors/quill/monokai-sublime.min.css");
+                                public static readonly string quill_bubble_css = T4MVCHelpers.ProcessAssetPath("~/Content/css/plugins/editors/quill/quill.bubble.css");
+                                public static readonly string quill_snow_css = T4MVCHelpers.ProcessAssetPath("~/Content/css/plugins/editors/quill/quill.snow.css");
                             }
                         }
                         public static partial class theme 
                         {
                             public static class Assets
                             {
-                                public const string _3024_day_css = "~/Content/css/plugins/editors/theme/3024-day.css";
-                                public const string monokai_css = "~/Content/css/plugins/editors/theme/monokai.css";
-                                public const string night_css = "~/Content/css/plugins/editors/theme/night.css";
+                                public static readonly string _3024_day_css = T4MVCHelpers.ProcessAssetPath("~/Content/css/plugins/editors/theme/3024-day.css");
+                                public static readonly string monokai_css = T4MVCHelpers.ProcessAssetPath("~/Content/css/plugins/editors/theme/monokai.css");
+                                public static readonly string night_css = T4MVCHelpers.ProcessAssetPath("~/Content/css/plugins/editors/theme/night.css");
                             }
                         }
                         public static partial class tinymce 
                         {
                             public static class Assets
                             {
-                                public const string tinymce_min_css = "~/Content/css/plugins/editors/tinymce/tinymce.min.css";
+                                public static readonly string tinymce_min_css = T4MVCHelpers.ProcessAssetPath("~/Content/css/plugins/editors/tinymce/tinymce.min.css");
                             }
                         }
                         public static class Assets
                         {
-                            public const string codemirror_css = "~/Content/css/plugins/editors/codemirror.css";
-                            public const string summernote_css = "~/Content/css/plugins/editors/summernote.css";
+                            public static readonly string codemirror_css = T4MVCHelpers.ProcessAssetPath("~/Content/css/plugins/editors/codemirror.css");
+                            public static readonly string summernote_css = T4MVCHelpers.ProcessAssetPath("~/Content/css/plugins/editors/summernote.css");
                         }
                     }
                     public static partial class extensions 
@@ -8317,8 +8317,8 @@ namespace Links
                         {
                             public static class Assets
                             {
-                                public const string bigvideo_css = "~/Content/css/plugins/extensions/bgvideo/bigvideo.css";
-                                public const string video_js_min_css = "~/Content/css/plugins/extensions/bgvideo/video-js.min.css";
+                                public static readonly string bigvideo_css = T4MVCHelpers.ProcessAssetPath("~/Content/css/plugins/extensions/bgvideo/bigvideo.css");
+                                public static readonly string video_js_min_css = T4MVCHelpers.ProcessAssetPath("~/Content/css/plugins/extensions/bgvideo/video-js.min.css");
                             }
                         }
                         public static partial class dd_icon 
@@ -8333,8 +8333,8 @@ namespace Links
                             {
                                 public static class Assets
                                 {
-                                    public const string offline_language_english_css = "~/Content/css/plugins/extensions/offline/themes/offline-language-english.css";
-                                    public const string offline_theme_slide_css = "~/Content/css/plugins/extensions/offline/themes/offline-theme-slide.css";
+                                    public static readonly string offline_language_english_css = T4MVCHelpers.ProcessAssetPath("~/Content/css/plugins/extensions/offline/themes/offline-language-english.css");
+                                    public static readonly string offline_theme_slide_css = T4MVCHelpers.ProcessAssetPath("~/Content/css/plugins/extensions/offline/themes/offline-theme-slide.css");
                                 }
                             }
                             public static class Assets
@@ -8351,31 +8351,31 @@ namespace Links
                             }
                             public static class Assets
                             {
-                                public const string jquery_raty_css = "~/Content/css/plugins/extensions/raty/jquery.raty.css";
+                                public static readonly string jquery_raty_css = T4MVCHelpers.ProcessAssetPath("~/Content/css/plugins/extensions/raty/jquery.raty.css");
                             }
                         }
                         public static class Assets
                         {
-                            public const string bootstrap_treeview_min_css = "~/Content/css/plugins/extensions/bootstrap-treeview.min.css";
-                            public const string datedropper_min_css = "~/Content/css/plugins/extensions/datedropper.min.css";
-                            public const string jquery_toolbar_css = "~/Content/css/plugins/extensions/jquery.toolbar.css";
-                            public const string long_press_css = "~/Content/css/plugins/extensions/long-press.css";
-                            public const string nouislider_min_css = "~/Content/css/plugins/extensions/nouislider.min.css";
-                            public const string sweetalert_css = "~/Content/css/plugins/extensions/sweetalert.css";
-                            public const string timedropper_min_css = "~/Content/css/plugins/extensions/timedropper.min.css";
-                            public const string toastr_css = "~/Content/css/plugins/extensions/toastr.css";
-                            public const string unslider_css = "~/Content/css/plugins/extensions/unslider.css";
-                            public const string zoom_css = "~/Content/css/plugins/extensions/zoom.css";
+                            public static readonly string bootstrap_treeview_min_css = T4MVCHelpers.ProcessAssetPath("~/Content/css/plugins/extensions/bootstrap-treeview.min.css");
+                            public static readonly string datedropper_min_css = T4MVCHelpers.ProcessAssetPath("~/Content/css/plugins/extensions/datedropper.min.css");
+                            public static readonly string jquery_toolbar_css = T4MVCHelpers.ProcessAssetPath("~/Content/css/plugins/extensions/jquery.toolbar.css");
+                            public static readonly string long_press_css = T4MVCHelpers.ProcessAssetPath("~/Content/css/plugins/extensions/long-press.css");
+                            public static readonly string nouislider_min_css = T4MVCHelpers.ProcessAssetPath("~/Content/css/plugins/extensions/nouislider.min.css");
+                            public static readonly string sweetalert_css = T4MVCHelpers.ProcessAssetPath("~/Content/css/plugins/extensions/sweetalert.css");
+                            public static readonly string timedropper_min_css = T4MVCHelpers.ProcessAssetPath("~/Content/css/plugins/extensions/timedropper.min.css");
+                            public static readonly string toastr_css = T4MVCHelpers.ProcessAssetPath("~/Content/css/plugins/extensions/toastr.css");
+                            public static readonly string unslider_css = T4MVCHelpers.ProcessAssetPath("~/Content/css/plugins/extensions/unslider.css");
+                            public static readonly string zoom_css = T4MVCHelpers.ProcessAssetPath("~/Content/css/plugins/extensions/zoom.css");
                         }
                     }
                     public static partial class file_uploaders 
                     {
                         public static class Assets
                         {
-                            public const string blueimp_gallery_min_css = "~/Content/css/plugins/file-uploaders/blueimp-gallery.min.css";
-                            public const string dropzone_min_css = "~/Content/css/plugins/file-uploaders/dropzone.min.css";
-                            public const string jquery_fileupload_ui_css = "~/Content/css/plugins/file-uploaders/jquery.fileupload-ui.css";
-                            public const string jquery_fileupload_css = "~/Content/css/plugins/file-uploaders/jquery.fileupload.css";
+                            public static readonly string blueimp_gallery_min_css = T4MVCHelpers.ProcessAssetPath("~/Content/css/plugins/file-uploaders/blueimp-gallery.min.css");
+                            public static readonly string dropzone_min_css = T4MVCHelpers.ProcessAssetPath("~/Content/css/plugins/file-uploaders/dropzone.min.css");
+                            public static readonly string jquery_fileupload_ui_css = T4MVCHelpers.ProcessAssetPath("~/Content/css/plugins/file-uploaders/jquery.fileupload-ui.css");
+                            public static readonly string jquery_fileupload_css = T4MVCHelpers.ProcessAssetPath("~/Content/css/plugins/file-uploaders/jquery.fileupload.css");
                         }
                     }
                     public static partial class forms 
@@ -8386,89 +8386,89 @@ namespace Links
                             {
                                 public static class Assets
                                 {
-                                    public const string _all_css = "~/Content/css/plugins/forms/icheck/flat/_all.css";
+                                    public static readonly string _all_css = T4MVCHelpers.ProcessAssetPath("~/Content/css/plugins/forms/icheck/flat/_all.css");
                                 }
                             }
                             public static partial class futurico 
                             {
                                 public static class Assets
                                 {
-                                    public const string futurico_css = "~/Content/css/plugins/forms/icheck/futurico/futurico.css";
+                                    public static readonly string futurico_css = T4MVCHelpers.ProcessAssetPath("~/Content/css/plugins/forms/icheck/futurico/futurico.css");
                                 }
                             }
                             public static partial class line 
                             {
                                 public static class Assets
                                 {
-                                    public const string _all_css = "~/Content/css/plugins/forms/icheck/line/_all.css";
+                                    public static readonly string _all_css = T4MVCHelpers.ProcessAssetPath("~/Content/css/plugins/forms/icheck/line/_all.css");
                                 }
                             }
                             public static partial class minimal 
                             {
                                 public static class Assets
                                 {
-                                    public const string _all_css = "~/Content/css/plugins/forms/icheck/minimal/_all.css";
+                                    public static readonly string _all_css = T4MVCHelpers.ProcessAssetPath("~/Content/css/plugins/forms/icheck/minimal/_all.css");
                                 }
                             }
                             public static partial class polaris 
                             {
                                 public static class Assets
                                 {
-                                    public const string polaris_css = "~/Content/css/plugins/forms/icheck/polaris/polaris.css";
+                                    public static readonly string polaris_css = T4MVCHelpers.ProcessAssetPath("~/Content/css/plugins/forms/icheck/polaris/polaris.css");
                                 }
                             }
                             public static partial class square 
                             {
                                 public static class Assets
                                 {
-                                    public const string _all_css = "~/Content/css/plugins/forms/icheck/square/_all.css";
+                                    public static readonly string _all_css = T4MVCHelpers.ProcessAssetPath("~/Content/css/plugins/forms/icheck/square/_all.css");
                                 }
                             }
                             public static class Assets
                             {
-                                public const string custom_css = "~/Content/css/plugins/forms/icheck/custom.css";
-                                public const string icheck_css = "~/Content/css/plugins/forms/icheck/icheck.css";
+                                public static readonly string custom_css = T4MVCHelpers.ProcessAssetPath("~/Content/css/plugins/forms/icheck/custom.css");
+                                public static readonly string icheck_css = T4MVCHelpers.ProcessAssetPath("~/Content/css/plugins/forms/icheck/icheck.css");
                             }
                         }
                         public static partial class listbox 
                         {
                             public static class Assets
                             {
-                                public const string bootstrap_duallistbox_min_css = "~/Content/css/plugins/forms/listbox/bootstrap-duallistbox.min.css";
+                                public static readonly string bootstrap_duallistbox_min_css = T4MVCHelpers.ProcessAssetPath("~/Content/css/plugins/forms/listbox/bootstrap-duallistbox.min.css");
                             }
                         }
                         public static partial class selects 
                         {
                             public static class Assets
                             {
-                                public const string jquery_selectBoxIt_css = "~/Content/css/plugins/forms/selects/jquery.selectBoxIt.css";
-                                public const string select2_min_css = "~/Content/css/plugins/forms/selects/select2.min.css";
-                                public const string selectivity_full_min_css = "~/Content/css/plugins/forms/selects/selectivity-full.min.css";
-                                public const string selectize_css = "~/Content/css/plugins/forms/selects/selectize.css";
-                                public const string selectize_default_css = "~/Content/css/plugins/forms/selects/selectize.default.css";
+                                public static readonly string jquery_selectBoxIt_css = T4MVCHelpers.ProcessAssetPath("~/Content/css/plugins/forms/selects/jquery.selectBoxIt.css");
+                                public static readonly string select2_min_css = T4MVCHelpers.ProcessAssetPath("~/Content/css/plugins/forms/selects/select2.min.css");
+                                public static readonly string selectivity_full_min_css = T4MVCHelpers.ProcessAssetPath("~/Content/css/plugins/forms/selects/selectivity-full.min.css");
+                                public static readonly string selectize_css = T4MVCHelpers.ProcessAssetPath("~/Content/css/plugins/forms/selects/selectize.css");
+                                public static readonly string selectize_default_css = T4MVCHelpers.ProcessAssetPath("~/Content/css/plugins/forms/selects/selectize.default.css");
                             }
                         }
                         public static partial class spinner 
                         {
                             public static class Assets
                             {
-                                public const string jquery_bootstrap_touchspin_css = "~/Content/css/plugins/forms/spinner/jquery.bootstrap-touchspin.css";
+                                public static readonly string jquery_bootstrap_touchspin_css = T4MVCHelpers.ProcessAssetPath("~/Content/css/plugins/forms/spinner/jquery.bootstrap-touchspin.css");
                             }
                         }
                         public static partial class tags 
                         {
                             public static class Assets
                             {
-                                public const string bootstrap_tagsinput_css = "~/Content/css/plugins/forms/tags/bootstrap-tagsinput.css";
-                                public const string tagging_css = "~/Content/css/plugins/forms/tags/tagging.css";
+                                public static readonly string bootstrap_tagsinput_css = T4MVCHelpers.ProcessAssetPath("~/Content/css/plugins/forms/tags/bootstrap-tagsinput.css");
+                                public static readonly string tagging_css = T4MVCHelpers.ProcessAssetPath("~/Content/css/plugins/forms/tags/tagging.css");
                             }
                         }
                         public static partial class toggle 
                         {
                             public static class Assets
                             {
-                                public const string bootstrap_switch_min_css = "~/Content/css/plugins/forms/toggle/bootstrap-switch.min.css";
-                                public const string switchery_min_css = "~/Content/css/plugins/forms/toggle/switchery.min.css";
+                                public static readonly string bootstrap_switch_min_css = T4MVCHelpers.ProcessAssetPath("~/Content/css/plugins/forms/toggle/bootstrap-switch.min.css");
+                                public static readonly string switchery_min_css = T4MVCHelpers.ProcessAssetPath("~/Content/css/plugins/forms/toggle/switchery.min.css");
                             }
                         }
                         public static class Assets
@@ -8481,7 +8481,7 @@ namespace Links
                         {
                             public static class Assets
                             {
-                                public const string lobilist_css = "~/Content/css/plugins/pages/lobilist/lobilist.css";
+                                public static readonly string lobilist_css = T4MVCHelpers.ProcessAssetPath("~/Content/css/plugins/pages/lobilist/lobilist.css");
                             }
                         }
                         public static class Assets
@@ -8492,7 +8492,7 @@ namespace Links
                     {
                         public static class Assets
                         {
-                            public const string bootstrap_datepaginator_min_css = "~/Content/css/plugins/pagination/bootstrap-datepaginator.min.css";
+                            public static readonly string bootstrap_datepaginator_min_css = T4MVCHelpers.ProcessAssetPath("~/Content/css/plugins/pagination/bootstrap-datepaginator.min.css");
                         }
                     }
                     public static partial class pickers 
@@ -8501,28 +8501,28 @@ namespace Links
                         {
                             public static class Assets
                             {
-                                public const string bootstrap_colorpicker_min_css = "~/Content/css/plugins/pickers/colorpicker/bootstrap-colorpicker.min.css";
+                                public static readonly string bootstrap_colorpicker_min_css = T4MVCHelpers.ProcessAssetPath("~/Content/css/plugins/pickers/colorpicker/bootstrap-colorpicker.min.css");
                             }
                         }
                         public static partial class miniColors 
                         {
                             public static class Assets
                             {
-                                public const string jquery_minicolors_css = "~/Content/css/plugins/pickers/miniColors/jquery.minicolors.css";
+                                public static readonly string jquery_minicolors_css = T4MVCHelpers.ProcessAssetPath("~/Content/css/plugins/pickers/miniColors/jquery.minicolors.css");
                             }
                         }
                         public static partial class pickadate 
                         {
                             public static class Assets
                             {
-                                public const string pickadate_css = "~/Content/css/plugins/pickers/pickadate/pickadate.css";
+                                public static readonly string pickadate_css = T4MVCHelpers.ProcessAssetPath("~/Content/css/plugins/pickers/pickadate/pickadate.css");
                             }
                         }
                         public static partial class spectrum 
                         {
                             public static class Assets
                             {
-                                public const string spectrum_css = "~/Content/css/plugins/pickers/spectrum/spectrum.css";
+                                public static readonly string spectrum_css = T4MVCHelpers.ProcessAssetPath("~/Content/css/plugins/pickers/spectrum/spectrum.css");
                             }
                         }
                         public static class Assets
@@ -8535,7 +8535,7 @@ namespace Links
                         {
                             public static class Assets
                             {
-                                public const string slick_css = "~/Content/css/plugins/sliders/slick/slick.css";
+                                public static readonly string slick_css = T4MVCHelpers.ProcessAssetPath("~/Content/css/plugins/sliders/slick/slick.css");
                             }
                         }
                         public static class Assets
@@ -8548,41 +8548,41 @@ namespace Links
                         {
                             public static class Assets
                             {
-                                public const string buttons_bootstrap4_min_css = "~/Content/css/plugins/tables/datatable/buttons.bootstrap4.min.css";
-                                public const string dataTables_bootstrap4_min_css = "~/Content/css/plugins/tables/datatable/dataTables.bootstrap4.min.css";
-                                public const string select_dataTables_min_css = "~/Content/css/plugins/tables/datatable/select.dataTables.min.css";
+                                public static readonly string buttons_bootstrap4_min_css = T4MVCHelpers.ProcessAssetPath("~/Content/css/plugins/tables/datatable/buttons.bootstrap4.min.css");
+                                public static readonly string dataTables_bootstrap4_min_css = T4MVCHelpers.ProcessAssetPath("~/Content/css/plugins/tables/datatable/dataTables.bootstrap4.min.css");
+                                public static readonly string select_dataTables_min_css = T4MVCHelpers.ProcessAssetPath("~/Content/css/plugins/tables/datatable/select.dataTables.min.css");
                             }
                         }
                         public static partial class extensions 
                         {
                             public static class Assets
                             {
-                                public const string autoFill_dataTables_min_css = "~/Content/css/plugins/tables/extensions/autoFill.dataTables.min.css";
-                                public const string buttons_dataTables_min_css = "~/Content/css/plugins/tables/extensions/buttons.dataTables.min.css";
-                                public const string colReorder_dataTables_min_css = "~/Content/css/plugins/tables/extensions/colReorder.dataTables.min.css";
-                                public const string dataTables_colVis_css = "~/Content/css/plugins/tables/extensions/dataTables.colVis.css";
-                                public const string fixedColumns_dataTables_min_css = "~/Content/css/plugins/tables/extensions/fixedColumns.dataTables.min.css";
-                                public const string fixedHeader_dataTables_min_css = "~/Content/css/plugins/tables/extensions/fixedHeader.dataTables.min.css";
-                                public const string keyTable_dataTables_min_css = "~/Content/css/plugins/tables/extensions/keyTable.dataTables.min.css";
-                                public const string responsive_dataTables_min_css = "~/Content/css/plugins/tables/extensions/responsive.dataTables.min.css";
-                                public const string rowReorder_dataTables_min_css = "~/Content/css/plugins/tables/extensions/rowReorder.dataTables.min.css";
+                                public static readonly string autoFill_dataTables_min_css = T4MVCHelpers.ProcessAssetPath("~/Content/css/plugins/tables/extensions/autoFill.dataTables.min.css");
+                                public static readonly string buttons_dataTables_min_css = T4MVCHelpers.ProcessAssetPath("~/Content/css/plugins/tables/extensions/buttons.dataTables.min.css");
+                                public static readonly string colReorder_dataTables_min_css = T4MVCHelpers.ProcessAssetPath("~/Content/css/plugins/tables/extensions/colReorder.dataTables.min.css");
+                                public static readonly string dataTables_colVis_css = T4MVCHelpers.ProcessAssetPath("~/Content/css/plugins/tables/extensions/dataTables.colVis.css");
+                                public static readonly string fixedColumns_dataTables_min_css = T4MVCHelpers.ProcessAssetPath("~/Content/css/plugins/tables/extensions/fixedColumns.dataTables.min.css");
+                                public static readonly string fixedHeader_dataTables_min_css = T4MVCHelpers.ProcessAssetPath("~/Content/css/plugins/tables/extensions/fixedHeader.dataTables.min.css");
+                                public static readonly string keyTable_dataTables_min_css = T4MVCHelpers.ProcessAssetPath("~/Content/css/plugins/tables/extensions/keyTable.dataTables.min.css");
+                                public static readonly string responsive_dataTables_min_css = T4MVCHelpers.ProcessAssetPath("~/Content/css/plugins/tables/extensions/responsive.dataTables.min.css");
+                                public static readonly string rowReorder_dataTables_min_css = T4MVCHelpers.ProcessAssetPath("~/Content/css/plugins/tables/extensions/rowReorder.dataTables.min.css");
                             }
                         }
                         public static partial class handsontable 
                         {
                             public static class Assets
                             {
-                                public const string handsontable_full_min_css = "~/Content/css/plugins/tables/handsontable/handsontable.full.min.css";
-                                public const string jsgrid_theme_min_css = "~/Content/css/plugins/tables/handsontable/jsgrid-theme.min.css";
-                                public const string jsgrid_min_css = "~/Content/css/plugins/tables/handsontable/jsgrid.min.css";
+                                public static readonly string handsontable_full_min_css = T4MVCHelpers.ProcessAssetPath("~/Content/css/plugins/tables/handsontable/handsontable.full.min.css");
+                                public static readonly string jsgrid_theme_min_css = T4MVCHelpers.ProcessAssetPath("~/Content/css/plugins/tables/handsontable/jsgrid-theme.min.css");
+                                public static readonly string jsgrid_min_css = T4MVCHelpers.ProcessAssetPath("~/Content/css/plugins/tables/handsontable/jsgrid.min.css");
                             }
                         }
                         public static partial class jsgrid 
                         {
                             public static class Assets
                             {
-                                public const string jsgrid_theme_min_css = "~/Content/css/plugins/tables/jsgrid/jsgrid-theme.min.css";
-                                public const string jsgrid_min_css = "~/Content/css/plugins/tables/jsgrid/jsgrid.min.css";
+                                public static readonly string jsgrid_theme_min_css = T4MVCHelpers.ProcessAssetPath("~/Content/css/plugins/tables/jsgrid/jsgrid-theme.min.css");
+                                public static readonly string jsgrid_min_css = T4MVCHelpers.ProcessAssetPath("~/Content/css/plugins/tables/jsgrid/jsgrid.min.css");
                             }
                         }
                         public static class Assets
@@ -8599,10 +8599,10 @@ namespace Links
                         }
                         public static class Assets
                         {
-                            public const string dragula_min_css = "~/Content/css/plugins/ui/dragula.min.css";
-                            public const string jquery_ui_slider_pips_min_css = "~/Content/css/plugins/ui/jquery-ui-slider-pips.min.css";
-                            public const string jquery_ui_min_css = "~/Content/css/plugins/ui/jquery-ui.min.css";
-                            public const string prism_min_css = "~/Content/css/plugins/ui/prism.min.css";
+                            public static readonly string dragula_min_css = T4MVCHelpers.ProcessAssetPath("~/Content/css/plugins/ui/dragula.min.css");
+                            public static readonly string jquery_ui_slider_pips_min_css = T4MVCHelpers.ProcessAssetPath("~/Content/css/plugins/ui/jquery-ui-slider-pips.min.css");
+                            public static readonly string jquery_ui_min_css = T4MVCHelpers.ProcessAssetPath("~/Content/css/plugins/ui/jquery-ui.min.css");
+                            public static readonly string prism_min_css = T4MVCHelpers.ProcessAssetPath("~/Content/css/plugins/ui/prism.min.css");
                         }
                     }
                     public static class Assets
@@ -8613,10 +8613,10 @@ namespace Links
                 {
                     public static class Assets
                     {
-                        public const string app_min_css = "~/Content/css/Rtl/app.min.css";
-                        public const string ClientBuyPackage_css = "~/Content/css/Rtl/ClientBuyPackage.css";
-                        public const string my_style_css = "~/Content/css/Rtl/my-style.css";
-                        public const string vendors_min_css = "~/Content/css/Rtl/vendors.min.css";
+                        public static readonly string app_min_css = T4MVCHelpers.ProcessAssetPath("~/Content/css/Rtl/app.min.css");
+                        public static readonly string ClientBuyPackage_css = T4MVCHelpers.ProcessAssetPath("~/Content/css/Rtl/ClientBuyPackage.css");
+                        public static readonly string my_style_css = T4MVCHelpers.ProcessAssetPath("~/Content/css/Rtl/my-style.css");
+                        public static readonly string vendors_min_css = T4MVCHelpers.ProcessAssetPath("~/Content/css/Rtl/vendors.min.css");
                     }
                 }
                 public static class Assets
@@ -8661,7 +8661,7 @@ namespace Links
                     {
                         public static class Assets
                         {
-                            public const string flag_icon_min_css = "~/Content/fonts/flag-icon-css/css/flag-icon.min.css";
+                            public static readonly string flag_icon_min_css = T4MVCHelpers.ProcessAssetPath("~/Content/fonts/flag-icon-css/css/flag-icon.min.css");
                         }
                     }
                     public static partial class flags 
@@ -8706,7 +8706,7 @@ namespace Links
                 }
                 public static class Assets
                 {
-                    public const string icomoon_css = "~/Content/fonts/icomoon.css";
+                    public static readonly string icomoon_css = T4MVCHelpers.ProcessAssetPath("~/Content/fonts/icomoon.css");
                 }
             }
             public static partial class images 
@@ -8807,22 +8807,22 @@ namespace Links
                     {
                         public static class Assets
                         {
-                            public const string animation_js = "~/Content/js/components/animation/animation.js"; 
+                            public static readonly string animation_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/components/animation/animation.js"); 
                         }
                     }
                     public static partial class buttons 
                     {
                         public static class Assets
                         {
-                            public const string button_ladda_js = "~/Content/js/components/buttons/button-ladda.js"; 
+                            public static readonly string button_ladda_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/components/buttons/button-ladda.js"); 
                         }
                     }
                     public static partial class cards 
                     {
                         public static class Assets
                         {
-                            public const string advance_cards_js = "~/Content/js/components/cards/advance-cards.js"; 
-                            public const string draggable_js = "~/Content/js/components/cards/draggable.js"; 
+                            public static readonly string advance_cards_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/components/cards/advance-cards.js"); 
+                            public static readonly string draggable_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/components/cards/draggable.js"); 
                         }
                     }
                     public static partial class charts 
@@ -8833,82 +8833,82 @@ namespace Links
                             {
                                 public static class Assets
                                 {
-                                    public const string category_axis_js = "~/Content/js/components/charts/c3/axis/category-axis.js"; 
-                                    public const string rotated_axis_js = "~/Content/js/components/charts/c3/axis/rotated-axis.js"; 
-                                    public const string tick_culling_js = "~/Content/js/components/charts/c3/axis/tick-culling.js"; 
-                                    public const string tick_fitting_js = "~/Content/js/components/charts/c3/axis/tick-fitting.js"; 
-                                    public const string timezone_js = "~/Content/js/components/charts/c3/axis/timezone.js"; 
-                                    public const string y_axis_range_js = "~/Content/js/components/charts/c3/axis/y-axis-range.js"; 
-                                    public const string y_axis_js = "~/Content/js/components/charts/c3/axis/y-axis.js"; 
+                                    public static readonly string category_axis_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/components/charts/c3/axis/category-axis.js"); 
+                                    public static readonly string rotated_axis_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/components/charts/c3/axis/rotated-axis.js"); 
+                                    public static readonly string tick_culling_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/components/charts/c3/axis/tick-culling.js"); 
+                                    public static readonly string tick_fitting_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/components/charts/c3/axis/tick-fitting.js"); 
+                                    public static readonly string timezone_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/components/charts/c3/axis/timezone.js"); 
+                                    public static readonly string y_axis_range_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/components/charts/c3/axis/y-axis-range.js"); 
+                                    public static readonly string y_axis_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/components/charts/c3/axis/y-axis.js"); 
                                 }
                             }
                             public static partial class bar_pie 
                             {
                                 public static class Assets
                                 {
-                                    public const string bar_js = "~/Content/js/components/charts/c3/bar-pie/bar.js"; 
-                                    public const string column_js = "~/Content/js/components/charts/c3/bar-pie/column.js"; 
-                                    public const string donut_js = "~/Content/js/components/charts/c3/bar-pie/donut.js"; 
-                                    public const string pie_js = "~/Content/js/components/charts/c3/bar-pie/pie.js"; 
-                                    public const string stacked_bar_js = "~/Content/js/components/charts/c3/bar-pie/stacked-bar.js"; 
-                                    public const string stacked_column_js = "~/Content/js/components/charts/c3/bar-pie/stacked-column.js"; 
+                                    public static readonly string bar_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/components/charts/c3/bar-pie/bar.js"); 
+                                    public static readonly string column_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/components/charts/c3/bar-pie/column.js"); 
+                                    public static readonly string donut_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/components/charts/c3/bar-pie/donut.js"); 
+                                    public static readonly string pie_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/components/charts/c3/bar-pie/pie.js"); 
+                                    public static readonly string stacked_bar_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/components/charts/c3/bar-pie/stacked-bar.js"); 
+                                    public static readonly string stacked_column_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/components/charts/c3/bar-pie/stacked-column.js"); 
                                 }
                             }
                             public static partial class data 
                             {
                                 public static class Assets
                                 {
-                                    public const string category_data_js = "~/Content/js/components/charts/c3/data/category-data.js"; 
-                                    public const string column_oriented_js = "~/Content/js/components/charts/c3/data/column-oriented.js"; 
-                                    public const string data_color_js = "~/Content/js/components/charts/c3/data/data-color.js"; 
-                                    public const string data_from_url_js = "~/Content/js/components/charts/c3/data/data-from-url.js"; 
-                                    public const string data_order_js = "~/Content/js/components/charts/c3/data/data-order.js"; 
-                                    public const string row_oriented_js = "~/Content/js/components/charts/c3/data/row-oriented.js"; 
+                                    public static readonly string category_data_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/components/charts/c3/data/category-data.js"); 
+                                    public static readonly string column_oriented_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/components/charts/c3/data/column-oriented.js"); 
+                                    public static readonly string data_color_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/components/charts/c3/data/data-color.js"); 
+                                    public static readonly string data_from_url_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/components/charts/c3/data/data-from-url.js"); 
+                                    public static readonly string data_order_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/components/charts/c3/data/data-order.js"); 
+                                    public static readonly string row_oriented_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/components/charts/c3/data/row-oriented.js"); 
                                 }
                             }
                             public static partial class grid 
                             {
                                 public static class Assets
                                 {
-                                    public const string grid_lines_js = "~/Content/js/components/charts/c3/grid/grid-lines.js"; 
-                                    public const string x_grid_lines_js = "~/Content/js/components/charts/c3/grid/x-grid-lines.js"; 
-                                    public const string y_grid_lines_js = "~/Content/js/components/charts/c3/grid/y-grid-lines.js"; 
+                                    public static readonly string grid_lines_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/components/charts/c3/grid/grid-lines.js"); 
+                                    public static readonly string x_grid_lines_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/components/charts/c3/grid/x-grid-lines.js"); 
+                                    public static readonly string y_grid_lines_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/components/charts/c3/grid/y-grid-lines.js"); 
                                 }
                             }
                             public static partial class line 
                             {
                                 public static class Assets
                                 {
-                                    public const string area_js = "~/Content/js/components/charts/c3/line/area.js"; 
-                                    public const string line_region_js = "~/Content/js/components/charts/c3/line/line-region.js"; 
-                                    public const string line_js = "~/Content/js/components/charts/c3/line/line.js"; 
-                                    public const string multiple_xy_js = "~/Content/js/components/charts/c3/line/multiple-xy.js"; 
-                                    public const string simple_xy_js = "~/Content/js/components/charts/c3/line/simple-xy.js"; 
-                                    public const string spline_js = "~/Content/js/components/charts/c3/line/spline.js"; 
-                                    public const string step_js = "~/Content/js/components/charts/c3/line/step.js"; 
+                                    public static readonly string area_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/components/charts/c3/line/area.js"); 
+                                    public static readonly string line_region_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/components/charts/c3/line/line-region.js"); 
+                                    public static readonly string line_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/components/charts/c3/line/line.js"); 
+                                    public static readonly string multiple_xy_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/components/charts/c3/line/multiple-xy.js"); 
+                                    public static readonly string simple_xy_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/components/charts/c3/line/simple-xy.js"); 
+                                    public static readonly string spline_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/components/charts/c3/line/spline.js"); 
+                                    public static readonly string step_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/components/charts/c3/line/step.js"); 
                                 }
                             }
                             public static partial class other 
                             {
                                 public static class Assets
                                 {
-                                    public const string combine_js = "~/Content/js/components/charts/c3/other/combine.js"; 
-                                    public const string guage_js = "~/Content/js/components/charts/c3/other/guage.js"; 
-                                    public const string scatter_plot_js = "~/Content/js/components/charts/c3/other/scatter-plot.js"; 
-                                    public const string sub_js = "~/Content/js/components/charts/c3/other/sub.js"; 
-                                    public const string timeseries_js = "~/Content/js/components/charts/c3/other/timeseries.js"; 
-                                    public const string zoom_js = "~/Content/js/components/charts/c3/other/zoom.js"; 
+                                    public static readonly string combine_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/components/charts/c3/other/combine.js"); 
+                                    public static readonly string guage_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/components/charts/c3/other/guage.js"); 
+                                    public static readonly string scatter_plot_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/components/charts/c3/other/scatter-plot.js"); 
+                                    public static readonly string sub_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/components/charts/c3/other/sub.js"); 
+                                    public static readonly string timeseries_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/components/charts/c3/other/timeseries.js"); 
+                                    public static readonly string zoom_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/components/charts/c3/other/zoom.js"); 
                                 }
                             }
                             public static partial class transform 
                             {
                                 public static class Assets
                                 {
-                                    public const string to_area_js = "~/Content/js/components/charts/c3/transform/to-area.js"; 
-                                    public const string to_bar_js = "~/Content/js/components/charts/c3/transform/to-bar.js"; 
-                                    public const string to_line_js = "~/Content/js/components/charts/c3/transform/to-line.js"; 
-                                    public const string to_pie_js = "~/Content/js/components/charts/c3/transform/to-pie.js"; 
-                                    public const string to_scatter_plot_js = "~/Content/js/components/charts/c3/transform/to-scatter-plot.js"; 
+                                    public static readonly string to_area_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/components/charts/c3/transform/to-area.js"); 
+                                    public static readonly string to_bar_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/components/charts/c3/transform/to-bar.js"); 
+                                    public static readonly string to_line_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/components/charts/c3/transform/to-line.js"); 
+                                    public static readonly string to_pie_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/components/charts/c3/transform/to-pie.js"); 
+                                    public static readonly string to_scatter_plot_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/components/charts/c3/transform/to-scatter-plot.js"); 
                                 }
                             }
                             public static class Assets
@@ -8921,35 +8921,35 @@ namespace Links
                             {
                                 public static class Assets
                                 {
-                                    public const string bi_polar_bar_js = "~/Content/js/components/charts/chartist/bar/bi-polar-bar.js"; 
-                                    public const string distributed_series_js = "~/Content/js/components/charts/chartist/bar/distributed-series.js"; 
-                                    public const string horizontal_bar_js = "~/Content/js/components/charts/chartist/bar/horizontal-bar.js"; 
-                                    public const string multi_column_js = "~/Content/js/components/charts/chartist/bar/multi-column.js"; 
-                                    public const string peak_circles_js = "~/Content/js/components/charts/chartist/bar/peak-circles.js"; 
-                                    public const string stacked_bar_js = "~/Content/js/components/charts/chartist/bar/stacked-bar.js"; 
+                                    public static readonly string bi_polar_bar_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/components/charts/chartist/bar/bi-polar-bar.js"); 
+                                    public static readonly string distributed_series_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/components/charts/chartist/bar/distributed-series.js"); 
+                                    public static readonly string horizontal_bar_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/components/charts/chartist/bar/horizontal-bar.js"); 
+                                    public static readonly string multi_column_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/components/charts/chartist/bar/multi-column.js"); 
+                                    public static readonly string peak_circles_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/components/charts/chartist/bar/peak-circles.js"); 
+                                    public static readonly string stacked_bar_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/components/charts/chartist/bar/stacked-bar.js"); 
                                 }
                             }
                             public static partial class line 
                             {
                                 public static class Assets
                                 {
-                                    public const string area_js = "~/Content/js/components/charts/chartist/line/area.js"; 
-                                    public const string bi_polar_area_js = "~/Content/js/components/charts/chartist/line/bi-polar-area.js"; 
-                                    public const string holes_in_data_js = "~/Content/js/components/charts/chartist/line/holes-in-data.js"; 
-                                    public const string line_scatter_js = "~/Content/js/components/charts/chartist/line/line-scatter.js"; 
-                                    public const string line_js = "~/Content/js/components/charts/chartist/line/line.js"; 
-                                    public const string series_overrides_js = "~/Content/js/components/charts/chartist/line/series-overrides.js"; 
-                                    public const string whole_numbers_js = "~/Content/js/components/charts/chartist/line/whole-numbers.js"; 
+                                    public static readonly string area_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/components/charts/chartist/line/area.js"); 
+                                    public static readonly string bi_polar_area_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/components/charts/chartist/line/bi-polar-area.js"); 
+                                    public static readonly string holes_in_data_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/components/charts/chartist/line/holes-in-data.js"); 
+                                    public static readonly string line_scatter_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/components/charts/chartist/line/line-scatter.js"); 
+                                    public static readonly string line_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/components/charts/chartist/line/line.js"); 
+                                    public static readonly string series_overrides_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/components/charts/chartist/line/series-overrides.js"); 
+                                    public static readonly string whole_numbers_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/components/charts/chartist/line/whole-numbers.js"); 
                                 }
                             }
                             public static partial class pie 
                             {
                                 public static class Assets
                                 {
-                                    public const string custom_labels_js = "~/Content/js/components/charts/chartist/pie/custom-labels.js"; 
-                                    public const string donut_js = "~/Content/js/components/charts/chartist/pie/donut.js"; 
-                                    public const string gauge_js = "~/Content/js/components/charts/chartist/pie/gauge.js"; 
-                                    public const string pie_js = "~/Content/js/components/charts/chartist/pie/pie.js"; 
+                                    public static readonly string custom_labels_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/components/charts/chartist/pie/custom-labels.js"); 
+                                    public static readonly string donut_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/components/charts/chartist/pie/donut.js"); 
+                                    public static readonly string gauge_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/components/charts/chartist/pie/gauge.js"); 
+                                    public static readonly string pie_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/components/charts/chartist/pie/pie.js"); 
                                 }
                             }
                             public static class Assets
@@ -8962,63 +8962,63 @@ namespace Links
                             {
                                 public static class Assets
                                 {
-                                    public const string bubble_js = "~/Content/js/components/charts/chartjs/advance/bubble.js"; 
-                                    public const string combo_bar_line_data_label_js = "~/Content/js/components/charts/chartjs/advance/combo-bar-line-data-label.js"; 
-                                    public const string combo_bar_line_js = "~/Content/js/components/charts/chartjs/advance/combo-bar-line.js"; 
-                                    public const string different_point_sizes_js = "~/Content/js/components/charts/chartjs/advance/different-point-sizes.js"; 
+                                    public static readonly string bubble_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/components/charts/chartjs/advance/bubble.js"); 
+                                    public static readonly string combo_bar_line_data_label_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/components/charts/chartjs/advance/combo-bar-line-data-label.js"); 
+                                    public static readonly string combo_bar_line_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/components/charts/chartjs/advance/combo-bar-line.js"); 
+                                    public static readonly string different_point_sizes_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/components/charts/chartjs/advance/different-point-sizes.js"); 
                                 }
                             }
                             public static partial class bar 
                             {
                                 public static class Assets
                                 {
-                                    public const string bar_multi_axis_js = "~/Content/js/components/charts/chartjs/bar/bar-multi-axis.js"; 
-                                    public const string bar_stacked_js = "~/Content/js/components/charts/chartjs/bar/bar-stacked.js"; 
-                                    public const string bar_js = "~/Content/js/components/charts/chartjs/bar/bar.js"; 
-                                    public const string column_multi_axis_js = "~/Content/js/components/charts/chartjs/bar/column-multi-axis.js"; 
-                                    public const string column_stacked_js = "~/Content/js/components/charts/chartjs/bar/column-stacked.js"; 
-                                    public const string column_js = "~/Content/js/components/charts/chartjs/bar/column.js"; 
+                                    public static readonly string bar_multi_axis_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/components/charts/chartjs/bar/bar-multi-axis.js"); 
+                                    public static readonly string bar_stacked_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/components/charts/chartjs/bar/bar-stacked.js"); 
+                                    public static readonly string bar_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/components/charts/chartjs/bar/bar.js"); 
+                                    public static readonly string column_multi_axis_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/components/charts/chartjs/bar/column-multi-axis.js"); 
+                                    public static readonly string column_stacked_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/components/charts/chartjs/bar/column-stacked.js"); 
+                                    public static readonly string column_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/components/charts/chartjs/bar/column.js"); 
                                 }
                             }
                             public static partial class line 
                             {
                                 public static class Assets
                                 {
-                                    public const string line_area_js = "~/Content/js/components/charts/chartjs/line/line-area.js"; 
-                                    public const string line_logarithmic_js = "~/Content/js/components/charts/chartjs/line/line-logarithmic.js"; 
-                                    public const string line_multi_axis_js = "~/Content/js/components/charts/chartjs/line/line-multi-axis.js"; 
-                                    public const string line_skip_points_js = "~/Content/js/components/charts/chartjs/line/line-skip-points.js"; 
-                                    public const string line_stacked_area_js = "~/Content/js/components/charts/chartjs/line/line-stacked-area.js"; 
-                                    public const string line_js = "~/Content/js/components/charts/chartjs/line/line.js"; 
+                                    public static readonly string line_area_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/components/charts/chartjs/line/line-area.js"); 
+                                    public static readonly string line_logarithmic_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/components/charts/chartjs/line/line-logarithmic.js"); 
+                                    public static readonly string line_multi_axis_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/components/charts/chartjs/line/line-multi-axis.js"); 
+                                    public static readonly string line_skip_points_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/components/charts/chartjs/line/line-skip-points.js"); 
+                                    public static readonly string line_stacked_area_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/components/charts/chartjs/line/line-stacked-area.js"); 
+                                    public static readonly string line_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/components/charts/chartjs/line/line.js"); 
                                 }
                             }
                             public static partial class pie_doughnut 
                             {
                                 public static class Assets
                                 {
-                                    public const string doughnut_simple_js = "~/Content/js/components/charts/chartjs/pie-doughnut/doughnut-simple.js"; 
-                                    public const string doughnut_js = "~/Content/js/components/charts/chartjs/pie-doughnut/doughnut.js"; 
-                                    public const string pie_simple_js = "~/Content/js/components/charts/chartjs/pie-doughnut/pie-simple.js"; 
-                                    public const string pie_js = "~/Content/js/components/charts/chartjs/pie-doughnut/pie.js"; 
+                                    public static readonly string doughnut_simple_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/components/charts/chartjs/pie-doughnut/doughnut-simple.js"); 
+                                    public static readonly string doughnut_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/components/charts/chartjs/pie-doughnut/doughnut.js"); 
+                                    public static readonly string pie_simple_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/components/charts/chartjs/pie-doughnut/pie-simple.js"); 
+                                    public static readonly string pie_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/components/charts/chartjs/pie-doughnut/pie.js"); 
                                 }
                             }
                             public static partial class polar_radar 
                             {
                                 public static class Assets
                                 {
-                                    public const string polar_skip_points_js = "~/Content/js/components/charts/chartjs/polar-radar/polar-skip-points.js"; 
-                                    public const string polar_js = "~/Content/js/components/charts/chartjs/polar-radar/polar.js"; 
-                                    public const string radar_skip_points_js = "~/Content/js/components/charts/chartjs/polar-radar/radar-skip-points.js"; 
-                                    public const string radar_js = "~/Content/js/components/charts/chartjs/polar-radar/radar.js"; 
+                                    public static readonly string polar_skip_points_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/components/charts/chartjs/polar-radar/polar-skip-points.js"); 
+                                    public static readonly string polar_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/components/charts/chartjs/polar-radar/polar.js"); 
+                                    public static readonly string radar_skip_points_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/components/charts/chartjs/polar-radar/radar-skip-points.js"); 
+                                    public static readonly string radar_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/components/charts/chartjs/polar-radar/radar.js"); 
                                 }
                             }
                             public static partial class scatter 
                             {
                                 public static class Assets
                                 {
-                                    public const string scatter_logX_js = "~/Content/js/components/charts/chartjs/scatter/scatter-logX.js"; 
-                                    public const string scatter_multi_axis_js = "~/Content/js/components/charts/chartjs/scatter/scatter-multi-axis.js"; 
-                                    public const string scatter_js = "~/Content/js/components/charts/chartjs/scatter/scatter.js"; 
+                                    public static readonly string scatter_logX_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/components/charts/chartjs/scatter/scatter-logX.js"); 
+                                    public static readonly string scatter_multi_axis_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/components/charts/chartjs/scatter/scatter-multi-axis.js"); 
+                                    public static readonly string scatter_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/components/charts/chartjs/scatter/scatter.js"); 
                                 }
                             }
                             public static class Assets
@@ -9031,83 +9031,83 @@ namespace Links
                             {
                                 public static class Assets
                                 {
-                                    public const string bar_negative_js = "~/Content/js/components/charts/d3/bar/bar-negative.js"; 
-                                    public const string bar_js = "~/Content/js/components/charts/d3/bar/bar.js"; 
-                                    public const string grouped_bar_js = "~/Content/js/components/charts/d3/bar/grouped-bar.js"; 
-                                    public const string normalized_stacked_bar_js = "~/Content/js/components/charts/d3/bar/normalized-stacked-bar.js"; 
-                                    public const string stacked_bar_js = "~/Content/js/components/charts/d3/bar/stacked-bar.js"; 
-                                    public const string stacked_to_grouped_js = "~/Content/js/components/charts/d3/bar/stacked-to-grouped.js"; 
-                                    public const string stacked_to_multiples_js = "~/Content/js/components/charts/d3/bar/stacked-to-multiples.js"; 
-                                    public const string waterfall_js = "~/Content/js/components/charts/d3/bar/waterfall.js"; 
+                                    public static readonly string bar_negative_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/components/charts/d3/bar/bar-negative.js"); 
+                                    public static readonly string bar_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/components/charts/d3/bar/bar.js"); 
+                                    public static readonly string grouped_bar_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/components/charts/d3/bar/grouped-bar.js"); 
+                                    public static readonly string normalized_stacked_bar_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/components/charts/d3/bar/normalized-stacked-bar.js"); 
+                                    public static readonly string stacked_bar_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/components/charts/d3/bar/stacked-bar.js"); 
+                                    public static readonly string stacked_to_grouped_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/components/charts/d3/bar/stacked-to-grouped.js"); 
+                                    public static readonly string stacked_to_multiples_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/components/charts/d3/bar/stacked-to-multiples.js"); 
+                                    public static readonly string waterfall_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/components/charts/d3/bar/waterfall.js"); 
                                 }
                             }
                             public static partial class circle 
                             {
                                 public static class Assets
                                 {
-                                    public const string interactive_venn_js = "~/Content/js/components/charts/d3/circle/interactive-venn.js"; 
-                                    public const string intersection_tooltip_venn_js = "~/Content/js/components/charts/d3/circle/intersection-tooltip-venn.js"; 
-                                    public const string medical_venn_js = "~/Content/js/components/charts/d3/circle/medical-venn.js"; 
-                                    public const string sequences_sunburst_js = "~/Content/js/components/charts/d3/circle/sequences-sunburst.js"; 
-                                    public const string styled_venn_js = "~/Content/js/components/charts/d3/circle/styled-venn.js"; 
-                                    public const string sunburst_distortion_js = "~/Content/js/components/charts/d3/circle/sunburst-distortion.js"; 
-                                    public const string sunburst_partition_js = "~/Content/js/components/charts/d3/circle/sunburst-partition.js"; 
-                                    public const string venn_venn_js = "~/Content/js/components/charts/d3/circle/venn-venn.js"; 
-                                    public const string weighted_venn_js = "~/Content/js/components/charts/d3/circle/weighted-venn.js"; 
-                                    public const string zoomable_sunburst_js = "~/Content/js/components/charts/d3/circle/zoomable-sunburst.js"; 
+                                    public static readonly string interactive_venn_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/components/charts/d3/circle/interactive-venn.js"); 
+                                    public static readonly string intersection_tooltip_venn_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/components/charts/d3/circle/intersection-tooltip-venn.js"); 
+                                    public static readonly string medical_venn_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/components/charts/d3/circle/medical-venn.js"); 
+                                    public static readonly string sequences_sunburst_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/components/charts/d3/circle/sequences-sunburst.js"); 
+                                    public static readonly string styled_venn_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/components/charts/d3/circle/styled-venn.js"); 
+                                    public static readonly string sunburst_distortion_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/components/charts/d3/circle/sunburst-distortion.js"); 
+                                    public static readonly string sunburst_partition_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/components/charts/d3/circle/sunburst-partition.js"); 
+                                    public static readonly string venn_venn_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/components/charts/d3/circle/venn-venn.js"); 
+                                    public static readonly string weighted_venn_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/components/charts/d3/circle/weighted-venn.js"); 
+                                    public static readonly string zoomable_sunburst_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/components/charts/d3/circle/zoomable-sunburst.js"); 
                                 }
                             }
                             public static partial class line 
                             {
                                 public static class Assets
                                 {
-                                    public const string area_js = "~/Content/js/components/charts/d3/line/area.js"; 
-                                    public const string bivariate_js = "~/Content/js/components/charts/d3/line/bivariate.js"; 
-                                    public const string difference_js = "~/Content/js/components/charts/d3/line/difference.js"; 
-                                    public const string focus_context_js = "~/Content/js/components/charts/d3/line/focus-context.js"; 
-                                    public const string line_tension_js = "~/Content/js/components/charts/d3/line/line-tension.js"; 
-                                    public const string line_js = "~/Content/js/components/charts/d3/line/line.js"; 
-                                    public const string multi_series_line_js = "~/Content/js/components/charts/d3/line/multi-series-line.js"; 
-                                    public const string stacked_area_js = "~/Content/js/components/charts/d3/line/stacked-area.js"; 
+                                    public static readonly string area_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/components/charts/d3/line/area.js"); 
+                                    public static readonly string bivariate_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/components/charts/d3/line/bivariate.js"); 
+                                    public static readonly string difference_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/components/charts/d3/line/difference.js"); 
+                                    public static readonly string focus_context_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/components/charts/d3/line/focus-context.js"); 
+                                    public static readonly string line_tension_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/components/charts/d3/line/line-tension.js"); 
+                                    public static readonly string line_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/components/charts/d3/line/line.js"); 
+                                    public static readonly string multi_series_line_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/components/charts/d3/line/multi-series-line.js"); 
+                                    public static readonly string stacked_area_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/components/charts/d3/line/stacked-area.js"); 
                                 }
                             }
                             public static partial class other 
                             {
                                 public static class Assets
                                 {
-                                    public const string bubble_js = "~/Content/js/components/charts/d3/other/bubble.js"; 
-                                    public const string chord_diagram_new_js = "~/Content/js/components/charts/d3/other/chord-diagram-new.js"; 
-                                    public const string gantt_chart_js = "~/Content/js/components/charts/d3/other/gantt-chart.js"; 
-                                    public const string streamgraph_js = "~/Content/js/components/charts/d3/other/streamgraph.js"; 
-                                    public const string treemap_js = "~/Content/js/components/charts/d3/other/treemap.js"; 
-                                    public const string vertical_sankey_js = "~/Content/js/components/charts/d3/other/vertical-sankey.js"; 
+                                    public static readonly string bubble_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/components/charts/d3/other/bubble.js"); 
+                                    public static readonly string chord_diagram_new_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/components/charts/d3/other/chord-diagram-new.js"); 
+                                    public static readonly string gantt_chart_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/components/charts/d3/other/gantt-chart.js"); 
+                                    public static readonly string streamgraph_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/components/charts/d3/other/streamgraph.js"); 
+                                    public static readonly string treemap_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/components/charts/d3/other/treemap.js"); 
+                                    public static readonly string vertical_sankey_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/components/charts/d3/other/vertical-sankey.js"); 
                                 }
                             }
                             public static partial class pie 
                             {
                                 public static class Assets
                                 {
-                                    public const string _3d_pie_donut_js = "~/Content/js/components/charts/d3/pie/3d-pie-donut.js"; 
-                                    public const string dispatch_events_js = "~/Content/js/components/charts/d3/pie/dispatch-events.js"; 
-                                    public const string donut_multiples_nesting_js = "~/Content/js/components/charts/d3/pie/donut-multiples-nesting.js"; 
-                                    public const string donut_multiples_js = "~/Content/js/components/charts/d3/pie/donut-multiples.js"; 
-                                    public const string donut_js = "~/Content/js/components/charts/d3/pie/donut.js"; 
-                                    public const string gradient_pie_js = "~/Content/js/components/charts/d3/pie/gradient-pie.js"; 
-                                    public const string pie_calendar_js = "~/Content/js/components/charts/d3/pie/pie-calendar.js"; 
-                                    public const string pie_multiples_nesting_js = "~/Content/js/components/charts/d3/pie/pie-multiples-nesting.js"; 
-                                    public const string pie_multiples_js = "~/Content/js/components/charts/d3/pie/pie-multiples.js"; 
-                                    public const string pie_js = "~/Content/js/components/charts/d3/pie/pie.js"; 
+                                    public static readonly string _3d_pie_donut_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/components/charts/d3/pie/3d-pie-donut.js"); 
+                                    public static readonly string dispatch_events_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/components/charts/d3/pie/dispatch-events.js"); 
+                                    public static readonly string donut_multiples_nesting_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/components/charts/d3/pie/donut-multiples-nesting.js"); 
+                                    public static readonly string donut_multiples_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/components/charts/d3/pie/donut-multiples.js"); 
+                                    public static readonly string donut_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/components/charts/d3/pie/donut.js"); 
+                                    public static readonly string gradient_pie_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/components/charts/d3/pie/gradient-pie.js"); 
+                                    public static readonly string pie_calendar_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/components/charts/d3/pie/pie-calendar.js"); 
+                                    public static readonly string pie_multiples_nesting_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/components/charts/d3/pie/pie-multiples-nesting.js"); 
+                                    public static readonly string pie_multiples_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/components/charts/d3/pie/pie-multiples.js"); 
+                                    public static readonly string pie_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/components/charts/d3/pie/pie.js"); 
                                 }
                             }
                             public static partial class tree 
                             {
                                 public static class Assets
                                 {
-                                    public const string bracket_js = "~/Content/js/components/charts/d3/tree/bracket.js"; 
-                                    public const string collapsible_js = "~/Content/js/components/charts/d3/tree/collapsible.js"; 
-                                    public const string dendrogram_js = "~/Content/js/components/charts/d3/tree/dendrogram.js"; 
-                                    public const string radial_js = "~/Content/js/components/charts/d3/tree/radial.js"; 
-                                    public const string tree_js = "~/Content/js/components/charts/d3/tree/tree.js"; 
+                                    public static readonly string bracket_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/components/charts/d3/tree/bracket.js"); 
+                                    public static readonly string collapsible_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/components/charts/d3/tree/collapsible.js"); 
+                                    public static readonly string dendrogram_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/components/charts/d3/tree/dendrogram.js"); 
+                                    public static readonly string radial_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/components/charts/d3/tree/radial.js"); 
+                                    public static readonly string tree_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/components/charts/d3/tree/tree.js"); 
                                 }
                             }
                             public static class Assets
@@ -9118,12 +9118,12 @@ namespace Links
                         {
                             public static class Assets
                             {
-                                public const string bar_column_js = "~/Content/js/components/charts/dimple/bar-column.js"; 
-                                public const string bubble_js = "~/Content/js/components/charts/dimple/bubble.js"; 
-                                public const string line_area_js = "~/Content/js/components/charts/dimple/line-area.js"; 
-                                public const string pie_ring_js = "~/Content/js/components/charts/dimple/pie-ring.js"; 
-                                public const string scatter_js = "~/Content/js/components/charts/dimple/scatter.js"; 
-                                public const string step_js = "~/Content/js/components/charts/dimple/step.js"; 
+                                public static readonly string bar_column_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/components/charts/dimple/bar-column.js"); 
+                                public static readonly string bubble_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/components/charts/dimple/bubble.js"); 
+                                public static readonly string line_area_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/components/charts/dimple/line-area.js"); 
+                                public static readonly string pie_ring_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/components/charts/dimple/pie-ring.js"); 
+                                public static readonly string scatter_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/components/charts/dimple/scatter.js"); 
+                                public static readonly string step_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/components/charts/dimple/step.js"); 
                             }
                         }
                         public static partial class echarts 
@@ -9132,114 +9132,114 @@ namespace Links
                             {
                                 public static class Assets
                                 {
-                                    public const string candlestick_multi_level_control_js = "~/Content/js/components/charts/echarts/advance/candlestick-multi-level-control.js"; 
-                                    public const string dynamic_data_js = "~/Content/js/components/charts/echarts/advance/dynamic-data.js"; 
-                                    public const string event_river_js = "~/Content/js/components/charts/echarts/advance/event-river.js"; 
-                                    public const string eventRiver2_data_js = "~/Content/js/components/charts/echarts/advance/eventRiver2-data.js"; 
-                                    public const string multiple_series_rainbow_js = "~/Content/js/components/charts/echarts/advance/multiple-series-rainbow.js"; 
-                                    public const string time_data_js = "~/Content/js/components/charts/echarts/advance/time-data.js"; 
-                                    public const string timeline_options_js = "~/Content/js/components/charts/echarts/advance/timeline-options.js"; 
-                                    public const string timeline_js = "~/Content/js/components/charts/echarts/advance/timeline.js"; 
-                                    public const string tornado_js = "~/Content/js/components/charts/echarts/advance/tornado.js"; 
-                                    public const string treemap_js = "~/Content/js/components/charts/echarts/advance/treemap.js"; 
-                                    public const string word_cloud_js = "~/Content/js/components/charts/echarts/advance/word-cloud.js"; 
+                                    public static readonly string candlestick_multi_level_control_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/components/charts/echarts/advance/candlestick-multi-level-control.js"); 
+                                    public static readonly string dynamic_data_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/components/charts/echarts/advance/dynamic-data.js"); 
+                                    public static readonly string event_river_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/components/charts/echarts/advance/event-river.js"); 
+                                    public static readonly string eventRiver2_data_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/components/charts/echarts/advance/eventRiver2-data.js"); 
+                                    public static readonly string multiple_series_rainbow_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/components/charts/echarts/advance/multiple-series-rainbow.js"); 
+                                    public static readonly string time_data_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/components/charts/echarts/advance/time-data.js"); 
+                                    public static readonly string timeline_options_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/components/charts/echarts/advance/timeline-options.js"); 
+                                    public static readonly string timeline_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/components/charts/echarts/advance/timeline.js"); 
+                                    public static readonly string tornado_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/components/charts/echarts/advance/tornado.js"); 
+                                    public static readonly string treemap_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/components/charts/echarts/advance/treemap.js"); 
+                                    public static readonly string word_cloud_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/components/charts/echarts/advance/word-cloud.js"); 
                                 }
                             }
                             public static partial class bar_column 
                             {
                                 public static class Assets
                                 {
-                                    public const string basic_bar_js = "~/Content/js/components/charts/echarts/bar-column/basic-bar.js"; 
-                                    public const string basic_column_js = "~/Content/js/components/charts/echarts/bar-column/basic-column.js"; 
-                                    public const string change_waterfall_js = "~/Content/js/components/charts/echarts/bar-column/change-waterfall.js"; 
-                                    public const string column_multi_level_control_js = "~/Content/js/components/charts/echarts/bar-column/column-multi-level-control.js"; 
-                                    public const string irregular_bar_js = "~/Content/js/components/charts/echarts/bar-column/irregular-bar.js"; 
-                                    public const string stacked_bar_js = "~/Content/js/components/charts/echarts/bar-column/stacked-bar.js"; 
-                                    public const string stacked_clustered_column_js = "~/Content/js/components/charts/echarts/bar-column/stacked-clustered-column.js"; 
-                                    public const string stacked_column_js = "~/Content/js/components/charts/echarts/bar-column/stacked-column.js"; 
-                                    public const string stacked_floating_bar_js = "~/Content/js/components/charts/echarts/bar-column/stacked-floating-bar.js"; 
-                                    public const string thermometer_js = "~/Content/js/components/charts/echarts/bar-column/thermometer.js"; 
+                                    public static readonly string basic_bar_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/components/charts/echarts/bar-column/basic-bar.js"); 
+                                    public static readonly string basic_column_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/components/charts/echarts/bar-column/basic-column.js"); 
+                                    public static readonly string change_waterfall_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/components/charts/echarts/bar-column/change-waterfall.js"); 
+                                    public static readonly string column_multi_level_control_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/components/charts/echarts/bar-column/column-multi-level-control.js"); 
+                                    public static readonly string irregular_bar_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/components/charts/echarts/bar-column/irregular-bar.js"); 
+                                    public static readonly string stacked_bar_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/components/charts/echarts/bar-column/stacked-bar.js"); 
+                                    public static readonly string stacked_clustered_column_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/components/charts/echarts/bar-column/stacked-clustered-column.js"); 
+                                    public static readonly string stacked_column_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/components/charts/echarts/bar-column/stacked-column.js"); 
+                                    public static readonly string stacked_floating_bar_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/components/charts/echarts/bar-column/stacked-floating-bar.js"); 
+                                    public static readonly string thermometer_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/components/charts/echarts/bar-column/thermometer.js"); 
                                 }
                             }
                             public static partial class combination 
                             {
                                 public static class Assets
                                 {
-                                    public const string column_line_js = "~/Content/js/components/charts/echarts/combination/column-line.js"; 
-                                    public const string column_pie_js = "~/Content/js/components/charts/echarts/combination/column-pie.js"; 
-                                    public const string multiple_combination_js = "~/Content/js/components/charts/echarts/combination/multiple-combination.js"; 
-                                    public const string scatter_line_js = "~/Content/js/components/charts/echarts/combination/scatter-line.js"; 
-                                    public const string scatter_pie_js = "~/Content/js/components/charts/echarts/combination/scatter-pie.js"; 
+                                    public static readonly string column_line_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/components/charts/echarts/combination/column-line.js"); 
+                                    public static readonly string column_pie_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/components/charts/echarts/combination/column-pie.js"); 
+                                    public static readonly string multiple_combination_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/components/charts/echarts/combination/multiple-combination.js"); 
+                                    public static readonly string scatter_line_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/components/charts/echarts/combination/scatter-line.js"); 
+                                    public static readonly string scatter_pie_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/components/charts/echarts/combination/scatter-pie.js"); 
                                 }
                             }
                             public static partial class funnel_gauges 
                             {
                                 public static class Assets
                                 {
-                                    public const string angular_gauge_js = "~/Content/js/components/charts/echarts/funnel-gauges/angular-gauge.js"; 
-                                    public const string basic_gauge_js = "~/Content/js/components/charts/echarts/funnel-gauges/basic-gauge.js"; 
-                                    public const string customized_gauge_js = "~/Content/js/components/charts/echarts/funnel-gauges/customized-gauge.js"; 
-                                    public const string funnel_plot_js = "~/Content/js/components/charts/echarts/funnel-gauges/funnel-plot.js"; 
-                                    public const string funnel_pyramid_js = "~/Content/js/components/charts/echarts/funnel-gauges/funnel-pyramid.js"; 
-                                    public const string left_align_funnel_js = "~/Content/js/components/charts/echarts/funnel-gauges/left-align-funnel.js"; 
-                                    public const string multiple_funnel1_js = "~/Content/js/components/charts/echarts/funnel-gauges/multiple-funnel1.js"; 
-                                    public const string multiple_funnel2_js = "~/Content/js/components/charts/echarts/funnel-gauges/multiple-funnel2.js"; 
-                                    public const string multiple_gauges_js = "~/Content/js/components/charts/echarts/funnel-gauges/multiple-gauges.js"; 
-                                    public const string right_align_funnel_js = "~/Content/js/components/charts/echarts/funnel-gauges/right-align-funnel.js"; 
+                                    public static readonly string angular_gauge_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/components/charts/echarts/funnel-gauges/angular-gauge.js"); 
+                                    public static readonly string basic_gauge_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/components/charts/echarts/funnel-gauges/basic-gauge.js"); 
+                                    public static readonly string customized_gauge_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/components/charts/echarts/funnel-gauges/customized-gauge.js"); 
+                                    public static readonly string funnel_plot_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/components/charts/echarts/funnel-gauges/funnel-plot.js"); 
+                                    public static readonly string funnel_pyramid_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/components/charts/echarts/funnel-gauges/funnel-pyramid.js"); 
+                                    public static readonly string left_align_funnel_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/components/charts/echarts/funnel-gauges/left-align-funnel.js"); 
+                                    public static readonly string multiple_funnel1_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/components/charts/echarts/funnel-gauges/multiple-funnel1.js"); 
+                                    public static readonly string multiple_funnel2_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/components/charts/echarts/funnel-gauges/multiple-funnel2.js"); 
+                                    public static readonly string multiple_gauges_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/components/charts/echarts/funnel-gauges/multiple-gauges.js"); 
+                                    public static readonly string right_align_funnel_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/components/charts/echarts/funnel-gauges/right-align-funnel.js"); 
                                 }
                             }
                             public static partial class line_area 
                             {
                                 public static class Assets
                                 {
-                                    public const string basic_area_js = "~/Content/js/components/charts/echarts/line-area/basic-area.js"; 
-                                    public const string basic_line_js = "~/Content/js/components/charts/echarts/line-area/basic-line.js"; 
-                                    public const string irregular_line_time_axis_js = "~/Content/js/components/charts/echarts/line-area/irregular-line-time-axis.js"; 
-                                    public const string irregular_line_two_value_axis_js = "~/Content/js/components/charts/echarts/line-area/irregular-line-two-value-axis.js"; 
-                                    public const string line_multilevel_control_js = "~/Content/js/components/charts/echarts/line-area/line-multilevel-control.js"; 
-                                    public const string stacked_area_js = "~/Content/js/components/charts/echarts/line-area/stacked-area.js"; 
-                                    public const string stacked_line_js = "~/Content/js/components/charts/echarts/line-area/stacked-line.js"; 
+                                    public static readonly string basic_area_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/components/charts/echarts/line-area/basic-area.js"); 
+                                    public static readonly string basic_line_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/components/charts/echarts/line-area/basic-line.js"); 
+                                    public static readonly string irregular_line_time_axis_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/components/charts/echarts/line-area/irregular-line-time-axis.js"); 
+                                    public static readonly string irregular_line_two_value_axis_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/components/charts/echarts/line-area/irregular-line-two-value-axis.js"); 
+                                    public static readonly string line_multilevel_control_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/components/charts/echarts/line-area/line-multilevel-control.js"); 
+                                    public static readonly string stacked_area_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/components/charts/echarts/line-area/stacked-area.js"); 
+                                    public static readonly string stacked_line_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/components/charts/echarts/line-area/stacked-line.js"); 
                                 }
                             }
                             public static partial class pie_doughnut 
                             {
                                 public static class Assets
                                 {
-                                    public const string basic_pie_js = "~/Content/js/components/charts/echarts/pie-doughnut/basic-pie.js"; 
-                                    public const string doughnut_infographic_js = "~/Content/js/components/charts/echarts/pie-doughnut/doughnut-infographic.js"; 
-                                    public const string doughnut_js = "~/Content/js/components/charts/echarts/pie-doughnut/doughnut.js"; 
-                                    public const string lasagna_js = "~/Content/js/components/charts/echarts/pie-doughnut/lasagna.js"; 
-                                    public const string multiple_doughnut_js = "~/Content/js/components/charts/echarts/pie-doughnut/multiple-doughnut.js"; 
-                                    public const string nested_pie_js = "~/Content/js/components/charts/echarts/pie-doughnut/nested-pie.js"; 
-                                    public const string nightingale_rose_labels_js = "~/Content/js/components/charts/echarts/pie-doughnut/nightingale-rose-labels.js"; 
-                                    public const string nightingale_rose_js = "~/Content/js/components/charts/echarts/pie-doughnut/nightingale-rose.js"; 
-                                    public const string timeline_js = "~/Content/js/components/charts/echarts/pie-doughnut/timeline.js"; 
+                                    public static readonly string basic_pie_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/components/charts/echarts/pie-doughnut/basic-pie.js"); 
+                                    public static readonly string doughnut_infographic_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/components/charts/echarts/pie-doughnut/doughnut-infographic.js"); 
+                                    public static readonly string doughnut_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/components/charts/echarts/pie-doughnut/doughnut.js"); 
+                                    public static readonly string lasagna_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/components/charts/echarts/pie-doughnut/lasagna.js"); 
+                                    public static readonly string multiple_doughnut_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/components/charts/echarts/pie-doughnut/multiple-doughnut.js"); 
+                                    public static readonly string nested_pie_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/components/charts/echarts/pie-doughnut/nested-pie.js"); 
+                                    public static readonly string nightingale_rose_labels_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/components/charts/echarts/pie-doughnut/nightingale-rose-labels.js"); 
+                                    public static readonly string nightingale_rose_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/components/charts/echarts/pie-doughnut/nightingale-rose.js"); 
+                                    public static readonly string timeline_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/components/charts/echarts/pie-doughnut/timeline.js"); 
                                 }
                             }
                             public static partial class radar_chord 
                             {
                                 public static class Assets
                                 {
-                                    public const string basic_chord_js = "~/Content/js/components/charts/echarts/radar-chord/basic-chord.js"; 
-                                    public const string basic_filled_radar_js = "~/Content/js/components/charts/echarts/radar-chord/basic-filled-radar.js"; 
-                                    public const string basic_radar_js = "~/Content/js/components/charts/echarts/radar-chord/basic-radar.js"; 
-                                    public const string chord_sorting_js = "~/Content/js/components/charts/echarts/radar-chord/chord-sorting.js"; 
-                                    public const string multiple_dimensions_chord_js = "~/Content/js/components/charts/echarts/radar-chord/multiple-dimensions-chord.js"; 
-                                    public const string multiple_radars_js = "~/Content/js/components/charts/echarts/radar-chord/multiple-radars.js"; 
-                                    public const string non_ribbon_chord_js = "~/Content/js/components/charts/echarts/radar-chord/non-ribbon-chord.js"; 
-                                    public const string radar_multi_level_control_js = "~/Content/js/components/charts/echarts/radar-chord/radar-multi-level-control.js"; 
-                                    public const string wormhole_js = "~/Content/js/components/charts/echarts/radar-chord/wormhole.js"; 
+                                    public static readonly string basic_chord_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/components/charts/echarts/radar-chord/basic-chord.js"); 
+                                    public static readonly string basic_filled_radar_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/components/charts/echarts/radar-chord/basic-filled-radar.js"); 
+                                    public static readonly string basic_radar_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/components/charts/echarts/radar-chord/basic-radar.js"); 
+                                    public static readonly string chord_sorting_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/components/charts/echarts/radar-chord/chord-sorting.js"); 
+                                    public static readonly string multiple_dimensions_chord_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/components/charts/echarts/radar-chord/multiple-dimensions-chord.js"); 
+                                    public static readonly string multiple_radars_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/components/charts/echarts/radar-chord/multiple-radars.js"); 
+                                    public static readonly string non_ribbon_chord_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/components/charts/echarts/radar-chord/non-ribbon-chord.js"); 
+                                    public static readonly string radar_multi_level_control_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/components/charts/echarts/radar-chord/radar-multi-level-control.js"); 
+                                    public static readonly string wormhole_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/components/charts/echarts/radar-chord/wormhole.js"); 
                                 }
                             }
                             public static partial class scatter 
                             {
                                 public static class Assets
                                 {
-                                    public const string basic_bubble_js = "~/Content/js/components/charts/echarts/scatter/basic-bubble.js"; 
-                                    public const string basic_scatter_js = "~/Content/js/components/charts/echarts/scatter/basic-scatter.js"; 
-                                    public const string category_scatter_js = "~/Content/js/components/charts/echarts/scatter/category-scatter.js"; 
-                                    public const string large_scale_scatter_js = "~/Content/js/components/charts/echarts/scatter/large-scale-scatter.js"; 
-                                    public const string scatter_multi_level_control_js = "~/Content/js/components/charts/echarts/scatter/scatter-multi-level-control.js"; 
+                                    public static readonly string basic_bubble_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/components/charts/echarts/scatter/basic-bubble.js"); 
+                                    public static readonly string basic_scatter_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/components/charts/echarts/scatter/basic-scatter.js"); 
+                                    public static readonly string category_scatter_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/components/charts/echarts/scatter/category-scatter.js"); 
+                                    public static readonly string large_scale_scatter_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/components/charts/echarts/scatter/large-scale-scatter.js"); 
+                                    public static readonly string scatter_multi_level_control_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/components/charts/echarts/scatter/scatter-multi-level-control.js"); 
                                 }
                             }
                             public static class Assets
@@ -9252,35 +9252,35 @@ namespace Links
                             {
                                 public static class Assets
                                 {
-                                    public const string annotations_js = "~/Content/js/components/charts/flot/bar/annotations.js"; 
-                                    public const string bar_js = "~/Content/js/components/charts/flot/bar/bar.js"; 
-                                    public const string error_bars_js = "~/Content/js/components/charts/flot/bar/error-bars.js"; 
-                                    public const string stacked_bar_js = "~/Content/js/components/charts/flot/bar/stacked-bar.js"; 
-                                    public const string thresholds_js = "~/Content/js/components/charts/flot/bar/thresholds.js"; 
+                                    public static readonly string annotations_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/components/charts/flot/bar/annotations.js"); 
+                                    public static readonly string bar_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/components/charts/flot/bar/bar.js"); 
+                                    public static readonly string error_bars_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/components/charts/flot/bar/error-bars.js"); 
+                                    public static readonly string stacked_bar_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/components/charts/flot/bar/stacked-bar.js"); 
+                                    public static readonly string thresholds_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/components/charts/flot/bar/thresholds.js"); 
                                 }
                             }
                             public static partial class line 
                             {
                                 public static class Assets
                                 {
-                                    public const string line_js = "~/Content/js/components/charts/flot/line/line.js"; 
-                                    public const string realtime_js = "~/Content/js/components/charts/flot/line/realtime.js"; 
-                                    public const string series_types_js = "~/Content/js/components/charts/flot/line/series-types.js"; 
-                                    public const string symbols_js = "~/Content/js/components/charts/flot/line/symbols.js"; 
-                                    public const string tracking_js = "~/Content/js/components/charts/flot/line/tracking.js"; 
-                                    public const string visitors_js = "~/Content/js/components/charts/flot/line/visitors.js"; 
+                                    public static readonly string line_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/components/charts/flot/line/line.js"); 
+                                    public static readonly string realtime_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/components/charts/flot/line/realtime.js"); 
+                                    public static readonly string series_types_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/components/charts/flot/line/series-types.js"); 
+                                    public static readonly string symbols_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/components/charts/flot/line/symbols.js"); 
+                                    public static readonly string tracking_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/components/charts/flot/line/tracking.js"); 
+                                    public static readonly string visitors_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/components/charts/flot/line/visitors.js"); 
                                 }
                             }
                             public static partial class pie 
                             {
                                 public static class Assets
                                 {
-                                    public const string donut_hole_js = "~/Content/js/components/charts/flot/pie/donut-hole.js"; 
-                                    public const string interactive_pie_js = "~/Content/js/components/charts/flot/pie/interactive-pie.js"; 
-                                    public const string label_formatter_js = "~/Content/js/components/charts/flot/pie/label-formatter.js"; 
-                                    public const string pie_js = "~/Content/js/components/charts/flot/pie/pie.js"; 
-                                    public const string rectangular_pie_js = "~/Content/js/components/charts/flot/pie/rectangular-pie.js"; 
-                                    public const string tilted_pie_js = "~/Content/js/components/charts/flot/pie/tilted-pie.js"; 
+                                    public static readonly string donut_hole_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/components/charts/flot/pie/donut-hole.js"); 
+                                    public static readonly string interactive_pie_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/components/charts/flot/pie/interactive-pie.js"); 
+                                    public static readonly string label_formatter_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/components/charts/flot/pie/label-formatter.js"); 
+                                    public static readonly string pie_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/components/charts/flot/pie/pie.js"); 
+                                    public static readonly string rectangular_pie_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/components/charts/flot/pie/rectangular-pie.js"); 
+                                    public static readonly string tilted_pie_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/components/charts/flot/pie/tilted-pie.js"); 
                                 }
                             }
                             public static class Assets
@@ -9291,12 +9291,12 @@ namespace Links
                         {
                             public static class Assets
                             {
-                                public const string maps_js = "~/Content/js/components/charts/gmaps/maps.js"; 
-                                public const string overlays_js = "~/Content/js/components/charts/gmaps/overlays.js"; 
-                                public const string routes_js = "~/Content/js/components/charts/gmaps/routes.js"; 
-                                public const string services_js = "~/Content/js/components/charts/gmaps/services.js"; 
-                                public const string static_maps_js = "~/Content/js/components/charts/gmaps/static-maps.js"; 
-                                public const string utils_js = "~/Content/js/components/charts/gmaps/utils.js"; 
+                                public static readonly string maps_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/components/charts/gmaps/maps.js"); 
+                                public static readonly string overlays_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/components/charts/gmaps/overlays.js"); 
+                                public static readonly string routes_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/components/charts/gmaps/routes.js"); 
+                                public static readonly string services_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/components/charts/gmaps/services.js"); 
+                                public static readonly string static_maps_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/components/charts/gmaps/static-maps.js"); 
+                                public static readonly string utils_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/components/charts/gmaps/utils.js"); 
                             }
                         }
                         public static partial class google 
@@ -9305,76 +9305,76 @@ namespace Links
                             {
                                 public static class Assets
                                 {
-                                    public const string bar_intervals_js = "~/Content/js/components/charts/google/bar/bar-intervals.js"; 
-                                    public const string bar_stacked_js = "~/Content/js/components/charts/google/bar/bar-stacked.js"; 
-                                    public const string bar_js = "~/Content/js/components/charts/google/bar/bar.js"; 
-                                    public const string column_js = "~/Content/js/components/charts/google/bar/column.js"; 
-                                    public const string combo_js = "~/Content/js/components/charts/google/bar/combo.js"; 
-                                    public const string histogram_js = "~/Content/js/components/charts/google/bar/histogram.js"; 
-                                    public const string stacked_column_js = "~/Content/js/components/charts/google/bar/stacked-column.js"; 
+                                    public static readonly string bar_intervals_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/components/charts/google/bar/bar-intervals.js"); 
+                                    public static readonly string bar_stacked_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/components/charts/google/bar/bar-stacked.js"); 
+                                    public static readonly string bar_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/components/charts/google/bar/bar.js"); 
+                                    public static readonly string column_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/components/charts/google/bar/column.js"); 
+                                    public static readonly string combo_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/components/charts/google/bar/combo.js"); 
+                                    public static readonly string histogram_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/components/charts/google/bar/histogram.js"); 
+                                    public static readonly string stacked_column_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/components/charts/google/bar/stacked-column.js"); 
                                 }
                             }
                             public static partial class bubble 
                             {
                                 public static class Assets
                                 {
-                                    public const string bubble_color_js = "~/Content/js/components/charts/google/bubble/bubble-color.js"; 
-                                    public const string bubble_js = "~/Content/js/components/charts/google/bubble/bubble.js"; 
+                                    public static readonly string bubble_color_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/components/charts/google/bubble/bubble-color.js"); 
+                                    public static readonly string bubble_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/components/charts/google/bubble/bubble.js"); 
                                 }
                             }
                             public static partial class line 
                             {
                                 public static class Assets
                                 {
-                                    public const string area_interval_js = "~/Content/js/components/charts/google/line/area-interval.js"; 
-                                    public const string area_stacked_stepped_js = "~/Content/js/components/charts/google/line/area-stacked-stepped.js"; 
-                                    public const string area_stacked_js = "~/Content/js/components/charts/google/line/area-stacked.js"; 
-                                    public const string area_stepped_js = "~/Content/js/components/charts/google/line/area-stepped.js"; 
-                                    public const string area_js = "~/Content/js/components/charts/google/line/area.js"; 
-                                    public const string line_interval_js = "~/Content/js/components/charts/google/line/line-interval.js"; 
-                                    public const string line_js = "~/Content/js/components/charts/google/line/line.js"; 
+                                    public static readonly string area_interval_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/components/charts/google/line/area-interval.js"); 
+                                    public static readonly string area_stacked_stepped_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/components/charts/google/line/area-stacked-stepped.js"); 
+                                    public static readonly string area_stacked_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/components/charts/google/line/area-stacked.js"); 
+                                    public static readonly string area_stepped_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/components/charts/google/line/area-stepped.js"); 
+                                    public static readonly string area_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/components/charts/google/line/area.js"); 
+                                    public static readonly string line_interval_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/components/charts/google/line/line-interval.js"); 
+                                    public static readonly string line_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/components/charts/google/line/line.js"); 
                                 }
                             }
                             public static partial class other 
                             {
                                 public static class Assets
                                 {
-                                    public const string candlestick_js = "~/Content/js/components/charts/google/other/candlestick.js"; 
-                                    public const string diff_js = "~/Content/js/components/charts/google/other/diff.js"; 
-                                    public const string geo_js = "~/Content/js/components/charts/google/other/geo.js"; 
-                                    public const string guage_js = "~/Content/js/components/charts/google/other/guage.js"; 
-                                    public const string sankey_js = "~/Content/js/components/charts/google/other/sankey.js"; 
-                                    public const string sticks_interval_js = "~/Content/js/components/charts/google/other/sticks-interval.js"; 
-                                    public const string treemap_js = "~/Content/js/components/charts/google/other/treemap.js"; 
-                                    public const string trendlines_js = "~/Content/js/components/charts/google/other/trendlines.js"; 
+                                    public static readonly string candlestick_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/components/charts/google/other/candlestick.js"); 
+                                    public static readonly string diff_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/components/charts/google/other/diff.js"); 
+                                    public static readonly string geo_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/components/charts/google/other/geo.js"); 
+                                    public static readonly string guage_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/components/charts/google/other/guage.js"); 
+                                    public static readonly string sankey_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/components/charts/google/other/sankey.js"); 
+                                    public static readonly string sticks_interval_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/components/charts/google/other/sticks-interval.js"); 
+                                    public static readonly string treemap_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/components/charts/google/other/treemap.js"); 
+                                    public static readonly string trendlines_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/components/charts/google/other/trendlines.js"); 
                                 }
                             }
                             public static partial class pie 
                             {
                                 public static class Assets
                                 {
-                                    public const string _3d_pie_exploded_js = "~/Content/js/components/charts/google/pie/3d-pie-exploded.js"; 
-                                    public const string _3d_pie_js = "~/Content/js/components/charts/google/pie/3d-pie.js"; 
-                                    public const string donut_exploded_js = "~/Content/js/components/charts/google/pie/donut-exploded.js"; 
-                                    public const string donut_rotated_js = "~/Content/js/components/charts/google/pie/donut-rotated.js"; 
-                                    public const string donut_js = "~/Content/js/components/charts/google/pie/donut.js"; 
-                                    public const string pie_diff_border_js = "~/Content/js/components/charts/google/pie/pie-diff-border.js"; 
-                                    public const string pie_diff_invert_js = "~/Content/js/components/charts/google/pie/pie-diff-invert.js"; 
-                                    public const string pie_diff_opacity_js = "~/Content/js/components/charts/google/pie/pie-diff-opacity.js"; 
-                                    public const string pie_diff_radius_js = "~/Content/js/components/charts/google/pie/pie-diff-radius.js"; 
-                                    public const string pie_exploded_js = "~/Content/js/components/charts/google/pie/pie-exploded.js"; 
-                                    public const string pie_rotated_js = "~/Content/js/components/charts/google/pie/pie-rotated.js"; 
-                                    public const string pie_js = "~/Content/js/components/charts/google/pie/pie.js"; 
+                                    public static readonly string _3d_pie_exploded_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/components/charts/google/pie/3d-pie-exploded.js"); 
+                                    public static readonly string _3d_pie_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/components/charts/google/pie/3d-pie.js"); 
+                                    public static readonly string donut_exploded_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/components/charts/google/pie/donut-exploded.js"); 
+                                    public static readonly string donut_rotated_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/components/charts/google/pie/donut-rotated.js"); 
+                                    public static readonly string donut_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/components/charts/google/pie/donut.js"); 
+                                    public static readonly string pie_diff_border_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/components/charts/google/pie/pie-diff-border.js"); 
+                                    public static readonly string pie_diff_invert_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/components/charts/google/pie/pie-diff-invert.js"); 
+                                    public static readonly string pie_diff_opacity_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/components/charts/google/pie/pie-diff-opacity.js"); 
+                                    public static readonly string pie_diff_radius_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/components/charts/google/pie/pie-diff-radius.js"); 
+                                    public static readonly string pie_exploded_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/components/charts/google/pie/pie-exploded.js"); 
+                                    public static readonly string pie_rotated_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/components/charts/google/pie/pie-rotated.js"); 
+                                    public static readonly string pie_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/components/charts/google/pie/pie.js"); 
                                 }
                             }
                             public static partial class scatter 
                             {
                                 public static class Assets
                                 {
-                                    public const string point_interval_js = "~/Content/js/components/charts/google/scatter/point-interval.js"; 
-                                    public const string scatter_diff_js = "~/Content/js/components/charts/google/scatter/scatter-diff.js"; 
-                                    public const string scatter_material_js = "~/Content/js/components/charts/google/scatter/scatter-material.js"; 
-                                    public const string scatter_js = "~/Content/js/components/charts/google/scatter/scatter.js"; 
+                                    public static readonly string point_interval_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/components/charts/google/scatter/point-interval.js"); 
+                                    public static readonly string scatter_diff_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/components/charts/google/scatter/scatter-diff.js"); 
+                                    public static readonly string scatter_material_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/components/charts/google/scatter/scatter-material.js"); 
+                                    public static readonly string scatter_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/components/charts/google/scatter/scatter.js"); 
                                 }
                             }
                             public static class Assets
@@ -9385,14 +9385,14 @@ namespace Links
                         {
                             public static class Assets
                             {
-                                public const string jqvmap_js = "~/Content/js/components/charts/jqvmap/jqvmap.js"; 
+                                public static readonly string jqvmap_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/components/charts/jqvmap/jqvmap.js"); 
                             }
                         }
                         public static partial class jvector 
                         {
                             public static class Assets
                             {
-                                public const string jvector_js = "~/Content/js/components/charts/jvector/jvector.js"; 
+                                public static readonly string jvector_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/components/charts/jvector/jvector.js"); 
                             }
                         }
                         public static partial class mapael 
@@ -9401,22 +9401,22 @@ namespace Links
                             {
                                 public static class Assets
                                 {
-                                    public const string afterInit_extend_js = "~/Content/js/components/charts/mapael/advance/afterInit-extend.js"; 
-                                    public const string display_information_js = "~/Content/js/components/charts/mapael/advance/display-information.js"; 
-                                    public const string links_between_plotted_cities_js = "~/Content/js/components/charts/mapael/advance/links-between-plotted-cities.js"; 
-                                    public const string multiple_legends_plotted_cities_js = "~/Content/js/components/charts/mapael/advance/multiple-legends-plotted-cities.js"; 
-                                    public const string zoom_on_click_js = "~/Content/js/components/charts/mapael/advance/zoom-on-click.js"; 
+                                    public static readonly string afterInit_extend_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/components/charts/mapael/advance/afterInit-extend.js"); 
+                                    public static readonly string display_information_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/components/charts/mapael/advance/display-information.js"); 
+                                    public static readonly string links_between_plotted_cities_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/components/charts/mapael/advance/links-between-plotted-cities.js"); 
+                                    public static readonly string multiple_legends_plotted_cities_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/components/charts/mapael/advance/multiple-legends-plotted-cities.js"); 
+                                    public static readonly string zoom_on_click_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/components/charts/mapael/advance/zoom-on-click.js"); 
                                 }
                             }
                             public static partial class basic 
                             {
                                 public static class Assets
                                 {
-                                    public const string horizontal_legend_js = "~/Content/js/components/charts/mapael/basic/horizontal-legend.js"; 
-                                    public const string href_plotted_cities_js = "~/Content/js/components/charts/mapael/basic/href-plotted-cities.js"; 
-                                    public const string legend_images_js = "~/Content/js/components/charts/mapael/basic/legend-images.js"; 
-                                    public const string legend_plotted_cities_js = "~/Content/js/components/charts/mapael/basic/legend-plotted-cities.js"; 
-                                    public const string zoom_js = "~/Content/js/components/charts/mapael/basic/zoom.js"; 
+                                    public static readonly string horizontal_legend_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/components/charts/mapael/basic/horizontal-legend.js"); 
+                                    public static readonly string href_plotted_cities_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/components/charts/mapael/basic/href-plotted-cities.js"); 
+                                    public static readonly string legend_images_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/components/charts/mapael/basic/legend-images.js"); 
+                                    public static readonly string legend_plotted_cities_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/components/charts/mapael/basic/legend-plotted-cities.js"); 
+                                    public static readonly string zoom_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/components/charts/mapael/basic/zoom.js"); 
                                 }
                             }
                             public static class Assets
@@ -9427,23 +9427,23 @@ namespace Links
                         {
                             public static class Assets
                             {
-                                public const string area_js = "~/Content/js/components/charts/morris/area.js"; 
-                                public const string bar_js = "~/Content/js/components/charts/morris/bar.js"; 
-                                public const string donut_js = "~/Content/js/components/charts/morris/donut.js"; 
-                                public const string line_js = "~/Content/js/components/charts/morris/line.js"; 
-                                public const string smooth_area_js = "~/Content/js/components/charts/morris/smooth-area.js"; 
-                                public const string smooth_line_js = "~/Content/js/components/charts/morris/smooth-line.js"; 
+                                public static readonly string area_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/components/charts/morris/area.js"); 
+                                public static readonly string bar_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/components/charts/morris/bar.js"); 
+                                public static readonly string donut_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/components/charts/morris/donut.js"); 
+                                public static readonly string line_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/components/charts/morris/line.js"); 
+                                public static readonly string smooth_area_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/components/charts/morris/smooth-area.js"); 
+                                public static readonly string smooth_line_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/components/charts/morris/smooth-line.js"); 
                             }
                         }
                         public static partial class rickshaw 
                         {
                             public static class Assets
                             {
-                                public const string area_js = "~/Content/js/components/charts/rickshaw/area.js"; 
-                                public const string bar_js = "~/Content/js/components/charts/rickshaw/bar.js"; 
-                                public const string line_js = "~/Content/js/components/charts/rickshaw/line.js"; 
-                                public const string multiple_renderers_js = "~/Content/js/components/charts/rickshaw/multiple-renderers.js"; 
-                                public const string scatter_js = "~/Content/js/components/charts/rickshaw/scatter.js"; 
+                                public static readonly string area_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/components/charts/rickshaw/area.js"); 
+                                public static readonly string bar_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/components/charts/rickshaw/bar.js"); 
+                                public static readonly string line_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/components/charts/rickshaw/line.js"); 
+                                public static readonly string multiple_renderers_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/components/charts/rickshaw/multiple-renderers.js"); 
+                                public static readonly string scatter_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/components/charts/rickshaw/scatter.js"); 
                             }
                         }
                         public static class Assets
@@ -9454,26 +9454,26 @@ namespace Links
                     {
                         public static class Assets
                         {
-                            public const string coming_soon_js = "~/Content/js/components/coming-soon/coming-soon.js"; 
+                            public static readonly string coming_soon_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/components/coming-soon/coming-soon.js"); 
                         }
                     }
                     public static partial class dropdowns 
                     {
                         public static class Assets
                         {
-                            public const string dropdowns_js = "~/Content/js/components/dropdowns/dropdowns.js"; 
+                            public static readonly string dropdowns_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/components/dropdowns/dropdowns.js"); 
                         }
                     }
                     public static partial class editors 
                     {
                         public static class Assets
                         {
-                            public const string editor_ace_js = "~/Content/js/components/editors/editor-ace.js"; 
-                            public const string editor_ckeditor_js = "~/Content/js/components/editors/editor-ckeditor.js"; 
-                            public const string editor_codemirror_js = "~/Content/js/components/editors/editor-codemirror.js"; 
-                            public const string editor_quill_js = "~/Content/js/components/editors/editor-quill.js"; 
-                            public const string editor_summernote_js = "~/Content/js/components/editors/editor-summernote.js"; 
-                            public const string editor_tinymce_js = "~/Content/js/components/editors/editor-tinymce.js"; 
+                            public static readonly string editor_ace_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/components/editors/editor-ace.js"); 
+                            public static readonly string editor_ckeditor_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/components/editors/editor-ckeditor.js"); 
+                            public static readonly string editor_codemirror_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/components/editors/editor-codemirror.js"); 
+                            public static readonly string editor_quill_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/components/editors/editor-quill.js"); 
+                            public static readonly string editor_summernote_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/components/editors/editor-summernote.js"); 
+                            public static readonly string editor_tinymce_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/components/editors/editor-tinymce.js"); 
                         }
                     }
                     public static partial class extensions 
@@ -9482,36 +9482,36 @@ namespace Links
                         {
                             public static class Assets
                             {
-                                public const string after_init_js = "~/Content/js/components/extensions/internationalization/after-init.js"; 
-                                public const string fallback_js = "~/Content/js/components/extensions/internationalization/fallback.js"; 
-                                public const string on_init_js = "~/Content/js/components/extensions/internationalization/on-init.js"; 
-                                public const string query_string_js = "~/Content/js/components/extensions/internationalization/query-string.js"; 
-                                public const string resources_js = "~/Content/js/components/extensions/internationalization/resources.js"; 
-                                public const string xhr_backend_js = "~/Content/js/components/extensions/internationalization/xhr-backend.js"; 
+                                public static readonly string after_init_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/components/extensions/internationalization/after-init.js"); 
+                                public static readonly string fallback_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/components/extensions/internationalization/fallback.js"); 
+                                public static readonly string on_init_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/components/extensions/internationalization/on-init.js"); 
+                                public static readonly string query_string_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/components/extensions/internationalization/query-string.js"); 
+                                public static readonly string resources_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/components/extensions/internationalization/resources.js"); 
+                                public static readonly string xhr_backend_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/components/extensions/internationalization/xhr-backend.js"); 
                             }
                         }
                         public static class Assets
                         {
-                            public const string block_ui_js = "~/Content/js/components/extensions/block-ui.js"; 
-                            public const string clndr_js = "~/Content/js/components/extensions/clndr.js"; 
-                            public const string context_menu_js = "~/Content/js/components/extensions/context-menu.js"; 
-                            public const string date_time_dropper_js = "~/Content/js/components/extensions/date-time-dropper.js"; 
-                            public const string drag_drop_js = "~/Content/js/components/extensions/drag-drop.js"; 
-                            public const string dropzone_js = "~/Content/js/components/extensions/dropzone.js"; 
-                            public const string fullcalendar_js = "~/Content/js/components/extensions/fullcalendar.js"; 
-                            public const string image_cropper_js = "~/Content/js/components/extensions/image-cropper.js"; 
-                            public const string jquery_file_upload_js = "~/Content/js/components/extensions/jquery-file-upload.js"; 
-                            public const string knob_js = "~/Content/js/components/extensions/knob.js"; 
-                            public const string list_js = "~/Content/js/components/extensions/list.js"; 
-                            public const string long_press_js = "~/Content/js/components/extensions/long-press.js"; 
-                            public const string noui_slider_js = "~/Content/js/components/extensions/noui-slider.js"; 
-                            public const string offline_js = "~/Content/js/components/extensions/offline.js"; 
-                            public const string rating_js = "~/Content/js/components/extensions/rating.js"; 
-                            public const string sweet_alerts_js = "~/Content/js/components/extensions/sweet-alerts.js"; 
-                            public const string toastr_js = "~/Content/js/components/extensions/toastr.js"; 
-                            public const string toolbar_js = "~/Content/js/components/extensions/toolbar.js"; 
-                            public const string tree_view_js = "~/Content/js/components/extensions/tree-view.js"; 
-                            public const string unslider_js = "~/Content/js/components/extensions/unslider.js"; 
+                            public static readonly string block_ui_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/components/extensions/block-ui.js"); 
+                            public static readonly string clndr_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/components/extensions/clndr.js"); 
+                            public static readonly string context_menu_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/components/extensions/context-menu.js"); 
+                            public static readonly string date_time_dropper_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/components/extensions/date-time-dropper.js"); 
+                            public static readonly string drag_drop_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/components/extensions/drag-drop.js"); 
+                            public static readonly string dropzone_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/components/extensions/dropzone.js"); 
+                            public static readonly string fullcalendar_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/components/extensions/fullcalendar.js"); 
+                            public static readonly string image_cropper_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/components/extensions/image-cropper.js"); 
+                            public static readonly string jquery_file_upload_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/components/extensions/jquery-file-upload.js"); 
+                            public static readonly string knob_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/components/extensions/knob.js"); 
+                            public static readonly string list_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/components/extensions/list.js"); 
+                            public static readonly string long_press_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/components/extensions/long-press.js"); 
+                            public static readonly string noui_slider_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/components/extensions/noui-slider.js"); 
+                            public static readonly string offline_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/components/extensions/offline.js"); 
+                            public static readonly string rating_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/components/extensions/rating.js"); 
+                            public static readonly string sweet_alerts_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/components/extensions/sweet-alerts.js"); 
+                            public static readonly string toastr_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/components/extensions/toastr.js"); 
+                            public static readonly string toolbar_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/components/extensions/toolbar.js"); 
+                            public static readonly string tree_view_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/components/extensions/tree-view.js"); 
+                            public static readonly string unslider_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/components/extensions/unslider.js"); 
                         }
                     }
                     public static partial class forms 
@@ -9520,53 +9520,53 @@ namespace Links
                         {
                             public static class Assets
                             {
-                                public const string form_card_js = "~/Content/js/components/forms/extended/form-card.js"; 
-                                public const string form_formatter_js = "~/Content/js/components/forms/extended/form-formatter.js"; 
-                                public const string form_inputmask_js = "~/Content/js/components/forms/extended/form-inputmask.js"; 
-                                public const string form_maxlength_js = "~/Content/js/components/forms/extended/form-maxlength.js"; 
-                                public const string form_typeahead_js = "~/Content/js/components/forms/extended/form-typeahead.js"; 
+                                public static readonly string form_card_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/components/forms/extended/form-card.js"); 
+                                public static readonly string form_formatter_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/components/forms/extended/form-formatter.js"); 
+                                public static readonly string form_inputmask_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/components/forms/extended/form-inputmask.js"); 
+                                public static readonly string form_maxlength_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/components/forms/extended/form-maxlength.js"); 
+                                public static readonly string form_typeahead_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/components/forms/extended/form-typeahead.js"); 
                             }
                         }
                         public static partial class listbox 
                         {
                             public static class Assets
                             {
-                                public const string form_duallistbox_js = "~/Content/js/components/forms/listbox/form-duallistbox.js"; 
+                                public static readonly string form_duallistbox_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/components/forms/listbox/form-duallistbox.js"); 
                             }
                         }
                         public static partial class select 
                         {
                             public static class Assets
                             {
-                                public const string form_select2_js = "~/Content/js/components/forms/select/form-select2.js"; 
-                                public const string form_selectBoxIt_js = "~/Content/js/components/forms/select/form-selectBoxIt.js"; 
-                                public const string form_selectivity_js = "~/Content/js/components/forms/select/form-selectivity.js"; 
-                                public const string form_selectize_js = "~/Content/js/components/forms/select/form-selectize.js"; 
+                                public static readonly string form_select2_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/components/forms/select/form-select2.js"); 
+                                public static readonly string form_selectBoxIt_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/components/forms/select/form-selectBoxIt.js"); 
+                                public static readonly string form_selectivity_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/components/forms/select/form-selectivity.js"); 
+                                public static readonly string form_selectize_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/components/forms/select/form-selectize.js"); 
                             }
                         }
                         public static partial class tags 
                         {
                             public static class Assets
                             {
-                                public const string tagging_js = "~/Content/js/components/forms/tags/tagging.js"; 
+                                public static readonly string tagging_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/components/forms/tags/tagging.js"); 
                             }
                         }
                         public static partial class validation 
                         {
                             public static class Assets
                             {
-                                public const string form_validation_js = "~/Content/js/components/forms/validation/form-validation.js"; 
+                                public static readonly string form_validation_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/components/forms/validation/form-validation.js"); 
                             }
                         }
                         public static class Assets
                         {
-                            public const string checkbox_radio_js = "~/Content/js/components/forms/checkbox-radio.js"; 
-                            public const string form_login_register_js = "~/Content/js/components/forms/form-login-register.js"; 
-                            public const string form_repeater_js = "~/Content/js/components/forms/form-repeater.js"; 
-                            public const string input_groups_js = "~/Content/js/components/forms/input-groups.js"; 
-                            public const string switch_js = "~/Content/js/components/forms/switch.js"; 
-                            public const string switchery_js = "~/Content/js/components/forms/switchery.js"; 
-                            public const string wizard_steps_js = "~/Content/js/components/forms/wizard-steps.js"; 
+                            public static readonly string checkbox_radio_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/components/forms/checkbox-radio.js"); 
+                            public static readonly string form_login_register_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/components/forms/form-login-register.js"); 
+                            public static readonly string form_repeater_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/components/forms/form-repeater.js"); 
+                            public static readonly string input_groups_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/components/forms/input-groups.js"); 
+                            public static readonly string switch_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/components/forms/switch.js"); 
+                            public static readonly string switchery_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/components/forms/switchery.js"); 
+                            public static readonly string wizard_steps_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/components/forms/wizard-steps.js"); 
                         }
                     }
                     public static partial class gallery 
@@ -9575,7 +9575,7 @@ namespace Links
                         {
                             public static class Assets
                             {
-                                public const string photoswipe_script_js = "~/Content/js/components/gallery/photo-swipe/photoswipe-script.js"; 
+                                public static readonly string photoswipe_script_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/components/gallery/photo-swipe/photoswipe-script.js"); 
                             }
                         }
                         public static class Assets
@@ -9586,45 +9586,45 @@ namespace Links
                     {
                         public static class Assets
                         {
-                            public const string components_modal_js = "~/Content/js/components/modal/components-modal.js"; 
+                            public static readonly string components_modal_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/components/modal/components-modal.js"); 
                         }
                     }
                     public static partial class navs 
                     {
                         public static class Assets
                         {
-                            public const string navs_js = "~/Content/js/components/navs/navs.js"; 
+                            public static readonly string navs_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/components/navs/navs.js"); 
                         }
                     }
                     public static partial class pages 
                     {
                         public static class Assets
                         {
-                            public const string content_sidebar_js = "~/Content/js/components/pages/content-sidebar.js"; 
-                            public const string dashboard_analytics_js = "~/Content/js/components/pages/dashboard-analytics.js"; 
-                            public const string dashboard_crm_js = "~/Content/js/components/pages/dashboard-crm.js"; 
-                            public const string dashboard_ecommerce_js = "~/Content/js/components/pages/dashboard-ecommerce.js"; 
-                            public const string dashboard_fitness_js = "~/Content/js/components/pages/dashboard-fitness.js"; 
-                            public const string dashboard_project_js = "~/Content/js/components/pages/dashboard-project.js"; 
-                            public const string invoice_sales_and_expenses_js = "~/Content/js/components/pages/invoice-sales-and-expenses.js"; 
-                            public const string invoice_top_expenses_js = "~/Content/js/components/pages/invoice-top-expenses.js"; 
-                            public const string invoice_total_recievables_js = "~/Content/js/components/pages/invoice-total-recievables.js"; 
-                            public const string invoices_list_js = "~/Content/js/components/pages/invoices-list.js"; 
-                            public const string project_bug_list_js = "~/Content/js/components/pages/project-bug-list.js"; 
-                            public const string project_summary_bug_js = "~/Content/js/components/pages/project-summary-bug.js"; 
-                            public const string project_summary_task_js = "~/Content/js/components/pages/project-summary-task.js"; 
-                            public const string project_task_list_js = "~/Content/js/components/pages/project-task-list.js"; 
-                            public const string scrumboard_js = "~/Content/js/components/pages/scrumboard.js"; 
-                            public const string sk_content_sidebar_js = "~/Content/js/components/pages/sk-content-sidebar.js"; 
-                            public const string timeline_js = "~/Content/js/components/pages/timeline.js"; 
-                            public const string users_contacts_js = "~/Content/js/components/pages/users-contacts.js"; 
+                            public static readonly string content_sidebar_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/components/pages/content-sidebar.js"); 
+                            public static readonly string dashboard_analytics_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/components/pages/dashboard-analytics.js"); 
+                            public static readonly string dashboard_crm_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/components/pages/dashboard-crm.js"); 
+                            public static readonly string dashboard_ecommerce_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/components/pages/dashboard-ecommerce.js"); 
+                            public static readonly string dashboard_fitness_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/components/pages/dashboard-fitness.js"); 
+                            public static readonly string dashboard_project_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/components/pages/dashboard-project.js"); 
+                            public static readonly string invoice_sales_and_expenses_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/components/pages/invoice-sales-and-expenses.js"); 
+                            public static readonly string invoice_top_expenses_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/components/pages/invoice-top-expenses.js"); 
+                            public static readonly string invoice_total_recievables_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/components/pages/invoice-total-recievables.js"); 
+                            public static readonly string invoices_list_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/components/pages/invoices-list.js"); 
+                            public static readonly string project_bug_list_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/components/pages/project-bug-list.js"); 
+                            public static readonly string project_summary_bug_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/components/pages/project-summary-bug.js"); 
+                            public static readonly string project_summary_task_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/components/pages/project-summary-task.js"); 
+                            public static readonly string project_task_list_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/components/pages/project-task-list.js"); 
+                            public static readonly string scrumboard_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/components/pages/scrumboard.js"); 
+                            public static readonly string sk_content_sidebar_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/components/pages/sk-content-sidebar.js"); 
+                            public static readonly string timeline_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/components/pages/timeline.js"); 
+                            public static readonly string users_contacts_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/components/pages/users-contacts.js"); 
                         }
                     }
                     public static partial class pagination 
                     {
                         public static class Assets
                         {
-                            public const string pagination_js = "~/Content/js/components/pagination/pagination.js"; 
+                            public static readonly string pagination_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/components/pagination/pagination.js"); 
                         }
                     }
                     public static partial class pickers 
@@ -9633,14 +9633,14 @@ namespace Links
                         {
                             public static class Assets
                             {
-                                public const string picker_color_js = "~/Content/js/components/pickers/colorpicker/picker-color.js"; 
+                                public static readonly string picker_color_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/components/pickers/colorpicker/picker-color.js"); 
                             }
                         }
                         public static partial class dateTime 
                         {
                             public static class Assets
                             {
-                                public const string picker_date_time_js = "~/Content/js/components/pickers/dateTime/picker-date-time.js"; 
+                                public static readonly string picker_date_time_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/components/pickers/dateTime/picker-date-time.js"); 
                             }
                         }
                         public static class Assets
@@ -9651,7 +9651,7 @@ namespace Links
                     {
                         public static class Assets
                         {
-                            public const string popover_js = "~/Content/js/components/popover/popover.js"; 
+                            public static readonly string popover_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/components/popover/popover.js"); 
                         }
                     }
                     public static partial class tables 
@@ -9660,17 +9660,17 @@ namespace Links
                         {
                             public static class Assets
                             {
-                                public const string table_components_js = "~/Content/js/components/tables/components/table-components.js"; 
+                                public static readonly string table_components_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/components/tables/components/table-components.js"); 
                             }
                         }
                         public static partial class datatables 
                         {
                             public static class Assets
                             {
-                                public const string datatable_advanced_js = "~/Content/js/components/tables/datatables/datatable-advanced.js"; 
-                                public const string datatable_api_js = "~/Content/js/components/tables/datatables/datatable-api.js"; 
-                                public const string datatable_basic_js = "~/Content/js/components/tables/datatables/datatable-basic.js"; 
-                                public const string datatable_styling_js = "~/Content/js/components/tables/datatables/datatable-styling.js"; 
+                                public static readonly string datatable_advanced_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/components/tables/datatables/datatable-advanced.js"); 
+                                public static readonly string datatable_api_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/components/tables/datatables/datatable-api.js"); 
+                                public static readonly string datatable_basic_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/components/tables/datatables/datatable-basic.js"); 
+                                public static readonly string datatable_styling_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/components/tables/datatables/datatable-styling.js"); 
                             }
                         }
                         public static partial class datatables_extensions 
@@ -9679,48 +9679,48 @@ namespace Links
                             {
                                 public static class Assets
                                 {
-                                    public const string datatable_button_basic_js = "~/Content/js/components/tables/datatables-extensions/datatable-button/datatable-button-basic.js"; 
-                                    public const string datatable_extensions_api_js = "~/Content/js/components/tables/datatables-extensions/datatable-button/datatable-extensions-api.js"; 
-                                    public const string datatable_flash_js = "~/Content/js/components/tables/datatables-extensions/datatable-button/datatable-flash.js"; 
-                                    public const string datatable_html5_js = "~/Content/js/components/tables/datatables-extensions/datatable-button/datatable-html5.js"; 
-                                    public const string datatable_print_js = "~/Content/js/components/tables/datatables-extensions/datatable-button/datatable-print.js"; 
-                                    public const string datatable_visibility_js = "~/Content/js/components/tables/datatables-extensions/datatable-button/datatable-visibility.js"; 
+                                    public static readonly string datatable_button_basic_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/components/tables/datatables-extensions/datatable-button/datatable-button-basic.js"); 
+                                    public static readonly string datatable_extensions_api_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/components/tables/datatables-extensions/datatable-button/datatable-extensions-api.js"); 
+                                    public static readonly string datatable_flash_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/components/tables/datatables-extensions/datatable-button/datatable-flash.js"); 
+                                    public static readonly string datatable_html5_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/components/tables/datatables-extensions/datatable-button/datatable-html5.js"); 
+                                    public static readonly string datatable_print_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/components/tables/datatables-extensions/datatable-button/datatable-print.js"); 
+                                    public static readonly string datatable_visibility_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/components/tables/datatables-extensions/datatable-button/datatable-visibility.js"); 
                                 }
                             }
                             public static class Assets
                             {
-                                public const string datatable_autofill_js = "~/Content/js/components/tables/datatables-extensions/datatable-autofill.js"; 
-                                public const string datatable_colvis_js = "~/Content/js/components/tables/datatables-extensions/datatable-colvis.js"; 
-                                public const string datatable_fixed_column_js = "~/Content/js/components/tables/datatables-extensions/datatable-fixed-column.js"; 
-                                public const string datatable_fixed_header_js = "~/Content/js/components/tables/datatables-extensions/datatable-fixed-header.js"; 
-                                public const string datatable_keytable_js = "~/Content/js/components/tables/datatables-extensions/datatable-keytable.js"; 
-                                public const string datatable_responsive_js = "~/Content/js/components/tables/datatables-extensions/datatable-responsive.js"; 
-                                public const string datatable_rowreorder_js = "~/Content/js/components/tables/datatables-extensions/datatable-rowreorder.js"; 
-                                public const string datatable_select_js = "~/Content/js/components/tables/datatables-extensions/datatable-select.js"; 
-                                public const string datatables_colreorder_js = "~/Content/js/components/tables/datatables-extensions/datatables-colreorder.js"; 
-                                public const string datatables_sources_js = "~/Content/js/components/tables/datatables-extensions/datatables-sources.js"; 
+                                public static readonly string datatable_autofill_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/components/tables/datatables-extensions/datatable-autofill.js"); 
+                                public static readonly string datatable_colvis_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/components/tables/datatables-extensions/datatable-colvis.js"); 
+                                public static readonly string datatable_fixed_column_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/components/tables/datatables-extensions/datatable-fixed-column.js"); 
+                                public static readonly string datatable_fixed_header_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/components/tables/datatables-extensions/datatable-fixed-header.js"); 
+                                public static readonly string datatable_keytable_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/components/tables/datatables-extensions/datatable-keytable.js"); 
+                                public static readonly string datatable_responsive_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/components/tables/datatables-extensions/datatable-responsive.js"); 
+                                public static readonly string datatable_rowreorder_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/components/tables/datatables-extensions/datatable-rowreorder.js"); 
+                                public static readonly string datatable_select_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/components/tables/datatables-extensions/datatable-select.js"); 
+                                public static readonly string datatables_colreorder_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/components/tables/datatables-extensions/datatables-colreorder.js"); 
+                                public static readonly string datatables_sources_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/components/tables/datatables-extensions/datatables-sources.js"); 
                             }
                         }
                         public static partial class handsontable 
                         {
                             public static class Assets
                             {
-                                public const string handsontable_appearance_js = "~/Content/js/components/tables/handsontable/handsontable-appearance.js"; 
-                                public const string handsontable_cell_features_js = "~/Content/js/components/tables/handsontable/handsontable-cell-features.js"; 
-                                public const string handsontable_cell_types_js = "~/Content/js/components/tables/handsontable/handsontable-cell-types.js"; 
-                                public const string handsontable_columns_only_js = "~/Content/js/components/tables/handsontable/handsontable-columns-only.js"; 
-                                public const string handsontable_data_operations_js = "~/Content/js/components/tables/handsontable/handsontable-data-operations.js"; 
-                                public const string handsontable_integrations_js = "~/Content/js/components/tables/handsontable/handsontable-integrations.js"; 
-                                public const string handsontable_rows_columns_js = "~/Content/js/components/tables/handsontable/handsontable-rows-columns.js"; 
-                                public const string handsontable_rows_only_js = "~/Content/js/components/tables/handsontable/handsontable-rows-only.js"; 
-                                public const string handsontable_utilities_js = "~/Content/js/components/tables/handsontable/handsontable-utilities.js"; 
+                                public static readonly string handsontable_appearance_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/components/tables/handsontable/handsontable-appearance.js"); 
+                                public static readonly string handsontable_cell_features_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/components/tables/handsontable/handsontable-cell-features.js"); 
+                                public static readonly string handsontable_cell_types_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/components/tables/handsontable/handsontable-cell-types.js"); 
+                                public static readonly string handsontable_columns_only_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/components/tables/handsontable/handsontable-columns-only.js"); 
+                                public static readonly string handsontable_data_operations_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/components/tables/handsontable/handsontable-data-operations.js"); 
+                                public static readonly string handsontable_integrations_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/components/tables/handsontable/handsontable-integrations.js"); 
+                                public static readonly string handsontable_rows_columns_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/components/tables/handsontable/handsontable-rows-columns.js"); 
+                                public static readonly string handsontable_rows_only_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/components/tables/handsontable/handsontable-rows-only.js"); 
+                                public static readonly string handsontable_utilities_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/components/tables/handsontable/handsontable-utilities.js"); 
                             }
                         }
                         public static partial class jsgrid 
                         {
                             public static class Assets
                             {
-                                public const string jsgrid_js = "~/Content/js/components/tables/jsgrid/jsgrid.js"; 
+                                public static readonly string jsgrid_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/components/tables/jsgrid/jsgrid.js"); 
                             }
                         }
                         public static class Assets
@@ -9731,7 +9731,7 @@ namespace Links
                     {
                         public static class Assets
                         {
-                            public const string tooltip_js = "~/Content/js/components/tooltip/tooltip.js"; 
+                            public static readonly string tooltip_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/components/tooltip/tooltip.js"); 
                         }
                     }
                     public static partial class ui 
@@ -9740,19 +9740,19 @@ namespace Links
                         {
                             public static class Assets
                             {
-                                public const string autocomplete_js = "~/Content/js/components/ui/jquery-ui/autocomplete.js"; 
-                                public const string buttons_selects_js = "~/Content/js/components/ui/jquery-ui/buttons-selects.js"; 
-                                public const string date_pickers_js = "~/Content/js/components/ui/jquery-ui/date-pickers.js"; 
-                                public const string dialog_tooltip_js = "~/Content/js/components/ui/jquery-ui/dialog-tooltip.js"; 
-                                public const string interactions_js = "~/Content/js/components/ui/jquery-ui/interactions.js"; 
-                                public const string navigations_js = "~/Content/js/components/ui/jquery-ui/navigations.js"; 
-                                public const string slider_spinner_js = "~/Content/js/components/ui/jquery-ui/slider-spinner.js"; 
+                                public static readonly string autocomplete_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/components/ui/jquery-ui/autocomplete.js"); 
+                                public static readonly string buttons_selects_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/components/ui/jquery-ui/buttons-selects.js"); 
+                                public static readonly string date_pickers_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/components/ui/jquery-ui/date-pickers.js"); 
+                                public static readonly string dialog_tooltip_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/components/ui/jquery-ui/dialog-tooltip.js"); 
+                                public static readonly string interactions_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/components/ui/jquery-ui/interactions.js"); 
+                                public static readonly string navigations_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/components/ui/jquery-ui/navigations.js"); 
+                                public static readonly string slider_spinner_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/components/ui/jquery-ui/slider-spinner.js"); 
                             }
                         }
                         public static class Assets
                         {
-                            public const string breadcrumbs_with_stats_js = "~/Content/js/components/ui/breadcrumbs-with-stats.js"; 
-                            public const string scrollable_js = "~/Content/js/components/ui/scrollable.js"; 
+                            public static readonly string breadcrumbs_with_stats_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/components/ui/breadcrumbs-with-stats.js"); 
+                            public static readonly string scrollable_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/components/ui/scrollable.js"); 
                         }
                     }
                     public static class Assets
@@ -9771,18 +9771,18 @@ namespace Links
                                 {
                                     public static class Assets
                                     {
-                                        public const string globalize_culture_de_DE_js = "~/Content/js/core/libraries/jquery_ui/globalize/cultures/globalize.culture.de-DE.js"; 
-                                        public const string globalize_culture_ja_JP_js = "~/Content/js/core/libraries/jquery_ui/globalize/cultures/globalize.culture.ja-JP.js"; 
+                                        public static readonly string globalize_culture_de_DE_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/core/libraries/jquery_ui/globalize/cultures/globalize.culture.de-DE.js"); 
+                                        public static readonly string globalize_culture_ja_JP_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/core/libraries/jquery_ui/globalize/cultures/globalize.culture.ja-JP.js"); 
                                     }
                                 }
                                 public static class Assets
                                 {
-                                    public const string globalize_js = "~/Content/js/core/libraries/jquery_ui/globalize/globalize.js"; 
+                                    public static readonly string globalize_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/core/libraries/jquery_ui/globalize/globalize.js"); 
                                 }
                             }
                             public static class Assets
                             {
-                                public const string jquery_ui_min_js = "~/Content/js/core/libraries/jquery_ui/jquery-ui.min.js"; 
+                                public static readonly string jquery_ui_min_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/core/libraries/jquery_ui/jquery-ui.min.js"); 
                             }
                         }
                         public static class Assets
@@ -9799,25 +9799,25 @@ namespace Links
                     {
                         public static class Assets
                         {
-                            public const string jquery_appear_js = "~/Content/js/plugins/animation/jquery.appear.js"; 
+                            public static readonly string jquery_appear_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/plugins/animation/jquery.appear.js"); 
                         }
                     }
                     public static partial class bgvideo 
                     {
                         public static class Assets
                         {
-                            public const string bigvideo_js = "~/Content/js/plugins/bgvideo/bigvideo.js"; 
-                            public const string imagesloaded_pkgd_min_js = "~/Content/js/plugins/bgvideo/imagesloaded.pkgd.min.js"; 
-                            public const string jquery_tubular_1_0_js = "~/Content/js/plugins/bgvideo/jquery.tubular.1.0.js"; 
-                            public const string video_min_js = "~/Content/js/plugins/bgvideo/video.min.js"; 
+                            public static readonly string bigvideo_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/plugins/bgvideo/bigvideo.js"); 
+                            public static readonly string imagesloaded_pkgd_min_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/plugins/bgvideo/imagesloaded.pkgd.min.js"); 
+                            public static readonly string jquery_tubular_1_0_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/plugins/bgvideo/jquery.tubular.1.0.js"); 
+                            public static readonly string video_min_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/plugins/bgvideo/video.min.js"); 
                         }
                     }
                     public static partial class buttons 
                     {
                         public static class Assets
                         {
-                            public const string ladda_min_js = "~/Content/js/plugins/buttons/ladda.min.js"; 
-                            public const string spin_min_js = "~/Content/js/plugins/buttons/spin.min.js"; 
+                            public static readonly string ladda_min_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/plugins/buttons/ladda.min.js"); 
+                            public static readonly string spin_min_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/plugins/buttons/spin.min.js"); 
                         }
                     }
                     public static partial class charts 
@@ -9826,24 +9826,24 @@ namespace Links
                         {
                             public static class Assets
                             {
-                                public const string echarts_js = "~/Content/js/plugins/charts/echarts/echarts.js"; 
+                                public static readonly string echarts_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/plugins/charts/echarts/echarts.js"); 
                             }
                         }
                         public static partial class flot 
                         {
                             public static class Assets
                             {
-                                public const string jquery_flot_categories_js = "~/Content/js/plugins/charts/flot/jquery.flot.categories.js"; 
-                                public const string jquery_flot_errorbars_js = "~/Content/js/plugins/charts/flot/jquery.flot.errorbars.js"; 
-                                public const string jquery_flot_min_js = "~/Content/js/plugins/charts/flot/jquery.flot.min.js"; 
-                                public const string jquery_flot_navigate_js = "~/Content/js/plugins/charts/flot/jquery.flot.navigate.js"; 
-                                public const string jquery_flot_pie_js = "~/Content/js/plugins/charts/flot/jquery.flot.pie.js"; 
-                                public const string jquery_flot_resize_js = "~/Content/js/plugins/charts/flot/jquery.flot.resize.js"; 
-                                public const string jquery_flot_selection_js = "~/Content/js/plugins/charts/flot/jquery.flot.selection.js"; 
-                                public const string jquery_flot_stack_js = "~/Content/js/plugins/charts/flot/jquery.flot.stack.js"; 
-                                public const string jquery_flot_symbol_js = "~/Content/js/plugins/charts/flot/jquery.flot.symbol.js"; 
-                                public const string jquery_flot_threshold_js = "~/Content/js/plugins/charts/flot/jquery.flot.threshold.js"; 
-                                public const string jquery_flot_time_js = "~/Content/js/plugins/charts/flot/jquery.flot.time.js"; 
+                                public static readonly string jquery_flot_categories_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/plugins/charts/flot/jquery.flot.categories.js"); 
+                                public static readonly string jquery_flot_errorbars_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/plugins/charts/flot/jquery.flot.errorbars.js"); 
+                                public static readonly string jquery_flot_min_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/plugins/charts/flot/jquery.flot.min.js"); 
+                                public static readonly string jquery_flot_navigate_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/plugins/charts/flot/jquery.flot.navigate.js"); 
+                                public static readonly string jquery_flot_pie_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/plugins/charts/flot/jquery.flot.pie.js"); 
+                                public static readonly string jquery_flot_resize_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/plugins/charts/flot/jquery.flot.resize.js"); 
+                                public static readonly string jquery_flot_selection_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/plugins/charts/flot/jquery.flot.selection.js"); 
+                                public static readonly string jquery_flot_stack_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/plugins/charts/flot/jquery.flot.stack.js"); 
+                                public static readonly string jquery_flot_symbol_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/plugins/charts/flot/jquery.flot.symbol.js"); 
+                                public static readonly string jquery_flot_threshold_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/plugins/charts/flot/jquery.flot.threshold.js"); 
+                                public static readonly string jquery_flot_time_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/plugins/charts/flot/jquery.flot.time.js"); 
                             }
                         }
                         public static partial class jqvmap 
@@ -9854,34 +9854,34 @@ namespace Links
                                 {
                                     public static class Assets
                                     {
-                                        public const string jquery_vmap_africa_js = "~/Content/js/plugins/charts/jqvmap/maps/continents/jquery.vmap.africa.js"; 
-                                        public const string jquery_vmap_asia_js = "~/Content/js/plugins/charts/jqvmap/maps/continents/jquery.vmap.asia.js"; 
-                                        public const string jquery_vmap_australia_js = "~/Content/js/plugins/charts/jqvmap/maps/continents/jquery.vmap.australia.js"; 
-                                        public const string jquery_vmap_europe_js = "~/Content/js/plugins/charts/jqvmap/maps/continents/jquery.vmap.europe.js"; 
-                                        public const string jquery_vmap_north_america_js = "~/Content/js/plugins/charts/jqvmap/maps/continents/jquery.vmap.north-america.js"; 
-                                        public const string jquery_vmap_south_america_js = "~/Content/js/plugins/charts/jqvmap/maps/continents/jquery.vmap.south-america.js"; 
+                                        public static readonly string jquery_vmap_africa_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/plugins/charts/jqvmap/maps/continents/jquery.vmap.africa.js"); 
+                                        public static readonly string jquery_vmap_asia_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/plugins/charts/jqvmap/maps/continents/jquery.vmap.asia.js"); 
+                                        public static readonly string jquery_vmap_australia_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/plugins/charts/jqvmap/maps/continents/jquery.vmap.australia.js"); 
+                                        public static readonly string jquery_vmap_europe_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/plugins/charts/jqvmap/maps/continents/jquery.vmap.europe.js"); 
+                                        public static readonly string jquery_vmap_north_america_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/plugins/charts/jqvmap/maps/continents/jquery.vmap.north-america.js"); 
+                                        public static readonly string jquery_vmap_south_america_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/plugins/charts/jqvmap/maps/continents/jquery.vmap.south-america.js"); 
                                     }
                                 }
                                 public static class Assets
                                 {
-                                    public const string jquery_vmap_usa_js = "~/Content/js/plugins/charts/jqvmap/maps/jquery.vmap.usa.js"; 
-                                    public const string jquery_vmap_world_js = "~/Content/js/plugins/charts/jqvmap/maps/jquery.vmap.world.js"; 
+                                    public static readonly string jquery_vmap_usa_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/plugins/charts/jqvmap/maps/jquery.vmap.usa.js"); 
+                                    public static readonly string jquery_vmap_world_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/plugins/charts/jqvmap/maps/jquery.vmap.world.js"); 
                                 }
                             }
                             public static class Assets
                             {
-                                public const string jquery_vmap_min_js = "~/Content/js/plugins/charts/jqvmap/jquery.vmap.min.js"; 
+                                public static readonly string jquery_vmap_min_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/plugins/charts/jqvmap/jquery.vmap.min.js"); 
                             }
                         }
                         public static partial class jvector 
                         {
                             public static class Assets
                             {
-                                public const string jquery_jvectormap_2_0_3_min_js = "~/Content/js/plugins/charts/jvector/jquery-jvectormap-2.0.3.min.js"; 
-                                public const string jquery_jvectormap_de_merc_js = "~/Content/js/plugins/charts/jvector/jquery-jvectormap-de-merc.js"; 
-                                public const string jquery_jvectormap_us_aea_js = "~/Content/js/plugins/charts/jvector/jquery-jvectormap-us-aea.js"; 
-                                public const string jquery_jvectormap_us_lcc_js = "~/Content/js/plugins/charts/jvector/jquery-jvectormap-us-lcc.js"; 
-                                public const string jquery_jvectormap_world_mill_js = "~/Content/js/plugins/charts/jvector/jquery-jvectormap-world-mill.js"; 
+                                public static readonly string jquery_jvectormap_2_0_3_min_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/plugins/charts/jvector/jquery-jvectormap-2.0.3.min.js"); 
+                                public static readonly string jquery_jvectormap_de_merc_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/plugins/charts/jvector/jquery-jvectormap-de-merc.js"); 
+                                public static readonly string jquery_jvectormap_us_aea_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/plugins/charts/jvector/jquery-jvectormap-us-aea.js"); 
+                                public static readonly string jquery_jvectormap_us_lcc_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/plugins/charts/jvector/jquery-jvectormap-us-lcc.js"); 
+                                public static readonly string jquery_jvectormap_world_mill_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/plugins/charts/jvector/jquery-jvectormap-world-mill.js"); 
                             }
                         }
                         public static partial class mapael 
@@ -9890,42 +9890,42 @@ namespace Links
                             {
                                 public static class Assets
                                 {
-                                    public const string france_departments_js = "~/Content/js/plugins/charts/mapael/maps/france_departments.js"; 
-                                    public const string usa_states_js = "~/Content/js/plugins/charts/mapael/maps/usa_states.js"; 
-                                    public const string world_countries_js = "~/Content/js/plugins/charts/mapael/maps/world_countries.js"; 
+                                    public static readonly string france_departments_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/plugins/charts/mapael/maps/france_departments.js"); 
+                                    public static readonly string usa_states_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/plugins/charts/mapael/maps/usa_states.js"); 
+                                    public static readonly string world_countries_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/plugins/charts/mapael/maps/world_countries.js"); 
                                 }
                             }
                             public static class Assets
                             {
-                                public const string jquery_mapael_min_js = "~/Content/js/plugins/charts/mapael/jquery.mapael.min.js"; 
+                                public static readonly string jquery_mapael_min_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/plugins/charts/mapael/jquery.mapael.min.js"); 
                             }
                         }
                         public static class Assets
                         {
-                            public const string c3_min_js = "~/Content/js/plugins/charts/c3.min.js"; 
-                            public const string chart_min_js = "~/Content/js/plugins/charts/chart.min.js"; 
-                            public const string chartist_plugin_tooltip_js = "~/Content/js/plugins/charts/chartist-plugin-tooltip.js"; 
-                            public const string chartist_min_js = "~/Content/js/plugins/charts/chartist.min.js"; 
-                            public const string d3_donut3D_js = "~/Content/js/plugins/charts/d3-donut3D.js"; 
-                            public const string d3_min_js = "~/Content/js/plugins/charts/d3.min.js"; 
-                            public const string d3_tip_js = "~/Content/js/plugins/charts/d3.tip.js"; 
-                            public const string dimple_min_js = "~/Content/js/plugins/charts/dimple.min.js"; 
-                            public const string gantt_chart_d3_js = "~/Content/js/plugins/charts/gantt-chart-d3.js"; 
-                            public const string gmaps_min_js = "~/Content/js/plugins/charts/gmaps.min.js"; 
-                            public const string gradient_pie_d3_js = "~/Content/js/plugins/charts/gradient-pie-d3.js"; 
-                            public const string jquery_sparkline_min_js = "~/Content/js/plugins/charts/jquery.sparkline.min.js"; 
-                            public const string morris_min_js = "~/Content/js/plugins/charts/morris.min.js"; 
-                            public const string raphael_min_js = "~/Content/js/plugins/charts/raphael-min.js"; 
-                            public const string rickshaw_min_js = "~/Content/js/plugins/charts/rickshaw.min.js"; 
-                            public const string sankey_js = "~/Content/js/plugins/charts/sankey.js"; 
-                            public const string venn_js = "~/Content/js/plugins/charts/venn.js"; 
+                            public static readonly string c3_min_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/plugins/charts/c3.min.js"); 
+                            public static readonly string chart_min_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/plugins/charts/chart.min.js"); 
+                            public static readonly string chartist_plugin_tooltip_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/plugins/charts/chartist-plugin-tooltip.js"); 
+                            public static readonly string chartist_min_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/plugins/charts/chartist.min.js"); 
+                            public static readonly string d3_donut3D_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/plugins/charts/d3-donut3D.js"); 
+                            public static readonly string d3_min_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/plugins/charts/d3.min.js"); 
+                            public static readonly string d3_tip_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/plugins/charts/d3.tip.js"); 
+                            public static readonly string dimple_min_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/plugins/charts/dimple.min.js"); 
+                            public static readonly string gantt_chart_d3_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/plugins/charts/gantt-chart-d3.js"); 
+                            public static readonly string gmaps_min_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/plugins/charts/gmaps.min.js"); 
+                            public static readonly string gradient_pie_d3_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/plugins/charts/gradient-pie-d3.js"); 
+                            public static readonly string jquery_sparkline_min_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/plugins/charts/jquery.sparkline.min.js"); 
+                            public static readonly string morris_min_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/plugins/charts/morris.min.js"); 
+                            public static readonly string raphael_min_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/plugins/charts/raphael-min.js"); 
+                            public static readonly string rickshaw_min_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/plugins/charts/rickshaw.min.js"); 
+                            public static readonly string sankey_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/plugins/charts/sankey.js"); 
+                            public static readonly string venn_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/plugins/charts/venn.js"); 
                         }
                     }
                     public static partial class coming_soon 
                     {
                         public static class Assets
                         {
-                            public const string jquery_countdown_min_js = "~/Content/js/plugins/coming-soon/jquery.countdown.min.js"; 
+                            public static readonly string jquery_countdown_min_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/plugins/coming-soon/jquery.countdown.min.js"); 
                         }
                     }
                     public static partial class editors 
@@ -9934,15 +9934,15 @@ namespace Links
                         {
                             public static class Assets
                             {
-                                public const string ace_js = "~/Content/js/plugins/editors/ace/ace.js"; 
-                                public const string ext_language_tools_js = "~/Content/js/plugins/editors/ace/ext-language_tools.js"; 
+                                public static readonly string ace_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/plugins/editors/ace/ace.js"); 
+                                public static readonly string ext_language_tools_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/plugins/editors/ace/ext-language_tools.js"); 
                             }
                         }
                         public static partial class ckeditor 
                         {
                             public static class Assets
                             {
-                                public const string ckeditor_js = "~/Content/js/plugins/editors/ckeditor/ckeditor.js"; 
+                                public static readonly string ckeditor_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/plugins/editors/ckeditor/ckeditor.js"); 
                             }
                         }
                         public static partial class codemirror 
@@ -9953,81 +9953,81 @@ namespace Links
                                 {
                                     public static class Assets
                                     {
-                                        public const string comment_js = "~/Content/js/plugins/editors/codemirror/addon/comment/comment.js"; 
+                                        public static readonly string comment_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/plugins/editors/codemirror/addon/comment/comment.js"); 
                                     }
                                 }
                                 public static partial class dialog 
                                 {
                                     public static class Assets
                                     {
-                                        public const string dialog_js = "~/Content/js/plugins/editors/codemirror/addon/dialog/dialog.js"; 
+                                        public static readonly string dialog_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/plugins/editors/codemirror/addon/dialog/dialog.js"); 
                                     }
                                 }
                                 public static partial class display 
                                 {
                                     public static class Assets
                                     {
-                                        public const string rulers_js = "~/Content/js/plugins/editors/codemirror/addon/display/rulers.js"; 
+                                        public static readonly string rulers_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/plugins/editors/codemirror/addon/display/rulers.js"); 
                                     }
                                 }
                                 public static partial class edit 
                                 {
                                     public static class Assets
                                     {
-                                        public const string closebrackets_js = "~/Content/js/plugins/editors/codemirror/addon/edit/closebrackets.js"; 
-                                        public const string matchbrackets_js = "~/Content/js/plugins/editors/codemirror/addon/edit/matchbrackets.js"; 
+                                        public static readonly string closebrackets_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/plugins/editors/codemirror/addon/edit/closebrackets.js"); 
+                                        public static readonly string matchbrackets_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/plugins/editors/codemirror/addon/edit/matchbrackets.js"); 
                                     }
                                 }
                                 public static partial class fold 
                                 {
                                     public static class Assets
                                     {
-                                        public const string brace_fold_js = "~/Content/js/plugins/editors/codemirror/addon/fold/brace-fold.js"; 
-                                        public const string comment_fold_js = "~/Content/js/plugins/editors/codemirror/addon/fold/comment-fold.js"; 
-                                        public const string foldcode_js = "~/Content/js/plugins/editors/codemirror/addon/fold/foldcode.js"; 
-                                        public const string foldgutter_js = "~/Content/js/plugins/editors/codemirror/addon/fold/foldgutter.js"; 
-                                        public const string markdown_fold_js = "~/Content/js/plugins/editors/codemirror/addon/fold/markdown-fold.js"; 
-                                        public const string xml_fold_js = "~/Content/js/plugins/editors/codemirror/addon/fold/xml-fold.js"; 
+                                        public static readonly string brace_fold_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/plugins/editors/codemirror/addon/fold/brace-fold.js"); 
+                                        public static readonly string comment_fold_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/plugins/editors/codemirror/addon/fold/comment-fold.js"); 
+                                        public static readonly string foldcode_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/plugins/editors/codemirror/addon/fold/foldcode.js"); 
+                                        public static readonly string foldgutter_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/plugins/editors/codemirror/addon/fold/foldgutter.js"); 
+                                        public static readonly string markdown_fold_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/plugins/editors/codemirror/addon/fold/markdown-fold.js"); 
+                                        public static readonly string xml_fold_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/plugins/editors/codemirror/addon/fold/xml-fold.js"); 
                                     }
                                 }
                                 public static partial class mode 
                                 {
                                     public static class Assets
                                     {
-                                        public const string loadmode_js = "~/Content/js/plugins/editors/codemirror/addon/mode/loadmode.js"; 
-                                        public const string simple_js = "~/Content/js/plugins/editors/codemirror/addon/mode/simple.js"; 
+                                        public static readonly string loadmode_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/plugins/editors/codemirror/addon/mode/loadmode.js"); 
+                                        public static readonly string simple_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/plugins/editors/codemirror/addon/mode/simple.js"); 
                                     }
                                 }
                                 public static partial class scroll 
                                 {
                                     public static class Assets
                                     {
-                                        public const string annotatescrollbar_js = "~/Content/js/plugins/editors/codemirror/addon/scroll/annotatescrollbar.js"; 
+                                        public static readonly string annotatescrollbar_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/plugins/editors/codemirror/addon/scroll/annotatescrollbar.js"); 
                                     }
                                 }
                                 public static partial class search 
                                 {
                                     public static class Assets
                                     {
-                                        public const string match_highlighter_js = "~/Content/js/plugins/editors/codemirror/addon/search/match-highlighter.js"; 
-                                        public const string matchesonscrollbar_js = "~/Content/js/plugins/editors/codemirror/addon/search/matchesonscrollbar.js"; 
-                                        public const string search_js = "~/Content/js/plugins/editors/codemirror/addon/search/search.js"; 
-                                        public const string searchcursor_js = "~/Content/js/plugins/editors/codemirror/addon/search/searchcursor.js"; 
+                                        public static readonly string match_highlighter_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/plugins/editors/codemirror/addon/search/match-highlighter.js"); 
+                                        public static readonly string matchesonscrollbar_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/plugins/editors/codemirror/addon/search/matchesonscrollbar.js"); 
+                                        public static readonly string search_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/plugins/editors/codemirror/addon/search/search.js"); 
+                                        public static readonly string searchcursor_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/plugins/editors/codemirror/addon/search/searchcursor.js"); 
                                     }
                                 }
                                 public static partial class selection 
                                 {
                                     public static class Assets
                                     {
-                                        public const string active_line_js = "~/Content/js/plugins/editors/codemirror/addon/selection/active-line.js"; 
-                                        public const string mark_selection_js = "~/Content/js/plugins/editors/codemirror/addon/selection/mark-selection.js"; 
+                                        public static readonly string active_line_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/plugins/editors/codemirror/addon/selection/active-line.js"); 
+                                        public static readonly string mark_selection_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/plugins/editors/codemirror/addon/selection/mark-selection.js"); 
                                     }
                                 }
                                 public static partial class wrap 
                                 {
                                     public static class Assets
                                     {
-                                        public const string hardwrap_js = "~/Content/js/plugins/editors/codemirror/addon/wrap/hardwrap.js"; 
+                                        public static readonly string hardwrap_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/plugins/editors/codemirror/addon/wrap/hardwrap.js"); 
                                     }
                                 }
                                 public static class Assets
@@ -10038,14 +10038,14 @@ namespace Links
                             {
                                 public static class Assets
                                 {
-                                    public const string sublime_js = "~/Content/js/plugins/editors/codemirror/keymap/sublime.js"; 
+                                    public static readonly string sublime_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/plugins/editors/codemirror/keymap/sublime.js"); 
                                 }
                             }
                             public static partial class lib 
                             {
                                 public static class Assets
                                 {
-                                    public const string codemirror_js = "~/Content/js/plugins/editors/codemirror/lib/codemirror.js"; 
+                                    public static readonly string codemirror_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/plugins/editors/codemirror/lib/codemirror.js"); 
                                 }
                             }
                             public static partial class mode 
@@ -10054,40 +10054,40 @@ namespace Links
                                 {
                                     public static class Assets
                                     {
-                                        public const string css_js = "~/Content/js/plugins/editors/codemirror/mode/css/css.js"; 
+                                        public static readonly string css_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/plugins/editors/codemirror/mode/css/css.js"); 
                                     }
                                 }
                                 public static partial class htmlmixed 
                                 {
                                     public static class Assets
                                     {
-                                        public const string htmlmixed_js = "~/Content/js/plugins/editors/codemirror/mode/htmlmixed/htmlmixed.js"; 
+                                        public static readonly string htmlmixed_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/plugins/editors/codemirror/mode/htmlmixed/htmlmixed.js"); 
                                     }
                                 }
                                 public static partial class javascript 
                                 {
                                     public static class Assets
                                     {
-                                        public const string javascript_js = "~/Content/js/plugins/editors/codemirror/mode/javascript/javascript.js"; 
+                                        public static readonly string javascript_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/plugins/editors/codemirror/mode/javascript/javascript.js"); 
                                     }
                                 }
                                 public static partial class markdown 
                                 {
                                     public static class Assets
                                     {
-                                        public const string markdown_js = "~/Content/js/plugins/editors/codemirror/mode/markdown/markdown.js"; 
+                                        public static readonly string markdown_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/plugins/editors/codemirror/mode/markdown/markdown.js"); 
                                     }
                                 }
                                 public static partial class xml 
                                 {
                                     public static class Assets
                                     {
-                                        public const string xml_js = "~/Content/js/plugins/editors/codemirror/mode/xml/xml.js"; 
+                                        public static readonly string xml_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/plugins/editors/codemirror/mode/xml/xml.js"); 
                                     }
                                 }
                                 public static class Assets
                                 {
-                                    public const string meta_js = "~/Content/js/plugins/editors/codemirror/mode/meta.js"; 
+                                    public static readonly string meta_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/plugins/editors/codemirror/mode/meta.js"); 
                                 }
                             }
                             public static class Assets
@@ -10098,23 +10098,23 @@ namespace Links
                         {
                             public static class Assets
                             {
-                                public const string highlight_min_js = "~/Content/js/plugins/editors/quill/highlight.min.js"; 
-                                public const string katex_min_js = "~/Content/js/plugins/editors/quill/katex.min.js"; 
-                                public const string quill_min_js = "~/Content/js/plugins/editors/quill/quill.min.js"; 
+                                public static readonly string highlight_min_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/plugins/editors/quill/highlight.min.js"); 
+                                public static readonly string katex_min_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/plugins/editors/quill/katex.min.js"); 
+                                public static readonly string quill_min_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/plugins/editors/quill/quill.min.js"); 
                             }
                         }
                         public static partial class summernote 
                         {
                             public static class Assets
                             {
-                                public const string summernote_js = "~/Content/js/plugins/editors/summernote/summernote.js"; 
+                                public static readonly string summernote_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/plugins/editors/summernote/summernote.js"); 
                             }
                         }
                         public static partial class tinymce 
                         {
                             public static class Assets
                             {
-                                public const string tinymce_js = "~/Content/js/plugins/editors/tinymce/tinymce.js"; 
+                                public static readonly string tinymce_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/plugins/editors/tinymce/tinymce.js"); 
                             }
                         }
                         public static class Assets
@@ -10129,75 +10129,75 @@ namespace Links
                             {
                                 public static class Assets
                                 {
-                                    public const string canvas_to_blob_min_js = "~/Content/js/plugins/extensions/jquery-file-upload/vendor/canvas-to-blob.min.js"; 
-                                    public const string jquery_blueimp_gallery_min_js = "~/Content/js/plugins/extensions/jquery-file-upload/vendor/jquery.blueimp-gallery.min.js"; 
-                                    public const string jquery_ui_widget_js = "~/Content/js/plugins/extensions/jquery-file-upload/vendor/jquery.ui.widget.js"; 
-                                    public const string load_image_all_min_js = "~/Content/js/plugins/extensions/jquery-file-upload/vendor/load-image.all.min.js"; 
-                                    public const string tmpl_min_js = "~/Content/js/plugins/extensions/jquery-file-upload/vendor/tmpl.min.js"; 
+                                    public static readonly string canvas_to_blob_min_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/plugins/extensions/jquery-file-upload/vendor/canvas-to-blob.min.js"); 
+                                    public static readonly string jquery_blueimp_gallery_min_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/plugins/extensions/jquery-file-upload/vendor/jquery.blueimp-gallery.min.js"); 
+                                    public static readonly string jquery_ui_widget_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/plugins/extensions/jquery-file-upload/vendor/jquery.ui.widget.js"); 
+                                    public static readonly string load_image_all_min_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/plugins/extensions/jquery-file-upload/vendor/load-image.all.min.js"); 
+                                    public static readonly string tmpl_min_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/plugins/extensions/jquery-file-upload/vendor/tmpl.min.js"); 
                                 }
                             }
                             public static class Assets
                             {
-                                public const string jquery_fileupload_audio_js = "~/Content/js/plugins/extensions/jquery-file-upload/jquery.fileupload-audio.js"; 
-                                public const string jquery_fileupload_image_js = "~/Content/js/plugins/extensions/jquery-file-upload/jquery.fileupload-image.js"; 
-                                public const string jquery_fileupload_process_js = "~/Content/js/plugins/extensions/jquery-file-upload/jquery.fileupload-process.js"; 
-                                public const string jquery_fileupload_ui_js = "~/Content/js/plugins/extensions/jquery-file-upload/jquery.fileupload-ui.js"; 
-                                public const string jquery_fileupload_validate_js = "~/Content/js/plugins/extensions/jquery-file-upload/jquery.fileupload-validate.js"; 
-                                public const string jquery_fileupload_video_js = "~/Content/js/plugins/extensions/jquery-file-upload/jquery.fileupload-video.js"; 
-                                public const string jquery_fileupload_js = "~/Content/js/plugins/extensions/jquery-file-upload/jquery.fileupload.js"; 
-                                public const string jquery_iframe_transport_js = "~/Content/js/plugins/extensions/jquery-file-upload/jquery.iframe-transport.js"; 
+                                public static readonly string jquery_fileupload_audio_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/plugins/extensions/jquery-file-upload/jquery.fileupload-audio.js"); 
+                                public static readonly string jquery_fileupload_image_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/plugins/extensions/jquery-file-upload/jquery.fileupload-image.js"); 
+                                public static readonly string jquery_fileupload_process_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/plugins/extensions/jquery-file-upload/jquery.fileupload-process.js"); 
+                                public static readonly string jquery_fileupload_ui_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/plugins/extensions/jquery-file-upload/jquery.fileupload-ui.js"); 
+                                public static readonly string jquery_fileupload_validate_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/plugins/extensions/jquery-file-upload/jquery.fileupload-validate.js"); 
+                                public static readonly string jquery_fileupload_video_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/plugins/extensions/jquery-file-upload/jquery.fileupload-video.js"); 
+                                public static readonly string jquery_fileupload_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/plugins/extensions/jquery-file-upload/jquery.fileupload.js"); 
+                                public static readonly string jquery_iframe_transport_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/plugins/extensions/jquery-file-upload/jquery.iframe-transport.js"); 
                             }
                         }
                         public static partial class listjs 
                         {
                             public static class Assets
                             {
-                                public const string list_fuzzysearch_min_js = "~/Content/js/plugins/extensions/listjs/list.fuzzysearch.min.js"; 
-                                public const string list_min_js = "~/Content/js/plugins/extensions/listjs/list.min.js"; 
-                                public const string list_pagination_min_js = "~/Content/js/plugins/extensions/listjs/list.pagination.min.js"; 
+                                public static readonly string list_fuzzysearch_min_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/plugins/extensions/listjs/list.fuzzysearch.min.js"); 
+                                public static readonly string list_min_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/plugins/extensions/listjs/list.min.js"); 
+                                public static readonly string list_pagination_min_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/plugins/extensions/listjs/list.pagination.min.js"); 
                             }
                         }
                         public static partial class long_press 
                         {
                             public static class Assets
                             {
-                                public const string jquery_longpress_js = "~/Content/js/plugins/extensions/long-press/jquery.longpress.js"; 
-                                public const string jquery_mousewheel_js = "~/Content/js/plugins/extensions/long-press/jquery.mousewheel.js"; 
-                                public const string plugins_js = "~/Content/js/plugins/extensions/long-press/plugins.js"; 
+                                public static readonly string jquery_longpress_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/plugins/extensions/long-press/jquery.longpress.js"); 
+                                public static readonly string jquery_mousewheel_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/plugins/extensions/long-press/jquery.mousewheel.js"); 
+                                public static readonly string plugins_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/plugins/extensions/long-press/plugins.js"); 
                             }
                         }
                         public static class Assets
                         {
-                            public const string bootstrap_contextmenu_js = "~/Content/js/plugins/extensions/bootstrap-contextmenu.js"; 
-                            public const string bootstrap_treeview_min_js = "~/Content/js/plugins/extensions/bootstrap-treeview.min.js"; 
-                            public const string clndr_min_js = "~/Content/js/plugins/extensions/clndr.min.js"; 
-                            public const string cropper_min_js = "~/Content/js/plugins/extensions/cropper.min.js"; 
-                            public const string datedropper_min_js = "~/Content/js/plugins/extensions/datedropper.min.js"; 
-                            public const string dragula_min_js = "~/Content/js/plugins/extensions/dragula.min.js"; 
-                            public const string dropzone_min_js = "~/Content/js/plugins/extensions/dropzone.min.js"; 
-                            public const string fullcalendar_min_js = "~/Content/js/plugins/extensions/fullcalendar.min.js"; 
-                            public const string gcal_js = "~/Content/js/plugins/extensions/gcal.js"; 
-                            public const string i18next_min_js = "~/Content/js/plugins/extensions/i18next.min.js"; 
-                            public const string i18nextBrowserLanguageDetector_min_js = "~/Content/js/plugins/extensions/i18nextBrowserLanguageDetector.min.js"; 
-                            public const string i18nextXHRBackend_min_js = "~/Content/js/plugins/extensions/i18nextXHRBackend.min.js"; 
-                            public const string jquery_i18next_min_js = "~/Content/js/plugins/extensions/jquery-i18next.min.js"; 
-                            public const string jquery_knob_min_js = "~/Content/js/plugins/extensions/jquery.knob.min.js"; 
-                            public const string jquery_mousewheel_min_js = "~/Content/js/plugins/extensions/jquery.mousewheel.min.js"; 
-                            public const string jquery_raty_js = "~/Content/js/plugins/extensions/jquery.raty.js"; 
-                            public const string jquery_steps_min_js = "~/Content/js/plugins/extensions/jquery.steps.min.js"; 
-                            public const string jquery_toolbar_min_js = "~/Content/js/plugins/extensions/jquery.toolbar.min.js"; 
-                            public const string lang_all_js = "~/Content/js/plugins/extensions/lang-all.js"; 
-                            public const string moment_min_js = "~/Content/js/plugins/extensions/moment.min.js"; 
-                            public const string nouislider_min_js = "~/Content/js/plugins/extensions/nouislider.min.js"; 
-                            public const string offline_min_js = "~/Content/js/plugins/extensions/offline.min.js"; 
-                            public const string sweetalert_min_js = "~/Content/js/plugins/extensions/sweetalert.min.js"; 
-                            public const string timedropper_min_js = "~/Content/js/plugins/extensions/timedropper.min.js"; 
-                            public const string toastr_min_js = "~/Content/js/plugins/extensions/toastr.min.js"; 
-                            public const string transition_js = "~/Content/js/plugins/extensions/transition.js"; 
-                            public const string underscore_min_js = "~/Content/js/plugins/extensions/underscore-min.js"; 
-                            public const string unslider_min_js = "~/Content/js/plugins/extensions/unslider-min.js"; 
-                            public const string wNumb_js = "~/Content/js/plugins/extensions/wNumb.js"; 
-                            public const string zoom_min_js = "~/Content/js/plugins/extensions/zoom.min.js"; 
+                            public static readonly string bootstrap_contextmenu_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/plugins/extensions/bootstrap-contextmenu.js"); 
+                            public static readonly string bootstrap_treeview_min_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/plugins/extensions/bootstrap-treeview.min.js"); 
+                            public static readonly string clndr_min_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/plugins/extensions/clndr.min.js"); 
+                            public static readonly string cropper_min_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/plugins/extensions/cropper.min.js"); 
+                            public static readonly string datedropper_min_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/plugins/extensions/datedropper.min.js"); 
+                            public static readonly string dragula_min_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/plugins/extensions/dragula.min.js"); 
+                            public static readonly string dropzone_min_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/plugins/extensions/dropzone.min.js"); 
+                            public static readonly string fullcalendar_min_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/plugins/extensions/fullcalendar.min.js"); 
+                            public static readonly string gcal_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/plugins/extensions/gcal.js"); 
+                            public static readonly string i18next_min_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/plugins/extensions/i18next.min.js"); 
+                            public static readonly string i18nextBrowserLanguageDetector_min_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/plugins/extensions/i18nextBrowserLanguageDetector.min.js"); 
+                            public static readonly string i18nextXHRBackend_min_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/plugins/extensions/i18nextXHRBackend.min.js"); 
+                            public static readonly string jquery_i18next_min_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/plugins/extensions/jquery-i18next.min.js"); 
+                            public static readonly string jquery_knob_min_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/plugins/extensions/jquery.knob.min.js"); 
+                            public static readonly string jquery_mousewheel_min_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/plugins/extensions/jquery.mousewheel.min.js"); 
+                            public static readonly string jquery_raty_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/plugins/extensions/jquery.raty.js"); 
+                            public static readonly string jquery_steps_min_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/plugins/extensions/jquery.steps.min.js"); 
+                            public static readonly string jquery_toolbar_min_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/plugins/extensions/jquery.toolbar.min.js"); 
+                            public static readonly string lang_all_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/plugins/extensions/lang-all.js"); 
+                            public static readonly string moment_min_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/plugins/extensions/moment.min.js"); 
+                            public static readonly string nouislider_min_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/plugins/extensions/nouislider.min.js"); 
+                            public static readonly string offline_min_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/plugins/extensions/offline.min.js"); 
+                            public static readonly string sweetalert_min_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/plugins/extensions/sweetalert.min.js"); 
+                            public static readonly string timedropper_min_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/plugins/extensions/timedropper.min.js"); 
+                            public static readonly string toastr_min_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/plugins/extensions/toastr.min.js"); 
+                            public static readonly string transition_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/plugins/extensions/transition.js"); 
+                            public static readonly string underscore_min_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/plugins/extensions/underscore-min.js"); 
+                            public static readonly string unslider_min_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/plugins/extensions/unslider-min.js"); 
+                            public static readonly string wNumb_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/plugins/extensions/wNumb.js"); 
+                            public static readonly string zoom_min_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/plugins/extensions/zoom.min.js"); 
                         }
                     }
                     public static partial class forms 
@@ -10208,37 +10208,37 @@ namespace Links
                             {
                                 public static class Assets
                                 {
-                                    public const string jquery_card_js = "~/Content/js/plugins/forms/extended/card/jquery.card.js"; 
+                                    public static readonly string jquery_card_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/plugins/forms/extended/card/jquery.card.js"); 
                                 }
                             }
                             public static partial class formatter 
                             {
                                 public static class Assets
                                 {
-                                    public const string formatter_min_js = "~/Content/js/plugins/forms/extended/formatter/formatter.min.js"; 
+                                    public static readonly string formatter_min_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/plugins/forms/extended/formatter/formatter.min.js"); 
                                 }
                             }
                             public static partial class inputmask 
                             {
                                 public static class Assets
                                 {
-                                    public const string jquery_inputmask_bundle_min_js = "~/Content/js/plugins/forms/extended/inputmask/jquery.inputmask.bundle.min.js"; 
+                                    public static readonly string jquery_inputmask_bundle_min_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/plugins/forms/extended/inputmask/jquery.inputmask.bundle.min.js"); 
                                 }
                             }
                             public static partial class maxlength 
                             {
                                 public static class Assets
                                 {
-                                    public const string bootstrap_maxlength_js = "~/Content/js/plugins/forms/extended/maxlength/bootstrap-maxlength.js"; 
+                                    public static readonly string bootstrap_maxlength_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/plugins/forms/extended/maxlength/bootstrap-maxlength.js"); 
                                 }
                             }
                             public static partial class typeahead 
                             {
                                 public static class Assets
                                 {
-                                    public const string bloodhound_min_js = "~/Content/js/plugins/forms/extended/typeahead/bloodhound.min.js"; 
-                                    public const string handlebars_js = "~/Content/js/plugins/forms/extended/typeahead/handlebars.js"; 
-                                    public const string typeahead_bundle_min_js = "~/Content/js/plugins/forms/extended/typeahead/typeahead.bundle.min.js"; 
+                                    public static readonly string bloodhound_min_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/plugins/forms/extended/typeahead/bloodhound.min.js"); 
+                                    public static readonly string handlebars_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/plugins/forms/extended/typeahead/handlebars.js"); 
+                                    public static readonly string typeahead_bundle_min_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/plugins/forms/extended/typeahead/typeahead.bundle.min.js"); 
                                 }
                             }
                             public static class Assets
@@ -10249,65 +10249,65 @@ namespace Links
                         {
                             public static class Assets
                             {
-                                public const string icheck_min_js = "~/Content/js/plugins/forms/icheck/icheck.min.js"; 
+                                public static readonly string icheck_min_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/plugins/forms/icheck/icheck.min.js"); 
                             }
                         }
                         public static partial class listbox 
                         {
                             public static class Assets
                             {
-                                public const string jquery_bootstrap_duallistbox_min_js = "~/Content/js/plugins/forms/listbox/jquery.bootstrap-duallistbox.min.js"; 
+                                public static readonly string jquery_bootstrap_duallistbox_min_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/plugins/forms/listbox/jquery.bootstrap-duallistbox.min.js"); 
                             }
                         }
                         public static partial class repeater 
                         {
                             public static class Assets
                             {
-                                public const string jquery_repeater_min_js = "~/Content/js/plugins/forms/repeater/jquery.repeater.min.js"; 
+                                public static readonly string jquery_repeater_min_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/plugins/forms/repeater/jquery.repeater.min.js"); 
                             }
                         }
                         public static partial class select 
                         {
                             public static class Assets
                             {
-                                public const string jquery_selectBoxIt_min_js = "~/Content/js/plugins/forms/select/jquery.selectBoxIt.min.js"; 
-                                public const string select2_full_min_js = "~/Content/js/plugins/forms/select/select2.full.min.js"; 
-                                public const string select2_min_js = "~/Content/js/plugins/forms/select/select2.min.js"; 
-                                public const string selectivity_full_min_js = "~/Content/js/plugins/forms/select/selectivity-full.min.js"; 
-                                public const string selectize_min_js = "~/Content/js/plugins/forms/select/selectize.min.js"; 
+                                public static readonly string jquery_selectBoxIt_min_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/plugins/forms/select/jquery.selectBoxIt.min.js"); 
+                                public static readonly string select2_full_min_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/plugins/forms/select/select2.full.min.js"); 
+                                public static readonly string select2_min_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/plugins/forms/select/select2.min.js"); 
+                                public static readonly string selectivity_full_min_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/plugins/forms/select/selectivity-full.min.js"); 
+                                public static readonly string selectize_min_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/plugins/forms/select/selectize.min.js"); 
                             }
                         }
                         public static partial class spinner 
                         {
                             public static class Assets
                             {
-                                public const string jquery_bootstrap_touchspin_js = "~/Content/js/plugins/forms/spinner/jquery.bootstrap-touchspin.js"; 
+                                public static readonly string jquery_bootstrap_touchspin_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/plugins/forms/spinner/jquery.bootstrap-touchspin.js"); 
                             }
                         }
                         public static partial class tags 
                         {
                             public static class Assets
                             {
-                                public const string bootstrap_tagsinput_min_js = "~/Content/js/plugins/forms/tags/bootstrap-tagsinput.min.js"; 
-                                public const string form_field_js = "~/Content/js/plugins/forms/tags/form-field.js"; 
-                                public const string tagging_min_js = "~/Content/js/plugins/forms/tags/tagging.min.js"; 
+                                public static readonly string bootstrap_tagsinput_min_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/plugins/forms/tags/bootstrap-tagsinput.min.js"); 
+                                public static readonly string form_field_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/plugins/forms/tags/form-field.js"); 
+                                public static readonly string tagging_min_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/plugins/forms/tags/tagging.min.js"); 
                             }
                         }
                         public static partial class toggle 
                         {
                             public static class Assets
                             {
-                                public const string bootstrap_checkbox_min_js = "~/Content/js/plugins/forms/toggle/bootstrap-checkbox.min.js"; 
-                                public const string bootstrap_switch_min_js = "~/Content/js/plugins/forms/toggle/bootstrap-switch.min.js"; 
-                                public const string switchery_min_js = "~/Content/js/plugins/forms/toggle/switchery.min.js"; 
+                                public static readonly string bootstrap_checkbox_min_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/plugins/forms/toggle/bootstrap-checkbox.min.js"); 
+                                public static readonly string bootstrap_switch_min_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/plugins/forms/toggle/bootstrap-switch.min.js"); 
+                                public static readonly string switchery_min_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/plugins/forms/toggle/switchery.min.js"); 
                             }
                         }
                         public static partial class validation 
                         {
                             public static class Assets
                             {
-                                public const string jqBootstrapValidation_js = "~/Content/js/plugins/forms/validation/jqBootstrapValidation.js"; 
-                                public const string jquery_validate_min_js = "~/Content/js/plugins/forms/validation/jquery.validate.min.js"; 
+                                public static readonly string jqBootstrapValidation_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/plugins/forms/validation/jqBootstrapValidation.js"); 
+                                public static readonly string jquery_validate_min_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/plugins/forms/validation/jquery.validate.min.js"); 
                             }
                         }
                         public static class Assets
@@ -10320,7 +10320,7 @@ namespace Links
                         {
                             public static class Assets
                             {
-                                public const string masonry_pkgd_min_js = "~/Content/js/plugins/gallery/masonry/masonry.pkgd.min.js"; 
+                                public static readonly string masonry_pkgd_min_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/plugins/gallery/masonry/masonry.pkgd.min.js"); 
                             }
                         }
                         public static partial class photo_swipe 
@@ -10329,14 +10329,14 @@ namespace Links
                             {
                                 public static class Assets
                                 {
-                                    public const string default_skin_css = "~/Content/js/plugins/gallery/photo-swipe/default-skin/default-skin.css";
+                                    public static readonly string default_skin_css = T4MVCHelpers.ProcessAssetPath("~/Content/js/plugins/gallery/photo-swipe/default-skin/default-skin.css");
                                 }
                             }
                             public static class Assets
                             {
-                                public const string photoswipe_ui_default_min_js = "~/Content/js/plugins/gallery/photo-swipe/photoswipe-ui-default.min.js"; 
-                                public const string photoswipe_css = "~/Content/js/plugins/gallery/photo-swipe/photoswipe.css";
-                                public const string photoswipe_min_js = "~/Content/js/plugins/gallery/photo-swipe/photoswipe.min.js"; 
+                                public static readonly string photoswipe_ui_default_min_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/plugins/gallery/photo-swipe/photoswipe-ui-default.min.js"); 
+                                public static readonly string photoswipe_css = T4MVCHelpers.ProcessAssetPath("~/Content/js/plugins/gallery/photo-swipe/photoswipe.css");
+                                public static readonly string photoswipe_min_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/plugins/gallery/photo-swipe/photoswipe.min.js"); 
                             }
                         }
                         public static class Assets
@@ -10349,14 +10349,14 @@ namespace Links
                         {
                             public static class Assets
                             {
-                                public const string lobibox_min_js = "~/Content/js/plugins/pages/lobibox/lobibox.min.js"; 
+                                public static readonly string lobibox_min_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/plugins/pages/lobibox/lobibox.min.js"); 
                             }
                         }
                         public static partial class lobilist 
                         {
                             public static class Assets
                             {
-                                public const string lobilist_js = "~/Content/js/plugins/pages/lobilist/lobilist.js"; 
+                                public static readonly string lobilist_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/plugins/pages/lobilist/lobilist.js"); 
                             }
                         }
                         public static class Assets
@@ -10367,11 +10367,11 @@ namespace Links
                     {
                         public static class Assets
                         {
-                            public const string bootstrap_datepaginator_min_js = "~/Content/js/plugins/pagination/bootstrap-datepaginator.min.js"; 
-                            public const string datepicker_js = "~/Content/js/plugins/pagination/datepicker.js"; 
-                            public const string jquery_bootpag_min_js = "~/Content/js/plugins/pagination/jquery.bootpag.min.js"; 
-                            public const string jquery_twbsPagination_min_js = "~/Content/js/plugins/pagination/jquery.twbsPagination.min.js"; 
-                            public const string moment_min_js = "~/Content/js/plugins/pagination/moment.min.js"; 
+                            public static readonly string bootstrap_datepaginator_min_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/plugins/pagination/bootstrap-datepaginator.min.js"); 
+                            public static readonly string datepicker_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/plugins/pagination/datepicker.js"); 
+                            public static readonly string jquery_bootpag_min_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/plugins/pagination/jquery.bootpag.min.js"); 
+                            public static readonly string jquery_twbsPagination_min_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/plugins/pagination/jquery.twbsPagination.min.js"); 
+                            public static readonly string moment_min_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/plugins/pagination/moment.min.js"); 
                         }
                     }
                     public static partial class pickers 
@@ -10380,46 +10380,46 @@ namespace Links
                         {
                             public static class Assets
                             {
-                                public const string bootstrap_colorpicker_min_js = "~/Content/js/plugins/pickers/colorpicker/bootstrap-colorpicker.min.js"; 
+                                public static readonly string bootstrap_colorpicker_min_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/plugins/pickers/colorpicker/bootstrap-colorpicker.min.js"); 
                             }
                         }
                         public static partial class daterange 
                         {
                             public static class Assets
                             {
-                                public const string daterangepicker_js = "~/Content/js/plugins/pickers/daterange/daterangepicker.js"; 
+                                public static readonly string daterangepicker_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/plugins/pickers/daterange/daterangepicker.js"); 
                             }
                         }
                         public static partial class dateTime 
                         {
                             public static class Assets
                             {
-                                public const string bootstrap_datetimepicker_min_js = "~/Content/js/plugins/pickers/dateTime/bootstrap-datetimepicker.min.js"; 
-                                public const string moment_with_locales_min_js = "~/Content/js/plugins/pickers/dateTime/moment-with-locales.min.js"; 
+                                public static readonly string bootstrap_datetimepicker_min_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/plugins/pickers/dateTime/bootstrap-datetimepicker.min.js"); 
+                                public static readonly string moment_with_locales_min_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/plugins/pickers/dateTime/moment-with-locales.min.js"); 
                             }
                         }
                         public static partial class miniColors 
                         {
                             public static class Assets
                             {
-                                public const string jquery_minicolors_min_js = "~/Content/js/plugins/pickers/miniColors/jquery.minicolors.min.js"; 
+                                public static readonly string jquery_minicolors_min_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/plugins/pickers/miniColors/jquery.minicolors.min.js"); 
                             }
                         }
                         public static partial class pickadate 
                         {
                             public static class Assets
                             {
-                                public const string legacy_js = "~/Content/js/plugins/pickers/pickadate/legacy.js"; 
-                                public const string picker_date_js = "~/Content/js/plugins/pickers/pickadate/picker.date.js"; 
-                                public const string picker_js = "~/Content/js/plugins/pickers/pickadate/picker.js"; 
-                                public const string picker_time_js = "~/Content/js/plugins/pickers/pickadate/picker.time.js"; 
+                                public static readonly string legacy_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/plugins/pickers/pickadate/legacy.js"); 
+                                public static readonly string picker_date_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/plugins/pickers/pickadate/picker.date.js"); 
+                                public static readonly string picker_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/plugins/pickers/pickadate/picker.js"); 
+                                public static readonly string picker_time_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/plugins/pickers/pickadate/picker.time.js"); 
                             }
                         }
                         public static partial class spectrum 
                         {
                             public static class Assets
                             {
-                                public const string spectrum_js = "~/Content/js/plugins/pickers/spectrum/spectrum.js"; 
+                                public static readonly string spectrum_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/plugins/pickers/spectrum/spectrum.js"); 
                             }
                         }
                         public static class Assets
@@ -10432,66 +10432,66 @@ namespace Links
                         {
                             public static class Assets
                             {
-                                public const string buttons_bootstrap4_min_js = "~/Content/js/plugins/tables/datatable/buttons.bootstrap4.min.js"; 
-                                public const string dataTables_autoFill_min_js = "~/Content/js/plugins/tables/datatable/dataTables.autoFill.min.js"; 
-                                public const string dataTables_bootstrap4_min_js = "~/Content/js/plugins/tables/datatable/dataTables.bootstrap4.min.js"; 
-                                public const string dataTables_buttons_min_js = "~/Content/js/plugins/tables/datatable/dataTables.buttons.min.js"; 
-                                public const string dataTables_colReorder_min_js = "~/Content/js/plugins/tables/datatable/dataTables.colReorder.min.js"; 
-                                public const string dataTables_colVis_js = "~/Content/js/plugins/tables/datatable/dataTables.colVis.js"; 
-                                public const string dataTables_fixedColumns_min_js = "~/Content/js/plugins/tables/datatable/dataTables.fixedColumns.min.js"; 
-                                public const string dataTables_fixedHeader_min_js = "~/Content/js/plugins/tables/datatable/dataTables.fixedHeader.min.js"; 
-                                public const string dataTables_keyTable_min_js = "~/Content/js/plugins/tables/datatable/dataTables.keyTable.min.js"; 
-                                public const string dataTables_responsive_min_js = "~/Content/js/plugins/tables/datatable/dataTables.responsive.min.js"; 
-                                public const string dataTables_rowReorder_min_js = "~/Content/js/plugins/tables/datatable/dataTables.rowReorder.min.js"; 
-                                public const string dataTables_select_min_js = "~/Content/js/plugins/tables/datatable/dataTables.select.min.js"; 
+                                public static readonly string buttons_bootstrap4_min_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/plugins/tables/datatable/buttons.bootstrap4.min.js"); 
+                                public static readonly string dataTables_autoFill_min_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/plugins/tables/datatable/dataTables.autoFill.min.js"); 
+                                public static readonly string dataTables_bootstrap4_min_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/plugins/tables/datatable/dataTables.bootstrap4.min.js"); 
+                                public static readonly string dataTables_buttons_min_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/plugins/tables/datatable/dataTables.buttons.min.js"); 
+                                public static readonly string dataTables_colReorder_min_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/plugins/tables/datatable/dataTables.colReorder.min.js"); 
+                                public static readonly string dataTables_colVis_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/plugins/tables/datatable/dataTables.colVis.js"); 
+                                public static readonly string dataTables_fixedColumns_min_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/plugins/tables/datatable/dataTables.fixedColumns.min.js"); 
+                                public static readonly string dataTables_fixedHeader_min_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/plugins/tables/datatable/dataTables.fixedHeader.min.js"); 
+                                public static readonly string dataTables_keyTable_min_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/plugins/tables/datatable/dataTables.keyTable.min.js"); 
+                                public static readonly string dataTables_responsive_min_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/plugins/tables/datatable/dataTables.responsive.min.js"); 
+                                public static readonly string dataTables_rowReorder_min_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/plugins/tables/datatable/dataTables.rowReorder.min.js"); 
+                                public static readonly string dataTables_select_min_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/plugins/tables/datatable/dataTables.select.min.js"); 
                             }
                         }
                         public static partial class handsontable 
                         {
                             public static class Assets
                             {
-                                public const string chroma_min_js = "~/Content/js/plugins/tables/handsontable/chroma.min.js"; 
-                                public const string handsontable_full_js = "~/Content/js/plugins/tables/handsontable/handsontable.full.js"; 
-                                public const string jsgrid_min_js = "~/Content/js/plugins/tables/handsontable/jsgrid.min.js"; 
-                                public const string languages_min_js = "~/Content/js/plugins/tables/handsontable/languages.min.js"; 
+                                public static readonly string chroma_min_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/plugins/tables/handsontable/chroma.min.js"); 
+                                public static readonly string handsontable_full_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/plugins/tables/handsontable/handsontable.full.js"); 
+                                public static readonly string jsgrid_min_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/plugins/tables/handsontable/jsgrid.min.js"); 
+                                public static readonly string languages_min_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/plugins/tables/handsontable/languages.min.js"); 
                             }
                         }
                         public static partial class jsgrid 
                         {
                             public static class Assets
                             {
-                                public const string griddata_js = "~/Content/js/plugins/tables/jsgrid/griddata.js"; 
-                                public const string jquery_validate_min_js = "~/Content/js/plugins/tables/jsgrid/jquery.validate.min.js"; 
-                                public const string jsgrid_min_js = "~/Content/js/plugins/tables/jsgrid/jsgrid.min.js"; 
+                                public static readonly string griddata_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/plugins/tables/jsgrid/griddata.js"); 
+                                public static readonly string jquery_validate_min_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/plugins/tables/jsgrid/jquery.validate.min.js"); 
+                                public static readonly string jsgrid_min_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/plugins/tables/jsgrid/jsgrid.min.js"); 
                             }
                         }
                         public static class Assets
                         {
-                            public const string buttons_colVis_min_js = "~/Content/js/plugins/tables/buttons.colVis.min.js"; 
-                            public const string buttons_flash_min_js = "~/Content/js/plugins/tables/buttons.flash.min.js"; 
-                            public const string buttons_html5_min_js = "~/Content/js/plugins/tables/buttons.html5.min.js"; 
-                            public const string buttons_print_min_js = "~/Content/js/plugins/tables/buttons.print.min.js"; 
-                            public const string jquery_dataTables_min_js = "~/Content/js/plugins/tables/jquery.dataTables.min.js"; 
-                            public const string jszip_min_js = "~/Content/js/plugins/tables/jszip.min.js"; 
-                            public const string pdfmake_min_js = "~/Content/js/plugins/tables/pdfmake.min.js"; 
-                            public const string vfs_fonts_js = "~/Content/js/plugins/tables/vfs_fonts.js"; 
+                            public static readonly string buttons_colVis_min_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/plugins/tables/buttons.colVis.min.js"); 
+                            public static readonly string buttons_flash_min_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/plugins/tables/buttons.flash.min.js"); 
+                            public static readonly string buttons_html5_min_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/plugins/tables/buttons.html5.min.js"); 
+                            public static readonly string buttons_print_min_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/plugins/tables/buttons.print.min.js"); 
+                            public static readonly string jquery_dataTables_min_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/plugins/tables/jquery.dataTables.min.js"); 
+                            public static readonly string jszip_min_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/plugins/tables/jszip.min.js"); 
+                            public static readonly string pdfmake_min_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/plugins/tables/pdfmake.min.js"); 
+                            public static readonly string vfs_fonts_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/plugins/tables/vfs_fonts.js"); 
                         }
                     }
                     public static partial class timeline 
                     {
                         public static class Assets
                         {
-                            public const string horizontal_timeline_js = "~/Content/js/plugins/timeline/horizontal-timeline.js"; 
+                            public static readonly string horizontal_timeline_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/plugins/timeline/horizontal-timeline.js"); 
                         }
                     }
                     public static partial class ui 
                     {
                         public static class Assets
                         {
-                            public const string headroom_min_js = "~/Content/js/plugins/ui/headroom.min.js"; 
-                            public const string jquery_ui_slider_pips_min_js = "~/Content/js/plugins/ui/jquery-ui-slider-pips.min.js"; 
-                            public const string jquery_sticky_js = "~/Content/js/plugins/ui/jquery.sticky.js"; 
-                            public const string prism_min_js = "~/Content/js/plugins/ui/prism.min.js"; 
+                            public static readonly string headroom_min_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/plugins/ui/headroom.min.js"); 
+                            public static readonly string jquery_ui_slider_pips_min_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/plugins/ui/jquery-ui-slider-pips.min.js"); 
+                            public static readonly string jquery_sticky_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/plugins/ui/jquery.sticky.js"); 
+                            public static readonly string prism_min_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/plugins/ui/prism.min.js"); 
                         }
                     }
                     public static class Assets
@@ -10500,8 +10500,8 @@ namespace Links
                 }
                 public static class Assets
                 {
-                    public const string app_min_js = "~/Content/js/app.min.js"; 
-                    public const string vendors_min_js = "~/Content/js/vendors.min.js"; 
+                    public static readonly string app_min_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/app.min.js"); 
+                    public static readonly string vendors_min_js = T4MVCHelpers.ProcessAssetPath("~/Content/js/vendors.min.js"); 
                 }
             }
             public static partial class PublicUI 
@@ -10512,43 +10512,43 @@ namespace Links
                     {
                         public static class Assets
                         {
-                            public const string blue_css = "~/Content/PublicUI/css/color_scheme/blue.css";
-                            public const string brown_css = "~/Content/PublicUI/css/color_scheme/brown.css";
-                            public const string darkblue_css = "~/Content/PublicUI/css/color_scheme/darkblue.css";
-                            public const string darkgreen_css = "~/Content/PublicUI/css/color_scheme/darkgreen.css";
-                            public const string green_css = "~/Content/PublicUI/css/color_scheme/green.css";
-                            public const string lightgrey_css = "~/Content/PublicUI/css/color_scheme/lightgrey.css";
-                            public const string orange_css = "~/Content/PublicUI/css/color_scheme/orange.css";
-                            public const string pink_css = "~/Content/PublicUI/css/color_scheme/pink.css";
-                            public const string red_css = "~/Content/PublicUI/css/color_scheme/red.css";
-                            public const string yellow_css = "~/Content/PublicUI/css/color_scheme/yellow.css";
+                            public static readonly string blue_css = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/css/color_scheme/blue.css");
+                            public static readonly string brown_css = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/css/color_scheme/brown.css");
+                            public static readonly string darkblue_css = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/css/color_scheme/darkblue.css");
+                            public static readonly string darkgreen_css = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/css/color_scheme/darkgreen.css");
+                            public static readonly string green_css = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/css/color_scheme/green.css");
+                            public static readonly string lightgrey_css = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/css/color_scheme/lightgrey.css");
+                            public static readonly string orange_css = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/css/color_scheme/orange.css");
+                            public static readonly string pink_css = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/css/color_scheme/pink.css");
+                            public static readonly string red_css = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/css/color_scheme/red.css");
+                            public static readonly string yellow_css = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/css/color_scheme/yellow.css");
                         }
                     }
                     public static class Assets
                     {
-                        public const string _layout_font_rewrite_css = "~/Content/PublicUI/css/_layout-font-rewrite.css";
-                        public const string _layout_font_rewrite_farsi_css = "~/Content/PublicUI/css/_layout-font-rewrite.farsi.css";
-                        public const string essentials_css = "~/Content/PublicUI/css/essentials.css";
-                        public const string header_0_css = "~/Content/PublicUI/css/header-0.css";
-                        public const string header_1_css = "~/Content/PublicUI/css/header-1.css";
-                        public const string header_2_css = "~/Content/PublicUI/css/header-2.css";
-                        public const string header_3_css = "~/Content/PublicUI/css/header-3.css";
-                        public const string header_4_css = "~/Content/PublicUI/css/header-4.css";
-                        public const string header_5_css = "~/Content/PublicUI/css/header-5.css";
-                        public const string layout_dark_css = "~/Content/PublicUI/css/layout-dark.css";
-                        public const string layout_datatables_css = "~/Content/PublicUI/css/layout-datatables.css";
-                        public const string layout_footable_minimal_css = "~/Content/PublicUI/css/layout-footable-minimal.css";
-                        public const string layout_jqgrid_css = "~/Content/PublicUI/css/layout-jqgrid.css";
-                        public const string layout_RTL_css = "~/Content/PublicUI/css/layout-RTL.css";
-                        public const string layout_shop_css = "~/Content/PublicUI/css/layout-shop.css";
-                        public const string layout_css = "~/Content/PublicUI/css/layout.css";
-                        public const string plugin_hover_buttons_css = "~/Content/PublicUI/css/plugin-hover-buttons.css";
-                        public const string thematics_construction_css = "~/Content/PublicUI/css/thematics-construction.css";
-                        public const string thematics_education_css = "~/Content/PublicUI/css/thematics-education.css";
-                        public const string thematics_fashion_css = "~/Content/PublicUI/css/thematics-fashion.css";
-                        public const string thematics_music_css = "~/Content/PublicUI/css/thematics-music.css";
-                        public const string thematics_restaurant_css = "~/Content/PublicUI/css/thematics-restaurant.css";
-                        public const string thematics_wedding_css = "~/Content/PublicUI/css/thematics-wedding.css";
+                        public static readonly string _layout_font_rewrite_css = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/css/_layout-font-rewrite.css");
+                        public static readonly string _layout_font_rewrite_farsi_css = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/css/_layout-font-rewrite.farsi.css");
+                        public static readonly string essentials_css = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/css/essentials.css");
+                        public static readonly string header_0_css = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/css/header-0.css");
+                        public static readonly string header_1_css = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/css/header-1.css");
+                        public static readonly string header_2_css = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/css/header-2.css");
+                        public static readonly string header_3_css = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/css/header-3.css");
+                        public static readonly string header_4_css = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/css/header-4.css");
+                        public static readonly string header_5_css = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/css/header-5.css");
+                        public static readonly string layout_dark_css = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/css/layout-dark.css");
+                        public static readonly string layout_datatables_css = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/css/layout-datatables.css");
+                        public static readonly string layout_footable_minimal_css = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/css/layout-footable-minimal.css");
+                        public static readonly string layout_jqgrid_css = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/css/layout-jqgrid.css");
+                        public static readonly string layout_RTL_css = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/css/layout-RTL.css");
+                        public static readonly string layout_shop_css = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/css/layout-shop.css");
+                        public static readonly string layout_css = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/css/layout.css");
+                        public static readonly string plugin_hover_buttons_css = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/css/plugin-hover-buttons.css");
+                        public static readonly string thematics_construction_css = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/css/thematics-construction.css");
+                        public static readonly string thematics_education_css = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/css/thematics-education.css");
+                        public static readonly string thematics_fashion_css = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/css/thematics-fashion.css");
+                        public static readonly string thematics_music_css = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/css/thematics-music.css");
+                        public static readonly string thematics_restaurant_css = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/css/thematics-restaurant.css");
+                        public static readonly string thematics_wedding_css = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/css/thematics-wedding.css");
                     }
                 }
                 public static partial class fonts 
@@ -10617,22 +10617,22 @@ namespace Links
                     {
                         public static class Assets
                         {
-                            public const string demo_camera_slider_js = "~/Content/PublicUI/js/view/demo.camera_slider.js"; 
-                            public const string demo_elastic_slider_js = "~/Content/PublicUI/js/view/demo.elastic_slider.js"; 
-                            public const string demo_graphs_flot_js = "~/Content/PublicUI/js/view/demo.graphs.flot.js"; 
-                            public const string demo_layerslider_slider_js = "~/Content/PublicUI/js/view/demo.layerslider_slider.js"; 
-                            public const string demo_music_js = "~/Content/PublicUI/js/view/demo.music.js"; 
-                            public const string demo_nivo_slider_js = "~/Content/PublicUI/js/view/demo.nivo_slider.js"; 
-                            public const string demo_portfolio_ajax_js = "~/Content/PublicUI/js/view/demo.portfolio_ajax.js"; 
-                            public const string demo_revolution_slider_js = "~/Content/PublicUI/js/view/demo.revolution_slider.js"; 
-                            public const string demo_shop_js = "~/Content/PublicUI/js/view/demo.shop.js"; 
-                            public const string demo_swiper_slider_js = "~/Content/PublicUI/js/view/demo.swiper_slider.js"; 
+                            public static readonly string demo_camera_slider_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/js/view/demo.camera_slider.js"); 
+                            public static readonly string demo_elastic_slider_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/js/view/demo.elastic_slider.js"); 
+                            public static readonly string demo_graphs_flot_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/js/view/demo.graphs.flot.js"); 
+                            public static readonly string demo_layerslider_slider_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/js/view/demo.layerslider_slider.js"); 
+                            public static readonly string demo_music_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/js/view/demo.music.js"); 
+                            public static readonly string demo_nivo_slider_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/js/view/demo.nivo_slider.js"); 
+                            public static readonly string demo_portfolio_ajax_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/js/view/demo.portfolio_ajax.js"); 
+                            public static readonly string demo_revolution_slider_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/js/view/demo.revolution_slider.js"); 
+                            public static readonly string demo_shop_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/js/view/demo.shop.js"); 
+                            public static readonly string demo_swiper_slider_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/js/view/demo.swiper_slider.js"); 
                         }
                     }
                     public static class Assets
                     {
-                        public const string contact_js = "~/Content/PublicUI/js/contact.js"; 
-                        public const string scripts_js = "~/Content/PublicUI/js/scripts.js"; 
+                        public static readonly string contact_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/js/contact.js"); 
+                        public static readonly string scripts_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/js/scripts.js"); 
                     }
                 }
                 public static partial class plugins 
@@ -10643,10 +10643,10 @@ namespace Links
                         {
                             public static class Assets
                             {
-                                public const string bootstrap_theme_css = "~/Content/PublicUI/plugins/bootstrap/css/bootstrap-theme.css";
-                                public const string bootstrap_theme_min_css = "~/Content/PublicUI/plugins/bootstrap/css/bootstrap-theme.min.css";
-                                public const string bootstrap_css = "~/Content/PublicUI/plugins/bootstrap/css/bootstrap.css";
-                                public const string bootstrap_min_css = "~/Content/PublicUI/plugins/bootstrap/css/bootstrap.min.css";
+                                public static readonly string bootstrap_theme_css = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/bootstrap/css/bootstrap-theme.css");
+                                public static readonly string bootstrap_theme_min_css = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/bootstrap/css/bootstrap-theme.min.css");
+                                public static readonly string bootstrap_css = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/bootstrap/css/bootstrap.css");
+                                public static readonly string bootstrap_min_css = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/bootstrap/css/bootstrap.min.css");
                             }
                         }
                         public static partial class fonts 
@@ -10659,19 +10659,19 @@ namespace Links
                         {
                             public static class Assets
                             {
-                                public const string bootstrap_js = "~/Content/PublicUI/plugins/bootstrap/js/bootstrap.js"; 
-                                public const string bootstrap_min_js = "~/Content/PublicUI/plugins/bootstrap/js/bootstrap.min.js"; 
-                                public const string npm_js = "~/Content/PublicUI/plugins/bootstrap/js/npm.js"; 
+                                public static readonly string bootstrap_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/bootstrap/js/bootstrap.js"); 
+                                public static readonly string bootstrap_min_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/bootstrap/js/bootstrap.min.js"); 
+                                public static readonly string npm_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/bootstrap/js/npm.js"); 
                             }
                         }
                         public static partial class RTL 
                         {
                             public static class Assets
                             {
-                                public const string bootstrap_flipped_css = "~/Content/PublicUI/plugins/bootstrap/RTL/bootstrap-flipped.css";
-                                public const string bootstrap_flipped_min_css = "~/Content/PublicUI/plugins/bootstrap/RTL/bootstrap-flipped.min.css";
-                                public const string bootstrap_rtl_css = "~/Content/PublicUI/plugins/bootstrap/RTL/bootstrap-rtl.css";
-                                public const string bootstrap_rtl_min_css = "~/Content/PublicUI/plugins/bootstrap/RTL/bootstrap-rtl.min.css";
+                                public static readonly string bootstrap_flipped_css = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/bootstrap/RTL/bootstrap-flipped.css");
+                                public static readonly string bootstrap_flipped_min_css = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/bootstrap/RTL/bootstrap-flipped.min.css");
+                                public static readonly string bootstrap_rtl_css = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/bootstrap/RTL/bootstrap-rtl.css");
+                                public static readonly string bootstrap_rtl_min_css = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/bootstrap/RTL/bootstrap-rtl.min.css");
                             }
                         }
                         public static class Assets
@@ -10684,90 +10684,90 @@ namespace Links
                         {
                             public static class Assets
                             {
-                                public const string bootstrap_datepicker_css = "~/Content/PublicUI/plugins/bootstrap.datepicker/css/bootstrap-datepicker.css";
-                                public const string bootstrap_datepicker_min_css = "~/Content/PublicUI/plugins/bootstrap.datepicker/css/bootstrap-datepicker.min.css";
-                                public const string bootstrap_datepicker_standalone_css = "~/Content/PublicUI/plugins/bootstrap.datepicker/css/bootstrap-datepicker.standalone.css";
-                                public const string bootstrap_datepicker_standalone_min_css = "~/Content/PublicUI/plugins/bootstrap.datepicker/css/bootstrap-datepicker.standalone.min.css";
-                                public const string bootstrap_datepicker3_css = "~/Content/PublicUI/plugins/bootstrap.datepicker/css/bootstrap-datepicker3.css";
-                                public const string bootstrap_datepicker3_min_css = "~/Content/PublicUI/plugins/bootstrap.datepicker/css/bootstrap-datepicker3.min.css";
-                                public const string bootstrap_datepicker3_standalone_css = "~/Content/PublicUI/plugins/bootstrap.datepicker/css/bootstrap-datepicker3.standalone.css";
-                                public const string bootstrap_datepicker3_standalone_min_css = "~/Content/PublicUI/plugins/bootstrap.datepicker/css/bootstrap-datepicker3.standalone.min.css";
+                                public static readonly string bootstrap_datepicker_css = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/bootstrap.datepicker/css/bootstrap-datepicker.css");
+                                public static readonly string bootstrap_datepicker_min_css = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/bootstrap.datepicker/css/bootstrap-datepicker.min.css");
+                                public static readonly string bootstrap_datepicker_standalone_css = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/bootstrap.datepicker/css/bootstrap-datepicker.standalone.css");
+                                public static readonly string bootstrap_datepicker_standalone_min_css = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/bootstrap.datepicker/css/bootstrap-datepicker.standalone.min.css");
+                                public static readonly string bootstrap_datepicker3_css = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/bootstrap.datepicker/css/bootstrap-datepicker3.css");
+                                public static readonly string bootstrap_datepicker3_min_css = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/bootstrap.datepicker/css/bootstrap-datepicker3.min.css");
+                                public static readonly string bootstrap_datepicker3_standalone_css = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/bootstrap.datepicker/css/bootstrap-datepicker3.standalone.css");
+                                public static readonly string bootstrap_datepicker3_standalone_min_css = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/bootstrap.datepicker/css/bootstrap-datepicker3.standalone.min.css");
                             }
                         }
                         public static partial class js 
                         {
                             public static class Assets
                             {
-                                public const string bootstrap_datepicker_js = "~/Content/PublicUI/plugins/bootstrap.datepicker/js/bootstrap-datepicker.js"; 
-                                public const string bootstrap_datepicker_min_js = "~/Content/PublicUI/plugins/bootstrap.datepicker/js/bootstrap-datepicker.min.js"; 
+                                public static readonly string bootstrap_datepicker_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/bootstrap.datepicker/js/bootstrap-datepicker.js"); 
+                                public static readonly string bootstrap_datepicker_min_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/bootstrap.datepicker/js/bootstrap-datepicker.min.js"); 
                             }
                         }
                         public static partial class locales 
                         {
                             public static class Assets
                             {
-                                public const string bootstrap_datepicker_ar_min_js = "~/Content/PublicUI/plugins/bootstrap.datepicker/locales/bootstrap-datepicker.ar.min.js"; 
-                                public const string bootstrap_datepicker_az_min_js = "~/Content/PublicUI/plugins/bootstrap.datepicker/locales/bootstrap-datepicker.az.min.js"; 
-                                public const string bootstrap_datepicker_bg_min_js = "~/Content/PublicUI/plugins/bootstrap.datepicker/locales/bootstrap-datepicker.bg.min.js"; 
-                                public const string bootstrap_datepicker_bs_min_js = "~/Content/PublicUI/plugins/bootstrap.datepicker/locales/bootstrap-datepicker.bs.min.js"; 
-                                public const string bootstrap_datepicker_ca_min_js = "~/Content/PublicUI/plugins/bootstrap.datepicker/locales/bootstrap-datepicker.ca.min.js"; 
-                                public const string bootstrap_datepicker_cs_min_js = "~/Content/PublicUI/plugins/bootstrap.datepicker/locales/bootstrap-datepicker.cs.min.js"; 
-                                public const string bootstrap_datepicker_cy_min_js = "~/Content/PublicUI/plugins/bootstrap.datepicker/locales/bootstrap-datepicker.cy.min.js"; 
-                                public const string bootstrap_datepicker_da_min_js = "~/Content/PublicUI/plugins/bootstrap.datepicker/locales/bootstrap-datepicker.da.min.js"; 
-                                public const string bootstrap_datepicker_de_min_js = "~/Content/PublicUI/plugins/bootstrap.datepicker/locales/bootstrap-datepicker.de.min.js"; 
-                                public const string bootstrap_datepicker_el_min_js = "~/Content/PublicUI/plugins/bootstrap.datepicker/locales/bootstrap-datepicker.el.min.js"; 
-                                public const string bootstrap_datepicker_en_GB_min_js = "~/Content/PublicUI/plugins/bootstrap.datepicker/locales/bootstrap-datepicker.en-GB.min.js"; 
-                                public const string bootstrap_datepicker_es_min_js = "~/Content/PublicUI/plugins/bootstrap.datepicker/locales/bootstrap-datepicker.es.min.js"; 
-                                public const string bootstrap_datepicker_et_min_js = "~/Content/PublicUI/plugins/bootstrap.datepicker/locales/bootstrap-datepicker.et.min.js"; 
-                                public const string bootstrap_datepicker_eu_min_js = "~/Content/PublicUI/plugins/bootstrap.datepicker/locales/bootstrap-datepicker.eu.min.js"; 
-                                public const string bootstrap_datepicker_fa_min_js = "~/Content/PublicUI/plugins/bootstrap.datepicker/locales/bootstrap-datepicker.fa.min.js"; 
-                                public const string bootstrap_datepicker_fi_min_js = "~/Content/PublicUI/plugins/bootstrap.datepicker/locales/bootstrap-datepicker.fi.min.js"; 
-                                public const string bootstrap_datepicker_fo_min_js = "~/Content/PublicUI/plugins/bootstrap.datepicker/locales/bootstrap-datepicker.fo.min.js"; 
-                                public const string bootstrap_datepicker_fr_CH_min_js = "~/Content/PublicUI/plugins/bootstrap.datepicker/locales/bootstrap-datepicker.fr-CH.min.js"; 
-                                public const string bootstrap_datepicker_fr_min_js = "~/Content/PublicUI/plugins/bootstrap.datepicker/locales/bootstrap-datepicker.fr.min.js"; 
-                                public const string bootstrap_datepicker_gl_min_js = "~/Content/PublicUI/plugins/bootstrap.datepicker/locales/bootstrap-datepicker.gl.min.js"; 
-                                public const string bootstrap_datepicker_he_min_js = "~/Content/PublicUI/plugins/bootstrap.datepicker/locales/bootstrap-datepicker.he.min.js"; 
-                                public const string bootstrap_datepicker_hr_min_js = "~/Content/PublicUI/plugins/bootstrap.datepicker/locales/bootstrap-datepicker.hr.min.js"; 
-                                public const string bootstrap_datepicker_hu_min_js = "~/Content/PublicUI/plugins/bootstrap.datepicker/locales/bootstrap-datepicker.hu.min.js"; 
-                                public const string bootstrap_datepicker_hy_min_js = "~/Content/PublicUI/plugins/bootstrap.datepicker/locales/bootstrap-datepicker.hy.min.js"; 
-                                public const string bootstrap_datepicker_id_min_js = "~/Content/PublicUI/plugins/bootstrap.datepicker/locales/bootstrap-datepicker.id.min.js"; 
-                                public const string bootstrap_datepicker_is_min_js = "~/Content/PublicUI/plugins/bootstrap.datepicker/locales/bootstrap-datepicker.is.min.js"; 
-                                public const string bootstrap_datepicker_it_CH_min_js = "~/Content/PublicUI/plugins/bootstrap.datepicker/locales/bootstrap-datepicker.it-CH.min.js"; 
-                                public const string bootstrap_datepicker_it_min_js = "~/Content/PublicUI/plugins/bootstrap.datepicker/locales/bootstrap-datepicker.it.min.js"; 
-                                public const string bootstrap_datepicker_ja_min_js = "~/Content/PublicUI/plugins/bootstrap.datepicker/locales/bootstrap-datepicker.ja.min.js"; 
-                                public const string bootstrap_datepicker_ka_min_js = "~/Content/PublicUI/plugins/bootstrap.datepicker/locales/bootstrap-datepicker.ka.min.js"; 
-                                public const string bootstrap_datepicker_kh_min_js = "~/Content/PublicUI/plugins/bootstrap.datepicker/locales/bootstrap-datepicker.kh.min.js"; 
-                                public const string bootstrap_datepicker_kk_min_js = "~/Content/PublicUI/plugins/bootstrap.datepicker/locales/bootstrap-datepicker.kk.min.js"; 
-                                public const string bootstrap_datepicker_kr_min_js = "~/Content/PublicUI/plugins/bootstrap.datepicker/locales/bootstrap-datepicker.kr.min.js"; 
-                                public const string bootstrap_datepicker_lt_min_js = "~/Content/PublicUI/plugins/bootstrap.datepicker/locales/bootstrap-datepicker.lt.min.js"; 
-                                public const string bootstrap_datepicker_lv_min_js = "~/Content/PublicUI/plugins/bootstrap.datepicker/locales/bootstrap-datepicker.lv.min.js"; 
-                                public const string bootstrap_datepicker_me_min_js = "~/Content/PublicUI/plugins/bootstrap.datepicker/locales/bootstrap-datepicker.me.min.js"; 
-                                public const string bootstrap_datepicker_mk_min_js = "~/Content/PublicUI/plugins/bootstrap.datepicker/locales/bootstrap-datepicker.mk.min.js"; 
-                                public const string bootstrap_datepicker_ms_min_js = "~/Content/PublicUI/plugins/bootstrap.datepicker/locales/bootstrap-datepicker.ms.min.js"; 
-                                public const string bootstrap_datepicker_nb_min_js = "~/Content/PublicUI/plugins/bootstrap.datepicker/locales/bootstrap-datepicker.nb.min.js"; 
-                                public const string bootstrap_datepicker_nl_BE_min_js = "~/Content/PublicUI/plugins/bootstrap.datepicker/locales/bootstrap-datepicker.nl-BE.min.js"; 
-                                public const string bootstrap_datepicker_nl_min_js = "~/Content/PublicUI/plugins/bootstrap.datepicker/locales/bootstrap-datepicker.nl.min.js"; 
-                                public const string bootstrap_datepicker_no_min_js = "~/Content/PublicUI/plugins/bootstrap.datepicker/locales/bootstrap-datepicker.no.min.js"; 
-                                public const string bootstrap_datepicker_pl_min_js = "~/Content/PublicUI/plugins/bootstrap.datepicker/locales/bootstrap-datepicker.pl.min.js"; 
-                                public const string bootstrap_datepicker_pt_BR_min_js = "~/Content/PublicUI/plugins/bootstrap.datepicker/locales/bootstrap-datepicker.pt-BR.min.js"; 
-                                public const string bootstrap_datepicker_pt_min_js = "~/Content/PublicUI/plugins/bootstrap.datepicker/locales/bootstrap-datepicker.pt.min.js"; 
-                                public const string bootstrap_datepicker_ro_min_js = "~/Content/PublicUI/plugins/bootstrap.datepicker/locales/bootstrap-datepicker.ro.min.js"; 
-                                public const string bootstrap_datepicker_rs_latin_min_js = "~/Content/PublicUI/plugins/bootstrap.datepicker/locales/bootstrap-datepicker.rs-latin.min.js"; 
-                                public const string bootstrap_datepicker_rs_min_js = "~/Content/PublicUI/plugins/bootstrap.datepicker/locales/bootstrap-datepicker.rs.min.js"; 
-                                public const string bootstrap_datepicker_ru_min_js = "~/Content/PublicUI/plugins/bootstrap.datepicker/locales/bootstrap-datepicker.ru.min.js"; 
-                                public const string bootstrap_datepicker_sk_min_js = "~/Content/PublicUI/plugins/bootstrap.datepicker/locales/bootstrap-datepicker.sk.min.js"; 
-                                public const string bootstrap_datepicker_sl_min_js = "~/Content/PublicUI/plugins/bootstrap.datepicker/locales/bootstrap-datepicker.sl.min.js"; 
-                                public const string bootstrap_datepicker_sq_min_js = "~/Content/PublicUI/plugins/bootstrap.datepicker/locales/bootstrap-datepicker.sq.min.js"; 
-                                public const string bootstrap_datepicker_sr_latin_min_js = "~/Content/PublicUI/plugins/bootstrap.datepicker/locales/bootstrap-datepicker.sr-latin.min.js"; 
-                                public const string bootstrap_datepicker_sr_min_js = "~/Content/PublicUI/plugins/bootstrap.datepicker/locales/bootstrap-datepicker.sr.min.js"; 
-                                public const string bootstrap_datepicker_sv_min_js = "~/Content/PublicUI/plugins/bootstrap.datepicker/locales/bootstrap-datepicker.sv.min.js"; 
-                                public const string bootstrap_datepicker_sw_min_js = "~/Content/PublicUI/plugins/bootstrap.datepicker/locales/bootstrap-datepicker.sw.min.js"; 
-                                public const string bootstrap_datepicker_th_min_js = "~/Content/PublicUI/plugins/bootstrap.datepicker/locales/bootstrap-datepicker.th.min.js"; 
-                                public const string bootstrap_datepicker_tr_min_js = "~/Content/PublicUI/plugins/bootstrap.datepicker/locales/bootstrap-datepicker.tr.min.js"; 
-                                public const string bootstrap_datepicker_uk_min_js = "~/Content/PublicUI/plugins/bootstrap.datepicker/locales/bootstrap-datepicker.uk.min.js"; 
-                                public const string bootstrap_datepicker_vi_min_js = "~/Content/PublicUI/plugins/bootstrap.datepicker/locales/bootstrap-datepicker.vi.min.js"; 
-                                public const string bootstrap_datepicker_zh_CN_min_js = "~/Content/PublicUI/plugins/bootstrap.datepicker/locales/bootstrap-datepicker.zh-CN.min.js"; 
-                                public const string bootstrap_datepicker_zh_TW_min_js = "~/Content/PublicUI/plugins/bootstrap.datepicker/locales/bootstrap-datepicker.zh-TW.min.js"; 
+                                public static readonly string bootstrap_datepicker_ar_min_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/bootstrap.datepicker/locales/bootstrap-datepicker.ar.min.js"); 
+                                public static readonly string bootstrap_datepicker_az_min_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/bootstrap.datepicker/locales/bootstrap-datepicker.az.min.js"); 
+                                public static readonly string bootstrap_datepicker_bg_min_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/bootstrap.datepicker/locales/bootstrap-datepicker.bg.min.js"); 
+                                public static readonly string bootstrap_datepicker_bs_min_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/bootstrap.datepicker/locales/bootstrap-datepicker.bs.min.js"); 
+                                public static readonly string bootstrap_datepicker_ca_min_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/bootstrap.datepicker/locales/bootstrap-datepicker.ca.min.js"); 
+                                public static readonly string bootstrap_datepicker_cs_min_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/bootstrap.datepicker/locales/bootstrap-datepicker.cs.min.js"); 
+                                public static readonly string bootstrap_datepicker_cy_min_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/bootstrap.datepicker/locales/bootstrap-datepicker.cy.min.js"); 
+                                public static readonly string bootstrap_datepicker_da_min_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/bootstrap.datepicker/locales/bootstrap-datepicker.da.min.js"); 
+                                public static readonly string bootstrap_datepicker_de_min_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/bootstrap.datepicker/locales/bootstrap-datepicker.de.min.js"); 
+                                public static readonly string bootstrap_datepicker_el_min_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/bootstrap.datepicker/locales/bootstrap-datepicker.el.min.js"); 
+                                public static readonly string bootstrap_datepicker_en_GB_min_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/bootstrap.datepicker/locales/bootstrap-datepicker.en-GB.min.js"); 
+                                public static readonly string bootstrap_datepicker_es_min_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/bootstrap.datepicker/locales/bootstrap-datepicker.es.min.js"); 
+                                public static readonly string bootstrap_datepicker_et_min_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/bootstrap.datepicker/locales/bootstrap-datepicker.et.min.js"); 
+                                public static readonly string bootstrap_datepicker_eu_min_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/bootstrap.datepicker/locales/bootstrap-datepicker.eu.min.js"); 
+                                public static readonly string bootstrap_datepicker_fa_min_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/bootstrap.datepicker/locales/bootstrap-datepicker.fa.min.js"); 
+                                public static readonly string bootstrap_datepicker_fi_min_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/bootstrap.datepicker/locales/bootstrap-datepicker.fi.min.js"); 
+                                public static readonly string bootstrap_datepicker_fo_min_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/bootstrap.datepicker/locales/bootstrap-datepicker.fo.min.js"); 
+                                public static readonly string bootstrap_datepicker_fr_CH_min_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/bootstrap.datepicker/locales/bootstrap-datepicker.fr-CH.min.js"); 
+                                public static readonly string bootstrap_datepicker_fr_min_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/bootstrap.datepicker/locales/bootstrap-datepicker.fr.min.js"); 
+                                public static readonly string bootstrap_datepicker_gl_min_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/bootstrap.datepicker/locales/bootstrap-datepicker.gl.min.js"); 
+                                public static readonly string bootstrap_datepicker_he_min_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/bootstrap.datepicker/locales/bootstrap-datepicker.he.min.js"); 
+                                public static readonly string bootstrap_datepicker_hr_min_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/bootstrap.datepicker/locales/bootstrap-datepicker.hr.min.js"); 
+                                public static readonly string bootstrap_datepicker_hu_min_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/bootstrap.datepicker/locales/bootstrap-datepicker.hu.min.js"); 
+                                public static readonly string bootstrap_datepicker_hy_min_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/bootstrap.datepicker/locales/bootstrap-datepicker.hy.min.js"); 
+                                public static readonly string bootstrap_datepicker_id_min_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/bootstrap.datepicker/locales/bootstrap-datepicker.id.min.js"); 
+                                public static readonly string bootstrap_datepicker_is_min_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/bootstrap.datepicker/locales/bootstrap-datepicker.is.min.js"); 
+                                public static readonly string bootstrap_datepicker_it_CH_min_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/bootstrap.datepicker/locales/bootstrap-datepicker.it-CH.min.js"); 
+                                public static readonly string bootstrap_datepicker_it_min_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/bootstrap.datepicker/locales/bootstrap-datepicker.it.min.js"); 
+                                public static readonly string bootstrap_datepicker_ja_min_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/bootstrap.datepicker/locales/bootstrap-datepicker.ja.min.js"); 
+                                public static readonly string bootstrap_datepicker_ka_min_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/bootstrap.datepicker/locales/bootstrap-datepicker.ka.min.js"); 
+                                public static readonly string bootstrap_datepicker_kh_min_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/bootstrap.datepicker/locales/bootstrap-datepicker.kh.min.js"); 
+                                public static readonly string bootstrap_datepicker_kk_min_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/bootstrap.datepicker/locales/bootstrap-datepicker.kk.min.js"); 
+                                public static readonly string bootstrap_datepicker_kr_min_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/bootstrap.datepicker/locales/bootstrap-datepicker.kr.min.js"); 
+                                public static readonly string bootstrap_datepicker_lt_min_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/bootstrap.datepicker/locales/bootstrap-datepicker.lt.min.js"); 
+                                public static readonly string bootstrap_datepicker_lv_min_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/bootstrap.datepicker/locales/bootstrap-datepicker.lv.min.js"); 
+                                public static readonly string bootstrap_datepicker_me_min_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/bootstrap.datepicker/locales/bootstrap-datepicker.me.min.js"); 
+                                public static readonly string bootstrap_datepicker_mk_min_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/bootstrap.datepicker/locales/bootstrap-datepicker.mk.min.js"); 
+                                public static readonly string bootstrap_datepicker_ms_min_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/bootstrap.datepicker/locales/bootstrap-datepicker.ms.min.js"); 
+                                public static readonly string bootstrap_datepicker_nb_min_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/bootstrap.datepicker/locales/bootstrap-datepicker.nb.min.js"); 
+                                public static readonly string bootstrap_datepicker_nl_BE_min_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/bootstrap.datepicker/locales/bootstrap-datepicker.nl-BE.min.js"); 
+                                public static readonly string bootstrap_datepicker_nl_min_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/bootstrap.datepicker/locales/bootstrap-datepicker.nl.min.js"); 
+                                public static readonly string bootstrap_datepicker_no_min_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/bootstrap.datepicker/locales/bootstrap-datepicker.no.min.js"); 
+                                public static readonly string bootstrap_datepicker_pl_min_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/bootstrap.datepicker/locales/bootstrap-datepicker.pl.min.js"); 
+                                public static readonly string bootstrap_datepicker_pt_BR_min_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/bootstrap.datepicker/locales/bootstrap-datepicker.pt-BR.min.js"); 
+                                public static readonly string bootstrap_datepicker_pt_min_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/bootstrap.datepicker/locales/bootstrap-datepicker.pt.min.js"); 
+                                public static readonly string bootstrap_datepicker_ro_min_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/bootstrap.datepicker/locales/bootstrap-datepicker.ro.min.js"); 
+                                public static readonly string bootstrap_datepicker_rs_latin_min_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/bootstrap.datepicker/locales/bootstrap-datepicker.rs-latin.min.js"); 
+                                public static readonly string bootstrap_datepicker_rs_min_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/bootstrap.datepicker/locales/bootstrap-datepicker.rs.min.js"); 
+                                public static readonly string bootstrap_datepicker_ru_min_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/bootstrap.datepicker/locales/bootstrap-datepicker.ru.min.js"); 
+                                public static readonly string bootstrap_datepicker_sk_min_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/bootstrap.datepicker/locales/bootstrap-datepicker.sk.min.js"); 
+                                public static readonly string bootstrap_datepicker_sl_min_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/bootstrap.datepicker/locales/bootstrap-datepicker.sl.min.js"); 
+                                public static readonly string bootstrap_datepicker_sq_min_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/bootstrap.datepicker/locales/bootstrap-datepicker.sq.min.js"); 
+                                public static readonly string bootstrap_datepicker_sr_latin_min_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/bootstrap.datepicker/locales/bootstrap-datepicker.sr-latin.min.js"); 
+                                public static readonly string bootstrap_datepicker_sr_min_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/bootstrap.datepicker/locales/bootstrap-datepicker.sr.min.js"); 
+                                public static readonly string bootstrap_datepicker_sv_min_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/bootstrap.datepicker/locales/bootstrap-datepicker.sv.min.js"); 
+                                public static readonly string bootstrap_datepicker_sw_min_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/bootstrap.datepicker/locales/bootstrap-datepicker.sw.min.js"); 
+                                public static readonly string bootstrap_datepicker_th_min_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/bootstrap.datepicker/locales/bootstrap-datepicker.th.min.js"); 
+                                public static readonly string bootstrap_datepicker_tr_min_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/bootstrap.datepicker/locales/bootstrap-datepicker.tr.min.js"); 
+                                public static readonly string bootstrap_datepicker_uk_min_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/bootstrap.datepicker/locales/bootstrap-datepicker.uk.min.js"); 
+                                public static readonly string bootstrap_datepicker_vi_min_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/bootstrap.datepicker/locales/bootstrap-datepicker.vi.min.js"); 
+                                public static readonly string bootstrap_datepicker_zh_CN_min_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/bootstrap.datepicker/locales/bootstrap-datepicker.zh-CN.min.js"); 
+                                public static readonly string bootstrap_datepicker_zh_TW_min_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/bootstrap.datepicker/locales/bootstrap-datepicker.zh-TW.min.js"); 
                             }
                         }
                         public static class Assets
@@ -10778,11 +10778,11 @@ namespace Links
                     {
                         public static class Assets
                         {
-                            public const string daterangepicker_bs2_css = "~/Content/PublicUI/plugins/bootstrap.daterangepicker/daterangepicker-bs2.css";
-                            public const string daterangepicker_bs3_css = "~/Content/PublicUI/plugins/bootstrap.daterangepicker/daterangepicker-bs3.css";
-                            public const string daterangepicker_js = "~/Content/PublicUI/plugins/bootstrap.daterangepicker/daterangepicker.js"; 
-                            public const string moment_js = "~/Content/PublicUI/plugins/bootstrap.daterangepicker/moment.js"; 
-                            public const string moment_min_js = "~/Content/PublicUI/plugins/bootstrap.daterangepicker/moment.min.js"; 
+                            public static readonly string daterangepicker_bs2_css = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/bootstrap.daterangepicker/daterangepicker-bs2.css");
+                            public static readonly string daterangepicker_bs3_css = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/bootstrap.daterangepicker/daterangepicker-bs3.css");
+                            public static readonly string daterangepicker_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/bootstrap.daterangepicker/daterangepicker.js"); 
+                            public static readonly string moment_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/bootstrap.daterangepicker/moment.js"); 
+                            public static readonly string moment_min_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/bootstrap.daterangepicker/moment.min.js"); 
                         }
                     }
                     public static partial class chart_chartjs 
@@ -10803,19 +10803,19 @@ namespace Links
                         {
                             public static class Assets
                             {
-                                public const string Chart_Bar_js = "~/Content/PublicUI/plugins/chart.chartjs/src/Chart.Bar.js"; 
-                                public const string Chart_Core_js = "~/Content/PublicUI/plugins/chart.chartjs/src/Chart.Core.js"; 
-                                public const string Chart_Doughnut_js = "~/Content/PublicUI/plugins/chart.chartjs/src/Chart.Doughnut.js"; 
-                                public const string Chart_Line_js = "~/Content/PublicUI/plugins/chart.chartjs/src/Chart.Line.js"; 
-                                public const string Chart_PolarArea_js = "~/Content/PublicUI/plugins/chart.chartjs/src/Chart.PolarArea.js"; 
-                                public const string Chart_Radar_js = "~/Content/PublicUI/plugins/chart.chartjs/src/Chart.Radar.js"; 
+                                public static readonly string Chart_Bar_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/chart.chartjs/src/Chart.Bar.js"); 
+                                public static readonly string Chart_Core_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/chart.chartjs/src/Chart.Core.js"); 
+                                public static readonly string Chart_Doughnut_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/chart.chartjs/src/Chart.Doughnut.js"); 
+                                public static readonly string Chart_Line_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/chart.chartjs/src/Chart.Line.js"); 
+                                public static readonly string Chart_PolarArea_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/chart.chartjs/src/Chart.PolarArea.js"); 
+                                public static readonly string Chart_Radar_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/chart.chartjs/src/Chart.Radar.js"); 
                             }
                         }
                         public static class Assets
                         {
-                            public const string Chart_js = "~/Content/PublicUI/plugins/chart.chartjs/Chart.js"; 
-                            public const string Chart_min_js = "~/Content/PublicUI/plugins/chart.chartjs/Chart.min.js"; 
-                            public const string gulpfile_js = "~/Content/PublicUI/plugins/chart.chartjs/gulpfile.js"; 
+                            public static readonly string Chart_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/chart.chartjs/Chart.js"); 
+                            public static readonly string Chart_min_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/chart.chartjs/Chart.min.js"); 
+                            public static readonly string gulpfile_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/chart.chartjs/gulpfile.js"); 
                         }
                     }
                     public static partial class chart_easypiechart 
@@ -10830,20 +10830,20 @@ namespace Links
                             }
                             public static class Assets
                             {
-                                public const string excanvas_compiled_js = "~/Content/PublicUI/plugins/chart.easypiechart/demo/excanvas.compiled.js"; 
-                                public const string style_css = "~/Content/PublicUI/plugins/chart.easypiechart/demo/style.css";
+                                public static readonly string excanvas_compiled_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/chart.easypiechart/demo/excanvas.compiled.js"); 
+                                public static readonly string style_css = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/chart.easypiechart/demo/style.css");
                             }
                         }
                         public static partial class dist 
                         {
                             public static class Assets
                             {
-                                public const string angular_easypiechart_js = "~/Content/PublicUI/plugins/chart.easypiechart/dist/angular.easypiechart.js"; 
-                                public const string angular_easypiechart_min_js = "~/Content/PublicUI/plugins/chart.easypiechart/dist/angular.easypiechart.min.js"; 
-                                public const string easypiechart_js = "~/Content/PublicUI/plugins/chart.easypiechart/dist/easypiechart.js"; 
-                                public const string easypiechart_min_js = "~/Content/PublicUI/plugins/chart.easypiechart/dist/easypiechart.min.js"; 
-                                public const string jquery_easypiechart_js = "~/Content/PublicUI/plugins/chart.easypiechart/dist/jquery.easypiechart.js"; 
-                                public const string jquery_easypiechart_min_js = "~/Content/PublicUI/plugins/chart.easypiechart/dist/jquery.easypiechart.min.js"; 
+                                public static readonly string angular_easypiechart_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/chart.easypiechart/dist/angular.easypiechart.js"); 
+                                public static readonly string angular_easypiechart_min_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/chart.easypiechart/dist/angular.easypiechart.min.js"); 
+                                public static readonly string easypiechart_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/chart.easypiechart/dist/easypiechart.js"); 
+                                public static readonly string easypiechart_min_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/chart.easypiechart/dist/easypiechart.min.js"); 
+                                public static readonly string jquery_easypiechart_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/chart.easypiechart/dist/jquery.easypiechart.js"); 
+                                public static readonly string jquery_easypiechart_min_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/chart.easypiechart/dist/jquery.easypiechart.min.js"); 
                             }
                         }
                         public static partial class docs 
@@ -10860,108 +10860,108 @@ namespace Links
                     {
                         public static class Assets
                         {
-                            public const string jquery_colorhelpers_js = "~/Content/PublicUI/plugins/chart.flot/jquery.colorhelpers.js"; 
-                            public const string jquery_colorhelpers_min_js = "~/Content/PublicUI/plugins/chart.flot/jquery.colorhelpers.min.js"; 
-                            public const string jquery_flot_animator_min_js = "~/Content/PublicUI/plugins/chart.flot/jquery.flot.animator.min.js"; 
-                            public const string jquery_flot_canvas_js = "~/Content/PublicUI/plugins/chart.flot/jquery.flot.canvas.js"; 
-                            public const string jquery_flot_canvas_min_js = "~/Content/PublicUI/plugins/chart.flot/jquery.flot.canvas.min.js"; 
-                            public const string jquery_flot_categories_js = "~/Content/PublicUI/plugins/chart.flot/jquery.flot.categories.js"; 
-                            public const string jquery_flot_categories_min_js = "~/Content/PublicUI/plugins/chart.flot/jquery.flot.categories.min.js"; 
-                            public const string jquery_flot_crosshair_js = "~/Content/PublicUI/plugins/chart.flot/jquery.flot.crosshair.js"; 
-                            public const string jquery_flot_crosshair_min_js = "~/Content/PublicUI/plugins/chart.flot/jquery.flot.crosshair.min.js"; 
-                            public const string jquery_flot_errorbars_js = "~/Content/PublicUI/plugins/chart.flot/jquery.flot.errorbars.js"; 
-                            public const string jquery_flot_errorbars_min_js = "~/Content/PublicUI/plugins/chart.flot/jquery.flot.errorbars.min.js"; 
-                            public const string jquery_flot_fillbetween_js = "~/Content/PublicUI/plugins/chart.flot/jquery.flot.fillbetween.js"; 
-                            public const string jquery_flot_fillbetween_min_js = "~/Content/PublicUI/plugins/chart.flot/jquery.flot.fillbetween.min.js"; 
-                            public const string jquery_flot_growraf_js = "~/Content/PublicUI/plugins/chart.flot/jquery.flot.growraf.js"; 
-                            public const string jquery_flot_image_js = "~/Content/PublicUI/plugins/chart.flot/jquery.flot.image.js"; 
-                            public const string jquery_flot_image_min_js = "~/Content/PublicUI/plugins/chart.flot/jquery.flot.image.min.js"; 
-                            public const string jquery_flot_js = "~/Content/PublicUI/plugins/chart.flot/jquery.flot.js"; 
-                            public const string jquery_flot_min_js = "~/Content/PublicUI/plugins/chart.flot/jquery.flot.min.js"; 
-                            public const string jquery_flot_navigate_js = "~/Content/PublicUI/plugins/chart.flot/jquery.flot.navigate.js"; 
-                            public const string jquery_flot_navigate_min_js = "~/Content/PublicUI/plugins/chart.flot/jquery.flot.navigate.min.js"; 
-                            public const string jquery_flot_orderBars_js = "~/Content/PublicUI/plugins/chart.flot/jquery.flot.orderBars.js"; 
-                            public const string jquery_flot_orderBars_min_js = "~/Content/PublicUI/plugins/chart.flot/jquery.flot.orderBars.min.js"; 
-                            public const string jquery_flot_pie_js = "~/Content/PublicUI/plugins/chart.flot/jquery.flot.pie.js"; 
-                            public const string jquery_flot_pie_min_js = "~/Content/PublicUI/plugins/chart.flot/jquery.flot.pie.min.js"; 
-                            public const string jquery_flot_resize_js = "~/Content/PublicUI/plugins/chart.flot/jquery.flot.resize.js"; 
-                            public const string jquery_flot_resize_min_js = "~/Content/PublicUI/plugins/chart.flot/jquery.flot.resize.min.js"; 
-                            public const string jquery_flot_selection_js = "~/Content/PublicUI/plugins/chart.flot/jquery.flot.selection.js"; 
-                            public const string jquery_flot_selection_min_js = "~/Content/PublicUI/plugins/chart.flot/jquery.flot.selection.min.js"; 
-                            public const string jquery_flot_stack_js = "~/Content/PublicUI/plugins/chart.flot/jquery.flot.stack.js"; 
-                            public const string jquery_flot_stack_min_js = "~/Content/PublicUI/plugins/chart.flot/jquery.flot.stack.min.js"; 
-                            public const string jquery_flot_symbol_js = "~/Content/PublicUI/plugins/chart.flot/jquery.flot.symbol.js"; 
-                            public const string jquery_flot_symbol_min_js = "~/Content/PublicUI/plugins/chart.flot/jquery.flot.symbol.min.js"; 
-                            public const string jquery_flot_threshold_js = "~/Content/PublicUI/plugins/chart.flot/jquery.flot.threshold.js"; 
-                            public const string jquery_flot_threshold_min_js = "~/Content/PublicUI/plugins/chart.flot/jquery.flot.threshold.min.js"; 
-                            public const string jquery_flot_time_js = "~/Content/PublicUI/plugins/chart.flot/jquery.flot.time.js"; 
-                            public const string jquery_flot_time_min_js = "~/Content/PublicUI/plugins/chart.flot/jquery.flot.time.min.js"; 
-                            public const string jquery_flot_tooltip_min_js = "~/Content/PublicUI/plugins/chart.flot/jquery.flot.tooltip.min.js"; 
+                            public static readonly string jquery_colorhelpers_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/chart.flot/jquery.colorhelpers.js"); 
+                            public static readonly string jquery_colorhelpers_min_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/chart.flot/jquery.colorhelpers.min.js"); 
+                            public static readonly string jquery_flot_animator_min_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/chart.flot/jquery.flot.animator.min.js"); 
+                            public static readonly string jquery_flot_canvas_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/chart.flot/jquery.flot.canvas.js"); 
+                            public static readonly string jquery_flot_canvas_min_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/chart.flot/jquery.flot.canvas.min.js"); 
+                            public static readonly string jquery_flot_categories_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/chart.flot/jquery.flot.categories.js"); 
+                            public static readonly string jquery_flot_categories_min_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/chart.flot/jquery.flot.categories.min.js"); 
+                            public static readonly string jquery_flot_crosshair_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/chart.flot/jquery.flot.crosshair.js"); 
+                            public static readonly string jquery_flot_crosshair_min_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/chart.flot/jquery.flot.crosshair.min.js"); 
+                            public static readonly string jquery_flot_errorbars_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/chart.flot/jquery.flot.errorbars.js"); 
+                            public static readonly string jquery_flot_errorbars_min_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/chart.flot/jquery.flot.errorbars.min.js"); 
+                            public static readonly string jquery_flot_fillbetween_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/chart.flot/jquery.flot.fillbetween.js"); 
+                            public static readonly string jquery_flot_fillbetween_min_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/chart.flot/jquery.flot.fillbetween.min.js"); 
+                            public static readonly string jquery_flot_growraf_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/chart.flot/jquery.flot.growraf.js"); 
+                            public static readonly string jquery_flot_image_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/chart.flot/jquery.flot.image.js"); 
+                            public static readonly string jquery_flot_image_min_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/chart.flot/jquery.flot.image.min.js"); 
+                            public static readonly string jquery_flot_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/chart.flot/jquery.flot.js"); 
+                            public static readonly string jquery_flot_min_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/chart.flot/jquery.flot.min.js"); 
+                            public static readonly string jquery_flot_navigate_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/chart.flot/jquery.flot.navigate.js"); 
+                            public static readonly string jquery_flot_navigate_min_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/chart.flot/jquery.flot.navigate.min.js"); 
+                            public static readonly string jquery_flot_orderBars_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/chart.flot/jquery.flot.orderBars.js"); 
+                            public static readonly string jquery_flot_orderBars_min_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/chart.flot/jquery.flot.orderBars.min.js"); 
+                            public static readonly string jquery_flot_pie_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/chart.flot/jquery.flot.pie.js"); 
+                            public static readonly string jquery_flot_pie_min_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/chart.flot/jquery.flot.pie.min.js"); 
+                            public static readonly string jquery_flot_resize_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/chart.flot/jquery.flot.resize.js"); 
+                            public static readonly string jquery_flot_resize_min_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/chart.flot/jquery.flot.resize.min.js"); 
+                            public static readonly string jquery_flot_selection_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/chart.flot/jquery.flot.selection.js"); 
+                            public static readonly string jquery_flot_selection_min_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/chart.flot/jquery.flot.selection.min.js"); 
+                            public static readonly string jquery_flot_stack_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/chart.flot/jquery.flot.stack.js"); 
+                            public static readonly string jquery_flot_stack_min_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/chart.flot/jquery.flot.stack.min.js"); 
+                            public static readonly string jquery_flot_symbol_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/chart.flot/jquery.flot.symbol.js"); 
+                            public static readonly string jquery_flot_symbol_min_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/chart.flot/jquery.flot.symbol.min.js"); 
+                            public static readonly string jquery_flot_threshold_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/chart.flot/jquery.flot.threshold.js"); 
+                            public static readonly string jquery_flot_threshold_min_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/chart.flot/jquery.flot.threshold.min.js"); 
+                            public static readonly string jquery_flot_time_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/chart.flot/jquery.flot.time.js"); 
+                            public static readonly string jquery_flot_time_min_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/chart.flot/jquery.flot.time.min.js"); 
+                            public static readonly string jquery_flot_tooltip_min_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/chart.flot/jquery.flot.tooltip.min.js"); 
                         }
                     }
                     public static partial class countdown 
                     {
                         public static class Assets
                         {
-                            public const string jquery_countdown_ar_js = "~/Content/PublicUI/plugins/countdown/jquery.countdown-ar.js"; 
-                            public const string jquery_countdown_bg_js = "~/Content/PublicUI/plugins/countdown/jquery.countdown-bg.js"; 
-                            public const string jquery_countdown_bn_js = "~/Content/PublicUI/plugins/countdown/jquery.countdown-bn.js"; 
-                            public const string jquery_countdown_bs_js = "~/Content/PublicUI/plugins/countdown/jquery.countdown-bs.js"; 
-                            public const string jquery_countdown_ca_js = "~/Content/PublicUI/plugins/countdown/jquery.countdown-ca.js"; 
-                            public const string jquery_countdown_cs_js = "~/Content/PublicUI/plugins/countdown/jquery.countdown-cs.js"; 
-                            public const string jquery_countdown_cy_js = "~/Content/PublicUI/plugins/countdown/jquery.countdown-cy.js"; 
-                            public const string jquery_countdown_da_js = "~/Content/PublicUI/plugins/countdown/jquery.countdown-da.js"; 
-                            public const string jquery_countdown_de_js = "~/Content/PublicUI/plugins/countdown/jquery.countdown-de.js"; 
-                            public const string jquery_countdown_el_js = "~/Content/PublicUI/plugins/countdown/jquery.countdown-el.js"; 
-                            public const string jquery_countdown_es_js = "~/Content/PublicUI/plugins/countdown/jquery.countdown-es.js"; 
-                            public const string jquery_countdown_et_js = "~/Content/PublicUI/plugins/countdown/jquery.countdown-et.js"; 
-                            public const string jquery_countdown_fa_js = "~/Content/PublicUI/plugins/countdown/jquery.countdown-fa.js"; 
-                            public const string jquery_countdown_fi_js = "~/Content/PublicUI/plugins/countdown/jquery.countdown-fi.js"; 
-                            public const string jquery_countdown_fo_js = "~/Content/PublicUI/plugins/countdown/jquery.countdown-fo.js"; 
-                            public const string jquery_countdown_fr_js = "~/Content/PublicUI/plugins/countdown/jquery.countdown-fr.js"; 
-                            public const string jquery_countdown_gl_js = "~/Content/PublicUI/plugins/countdown/jquery.countdown-gl.js"; 
-                            public const string jquery_countdown_gu_js = "~/Content/PublicUI/plugins/countdown/jquery.countdown-gu.js"; 
-                            public const string jquery_countdown_he_js = "~/Content/PublicUI/plugins/countdown/jquery.countdown-he.js"; 
-                            public const string jquery_countdown_hr_js = "~/Content/PublicUI/plugins/countdown/jquery.countdown-hr.js"; 
-                            public const string jquery_countdown_hu_js = "~/Content/PublicUI/plugins/countdown/jquery.countdown-hu.js"; 
-                            public const string jquery_countdown_hy_js = "~/Content/PublicUI/plugins/countdown/jquery.countdown-hy.js"; 
-                            public const string jquery_countdown_id_js = "~/Content/PublicUI/plugins/countdown/jquery.countdown-id.js"; 
-                            public const string jquery_countdown_is_js = "~/Content/PublicUI/plugins/countdown/jquery.countdown-is.js"; 
-                            public const string jquery_countdown_it_js = "~/Content/PublicUI/plugins/countdown/jquery.countdown-it.js"; 
-                            public const string jquery_countdown_ja_js = "~/Content/PublicUI/plugins/countdown/jquery.countdown-ja.js"; 
-                            public const string jquery_countdown_kn_js = "~/Content/PublicUI/plugins/countdown/jquery.countdown-kn.js"; 
-                            public const string jquery_countdown_ko_js = "~/Content/PublicUI/plugins/countdown/jquery.countdown-ko.js"; 
-                            public const string jquery_countdown_lt_js = "~/Content/PublicUI/plugins/countdown/jquery.countdown-lt.js"; 
-                            public const string jquery_countdown_lv_js = "~/Content/PublicUI/plugins/countdown/jquery.countdown-lv.js"; 
-                            public const string jquery_countdown_ml_js = "~/Content/PublicUI/plugins/countdown/jquery.countdown-ml.js"; 
-                            public const string jquery_countdown_ms_js = "~/Content/PublicUI/plugins/countdown/jquery.countdown-ms.js"; 
-                            public const string jquery_countdown_my_js = "~/Content/PublicUI/plugins/countdown/jquery.countdown-my.js"; 
-                            public const string jquery_countdown_nb_js = "~/Content/PublicUI/plugins/countdown/jquery.countdown-nb.js"; 
-                            public const string jquery_countdown_nl_js = "~/Content/PublicUI/plugins/countdown/jquery.countdown-nl.js"; 
-                            public const string jquery_countdown_pl_js = "~/Content/PublicUI/plugins/countdown/jquery.countdown-pl.js"; 
-                            public const string jquery_countdown_pt_BR_js = "~/Content/PublicUI/plugins/countdown/jquery.countdown-pt-BR.js"; 
-                            public const string jquery_countdown_ro_js = "~/Content/PublicUI/plugins/countdown/jquery.countdown-ro.js"; 
-                            public const string jquery_countdown_ru_js = "~/Content/PublicUI/plugins/countdown/jquery.countdown-ru.js"; 
-                            public const string jquery_countdown_sk_js = "~/Content/PublicUI/plugins/countdown/jquery.countdown-sk.js"; 
-                            public const string jquery_countdown_sl_js = "~/Content/PublicUI/plugins/countdown/jquery.countdown-sl.js"; 
-                            public const string jquery_countdown_sq_js = "~/Content/PublicUI/plugins/countdown/jquery.countdown-sq.js"; 
-                            public const string jquery_countdown_sr_SR_js = "~/Content/PublicUI/plugins/countdown/jquery.countdown-sr-SR.js"; 
-                            public const string jquery_countdown_sr_js = "~/Content/PublicUI/plugins/countdown/jquery.countdown-sr.js"; 
-                            public const string jquery_countdown_sv_js = "~/Content/PublicUI/plugins/countdown/jquery.countdown-sv.js"; 
-                            public const string jquery_countdown_th_js = "~/Content/PublicUI/plugins/countdown/jquery.countdown-th.js"; 
-                            public const string jquery_countdown_tr_js = "~/Content/PublicUI/plugins/countdown/jquery.countdown-tr.js"; 
-                            public const string jquery_countdown_uk_js = "~/Content/PublicUI/plugins/countdown/jquery.countdown-uk.js"; 
-                            public const string jquery_countdown_ur_js = "~/Content/PublicUI/plugins/countdown/jquery.countdown-ur.js"; 
-                            public const string jquery_countdown_uz_js = "~/Content/PublicUI/plugins/countdown/jquery.countdown-uz.js"; 
-                            public const string jquery_countdown_vi_js = "~/Content/PublicUI/plugins/countdown/jquery.countdown-vi.js"; 
-                            public const string jquery_countdown_zh_CN_js = "~/Content/PublicUI/plugins/countdown/jquery.countdown-zh-CN.js"; 
-                            public const string jquery_countdown_zh_TW_js = "~/Content/PublicUI/plugins/countdown/jquery.countdown-zh-TW.js"; 
-                            public const string jquery_countdown_css = "~/Content/PublicUI/plugins/countdown/jquery.countdown.css";
-                            public const string jquery_countdown_js = "~/Content/PublicUI/plugins/countdown/jquery.countdown.js"; 
-                            public const string jquery_countdown_min_js = "~/Content/PublicUI/plugins/countdown/jquery.countdown.min.js"; 
-                            public const string jquery_countdown_pack_min_js = "~/Content/PublicUI/plugins/countdown/jquery.countdown.pack.min.js"; 
-                            public const string jquery_plugin_js = "~/Content/PublicUI/plugins/countdown/jquery.plugin.js"; 
-                            public const string jquery_plugin_min_js = "~/Content/PublicUI/plugins/countdown/jquery.plugin.min.js"; 
+                            public static readonly string jquery_countdown_ar_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/countdown/jquery.countdown-ar.js"); 
+                            public static readonly string jquery_countdown_bg_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/countdown/jquery.countdown-bg.js"); 
+                            public static readonly string jquery_countdown_bn_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/countdown/jquery.countdown-bn.js"); 
+                            public static readonly string jquery_countdown_bs_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/countdown/jquery.countdown-bs.js"); 
+                            public static readonly string jquery_countdown_ca_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/countdown/jquery.countdown-ca.js"); 
+                            public static readonly string jquery_countdown_cs_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/countdown/jquery.countdown-cs.js"); 
+                            public static readonly string jquery_countdown_cy_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/countdown/jquery.countdown-cy.js"); 
+                            public static readonly string jquery_countdown_da_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/countdown/jquery.countdown-da.js"); 
+                            public static readonly string jquery_countdown_de_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/countdown/jquery.countdown-de.js"); 
+                            public static readonly string jquery_countdown_el_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/countdown/jquery.countdown-el.js"); 
+                            public static readonly string jquery_countdown_es_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/countdown/jquery.countdown-es.js"); 
+                            public static readonly string jquery_countdown_et_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/countdown/jquery.countdown-et.js"); 
+                            public static readonly string jquery_countdown_fa_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/countdown/jquery.countdown-fa.js"); 
+                            public static readonly string jquery_countdown_fi_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/countdown/jquery.countdown-fi.js"); 
+                            public static readonly string jquery_countdown_fo_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/countdown/jquery.countdown-fo.js"); 
+                            public static readonly string jquery_countdown_fr_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/countdown/jquery.countdown-fr.js"); 
+                            public static readonly string jquery_countdown_gl_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/countdown/jquery.countdown-gl.js"); 
+                            public static readonly string jquery_countdown_gu_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/countdown/jquery.countdown-gu.js"); 
+                            public static readonly string jquery_countdown_he_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/countdown/jquery.countdown-he.js"); 
+                            public static readonly string jquery_countdown_hr_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/countdown/jquery.countdown-hr.js"); 
+                            public static readonly string jquery_countdown_hu_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/countdown/jquery.countdown-hu.js"); 
+                            public static readonly string jquery_countdown_hy_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/countdown/jquery.countdown-hy.js"); 
+                            public static readonly string jquery_countdown_id_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/countdown/jquery.countdown-id.js"); 
+                            public static readonly string jquery_countdown_is_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/countdown/jquery.countdown-is.js"); 
+                            public static readonly string jquery_countdown_it_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/countdown/jquery.countdown-it.js"); 
+                            public static readonly string jquery_countdown_ja_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/countdown/jquery.countdown-ja.js"); 
+                            public static readonly string jquery_countdown_kn_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/countdown/jquery.countdown-kn.js"); 
+                            public static readonly string jquery_countdown_ko_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/countdown/jquery.countdown-ko.js"); 
+                            public static readonly string jquery_countdown_lt_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/countdown/jquery.countdown-lt.js"); 
+                            public static readonly string jquery_countdown_lv_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/countdown/jquery.countdown-lv.js"); 
+                            public static readonly string jquery_countdown_ml_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/countdown/jquery.countdown-ml.js"); 
+                            public static readonly string jquery_countdown_ms_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/countdown/jquery.countdown-ms.js"); 
+                            public static readonly string jquery_countdown_my_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/countdown/jquery.countdown-my.js"); 
+                            public static readonly string jquery_countdown_nb_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/countdown/jquery.countdown-nb.js"); 
+                            public static readonly string jquery_countdown_nl_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/countdown/jquery.countdown-nl.js"); 
+                            public static readonly string jquery_countdown_pl_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/countdown/jquery.countdown-pl.js"); 
+                            public static readonly string jquery_countdown_pt_BR_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/countdown/jquery.countdown-pt-BR.js"); 
+                            public static readonly string jquery_countdown_ro_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/countdown/jquery.countdown-ro.js"); 
+                            public static readonly string jquery_countdown_ru_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/countdown/jquery.countdown-ru.js"); 
+                            public static readonly string jquery_countdown_sk_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/countdown/jquery.countdown-sk.js"); 
+                            public static readonly string jquery_countdown_sl_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/countdown/jquery.countdown-sl.js"); 
+                            public static readonly string jquery_countdown_sq_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/countdown/jquery.countdown-sq.js"); 
+                            public static readonly string jquery_countdown_sr_SR_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/countdown/jquery.countdown-sr-SR.js"); 
+                            public static readonly string jquery_countdown_sr_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/countdown/jquery.countdown-sr.js"); 
+                            public static readonly string jquery_countdown_sv_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/countdown/jquery.countdown-sv.js"); 
+                            public static readonly string jquery_countdown_th_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/countdown/jquery.countdown-th.js"); 
+                            public static readonly string jquery_countdown_tr_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/countdown/jquery.countdown-tr.js"); 
+                            public static readonly string jquery_countdown_uk_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/countdown/jquery.countdown-uk.js"); 
+                            public static readonly string jquery_countdown_ur_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/countdown/jquery.countdown-ur.js"); 
+                            public static readonly string jquery_countdown_uz_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/countdown/jquery.countdown-uz.js"); 
+                            public static readonly string jquery_countdown_vi_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/countdown/jquery.countdown-vi.js"); 
+                            public static readonly string jquery_countdown_zh_CN_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/countdown/jquery.countdown-zh-CN.js"); 
+                            public static readonly string jquery_countdown_zh_TW_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/countdown/jquery.countdown-zh-TW.js"); 
+                            public static readonly string jquery_countdown_css = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/countdown/jquery.countdown.css");
+                            public static readonly string jquery_countdown_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/countdown/jquery.countdown.js"); 
+                            public static readonly string jquery_countdown_min_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/countdown/jquery.countdown.min.js"); 
+                            public static readonly string jquery_countdown_pack_min_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/countdown/jquery.countdown.pack.min.js"); 
+                            public static readonly string jquery_plugin_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/countdown/jquery.plugin.js"); 
+                            public static readonly string jquery_plugin_min_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/countdown/jquery.plugin.min.js"); 
                         }
                     }
                     public static partial class datatables 
@@ -10970,9 +10970,9 @@ namespace Links
                         {
                             public static class Assets
                             {
-                                public const string jquery_dataTables_css = "~/Content/PublicUI/plugins/datatables/css/jquery.dataTables.css";
-                                public const string jquery_dataTables_min_css = "~/Content/PublicUI/plugins/datatables/css/jquery.dataTables.min.css";
-                                public const string jquery_dataTables_themeroller_css = "~/Content/PublicUI/plugins/datatables/css/jquery.dataTables_themeroller.css";
+                                public static readonly string jquery_dataTables_css = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/datatables/css/jquery.dataTables.css");
+                                public static readonly string jquery_dataTables_min_css = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/datatables/css/jquery.dataTables.min.css");
+                                public static readonly string jquery_dataTables_themeroller_css = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/datatables/css/jquery.dataTables_themeroller.css");
                             }
                         }
                         public static partial class extensions 
@@ -10983,8 +10983,8 @@ namespace Links
                                 {
                                     public static class Assets
                                     {
-                                        public const string dataTables_autoFill_css = "~/Content/PublicUI/plugins/datatables/extensions/AutoFill/css/dataTables.autoFill.css";
-                                        public const string dataTables_autoFill_min_css = "~/Content/PublicUI/plugins/datatables/extensions/AutoFill/css/dataTables.autoFill.min.css";
+                                        public static readonly string dataTables_autoFill_css = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/datatables/extensions/AutoFill/css/dataTables.autoFill.css");
+                                        public static readonly string dataTables_autoFill_min_css = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/datatables/extensions/AutoFill/css/dataTables.autoFill.min.css");
                                     }
                                 }
                                 public static partial class examples 
@@ -11003,8 +11003,8 @@ namespace Links
                                 {
                                     public static class Assets
                                     {
-                                        public const string dataTables_autoFill_js = "~/Content/PublicUI/plugins/datatables/extensions/AutoFill/js/dataTables.autoFill.js"; 
-                                        public const string dataTables_autoFill_min_js = "~/Content/PublicUI/plugins/datatables/extensions/AutoFill/js/dataTables.autoFill.min.js"; 
+                                        public static readonly string dataTables_autoFill_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/datatables/extensions/AutoFill/js/dataTables.autoFill.js"); 
+                                        public static readonly string dataTables_autoFill_min_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/datatables/extensions/AutoFill/js/dataTables.autoFill.min.js"); 
                                     }
                                 }
                                 public static class Assets
@@ -11017,8 +11017,8 @@ namespace Links
                                 {
                                     public static class Assets
                                     {
-                                        public const string dataTables_colReorder_css = "~/Content/PublicUI/plugins/datatables/extensions/ColReorder/css/dataTables.colReorder.css";
-                                        public const string dataTables_colReorder_min_css = "~/Content/PublicUI/plugins/datatables/extensions/ColReorder/css/dataTables.colReorder.min.css";
+                                        public static readonly string dataTables_colReorder_css = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/datatables/extensions/ColReorder/css/dataTables.colReorder.css");
+                                        public static readonly string dataTables_colReorder_min_css = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/datatables/extensions/ColReorder/css/dataTables.colReorder.min.css");
                                     }
                                 }
                                 public static partial class examples 
@@ -11037,8 +11037,8 @@ namespace Links
                                 {
                                     public static class Assets
                                     {
-                                        public const string dataTables_colReorder_js = "~/Content/PublicUI/plugins/datatables/extensions/ColReorder/js/dataTables.colReorder.js"; 
-                                        public const string dataTables_colReorder_min_js = "~/Content/PublicUI/plugins/datatables/extensions/ColReorder/js/dataTables.colReorder.min.js"; 
+                                        public static readonly string dataTables_colReorder_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/datatables/extensions/ColReorder/js/dataTables.colReorder.js"); 
+                                        public static readonly string dataTables_colReorder_min_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/datatables/extensions/ColReorder/js/dataTables.colReorder.min.js"); 
                                     }
                                 }
                                 public static class Assets
@@ -11051,9 +11051,9 @@ namespace Links
                                 {
                                     public static class Assets
                                     {
-                                        public const string dataTables_colVis_css = "~/Content/PublicUI/plugins/datatables/extensions/ColVis/css/dataTables.colVis.css";
-                                        public const string dataTables_colvis_jqueryui_css = "~/Content/PublicUI/plugins/datatables/extensions/ColVis/css/dataTables.colvis.jqueryui.css";
-                                        public const string dataTables_colVis_min_css = "~/Content/PublicUI/plugins/datatables/extensions/ColVis/css/dataTables.colVis.min.css";
+                                        public static readonly string dataTables_colVis_css = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/datatables/extensions/ColVis/css/dataTables.colVis.css");
+                                        public static readonly string dataTables_colvis_jqueryui_css = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/datatables/extensions/ColVis/css/dataTables.colvis.jqueryui.css");
+                                        public static readonly string dataTables_colVis_min_css = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/datatables/extensions/ColVis/css/dataTables.colVis.min.css");
                                     }
                                 }
                                 public static partial class examples 
@@ -11066,8 +11066,8 @@ namespace Links
                                 {
                                     public static class Assets
                                     {
-                                        public const string dataTables_colVis_js = "~/Content/PublicUI/plugins/datatables/extensions/ColVis/js/dataTables.colVis.js"; 
-                                        public const string dataTables_colVis_min_js = "~/Content/PublicUI/plugins/datatables/extensions/ColVis/js/dataTables.colVis.min.js"; 
+                                        public static readonly string dataTables_colVis_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/datatables/extensions/ColVis/js/dataTables.colVis.js"); 
+                                        public static readonly string dataTables_colVis_min_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/datatables/extensions/ColVis/js/dataTables.colVis.min.js"); 
                                     }
                                 }
                                 public static class Assets
@@ -11080,8 +11080,8 @@ namespace Links
                                 {
                                     public static class Assets
                                     {
-                                        public const string dataTables_fixedColumns_css = "~/Content/PublicUI/plugins/datatables/extensions/FixedColumns/css/dataTables.fixedColumns.css";
-                                        public const string dataTables_fixedColumns_min_css = "~/Content/PublicUI/plugins/datatables/extensions/FixedColumns/css/dataTables.fixedColumns.min.css";
+                                        public static readonly string dataTables_fixedColumns_css = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/datatables/extensions/FixedColumns/css/dataTables.fixedColumns.css");
+                                        public static readonly string dataTables_fixedColumns_min_css = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/datatables/extensions/FixedColumns/css/dataTables.fixedColumns.min.css");
                                     }
                                 }
                                 public static partial class examples 
@@ -11094,8 +11094,8 @@ namespace Links
                                 {
                                     public static class Assets
                                     {
-                                        public const string dataTables_fixedColumns_js = "~/Content/PublicUI/plugins/datatables/extensions/FixedColumns/js/dataTables.fixedColumns.js"; 
-                                        public const string dataTables_fixedColumns_min_js = "~/Content/PublicUI/plugins/datatables/extensions/FixedColumns/js/dataTables.fixedColumns.min.js"; 
+                                        public static readonly string dataTables_fixedColumns_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/datatables/extensions/FixedColumns/js/dataTables.fixedColumns.js"); 
+                                        public static readonly string dataTables_fixedColumns_min_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/datatables/extensions/FixedColumns/js/dataTables.fixedColumns.min.js"); 
                                     }
                                 }
                                 public static class Assets
@@ -11108,8 +11108,8 @@ namespace Links
                                 {
                                     public static class Assets
                                     {
-                                        public const string dataTables_fixedHeader_css = "~/Content/PublicUI/plugins/datatables/extensions/FixedHeader/css/dataTables.fixedHeader.css";
-                                        public const string dataTables_fixedHeader_min_css = "~/Content/PublicUI/plugins/datatables/extensions/FixedHeader/css/dataTables.fixedHeader.min.css";
+                                        public static readonly string dataTables_fixedHeader_css = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/datatables/extensions/FixedHeader/css/dataTables.fixedHeader.css");
+                                        public static readonly string dataTables_fixedHeader_min_css = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/datatables/extensions/FixedHeader/css/dataTables.fixedHeader.min.css");
                                     }
                                 }
                                 public static partial class examples 
@@ -11122,8 +11122,8 @@ namespace Links
                                 {
                                     public static class Assets
                                     {
-                                        public const string dataTables_fixedHeader_js = "~/Content/PublicUI/plugins/datatables/extensions/FixedHeader/js/dataTables.fixedHeader.js"; 
-                                        public const string dataTables_fixedHeader_min_js = "~/Content/PublicUI/plugins/datatables/extensions/FixedHeader/js/dataTables.fixedHeader.min.js"; 
+                                        public static readonly string dataTables_fixedHeader_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/datatables/extensions/FixedHeader/js/dataTables.fixedHeader.js"); 
+                                        public static readonly string dataTables_fixedHeader_min_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/datatables/extensions/FixedHeader/js/dataTables.fixedHeader.min.js"); 
                                     }
                                 }
                                 public static class Assets
@@ -11136,8 +11136,8 @@ namespace Links
                                 {
                                     public static class Assets
                                     {
-                                        public const string dataTables_keyTable_css = "~/Content/PublicUI/plugins/datatables/extensions/KeyTable/css/dataTables.keyTable.css";
-                                        public const string dataTables_keyTable_min_css = "~/Content/PublicUI/plugins/datatables/extensions/KeyTable/css/dataTables.keyTable.min.css";
+                                        public static readonly string dataTables_keyTable_css = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/datatables/extensions/KeyTable/css/dataTables.keyTable.css");
+                                        public static readonly string dataTables_keyTable_min_css = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/datatables/extensions/KeyTable/css/dataTables.keyTable.min.css");
                                     }
                                 }
                                 public static partial class examples 
@@ -11150,8 +11150,8 @@ namespace Links
                                 {
                                     public static class Assets
                                     {
-                                        public const string dataTables_keyTable_js = "~/Content/PublicUI/plugins/datatables/extensions/KeyTable/js/dataTables.keyTable.js"; 
-                                        public const string dataTables_keyTable_min_js = "~/Content/PublicUI/plugins/datatables/extensions/KeyTable/js/dataTables.keyTable.min.js"; 
+                                        public static readonly string dataTables_keyTable_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/datatables/extensions/KeyTable/js/dataTables.keyTable.js"); 
+                                        public static readonly string dataTables_keyTable_min_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/datatables/extensions/KeyTable/js/dataTables.keyTable.min.js"); 
                                     }
                                 }
                                 public static class Assets
@@ -11164,7 +11164,7 @@ namespace Links
                                 {
                                     public static class Assets
                                     {
-                                        public const string dataTables_responsive_css = "~/Content/PublicUI/plugins/datatables/extensions/Responsive/css/dataTables.responsive.css";
+                                        public static readonly string dataTables_responsive_css = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/datatables/extensions/Responsive/css/dataTables.responsive.css");
                                     }
                                 }
                                 public static partial class examples 
@@ -11201,8 +11201,8 @@ namespace Links
                                 {
                                     public static class Assets
                                     {
-                                        public const string dataTables_responsive_js = "~/Content/PublicUI/plugins/datatables/extensions/Responsive/js/dataTables.responsive.js"; 
-                                        public const string dataTables_responsive_min_js = "~/Content/PublicUI/plugins/datatables/extensions/Responsive/js/dataTables.responsive.min.js"; 
+                                        public static readonly string dataTables_responsive_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/datatables/extensions/Responsive/js/dataTables.responsive.js"); 
+                                        public static readonly string dataTables_responsive_min_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/datatables/extensions/Responsive/js/dataTables.responsive.min.js"); 
                                     }
                                 }
                                 public static class Assets
@@ -11215,8 +11215,8 @@ namespace Links
                                 {
                                     public static class Assets
                                     {
-                                        public const string dataTables_scroller_css = "~/Content/PublicUI/plugins/datatables/extensions/Scroller/css/dataTables.scroller.css";
-                                        public const string dataTables_scroller_min_css = "~/Content/PublicUI/plugins/datatables/extensions/Scroller/css/dataTables.scroller.min.css";
+                                        public static readonly string dataTables_scroller_css = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/datatables/extensions/Scroller/css/dataTables.scroller.css");
+                                        public static readonly string dataTables_scroller_min_css = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/datatables/extensions/Scroller/css/dataTables.scroller.min.css");
                                     }
                                 }
                                 public static partial class examples 
@@ -11241,8 +11241,8 @@ namespace Links
                                 {
                                     public static class Assets
                                     {
-                                        public const string dataTables_scroller_js = "~/Content/PublicUI/plugins/datatables/extensions/Scroller/js/dataTables.scroller.js"; 
-                                        public const string dataTables_scroller_min_js = "~/Content/PublicUI/plugins/datatables/extensions/Scroller/js/dataTables.scroller.min.js"; 
+                                        public static readonly string dataTables_scroller_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/datatables/extensions/Scroller/js/dataTables.scroller.js"); 
+                                        public static readonly string dataTables_scroller_min_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/datatables/extensions/Scroller/js/dataTables.scroller.min.js"); 
                                     }
                                 }
                                 public static class Assets
@@ -11255,8 +11255,8 @@ namespace Links
                                 {
                                     public static class Assets
                                     {
-                                        public const string dataTables_tableTools_css = "~/Content/PublicUI/plugins/datatables/extensions/TableTools/css/dataTables.tableTools.css";
-                                        public const string dataTables_tableTools_min_css = "~/Content/PublicUI/plugins/datatables/extensions/TableTools/css/dataTables.tableTools.min.css";
+                                        public static readonly string dataTables_tableTools_css = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/datatables/extensions/TableTools/css/dataTables.tableTools.css");
+                                        public static readonly string dataTables_tableTools_min_css = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/datatables/extensions/TableTools/css/dataTables.tableTools.min.css");
                                     }
                                 }
                                 public static partial class examples 
@@ -11281,8 +11281,8 @@ namespace Links
                                 {
                                     public static class Assets
                                     {
-                                        public const string dataTables_tableTools_js = "~/Content/PublicUI/plugins/datatables/extensions/TableTools/js/dataTables.tableTools.js"; 
-                                        public const string dataTables_tableTools_min_js = "~/Content/PublicUI/plugins/datatables/extensions/TableTools/js/dataTables.tableTools.min.js"; 
+                                        public static readonly string dataTables_tableTools_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/datatables/extensions/TableTools/js/dataTables.tableTools.js"); 
+                                        public static readonly string dataTables_tableTools_min_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/datatables/extensions/TableTools/js/dataTables.tableTools.min.js"); 
                                     }
                                 }
                                 public static partial class swf 
@@ -11309,22 +11309,22 @@ namespace Links
                         {
                             public static class Assets
                             {
-                                public const string dataTables_bootstrap_js = "~/Content/PublicUI/plugins/datatables/js/dataTables.bootstrap.js"; 
-                                public const string dataTables_bootstrap_min_js = "~/Content/PublicUI/plugins/datatables/js/dataTables.bootstrap.min.js"; 
-                                public const string dataTables_colReorder_min_js = "~/Content/PublicUI/plugins/datatables/js/dataTables.colReorder.min.js"; 
-                                public const string dataTables_foundation_js = "~/Content/PublicUI/plugins/datatables/js/dataTables.foundation.js"; 
-                                public const string dataTables_foundation_min_js = "~/Content/PublicUI/plugins/datatables/js/dataTables.foundation.min.js"; 
-                                public const string dataTables_jqueryui_js = "~/Content/PublicUI/plugins/datatables/js/dataTables.jqueryui.js"; 
-                                public const string dataTables_jqueryui_min_js = "~/Content/PublicUI/plugins/datatables/js/dataTables.jqueryui.min.js"; 
-                                public const string dataTables_scroller_min_js = "~/Content/PublicUI/plugins/datatables/js/dataTables.scroller.min.js"; 
-                                public const string dataTables_tableTools_min_js = "~/Content/PublicUI/plugins/datatables/js/dataTables.tableTools.min.js"; 
-                                public const string jquery_dataTables_js = "~/Content/PublicUI/plugins/datatables/js/jquery.dataTables.js"; 
-                                public const string jquery_dataTables_min_js = "~/Content/PublicUI/plugins/datatables/js/jquery.dataTables.min.js"; 
+                                public static readonly string dataTables_bootstrap_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/datatables/js/dataTables.bootstrap.js"); 
+                                public static readonly string dataTables_bootstrap_min_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/datatables/js/dataTables.bootstrap.min.js"); 
+                                public static readonly string dataTables_colReorder_min_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/datatables/js/dataTables.colReorder.min.js"); 
+                                public static readonly string dataTables_foundation_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/datatables/js/dataTables.foundation.js"); 
+                                public static readonly string dataTables_foundation_min_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/datatables/js/dataTables.foundation.min.js"); 
+                                public static readonly string dataTables_jqueryui_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/datatables/js/dataTables.jqueryui.js"); 
+                                public static readonly string dataTables_jqueryui_min_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/datatables/js/dataTables.jqueryui.min.js"); 
+                                public static readonly string dataTables_scroller_min_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/datatables/js/dataTables.scroller.min.js"); 
+                                public static readonly string dataTables_tableTools_min_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/datatables/js/dataTables.tableTools.min.js"); 
+                                public static readonly string jquery_dataTables_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/datatables/js/jquery.dataTables.js"); 
+                                public static readonly string jquery_dataTables_min_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/datatables/js/jquery.dataTables.min.js"); 
                             }
                         }
                         public static class Assets
                         {
-                            public const string dataTables_bootstrap_js = "~/Content/PublicUI/plugins/datatables/dataTables.bootstrap.js"; 
+                            public static readonly string dataTables_bootstrap_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/datatables/dataTables.bootstrap.js"); 
                         }
                     }
                     public static partial class editor_markdown 
@@ -11333,36 +11333,36 @@ namespace Links
                         {
                             public static class Assets
                             {
-                                public const string bootstrap_markdown_min_css = "~/Content/PublicUI/plugins/editor.markdown/css/bootstrap-markdown.min.css";
+                                public static readonly string bootstrap_markdown_min_css = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/editor.markdown/css/bootstrap-markdown.min.css");
                             }
                         }
                         public static partial class js 
                         {
                             public static class Assets
                             {
-                                public const string bootstrap_markdown_js = "~/Content/PublicUI/plugins/editor.markdown/js/bootstrap-markdown.js"; 
-                                public const string bootstrap_markdown_min_js = "~/Content/PublicUI/plugins/editor.markdown/js/bootstrap-markdown.min.js"; 
+                                public static readonly string bootstrap_markdown_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/editor.markdown/js/bootstrap-markdown.js"); 
+                                public static readonly string bootstrap_markdown_min_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/editor.markdown/js/bootstrap-markdown.min.js"); 
                             }
                         }
                         public static partial class locale 
                         {
                             public static class Assets
                             {
-                                public const string bootstrap_markdown_ar_js = "~/Content/PublicUI/plugins/editor.markdown/locale/bootstrap-markdown.ar.js"; 
-                                public const string bootstrap_markdown_de_js = "~/Content/PublicUI/plugins/editor.markdown/locale/bootstrap-markdown.de.js"; 
-                                public const string bootstrap_markdown_es_js = "~/Content/PublicUI/plugins/editor.markdown/locale/bootstrap-markdown.es.js"; 
-                                public const string bootstrap_markdown_fr_js = "~/Content/PublicUI/plugins/editor.markdown/locale/bootstrap-markdown.fr.js"; 
-                                public const string bootstrap_markdown_ja_js = "~/Content/PublicUI/plugins/editor.markdown/locale/bootstrap-markdown.ja.js"; 
-                                public const string bootstrap_markdown_kr_js = "~/Content/PublicUI/plugins/editor.markdown/locale/bootstrap-markdown.kr.js"; 
-                                public const string bootstrap_markdown_nb_js = "~/Content/PublicUI/plugins/editor.markdown/locale/bootstrap-markdown.nb.js"; 
-                                public const string bootstrap_markdown_nl_js = "~/Content/PublicUI/plugins/editor.markdown/locale/bootstrap-markdown.nl.js"; 
-                                public const string bootstrap_markdown_pl_js = "~/Content/PublicUI/plugins/editor.markdown/locale/bootstrap-markdown.pl.js"; 
-                                public const string bootstrap_markdown_ru_js = "~/Content/PublicUI/plugins/editor.markdown/locale/bootstrap-markdown.ru.js"; 
-                                public const string bootstrap_markdown_sl_js = "~/Content/PublicUI/plugins/editor.markdown/locale/bootstrap-markdown.sl.js"; 
-                                public const string bootstrap_markdown_sv_js = "~/Content/PublicUI/plugins/editor.markdown/locale/bootstrap-markdown.sv.js"; 
-                                public const string bootstrap_markdown_tr_js = "~/Content/PublicUI/plugins/editor.markdown/locale/bootstrap-markdown.tr.js"; 
-                                public const string bootstrap_markdown_ua_js = "~/Content/PublicUI/plugins/editor.markdown/locale/bootstrap-markdown.ua.js"; 
-                                public const string bootstrap_markdown_zh_js = "~/Content/PublicUI/plugins/editor.markdown/locale/bootstrap-markdown.zh.js"; 
+                                public static readonly string bootstrap_markdown_ar_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/editor.markdown/locale/bootstrap-markdown.ar.js"); 
+                                public static readonly string bootstrap_markdown_de_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/editor.markdown/locale/bootstrap-markdown.de.js"); 
+                                public static readonly string bootstrap_markdown_es_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/editor.markdown/locale/bootstrap-markdown.es.js"); 
+                                public static readonly string bootstrap_markdown_fr_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/editor.markdown/locale/bootstrap-markdown.fr.js"); 
+                                public static readonly string bootstrap_markdown_ja_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/editor.markdown/locale/bootstrap-markdown.ja.js"); 
+                                public static readonly string bootstrap_markdown_kr_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/editor.markdown/locale/bootstrap-markdown.kr.js"); 
+                                public static readonly string bootstrap_markdown_nb_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/editor.markdown/locale/bootstrap-markdown.nb.js"); 
+                                public static readonly string bootstrap_markdown_nl_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/editor.markdown/locale/bootstrap-markdown.nl.js"); 
+                                public static readonly string bootstrap_markdown_pl_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/editor.markdown/locale/bootstrap-markdown.pl.js"); 
+                                public static readonly string bootstrap_markdown_ru_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/editor.markdown/locale/bootstrap-markdown.ru.js"); 
+                                public static readonly string bootstrap_markdown_sl_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/editor.markdown/locale/bootstrap-markdown.sl.js"); 
+                                public static readonly string bootstrap_markdown_sv_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/editor.markdown/locale/bootstrap-markdown.sv.js"); 
+                                public static readonly string bootstrap_markdown_tr_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/editor.markdown/locale/bootstrap-markdown.tr.js"); 
+                                public static readonly string bootstrap_markdown_ua_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/editor.markdown/locale/bootstrap-markdown.ua.js"); 
+                                public static readonly string bootstrap_markdown_zh_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/editor.markdown/locale/bootstrap-markdown.zh.js"); 
                             }
                         }
                         public static class Assets
@@ -11375,55 +11375,55 @@ namespace Links
                         {
                             public static class Assets
                             {
-                                public const string summernote_ar_AR_js = "~/Content/PublicUI/plugins/editor.summernote/lang/summernote-ar-AR.js"; 
-                                public const string summernote_ca_ES_js = "~/Content/PublicUI/plugins/editor.summernote/lang/summernote-ca-ES.js"; 
-                                public const string summernote_cs_CZ_js = "~/Content/PublicUI/plugins/editor.summernote/lang/summernote-cs-CZ.js"; 
-                                public const string summernote_da_DK_js = "~/Content/PublicUI/plugins/editor.summernote/lang/summernote-da-DK.js"; 
-                                public const string summernote_de_DE_js = "~/Content/PublicUI/plugins/editor.summernote/lang/summernote-de-DE.js"; 
-                                public const string summernote_es_ES_js = "~/Content/PublicUI/plugins/editor.summernote/lang/summernote-es-ES.js"; 
-                                public const string summernote_es_EU_js = "~/Content/PublicUI/plugins/editor.summernote/lang/summernote-es-EU.js"; 
-                                public const string summernote_fa_IR_js = "~/Content/PublicUI/plugins/editor.summernote/lang/summernote-fa-IR.js"; 
-                                public const string summernote_fi_FI_js = "~/Content/PublicUI/plugins/editor.summernote/lang/summernote-fi-FI.js"; 
-                                public const string summernote_fr_FR_js = "~/Content/PublicUI/plugins/editor.summernote/lang/summernote-fr-FR.js"; 
-                                public const string summernote_he_IL_js = "~/Content/PublicUI/plugins/editor.summernote/lang/summernote-he-IL.js"; 
-                                public const string summernote_hu_HU_js = "~/Content/PublicUI/plugins/editor.summernote/lang/summernote-hu-HU.js"; 
-                                public const string summernote_id_ID_js = "~/Content/PublicUI/plugins/editor.summernote/lang/summernote-id-ID.js"; 
-                                public const string summernote_it_IT_js = "~/Content/PublicUI/plugins/editor.summernote/lang/summernote-it-IT.js"; 
-                                public const string summernote_ja_JP_js = "~/Content/PublicUI/plugins/editor.summernote/lang/summernote-ja-JP.js"; 
-                                public const string summernote_ko_KR_js = "~/Content/PublicUI/plugins/editor.summernote/lang/summernote-ko-KR.js"; 
-                                public const string summernote_nb_NO_js = "~/Content/PublicUI/plugins/editor.summernote/lang/summernote-nb-NO.js"; 
-                                public const string summernote_nl_NL_js = "~/Content/PublicUI/plugins/editor.summernote/lang/summernote-nl-NL.js"; 
-                                public const string summernote_pl_PL_js = "~/Content/PublicUI/plugins/editor.summernote/lang/summernote-pl-PL.js"; 
-                                public const string summernote_pt_BR_js = "~/Content/PublicUI/plugins/editor.summernote/lang/summernote-pt-BR.js"; 
-                                public const string summernote_ro_RO_js = "~/Content/PublicUI/plugins/editor.summernote/lang/summernote-ro-RO.js"; 
-                                public const string summernote_ru_RU_js = "~/Content/PublicUI/plugins/editor.summernote/lang/summernote-ru-RU.js"; 
-                                public const string summernote_sk_SK_js = "~/Content/PublicUI/plugins/editor.summernote/lang/summernote-sk-SK.js"; 
-                                public const string summernote_sl_SI_js = "~/Content/PublicUI/plugins/editor.summernote/lang/summernote-sl-SI.js"; 
-                                public const string summernote_sr_RS_Latin_js = "~/Content/PublicUI/plugins/editor.summernote/lang/summernote-sr-RS-Latin.js"; 
-                                public const string summernote_sr_RS_js = "~/Content/PublicUI/plugins/editor.summernote/lang/summernote-sr-RS.js"; 
-                                public const string summernote_sv_SE_js = "~/Content/PublicUI/plugins/editor.summernote/lang/summernote-sv-SE.js"; 
-                                public const string summernote_th_TH_js = "~/Content/PublicUI/plugins/editor.summernote/lang/summernote-th-TH.js"; 
-                                public const string summernote_tr_TR_js = "~/Content/PublicUI/plugins/editor.summernote/lang/summernote-tr-TR.js"; 
-                                public const string summernote_uk_UA_js = "~/Content/PublicUI/plugins/editor.summernote/lang/summernote-uk-UA.js"; 
-                                public const string summernote_vi_VN_js = "~/Content/PublicUI/plugins/editor.summernote/lang/summernote-vi-VN.js"; 
-                                public const string summernote_zh_CN_js = "~/Content/PublicUI/plugins/editor.summernote/lang/summernote-zh-CN.js"; 
-                                public const string summernote_zh_TW_js = "~/Content/PublicUI/plugins/editor.summernote/lang/summernote-zh-TW.js"; 
+                                public static readonly string summernote_ar_AR_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/editor.summernote/lang/summernote-ar-AR.js"); 
+                                public static readonly string summernote_ca_ES_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/editor.summernote/lang/summernote-ca-ES.js"); 
+                                public static readonly string summernote_cs_CZ_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/editor.summernote/lang/summernote-cs-CZ.js"); 
+                                public static readonly string summernote_da_DK_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/editor.summernote/lang/summernote-da-DK.js"); 
+                                public static readonly string summernote_de_DE_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/editor.summernote/lang/summernote-de-DE.js"); 
+                                public static readonly string summernote_es_ES_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/editor.summernote/lang/summernote-es-ES.js"); 
+                                public static readonly string summernote_es_EU_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/editor.summernote/lang/summernote-es-EU.js"); 
+                                public static readonly string summernote_fa_IR_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/editor.summernote/lang/summernote-fa-IR.js"); 
+                                public static readonly string summernote_fi_FI_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/editor.summernote/lang/summernote-fi-FI.js"); 
+                                public static readonly string summernote_fr_FR_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/editor.summernote/lang/summernote-fr-FR.js"); 
+                                public static readonly string summernote_he_IL_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/editor.summernote/lang/summernote-he-IL.js"); 
+                                public static readonly string summernote_hu_HU_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/editor.summernote/lang/summernote-hu-HU.js"); 
+                                public static readonly string summernote_id_ID_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/editor.summernote/lang/summernote-id-ID.js"); 
+                                public static readonly string summernote_it_IT_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/editor.summernote/lang/summernote-it-IT.js"); 
+                                public static readonly string summernote_ja_JP_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/editor.summernote/lang/summernote-ja-JP.js"); 
+                                public static readonly string summernote_ko_KR_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/editor.summernote/lang/summernote-ko-KR.js"); 
+                                public static readonly string summernote_nb_NO_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/editor.summernote/lang/summernote-nb-NO.js"); 
+                                public static readonly string summernote_nl_NL_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/editor.summernote/lang/summernote-nl-NL.js"); 
+                                public static readonly string summernote_pl_PL_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/editor.summernote/lang/summernote-pl-PL.js"); 
+                                public static readonly string summernote_pt_BR_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/editor.summernote/lang/summernote-pt-BR.js"); 
+                                public static readonly string summernote_ro_RO_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/editor.summernote/lang/summernote-ro-RO.js"); 
+                                public static readonly string summernote_ru_RU_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/editor.summernote/lang/summernote-ru-RU.js"); 
+                                public static readonly string summernote_sk_SK_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/editor.summernote/lang/summernote-sk-SK.js"); 
+                                public static readonly string summernote_sl_SI_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/editor.summernote/lang/summernote-sl-SI.js"); 
+                                public static readonly string summernote_sr_RS_Latin_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/editor.summernote/lang/summernote-sr-RS-Latin.js"); 
+                                public static readonly string summernote_sr_RS_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/editor.summernote/lang/summernote-sr-RS.js"); 
+                                public static readonly string summernote_sv_SE_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/editor.summernote/lang/summernote-sv-SE.js"); 
+                                public static readonly string summernote_th_TH_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/editor.summernote/lang/summernote-th-TH.js"); 
+                                public static readonly string summernote_tr_TR_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/editor.summernote/lang/summernote-tr-TR.js"); 
+                                public static readonly string summernote_uk_UA_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/editor.summernote/lang/summernote-uk-UA.js"); 
+                                public static readonly string summernote_vi_VN_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/editor.summernote/lang/summernote-vi-VN.js"); 
+                                public static readonly string summernote_zh_CN_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/editor.summernote/lang/summernote-zh-CN.js"); 
+                                public static readonly string summernote_zh_TW_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/editor.summernote/lang/summernote-zh-TW.js"); 
                             }
                         }
                         public static class Assets
                         {
-                            public const string summernote_bs2_css = "~/Content/PublicUI/plugins/editor.summernote/summernote-bs2.css";
-                            public const string summernote_bs3_css = "~/Content/PublicUI/plugins/editor.summernote/summernote-bs3.css";
-                            public const string summernote_css = "~/Content/PublicUI/plugins/editor.summernote/summernote.css";
-                            public const string summernote_js = "~/Content/PublicUI/plugins/editor.summernote/summernote.js"; 
-                            public const string summernote_min_js = "~/Content/PublicUI/plugins/editor.summernote/summernote.min.js"; 
+                            public static readonly string summernote_bs2_css = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/editor.summernote/summernote-bs2.css");
+                            public static readonly string summernote_bs3_css = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/editor.summernote/summernote-bs3.css");
+                            public static readonly string summernote_css = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/editor.summernote/summernote.css");
+                            public static readonly string summernote_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/editor.summernote/summernote.js"); 
+                            public static readonly string summernote_min_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/editor.summernote/summernote.min.js"); 
                         }
                     }
                     public static partial class effects 
                     {
                         public static class Assets
                         {
-                            public const string canvas_particles_js = "~/Content/PublicUI/plugins/effects/canvas.particles.js"; 
+                            public static readonly string canvas_particles_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/effects/canvas.particles.js"); 
                         }
                     }
                     public static partial class footable 
@@ -11438,38 +11438,38 @@ namespace Links
                             }
                             public static class Assets
                             {
-                                public const string footable_core_css = "~/Content/PublicUI/plugins/footable/css/footable.core.css";
-                                public const string footable_core_min_css = "~/Content/PublicUI/plugins/footable/css/footable.core.min.css";
-                                public const string footable_metro_css = "~/Content/PublicUI/plugins/footable/css/footable.metro.css";
-                                public const string footable_standalone_css = "~/Content/PublicUI/plugins/footable/css/footable.standalone.css";
+                                public static readonly string footable_core_css = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/footable/css/footable.core.css");
+                                public static readonly string footable_core_min_css = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/footable/css/footable.core.min.css");
+                                public static readonly string footable_metro_css = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/footable/css/footable.metro.css");
+                                public static readonly string footable_standalone_css = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/footable/css/footable.standalone.css");
                             }
                         }
                         public static partial class dist 
                         {
                             public static class Assets
                             {
-                                public const string footable_all_min_js = "~/Content/PublicUI/plugins/footable/dist/footable.all.min.js"; 
-                                public const string footable_bookmarkable_min_js = "~/Content/PublicUI/plugins/footable/dist/footable.bookmarkable.min.js"; 
-                                public const string footable_filter_min_js = "~/Content/PublicUI/plugins/footable/dist/footable.filter.min.js"; 
-                                public const string footable_min_js = "~/Content/PublicUI/plugins/footable/dist/footable.min.js"; 
-                                public const string footable_paginate_min_js = "~/Content/PublicUI/plugins/footable/dist/footable.paginate.min.js"; 
-                                public const string footable_sort_min_js = "~/Content/PublicUI/plugins/footable/dist/footable.sort.min.js"; 
-                                public const string footable_striping_min_js = "~/Content/PublicUI/plugins/footable/dist/footable.striping.min.js"; 
+                                public static readonly string footable_all_min_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/footable/dist/footable.all.min.js"); 
+                                public static readonly string footable_bookmarkable_min_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/footable/dist/footable.bookmarkable.min.js"); 
+                                public static readonly string footable_filter_min_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/footable/dist/footable.filter.min.js"); 
+                                public static readonly string footable_min_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/footable/dist/footable.min.js"); 
+                                public static readonly string footable_paginate_min_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/footable/dist/footable.paginate.min.js"); 
+                                public static readonly string footable_sort_min_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/footable/dist/footable.sort.min.js"); 
+                                public static readonly string footable_striping_min_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/footable/dist/footable.striping.min.js"); 
                             }
                         }
                         public static partial class js 
                         {
                             public static class Assets
                             {
-                                public const string footable_bookmarkable_js = "~/Content/PublicUI/plugins/footable/js/footable.bookmarkable.js"; 
-                                public const string footable_filter_js = "~/Content/PublicUI/plugins/footable/js/footable.filter.js"; 
-                                public const string footable_grid_js = "~/Content/PublicUI/plugins/footable/js/footable.grid.js"; 
-                                public const string footable_js = "~/Content/PublicUI/plugins/footable/js/footable.js"; 
-                                public const string footable_memory_js = "~/Content/PublicUI/plugins/footable/js/footable.memory.js"; 
-                                public const string footable_paginate_js = "~/Content/PublicUI/plugins/footable/js/footable.paginate.js"; 
-                                public const string footable_plugin_template_js = "~/Content/PublicUI/plugins/footable/js/footable.plugin.template.js"; 
-                                public const string footable_sort_js = "~/Content/PublicUI/plugins/footable/js/footable.sort.js"; 
-                                public const string footable_striping_js = "~/Content/PublicUI/plugins/footable/js/footable.striping.js"; 
+                                public static readonly string footable_bookmarkable_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/footable/js/footable.bookmarkable.js"); 
+                                public static readonly string footable_filter_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/footable/js/footable.filter.js"); 
+                                public static readonly string footable_grid_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/footable/js/footable.grid.js"); 
+                                public static readonly string footable_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/footable/js/footable.js"); 
+                                public static readonly string footable_memory_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/footable/js/footable.memory.js"); 
+                                public static readonly string footable_paginate_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/footable/js/footable.paginate.js"); 
+                                public static readonly string footable_plugin_template_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/footable/js/footable.plugin.template.js"); 
+                                public static readonly string footable_sort_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/footable/js/footable.sort.js"); 
+                                public static readonly string footable_striping_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/footable/js/footable.striping.js"); 
                             }
                         }
                         public static partial class less 
@@ -11486,53 +11486,53 @@ namespace Links
                     {
                         public static class Assets
                         {
-                            public const string jquery_maskedinput_js = "~/Content/PublicUI/plugins/form.masked/jquery.maskedinput.js"; 
+                            public static readonly string jquery_maskedinput_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/form.masked/jquery.maskedinput.js"); 
                         }
                     }
                     public static partial class form_slidebar 
                     {
                         public static class Assets
                         {
-                            public const string jquery_ui_slider_pips_min_js = "~/Content/PublicUI/plugins/form.slidebar/jquery-ui-slider-pips.min.js"; 
+                            public static readonly string jquery_ui_slider_pips_min_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/form.slidebar/jquery-ui-slider-pips.min.js"); 
                         }
                     }
                     public static partial class form_stepper 
                     {
                         public static class Assets
                         {
-                            public const string jquery_stepper_min_js = "~/Content/PublicUI/plugins/form.stepper/jquery.stepper.min.js"; 
+                            public static readonly string jquery_stepper_min_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/form.stepper/jquery.stepper.min.js"); 
                         }
                     }
                     public static partial class form_validate 
                     {
                         public static class Assets
                         {
-                            public const string jquery_form_min_js = "~/Content/PublicUI/plugins/form.validate/jquery.form.min.js"; 
-                            public const string jquery_validation_min_js = "~/Content/PublicUI/plugins/form.validate/jquery.validation.min.js"; 
+                            public static readonly string jquery_form_min_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/form.validate/jquery.form.min.js"); 
+                            public static readonly string jquery_validation_min_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/form.validate/jquery.validation.min.js"); 
                         }
                     }
                     public static partial class image_zoom 
                     {
                         public static class Assets
                         {
-                            public const string jquery_zoom_js = "~/Content/PublicUI/plugins/image.zoom/jquery.zoom.js"; 
-                            public const string jquery_zoom_min_js = "~/Content/PublicUI/plugins/image.zoom/jquery.zoom.min.js"; 
+                            public static readonly string jquery_zoom_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/image.zoom/jquery.zoom.js"); 
+                            public static readonly string jquery_zoom_min_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/image.zoom/jquery.zoom.min.js"); 
                         }
                     }
                     public static partial class infinite_scroll 
                     {
                         public static class Assets
                         {
-                            public const string jquery_infinitescroll_js = "~/Content/PublicUI/plugins/infinite-scroll/jquery.infinitescroll.js"; 
-                            public const string jquery_infinitescroll_min_js = "~/Content/PublicUI/plugins/infinite-scroll/jquery.infinitescroll.min.js"; 
+                            public static readonly string jquery_infinitescroll_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/infinite-scroll/jquery.infinitescroll.js"); 
+                            public static readonly string jquery_infinitescroll_min_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/infinite-scroll/jquery.infinitescroll.min.js"); 
                         }
                     }
                     public static partial class isotope 
                     {
                         public static class Assets
                         {
-                            public const string isotope_pkgd_js = "~/Content/PublicUI/plugins/isotope/isotope.pkgd.js"; 
-                            public const string isotope_pkgd_min_js = "~/Content/PublicUI/plugins/isotope/isotope.pkgd.min.js"; 
+                            public static readonly string isotope_pkgd_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/isotope/isotope.pkgd.js"); 
+                            public static readonly string isotope_pkgd_min_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/isotope/isotope.pkgd.min.js"); 
                         }
                     }
                     public static partial class jqgrid 
@@ -11541,7 +11541,7 @@ namespace Links
                         {
                             public static class Assets
                             {
-                                public const string ui_jqgrid_css = "~/Content/PublicUI/plugins/jqgrid/css/ui.jqgrid.css";
+                                public static readonly string ui_jqgrid_css = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/jqgrid/css/ui.jqgrid.css");
                             }
                         }
                         public static partial class js 
@@ -11550,94 +11550,94 @@ namespace Links
                             {
                                 public static class Assets
                                 {
-                                    public const string grid_locale_ar_js = "~/Content/PublicUI/plugins/jqgrid/js/i18n/grid.locale-ar.js"; 
-                                    public const string grid_locale_bg_js = "~/Content/PublicUI/plugins/jqgrid/js/i18n/grid.locale-bg.js"; 
-                                    public const string grid_locale_bg1251_js = "~/Content/PublicUI/plugins/jqgrid/js/i18n/grid.locale-bg1251.js"; 
-                                    public const string grid_locale_cat_js = "~/Content/PublicUI/plugins/jqgrid/js/i18n/grid.locale-cat.js"; 
-                                    public const string grid_locale_cn_js = "~/Content/PublicUI/plugins/jqgrid/js/i18n/grid.locale-cn.js"; 
-                                    public const string grid_locale_cs_js = "~/Content/PublicUI/plugins/jqgrid/js/i18n/grid.locale-cs.js"; 
-                                    public const string grid_locale_da_js = "~/Content/PublicUI/plugins/jqgrid/js/i18n/grid.locale-da.js"; 
-                                    public const string grid_locale_de_js = "~/Content/PublicUI/plugins/jqgrid/js/i18n/grid.locale-de.js"; 
-                                    public const string grid_locale_dk_js = "~/Content/PublicUI/plugins/jqgrid/js/i18n/grid.locale-dk.js"; 
-                                    public const string grid_locale_el_js = "~/Content/PublicUI/plugins/jqgrid/js/i18n/grid.locale-el.js"; 
-                                    public const string grid_locale_en_js = "~/Content/PublicUI/plugins/jqgrid/js/i18n/grid.locale-en.js"; 
-                                    public const string grid_locale_es_js = "~/Content/PublicUI/plugins/jqgrid/js/i18n/grid.locale-es.js"; 
-                                    public const string grid_locale_fa_js = "~/Content/PublicUI/plugins/jqgrid/js/i18n/grid.locale-fa.js"; 
-                                    public const string grid_locale_fi_js = "~/Content/PublicUI/plugins/jqgrid/js/i18n/grid.locale-fi.js"; 
-                                    public const string grid_locale_fr_js = "~/Content/PublicUI/plugins/jqgrid/js/i18n/grid.locale-fr.js"; 
-                                    public const string grid_locale_gl_js = "~/Content/PublicUI/plugins/jqgrid/js/i18n/grid.locale-gl.js"; 
-                                    public const string grid_locale_he_js = "~/Content/PublicUI/plugins/jqgrid/js/i18n/grid.locale-he.js"; 
-                                    public const string grid_locale_hr_js = "~/Content/PublicUI/plugins/jqgrid/js/i18n/grid.locale-hr.js"; 
-                                    public const string grid_locale_hr1250_js = "~/Content/PublicUI/plugins/jqgrid/js/i18n/grid.locale-hr1250.js"; 
-                                    public const string grid_locale_hu_js = "~/Content/PublicUI/plugins/jqgrid/js/i18n/grid.locale-hu.js"; 
-                                    public const string grid_locale_id_js = "~/Content/PublicUI/plugins/jqgrid/js/i18n/grid.locale-id.js"; 
-                                    public const string grid_locale_is_js = "~/Content/PublicUI/plugins/jqgrid/js/i18n/grid.locale-is.js"; 
-                                    public const string grid_locale_it_js = "~/Content/PublicUI/plugins/jqgrid/js/i18n/grid.locale-it.js"; 
-                                    public const string grid_locale_ja_js = "~/Content/PublicUI/plugins/jqgrid/js/i18n/grid.locale-ja.js"; 
-                                    public const string grid_locale_kr_js = "~/Content/PublicUI/plugins/jqgrid/js/i18n/grid.locale-kr.js"; 
-                                    public const string grid_locale_lt_js = "~/Content/PublicUI/plugins/jqgrid/js/i18n/grid.locale-lt.js"; 
-                                    public const string grid_locale_mne_js = "~/Content/PublicUI/plugins/jqgrid/js/i18n/grid.locale-mne.js"; 
-                                    public const string grid_locale_nl_js = "~/Content/PublicUI/plugins/jqgrid/js/i18n/grid.locale-nl.js"; 
-                                    public const string grid_locale_no_js = "~/Content/PublicUI/plugins/jqgrid/js/i18n/grid.locale-no.js"; 
-                                    public const string grid_locale_pl_js = "~/Content/PublicUI/plugins/jqgrid/js/i18n/grid.locale-pl.js"; 
-                                    public const string grid_locale_pt_br_js = "~/Content/PublicUI/plugins/jqgrid/js/i18n/grid.locale-pt-br.js"; 
-                                    public const string grid_locale_pt_js = "~/Content/PublicUI/plugins/jqgrid/js/i18n/grid.locale-pt.js"; 
-                                    public const string grid_locale_ro_js = "~/Content/PublicUI/plugins/jqgrid/js/i18n/grid.locale-ro.js"; 
-                                    public const string grid_locale_ru_js = "~/Content/PublicUI/plugins/jqgrid/js/i18n/grid.locale-ru.js"; 
-                                    public const string grid_locale_sk_js = "~/Content/PublicUI/plugins/jqgrid/js/i18n/grid.locale-sk.js"; 
-                                    public const string grid_locale_sr_latin_js = "~/Content/PublicUI/plugins/jqgrid/js/i18n/grid.locale-sr-latin.js"; 
-                                    public const string grid_locale_sr_js = "~/Content/PublicUI/plugins/jqgrid/js/i18n/grid.locale-sr.js"; 
-                                    public const string grid_locale_sv_js = "~/Content/PublicUI/plugins/jqgrid/js/i18n/grid.locale-sv.js"; 
-                                    public const string grid_locale_th_js = "~/Content/PublicUI/plugins/jqgrid/js/i18n/grid.locale-th.js"; 
-                                    public const string grid_locale_tr_js = "~/Content/PublicUI/plugins/jqgrid/js/i18n/grid.locale-tr.js"; 
-                                    public const string grid_locale_tw_js = "~/Content/PublicUI/plugins/jqgrid/js/i18n/grid.locale-tw.js"; 
-                                    public const string grid_locale_ua_js = "~/Content/PublicUI/plugins/jqgrid/js/i18n/grid.locale-ua.js"; 
-                                    public const string grid_locale_vi_js = "~/Content/PublicUI/plugins/jqgrid/js/i18n/grid.locale-vi.js"; 
+                                    public static readonly string grid_locale_ar_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/jqgrid/js/i18n/grid.locale-ar.js"); 
+                                    public static readonly string grid_locale_bg_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/jqgrid/js/i18n/grid.locale-bg.js"); 
+                                    public static readonly string grid_locale_bg1251_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/jqgrid/js/i18n/grid.locale-bg1251.js"); 
+                                    public static readonly string grid_locale_cat_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/jqgrid/js/i18n/grid.locale-cat.js"); 
+                                    public static readonly string grid_locale_cn_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/jqgrid/js/i18n/grid.locale-cn.js"); 
+                                    public static readonly string grid_locale_cs_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/jqgrid/js/i18n/grid.locale-cs.js"); 
+                                    public static readonly string grid_locale_da_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/jqgrid/js/i18n/grid.locale-da.js"); 
+                                    public static readonly string grid_locale_de_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/jqgrid/js/i18n/grid.locale-de.js"); 
+                                    public static readonly string grid_locale_dk_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/jqgrid/js/i18n/grid.locale-dk.js"); 
+                                    public static readonly string grid_locale_el_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/jqgrid/js/i18n/grid.locale-el.js"); 
+                                    public static readonly string grid_locale_en_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/jqgrid/js/i18n/grid.locale-en.js"); 
+                                    public static readonly string grid_locale_es_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/jqgrid/js/i18n/grid.locale-es.js"); 
+                                    public static readonly string grid_locale_fa_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/jqgrid/js/i18n/grid.locale-fa.js"); 
+                                    public static readonly string grid_locale_fi_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/jqgrid/js/i18n/grid.locale-fi.js"); 
+                                    public static readonly string grid_locale_fr_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/jqgrid/js/i18n/grid.locale-fr.js"); 
+                                    public static readonly string grid_locale_gl_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/jqgrid/js/i18n/grid.locale-gl.js"); 
+                                    public static readonly string grid_locale_he_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/jqgrid/js/i18n/grid.locale-he.js"); 
+                                    public static readonly string grid_locale_hr_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/jqgrid/js/i18n/grid.locale-hr.js"); 
+                                    public static readonly string grid_locale_hr1250_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/jqgrid/js/i18n/grid.locale-hr1250.js"); 
+                                    public static readonly string grid_locale_hu_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/jqgrid/js/i18n/grid.locale-hu.js"); 
+                                    public static readonly string grid_locale_id_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/jqgrid/js/i18n/grid.locale-id.js"); 
+                                    public static readonly string grid_locale_is_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/jqgrid/js/i18n/grid.locale-is.js"); 
+                                    public static readonly string grid_locale_it_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/jqgrid/js/i18n/grid.locale-it.js"); 
+                                    public static readonly string grid_locale_ja_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/jqgrid/js/i18n/grid.locale-ja.js"); 
+                                    public static readonly string grid_locale_kr_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/jqgrid/js/i18n/grid.locale-kr.js"); 
+                                    public static readonly string grid_locale_lt_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/jqgrid/js/i18n/grid.locale-lt.js"); 
+                                    public static readonly string grid_locale_mne_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/jqgrid/js/i18n/grid.locale-mne.js"); 
+                                    public static readonly string grid_locale_nl_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/jqgrid/js/i18n/grid.locale-nl.js"); 
+                                    public static readonly string grid_locale_no_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/jqgrid/js/i18n/grid.locale-no.js"); 
+                                    public static readonly string grid_locale_pl_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/jqgrid/js/i18n/grid.locale-pl.js"); 
+                                    public static readonly string grid_locale_pt_br_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/jqgrid/js/i18n/grid.locale-pt-br.js"); 
+                                    public static readonly string grid_locale_pt_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/jqgrid/js/i18n/grid.locale-pt.js"); 
+                                    public static readonly string grid_locale_ro_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/jqgrid/js/i18n/grid.locale-ro.js"); 
+                                    public static readonly string grid_locale_ru_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/jqgrid/js/i18n/grid.locale-ru.js"); 
+                                    public static readonly string grid_locale_sk_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/jqgrid/js/i18n/grid.locale-sk.js"); 
+                                    public static readonly string grid_locale_sr_latin_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/jqgrid/js/i18n/grid.locale-sr-latin.js"); 
+                                    public static readonly string grid_locale_sr_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/jqgrid/js/i18n/grid.locale-sr.js"); 
+                                    public static readonly string grid_locale_sv_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/jqgrid/js/i18n/grid.locale-sv.js"); 
+                                    public static readonly string grid_locale_th_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/jqgrid/js/i18n/grid.locale-th.js"); 
+                                    public static readonly string grid_locale_tr_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/jqgrid/js/i18n/grid.locale-tr.js"); 
+                                    public static readonly string grid_locale_tw_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/jqgrid/js/i18n/grid.locale-tw.js"); 
+                                    public static readonly string grid_locale_ua_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/jqgrid/js/i18n/grid.locale-ua.js"); 
+                                    public static readonly string grid_locale_vi_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/jqgrid/js/i18n/grid.locale-vi.js"); 
                                 }
                             }
                             public static partial class minified 
                             {
                                 public static class Assets
                                 {
-                                    public const string jquery_jqGrid_min_js = "~/Content/PublicUI/plugins/jqgrid/js/minified/jquery.jqGrid.min.js"; 
+                                    public static readonly string jquery_jqGrid_min_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/jqgrid/js/minified/jquery.jqGrid.min.js"); 
                                 }
                             }
                             public static class Assets
                             {
-                                public const string grid_base_js = "~/Content/PublicUI/plugins/jqgrid/js/grid.base.js"; 
-                                public const string grid_celledit_js = "~/Content/PublicUI/plugins/jqgrid/js/grid.celledit.js"; 
-                                public const string grid_common_js = "~/Content/PublicUI/plugins/jqgrid/js/grid.common.js"; 
-                                public const string grid_custom_js = "~/Content/PublicUI/plugins/jqgrid/js/grid.custom.js"; 
-                                public const string grid_filter_js = "~/Content/PublicUI/plugins/jqgrid/js/grid.filter.js"; 
-                                public const string grid_formedit_js = "~/Content/PublicUI/plugins/jqgrid/js/grid.formedit.js"; 
-                                public const string grid_grouping_js = "~/Content/PublicUI/plugins/jqgrid/js/grid.grouping.js"; 
-                                public const string grid_import_js = "~/Content/PublicUI/plugins/jqgrid/js/grid.import.js"; 
-                                public const string grid_inlinedit_js = "~/Content/PublicUI/plugins/jqgrid/js/grid.inlinedit.js"; 
-                                public const string grid_jqueryui_js = "~/Content/PublicUI/plugins/jqgrid/js/grid.jqueryui.js"; 
-                                public const string grid_pivot_js = "~/Content/PublicUI/plugins/jqgrid/js/grid.pivot.js"; 
-                                public const string grid_subgrid_js = "~/Content/PublicUI/plugins/jqgrid/js/grid.subgrid.js"; 
-                                public const string grid_tbltogrid_js = "~/Content/PublicUI/plugins/jqgrid/js/grid.tbltogrid.js"; 
-                                public const string grid_treegrid_js = "~/Content/PublicUI/plugins/jqgrid/js/grid.treegrid.js"; 
-                                public const string jqDnR_js = "~/Content/PublicUI/plugins/jqgrid/js/jqDnR.js"; 
-                                public const string jqModal_js = "~/Content/PublicUI/plugins/jqgrid/js/jqModal.js"; 
-                                public const string jquery_fmatter_js = "~/Content/PublicUI/plugins/jqgrid/js/jquery.fmatter.js"; 
-                                public const string jquery_jqGrid_js = "~/Content/PublicUI/plugins/jqgrid/js/jquery.jqGrid.js"; 
-                                public const string JsonXml_js = "~/Content/PublicUI/plugins/jqgrid/js/JsonXml.js"; 
+                                public static readonly string grid_base_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/jqgrid/js/grid.base.js"); 
+                                public static readonly string grid_celledit_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/jqgrid/js/grid.celledit.js"); 
+                                public static readonly string grid_common_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/jqgrid/js/grid.common.js"); 
+                                public static readonly string grid_custom_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/jqgrid/js/grid.custom.js"); 
+                                public static readonly string grid_filter_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/jqgrid/js/grid.filter.js"); 
+                                public static readonly string grid_formedit_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/jqgrid/js/grid.formedit.js"); 
+                                public static readonly string grid_grouping_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/jqgrid/js/grid.grouping.js"); 
+                                public static readonly string grid_import_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/jqgrid/js/grid.import.js"); 
+                                public static readonly string grid_inlinedit_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/jqgrid/js/grid.inlinedit.js"); 
+                                public static readonly string grid_jqueryui_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/jqgrid/js/grid.jqueryui.js"); 
+                                public static readonly string grid_pivot_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/jqgrid/js/grid.pivot.js"); 
+                                public static readonly string grid_subgrid_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/jqgrid/js/grid.subgrid.js"); 
+                                public static readonly string grid_tbltogrid_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/jqgrid/js/grid.tbltogrid.js"); 
+                                public static readonly string grid_treegrid_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/jqgrid/js/grid.treegrid.js"); 
+                                public static readonly string jqDnR_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/jqgrid/js/jqDnR.js"); 
+                                public static readonly string jqModal_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/jqgrid/js/jqModal.js"); 
+                                public static readonly string jquery_fmatter_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/jqgrid/js/jquery.fmatter.js"); 
+                                public static readonly string jquery_jqGrid_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/jqgrid/js/jquery.jqGrid.js"); 
+                                public static readonly string JsonXml_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/jqgrid/js/JsonXml.js"); 
                             }
                         }
                         public static partial class plugins 
                         {
                             public static class Assets
                             {
-                                public const string grid_addons_js = "~/Content/PublicUI/plugins/jqgrid/plugins/grid.addons.js"; 
-                                public const string grid_postext_js = "~/Content/PublicUI/plugins/jqgrid/plugins/grid.postext.js"; 
-                                public const string grid_setcolumns_js = "~/Content/PublicUI/plugins/jqgrid/plugins/grid.setcolumns.js"; 
-                                public const string jquery_contextmenu_js = "~/Content/PublicUI/plugins/jqgrid/plugins/jquery.contextmenu.js"; 
-                                public const string jquery_searchFilter_js = "~/Content/PublicUI/plugins/jqgrid/plugins/jquery.searchFilter.js"; 
-                                public const string jquery_tablednd_js = "~/Content/PublicUI/plugins/jqgrid/plugins/jquery.tablednd.js"; 
-                                public const string searchFilter_css = "~/Content/PublicUI/plugins/jqgrid/plugins/searchFilter.css";
-                                public const string ui_multiselect_css = "~/Content/PublicUI/plugins/jqgrid/plugins/ui.multiselect.css";
-                                public const string ui_multiselect_js = "~/Content/PublicUI/plugins/jqgrid/plugins/ui.multiselect.js"; 
+                                public static readonly string grid_addons_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/jqgrid/plugins/grid.addons.js"); 
+                                public static readonly string grid_postext_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/jqgrid/plugins/grid.postext.js"); 
+                                public static readonly string grid_setcolumns_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/jqgrid/plugins/grid.setcolumns.js"); 
+                                public static readonly string jquery_contextmenu_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/jqgrid/plugins/jquery.contextmenu.js"); 
+                                public static readonly string jquery_searchFilter_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/jqgrid/plugins/jquery.searchFilter.js"); 
+                                public static readonly string jquery_tablednd_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/jqgrid/plugins/jquery.tablednd.js"); 
+                                public static readonly string searchFilter_css = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/jqgrid/plugins/searchFilter.css");
+                                public static readonly string ui_multiselect_css = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/jqgrid/plugins/ui.multiselect.css");
+                                public static readonly string ui_multiselect_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/jqgrid/plugins/ui.multiselect.js"); 
                             }
                         }
                         public static class Assets
@@ -11648,18 +11648,18 @@ namespace Links
                     {
                         public static class Assets
                         {
-                            public const string jquery_2_2_3_min_js = "~/Content/PublicUI/plugins/jquery/jquery-2.2.3.min.js"; 
-                            public const string jquery_ui_min_js = "~/Content/PublicUI/plugins/jquery/jquery-ui.min.js"; 
-                            public const string jquery_ui_touch_punch_min_js = "~/Content/PublicUI/plugins/jquery/jquery.ui.touch-punch.min.js"; 
+                            public static readonly string jquery_2_2_3_min_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/jquery/jquery-2.2.3.min.js"); 
+                            public static readonly string jquery_ui_min_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/jquery/jquery-ui.min.js"); 
+                            public static readonly string jquery_ui_touch_punch_min_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/jquery/jquery.ui.touch-punch.min.js"); 
                         }
                     }
                     public static partial class jquery_vectormap 
                     {
                         public static class Assets
                         {
-                            public const string gdp_data_js = "~/Content/PublicUI/plugins/jquery-vectormap/gdp-data.js"; 
-                            public const string jquery_jvectormap_2_0_3_min_js = "~/Content/PublicUI/plugins/jquery-vectormap/jquery-jvectormap-2.0.3.min.js"; 
-                            public const string jquery_jvectormap_world_mill_en_js = "~/Content/PublicUI/plugins/jquery-vectormap/jquery-jvectormap-world-mill-en.js"; 
+                            public static readonly string gdp_data_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/jquery-vectormap/gdp-data.js"); 
+                            public static readonly string jquery_jvectormap_2_0_3_min_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/jquery-vectormap/jquery-jvectormap-2.0.3.min.js"); 
+                            public static readonly string jquery_jvectormap_world_mill_en_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/jquery-vectormap/jquery-jvectormap-world-mill-en.js"); 
                         }
                     }
                     public static partial class jqvmap 
@@ -11670,7 +11670,7 @@ namespace Links
                             {
                                 public static class Assets
                                 {
-                                    public const string jquery_vmap_sampledata_js = "~/Content/PublicUI/plugins/jqvmap/jqvmap/data/jquery.vmap.sampledata.js"; 
+                                    public static readonly string jquery_vmap_sampledata_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/jqvmap/jqvmap/data/jquery.vmap.sampledata.js"); 
                                 }
                             }
                             public static partial class maps 
@@ -11679,32 +11679,32 @@ namespace Links
                                 {
                                     public static class Assets
                                     {
-                                        public const string jquery_vmap_africa_js = "~/Content/PublicUI/plugins/jqvmap/jqvmap/maps/continents/jquery.vmap.africa.js"; 
-                                        public const string jquery_vmap_asia_js = "~/Content/PublicUI/plugins/jqvmap/jqvmap/maps/continents/jquery.vmap.asia.js"; 
-                                        public const string jquery_vmap_australia_js = "~/Content/PublicUI/plugins/jqvmap/jqvmap/maps/continents/jquery.vmap.australia.js"; 
-                                        public const string jquery_vmap_europe_js = "~/Content/PublicUI/plugins/jqvmap/jqvmap/maps/continents/jquery.vmap.europe.js"; 
-                                        public const string jquery_vmap_north_america_js = "~/Content/PublicUI/plugins/jqvmap/jqvmap/maps/continents/jquery.vmap.north-america.js"; 
-                                        public const string jquery_vmap_south_america_js = "~/Content/PublicUI/plugins/jqvmap/jqvmap/maps/continents/jquery.vmap.south-america.js"; 
+                                        public static readonly string jquery_vmap_africa_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/jqvmap/jqvmap/maps/continents/jquery.vmap.africa.js"); 
+                                        public static readonly string jquery_vmap_asia_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/jqvmap/jqvmap/maps/continents/jquery.vmap.asia.js"); 
+                                        public static readonly string jquery_vmap_australia_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/jqvmap/jqvmap/maps/continents/jquery.vmap.australia.js"); 
+                                        public static readonly string jquery_vmap_europe_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/jqvmap/jqvmap/maps/continents/jquery.vmap.europe.js"); 
+                                        public static readonly string jquery_vmap_north_america_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/jqvmap/jqvmap/maps/continents/jquery.vmap.north-america.js"); 
+                                        public static readonly string jquery_vmap_south_america_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/jqvmap/jqvmap/maps/continents/jquery.vmap.south-america.js"); 
                                     }
                                 }
                                 public static class Assets
                                 {
-                                    public const string jquery_vmap_algeria_js = "~/Content/PublicUI/plugins/jqvmap/jqvmap/maps/jquery.vmap.algeria.js"; 
-                                    public const string jquery_vmap_brazil_js = "~/Content/PublicUI/plugins/jqvmap/jqvmap/maps/jquery.vmap.brazil.js"; 
-                                    public const string jquery_vmap_europe_js = "~/Content/PublicUI/plugins/jqvmap/jqvmap/maps/jquery.vmap.europe.js"; 
-                                    public const string jquery_vmap_france_js = "~/Content/PublicUI/plugins/jqvmap/jqvmap/maps/jquery.vmap.france.js"; 
-                                    public const string jquery_vmap_germany_js = "~/Content/PublicUI/plugins/jqvmap/jqvmap/maps/jquery.vmap.germany.js"; 
-                                    public const string jquery_vmap_russia_js = "~/Content/PublicUI/plugins/jqvmap/jqvmap/maps/jquery.vmap.russia.js"; 
-                                    public const string jquery_vmap_usa_js = "~/Content/PublicUI/plugins/jqvmap/jqvmap/maps/jquery.vmap.usa.js"; 
-                                    public const string jquery_vmap_world_js = "~/Content/PublicUI/plugins/jqvmap/jqvmap/maps/jquery.vmap.world.js"; 
+                                    public static readonly string jquery_vmap_algeria_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/jqvmap/jqvmap/maps/jquery.vmap.algeria.js"); 
+                                    public static readonly string jquery_vmap_brazil_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/jqvmap/jqvmap/maps/jquery.vmap.brazil.js"); 
+                                    public static readonly string jquery_vmap_europe_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/jqvmap/jqvmap/maps/jquery.vmap.europe.js"); 
+                                    public static readonly string jquery_vmap_france_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/jqvmap/jqvmap/maps/jquery.vmap.france.js"); 
+                                    public static readonly string jquery_vmap_germany_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/jqvmap/jqvmap/maps/jquery.vmap.germany.js"); 
+                                    public static readonly string jquery_vmap_russia_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/jqvmap/jqvmap/maps/jquery.vmap.russia.js"); 
+                                    public static readonly string jquery_vmap_usa_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/jqvmap/jqvmap/maps/jquery.vmap.usa.js"); 
+                                    public static readonly string jquery_vmap_world_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/jqvmap/jqvmap/maps/jquery.vmap.world.js"); 
                                 }
                             }
                             public static class Assets
                             {
-                                public const string jquery_vmap_js = "~/Content/PublicUI/plugins/jqvmap/jqvmap/jquery.vmap.js"; 
-                                public const string jquery_vmap_min_js = "~/Content/PublicUI/plugins/jqvmap/jqvmap/jquery.vmap.min.js"; 
-                                public const string jquery_vmap_packed_js = "~/Content/PublicUI/plugins/jqvmap/jqvmap/jquery.vmap.packed.js"; 
-                                public const string jqvmap_css = "~/Content/PublicUI/plugins/jqvmap/jqvmap/jqvmap.css";
+                                public static readonly string jquery_vmap_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/jqvmap/jqvmap/jquery.vmap.js"); 
+                                public static readonly string jquery_vmap_min_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/jqvmap/jqvmap/jquery.vmap.min.js"); 
+                                public static readonly string jquery_vmap_packed_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/jqvmap/jqvmap/jquery.vmap.packed.js"); 
+                                public static readonly string jqvmap_css = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/jqvmap/jqvmap/jqvmap.css");
                             }
                         }
                         public static partial class samples 
@@ -11727,60 +11727,60 @@ namespace Links
                     {
                         public static class Assets
                         {
-                            public const string jquery_lazyload_js = "~/Content/PublicUI/plugins/lazyload/jquery.lazyload.js"; 
-                            public const string jquery_lazyload_min_js = "~/Content/PublicUI/plugins/lazyload/jquery.lazyload.min.js"; 
+                            public static readonly string jquery_lazyload_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/lazyload/jquery.lazyload.js"); 
+                            public static readonly string jquery_lazyload_min_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/lazyload/jquery.lazyload.min.js"); 
                         }
                     }
                     public static partial class magnific_popup 
                     {
                         public static class Assets
                         {
-                            public const string jquery_magnific_popup_js = "~/Content/PublicUI/plugins/magnific-popup/jquery.magnific-popup.js"; 
-                            public const string jquery_magnific_popup_min_js = "~/Content/PublicUI/plugins/magnific-popup/jquery.magnific-popup.min.js"; 
-                            public const string magnific_popup_css = "~/Content/PublicUI/plugins/magnific-popup/magnific-popup.css";
+                            public static readonly string jquery_magnific_popup_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/magnific-popup/jquery.magnific-popup.js"); 
+                            public static readonly string jquery_magnific_popup_min_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/magnific-popup/jquery.magnific-popup.min.js"); 
+                            public static readonly string magnific_popup_css = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/magnific-popup/magnific-popup.css");
                         }
                     }
                     public static partial class mediaelement 
                     {
                         public static class Assets
                         {
-                            public const string mediaelement_and_player_js = "~/Content/PublicUI/plugins/mediaelement/mediaelement-and-player.js"; 
-                            public const string mediaelement_and_player_min_js = "~/Content/PublicUI/plugins/mediaelement/mediaelement-and-player.min.js"; 
-                            public const string mediaelement_js = "~/Content/PublicUI/plugins/mediaelement/mediaelement.js"; 
-                            public const string mediaelement_min_js = "~/Content/PublicUI/plugins/mediaelement/mediaelement.min.js"; 
-                            public const string mediaelementplayer_css = "~/Content/PublicUI/plugins/mediaelement/mediaelementplayer.css";
-                            public const string mediaelementplayer_js = "~/Content/PublicUI/plugins/mediaelement/mediaelementplayer.js"; 
-                            public const string mediaelementplayer_min_css = "~/Content/PublicUI/plugins/mediaelement/mediaelementplayer.min.css";
-                            public const string mediaelementplayer_min_js = "~/Content/PublicUI/plugins/mediaelement/mediaelementplayer.min.js"; 
-                            public const string mejs_skins_css = "~/Content/PublicUI/plugins/mediaelement/mejs-skins.css";
+                            public static readonly string mediaelement_and_player_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/mediaelement/mediaelement-and-player.js"); 
+                            public static readonly string mediaelement_and_player_min_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/mediaelement/mediaelement-and-player.min.js"); 
+                            public static readonly string mediaelement_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/mediaelement/mediaelement.js"); 
+                            public static readonly string mediaelement_min_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/mediaelement/mediaelement.min.js"); 
+                            public static readonly string mediaelementplayer_css = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/mediaelement/mediaelementplayer.css");
+                            public static readonly string mediaelementplayer_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/mediaelement/mediaelementplayer.js"); 
+                            public static readonly string mediaelementplayer_min_css = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/mediaelement/mediaelementplayer.min.css");
+                            public static readonly string mediaelementplayer_min_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/mediaelement/mediaelementplayer.min.js"); 
+                            public static readonly string mejs_skins_css = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/mediaelement/mejs-skins.css");
                         }
                     }
                     public static partial class mixitup 
                     {
                         public static class Assets
                         {
-                            public const string jquery_mixitup_min_js = "~/Content/PublicUI/plugins/mixitup/jquery.mixitup.min.js"; 
+                            public static readonly string jquery_mixitup_min_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/mixitup/jquery.mixitup.min.js"); 
                         }
                     }
                     public static partial class owl_carousel 
                     {
                         public static class Assets
                         {
-                            public const string owl_carousel_css = "~/Content/PublicUI/plugins/owl-carousel/owl.carousel.css";
-                            public const string owl_carousel_js = "~/Content/PublicUI/plugins/owl-carousel/owl.carousel.js"; 
-                            public const string owl_carousel_min_js = "~/Content/PublicUI/plugins/owl-carousel/owl.carousel.min.js"; 
-                            public const string owl_pack_css = "~/Content/PublicUI/plugins/owl-carousel/owl.pack.css";
-                            public const string owl_theme_css = "~/Content/PublicUI/plugins/owl-carousel/owl.theme.css";
-                            public const string owl_transitions_css = "~/Content/PublicUI/plugins/owl-carousel/owl.transitions.css";
+                            public static readonly string owl_carousel_css = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/owl-carousel/owl.carousel.css");
+                            public static readonly string owl_carousel_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/owl-carousel/owl.carousel.js"); 
+                            public static readonly string owl_carousel_min_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/owl-carousel/owl.carousel.min.js"); 
+                            public static readonly string owl_pack_css = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/owl-carousel/owl.pack.css");
+                            public static readonly string owl_theme_css = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/owl-carousel/owl.theme.css");
+                            public static readonly string owl_transitions_css = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/owl-carousel/owl.transitions.css");
                         }
                     }
                     public static partial class pajinate 
                     {
                         public static class Assets
                         {
-                            public const string jquery_pajinate_bootstrap_min_js = "~/Content/PublicUI/plugins/pajinate/jquery.pajinate.bootstrap.min.js"; 
-                            public const string jquery_pajinate_js = "~/Content/PublicUI/plugins/pajinate/jquery.pajinate.js"; 
-                            public const string jquery_pajinate_min_js = "~/Content/PublicUI/plugins/pajinate/jquery.pajinate.min.js"; 
+                            public static readonly string jquery_pajinate_bootstrap_min_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/pajinate/jquery.pajinate.bootstrap.min.js"); 
+                            public static readonly string jquery_pajinate_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/pajinate/jquery.pajinate.js"); 
+                            public static readonly string jquery_pajinate_min_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/pajinate/jquery.pajinate.min.js"); 
                         }
                     }
                     public static partial class select2 
@@ -11789,8 +11789,8 @@ namespace Links
                         {
                             public static class Assets
                             {
-                                public const string select2_css = "~/Content/PublicUI/plugins/select2/css/select2.css";
-                                public const string select2_min_css = "~/Content/PublicUI/plugins/select2/css/select2.min.css";
+                                public static readonly string select2_css = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/select2/css/select2.css");
+                                public static readonly string select2_min_css = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/select2/css/select2.min.css");
                             }
                         }
                         public static partial class js 
@@ -11799,54 +11799,54 @@ namespace Links
                             {
                                 public static class Assets
                                 {
-                                    public const string az_js = "~/Content/PublicUI/plugins/select2/js/i18n/az.js"; 
-                                    public const string bg_js = "~/Content/PublicUI/plugins/select2/js/i18n/bg.js"; 
-                                    public const string ca_js = "~/Content/PublicUI/plugins/select2/js/i18n/ca.js"; 
-                                    public const string cs_js = "~/Content/PublicUI/plugins/select2/js/i18n/cs.js"; 
-                                    public const string da_js = "~/Content/PublicUI/plugins/select2/js/i18n/da.js"; 
-                                    public const string de_js = "~/Content/PublicUI/plugins/select2/js/i18n/de.js"; 
-                                    public const string en_js = "~/Content/PublicUI/plugins/select2/js/i18n/en.js"; 
-                                    public const string es_js = "~/Content/PublicUI/plugins/select2/js/i18n/es.js"; 
-                                    public const string et_js = "~/Content/PublicUI/plugins/select2/js/i18n/et.js"; 
-                                    public const string eu_js = "~/Content/PublicUI/plugins/select2/js/i18n/eu.js"; 
-                                    public const string fa_js = "~/Content/PublicUI/plugins/select2/js/i18n/fa.js"; 
-                                    public const string fi_js = "~/Content/PublicUI/plugins/select2/js/i18n/fi.js"; 
-                                    public const string fr_js = "~/Content/PublicUI/plugins/select2/js/i18n/fr.js"; 
-                                    public const string gl_js = "~/Content/PublicUI/plugins/select2/js/i18n/gl.js"; 
-                                    public const string hi_js = "~/Content/PublicUI/plugins/select2/js/i18n/hi.js"; 
-                                    public const string hr_js = "~/Content/PublicUI/plugins/select2/js/i18n/hr.js"; 
-                                    public const string hu_js = "~/Content/PublicUI/plugins/select2/js/i18n/hu.js"; 
-                                    public const string id_js = "~/Content/PublicUI/plugins/select2/js/i18n/id.js"; 
-                                    public const string is_js = "~/Content/PublicUI/plugins/select2/js/i18n/is.js"; 
-                                    public const string it_js = "~/Content/PublicUI/plugins/select2/js/i18n/it.js"; 
-                                    public const string ko_js = "~/Content/PublicUI/plugins/select2/js/i18n/ko.js"; 
-                                    public const string lt_js = "~/Content/PublicUI/plugins/select2/js/i18n/lt.js"; 
-                                    public const string lv_js = "~/Content/PublicUI/plugins/select2/js/i18n/lv.js"; 
-                                    public const string mk_js = "~/Content/PublicUI/plugins/select2/js/i18n/mk.js"; 
-                                    public const string nb_js = "~/Content/PublicUI/plugins/select2/js/i18n/nb.js"; 
-                                    public const string nl_js = "~/Content/PublicUI/plugins/select2/js/i18n/nl.js"; 
-                                    public const string pl_js = "~/Content/PublicUI/plugins/select2/js/i18n/pl.js"; 
-                                    public const string pt_BR_js = "~/Content/PublicUI/plugins/select2/js/i18n/pt-BR.js"; 
-                                    public const string pt_js = "~/Content/PublicUI/plugins/select2/js/i18n/pt.js"; 
-                                    public const string ro_js = "~/Content/PublicUI/plugins/select2/js/i18n/ro.js"; 
-                                    public const string ru_js = "~/Content/PublicUI/plugins/select2/js/i18n/ru.js"; 
-                                    public const string sk_js = "~/Content/PublicUI/plugins/select2/js/i18n/sk.js"; 
-                                    public const string sr_js = "~/Content/PublicUI/plugins/select2/js/i18n/sr.js"; 
-                                    public const string sv_js = "~/Content/PublicUI/plugins/select2/js/i18n/sv.js"; 
-                                    public const string th_js = "~/Content/PublicUI/plugins/select2/js/i18n/th.js"; 
-                                    public const string tr_js = "~/Content/PublicUI/plugins/select2/js/i18n/tr.js"; 
-                                    public const string uk_js = "~/Content/PublicUI/plugins/select2/js/i18n/uk.js"; 
-                                    public const string vi_js = "~/Content/PublicUI/plugins/select2/js/i18n/vi.js"; 
-                                    public const string zh_CN_js = "~/Content/PublicUI/plugins/select2/js/i18n/zh-CN.js"; 
-                                    public const string zh_TW_js = "~/Content/PublicUI/plugins/select2/js/i18n/zh-TW.js"; 
+                                    public static readonly string az_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/select2/js/i18n/az.js"); 
+                                    public static readonly string bg_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/select2/js/i18n/bg.js"); 
+                                    public static readonly string ca_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/select2/js/i18n/ca.js"); 
+                                    public static readonly string cs_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/select2/js/i18n/cs.js"); 
+                                    public static readonly string da_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/select2/js/i18n/da.js"); 
+                                    public static readonly string de_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/select2/js/i18n/de.js"); 
+                                    public static readonly string en_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/select2/js/i18n/en.js"); 
+                                    public static readonly string es_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/select2/js/i18n/es.js"); 
+                                    public static readonly string et_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/select2/js/i18n/et.js"); 
+                                    public static readonly string eu_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/select2/js/i18n/eu.js"); 
+                                    public static readonly string fa_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/select2/js/i18n/fa.js"); 
+                                    public static readonly string fi_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/select2/js/i18n/fi.js"); 
+                                    public static readonly string fr_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/select2/js/i18n/fr.js"); 
+                                    public static readonly string gl_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/select2/js/i18n/gl.js"); 
+                                    public static readonly string hi_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/select2/js/i18n/hi.js"); 
+                                    public static readonly string hr_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/select2/js/i18n/hr.js"); 
+                                    public static readonly string hu_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/select2/js/i18n/hu.js"); 
+                                    public static readonly string id_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/select2/js/i18n/id.js"); 
+                                    public static readonly string is_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/select2/js/i18n/is.js"); 
+                                    public static readonly string it_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/select2/js/i18n/it.js"); 
+                                    public static readonly string ko_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/select2/js/i18n/ko.js"); 
+                                    public static readonly string lt_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/select2/js/i18n/lt.js"); 
+                                    public static readonly string lv_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/select2/js/i18n/lv.js"); 
+                                    public static readonly string mk_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/select2/js/i18n/mk.js"); 
+                                    public static readonly string nb_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/select2/js/i18n/nb.js"); 
+                                    public static readonly string nl_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/select2/js/i18n/nl.js"); 
+                                    public static readonly string pl_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/select2/js/i18n/pl.js"); 
+                                    public static readonly string pt_BR_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/select2/js/i18n/pt-BR.js"); 
+                                    public static readonly string pt_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/select2/js/i18n/pt.js"); 
+                                    public static readonly string ro_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/select2/js/i18n/ro.js"); 
+                                    public static readonly string ru_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/select2/js/i18n/ru.js"); 
+                                    public static readonly string sk_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/select2/js/i18n/sk.js"); 
+                                    public static readonly string sr_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/select2/js/i18n/sr.js"); 
+                                    public static readonly string sv_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/select2/js/i18n/sv.js"); 
+                                    public static readonly string th_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/select2/js/i18n/th.js"); 
+                                    public static readonly string tr_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/select2/js/i18n/tr.js"); 
+                                    public static readonly string uk_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/select2/js/i18n/uk.js"); 
+                                    public static readonly string vi_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/select2/js/i18n/vi.js"); 
+                                    public static readonly string zh_CN_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/select2/js/i18n/zh-CN.js"); 
+                                    public static readonly string zh_TW_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/select2/js/i18n/zh-TW.js"); 
                                 }
                             }
                             public static class Assets
                             {
-                                public const string select2_full_js = "~/Content/PublicUI/plugins/select2/js/select2.full.js"; 
-                                public const string select2_full_min_js = "~/Content/PublicUI/plugins/select2/js/select2.full.min.js"; 
-                                public const string select2_js = "~/Content/PublicUI/plugins/select2/js/select2.js"; 
-                                public const string select2_min_js = "~/Content/PublicUI/plugins/select2/js/select2.min.js"; 
+                                public static readonly string select2_full_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/select2/js/select2.full.js"); 
+                                public static readonly string select2_full_min_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/select2/js/select2.full.min.js"); 
+                                public static readonly string select2_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/select2/js/select2.js"); 
+                                public static readonly string select2_min_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/select2/js/select2.min.js"); 
                             }
                         }
                         public static class Assets
@@ -11859,17 +11859,17 @@ namespace Links
                         {
                             public static class Assets
                             {
-                                public const string camera_css = "~/Content/PublicUI/plugins/slider.camera/css/camera.css";
+                                public static readonly string camera_css = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/slider.camera/css/camera.css");
                             }
                         }
                         public static partial class scripts 
                         {
                             public static class Assets
                             {
-                                public const string camera_js = "~/Content/PublicUI/plugins/slider.camera/scripts/camera.js"; 
-                                public const string camera_min_js = "~/Content/PublicUI/plugins/slider.camera/scripts/camera.min.js"; 
-                                public const string jquery_camera_js = "~/Content/PublicUI/plugins/slider.camera/scripts/jquery.camera.js"; 
-                                public const string jquery_mobile_customized_min_js = "~/Content/PublicUI/plugins/slider.camera/scripts/jquery.mobile.customized.min.js"; 
+                                public static readonly string camera_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/slider.camera/scripts/camera.js"); 
+                                public static readonly string camera_min_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/slider.camera/scripts/camera.min.js"); 
+                                public static readonly string jquery_camera_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/slider.camera/scripts/jquery.camera.js"); 
+                                public static readonly string jquery_mobile_customized_min_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/slider.camera/scripts/jquery.mobile.customized.min.js"); 
                             }
                         }
                         public static class Assets
@@ -11882,18 +11882,18 @@ namespace Links
                         {
                             public static class Assets
                             {
-                                public const string demo_css = "~/Content/PublicUI/plugins/slider.elastic/css/demo.css";
-                                public const string noscript_css = "~/Content/PublicUI/plugins/slider.elastic/css/noscript.css";
-                                public const string reset_css = "~/Content/PublicUI/plugins/slider.elastic/css/reset.css";
-                                public const string style_css = "~/Content/PublicUI/plugins/slider.elastic/css/style.css";
+                                public static readonly string demo_css = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/slider.elastic/css/demo.css");
+                                public static readonly string noscript_css = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/slider.elastic/css/noscript.css");
+                                public static readonly string reset_css = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/slider.elastic/css/reset.css");
+                                public static readonly string style_css = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/slider.elastic/css/style.css");
                             }
                         }
                         public static partial class js 
                         {
                             public static class Assets
                             {
-                                public const string jquery_easing_1_3_js = "~/Content/PublicUI/plugins/slider.elastic/js/jquery.easing.1.3.js"; 
-                                public const string jquery_eislideshow_js = "~/Content/PublicUI/plugins/slider.elastic/js/jquery.eislideshow.js"; 
+                                public static readonly string jquery_easing_1_3_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/slider.elastic/js/jquery.easing.1.3.js"); 
+                                public static readonly string jquery_eislideshow_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/slider.elastic/js/jquery.eislideshow.js"); 
                             }
                         }
                         public static class Assets
@@ -11922,9 +11922,9 @@ namespace Links
                         }
                         public static class Assets
                         {
-                            public const string flexslider_css = "~/Content/PublicUI/plugins/slider.flexslider/flexslider.css";
-                            public const string jquery_flexslider_min_js = "~/Content/PublicUI/plugins/slider.flexslider/jquery.flexslider-min.js"; 
-                            public const string jquery_flexslider_js = "~/Content/PublicUI/plugins/slider.flexslider/jquery.flexslider.js"; 
+                            public static readonly string flexslider_css = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/slider.flexslider/flexslider.css");
+                            public static readonly string jquery_flexslider_min_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/slider.flexslider/jquery.flexslider-min.js"); 
+                            public static readonly string jquery_flexslider_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/slider.flexslider/jquery.flexslider.js"); 
                         }
                     }
                     public static partial class slider_layerslider 
@@ -11933,18 +11933,18 @@ namespace Links
                         {
                             public static class Assets
                             {
-                                public const string layerslider_css = "~/Content/PublicUI/plugins/slider.layerslider/css/layerslider.css";
+                                public static readonly string layerslider_css = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/slider.layerslider/css/layerslider.css");
                             }
                         }
                         public static partial class js 
                         {
                             public static class Assets
                             {
-                                public const string greensock_js = "~/Content/PublicUI/plugins/slider.layerslider/js/greensock.js"; 
-                                public const string jquery_js = "~/Content/PublicUI/plugins/slider.layerslider/js/jquery.js"; 
-                                public const string layerslider_kreaturamedia_jquery_js = "~/Content/PublicUI/plugins/slider.layerslider/js/layerslider.kreaturamedia.jquery.js"; 
-                                public const string layerslider_transitions_js = "~/Content/PublicUI/plugins/slider.layerslider/js/layerslider.transitions.js"; 
-                                public const string layerslider_pack_js = "~/Content/PublicUI/plugins/slider.layerslider/js/layerslider_pack.js"; 
+                                public static readonly string greensock_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/slider.layerslider/js/greensock.js"); 
+                                public static readonly string jquery_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/slider.layerslider/js/jquery.js"); 
+                                public static readonly string layerslider_kreaturamedia_jquery_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/slider.layerslider/js/layerslider.kreaturamedia.jquery.js"); 
+                                public static readonly string layerslider_transitions_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/slider.layerslider/js/layerslider.transitions.js"); 
+                                public static readonly string layerslider_pack_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/slider.layerslider/js/layerslider_pack.js"); 
                             }
                         }
                         public static partial class skins 
@@ -11953,98 +11953,98 @@ namespace Links
                             {
                                 public static class Assets
                                 {
-                                    public const string skin_css = "~/Content/PublicUI/plugins/slider.layerslider/skins/borderlessdark/skin.css";
+                                    public static readonly string skin_css = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/slider.layerslider/skins/borderlessdark/skin.css");
                                 }
                             }
                             public static partial class borderlessdark3d 
                             {
                                 public static class Assets
                                 {
-                                    public const string skin_css = "~/Content/PublicUI/plugins/slider.layerslider/skins/borderlessdark3d/skin.css";
+                                    public static readonly string skin_css = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/slider.layerslider/skins/borderlessdark3d/skin.css");
                                 }
                             }
                             public static partial class borderlesslight 
                             {
                                 public static class Assets
                                 {
-                                    public const string skin_css = "~/Content/PublicUI/plugins/slider.layerslider/skins/borderlesslight/skin.css";
+                                    public static readonly string skin_css = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/slider.layerslider/skins/borderlesslight/skin.css");
                                 }
                             }
                             public static partial class borderlesslight3d 
                             {
                                 public static class Assets
                                 {
-                                    public const string skin_css = "~/Content/PublicUI/plugins/slider.layerslider/skins/borderlesslight3d/skin.css";
+                                    public static readonly string skin_css = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/slider.layerslider/skins/borderlesslight3d/skin.css");
                                 }
                             }
                             public static partial class carousel 
                             {
                                 public static class Assets
                                 {
-                                    public const string skin_css = "~/Content/PublicUI/plugins/slider.layerslider/skins/carousel/skin.css";
+                                    public static readonly string skin_css = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/slider.layerslider/skins/carousel/skin.css");
                                 }
                             }
                             public static partial class darkskin 
                             {
                                 public static class Assets
                                 {
-                                    public const string skin_css = "~/Content/PublicUI/plugins/slider.layerslider/skins/darkskin/skin.css";
+                                    public static readonly string skin_css = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/slider.layerslider/skins/darkskin/skin.css");
                                 }
                             }
                             public static partial class defaultskin 
                             {
                                 public static class Assets
                                 {
-                                    public const string skin_css = "~/Content/PublicUI/plugins/slider.layerslider/skins/defaultskin/skin.css";
+                                    public static readonly string skin_css = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/slider.layerslider/skins/defaultskin/skin.css");
                                 }
                             }
                             public static partial class fullwidth 
                             {
                                 public static class Assets
                                 {
-                                    public const string skin_css = "~/Content/PublicUI/plugins/slider.layerslider/skins/fullwidth/skin.css";
+                                    public static readonly string skin_css = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/slider.layerslider/skins/fullwidth/skin.css");
                                 }
                             }
                             public static partial class fullwidthdark 
                             {
                                 public static class Assets
                                 {
-                                    public const string skin_css = "~/Content/PublicUI/plugins/slider.layerslider/skins/fullwidthdark/skin.css";
+                                    public static readonly string skin_css = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/slider.layerslider/skins/fullwidthdark/skin.css");
                                 }
                             }
                             public static partial class glass 
                             {
                                 public static class Assets
                                 {
-                                    public const string skin_css = "~/Content/PublicUI/plugins/slider.layerslider/skins/glass/skin.css";
+                                    public static readonly string skin_css = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/slider.layerslider/skins/glass/skin.css");
                                 }
                             }
                             public static partial class lightskin 
                             {
                                 public static class Assets
                                 {
-                                    public const string skin_css = "~/Content/PublicUI/plugins/slider.layerslider/skins/lightskin/skin.css";
+                                    public static readonly string skin_css = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/slider.layerslider/skins/lightskin/skin.css");
                                 }
                             }
                             public static partial class minimal 
                             {
                                 public static class Assets
                                 {
-                                    public const string skin_css = "~/Content/PublicUI/plugins/slider.layerslider/skins/minimal/skin.css";
+                                    public static readonly string skin_css = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/slider.layerslider/skins/minimal/skin.css");
                                 }
                             }
                             public static partial class noskin 
                             {
                                 public static class Assets
                                 {
-                                    public const string skin_css = "~/Content/PublicUI/plugins/slider.layerslider/skins/noskin/skin.css";
+                                    public static readonly string skin_css = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/slider.layerslider/skins/noskin/skin.css");
                                 }
                             }
                             public static partial class v5 
                             {
                                 public static class Assets
                                 {
-                                    public const string skin_css = "~/Content/PublicUI/plugins/slider.layerslider/skins/v5/skin.css";
+                                    public static readonly string skin_css = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/slider.layerslider/skins/v5/skin.css");
                                 }
                             }
                             public static class Assets
@@ -12069,12 +12069,12 @@ namespace Links
                             {
                                 public static class Assets
                                 {
-                                    public const string jquery_1_9_0_min_js = "~/Content/PublicUI/plugins/slider.nivo/demo/scripts/jquery-1.9.0.min.js"; 
+                                    public static readonly string jquery_1_9_0_min_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/slider.nivo/demo/scripts/jquery-1.9.0.min.js"); 
                                 }
                             }
                             public static class Assets
                             {
-                                public const string style_css = "~/Content/PublicUI/plugins/slider.nivo/demo/style.css";
+                                public static readonly string style_css = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/slider.nivo/demo/style.css");
                             }
                         }
                         public static partial class themes 
@@ -12083,28 +12083,28 @@ namespace Links
                             {
                                 public static class Assets
                                 {
-                                    public const string bar_css = "~/Content/PublicUI/plugins/slider.nivo/themes/bar/bar.css";
+                                    public static readonly string bar_css = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/slider.nivo/themes/bar/bar.css");
                                 }
                             }
                             public static partial class dark 
                             {
                                 public static class Assets
                                 {
-                                    public const string dark_css = "~/Content/PublicUI/plugins/slider.nivo/themes/dark/dark.css";
+                                    public static readonly string dark_css = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/slider.nivo/themes/dark/dark.css");
                                 }
                             }
                             public static partial class @default 
                             {
                                 public static class Assets
                                 {
-                                    public const string default_css = "~/Content/PublicUI/plugins/slider.nivo/themes/default/default.css";
+                                    public static readonly string default_css = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/slider.nivo/themes/default/default.css");
                                 }
                             }
                             public static partial class light 
                             {
                                 public static class Assets
                                 {
-                                    public const string light_css = "~/Content/PublicUI/plugins/slider.nivo/themes/light/light.css";
+                                    public static readonly string light_css = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/slider.nivo/themes/light/light.css");
                                 }
                             }
                             public static class Assets
@@ -12113,9 +12113,9 @@ namespace Links
                         }
                         public static class Assets
                         {
-                            public const string jquery_nivo_slider_js = "~/Content/PublicUI/plugins/slider.nivo/jquery.nivo.slider.js"; 
-                            public const string jquery_nivo_slider_pack_js = "~/Content/PublicUI/plugins/slider.nivo/jquery.nivo.slider.pack.js"; 
-                            public const string nivo_slider_css = "~/Content/PublicUI/plugins/slider.nivo/nivo-slider.css";
+                            public static readonly string jquery_nivo_slider_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/slider.nivo/jquery.nivo.slider.js"); 
+                            public static readonly string jquery_nivo_slider_pack_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/slider.nivo/jquery.nivo.slider.pack.js"); 
+                            public static readonly string nivo_slider_css = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/slider.nivo/nivo-slider.css");
                         }
                     }
                     public static partial class slider_revolution 
@@ -12130,9 +12130,9 @@ namespace Links
                         {
                             public static class Assets
                             {
-                                public const string extralayers_css = "~/Content/PublicUI/plugins/slider.revolution/css/extralayers.css";
-                                public const string settings_ie8_css = "~/Content/PublicUI/plugins/slider.revolution/css/settings-ie8.css";
-                                public const string settings_css = "~/Content/PublicUI/plugins/slider.revolution/css/settings.css";
+                                public static readonly string extralayers_css = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/slider.revolution/css/extralayers.css");
+                                public static readonly string settings_ie8_css = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/slider.revolution/css/settings-ie8.css");
+                                public static readonly string settings_css = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/slider.revolution/css/settings.css");
                             }
                         }
                         public static partial class font 
@@ -12157,10 +12157,10 @@ namespace Links
                         {
                             public static class Assets
                             {
-                                public const string jquery_themepunch_enablelog_js = "~/Content/PublicUI/plugins/slider.revolution/js/jquery.themepunch.enablelog.js"; 
-                                public const string jquery_themepunch_revolution_js = "~/Content/PublicUI/plugins/slider.revolution/js/jquery.themepunch.revolution.js"; 
-                                public const string jquery_themepunch_revolution_min_js = "~/Content/PublicUI/plugins/slider.revolution/js/jquery.themepunch.revolution.min.js"; 
-                                public const string jquery_themepunch_tools_min_js = "~/Content/PublicUI/plugins/slider.revolution/js/jquery.themepunch.tools.min.js"; 
+                                public static readonly string jquery_themepunch_enablelog_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/slider.revolution/js/jquery.themepunch.enablelog.js"); 
+                                public static readonly string jquery_themepunch_revolution_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/slider.revolution/js/jquery.themepunch.revolution.js"); 
+                                public static readonly string jquery_themepunch_revolution_min_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/slider.revolution/js/jquery.themepunch.revolution.min.js"); 
+                                public static readonly string jquery_themepunch_tools_min_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/slider.revolution/js/jquery.themepunch.tools.min.js"); 
                             }
                         }
                         public static class Assets
@@ -12193,28 +12193,28 @@ namespace Links
                             {
                                 public static class Assets
                                 {
-                                    public const string ares_css = "~/Content/PublicUI/plugins/slider.revolution.v5/css/navigation-skins/ares.css";
-                                    public const string custom_css = "~/Content/PublicUI/plugins/slider.revolution.v5/css/navigation-skins/custom.css";
-                                    public const string dione_css = "~/Content/PublicUI/plugins/slider.revolution.v5/css/navigation-skins/dione.css";
-                                    public const string erinyen_css = "~/Content/PublicUI/plugins/slider.revolution.v5/css/navigation-skins/erinyen.css";
-                                    public const string gyges_css = "~/Content/PublicUI/plugins/slider.revolution.v5/css/navigation-skins/gyges.css";
-                                    public const string hades_css = "~/Content/PublicUI/plugins/slider.revolution.v5/css/navigation-skins/hades.css";
-                                    public const string hebe_css = "~/Content/PublicUI/plugins/slider.revolution.v5/css/navigation-skins/hebe.css";
-                                    public const string hephaistos_css = "~/Content/PublicUI/plugins/slider.revolution.v5/css/navigation-skins/hephaistos.css";
-                                    public const string hermes_css = "~/Content/PublicUI/plugins/slider.revolution.v5/css/navigation-skins/hermes.css";
-                                    public const string hesperiden_css = "~/Content/PublicUI/plugins/slider.revolution.v5/css/navigation-skins/hesperiden.css";
-                                    public const string metis_css = "~/Content/PublicUI/plugins/slider.revolution.v5/css/navigation-skins/metis.css";
-                                    public const string persephone_css = "~/Content/PublicUI/plugins/slider.revolution.v5/css/navigation-skins/persephone.css";
-                                    public const string uranus_css = "~/Content/PublicUI/plugins/slider.revolution.v5/css/navigation-skins/uranus.css";
-                                    public const string zeus_css = "~/Content/PublicUI/plugins/slider.revolution.v5/css/navigation-skins/zeus.css";
+                                    public static readonly string ares_css = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/slider.revolution.v5/css/navigation-skins/ares.css");
+                                    public static readonly string custom_css = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/slider.revolution.v5/css/navigation-skins/custom.css");
+                                    public static readonly string dione_css = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/slider.revolution.v5/css/navigation-skins/dione.css");
+                                    public static readonly string erinyen_css = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/slider.revolution.v5/css/navigation-skins/erinyen.css");
+                                    public static readonly string gyges_css = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/slider.revolution.v5/css/navigation-skins/gyges.css");
+                                    public static readonly string hades_css = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/slider.revolution.v5/css/navigation-skins/hades.css");
+                                    public static readonly string hebe_css = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/slider.revolution.v5/css/navigation-skins/hebe.css");
+                                    public static readonly string hephaistos_css = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/slider.revolution.v5/css/navigation-skins/hephaistos.css");
+                                    public static readonly string hermes_css = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/slider.revolution.v5/css/navigation-skins/hermes.css");
+                                    public static readonly string hesperiden_css = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/slider.revolution.v5/css/navigation-skins/hesperiden.css");
+                                    public static readonly string metis_css = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/slider.revolution.v5/css/navigation-skins/metis.css");
+                                    public static readonly string persephone_css = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/slider.revolution.v5/css/navigation-skins/persephone.css");
+                                    public static readonly string uranus_css = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/slider.revolution.v5/css/navigation-skins/uranus.css");
+                                    public static readonly string zeus_css = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/slider.revolution.v5/css/navigation-skins/zeus.css");
                                 }
                             }
                             public static class Assets
                             {
-                                public const string layers_css = "~/Content/PublicUI/plugins/slider.revolution.v5/css/layers.css";
-                                public const string navigation_css = "~/Content/PublicUI/plugins/slider.revolution.v5/css/navigation.css";
-                                public const string pack_css = "~/Content/PublicUI/plugins/slider.revolution.v5/css/pack.css";
-                                public const string settings_css = "~/Content/PublicUI/plugins/slider.revolution.v5/css/settings.css";
+                                public static readonly string layers_css = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/slider.revolution.v5/css/layers.css");
+                                public static readonly string navigation_css = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/slider.revolution.v5/css/navigation.css");
+                                public static readonly string pack_css = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/slider.revolution.v5/css/pack.css");
+                                public static readonly string settings_css = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/slider.revolution.v5/css/settings.css");
                             }
                         }
                         public static partial class fonts 
@@ -12225,8 +12225,8 @@ namespace Links
                                 {
                                     public static class Assets
                                     {
-                                        public const string font_awesome_css = "~/Content/PublicUI/plugins/slider.revolution.v5/fonts/font-awesome/css/font-awesome.css";
-                                        public const string font_awesome_min_css = "~/Content/PublicUI/plugins/slider.revolution.v5/fonts/font-awesome/css/font-awesome.min.css";
+                                        public static readonly string font_awesome_css = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/slider.revolution.v5/fonts/font-awesome/css/font-awesome.css");
+                                        public static readonly string font_awesome_min_css = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/slider.revolution.v5/fonts/font-awesome/css/font-awesome.min.css");
                                     }
                                 }
                                 public static partial class fonts 
@@ -12245,8 +12245,8 @@ namespace Links
                                 {
                                     public static class Assets
                                     {
-                                        public const string helper_css = "~/Content/PublicUI/plugins/slider.revolution.v5/fonts/pe-icon-7-stroke/css/helper.css";
-                                        public const string pe_icon_7_stroke_css = "~/Content/PublicUI/plugins/slider.revolution.v5/fonts/pe-icon-7-stroke/css/pe-icon-7-stroke.css";
+                                        public static readonly string helper_css = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/slider.revolution.v5/fonts/pe-icon-7-stroke/css/helper.css");
+                                        public static readonly string pe_icon_7_stroke_css = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/slider.revolution.v5/fonts/pe-icon-7-stroke/css/pe-icon-7-stroke.css");
                                     }
                                 }
                                 public static partial class fonts 
@@ -12277,44 +12277,44 @@ namespace Links
                                 {
                                     public static class Assets
                                     {
-                                        public const string revolution_extension_actions_js = "~/Content/PublicUI/plugins/slider.revolution.v5/js/extensions/source/revolution.extension.actions.js"; 
-                                        public const string revolution_extension_carousel_js = "~/Content/PublicUI/plugins/slider.revolution.v5/js/extensions/source/revolution.extension.carousel.js"; 
-                                        public const string revolution_extension_kenburn_js = "~/Content/PublicUI/plugins/slider.revolution.v5/js/extensions/source/revolution.extension.kenburn.js"; 
-                                        public const string revolution_extension_layeranimation_js = "~/Content/PublicUI/plugins/slider.revolution.v5/js/extensions/source/revolution.extension.layeranimation.js"; 
-                                        public const string revolution_extension_migration_js = "~/Content/PublicUI/plugins/slider.revolution.v5/js/extensions/source/revolution.extension.migration.js"; 
-                                        public const string revolution_extension_navigation_js = "~/Content/PublicUI/plugins/slider.revolution.v5/js/extensions/source/revolution.extension.navigation.js"; 
-                                        public const string revolution_extension_parallax_js = "~/Content/PublicUI/plugins/slider.revolution.v5/js/extensions/source/revolution.extension.parallax.js"; 
-                                        public const string revolution_extension_slideanims_js = "~/Content/PublicUI/plugins/slider.revolution.v5/js/extensions/source/revolution.extension.slideanims.js"; 
-                                        public const string revolution_extension_video_js = "~/Content/PublicUI/plugins/slider.revolution.v5/js/extensions/source/revolution.extension.video.js"; 
+                                        public static readonly string revolution_extension_actions_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/slider.revolution.v5/js/extensions/source/revolution.extension.actions.js"); 
+                                        public static readonly string revolution_extension_carousel_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/slider.revolution.v5/js/extensions/source/revolution.extension.carousel.js"); 
+                                        public static readonly string revolution_extension_kenburn_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/slider.revolution.v5/js/extensions/source/revolution.extension.kenburn.js"); 
+                                        public static readonly string revolution_extension_layeranimation_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/slider.revolution.v5/js/extensions/source/revolution.extension.layeranimation.js"); 
+                                        public static readonly string revolution_extension_migration_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/slider.revolution.v5/js/extensions/source/revolution.extension.migration.js"); 
+                                        public static readonly string revolution_extension_navigation_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/slider.revolution.v5/js/extensions/source/revolution.extension.navigation.js"); 
+                                        public static readonly string revolution_extension_parallax_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/slider.revolution.v5/js/extensions/source/revolution.extension.parallax.js"); 
+                                        public static readonly string revolution_extension_slideanims_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/slider.revolution.v5/js/extensions/source/revolution.extension.slideanims.js"); 
+                                        public static readonly string revolution_extension_video_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/slider.revolution.v5/js/extensions/source/revolution.extension.video.js"); 
                                     }
                                 }
                                 public static class Assets
                                 {
-                                    public const string revolution_extension_actions_min_js = "~/Content/PublicUI/plugins/slider.revolution.v5/js/extensions/revolution.extension.actions.min.js"; 
-                                    public const string revolution_extension_carousel_min_js = "~/Content/PublicUI/plugins/slider.revolution.v5/js/extensions/revolution.extension.carousel.min.js"; 
-                                    public const string revolution_extension_kenburn_min_js = "~/Content/PublicUI/plugins/slider.revolution.v5/js/extensions/revolution.extension.kenburn.min.js"; 
-                                    public const string revolution_extension_layeranimation_min_js = "~/Content/PublicUI/plugins/slider.revolution.v5/js/extensions/revolution.extension.layeranimation.min.js"; 
-                                    public const string revolution_extension_migration_min_js = "~/Content/PublicUI/plugins/slider.revolution.v5/js/extensions/revolution.extension.migration.min.js"; 
-                                    public const string revolution_extension_navigation_min_js = "~/Content/PublicUI/plugins/slider.revolution.v5/js/extensions/revolution.extension.navigation.min.js"; 
-                                    public const string revolution_extension_parallax_min_js = "~/Content/PublicUI/plugins/slider.revolution.v5/js/extensions/revolution.extension.parallax.min.js"; 
-                                    public const string revolution_extension_slideanims_min_js = "~/Content/PublicUI/plugins/slider.revolution.v5/js/extensions/revolution.extension.slideanims.min.js"; 
-                                    public const string revolution_extension_video_min_js = "~/Content/PublicUI/plugins/slider.revolution.v5/js/extensions/revolution.extension.video.min.js"; 
+                                    public static readonly string revolution_extension_actions_min_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/slider.revolution.v5/js/extensions/revolution.extension.actions.min.js"); 
+                                    public static readonly string revolution_extension_carousel_min_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/slider.revolution.v5/js/extensions/revolution.extension.carousel.min.js"); 
+                                    public static readonly string revolution_extension_kenburn_min_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/slider.revolution.v5/js/extensions/revolution.extension.kenburn.min.js"); 
+                                    public static readonly string revolution_extension_layeranimation_min_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/slider.revolution.v5/js/extensions/revolution.extension.layeranimation.min.js"); 
+                                    public static readonly string revolution_extension_migration_min_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/slider.revolution.v5/js/extensions/revolution.extension.migration.min.js"); 
+                                    public static readonly string revolution_extension_navigation_min_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/slider.revolution.v5/js/extensions/revolution.extension.navigation.min.js"); 
+                                    public static readonly string revolution_extension_parallax_min_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/slider.revolution.v5/js/extensions/revolution.extension.parallax.min.js"); 
+                                    public static readonly string revolution_extension_slideanims_min_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/slider.revolution.v5/js/extensions/revolution.extension.slideanims.min.js"); 
+                                    public static readonly string revolution_extension_video_min_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/slider.revolution.v5/js/extensions/revolution.extension.video.min.js"); 
                                 }
                             }
                             public static partial class source 
                             {
                                 public static class Assets
                                 {
-                                    public const string jquery_themepunch_enablelog_js = "~/Content/PublicUI/plugins/slider.revolution.v5/js/source/jquery.themepunch.enablelog.js"; 
-                                    public const string jquery_themepunch_revolution_js = "~/Content/PublicUI/plugins/slider.revolution.v5/js/source/jquery.themepunch.revolution.js"; 
-                                    public const string jquery_themepunch_tools_min_js = "~/Content/PublicUI/plugins/slider.revolution.v5/js/source/jquery.themepunch.tools.min.js"; 
+                                    public static readonly string jquery_themepunch_enablelog_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/slider.revolution.v5/js/source/jquery.themepunch.enablelog.js"); 
+                                    public static readonly string jquery_themepunch_revolution_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/slider.revolution.v5/js/source/jquery.themepunch.revolution.js"); 
+                                    public static readonly string jquery_themepunch_tools_min_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/slider.revolution.v5/js/source/jquery.themepunch.tools.min.js"); 
                                 }
                             }
                             public static class Assets
                             {
-                                public const string jquery_themepunch_enablelog_js = "~/Content/PublicUI/plugins/slider.revolution.v5/js/jquery.themepunch.enablelog.js"; 
-                                public const string jquery_themepunch_revolution_min_js = "~/Content/PublicUI/plugins/slider.revolution.v5/js/jquery.themepunch.revolution.min.js"; 
-                                public const string jquery_themepunch_tools_min_js = "~/Content/PublicUI/plugins/slider.revolution.v5/js/jquery.themepunch.tools.min.js"; 
+                                public static readonly string jquery_themepunch_enablelog_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/slider.revolution.v5/js/jquery.themepunch.enablelog.js"); 
+                                public static readonly string jquery_themepunch_revolution_min_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/slider.revolution.v5/js/jquery.themepunch.revolution.min.js"); 
+                                public static readonly string jquery_themepunch_tools_min_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/slider.revolution.v5/js/jquery.themepunch.tools.min.js"); 
                             }
                         }
                         public static partial class php 
@@ -12383,8 +12383,8 @@ namespace Links
                             {
                                 public static class Assets
                                 {
-                                    public const string swiper_css = "~/Content/PublicUI/plugins/slider.swiper/dist/css/swiper.css";
-                                    public const string swiper_min_css = "~/Content/PublicUI/plugins/slider.swiper/dist/css/swiper.min.css";
+                                    public static readonly string swiper_css = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/slider.swiper/dist/css/swiper.css");
+                                    public static readonly string swiper_min_css = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/slider.swiper/dist/css/swiper.min.css");
                                 }
                             }
                             public static partial class js 
@@ -12397,10 +12397,10 @@ namespace Links
                                 }
                                 public static class Assets
                                 {
-                                    public const string swiper_jquery_js = "~/Content/PublicUI/plugins/slider.swiper/dist/js/swiper.jquery.js"; 
-                                    public const string swiper_jquery_min_js = "~/Content/PublicUI/plugins/slider.swiper/dist/js/swiper.jquery.min.js"; 
-                                    public const string swiper_js = "~/Content/PublicUI/plugins/slider.swiper/dist/js/swiper.js"; 
-                                    public const string swiper_min_js = "~/Content/PublicUI/plugins/slider.swiper/dist/js/swiper.min.js"; 
+                                    public static readonly string swiper_jquery_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/slider.swiper/dist/js/swiper.jquery.js"); 
+                                    public static readonly string swiper_jquery_min_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/slider.swiper/dist/js/swiper.jquery.min.js"); 
+                                    public static readonly string swiper_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/slider.swiper/dist/js/swiper.js"); 
+                                    public static readonly string swiper_min_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/slider.swiper/dist/js/swiper.min.js"); 
                                 }
                             }
                             public static class Assets
@@ -12415,8 +12415,8 @@ namespace Links
                     {
                         public static class Assets
                         {
-                            public const string jquery_slimscroll_js = "~/Content/PublicUI/plugins/slimscroll/jquery.slimscroll.js"; 
-                            public const string jquery_slimscroll_min_js = "~/Content/PublicUI/plugins/slimscroll/jquery.slimscroll.min.js"; 
+                            public static readonly string jquery_slimscroll_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/slimscroll/jquery.slimscroll.js"); 
+                            public static readonly string jquery_slimscroll_min_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/slimscroll/jquery.slimscroll.min.js"); 
                         }
                     }
                     public static partial class spectrum 
@@ -12425,32 +12425,32 @@ namespace Links
                         {
                             public static class Assets
                             {
-                                public const string jquery_spectrum_de_js = "~/Content/PublicUI/plugins/spectrum/i18n/jquery.spectrum-de.js"; 
-                                public const string jquery_spectrum_dk_js = "~/Content/PublicUI/plugins/spectrum/i18n/jquery.spectrum-dk.js"; 
-                                public const string jquery_spectrum_es_js = "~/Content/PublicUI/plugins/spectrum/i18n/jquery.spectrum-es.js"; 
-                                public const string jquery_spectrum_fa_js = "~/Content/PublicUI/plugins/spectrum/i18n/jquery.spectrum-fa.js"; 
-                                public const string jquery_spectrum_fi_js = "~/Content/PublicUI/plugins/spectrum/i18n/jquery.spectrum-fi.js"; 
-                                public const string jquery_spectrum_fr_js = "~/Content/PublicUI/plugins/spectrum/i18n/jquery.spectrum-fr.js"; 
-                                public const string jquery_spectrum_gr_js = "~/Content/PublicUI/plugins/spectrum/i18n/jquery.spectrum-gr.js"; 
-                                public const string jquery_spectrum_he_js = "~/Content/PublicUI/plugins/spectrum/i18n/jquery.spectrum-he.js"; 
-                                public const string jquery_spectrum_hr_js = "~/Content/PublicUI/plugins/spectrum/i18n/jquery.spectrum-hr.js"; 
-                                public const string jquery_spectrum_it_js = "~/Content/PublicUI/plugins/spectrum/i18n/jquery.spectrum-it.js"; 
-                                public const string jquery_spectrum_ja_js = "~/Content/PublicUI/plugins/spectrum/i18n/jquery.spectrum-ja.js"; 
-                                public const string jquery_spectrum_nl_js = "~/Content/PublicUI/plugins/spectrum/i18n/jquery.spectrum-nl.js"; 
-                                public const string jquery_spectrum_pl_js = "~/Content/PublicUI/plugins/spectrum/i18n/jquery.spectrum-pl.js"; 
-                                public const string jquery_spectrum_pt_br_js = "~/Content/PublicUI/plugins/spectrum/i18n/jquery.spectrum-pt-br.js"; 
-                                public const string jquery_spectrum_ru_js = "~/Content/PublicUI/plugins/spectrum/i18n/jquery.spectrum-ru.js"; 
-                                public const string jquery_spectrum_sv_js = "~/Content/PublicUI/plugins/spectrum/i18n/jquery.spectrum-sv.js"; 
-                                public const string jquery_spectrum_tr_js = "~/Content/PublicUI/plugins/spectrum/i18n/jquery.spectrum-tr.js"; 
-                                public const string jquery_spectrum_zh_cn_js = "~/Content/PublicUI/plugins/spectrum/i18n/jquery.spectrum-zh-cn.js"; 
-                                public const string jquery_spectrum_zh_tw_js = "~/Content/PublicUI/plugins/spectrum/i18n/jquery.spectrum-zh-tw.js"; 
+                                public static readonly string jquery_spectrum_de_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/spectrum/i18n/jquery.spectrum-de.js"); 
+                                public static readonly string jquery_spectrum_dk_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/spectrum/i18n/jquery.spectrum-dk.js"); 
+                                public static readonly string jquery_spectrum_es_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/spectrum/i18n/jquery.spectrum-es.js"); 
+                                public static readonly string jquery_spectrum_fa_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/spectrum/i18n/jquery.spectrum-fa.js"); 
+                                public static readonly string jquery_spectrum_fi_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/spectrum/i18n/jquery.spectrum-fi.js"); 
+                                public static readonly string jquery_spectrum_fr_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/spectrum/i18n/jquery.spectrum-fr.js"); 
+                                public static readonly string jquery_spectrum_gr_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/spectrum/i18n/jquery.spectrum-gr.js"); 
+                                public static readonly string jquery_spectrum_he_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/spectrum/i18n/jquery.spectrum-he.js"); 
+                                public static readonly string jquery_spectrum_hr_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/spectrum/i18n/jquery.spectrum-hr.js"); 
+                                public static readonly string jquery_spectrum_it_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/spectrum/i18n/jquery.spectrum-it.js"); 
+                                public static readonly string jquery_spectrum_ja_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/spectrum/i18n/jquery.spectrum-ja.js"); 
+                                public static readonly string jquery_spectrum_nl_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/spectrum/i18n/jquery.spectrum-nl.js"); 
+                                public static readonly string jquery_spectrum_pl_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/spectrum/i18n/jquery.spectrum-pl.js"); 
+                                public static readonly string jquery_spectrum_pt_br_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/spectrum/i18n/jquery.spectrum-pt-br.js"); 
+                                public static readonly string jquery_spectrum_ru_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/spectrum/i18n/jquery.spectrum-ru.js"); 
+                                public static readonly string jquery_spectrum_sv_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/spectrum/i18n/jquery.spectrum-sv.js"); 
+                                public static readonly string jquery_spectrum_tr_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/spectrum/i18n/jquery.spectrum-tr.js"); 
+                                public static readonly string jquery_spectrum_zh_cn_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/spectrum/i18n/jquery.spectrum-zh-cn.js"); 
+                                public static readonly string jquery_spectrum_zh_tw_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/spectrum/i18n/jquery.spectrum-zh-tw.js"); 
                             }
                         }
                         public static class Assets
                         {
-                            public const string spectrum_css = "~/Content/PublicUI/plugins/spectrum/spectrum.css";
-                            public const string spectrum_js = "~/Content/PublicUI/plugins/spectrum/spectrum.js"; 
-                            public const string spectrum_min_js = "~/Content/PublicUI/plugins/spectrum/spectrum.min.js"; 
+                            public static readonly string spectrum_css = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/spectrum/spectrum.css");
+                            public static readonly string spectrum_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/spectrum/spectrum.js"); 
+                            public static readonly string spectrum_min_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/spectrum/spectrum.min.js"); 
                         }
                     }
                     public static partial class styleswitcher 
@@ -12463,41 +12463,41 @@ namespace Links
                         }
                         public static class Assets
                         {
-                            public const string styleswitcher_css = "~/Content/PublicUI/plugins/styleswitcher/styleswitcher.css";
-                            public const string styleswitcher_js = "~/Content/PublicUI/plugins/styleswitcher/styleswitcher.js"; 
+                            public static readonly string styleswitcher_css = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/styleswitcher/styleswitcher.css");
+                            public static readonly string styleswitcher_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/styleswitcher/styleswitcher.js"); 
                         }
                     }
                     public static partial class text_rotator 
                     {
                         public static class Assets
                         {
-                            public const string jquery_simple_text_rotator_js = "~/Content/PublicUI/plugins/text-rotator/jquery.simple-text-rotator.js"; 
-                            public const string jquery_simple_text_rotator_min_js = "~/Content/PublicUI/plugins/text-rotator/jquery.simple-text-rotator.min.js"; 
-                            public const string simpletextrotator_css = "~/Content/PublicUI/plugins/text-rotator/simpletextrotator.css";
+                            public static readonly string jquery_simple_text_rotator_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/text-rotator/jquery.simple-text-rotator.js"); 
+                            public static readonly string jquery_simple_text_rotator_min_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/text-rotator/jquery.simple-text-rotator.min.js"); 
+                            public static readonly string simpletextrotator_css = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/text-rotator/simpletextrotator.css");
                         }
                     }
                     public static partial class timepicki 
                     {
                         public static class Assets
                         {
-                            public const string timepicki_js = "~/Content/PublicUI/plugins/timepicki/timepicki.js"; 
-                            public const string timepicki_min_js = "~/Content/PublicUI/plugins/timepicki/timepicki.min.js"; 
+                            public static readonly string timepicki_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/timepicki/timepicki.js"); 
+                            public static readonly string timepicki_min_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/timepicki/timepicki.min.js"); 
                         }
                     }
                     public static partial class toastr 
                     {
                         public static class Assets
                         {
-                            public const string toastr_css = "~/Content/PublicUI/plugins/toastr/toastr.css";
-                            public const string toastr_js = "~/Content/PublicUI/plugins/toastr/toastr.js"; 
+                            public static readonly string toastr_css = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/toastr/toastr.css");
+                            public static readonly string toastr_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/toastr/toastr.js"); 
                         }
                     }
                     public static partial class widget_dribbble 
                     {
                         public static class Assets
                         {
-                            public const string jribbble_js = "~/Content/PublicUI/plugins/widget.dribbble/jribbble.js"; 
-                            public const string jribbble_min_js = "~/Content/PublicUI/plugins/widget.dribbble/jribbble.min.js"; 
+                            public static readonly string jribbble_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/widget.dribbble/jribbble.js"); 
+                            public static readonly string jribbble_min_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/widget.dribbble/jribbble.min.js"); 
                         }
                     }
                     public static partial class widget_jflickr 
@@ -12512,42 +12512,42 @@ namespace Links
                             }
                             public static class Assets
                             {
-                                public const string colorbox_css = "~/Content/PublicUI/plugins/widget.jflickr/colorbox/colorbox.css";
-                                public const string jquery_colorbox_min_js = "~/Content/PublicUI/plugins/widget.jflickr/colorbox/jquery.colorbox-min.js"; 
+                                public static readonly string colorbox_css = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/widget.jflickr/colorbox/colorbox.css");
+                                public static readonly string jquery_colorbox_min_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/widget.jflickr/colorbox/jquery.colorbox-min.js"); 
                             }
                         }
                         public static partial class cycle 
                         {
                             public static class Assets
                             {
-                                public const string jquery_cycle_all_min_js = "~/Content/PublicUI/plugins/widget.jflickr/cycle/jquery.cycle.all.min.js"; 
+                                public static readonly string jquery_cycle_all_min_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/widget.jflickr/cycle/jquery.cycle.all.min.js"); 
                             }
                         }
                         public static class Assets
                         {
-                            public const string jflickrfeed_js = "~/Content/PublicUI/plugins/widget.jflickr/jflickrfeed.js"; 
-                            public const string jflickrfeed_min_js = "~/Content/PublicUI/plugins/widget.jflickr/jflickrfeed.min.js"; 
-                            public const string setup_js = "~/Content/PublicUI/plugins/widget.jflickr/setup.js"; 
-                            public const string style_css = "~/Content/PublicUI/plugins/widget.jflickr/style.css";
+                            public static readonly string jflickrfeed_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/widget.jflickr/jflickrfeed.js"); 
+                            public static readonly string jflickrfeed_min_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/widget.jflickr/jflickrfeed.min.js"); 
+                            public static readonly string setup_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/widget.jflickr/setup.js"); 
+                            public static readonly string style_css = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/widget.jflickr/style.css");
                         }
                     }
                     public static partial class widget_twittie 
                     {
                         public static class Assets
                         {
-                            public const string twittie_min_js = "~/Content/PublicUI/plugins/widget.twittie/twittie.min.js"; 
+                            public static readonly string twittie_min_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/widget.twittie/twittie.min.js"); 
                         }
                     }
                     public static class Assets
                     {
-                        public const string custom_fle_upload_js = "~/Content/PublicUI/plugins/custom.fle_upload.js"; 
-                        public const string gmaps_js = "~/Content/PublicUI/plugins/gmaps.js"; 
-                        public const string jquery_backstretch_min_js = "~/Content/PublicUI/plugins/jquery.backstretch.min.js"; 
-                        public const string jquery_mb_YTPlayer_min_js = "~/Content/PublicUI/plugins/jquery.mb.YTPlayer.min.js"; 
-                        public const string jquery_nav_min_js = "~/Content/PublicUI/plugins/jquery.nav.min.js"; 
-                        public const string masonry_pkgd_min_js = "~/Content/PublicUI/plugins/masonry.pkgd.min.js"; 
-                        public const string smoothscroll_js = "~/Content/PublicUI/plugins/smoothscroll.js"; 
-                        public const string typeahead_bundle_js = "~/Content/PublicUI/plugins/typeahead.bundle.js"; 
+                        public static readonly string custom_fle_upload_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/custom.fle_upload.js"); 
+                        public static readonly string gmaps_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/gmaps.js"); 
+                        public static readonly string jquery_backstretch_min_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/jquery.backstretch.min.js"); 
+                        public static readonly string jquery_mb_YTPlayer_min_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/jquery.mb.YTPlayer.min.js"); 
+                        public static readonly string jquery_nav_min_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/jquery.nav.min.js"); 
+                        public static readonly string masonry_pkgd_min_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/masonry.pkgd.min.js"); 
+                        public static readonly string smoothscroll_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/smoothscroll.js"); 
+                        public static readonly string typeahead_bundle_js = T4MVCHelpers.ProcessAssetPath("~/Content/PublicUI/plugins/typeahead.bundle.js"); 
                     }
                 }
                 public static class Assets
@@ -12580,7 +12580,7 @@ namespace Links
                     {
                         public static class Assets
                         {
-                            public const string style_css = "~/Content/Upload/TemplateFiles/css/style.css";
+                            public static readonly string style_css = T4MVCHelpers.ProcessAssetPath("~/Content/Upload/TemplateFiles/css/style.css");
                         }
                     }
                     public static partial class fonts 
@@ -12599,13 +12599,13 @@ namespace Links
                     {
                         public static class Assets
                         {
-                            public const string index_js = "~/Content/Upload/TemplateFiles/js/index.js"; 
-                            public const string jquery_min_js = "~/Content/Upload/TemplateFiles/js/jquery.min.js"; 
+                            public static readonly string index_js = T4MVCHelpers.ProcessAssetPath("~/Content/Upload/TemplateFiles/js/index.js"); 
+                            public static readonly string jquery_min_js = T4MVCHelpers.ProcessAssetPath("~/Content/Upload/TemplateFiles/js/jquery.min.js"); 
                         }
                     }
                     public static class Assets
                     {
-                        public const string md5_js = "~/Content/Upload/TemplateFiles/md5.js"; 
+                        public static readonly string md5_js = T4MVCHelpers.ProcessAssetPath("~/Content/Upload/TemplateFiles/md5.js"); 
                     }
                 }
                 public static partial class TemplateSettingsXML 
@@ -12620,7 +12620,7 @@ namespace Links
             }
             public static class Assets
             {
-                public const string PagedList_css = "~/Content/PagedList.css";
+                public static readonly string PagedList_css = T4MVCHelpers.ProcessAssetPath("~/Content/PagedList.css");
             }
         }
     }
@@ -12639,8 +12639,14 @@ internal static class T4MVCHelpers {
         return path;
     }
 
+    private static string ProcessAssetPathDefault(string virtualPath) {
+        // The path that comes in starts with ~/ and should retain this prefix
+        return virtualPath;
+    }
+
     // Calling ProcessVirtualPath through delegate to allow it to be replaced for unit testing
     public static Func<string, string> ProcessVirtualPath = ProcessVirtualPathDefault;
+    public static Func<string, string> ProcessAssetPath = ProcessAssetPathDefault;
 
     // Calling T4Extension.TimestampString through delegate to allow it to be replaced for unit testing and other purposes
     public static Func<string, string> TimestampString = System.Web.Mvc.T4Extensions.TimestampString;

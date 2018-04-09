@@ -67,7 +67,7 @@ namespace Netotik.Web.Areas.MyRouter.Controllers
         public virtual ActionResult Print()
         {
             var userlist = _mikrotikServices.Usermanager_GetAllUsers(UserLogined.UserRouter.R_Host, UserLogined.UserRouter.R_Port, UserLogined.UserRouter.R_User, UserLogined.UserRouter.R_Password);
-            
+
             return _reportService.Print(userlist, UserLogined.Id);
         }
         [HttpPost]
@@ -518,7 +518,7 @@ namespace Netotik.Web.Areas.MyRouter.Controllers
             }
             //-------------------------------
             _mikrotikServices.Usermanager_RemoveProfile(UserLogined.UserRouter.R_Host, UserLogined.UserRouter.R_Port, UserLogined.UserRouter.R_User, UserLogined.UserRouter.R_Password, id);
-            this.MessageSuccess(Captions.MissionSuccess,Captions.Removed);
+            this.MessageSuccess(Captions.MissionSuccess, Captions.Removed);
             return RedirectToAction(MVC.MyRouter.UserManager.ActionNames.PackageList);
         }
 
@@ -685,7 +685,7 @@ namespace Netotik.Web.Areas.MyRouter.Controllers
                             }
                     ViewBag.download_limit = UserLimition.download_limit;
                     ViewBag.upload_limit = UserLimition.upload_limit;
-                    ViewBag.transfer_limit = UserLimition.transfer_limit==null|| UserLimition.transfer_limit == "" ?"0": UserLimition.transfer_limit;
+                    ViewBag.transfer_limit = UserLimition.transfer_limit == null || UserLimition.transfer_limit == "" ? "0" : UserLimition.transfer_limit;
                     ViewBag.rate_limit_rx = UserLimition.rate_limit_rx == "" ? "0" : UserLimition.rate_limit_rx;
                     ViewBag.rate_limit_tx = UserLimition.rate_limit_tx == "" ? "0" : UserLimition.rate_limit_tx;
                     decimal Downloadlimit = 0;
@@ -799,7 +799,17 @@ namespace Netotik.Web.Areas.MyRouter.Controllers
             }
             return 0;
         }
-
+        private static DateTime ConvertMikrotikDate(string date)
+        {
+            int month = GetMonth(date.Split(' ')[0].Split('/')[0]);
+            int day = Int32.Parse(date.Split(' ')[0].Split('/')[1]);
+            int year = Int32.Parse(date.Split(' ')[0].Split('/')[2]);
+            int hour = Int32.Parse(date.Split(' ')[1].Split(':')[0]);
+            int min = Int32.Parse(date.Split(' ')[1].Split(':')[1]);
+            int sec = Int32.Parse(date.Split(' ')[1].Split(':')[2]);
+            DateTime UserFromTime = new DateTime(year, month, day, hour, min, sec);
+            return UserFromTime;
+        }
         public virtual ActionResult UserCreate()
         {
 
@@ -822,7 +832,7 @@ namespace Netotik.Web.Areas.MyRouter.Controllers
             //-------------------------------
             ViewBag.profiles = _mikrotikServices.Usermanager_GetAllProfile(UserLogined.UserRouter.R_Host, UserLogined.UserRouter.R_Port, UserLogined.UserRouter.R_User, UserLogined.UserRouter.R_Password);
             //            ViewBag.Customers = _mikrotikServices.GetAllCustomers(UserLogined.UserRouter.R_Host, UserLogined.UserRouter.R_Port, UserLogined.UserRouter.R_User, UserLogined.UserRouter.R_Password);
-            
+
             return View();
         }
 
@@ -1253,7 +1263,7 @@ namespace Netotik.Web.Areas.MyRouter.Controllers
                 Day = day,
                 Month = month,
                 Year = year,
-                Name ="",
+                Name = "",
                 UserId = ""
             };
             return PartialView(MVC.MyRouter.UserManager.Views._GetLog, model);
@@ -1277,57 +1287,109 @@ namespace Netotik.Web.Areas.MyRouter.Controllers
             var ToTime = new DateTime(date.Year, date.Month, date.Day, int.Parse(model.ToTime.Split(':')[0]), int.Parse(model.ToTime.Split(':')[1]), 59);
             var Logs = _UserRouterlogclientservice.GetList(UserLogined.Id, FromTime, ToTime);
 
-            var UserSessions = _mikrotikServices.Usermanager_GetAllUsersSessions(UserLogined.UserRouter.R_Host, UserLogined.UserRouter.R_Port, UserLogined.UserRouter.R_User, UserLogined.UserRouter.R_Password);
+            var UserSessions = _mikrotikServices.Usermanager_GetAllUsersSessions(UserLogined.UserRouter.R_Host, UserLogined.UserRouter.R_Port, UserLogined.UserRouter.R_User, UserLogined.UserRouter.R_Password, FromTime, ToTime);
             var UsersLogs = new List<UserWebsiteLogsWithSessionsModel>();
-            foreach (var user in UserSessions)
-            {
-                int month = GetMonth(user.from_time.Split(' ')[0].Split('/')[0]);
-                int day = Int32.Parse(user.from_time.Split(' ')[0].Split('/')[1]);
-                int year = Int32.Parse(user.from_time.Split(' ')[0].Split('/')[2]);
-                int hour = Int32.Parse(user.from_time.Split(' ')[1].Split(':')[0]);
-                int min = Int32.Parse(user.from_time.Split(' ')[1].Split(':')[1]);
-                int sec = Int32.Parse(user.from_time.Split(' ')[1].Split(':')[2]);
-                DateTime UserFromTime = new DateTime(year, month, day, hour, min, sec);
-                month = GetMonth(user.till_time.Split(' ')[0].Split('/')[0]);
-                day = Int32.Parse(user.till_time.Split(' ')[0].Split('/')[1]);
-                year = Int32.Parse(user.till_time.Split(' ')[0].Split('/')[2]);
-                hour = Int32.Parse(user.till_time.Split(' ')[1].Split(':')[0]);
-                min = Int32.Parse(user.till_time.Split(' ')[1].Split(':')[1]);
-                sec = Int32.Parse(user.till_time.Split(' ')[1].Split(':')[2]);
-                DateTime UserTillTime = new DateTime(year, month, day, hour, min, sec);
 
-                UsersLogs.AddRange(Logs.Where(x =>
-                x.MikrotikCreateDate < UserTillTime &&
-                x.MikrotikCreateDate > UserFromTime
-                ).Select(x => new UserWebsiteLogsWithSessionsModel
+            //foreach (var user in UserSessions)
+            //{
+            //    int month = GetMonth(user.from_time.Split(' ')[0].Split('/')[0]);
+            //    int day = Int32.Parse(user.from_time.Split(' ')[0].Split('/')[1]);
+            //    int year = Int32.Parse(user.from_time.Split(' ')[0].Split('/')[2]);
+            //    int hour = Int32.Parse(user.from_time.Split(' ')[1].Split(':')[0]);
+            //    int min = Int32.Parse(user.from_time.Split(' ')[1].Split(':')[1]);
+            //    int sec = Int32.Parse(user.from_time.Split(' ')[1].Split(':')[2]);
+            //    DateTime UserFromTime = new DateTime(year, month, day, hour, min, sec);
+            //    month = GetMonth(user.till_time.Split(' ')[0].Split('/')[0]);
+            //    day = Int32.Parse(user.till_time.Split(' ')[0].Split('/')[1]);
+            //    year = Int32.Parse(user.till_time.Split(' ')[0].Split('/')[2]);
+            //    hour = Int32.Parse(user.till_time.Split(' ')[1].Split(':')[0]);
+            //    min = Int32.Parse(user.till_time.Split(' ')[1].Split(':')[1]);
+            //    sec = Int32.Parse(user.till_time.Split(' ')[1].Split(':')[2]);
+            //    DateTime UserTillTime = new DateTime(year, month, day, hour, min, sec);
+
+            //    UsersLogs.AddRange(Logs.Where(x =>
+            //    x.MikrotikCreateDate < UserTillTime &&
+            //    x.MikrotikCreateDate > UserFromTime &&
+            //    (x.SrcIp == user.user_ip || x.SrcMac == user.calling_station_id)
+            //    ).Select(x => new UserWebsiteLogsWithSessionsModel
+            //    {
+            //        DstPort = x.DstPort,
+            //        SrcPort = x.SrcPort,
+            //        acct_session_id = user.acct_session_id,
+            //        active = user.active,
+            //        calling_station_id = user.calling_station_id,
+            //        customer = user.customer,
+            //        download = user.download,
+            //        DstIp = x.DstIp,
+            //        from_time = UserFromTime.ToString(),
+            //        till_time = UserTillTime.ToString(),
+            //        host_ip = user.host_ip,
+            //        Method = x.Method,
+            //        MikrotikCreateDate = x.MikrotikCreateDate,
+            //        user = user.user,
+            //        nas_port = user.nas_port,
+            //        nas_port_id = user.nas_port_id,
+            //        nas_port_type = user.nas_port_type,
+            //        SrcIp = x.SrcIp,
+            //        SrcMac = x.SrcMac,
+            //        status = user.status,
+            //        terminate_cause = user.terminate_cause,
+            //        upload = user.upload,
+            //        uptime = user.uptime,
+            //        Url = x.Url,
+            //        user_ip = user.user_ip
+            //    }).ToList());
+            //}
+
+            foreach (var log in Logs)
+            {
+                bool NotFound = true;
+                foreach (var session in UserSessions)
                 {
-                    DstPort = x.DstPort,
-                    SrcPort = x.SrcPort,
-                    acct_session_id = user.acct_session_id,
-                    active = user.active,
-                    calling_station_id = user.calling_station_id,
-                    customer = user.customer,
-                    download = user.download,
-                    DstIp = x.DstIp,
-                    from_time = UserFromTime.ToString(),
-                    till_time = UserTillTime.ToString(),
-                    host_ip = user.host_ip,
-                    Method = x.Method,
-                    MikrotikCreateDate = x.MikrotikCreateDate,
-                    user = user.user,
-                    nas_port = user.nas_port,
-                    nas_port_id = user.nas_port_id,
-                    nas_port_type = user.nas_port_type,
-                    SrcIp = x.SrcIp,
-                    SrcMac = x.SrcMac,
-                    status = user.status,
-                    terminate_cause = user.terminate_cause,
-                    upload = user.upload,
-                    uptime = user.uptime,
-                    Url = x.Url,
-                    user_ip = user.user_ip
-                }).ToList());
+                    if (log.SrcIp == session.user_ip || log.SrcMac == session.calling_station_id)
+                    {
+                        UsersLogs.Add(new UserWebsiteLogsWithSessionsModel()
+                        {
+                            acct_session_id = session.acct_session_id,
+                            SrcMac = log.SrcMac,
+                            DstIp = log.DstIp,
+                            DstPort = log.DstPort,
+                            host_ip = session.host_ip,
+                            Method = log.Method,
+                            MikrotikCreateDate = log.MikrotikCreateDate,
+                            nas_port = session.nas_port,
+                            nas_port_id =session.nas_port_id,
+                            nas_port_type = session.nas_port_type,
+                            SrcIp = log.SrcIp,
+                            SrcPort = log.SrcPort,
+                            Url = log.Url,
+                            user = session.user
+                        });
+                        NotFound = false;
+                    }
+                }
+                if(NotFound)
+                {
+                    UsersLogs.Add(new UserWebsiteLogsWithSessionsModel()
+                    {
+                        acct_session_id = "",
+                        SrcMac = log.SrcMac,
+                        DstIp = log.DstIp,
+                        DstPort = log.DstPort,
+                        host_ip = "",
+                        Method = log.Method,
+                        MikrotikCreateDate = log.MikrotikCreateDate,
+                        nas_port = "",
+                        nas_port_id = "",
+                        nas_port_type = "",
+                        SrcIp = log.SrcIp,
+                        SrcPort = log.SrcPort,
+                        Url = log.Url,
+                        user = ""
+                    });
+                }
             }
+
             //if (UsersLogs==null)
             //{
 
@@ -1396,13 +1458,7 @@ namespace Netotik.Web.Areas.MyRouter.Controllers
                     DstPort = x.DstPort,
                     SrcPort = x.SrcPort,
                     acct_session_id = user.acct_session_id,
-                    active = user.active,
-                    calling_station_id = user.calling_station_id,
-                    customer = user.customer,
-                    download = user.download,
                     DstIp = x.DstIp,
-                    from_time = UserFromTime.ToString(),
-                    till_time = UserTillTime.ToString(),
                     host_ip = user.host_ip,
                     Method = x.Method,
                     MikrotikCreateDate = x.MikrotikCreateDate,
@@ -1412,10 +1468,6 @@ namespace Netotik.Web.Areas.MyRouter.Controllers
                     nas_port_type = user.nas_port_type,
                     SrcIp = x.SrcIp,
                     SrcMac = x.SrcMac,
-                    status = user.status,
-                    terminate_cause = user.terminate_cause,
-                    upload = user.upload,
-                    uptime = user.uptime,
                     Url = x.Url,
                     user_ip = user.user_ip
                 }).ToList());

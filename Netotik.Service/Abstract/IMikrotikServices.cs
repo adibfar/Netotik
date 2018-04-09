@@ -18,6 +18,8 @@ namespace Netotik.Services.Abstract
         void Usermanager_DisableUser(string ip, int port, string user, string pass, string UsermanUser);
         List<Netotik.ViewModels.Identity.UserClient.UserSessionModel> Usermanager_UserSession(string ip, int port, string user, string pass, string UsermanUser);
         List<Netotik.ViewModels.Identity.UserClient.UserSessionModel> Usermanager_GetAllUsersSessions(string ip, int port, string user, string pass);
+
+        List<Netotik.ViewModels.Identity.UserClient.UserSessionModel> Usermanager_GetAllUsersSessions(string ip, int port, string user, string pass,DateTime From,DateTime To);
         List<Netotik.ViewModels.Identity.UserClient.PaymentModel> Usermanager_Payment(string ip, int port, string user, string pass, string UsermanUser);
         void Usermanager_RemoveUser(string ip, int port, string user, string pass, string UsermanUser);
         void Usermanager_ResetUserProfiles(string ip, int port, string user, string pass, string UsermanUser);

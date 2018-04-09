@@ -96,34 +96,53 @@ namespace Netotik.WindowsService
         #endregion
 
         #region Write to DB
+        public bool ValidateIPv4(string ipString)
+        {
+            if (String.IsNullOrWhiteSpace(ipString))
+            {
+                return false;
+            }
 
+            string[] splitValues = ipString.Split('.');
+            if (splitValues.Length != 4)
+            {
+                return false;
+            }
+
+            byte tempForParsing;
+
+            return splitValues.All(r => byte.TryParse(r, out tempForParsing));
+        }
         public async Task DetectDataModel(string address, string receiveString)
         {
             using (var db = new Netotik.Data.Context.NetotikDBContext())
             {
 
                 var ActiveUsers = db.Users.Where(x => x.UserType == UserType.UserRouter && !x.IsDeleted && x.UserRouter.WebsitesLogs).ToList();
-
-
-                if (ActiveUsers != null)//&& UserRouter.WebsiteLogs == true
+                try
                 {
-                    foreach (var User in ActiveUsers)
-                    {
-                        bool dnslookupflag = false;
-                        IPHostEntry hostEntry;
 
-                        hostEntry = Dns.GetHostEntry(User.UserRouter.R_Host);
-                        if (hostEntry.AddressList.Length > 0)
+                    if (ActiveUsers != null)//&& UserRouter.WebsiteLogs == true
+                    {
+                        foreach (var User in ActiveUsers)
                         {
-                            var ip = hostEntry.AddressList[0];
-                            IPAddress ip1 = IPAddress.Parse(address);
-                            if (ip1.Equals(ip))
-                                dnslookupflag = true;
-                        }
-                        if (User.UserRouter.R_Host == address|| dnslookupflag || Dns.GetHostAddresses(User.UserRouter.R_Host).Any(x => x.Address.Equals(IPAddress.Parse(address))))
-                        {
-                            try
+                            bool dnslookupflag = false;
+                            if (!ValidateIPv4(User.UserRouter.R_Host))
                             {
+                                IPHostEntry hostEntry;
+
+                                hostEntry = Dns.GetHostEntry(User.UserRouter.R_Host);
+                                if (hostEntry.AddressList.Length > 0)
+                                {
+                                    var ip = hostEntry.AddressList[0];
+                                    IPAddress ip1 = IPAddress.Parse(address);
+                                    if (ip1.Equals(ip))
+                                        dnslookupflag = true;
+                                }
+                            }
+                            if (User.UserRouter.R_Host == address || dnslookupflag || Dns.GetHostAddresses(User.UserRouter.R_Host).Any(x => x.Address.Equals(IPAddress.Parse(address))))
+                            {
+
                                 UserRouterLogClient http = new UserRouterLogClient();
                                 http.MikrotikCreateDate = DateTime.Now;
                                 http.UserRouterId = User.Id;
@@ -132,6 +151,7 @@ namespace Netotik.WindowsService
                                     http.Url = receiveString.Split(' ')[3];
                                     http.SrcIp = receiveString.Split(' ')[1];
                                     http.DstPort = 80;
+                                    db.UserRouterLogClients.Add(http);
                                 }
                                 else
                                 {
@@ -144,6 +164,7 @@ namespace Netotik.WindowsService
                                             http.DstIp = receiveString.Split(' ')[9].Split('>')[1].Split(':')[0];
                                             http.SrcPort = Int32.Parse(receiveString.Split(' ')[9].Split('-')[0].Split(':')[1]);
                                             http.DstPort = Int32.Parse(receiveString.Split(' ')[9].Split('>')[1].Split(':')[1].Split(',')[0]);
+                                            db.UserRouterLogClients.Add(http);
                                         }
                                     }
                                     else
@@ -154,24 +175,25 @@ namespace Netotik.WindowsService
                                             http.DstIp = receiveString.Split(' ')[7].Split('>')[1].Split(':')[0];
                                             http.SrcPort = Int32.Parse(receiveString.Split(' ')[7].Split('-')[0].Split(':')[1]);
                                             http.DstPort = Int32.Parse(receiveString.Split(' ')[7].Split('>')[1].Split(':')[1].Split(',')[0]);
+                                            db.UserRouterLogClients.Add(http);
                                         }
                                     }
 
                                 }
-                                db.UserRouterLogClients.Add(http);
+                                
                                 await db.SaveAllChangesAsync();
                             }
-                            catch (Exception ex)
-                            {
-                                using (StreamWriter writer = new StreamWriter("C:\\MikrotikLoggerErrors.txt", true))
-                                {
-                                    writer.WriteLine("DetectDataModel ========================= \n" + ex);
-                                }
-                            }
+
                         }
                     }
                 }
-
+                catch (Exception ex)
+                {
+                    //using (StreamWriter writer = new StreamWriter("C:\\MikrotikLoggerErrors.txt", true))
+                    //{
+                    //    writer.WriteLine("DetectDataModel ========================= \n" + ex);
+                    //}
+                }
             }
         }
 

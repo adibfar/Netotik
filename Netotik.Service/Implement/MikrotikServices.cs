@@ -852,6 +852,100 @@ namespace Netotik.Services.Implement
             }
             return usersessionmodel;
         }
+        public List<Netotik.ViewModels.Identity.UserClient.UserSessionModel> Usermanager_GetAllUsersSessions(string ip, int port, string user, string pass,DateTime From,DateTime To)
+        {
+            var mikrotik = new MikrotikAPI();
+            mikrotik.MK(ip, port);
+            if (!mikrotik.Login(user, pass)) mikrotik.Close();
+            //-----------------------------------------------
+            var MikrotikFrom = ConvertToMikrotikDate(From.AddDays(-1));
+            var MikrotikTo = ConvertToMikrotikDate(To.AddDays(1));
+            //-----------------------------------------------
+            mikrotik.Send("/tool/user-manager/session/print",true);
+            //string temp = String.Format("?=from-time={0}", MikrotikFrom);
+            //mikrotik.Send(temp);
+            //temp = String.Format("?=till-time={0}", MikrotikTo);
+            //mikrotik.Send(temp, true);
+
+            var usersessionmodel = new List<Netotik.ViewModels.Identity.UserClient.UserSessionModel>();
+            var read = mikrotik.Read();
+            var rty = read.ToString();
+
+            foreach (var item in read)
+            {
+                if (item != "!done")
+                {
+                    var cols = item.Split('=');
+                    var ColumnList = new Dictionary<string, string>();
+                    for (int i = 1; i < cols.Count(); i += 2)
+                    {
+                        ColumnList.Add(cols[i], cols[i + 1]);
+                    }
+                    usersessionmodel.Add(new Netotik.ViewModels.Identity.UserClient.UserSessionModel()
+                    {
+                        id = ColumnList.Any(x => x.Key == ".id") ? (ColumnList.FirstOrDefault(x => x.Key == ".id").Value) : "",
+                        customer = ColumnList.Any(x => x.Key == "customer") ? (ColumnList.FirstOrDefault(x => x.Key == "customer").Value) : "",
+                        user = ColumnList.Any(x => x.Key == "user") ? (ColumnList.FirstOrDefault(x => x.Key == "user").Value) : "",
+                        acct_session_id = ColumnList.Any(x => x.Key == "acct-session-id") ? (ColumnList.FirstOrDefault(x => x.Key == "acct-session-id").Value) : "",
+                        calling_station_id = ColumnList.Any(x => x.Key == "calling-station-id") ? (ColumnList.FirstOrDefault(x => x.Key == "calling-station-id").Value) : "",
+                        download = ColumnList.Any(x => x.Key == "download") ? (ColumnList.FirstOrDefault(x => x.Key == "download").Value) : "",
+                        from_time = ColumnList.Any(x => x.Key == "from-time") ? (ColumnList.FirstOrDefault(x => x.Key == "from-time").Value) : "",
+                        host_ip = ColumnList.Any(x => x.Key == "host-ip") ? (ColumnList.FirstOrDefault(x => x.Key == "host-ip").Value) : "",
+                        nas_port = ColumnList.Any(x => x.Key == "nas-port") ? (ColumnList.FirstOrDefault(x => x.Key == "nas-port").Value) : "",
+                        nas_port_id = ColumnList.Any(x => x.Key == "nas-port-id") ? (ColumnList.FirstOrDefault(x => x.Key == "nas-port-id").Value) : "",
+                        nas_port_type = ColumnList.Any(x => x.Key == "nas-port-type") ? (ColumnList.FirstOrDefault(x => x.Key == "nas-port-type").Value) : "",
+                        status = ColumnList.Any(x => x.Key == "status") ? (ColumnList.FirstOrDefault(x => x.Key == "status").Value) : "",
+                        terminate_cause = ColumnList.Any(x => x.Key == "terminate-cause") ? (ColumnList.FirstOrDefault(x => x.Key == "terminate-cause").Value) : "",
+                        till_time = ColumnList.Any(x => x.Key == "till-time") ? (ColumnList.FirstOrDefault(x => x.Key == "till-time").Value) : "",
+                        upload = ColumnList.Any(x => x.Key == "upload") ? (ColumnList.FirstOrDefault(x => x.Key == "upload").Value) : "",
+                        uptime = ColumnList.Any(x => x.Key == "uptime") ? (ColumnList.FirstOrDefault(x => x.Key == "uptime").Value) : "",
+                        user_ip = ColumnList.Any(x => x.Key == "user-ip") ? (ColumnList.FirstOrDefault(x => x.Key == "user-ip").Value) : "",
+                        active = ColumnList.Any(x => x.Key == "active") ? (ColumnList.FirstOrDefault(x => x.Key == "active").Value) : ""
+                    });
+
+                }
+            }
+            return usersessionmodel;
+        }
+
+        private string ConvertToMikrotikDate(DateTime dateTime)
+        {
+            string date = "";
+            date = GetMonth(dateTime.Month) + "/" + (dateTime.Day<10?("0"+dateTime.Day.ToString()):dateTime.Day.ToString()) + "/" +dateTime.Year;
+            return date;
+        }
+        private static string GetMonth(int monthnumber)
+        {
+            switch (monthnumber)
+            {
+                case 1:
+                    return "jan";
+                case 2:
+                    return "feb";
+                case 3:
+                    return "mar";
+                case 4:
+                    return "apr";
+                case 5:
+                    return "may";
+                case 6:
+                    return "jun";
+                case 7:
+                    return "jul";
+                case 8:
+                    return "aug";
+                case 9:
+                    return "sep";
+                case 10:
+                    return "oct";
+                case 11:
+                    return "nov";
+                case 12:
+                    return "dec";
+
+            }
+            return "";
+        }
         public List<Netotik.ViewModels.Identity.UserClient.PaymentModel> Usermanager_Payment(string ip, int port, string user, string pass, string UsermanUser)
         {
             var mikrotik = new MikrotikAPI();
