@@ -13,7 +13,8 @@
                 <h4 class="modal-title" id="myModalLabel20">@Captions.Logs </h4>
             </div>
             <div class="alert alert-success no-border">
-                از طریق این فرم می توانید تمامی لاگ هایی که از سمت روتر شما دریافت شده است را گزارش بگیرید.لطفا برای دریافت سریع تر گزارش ، بازه ساعت را محدود کنید.
+                از طریق این فرم می توانید تمامی لاگ هایی که از سمت روتر شما دریافت شده است را گزارش بگیرید.لطفا برای دریافت سریع تر گزارش ، بازه ساعت را محدود کنید.<br />
+                هنگام گزارش از اتصالات فعال، نام کاربر مشخص نمی شود و فقط گزارش از اتصالات بدون مشخص بودن کاربر گرفته می شود.
             </div>
             @using (Html.BeginForm(MVC.MyRouter.UserManager.ActionNames.GetLog, MVC.MyRouter.UserManager.Name, FormMethod.Post, htmlAttributes: new { @class = "form-horizontal", id = "form" }))
             {
@@ -72,9 +73,8 @@
                         <i class="icon-cross2"></i>
                         @Captions.Close
                     </button>
-                    <button name="actionType" value="@Netotik.Common.Controller.ActionType.Save" type="submit" class="btn btn-outline-success" onclick="AjaxForm.Post(this, 'form')" data-loading-text="@Captions.SendingData">
-                        <i class="icon-check2"></i>
-                        @Captions.GetReport
+                    <button class="btn btn-success width-150 ladda-button" data-style="slide-up" type="submit">
+                        <span class="ladda-label">@Captions.GetReport</span>
                     </button>
                 </div>
             }

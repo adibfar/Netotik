@@ -55,6 +55,11 @@
     <script src="~/Content/js/plugins/tables/buttons.html5.min.js" type="text/javascript"></script>
     <script src="~/Content/js/plugins/tables/buttons.colVis.min.js" type="text/javascript"></script>
     <script src="~/Content/js/plugins/extensions/timedropper.min.js" type="text/javascript"></script>
+
+<script src="~/Content/js/plugins/buttons/spin.min.js" type="text/javascript"></script>
+<script src="~/Content/js/plugins/buttons/ladda.min.js" type="text/javascript"></script>
+
+
     <script type="text/javascript">
 
         $(window).on("load", function () {
@@ -148,6 +153,7 @@
             var url = "@Url.Action(MVC.MyRouter.UserManager.GetLogRequest())";
             $.get(url + '/' + id, function (data) {
                 $('#GetLogModal').html(data);
+                Ladda.bind('button[type=submit]');
                 $('#GetLog').modal('show');
                 CardUnBlock('#configuration');
                 Icheck();

@@ -23,6 +23,7 @@ using OfficeOpenXml.Table;
 using System.Data;
 using System.Reflection;
 using Netotik.ViewModels.Identity.Account;
+using System.IO;
 
 namespace Netotik.Web.Areas.MyRouter.Controllers
 {
@@ -799,7 +800,7 @@ namespace Netotik.Web.Areas.MyRouter.Controllers
             }
             return 0;
         }
-        private static DateTime ConvertMikrotikDate(string date)
+        private DateTime ConvertMikrotikDate(string date)
         {
             int month = GetMonth(date.Split(' ')[0].Split('/')[0]);
             int day = Int32.Parse(date.Split(' ')[0].Split('/')[1]);
@@ -807,7 +808,9 @@ namespace Netotik.Web.Areas.MyRouter.Controllers
             int hour = Int32.Parse(date.Split(' ')[1].Split(':')[0]);
             int min = Int32.Parse(date.Split(' ')[1].Split(':')[1]);
             int sec = Int32.Parse(date.Split(' ')[1].Split(':')[2]);
+
             DateTime UserFromTime = new DateTime(year, month, day, hour, min, sec);
+
             return UserFromTime;
         }
         public virtual ActionResult UserCreate()
@@ -1237,9 +1240,9 @@ namespace Netotik.Web.Areas.MyRouter.Controllers
 
 
             System.Globalization.PersianCalendar cal = new System.Globalization.PersianCalendar();
-            var year = cal.GetYear(DateTime.Now);
-            var month = cal.GetMonth(DateTime.Now);
-            var day = cal.GetDayOfMonth(DateTime.Now);
+            var year = cal.GetYear(DateTime.Now.AddDays(-1));
+            var month = cal.GetMonth(DateTime.Now.AddDays(-1));
+            var day = cal.GetDayOfMonth(DateTime.Now.AddDays(-1));
 
             var yearList = new List<SelectListItem>();
             for (int i = 1397; i <= year; i++)
@@ -1346,7 +1349,10 @@ namespace Netotik.Web.Areas.MyRouter.Controllers
                 bool NotFound = true;
                 foreach (var session in UserSessions)
                 {
-                    if (log.SrcIp == session.user_ip || log.SrcMac == session.calling_station_id)
+                    if (
+                        (DateTime.Compare(ConvertMikrotikDate(session.from_time), log.MikrotikCreateDate) <= 0 && DateTime.Compare(ConvertMikrotikDate(session.till_time), log.MikrotikCreateDate) >= 0)
+                     && (log.SrcIp == session.user_ip || log.SrcMac == session.calling_station_id)
+                        )
                     {
                         UsersLogs.Add(new UserWebsiteLogsWithSessionsModel()
                         {
@@ -1358,7 +1364,7 @@ namespace Netotik.Web.Areas.MyRouter.Controllers
                             Method = log.Method,
                             MikrotikCreateDate = log.MikrotikCreateDate,
                             nas_port = session.nas_port,
-                            nas_port_id =session.nas_port_id,
+                            nas_port_id = session.nas_port_id,
                             nas_port_type = session.nas_port_type,
                             SrcIp = log.SrcIp,
                             SrcPort = log.SrcPort,
@@ -1368,7 +1374,7 @@ namespace Netotik.Web.Areas.MyRouter.Controllers
                         NotFound = false;
                     }
                 }
-                if(NotFound)
+                if (NotFound)
                 {
                     UsersLogs.Add(new UserWebsiteLogsWithSessionsModel()
                     {
@@ -1394,6 +1400,10 @@ namespace Netotik.Web.Areas.MyRouter.Controllers
             //{
 
             //}
+
+            int LogsCount = Logs.Count();
+            int SessionsCount = UserSessions.Count();
+
             var userReport = UsersLogs.FirstOrDefault();
 
             using (ExcelPackage pck = new ExcelPackage())
@@ -1402,7 +1412,7 @@ namespace Netotik.Web.Areas.MyRouter.Controllers
                 ws.Cells["A1"].LoadFromDataTable(Netotik.Common.Extensions.DataTableExtention.ToDataTable<UserWebsiteLogsWithSessionsModel>(UsersLogs), true, TableStyles.Medium2);
                 Byte[] fileBytes = pck.GetAsByteArray();
                 Response.ClearContent();
-                Response.AddHeader("content-disposition", "attachment;filename=" + (userReport != null ? userReport.user : "null") + "_Logs_" + DateTime.Now.ToString("M_dd_yyyy_H_M_s") + ".xlsx");
+                Response.AddHeader("content-disposition", "attachment;filename=" + (userReport != null ? "ALL" : "null") + "_Logs_" + LogsCount + "_" + SessionsCount + "_" + DateTime.Now.ToString("M_dd_yyyy_H_M_s") + ".xlsx");
                 Response.ContentType = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet";
                 Response.BinaryWrite(fileBytes);
                 Response.End();
